@@ -1848,3 +1848,14 @@ published under `slate/` only, and the audit in S-05 compares them against those
   data and rebuilt pages back to the branch it ran from, so the board keeps re-checking Hotspawn and the price
   sources with no manual input. Carried prices (`S-F-16`, 9 fixtures in the first merged capture) are replaced
   by the run's own reads as soon as a source serves the runner again.
+
+- **Follow-up PR #69** https://github.com/buffedlizard55-lab/MaltaProj1/pull/69 (`arena/180a42a0-maltaproj1` → `main`):
+  **MERGED** 2026-10-13 23:52 UTC (`a1bd7e0`), same rules: checks green first (`audit` pass, `verify` pass,
+  `MERGEABLE`/`CLEAN`), explicit `gh pr merge 69 --merge`. It carries the source-cell label fix (a row whose
+  per-match Hotspawn page was not actually read no longer labels the pick'em board link as a match page) and a
+  second merge of `origin/main`, this time conflicting only in generated `slate/data/*` and rebuilt `slate/*.html`
+  where both branches had run the capture job — resolved by keeping this branch's newer capture, which the next
+  scheduled run regenerates either way. Pages rebuilt successfully afterwards (`pages: built`, run 38486457772).
+- **What keeps running with no manual input:** the workflow's 3-hourly cron now fires from `main` as well
+  (first post-merge run 38486458907), so the published board re-reads Hotspawn, Pinnacle, HLTV, Valve and
+  EGamersWorld on schedule and commits any changed data and pages.
