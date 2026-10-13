@@ -1,6 +1,9 @@
 # Raw third-party page bodies are CI evidence artifacts, never published site content.
-# pipeline/_scratch/ is a TEMPORARY development folder, removed before the final PR.
+# pipeline/_scratch/ was a TEMPORARY development folder (removed before the final PR).
 pipeline/probe/raw/
+evidence/
 __pycache__/
+*.py[cod]
 *.pyc
+$py.class
 .venv/

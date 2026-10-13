@@ -1,0 +1,22 @@
+<!doctype html><html lang='en'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>Methodology · MaltaProj1</title><link rel='stylesheet' href='style.css'></head><body><header><h1>Methodology</h1><p>Hotspawn Pick'em betting-line analysis · Snapshot 2026-10-13 (UTC) · Hotspawn pick % is NEVER used as a probability.</p></header><nav><a href="index.html">Dashboard</a><a href="matches.html">All matches</a><a href="s-tier.html">S-Tier · Thunderpick WC</a><a href="stake.html">Stake Pulse Beat III</a><a href="lower-tiers.html">B/C-Tier &amp; inventory</a><a href="methodology.html" aria-current=page>Methodology</a><a href="flagged.html">⚠ Flagged for Review</a><a href="sources.html">Sources</a></nav><main>
+<div class='card'><h2>Fixtures</h2><p>Only fixtures that appear in the server-rendered Hotspawn lobby list are used
+(26 rows, H-01 to H-26). Team names and times are copied verbatim from the Hotspawn label. Hotspawn pick % is recorded as an
+audit snapshot and is not an input to any probability or pick.</p></div>
+<div class='card'><h2>Own line (originated)</h2><p>Rank-only Elo model, computed by <code>scripts/model.py</code>:</p>
+<p><code>rating = 2000 − 300 · log10(HLTV world rank)</code><br>
+<code>P(A beats B) = 1 / (1 + 10^(−(rating_A − rating_B)/400))</code></p>
+<p>Ranks come from <code>data/ratings.csv</code> (HLTV, 2026-10-12, each row sourced). A team with no verified HLTV rank has
+a blank own line. We do not infer a rank.</p></div>
+<div class='card'><h2>External lines</h2><ul>
+<li><b>Polymarket</b> (two-outcome prices in cents): used only if the two sides sum to 98–106¢. No-vig P(A) = a / (a+b).</li>
+<li><b>eGamersWorld</b> decimal odds (bookmaker not named on page): no-vig P(A) = (1/oA) / (1/oA + 1/oB).</li>
+<li><b>Accepted</b> readings feed the external mean. <b>Indicative</b> readings (zero volume) are shown only.
+<b>Rejected</b> readings (overround outside the rule, or wrong market) are shown only.</li>
+<li>Tournament outrights (FreeTips, Thunderpick WC) are context only, not match lines.</li></ul></div>
+<div class='card'><h2>Pick rule</h2><p>A side is a pick only when the own line AND the mean accepted external line both put that
+side at ≥55%. If they disagree, or either source is missing, the result is <b>no pick</b>. A single-source lean is not a pick.</p></div>
+<div class='card'><h2>Limits</h2><ul><li>Rank-only model: no roster, map pool, form or news input.</li>
+<li>Prices are a snapshot at fetch time and move. Re-run the pipeline before relying on them.</li>
+<li>Analysis only, not betting advice.</li></ul></div>
+<div class='card'><h2>Reproduce</h2><p><code>python3 scripts/model.py</code> then <code>python3 scripts/build_docs.py</code>.</p></div>
+</main><footer>Analysis only — not betting advice. Unverified values are left blank and flagged. See <a href='flagged.html'>Flagged for Review</a> and <a href='sources.html'>Sources</a>.</footer></body></html>

@@ -1,0 +1,30 @@
+match_id,source,unit,team_a_source_name,team_a_value,team_b_source_name,team_b_value,volume_or_note,status,source_url,note
+H-01,Polymarket,cents,ex-Keyd Stars,33,Galorys,68,$2.0K,accepted,https://polymarket.com/esports/cs2/esl-challenger-league/cs2-keydst-gls1-2026-10-13,Listing on ESL Challenger page fetched 2026-10-13; sides sum to 101c
+H-02,Polymarket,cents,Zomblers,34,Overtake,67,$1.5K,accepted,https://polymarket.com/esports/cs2/esl-challenger-league/cs2-zomb-ot2-2026-10-13,Polymarket names the side "Overtake" - mapping to Hotspawn "Overtake Sector" NOT explicitly confirmed (F-08); sides sum to 101c
+H-03,Polymarket,cents,Gothic,53,Lavked,47,$220.44,accepted,https://polymarket.com/esports/cs2/cct-europe/cs2-gothic-lavked-2026-10-14,Same market shows 56c/50c in a second card on the same page (sum 106c) - conflict logged (F-05)
+H-04,Polymarket,cents,9z,26,Aurora Gaming,75,$28.86K,accepted,https://polymarket.com/esports/cs2/thunderpick-world-championship/cs2-9z-aur1-2026-10-14,Consistent across TWC listing and market card; sides sum to 101c
+H-05,Polymarket,cents,Astralis,86,Sashi Esport,15,$8.24K,accepted,https://polymarket.com/esports/cs2/stake-pulse/cs2-ast10-sashi-2026-10-14,Sides sum to 101c
+H-05,EGamersWorld (quotes bookmaker odds; bookmaker not named),decimal,Astralis,1.09,Sashi Esport,6.35,bookmaker odds page,accepted,https://egamersworld.com/counterstrike/match/EJZmJpBjeNx/astralis-vs-sashi-esport-aGet1AP-0Z,Page fetched 2026-10-13; Listed 14.10 12:00 on EGW vs Hotspawn 04:30 (F-02)
+H-06,Polymarket,cents,HOTU,47,fnatic,54,$16.06K,accepted,https://polymarket.com/esports/cs2/stake-pulse/cs2-hotu-fnc-2026-10-14,Sides sum to 101c
+H-07,Polymarket,cents,ex-RUSTEC,65,mellren,36,$55.00,accepted,https://polymarket.com/esports/cs2/cct-europe/cs2-rustec-mellre-2026-10-14,Second listing on same page shows 67c/38c (sum 105c) - conflict logged (F-05)
+H-08,Polymarket,cents,Falcons,77,Ninjas in Pyjamas,24,$104.70K,accepted,https://polymarket.com/esports/cs2/thunderpick-world-championship/cs2-fal2-nip-2026-10-14,Sides sum to 101c; highest-volume market in this set
+H-09,Polymarket,cents,Legacy,59,PARIVISION,42,$15.92K,accepted,https://polymarket.com/esports/cs2/thunderpick-world-championship/cs2-lgc-prv-2026-10-14,Sides sum to 101c
+H-10,Polymarket,cents,G2 Ares,81,The Last Resort,41,$55.78,rejected,https://polymarket.com/esports/cs2/cct-europe/cs2-g2a-tlr-2026-10-14,REJECTED: sides sum to 122c (overround outside 98-106c rule, F-05). G2 Ares is not HLTV "G2" (F-10)
+H-11,Polymarket,cents,FURIA,72,BetBoom Team,29,$14.52K,accepted,https://polymarket.com/esports/cs2/thunderpick-world-championship/cs2-furia-bb3-2026-10-14,Sides sum to 101c
+H-12,Polymarket,cents,FORZE Reload,95,Sökerorg,12,$0.00,rejected,https://polymarket.com/esports/cs2/cct-europe/cs2-forzer-skr2-2026-10-14,REJECTED: Polymarket market is FORZE Reload vs Sökerorg, not Hotspawn's FORZE Reload vs LFO 10 (F-09)
+H-13,Polymarket,cents,WBT (mapped to Hotspawn WROTBERRY - F-07),49,Esport Academy Copenhagen (= Hotspawn EAC),52,$0.00,indicative,https://polymarket.com/esports/cs2/elisa-breakout/cs2-wbt-eac-2026-10-15,Zero volume (no trades) - indicative only (F-04). Name mapping F-07
+H-14,Polymarket,cents,MIBR,55,BC.Game Esports,46,$10.38K,accepted,https://polymarket.com/esports/cs2/stake-pulse/cs2-mibr-bcg-2026-10-15,Sides sum to 101c
+H-14,EGamersWorld (quotes bookmaker odds; bookmaker not named),decimal,MIBR,1.64,BC.Game Esports,2.08,bookmaker odds page,accepted,https://egamersworld.com/counterstrike/match/EJZmJpBjeNx/mibr-vs-bcgame-esports-X8nMpUjAX,Page fetched 2026-10-13
+H-15,Polymarket,cents,Heroic,67,Envy,34,$3.04K,accepted,https://polymarket.com/esports/cs2/stake-pulse/cs2-hero-envy-2026-10-15,Sides sum to 101c; thin market
+H-15,EGamersWorld (quotes bookmaker odds; bookmaker not named),decimal,Heroic,1.5,Team Envy,2.55,bookmaker odds page,accepted,https://egamersworld.com/counterstrike/match/EJZmJpBjeNx/heroic-vs-team-envy-NcCqzpPZdC,Page fetched 2026-10-13 (EGW shows Heroic 1.5 / Envy 2.55)
+H-16,Polymarket,cents,ENCE,64,BOJONG,36,$0.00,indicative,https://polymarket.com/esports/cs2/elisa-breakout/cs2-ence-bojong-2026-10-15,Zero volume - indicative only (F-04). Second listing on same page shows 75c/47c (sum 122c) - rejected as conflict (F-05)
+H-17,Polymarket,cents,WBT (mapped to Hotspawn WROTBERRY - F-07),57,ENCE,43,$0.00,indicative,https://polymarket.com/esports/cs2/elisa-breakout/cs2-wbt-ence-2026-10-15,Zero volume - indicative only (F-04). Second listing shows 62c/48c (sum 110c) - rejected as conflict (F-05)
+H-18,Polymarket,cents,Esport Academy Copenhagen,86,BOJONG,46,$304.98,rejected,https://polymarket.com/esports/cs2/elisa-breakout/cs2-eac-bojong-2026-10-15,REJECTED: sides sum to 132c (F-05)
+H-19,Polymarket,cents,WBT (mapped to WROTBERRY - F-07),87,BOJONG,48,$0.00,rejected,https://polymarket.com/esports/cs2/elisa-breakout/cs2-wbt-bojong-2026-10-15,REJECTED: sides sum to 135c (F-05)
+H-20,Polymarket,cents,Esport Academy Copenhagen,71,ENCE,46,$3.08,rejected,https://polymarket.com/esports/cs2/elisa-breakout/cs2-eac-ence-2026-10-15,REJECTED: sides sum to 117c (F-05)
+H-21,Polymarket,cents,Voca,47,Phantom,54,$0.00,indicative,https://polymarket.com/esports/cs2/elisa-breakout/cs2-voc-pha-2026-10-16,Zero volume - indicative only (F-04)
+H-22,Polymarket,cents,HAVU,83,RoundsGG,46,$0.00,rejected,https://polymarket.com/esports/cs2/elisa-breakout/cs2-havu-rgg-2026-10-16,REJECTED: sides sum to 129c (F-05)
+H-23,Polymarket,cents,Voca,74,HAVU,37,$0.00,rejected,https://polymarket.com/esports/cs2/elisa-breakout/cs2-voc-havu-2026-10-16,REJECTED: sides sum to 111c (F-05)
+H-24,Polymarket,cents,Phantom,93,RoundsGG,46,$0.00,rejected,https://polymarket.com/esports/cs2/elisa-breakout/cs2-pha-rgg-2026-10-16,REJECTED: sides sum to 139c (F-05)
+H-25,Polymarket,cents,RoundsGG,47,Voca,91,$0.00,rejected,https://polymarket.com/esports/cs2/elisa-breakout/cs2-voc-rgg-2026-10-16,REJECTED: sides sum to 138c (F-05)
+H-26,Polymarket,cents,Phantom,79,HAVU,46,$0.00,rejected,https://polymarket.com/esports/cs2/elisa-breakout/cs2-pha-havu-2026-10-16,REJECTED: sides sum to 125c (F-05)

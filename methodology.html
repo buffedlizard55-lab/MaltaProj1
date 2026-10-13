@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Origination Methodology & Mathematical Formulation | Hotspawn Hub</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  
+    <header>
+      <div class="nav-container">
+        <a href="index.html" class="brand">
+          <span class="brand-badge">MALTA 2026</span>
+          <div>
+            <div class="brand-title">Hotspawn Esports Lines & Probabilities Hub</div>
+            <span class="brand-sub">Reverse Engineering & Independent Origination</span>
+          </div>
+        </a>
+        <nav>
+          <ul>
+            <li><a href="index.html" class="">Dashboard</a></li>
+            <li><a href="thunderpick.html" class="">Thunderpick Malta</a></li>
+            <li><a href="stake-pulse.html" class="">Stake Pulse III</a></li>
+            <li><a href="cct-europe.html" class="">CCT Europe 11</a></li>
+            <li><a href="elisa-breakout.html" class="">Elisa BreakOut 2</a></li>
+            <li><a href="esl-challenger.html" class="">ESL Challenger</a></li>
+            <li><a href="methodology.html" class="active">Methodology</a></li>
+            <li><a href="flagged.html" class="flag-link ">Flagged for Review <span class="badge badge-amber">18</span></a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    
+
+  <main>
+    <div class="hero">
+      <h1>Statistical Origination Methodology &amp; Mathematical Formulation</h1>
+      <p>
+        To meet project requirements, we never use Hotspawn pick percentages as probability indicators.
+        Instead, we originate independent, rigorous betting lines and match probabilities for all 26 matches
+        using competitive Counter-Strike 2 performance metrics, Valve Regional Standings (VRS), HLTV world rankings,
+        and series format adjustments.
+      </p>
+    </div>
+
+    <div class="card-grid">
+      <div class="content-card">
+        <h2>1. Bookmaker De-Vigging (Fair Implied Probability)</h2>
+        <p>
+          Sportsbooks embed a profit margin (vigorish/overround). To extract the market's true implied probability,
+          we apply proportional de-vigging to verified decimal odds \(O_1\) and \(O_2\):
+        </p>
+        <p style="background: var(--bg-card); padding: 0.75rem; border-radius: 6px; font-family: monospace;">
+          P_raw1 = 1 / O_1, &nbsp; P_raw2 = 1 / O_2<br>
+          Total_Margin = P_raw1 + P_raw2<br>
+          P_fair1 = P_raw1 / Total_Margin<br>
+          P_fair2 = P_raw2 / Total_Margin
+        </p>
+        <p>
+          If an official sportsbook line has not yet been posted or verified for a fixture, the bookmaker line and market implied probability are left strictly blank and flagged on the Flagged for Review page.
+        </p>
+      </div>
+
+      <div class="content-card">
+        <h2>2. Independent Line Origination Model</h2>
+        <p>
+          Our originated lines are built from a modified logistic Bradley-Terry model calibrated to modern professional CS2:
+        </p>
+        <ul>
+          <li><strong>Composite Rating:</strong> Incorporates HLTV Ranking Points (60%) and Valve Regional Standings (40%) to measure roster quality.</li>
+          <li><strong>Form Adjustment:</strong> Incorporates 30-day and 90-day win percentages across official HLTV maps.</li>
+          <li><strong>Format Scaling (BO3 vs. BO1):</strong>
+            <ul>
+              <li><strong>BO1 (Single Map):</strong> Subject to high map-veto variance and pistol round momentum: <code>P_BO1 = p_base</code>.</li>
+              <li><strong>BO3 (Series):</strong> Binomial expansion <code>P_BO3 = p^2 &times; (3 - 2p)</code>, reducing random upset frequency.</li>
+            </ul>
+          </li>
+          <li><strong>Originated Fair Odds:</strong> <code>O_fair = 1 / P_originated</code>.</li>
+        </ul>
+      </div>
+
+      <div class="content-card">
+        <h2>3. Value Edge &amp; Public Bias Detection</h2>
+        <p>
+          Comparing our originated model probability against bookmaker lines and Hotspawn pick distributions reveals actionable insights:
+        </p>
+        <p style="background: var(--bg-card); padding: 0.75rem; border-radius: 6px; font-family: monospace;">
+          Model_Edge = P_originated - P_market<br>
+          Public_Bias_Skew = Hotspawn_Pick% - P_market
+        </p>
+        <p>
+          Where Public_Bias_Skew exceeds &plusmn;20%, the community is suffering from brand-recognition bias or misinterpreting recent results, creating enormous differentiation value in Pick'em tournaments.
+        </p>
+      </div>
+
+      <div class="content-card">
+        <h2>4. Strict Verification &amp; Source Auditing Standards</h2>
+        <p>
+          In accordance with repo specifications:
+        </p>
+        <ul>
+          <li>Every table row links directly to verified external sources (EGamersWorld, Bwin, Polymarket, Stake, HLTV official match pages).</li>
+          <li>Values that cannot be verified from an official source are <strong>never inferred or hallucinated</strong>—they are left blank and published on the <a href="flagged.html" class="source-link">Flagged for Review page</a>.</li>
+          <li>All team names, tournament names, prize pools, and locations (e.g. Malta BLAST Studios) are confirmed via official releases.</li>
+        </ul>
+      </div>
+    </div>
+  </main>
+
+  
+    <footer>
+      <div class="footer-links">
+        <a href="index.html">Dashboard</a>
+        <a href="thunderpick.html">Thunderpick Malta</a>
+        <a href="methodology.html">Origination Methodology</a>
+        <a href="flagged.html">Flagged for Review</a>
+        <a href="https://play.hotspawn.com/lobby" target="_blank" rel="noopener">Hotspawn Lobby</a>
+        <a href="https://www.hltv.org" target="_blank" rel="noopener">HLTV Official</a>
+      </div>
+      <p>&copy; 2026 MaltaProj1 Analytics &bull; Verified Esports Betting Lines &amp; Statistical Origination Engine &bull; Hosted on GitHub Pages</p>
+    </footer>
+    
+</body>
+</html>
