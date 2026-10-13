@@ -23,6 +23,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 RAW = ROOT / "picks" / "raw"
+OUT = ROOT / "picks" / "data"
 
 BROWSER_HEADERS = {
     "User-Agent": (
@@ -134,6 +135,7 @@ def fetch(url: str, extra: dict[str, str]) -> tuple[int, bytes, str]:
 
 def main() -> int:
     RAW.mkdir(parents=True, exist_ok=True)
+    OUT.mkdir(parents=True, exist_ok=True)
     started = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
     report: list[dict[str, object]] = []
 
@@ -158,7 +160,7 @@ def main() -> int:
         print(f"{name}: HTTP {status} {len(body)}B", flush=True)
         time.sleep(1)
 
-    (RAW / "probe.json").write_text(
+    (OUT / "probe.json").write_text(
         json.dumps({"started_utc": started, "sources": report}, indent=2)
     )
     print(f"probe complete: {len(report)} sources -> {RAW}")

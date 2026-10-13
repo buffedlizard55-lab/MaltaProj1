@@ -39,6 +39,15 @@ jobs:
           name: picks-raw-${{ github.run_id }}
           path: picks/raw/
           retention-days: 7
+      - name: Return the probe report to this session branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add picks/data/probe.json
+          if git diff --cached --quiet; then echo "no change"; exit 0; fi
+          git commit -m "data(cc8f4dca): source probe report from run ${{ github.run_id }}"
+          git pull --rebase origin arena/cc8f4dca-maltaproj1
+          git push origin HEAD:arena/cc8f4dca-maltaproj1
       - name: Publish run summary
         if: always()
         run: |
