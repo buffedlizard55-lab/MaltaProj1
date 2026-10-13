@@ -75,8 +75,12 @@ def main() -> None:
     results = []
     for label, url in CANDIDATES:
         got = probe(url)
-        if got.pop("_body", None):
+        body = got.pop("_body", None)
+        if body:
             (EVID / f"market-{label}.body").write_text(got["sample"], encoding="utf-8")
+            if got.get("odds_like_numbers", 0) >= 3 or "polymarket" in label:
+                import gzip
+                (EVID / f"market-{label}.html.gz").write_bytes(gzip.compress(body, 9))
         results.append({"label": label, **got})
         print(json.dumps({k: v for k, v in results[-1].items() if k != "sample"}), flush=True)
     (DATA / "market_probe.json").write_text(json.dumps({
