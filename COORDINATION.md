@@ -972,11 +972,22 @@ Branch: `arena/9920c263-maltaproj1` (fixed by Arena; the brief's `session-<id>/<
 
 | ID | Task | Status | Owner | Exclusive file scope |
 |---|---|---|---|---|
-| Q-01 | Full CS2 Hotspawn pick'em slate from the live lobby (`/lobby`, `/cs2-pickems`), exact UTC start/lock times, every match with a Hotspawn link; no Hotspawn crowd % used as input | in progress | arena/9920c263 | `picks/data/**` |
-| Q-02 | External bookmaker match-winner prices per fixture (EGamersWorld / named bookmaker pages), de-vigged, each with source URL and capture time; blanks where not confirmed | in progress | arena/9920c263 | `picks/data/**` |
-| Q-03 | Own originated win probability per fixture from official rating inputs (VRS / HLTV world ranks), labelled as our model; pick per match | in progress | arena/9920c263 | `picks/data/**`, `picks/build.py` |
-| Q-04 | Mobile-friendly GitHub Pages site: landing dashboard, category subpages (by tournament / tier / pick), Flagged for Review, Sources, Method; every table row links an official source | in progress | arena/9920c263 | `picks/*.html`, `picks/style.css` |
-| Q-05 | Integration: `git pull --rebase origin main`, link check, PR to `main`, merge with `gh pr merge --merge`, confirm Pages build, record PR and result here | pending | arena/9920c263 | `COORDINATION.md` (this section) |
+| Q-01 | Full CS2 Hotspawn pick'em slate from the live lobby (`/lobby`, `/cs2-pickems`), exact UTC start/lock times, every match with a Hotspawn link; no Hotspawn crowd % used as input | done on branch `32c95b2` (not merged, see log) | arena/9920c263 | `picks/data/**` |
+| Q-02 | External bookmaker match-winner prices per fixture (EGamersWorld / named bookmaker pages), de-vigged, each with source URL and capture time; blanks where not confirmed | done on branch `32c95b2` (not merged, see log) | arena/9920c263 | `picks/data/**` |
+| Q-03 | Own originated win probability per fixture from official rating inputs (VRS / HLTV world ranks), labelled as our model; pick per match | done on branch `32c95b2` (not merged, see log) | arena/9920c263 | `picks/data/**`, `picks/build.py` |
+| Q-04 | Mobile-friendly GitHub Pages site: landing dashboard, category subpages (by tournament / tier / pick), Flagged for Review, Sources, Method; every table row links an official source | done on branch `32c95b2` (not merged, see log) | arena/9920c263 | `picks/*.html`, `picks/style.css` |
+| Q-05 | Integration: `git pull --rebase origin main`, link check, PR to `main`, merge with `gh pr merge --merge`, confirm Pages build, record PR and result here | BLOCKED at integration: merge conflict in this file on `git pull --rebase origin main`; stopped and logged (see log) | arena/9920c263 | `COORDINATION.md` (this section) |
 
 - Excluded from this claim: `data/`, `docs/`, `pickem/`, `dashboard/`, `assurance/`, `site/`, `model/`, `scripts/`, `.github/workflows/`, and every other session's files. Root `index.html` is not edited unless a link to `picks/` is missing.
 - Irregularities found while starting (logged on the Flagged page, not edited in place): see the log below.
+
+### Log — arena/9920c263 — stop at integration (merge conflict), 2026-10-13 ~22:20 UTC
+
+- **Done on branch (not on `main`):** Q-01..Q-04 committed as `32c95b2` (`picks(9920c263): ...`) on `arena/9920c263-maltaproj1`, pushed to that branch only. Files: `picks/data/slate.csv|json`, `picks/data/stale_listed.csv`, `picks/*.html`, `picks/style.css`, `picks/build.py`. No root `index.html`, `data/`, `model/`, `docs/`, or workflow change.
+- **Stopped, per the merge-conflict rule:** `git pull --rebase origin main` hit a conflict in this file (append region). Rebase aborted; no conflict markers committed; no force push; no PR opened; nothing merged. Q-05 is not complete.
+- **Cross-session overlap found on `origin/main` (17d2e9a):**
+  - P-02 (`arena/616c2455`, PR #40, commit `90aaabf`) rewrote `picks/**` and published a live site at `/picks/`, including `picks/data/egw_listing_2026-10-13.csv`. My picks commit would replace that published output.
+  - E-session (`arena/e3315a54`) claims a parallel `mobile/**` dashboard, with a final integration step that edits root navigation. Two integration steps would both touch shared navigation.
+- **Figures that differ between P-02 and this session (not reconciled row by row):** P-02 reports 25 of 29 open rows with an external line and 4 blank rows; this session reports 23 external-line picks, 1 own-model-only pick, and 5 rows with no pick. The difference is mainly the Play-In 1.80/1.80 placeholders (Enjoy vs B8 Academy, Banda chuya vs 6666, Ryvex vs PCIFIC, mellren vs Privateer Gaming), which this session does not treat as prices, plus ex-RUSTEC vs mellren and FORZE Reload vs LFO 10. This session also flags four rows where the external pick differs from the own model (HOTU vs Fnatic, WROTBERRY vs EAC, Voca vs Phantom, G2 Ares vs The Last Resort).
+- **Needed from the integration owner:** decide whether `picks/` is rebuilt from this session's slate (replacing P-02's pages) or whether P-02's data is merged into it, and how `mobile/` (E-04) and `picks/` share root navigation. Until then, this branch stays unmerged.
+- **Status:** Q-01..Q-04 ready on the branch. Q-05 (PR, merge, Pages check) blocked by the conflict above.
