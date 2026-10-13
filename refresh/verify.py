@@ -47,23 +47,29 @@ def main() -> int:
     # 1. arithmetic ------------------------------------------------------------------------
     for row in rows:
         odds_rows = [o for o in odds if o["match_id"] == row["match_id"]]
+        sources = row.get("market_sources") or []
         if row["market_p_a_pct"] is not None:
             check(bool(odds_rows), f"{row['match_id']}: market probability without odds rows")
-            if odds_rows:
-                a = statistics.median(float(o["odds_a"]) for o in odds_rows)
-                b = statistics.median(float(o["odds_b"]) for o in odds_rows)
-                if abs(a - row["odds_a"]) > 0.005 or abs(b - row["odds_b"]) > 0.005:
-                    errors.append(f"{row['match_id']}: published price {row['odds_a']}/"
-                                  f"{row['odds_b']} != median of odds.csv {a}/{b}")
+            check(bool(sources), f"{row['match_id']}: market probability without a market source")
+            for entry in sources:
+                a, b = entry["odds_a"], entry["odds_b"]
                 fair = (1 / a) / ((1 / a) + (1 / b)) * 100
-                if abs(fair - row["market_p_a_pct"]) > 0.15:
-                    errors.append(f"{row['match_id']}: market probability {row['market_p_a_pct']} "
-                                  f"!= recomputed {fair:.1f}")
+                if abs(fair - entry["p_a_pct"]) > 0.15:
+                    errors.append(f"{row['match_id']}: {entry['source']} probability "
+                                  f"{entry['p_a_pct']} != recomputed {fair:.1f}")
                 check(1 / a + 1 / b > 1.0,
-                      f"{row['match_id']}: bookmaker prices imply a negative margin")
+                      f"{row['match_id']}: {entry['source']} prices imply a negative margin")
+            mean = statistics.fmean(e["p_a_pct"] for e in sources)
+            if abs(mean - row["market_p_a_pct"]) > 0.15:
+                errors.append(f"{row['match_id']}: market probability {row['market_p_a_pct']} != "
+                              f"mean of sources {mean:.1f}")
+            primary = max(sources, key=lambda e: (len(e.get("bookmakers") or []), e["url"] or ""))
+            if row["odds_a"] is not None and abs(float(row["odds_a"]) - primary["odds_a"]) > 0.005:
+                errors.append(f"{row['match_id']}: published price {row['odds_a']} is not the "
+                              f"primary source price {primary['odds_a']}")
         else:
             check(not odds_rows, f"{row['match_id']}: odds rows exist but no market probability")
-            check(any("no_bookmaker_price_found" in f or "no_external_match_page_matched" in f
+            check(any("no_external_price_found" in f or "no_external_match_page_matched" in f
                       for f in row["flags"]),
                   f"{row['match_id']}: blank market probability without a flag")
 

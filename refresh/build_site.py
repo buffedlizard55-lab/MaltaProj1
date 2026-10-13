@@ -86,14 +86,14 @@ def source_links(row) -> str:
         links.append(f'<a href="{esc(row["hotspawn_url"])}" rel="noopener">Hotspawn</a>')
     elif row.get("hotspawn_page"):
         links.append(f'<a href="{esc(row["hotspawn_page"])}" rel="noopener">Hotspawn</a>')
-    if row.get("odds_source_url"):
-        links.append(f'<a href="{esc(row["odds_source_url"])}" rel="noopener">Odds</a>')
+    for entry in row.get("market_sources") or []:
+        if entry.get("url"):
+            label = "Pinnacle" if "Pinnacle" in entry["source"] else "EGamersWorld"
+            links.append(f'<a href="{esc(entry["url"])}" rel="noopener">{label} odds</a>')
     for entry in row.get("model_inputs") or []:
         if entry.get("url"):
             label = "HLTV rank" if "HLTV" in entry["source"] else "Valve VRS"
             links.append(f'<a href="{esc(entry["url"])}" rel="noopener">{label}</a>')
-    if not links and row.get("hotspawn_page"):
-        links.append(f'<a href="{esc(row["hotspawn_page"])}" rel="noopener">Hotspawn</a>')
     return " · ".join(dict.fromkeys(links)) or "—"
 
 
@@ -285,6 +285,7 @@ def match_row(row: dict) -> str:
     else:
         status.append('<span class="chip ok">open</span>')
     books = row.get("odds_bookmakers") or []
+    sources = row.get("market_sources") or []
     return f"""<tr data-search="{esc((row['team_a'] + ' ' + row['team_b'] + ' ' + (row['competition'] or '')).lower())}" data-tournament="{esc(row.get('competition') or '')}" data-sport="{esc(row.get('sport') or '')}" data-missing="{missing}">
 <td data-label="Match"><strong>{esc(row['team_a'])}</strong> <span class="muted">vs</span> <strong>{esc(row['team_b'])}</strong>
   <div class="tag"><span class="tier">{esc(row.get('tier') or '–')}</span> {esc(row.get('competition') or '')}{f" · {esc(row['points'])} pts" if row.get('points') else ''}
@@ -292,7 +293,7 @@ def match_row(row: dict) -> str:
 <td data-label="Start (UTC)"><time data-utc="{esc(row['start_utc'])}">{esc(row['start_utc'])}</time>
   <div class="tag">lock {esc((row.get('lock_utc') or '—'))}{' · ' if row.get('lock_utc') else ''}{' '.join(status)}</div></td>
 <td data-label="Bookmaker line">{bar(row.get('market_p_a_pct'), row.get('market_p_b_pct'))}
-  <div class="tag">{esc(row.get('odds_a') if row.get('odds_a') else '—')} / {esc(row.get('odds_b') if row.get('odds_b') else '—')}{f" · {len(books)} books" if books else ''}
+  <div class="tag">{esc(row.get('odds_a') if row.get('odds_a') else '—')} / {esc(row.get('odds_b') if row.get('odds_b') else '—')}{f" · {len(books)} books" if books else ''}{f" · {len(sources)} sources" if sources else ''}
   {f" · overround {row['overround_pct']:.1f}%" if row.get('overround_pct') else ''}</div></td>
 <td data-label="Our own line">{bar(row.get('own_model_p_a_pct'), row.get('own_model_p_b_pct'))}
   <div class="tag">{esc('rating model' if row.get('own_model_p_a_pct') is not None else 'not available — see flag')}</div></td>
@@ -440,16 +441,17 @@ from. Full details on the <a href="methodology.html">Method</a> page.</div>
         over = (1 / a + 1 / b)
         orows.append(
             f'<tr><td data-label="Match">{esc(row["team_a"])} vs {esc(row["team_b"])}</td>'
+            f'<td data-label="Source">{esc(row.get("source") or "")}</td>'
             f'<td data-label="Bookmaker">{esc(row["bookmaker"])}</td>'
             f'<td data-label="Prices">{a:.2f} / {b:.2f}</td>'
             f'<td data-label="De-vigged A">{100 * (1 / a) / over:.1f}%</td>'
             f'<td data-label="Margin">{100 * (over - 1):.1f}%</td>'
-            f'<td data-label="Source"><a href="{esc(row["source_url"])}" rel="noopener">EGamersWorld'
-            f'</a> <span class="muted small">{esc(row["fetched_utc"] or "")}</span></td></tr>')
-    od_table = ('<div class="tablewrap"><table><thead><tr><th>Match</th><th>Bookmaker</th>'
+            f'<td data-label="Source link"><a href="{esc(row["source_url"])}" rel="noopener">page</a>'
+            f' <span class="muted small">{esc(row["fetched_utc"] or "")}</span></td></tr>')
+    od_table = ('<div class="tablewrap"><table><thead><tr><th>Match</th><th>Source</th><th>Bookmaker</th>'
                 '<th>Match-winner prices</th><th>De-vigged favourite</th><th>Margin</th>'
-                '<th>Source</th></tr></thead><tbody>' + ("".join(orows) or
-                '<tr><td colspan="6" class="muted">No bookmaker rows collected.</td></tr>') +
+                '<th>Source page</th></tr></thead><tbody>' + ("".join(orows) or
+                '<tr><td colspan="7" class="muted">No bookmaker rows collected.</td></tr>') +
                 '</tbody></table></div>')
     (OUT / "odds.html").write_text(
         page("odds.html", "Bookmaker lines used",
@@ -464,16 +466,21 @@ from. Full details on the <a href="methodology.html">Method</a> page.</div>
     rating_html = []
     for row in rrows:
         url = row.get("hltv_source_url") or ""
+        vrs_url = row.get("vrs_source_url") or ""
         rank = row.get("hltv_rank") or "—"
         pts = row.get("hltv_points") or "—"
+        vrs_pts = row.get("vrs_points") or "—"
         rating_html.append(f'<tr><td data-label="Team">{esc(row["team"])}</td>'
                            f'<td data-label="HLTV rank">#{esc(rank)}</td>'
                            f'<td data-label="HLTV points">{esc(pts)}</td>'
-                           f'<td data-label="Source"><a href="{esc(url)}" rel="noopener">HLTV'
-                           f'</a></td></tr>')
+                           f'<td data-label="Valve VRS points">{esc(vrs_pts)}</td>'
+                           f'<td data-label="Sources">'
+                           + (f'<a href="{esc(url)}" rel="noopener">HLTV</a> ' if url else '')
+                           + (f'<a href="{esc(vrs_url)}" rel="noopener">Valve</a>' if vrs_url else '')
+                           + '</td></tr>')
     rtable = ('<div class="tablewrap"><table><thead><tr><th>Team</th><th>HLTV world rank</th>'
-              '<th>HLTV points</th><th>Source</th></tr></thead><tbody>' +
-              ("".join(rating_html) or '<tr><td colspan="4" class="muted">No ratings read.</td>'
+              '<th>HLTV points</th><th>Valve VRS points</th><th>Sources</th></tr></thead><tbody>' +
+              ("".join(rating_html) or '<tr><td colspan="5" class="muted">No ratings read.</td>'
                                        '</tr>') + '</tbody></table></div>')
     vrs_line = (f'<p>Valve Regional Standings file used as the second own-line input: '
                 f'<a href="{esc(meta.get("sources")[-1].get("url") or "")}" rel="noopener">'
