@@ -58,7 +58,7 @@ Snapshot (UTC): 2026-10-13
 
 | Task | Status | Owner | Exclusive file scope |
 |---|---|---|---|
-| A5515: independently audit existing published CSV/model/source claims, publish evidence-backed dashboard and flags, automate official-source reachability checks | in progress | arena/5515fcc9 | `assurance/**`, `.github/workflows/assurance-5515.yml` |
+| A5515: independently audit existing published CSV/model/source claims, publish evidence-backed dashboard and flags, automate official-source reachability checks | done | arena/5515fcc9 | `assurance/**`, `.github/workflows/assurance-5515.yml` |
 
 - Read the root board and every available remote session board before claiming. Existing root navigation, `docs/**`, CSVs, collector/pipeline/inventory/lines and other sessions' assets remain untouched. This session uses its Arena-fixed branch `arena/5515fcc9-maltaproj1`; it does not switch branches.
 - Coordination discrepancy: session 2cb6bff4's remote log reports PR #5 merged; GitHub currently reports PR #5 OPEN. Do not accept task-board release claims as deployment evidence.
@@ -90,3 +90,11 @@ Snapshot (UTC): 2026-10-13
   - Pages after PR #12: workflow "pages build and deployment" for `38c97c3f` completed with success; the legacy Pages build for `38c97c3f` reports **built** (error null). Verified on main: `docs/own-lines.html` (26 fixture rows), F-16..F-27 in `docs/flagged.html`, own-lines nav link in `docs/index.html` and `docs/flagged.html`, root `index.html` redirects to `docs/`.
   - Status of task 17 (integration): **done** for the content merge. A record-only PR follows to log this entry.
 
+
+### Assurance release — arena/5515fcc9 (2026-10-13, complete)
+- **PR #11 MERGED** without awaiting user review: https://github.com/buffedlizard55-lab/MaltaProj1/pull/11; merge commit `80e422b04ad11ea1808ecb38eb8c828d868f9f38`, GitHub mergedAt `2026-10-13T18:15:21Z`.
+- Final PR checks passed: https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38445175672. Main audit also succeeded: https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38445255665. All 22 tests passed after synchronization; only isolated assurance files/workflow and our coordination log are introduced.
+- Initial Pages run for the merge was cancelled because another session's PR #12 triggered a higher-priority deployment; this was supersession, not a broken site. Superseding commit `38c97c3f92b65a6780b26b84ccfaaa11fd533c21` retains all assurance files. Pages build/deployment **SUCCESS**: https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38445350242. Official Pages API reports status `built`, error.message null for that commit.
+- **LIVE independently fetched and confirmed:** https://buffedlizard55-lab.github.io/MaltaProj1/assurance/ (correct title, 26/85 coverage, four qualified quote pairs, zero verified bookmaker pairs, dated freshness notice and primary-source table links) and https://buffedlizard55-lab.github.io/MaltaProj1/assurance/flagged.html (baseline-specific findings). Eight pages/assets/data endpoints also returned HTTP 200 locally; local links and anchors all resolve.
+- Implementation/publication task A5515 is **done**. The 32 findings remain **needs review**, already published and non-blocking. Unknown/suppressed numeric values remain null/blank. Complete live fixture inventory and direct bookmaker collection remain unfinished in this assurance scope and owned by parallel collectors; neither is falsely reported as completed.
+- Final integration/navigation request remains optional and non-blocking: owners may link the standalone `/assurance/` dashboard. This session never edited their claimed navigation or source datasets.
