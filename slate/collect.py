@@ -651,8 +651,33 @@ def resolve_team(name: str, hltv: dict, valve: dict, aliases: dict) -> dict:
             break
     if row["hltv_name"] or row["vrs_name"]:
         if not (row["hltv_name"] and row["vrs_name"]):
-            row["flag"] = ("S-F-05: team found in one official rating source only "
-                           f"({'HLTV' if row['hltv_name'] else 'Valve'})")
+            missing_hlsp = "HLTV" if not row["hltv_name"] else "Valve"
+            row["flag"] = f"S-F-05: team found in one official rating source only ({missing_hlsp})"
+            # An exact match in one source can still leave the other side of the model empty. An
+            # evidence-linked alias is allowed to fill only the missing side, and the row keeps both
+            # flags so a reader can see exactly which number came from the alias.
+            partial = aliases.get(name) or aliases.get(key)
+            target = (partial or {}).get("official_name") or ""
+            filled = False
+            if target:
+                if not row["hltv_name"]:
+                    for team, data in (hltv.get("ranking") or {}).items():
+                        if norm(team) == norm(target):
+                            row.update(hltv_name=team, hltv_rank=data.get("rank"),
+                                       hltv_points=data.get("points"))
+                            filled = True
+                            break
+                if not row["vrs_name"]:
+                    for team, data in (valve.get("teams") or {}).items():
+                        if norm(team) == norm(target):
+                            row.update(vrs_name=team, vrs_points=data.get("points"))
+                            filled = True
+                            break
+            if filled:
+                row["method"] = (row["method"] + " + missing side via evidence-linked alias")
+                row["flag"] = (f"S-F-05;S-F-06: matched by exact name in one official source; the "
+                               f"other side comes from the evidence-linked alias \"{target}\" "
+                               "(same roster) — kept visible for review")
         return row
     hint = aliases.get(name) or aliases.get(key)
     if hint:
