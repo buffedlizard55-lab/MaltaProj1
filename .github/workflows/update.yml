@@ -18,6 +18,7 @@ on:
 
 permissions:
   contents: write
+  actions: write
 
 concurrency:
   group: verified-snapshot-refresh-4f599d7c
@@ -35,6 +36,15 @@ jobs:
       - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
         with:
           python-version: '3.12'
+      - name: Remove only superseded broad-discovery artifacts from this session
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api 'repos/buffedlizard55-lab/MaltaProj1/actions/artifacts?per_page=100' --jq '.artifacts[] | select(.name == "public-source-discovery" and .workflow_run.head_branch == "arena/4f599d7c-maltaproj1") | .id' > /tmp/superseded-artifact-ids
+          while read -r id; do
+            if [ -n "$id" ]; then gh api --method DELETE "repos/buffedlizard55-lab/MaltaProj1/actions/artifacts/$id"; fi
+          done < /tmp/superseded-artifact-ids
       - name: Install public browser tooling
         run: |
           python -m pip install -r requirements.txt
