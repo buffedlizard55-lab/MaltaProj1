@@ -4,6 +4,12 @@ on:
   workflow_dispatch:
   schedule:
     - cron: '13,43 * * * *'
+  push:
+    branches: [arena/cc8f4dca-maltaproj1]
+    paths:
+      - scripts/picks_probe.py
+      - scripts/picks_collect.py
+      - .github/workflows/picks-cc8f4dca.yml
 
 permissions:
   contents: write
