@@ -883,7 +883,7 @@ No other session's files are deleted; their dashboards stay published and linked
 |---|---|---|---|---|
 | R-01 | Live refresh: re-read the public Hotspawn Pick'em TransferState (`lobby`, `cs2-pickems`, `thp-pickems`) at the current timestamp, re-collect external bookmaker match-winner lines (EGamersWorld; HLTV rank context only), recompute de-vigged market probabilities + our own rating-based probabilities, and publish a pick for every fixture with a per-row official source link. Unverifiable rows stay blank + flagged. | done | arena/b90700c6 | `refresh/**`, `.github/workflows/refresh-b90700c6.yml` |
 | R-02 | Publish the mobile-first canonical dashboard for the refreshed slate (landing + category subpages, all rows source-linked) and run the line-by-line verification pass. | done | arena/b90700c6 | `today/**` |
-| R-03 | Final integration: link `today/**` from the root landing, re-verify the combined data, PR from this branch to `main`, merge, confirm GitHub Pages, record the result here. | in progress | arena/b90700c6 | `index.html`, `COORDINATION.md`, `README.md` |
+| R-03 | Final integration: link `today/**` from the root landing, re-verify the combined data, PR from this branch to `main`, merge, confirm GitHub Pages, record the result here. | in progress — PR #41 opened | arena/b90700c6 | `index.html`, `COORDINATION.md`, `README.md` |
 Rules this session follows: Hotspawn crowd pick percentages are **never** an input to any probability (they are recorded as
 reference only, clearly labelled, and are not used by the pick logic). Unknown values stay blank and are flagged.
 
@@ -899,6 +899,8 @@ reference only, clearly labelled, and are not used by the pick logic). Unknown v
 | `https://www.pinnacle.com/en/esports/games/cs2/matchups/` | intermittent (200 in earlier runs, challenge page in run 38472348079) | independent second price source, de-vigged the same way | capture URL in `odds.csv` |
 | `https://www.hltv.org/ranking/teams/2026/october/12` | intermittent (Cloudflare challenge in run 38472348079 → `R-HLTV` flag) | world-ranking points for the own line | `refresh/data/collected.json` → `hltv.ranking_url` |
 | `https://github.com/ValveSoftware/counter-strike_regional_standings` (raw markdown, weekly) | yes (349 teams) | official Valve Regional Standings points → own line, and the ratings table | `vrs_source_url` column |
+
+**Integration PR:** <https://github.com/buffedlizard55-lab/MaltaProj1/pull/41> (branch `arena/b90700c6-maltaproj1` → `main`), opened 2026-10-13 ~22:5x UTC with the summary, sources and flags above; merged on green CI without waiting for review, per the brief.
 
 **R-02 verification result (run 38472348079, `refresh/logs/verify.txt`):** `rows: 124`, `pages: 12`,
 `errors: []`, `warnings: []`, `OK: all checks passed`; local re-run after the ratings fix reports
