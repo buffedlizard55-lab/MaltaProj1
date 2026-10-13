@@ -588,6 +588,29 @@ def fixture_table(rows, tid):
             f"<div class=tw><table id='{tid}' class=sort><thead>{head}</thead><tbody>{''.join(body)}</tbody></table></div>")
 
 
+def glance_table(rows) -> str:
+    """Compact, plain-language view: one line per fixture, our pick first."""
+    body = []
+    for r in rows:
+        match = f"{e(r['team_a'])} <span class=note>vs</span> {e(r['team_b'])}"
+        if r["line_status"] == "OWN LINE":
+            pa = float(r["own_p_a"])
+            win = pa if r["pick"] == r["team_a"] else 100 - pa
+            odds = r["fair_odds_a"] if r["pick"] == r["team_a"] else r["fair_odds_b"]
+            conf_cls = {"strong": "ok", "lean": "", "toss-up": "warn"}.get(r["confidence"], "")
+            agree = {"yes": "✓ agrees", "NO": "✗ disagrees", "n/a": "n/a"}.get(r.get("market_agrees", ""), "—")
+            review = " <span class='pill warn'>review</span>" if r["notes"] else ""
+            body.append(f"<tr><td>{e(r['scheduled_start_utc'])}</td><td>{match}</td><td class=pick>{e(r['pick'])}{review}</td>"
+                        f"<td class=num data-v='{win:.1f}'><b>{win:.1f}%</b></td><td class=num>{e(odds)}</td>"
+                        f"<td><span class='pill {conf_cls}'>{e(r['confidence'])}</span></td><td>{agree}</td><td>{e(r['competition'])}</td></tr>")
+        else:
+            body.append(f"<tr><td>{e(r['scheduled_start_utc'])}</td><td>{match}</td><td class=note colspan=5>No line: {e(r['notes'])}</td>"
+                        f"<td>{e(r['competition'])}</td></tr>")
+    return ("<div class=tw><table class=sort><thead><tr><th>Start (UTC)</th><th>Match</th><th>Our pick</th><th>Win %</th>"
+            "<th>Fair odds</th><th>Confidence</th><th>Market</th><th>Tournament</th></tr></thead><tbody>"
+            + "".join(body) + "</tbody></table></div>")
+
+
 def render_crosscheck() -> str:
     f = OUT / "crosscheck.csv"
     if not f.exists():
@@ -656,7 +679,7 @@ def render(p, meta, hltv, fx, hltv_url) -> str:
 <header><h1>Own lines — Valve Regional Standings model</h1>
 <p>Our own originated win probability for every Hotspawn CS2 Pick'em fixture. Hotspawn crowd picks are never used. Analysis only — not betting advice.
 &nbsp;<a href="../">← main dashboard</a></p></header>
-<nav><a href="#week">This week</a><a href="#stale">Stale listings</a><a href="#teams">Team ratings</a><a href="#flags">Flagged for review</a><a href="#crosscheck">Cross-check</a><a href="#method">Method &amp; sources</a><a href="data/lines.csv">lines.csv</a><a href="data/teams.csv">teams.csv</a><a href="data/flags.csv">flags.csv</a></nav>
+<nav><a href="#glance">Picks</a><a href="#week">This week (detail)</a><a href="#stale">Stale listings</a><a href="#teams">Team ratings</a><a href="#flags">Flagged for review</a><a href="#crosscheck">Cross-check</a><a href="#method">Method &amp; sources</a><a href="data/lines.csv">lines.csv</a><a href="data/teams.csv">teams.csv</a><a href="data/flags.csv">flags.csv</a></nav>
 <main>
 <div class=cards>
 <div class=card><b>{len(rows)}</b><span>CS2 fixtures in Hotspawn TransferState</span></div>
@@ -669,7 +692,10 @@ def render(p, meta, hltv, fx, hltv_url) -> str:
 <p class=note>Fixtures: <a href="{e(inp['hotspawn']['url'])}">{e(inp['hotspawn']['url'])}</a>, fetched {e(inp['hotspawn']['fetched_utc'])} (pick'em week {e((inp['hotspawn']['pickem_week'] or {}).get('weekStartUtc', ''))} → {e((inp['hotspawn']['pickem_week'] or {}).get('weekEndUtc', ''))}).
 Ratings: <a href="{e(meta['blob_url'])}">Valve VRS {e(meta['path'])}</a> @ <code>{e(commit[:10])}</code>.
 Roster cross-check: <a href="{e(h.get('canonical_url') or hltv_url)}">HLTV World Ranking {e(h.get('ranking_date') or '')}</a> (fetched {e(h.get('fetched_utc') or '')}). All times UTC.</p>
-<section id=week><h2>This week — {len(up)} fixtures</h2>
+<section id=glance><h2>Picks at a glance — this week</h2>
+<p class=note>Our pick and its win probability from our own line (calibrated Valve VRS model). "Market" compares our pick with the market reference where one exists. "review" marks a line that rests on a flagged identity match or differs from the market by 15 pp or more. Full numbers and sources are in the next table.</p>
+{glance_table(up)}</section>
+<section id=week><h2>This week — {len(up)} fixtures (full detail)</h2>
 <p class=note>Blank = a team could not be matched to an official VRS rating without guessing; see the Notes column and Flagged for review. "Pick" is the side our line favours; confidence: strong ≥75%, lean 60–75%, toss-up &lt;60%.</p>
 {fixture_table(up, 'tw')}</section>
 <section id=stale><h2>Stale listings — {len(stale)} fixtures scheduled before this pick'em week</h2>
