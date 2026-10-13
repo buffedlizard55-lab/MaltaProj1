@@ -1,0 +1,51 @@
+# O-01 own-line model (session arena/91eff436). Exclusive scope: model/** and this file.
+# Fetches official inputs (Hotspawn fixture identity, Valve Regional Standings, HLTV ranking),
+# recomputes our own lines, runs the tests, and commits ONLY model/** back to the same branch.
+# A scheduled refresh only fires from the default branch, i.e. after this is merged to main.
+name: O-01 own-line model (VRS)
+
+on:
+  push:
+    branches: ["arena/91eff436-maltaproj1"]
+    paths: ["model/**", ".github/workflows/model-91eff436.yml"]
+  workflow_dispatch: {}
+  schedule:
+    - cron: "17 */3 * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: model-91eff436-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Fetch official inputs
+        run: python3 model/fetch.py
+      - name: Build own lines + page
+        run: python3 model/build.py
+      - name: Tests (incl. check against Valve's own glicko.js)
+        run: |
+          git clone -q --depth 1 https://github.com/ValveSoftware/counter-strike_regional_standings.git /tmp/vrs
+          VRS_REPO_DIR=/tmp/vrs python3 model/test_model.py -v
+      - name: Commit refreshed model/** (only if changed)
+        run: |
+          git config user.name "model-91eff436[bot]"
+          git config user.email "model-91eff436@users.noreply.github.com"
+          git add model/
+          if git diff --cached --quiet; then echo "no changes"; exit 0; fi
+          git commit -m "model(91eff436): refresh inputs + own lines [run ${GITHUB_RUN_ID}]"
+          for i in 1 2 3; do
+            git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" && exit 0
+            sleep 5
+          done
+          exit 1
