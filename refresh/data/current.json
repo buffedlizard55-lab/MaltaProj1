@@ -1,13 +1,13 @@
 {
  "meta": {
-  "generated_utc": "2026-10-13T21:39:57Z",
-  "source_snapshot_utc": "2026-10-13T21:37:42Z",
-  "hotspawn_snapshot_utc": "2026-10-13T21:37:15Z",
-  "egw_snapshot_utc": "2026-10-13T21:37:22Z",
-  "pinnacle_snapshot_utc": "2026-10-13T21:37:29Z",
-  "hltv_snapshot_utc": "2026-10-13T21:37:38Z",
-  "valve_snapshot_utc": "2026-10-13T21:37:42Z",
-  "pickem_week_reset_utc": "2026-10-19T03:48:02Z",
+  "generated_utc": "2026-10-13T21:46:00Z",
+  "source_snapshot_utc": "2026-10-13T21:46:00Z",
+  "hotspawn_snapshot_utc": "2026-10-13T21:43:21Z",
+  "egw_snapshot_utc": "2026-10-13T21:43:26Z",
+  "pinnacle_snapshot_utc": "2026-10-13T21:44:53Z",
+  "hltv_snapshot_utc": "2026-10-13T21:44:55Z",
+  "valve_snapshot_utc": "2026-10-13T21:46:00Z",
+  "pickem_week_reset_utc": "2026-10-19T03:54:06Z",
   "pickem_week_total_text": 126,
   "pickem_week_total_context": " Tournaments How To Play League of Legends Pick'em Lobby Play other game titles This week 126 matches this week Resets in 5d 06h 10m 40s Sign in to tra",
   "pickem_page_header_counts": [
@@ -79,7 +79,7 @@
    },
    {
     "label": "HLTV world ranking (own-line rating input)",
-    "url": "https://www.hltv.org/ranking/teams",
+    "url": "https://www.hltv.org/ranking/teams/2026/october/12",
     "kind": "rating"
    },
    {
@@ -93,10 +93,10 @@
    "fixtures_in_week": 124,
    "cs2": 31,
    "lol": 93,
-   "with_market_probability": 7,
+   "with_market_probability": 0,
    "with_own_line": 22,
-   "with_pick": 24,
-   "pinnacle_matched": 7,
+   "with_pick": 22,
+   "pinnacle_matched": 0,
    "stale_listings_excluded": 260
   },
   "weights": {
@@ -673,32 +673,16 @@
    "status": "scheduled",
    "hotspawn_url": "https://www.hotspawn.com/matches/1079546",
    "hotspawn_page": "https://play.hotspawn.com/lobby",
-   "odds_a": 2.55,
-   "odds_b": 1.462962962962963,
+   "odds_a": null,
+   "odds_b": null,
    "odds_kind": null,
    "odds_bookmakers": [],
-   "odds_source_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
-   "odds_fetched_utc": "2026-10-13T21:37:36Z",
-   "market_sources": [
-    {
-     "source": "Pinnacle (public guest moneyline)",
-     "odds_a": 2.55,
-     "odds_b": 1.462962962962963,
-     "p_a_pct": 36.5,
-     "overround_pct": 7.57,
-     "native": {
-      "odds_a": 155,
-      "odds_b": -216,
-      "format": "american (converted to decimal with 1 + value/100 for positive prices and 1 + 100/|value| for negative prices)"
-     },
-     "url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
-     "page_url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
-     "fetched_utc": "2026-10-13T21:37:36Z"
-    }
-   ],
-   "overround_pct": 7.57,
-   "market_p_a_pct": 36.5,
-   "market_p_b_pct": 63.5,
+   "odds_source_url": null,
+   "odds_fetched_utc": null,
+   "market_sources": [],
+   "overround_pct": null,
+   "market_p_a_pct": null,
+   "market_p_b_pct": null,
    "own_model_p_a_pct": 30.5,
    "own_model_p_b_pct": 69.5,
    "model_inputs": [
@@ -710,15 +694,17 @@
      "p_a": 0.3051
     }
    ],
-   "final_p_a_pct": 34.7,
-   "final_p_b_pct": 65.3,
-   "estimate_basis": "market 70% + own line 30%",
+   "final_p_a_pct": 30.5,
+   "final_p_b_pct": 69.5,
+   "estimate_basis": "own line only (no external price found)",
    "pick": "Overtake Sector",
-   "pick_pct": 65.3,
+   "pick_pct": 69.5,
    "locked": false,
    "started": false,
    "flags": [
-    "single_market_source"
+    "no_external_match_page_matched",
+    "no_external_price_found",
+    "own_line_only_no_market"
    ]
   },
   {
@@ -834,32 +820,16 @@
    "status": "scheduled",
    "hotspawn_url": "https://www.hotspawn.com/matches/1080176",
    "hotspawn_page": "https://play.hotspawn.com/lobby",
-   "odds_a": 3.61,
-   "odds_b": 1.2985074626865671,
+   "odds_a": null,
+   "odds_b": null,
    "odds_kind": null,
    "odds_bookmakers": [],
-   "odds_source_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
-   "odds_fetched_utc": "2026-10-13T21:37:36Z",
-   "market_sources": [
-    {
-     "source": "Pinnacle (public guest moneyline)",
-     "odds_a": 3.61,
-     "odds_b": 1.2985074626865671,
-     "p_a_pct": 26.5,
-     "overround_pct": 4.71,
-     "native": {
-      "odds_a": 261,
-      "odds_b": -335,
-      "format": "american (converted to decimal with 1 + value/100 for positive prices and 1 + 100/|value| for negative prices)"
-     },
-     "url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
-     "page_url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
-     "fetched_utc": "2026-10-13T21:37:36Z"
-    }
-   ],
-   "overround_pct": 4.71,
-   "market_p_a_pct": 26.5,
-   "market_p_b_pct": 73.5,
+   "odds_source_url": null,
+   "odds_fetched_utc": null,
+   "market_sources": [],
+   "overround_pct": null,
+   "market_p_a_pct": null,
+   "market_p_b_pct": null,
    "own_model_p_a_pct": 27.0,
    "own_model_p_b_pct": 73.0,
    "model_inputs": [
@@ -871,15 +841,17 @@
      "p_a": 0.2698
     }
    ],
-   "final_p_a_pct": 26.6,
-   "final_p_b_pct": 73.4,
-   "estimate_basis": "market 70% + own line 30%",
+   "final_p_a_pct": 27.0,
+   "final_p_b_pct": 73.0,
+   "estimate_basis": "own line only (no external price found)",
    "pick": "Aurora",
-   "pick_pct": 73.4,
+   "pick_pct": 73.0,
    "locked": false,
    "started": false,
    "flags": [
-    "single_market_source"
+    "no_external_match_page_matched",
+    "no_external_price_found",
+    "own_line_only_no_market"
    ]
   },
   {
@@ -897,46 +869,30 @@
    "status": "scheduled",
    "hotspawn_url": "https://www.hotspawn.com/matches/1076650",
    "hotspawn_page": "https://play.hotspawn.com/lol-pickems",
-   "odds_a": 1.62111801242236,
-   "odds_b": 2.3200000000000003,
+   "odds_a": null,
+   "odds_b": null,
    "odds_kind": null,
    "odds_bookmakers": [],
-   "odds_source_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
-   "odds_fetched_utc": "2026-10-13T21:37:36Z",
-   "market_sources": [
-    {
-     "source": "Pinnacle (public guest moneyline)",
-     "odds_a": 1.62111801242236,
-     "odds_b": 2.3200000000000003,
-     "p_a_pct": 58.9,
-     "overround_pct": 4.79,
-     "native": {
-      "odds_a": 132,
-      "odds_b": -161,
-      "format": "american (converted to decimal with 1 + value/100 for positive prices and 1 + 100/|value| for negative prices)"
-     },
-     "url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
-     "page_url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
-     "fetched_utc": "2026-10-13T21:37:36Z"
-    }
-   ],
-   "overround_pct": 4.79,
-   "market_p_a_pct": 58.9,
-   "market_p_b_pct": 41.1,
+   "odds_source_url": null,
+   "odds_fetched_utc": null,
+   "market_sources": [],
+   "overround_pct": null,
+   "market_p_a_pct": null,
+   "market_p_b_pct": null,
    "own_model_p_a_pct": null,
    "own_model_p_b_pct": null,
    "model_inputs": [],
-   "final_p_a_pct": 58.9,
-   "final_p_b_pct": 41.1,
-   "estimate_basis": "market only (no rating line for both teams)",
-   "pick": "KT Rolster",
-   "pick_pct": 58.9,
+   "final_p_a_pct": null,
+   "final_p_b_pct": null,
+   "estimate_basis": "unavailable \u2014 neither a bookmaker price nor a rating line could be sourced",
+   "pick": null,
+   "pick_pct": null,
    "locked": false,
    "started": false,
    "flags": [
-    "market_only_no_own_line",
-    "pinnacle_pair_order_reversed",
-    "single_market_source",
+    "no_external_match_page_matched",
+    "no_external_price_found",
+    "no_probability_available",
     "vrs_rating_missing:KT Rolster,BNK FearX"
    ]
   },
@@ -1004,32 +960,16 @@
    "status": "scheduled",
    "hotspawn_url": "https://www.hotspawn.com/matches/1079439",
    "hotspawn_page": "https://play.hotspawn.com/lobby",
-   "odds_a": 1.99009900990099,
-   "odds_b": 1.8,
+   "odds_a": null,
+   "odds_b": null,
    "odds_kind": null,
    "odds_bookmakers": [],
-   "odds_source_url": "https://guest.api.arcadia.pinnacle.com/0.1/leagues/293370/markets/straight",
-   "odds_fetched_utc": "2026-10-13T21:37:36Z",
-   "market_sources": [
-    {
-     "source": "Pinnacle (public guest moneyline)",
-     "odds_a": 1.99009900990099,
-     "odds_b": 1.8,
-     "p_a_pct": 47.5,
-     "overround_pct": 5.8,
-     "native": {
-      "odds_a": -101,
-      "odds_b": -125,
-      "format": "american (converted to decimal with 1 + value/100 for positive prices and 1 + 100/|value| for negative prices)"
-     },
-     "url": "https://guest.api.arcadia.pinnacle.com/0.1/leagues/293370/markets/straight",
-     "page_url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
-     "fetched_utc": "2026-10-13T21:37:36Z"
-    }
-   ],
-   "overround_pct": 5.8,
-   "market_p_a_pct": 47.5,
-   "market_p_b_pct": 52.5,
+   "odds_source_url": null,
+   "odds_fetched_utc": null,
+   "market_sources": [],
+   "overround_pct": null,
+   "market_p_a_pct": null,
+   "market_p_b_pct": null,
    "own_model_p_a_pct": 52.9,
    "own_model_p_b_pct": 47.1,
    "model_inputs": [
@@ -1041,15 +981,17 @@
      "p_a": 0.5288
     }
    ],
-   "final_p_a_pct": 49.1,
-   "final_p_b_pct": 50.9,
-   "estimate_basis": "market 70% + own line 30%",
-   "pick": "Fnatic",
-   "pick_pct": 50.9,
+   "final_p_a_pct": 52.9,
+   "final_p_b_pct": 47.1,
+   "estimate_basis": "own line only (no external price found)",
+   "pick": "HOTU",
+   "pick_pct": 52.9,
    "locked": false,
    "started": false,
    "flags": [
-    "single_market_source"
+    "no_external_match_page_matched",
+    "no_external_price_found",
+    "own_line_only_no_market"
    ]
   },
   {
@@ -1116,32 +1058,16 @@
    "status": "scheduled",
    "hotspawn_url": "https://www.hotspawn.com/matches/1080177",
    "hotspawn_page": "https://play.hotspawn.com/lobby",
-   "odds_a": 1.2481389578163773,
-   "odds_b": 4.08,
+   "odds_a": null,
+   "odds_b": null,
    "odds_kind": null,
    "odds_bookmakers": [],
-   "odds_source_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
-   "odds_fetched_utc": "2026-10-13T21:37:36Z",
-   "market_sources": [
-    {
-     "source": "Pinnacle (public guest moneyline)",
-     "odds_a": 1.2481389578163773,
-     "odds_b": 4.08,
-     "p_a_pct": 76.6,
-     "overround_pct": 4.63,
-     "native": {
-      "odds_a": -403,
-      "odds_b": 308,
-      "format": "american (converted to decimal with 1 + value/100 for positive prices and 1 + 100/|value| for negative prices)"
-     },
-     "url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
-     "page_url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
-     "fetched_utc": "2026-10-13T21:37:36Z"
-    }
-   ],
-   "overround_pct": 4.63,
-   "market_p_a_pct": 76.6,
-   "market_p_b_pct": 23.4,
+   "odds_source_url": null,
+   "odds_fetched_utc": null,
+   "market_sources": [],
+   "overround_pct": null,
+   "market_p_a_pct": null,
+   "market_p_b_pct": null,
    "own_model_p_a_pct": 85.6,
    "own_model_p_b_pct": 14.4,
    "model_inputs": [
@@ -1153,15 +1079,17 @@
      "p_a": 0.8555
     }
    ],
-   "final_p_a_pct": 79.3,
-   "final_p_b_pct": 20.7,
-   "estimate_basis": "market 70% + own line 30%",
+   "final_p_a_pct": 85.6,
+   "final_p_b_pct": 14.4,
+   "estimate_basis": "own line only (no external price found)",
    "pick": "Falcons",
-   "pick_pct": 79.3,
+   "pick_pct": 85.6,
    "locked": false,
    "started": false,
    "flags": [
-    "single_market_source"
+    "no_external_match_page_matched",
+    "no_external_price_found",
+    "own_line_only_no_market"
    ]
   },
   {
@@ -1844,32 +1772,16 @@
    "status": "scheduled",
    "hotspawn_url": "https://www.hotspawn.com/matches/1079440",
    "hotspawn_page": "https://play.hotspawn.com/lobby",
-   "odds_a": 1.6369426751592355,
-   "odds_b": 2.23,
+   "odds_a": null,
+   "odds_b": null,
    "odds_kind": null,
    "odds_bookmakers": [],
-   "odds_source_url": "https://guest.api.arcadia.pinnacle.com/0.1/leagues/293370/markets/straight",
-   "odds_fetched_utc": "2026-10-13T21:37:36Z",
-   "market_sources": [
-    {
-     "source": "Pinnacle (public guest moneyline)",
-     "odds_a": 1.6369426751592355,
-     "odds_b": 2.23,
-     "p_a_pct": 57.7,
-     "overround_pct": 5.93,
-     "native": {
-      "odds_a": -157,
-      "odds_b": 123,
-      "format": "american (converted to decimal with 1 + value/100 for positive prices and 1 + 100/|value| for negative prices)"
-     },
-     "url": "https://guest.api.arcadia.pinnacle.com/0.1/leagues/293370/markets/straight",
-     "page_url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
-     "fetched_utc": "2026-10-13T21:37:36Z"
-    }
-   ],
-   "overround_pct": 5.93,
-   "market_p_a_pct": 57.7,
-   "market_p_b_pct": 42.3,
+   "odds_source_url": null,
+   "odds_fetched_utc": null,
+   "market_sources": [],
+   "overround_pct": null,
+   "market_p_a_pct": null,
+   "market_p_b_pct": null,
    "own_model_p_a_pct": 82.3,
    "own_model_p_b_pct": 17.7,
    "model_inputs": [
@@ -1881,15 +1793,17 @@
      "p_a": 0.823
     }
    ],
-   "final_p_a_pct": 65.1,
-   "final_p_b_pct": 34.9,
-   "estimate_basis": "market 70% + own line 30%",
+   "final_p_a_pct": 82.3,
+   "final_p_b_pct": 17.7,
+   "estimate_basis": "own line only (no external price found)",
    "pick": "MIBR",
-   "pick_pct": 65.1,
+   "pick_pct": 82.3,
    "locked": false,
    "started": false,
    "flags": [
-    "single_market_source"
+    "no_external_match_page_matched",
+    "no_external_price_found",
+    "own_line_only_no_market"
    ]
   },
   {
@@ -1907,45 +1821,30 @@
    "status": "scheduled",
    "hotspawn_url": "https://www.hotspawn.com/matches/1079442",
    "hotspawn_page": "https://play.hotspawn.com/lobby",
-   "odds_a": 1.5154639175257731,
-   "odds_b": 2.5,
+   "odds_a": null,
+   "odds_b": null,
    "odds_kind": null,
    "odds_bookmakers": [],
-   "odds_source_url": "https://guest.api.arcadia.pinnacle.com/0.1/leagues/293370/markets/straight",
-   "odds_fetched_utc": "2026-10-13T21:37:36Z",
-   "market_sources": [
-    {
-     "source": "Pinnacle (public guest moneyline)",
-     "odds_a": 1.5154639175257731,
-     "odds_b": 2.5,
-     "p_a_pct": 62.3,
-     "overround_pct": 5.99,
-     "native": {
-      "odds_a": -194,
-      "odds_b": 150,
-      "format": "american (converted to decimal with 1 + value/100 for positive prices and 1 + 100/|value| for negative prices)"
-     },
-     "url": "https://guest.api.arcadia.pinnacle.com/0.1/leagues/293370/markets/straight",
-     "page_url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
-     "fetched_utc": "2026-10-13T21:37:36Z"
-    }
-   ],
-   "overround_pct": 5.99,
-   "market_p_a_pct": 62.3,
-   "market_p_b_pct": 37.7,
+   "odds_source_url": null,
+   "odds_fetched_utc": null,
+   "market_sources": [],
+   "overround_pct": null,
+   "market_p_a_pct": null,
+   "market_p_b_pct": null,
    "own_model_p_a_pct": null,
    "own_model_p_b_pct": null,
    "model_inputs": [],
-   "final_p_a_pct": 62.3,
-   "final_p_b_pct": 37.7,
-   "estimate_basis": "market only (no rating line for both teams)",
-   "pick": "Heroic",
-   "pick_pct": 62.3,
+   "final_p_a_pct": null,
+   "final_p_b_pct": null,
+   "estimate_basis": "unavailable \u2014 neither a bookmaker price nor a rating line could be sourced",
+   "pick": null,
+   "pick_pct": null,
    "locked": false,
    "started": false,
    "flags": [
-    "market_only_no_own_line",
-    "single_market_source",
+    "no_external_match_page_matched",
+    "no_external_price_found",
+    "no_probability_available",
     "vrs_rating_missing:Envy"
    ]
   },
@@ -5573,7 +5472,7 @@
   {
    "code": "R-COUNT",
    "title": "The lobby's 'matches this week' count differs from the rows in the payload window",
-   "detail": "The lobby page prints 68 matches this week (context: \" Tournaments How To Play League of Legends Pick'em Lobby Play other game titles This week 126 matches this week Resets in 5d 06h 10m 40s Sign in to tra\"), while the same page's payload yields 124 rows whose start falls inside the week window that ends 2026-10-19T03:48:02Z (the window comes from the page's own reset countdown). Per-page header counts: lobby=68, cs2-pickems=60, thp-pickems=60, lol-pickems=126. The difference is published, not explained away; the board shows every row the payload contains in the window.",
+   "detail": "The lobby page prints 68 matches this week (context: \" Tournaments How To Play League of Legends Pick'em Lobby Play other game titles This week 126 matches this week Resets in 5d 06h 10m 40s Sign in to tra\"), while the same page's payload yields 124 rows whose start falls inside the week window that ends 2026-10-19T03:54:06Z (the window comes from the page's own reset countdown). Per-page header counts: lobby=68, cs2-pickems=60, thp-pickems=60, lol-pickems=126. The difference is published, not explained away; the board shows every row the payload contains in the window.",
    "source_url": "https://play.hotspawn.com/lobby",
    "items": []
   },
@@ -8187,7 +8086,7 @@
   },
   {
    "code": "R-NOMKT",
-   "title": "117 fixtures have no external bookmaker price",
+   "title": "124 fixtures have no external bookmaker price",
    "detail": "Those values are left blank in the published dataset and shown as \"-\" on the board.",
    "source_url": "https://egamersworld.com/counterstrike/matches",
    "items": [
@@ -8204,10 +8103,15 @@
     "1079010",
     "1081076",
     "1081105",
+    "1079546",
     "1079621",
     "1081111",
+    "1080176",
+    "1076650",
     "1079438",
+    "1079439",
     "1079622",
+    "1080177",
     "1081112",
     "1080178",
     "1079623",
@@ -8223,6 +8127,8 @@
     "1075726",
     "1076571",
     "1080279",
+    "1079440",
+    "1079442",
     "1080280",
     "1080281",
     "1080282",
@@ -8314,7 +8220,7 @@
    "code": "R-NORATE",
    "title": "102 fixtures have no own-line rating for both teams",
    "detail": "Those values are left blank in the published dataset and shown as \"-\" on the board.",
-   "source_url": "https://www.hltv.org/ranking/teams",
+   "source_url": "https://www.hltv.org/ranking/teams/2026/october/12",
    "items": [
     "1076649",
     "1075699",
@@ -8418,21 +8324,6 @@
     "1078962",
     "1078963",
     "1078964"
-   ]
-  },
-  {
-   "code": "R-SINGLE",
-   "title": "7 fixtures rest on a single price reading",
-   "detail": "Only one bookmaker price (or one source) was readable, so there is no cross-source agreement behind the median.",
-   "source_url": "https://egamersworld.com/counterstrike/matches",
-   "items": [
-    "1079546",
-    "1080176",
-    "1076650",
-    "1079439",
-    "1080177",
-    "1079440",
-    "1079442"
    ]
   },
   {

@@ -1,13 +1,13 @@
 {
  "meta": {
-  "generated_utc": "2026-10-13T21:37:42Z",
-  "source_snapshot_utc": "2026-10-13T21:37:42Z",
-  "hotspawn_snapshot_utc": "2026-10-13T21:37:15Z",
-  "egw_snapshot_utc": "2026-10-13T21:37:22Z",
-  "pinnacle_snapshot_utc": "2026-10-13T21:37:29Z",
-  "hltv_snapshot_utc": "2026-10-13T21:37:38Z",
-  "valve_snapshot_utc": "2026-10-13T21:37:42Z",
-  "pickem_week_reset_utc": "2026-10-19T03:48:02Z",
+  "generated_utc": "2026-10-13T21:46:00Z",
+  "source_snapshot_utc": "2026-10-13T21:46:00Z",
+  "hotspawn_snapshot_utc": "2026-10-13T21:43:21Z",
+  "egw_snapshot_utc": "2026-10-13T21:43:26Z",
+  "pinnacle_snapshot_utc": "2026-10-13T21:44:53Z",
+  "hltv_snapshot_utc": "2026-10-13T21:44:55Z",
+  "valve_snapshot_utc": "2026-10-13T21:46:00Z",
+  "pickem_week_reset_utc": "2026-10-19T03:54:06Z",
   "pickem_week_total_text": 126,
   "pickem_week_total_context": " Tournaments How To Play League of Legends Pick'em Lobby Play other game titles This week 126 matches this week Resets in 5d 06h 10m 40s Sign in to tra",
   "pickem_page_header_counts": [
@@ -79,7 +79,7 @@
    },
    {
     "label": "HLTV world ranking (own-line rating input)",
-    "url": "https://www.hltv.org/ranking/teams",
+    "url": "https://www.hltv.org/ranking/teams/2026/october/12",
     "kind": "rating"
    },
    {
@@ -93,10 +93,10 @@
    "fixtures_in_week": 124,
    "cs2": 31,
    "lol": 93,
-   "with_market_probability": 7,
-   "with_own_line": 0,
-   "with_pick": 7,
-   "pinnacle_matched": 7,
+   "with_market_probability": 0,
+   "with_own_line": 22,
+   "with_pick": 22,
+   "pinnacle_matched": 0,
    "stale_listings_excluded": 260
   },
   "weights": {
@@ -592,21 +592,28 @@
    "overround_pct": null,
    "market_p_a_pct": null,
    "market_p_b_pct": null,
-   "own_model_p_a_pct": null,
-   "own_model_p_b_pct": null,
-   "model_inputs": [],
-   "final_p_a_pct": null,
-   "final_p_b_pct": null,
-   "estimate_basis": "unavailable \u2014 neither a bookmaker price nor a rating line could be sourced",
-   "pick": null,
-   "pick_pct": null,
+   "own_model_p_a_pct": 19.6,
+   "own_model_p_b_pct": 80.4,
+   "model_inputs": [
+    {
+     "source": "Valve Regional Standings points",
+     "url": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md",
+     "team_a_points": 854.0,
+     "team_b_points": 1099.0,
+     "p_a": 0.1962
+    }
+   ],
+   "final_p_a_pct": 19.6,
+   "final_p_b_pct": 80.4,
+   "estimate_basis": "own line only (no external price found)",
+   "pick": "Galorys",
+   "pick_pct": 80.4,
    "locked": true,
    "started": true,
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:ex-Keyd Stars,Galorys"
+    "own_line_only_no_market"
    ]
   },
   {
@@ -648,7 +655,7 @@
     "no_external_match_page_matched",
     "no_external_price_found",
     "no_probability_available",
-    "vrs_rating_missing:SUKEBAN,your end"
+    "vrs_rating_missing:SUKEBAN"
    ]
   },
   {
@@ -666,46 +673,38 @@
    "status": "scheduled",
    "hotspawn_url": "https://www.hotspawn.com/matches/1079546",
    "hotspawn_page": "https://play.hotspawn.com/lobby",
-   "odds_a": 2.55,
-   "odds_b": 1.462962962962963,
+   "odds_a": null,
+   "odds_b": null,
    "odds_kind": null,
    "odds_bookmakers": [],
-   "odds_source_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
-   "odds_fetched_utc": "2026-10-13T21:37:36Z",
-   "market_sources": [
+   "odds_source_url": null,
+   "odds_fetched_utc": null,
+   "market_sources": [],
+   "overround_pct": null,
+   "market_p_a_pct": null,
+   "market_p_b_pct": null,
+   "own_model_p_a_pct": 30.5,
+   "own_model_p_b_pct": 69.5,
+   "model_inputs": [
     {
-     "source": "Pinnacle (public guest moneyline)",
-     "odds_a": 2.55,
-     "odds_b": 1.462962962962963,
-     "p_a_pct": 36.5,
-     "overround_pct": 7.57,
-     "native": {
-      "odds_a": 155,
-      "odds_b": -216,
-      "format": "american (converted to decimal with 1 + value/100 for positive prices and 1 + 100/|value| for negative prices)"
-     },
-     "url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
-     "page_url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
-     "fetched_utc": "2026-10-13T21:37:36Z"
+     "source": "Valve Regional Standings points",
+     "url": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md",
+     "team_a_points": 631.0,
+     "team_b_points": 774.0,
+     "p_a": 0.3051
     }
    ],
-   "overround_pct": 7.57,
-   "market_p_a_pct": 36.5,
-   "market_p_b_pct": 63.5,
-   "own_model_p_a_pct": null,
-   "own_model_p_b_pct": null,
-   "model_inputs": [],
-   "final_p_a_pct": 36.5,
-   "final_p_b_pct": 63.5,
-   "estimate_basis": "market only (no rating line for both teams)",
+   "final_p_a_pct": 30.5,
+   "final_p_b_pct": 69.5,
+   "estimate_basis": "own line only (no external price found)",
    "pick": "Overtake Sector",
-   "pick_pct": 63.5,
+   "pick_pct": 69.5,
    "locked": false,
    "started": false,
    "flags": [
-    "market_only_no_own_line",
-    "single_market_source",
-    "vrs_rating_missing:Zomblers,Overtake Sector"
+    "no_external_match_page_matched",
+    "no_external_price_found",
+    "own_line_only_no_market"
    ]
   },
   {
@@ -733,21 +732,28 @@
    "overround_pct": null,
    "market_p_a_pct": null,
    "market_p_b_pct": null,
-   "own_model_p_a_pct": null,
-   "own_model_p_b_pct": null,
-   "model_inputs": [],
-   "final_p_a_pct": null,
-   "final_p_b_pct": null,
-   "estimate_basis": "unavailable \u2014 neither a bookmaker price nor a rating line could be sourced",
-   "pick": null,
-   "pick_pct": null,
+   "own_model_p_a_pct": 28.8,
+   "own_model_p_b_pct": 71.2,
+   "model_inputs": [
+    {
+     "source": "Valve Regional Standings points",
+     "url": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md",
+     "team_a_points": 705.0,
+     "team_b_points": 862.0,
+     "p_a": 0.2883
+    }
+   ],
+   "final_p_a_pct": 28.8,
+   "final_p_b_pct": 71.2,
+   "estimate_basis": "own line only (no external price found)",
+   "pick": "Lavked",
+   "pick_pct": 71.2,
    "locked": false,
    "started": false,
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:Gothic,Lavked"
+    "own_line_only_no_market"
    ]
   },
   {
@@ -775,21 +781,28 @@
    "overround_pct": null,
    "market_p_a_pct": null,
    "market_p_b_pct": null,
-   "own_model_p_a_pct": null,
-   "own_model_p_b_pct": null,
-   "model_inputs": [],
-   "final_p_a_pct": null,
-   "final_p_b_pct": null,
-   "estimate_basis": "unavailable \u2014 neither a bookmaker price nor a rating line could be sourced",
-   "pick": null,
-   "pick_pct": null,
+   "own_model_p_a_pct": 79.9,
+   "own_model_p_b_pct": 20.1,
+   "model_inputs": [
+    {
+     "source": "Valve Regional Standings points",
+     "url": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md",
+     "team_a_points": 871.0,
+     "team_b_points": 631.0,
+     "p_a": 0.7992
+    }
+   ],
+   "final_p_a_pct": 79.9,
+   "final_p_b_pct": 20.1,
+   "estimate_basis": "own line only (no external price found)",
+   "pick": "Enjoy",
+   "pick_pct": 79.9,
    "locked": false,
    "started": false,
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:Enjoy,B8 Academy"
+    "own_line_only_no_market"
    ]
   },
   {
@@ -807,46 +820,38 @@
    "status": "scheduled",
    "hotspawn_url": "https://www.hotspawn.com/matches/1080176",
    "hotspawn_page": "https://play.hotspawn.com/lobby",
-   "odds_a": 3.61,
-   "odds_b": 1.2985074626865671,
+   "odds_a": null,
+   "odds_b": null,
    "odds_kind": null,
    "odds_bookmakers": [],
-   "odds_source_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
-   "odds_fetched_utc": "2026-10-13T21:37:36Z",
-   "market_sources": [
+   "odds_source_url": null,
+   "odds_fetched_utc": null,
+   "market_sources": [],
+   "overround_pct": null,
+   "market_p_a_pct": null,
+   "market_p_b_pct": null,
+   "own_model_p_a_pct": 27.0,
+   "own_model_p_b_pct": 73.0,
+   "model_inputs": [
     {
-     "source": "Pinnacle (public guest moneyline)",
-     "odds_a": 3.61,
-     "odds_b": 1.2985074626865671,
-     "p_a_pct": 26.5,
-     "overround_pct": 4.71,
-     "native": {
-      "odds_a": 261,
-      "odds_b": -335,
-      "format": "american (converted to decimal with 1 + value/100 for positive prices and 1 + 100/|value| for negative prices)"
-     },
-     "url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
-     "page_url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
-     "fetched_utc": "2026-10-13T21:37:36Z"
+     "source": "Valve Regional Standings points",
+     "url": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md",
+     "team_a_points": 1543.0,
+     "team_b_points": 1716.0,
+     "p_a": 0.2698
     }
    ],
-   "overround_pct": 4.71,
-   "market_p_a_pct": 26.5,
-   "market_p_b_pct": 73.5,
-   "own_model_p_a_pct": null,
-   "own_model_p_b_pct": null,
-   "model_inputs": [],
-   "final_p_a_pct": 26.5,
-   "final_p_b_pct": 73.5,
-   "estimate_basis": "market only (no rating line for both teams)",
+   "final_p_a_pct": 27.0,
+   "final_p_b_pct": 73.0,
+   "estimate_basis": "own line only (no external price found)",
    "pick": "Aurora",
-   "pick_pct": 73.5,
+   "pick_pct": 73.0,
    "locked": false,
    "started": false,
    "flags": [
-    "market_only_no_own_line",
-    "single_market_source",
-    "vrs_rating_missing:Aurora"
+    "no_external_match_page_matched",
+    "no_external_price_found",
+    "own_line_only_no_market"
    ]
   },
   {
@@ -864,46 +869,30 @@
    "status": "scheduled",
    "hotspawn_url": "https://www.hotspawn.com/matches/1076650",
    "hotspawn_page": "https://play.hotspawn.com/lol-pickems",
-   "odds_a": 1.62111801242236,
-   "odds_b": 2.3200000000000003,
+   "odds_a": null,
+   "odds_b": null,
    "odds_kind": null,
    "odds_bookmakers": [],
-   "odds_source_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
-   "odds_fetched_utc": "2026-10-13T21:37:36Z",
-   "market_sources": [
-    {
-     "source": "Pinnacle (public guest moneyline)",
-     "odds_a": 1.62111801242236,
-     "odds_b": 2.3200000000000003,
-     "p_a_pct": 58.9,
-     "overround_pct": 4.79,
-     "native": {
-      "odds_a": 132,
-      "odds_b": -161,
-      "format": "american (converted to decimal with 1 + value/100 for positive prices and 1 + 100/|value| for negative prices)"
-     },
-     "url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
-     "page_url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
-     "fetched_utc": "2026-10-13T21:37:36Z"
-    }
-   ],
-   "overround_pct": 4.79,
-   "market_p_a_pct": 58.9,
-   "market_p_b_pct": 41.1,
+   "odds_source_url": null,
+   "odds_fetched_utc": null,
+   "market_sources": [],
+   "overround_pct": null,
+   "market_p_a_pct": null,
+   "market_p_b_pct": null,
    "own_model_p_a_pct": null,
    "own_model_p_b_pct": null,
    "model_inputs": [],
-   "final_p_a_pct": 58.9,
-   "final_p_b_pct": 41.1,
-   "estimate_basis": "market only (no rating line for both teams)",
-   "pick": "KT Rolster",
-   "pick_pct": 58.9,
+   "final_p_a_pct": null,
+   "final_p_b_pct": null,
+   "estimate_basis": "unavailable \u2014 neither a bookmaker price nor a rating line could be sourced",
+   "pick": null,
+   "pick_pct": null,
    "locked": false,
    "started": false,
    "flags": [
-    "market_only_no_own_line",
-    "pinnacle_pair_order_reversed",
-    "single_market_source",
+    "no_external_match_page_matched",
+    "no_external_price_found",
+    "no_probability_available",
     "vrs_rating_missing:KT Rolster,BNK FearX"
    ]
   },
@@ -932,21 +921,28 @@
    "overround_pct": null,
    "market_p_a_pct": null,
    "market_p_b_pct": null,
-   "own_model_p_a_pct": null,
-   "own_model_p_b_pct": null,
-   "model_inputs": [],
-   "final_p_a_pct": null,
-   "final_p_b_pct": null,
-   "estimate_basis": "unavailable \u2014 neither a bookmaker price nor a rating line could be sourced",
-   "pick": null,
-   "pick_pct": null,
+   "own_model_p_a_pct": 95.8,
+   "own_model_p_b_pct": 4.2,
+   "model_inputs": [
+    {
+     "source": "Valve Regional Standings points",
+     "url": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md",
+     "team_a_points": 1674.0,
+     "team_b_points": 1131.0,
+     "p_a": 0.9579
+    }
+   ],
+   "final_p_a_pct": 95.8,
+   "final_p_b_pct": 4.2,
+   "estimate_basis": "own line only (no external price found)",
+   "pick": "Astralis",
+   "pick_pct": 95.8,
    "locked": false,
    "started": false,
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:Astralis,Sashi"
+    "own_line_only_no_market"
    ]
   },
   {
@@ -964,46 +960,38 @@
    "status": "scheduled",
    "hotspawn_url": "https://www.hotspawn.com/matches/1079439",
    "hotspawn_page": "https://play.hotspawn.com/lobby",
-   "odds_a": 1.99009900990099,
-   "odds_b": 1.8,
+   "odds_a": null,
+   "odds_b": null,
    "odds_kind": null,
    "odds_bookmakers": [],
-   "odds_source_url": "https://guest.api.arcadia.pinnacle.com/0.1/leagues/293370/markets/straight",
-   "odds_fetched_utc": "2026-10-13T21:37:36Z",
-   "market_sources": [
+   "odds_source_url": null,
+   "odds_fetched_utc": null,
+   "market_sources": [],
+   "overround_pct": null,
+   "market_p_a_pct": null,
+   "market_p_b_pct": null,
+   "own_model_p_a_pct": 52.9,
+   "own_model_p_b_pct": 47.1,
+   "model_inputs": [
     {
-     "source": "Pinnacle (public guest moneyline)",
-     "odds_a": 1.99009900990099,
-     "odds_b": 1.8,
-     "p_a_pct": 47.5,
-     "overround_pct": 5.8,
-     "native": {
-      "odds_a": -101,
-      "odds_b": -125,
-      "format": "american (converted to decimal with 1 + value/100 for positive prices and 1 + 100/|value| for negative prices)"
-     },
-     "url": "https://guest.api.arcadia.pinnacle.com/0.1/leagues/293370/markets/straight",
-     "page_url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
-     "fetched_utc": "2026-10-13T21:37:36Z"
+     "source": "Valve Regional Standings points",
+     "url": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md",
+     "team_a_points": 1437.0,
+     "team_b_points": 1417.0,
+     "p_a": 0.5288
     }
    ],
-   "overround_pct": 5.8,
-   "market_p_a_pct": 47.5,
-   "market_p_b_pct": 52.5,
-   "own_model_p_a_pct": null,
-   "own_model_p_b_pct": null,
-   "model_inputs": [],
-   "final_p_a_pct": 47.5,
-   "final_p_b_pct": 52.5,
-   "estimate_basis": "market only (no rating line for both teams)",
-   "pick": "Fnatic",
-   "pick_pct": 52.5,
+   "final_p_a_pct": 52.9,
+   "final_p_b_pct": 47.1,
+   "estimate_basis": "own line only (no external price found)",
+   "pick": "HOTU",
+   "pick_pct": 52.9,
    "locked": false,
    "started": false,
    "flags": [
-    "market_only_no_own_line",
-    "single_market_source",
-    "vrs_rating_missing:HOTU"
+    "no_external_match_page_matched",
+    "no_external_price_found",
+    "own_line_only_no_market"
    ]
   },
   {
@@ -1031,21 +1019,28 @@
    "overround_pct": null,
    "market_p_a_pct": null,
    "market_p_b_pct": null,
-   "own_model_p_a_pct": null,
-   "own_model_p_b_pct": null,
-   "model_inputs": [],
-   "final_p_a_pct": null,
-   "final_p_b_pct": null,
-   "estimate_basis": "unavailable \u2014 neither a bookmaker price nor a rating line could be sourced",
-   "pick": null,
-   "pick_pct": null,
+   "own_model_p_a_pct": 34.9,
+   "own_model_p_b_pct": 65.1,
+   "model_inputs": [
+    {
+     "source": "Valve Regional Standings points",
+     "url": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md",
+     "team_a_points": 824.0,
+     "team_b_points": 932.0,
+     "p_a": 0.3494
+    }
+   ],
+   "final_p_a_pct": 34.9,
+   "final_p_b_pct": 65.1,
+   "estimate_basis": "own line only (no external price found)",
+   "pick": "mellren",
+   "pick_pct": 65.1,
    "locked": false,
    "started": false,
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:ex-RUSTEC"
+    "own_line_only_no_market"
    ]
   },
   {
@@ -1063,46 +1058,38 @@
    "status": "scheduled",
    "hotspawn_url": "https://www.hotspawn.com/matches/1080177",
    "hotspawn_page": "https://play.hotspawn.com/lobby",
-   "odds_a": 1.2481389578163773,
-   "odds_b": 4.08,
+   "odds_a": null,
+   "odds_b": null,
    "odds_kind": null,
    "odds_bookmakers": [],
-   "odds_source_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
-   "odds_fetched_utc": "2026-10-13T21:37:36Z",
-   "market_sources": [
+   "odds_source_url": null,
+   "odds_fetched_utc": null,
+   "market_sources": [],
+   "overround_pct": null,
+   "market_p_a_pct": null,
+   "market_p_b_pct": null,
+   "own_model_p_a_pct": 85.6,
+   "own_model_p_b_pct": 14.4,
+   "model_inputs": [
     {
-     "source": "Pinnacle (public guest moneyline)",
-     "odds_a": 1.2481389578163773,
-     "odds_b": 4.08,
-     "p_a_pct": 76.6,
-     "overround_pct": 4.63,
-     "native": {
-      "odds_a": -403,
-      "odds_b": 308,
-      "format": "american (converted to decimal with 1 + value/100 for positive prices and 1 + 100/|value| for negative prices)"
-     },
-     "url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
-     "page_url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
-     "fetched_utc": "2026-10-13T21:37:36Z"
+     "source": "Valve Regional Standings points",
+     "url": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md",
+     "team_a_points": 1843.0,
+     "team_b_points": 1534.0,
+     "p_a": 0.8555
     }
    ],
-   "overround_pct": 4.63,
-   "market_p_a_pct": 76.6,
-   "market_p_b_pct": 23.4,
-   "own_model_p_a_pct": null,
-   "own_model_p_b_pct": null,
-   "model_inputs": [],
-   "final_p_a_pct": 76.6,
-   "final_p_b_pct": 23.4,
-   "estimate_basis": "market only (no rating line for both teams)",
+   "final_p_a_pct": 85.6,
+   "final_p_b_pct": 14.4,
+   "estimate_basis": "own line only (no external price found)",
    "pick": "Falcons",
-   "pick_pct": 76.6,
+   "pick_pct": 85.6,
    "locked": false,
    "started": false,
    "flags": [
-    "market_only_no_own_line",
-    "single_market_source",
-    "vrs_rating_missing:Falcons,Ninjas in Pyjamas"
+    "no_external_match_page_matched",
+    "no_external_price_found",
+    "own_line_only_no_market"
    ]
   },
   {
@@ -1130,21 +1117,28 @@
    "overround_pct": null,
    "market_p_a_pct": null,
    "market_p_b_pct": null,
-   "own_model_p_a_pct": null,
-   "own_model_p_b_pct": null,
-   "model_inputs": [],
-   "final_p_a_pct": null,
-   "final_p_b_pct": null,
-   "estimate_basis": "unavailable \u2014 neither a bookmaker price nor a rating line could be sourced",
-   "pick": null,
-   "pick_pct": null,
+   "own_model_p_a_pct": 46.7,
+   "own_model_p_b_pct": 53.3,
+   "model_inputs": [
+    {
+     "source": "Valve Regional Standings points",
+     "url": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md",
+     "team_a_points": 402.0,
+     "team_b_points": 425.0,
+     "p_a": 0.4669
+    }
+   ],
+   "final_p_a_pct": 46.7,
+   "final_p_b_pct": 53.3,
+   "estimate_basis": "own line only (no external price found)",
+   "pick": "6666",
+   "pick_pct": 53.3,
    "locked": false,
    "started": false,
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:Banda chuya"
+    "own_line_only_no_market"
    ]
   },
   {
@@ -1172,21 +1166,28 @@
    "overround_pct": null,
    "market_p_a_pct": null,
    "market_p_b_pct": null,
-   "own_model_p_a_pct": null,
-   "own_model_p_b_pct": null,
-   "model_inputs": [],
-   "final_p_a_pct": null,
-   "final_p_b_pct": null,
-   "estimate_basis": "unavailable \u2014 neither a bookmaker price nor a rating line could be sourced",
-   "pick": null,
-   "pick_pct": null,
+   "own_model_p_a_pct": 95.2,
+   "own_model_p_b_pct": 4.8,
+   "model_inputs": [
+    {
+     "source": "Valve Regional Standings points",
+     "url": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md",
+     "team_a_points": 1931.0,
+     "team_b_points": 1411.0,
+     "p_a": 0.9523
+    }
+   ],
+   "final_p_a_pct": 95.2,
+   "final_p_b_pct": 4.8,
+   "estimate_basis": "own line only (no external price found)",
+   "pick": "Legacy",
+   "pick_pct": 95.2,
    "locked": false,
    "started": false,
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:Legacy,PARIVISION"
+    "own_line_only_no_market"
    ]
   },
   {
@@ -1214,21 +1215,28 @@
    "overround_pct": null,
    "market_p_a_pct": null,
    "market_p_b_pct": null,
-   "own_model_p_a_pct": null,
-   "own_model_p_b_pct": null,
-   "model_inputs": [],
-   "final_p_a_pct": null,
-   "final_p_b_pct": null,
-   "estimate_basis": "unavailable \u2014 neither a bookmaker price nor a rating line could be sourced",
-   "pick": null,
-   "pick_pct": null,
+   "own_model_p_a_pct": 48.1,
+   "own_model_p_b_pct": 51.9,
+   "model_inputs": [
+    {
+     "source": "Valve Regional Standings points",
+     "url": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md",
+     "team_a_points": 913.0,
+     "team_b_points": 926.0,
+     "p_a": 0.4813
+    }
+   ],
+   "final_p_a_pct": 48.1,
+   "final_p_b_pct": 51.9,
+   "estimate_basis": "own line only (no external price found)",
+   "pick": "The Last Resort",
+   "pick_pct": 51.9,
    "locked": false,
    "started": false,
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:G2 Ares,The Last Resort"
+    "own_line_only_no_market"
    ]
   },
   {
@@ -1256,21 +1264,28 @@
    "overround_pct": null,
    "market_p_a_pct": null,
    "market_p_b_pct": null,
-   "own_model_p_a_pct": null,
-   "own_model_p_b_pct": null,
-   "model_inputs": [],
-   "final_p_a_pct": null,
-   "final_p_b_pct": null,
-   "estimate_basis": "unavailable \u2014 neither a bookmaker price nor a rating line could be sourced",
-   "pick": null,
-   "pick_pct": null,
+   "own_model_p_a_pct": 28.9,
+   "own_model_p_b_pct": 71.1,
+   "model_inputs": [
+    {
+     "source": "Valve Regional Standings points",
+     "url": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md",
+     "team_a_points": 714.0,
+     "team_b_points": 870.0,
+     "p_a": 0.2895
+    }
+   ],
+   "final_p_a_pct": 28.9,
+   "final_p_b_pct": 71.1,
+   "estimate_basis": "own line only (no external price found)",
+   "pick": "PCIFIC",
+   "pick_pct": 71.1,
    "locked": false,
    "started": false,
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:Ryvex,PCIFIC"
+    "own_line_only_no_market"
    ]
   },
   {
@@ -1340,21 +1355,28 @@
    "overround_pct": null,
    "market_p_a_pct": null,
    "market_p_b_pct": null,
-   "own_model_p_a_pct": null,
-   "own_model_p_b_pct": null,
-   "model_inputs": [],
-   "final_p_a_pct": null,
-   "final_p_b_pct": null,
-   "estimate_basis": "unavailable \u2014 neither a bookmaker price nor a rating line could be sourced",
-   "pick": null,
-   "pick_pct": null,
+   "own_model_p_a_pct": 79.3,
+   "own_model_p_b_pct": 20.7,
+   "model_inputs": [
+    {
+     "source": "Valve Regional Standings points",
+     "url": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md",
+     "team_a_points": 1829.0,
+     "team_b_points": 1596.0,
+     "p_a": 0.7927
+    }
+   ],
+   "final_p_a_pct": 79.3,
+   "final_p_b_pct": 20.7,
+   "estimate_basis": "own line only (no external price found)",
+   "pick": "FURIA",
+   "pick_pct": 79.3,
    "locked": false,
    "started": false,
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:FURIA,BetBoom"
+    "own_line_only_no_market"
    ]
   },
   {
@@ -1606,7 +1628,7 @@
     "no_external_match_page_matched",
     "no_external_price_found",
     "no_probability_available",
-    "vrs_rating_missing:FORZE Reload,LFO 10"
+    "vrs_rating_missing:LFO 10"
    ]
   },
   {
@@ -1732,7 +1754,7 @@
     "no_external_match_page_matched",
     "no_external_price_found",
     "no_probability_available",
-    "vrs_rating_missing:WROTBERRY,EAC"
+    "vrs_rating_missing:WROTBERRY"
    ]
   },
   {
@@ -1750,46 +1772,38 @@
    "status": "scheduled",
    "hotspawn_url": "https://www.hotspawn.com/matches/1079440",
    "hotspawn_page": "https://play.hotspawn.com/lobby",
-   "odds_a": 1.6369426751592355,
-   "odds_b": 2.23,
+   "odds_a": null,
+   "odds_b": null,
    "odds_kind": null,
    "odds_bookmakers": [],
-   "odds_source_url": "https://guest.api.arcadia.pinnacle.com/0.1/leagues/293370/markets/straight",
-   "odds_fetched_utc": "2026-10-13T21:37:36Z",
-   "market_sources": [
+   "odds_source_url": null,
+   "odds_fetched_utc": null,
+   "market_sources": [],
+   "overround_pct": null,
+   "market_p_a_pct": null,
+   "market_p_b_pct": null,
+   "own_model_p_a_pct": 82.3,
+   "own_model_p_b_pct": 17.7,
+   "model_inputs": [
     {
-     "source": "Pinnacle (public guest moneyline)",
-     "odds_a": 1.6369426751592355,
-     "odds_b": 2.23,
-     "p_a_pct": 57.7,
-     "overround_pct": 5.93,
-     "native": {
-      "odds_a": -157,
-      "odds_b": 123,
-      "format": "american (converted to decimal with 1 + value/100 for positive prices and 1 + 100/|value| for negative prices)"
-     },
-     "url": "https://guest.api.arcadia.pinnacle.com/0.1/leagues/293370/markets/straight",
-     "page_url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
-     "fetched_utc": "2026-10-13T21:37:36Z"
+     "source": "Valve Regional Standings points",
+     "url": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md",
+     "team_a_points": 1585.0,
+     "team_b_points": 1318.0,
+     "p_a": 0.823
     }
    ],
-   "overround_pct": 5.93,
-   "market_p_a_pct": 57.7,
-   "market_p_b_pct": 42.3,
-   "own_model_p_a_pct": null,
-   "own_model_p_b_pct": null,
-   "model_inputs": [],
-   "final_p_a_pct": 57.7,
-   "final_p_b_pct": 42.3,
-   "estimate_basis": "market only (no rating line for both teams)",
+   "final_p_a_pct": 82.3,
+   "final_p_b_pct": 17.7,
+   "estimate_basis": "own line only (no external price found)",
    "pick": "MIBR",
-   "pick_pct": 57.7,
+   "pick_pct": 82.3,
    "locked": false,
    "started": false,
    "flags": [
-    "market_only_no_own_line",
-    "single_market_source",
-    "vrs_rating_missing:MIBR,BC.Game"
+    "no_external_match_page_matched",
+    "no_external_price_found",
+    "own_line_only_no_market"
    ]
   },
   {
@@ -1807,46 +1821,31 @@
    "status": "scheduled",
    "hotspawn_url": "https://www.hotspawn.com/matches/1079442",
    "hotspawn_page": "https://play.hotspawn.com/lobby",
-   "odds_a": 1.5154639175257731,
-   "odds_b": 2.5,
+   "odds_a": null,
+   "odds_b": null,
    "odds_kind": null,
    "odds_bookmakers": [],
-   "odds_source_url": "https://guest.api.arcadia.pinnacle.com/0.1/leagues/293370/markets/straight",
-   "odds_fetched_utc": "2026-10-13T21:37:36Z",
-   "market_sources": [
-    {
-     "source": "Pinnacle (public guest moneyline)",
-     "odds_a": 1.5154639175257731,
-     "odds_b": 2.5,
-     "p_a_pct": 62.3,
-     "overround_pct": 5.99,
-     "native": {
-      "odds_a": -194,
-      "odds_b": 150,
-      "format": "american (converted to decimal with 1 + value/100 for positive prices and 1 + 100/|value| for negative prices)"
-     },
-     "url": "https://guest.api.arcadia.pinnacle.com/0.1/leagues/293370/markets/straight",
-     "page_url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
-     "fetched_utc": "2026-10-13T21:37:36Z"
-    }
-   ],
-   "overround_pct": 5.99,
-   "market_p_a_pct": 62.3,
-   "market_p_b_pct": 37.7,
+   "odds_source_url": null,
+   "odds_fetched_utc": null,
+   "market_sources": [],
+   "overround_pct": null,
+   "market_p_a_pct": null,
+   "market_p_b_pct": null,
    "own_model_p_a_pct": null,
    "own_model_p_b_pct": null,
    "model_inputs": [],
-   "final_p_a_pct": 62.3,
-   "final_p_b_pct": 37.7,
-   "estimate_basis": "market only (no rating line for both teams)",
-   "pick": "Heroic",
-   "pick_pct": 62.3,
+   "final_p_a_pct": null,
+   "final_p_b_pct": null,
+   "estimate_basis": "unavailable \u2014 neither a bookmaker price nor a rating line could be sourced",
+   "pick": null,
+   "pick_pct": null,
    "locked": false,
    "started": false,
    "flags": [
-    "market_only_no_own_line",
-    "single_market_source",
-    "vrs_rating_missing:Heroic,Envy"
+    "no_external_match_page_matched",
+    "no_external_price_found",
+    "no_probability_available",
+    "vrs_rating_missing:Envy"
    ]
   },
   {
@@ -1874,21 +1873,28 @@
    "overround_pct": null,
    "market_p_a_pct": null,
    "market_p_b_pct": null,
-   "own_model_p_a_pct": null,
-   "own_model_p_b_pct": null,
-   "model_inputs": [],
-   "final_p_a_pct": null,
-   "final_p_b_pct": null,
-   "estimate_basis": "unavailable \u2014 neither a bookmaker price nor a rating line could be sourced",
-   "pick": null,
-   "pick_pct": null,
+   "own_model_p_a_pct": 96.2,
+   "own_model_p_b_pct": 3.8,
+   "model_inputs": [
+    {
+     "source": "Valve Regional Standings points",
+     "url": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md",
+     "team_a_points": 1025.0,
+     "team_b_points": 463.0,
+     "p_a": 0.9621
+    }
+   ],
+   "final_p_a_pct": 96.2,
+   "final_p_b_pct": 3.8,
+   "estimate_basis": "own line only (no external price found)",
+   "pick": "ENCE",
+   "pick_pct": 96.2,
    "locked": false,
    "started": false,
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:ENCE,BOJONG"
+    "own_line_only_no_market"
    ]
   },
   {
@@ -1930,7 +1936,7 @@
     "no_external_match_page_matched",
     "no_external_price_found",
     "no_probability_available",
-    "vrs_rating_missing:WROTBERRY,ENCE"
+    "vrs_rating_missing:WROTBERRY"
    ]
   },
   {
@@ -1958,21 +1964,28 @@
    "overround_pct": null,
    "market_p_a_pct": null,
    "market_p_b_pct": null,
-   "own_model_p_a_pct": null,
-   "own_model_p_b_pct": null,
-   "model_inputs": [],
-   "final_p_a_pct": null,
-   "final_p_b_pct": null,
-   "estimate_basis": "unavailable \u2014 neither a bookmaker price nor a rating line could be sourced",
-   "pick": null,
-   "pick_pct": null,
+   "own_model_p_a_pct": 96.4,
+   "own_model_p_b_pct": 3.6,
+   "model_inputs": [
+    {
+     "source": "Valve Regional Standings points",
+     "url": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md",
+     "team_a_points": 1035.0,
+     "team_b_points": 463.0,
+     "p_a": 0.9642
+    }
+   ],
+   "final_p_a_pct": 96.4,
+   "final_p_b_pct": 3.6,
+   "estimate_basis": "own line only (no external price found)",
+   "pick": "EAC",
+   "pick_pct": 96.4,
    "locked": false,
    "started": false,
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:EAC,BOJONG"
+    "own_line_only_no_market"
    ]
   },
   {
@@ -2014,7 +2027,7 @@
     "no_external_match_page_matched",
     "no_external_price_found",
     "no_probability_available",
-    "vrs_rating_missing:WROTBERRY,BOJONG"
+    "vrs_rating_missing:WROTBERRY"
    ]
   },
   {
@@ -2252,21 +2265,28 @@
    "overround_pct": null,
    "market_p_a_pct": null,
    "market_p_b_pct": null,
-   "own_model_p_a_pct": null,
-   "own_model_p_b_pct": null,
-   "model_inputs": [],
-   "final_p_a_pct": null,
-   "final_p_b_pct": null,
-   "estimate_basis": "unavailable \u2014 neither a bookmaker price nor a rating line could be sourced",
-   "pick": null,
-   "pick_pct": null,
+   "own_model_p_a_pct": 51.4,
+   "own_model_p_b_pct": 48.6,
+   "model_inputs": [
+    {
+     "source": "Valve Regional Standings points",
+     "url": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md",
+     "team_a_points": 1035.0,
+     "team_b_points": 1025.0,
+     "p_a": 0.5144
+    }
+   ],
+   "final_p_a_pct": 51.4,
+   "final_p_b_pct": 48.6,
+   "estimate_basis": "own line only (no external price found)",
+   "pick": "EAC",
+   "pick_pct": 51.4,
    "locked": false,
    "started": false,
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:EAC,ENCE"
+    "own_line_only_no_market"
    ]
   },
   {
@@ -2308,7 +2328,7 @@
     "no_external_match_page_matched",
     "no_external_price_found",
     "no_probability_available",
-    "vrs_rating_missing:FURIA,MVK Esports"
+    "vrs_rating_missing:MVK Esports"
    ]
   },
   {
@@ -2336,21 +2356,28 @@
    "overround_pct": null,
    "market_p_a_pct": null,
    "market_p_b_pct": null,
-   "own_model_p_a_pct": null,
-   "own_model_p_b_pct": null,
-   "model_inputs": [],
-   "final_p_a_pct": null,
-   "final_p_b_pct": null,
-   "estimate_basis": "unavailable \u2014 neither a bookmaker price nor a rating line could be sourced",
-   "pick": null,
-   "pick_pct": null,
+   "own_model_p_a_pct": 55.0,
+   "own_model_p_b_pct": 45.0,
+   "model_inputs": [
+    {
+     "source": "Valve Regional Standings points",
+     "url": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md",
+     "team_a_points": 1182.0,
+     "team_b_points": 1147.0,
+     "p_a": 0.5502
+    }
+   ],
+   "final_p_a_pct": 55.0,
+   "final_p_b_pct": 45.0,
+   "estimate_basis": "own line only (no external price found)",
+   "pick": "Voca",
+   "pick_pct": 55.0,
    "locked": false,
    "started": false,
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:Voca,Phantom"
+    "own_line_only_no_market"
    ]
   },
   {
@@ -2392,7 +2419,7 @@
     "no_external_match_page_matched",
     "no_external_price_found",
     "no_probability_available",
-    "vrs_rating_missing:HAVU,RoundsGG"
+    "vrs_rating_missing:RoundsGG"
    ]
   },
   {
@@ -2420,21 +2447,28 @@
    "overround_pct": null,
    "market_p_a_pct": null,
    "market_p_b_pct": null,
-   "own_model_p_a_pct": null,
-   "own_model_p_b_pct": null,
-   "model_inputs": [],
-   "final_p_a_pct": null,
-   "final_p_b_pct": null,
-   "estimate_basis": "unavailable \u2014 neither a bookmaker price nor a rating line could be sourced",
-   "pick": null,
-   "pick_pct": null,
+   "own_model_p_a_pct": 80.4,
+   "own_model_p_b_pct": 19.6,
+   "model_inputs": [
+    {
+     "source": "Valve Regional Standings points",
+     "url": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md",
+     "team_a_points": 1182.0,
+     "team_b_points": 937.0,
+     "p_a": 0.8038
+    }
+   ],
+   "final_p_a_pct": 80.4,
+   "final_p_b_pct": 19.6,
+   "estimate_basis": "own line only (no external price found)",
+   "pick": "Voca",
+   "pick_pct": 80.4,
    "locked": false,
    "started": false,
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:Voca,HAVU"
+    "own_line_only_no_market"
    ]
   },
   {
@@ -2476,7 +2510,7 @@
     "no_external_match_page_matched",
     "no_external_price_found",
     "no_probability_available",
-    "vrs_rating_missing:Phantom,RoundsGG"
+    "vrs_rating_missing:RoundsGG"
    ]
   },
   {
@@ -2504,21 +2538,28 @@
    "overround_pct": null,
    "market_p_a_pct": null,
    "market_p_b_pct": null,
-   "own_model_p_a_pct": null,
-   "own_model_p_b_pct": null,
-   "model_inputs": [],
-   "final_p_a_pct": null,
-   "final_p_b_pct": null,
-   "estimate_basis": "unavailable \u2014 neither a bookmaker price nor a rating line could be sourced",
-   "pick": null,
-   "pick_pct": null,
+   "own_model_p_a_pct": 86.6,
+   "own_model_p_b_pct": 13.4,
+   "model_inputs": [
+    {
+     "source": "Valve Regional Standings points",
+     "url": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md",
+     "team_a_points": 932.0,
+     "team_b_points": 608.0,
+     "p_a": 0.8659
+    }
+   ],
+   "final_p_a_pct": 86.6,
+   "final_p_b_pct": 13.4,
+   "estimate_basis": "own line only (no external price found)",
+   "pick": "mellren",
+   "pick_pct": 86.6,
    "locked": false,
    "started": false,
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:Privateer"
+    "own_line_only_no_market"
    ]
   },
   {
@@ -2644,7 +2685,7 @@
     "no_external_match_page_matched",
     "no_external_price_found",
     "no_probability_available",
-    "vrs_rating_missing:RoundsGG,Voca"
+    "vrs_rating_missing:RoundsGG"
    ]
   },
   {
@@ -2756,21 +2797,28 @@
    "overround_pct": null,
    "market_p_a_pct": null,
    "market_p_b_pct": null,
-   "own_model_p_a_pct": null,
-   "own_model_p_b_pct": null,
-   "model_inputs": [],
-   "final_p_a_pct": null,
-   "final_p_b_pct": null,
-   "estimate_basis": "unavailable \u2014 neither a bookmaker price nor a rating line could be sourced",
-   "pick": null,
-   "pick_pct": null,
+   "own_model_p_a_pct": 77.0,
+   "own_model_p_b_pct": 23.0,
+   "model_inputs": [
+    {
+     "source": "Valve Regional Standings points",
+     "url": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md",
+     "team_a_points": 1147.0,
+     "team_b_points": 937.0,
+     "p_a": 0.7701
+    }
+   ],
+   "final_p_a_pct": 77.0,
+   "final_p_b_pct": 23.0,
+   "estimate_basis": "own line only (no external price found)",
+   "pick": "Phantom",
+   "pick_pct": 77.0,
    "locked": false,
    "started": false,
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:Phantom,HAVU"
+    "own_line_only_no_market"
    ]
   },
   {
@@ -5424,7 +5472,7 @@
   {
    "code": "R-COUNT",
    "title": "The lobby's 'matches this week' count differs from the rows in the payload window",
-   "detail": "The lobby page prints 68 matches this week (context: \" Tournaments How To Play League of Legends Pick'em Lobby Play other game titles This week 126 matches this week Resets in 5d 06h 10m 40s Sign in to tra\"), while the same page's payload yields 124 rows whose start falls inside the week window that ends 2026-10-19T03:48:02Z (the window comes from the page's own reset countdown). Per-page header counts: lobby=68, cs2-pickems=60, thp-pickems=60, lol-pickems=126. The difference is published, not explained away; the board shows every row the payload contains in the window.",
+   "detail": "The lobby page prints 68 matches this week (context: \" Tournaments How To Play League of Legends Pick'em Lobby Play other game titles This week 126 matches this week Resets in 5d 06h 10m 40s Sign in to tra\"), while the same page's payload yields 124 rows whose start falls inside the week window that ends 2026-10-19T03:54:06Z (the window comes from the page's own reset countdown). Per-page header counts: lobby=68, cs2-pickems=60, thp-pickems=60, lol-pickems=126. The difference is published, not explained away; the board shows every row the payload contains in the window.",
    "source_url": "https://play.hotspawn.com/lobby",
    "items": []
   },
@@ -8038,134 +8086,9 @@
   },
   {
    "code": "R-NOMKT",
-   "title": "117 fixtures have no external bookmaker price",
+   "title": "124 fixtures have no external bookmaker price",
    "detail": "Those values are left blank in the published dataset and shown as \"-\" on the board.",
    "source_url": "https://egamersworld.com/counterstrike/matches",
-   "items": [
-    "1076649",
-    "1075699",
-    "1079007",
-    "1079334",
-    "1079847",
-    "1071186",
-    "1071193",
-    "1075718",
-    "1075724",
-    "1079009",
-    "1079010",
-    "1081076",
-    "1081105",
-    "1079621",
-    "1081111",
-    "1079438",
-    "1079622",
-    "1081112",
-    "1080178",
-    "1079623",
-    "1081113",
-    "1079335",
-    "1080179",
-    "1080902",
-    "1071203",
-    "1075708",
-    "1075725",
-    "1076570",
-    "1079624",
-    "1075726",
-    "1076571",
-    "1080279",
-    "1080280",
-    "1080281",
-    "1080282",
-    "1080283",
-    "1075704",
-    "1075808",
-    "1079131",
-    "1079132",
-    "1079922",
-    "1080284",
-    "1075807",
-    "1080285",
-    "1080286",
-    "1080287",
-    "1080288",
-    "1081120",
-    "1079012",
-    "1079848",
-    "1080289",
-    "1079133",
-    "1079134",
-    "1080290",
-    "1079013",
-    "1079014",
-    "1080905",
-    "1080906",
-    "1080907",
-    "1080908",
-    "1080909",
-    "1080910",
-    "1080911",
-    "1080912",
-    "1080915",
-    "1079135",
-    "1079136",
-    "1080916",
-    "1078953",
-    "1078954",
-    "1078956",
-    "1079339",
-    "1078957",
-    "1078958",
-    "1071208",
-    "1071210",
-    "1071211",
-    "1071212",
-    "1071213",
-    "1075732",
-    "1075733",
-    "1075734",
-    "1075735",
-    "1075736",
-    "1075737",
-    "1075738",
-    "1075739",
-    "1075740",
-    "1075741",
-    "1075742",
-    "1075744",
-    "1075745",
-    "1075746",
-    "1079015",
-    "1079016",
-    "1071209",
-    "1080917",
-    "1080918",
-    "1080919",
-    "1080920",
-    "1080921",
-    "1074645",
-    "1074646",
-    "1074647",
-    "1074648",
-    "1074649",
-    "1074650",
-    "1074651",
-    "1075721",
-    "1079017",
-    "1079018",
-    "1078959",
-    "1079340",
-    "1078961",
-    "1078962",
-    "1078963",
-    "1078964"
-   ]
-  },
-  {
-   "code": "R-NORATE",
-   "title": "124 fixtures have no own-line rating for both teams",
-   "detail": "Those values are left blank in the published dataset and shown as \"-\" on the board.",
-   "source_url": "https://www.hltv.org/ranking/teams",
    "items": [
     "1076649",
     "1075699",
@@ -8294,18 +8217,113 @@
    ]
   },
   {
-   "code": "R-SINGLE",
-   "title": "7 fixtures rest on a single price reading",
-   "detail": "Only one bookmaker price (or one source) was readable, so there is no cross-source agreement behind the median.",
-   "source_url": "https://egamersworld.com/counterstrike/matches",
+   "code": "R-NORATE",
+   "title": "102 fixtures have no own-line rating for both teams",
+   "detail": "Those values are left blank in the published dataset and shown as \"-\" on the board.",
+   "source_url": "https://www.hltv.org/ranking/teams/2026/october/12",
    "items": [
-    "1079546",
-    "1080176",
+    "1076649",
+    "1075699",
+    "1079007",
+    "1079334",
+    "1079847",
+    "1071186",
+    "1071193",
+    "1075718",
+    "1075724",
+    "1079009",
+    "1079010",
+    "1081105",
     "1076650",
-    "1079439",
-    "1080177",
-    "1079440",
-    "1079442"
+    "1079335",
+    "1080902",
+    "1071203",
+    "1075708",
+    "1075725",
+    "1076570",
+    "1079624",
+    "1075726",
+    "1076571",
+    "1080279",
+    "1079442",
+    "1080281",
+    "1080283",
+    "1075704",
+    "1075808",
+    "1079131",
+    "1079132",
+    "1079922",
+    "1075807",
+    "1080286",
+    "1080288",
+    "1079012",
+    "1079848",
+    "1080289",
+    "1079133",
+    "1079134",
+    "1079013",
+    "1079014",
+    "1080905",
+    "1080906",
+    "1080907",
+    "1080908",
+    "1080909",
+    "1080910",
+    "1080911",
+    "1080912",
+    "1080915",
+    "1079135",
+    "1079136",
+    "1080916",
+    "1078953",
+    "1078954",
+    "1078956",
+    "1079339",
+    "1078957",
+    "1078958",
+    "1071208",
+    "1071210",
+    "1071211",
+    "1071212",
+    "1071213",
+    "1075732",
+    "1075733",
+    "1075734",
+    "1075735",
+    "1075736",
+    "1075737",
+    "1075738",
+    "1075739",
+    "1075740",
+    "1075741",
+    "1075742",
+    "1075744",
+    "1075745",
+    "1075746",
+    "1079015",
+    "1079016",
+    "1071209",
+    "1080917",
+    "1080918",
+    "1080919",
+    "1080920",
+    "1080921",
+    "1074645",
+    "1074646",
+    "1074647",
+    "1074648",
+    "1074649",
+    "1074650",
+    "1074651",
+    "1075721",
+    "1079017",
+    "1079018",
+    "1078959",
+    "1079340",
+    "1078961",
+    "1078962",
+    "1078963",
+    "1078964"
    ]
   },
   {
