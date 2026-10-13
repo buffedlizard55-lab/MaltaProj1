@@ -29,7 +29,7 @@ def parse_time(value: str | None) -> datetime | None:
 def iso_time(value: datetime) -> str:
     if value.tzinfo is None:
         raise ValueError("An explicit timezone is required")
-    return value.astimezone(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z")
+    return value.astimezone(timezone.utc).isoformat(timespec="auto").replace("+00:00", "Z")
 
 
 def valid_decimal(value: object) -> bool:

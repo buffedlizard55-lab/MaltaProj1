@@ -111,6 +111,29 @@ class PinnacleTests(unittest.TestCase):
             with self.subTest(change=change):
                 self.assertEqual(normalize_quotes(packets(event_changes=change), [], NOW)[0], [])
 
+    def test_repeated_source_body_and_timestamp_ties_use_capture_order(self):
+        original = packets()
+        original[0]["capture_sequence"] = 1
+        changed = {**original[0], "evidence_id": "another-events-body", "capture_sequence": 2}
+        repeated = {**original[0], "capture_sequence": 3}
+        forward, _ = normalize_quotes([original[0], changed, repeated, original[1]], [], NOW)
+        reordered, _ = normalize_quotes([changed, repeated, original[1]], [], NOW)
+        self.assertEqual(forward, reordered)
+        self.assertEqual(forward[0]["event_evidence_id"], "test-events")
+
+    def test_later_suspended_market_does_not_resurrect_earlier_open_price(self):
+        original = packets()
+        later = {**original[1], "retrieved_at": "2026-10-13T17:59:30Z", "evidence_id": "later-market", "body": [{**original[1]["body"][0], "status": "suspended"}]}
+        self.assertEqual(normalize_quotes(original + [later], [], NOW)[0], [])
+
+    def test_link_choice_is_stable_across_evidence_order(self):
+        a = "https://www.pinnacle.com/en/esports/a-test/alpha-vs-bravo/101/"
+        b = "https://www.pinnacle.com/en/esports/b-test/alpha-vs-bravo/101/"
+        first, _ = normalize_quotes(packets(), [a, b], NOW)
+        second, _ = normalize_quotes(packets(), [b, a], NOW)
+        self.assertEqual(first, second)
+        self.assertEqual(first[0]["source_url"], a)
+
     def test_private_or_unobserved_origins_not_accepted(self):
         self.assertFalse(relevant_response("https://api.pinnacle.com/v2/odds"))
         self.assertFalse(relevant_response("https://guest.api.arcadia.pinnacle.com/0.1/account"))

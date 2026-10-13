@@ -51,14 +51,17 @@ class Ledger:
         self.folder = folder
         folder.mkdir(parents=True, exist_ok=True)
         self.entries: dict[str, dict] = {}
+        self.capture_sequence = 0
 
     def store(self, body: bytes, url: str, at: str, source_id: str, kind: str, description: str, observed_in: str | None = None, source_response_sha256: str | None = None) -> dict:
         digest = hashlib.sha256(body).hexdigest()
         identifier = f"{kind}-{digest[:16]}-{hashlib.sha256(url.encode()).hexdigest()[:6]}"
         filename = identifier + ".json.gz"
         (self.folder / filename).write_bytes(gzip.compress(body, mtime=0))
+        self.capture_sequence += 1
         metadata = {
             "id": identifier, "source_id": source_id, "kind": kind, "file": filename,
+            "capture_sequence": self.capture_sequence,
             "url": url, "retrieved_at": at, "http_status": 200, "sha256": digest,
             "description": description, "observed_in": observed_in,
         }
@@ -108,7 +111,7 @@ async def collect_pinnacle(ledger: Ledger) -> tuple[list[dict], list[str], list[
                     at = iso_time(utc_now())
                     kind = "pinnacle_matchups" if "/matchups" in response.url else "pinnacle_markets"
                     entry = ledger.store(body, response.url, at, "pinnacle", kind, "Unchanged public website event/market JSON, observed in a normal unauthenticated browser.", observed_in=target)
-                    packets.append({"url": response.url, "retrieved_at": at, "observed_in": target, "evidence_id": entry["id"], "body": data})
+                    packets.append({"url": response.url, "retrieved_at": at, "capture_sequence": entry["capture_sequence"], "observed_in": target, "evidence_id": entry["id"], "body": data})
                 except (ValueError, RuntimeError):
                     return
 

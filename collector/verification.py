@@ -62,7 +62,7 @@ def verify_source_records(data: dict, evidence_dir: Path) -> None:
     for key, entry in evidence.items():
         if entry.get("source_id") == "pinnacle" and entry.get("kind") in {"pinnacle_matchups", "pinnacle_markets"}:
             packets.append({
-                "url": entry["url"], "retrieved_at": entry["retrieved_at"],
+                "url": entry["url"], "retrieved_at": entry["retrieved_at"], "capture_sequence": entry.get("capture_sequence", 0),
                 "observed_in": entry.get("observed_in"), "evidence_id": key, "body": bodies[key],
             })
         if entry.get("kind") == "pinnacle_observed_links":
@@ -73,7 +73,7 @@ def verify_source_records(data: dict, evidence_dir: Path) -> None:
         "source_id", "source_role", "event_id", "game", "team_a", "team_b", "tournament",
         "start_time", "best_of", "market_type", "period", "outcome_count", "status", "is_live",
         "native_format", "native_odds_a", "native_odds_b", "odds_a", "odds_b", "observed_at",
-        "source_published_at", "source_url", "api_url", "evidence_id", "evidence_locator",
+        "source_published_at", "capture_sequence", "source_url", "api_url", "evidence_id", "evidence_locator",
         "event_evidence_id", "event_evidence_locator",
     )
     if len(expected_quotes) != len(data.get("quotes", [])):

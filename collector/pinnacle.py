@@ -38,11 +38,15 @@ def relevant_response(url: str) -> bool:
 
 def event_link(event_id: int | str, links: list[str], page_url: str) -> str:
     # Only an actually observed hyperlink; never invent a slug/deep link.
-    for link in links:
+    for link in sorted(set(links)):
         parsed = urlparse(link)
         if parsed.scheme == "https" and parsed.hostname == "www.pinnacle.com" and re.search(rf"/{re.escape(str(event_id))}/?$", parsed.path):
             return link
     return page_url
+
+
+def observation_key(packet: dict) -> tuple:
+    return (parse_time(packet["retrieved_at"]), packet.get("capture_sequence", 0), packet.get("evidence_id", ""))
 
 
 def normalize_quotes(packets: list[dict], links: list[str], now: datetime) -> tuple[list[dict], dict]:
@@ -56,17 +60,25 @@ def normalize_quotes(packets: list[dict], links: list[str], now: datetime) -> tu
             for index, event in enumerate(data):
                 if isinstance(event, dict) and isinstance(event.get("id"), int):
                     previous = events.get(event["id"])
-                    if previous is None or packet["retrieved_at"] >= previous[1]["retrieved_at"]:
+                    if previous is None or observation_key(packet) >= observation_key(previous[1]):
                         events[event["id"]] = (event, packet, index)
         elif "/markets/" in packet["url"]:
             markets.extend((market, packet, index) for index, market in enumerate(data) if isinstance(market, dict))
 
     result: dict[tuple[str, int], dict] = {}
     counters = {"event_records": len(events), "market_records": len(markets), "wrong_period_or_type": 0, "closed_live_or_started": 0, "unsupported_or_unconfirmed": 0}
+    latest_primary: dict[int, tuple[dict, dict, int]] = {}
     for market, packet, market_index in markets:
         if market.get("type") != "moneyline" or market.get("period") != 0 or market.get("isAlternate") is not False:
             counters["wrong_period_or_type"] += 1
             continue
+        identifier = market.get("matchupId")
+        previous = latest_primary.get(identifier)
+        if previous is None or observation_key(packet) >= observation_key(previous[1]):
+            latest_primary[identifier] = (market, packet, market_index)
+    # A later suspended/closed observation invalidates an earlier open quote;
+    # do not fall back to a price the collector knows is no longer open.
+    for market, packet, market_index in latest_primary.values():
         event_record = events.get(market.get("matchupId"))
         if event_record is None:
             counters["unsupported_or_unconfirmed"] += 1
@@ -112,7 +124,7 @@ def normalize_quotes(packets: list[dict], links: list[str], now: datetime) -> tu
             "status": "open", "is_live": False,
             "native_format": "american", "native_odds_a": native["home"], "native_odds_b": native["away"],
             "odds_a": a, "odds_b": b, "decimal_format_note": "Calculated conversion from native American prices; not rounded website display values.",
-            "observed_at": packet["retrieved_at"], "source_published_at": None,
+            "observed_at": packet["retrieved_at"], "capture_sequence": packet.get("capture_sequence", 0), "source_published_at": None,
             "source_url": event_link(event["id"], links, packet.get("observed_in") or PUBLIC_PAGE),
             "api_url": packet["url"], "evidence_id": packet["evidence_id"],
             "evidence_locator": f"/{market_index}",
