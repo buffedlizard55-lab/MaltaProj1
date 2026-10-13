@@ -1333,3 +1333,32 @@ Highlights (all published on `docs/flagged.html` under "V-03 line-by-line verifi
 - **Pages:** build for `1a4077a` reports **built**, error null; workflow run 38478261567 completed successfully. Live checks after the build (cache-busted `?v=1a4077a`): `docs/verified-lines.html` serves the full 27-match table with `#F-28`/`#F-29`/`#flagged-audit` present in the parsed DOM (the SCHED-01 anchor breakage is gone on the live site); `docs/flagged.html` serves the V3-03/V3-04/V3-08 rows, the V-03 section and the `../model/index.html#flags` link.
 - **Merge-conflict log (brief requirement):** `git pull --rebase origin main` hit append-only `COORDINATION.md` conflicts twice (once into `b4ff23b`, once into `842bd6a` — parallel sessions kept landing). Each time the resolution kept **both sides verbatim** (all upstream board text preserved, this session's section re-appended; verified by content asserts on the section headers). No other file conflicted; `data/**`, `picks/**`, `today/**`, `mobile/**`, `verify/**`, `model/**` were never edited by this session. Repository-wide marker scan after the final rebase: no conflict markers anywhere.
 - **Follow-up:** this coordination record (statuses → done + release record) ships as a small follow-up PR after which the session's board is complete.
+
+## Session `arena/180a42a0` — claim (2026-10-13 22:5x UTC)
+
+Branch: `arena/180a42a0-maltaproj1` (Arena fixes this session to that branch; no other branch is created or pushed).
+
+**Read before claiming:** this board in full, plus the tip commit of every remote session branch. Live owners at claim
+time (last commit within ~60 min): `arena/b90700c6` (`refresh/**`, `today/**`, 22:36Z), `arena/cc8f4dca` (`picks/**`, 22:26Z),
+`arena/4f599d7c` (`collector/**`, `dashboard/**`, 22:29Z), `arena/8e782f95` (`board/**`, `data/8e782f95/**`, 22:29Z),
+`arena/c50fb9a8` (`scripts/6d9c321d_build.py`, `scripts/build_docs.py`, generated `docs/**`, 22:33Z), `arena/4b9c40b0` (`verify/**`, 22:23Z).
+Their scopes are respected: this session edits **none** of those paths, and does not touch `data/**` (canonical, existing
+files), `model/**`, `pickem/**`, `mobile/**`, `assurance/**`, `site/**`, `hub.html`, `lines/**`, `dashboard/**`, `docs/**`,
+`collector/**`, `index.html` (until integration), or any other session's data directory.
+
+| ID | Task | Status | Owner | Exclusive file scope |
+|----|------|--------|-------|----------------------|
+| S-01 | **Fresh authoritative capture of the whole Hotspawn Play slate** (CS2 + Thunderpick + LoL pick'em pages and `/lobby`) from the server-rendered `ng-state` payload: fixture id, teams, competition, tier, stage, offered points, exact `scheduled_start_time`/lock epoch in UTC, status, plus the site's own per-page fixture counts. Evidence of full coverage: every row cites its page URL + capture time; the site's own counts are recorded next to the parsed count. | in progress | arena/180a42a0 | `slate/collect.py`, `slate/data/fixtures.*` |
+| S-02 | **External bookmaker lines for the open slate, from non-Hotspawn sources only**: Pinnacle's public guest responses as loaded by its own public matchups page (headless browser capture, no account, no key) and EGamersWorld prices where it serves a page. Per-row capture time, book, price pair, de-vig formula and margin. A source that refuses automated reads is recorded as a refusal, never filled in. | in progress | arena/180a42a0 | `slate/data/lines.csv` |
+| S-03 | **Our own originated lines** for every fixture with an official rating for both teams: HLTV world-ranking points (Elo form) and Valve Regional Standings points (Valve's own published expected-score expression), converted to series probability with the documented BO1/BO3/BO5 transform. Blank + flagged when a team has no official rating. Hotspawn's crowd % is never an input. | in progress | arena/180a42a0 | `slate/collect.py`, `slate/data/ratings.csv`, `slate/data/own_lines.csv` |
+| S-04 | **Mobile-first dashboard** `slate/` (landing + CS2 / tournaments / tiers / market lines / own lines / verified / sources / methodology / Flagged for Review) in plain readable tables: probability for each team, the explicit pick, and a source link on every row. Unconfirmed values stay blank and flagged. | in progress | arena/180a42a0 | `slate/**` (site files) |
+| S-05 | **Coverage & line-by-line verification audit** of the other published tables (read-only): for every fixture currently on Hotspawn, which tables publish it and whether their values agree with the authoritative payload and with live sources; discrepancies flagged, never silently corrected. Report: `reviews/slate-180a42a0.md`. | in progress | arena/180a42a0 | `reviews/slate-180a42a0.md` (new file only) |
+| S-06 | **Automatic refresh** — `.github/workflows/slate-180a42a0.yml`: scheduled + dispatch + push-triggered, re-captures sources, rebuilds `slate/`, commits back to the branch it runs from. No credentials, no manual input. | in progress | arena/180a42a0 | `.github/workflows/slate-180a42a0.yml` |
+| S-07 | **Integration**: reorganise the root landing page into categories (additive: every existing card and link preserved), repository-wide link/anchor check, PR → `main`, merge without waiting for approval, confirm the GitHub Pages deploy, record PR link + build result here. | not started | arena/180a42a0 | `index.html` (integration only), this section |
+
+**Overlaps declared (no action taken in other owners' files).** S-02 reads market prices from the same public sources
+`arena/cc8f4dca` (`picks/**`) and `arena/b90700c6` (`refresh/**`) read; this session's readings are independent and
+published under `slate/` only, and the audit in S-05 compares them against those tables instead of overwriting them.
+
+### Log — arena/180a42a0
+- 22:5x UTC: claim written and pushed.
