@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis - MaltaProj1</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="nav-brand">
+            <h2>🎯 MaltaProj1</h2>
+            <p>CS2 Betting Analysis</p>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">📊 Dashboard</a></li>
+            <li><a href="matches.html">📋 Match Lines</a></li>
+            <li><a href="s-tier.html">🏆 S-Tier (Thunderpick)</a></li>
+            <li><a href="stake.html">💰 Stake Pulse Beat III</a></li>
+            <li><a href="lower-tiers.html">📉 B/C-Tier Matches</a></li>
+            <li><a href="analysis.html" class="active">📈 Analysis</a></li>
+            <li><a href="methodology.html">🔬 Methodology</a></li>
+            <li><a href="flagged.html">🚩 Flagged for Review</a></li>
+            <li><a href="sources.html">🔗 Sources</a></li>
+        </ul>
+        <div class="nav-footer">
+            <p>Last updated: 2026-10-13</p>
+            <p>Data from: Hotspawn Lobby</p>
+        </div>
+    </nav>
+    <main class="content">
+        <header class="page-header">
+            <h1>Betting Line Analysis</h1>
+            <p class="subtitle">Independent probability estimates from external betting sources vs Hotspawn community picks</p>
+        </header>
+
+        <section class="analysis-section">
+            <h3>Methodology</h3>
+            <p>All probabilities on this dashboard are derived from <strong>external betting lines</strong> only — never from Hotspawn's own pick percentages. Hotspawn data is shown for comparison only and is not used as an input to our probability estimates.</p>
+            <p><strong>Primary source:</strong> Polymarket prediction markets — these aggregate real-money wagers from informed participants and closely mirror traditional sportsbook implied probabilities.</p>
+            <p><strong>Secondary sources:</strong> Bwin, EGamersWorld, vprognoze.ru, Kalshi, tips.gg, HLTV VRS forecasts, and stavka.tv. Where multiple sources disagree, we report the Polymarket line as primary and flag discrepancies.</p>
+            <p><strong>Implied probability calculation:</strong> 1 / decimal_odds. Note that bookmaker overround means implied probabilities sum to slightly over 100%.</p>
+        </section>
+
+        <section class="analysis-section">
+            <h3>Thunderpick World Championship 2026 — S-Tier Analysis</h3>
+            <p>This is the highest-tier event on the board. 8 teams, $1M prize pool, LAN in Malta. Group stage BO3 followed by single-elimination playoffs.</p>
+            <p><strong>Tournament Outright Odds:</strong> Falcons 2.40, Legacy 3.80, FURIA 4.40, Aurora 6.30, BetBoom 12.00, 9z 14.00, PARIVISION 15.00, NiP 25.00</p>
+            <p><strong>Match 1: 9z vs Aurora</strong> — Aurora heavy favorites at 1.37 (73% implied). 9z is ranked #14 in VRS. Aurora also high in VRS. Multiple bookmakers confirm Aurora as strong favorite. Polymarket gives 9z only 29%.</p>
+            <p><strong>Match 2: Falcons vs NiP</strong> — Falcons overwhelming favorites at 1.27 (79% implied). Falcons are tournament favorites outright. NiP at #16 in HLTV ranking but #26 in VRS, struggling recently. Bwin offers 1.19/4.40.</p>
+            <p><strong>Match 3: Legacy vs PARIVISION</strong> — Closest of the S-tier matches. Legacy favored at ~1.79 (56% implied). Legacy VRS #6, PARIVISION #11. Legacy rated 1.19 vs PARIVISION 1.05 on HLTV. This is the most competitive match.</p>
+            <p><strong>Match 4: FURIA vs BetBoom</strong> — FURIA strong favorites at ~1.39 (72% implied). FURIA has won 2/3 H2H since 2025. BetBoom won only 1 of last 5. FURIA has map pool advantage. FURIA VRS forecast 88%.</p>
+        </section>
+
+        <section class="analysis-section">
+            <h3>Stake Pulse Beat III — B-Tier Analysis</h3>
+            <p>16 teams, $80K prize pool, LAN. Notable: BC.Game has s1mple on roster. Astralis on 5-match win streak.</p>
+            <p><strong>Astralis vs Sashi</strong> — Astralis massive favorites at 1.16 (86% implied). Astralis HLTV #11 vs Sashi #132. Astralis on 5-match win streak over high-level opponents. 5-map advantage: Cache (85%), Ancient (72%).</p>
+            <p><strong>HOTU vs Fnatic</strong> — This is the closest B-tier match. Polymarket shows Fnatic slight favorite (1.89 vs 2.08). However, HLTV VRS forecast shows Fnatic at 68.4% — a much larger gap. The two teams have nearly identical VRS ratings (HOTU #34, Fnatic #36) which may explain the market's more even pricing.</p>
+            <p><strong>MIBR vs BC.Game</strong> — <span style="color: var(--accent-yellow);">KEY DISCREPANCY</span>: HLTV VRS model gives BC.Game 79.5% win probability, but Polymarket and vprognoze.ru both favor MIBR (1.82 and 1.50 respectively). This is the largest discrepancy in the dataset. BC.Game has s1mple (1.34 rating) vs MIBR's 1.21 rating. But MIBR won the only previous H2H meeting 2-1.</p>
+            <p><strong>Heroic vs Envy</strong> — Heroic strong favorites at 1.49 (67% implied). Heroic on 5-match win streak. Won 6/8 H2H meetings. Superior map pool across 4 key maps (Inferno 79%, Mirage 75%, Nuke 70%, Ancient 67%).</p>
+        </section>
+
+        <section class="analysis-section">
+            <h3>CCT Europe 2026 Series #11 — B-Tier Analysis</h3>
+            <p>Online tournament. Lower-tier European teams competing.</p>
+            <p><strong>Gothic vs Lavked</strong> — Very close match. Polymarket 1.79/2.08, EGW 1.8/1.8. In CCT Series #10, Lavked was ranked #136 and Gothic #164 — so Lavked was slightly better but this match is essentially a coin flip.</p>
+            <p><strong>ex-RUSTEC vs mellren</strong> — ex-RUSTEC clear favorites at 1.49 (67% implied). ex-RUSTEC HLTV #93 vs mellren ranked much lower.</p>
+            <p><strong>G2 Ares vs The Last Resort</strong> — G2 Ares heavy favorites at 1.20 (83% implied). HLTV #103 vs #170.</p>
+            <p><strong>FORZE Reload vs LFO 10</strong> — FORZE Reload overwhelming favorites. HLTV #75 vs #170.</p>
+        </section>
+
+        <section class="analysis-section">
+            <h3>Elisa BreakOut Series #2 — C-Tier Analysis</h3>
+            <p>8 teams, $17,348 prize pool. BO1 round robin format in two groups. This is lower-tier competition with less reliable betting markets.</p>
+            <p><strong>Group A (WROTBERRY, EAC, ENCE, BOJONG):</strong> Round robin with all teams playing each other. ENCE appears strongest per available odds. BOJONG is the weakest team.</p>
+            <p><strong>Group B (Voca, Phantom, HAVU, RoundsGG):</strong> HAVU dominates RoundsGG in H2H (6-0). Phantom is favored over RoundsGG and HAVU per Polymarket. <span style="color: var(--accent-yellow);">Voca vs Phantom discrepancy:</span> HLTV VRS forecast gives Voca 69.2% but Polymarket gives Phantom 54.1% — significant model disagreement.</p>
+        </section>
+
+        <section class="analysis-section">
+            <h3>Hotspawn vs External Market Comparison</h3>
+            <p>Below is a comparison of Hotspawn community pick percentages vs our external probability estimates. Large divergences may indicate either market inefficiency or the community having local information.</p>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Match</th>
+                            <th>Hotspawn T1%</th>
+                            <th>Our Prob T1</th>
+                            <th>Difference</th>
+                            <th>Insight</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>9z vs Aurora</td>
+                            <td>5%</td>
+                            <td>29.0%</td>
+                            <td style="color: var(--accent-yellow)">+24%</td>
+                            <td>Hotspawn much more bearish on 9z than the market</td>
+                        </tr>
+                        <tr>
+                            <td>Falcons vs NiP</td>
+                            <td>89%</td>
+                            <td>78.7%</td>
+                            <td>-10.3%</td>
+                            <td>Aligned — community and market agree</td>
+                        </tr>
+                        <tr>
+                            <td>Legacy vs PARIVISION</td>
+                            <td>83%</td>
+                            <td>55.9%</td>
+                            <td style="color: var(--accent-yellow)">-27.1%</td>
+                            <td>Hotspawn much more bullish on Legacy than the market</td>
+                        </tr>
+                        <tr>
+                            <td>FURIA vs BetBoom</td>
+                            <td>89%</td>
+                            <td>71.9%</td>
+                            <td>-17.1%</td>
+                            <td>Hotspawn more bullish on FURIA</td>
+                        </tr>
+                        <tr>
+                            <td>Astralis vs Sashi</td>
+                            <td>95%</td>
+                            <td>86.2%</td>
+                            <td>-8.8%</td>
+                            <td>Roughly aligned</td>
+                        </tr>
+                        <tr>
+                            <td>HOTU vs Fnatic</td>
+                            <td>9%</td>
+                            <td>48.1%</td>
+                            <td style="color: var(--accent-red)">+39.1%</td>
+                            <td>LARGEST discrepancy — Hotspawn sees Fnatic as near-certain but market sees this as near-even</td>
+                        </tr>
+                        <tr>
+                            <td>MIBR vs BC.Game</td>
+                            <td>32%</td>
+                            <td>54.9%</td>
+                            <td style="color: var(--accent-yellow)">+22.9%</td>
+                            <td>Hotspawn much more bearish on MIBR than the market</td>
+                        </tr>
+                        <tr>
+                            <td>Heroic vs Envy</td>
+                            <td>95%</td>
+                            <td>67.1%</td>
+                            <td>-27.9%</td>
+                            <td>Hotspawn much more bullish on Heroic</td>
+                        </tr>
+                        <tr>
+                            <td>Voca vs Phantom</td>
+                            <td>21%</td>
+                            <td>46.9%</td>
+                            <td style="color: var(--accent-yellow)">+25.9%</td>
+                            <td>Hotspawn much more bearish on Voca; HLTV model actually favors Voca</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p style="margin-top: 16px; color: var(--text-secondary);">Key takeaway: Hotspawn community picks and external betting markets often disagree significantly. The community tends to be more extreme in its convictions (either very confident or very pessimistic), while the market tends to price matches more evenly. The largest divergence is HOTU vs Fnatic where the market sees a near-coin-flip but Hotspawn users overwhelmingly pick Fnatic.</p>
+        </section>
+    </main>
+    <script src="app.js"></script>
+</body>
+</html>

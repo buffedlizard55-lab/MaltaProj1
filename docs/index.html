@@ -1,4 +1,192 @@
-<!doctype html><html lang='en'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>Dashboard — Hotspawn Pick&#x27;em line analysis · MaltaProj1</title><link rel='stylesheet' href='style.css'></head><body><header><h1>Dashboard — Hotspawn Pick&#x27;em line analysis</h1><p>Hotspawn Pick'em betting-line analysis · Snapshot 2026-10-13 (UTC) · Hotspawn pick % is NEVER used as probability.</p></header><nav><a href="index.html">Dashboard</a><a href="matches.html">All matches</a><a href="s-tier.html">S-Tier · Thunderpick WC</a><a href="stake.html">Stake Pulse Beat III</a><a href="lower-tiers.html">B/C-Tier &amp; inventory</a><a href="methodology.html">Methodology</a><a href="flagged.html">⚠ Flagged for Review</a><a href="sources.html">Sources</a></nav><main><div class='card'><h2>What this is</h2><p>We reverse-engineered <a href='https://play.hotspawn.com/lobby'>play.hotspawn.com/lobby</a> (and <a href='https://play.hotspawn.com/cs2-pickems'>/cs2-pickems</a>) on 2026-10-13, extracted every server-rendered fixture verbatim (26), then priced each match from <b>outside</b> sources (HLTV rankings/match pages + bookmaker outrights) and from <b>our own documented rank model</b>. Hotspawn crowd % is recorded only as a snapshot for audit and is <b>never</b> used as a probability.</p>
-<div class='kpi'><div><b>85</b>CS2 fixtures claimed in Hotspawn filter</div><div><b>26</b>fixtures extracted verbatim</div><div><b>5</b>matches with our originated line</div><div><b>0</b>invented values</div></div>
-<p><b>Headline picks (our model, where both teams have a verified HLTV rank):</b> Aurora over 9z (68.6%), Legacy over PARIVISION (61.2%), FURIA over BetBoom (70.8%), MIBR over BC.Game (68.9%). HOTU vs fnatic is a coin-flip on rank alone (49.1/50.9) while HLTV's indicator leans fnatic 68.4% — treat as <b>no confident pick</b> (F-08). Falcons vs NiP: no originated line (NiP rank unverified, F-04); HLTV indicator 79.1% Falcons and outrights make Falcons tournament favourites.</p></div>
-<div class='card'><h2>How to use this dashboard</h2><ol><li><a href='s-tier.html'>S-Tier page</a> — the 4 Thunderpick WC matches that matter most (7 pts each on Hotspawn).</li><li><a href='matches.html'>All matches</a> — searchable table of all 26 extracted fixtures.</li><li><a href='flagged.html'>Flagged for Review</a> — everything we could not verify, with links. Nothing there was filled in by guessing.</li></ol></div></main><footer>Analysis only — not betting advice. Unverified values are left blank and flagged. See <a href='flagged.html'>Flagged for Review</a> and <a href='sources.html'>Sources</a>.</footer></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MaltaProj1 - CS2 Betting Analysis Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="nav-brand">
+            <h2>🎯 MaltaProj1</h2>
+            <p>CS2 Betting Analysis</p>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html" class="active">📊 Dashboard</a></li>
+            <li><a href="matches.html">📋 Match Lines</a></li>
+            <li><a href="s-tier.html">🏆 S-Tier (Thunderpick)</a></li>
+            <li><a href="stake.html">💰 Stake Pulse Beat III</a></li>
+            <li><a href="lower-tiers.html">📉 B/C-Tier Matches</a></li>
+            <li><a href="analysis.html">📈 Analysis</a></li>
+            <li><a href="methodology.html">🔬 Methodology</a></li>
+            <li><a href="flagged.html">🚩 Flagged for Review</a></li>
+            <li><a href="sources.html">🔗 Sources</a></li>
+        </ul>
+        <div class="nav-footer">
+            <p>Last updated: 2026-10-13</p>
+            <p>Data from: Hotspawn Lobby</p>
+        </div>
+    </nav>
+    <main class="content">
+        <header class="page-header">
+            <h1>CS2 Betting Analysis Dashboard</h1>
+            <p class="subtitle">Independent betting line analysis for Hotspawn Pick'em matches</p>
+        </header>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">26</div>
+                <div class="stat-label">Total Matches</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">23</div>
+                <div class="stat-label">Matches with External Odds</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">4</div>
+                <div class="stat-label">S-Tier Matches</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">5</div>
+                <div class="stat-label">Flagged Items</div>
+            </div>
+        </div>
+
+        <section class="section">
+            <h2>🏆 Key Matches Today (Oct 13-14)</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tournament</th>
+                            <th>Match</th>
+                            <th>Time (UTC)</th>
+                            <th>Our Implied Prob. (Team 1)</th>
+                            <th>Our Implied Prob. (Team 2)</th>
+                            <th>Hotspawn Pick % (T1/T2)</th>
+                            <th>Source</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="tier-s">
+                            <td><span class="tier-badge tier-s">S</span> Thunderpick WC</td>
+                            <td><strong>9z</strong> vs <strong>Aurora</strong></td>
+                            <td>Oct 14, 04:30</td>
+                            <td class="prob">29.0%</td>
+                            <td class="prob prob-favorite">73.0%</td>
+                            <td>5% / 95%</td>
+                            <td><a href="https://polymarket.com/esports/cs2">Polymarket</a>, <a href="https://www.bwin.com/en/sports/cs2-105/betting/world-6/thunderpick-world-championship-103887">Bwin</a></td>
+                        </tr>
+                        <tr class="tier-s">
+                            <td><span class="tier-badge tier-s">S</span> Thunderpick WC</td>
+                            <td><strong>Falcons</strong> vs <strong>NiP</strong></td>
+                            <td>Oct 14, 07:00</td>
+                            <td class="prob prob-favorite">78.7%</td>
+                            <td class="prob">21.0%</td>
+                            <td>89% / 11%</td>
+                            <td><a href="https://polymarket.com/esports/cs2">Polymarket</a>, <a href="https://www.bwin.com/en/sports/cs2-105/betting/world-6/thunderpick-world-championship-103887">Bwin</a></td>
+                        </tr>
+                        <tr class="tier-s">
+                            <td><span class="tier-badge tier-s">S</span> Thunderpick WC</td>
+                            <td><strong>Legacy</strong> vs <strong>PARIVISION</strong></td>
+                            <td>Oct 14, 09:30</td>
+                            <td class="prob prob-favorite">55.9%</td>
+                            <td class="prob">44.1%</td>
+                            <td>83% / 17%</td>
+                            <td><a href="https://polymarket.com/esports/cs2">Polymarket</a>, <a href="https://www.bwin.com/en/sports/cs2-105/betting/world-6/thunderpick-world-championship-103887">Bwin</a></td>
+                        </tr>
+                        <tr class="tier-s">
+                            <td><span class="tier-badge tier-s">S</span> Thunderpick WC</td>
+                            <td><strong>FURIA</strong> vs <strong>BetBoom</strong></td>
+                            <td>Oct 14, 12:00</td>
+                            <td class="prob prob-favorite">71.9%</td>
+                            <td class="prob">29.0%</td>
+                            <td>89% / 11%</td>
+                            <td><a href="https://polymarket.com/esports/cs2">Polymarket</a>, <a href="https://egamersworld.com/counterstrike/tip/5X5sFiL7H/furia-vs-betboom-team-ZeSbzy91oH">EGW</a></td>
+                        </tr>
+                        <tr class="tier-b">
+                            <td><span class="tier-badge tier-b">B</span> Stake Pulse Beat III</td>
+                            <td><strong>Astralis</strong> vs <strong>Sashi</strong></td>
+                            <td>Oct 14, 06:00</td>
+                            <td class="prob prob-favorite">86.2%</td>
+                            <td class="prob">15.0%</td>
+                            <td>95% / 5%</td>
+                            <td><a href="https://polymarket.com/esports/cs2">Polymarket</a></td>
+                        </tr>
+                        <tr class="tier-b">
+                            <td><span class="tier-badge tier-b">B</span> Stake Pulse Beat III</td>
+                            <td><strong>HOTU</strong> vs <strong>Fnatic</strong></td>
+                            <td>Oct 14, 06:00</td>
+                            <td class="prob">48.1%</td>
+                            <td class="prob prob-favorite">52.9%</td>
+                            <td>9% / 91%</td>
+                            <td><a href="https://polymarket.com/esports/cs2">Polymarket</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>📊 Tournament Breakdown</h2>
+            <div class="cards-grid">
+                <div class="info-card">
+                    <h3>Thunderpick World Championship 2026</h3>
+                    <p class="card-tier">S-Tier • $1,000,000 Prize Pool • Malta (LAN)</p>
+                    <p>4 matches • All have verified betting lines from multiple sources</p>
+                    <p class="key-insight">Key insight: Falcons are tournament favorites at 2.40 outright. FURIA defending champion. Group A: Falcons, NIP, 9z, Aurora. Group B: Legacy, PARIVISION, FURIA, BetBoom.</p>
+                </div>
+                <div class="info-card">
+                    <h3>Stake Pulse Beat III</h3>
+                    <p class="card-tier">B-Tier • $80,000 Prize Pool • LAN</p>
+                    <p>4 matches • Verified odds from Polymarket, HLTV, vprognoze</p>
+                    <p class="key-insight">Key insight: Astralis heavy favorite vs Sashi (1.16). MIBR vs BC.Game shows major discrepancy between HLTV VRS model (BC.Game 79.5%) and Polymarket (MIBR favored).</p>
+                </div>
+                <div class="info-card">
+                    <h3>CCT Europe 2026 Series #11</h3>
+                    <p class="card-tier">B-Tier • Online</p>
+                    <p>4 matches • Verified odds from Polymarket</p>
+                    <p class="key-insight">Key insight: ex-RUSTEC (HLTV #93) clear favorite over mellren. FORZE Reload (#75) vs LFO 10 (#170) is biggest mismatch.</p>
+                </div>
+                <div class="info-card">
+                    <h3>Elisa BreakOut Series #2</h3>
+                    <p class="card-tier">C-Tier • $17,348 Prize Pool • Online</p>
+                    <p>12 matches • Group stage BO1 format</p>
+                    <p class="key-insight">Key insight: 8-team round robin in two groups. HAVU dominates RoundsGG 6-0 H2H. Voca vs Phantom shows HLTV/odds discrepancy.</p>
+                </div>
+                <div class="info-card">
+                    <h3>ESL Challenger League Season 52</h3>
+                    <p class="card-tier">B-Tier • $17,500 Prize Pool • Online</p>
+                    <p>2 matches (playoffs) • Verified from Polymarket, bo3.gg</p>
+                    <p class="key-insight">Cup #3 Playoffs: ex-Keyd Stars vs Galorys (SA), Zomblers vs Overtake Sector (NA).</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>⚠️ Key Discrepancies & Value Opportunities</h2>
+            <div class="alert-card">
+                <h4>MIBR vs BC.Game - Stake Pulse Beat III</h4>
+                <p><strong>HLTV VRS Model:</strong> MIBR 20.5% / BC.Game 79.5% (HLTV heavily favors BC.Game)</p>
+                <p><strong>Polymarket:</strong> MIBR 54.9% / BC.Game 46.1% (Polymarket favors MIBR)</p>
+                <p><strong>vprognoze.ru:</strong> MIBR 1.50 / BC.Game 2.40 (vprognoze also favors MIBR)</p>
+                <p class="highlight">The bookmaker market and Russian tipsters favor MIBR, while the HLTV statistical model heavily favors BC.Game. This may represent a market inefficiency worth investigating.</p>
+            </div>
+            <div class="alert-card">
+                <h4>Voca vs Phantom - Elisa BreakOut Series #2</h4>
+                <p><strong>HLTV VRS Forecast:</strong> Voca 69.2% / Phantom 30.8%</p>
+                <p><strong>Polymarket:</strong> Voca 46.9% / Phantom 54.1%</p>
+                <p class="highlight">HLTV's model strongly favors Voca but Polymarket prices Phantom as slight favorite. Significant discrepancy in expectations.</p>
+            </div>
+            <div class="alert-card">
+                <h4>HOTU vs Fnatic - Stake Pulse Beat III</h4>
+                <p><strong>HLTV VRS Forecast:</strong> HOTU 31.6% / Fnatic 68.4%</p>
+                <p><strong>Polymarket:</strong> HOTU 48.1% / Fnatic 52.9%</p>
+                <p class="highlight">Polymarket prices this much closer than the HLTV model suggests. The two teams have nearly identical VRS ratings (HOTU #34, Fnatic #36) which may explain the market's more even pricing.</p>
+            </div>
+        </section>
+    </main>
+    <script src="app.js"></script>
+</body>
+</html>

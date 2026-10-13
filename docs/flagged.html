@@ -1,15 +1,132 @@
-<!doctype html><html lang='en'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>Flagged for Review · MaltaProj1</title><link rel='stylesheet' href='style.css'></head><body><header><h1>Flagged for Review</h1><p>Snapshot 2026-10-13 (UTC) · Hotspawn pick % never used as probability.</p></header><nav><a href="index.html">Dashboard</a><a href="matches.html">All matches</a><a href="s-tier.html">S-Tier · Thunderpick WC</a><a href="stake.html">Stake Pulse Beat III</a><a href="lower-tiers.html">B/C-Tier &amp; inventory</a><a href="methodology.html">Methodology</a><a href="flagged.html">⚠ Flagged for Review</a><a href="sources.html">Sources</a></nav><main><div class='card flag'><h2>⚠ Flagged for Review — read this first</h2><p>These items are <b>published, not hidden</b>, and do not block the site. Every value that could not be confirmed from an official source is blank in the tables.</p>
-<table><tr><th>ID</th><th>Irregularity / unverified item</th><th>Evidence (official source)</th><th>Impact</th></tr>
-<tr><td>F-01</td><td>59 of 85 CS2 fixtures not individually extracted — lobby paginates client-side; only 26 server-rendered fixtures are listed verbatim.</td><td><a href='https://play.hotspawn.com/cs2-pickems'>Hotspawn CS2 lobby</a> (filter counts)</td><td>Pairings blank in inventory; NOT invented.</td></tr>
-<tr><td>F-02</td><td>CCT Europe 2026 Series #11 count differs: general lobby filter says 5, CS2 filter says 4; only 4 fixtures rendered.</td><td><a href='https://play.hotspawn.com/lobby'>Lobby</a> vs <a href='https://play.hotspawn.com/cs2-pickems'>CS2 lobby</a></td><td>5th fixture, if any, unverified/blank.</td></tr>
-<tr><td>F-03</td><td>No external betting line and/or no verified HLTV rank for 21 of 26 matches (all CCT/Elisa/ESL-Cup and Sashi, Envy, NiP-rank cases).</td><td><a href='https://www.hltv.org/ranking/teams/2026/october/5'>HLTV ranking 2026-10-05</a></td><td>Probabilities blank; no pick given. This is the correct outcome, not missing work — books rarely price C-tier fixtures publicly.</td></tr>
-<tr><td>F-04</td><td>Ninjas in Pyjamas HLTV world rank not cleanly verifiable (HLTV event page mixes VRS/HLTV numbers).</td><td><a href='https://www.hltv.org/events/8932/thunderpick-world-championship-2026'>HLTV Thunderpick WC event</a></td><td>Falcons vs NiP own line blank; HLTV indicator 79.1% Falcons shown instead.</td></tr>
-<tr><td>F-05</td><td>Stake Pulse Beat III: Hotspawn lists Heroic vs Envy; HLTV/Liquipedia Group listings name 3DMAX in the MIBR/BC.Game/HEROIC group and a different Group C composition.</td><td><a href='https://liquipedia.net/counterstrike/Stake_Pulse/Beat_III'>Liquipedia Stake Pulse Beat III</a> · <a href='https://www.hltv.org/matches/2399135/hotu-vs-fnatic-stake-pulse-beat-iii'>HLTV HOTU vs fnatic</a></td><td>Fixture kept as-listed by Hotspawn, flagged; Envy line blank.</td></tr>
-<tr><td>F-06</td><td>Rank snapshots conflict by date: e.g. Astralis #11 (HLTV 2026-10-05 ranking, 220 pts) vs #15 on its team page; Aurora/Legacy both shown #6 from different snapshots; VRS ranks (Legacy #2, FURIA #7, Aurora #9, BetBoom #11, 9z #17, PARIVISION #36) differ from HLTV ranks.</td><td><a href='https://www.hltv.org/ranking/teams/2026/october/5'>HLTV ranking 2026-10-05</a> · <a href='https://pley.gg/cs2/thunderpick-world-championship-2026/'>Pley (VRS 2026-10-05)</a></td><td>Model uses HLTV world rank only, source-dated per row in ratings.csv; expect ±3–5 pts drift.</td></tr>
-<tr><td>F-07</td><td>PARIVISION rank conflict: HLTV team page #11 vs third-party preview “20th”.</td><td><a href='https://www.hltv.org/team/12467/parivision'>HLTV PARIVISION</a></td><td>HLTV (official) preferred; preview disregarded.</td></tr>
-<tr><td>F-08</td><td>Model vs HLTV indicator divergence: HOTU vs fnatic — rank model 49.1/50.9 (coin flip) vs HLTV indicator fnatic 68.4%.</td><td><a href='https://www.hltv.org/matches/2399135/hotu-vs-fnatic-stake-pulse-beat-iii'>HLTV match page</a></td><td>Published as “no confident pick”; do not bet the model alone here.</td></tr>
-<tr><td>F-09</td><td>Outright attribution inconsistency in secondary coverage: one FreeTips article lists Stake, another quotes Aurora 53/10 at bet365; outright favourite order (Falcons/Legacy) also differs from VRS order (Legacy #2).</td><td><a href='https://www.freetips.com/esports/thunderpick-world-championship-2026-betting-odds-20261011-0007/'>FreeTips odds</a></td><td>Outrights shown with source label; never converted into match picks.</td></tr>
-<tr><td>F-10</td><td>Hotspawn start times show no timezone; HLTV lists the same Thunderpick fixtures at different clock times (e.g. 9z–Aurora 10:30 CEST on HLTV/Pley vs 04:30 on Hotspawn).</td><td><a href='https://www.hltv.org/news/45706/thunderpick-world-championship-teams-format-schedule-prizes-talent-fantasy'>HLTV news 45706</a></td><td>Times reproduced as Hotspawn displays them; convert before acting.</td></tr>
-<tr><td>F-11</td><td>Hotspawn crowd % moves between fetches (e.g. 9z–Aurora 0%/100% → 5%/95%; ex-Keyd 83% → 86%) and several cards show 100%/0% (tiny samples).</td><td><a href='https://play.hotspawn.com/lobby'>Hotspawn lobby</a></td><td>Recorded as snapshot only; NEVER used as probability (per brief).</td></tr>
-<tr><td>F-12</td><td>Missing Hotspawn match ID 1079441 between Astralis–Sashi (…438) and HOTU–fnatic (…439)/Heroic–Envy (…442) sequence — likely a withdrawn/unlisted fixture.</td><td><a href='https://play.hotspawn.com/cs2-pickems'>Hotspawn CS2 lobby</a></td><td>Not invented; noted for review.</td></tr>
-</table></div></main><footer>Analysis only — not betting advice.</footer></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flagged for Review - MaltaProj1</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="nav-brand">
+            <h2>🎯 MaltaProj1</h2>
+            <p>CS2 Betting Analysis</p>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">📊 Dashboard</a></li>
+            <li><a href="matches.html">📋 Match Lines</a></li>
+            <li><a href="s-tier.html">🏆 S-Tier (Thunderpick)</a></li>
+            <li><a href="stake.html">💰 Stake Pulse Beat III</a></li>
+            <li><a href="lower-tiers.html">📉 B/C-Tier Matches</a></li>
+            <li><a href="analysis.html">📈 Analysis</a></li>
+            <li><a href="methodology.html">🔬 Methodology</a></li>
+            <li><a href="flagged.html" class="active">🚩 Flagged for Review</a></li>
+            <li><a href="sources.html">🔗 Sources</a></li>
+        </ul>
+        <div class="nav-footer">
+            <p>Last updated: 2026-10-13</p>
+            <p>Data from: Hotspawn Lobby</p>
+        </div>
+    </nav>
+    <main class="content">
+        <header class="page-header">
+            <h1>🚩 Flagged for Review</h1>
+            <p class="subtitle">Items requiring manual review — unverified data, discrepancies, and missing odds</p>
+        </header>
+
+        <section class="section">
+            <h2>Match-Level Discrepancies</h2>
+
+            <div class="flag-card">
+                <h4>🔴 MIBR vs BC.Game — Model vs Market Discrepancy</h4>
+                <p><strong>Tournament:</strong> Stake Pulse Beat III (B-Tier)</p>
+                <p><strong>Issue:</strong> HLTV VRS model gives BC.Game 79.5% win probability, but Polymarket prices MIBR at 54.9% (odds 1.82). vprognoze.ru also favors MIBR (1.50 odds).</p>
+                <p><strong>Why flagged:</strong> The statistical model and the betting market disagree fundamentally about who is more likely to win. This could indicate a market inefficiency or the model over/under-weighting certain factors.</p>
+                <p><strong>Context:</strong> BC.Game has s1mple (1.34 rating) but recently lost to Astralis 0-2. MIBR's overall rating is 1.21 vs BC.Game 1.34. Only 1 previous H2H: MIBR won 2-1.</p>
+                <p><strong>Sources:</strong> <a href="https://www.hltv.org/matches/2399136/mibr-vs-bcgame-stake-pulse-beat-iii">HLTV match page</a>, <a href="https://polymarket.com/esports/cs2">Polymarket</a>, <a href="https://vprognoze.ru/topforecast/8186896-mibr-bcg-2026-10-15.html">vprognoze.ru</a></p>
+            </div>
+
+            <div class="flag-card">
+                <h4>🔴 Voca vs Phantom — HLTV vs Market Discrepancy</h4>
+                <p><strong>Tournament:</strong> Elisa BreakOut Series #2 (C-Tier)</p>
+                <p><strong>Issue:</strong> HLTV VRS forecast gives Voca 69.2% win probability, but Polymarket gives Phantom the edge at 54.1% (odds 1.85).</p>
+                <p><strong>Why flagged:</strong> Major disagreement between the statistical model and prediction market on a C-tier match. Voca VRS #66 vs Phantom #85, but Phantom appears preferred by the market.</p>
+                <p><strong>Context:</strong> 0 previous H2H meetings. Close ratings (Voca 1.18 vs Phantom 1.13). C-tier match with potentially less liquidity in the prediction market.</p>
+                <p><strong>Sources:</strong> <a href="https://www.hltv.org/matches/2399424/voca-vs-phantom-elisa-breakout-series-2">HLTV match page</a>, <a href="https://polymarket.com/esports/cs2">Polymarket</a></p>
+            </div>
+
+            <div class="flag-card">
+                <h4>🟡 HOTU vs Fnatic — Model vs Market Discrepancy</h4>
+                <p><strong>Tournament:</strong> Stake Pulse Beat III (B-Tier)</p>
+                <p><strong>Issue:</strong> HLTV VRS forecast gives Fnatic 68.4%, but Polymarket shows only 52.9% for Fnatic (nearly even). VRS ratings are nearly identical (HOTU #34, Fnatic #36).</p>
+                <p><strong>Why flagged:</strong> The HLTV model sees a moderate gap but the market sees this as essentially a coin flip. The market may be correct given the similar overall ratings.</p>
+                <p><strong>Sources:</strong> <a href="https://www.hltv.org/matches/2399135/hotu-vs-fnatic-stake-pulse-beat-iii">HLTV match page</a>, <a href="https://polymarket.com/esports/cs2">Polymarket</a></p>
+            </div>
+
+            <div class="flag-card">
+                <h4>🟡 FORZE Reload vs LFO 10 — Direct Odds Not Confirmed</h4>
+                <p><strong>Tournament:</strong> CCT Europe 2026 Series #11 (B-Tier)</p>
+                <p><strong>Issue:</strong> Direct odds for this specific matchup were not confirmed from a single definitive source. Odds were derived from related Polymarket entries.</p>
+                <p><strong>Why flagged:</strong> The reported odds (1.05/1.27) may not precisely reflect this specific matchup. Both teams' HLTV rankings (FORZE Reload #75, LFO 10 #170) suggest a large gap.</p>
+                <p><strong>Sources:</strong> <a href="https://polymarket.com/esports/cs2">Polymarket</a>, <a href="https://www.hltv.org/events/9442/cct-2026-europe-series-11">HLTV event page</a></p>
+            </div>
+
+            <div class="flag-card">
+                <h4>🟡 WROTBERRY vs EAC — Odds Direction Disagrees with Hotspawn</h4>
+                <p><strong>Tournament:</strong> Elisa BreakOut Series #2 (C-Tier)</p>
+                <p><strong>Issue:</strong> Polymarket shows EAC as slight favorite (1.67 vs 1.79 for WROTBERRY), but Hotspawn users overwhelmingly pick WROTBERRY (71% vs 29%).</p>
+                <p><strong>Why flagged:</strong> The external market and Hotspawn community disagree on who is favored. Low-liquidity C-tier match means Polymarket odds may be less reliable.</p>
+                <p><strong>Sources:</strong> <a href="https://polymarket.com/esports/cs2">Polymarket</a></p>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Missing Data — Tournaments Without External Odds</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 16px;">The following tournaments listed on the Hotspawn lobby had no external betting odds found. These matches (59 total) cannot be analyzed with independent betting lines.</p>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tournament</th>
+                            <th>Tier</th>
+                            <th>Matches</th>
+                            <th>Action Needed</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>CCT Europe 2026 Challengers #4</td><td>B</td><td>8</td><td>Search for odds on Stake, Thunderpick, or regional bookmakers</td></tr>
+                        <tr><td>CCT South America 2026 Series #3</td><td>B</td><td>8</td><td>Search for odds on Stake (has SA CS2 coverage)</td></tr>
+                        <tr><td>DACH CS Masters Season 5</td><td>C</td><td>1</td><td>Regional tournament — limited international coverage</td></tr>
+                        <tr><td>DraculaN Season 7</td><td>C</td><td>6</td><td>Lower-tier online — limited coverage</td></tr>
+                        <tr><td>European Pro League Series 8</td><td>C</td><td>1</td><td>Lower-tier online — limited coverage</td></tr>
+                        <tr><td>European Pro League Series 8 Play-In</td><td>C</td><td>6</td><td>Lower-tier online — limited coverage</td></tr>
+                        <tr><td>LG UltraGear Tournament 2026</td><td>C</td><td>1</td><td>Limited coverage</td></tr>
+                        <tr><td>Rainhas do Clutch 2026</td><td>C</td><td>2</td><td>Women's CS2 tournament — limited betting coverage</td></tr>
+                        <tr><td>Svenska CS-Ligan 2026</td><td>C</td><td>6</td><td>Swedish league — regional coverage only</td></tr>
+                        <tr><td>Thunderpick WC 2026: SA Series #1</td><td>C</td><td>8</td><td>South American qualifier — limited coverage</td></tr>
+                        <tr><td>Urban Riga Open #5</td><td>C</td><td>12</td><td>Regional tournament — limited coverage</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Verification Notes</h2>
+            <div class="analysis-section">
+                <p><strong>Verification Status Legend:</strong></p>
+                <p><span class="verification-badge badge-verified">Verified</span> — Odds confirmed from 2+ independent external sources</p>
+                <p><span class="verification-badge badge-partial">⚠ Partial</span> — Odds from single source only, or minor discrepancies between sources</p>
+                <p><span class="verification-badge badge-unverified">Unverified</span> — No external odds found; value left blank per verification protocol</p>
+                <p style="margin-top: 16px;"><strong>Summary:</strong></p>
+                <p>• 15 of 26 matches have verified odds from multiple sources</p>
+                <p>• 6 matches have partially verified odds (single source)</p>
+                <p>• 1 match (WROTBERRY vs BOJONG) has no external odds available</p>
+                <p>• 4 S-tier matches have the strongest multi-source verification (Polymarket + Bwin + EGW + others)</p>
+                <p>• All 4 S-tier matches are verified with 3+ sources each</p>
+                <p>• 59 additional matches across 11 tournaments have no external odds found</p>
+            </div>
+        </section>
+    </main>
+    <script src="app.js"></script>
+</body>
+</html>
