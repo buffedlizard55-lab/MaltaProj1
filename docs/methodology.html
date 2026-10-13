@@ -1,22 +1,59 @@
-<!doctype html><html lang='en'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>Methodology · MaltaProj1</title><link rel='stylesheet' href='style.css'></head><body><header><h1>Methodology</h1><p>Hotspawn Pick'em betting-line analysis · Snapshot 2026-10-13 (UTC) · Hotspawn pick % is NEVER used as a probability.</p></header><nav><a href="index.html">Dashboard</a><a href="matches.html">All matches</a><a href="s-tier.html">S-Tier · Thunderpick WC</a><a href="stake.html">Stake Pulse Beat III</a><a href="lower-tiers.html">B/C-Tier &amp; inventory</a><a href="methodology.html" aria-current=page>Methodology</a><a href="flagged.html">⚠ Flagged for Review</a><a href="sources.html">Sources</a></nav><main>
-<div class='card'><h2>Fixtures</h2><p>Only fixtures that appear in the server-rendered Hotspawn lobby list are used
-(26 rows, H-01 to H-26). Team names and times are copied verbatim from the Hotspawn label. Hotspawn pick % is recorded as an
-audit snapshot and is not an input to any probability or pick.</p></div>
-<div class='card'><h2>Own line (originated)</h2><p>Rank-only Elo model, computed by <code>scripts/model.py</code>:</p>
-<p><code>rating = 2000 − 300 · log10(HLTV world rank)</code><br>
-<code>P(A beats B) = 1 / (1 + 10^(−(rating_A − rating_B)/400))</code></p>
-<p>Ranks come from <code>data/ratings.csv</code> (HLTV, 2026-10-12, each row sourced). A team with no verified HLTV rank has
-a blank own line. We do not infer a rank.</p></div>
-<div class='card'><h2>External lines</h2><ul>
-<li><b>Polymarket</b> (two-outcome prices in cents): used only if the two sides sum to 98–106¢. No-vig P(A) = a / (a+b).</li>
-<li><b>eGamersWorld</b> decimal odds (bookmaker not named on page): no-vig P(A) = (1/oA) / (1/oA + 1/oB).</li>
-<li><b>Accepted</b> readings feed the external mean. <b>Indicative</b> readings (zero volume) are shown only.
-<b>Rejected</b> readings (overround outside the rule, or wrong market) are shown only.</li>
-<li>Tournament outrights (FreeTips, Thunderpick WC) are context only, not match lines.</li></ul></div>
-<div class='card'><h2>Pick rule</h2><p>A side is a pick only when the own line AND the mean accepted external line both put that
-side at ≥55%. If they disagree, or either source is missing, the result is <b>no pick</b>. A single-source lean is not a pick.</p></div>
-<div class='card'><h2>Limits</h2><ul><li>Rank-only model: no roster, map pool, form or news input.</li>
-<li>Prices are a snapshot at fetch time and move. Re-run the pipeline before relying on them.</li>
-<li>Analysis only, not betting advice.</li></ul></div>
-<div class='card'><h2>Reproduce</h2><p><code>python3 scripts/model.py</code> then <code>python3 scripts/build_docs.py</code>.</p></div>
-</main><footer>Analysis only — not betting advice. Unverified values are left blank and flagged. See <a href='flagged.html'>Flagged for Review</a> and <a href='sources.html'>Sources</a>.</footer></body></html>
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Methodology — Hotspawn Pick'em Analytics</title><link rel="stylesheet" href="css/styles.css"></head>
+<body>
+<header class="topbar"><div class="container nav">
+  <a href="index.html" class="brand"><span class="brand-mark">HS</span><span class="brand-text">Hotspawn Pick'em Analytics</span></a>
+  <nav><a href="index.html">Dashboard</a><a href="s-tier.html">S-Tier</a><a href="b-tier.html">B-Tier</a><a href="c-tier.html">C-Tier</a><a href="flagged.html">Flagged for Review</a><a href="methodology.html" class="active">Methodology</a></nav>
+</div></header>
+<main class="container page-content">
+<h1>Methodology</h1>
+<h2>Data sources (priority order)</h2>
+<ol>
+  <li><strong>Polymarket CS2 markets</strong> — real-money binary prediction markets. Most transparent and liquid esports order book; used as primary line when available.</li>
+  <li><strong>HLTV.org match pages</strong> — Betting widget shows aggregate odds from multiple traditional bookmakers; VRS (Valve Regional Standings) pages for ranking context; match metadata cross-checked.</li>
+  <li><strong>EGamersWorld (EGW)</strong> — bookmaker odds aggregator.</li>
+  <li><strong>vprognoze.ru / Marathonbet / Betcity / Melbet / Fonbet</strong> — secondary cross-check via odds comparison.</li>
+  <li><strong>FreeTips</strong> — tournament outright odds cross-check.</li>
+</ol>
+<p>We do <strong>NOT</strong> use Hotspawn's public pick percentages for probabilities. They are crowd picks, not market odds, and we observed them heavily skewed by name recognition (e.g., fnatic at 90% when bookmakers price the match ~50/50). They appear only as a comparison column so you can see disagreements between crowd and market — often the source of pick'em value.</p>
+<h2>Probability derivation</h2>
+<p>For decimal odds (a, b):</p>
+<ol>
+  <li>Raw implied: p̂_a = 1/a, p̂_b = 1/b.</li>
+  <li>Remove overround by normalizing so probabilities sum to 100%:
+<pre style="background:var(--bg-elev);padding:12px;border-radius:8px;border:1px solid var(--border);color:var(--text)">P(a) = (1/a) / (1/a + 1/b)
+P(b) = (1/b) / (1/a + 1/b)</pre></li>
+</ol>
+<p>Polymarket prices are already near-fair (small overround ~1–3%); we still normalize for consistency.</p>
+<h2>What we do NOT do</h2>
+<ul>
+  <li>Do <strong>not</strong> invent odds. Rows without confirmed external lines have blank probability cells and are marked <span class="status-pill status-no">Unverified</span> on the Flagged page.</li>
+  <li>Do <strong>not</strong> infer odds from team names, rankings, or past results. Rankings appear in notes for context only.</li>
+  <li>Do <strong>not</strong> silently average conflicting odds. Where sources differ materially (≥10pp), we pick the highest-liquidity source (usually Polymarket) and flag the discrepancy.</li>
+</ul>
+<h2>Verification</h2>
+<ol>
+  <li>Match metadata (date, teams, tournament, tier) verified against the Hotspawn lobby.</li>
+  <li>Each match with odds has a clickable Source link pointing to the page odds were taken from.</li>
+  <li>S-tier and Stake Pulse Beat III matches cross-referenced to HLTV event pages.</li>
+  <li>Rows marked <span class="status-pill status-yes">Verified</span> have at least two sources agreeing within ~5pp.</li>
+  <li>Rows marked <span class="status-pill status-partial">Partial</span> have odds but with liquidity, line-movement, or source-disagreement caveats (flagged).</li>
+</ol>
+<h2>Tier definitions (from Hotspawn)</h2>
+<ul>
+  <li><span class="tier-badge tier-S">S</span> — 7 pts ×3 multiplier. Top-tier LAN (Thunderpick WC 2026).</li>
+  <li><span class="tier-badge tier-B">B</span> — 3 pts ×1.5 multiplier. Mid-tier events (Stake Pulse Beat III, CCT, ESL Challenger cups).</li>
+  <li><span class="tier-badge tier-C">C</span> — 2 pts, no multiplier. Small online cups (Elisa BreakOut Series, etc.).</li>
+</ul>
+<h2>Known limitations</h2>
+<ul>
+  <li>The Hotspawn lobby is a React SPA; the full ~86 fixtures load client-side. Our scraper captures 26 server-rendered matches (Closing Soon + Upcoming). The rest are documented as a coverage gap on Flagged, not fabricated.</li>
+  <li>LoL tab was not server-rendered and is not in the data.</li>
+  <li>Odds move; this is a point-in-time snapshot (see gen-time on dashboard).</li>
+  <li>BO1s (Elisa BreakOut groups) are volatile and have thin markets.</li>
+</ul>
+<h2>Disclaimer</h2>
+<p>Informational tool for analyzing pick'em value. Not financial or betting advice. Not affiliated with Hotspawn, HLTV, Polymarket, or any bookmaker.</p>
+</main>
+<footer class="footer"><div class="container"><p class="footer-links"><a href="index.html">Back to dashboard</a></p></div></footer>
+</body></html>
