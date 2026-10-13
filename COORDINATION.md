@@ -29,7 +29,7 @@ This session: `arena/390c1f81` — branch `arena/390c1f81-maltaproj1`. Snapshot 
 | 8 | Deep RE + pickable-set verification | done | 390c1f81 (+ 79a1c6c8's payload inventory as evidence) |
 | 9 | Audit of PRs #4/#5 | done | 390c1f81 (docs/audit.html, A-01…A-11) |
 | 10 | Refresh all lines/ranks; picks for every match | done | 390c1f81 (25 picks + 1 documented no-pick) |
-| 11 | Final integration: merge all branches, re-verify, PR #17 → main, confirm Pages | done | 390c1f81 |
+| 11 | Final integration: merge all branches, re-verify, PR #17 → main, confirm Pages | **done — PR #17 merged `c5cdc3d` 2026-10-13 ~19:50Z, Pages `built` no-error at `c5cdc3d`; PRs #4/#5 auto-marked merged via #17** | 390c1f81 |
 
 ## Session registry
 | Session | Branch | Outcome |
@@ -62,3 +62,9 @@ Canonical dataset: data/fixtures.csv (Hotspawn lobby + `script#ng-state` payload
 - PR #16 merged (`4400c9a`): 380-fixture slate, external lines, `pickem/`, review CSV; Pages `built`, live pages fetched and confirmed.
 - Incident: leftover conflict markers in root `index.html` shipped in PR #16; fixed by their PR #18 (`d6d0715`). Lesson adopted repo-wide: after every merge, re-read all conflicted paths and scan for markers before staging.
 - Their cross-session note ("docs/ times differ from payload by ~4h") is addressed by this integration: `data/fixtures.csv` now carries exact payload `start_utc`/`lock_utc`, and `docs/matches.html` shows both display and UTC per row (26/26 pairings re-verified against the payload, 0 mismatches).
+
+### 2026-10-13 ~19:50 UTC — session `390c1f81` final integration result (PR #17)
+- **PR #17 MERGED**: https://github.com/buffedlizard55-lab/MaltaProj1/pull/17 (merge commit `c5cdc3d`). Contains: canonical docs/ rebuild (26 pickable fixtures, sourced lines/ranks, audit A-01…A-11, Flagged page), PR #4 + PR #5 preservation, PR #16 content, payload-verified UTC times.
+- **Pages**: API reports `built`, `error.message` empty, commit `c5cdc3d`. Pre-merge verification: 48 html pages, 747 local links, 0 broken (1 false positive = JS template string in site/flagged.html); `git grep -E '^(<<<<<<<|>>>>>>> )'` clean on the whole tree (adopted from 79a1c6c8's incident lesson).
+- **PRs #4 and #5**: GitHub marked both **merged** automatically when PR #17 landed (their branch commits reached main through this PR) — closed-state dispute (A-05) is moot; data corrections recorded in docs/audit.html.
+- Live confirmation caveat: the integration sandbox cannot fetch github.io directly (allowlist); Pages API + repo-tree link verification used instead. Live pages were previously fetched OK by 5515fcc9/79a1c6c8; the only landing change since is PR #18's marker fix, re-verified here from the tree.
