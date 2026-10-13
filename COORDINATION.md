@@ -1176,3 +1176,30 @@ At 22:02:21 UTC, 19 seconds after this session's claim was pushed, PR #40 (`616c
 - Follow-up fix in this record's PR: on the live page, VF-06 flag text was cut at 170 characters, which left a stray "1" (e.g. "...to win with 1)") that could be misread as a price. It now shows the full reading note. No data changed.
 - Root landing page still has no link to `verify/`. Request stands for the integration owner (`index.html` is not edited by this session).
 - **PR #48** https://github.com/buffedlizard55-lab/MaltaProj1/pull/48 (VF-06 full note + this release record): CI `verify` SUCCESS; **MERGED 2026-10-13 22:22:39 UTC**, merge commit `93666273f9d0c5411588c00248f6680edd0abe62`. Pages build for `9366627`: `built`, error null, 22:23:01 UTC. Live Flagged page re-fetched (cache-busted) and shows the rebuilt content. Session `arena/4b9c40b0` tasks V-01, V-02 and V-03 are **done**; no further edits planned (record written 2026-10-13 22:23 UTC).
+
+
+## Session `arena/8e782f95` — claim (2026-10-13 ~22:00 UTC)
+
+Branch: `arena/8e782f95-maltaproj1` (Arena fixes this session to that branch; no other branch is created or pushed).
+
+Read before claiming: main's board, plus the boards on the currently active remote branches
+`arena/b90700c6-maltaproj1`, `arena/cc8f4dca-maltaproj1`, `arena/e3315a54-maltaproj1`.
+Their live claims (`refresh/**`+`today/**`, `picks/**`, `mobile/**`) are respected: this session does
+**not** touch `refresh/**`, `today/**`, `picks/**`, `mobile/**`, `model/**`, `docs/**`, `pickem/**`,
+`dashboard/**`, `assurance/**`, `site/**`, `reviews/**`, `data/**` (existing files), or root `index.html`.
+
+| ID | Task | Status | Owner | Exclusive file scope |
+|---|---|---|---|---|
+| B-01 | Repo review, line by line: read every session's published data/claim and check it against the official source it cites (Hotspawn lobby/CS2 pick'em pages, HLTV ranking 2026/october/12, Valve Regional Standings). Record source links for manual review and flag irregularities. | in progress | arena/8e782f95 | `reviews/repo-review-8e782f95.md` |
+| B-02 | Fresh capture of the current Hotspawn CS2 pick'em slate (official `play.hotspawn.com/cs2-pickems` + `/lobby`) at 2026-10-13 ~22:00 UTC, with each fixture's UTC lock time, tournament, tier and points. | in progress | arena/8e782f95 | `data/8e782f95/fixtures.csv`, `data/8e782f95/fixtures.json` |
+| B-03 | External match-winner lines from non-Hotspawn esports-betting coverage (EGamersWorld/BC.Game and other bookmaker listings), with a real capture time per row; de-vig to market probability. Never uses Hotspawn crowd %. | in progress | arena/8e782f95 | `data/8e782f95/external_lines.csv` |
+| B-04 | Our own originated lines for every fixture, from official ratings only: HLTV world ranking 2026/october/12 + Valve Regional Standings `standings_global_2026_10_05.md` (pinned commit), with a documented, reproducible formula. Blank + flagged where a team has no official rating. | in progress | arena/8e782f95 | `data/8e782f95/ratings.csv`, `data/8e782f95/own_lines.csv`, `scripts/8e782f95_build.py` |
+| B-05 | Publish a clean, mobile-first GitHub Pages site `board/` (landing + subpages organised by category/tier + all-matches, sources, methodology, Flagged for Review). Every table row carries an official source link; unconfirmed values stay blank and flagged. | in progress | arena/8e782f95 | `board/**` |
+| B-06 | Final integration: link check, tests, `git pull --rebase origin main`, push, PR → `main`, merge, confirm GitHub Pages, record result here. | unclaimed until B-01..B-05 done | arena/8e782f95 | `COORDINATION.md` (this section) |
+
+### Requests to other sessions (no cross-owner edits)
+1. **Root navigation owners** (`arena/b90700c6`, `arena/cc8f4dca`, `arena/e3315a54` all list root `index.html` in their
+   integration scope): please add one card/link for the consolidated board → `board/` ("Consolidated board — all
+   fixtures, external lines + own lines"). This session will not edit root `index.html` while those claims are live.
+2. **`picks/**` owner (`arena/cc8f4dca`)**: `picks/` already exists on `main` from `arena/9569108d` (PR #35). Rebuilding
+   it in place will overwrite a merged session's published page — please confirm the handoff or use a new path.
