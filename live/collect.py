@@ -603,7 +603,7 @@ def collect_polymarket() -> dict:
 # ------------------------------------------------------------------------ HLTV
 HLTV_TEAM_LINK = re.compile(r'/team/(\d+)/([a-z0-9\-]+)', re.I)
 HLTV_BLOCK_SPLIT = re.compile(r'class="ranked-team', re.I)
-HLTV_POSITION = re.compile(r'class="position"[^>]*>\s*#?(\d+)', re.I)
+HLTV_POSITION = re.compile(r'class="position[^"]*"[^>]*>\s*#?(\d+)', re.I)
 
 
 def parse_hltv_ranking(html: str) -> dict[str, int]:

@@ -212,5 +212,26 @@ class BuildRules(unittest.TestCase):
         self.assertEqual(rows[0]["ext_p_a_pct"], "")
 
 
+    def test_duplicate_valve_roster_entries_use_the_higher_points_entry(self):
+        fixture_row = fixture("1", "Alpha", "Bravo", "2026-10-14T10:00:00Z", "2026-10-14T09:54:00Z")
+        snap = snapshot([fixture_row])
+        snap["vrs"]["teams"] = [
+            {"vrs_rank": 40, "name": "Alpha", "points": 1200.0},
+            {"vrs_rank": 300, "name": "Alpha", "points": 600.0},
+            {"vrs_rank": 60, "name": "Bravo", "points": 1000.0},
+        ]
+        rows = build.build_rows(snap)
+        # 1200 vs 1000 -> 76.0 / 24.0, and the alternative entry must be published beside the row
+        self.assertEqual(rows[0]["own_p_a_pct"], "76.0")
+        self.assertIn("FL-26", rows[0]["flags"])
+        self.assertIn("#300", rows[0]["vrs_alt_a"])
+
+    def test_bookmaker_spelling_alias_is_documented(self):
+        self.assertEqual(build.norm("PVISION"), build.norm("PARIVISION"))
+        self.assertEqual(build.norm("BB Team"), build.norm("BetBoom"))
+        self.assertIn("pvision", build.ALIAS_SOURCES)
+        self.assertIn("bb", build.ALIAS_SOURCES)
+
+
 if __name__ == "__main__":
     unittest.main()
