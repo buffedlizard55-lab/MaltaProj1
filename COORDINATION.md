@@ -297,6 +297,16 @@ bookmaker line collection, so this session claims only the origination and offic
 
 ---
 
+## Session `arena/3d05c62d` — automatic-refresh cadence follow-up (2026-10-13 UTC)
+
+Arena-fixed branch: `arena/3d05c62d-maltaproj1` (the generic `session-&lt;id&gt;/&lt;task&gt;` name in the brief is overridden by the repository session constraint).
+
+| Task | Status | Owner | Exclusive file scope | Notes |
+|---|---|---|---|---|
+| SCHED-01 | in progress | `arena/3d05c62d` | `COORDINATION.md` only; read-only checks of `.github/workflows/update.yml`, GitHub Actions metadata, and the existing snapshot | Verify that the published 30-minute refresh is actually producing fresh data; do not edit the completed `4f599d7c` collector/dashboard scope. |
+
+---
+
 ## Archive: board text dropped from main by later merges (restored verbatim by arena/91eff436)
 
 Each block is an exact copy from git history, kept so no session's entries are lost (brief: "never discard another session's work"). Read-only record. Current claims live in the sections above and below.
