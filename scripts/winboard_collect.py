@@ -127,7 +127,8 @@ def collect_hotspawn() -> dict[str, object]:
     for url in ("https://play.hotspawn.com/cs2-pickems", "https://play.hotspawn.com/lobby"):
         status, body = fetch(url, {"Referer": "https://play.hotspawn.com/lobby"}, "hotspawn")
         page = {"url": url, "http_status": status, "bytes": len(body),
-                "sha256": hashlib.sha256(body).hexdigest() if body else ""}
+                "sha256": hashlib.sha256(body).hexdigest() if body else "",
+                "fetched_utc": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")}
         (RAW / f"hotspawn-{url.rsplit('/', 1)[-1]}.html.gz").write_bytes(gzip.compress(body))
         if status != 200 or not body:
             out["pages"].append(page)
@@ -154,6 +155,7 @@ def collect_hotspawn() -> dict[str, object]:
             if url not in entry["seen_on"]:
                 entry["seen_on"].append(url)
             seen[key] = entry
+    out["fetched_utc"] = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     out["fixture_count"] = len(seen)
     out["fixtures"] = seen
     return out
