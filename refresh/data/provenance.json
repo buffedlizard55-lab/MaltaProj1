@@ -1,97 +1,129 @@
 {
- "generated_utc": "2026-10-13T21:19:46Z",
+ "generated_utc": "2026-10-13T21:24:18Z",
  "fetches": [
   {
    "url": "https://play.hotspawn.com/lobby",
-   "fetched_utc": "2026-10-13T21:19:40Z",
-   "status": null,
-   "bytes": null,
-   "sha256": null,
-   "error": "URLError: <urlopen error TLS/SSL connection has been closed (EOF) (_ssl.c:992)>"
-  },
-  {
-   "url": "https://play.hotspawn.com/cs2-pickems",
-   "fetched_utc": "2026-10-13T21:19:40Z",
-   "status": null,
-   "bytes": null,
-   "sha256": null,
-   "error": "URLError: <urlopen error TLS/SSL connection has been closed (EOF) (_ssl.c:992)>"
-  },
-  {
-   "url": "https://play.hotspawn.com/thp-pickems",
-   "fetched_utc": "2026-10-13T21:19:41Z",
-   "status": null,
-   "bytes": null,
-   "sha256": null,
-   "error": "URLError: <urlopen error TLS/SSL connection has been closed (EOF) (_ssl.c:992)>"
-  },
-  {
-   "url": "https://play.hotspawn.com/lol-pickems",
-   "fetched_utc": "2026-10-13T21:19:41Z",
-   "status": null,
-   "bytes": null,
-   "sha256": null,
-   "error": "URLError: <urlopen error TLS/SSL connection has been closed (EOF) (_ssl.c:992)>"
+   "fetched_utc": "2026-10-13T21:24:05Z",
+   "status": 200,
+   "bytes": 433814,
+   "sha256": "a7147c8ee55c92c294e1777bf9319877f9d15aa40fd575745ff8a7c472572a52",
+   "error": null
   },
   {
    "url": "https://egamersworld.com/counterstrike/matches",
-   "fetched_utc": "2026-10-13T21:19:42Z",
-   "status": null,
+   "fetched_utc": "2026-10-13T21:24:06Z",
+   "status": 403,
    "bytes": null,
    "sha256": null,
-   "error": "URLError: <urlopen error TLS/SSL connection has been closed (EOF) (_ssl.c:992)>"
-  },
-  {
-   "url": "https://egamersworld.com/lol/matches",
-   "fetched_utc": "2026-10-13T21:19:42Z",
-   "status": null,
-   "bytes": null,
-   "sha256": null,
-   "error": "URLError: <urlopen error TLS/SSL connection has been closed (EOF) (_ssl.c:992)>"
-  },
-  {
-   "url": "https://egamersworld.com/counterstrike/events",
-   "fetched_utc": "2026-10-13T21:19:43Z",
-   "status": null,
-   "bytes": null,
-   "sha256": null,
-   "error": "URLError: <urlopen error TLS/SSL connection has been closed (EOF) (_ssl.c:992)>"
-  },
-  {
-   "url": "https://egamersworld.com/lol/events",
-   "fetched_utc": "2026-10-13T21:19:43Z",
-   "status": null,
-   "bytes": null,
-   "sha256": null,
-   "error": "URLError: <urlopen error TLS/SSL connection has been closed (EOF) (_ssl.c:992)>"
+   "error": "HTTPError 403"
   },
   {
    "url": "https://www.hltv.org/ranking/teams",
-   "fetched_utc": "2026-10-13T21:19:44Z",
-   "status": null,
+   "fetched_utc": "2026-10-13T21:24:06Z",
+   "status": 403,
    "bytes": null,
    "sha256": null,
-   "error": "URLError: <urlopen error TLS/SSL connection has been closed (EOF) (_ssl.c:992)>"
-  },
-  {
-   "url": "https://www.hltv.org/matches",
-   "fetched_utc": "2026-10-13T21:19:44Z",
-   "status": null,
-   "bytes": null,
-   "sha256": null,
-   "error": "URLError: <urlopen error TLS/SSL connection has been closed (EOF) (_ssl.c:992)>"
-  },
-  {
-   "url": "https://www.hltv.org/valve-ranking/teams",
-   "fetched_utc": "2026-10-13T21:19:45Z",
-   "status": null,
-   "bytes": null,
-   "sha256": null,
-   "error": "URLError: <urlopen error TLS/SSL connection has been closed (EOF) (_ssl.c:992)>"
+   "error": "HTTPError 403"
   },
   {
    "url": "https://api.github.com/repos/ValveSoftware/counter-strike_regional_standings/contents/live/2026",
-   "fetched_utc": "2026-10-13T21:19:45Z",
+   "fetched_utc": "2026-10-13T21:24:07Z",
+   "status": 200,
+   "bytes": 50648,
+   "sha256": "2d55d193c80e0f80f0f8e08bbf84a3d4ad6634ab62704ad2016bb3cbacdd1a8a",
+   "error": null
+  },
+  {
+   "url": "https://play.hotspawn.com/lobby",
+   "fetched_utc": "2026-10-13T21:24:08Z",
+   "status": 200,
+   "bytes": 433814,
+   "sha256": "a7147c8ee55c92c294e1777bf9319877f9d15aa40fd575745ff8a7c472572a52",
+   "error": null
+  },
+  {
+   "url": "https://play.hotspawn.com/cs2-pickems",
+   "fetched_utc": "2026-10-13T21:24:09Z",
+   "status": 200,
+   "bytes": 391957,
+   "sha256": "cc6f31651d5ecd507fe06873f52ecc72048ce776270641c72e0454c5f2308622",
+   "error": null
+  },
+  {
+   "url": "https://play.hotspawn.com/thp-pickems",
+   "fetched_utc": "2026-10-13T21:24:10Z",
+   "status": 200,
+   "bytes": 230466,
+   "sha256": "3aab6b1679884885253e499e4ec48bae52e6e283296cf6f3a808328a25251fc4",
+   "error": null
+  },
+  {
+   "url": "https://play.hotspawn.com/lol-pickems",
+   "fetched_utc": "2026-10-13T21:24:12Z",
+   "status": 200,
+   "bytes": 2302596,
+   "sha256": "3ea3ccf460f340e42d80adc1acce1efe6b3cce3f7611b7167023a35ad0ddb373",
+   "error": null
+  },
+  {
+   "url": "https://egamersworld.com/counterstrike/matches",
+   "fetched_utc": "2026-10-13T21:24:14Z",
+   "status": 403,
+   "bytes": null,
+   "sha256": null,
+   "error": "HTTPError 403"
+  },
+  {
+   "url": "https://egamersworld.com/lol/matches",
+   "fetched_utc": "2026-10-13T21:24:14Z",
+   "status": 403,
+   "bytes": null,
+   "sha256": null,
+   "error": "HTTPError 403"
+  },
+  {
+   "url": "https://egamersworld.com/counterstrike/events",
+   "fetched_utc": "2026-10-13T21:24:15Z",
+   "status": 403,
+   "bytes": null,
+   "sha256": null,
+   "error": "HTTPError 403"
+  },
+  {
+   "url": "https://egamersworld.com/lol/events",
+   "fetched_utc": "2026-10-13T21:24:15Z",
+   "status": 403,
+   "bytes": null,
+   "sha256": null,
+   "error": "HTTPError 403"
+  },
+  {
+   "url": "https://www.hltv.org/ranking/teams",
+   "fetched_utc": "2026-10-13T21:24:16Z",
+   "status": 403,
+   "bytes": null,
+   "sha256": null,
+   "error": "HTTPError 403"
+  },
+  {
+   "url": "https://www.hltv.org/matches",
+   "fetched_utc": "2026-10-13T21:24:16Z",
+   "status": 403,
+   "bytes": null,
+   "sha256": null,
+   "error": "HTTPError 403"
+  },
+  {
+   "url": "https://www.hltv.org/valve-ranking/teams",
+   "fetched_utc": "2026-10-13T21:24:17Z",
+   "status": 403,
+   "bytes": null,
+   "sha256": null,
+   "error": "HTTPError 403"
+  },
+  {
+   "url": "https://api.github.com/repos/ValveSoftware/counter-strike_regional_standings/contents/live/2026",
+   "fetched_utc": "2026-10-13T21:24:18Z",
    "status": 200,
    "bytes": 50648,
    "sha256": "2d55d193c80e0f80f0f8e08bbf84a3d4ad6634ab62704ad2016bb3cbacdd1a8a",
@@ -99,11 +131,11 @@
   },
   {
    "url": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md",
-   "fetched_utc": "2026-10-13T21:19:46Z",
-   "status": null,
-   "bytes": null,
-   "sha256": null,
-   "error": "URLError: <urlopen error TLS/SSL connection has been closed (EOF) (_ssl.c:992)>"
+   "fetched_utc": "2026-10-13T21:24:18Z",
+   "status": 200,
+   "bytes": 77872,
+   "sha256": "df96e7fc3cd91a2687ec08cac0128e50cc4e4e55346581679572e881d79ae61b",
+   "error": null
   }
  ]
 }

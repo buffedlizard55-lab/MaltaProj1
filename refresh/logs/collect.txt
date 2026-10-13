@@ -1,0 +1,91 @@
+probe hotspawn       status=200 bytes=433814 err=None
+probe egw-cs2        status=403 bytes=None err=HTTPError 403
+probe hltv-ranking   status=403 bytes=None err=HTTPError 403
+probe valve-api      status=200 bytes=50648 err=None
+slate candidates for odds lookup: 124 of 384 payload rows
+{
+ "generated_utc": "2026-10-13T21:24:18Z",
+ "hotspawn_fixtures": 384,
+ "hotspawn_cs2": 90,
+ "hotspawn_lol": 294,
+ "other_sports": 0,
+ "week_total_text": 126,
+ "reset_utc": "2026-10-19T03:34:53Z",
+ "ng_state_rows": {
+  "lobby": 90,
+  "cs2-pickems": 85,
+  "thp-pickems": 14,
+  "lol-pickems": 294
+ },
+ "cards_rendered": {
+  "lobby": 31,
+  "cs2-pickems": 26,
+  "thp-pickems": 14,
+  "lol-pickems": 231
+ },
+ "egw_candidates": 0,
+ "egw_events_scanned": 0,
+ "egw_fixtures_with_book_table": 0,
+ "egw_fixtures_without_link": 124,
+ "hltv_ranking_teams": 0,
+ "hltv_valve_teams": 0,
+ "hltv_matches": 0,
+ "valve_vrs_file": "standings_global_2026_10_05.md",
+ "valve_vrs_teams": 3,
+ "valve_vrs_error": null,
+ "fetch_status": [
+  [
+   "https://api.github.com/repos/ValveSoftware/counter-strike_regional_standings/contents/live/2026",
+   200
+  ],
+  [
+   "https://egamersworld.com/counterstrike/events",
+   403
+  ],
+  [
+   "https://egamersworld.com/counterstrike/matches",
+   403
+  ],
+  [
+   "https://egamersworld.com/lol/events",
+   403
+  ],
+  [
+   "https://egamersworld.com/lol/matches",
+   403
+  ],
+  [
+   "https://play.hotspawn.com/cs2-pickems",
+   200
+  ],
+  [
+   "https://play.hotspawn.com/lobby",
+   200
+  ],
+  [
+   "https://play.hotspawn.com/lol-pickems",
+   200
+  ],
+  [
+   "https://play.hotspawn.com/thp-pickems",
+   200
+  ],
+  [
+   "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md",
+   200
+  ],
+  [
+   "https://www.hltv.org/matches",
+   403
+  ],
+  [
+   "https://www.hltv.org/ranking/teams",
+   403
+  ],
+  [
+   "https://www.hltv.org/valve-ranking/teams",
+   403
+  ]
+ ]
+}
+collect exit=0
