@@ -82,7 +82,9 @@ def load_market(root: Path) -> tuple[dict, dict]:
         import subprocess
         r = subprocess.run(["git", "-C", str(root), "log", "-1", "--format=%cI", "--", "lines/analysis.csv"],
                            capture_output=True, text=True, timeout=30)
-        prov["commit_utc"] = r.stdout.strip() or None
+        raw = r.stdout.strip()
+        if raw:  # normalise (git prints +00:00 or Z depending on version) so the digest is environment-independent
+            prov["commit_utc"] = datetime.fromisoformat(raw.replace("Z", "+00:00")).astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     except Exception:  # noqa: BLE001
         pass
     out = {}
@@ -430,7 +432,7 @@ def main() -> int:
         late = []
         cu = mprov.get("commit_utc")
         if cu:
-            cdt = datetime.fromisoformat(cu)
+            cdt = datetime.fromisoformat(cu.replace("Z", "+00:00"))
             for r in rows:
                 t_ = r["market_captured_utc_reported"]
                 m_ = re.match(r"(\d{4}-\d{2}-\d{2})T(\d{2}):(\d{2})", t_ or "")
