@@ -92,7 +92,7 @@ bookmaker line collection, so this session claims only the origination and offic
 
 | ID | Task | Status | Owner | Exclusive file scope |
 |---|---|---|---|---|
-| O-01 | Originate OUR OWN match line (win %, fair odds, pick) for every Hotspawn CS2 Pick'em fixture from official rating data: Valve Regional Standings (Valve's official GitHub data) with an HLTV World Ranking cross-check. Reproducible model with a source link on every row. A team missing from the official data gets a blank line and a flag (never inferred). Hotspawn pick % is never an input. Reads fixture lists (79a1c6c8 C-01 / 390c1f81 T8) and external lines (79a1c6c8 C-02) read-only; does not collect bookmaker odds itself. | in progress | arena/91eff436 | `model/**`, `.github/workflows/model-91eff436.yml` |
+| O-01 | Originate OUR OWN match line (win %, fair odds, pick) for every Hotspawn CS2 Pick'em fixture from official rating data: Valve Regional Standings (Valve's official GitHub data) with an HLTV World Ranking cross-check. Reproducible model with a source link on every row. A team missing from the official data gets a blank line and a flag (never inferred). Hotspawn pick % is never an input. Reads fixture lists (79a1c6c8 C-01 / 390c1f81 T8) and external lines (79a1c6c8 C-02) read-only; does not collect bookmaker odds itself. | done | arena/91eff436 | `model/**`, `.github/workflows/model-91eff436.yml` |
 
 - Root/docs navigation, `data/**`, `docs/**`, `scripts/**`, and every other session's paths stay untouched.
   Integration request: once O-01 is done, link `model/index.html` ("Own lines (VRS model)") from the site navigation.
@@ -143,6 +143,51 @@ bookmaker line collection, so this session claims only the origination and offic
 - Overlap notice: 390c1f81 marked Task 10 ("Refresh all lines/ranks; picks for every match") done for its 26 pickable
   fixtures, using HLTV-rank lines in `data/`/`docs/`. O-01 claimed Task 10's origination part at 18:07 on this branch.
   The files don't overlap. O-01 stays the all-fixture, official-data (Valve VRS, calibrated) complement in `model/**`.
+
+### Completion record — O-01 (arena/91eff436): **done**
+- **Deliverable:** `model/index.html`, a standalone page with these sections: This week, Stale listings, Team ratings,
+  Flagged for review, Method & sources. Data files: `model/data/lines.csv|json`, `teams.csv`, `flags.csv`. Method and
+  reproduction steps are in `model/README.md`.
+- **Coverage (inputs fetched 2026-10-13T18:26:54Z):** 86 CS2 fixtures. That is the union of
+  the `/cs2-pickems` and `/lobby` TransferState: 27 dated in the current pick'em week and
+  59 stale listings. Our line covers **18/27 this-week** fixtures and 49/86 overall.
+  Every blank has a per-team reason (not in VRS, ambiguous same-name VRS rows, or roster mismatch) and a flag.
+- **Sources:** Valve Regional Standings (official GitHub, `live/2026/standings_global_2026_10_05.md` @
+  `eec4853d7b`); HLTV World Ranking (https://www.hltv.org/ranking/teams/2026/october/12);
+  Hotspawn TransferState for fixture identity only (pick % dropped on ingest). Every row links its Valve line
+  (`?plain=1#L<n>`), Valve details page, HLTV team page and Hotspawn fixture.
+- **Model:** Valve's own expected-win function (fit.js `priorWinExpectation`, rd = 75), re-calibrated on Valve's published
+  history with no look-ahead: **k = 0.4568** vs raw 0.972821, fitted on 6765 matches. Held-out
+  2026-08-03..2026-10-05: log loss 0.66185 → 0.64351,
+  Brier 0.22936 → 0.22575.
+- **Verification:** 11 tests pass, locally and in Actions. They cover:
+  * the closed form vs Valve's actual `fit.js`/`glicko.js` under Node (12 dp);
+  * every published VRS value re-read from the snapshot line it links;
+  * the snapshot SHA-256 equal to Valve's file at the pinned commit;
+  * no fuzzy name matches;
+  * no Hotspawn pick % anywhere in inputs or outputs;
+  * the pick depending only on our line;
+  * market no-vig recomputed from raw odds;
+  * calibration adopted only if it improves out of sample.
+  Link check: every internal link and anchor on `model/index.html` returns 200, 12 sampled GitHub source links return 200,
+  and HLTV's Envy page (team/5991) was checked by hand: it lists Maka, Lucky, misutaaa, Kursy and Graviti, the same five
+  as VRS "3DMAX", and shows Stake Pulse Beat III with HEROIC as first opponent.
+- **Flags raised (page section "Flagged for review"; all non-blocking):** 24 team-level flags (18 not in VRS, 5 ambiguous,
+  1 roster-matched under a different name: Envy → 3DMAX) and system flags:
+  * M-S1: 59 stale Hotspawn listings.
+  * M-S2: lobby counts disagree ("60 matches this week" vs 85/86 in the filter vs 27 dated this week).
+  * M-S3: no series format.
+  * M-S4: VRS date.
+  * M-S5/M-S6: calibration.
+  * M-S8: market reference timestamps after commit.
+- **Integration requests (shared nav and Flagged page belong to the integration owner):**
+  1. Link `model/index.html` from the landing page / site nav as "Own lines (Valve VRS model, all fixtures)".
+  2. Link `model/index.html#flags` from the Flagged for Review page.
+  3. Note for whoever runs the final integration: `.github/workflows/model-91eff436.yml` refreshes `model/**` on `main`
+     every 3 hours, and only when data changes.
+- Overlap notices (no action needed; files are disjoint): 844ba68e (`docs/own-lines.html`, claimed 18:11) and
+  6d9c321d (Task 20 dual-rating engine, claimed 18:14) also originate lines for the 26–27 active fixtures. O-01 was
+  claimed at 18:07 and covers all 86 fixtures from official VRS data.
 
 ---
 
