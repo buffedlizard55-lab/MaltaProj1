@@ -1,19 +1,12 @@
-name: Public source discovery
+name: Public source audit
 
+# One-time broad discovery is retired. Audits now use the same privacy allowlist
+# as scheduled collection; never archive unrelated leaderboard/account payloads.
 on:
-  push:
-    branches: [arena/4f599d7c-maltaproj1]
-    paths:
-      - scripts/discover_sources.py
-      - .github/workflows/discover.yml
   workflow_dispatch:
 
 permissions:
-  contents: write
-
-concurrency:
-  group: public-source-discovery
-  cancel-in-progress: false
+  contents: read
 
 jobs:
   inspect:
@@ -24,26 +17,13 @@ jobs:
       - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
         with:
           python-version: '3.12'
-      - name: Install ordinary browser tooling
-        run: |
-          python -m pip install playwright==1.55.0
+      - run: |
+          python -m pip install -r requirements.txt
           python -m playwright install --with-deps chromium
-      - name: Inspect public pages and their first-party network data
+      - name: Read public fixture and bookmaker evidence only
         run: python scripts/discover_sources.py
-      - name: Keep source evidence outside Git
-        if: always()
-        uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5
         with:
-          name: public-source-discovery
-          path: .cache/discovery/
-          retention-days: 7
-      - name: Return small public parser evidence on the session branch
-        if: always()
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add research/discovery-index.json research/discovery.tar.gz
-          if git diff --cached --quiet; then exit 0; fi
-          git commit -m "research: return public parser evidence from run ${{ github.run_id }}"
-          git pull --rebase origin arena/4f599d7c-maltaproj1
-          git push origin HEAD:arena/4f599d7c-maltaproj1
+          name: minimized-public-source-audit
+          path: .cache/discovery-audit/
+          retention-days: 3

@@ -1,0 +1,87 @@
+name: Refresh verified snapshot
+
+on:
+  schedule:
+    - cron: '17,47 * * * *'
+  workflow_dispatch:
+  push:
+    branches: [main, arena/4f599d7c-maltaproj1]
+    paths:
+      - collector/**
+      - webui/**
+      - tests/**
+      - scripts/collect.py
+      - scripts/build_site.py
+      - scripts/validate.py
+      - requirements.txt
+      - .github/workflows/update.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: verified-snapshot-refresh-4f599d7c
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          ref: arena/4f599d7c-maltaproj1
+          fetch-depth: 0
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: '3.12'
+      - name: Install public browser tooling
+        run: |
+          python -m pip install -r requirements.txt
+          python -m playwright install --with-deps chromium
+      - name: Check calculations and parser safeguards
+        run: python -m unittest discover -s tests -v
+      - name: Collect primary-source observations, without manual input
+        run: |
+          export COLLECTOR_COMMIT="$(git rev-parse HEAD)"
+          python scripts/collect.py
+      - name: Build and verify every row and internal link
+        run: |
+          python scripts/build_site.py
+          python scripts/validate.py
+          node --check webui/dashboard.js
+      - name: Preserve a small verified evidence artifact
+        uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5
+        with:
+          name: verified-snapshot-${{ github.run_id }}
+          path: data/snapshot/
+          retention-days: 7
+      - name: Return verified data only to this session branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/snapshot/ dashboard/
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "data: verified public snapshot from run ${{ github.run_id }}"
+          git pull --rebase origin arena/4f599d7c-maltaproj1
+          git push origin HEAD:arena/4f599d7c-maltaproj1
+      - name: Publish run summary
+        if: always()
+        run: |
+          python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          from pathlib import Path
+          import json
+          path = Path('data/snapshot/latest.json')
+          if path.exists():
+              data = json.loads(path.read_text())
+              print('## Source-linked dashboard snapshot')
+              print('UTC:', data['generated_at'])
+              print('Coverage:', data['coverage']['status'])
+              print('Board fixtures:', len(data['matches']))
+              print('Source-state inventory:', len(data.get('inventory', [])))
+              print('Primary quote records:', len(data['quotes']))
+              print('Flagged findings:', len(data['findings']))
+              print('Missing values remain null; no crowd or rank probabilities used.')
+          else:
+              print('No new verified snapshot. Previously published data is not re-dated.')
+          PY
