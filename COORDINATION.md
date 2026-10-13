@@ -866,3 +866,17 @@ Snapshot (UTC): 2026-10-13 (lobby states "60 matches this week", resets in ~5d 0
 - **Post-merge automated source/browser/build run passed:** <https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38456771049>. Fixed collection branch remains present and auto-delete-after-merge is false. Half-hour cron is now on main; no manual data, book credentials, admin Pages change or recurring merge step is required.
 - Release record: `research/release.md`. Other owners' files and claims remain preserved. Unknown values, single-book concentration, source-access/identity/schedule/format/privacy and inherited-audit findings remain clearly published as needs review, not blocked or invented. No failed dashboard checks or missing internal targets were bypassed.
 - **T04: done.** T01/T02/T03/T04 are complete for this isolated, published evidence dashboard. The release-record follow-up PR publishes this confirmed result on main; it does not alter shared navigation or another session's data/model.
+
+---
+
+## Session `arena/9569108d` — claim (2026-10-13 ~21:18 UTC)
+
+Branch: `arena/9569108d-maltaproj1` (fixed by Arena; the brief's `session-<id>/<task>` naming cannot be used, and no other branch is created or pushed).
+
+| ID | Task | Status | Owner | Exclusive file scope |
+|---|---|---|---|---|
+| P-01 | Current-slate Hotspawn pick'em analysis: every fixture listed in the live lobby, external bookmaker-odds probability (EGamersWorld, de-vigged), our own VRS-model probability, a pick per match where a verified line exists, mobile-friendly GitHub Pages site with category subpages, Flagged for Review page with source links | in progress | arena/9569108d | `picks/**` only (new folder). Root `index.html` gets one card link at integration. |
+
+- Read-only inputs: `data/6d9c321d/ng_state_86_fixtures.csv` (fixture IDs/lock times), `model/data/lines.csv` (own VRS-model probabilities, read only, not re-run).
+- Hotspawn crowd percentages are never used as a probability input and are not displayed.
+- Irregularities found while reading other sessions' data are logged in the Flagged page of `picks/`, not edited in place.
