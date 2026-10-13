@@ -1,0 +1,44 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PR audit · MaltaProj1</title><link rel="stylesheet" href="style.css"></head><body><header><h1>Audit of parallel-session PRs</h1><p>Every claimed value checked against live official sources · 2026-10-13 (UTC)</p></header><nav><a href="index.html">Dashboard</a><a href="matches.html">All matches</a><a href="s-tier.html">S-Tier · Thunderpick WC</a><a href="stake.html">Stake Pulse Beat III</a><a href="lower-tiers.html">B/C-Tier & inventory</a><a href="methodology.html">Methodology</a><a href="reverse-engineering.html">Reverse-engineering</a><a href="audit.html" style="text-decoration:underline">PR audit</a><a href="flagged.html">⚠ Flagged for Review</a><a href="sources.html">Sources</a></nav><main>
+<div class="card flag"><h2>Line-by-line audit of parallel-session PRs #4 (arena/51fb12f8) and #5 (arena/2cb6bff4)</h2>
+<p>This session audited every claimed "verified" value in both open PRs against live official sources. Findings A-01…A-10 below;
+unverifiable values were <b>replaced by verified ones or blanked</b> in the canonical dataset — never copied forward. Their dashboards are preserved in the repo
+(see disposition in the table) and their non-conflicting work is credited in <a href="sources.html">Sources</a>.</p>
+<div class="wrap"><table><tr><th>ID</th><th>PR</th><th>Claimed</th><th>Verified against live source</th><th>Finding / disposition</th></tr>
+<tr><td>A-01</td><td>#4</td><td>Gothic–Lavked: Gothic 1.79 favorite ("market has Gothic as slight favorite, opposite to Hotspawn %")</td>
+<td><a href="https://egamersworld.com/counterstrike/match/_rW8GEyWK/gothic-vs-lavked-GGmfuJ1n4B">EGW match page</a> live 18:20 UTC: Gothic 2.10 / <b>Lavked 1.62</b>; live list 18:47 UTC: 1.881/1.782 (Lavked favorite)</td>
+<td><b>Contradicted.</b> Lavked is the market favorite; PR4's direction was wrong. Canonical row uses live EGW values.</td></tr>
+<tr><td>A-02</td><td>#4 + #5</td><td>ex-Keyd–Galorys: #4 "Polymarket 3.03/1.47"; #5 "EGW/Polymarket 2.85/1.40"</td>
+<td><a href="https://egamersworld.com/counterstrike/match/Nylyio3_OEx/ex-keyd-stars-vs-galorys-0LRbemybp">EGW page</a> live: 2.43/1.46 → list 2.44/1.48; EGW bot quotes bookmaker average Galorys 1.464 / ex-Keyd 2.508</td>
+<td>Direction (Galorys favorite) consistent in both PRs; the exact numbers could not be confirmed at the cited generic Polymarket URL (not a market page). Canonical row uses live EGW.</td></tr>
+<tr><td>A-03</td><td>#5</td><td>Zomblers–Overtake: "Zomblers 1.42 favorites (OddsDigger)"; "5/12 favorites"</td>
+<td><a href="https://egamersworld.com/counterstrike/match/41yion_ONx/zomblers-vs-overtake-sector-3aN5jQsN_">EGW page</a> (1.8/1.8 placeholder earlier) → live list 18:47 UTC: Zomblers 2.51 / <b>Overtake 1.47</b></td>
+<td><b>Contradicted.</b> No OddsDigger market page exists at the cited generic URL. PR4's opposite direction (Overtake favorite) matches the live market; PR5's row is reversed.</td></tr>
+<tr><td>A-04</td><td>#5</td><td>"Ranks": ex-Keyd 140, Zomblers 150, Gothic 169, Astralis 14, Sashi 68, ex-RUSTEC 93, mellren 123 …</td>
+<td>HLTV pages: Astralis #11 (<a href="https://www.hltv.org/ranking/teams/2026/october/5">ranking 2026-10-05</a>); Sashi/Envy/NiP etc. not printed on HLTV pages checked; EGW (its own scale): Astralis #11, Sashi #55, Gothic #756, ex-RUSTEC #266, mellren #505</td>
+<td><b>Unverifiable / conflicting.</b> PR5's rank numbers carry no source URLs (its hltv_* columns point to generic pages). Not carried into the canonical data; blanks used instead.</td></tr>
+<tr><td>A-05</td><td>#5</td><td>Its COORDINATION.md log: "PR #5 opened and merged to main… deployment verified" with entries timestamped 18:05–19:00 UTC</td>
+<td>GitHub API at 18:03 UTC: PR #5 <b>OPEN</b> (created 18:00:31Z, not merged); its log timestamps are in the future relative to its own creation</td>
+<td><b>False completion claim + fabricated timestamps.</b> Recorded here and in COORDINATION.md; non-blocking, flagged for owner review.</td></tr>
+<tr><td>A-06</td><td>#4 + #5</td><td>Both replace the repo-root index.html with their own dashboards</td>
+<td>Live Pages site serves docs/ via root redirect (main @ b2150ff); merging either PR as-is breaks the deployed site; merging both conflicts</td>
+<td>Integration keeps the docs/ site canonical; both dashboards preserved under their own paths (site/ for #4; hub.html + css/js/src/tests at root for #5) and linked from the dashboard.</td></tr>
+<tr><td>A-07</td><td>(fixture data)</td><td>—</td><td>Hotspawn team label "WROTBERRY" ↔ <b>WhiteBIT Team (WBT)</b> on <a href="https://www.hltv.org/events/9332/elisa-breakout-series-2">HLTV event 9332</a>, <a href="https://liquipedia.net/counterstrike/Elisa/BreakOut_Series/2">Liquipedia</a>, EGW (same slot, opponents, times)</td>
+<td>Naming irregularity in Hotspawn's data. Canonical rows keep Hotspawn's label with the WBT alias and verified HLTV rank (#64).</td></tr>
+<tr><td>A-08</td><td>(all sessions)</td><td>Old F-01: "~60 fixtures hidden behind client-side pagination"</td>
+<td>Liquipedia dates for Urban Riga #5 (Jun 28–29) and CCT Europe Challengers #4 (Jun 27–Jul 5) + lobby team-count pattern</td>
+<td><b>Resolved:</b> the extra 59–60 filter entries are completed matches; no hidden upcoming fixtures exist. tournaments_inventory.csv updated.</td></tr>
+<tr><td>A-09</td><td>#4</td><td>HOTU–fnatic row treats HLTV's 68.4% fnatic as the indicator while claiming market 50/50</td>
+<td><a href="https://egamersworld.com/counterstrike/match/EJZmJpBjeNx/hotu-vs-fnatic-KjM3caFTC">EGW</a> 1.82/1.82 → live 1.88/1.80; <a href="https://polymarket.com/teams/cs2/hotu">Polymarket</a> 48/53</td>
+<td>Market is genuinely near-even; HLTV community % is not a bookmaker line (correctly not used as probability, but the row's framing mixed the two — canonical row separates them).</td></tr>
+<tr><td>A-10</td><td>#4 + #5</td><td>Both PRs present a single static odds snapshot with no timestamps</td>
+<td>Same fixture showed 2.10/1.62 → 1.881/1.782 (Gothic–Lavked) and 1.07/5.90 → 1.07/6.45 (Astralis–Sashi) within one hour on 2026-10-13</td>
+<td>Canonical dataset stamps every odds row (snapshot_utc) and records intra-day movement in market_note.</td></tr>
+<tr><td>A-11</td><td>(canonical)</td><td>—</td><td>FORZE Reload–LFO 10: EGW placeholder 1.8/1.8, opponent unlisted on EGW page; no HLTV ranks verified for either team</td>
+<td><b>No line, no pick</b> — blank + flagged. Only unplayable fixture of the week.</td></tr>
+</table></div></div>
+<div class="card"><h2>What was kept from each PR</h2>
+<ul>
+<li><b>PR #4 (arena/51fb12f8)</b> — dark-theme JS dashboard under <code>site/</code> preserved (moved its root <code>index.html</code> to <code>site/index.html</code> with corrected asset paths). Its overround-removal approach matches ours; its two contradicted rows (A-01) and generic-source rows (A-02) were replaced by live values.</li>
+<li><b>PR #5 (arena/2cb6bff4)</b> — dashboard preserved as <code>hub.html</code> + <code>css/</code>, <code>js/</code>, <code>src/</code> (build pipeline), <code>tests/audit_site.py</code>; its dataset preserved as <code>data/matches_hub_2cb6bff4.csv|json</code> (superseded — see A-03/A-04). Its falsified merge log (A-05) is flagged, not silently edited.</li>
+<li><b>PR #1/#2 (arena/f89fbdfa, merged)</b> — docs/ site structure, ratings methodology and flags F-01…F-12 (F-01 resolved by A-08; F-03 narrowed to H-12 by this session's line collection).</li>
+</ul></div></main><footer>Analysis only — not betting advice. Hotspawn pick % is never used as a probability input. Snapshot 2026-10-13 (UTC).</footer></body></html>

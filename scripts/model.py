@@ -1,152 +1,165 @@
 #!/usr/bin/env python3
-"""Originate OUR OWN match-win probabilities and combine them with external lines.
+"""Rebuild data/matches.csv = fixtures x market lines x our own rank model.
 
-Hotspawn pick % is NEVER used here (it is not an input anywhere in this file).
+NEVER uses Hotspawn pick % as a probability input (display-only column).
 
-Inputs (all in data/):
-  ratings.csv        HLTV World Ranks (each row carries its source URL)
-  matches.csv        26 verbatim Hotspawn fixtures
-  external_lines.csv one row per source reading, status = accepted | indicative | rejected
+Inputs (all sourced, see file headers):
+  data/fixtures.csv  - the 26 verified Pick'em fixtures (Hotspawn + HLTV/EGW cross-refs)
+  data/lines.csv     - external bookmaker lines (EGamersWorld aggregated bookmaker odds)
+  data/ratings.csv   - HLTV world ranks, each row sourced
 
-Own model (documented, reproducible, rank-only):
-  rating(team)  = 2000 - 300 * log10(rank)
-  P(A beats B)  = 1 / (1 + 10 ** (-(rating_A - rating_B) / 400))   (Elo logistic)
-  If either team has no verified HLTV rank -> own P is BLANK (never inferred).
+Market model: implied p = 1/odds; overround removed proportionally (de-vig):
+  p_A = (1/odds_a) / (1/odds_a + 1/odds_b)
+Own model (rank-only, reproducible):
+  rating(team) = 2000 - 300 * log10(HLTV world rank)
+  P(A) = 1 / (1 + 10 ** (-(rating_A - rating_B)/400))
+  Blank if either rank is unverified - never inferred.
 
-External lines:
-  Polymarket cents  -> no-vig P(A) = a / (a + b)            (only if a+b in 98..106)
-  Decimal odds      -> implied 1/odds, normalised: P(A) = (1/oA) / (1/oA + 1/oB)
-  Only status=accepted rows feed the external probability; indicative rows are shown
-  but never used for a pick; rejected rows are shown for audit only.
+Pick rule (documented):
+  - market de-vig favorite wins the pick;
+  - if the two de-vig probabilities are within 2.0 pts -> "No confident pick";
+  - if no verified market line AND no verified pair of ranks -> "No pick (no verified line)";
+  - if no market line but both ranks verified -> pick the own-model favorite, labelled MODEL-PICK.
 
-Pick rule (conservative):
-  A side is picked only when BOTH the own model and the accepted external reading
-  favour the same side with P >= MIN_EDGE (55%). Otherwise pick = "no pick" (or "single-source
-  lean" when only one of the two exists, which is NOT a pick).
-
-Run: python3 scripts/model.py  -> writes data/analysis.csv and prints a summary.
+Divergence flag: |market_p - model_p| >= 12.5 pts on the market favorite (both present).
+Run: python3 scripts/model.py   (writes data/matches.csv)
 """
-import csv
-import math
-import pathlib
+import csv, math, pathlib
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-DATA = ROOT / "data"
+D = ROOT / 'data'
 
+ratings = {}
+for row in csv.DictReader(open(D / 'ratings.csv')):
+    if row['hltv_world_rank']:
+        ratings[row['team'].strip().lower()] = int(row['hltv_world_rank'])
 
-def read(name):
-    with open(DATA / name, newline="", encoding="utf-8") as f:
-        return list(csv.DictReader(f))
+ALIAS = {  # fixture display name (lowercase) -> ratings.csv key (lowercase)
+    'wrotberry': 'wbt',
+    'roundsgg': 'rounds',
+    'ninjas in pyjamas': 'nip',
+    'betboom': 'betboom',
+    'sashi': 'sashi',
+    'envy': 'envy',
+    'phantom esports': 'phantom',
+    'the last resort': 'the last resort',
+    'ea copenhagen': 'eac',
+    'esport academy copenhagen': 'eac',
+    'sashi esport': 'sashi',
+    'bc.game': 'bc.game',
+    'bc.game esports': 'bc.game',
+    'bcgame': 'bc.game',
+}
 
-
-def load_ratings():
-    out = {}
-    for row in read("ratings.csv"):
-        if row["hltv_world_rank"].strip():
-            out[row["team"].strip().lower()] = int(row["hltv_world_rank"])
-    return out
-
-
-MIN_EDGE = 0.55
-
-
-def rating(rank):
-    return 2000 - 300 * math.log10(rank)
-
-
-def own_p(rank_a, rank_b):
-    """Own-model P(A wins). Returns None when a rank is missing."""
-    if rank_a is None or rank_b is None:
-        return None
-    ra, rb = rating(rank_a), rating(rank_b)
-    return 1 / (1 + 10 ** (-(ra - rb) / 400))
-
-
-def external_p(row):
-    """No-vig P(A) for one external reading, or None if not usable."""
-    unit = row["unit"].strip()
-    try:
-        a = float(row["team_a_value"])
-        b = float(row["team_b_value"])
-    except ValueError:
-        return None
-    if unit == "cents":
-        if not (98 <= a + b <= 106):
-            return None
-        return a / (a + b)
-    if unit == "decimal":
-        ia, ib = 1 / a, 1 / b
-        return ia / (ia + ib)
+def rank_of(name):
+    n = name.strip().lower()
+    if n in ratings:
+        return ratings[n]
+    if n in ALIAS and ALIAS[n] in ratings:
+        return ratings[ALIAS[n]]
     return None
 
+def own_prob(a, b):
+    ra, rb = rank_of(a), rank_of(b)
+    if not ra or not rb:
+        return ''
+    Ra = 2000 - 300 * math.log10(ra)
+    Rb = 2000 - 300 * math.log10(rb)
+    return round(100 / (1 + 10 ** (-(Ra - Rb) / 400)), 1)
 
-def pct(p):
-    return "" if p is None else f"{100 * p:.1f}"
+def devig(oa, ob):
+    ia, ib = 1 / oa, 1 / ob
+    s = ia + ib
+    return round(100 * ia / s, 1), round(100 * ib / s, 1), round(100 * s - 100, 1)
 
+lines = {r['id']: r for r in csv.DictReader(open(D / 'lines.csv')) if r['scope'] == 'match'}
 
-def main():
-    ranks = load_ratings()
-    matches = read("matches.csv")
-    lines = read("external_lines.csv")
-    by_match = {}
-    for ln in lines:
-        by_match.setdefault(ln["match_id"], []).append(ln)
+rows = []
+for f in csv.DictReader(open(D / 'fixtures.csv')):
+    lid = f['id']
+    ln = lines.get(lid, {})
+    oa = (ln.get('odds_a') or '').strip()
+    ob = (ln.get('odds_b') or '').strip()
+    pa = pb = vig = ''
+    if oa and ob:
+        pa, pb, vig = devig(float(oa), float(ob))
+    mp = own_prob(f['team_a'], f['team_b'])
+    mb = round(100 - mp, 1) if mp != '' else ''
 
-    out_rows = []
-    for m in matches:
-        mid = m["id"]
-        a, b = m["team_a"], m["team_b"]
-        ra = ranks.get(a.lower())
-        rb = ranks.get(b.lower())
-        op = own_p(ra, rb)
-
-        accepted = [ln for ln in by_match.get(mid, []) if ln["status"] == "accepted"]
-        ext_ps = [(ln, external_p(ln)) for ln in accepted]
-        ext_ps = [(ln, p) for ln, p in ext_ps if p is not None]
-        ext_mean = sum(p for _, p in ext_ps) / len(ext_ps) if ext_ps else None
-
-        # Pick logic (see module docstring)
-        if op is None and ext_mean is None:
-            pick, basis = "no pick", "no usable own or external line"
-        elif op is None or ext_mean is None:
-            pick, basis = "no pick", "single source only (not a pick)"
-        elif (op > 0.5) != (ext_mean > 0.5):
-            pick, basis = "no pick", "own model and external disagree"
-        elif max(op, 1 - op) < MIN_EDGE or max(ext_mean, 1 - ext_mean) < MIN_EDGE:
-            pick, basis = "no pick", "edge below 55% on at least one source"
+    # Pick
+    if pa != '':
+        if abs(pa - pb) <= 2.0:
+            pick, pick_p = 'No confident pick (line ~even)', max(pa, pb)
         else:
-            fav = a if op > 0.5 else b
-            pick, basis = fav, "own model and accepted external agree (both >= 55%)"
+            fav_a = pa > pb
+            pick = f['team_a'] if fav_a else f['team_b']
+            pick_p = pa if fav_a else pb
+    elif mp != '':
+        fav_a = mp >= 50
+        pick = ('MODEL-PICK ' + f['team_a']) if fav_a else ('MODEL-PICK ' + f['team_b'])
+        pick_p = max(mp, mb)
+    else:
+        pick, pick_p = 'No pick (no verified line)', ''
 
-        statuses = sorted({ln["status"] for ln in by_match.get(mid, [])})
-        out_rows.append({
-            "id": mid,
-            "team_a": a,
-            "team_b": b,
-            "hltv_rank_a": ra or "",
-            "hltv_rank_b": rb or "",
-            "own_pA_pct": pct(op),
-            "own_pB_pct": pct(None if op is None else 1 - op),
-            "external_accepted_readings": len(ext_ps),
-            "external_pA_pct_mean_nova": pct(ext_mean),
-            "external_pB_pct_mean_nova": pct(None if ext_mean is None else 1 - ext_mean),
-            "reading_statuses": ";".join(statuses),
-            "pick": pick,
-            "pick_basis": basis,
-        })
+    # Divergence note
+    div = ''
+    if pa != '' and mp != '':
+        fav_a = pa > pb
+        mkt = pa if fav_a else pb
+        mdl = mp if fav_a else mb
+        if abs(mkt - mdl) >= 12.5:
+            div = f'model vs market divergence: market {mkt}% vs model {mdl}% on {pick}'
 
-    fields = list(out_rows[0].keys())
-    with open(DATA / "analysis.csv", "w", newline="", encoding="utf-8") as f:
-        w = csv.DictWriter(f, fieldnames=fields)
-        w.writeheader()
-        w.writerows(out_rows)
+    rows.append({
+        'id': lid,
+        'start_display': f['start_display'],
+        'start_utc': f.get('start_utc', ''),
+        'lock_utc': f.get('lock_utc', ''),
+        'tournament': f['tournament'],
+        'tier': f['tier'],
+        'format': f['format'],
+        'points': f['points'],
+        'team_a': f['team_a'],
+        'team_b': f['team_b'],
+        'odds_a': oa,
+        'odds_b': ob,
+        'market_p_a_pct': pa,
+        'market_p_b_pct': pb,
+        'overround_pct': vig,
+        'own_model_p_a_pct': mp,
+        'own_model_p_b_pct': mb,
+        'pick': pick,
+        'pick_win_p_pct': pick_p,
+        'divergence_note': div,
+        'odds_source': 'EGamersWorld (aggregated bookmaker odds)' if (oa and ob) else 'none verified',
+        'odds_source_url': (ln.get('source_url') or '') if (oa and ob) else '',
+        'odds_snapshot_utc': (ln.get('snapshot_utc') or '') if (oa and ob) else '',
+        'hotspawn_url': f['hotspawn_url'],
+        'crossref_url': f['crossref_url'],
+        'crossref_source': f['crossref_source'],
+        'hotspawn_pick_a_pct_snapshot': '',
+        'verification': 'fixture verified (Hotspawn + %s)' % f['crossref_source'] if (oa or mp != '') else 'fixture verified; line & probabilities blank - flagged',
+    })
 
-    for r in out_rows:
-        print(r["id"], f'{r["team_a"]} vs {r["team_b"]}',
-              "own A%:", r["own_pA_pct"] or "-",
-              "ext A%:", r["external_pA_pct_mean_nova"] or "-",
-              "pick:", r["pick"])
+# Attach the 18:10 UTC crowd snapshot for display only (never an input).
+CROWD = {
+ 'H-01': 86,'H-02': 11,'H-03': 10,'H-04': 5,'H-05': 95,'H-06': 9,'H-07': 89,'H-08': 89,
+ 'H-09': 83,'H-10': 100,'H-11': 89,'H-12': 89,'H-13': 73,'H-14': 30,'H-15': 90,'H-16': 94,
+ 'H-17': 29,'H-18': 93,'H-19': 87,'H-20': 27,'H-21': 27,'H-22': 93,'H-23': 64,'H-24': 93,
+ 'H-25': 0,'H-26': 100,
+}
+for r in rows:
+    r['hotspawn_pick_a_pct_snapshot'] = CROWD.get(r['id'], '')
 
+out = D / 'matches.csv'
+with open(out, 'w', newline='') as fh:
+    w = csv.DictWriter(fh, fieldnames=list(rows[0].keys()))
+    w.writeheader()
+    w.writerows(rows)
 
-if __name__ == "__main__":
-    main()
+# Console summary for verification
+def s(v):
+    return str(v) if v != '' else '-'
+for r in rows:
+    print(f"{r['id']:5s} {r['team_a']:>14s} vs {r['team_b']:<18s} odds {s(r['odds_a']):>6s}/{s(r['odds_b']):<6s} mkt {s(r['market_p_a_pct']):>5s}/{s(r['market_p_b_pct']):<5s} mdl {s(r['own_model_p_a_pct']):>5s}/{s(r['own_model_p_b_pct']):<5s} pick: {r['pick']} ({s(r['pick_win_p_pct'])})")
+print(f"\n{len(rows)} rows -> {out}")
