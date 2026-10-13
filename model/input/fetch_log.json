@@ -1,0 +1,57 @@
+{
+ "run_utc": "2026-10-13T18:26:54Z",
+ "hotspawn": {
+  "pages": [
+   {
+    "url": "https://play.hotspawn.com/cs2-pickems",
+    "final_url": "https://play.hotspawn.com/cs2-pickems",
+    "fetched_utc": "2026-10-13T18:26:54Z",
+    "http_status": 200,
+    "bytes": 391957,
+    "sha256": "cc6f31651d5ecd507fe06873f52ecc72048ce776270641c72e0454c5f2308622",
+    "transferstate_key": "3511569607",
+    "fixture_count": 85,
+    "lobby_header_matches_this_week": 60,
+    "lobby_filter_all_tiers": 85,
+    "result": "OK - 85 fixtures"
+   },
+   {
+    "url": "https://play.hotspawn.com/lobby",
+    "final_url": "https://play.hotspawn.com/lobby",
+    "fetched_utc": "2026-10-13T18:26:55Z",
+    "http_status": 200,
+    "bytes": 402178,
+    "sha256": "7c21397146ea5d8653abdea5e58d0ca3a19db07285d4d697564c3d50ddbc96a6",
+    "transferstate_key": "3511569607",
+    "fixture_count": 86,
+    "lobby_header_matches_this_week": 60,
+    "lobby_filter_all_tiers": 86,
+    "result": "OK - 86 fixtures"
+   }
+  ],
+  "result": "OK - 86 CS2 fixtures (union of 2 pages)"
+ },
+ "vrs": {
+  "url": "https://github.com/ValveSoftware/counter-strike_regional_standings",
+  "fetched_utc": "2026-10-13T18:26:56Z",
+  "result": "OK - live/2026/standings_global_2026_10_05.md @ eec4853d7b",
+  "commit": "eec4853d7bcf0f1f7efe7f0d901234bef7e98b75",
+  "path": "live/2026/standings_global_2026_10_05.md"
+ },
+ "hltv": {
+  "url": "https://www.hltv.org/ranking/teams",
+  "final_url": "https://www.hltv.org/ranking/teams/2026/october/12",
+  "fetched_utc": "2026-10-13T18:27:00Z",
+  "http_status": 200,
+  "bytes": 1095582,
+  "sha256": "8d77923bef46c5e3379663d340db74267fbdb6fc8ecc3a10996603388fac713d",
+  "attempts": [
+   {
+    "url": "https://www.hltv.org/ranking/teams",
+    "fetched_utc": "2026-10-13T18:27:00Z",
+    "http_status": 200
+   }
+  ],
+  "result": "OK - 245 teams, World ranking on October 12th, 2026"
+ }
+}
