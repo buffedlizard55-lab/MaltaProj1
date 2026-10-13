@@ -1,24 +1,28 @@
 # MaltaProj1 — Hotspawn Pick'em betting-line analysis
 
-Live site (GitHub Pages, from `docs/`): https://buffedlizard55-lab.github.io/MaltaProj1/
+Live site: **https://buffedlizard55-lab.github.io/MaltaProj1/** (GitHub Pages, `main:/`).
 
-Independent analysis of the CS2 matches in the Hotspawn Play Pick'em game
-(https://play.hotspawn.com/lobby). Probabilities come from **external bookmaker
-lines** (EGamersWorld aggregated bookmaker odds, de-vigged) and **our own
-HLTV-rank model** — never from Hotspawn's crowd percentages.
+Independent, source-linked analysis of the CS2 matches in the [Hotspawn Play Pick'em](https://play.hotspawn.com/lobby).
+Probabilities come only from **external bookmaker lines** (EGamersWorld aggregated odds, de-vigged) and
+**our own HLTV-rank model** — never from Hotspawn's crowd percentages. Unverifiable values are left
+**blank** and published on the **Flagged for Review** page — nothing is inferred.
 
-- `data/fixtures.csv` — the 26 verified pickable fixtures (Hotspawn + HLTV/EGW cross-refs).
-- `data/lines.csv` — external bookmaker match lines (snapshot-stamped) + Thunderpick WC outrights.
-- `data/ratings.csv` — HLTV world ranks, every row sourced. Blank = unverified (never inferred).
-- `data/matches.csv` — generated analysis table (run `python3 scripts/model.py`).
-- `data/tournaments_inventory.csv` — why the lobby filter counts 85 when only 25 are pickable.
-- `scripts/model.py` — regenerates `data/matches.csv` (de-vig + Elo-logistic rank model + pick rule).
-- `scripts/build_docs.py` — regenerates every page in `docs/` from the CSVs.
-- `docs/` — the site: dashboard, per-category pages, methodology, reverse-engineering notes,
-  PR audit, **Flagged for Review** (all unverified items published there, non-blocking).
+## Where to look
+| Path | What |
+|------|------|
+| `docs/` | **Canonical verified dashboard** (generated): all 26 pickable fixtures, market win %, own-model %, pick per match, per-row source links, `audit.html` (parallel-PR audit), `flagged.html`, `sources.html`, `methodology.html`, `reverse-engineering.html` |
+| `index.html` (root) | Landing hub (links `pickem/`, `docs/`, `lines/analysis.csv`) |
+| `pickem/` | Full-slate dashboard for both titles (380 fixtures from the site's own payload) + its own Flagged/Sources/Methodology |
+| `data/fixtures.csv` | The 26 pickable fixtures — Hotspawn + payload + HLTV/EGW cross-refs, exact UTC start/lock times |
+| `data/lines.csv` | Verified bookmaker match lines (snapshot-stamped) + Thunderpick WC outrights |
+| `data/ratings.csv` | HLTV world ranks, every row sourced; blank = unverified |
+| `data/matches.csv` | Generated analysis table |
+| `assurance/`, `site/`, `hub.html` | Parallel-session dashboards, preserved (see `docs/audit.html` for their data audit) |
 
-Parallel-session contributions preserved: `site/` (PR #4 dashboard, arena/51fb12f8) and
-`hub.html` + `css/ js/ src/ tests/` + `data/matches_hub_2cb6bff4.*` (PR #5, arena/2cb6bff4).
-Their data discrepancies are audited in `docs/audit.html`; the canonical dataset is `data/matches.csv`.
+## Reproduce
+```bash
+python3 scripts/model.py        # data/fixtures.csv + lines.csv + ratings.csv -> data/matches.csv
+python3 scripts/build_docs.py   # data/*.csv -> every docs/*.html page
+```
 
 Analysis only — not betting advice.

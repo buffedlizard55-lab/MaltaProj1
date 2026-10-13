@@ -113,6 +113,8 @@ for f in csv.DictReader(open(D / 'fixtures.csv')):
     rows.append({
         'id': lid,
         'start_display': f['start_display'],
+        'start_utc': f.get('start_utc', ''),
+        'lock_utc': f.get('lock_utc', ''),
         'tournament': f['tournament'],
         'tier': f['tier'],
         'format': f['format'],

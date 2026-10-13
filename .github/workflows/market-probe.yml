@@ -1,0 +1,44 @@
+name: Market source probe
+
+on:
+  push:
+    branches: [arena/79a1c6c8-maltaproj1]
+    paths:
+      - src/market_probe.py
+      - .github/workflows/market-probe.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: market-probe
+  cancel-in-progress: false
+
+jobs:
+  lines:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Probe public market endpoints
+        run: python src/market_probe.py
+      - name: Commit readings to the session branch
+        if: always()
+        run: |
+          git config user.name "arena-79a1c6c8"
+          git config user.email "arena@users.noreply.github.com"
+          git add -f data/market_probe.json evidence/ || true
+          git commit -m "probe: market source readings [skip ci]" || echo "nothing to commit"
+          git pull --rebase origin "${GITHUB_REF_NAME}" || true
+          git push origin "HEAD:${GITHUB_REF_NAME}" || echo "push failed"
+      - name: Upload raw evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: market-probe-evidence
+          path: evidence/
+          retention-days: 5

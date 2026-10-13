@@ -47,7 +47,7 @@ def match_rows(ids):
             continue
         div = f"<br><small>⚠ {esc(r['divergence_note'])}</small>" if r['divergence_note'] else ''
         out.append(
-            f"<tr><td>{r['id']}<br><small>{r['start_display']}</small></td>"
+            f"<tr><td>{r['id']}<br><small>{r['start_display']} (UTC {r.get('start_utc','')[:16]})</small></td>"
             f"<td><b>{esc(r['team_a'])}</b> vs <b>{esc(r['team_b'])}</b><br><small>{esc(r['tournament'])} · Tier {r['tier']} · {r['format']} · {r['points']} pts</small></td>"
             f"<td>{r['odds_a'] or BLANK} / {r['odds_b'] or BLANK}</td>"
             f"<td>{pct(r['market_p_a_pct'])} / {pct(r['market_p_b_pct'])}<br><small>vig {r['overround_pct'] or '—'}%</small></td>"
@@ -56,7 +56,7 @@ def match_rows(ids):
             f"<td><small>{src_cell(r)}</small></td></tr>")
     return '\n'.join(out)
 
-TBL_HEAD = ("<div class='wrap'><table><tr><th># / lock (Hotspawn display)</th><th>Match</th><th>Book odds A/B (decimal)</th>"
+TBL_HEAD = ("<div class='wrap'><table><tr><th># / start (display + UTC)</th><th>Match</th><th>Book odds A/B (decimal)</th>"
             "<th>Market win % (de-vig)</th><th>Our rank-model %</th><th>Pick</th><th>Sources (every row)</th></tr>")
 
 # ---------------- index ----------------
