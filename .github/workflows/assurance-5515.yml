@@ -1,0 +1,44 @@
+name: Independent evidence assurance
+on:
+  push:
+    paths:
+      - 'assurance/**'
+      - '.github/workflows/assurance-5515.yml'
+  pull_request:
+    paths:
+      - 'assurance/**'
+      - '.github/workflows/assurance-5515.yml'
+  schedule:
+    - cron: '23 6 * * *'
+  workflow_dispatch:
+permissions:
+  contents: read
+  checks: write
+concurrency:
+  group: assurance-5515-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build independent audit and verify every local link
+        run: python3 -m unittest discover -s assurance -p 'test_*.py' -v
+      - name: Check primary source accessibility without promoting verification
+        if: github.event_name != 'pull_request'
+        run: python3 assurance/check_sources.py --publish-check
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Preserve the audit and source HTTP report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: assurance-5515-${{ github.run_id }}
+          path: |
+            assurance/report.json
+            assurance/source_checks.json
+          retention-days: 14
