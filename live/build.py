@@ -60,12 +60,20 @@ ALIASES = {
     "bc game": "bc.game",
     "team envy": "envy",
     "heroic": "heroic",
+    # Pinnacle spells two teams differently to the Pick'em board; both joins are checked against the
+    # fixture start time by the tolerance rule before a row is allowed to use them.
+    "pvision": "parivision",
+    "bb": "betboom",
+    "aurora gaming": "aurora",
 }
 ALIAS_SOURCES = {
     "wrotberry": "https://www.hltv.org/matches/2399418/wbt-vs-eac-elisa-breakout-series-2",
     "roundsgg": "https://www.hltv.org/team/12676/rounds",
     "ea copenhagen": "https://www.hltv.org/team/11648/eac",
     "ninjas in pyjamas": "https://www.hltv.org/team/4411/ninjas-in-pyjamas",
+    "pvision": "https://www.hltv.org/team/12467/parivision",
+    "bb": "https://betboom.team/",
+    "aurora gaming": "https://www.hltv.org/team/11861/aurora",
 }
 
 

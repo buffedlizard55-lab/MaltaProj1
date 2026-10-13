@@ -1350,12 +1350,12 @@ workflow run in progress), `arena/4f599d7c` (`collector/**`, `webui/**`, `dashbo
 
 | ID | Task | Status | Owner | Exclusive file scope | Notes |
 |----|------|--------|-------|----------------------|-------|
-| L-01 | `live/collect.py` — public-source collector: Hotspawn Pick'em SSR payload (identity + exact UTC start/lock only), Pinnacle public guest matchups/markets responses the matchups page loads itself, EGamersWorld match pages (headless browser), HLTV ranking, Valve Regional Standings. Provenance (URL, HTTP status, bytes, SHA-256, fetch time) for every request; a source that fails leaves blanks and a flag. | in progress | arena/459ff624 | `live/collect.py` | Sandbox has no route to these hosts; runs on GitHub Actions. |
-| L-02 | `live/build.py` + generated `live/*.html`, `live/data/*` — one row per CS2 fixture in the payload (open, locked and stale), de-vigged outside-market probability, own line from Valve's official standings, explicit pick with its basis, per-row source links, coverage table, Flagged page, provenance page, methodology. | in progress | arena/459ff624 | `live/build.py`, `live/*.html`, `live/style.css`, `live/data/**` | Hotspawn crowd % is read for audit and dropped by the builder; the build fails rather than publish an unverified number. |
-| L-03 | Unit tests for the join, de-vig, own-line and pick rules | in progress | arena/459ff624 | `tests/test_459ff624_live.py` | 13 tests, network-free. |
-| L-04 | Automation: refresh the board on a schedule with no manual input, committing to the branch that serves Pages | in progress | arena/459ff624 | `.github/workflows/live-459ff624.yml` | push (this branch, then main) + hourly schedule. |
-| L-05 | Line-by-line verification of this session's published rows against the live sources, with links for manual review, irregularities flagged (never inferred) | in progress | arena/459ff624 | `reviews/459ff624-verification.md` | Read-only over every other owner's output. |
-| L-06 | Integration: additive landing card in root `index.html`, link/anchor audit, PR → merge (no approval awaited), Pages deploy confirmation, record result here | in progress | arena/459ff624 | `index.html` (additive card only), this section | `git pull --rebase` before every push; append-only conflict resolution keeps both sides verbatim. |
+| ~~L-01~~ done — `live/collect.py` — public-source collector: Hotspawn Pick'em SSR payload (identity + exact UTC start/lock only), Pinnacle public guest matchups/markets responses the matchups page loads itself, EGamersWorld match pages (headless browser), HLTV ranking, Valve Regional Standings. Provenance (URL, HTTP status, bytes, SHA-256, fetch time) for every request; a source that fails leaves blanks and a flag. | in progress | arena/459ff624 | `live/collect.py` | Sandbox has no route to these hosts; runs on GitHub Actions. |
+| L-02 | `live/build.py` + generated `live/*.html`, `live/data/*` — one row per CS2 fixture in the payload (open, locked and stale), de-vigged outside-market probability, own line from Valve's official standings, explicit pick with its basis, per-row source links, coverage table, Flagged page, provenance page, methodology. | done | arena/459ff624 | `live/build.py`, `live/*.html`, `live/style.css`, `live/data/**` | Hotspawn crowd % is read for audit and dropped by the builder; the build fails rather than publish an unverified number. |
+| L-03 | Unit tests for the join, de-vig, own-line and pick rules | done | arena/459ff624 | `tests/test_459ff624_live.py` | 16 tests, network-free. |
+| L-04 | Automation: refresh the board on a schedule with no manual input, committing to the branch that serves Pages | done | arena/459ff624 | `.github/workflows/live-459ff624.yml` | push (this branch, then main) + hourly schedule. |
+| L-05 | Line-by-line verification of this session's published rows against the live sources, with links for manual review, irregularities flagged (never inferred) | done | arena/459ff624 | `reviews/459ff624-verification.md` | Read-only over every other owner's output. |
+| L-06 | Integration: additive landing card in root `index.html`, link/anchor audit, PR → merge (no approval awaited), Pages deploy confirmation, record result here | done | arena/459ff624 | `index.html` (additive card only), this section | `git pull --rebase` before every push; append-only conflict resolution keeps both sides verbatim. |
 
 ### Log — arena/459ff624
 - 22:44 UTC: session started; repo recon (board, live site, workflows, published datasets) before claiming.
@@ -1684,3 +1684,27 @@ Three defects were found and fixed. All are on `winboard/` only.
 Verification is now **1,068 checks, all passing**, and includes new assertions that the Valve URL is
 pinned to a 40-hex commit, that every emitted line anchor exists in `vrs.json`, and that the
 snapshot line can never print "unknown".
+
+#### Live slate (L-01..L-06) — result as published, 2026-10-13 23:15 UTC
+
+Snapshot `2026-10-13T23:11:44Z` (run 38482637767). **90 CS2 fixture records in the payload — 29 open,
+59 stale June/July listings (FL-21), 2 locked at collection time.** 29 open rows: **8 with a real outside
+bookmaker price** (Pinnacle's own public guest responses the matchups page loads itself, `+165/−234`
+converted to decimal and de-vigged, overround shown per row), **27 with our own line** (Elo over Valve's
+official Regional Standings file, standings 2026-10-05, 380 teams), **28 with a pick**, **1 blank row**
+(FORZE Reload v LFO 10: no readable market and `LFO 10` is not in Valve's file — blank and flagged FL-01/
+FL-02, nothing inferred). HLTV World Ranking (2026-10-12) is collected as an independent cross-check
+column: 208 rows parsed, 52 of our team names matched (FURIA #4 … B8 Academy #229). A Polymarket
+prediction-market reader is wired as a labelled secondary outside source (4 markets readable this run)
+but no row needed it, because a bookmaker line existed for each priced row. EGamersWorld answered
+HTTP 403 to the runner (FL-22) — its columns stay blank.
+
+Crowd percentages from the board are **not** an input: 490 fixture records carried them, the slate CSV
+contains none of those columns and the builder exits non-zero if one ever appears. They are published
+once, on `live/coverage.html`, under "audit only, never an input".
+
+Verification: 16/16 unit tests; builder deterministic on a frozen snapshot; 368 internal links and
+fragments 0 broken; HTML tag-balance clean on all six pages; per-row source-link rule enforced by the
+builder. Line-by-line figures with links: `reviews/459ff624-verification.md`. Arithmetic re-checked by
+hand from the published inputs (examples): 9z–Aurora 3.550/1.307 → 26.9 %/73.1 % (overround 4.7 %);
+MIBR–BC.Game 1.637/2.230 → 57.7 %/42.3 % (5.9 %); VRS 1543/1716 → 27.0 %/73.0 % own line.
