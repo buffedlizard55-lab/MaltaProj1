@@ -1,0 +1,29 @@
+name: Public source audit
+
+# One-time broad discovery is retired. Audits now use the same privacy allowlist
+# as scheduled collection; never archive unrelated leaderboard/account payloads.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  inspect:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: '3.12'
+      - run: |
+          python -m pip install -r requirements.txt
+          python -m playwright install --with-deps chromium
+      - name: Read public fixture and bookmaker evidence only
+        run: python scripts/discover_sources.py
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5
+        with:
+          name: minimized-public-source-audit
+          path: .cache/discovery-audit/
+          retention-days: 3

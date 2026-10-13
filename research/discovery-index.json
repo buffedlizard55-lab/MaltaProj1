@@ -1,0 +1,421 @@
+{
+  "started_at": "2026-10-13T18:06:13Z",
+  "pages": [
+    {
+      "label": "hotspawn",
+      "url": "https://play.hotspawn.com/lobby",
+      "status": 200,
+      "final_url": "https://play.hotspawn.com/lobby",
+      "file": "hotspawn-7c21397146ea5d86.html",
+      "scripts": [
+        {
+          "url": "https://play.hotspawn.com/polyfills-5CFQRCPP.js",
+          "status": 200,
+          "file": "hotspawn-15c6f58707b9b191.js",
+          "public_url_hints": []
+        },
+        {
+          "url": "https://play.hotspawn.com/main-YNSCYNCE.js",
+          "status": 200,
+          "file": "hotspawn-bcd1fc7f4ec2b321.js",
+          "public_url_hints": [
+            "/api/v1/competitions/twc-sponsored"
+          ]
+        }
+      ]
+    },
+    {
+      "label": "thunderpick",
+      "url": "https://thunderpick.io/esports/cs2-betting",
+      "status": 403,
+      "final_url": "https://thunderpick.io/esports/cs2-betting",
+      "file": "thunderpick-18c84202ffeec9bc.html",
+      "scripts": []
+    },
+    {
+      "label": "pinnacle",
+      "url": "https://www.pinnacle.com/en/esports-hub",
+      "status": 200,
+      "final_url": "https://www.pinnacle.com/en/esports/matchups/highlights/",
+      "file": "pinnacle-3f7de2cdd588e8d6.html",
+      "scripts": [
+        {
+          "url": "https://www.pinnacle.com/runtime.ef487b2f566a32f11f5c.js",
+          "status": 200,
+          "file": "pinnacle-86e8de958ae1c0d7.js",
+          "public_url_hints": []
+        },
+        {
+          "url": "https://www.pinnacle.com/vendor-misc.72add35f2589de9a2115.js",
+          "status": 200,
+          "file": "pinnacle-204762507e190899.js",
+          "public_url_hints": [
+            "https://api.sumsub.com",
+            "https://www.recaptcha.net/recaptcha/api.js?onload=onLoadCaptchaV3Callback&render="
+          ]
+        },
+        {
+          "url": "https://www.pinnacle.com/main.21915cbbcac6c750d43c.js",
+          "status": 200,
+          "file": "pinnacle-3dde3e65113b087d.js",
+          "public_url_hints": []
+        }
+      ]
+    },
+    {
+      "label": "hltv",
+      "url": "https://www.hltv.org/matches",
+      "status": 403,
+      "final_url": "https://www.hltv.org/matches",
+      "file": "hltv-c564048e0baea23e.html",
+      "scripts": []
+    },
+    {
+      "label": "hotspawn",
+      "mode": "browser",
+      "url": "https://play.hotspawn.com/lobby",
+      "status": 200,
+      "html_file": "hotspawn-browser-12ce19663fd768c4.html",
+      "text_file": "hotspawn-browser-cc528e569d4ff1e7.txt"
+    },
+    {
+      "label": "thunderpick",
+      "mode": "browser",
+      "url": "https://thunderpick.io/esports/cs2-betting",
+      "status": 403,
+      "html_file": "thunderpick-browser-fa8eb7e752534812.html",
+      "text_file": "thunderpick-browser-d91433ef6026c70d.txt"
+    },
+    {
+      "label": "pinnacle",
+      "mode": "browser",
+      "url": "https://www.pinnacle.com/en/esports/matchups/highlights/",
+      "status": 200,
+      "html_file": "pinnacle-browser-ec374e7e04b42774.html",
+      "text_file": "pinnacle-browser-99b9d198b4edb2b8.txt"
+    },
+    {
+      "label": "hltv",
+      "mode": "browser",
+      "url": "https://www.hltv.org/matches",
+      "status": 403,
+      "html_file": "hltv-browser-34f82c9440f350e2.html",
+      "text_file": "hltv-browser-f22e167e7dc6e36c.txt"
+    }
+  ],
+  "network": [
+    {
+      "source": "hotspawn",
+      "url": "https://phpstack-1372681-6459848.cloudwaysapps.com/api/v1/pickem-weeks/lobby-progress?tenantId=1&sportAlias=cs2",
+      "status": 200,
+      "content_type": "application/json; charset=utf-8",
+      "file": "hotspawn-response-217a8b8004d8a547.json",
+      "observed_in": "https://play.hotspawn.com/lobby"
+    },
+    {
+      "source": "hotspawn",
+      "url": "https://phpstack-1372681-6459848.cloudwaysapps.com/api/v1/pickem-weeks/leaderboard?tenantId=1&sportAlias=cs2&timeframe=week&limit=10&offset=0",
+      "status": 200,
+      "content_type": "application/json; charset=utf-8",
+      "file": "hotspawn-response-70ee08f99bf59437.json",
+      "observed_in": "https://play.hotspawn.com/lobby"
+    },
+    {
+      "source": "hotspawn",
+      "url": "https://phpstack-1372681-6459848.cloudwaysapps.com/api/v1/admin/gamification/fixtures/permalinks?ids=1081076,1079546,1079621,1080176,1079438,1079439,1079622,1080177,1080178,1079623,1080179,1079624,1080279,1079440,1079442,1080280,1080281,1080282,1080283,1080284,1080285,1080286,1080287,1080288,1080289,1080290",
+      "status": 200,
+      "content_type": "application/json; charset=utf-8",
+      "file": "hotspawn-response-336dbe79dcbc7037.json",
+      "observed_in": "https://play.hotspawn.com/lobby"
+    },
+    {
+      "source": "hotspawn",
+      "url": "https://www.hotspawn.com/wp-json/gamification/v1/menu_html",
+      "status": 200,
+      "content_type": "application/json; charset=UTF-8",
+      "file": "hotspawn-response-df94d84582f9ec39.json",
+      "observed_in": "https://play.hotspawn.com/lobby"
+    },
+    {
+      "source": "hotspawn",
+      "url": "https://www.hotspawn.com/wp-json/gamification/v1/footer_html",
+      "status": 200,
+      "content_type": "application/json; charset=UTF-8",
+      "file": "hotspawn-response-4e2faa7b5c4baa3f.json",
+      "observed_in": "https://play.hotspawn.com/lobby"
+    },
+    {
+      "source": "pinnacle",
+      "url": "https://www.pinnacle.com/config/app.json",
+      "status": 200,
+      "content_type": "application/json",
+      "file": "pinnacle-response-3792e0523d8a11f8.json",
+      "observed_in": "https://www.pinnacle.com/en/esports-hub"
+    },
+    {
+      "source": "pinnacle",
+      "url": "https://www.pinnacle.com/config/sportsbook.json",
+      "status": 200,
+      "content_type": "application/json",
+      "file": "pinnacle-response-d27f2bec40399115.json",
+      "observed_in": "https://www.pinnacle.com/en/esports-hub"
+    },
+    {
+      "source": "pinnacle",
+      "url": "https://www.pinnacle.com/en/future/MaintenanceNotice",
+      "status": 200,
+      "content_type": "application/json; charset=utf-8",
+      "file": "pinnacle-response-4f53cda18c2baa0c.json",
+      "observed_in": "https://www.pinnacle.com/en/esports-hub"
+    },
+    {
+      "source": "pinnacle",
+      "url": "https://guest.api.arcadia.pinnacle.com/0.1/status",
+      "status": 200,
+      "content_type": "application/json",
+      "file": "pinnacle-response-ad5330c7eadfc9f8.json",
+      "observed_in": "https://www.pinnacle.com/en/esports-hub"
+    },
+    {
+      "source": "pinnacle",
+      "url": "https://guest.api.arcadia.pinnacle.com/0.1/enums/occupations",
+      "status": 200,
+      "content_type": "application/json",
+      "file": "pinnacle-response-09c2cb4919ce9556.json",
+      "observed_in": "https://www.pinnacle.com/en/esports-hub"
+    },
+    {
+      "source": "pinnacle",
+      "url": "https://guest.api.arcadia.pinnacle.com/0.1/currency/rates",
+      "status": 200,
+      "content_type": "application/json",
+      "file": "pinnacle-response-1ffa2823558d8d70.json",
+      "observed_in": "https://www.pinnacle.com/en/esports-hub"
+    },
+    {
+      "source": "pinnacle",
+      "url": "https://guest.api.arcadia.pinnacle.com/0.1/dataVersion",
+      "status": 200,
+      "content_type": "application/json",
+      "file": "pinnacle-response-4b8894d57dfa621e.json",
+      "observed_in": "https://www.pinnacle.com/en/esports-hub"
+    },
+    {
+      "source": "pinnacle",
+      "url": "https://guest.api.arcadia.pinnacle.com/0.1/sports",
+      "status": 200,
+      "content_type": "application/json",
+      "file": "pinnacle-response-f55a3d49d7393771.json",
+      "observed_in": "https://www.pinnacle.com/en/esports-hub"
+    },
+    {
+      "source": "pinnacle",
+      "url": "https://www.pinnacle.com/translations/tron/production/en.json",
+      "status": 200,
+      "content_type": "application/json",
+      "file": "pinnacle-response-5d0ffcffa2454d5f.json",
+      "observed_in": "https://www.pinnacle.com/en/esports-hub"
+    },
+    {
+      "source": "pinnacle",
+      "url": "https://guest.api.arcadia.pinnacle.com/0.1/enums",
+      "status": 200,
+      "content_type": "application/json",
+      "file": "pinnacle-response-27e97f8285e87442.json",
+      "observed_in": "https://www.pinnacle.com/en/esports-hub"
+    },
+    {
+      "source": "pinnacle",
+      "url": "https://guest.api.arcadia.pinnacle.com/0.1/labels",
+      "status": 200,
+      "content_type": "application/json",
+      "file": "pinnacle-response-4142c998edfbb93f.json",
+      "observed_in": "https://www.pinnacle.com/en/esports-hub"
+    },
+    {
+      "source": "pinnacle",
+      "url": "https://guest.api.arcadia.pinnacle.com/0.1/teasers",
+      "status": 200,
+      "content_type": "application/json",
+      "file": "pinnacle-response-877c96552d81dfd0.json",
+      "observed_in": "https://www.pinnacle.com/en/esports-hub"
+    },
+    {
+      "source": "pinnacle",
+      "url": "https://www.pinnacle.com/en/future/promos/?tags=promo_home_bottom",
+      "status": 200,
+      "content_type": "application/json; charset=utf-8",
+      "file": "pinnacle-response-4f53cda18c2baa0c.json",
+      "observed_in": "https://www.pinnacle.com/en/esports-hub"
+    },
+    {
+      "source": "pinnacle",
+      "url": "https://www.pinnacle.com/en/future/promos/?tags=promo_home_bottom",
+      "status": 200,
+      "content_type": "application/json; charset=utf-8",
+      "file": "pinnacle-response-4f53cda18c2baa0c.json",
+      "observed_in": "https://www.pinnacle.com/en/esports-hub"
+    },
+    {
+      "source": "pinnacle",
+      "url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/highlighted/straight?primaryOnly=false",
+      "status": 200,
+      "content_type": "application/json",
+      "file": "pinnacle-response-53b8b151b0809027.json",
+      "observed_in": "https://www.pinnacle.com/en/esports-hub"
+    },
+    {
+      "source": "pinnacle",
+      "url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/leagues?all=false",
+      "status": 200,
+      "content_type": "application/json",
+      "file": "pinnacle-response-0f4a0c3c984cdfe7.json",
+      "observed_in": "https://www.pinnacle.com/en/esports-hub"
+    },
+    {
+      "source": "pinnacle",
+      "url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/leagues?all=false",
+      "status": 200,
+      "content_type": "application/json",
+      "file": "pinnacle-response-0f4a0c3c984cdfe7.json",
+      "observed_in": "https://www.pinnacle.com/en/esports-hub"
+    },
+    {
+      "source": "pinnacle",
+      "url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/matchups/highlighted",
+      "status": 200,
+      "content_type": "application/json",
+      "file": "pinnacle-response-f83fafb2884c7732.json",
+      "observed_in": "https://www.pinnacle.com/en/esports-hub"
+    },
+    {
+      "source": "pinnacle",
+      "url": "https://guest.api.arcadia.pinnacle.com/0.1/leagues/12/matchups",
+      "status": 200,
+      "content_type": "application/json",
+      "file": "pinnacle-response-37517e5f3dc66819.json",
+      "observed_in": "https://www.pinnacle.com/en/esports-hub"
+    },
+    {
+      "source": "pinnacle",
+      "url": "https://guest.api.arcadia.pinnacle.com/0.1/leagues/12/markets/straight",
+      "status": 200,
+      "content_type": "application/json",
+      "file": "pinnacle-response-37517e5f3dc66819.json",
+      "observed_in": "https://www.pinnacle.com/en/esports-hub"
+    },
+    {
+      "source": "pinnacle",
+      "url": "https://guest.api.arcadia.pinnacle.com/0.1/time",
+      "status": 403,
+      "content_type": "application/problem+json",
+      "file": "pinnacle-response-e2cc79e618268d9d.json",
+      "observed_in": "https://www.pinnacle.com/en/esports-hub"
+    },
+    {
+      "source": "pinnacle",
+      "url": "https://guest.api.arcadia.pinnacle.com/0.1/location",
+      "status": 403,
+      "content_type": "application/problem+json",
+      "file": "pinnacle-response-e2cc79e618268d9d.json",
+      "observed_in": "https://www.pinnacle.com/en/esports-hub"
+    },
+    {
+      "source": "pinnacle",
+      "url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/matchups/carousel",
+      "status": 403,
+      "content_type": "application/problem+json",
+      "file": "pinnacle-response-e2cc79e618268d9d.json",
+      "observed_in": "https://www.pinnacle.com/en/esports-hub"
+    },
+    {
+      "source": "pinnacle",
+      "url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/highlighted/straight?primaryOnly=false",
+      "status": 200,
+      "content_type": "application/json",
+      "file": "pinnacle-response-53b8b151b0809027.json",
+      "observed_in": "https://www.pinnacle.com/en/esports-hub"
+    },
+    {
+      "source": "pinnacle",
+      "url": "https://guest.api.arcadia.pinnacle.com/0.1/leagues/12/markets/straight",
+      "status": 200,
+      "content_type": "application/json",
+      "file": "pinnacle-response-37517e5f3dc66819.json",
+      "observed_in": "https://www.pinnacle.com/en/esports-hub"
+    },
+    {
+      "source": "pinnacle",
+      "url": "https://guest.api.arcadia.pinnacle.com/0.1/time",
+      "status": 403,
+      "content_type": "application/problem+json",
+      "file": "pinnacle-response-e2cc79e618268d9d.json",
+      "observed_in": "https://www.pinnacle.com/en/esports-hub"
+    },
+    {
+      "source": "pinnacle",
+      "url": "https://guest.api.arcadia.pinnacle.com/0.1/status",
+      "status": 200,
+      "content_type": "application/json",
+      "file": "pinnacle-response-ad5330c7eadfc9f8.json",
+      "observed_in": "https://www.pinnacle.com/en/esports-hub"
+    },
+    {
+      "source": "pinnacle",
+      "url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/matchups/highlighted",
+      "status": 200,
+      "content_type": "application/json",
+      "file": "pinnacle-response-f83fafb2884c7732.json",
+      "observed_in": "https://www.pinnacle.com/en/esports-hub"
+    },
+    {
+      "source": "pinnacle",
+      "url": "https://guest.api.arcadia.pinnacle.com/0.1/leagues/12/matchups",
+      "status": 200,
+      "content_type": "application/json",
+      "file": "pinnacle-response-37517e5f3dc66819.json",
+      "observed_in": "https://www.pinnacle.com/en/esports-hub"
+    },
+    {
+      "source": "pinnacle",
+      "url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/highlighted/straight?primaryOnly=false",
+      "status": 200,
+      "content_type": "application/json",
+      "file": "pinnacle-response-53b8b151b0809027.json",
+      "observed_in": "https://www.pinnacle.com/en/esports-hub"
+    },
+    {
+      "source": "pinnacle",
+      "url": "https://guest.api.arcadia.pinnacle.com/0.1/leagues/12/markets/straight",
+      "status": 200,
+      "content_type": "application/json",
+      "file": "pinnacle-response-37517e5f3dc66819.json",
+      "observed_in": "https://www.pinnacle.com/en/esports-hub"
+    },
+    {
+      "source": "pinnacle",
+      "url": "https://guest.api.arcadia.pinnacle.com/0.1/time",
+      "status": 403,
+      "content_type": "application/problem+json",
+      "file": "pinnacle-response-e2cc79e618268d9d.json",
+      "observed_in": "https://www.pinnacle.com/en/esports-hub"
+    },
+    {
+      "source": "pinnacle",
+      "url": "https://guest.api.arcadia.pinnacle.com/0.1/status",
+      "status": 200,
+      "content_type": "application/json",
+      "file": "pinnacle-response-ad5330c7eadfc9f8.json",
+      "observed_in": "https://www.pinnacle.com/en/esports-hub"
+    },
+    {
+      "source": "hltv",
+      "url": "https://www.hltv.org/cdn-cgi/speculation",
+      "status": 200,
+      "content_type": "application/speculationrules+json",
+      "file": "hltv-response-4d958f26d792adc0.json",
+      "observed_in": "https://www.hltv.org/matches"
+    }
+  ],
+  "finished_at": "2026-10-13T18:07:59Z"
+}
