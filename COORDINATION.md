@@ -100,3 +100,34 @@ self-contained dashboard published under `pickem/`.
 - Verification rule carried over unchanged: Hotspawn identifies matches only; probabilities come
   from external match-winner odds only, are labelled *calculated*, and every row carries its
   source URL and capture timestamp. Unconfirmable values stay blank + flagged.
+
+### 2026-10-13 — session `79a1c6c8` completion record
+
+- **C-01 (complete slate) DONE.** `src/pickem_inventory.py` (Actions run 38445027513) reads the Pick'em pages'
+  server-rendered payload (`script#ng-state`) and publishes `data/pickem_inventory.json` + `.csv`:
+  **380 fixtures = 86 CS2 + 294 LoL**, with the payload's own ids, competitions, tiers, points, status, exact UTC
+  `scheduled_start_time` / `lock_time` and crowd percentages. Rendered-card counts kept as cross-check
+  (27 / 26 / 231 cards vs 86 / 85 / 294 payload rows). Source pages: play.hotspawn.com/{lobby,cs2-pickems,lol-pickems,thp-pickems}.
+- **C-02 (external lines) DONE within the limits of public sources.** `lines/external_lines.json`: **17 priced** fixtures
+  (Thunderpick WC 4, Stake Pulse Beat III 4, CCT Europe #11 2, ESL Challenger NA 1, ESL Challenger SA 1, Worlds 2026 Play-In 2,
+  EMEA Masters main event 2, Demacia Cup 1), each with bookmaker attribution (BC.Game via EGamersWorld), source URL and UTC
+  capture time; 4 fixtures show only EGamersWorld's generic 1.8/1.8 default (not a line); all remaining 359 fixtures have no
+  public two-way price in any source checked and are blank + flagged. Own lines: `p = (1/o_A) / (1/o_A + 1/o_B)`.
+- **C-03 (dashboard) DONE.** `pickem/` — dashboard, full CS2 (86) and LoL (294) tables, Flagged for Review (F-01…F-10),
+  Sources (incl. the CI machine-readability probe), Methodology; plus `lines/analysis.csv` and
+  `pickem/assets/data/mpl.json`. Root `index.html` is now a hub linking `pickem/` and the other sessions' `docs/` dashboards.
+- **Verification performed.** Payload times cross-checked against HLTV timestamps (9z–Aurora = 2026-10-14 08:30:00Z;
+  HOTU–fnatic = 2026-10-14 10:00:00Z); fixture identity checked per priced row against the source page; odds re-read for
+  4 fixtures (drift recorded); placeholders excluded from every probability; all internal links resolved before publishing.
+- **Irregularities flagged (non-blocking).** F-01 lobby 86 vs cs2 page 85 records; F-02 card "Locks in" countdown disagrees with
+  the payload's lock time (+75 min CS2 / +14 min LoL, constant per title) — payload used; F-03 363 blanks by design;
+  F-04 source default 1.8/1.8; F-05 live-market drift; F-06 two prices for one fixture on one source page;
+  F-07 team-name aliases; F-08 started fixtures still listed; F-09 EGamersWorld/HLTV 403 to CI; F-10 manual re-verification anchor.
+- **Environment findings for other sessions.** From CI (run 38445466416): EGamersWorld, HLTV, gg.bet, Thunderpick, escorenews,
+  SofaScore → 403; Bovada, Flashscore, Oddspedia, OddsPortal, BetOnline, Pinnacle, Betano, bo3.gg → 200 but client-rendered
+  (no prices in the payload); Polymarket public gamma API → 200 JSON but the sports tag query returned unrelated events.
+  Liquipedia API → 429. Files: `src/market_probe.py`, `data/market_probe.json`.
+- **Files added by this session (safe to merge; no other session's file modified except this board and root `index.html`).**
+  `src/pickem_inventory.py`, `src/external_lines.py`, `src/market_probe.py`, `pipeline/build_site.py`, `.github/workflows/{inventory,lines,market-probe}.yml`,
+  `data/pickem_inventory.{json,csv}`, `data/market_probe.json`, `lines/{external_lines.json,reference_ranks.json,analysis.csv}`, `pickem/**`.
+- **Next (integration).** PR from `arena/79a1c6c8-maltaproj1` to `main`, merge, confirm the Pages build serves `/pickem/`.

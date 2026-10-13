@@ -1,11 +1,70 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="refresh" content="0; url=docs/">
-  <title>MaltaProj1 — Hotspawn Pick'em line analysis</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MaltaProj1 — Hotspawn Pick'em line analysis</title>
+<style>
+:root{--bg:#0f1216;--panel:#171c22;--panel2:#1e242c;--line:#2b333d;--fg:#e8edf3;--muted:#9aa7b4;--accent:#6d4bbd}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+.wrap{max-width:960px;margin:0 auto;padding:40px 22px 60px}
+h1{font-size:26px;margin:0 0 6px}
+p.lead{color:var(--muted);margin:0 0 26px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+a.card{display:block;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px;text-decoration:none;color:inherit}
+a.card:hover{border-color:var(--accent)}
+a.card h2{margin:0 0 6px;font-size:16px;color:#cfd8e3}
+a.card p{margin:0;color:var(--muted);font-size:13px}
+.tag{display:inline-block;font-size:11px;font-weight:700;border:1px solid var(--line);border-radius:999px;padding:1px 8px;color:var(--muted);margin-left:6px}
+.note{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:8px;padding:12px 14px;margin:22px 0 0;font-size:13px;color:var(--muted)}
+code{background:#0b0e12;border:1px solid var(--line);border-radius:4px;padding:1px 5px;font-size:12.5px}
+a{color:#8fb4ff}
+</style>
 </head>
 <body>
-  <p>Redirecting to the <a href="docs/">dashboard</a>…</p>
+<div class="wrap">
+  <h1>Hotspawn Pick'em — line analysis</h1>
+  <p class="lead">Independent, source-linked analysis of the play.hotspawn.com Pick'em board (CS2 + League of Legends).
+  Fixtures come from the board itself; probabilities come only from outside bookmaker prices, de-vigged by this project.
+  Hotspawn's own crowd percentages are never used as a probability.</p>
+
+  <div class="grid">
+    <a class="card" href="pickem/">
+      <h2>Complete slate &amp; external lines<span class="tag">380 fixtures</span></h2>
+      <p>Every match on the board (86 CS2 + 294 LoL) read from the Pick'em pages' own server-rendered payload, with exact
+      UTC start/lock times; 17 fixtures carry a real external price and this project's de-vigged line; the rest are blank on
+      purpose and listed on the Flagged page.</p>
+    </a>
+    <a class="card" href="docs/">
+      <h2>Tournament dashboards (earlier sessions)</h2>
+      <p>Per-event pages for the Thunderpick World Championship, Stake Pulse Beat III, CCT Europe, ESL Challenger and the
+      lower tiers, with an independent rank-based model and its own flagged/sources pages.</p>
+    </a>
+    <a class="card" href="pickem/flagged.html">
+      <h2>Flagged for Review</h2>
+      <p>Discrepancies between the board's own fields, sources that refuse automated reads, refused blanks and live-market
+      drift — each with a link for manual review.</p>
+    </a>
+    <a class="card" href="pickem/methodology.html">
+      <h2>Methodology</h2>
+      <p>How the fixture list, the external prices and the de-vigged probability <code>p = (1/o<sub>A</sub>) / (1/o<sub>A</sub> + 1/o<sub>B</sub>)</code>
+      are produced — and exactly what is left blank instead of guessed.</p>
+    </a>
+    <a class="card" href="pickem/sources.html">
+      <h2>Sources</h2>
+      <p>Every source used (Hotspawn Play, EGamersWorld/BC.Game, HLTV, Liquipedia) and the CI probe results showing which
+      odds sites can and cannot be read programmatically.</p>
+    </a>
+    <a class="card" href="lines/analysis.csv">
+      <h2>Review file</h2>
+      <p><code>lines/analysis.csv</code> — one row per fixture with ids, times, crowd metadata, price status, odds, de-vigged
+      probabilities, source URL and capture time.</p>
+    </a>
+  </div>
+
+  <div class="note">Built by Arena session <code>79a1c6c8</code>. Values that could not be confirmed from a public source are
+  blank and flagged; odds move and every row keeps its capture timestamp. No login, no evasion, no wagering — public pages only.</div>
+</div>
 </body>
 </html>

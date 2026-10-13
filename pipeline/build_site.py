@@ -463,6 +463,22 @@ lock time, board crowd %</td><td>Server-rendered payload fetched in CI (automate
 <tr><td>Liquipedia / Elisa Esports</td><td>Elisa BreakOut Series #2 facts (dates, venue, format, prize)</td>
 <td>read 2026-10-13</td><td><a href="https://liquipedia.net/counterstrike/Elisa/BreakOut_Series/2" target="_blank" rel="noreferrer noopener">Liquipedia</a></td></tr>
 </tbody></table>
+<h2>Machine-readability of the checked odds sources (CI probe, 2026-10-13 18:15 UTC)</h2>
+<table class="sortable"><thead><tr><th>Source</th><th>Result from a datacenter client</th><th>Usable price?</th></tr></thead><tbody>
+<tr><td>EGamersWorld</td><td>HTTP 403</td><td>no — read in a browser session instead (values above)</td></tr>
+<tr><td>HLTV.org</td><td>HTTP 403</td><td>no — used for ranking context and timestamp cross-checks only</td></tr>
+<tr><td>gg.bet, Thunderpick, escorenews</td><td>HTTP 403</td><td>no</td></tr>
+<tr><td>Bovada</td><td>HTTP 200, but no team names or price fields in the payload (client-rendered)</td><td>no</td></tr>
+<tr><td>Flashscore, Oddspedia, OddsPortal</td><td>HTTP 200; match lists render client-side</td><td>no</td></tr>
+<tr><td>BetOnline</td><td>HTTP 200; board renders client-side</td><td>no</td></tr>
+<tr><td>Pinnacle, Betano, bo3.gg, 1xBet</td><td>HTTP 200/203 but the odds board is not in the payload</td><td>no</td></tr>
+<tr><td>Polymarket (public gamma API)</td><td>HTTP 200 JSON, but the sports tag query returned unrelated events at capture time</td><td>not used</td></tr>
+<tr><td>SofaScore API</td><td>HTTP 403</td><td>no</td></tr>
+<tr><td>Liquipedia API</td><td>HTTP 429 (rate limited)</td><td>no</td></tr>
+</tbody></table>
+<p class="small">Probe script and result file: <code>src/market_probe.py</code> / <code>data/market_probe.json</code>
+(run 38445466416). Raw bodies were kept as temporary branch evidence for manual inspection and are deleted before release.</p>
+
 <h2>Sources checked that could not supply a line</h2>
 <ul class="small">
 <li><a href="https://www.bovada.lv/sports/esports" target="_blank" rel="noreferrer noopener">Bovada</a>,
