@@ -7,6 +7,8 @@ import concurrent.futures
 from datetime import datetime, timezone
 import hashlib
 import json
+import os
+import sys
 import re
 import urllib.error
 import urllib.request
@@ -75,5 +77,35 @@ def run():
     return report
 
 
+def publish_check(report):
+    """Expose the report on GitHub's API without committing to anyone's branch."""
+    token = os.environ.get('GITHUB_TOKEN')
+    repo = os.environ.get('GITHUB_REPOSITORY')
+    sha = os.environ.get('GITHUB_SHA')
+    if not all((token, repo, sha)):
+        raise RuntimeError('GitHub Actions context is required to publish a check report')
+    text = json.dumps(report, indent=2)
+    payload = {
+        'name': 'Primary source accessibility — evidence audit', 'head_sha': sha,
+        'status': 'completed', 'conclusion': 'neutral',
+        'output': {
+            'title': f"{report['checked_urls']} HTTP source checks; numerical verification NOT performed",
+            'summary': 'Accessibility results only. A reachable page never verifies an odds value. Snapshot timestamps are not refreshed.',
+            'text': '```json\n' + text + '\n```',
+        },
+    }
+    request = urllib.request.Request(
+        'https://api.github.com/repos/' + repo + '/check-runs',
+        data=json.dumps(payload).encode(), method='POST',
+        headers={'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json',
+                 'Accept': 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28'},
+    )
+    with urllib.request.urlopen(request, timeout=30) as response:
+        check_run = json.load(response)
+        print('Published accessibility report:', check_run['html_url'])
+
+
 if __name__ == '__main__':
-    run()
+    report = run()
+    if '--publish-check' in sys.argv:
+        publish_check(report)
