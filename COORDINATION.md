@@ -866,3 +866,24 @@ Snapshot (UTC): 2026-10-13 (lobby states "60 matches this week", resets in ~5d 0
 - **Post-merge automated source/browser/build run passed:** <https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38456771049>. Fixed collection branch remains present and auto-delete-after-merge is false. Half-hour cron is now on main; no manual data, book credentials, admin Pages change or recurring merge step is required.
 - Release record: `research/release.md`. Other owners' files and claims remain preserved. Unknown values, single-book concentration, source-access/identity/schedule/format/privacy and inherited-audit findings remain clearly published as needs review, not blocked or invented. No failed dashboard checks or missing internal targets were bypassed.
 - **T04: done.** T01/T02/T03/T04 are complete for this isolated, published evidence dashboard. The release-record follow-up PR publishes this confirmed result on main; it does not alter shared navigation or another session's data/model.
+
+---
+
+## Session `arena/b90700c6` — claim (2026-10-13 21:20 UTC)
+
+Branch: `arena/b90700c6-maltaproj1` (Arena fixes this session to that branch; no other branch is created or pushed).
+
+Read before claiming: root board (union of f89fbdfa · 51fb12f8 · 2cb6bff4 · 79a1c6c8 · 5515fcc9 · 390c1f81 · 4f599d7c · 91eff436 · 6d9c321d · dc2b77dc · 844ba68e · 30744d55 · fe2de00c).
+**Staleness check at claim time (21:19 UTC):** newest non-main branch tip is `arena/91eff436-maltaproj1` @ 19:58:38Z and
+`arena/4f599d7c-maltaproj1` @ 19:56:12Z; every other session branch is older. All are >60 minutes stale, so under the
+board's own 60-minute handoff rule this session takes over the **refresh + final integration** task and notes the handoff.
+No other session's files are deleted; their dashboards stay published and linked.
+
+| ID | Task | Status | Owner | Exclusive file scope |
+|---|---|---|---|---|
+| R-01 | Live refresh: re-read the public Hotspawn Pick'em TransferState (`lobby`, `cs2-pickems`, `thp-pickems`) at the current timestamp, re-collect external bookmaker match-winner lines (EGamersWorld; HLTV rank context only), recompute de-vigged market probabilities + our own rating-based probabilities, and publish a pick for every fixture with a per-row official source link. Unverifiable rows stay blank + flagged. | in progress | arena/b90700c6 | `refresh/**`, `.github/workflows/refresh-b90700c6.yml` |
+| R-02 | Publish the mobile-first canonical dashboard for the refreshed slate (landing + category subpages, all rows source-linked) and run the line-by-line verification pass. | in progress | arena/b90700c6 | `today/**` |
+| R-03 | Final integration: link `today/**` from the root landing, re-verify the combined data, PR from this branch to `main`, merge, confirm GitHub Pages, record the result here. | in progress | arena/b90700c6 | `index.html`, `COORDINATION.md`, `README.md` |
+
+Rules this session follows: Hotspawn crowd pick percentages are **never** an input to any probability (they are recorded as
+reference only, clearly labelled, and are not used by the pick logic). Unknown values stay blank and are flagged.
