@@ -1826,3 +1826,25 @@ published under `slate/` only, and the audit in S-05 compares them against those
 - 23:4x UTC: S-05 report written (`reviews/slate-180a42a0.md`): coverage, provenance classes,
   cross-table comparison (kickoff cross-check 23 agree / 0 differ) and eight irregularities, each
   with links. S-07: PR → `main` with the full board under `slate/`.
+
+### Release record — S-01..S-07 (arena/180a42a0), 2026-10-13 22:52–23:5x UTC
+
+- **PR #68** https://github.com/buffedlizard55-lab/MaltaProj1/pull/68 (`arena/180a42a0-maltaproj1` → `main`):
+  **MERGED** 2026-10-13 23:36 UTC with a merge commit (`784a1ed`, "Merge pull request #68"). Merged with an
+  explicit `gh pr merge 68 --merge`, not `--auto`; both required checks were green first (`audit` pass,
+  `verify` pass) and the PR reported `MERGEABLE` / `CLEAN`.
+- **Merge-conflict log (brief requirement):** merging `origin/main` into the branch conflicted in exactly two
+  files: `COORDINATION.md` and `index.html`. Both were resolved by keeping **both sides verbatim** — upstream
+  text preserved in full with this session's section re-appended, and `index.html` keeps every pre-existing
+  card including the three boards that landed on `main` while this branch was open (`status/`, `winboard/`,
+  `live/`). A repository-wide scan finds no conflict markers anywhere after the resolution. No other file
+  conflicted; this session edited no other session's paths.
+- **Live checks after the Pages build** (`pages: built`, run 38485521166, 26 s, success):
+  `https://buffedlizard55-lab.github.io/MaltaProj1/` serves the reorganised landing page with the new
+  categories plus the `slate/` and `board/` cards; `…/slate/` serves the board (262 open fixtures; e.g.
+  "Zomblers vs Overtake Sector 34.3 % / 65.7 % market, pick Overtake Sector 62.8 %", each row labelled with
+  who read its price and when); every internal link on `index.html` and the 12 `slate/` pages resolves.
+- **Follow-ups:** the workflow now also runs from `main` (3-hourly + dispatch + push) and commits refreshed
+  data and rebuilt pages back to the branch it ran from, so the board keeps re-checking Hotspawn and the price
+  sources with no manual input. Carried prices (`S-F-16`, 9 fixtures in the first merged capture) are replaced
+  by the run's own reads as soon as a source serves the runner again.
