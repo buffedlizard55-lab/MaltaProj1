@@ -134,6 +134,37 @@ def main() -> int:
             chk_fixture("lines/analysis.csv", str(r.get("match_id", "")), r.get("team_a", ""), r.get("team_b", ""),
                         r.get("scheduled_start_utc", ""))
 
+    # 4) Timestamps that post-date the file's own last commit (impossible as real observation times)
+    import subprocess
+
+    def commit_time(rel_):
+        r_ = subprocess.run(["git", "-C", str(REPO), "log", "-1", "--format=%cI", "--", rel_], capture_output=True, text=True)
+        raw = r_.stdout.strip()
+        return datetime.fromisoformat(raw.replace("Z", "+00:00")).astimezone(timezone.utc) if raw else None
+
+    def ts_of(text):
+        m_ = re.match(r"(\d{4}-\d{2}-\d{2})T(\d{2}):(\d{2})", text or "")
+        return datetime.fromisoformat(f"{m_[1]}T{m_[2]}:{m_[3]}:00+00:00") if m_ else None
+
+    for rel_, col, keycol in (("data/lines.csv", "snapshot_utc", "id"), ("lines/analysis.csv", "line_captured_utc", "match_id")):
+        rows_ = read_csv(rel_)
+        ct = commit_time(rel_) if rows_ else None
+        if not ct:
+            continue
+        for r_ in rows_:
+            t_ = ts_of(r_.get(col, ""))
+            if t_ and t_ > ct:
+                add("Timestamp after file commit", rel_, r_.get(keycol, ""), col, r_.get(col, ""),
+                    "file last committed " + ct.strftime("%Y-%m-%dT%H:%M:%SZ"), GH + rel_, "MISMATCH (future timestamp)")
+    rel_ = "lines/external_lines.json"
+    if (REPO / rel_).exists():
+        ct = commit_time(rel_)
+        g_ = json.loads((REPO / rel_).read_text()).get("generated_utc", "")
+        t_ = ts_of(g_)
+        if ct and t_ and t_ > ct:
+            add("Timestamp after file commit", rel_, "generated_utc", "generated_utc", g_,
+                "file last committed " + ct.strftime("%Y-%m-%dT%H:%M:%SZ"), GH + rel_, "MISMATCH (future timestamp)")
+
     dest = ROOT / "data" / "crosscheck.csv"
     dest.parent.mkdir(parents=True, exist_ok=True)
     cols = ["check", "file", "key", "field", "published", "official", "official_source", "status", "file_url"]

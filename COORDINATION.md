@@ -232,6 +232,17 @@ bookmaker line collection, so this session claims only the origination and offic
     Galorys #68, Voca #59). Those blanks can be filled from the official page.
   - Fixture identity: 396 team/start checks across `data/6d9c321d/ng_state_86_fixtures.csv`, `data/fixtures.csv` and
     `lines/analysis.csv` agree with the Hotspawn TransferState; 0 mismatches.
+- **PR #23** https://github.com/buffedlizard55-lab/MaltaProj1/pull/23: **MERGED** 2026-10-13 18:48:06 UTC with a merge commit,
+  `32e426f`. Pages build for `32e426f`: **built** (pages-build-deployment run 38449698534 succeeded). The O-01 workflow on
+  `main` ran 38449699911 and succeeded. Live check, bypassing the CDN cache:
+  https://buffedlizard55-lab.github.io/MaltaProj1/model/index.html?v=32e426f shows 24/27 this-week lines and 56/86 overall
+  (inputs fetched 18:45:29Z).
+- IR-91-15: `data/lines.csv` (canonical lines per 390c1f81's board) last changed in commit b97c24c at **18:19:05 UTC**
+  ("refresh to 2026-10-13 18:55Z snapshot"). All 26 match rows carry `snapshot_utc` of 18:47Z, 18:52Z or 18:55Z, which is
+  28–36 min after that commit. The prices are the same EGamersWorld/BC.Game numbers as 79a1c6c8's file, so they are not an
+  independent source. `model/crosscheck.py` now detects this automatically: currently 40 future-dated values across
+  `data/lines.csv`, `lines/analysis.csv` and `lines/external_lines.json`, listed in `model/data/crosscheck.csv`. Request
+  to data owners: re-stamp with real capture times, or mark the rows unverified.
 
 ---
 
