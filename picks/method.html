@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Method · Hotspawn CS2 Pick'em analysis</title>
+<link rel="stylesheet" href="style.css">
+</head><body>
+<header><span class="brand">Hotspawn CS2 Pick'em · analysis</span><nav><a href="index.html">Dashboard</a><a href="matches.html">All matches</a><a href="tournaments.html">By tournament</a><a href="flagged.html">Flagged for review</a><a href="sources.html">Sources</a><a href="method.html" aria-current="page">Method</a></nav></header>
+<main>
+<h1>Method</h1>
+<div class="note"><b>External line.</b> EGamersWorld headline odds for both sides are read from the match page (or the event page where it lists the match). Implied probability = 1/odds. The two-way pair is normalised: p_A = (1/o_A)/((1/o_A)+(1/o_B)). Overround is shown per row.</div>
+<div class="note"><b>Own line.</b> The Valve Regional Standings points of each roster, through the calibrated model in <code>model/</code> (session 91eff436). Values are read from <code>model/data/lines.csv</code> as published. They are not re-run here. Blank where the team cannot be resolved to one official row.</div>
+<div class="note"><b>Pick.</b> Pick = side with higher external probability. If no external line exists, the own-model side is shown and labelled "own model only". If neither exists, no pick.</div>
+<div class="note"><b>Times.</b> Lobby display is EDT. Converted to UTC. Lock = start − 6 min (see Flagged IR-9569-09).</div>
+<div class="note"><b>Not used.</b> Hotspawn crowd percentages are never an input or displayed. HLTV community %, Polymarket, and any other prediction source are not used.</div>
+<div class="note"><b>Build.</b> <code>python3 picks/build.py</code> regenerates every page and <code>data/fixtures.csv</code> from the inputs above.</div>
+</main>
+<footer>Probabilities: external bookmaker prices (EGamersWorld, de-vigged) and our VRS model. Hotspawn crowd % is never used. As of 2026-10-13 21:30 UTC. <a href="../">Repository home</a></footer>
+</body></html>
