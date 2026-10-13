@@ -72,6 +72,7 @@ function renderFlags() {
   $('findings').replaceChildren(fragment);
 }
 async function readSnapshot() {
+  if (!$('load-state')) return; // Methodology page has no live snapshot widgets.
   $('load-state').textContent='Reading the published source snapshot…';
   try {
     const response=await fetch('../today/data/current.json',{cache:'no-store'});if(!response.ok)throw new Error(`HTTP ${response.status}`);
