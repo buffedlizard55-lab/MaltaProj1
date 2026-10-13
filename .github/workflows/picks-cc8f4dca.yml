@@ -29,10 +29,6 @@ jobs:
       - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
         with:
           python-version: '3.12'
-      - name: Install a real browser
-        run: |
-          python -m pip install playwright==1.49.0
-          python -m playwright install --with-deps chromium
       - name: Collect Pinnacle public moneylines
         run: python3 scripts/picks_pinnacle.py
       - name: Probe every candidate primary source
