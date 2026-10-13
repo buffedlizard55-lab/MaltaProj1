@@ -31,14 +31,15 @@ import re
 import subprocess
 import sys
 import tempfile
+import time
 import urllib.request
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 INP = ROOT / "input"
-UA = ("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) "
-      "Chrome/126.0 Safari/537.36 MaltaProj1-model-91eff436")
+# Honest, identifiable User-Agent (no browser impersonation, no bot-evasion).
+UA = "Mozilla/5.0 (compatible; MaltaProj1-model/1.0; +https://github.com/buffedlizard55-lab/MaltaProj1)"
 
 HOTSPAWN_URL = "https://play.hotspawn.com/cs2-pickems"
 HLTV_URL = "https://www.hltv.org/ranking/teams"
@@ -134,11 +135,31 @@ def fetch_hotspawn(log: dict) -> None:
     log["hotspawn"] = entry
 
 
+def hltv_candidates() -> list[str]:
+    """Generic ranking URL first, then the dated URLs of the two most recent Mondays."""
+    today = datetime.now(timezone.utc).date()
+    last_monday = today - timedelta(days=today.weekday())
+    urls = [HLTV_URL]
+    for d in (last_monday, last_monday - timedelta(days=7)):
+        urls.append(f"{HLTV_URL}/{d.year}/{MONTHS[d.month - 1]}/{d.day}")
+    return urls
+
+
 def fetch_hltv(log: dict) -> None:
-    t = now()
-    status, body, final = get(HLTV_URL)
-    entry = {"url": HLTV_URL, "final_url": final, "fetched_utc": t, "http_status": status,
-             "bytes": len(body), "sha256": sha(body) if status == 200 else None}
+    attempts = []
+    status, body, final, t, url = 0, b"", HLTV_URL, now(), HLTV_URL
+    for url in hltv_candidates():
+        for k in range(2):
+            t = now()
+            status, body, final = get(url)
+            attempts.append({"url": url, "fetched_utc": t, "http_status": status})
+            if status == 200:
+                break
+            time.sleep(4 * (k + 1))
+        if status == 200:
+            break
+    entry = {"url": url, "final_url": final, "fetched_utc": t, "http_status": status,
+             "bytes": len(body), "sha256": sha(body) if status == 200 else None, "attempts": attempts}
     text = body.decode("utf-8", "replace") if status == 200 else ""
     blocks = text.split('<div class="ranked-team standard-box">')[1:]
     teams = []
@@ -161,7 +182,7 @@ def fetch_hltv(log: dict) -> None:
     month, day, year = dm.group(1), int(dm.group(2)), int(dm.group(3))
     mi = MONTHS.index(month.lower()) + 1
     out = {
-        "source_url": HLTV_URL,
+        "source_url": url,
         "canonical_url": f"https://www.hltv.org/ranking/teams/{year}/{month.lower()}/{day}",
         "ranking_date": f"{year:04d}-{mi:02d}-{day:02d}", "ranking_date_text": dm.group(0),
         "fetched_utc": t, "http_status": status, "html_sha256": entry["sha256"],
