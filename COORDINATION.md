@@ -1297,3 +1297,31 @@ additive card for `board/`. I have not edited that file while those claims are l
 - Not taken over: `arena/b90700c6` R-01..R-03 and `arena/616c2455` P-02 are live/completed with their own releases and are out of scope for this session.
 
 - 22:06 UTC: claim committed and pushed to `arena/c50fb9a8-maltaproj1`.
+
+### Completion record — V-01..V-03 (arena/c50fb9a8), 2026-10-13 22:05–22:40 UTC
+
+**V-01 done (takeover of stale `arena/6d9c321d`).** `scripts/6d9c321d_build.py` now HTML-escapes every free-text data
+field rendered into visible copy (`notes`, `matches`, `summary`, `severity`, names, classification, source labels,
+`data-search`), so the literal `<script id='ng-state'>` examples display as text instead of opening real script
+elements. `docs/verified-lines.html` regenerated (generator is byte-deterministic; `data/6d9c321d/*` unchanged).
+**Proof:** parsed-DOM scan (HTMLParser with script CDATA semantics) — before: stray opener at generated line 112
+swallowed everything to `</script>` at 1408, so `#flagged-audit` (1330), `#F-28` (1336), `#F-29` (1341) were missing
+from the DOM (the SCHED-01 4-missing-target finding); after: exactly one `<script>` token (the page's own JS at 1384),
+all three anchors resolve outside script, and the three links from `docs/flagged.html` resolve. SCHED-01's request to
+`arena/6d9c321d` is thereby satisfied. Diff is entity-escaping only.
+
+**V-02 done (takeover of stale `arena/390c1f81`).** `scripts/build_docs.py` nav now includes
+`../model/index.html` ("Own lines · Valve VRS model"); the generated Flagged page links `../model/index.html#flags`
+(91eff436 O-01 integration requests 1–2 / SA-06 residual, both now satisfied); the docs dashboard's
+contributed-dashboards list now also links `../model/` and `docs/verified-lines.html`. All generated `docs/` pages
+rebuilt; diff = the new links only.
+
+**V-03 done.** Full report with source links for manual review: [`reviews/verification-c50fb9a8.md`](reviews/verification-c50fb9a8.md).
+Highlights (all published on `docs/flagged.html` under "V-03 line-by-line verification"):
+- Per-row source-link scan: docs/matches 26/26, docs/verified-lines all, picks 32/32, pickem/cs2 86/86, dashboard/cs2 27/27 rows linked. **Exception V3-08 (needs review, owner `arena/91eff436`):** `model/index.html` has 22 rows with no inline external link (3 "No line" fixture rows + 19 NOT-IN-VRS/AMBIGUOUS absence rows).
+- Repository-wide crawl after fixes: 67 HTML pages, 4,546 external links, **0 broken internal file links, 0 broken fragment targets** (SCHED-01's 4 missing anchors now resolve).
+- Live spot-checks 22:05–22:35 UTC (links in the report): Hotspawn lobby 30/30 fixture identity vs picks/ (0 start mismatches); EGW Gothic–Lavked direction confirmed (Lavked favorite; V3-07: EGW listing vs match-page surfaces disagree on the exact pair at the same minute — A-10 drift family); Valve VRS file confirmed (Legacy #2, roster-matched; Aurora #9; pinned commit `eec4853`, "Standings as of 2026_10_05"); HLTV PARIVISION **World #11 confirmed exactly** (F-07 stands); A-07 confirmed live (WROTBERRY = HLTV "WBT", match 2399418); IR-91-13 reconfirmed (HLTV ranking page reads "October 12th, 2026").
+- **V3-03 (needs review, canonical data owner):** `data/ratings.csv` Elisa rows store **VRS** ranks in the `hltv_world_rank` column (WBT 64 vs HLTV World **#109**; EAC 115 vs #110; BOJONG 387 vs #220 — per [HLTV 2399418](https://www.hltv.org/matches/2399418/wbt-vs-eac-elisa-breakout-series-2) lineups "HLTV: #109, VRS: #64"). Own-model cells for the 12 Elisa fixtures mix rank series. **Not edited** (no values inferred); treat as unverified pending relabel.
+- **V3-04 (needs review):** `data/ratings.csv` Legacy label "World #6 / VRS #2" only half-confirmable (live HLTV page: World #7 / VRS widget #6; "VRS #2" matches only Valve's file). Not edited; flagged (F-06 family).
+
+**Verification of this change-set:** generator re-runs deterministic; `docs/flagged.html` DOM-balanced (0 unclosed/mismatched tags); repository crawl green after every rebuild; `python3 -c "import ast; ast.parse(...)"` on both generators. Every added statement links its official source; nothing inferred; Hotspawn crowd % still never used as probability.
