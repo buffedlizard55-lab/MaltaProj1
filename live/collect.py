@@ -276,11 +276,12 @@ def collect_hotspawn() -> dict:
                                     .replace(tzinfo=timezone.utc) - timedelta(seconds=int(offset))
                                     ).strftime("%Y-%m-%dT%H:%M:%SZ")
                         participants = node.get("participants")
-                        crowd = [None, None, None]
-                        if isinstance(participants, list) and len(participants) >= 2:
+                        crowd = [first(node, "participants0_picked_percent", "participants0_picked"),
+                                 first(node, "participants1_picked_percent", "participants1_picked"),
+                                 first(node, "total_picks", "picks_count")]
+                        if isinstance(participants, list) and len(participants) >= 2 and crowd[0] is None:
                             crowd[0] = first(participants[0], "picked_percent", "picked")
                             crowd[1] = first(participants[1], "picked_percent", "picked")
-                            crowd[2] = first(node, "total_picks", "picks_count")
                         row = {
                             "match_id": match_id,
                             "hotspawn_page": page_name,
@@ -627,7 +628,14 @@ def collect_hltv(names: set[str]) -> dict:
     html = got["html"] or ""
     ranks = parse_hltv_ranking(html)
     marker = html.lower().find('class="position"')
+    if marker < 0:
+        marker = html.find("/team/")
     sample = re.sub(r"\s+", " ", html[max(0, marker - 200): marker + 600]) if marker >= 0 else ""
+    if not sample:
+        sample = re.sub(r"\s+", " ", html[:600])
+    record({"url": f"{HLTV_RANKING}#markup", "fetched_utc": got["fetched_utc"], "path": "diagnostic",
+            "status": got["status"], "bytes": len(html), "sha256": None,
+            "error": None if sample else "empty page"})
     hit = {n: r for n, r in ranks.items() if n.lower() in {x.lower() for x in names}}
     return {"status": "observed" if ranks else "unavailable", "url": HLTV_RANKING,
             "total_rows": len(ranks), "ranks": ranks, "matched": hit,

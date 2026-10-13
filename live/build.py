@@ -687,6 +687,19 @@ def render_coverage(rows, meta, snapshot) -> str:
         for r in gaps)
     stale = [r for r in rows if r["not_pickable_reason"].startswith("listed in the payload")]
     locked = [r for r in rows if r["pickable"] == "no" and not r["not_pickable_reason"].startswith("listed")]
+    crowd_by_id = {f.get("match_id"): f for f in snapshot.get("fixtures", [])}
+    sample = next((r for r in snapshot.get("fixtures", []) if r.get("payload_keys")), {})
+    key_list = ", ".join(f"<code>{escape(k)}</code>" for k in sample.get("payload_keys", []))
+    crowd_rows = "".join(
+        "<tr><td>%s vs %s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td></tr>" % (
+            escape(r["team_a"]), escape(r["team_b"]), escape(r["start_utc"]),
+            escape(str((crowd_by_id.get(r["match_id"], {}) or {}).get("crowd_pct_a"))),
+            escape(str((crowd_by_id.get(r["match_id"], {}) or {}).get("crowd_pct_b"))),
+            escape(str((crowd_by_id.get(r["match_id"], {}) or {}).get("crowd_total_picks"))),
+            escape(r.get("ext_p_a_pct") or r.get("own_p_a_pct") or "—"))
+        for r in rows
+        if (crowd_by_id.get(r["match_id"], {}) or {}).get("crowd_pct_a") is not None
+        or (crowd_by_id.get(r["match_id"], {}) or {}).get("crowd_pct_b") is not None)
     counters = snapshot.get("hotspawn_pages", [])
     counter_rows = "".join(
         f"<tr><td>{escape(p['page'])}</td><td>{p['status']}</td><td>{p['state_rows']}</td>"
@@ -710,6 +723,20 @@ in payload</th><th>Cards rendered</th><th>Header counter</th><th>Resets in</th><
 bookmaker listing so the price can be checked by hand; a value is never guessed to fill the cell.</p>
 <div class="tablewrap"><table class="grid"><thead><tr><th>Fixture</th><th>Tournament</th><th>Start (UTC)</th>
 <th>What we can publish</th><th>Check it yourself</th></tr></thead><tbody>{gap_rows}</tbody></table></div>
+
+<h2>What the payload actually carries</h2>
+<p class="note">Fixture records in the Pick'em transfer state expose these keys (sample of one CS2
+record, key names only): {key_list}. The crowd pick share below is read from
+<code>participants0_picked_percent</code> / <code>participants1_picked_percent</code>.</p>
+
+<h2>Observed crowd pick share — audit only, never an input</h2>
+<p class="note">These numbers are what other players picked on the Hotspawn board. They are <b>not</b>
+a probability, <b>not</b> an input to any model here and <b>not</b> a pick: they are published only so
+the difference between crowd behaviour and the outside market/our own line can be audited. Every
+probability elsewhere on this site comes from a bookmaker price or from Valve's official standings.</p>
+<div class="tablewrap"><table class="grid"><thead><tr><th>Fixture</th><th>Start (UTC)</th>
+<th>Crowd % team A</th><th>Crowd % team B</th><th>Votes (N)</th><th>Our published probability, team A</th>
+</tr></thead><tbody>{crowd_rows or "<tr><td colspan='6'>no crowd fields present in this snapshot</td></tr>"}</tbody></table></div>
 
 <h2>Listed but not pickable</h2>
 <p class="note">{len(locked)} fixture(s) had already locked or started at snapshot time, and
