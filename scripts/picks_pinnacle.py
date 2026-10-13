@@ -128,7 +128,11 @@ def main() -> int:
         for lg in leagues
         if (lg.get("sport") or {}).get("id") == SPORT_ESPORTS
         and any(token in (lg.get("name") or "").lower() for token in CS_TOKENS)
+        and (lg.get("matchupCount") or 0) > 0
     ]
+    # Hard cap so a scheduled run always finishes inside the job timeout.
+    cs_leagues.sort(key=lambda lg: -(lg.get("matchupCount") or 0))
+    cs_leagues = cs_leagues[:25]
     out["leagues"] = [
         {"id": lg.get("id"), "name": lg.get("name"), "matchupCount": lg.get("matchupCount")}
         for lg in cs_leagues
