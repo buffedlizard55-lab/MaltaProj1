@@ -1,1 +1,39 @@
-POLICY VIOLATION: Hotspawn crowd fields leaked into the dataset: ['crowd']
+{
+ "in_week": 124,
+ "stale": 260,
+ "odds_rows": 0,
+ "counts": {
+  "fixtures_in_payload": 384,
+  "fixtures_in_week": 124,
+  "cs2": 31,
+  "lol": 93,
+  "with_market_probability": 0,
+  "with_own_line": 0,
+  "with_pick": 0,
+  "pinnacle_matched": 0,
+  "stale_listings_excluded": 260
+ },
+ "flags": [
+  [
+   "R-COUNT",
+   0
+  ],
+  [
+   "R-STALE",
+   260
+  ],
+  [
+   "R-NOMKT",
+   124
+  ],
+  [
+   "R-NORATE",
+   124
+  ],
+  [
+   "R-LOCKED",
+   12
+  ]
+ ]
+}
+build exit=0
