@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Method — Hotspawn CS2 Pick&#x27;em analysis</title>
+<link rel="stylesheet" href="assets/picks.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <div class="brand">
+      <span class="brand-mark">HS</span>
+      <span class="brand-text"><strong>Hotspawn CS2 Pick'em</strong><span>independent win probabilities</span></span>
+    </div>
+    <nav class="nav"><a class="nav-link" href="index.html">Picks</a><a class="nav-link is-active" href="methodology.html">Method</a><a class="nav-link" href="sources.html">Sources</a><a class="nav-link" href="flagged.html">Flagged</a></nav>
+  </div>
+</header>
+<main class="wrap">
+  <h1>How these numbers are produced</h1>
+  <p class="subtitle">Every formula, input and limitation, with links to the sources.</p>
+  
+  <section class="panel">
+    <h2>1. Where the fixtures come from</h2>
+    <p>The match list is read from Hotspawn's own server-rendered pick'em payload
+    (<code>&lt;script id="ng-state"&gt;</code>) on
+    <a href="https://play.hotspawn.com/cs2-pickems">play.hotspawn.com/cs2-pickems</a> and
+    <a href="https://play.hotspawn.com/lobby">play.hotspawn.com/lobby</a>. Every fixture carries an
+    id, both team names, the competition, the tier, and <code>scheduled_start_time</code> /
+    <code>lock_time</code> as millisecond epochs, so the UTC start and lock times on this site are the
+    site's own values with no timezone guessing.</p>
+    <p>Hotspawn is used <b>only</b> to identify the fixtures. Its "N% picked" crowd figures are not
+    read into any calculation.</p>
+  </section>
+
+  <section class="panel">
+    <h2>2. Market probability — external bookmaker lines</h2>
+    <p>Lines come from <a href="https://egamersworld.com/counterstrike/matches">EGamersWorld</a>,
+    which publishes an aggregated bookmaker moneyline per match — its own match pages describe the
+    number as the bookmaker consensus (for example, on the WBT vs ENCE page: "the majority of
+    bookmaker companies believe in WBT victory. Odds on them are equal to 1.618"). Decimal odds
+    <i>a</i> and <i>b</i> are converted to probabilities by removing the overround:</p>
+    <pre>P(a) = (1/a) / (1/a + 1/b)      P(b) = (1/b) / (1/a + 1/b)</pre>
+    <p>The overround itself (1/a + 1/b − 1) is shown on each row, so you can see the bookmaker's
+    margin. Where a source shows its generic 1.8 / 1.8 default rather than a real price, the field is
+    left blank and flagged — a placeholder is not a line.</p>
+  </section>
+
+  <section class="panel">
+    <h2>3. Our own line — Valve's official standings</h2>
+    <p>We also originate a line ourselves from
+    <a href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md">Valve's official Counter-Strike Regional Standings</a> (global, dated
+    2026-10-05). The rating difference is converted with a logistic:</p>
+    <pre>P(a wins) = 1 / (1 + 10 ^ ( -K · (points_a − points_b) / 400 ))      K = 0.4568</pre>
+    <p>Valve publishes its own expected-win curve as <code>K = g(rd = 75) = 0.972821</code>
+    (<code>fit.js</code>, <code>priorWinExpectation</code>), and notes in the repository README that
+    this slope is "shallower than we'd like". The slope used here was fitted by maximum likelihood on
+    6,765 match results that Valve publishes in the same repository, always with the rating snapshot
+    taken <i>before</i> the match, and scored out of sample on 2026-08-03 → 2026-10-05:</p>
+    <table class="table">
+      <thead><tr><th>Curve</th><th>Log loss</th><th>Brier</th></tr></thead>
+      <tbody>
+        <tr><td>Valve's raw slope (0.972821)</td><td>0.66185</td><td>0.22936</td></tr>
+        <tr><td>Fitted slope (0.4568)</td><td>0.64351</td><td>0.22575</td></tr>
+      </tbody>
+    </table>
+    <p>Full diagnostics: <a href="https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/model/input/vrs/calibration.json">model/input/vrs/calibration.json</a>
+    (fitted by session <code>arena/91eff436</code>; the numbers are re-checked against that file by
+    <code>scripts/verify_winboard.py</code>).</p>
+    <p>A team that is <b>not</b> in Valve's file, or that matches two different rows, gets no own
+    line. The cell stays blank and the reason is published — we never pick a row by guessing.</p>
+  </section>
+
+  <section class="panel">
+    <h2>4. What the published percentage is</h2>
+    <ul>
+      <li>If an external bookmaker line exists, the published probability is that line, de-vigged.</li>
+      <li>Otherwise it is our own model probability.</li>
+      <li>If neither exists, no pick is published.</li>
+    </ul>
+    <p>Both numbers are shown on every card. Where the market and our model disagree about which team
+    is the favourite, the card is marked and the match is listed on the
+    <a href="flagged.html">Flagged for Review</a> page.</p>
+    <p>Confidence bands are just the distance from a coin flip: <b>lean</b> ≥ 54%, <b>clear</b> ≥ 62%,
+    <b>strong</b> ≥ 75%. They describe how lopsided the line is, not a guarantee.</p>
+  </section>
+
+  <section class="panel">
+    <h2>5. Known limitations</h2>
+    <ul>
+      <li>Valve's standings are a 2026-10-05 snapshot; rosters can change between the snapshot and
+          the match.</li>
+      <li>The own model uses rating only — no map veto, current form, stand-in or travel input.</li>
+      <li>Elisa BreakOut matches are best-of-one, which is higher variance than a best-of-three; the
+          model does not adjust for series length.</li>
+      <li>Only the full-match winner market is used. Map and handicap prices are ignored.</li>
+    </ul>
+  </section>
+
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Analysis only — not betting advice. Probabilities never use Hotspawn's crowd pick percentages;
+       Hotspawn is used only to list the fixtures. Anything that cannot be confirmed from a linked
+       source is left blank and listed on the <a href="flagged.html">Flagged for Review</a> page.</p>
+  </div>
+</footer>
+</body>
+</html>

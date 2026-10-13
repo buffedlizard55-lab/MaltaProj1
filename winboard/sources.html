@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sources — Hotspawn CS2 Pick&#x27;em analysis</title>
+<link rel="stylesheet" href="assets/picks.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <div class="brand">
+      <span class="brand-mark">HS</span>
+      <span class="brand-text"><strong>Hotspawn CS2 Pick'em</strong><span>independent win probabilities</span></span>
+    </div>
+    <nav class="nav"><a class="nav-link" href="index.html">Picks</a><a class="nav-link" href="methodology.html">Method</a><a class="nav-link is-active" href="sources.html">Sources</a><a class="nav-link" href="flagged.html">Flagged</a></nav>
+  </div>
+</header>
+<main class="wrap">
+  <h1>Every source behind every number</h1>
+  <p class="subtitle">Each row links the exact page or file a value was read from.</p>
+  
+  <section class="panel">
+    <h2>Fixture source (identity only)</h2>
+    <div class="table-scroll">
+      <table class="table"><thead><tr><th>Source</th><th>URL</th><th>Fetched (UTC)</th><th>HTTP</th><th>What it supplied</th></tr></thead>
+      <tbody><tr><td>Hotspawn CS2 pick'em lobby</td>
+        <td><a href="https://play.hotspawn.com/cs2-pickems">play.hotspawn.com/cs2-pickems</a></td>
+        <td>2026-10-13T22:54:13+00:00</td>
+        <td>200</td>
+        <td>Fixture identity, teams, competition, tier, UTC start and lock times. Pick % ignored.</td></tr>
+        <tr><td>Hotspawn general lobby</td>
+        <td><a href="https://play.hotspawn.com/lobby">play.hotspawn.com/lobby</a></td>
+        <td>2026-10-13T22:54:13+00:00</td>
+        <td>200</td>
+        <td>Second read of the same payload; union of fixtures.</td></tr></tbody></table>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2>External bookmaker lines</h2>
+    <p>List page: <a href="https://egamersworld.com/counterstrike/matches">https://egamersworld.com/counterstrike/matches</a>
+    — read 2026-10-13T22:41Z, window 2026-10-13T22:36Z..2026-10-13T22:41Z.
+    Times on that site are UTC+02:00 (CEST), verified against Pinnacle&#x27;s cutoffAt for Falcons vs Ninjas In Pyjamas (2026-10-14T11:00:00Z renders as 14.10.26 13:00).</p>
+    <div class="table-scroll">
+      <table class="table"><thead><tr><th>Match</th><th>Source page</th><th>Captured (UTC)</th><th>HTTP</th><th>Price read</th></tr></thead>
+      <tbody><tr><td>ESL Challenger League Season 52 North America Cup 3 — Zomblers v Overtake Sector</td>
+        <td><a href="https://egamersworld.com/counterstrike/match/41yion_ONx/zomblers-vs-overtake-sector-3aN5jQsN_">https://egamersworld.com/counterstrike/match/41yion_ONx/zomblers-vs-overtake-sector-3aN5jQsN_</a></td>
+        <td>2026-10-13T22:41Z</td><td>200</td>
+        <td>2.49 / 1.49 (Bo3)</td></tr><tr><td>CCT Europe 2026 Series #11 — Gothic v Lavked</td>
+        <td><a href="https://egamersworld.com/counterstrike/match/_rW8GEyWK/gothic-vs-lavked-GGmfuJ1n4B">https://egamersworld.com/counterstrike/match/_rW8GEyWK/gothic-vs-lavked-GGmfuJ1n4B</a></td>
+        <td>2026-10-13T22:41Z</td><td>200</td>
+        <td>1.881 / 1.782 (Bo3)</td></tr><tr><td>Thunderpick World Championship 2026 — 9z v Aurora</td>
+        <td><a href="https://egamersworld.com/counterstrike/match/5X5sFiL7H/9z-vs-aurora-Es9rrnIhb">https://egamersworld.com/counterstrike/match/5X5sFiL7H/9z-vs-aurora-Es9rrnIhb</a></td>
+        <td>2026-10-13T22:41Z</td><td>200</td>
+        <td>3.76 / 1.2 (Bo3)</td></tr><tr><td>Stake Pulse Beat III — Astralis v Sashi Esport</td>
+        <td><a href="https://egamersworld.com/counterstrike/match/EJZmJpBjeNx/astralis-vs-sashi-esport-aGet1AP-0Z">https://egamersworld.com/counterstrike/match/EJZmJpBjeNx/astralis-vs-sashi-esport-aGet1AP-0Z</a></td>
+        <td>2026-10-13T22:41Z</td><td>200</td>
+        <td>1.06 / 6.33 (Bo3)</td></tr><tr><td>Stake Pulse Beat III — HOTU v fnatic</td>
+        <td><a href="https://egamersworld.com/counterstrike/match/EJZmJpBjeNx/hotu-vs-fnatic-KjM3caFTC">https://egamersworld.com/counterstrike/match/EJZmJpBjeNx/hotu-vs-fnatic-KjM3caFTC</a></td>
+        <td>2026-10-13T22:41Z</td><td>200</td>
+        <td>1.89 / 1.81 (Bo3)</td></tr><tr><td>CCT Europe 2026 Series #11 — ex-RUSTEC v mellren</td>
+        <td><a href="https://egamersworld.com/counterstrike/match/_rW8GEyWK/ex-rustec-vs-mellren-ZGVCwI7MK">https://egamersworld.com/counterstrike/match/_rW8GEyWK/ex-rustec-vs-mellren-ZGVCwI7MK</a></td>
+        <td>2026-10-13T22:41Z</td><td>200</td>
+        <td>1.4 / 2.68 (Bo3)</td></tr><tr><td>Thunderpick World Championship 2026 — Falcons v NiP</td>
+        <td><a href="https://egamersworld.com/counterstrike/match/5X5sFiL7H/falcons-vs-nip-QSa-aeOIR">https://egamersworld.com/counterstrike/match/5X5sFiL7H/falcons-vs-nip-QSa-aeOIR</a></td>
+        <td>2026-10-13T22:41Z</td><td>200</td>
+        <td>1.22 / 3.84 (Bo3)</td></tr><tr><td>Thunderpick World Championship 2026 — Legacy v PARIVISION</td>
+        <td><a href="https://egamersworld.com/counterstrike/match/5X5sFiL7H/legacy-vs-parivision--TTc59QUDJ">https://egamersworld.com/counterstrike/match/5X5sFiL7H/legacy-vs-parivision--TTc59QUDJ</a></td>
+        <td>2026-10-13T22:41Z</td><td>200</td>
+        <td>1.66 / 2.11 (Bo3)</td></tr><tr><td>CCT Europe 2026 Series #11 — G2 Ares v The Last Resort</td>
+        <td><a href="https://egamersworld.com/counterstrike/match/_rW8GEyWK/g2-ares-vs-the-last-resort-7GWb9EDd9L">https://egamersworld.com/counterstrike/match/_rW8GEyWK/g2-ares-vs-the-last-resort-7GWb9EDd9L</a></td>
+        <td>2026-10-13T22:41Z</td><td>200</td>
+        <td>1.465 / 2.436 (Bo3)</td></tr><tr><td>Thunderpick World Championship 2026 — FURIA v BetBoom Team</td>
+        <td><a href="https://egamersworld.com/counterstrike/match/5X5sFiL7H/furia-vs-betboom-team-ZeSbzy91oH">https://egamersworld.com/counterstrike/match/5X5sFiL7H/furia-vs-betboom-team-ZeSbzy91oH</a></td>
+        <td>2026-10-13T22:41Z</td><td>200</td>
+        <td>1.4 / 2.81 (Bo3)</td></tr><tr><td>CCT Europe 2026 Series #12 Play-In — ENJOY v B8 Academy</td>
+        <td><a href="https://egamersworld.com/counterstrike/match/1sGIL2gAYu/enjoy-vs-b8-academy-qwO9cEnL7">https://egamersworld.com/counterstrike/match/1sGIL2gAYu/enjoy-vs-b8-academy-qwO9cEnL7</a></td>
+        <td>2026-10-13T22:41Z</td><td>200</td>
+        <td>1.52 / 2.3 (Bo3)</td></tr><tr><td>Elisa Esports BreakOut Series 2 — WBT v EA Copenhagen</td>
+        <td><a href="https://egamersworld.com/counterstrike/match/4yn491uUVl/wbt-vs-ea-copenhagen-hSC7a2mtP">https://egamersworld.com/counterstrike/match/4yn491uUVl/wbt-vs-ea-copenhagen-hSC7a2mtP</a></td>
+        <td>2026-10-13T22:41Z</td><td>200</td>
+        <td>2.01 / 1.69 (Bo1)</td></tr><tr><td>Stake Pulse Beat III — MIBR v BC.Game Esports</td>
+        <td><a href="https://egamersworld.com/counterstrike/match/EJZmJpBjeNx/mibr-vs-bcgame-esports-X8nMpUjAX">https://egamersworld.com/counterstrike/match/EJZmJpBjeNx/mibr-vs-bcgame-esports-X8nMpUjAX</a></td>
+        <td>2026-10-13T22:41Z</td><td>200</td>
+        <td>1.65 / 2.07 (Bo3)</td></tr><tr><td>Stake Pulse Beat III — Heroic v Team Envy</td>
+        <td><a href="https://egamersworld.com/counterstrike/match/EJZmJpBjeNx/heroic-vs-team-envy-NcCqzpPZdC">https://egamersworld.com/counterstrike/match/EJZmJpBjeNx/heroic-vs-team-envy-NcCqzpPZdC</a></td>
+        <td>2026-10-13T22:41Z</td><td>200</td>
+        <td>1.45 / 2.47 (Bo3)</td></tr><tr><td>Elisa Esports BreakOut Series 2 — ENCE v BOJONG</td>
+        <td><a href="https://egamersworld.com/counterstrike/match/4yn491uUVl/ence-vs-bojong-qV78OzvXFg">https://egamersworld.com/counterstrike/match/4yn491uUVl/ence-vs-bojong-qV78OzvXFg</a></td>
+        <td>2026-10-13T22:41Z</td><td>200</td>
+        <td>1.31 / 3.22 (Bo1)</td></tr><tr><td>Elisa Esports BreakOut Series 2 — WBT v ENCE</td>
+        <td><a href="https://egamersworld.com/counterstrike/match/4yn491uUVl/wbt-vs-ence-GQ0xieRgQS">https://egamersworld.com/counterstrike/match/4yn491uUVl/wbt-vs-ence-GQ0xieRgQS</a></td>
+        <td>2026-10-13T22:41Z</td><td>200</td>
+        <td>1.62 / 2.107 (Bo1)</td></tr><tr><td>Elisa Esports BreakOut Series 2 — EA Copenhagen v BOJONG</td>
+        <td><a href="https://egamersworld.com/counterstrike/match/4yn491uUVl/ea-copenhagen-vs-bojong-vBsvfnHU5">https://egamersworld.com/counterstrike/match/4yn491uUVl/ea-copenhagen-vs-bojong-vBsvfnHU5</a></td>
+        <td>2026-10-13T22:41Z</td><td>200</td>
+        <td>1.19 / 4.02 (Bo1)</td></tr><tr><td>Elisa Esports BreakOut Series 2 — WBT v BOJONG</td>
+        <td><a href="https://egamersworld.com/counterstrike/match/4yn491uUVl/wbt-vs-bojong-r7kNL0-LX6">https://egamersworld.com/counterstrike/match/4yn491uUVl/wbt-vs-bojong-r7kNL0-LX6</a></td>
+        <td>2026-10-13T22:41Z</td><td>200</td>
+        <td>1.21 / 3.99 (Bo1)</td></tr><tr><td>Elisa Esports BreakOut Series 2 — EA Copenhagen v ENCE</td>
+        <td><a href="https://egamersworld.com/counterstrike/match/4yn491uUVl/ea-copenhagen-vs-ence-kTR_sMK3PT">https://egamersworld.com/counterstrike/match/4yn491uUVl/ea-copenhagen-vs-ence-kTR_sMK3PT</a></td>
+        <td>2026-10-13T22:41Z</td><td>200</td>
+        <td>1.51 / 2.35 (Bo1)</td></tr><tr><td>Elisa Esports BreakOut Series 2 — Voca v Phantom Esports</td>
+        <td><a href="https://egamersworld.com/counterstrike/match/4yn491uUVl/voca-vs-phantom-esports-zby52fbAja">https://egamersworld.com/counterstrike/match/4yn491uUVl/voca-vs-phantom-esports-zby52fbAja</a></td>
+        <td>2026-10-13T22:41Z</td><td>200</td>
+        <td>1.87 / 1.77 (Bo1)</td></tr><tr><td>Elisa Esports BreakOut Series 2 — HAVU v Rounds</td>
+        <td><a href="https://egamersworld.com/counterstrike/match/4yn491uUVl/havu-vs-rounds-rg48QwsiJ9">https://egamersworld.com/counterstrike/match/4yn491uUVl/havu-vs-rounds-rg48QwsiJ9</a></td>
+        <td>2026-10-13T22:41Z</td><td>200</td>
+        <td>1.2 / 4.04 (Bo1)</td></tr><tr><td>Elisa Esports BreakOut Series 2 — Voca v HAVU</td>
+        <td><a href="https://egamersworld.com/counterstrike/match/4yn491uUVl/voca-vs-havu-nQn6IrZXP">https://egamersworld.com/counterstrike/match/4yn491uUVl/voca-vs-havu-nQn6IrZXP</a></td>
+        <td>2026-10-13T22:41Z</td><td>200</td>
+        <td>1.38 / 2.7 (Bo1)</td></tr><tr><td>Elisa Esports BreakOut Series 2 — Phantom Esports v Rounds</td>
+        <td><a href="https://egamersworld.com/counterstrike/match/4yn491uUVl/phantom-esports-vs-rounds-m6Cnk4tOxU">https://egamersworld.com/counterstrike/match/4yn491uUVl/phantom-esports-vs-rounds-m6Cnk4tOxU</a></td>
+        <td>2026-10-13T22:41Z</td><td>200</td>
+        <td>1.06 / 7.02 (Bo1)</td></tr><tr><td>Elisa Esports BreakOut Series 2 — Voca v Rounds</td>
+        <td><a href="https://egamersworld.com/counterstrike/match/4yn491uUVl/voca-vs-rounds-_dTpdE0K7U">https://egamersworld.com/counterstrike/match/4yn491uUVl/voca-vs-rounds-_dTpdE0K7U</a></td>
+        <td>2026-10-13T22:41Z</td><td>200</td>
+        <td>1.063 / 6.4 (Bo1)</td></tr><tr><td>Elisa Esports BreakOut Series 2 — Phantom Esports v HAVU</td>
+        <td><a href="https://egamersworld.com/counterstrike/match/4yn491uUVl/phantom-esports-vs-havu-H8whr4r586">https://egamersworld.com/counterstrike/match/4yn491uUVl/phantom-esports-vs-havu-H8whr4r586</a></td>
+        <td>2026-10-13T22:41Z</td><td>200</td>
+        <td>1.36 / 2.9 (Bo1)</td></tr></tbody></table>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2>Ratings for our own line</h2>
+    <div class="table-scroll">
+      <table class="table"><thead><tr><th>Source</th><th>URL</th><th>Fetched / dated</th><th>Check</th><th>What it supplied</th></tr></thead>
+      <tbody>
+        <tr><td>Valve Software — Counter-Strike Regional Standings (global)</td>
+        <td><a href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md">https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md</a></td>
+        <td>standings dated 2026-10-05; live fetch checked
+        2026-10-13T22:11:03Z</td>
+        <td>SHA-256 <code>df96e7fc3cd91a26…</code>
+        matches the live file</td>
+        <td>380 ranked teams with points and rosters.</td></tr>
+        <tr><td>HLTV world ranking</td>
+        <td><a href="https://www.hltv.org/ranking/teams/2026/october/12">https://www.hltv.org/ranking/teams/2026/october/12</a></td>
+        <td>2026-10-12 (read 2026-10-13T18:45:34Z)</td>
+        <td>245 teams parsed</td>
+        <td>Shown alongside each team as a cross-check. Not an input to either probability.</td></tr>
+      </tbody></table>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2>Secondary / attempted sources</h2>
+    <div class="table-scroll">
+      <table class="table"><thead><tr><th>Source</th><th>URL</th><th>Result</th><th>Use</th></tr></thead>
+      <tbody>
+        <tr><td>Pinnacle public guest feed</td>
+        <td><a href="https://guest.api.arcadia.pinnacle.com/0.1/sports/12/matchups/highlighted">guest.api.arcadia.pinnacle.com/0.1/sports/12/matchups/highlighted</a></td>
+        <td>HTTP 200 — matchups returned, but the price endpoints
+        (<code>/markets/moneyline</code>) answer 401 to an unauthenticated client.</td>
+        <td>Used to cross-check one start time (Falcons v Ninjas In Pyjamas,
+        <code>cutoffAt 2026-10-14T11:00:00Z</code>) and thereby confirm EGamersWorld's display
+        timezone. No Pinnacle price is published.</td></tr>
+        <tr><td>Oddsportal</td>
+        <td><a href="https://www.oddsportal.com/esports/counter-strike/">oddsportal.com/esports/counter-strike</a></td>
+        <td>HTTP 200, but it lists only 3 CS2 tournaments, none of them on this slate.</td>
+        <td>Not used.</td></tr>
+        <tr><td>HLTV</td>
+        <td><a href="https://www.hltv.org/ranking/teams/2026/october/12">hltv.org/ranking/teams</a></td>
+        <td>Ranking page already in the repository from session arena/91eff436
+        (read 2026-10-13T18:45:34Z); Live match pages are blocked to this
+        environment's automated reads.</td>
+        <td>Displayed per team as a cross-check only.</td></tr>
+      </tbody></table>
+    </div>
+  </section>
+
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Analysis only — not betting advice. Probabilities never use Hotspawn's crowd pick percentages;
+       Hotspawn is used only to list the fixtures. Anything that cannot be confirmed from a linked
+       source is left blank and listed on the <a href="flagged.html">Flagged for Review</a> page.</p>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,84 @@
+# Session arena/459ff624 — live-slate refresh.
+#
+# Reads only public pages (Hotspawn Pick'em payload, Pinnacle public guest responses the
+# matchups page loads, EGamersWorld match pages, HLTV ranking, Valve Regional Standings),
+# rebuilds live/** and commits the result back to the branch the run started from.  While the
+# work is in progress that is this session's branch; after the merge it is main, so the
+# published board keeps re-collecting itself on a schedule with no manual input.
+#
+# No credentials, no login, no private endpoint.  A source that cannot be read leaves its
+# fields blank and is recorded in the provenance table instead of being guessed.
+name: Live slate refresh (459ff624)
+
+on:
+  workflow_dispatch:
+  push:
+    branches: ["arena/459ff624-maltaproj1", "main"]
+    paths:
+      - "live/**"
+      - "tests/test_459ff624_live.py"
+      - ".github/workflows/live-459ff624.yml"
+  schedule:
+    - cron: "37 * * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: live-slate-459ff624
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install the ordinary browser used for the odds and ranking pages
+        run: |
+          python -m pip install --quiet playwright
+          python -m playwright install --with-deps chromium
+      - name: Collect public sources
+        continue-on-error: true
+        run: python3 -u live/collect.py
+      - name: Build the slate, coverage table and pages
+        run: python3 -u live/build.py
+      - name: Unit tests for the join, de-vig and pick rules
+        run: python3 -m unittest tests.test_459ff624_live -v
+      - name: Commit the refreshed board back to this branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add live/data live/*.html
+          if git diff --cached --quiet; then
+            echo "no changes to commit"; exit 0
+          fi
+          git commit -m "live(459ff624): refresh slate from public sources [skip ci]"
+          git pull --rebase origin "${{ github.ref_name }}"
+          git push origin "HEAD:${{ github.ref_name }}"
+      - name: Publish run summary
+        if: always()
+        run: |
+          python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          import json
+          from pathlib import Path
+          p = Path("live/data/snapshot_meta.json")
+          if p.exists():
+              m = json.loads(p.read_text())
+              print("## Live slate snapshot")
+              print("As of (UTC):", m["generated_utc"])
+              print("CS2 fixtures in payload:", m["fixtures"])
+              print("Still open:", m["pickable"])
+              print("With outside bookmaker line:", m["with_external"])
+              print("With our own line:", m["with_own"])
+              print("With a pick:", m["with_pick"])
+              print("Flagged items:", m["flags"])
+              print("Hotspawn crowd fields seen (never used as probability):", m["crowd_fields_seen"])
+          else:
+              print("No snapshot metadata was produced; previously published data is not re-dated.")
+          PY

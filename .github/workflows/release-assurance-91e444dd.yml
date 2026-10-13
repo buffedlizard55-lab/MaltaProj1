@@ -1,0 +1,38 @@
+name: Independent coverage and release assurance
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+  schedule:
+    - cron: '9,39 * * * *'
+permissions:
+  contents: read
+concurrency:
+  group: assurance-91e444dd-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+        with:
+          python-version: '3.12'
+      - name: Regression tests
+        run: python -m unittest discover -s tests -p test_release_91e444dd.py -v
+      - name: Audit every local link and stored CS2 row
+        run: python scripts/audit_91e444dd.py --output status/report.json
+      - name: Check browser code syntax
+        run: node --check status/status.js
+      - name: Preserve independent audit, including flagged findings
+        if: always()
+        uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        with:
+          name: independent-release-audit-${{ github.run_id }}
+          path: status/report.json
+          retention-days: 7
+      - name: Explain verification scope
+        if: always()
+        run: |
+          echo 'Stored observations and internal links checked. External source values are NOT live-verified by this audit. Missing odds and stale data are review findings, not fabricated values. Download the report artifact for per-row results.' >> "$GITHUB_STEP_SUMMARY"
