@@ -1,6 +1,7 @@
 # R-01 live refresh (session arena/b90700c6).
 # Reads only public pages, derives probabilities, rebuilds the board in today/** and commits the
-# result back to this session's branch. No credentials, no manual input, no private endpoints.
+# result back to the branch the run started from (this session's branch, or main after integration).
+# No credentials, no manual input, no private endpoints.
 # Every step logs to refresh/logs/ and the run commits its own diagnostics, so a failure is
 # inspectable from the branch even when job logs are unavailable.
 name: R-01 refresh (b90700c6)
@@ -8,7 +9,9 @@ name: R-01 refresh (b90700c6)
 on:
   workflow_dispatch:
   push:
-    branches: ["arena/b90700c6-maltaproj1"]
+    # Runs on this session's branch while the work is in progress and on main once it is
+    # merged, so the published board keeps refreshing itself on the branch that serves Pages.
+    branches: ["arena/b90700c6-maltaproj1", "main"]
     paths:
       - "refresh/**"
       - ".github/workflows/refresh-b90700c6.yml"
@@ -74,9 +77,11 @@ jobs:
             refresh/data/
             refresh/logs/
           retention-days: 7
-      - name: Publish the derived result and diagnostics to this session branch
+      - name: Publish the derived result and diagnostics to the branch this run started from
         if: always()
         continue-on-error: true
+        env:
+          TARGET_BRANCH: ${{ github.ref_name }}
         run: |
           set -x
           git config user.name "refresh-b90700c6[bot]"
@@ -86,10 +91,10 @@ jobs:
           if [ -d today ]; then git add -f today; fi
           if git diff --cached --quiet; then echo "no data change"; exit 0; fi
           git commit -m "data(b90700c6): refreshed public-source board from run ${{ github.run_id }}"
-          git fetch origin arena/b90700c6-maltaproj1
-          git rebase origin/arena/b90700c6-maltaproj1 || git rebase --abort || true
-          git push origin HEAD:arena/b90700c6-maltaproj1 ||
-            { sleep 5; git push origin HEAD:arena/b90700c6-maltaproj1; }
+          git fetch origin "$TARGET_BRANCH"
+          git rebase "origin/$TARGET_BRANCH" || git rebase --abort || true
+          git push origin "HEAD:$TARGET_BRANCH" ||
+            { sleep 5; git push origin "HEAD:$TARGET_BRANCH"; }
       - name: Job summary
         if: always()
         run: |

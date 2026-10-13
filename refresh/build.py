@@ -243,9 +243,13 @@ def main() -> int:
             if key == "vrs":
                 for team, found, entry in ((fx["team_a"], found_a, entry_a),
                                            (fx["team_b"], found_b, entry_b)):
-                    if found and team in rating_rows:
-                        rating_rows[team]["vrs_points"] = entry.get("points")
-                        rating_rows[team]["vrs_source_url"] = vrs.get("source_url")
+                    if found:
+                        vrs_row = rating_rows.setdefault(team, {"team": team,
+                                                                "hltv_rank": None,
+                                                                "hltv_points": None,
+                                                                "hltv_source_url": None})
+                        vrs_row["vrs_points"] = entry.get("points")
+                        vrs_row["vrs_source_url"] = entry.get("source_url") or vrs.get("source_url")
             if found_a and found_b and None not in (entry_a.get("points"), entry_b.get("points")):
                 p = elo(entry_a["points"], entry_b["points"])
                 model_probs.append(p)
@@ -430,6 +434,12 @@ def main() -> int:
                  f"The EGamersWorld consensus and Pinnacle's moneyline differ by more than "
                  f"{DIVERGENCE_FLAG_PP:.0f} percentage points after de-vigging.", None,
                  items=diverge)
+    if not (hltv.get("ranking") or {}):
+        add_flag("R-HLTV", "HLTV world ranking could not be read for this run",
+                 "The public HLTV ranking page answered with a Cloudflare challenge page instead of "
+                 "the ranking table. No bypass is attempted; the own line uses the published Valve "
+                 "Regional Standings only and every HLTV column stays blank rather than being filled in.",
+                 hltv.get("ranking_url"))
     if vrs.get("error"):
         add_flag("R-VRS", "Valve Regional Standings could not be fully read",
                  f"{vrs['error']} — the own line fell back to the HLTV ranking only.", None)
@@ -472,7 +482,9 @@ def main() -> int:
     with (DATA / "ratings.csv").open("w", newline="", encoding="utf-8") as fh:
         writer = csv.DictWriter(fh, fieldnames=rating_columns, extrasaction="ignore")
         writer.writeheader()
-        for row in sorted(rating_rows.values(), key=lambda r: (r.get("hltv_rank") or 9999)):
+        for row in sorted(rating_rows.values(),
+                          key=lambda r: (r.get("hltv_rank") or 10 ** 6,
+                                         -(r.get("vrs_points") or 0))):
             writer.writerow(row)
 
     print(json.dumps({"in_week": len(rows), "stale": len(stale), "odds_rows": len(odds_rows),

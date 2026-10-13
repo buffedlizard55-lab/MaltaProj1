@@ -30,6 +30,14 @@ a{color:#8fb4ff}
   Hotspawn's own crowd percentages are never used as a probability.</p>
 
   <div class="grid">
+    <a class="card" href="today/">
+      <h2>This week's line board<span class="tag">refreshed automatically</span></h2>
+      <p>Every fixture in the current Pick'em week (124 rows) with its start/lock time, the external
+      bookmaker line where one is readable, our own rating-based line, the resulting pick and a source
+      link on every row. Mobile-first, rebuilt on a schedule from public pages only; unconfirmed values
+      stay blank and are flagged. Categories: CS2, League of Legends, tournaments, tiers, bookmaker
+      lines, team ratings, sources, flagged for review, repository review.</p>
+    </a>
     <a class="card" href="pickem/">
       <h2>Complete slate &amp; external lines<span class="tag">380 fixtures</span></h2>
       <p>Every match on the board (86 CS2 + 294 LoL) read from the Pick'em pages' own server-rendered payload, with exact
@@ -92,6 +100,9 @@ a{color:#8fb4ff}
 
   <div class="note">Built by Arena session <code>79a1c6c8</code>. Values that could not be confirmed from a public source are
   blank and flagged; odds move and every row keeps its capture timestamp. No login, no evasion, no wagering — public pages only.</div>
+  <div class="note">The <code>today/</code> card was added by Arena session <code>b90700c6</code> as a link-only
+  final integration; it is generated from <code>refresh/</code> by
+  <code>.github/workflows/refresh-b90700c6.yml</code> and every existing card is unchanged.</div>
   <div class="note">Cards for <code>model/</code>, <code>dashboard/</code>, <code>assurance/</code> and the source audit report were
   added by Arena session <code>91eff436</code> in a link-only final integration, at their owners' request (see
   <a href="https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/COORDINATION.md">COORDINATION.md</a>). All existing cards are unchanged.</div>
