@@ -1,0 +1,81 @@
+# R-01 live refresh (session arena/b90700c6).
+# Reads only public pages, derives probabilities, rebuilds the board in today/** and commits the
+# result back to this session's branch. No credentials, no manual input, no private endpoints.
+name: R-01 refresh (b90700c6)
+
+on:
+  workflow_dispatch:
+  push:
+    branches: ["arena/b90700c6-maltaproj1"]
+    paths:
+      - "refresh/**"
+      - ".github/workflows/refresh-b90700c6.yml"
+  schedule:
+    # Post-merge housekeeping only: a scheduled workflow fires from the default branch.
+    - cron: "23 */3 * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-b90700c6
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Read public sources (Hotspawn payload, EGamersWorld lines, HLTV/Valve ratings)
+        run: python3 refresh/collect.py | tee refresh_run_summary.txt
+      - name: Build probabilities, own line and picks
+        run: python3 refresh/build.py
+      - name: Render the mobile board (today/**)
+        run: python3 refresh/build_site.py
+      - name: Verify every row, every link and every calculation
+        run: python3 refresh/verify.py
+      - name: Upload derived data and the run summary
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: refresh-b90700c6-${{ github.run_id }}
+          path: |
+            refresh/data/
+            refresh_run_summary.txt
+          retention-days: 7
+      - name: Publish the derived result to this session branch
+        if: always()
+        run: |
+          git config user.name "refresh-b90700c6[bot]"
+          git config user.email "refresh-b90700c6@users.noreply.github.com"
+          git add refresh/data today
+          if git diff --cached --quiet; then echo "no data change"; exit 0; fi
+          git commit -m "data(b90700c6): refreshed public-source board from run ${{ github.run_id }}"
+          git pull --rebase origin arena/b90700c6-maltaproj1
+          git push origin HEAD:arena/b90700c6-maltaproj1
+      - name: Job summary
+        if: always()
+        run: |
+          {
+            echo "## Refresh run ${{ github.run_id }}"
+            echo '```json'
+            python3 - <<'PY'
+            import json, pathlib
+            for name in ("current.json",):
+                p = pathlib.Path("refresh/data") / name
+                if p.exists():
+                    data = json.loads(p.read_text())
+                    print(json.dumps({"counts": data["meta"]["counts"],
+                                      "snapshot": data["meta"]["source_snapshot_utc"],
+                                      "flags": [f["code"] for f in data["flagged"]]}, indent=1))
+                else:
+                    print(f"{name} not produced")
+            PY
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
