@@ -547,8 +547,21 @@ def norm_key(name: str) -> str:
     return s
 
 
+def probe_hosts() -> None:
+    """Print one line per source host before any parsing, so a failing run is diagnosable."""
+    for label, url in (("hotspawn", "https://play.hotspawn.com/lobby"),
+                       ("egw-cs2", "https://egamersworld.com/counterstrike/matches"),
+                       ("hltv-ranking", "https://www.hltv.org/ranking/teams"),
+                       ("valve-api", VRS_LATEST_API)):
+        got = fetch(url)
+        print(f"probe {label:14s} status={got['status']} bytes={got['bytes']} "
+              f"err={got['error']}", flush=True)
+        time.sleep(0.3)
+
+
 def main() -> int:
     DATA.mkdir(parents=True, exist_ok=True)
+    probe_hosts()
     hs = collect_hotspawn()
     fixtures = hs["fixtures"]
     # Only the live week gets an odds lookup: fixtures outside the window (the stale summer
