@@ -2,9 +2,9 @@
  "inputs": {
   "hotspawn": {
    "url": "https://play.hotspawn.com/cs2-pickems",
-   "fetched_utc": "2026-10-13T18:20:04Z",
+   "fetched_utc": "2026-10-13T18:26:55Z",
    "html_sha256": "cc6f31651d5ecd507fe06873f52ecc72048ce776270641c72e0454c5f2308622",
-   "fixtures": 85,
+   "fixtures": 86,
    "pickem_week": {
     "weekId": 270,
     "sportAlias": "cs2",
@@ -26,8 +26,8 @@
   "hltv": {
    "canonical_url": "https://www.hltv.org/ranking/teams/2026/october/12",
    "ranking_date": "2026-10-12",
-   "fetched_utc": "2026-10-13T18:20:10Z",
-   "html_sha256": "00e4c827eda9d06f24176d1a65254e80ef1c5984d008e27b89df358804679dc4",
+   "fetched_utc": "2026-10-13T18:27:00Z",
+   "html_sha256": "8d77923bef46c5e3379663d340db74267fbdb6fc8ecc3a10996603388fac713d",
    "team_count": 245
   },
   "calibration": {
@@ -47,7 +47,7 @@
        "bin": "50-60%",
        "n": 492,
        "mean_expected": 0.5525,
-       "observed": 0.5589
+       "observed": 0.561
       },
       {
        "bin": "60-70%",
@@ -84,7 +84,7 @@
        "bin": "50-60%",
        "n": 965,
        "mean_expected": 0.5465,
-       "observed": 0.5689
+       "observed": 0.5699
       },
       {
        "bin": "60-70%",
@@ -118,7 +118,7 @@
   "market": {
    "path": "lines/analysis.csv",
    "present": true,
-   "commit_utc": "2026-10-13T18:16:50+00:00"
+   "commit_utc": "2026-10-13T18:16:50Z"
   },
   "model": {
    "formula": "P(A)=1/(1+10^(-k*(ptsA-ptsB)/400)); k = calibrated slope (Valve raw: k=g, g=1/sqrt(1+3q^2*rd^2/pi^2), q=ln10/400, rd=75)",
@@ -2846,6 +2846,52 @@
    "notes": "Hotspawn lists a scheduled date before this pick'em week (stale listing)"
   },
   {
+   "hotspawn_match_id": "1079620",
+   "section": "started",
+   "scheduled_start_utc": "2026-10-13 17:00",
+   "lock_utc": "2026-10-13 16:54",
+   "hotspawn_status": "scheduled",
+   "competition": "CCT Europe 2026 Series #11",
+   "tier": "B",
+   "stage": "waiting for information",
+   "best_of": "",
+   "team_a": "Black Phoenix",
+   "team_b": "6666",
+   "hotspawn_url": "https://www.hotspawn.com/matches/black-phoenix-vs-6666-cct-europe-2026-series-11-1079620",
+   "vrs_a_name": "Black Phoenix",
+   "vrs_a_standing": 76,
+   "vrs_a_points": 1116,
+   "vrs_a_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L81",
+   "hltv_a_rank": 57,
+   "hltv_a_url": "https://www.hltv.org/team/13924/black-phoenix",
+   "resolution_a": "VERIFIED: VRS name + HLTV roster",
+   "vrs_b_name": "6666",
+   "vrs_b_standing": 127,
+   "vrs_b_points": 923,
+   "vrs_b_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L132",
+   "hltv_b_rank": 80,
+   "hltv_b_url": "https://www.hltv.org/team/13882/6666",
+   "resolution_b": "VERIFIED: VRS name + HLTV roster",
+   "market_odds_a": "",
+   "market_odds_b": "",
+   "market_p_a": "",
+   "market_overround_pct": "",
+   "market_bookmaker": "",
+   "market_source_url": "",
+   "market_captured_utc_reported": "",
+   "own_p_a": 62.4,
+   "own_p_b": 37.6,
+   "fair_odds_a": 1.6,
+   "fair_odds_b": 2.66,
+   "pick": "Black Phoenix",
+   "confidence": "lean",
+   "line_status": "OWN LINE",
+   "valve_raw_p_a": 74.7,
+   "edge_pp": "",
+   "market_agrees": "",
+   "notes": ""
+  },
+  {
    "hotspawn_match_id": "1081076",
    "section": "upcoming",
    "scheduled_start_utc": "2026-10-13 21:00",
@@ -4057,7 +4103,7 @@
    "hltv_points": 10,
    "hltv_players": "amster, kL1o, rendysky, skcH, dENZY",
    "hltv_url": "https://www.hltv.org/team/13882/6666",
-   "fixtures": "1053439, 1053470, 1053442"
+   "fixtures": "1053439, 1053470, 1053442, 1079620"
   },
   {
    "hotspawn_team": "9z",
@@ -4282,6 +4328,22 @@
    "hltv_players": "Maden, prosus, doni, aZe, Hrdina",
    "hltv_url": "https://www.hltv.org/team/10254/big-academy",
    "fixtures": "1052357, 1052187"
+  },
+  {
+   "hotspawn_team": "Black Phoenix",
+   "resolution": "VERIFIED: VRS name + HLTV roster",
+   "note": "5 shared players",
+   "vrs_name": "Black Phoenix",
+   "vrs_standing": 76,
+   "vrs_points": 1116,
+   "vrs_roster": "4X1s, karnez, MRcreed, Salazar, topo",
+   "vrs_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L81",
+   "vrs_details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0076--black_phoenix--4x1s-karnez-mrcreed-salazar-topo.md",
+   "hltv_rank": 57,
+   "hltv_points": 16,
+   "hltv_players": "4X1s, karnez, topo, MRcreed, Salazar",
+   "hltv_url": "https://www.hltv.org/team/13924/black-phoenix",
+   "fixtures": "1079620"
   },
   {
    "hotspawn_team": "Blitzkrieg",
@@ -5929,14 +5991,14 @@
    "id": "M-S1",
    "severity": "needs review",
    "subject": "59 Hotspawn fixtures have scheduled dates before this pick'em week",
-   "detail": "Hotspawn's TransferState lists 59 of 85 CS2 fixtures with scheduled_start_time 2026-06-26 10:30 .. 2026-07-10 08:00 UTC (week starts 2026-10-12T00:00:00.000Z), still status='scheduled' and lock times in the past. They are not rendered as cards in the lobby. Lines are still computed (current VRS) for completeness but are informational only.",
+   "detail": "Hotspawn's TransferState lists 59 of 86 CS2 fixtures with scheduled_start_time 2026-06-26 10:30 .. 2026-07-10 08:00 UTC (week starts 2026-10-12T00:00:00.000Z), still status='scheduled' and lock times in the past. They are not rendered as cards in the lobby. Lines are still computed (current VRS) for completeness but are informational only.",
    "links": "https://play.hotspawn.com/cs2-pickems"
   },
   {
    "id": "M-S2",
    "severity": "needs review",
    "subject": "Hotspawn lobby counts disagree",
-   "detail": "Lobby header says '60 matches this week'; filter says All tiers (85); TransferState holds 85 fixtures, of which 26 are dated inside the current pick'em week.",
+   "detail": "Lobby header says '60 matches this week'; filter says All tiers (85); TransferState holds 86 fixtures, of which 27 are dated inside the current pick'em week.",
    "links": "https://play.hotspawn.com/cs2-pickems"
   },
   {
@@ -5971,7 +6033,7 @@
    "id": "M-S8",
    "severity": "needs review",
    "subject": "Market reference: 12 fixtures from lines/analysis.csv (session 79a1c6c8), read-only",
-   "detail": "Decimal odds as recorded by session 79a1c6c8. No-vig recomputed here as (1/oa)/(1/oa+1/ob). Not re-verified by O-01 and never used in our line or pick. IRREGULARITY: 4 rows report capture times after the file's last commit (2026-10-13T18:16:50+00:00): 1081076 (2026-10-13T18:31Z), 1079546 (2026-10-13T18:31Z), 1079621 (2026-10-13T18:20Z), 1079623 (2026-10-13T18:20Z). Treat as unverified.",
+   "detail": "Decimal odds as recorded by session 79a1c6c8. No-vig recomputed here as (1/oa)/(1/oa+1/ob). Not re-verified by O-01 and never used in our line or pick. IRREGULARITY: 4 rows report capture times after the file's last commit (2026-10-13T18:16:50Z): 1081076 (2026-10-13T18:31Z), 1079546 (2026-10-13T18:31Z), 1079621 (2026-10-13T18:20Z), 1079623 (2026-10-13T18:20Z). Treat as unverified.",
    "links": "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/lines/analysis.csv"
   }
  ]
