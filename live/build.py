@@ -720,9 +720,11 @@ def render_coverage(rows, meta, snapshot) -> str:
             escape(str((crowd_by_id.get(r["match_id"], {}) or {}).get("crowd_pct_b"))),
             escape(str((crowd_by_id.get(r["match_id"], {}) or {}).get("crowd_total_picks"))),
             escape(r.get("ext_p_a_pct") or r.get("own_p_a_pct") or "—"))
-        for r in rows
+        for r in rows if r["pickable"] == "yes"
         if (crowd_by_id.get(r["match_id"], {}) or {}).get("crowd_pct_a") is not None
         or (crowd_by_id.get(r["match_id"], {}) or {}).get("crowd_pct_b") is not None)
+    crowd_count = sum(1 for r in rows if r["pickable"] == "yes"
+                      and (crowd_by_id.get(r["match_id"], {}) or {}).get("crowd_pct_a") is not None)
     counters = snapshot.get("hotspawn_pages", [])
     counter_rows = "".join(
         f"<tr><td>{escape(p['page'])}</td><td>{p['status']}</td><td>{p['state_rows']}</td>"
@@ -753,6 +755,8 @@ record, key names only): {key_list}. The crowd pick share below is read from
 <code>participants0_picked_percent</code> / <code>participants1_picked_percent</code>.</p>
 
 <h2>Observed crowd pick share — audit only, never an input</h2>
+<p class="note">Shown for the {crowd_count} fixture(s) still open at snapshot time (the board's own
+vote counts on stale listings are meaningless).</p>
 <p class="note">These numbers are what other players picked on the Hotspawn board. They are <b>not</b>
 a probability, <b>not</b> an input to any model here and <b>not</b> a pick: they are published only so
 the difference between crowd behaviour and the outside market/our own line can be audited. Every

@@ -1360,3 +1360,4 @@ workflow run in progress), `arena/4f599d7c` (`collector/**`, `webui/**`, `dashbo
 - 22:44 UTC: session started; repo recon (board, live site, workflows, published datasets) before claiming.
 - 22:55 UTC: claim written and pushed; `live/collect.py`, `live/build.py`, `tests/test_459ff624_live.py`
   and `.github/workflows/live-459ff624.yml` added (13/13 unit tests pass locally).
+- 23:08 UTC: `reviews/459ff624-verification.md` published (identity/times vs the board and HLTV, VRS values vs Valve's file, de-vig re-computed from the published odds, crowd-field exclusion, 369 internal links 0 broken). Landing card added to root `index.html` (additive, one card). Snapshot published: 90 CS2 records, 29 open — 6 with an outside market line, 27 with our own line, 28 with a pick, 1 blank row (FORZE Reload v LFO 10: no market, team absent from Valve's file).
