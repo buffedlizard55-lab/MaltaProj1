@@ -1,0 +1,211 @@
+{
+ "generated_utc": "2026-10-13T18:15:37Z",
+ "note": "read-only probe of public endpoints; 403/blocked sources are recorded, never worked around",
+ "results": [
+  {
+   "label": "polymarket-gamma-cs2",
+   "url": "https://gamma-api.polymarket.com/events?closed=false&limit=50&tag=Counter-Strike",
+   "status": 200,
+   "bytes": 2253017,
+   "sha256": "1c958cd4ba7d1710",
+   "fetched_utc": "2026-10-13T18:15:14Z",
+   "content_type": "application/json",
+   "odds_like_numbers": 7,
+   "has_team_names": true,
+   "sample": "[{\"id\":\"16183\",\"ticker\":\"kraken-ipo-in-2025\",\"slug\":\"kraken-ipo-in-2025\",\"title\":\"Kraken IPO by ___ ?\",\"description\":\"This market will resolve to \\\"Yes\\\" if Kraken (US-based cryptocurrency exchange) completes an Initial Public Offering (IPO) by December 31, 2025, 11:59 PM ET, as confirmed by official company announcements or credible news sources. The IPO refers to the first sale of stock by Krake"
+  },
+  {
+   "label": "polymarket-gamma-lol",
+   "url": "https://gamma-api.polymarket.com/events?closed=false&limit=50&tag=League%20of%20Legends",
+   "status": 200,
+   "bytes": 2253017,
+   "sha256": "1c958cd4ba7d1710",
+   "fetched_utc": "2026-10-13T18:15:14Z",
+   "content_type": "application/json",
+   "odds_like_numbers": 7,
+   "has_team_names": true,
+   "sample": "[{\"id\":\"16183\",\"ticker\":\"kraken-ipo-in-2025\",\"slug\":\"kraken-ipo-in-2025\",\"title\":\"Kraken IPO by ___ ?\",\"description\":\"This market will resolve to \\\"Yes\\\" if Kraken (US-based cryptocurrency exchange) completes an Initial Public Offering (IPO) by December 31, 2025, 11:59 PM ET, as confirmed by official company announcements or credible news sources. The IPO refers to the first sale of stock by Krake"
+  },
+  {
+   "label": "polymarket-clob-cs2",
+   "url": "https://clob.polymarket.com/markets?limit=20",
+   "status": 200,
+   "bytes": 1838355,
+   "sha256": "ec52cee16ab5a4e5",
+   "fetched_utc": "2026-10-13T18:15:14Z",
+   "content_type": "application/json",
+   "odds_like_numbers": 4,
+   "has_team_names": true,
+   "sample": "{\"data\":[{\"enable_order_book\":false,\"active\":true,\"closed\":true,\"archived\":false,\"accepting_orders\":false,\"accepting_order_timestamp\":null,\"minimum_order_size\":5,\"minimum_tick_size\":0.01,\"condition_id\":\"0xb62f71aef4c9972ddb75ec977b48156e1cc72e30f0e36b0f12c14de7fd94c777\",\"question_id\":\"\",\"question\":\"Will Benjamin Netanyahu remain prime minister of Israel through June 30, 2021?\",\"description\":\"This "
+  },
+  {
+   "label": "sofascore-esports",
+   "url": "https://www.sofascore.com/api/v1/sport/esports/scheduled-events/2026-10-14",
+   "status": 403,
+   "error": "HTTPError 403",
+   "fetched_utc": "2026-10-13T18:15:15Z"
+  },
+  {
+   "label": "leaguepedia-schedule",
+   "url": "https://lol.fandom.com/api.php?action=cargoquery&tables=MatchSchedule&fields=MatchSchedule.OverviewPage,MatchSchedule.Team1,MatchSchedule.Team2,MatchSchedule.DateTime_UTC&where=MatchSchedule.DateTime_UTC%20LIKE%20%272026-10%25%27&limit=50&format=json",
+   "status": 200,
+   "bytes": 372,
+   "sha256": "91f2357c7d0313f0",
+   "fetched_utc": "2026-10-13T18:15:15Z",
+   "content_type": "application/json; charset=utf-8",
+   "odds_like_numbers": 0,
+   "has_team_names": false,
+   "sample": "{\"error\":{\"code\":\"ratelimited\",\"info\":\"You've exceeded your rate limit. Please wait some time and try again.\",\"*\":\"See https://lol.fandom.com/api.php for API usage. Subscribe to the mediawiki-api-announce mailing list at &lt;https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/&gt; for notice of API deprecations and breaking changes.\"}}"
+  },
+  {
+   "label": "liquipedia-cs2-api",
+   "url": "https://liquipedia.net/counterstrike/api.php?action=query&list=recentchanges&format=json&rclimit=5",
+   "status": 429,
+   "error": "HTTPError 429",
+   "fetched_utc": "2026-10-13T18:15:15Z"
+  },
+  {
+   "label": "betexplorer-cs2",
+   "url": "https://www.betexplorer.com/esports/",
+   "status": 404,
+   "error": "HTTPError 404",
+   "fetched_utc": "2026-10-13T18:15:21Z"
+  },
+  {
+   "label": "oddsportal-esports",
+   "url": "https://www.oddsportal.com/esports/",
+   "status": 200,
+   "bytes": 511672,
+   "sha256": "1d73307b322ce1af",
+   "fetched_utc": "2026-10-13T18:15:22Z",
+   "content_type": "text/html; charset=utf-8",
+   "odds_like_numbers": 11,
+   "has_team_names": true,
+   "sample": "<!DOCTYPE html><html lang=\"en\" class=\"opensans_aaadb7a3-module__b9fGUa__variable montserrat_5d237d23-module__hkFSxG__variable\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/><link rel=\"stylesheet\" href=\"/_next/static/chunks/2x0fi7fucyswm.css\" data-precedence=\"next\"/><link rel=\"stylesheet\" href=\"/_next/static/chunks/3owhnkcw8bq9a.css\" data-preceden"
+  },
+  {
+   "label": "oddspedia-esports",
+   "url": "https://oddspedia.com/esports",
+   "status": 200,
+   "bytes": 651682,
+   "sha256": "21fc191e41ae38ad",
+   "fetched_utc": "2026-10-13T18:15:25Z",
+   "content_type": "text/html; charset=utf-8",
+   "odds_like_numbers": 31,
+   "has_team_names": true,
+   "sample": "<!doctype html><html data-n-head-ssr lang=\"en-US\" data-n-head=\"%7B%22lang%22:%7B%22ssr%22:%22en-US%22%7D%7D\"><head ><meta data-n-head=\"ssr\" charset=\"utf-8\"><meta data-n-head=\"ssr\" name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover\"><meta data-n-head=\"ssr\" name=\"google-site-verification\" content=\"3KXiedXeS2I22TkdUfAkQYCBPufkojF0MRAozjvG4cU\"><meta data-"
+  },
+  {
+   "label": "flashscore-esports",
+   "url": "https://www.flashscore.com/esports/",
+   "status": 200,
+   "bytes": 709031,
+   "sha256": "6438e2249f108358",
+   "fetched_utc": "2026-10-13T18:15:26Z",
+   "content_type": "text/html; charset=UTF-8",
+   "odds_like_numbers": 117,
+   "has_team_names": true,
+   "sample": "<!DOCTYPE html> <html lang=\"en\">     <head>         <meta charset=\"utf-8\">         <title>Flashscore.com: eSports standings, results and fixtures</title>         <script defer src=\"https://cdn.cookielaw.org/scripttemplates/otSDKStub.js\"             type=\"text/javascript\"             charset=\"UTF-8\"             data-domain-script=\"23d76a88-8ebd-439c-a0dd-6da91b895891\"             onerror=\"window.on"
+  },
+  {
+   "label": "bovada-esports",
+   "url": "https://www.bovada.lv/sports/esports",
+   "status": 200,
+   "bytes": 2361939,
+   "sha256": "eabbcea2349c9ab7",
+   "fetched_utc": "2026-10-13T18:15:27Z",
+   "content_type": "text/html; charset=utf-8",
+   "odds_like_numbers": 278,
+   "has_team_names": true,
+   "sample": "<!DOCTYPE html><html lang=\"en\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no\"/><link rel=\"preload\" as=\"script\" fetchPriority=\"low\" href=\"/assets/_next/static/chunks/webpack-3d916568cecaf821.js\"/><script src=\"/assets/_next/static/chunks/036e1105-5c6e8a56060001ea.js\" async=\"\"></script><script src=\"/assets/_next/stat"
+  },
+  {
+   "label": "betonline-esports",
+   "url": "https://www.betonline.ag/sportsbook/esports",
+   "status": 200,
+   "bytes": 363950,
+   "sha256": "3eaef9cc5d0b4358",
+   "fetched_utc": "2026-10-13T18:15:33Z",
+   "content_type": "text/html",
+   "odds_like_numbers": 6,
+   "has_team_names": true,
+   "sample": "<!DOCTYPE html><script>(function(){const webAppConfig = {\"FEATURE_HUB_OUTRIGHTS_ALL_TAB\":\"true\",\"FEATURE_STRAPI_PROMO_BANNERS\":\"true\",\"FEATURE_UBS_LIVE_PARLAY\":\"true\",\"CHASHOUT_API_URL\":\"https://cashoutapi.betonline.ag/api/v1.0/CashoutExternal\",\"SAS_ROLLOUT_COOKIE_PRE_SAS_ID\":\"NBOL\",\"FEATURE_AUTH_REDIRECTION\":\"true\",\"HAS_DEBUG\":\"false\",\"FEATURE_SGP_MP_GRID\":\"true\",\"BETSLIP_API_URL\":\"https://api-be"
+  },
+  {
+   "label": "ggbet-esports",
+   "url": "https://gg.bet/en/esports",
+   "status": 403,
+   "error": "HTTPError 403",
+   "fetched_utc": "2026-10-13T18:15:33Z"
+  },
+  {
+   "label": "thunderpick-esports",
+   "url": "https://thunderpick.io/esports",
+   "status": 403,
+   "error": "HTTPError 403",
+   "fetched_utc": "2026-10-13T18:15:33Z"
+  },
+  {
+   "label": "pinnacle-esports",
+   "url": "https://www.pinnacle.com/en/esports/matchups",
+   "status": 200,
+   "bytes": 6394,
+   "sha256": "3f7de2cdd588e8d6",
+   "fetched_utc": "2026-10-13T18:15:33Z",
+   "content_type": "text/html",
+   "odds_like_numbers": 0,
+   "has_team_names": true,
+   "sample": "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"/><meta name=\"apple-mobile-web-app-capable\" content=\"yes\"/><meta name=\"mobile-web-app-capable\" content=\"yes\"/><meta name=\"msapplication-config\" content=\"/img/icons/browserconfig.xml\"/><link rel=\"icon\" type=\"image/x-icon\" href=\"/img/icons/favicon.ico\"/><link rel=\"manifest\" h"
+  },
+  {
+   "label": "1xbet-esports",
+   "url": "https://1xbet.com/en/line/esports",
+   "status": 203,
+   "bytes": 2625,
+   "sha256": "e87c1991a3b137d0",
+   "fetched_utc": "2026-10-13T18:15:34Z",
+   "content_type": "text/html;charset=utf-8",
+   "odds_like_numbers": 0,
+   "has_team_names": false,
+   "sample": "<!DOCTYPE html><html  data-capo=\"\"><head><meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, viewport-fit=cover\"> <link rel=\"stylesheet\" href=\"/sys-static/shared-assets/Desktop/__shared_css_1064b5.css\" crossorigin> <script type=\"module\" src=\"/sys-static/sys-technical-pages-app-static/Desktop/Default/entry-006a76dd27.js\" crossorigin></script><link rel=\"stylesh"
+  },
+  {
+   "label": "betano-esports",
+   "url": "https://www.betano.com/sport/esports/",
+   "status": 200,
+   "bytes": 29842,
+   "sha256": "50afbd5cf9207373",
+   "fetched_utc": "2026-10-13T18:15:35Z",
+   "content_type": "text/html; charset=utf-8",
+   "odds_like_numbers": 0,
+   "has_team_names": true,
+   "sample": "<!DOCTYPE html>\r <html>\r <head>\r     <meta charset=\"utf-8\" />\r     <meta http-equiv=\"x-ua-compatible\" content=\"ie=edge\" />\r     <title>Online Betting - Great Odds and Live Betting | Betano</title>\r     <meta name=\"description\" content=\"Visit one of our websites across the world based on your location and enjoy sports betting and online casino experience!\" />\r     <meta name=\"viewport\" content=\"wid"
+  },
+  {
+   "label": "esportsbattle",
+   "url": "https://esportsbattle.com/en/counter-strike",
+   "status": 404,
+   "error": "HTTPError 404",
+   "fetched_utc": "2026-10-13T18:15:35Z"
+  },
+  {
+   "label": "bo3-gg",
+   "url": "https://bo3.gg/matches/upcoming",
+   "status": 200,
+   "bytes": 13111,
+   "sha256": "08d830686c3f9e01",
+   "fetched_utc": "2026-10-13T18:15:35Z",
+   "content_type": "text/html;charset=utf-8",
+   "odds_like_numbers": 0,
+   "has_team_names": true,
+   "sample": "<!DOCTYPE html><html><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><link rel=\"preconnect\" href=\"https://image-proxy.bo3.gg\"><link rel=\"preconnect\" href=\"https://fonts.googleapis.com\"><script src=\"https://accounts.google.com/gsi/client\" async></script><script src=\"https://connect.facebook.net/en_US/sdk.js\" async></script><link rel=\"stylesheet\" href="
+  },
+  {
+   "label": "escorenews-matches",
+   "url": "https://escorenews.com/en/csgo/matches",
+   "status": 403,
+   "error": "HTTPError 403",
+   "fetched_utc": "2026-10-13T18:15:36Z"
+  }
+ ]
+}
