@@ -1,0 +1,39 @@
+name: Public source discovery
+
+on:
+  push:
+    branches: [arena/4f599d7c-maltaproj1]
+    paths:
+      - scripts/discover_sources.py
+      - .github/workflows/discover.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: public-source-discovery
+  cancel-in-progress: false
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install ordinary browser tooling
+        run: |
+          python -m pip install playwright==1.55.0
+          python -m playwright install --with-deps chromium
+      - name: Inspect public pages and their first-party network data
+        run: python scripts/discover_sources.py
+      - name: Keep source evidence outside Git
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: public-source-discovery
+          path: .cache/discovery/
+          retention-days: 7
