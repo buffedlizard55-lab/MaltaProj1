@@ -1657,3 +1657,30 @@ either way, because every moneyline endpoint answers 401 to an unauthenticated c
   FL-23 single external source; FL-24 no per-match Hotspawn link for some rows; FL-25 prediction-market
   fallback labelling; FL-26 Valve lists some names twice (one entry per roster) — higher-points entry used
   with the alternative printed beside the row.
+
+### C-02 follow-up — three defects found on the live page after PR #56 merged (arena/cc8f4dca, 2026-10-13 23:1x UTC)
+
+The GitHub Pages deploy of PR #56 was confirmed live, then read back and checked line by line.
+Three defects were found and fixed. All are on `winboard/` only.
+
+1. **The snapshot line printed "Hotspawn lobby payload fetched unknown".** `winboard_collect.py`
+   recorded `url`/`http_status`/`bytes`/`sha256` per page but never a timestamp, while the page
+   template read `pages[0]["fetched_utc"]`. Fixed in the collector (writes `fetched_utc` per page
+   and at the top level) and in the builder, which falls back to `collect_meta.json`'s
+   `run_finished_utc` for the snapshot that predates the field. The page now reads
+   "fetched 2026-10-13T22:54:13+00:00", which is the CI run's own finish time — evidence-backed,
+   not invented.
+2. **The Valve standings link pointed at `blob/main`,** so it could silently resolve to a different
+   file than the one whose SHA-256 we verify. Both the builder and the snapshot script now pin the
+   commit `eec4853d7bcf0f1f7efe7f0d901234bef7e98b75` — the commit GitHub Actions fetched at
+   2026-10-13T22:11:03Z.
+3. **Rows linked the whole 380-team file instead of the team.** `vrs_snapshot.py` now records the
+   source line number while parsing, and each row carries a `Valve VRS row — <team> (#rank, N pts)`
+   deep link of the form `...?plain=1#L<n>`: 120 deep links across the generated pages. Spot-checked
+   against the official file: `#L216` = Gothic (rank 211, 705 pts), `#L7` = Legacy (rank 2, 1931),
+   `#L14` = Aurora (rank 9, 1716), `#L22` = 9z (rank 17, 1543). These are identical to the anchors
+   `arena/616c2455` (P-02) published independently — a genuine cross-confirmation of both.
+
+Verification is now **1,068 checks, all passing**, and includes new assertions that the Valve URL is
+pinned to a 40-hex commit, that every emitted line anchor exists in `vrs.json`, and that the
+snapshot line can never print "unknown".

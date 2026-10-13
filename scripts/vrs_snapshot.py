@@ -17,12 +17,15 @@ ROOT = Path(__file__).resolve().parent.parent
 SOURCE_MD = ROOT / "model" / "input" / "vrs" / "standings_global_2026_10_05.md"
 OUT = ROOT / "winboard" / "data" / "vrs.json"
 
+# Pinned to the commit GitHub Actions fetched (HTTP 200, 2026-10-13T22:11:03Z) so the link
+# always resolves to exactly the bytes whose SHA-256 we verify below.
+PIN = "eec4853d7bcf0f1f7efe7f0d901234bef7e98b75"
 RAW_URL = (
     "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings"
-    "/main/live/2026/standings_global_2026_10_05.md"
+    f"/{PIN}/live/2026/standings_global_2026_10_05.md"
 )
 BLOB_URL = (
-    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/"
+    f"https://github.com/ValveSoftware/counter-strike_regional_standings/blob/{PIN}/"
     "live/2026/standings_global_2026_10_05.md"
 )
 EXPECTED_SHA256 = "df96e7fc3cd91a2687ec08cac0128e50cc4e4e55346581679572e881d79ae61b"
@@ -38,10 +41,11 @@ def main() -> int:
 
     teams: list[dict] = []
     # Header: | Standing | Points | Team Name | Roster | details |
-    for line in text.splitlines():
+    for lineno, line in enumerate(text.splitlines(), start=1):
         if not line.strip().startswith("|"):
             continue
         cells = [c.strip() for c in line.strip().strip("|").split("|")]
+        line_no = lineno
         if len(cells) < 4 or not cells[0].isdigit():
             continue
         points = cells[1].replace(",", "").strip()
@@ -55,7 +59,7 @@ def main() -> int:
                 "points": int(points),
                 "name": name,
                 "roster": roster,
-                "line_no": None,
+                "line_no": line_no,
             }
         )
 

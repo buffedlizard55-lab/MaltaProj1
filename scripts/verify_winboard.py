@@ -58,13 +58,37 @@ def main() -> int:
     vrs = json.loads((DATA / "vrs.json").read_text())
     check(vrs.get("sha256_matches_live_fetch") is True, "vrs.json sha256 does not match the live fetch")
     check(vrs.get("team_count", 0) > 300, "vrs.json looks empty")
+    # The official standings link must be pinned to a commit, so it can never silently drift to a
+    # different file than the one whose SHA-256 we verified.
+    import re as _re
+    check(
+        bool(_re.search(r"/blob/[0-9a-f]{40}/", vrs.get("source_url", ""))),
+        f"Valve source url is not pinned to a commit: {vrs.get('source_url')}",
+    )
+    # `html` = every generated page concatenated, so the assertions below sweep the whole site.
+    html = "".join(
+        (OUT / name).read_text()
+        for name in ("index.html", "methodology.html", "sources.html", "flagged.html")
+        if (OUT / name).exists()
+    )
+    # Every deep link must name a line number that vrs.json says a real team row is on.
+    lines = {team["line_no"] for team in vrs["teams"] if team.get("line_no")}
+    anchors = {
+        int(m) for m in _re.findall(r"standings_global_2026_10_05\.md\?plain=1#L(\d+)", html)
+    }
+    check(bool(anchors), "no per-team Valve deep links were emitted")
+    check(anchors <= lines, f"deep-link line numbers not in vrs.json: {sorted(anchors - lines)[:5]}")
+    # The snapshot line must never print 'unknown'.
+    check("fetched unknown" not in html, "the snapshot line does not state when the lobby was fetched")
+    for label in ("Hotspawn lobby payload fetched",):
+        check(label in html, f"snapshot line is missing '{label}'")
 
     # --- 3. Hotspawn pick percentages are never an input --------------------
     fixtures = json.loads((DATA / "fixtures.json").read_text())
     picked = [f for f in fixtures.get("fixtures", {}).values() if "picked_percent" in f]
     check(True, "")
     check(
-        "picked_percent" not in (OUT / "data" if False else OUT / "index.html").read_text(),
+        "picked_percent" not in html,
         "the word picked_percent appears in the generated page",
     )
 

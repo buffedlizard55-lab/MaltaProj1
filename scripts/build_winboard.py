@@ -41,10 +41,20 @@ ASSETS = OUT / "assets"
 K_MODEL = 0.4568
 K_VALVE_RAW = 0.972821
 VRS_BLOB_URL = (
-    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/"
-    "live/2026/standings_global_2026_10_05.md"
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/"
+    "eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
 )
 HOTSPawn_URL = "https://play.hotspawn.com/cs2-pickems"
+
+
+def vrs_team_url(row: dict | None) -> str:
+    """Deep-link the exact table row this team's rating was read from.
+
+    The line number comes from vrs.json, which records it while parsing the same file whose
+    SHA-256 we check, so the anchor points at the row we actually read.
+    """
+    line = (row or {}).get("line_no")
+    return f"{VRS_BLOB_URL}?plain=1#L{line}" if line else VRS_BLOB_URL
 
 # ---------------------------------------------------------------------------
 # Team-name resolution. Every non-identity mapping carries its evidence.
@@ -201,7 +211,17 @@ def main() -> int:
 
     raw_fixtures = fixtures_doc.get("fixtures") or {}
     pages = fixtures_doc.get("pages") or []
-    hotspawn_fetched = pages[0].get("fetched_utc") if pages else None
+    # The collector records a fetch timestamp per page. The very first snapshot pre-dates that
+    # field, so fall back to the collector's own run log rather than printing "unknown".
+    collect_meta = load_json(DATA / "collect_meta.json", {}) or {}
+    hotspawn_fetched = (
+        fixtures_doc.get("fetched_utc")
+        or (pages[0].get("fetched_utc") if pages else None)
+        or collect_meta.get("run_finished_utc")
+    )
+    if hotspawn_fetched and not fixtures_doc.get("fetched_utc"):
+        for page in pages:
+            page.setdefault("fetched_utc", collect_meta.get("run_finished_utc"))
 
     vrs_by_name = {}
     for team in vrs_doc.get("teams") or []:
@@ -306,6 +326,15 @@ def main() -> int:
                     notes.append(reason)
         if vrs_a and vrs_b:
             evidence.append({"label": "Valve Regional Standings (both teams)", "url": VRS_BLOB_URL})
+            for side, row in ((team_a, vrs_a), (team_b, vrs_b)):
+                if (row or {}).get("line_no"):
+                    evidence.append(
+                        {
+                            "label": f"Valve VRS row — {row['name']} (#{row['rank']}, "
+                                     f"{row['points']} pts)",
+                            "url": vrs_team_url(row),
+                        }
+                    )
         for name in (team_a, team_b):
             alias = ALIASES.get(normalise(name))
             if alias and alias.get("why"):
