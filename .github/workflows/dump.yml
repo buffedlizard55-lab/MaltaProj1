@@ -1,0 +1,43 @@
+name: Dump public pages for parser development
+
+on:
+  push:
+    branches: [arena/79a1c6c8-maltaproj1]
+    paths:
+      - pipeline/dump_raw.py
+      - pipeline/probe2.py
+      - .github/workflows/dump.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: maltaproj1-dump
+  cancel-in-progress: false
+
+jobs:
+  dump:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Dump pick'em pages (temporary scratch, deleted before publication)
+        run: python pipeline/dump_raw.py
+      - name: Probe external odds sources
+        run: python pipeline/probe2.py
+      - name: Commit scratch + probe summary
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A pipeline/_scratch pipeline/probe/summary2.json
+          git status --short
+          if git diff --cached --quiet; then echo "nothing to commit"; else
+            git commit -m "probe: dump pick'em pages for parser development + odds-source probe [run ${{ github.run_id }}]"
+            git pull --rebase origin arena/79a1c6c8-maltaproj1
+            git push
+          fi
