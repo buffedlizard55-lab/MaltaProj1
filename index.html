@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Hotspawn Pick'em Analytics — CS2 Match Probabilities</title>
+<meta name="description" content="Independent betting-line analysis of matches listed on play.hotspawn.com/lobby. Probabilities derived from external esports odds; Hotspawn public picks are shown for comparison only." />
+<link rel="stylesheet" href="site/css/styles.css" />
+</head>
+<body>
+<header class="topbar">
+  <div class="container nav">
+    <a href="index.html" class="brand">
+      <span class="brand-mark">HS</span>
+      <span class="brand-text">Hotspawn Pick'em Analytics</span>
+    </a>
+    <nav>
+      <a href="index.html" class="active">Dashboard</a>
+      <a href="site/s-tier.html">S-Tier</a>
+      <a href="site/b-tier.html">B-Tier</a>
+      <a href="site/c-tier.html">C-Tier</a>
+      <a href="site/flagged.html">Flagged for Review</a>
+      <a href="site/methodology.html">Methodology</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <section class="hero">
+    <h1>Independent Pick'em Probabilities</h1>
+    <p class="subtitle">
+      Match-by-match win probabilities derived from <strong>external esports betting markets</strong> (HLTV bookie aggregate, Polymarket, EGamersWorld, vprognoze). Hotspawn's own public pick percentages are shown for comparison only and are <em>never</em> used as an input to our lines.
+    </p>
+    <div class="kpi-row">
+      <div class="kpi"><div class="kpi-num" id="kpi-total">—</div><div class="kpi-label">Matches tracked</div></div>
+      <div class="kpi"><div class="kpi-num" id="kpi-verified">—</div><div class="kpi-label">Verified odds</div></div>
+      <div class="kpi warn"><div class="kpi-num" id="kpi-unverified">—</div><div class="kpi-label">Unverified (flagged)</div></div>
+      <div class="kpi"><div class="kpi-num" id="kpi-s">—</div><div class="kpi-label">S-Tier matches</div></div>
+    </div>
+    <p class="gen-time" id="gen-time">Loading data…</p>
+  </section>
+
+  <section class="controls">
+    <label>Filter tier:
+      <select id="tier-filter">
+        <option value="all">All</option>
+        <option value="S">S</option>
+        <option value="B">B</option>
+        <option value="C">C</option>
+      </select>
+    </label>
+    <label>Search:
+      <input type="search" id="search" placeholder="Team, tournament…" />
+    </label>
+    <label>Show only:
+      <select id="verif-filter">
+        <option value="all">All matches</option>
+        <option value="yes">Verified</option>
+        <option value="partial">Partial</option>
+        <option value="no">Unverified</option>
+      </select>
+    </label>
+    <button id="reset" class="btn-ghost">Reset</button>
+  </section>
+
+  <section class="table-wrap">
+    <table id="matches-table" class="matches">
+      <thead>
+        <tr>
+          <th>Date / Time (UTC)</th>
+          <th>Tournament</th>
+          <th>Tier</th>
+          <th>Team A</th>
+          <th>Our line (A)</th>
+          <th>Our line (B)</th>
+          <th>Team B</th>
+          <th>Hotspawn public %</th>
+          <th>Odds source</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody id="matches-body"></tbody>
+    </table>
+  </section>
+
+  <section class="note-card">
+    <h2>Data coverage note</h2>
+    <p id="coverage-note"></p>
+    <p><a href="site/flagged.html">See all flagged and unverified matches →</a></p>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <p>This site is an independent analysis project. We are not affiliated with Hotspawn, HLTV, Polymarket, or any bookmaker listed. All odds sourced from public-facing pages; every row links to its source. Nothing here is financial advice.</p>
+    <p class="footer-links">
+      <a href="site/methodology.html">Methodology</a> ·
+      <a href="site/flagged.html">Flagged items</a> ·
+      <a href="COORDINATION.md">Coordination</a>
+    </p>
+  </div>
+</footer>
+
+<script src="site/js/app.js"></script>
+</body>
+</html>

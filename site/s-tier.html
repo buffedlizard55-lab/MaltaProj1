@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>S-Tier Matches — Hotspawn Pick'em Analytics</title>
+<link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+<header class="topbar">
+  <div class="container nav">
+    <a href="../index.html" class="brand">
+      <span class="brand-mark">HS</span>
+      <span class="brand-text">Hotspawn Pick'em Analytics</span>
+    </a>
+    <nav>
+      <a href="../index.html">Dashboard</a>
+      <a href="s-tier.html" class="active">S-Tier</a>
+      <a href="b-tier.html">B-Tier</a>
+      <a href="c-tier.html">C-Tier</a>
+      <a href="flagged.html">Flagged for Review</a>
+      <a href="methodology.html">Methodology</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container page-content">
+  <h1>S-Tier Matches</h1>
+  <p>Highest-priority (S) tier from the Hotspawn lobby — currently the <strong>Thunderpick World Championship 2026</strong>, a $1,000,000 LAN event in Malta (Oct 14–18). These matches have the most liquid odds markets.</p>
+
+  <section class="table-wrap" style="margin-top:20px">
+    <table class="matches">
+      <thead>
+        <tr>
+          <th>Date / Time (UTC)</th>
+          <th>Tournament</th>
+          <th>Tier</th>
+          <th>Team A</th>
+          <th>Our line (A)</th>
+          <th>Our line (B)</th>
+          <th>Team B</th>
+          <th>Hotspawn public %</th>
+          <th>Odds source</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody id="matches-body"></tbody>
+    </table>
+  </section>
+
+  <div class="note-card" style="margin-top:24px">
+    <h2>Sources</h2>
+    <p>Odds cross-referenced across <a href="https://www.hltv.org/events/8932/thunderpick-world-championship-2026" target="_blank" rel="noopener">HLTV event page</a>, <a href="https://polymarket.com/esports/cs2" target="_blank" rel="noopener">Polymarket CS2 markets</a>, and <a href="https://egamersworld.com/counterstrike/matches" target="_blank" rel="noopener">EGamersWorld bookmaker odds</a>.</p>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <p>Independent analysis. Not affiliated with Hotspawn, HLTV, or any bookmaker.</p>
+    <p class="footer-links"><a href="../index.html">Dashboard</a> · <a href="methodology.html">Methodology</a> · <a href="flagged.html">Flagged items</a></p>
+  </div>
+</footer>
+
+<script src="js/app.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    initDashboard(matches => matches.filter(m => m.tier === 'S'));
+  });
+</script>
+</body>
+</html>

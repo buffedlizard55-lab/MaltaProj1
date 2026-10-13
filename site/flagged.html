@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Flagged for Review — Hotspawn Pick'em Analytics</title>
+<link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+<header class="topbar">
+  <div class="container nav">
+    <a href="../index.html" class="brand">
+      <span class="brand-mark">HS</span>
+      <span class="brand-text">Hotspawn Pick'em Analytics</span>
+    </a>
+    <nav>
+      <a href="../index.html">Dashboard</a>
+      <a href="s-tier.html">S-Tier</a>
+      <a href="b-tier.html">B-Tier</a>
+      <a href="c-tier.html">C-Tier</a>
+      <a href="flagged.html" class="active">Flagged for Review</a>
+      <a href="methodology.html">Methodology</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container page-content">
+  <h1>Flagged for Review</h1>
+  <p>This page lists every match that has a discrepancy, missing odds, or other data-quality issue. Flagged items do <strong>not</strong> block publication — they are surfaced here so you can review them after the site is live.</p>
+
+  <h2>Unverified matches (no confirmed external odds)</h2>
+  <div id="unverified-list"><p style="color:var(--muted)">Loading…</p></div>
+
+  <h2>Matches with source discrepancies or caveats</h2>
+  <div id="flags-list"><p style="color:var(--muted)">Loading…</p></div>
+
+  <h2>Coverage gaps</h2>
+  <div class="note-card">
+    <p>The Hotspawn lobby advertises <strong>86 total matches</strong> (60 this week, CS2 + LoL tabs). The server-rendered lobby page (which we can reliably scrape without headless browser execution) exposes only the "Closing Soon" and "Upcoming" sections (≈26 matches). The remaining matches (additional CCT, DACH, DraculaN, European Pro League, LG UltraGear, Rainhas do Clutch, Svenska CS-Ligan, Urban Riga Open, Thunderpick South America, plus all LoL matches) are loaded client-side via JavaScript and could not be enumerated from the static fetch. These are NOT listed with fabricated data; they are noted as coverage gaps here and should be added once the API endpoint or headless scrape is available. No values were inferred.</p>
+    <p>LoL tab: matches were not enumerated in the static render; no LoL odds were scraped. The user can navigate to LoL via Hotspawn's tab; those rows are missing from this dashboard until a JS-capable scrape is performed.</p>
+  </div>
+
+  <h2>Sources consulted</h2>
+  <ul>
+    <li><a href="https://play.hotspawn.com/lobby" target="_blank" rel="noopener">Hotspawn Play lobby (match list, public pick %)</a> — used ONLY for match metadata and public-pick comparison; never used to compute probabilities.</li>
+    <li><a href="https://www.hltv.org/matches" target="_blank" rel="noopener">HLTV matches page & event pages</a> — match details, VRS rankings, bookie aggregate % shown on each match page.</li>
+    <li><a href="https://polymarket.com/esports/cs2" target="_blank" rel="noopener">Polymarket CS2 markets</a> — real-money prediction market; primary odds source where available.</li>
+    <li><a href="https://egamersworld.com/counterstrike/matches" target="_blank" rel="noopener">EGamersWorld (EGW) CS2 matches</a> — aggregated bookmaker odds.</li>
+    <li><a href="https://vprognoze.ru/" target="_blank" rel="noopener">vprognoze.ru</a> — Russian bookmaker odds comparison (Marathonbet, Betcity, Melbet, Fonbet).</li>
+  </ul>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <p>Independent analysis.</p>
+    <p class="footer-links"><a href="../index.html">Back to dashboard</a></p>
+  </div>
+</footer>
+
+<script src="js/app.js"></script>
+<script>
+  async function load() {
+    const data = await (await fetch('data/matches.json')).json();
+    const un = data.matches.filter(m => m.verified === 'no');
+    const fl = data.matches.filter(m => m.flag);
+    const unList = document.getElementById('unverified-list');
+    unList.innerHTML = un.length
+      ? un.map(m => `<div class="flag-entry">
+          <h3>${m.team_a} vs ${m.team_b} — ${m.tournament}</h3>
+          <p>${m.notes || ''}</p>
+          <p class="flag-meta">${m.date} ${m.time_utc} UTC · Tier ${m.tier} · Hotspawn public: ${m.hotspawn_pick_pct_a}/${m.hotspawn_pick_pct_b} (NOT used)</p>
+        </div>`).join('')
+      : '<p>None.</p>';
+    const flList = document.getElementById('flags-list');
+    flList.innerHTML = fl.length
+      ? fl.map(m => `<div class="flag-entry">
+          <h3>${m.team_a} vs ${m.team_b} — ${m.tournament}</h3>
+          <p>${m.notes || ''}</p>
+          <p class="flag-meta">⚠ ${m.flag} ${m.source_url ? '· <a href="'+m.source_url+'" target="_blank" rel="noopener">Source</a>' : ''}</p>
+        </div>`).join('')
+      : '<p>None.</p>';
+  }
+  load();
+</script>
+</body>
+</html>

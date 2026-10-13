@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>C-Tier Matches — Hotspawn Pick'em Analytics</title>
+<link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+<header class="topbar">
+  <div class="container nav">
+    <a href="../index.html" class="brand">
+      <span class="brand-mark">HS</span>
+      <span class="brand-text">Hotspawn Pick'em Analytics</span>
+    </a>
+    <nav>
+      <a href="../index.html">Dashboard</a>
+      <a href="s-tier.html">S-Tier</a>
+      <a href="b-tier.html">B-Tier</a>
+      <a href="c-tier.html" class="active">C-Tier</a>
+      <a href="flagged.html">Flagged for Review</a>
+      <a href="methodology.html">Methodology</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container page-content">
+  <h1>C-Tier Matches</h1>
+  <p>Lower-tier (C) matches — mostly Elisa BreakOut Series #2 BO1s and other small online cups. These are 2-point matches on Hotspawn. Liquidity on external books is thin; many rows are flagged as unverified because no posted odds could be confirmed.</p>
+
+  <section class="table-wrap" style="margin-top:20px">
+    <table class="matches">
+      <thead>
+        <tr>
+          <th>Date / Time (UTC)</th>
+          <th>Tournament</th>
+          <th>Tier</th>
+          <th>Team A</th>
+          <th>Our line (A)</th>
+          <th>Our line (B)</th>
+          <th>Team B</th>
+          <th>Hotspawn public %</th>
+          <th>Odds source</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody id="matches-body"></tbody>
+    </table>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <p>Independent analysis.</p>
+  </div>
+</footer>
+
+<script src="js/app.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    initDashboard(matches => matches.filter(m => m.tier === 'C'));
+  });
+</script>
+</body>
+</html>
