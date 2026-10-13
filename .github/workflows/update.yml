@@ -60,6 +60,7 @@ jobs:
           python scripts/build_site.py
           python scripts/validate.py
           node --check webui/dashboard.js
+          python tests/browser_check.py
       - name: Preserve a small verified evidence artifact
         uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5
         with:

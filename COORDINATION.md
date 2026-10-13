@@ -794,3 +794,20 @@ Snapshot (UTC): 2026-10-13 (lobby states "60 matches this week", resets in ~5d 0
 - Keep `arena/4f599d7c-maltaproj1`: its public verified snapshot is the automatic-refresh source. Repository `delete_branch_on_merge` is verified false.
 
 - The shared `.gitignore` add/add conflict preserved every rule from both versions. Added narrow exceptions only for this session's deliberately minimized `data/snapshot/evidence/*.json.gz` and `dashboard/data/evidence/*.json.gz`; other raw evidence folders remain ignored.
+
+### 2026-10-13 — combined audit and live transport verification (4f599d7c)
+
+- Main integration base `c8e9574` preserved; dashboard source paths remain isolated. All 255 then-tracked files were read, covering138,290 text lines, with1,564 internal HTML targets checked. The audit reports6 inherited non-blocking review items:1 malformed row in `data/844ba68e/market_quotes.csv`,2 malformed rows in `data/external_lines.csv`, and4 absent static fragment anchors in existing docs. No missing internal file targets were found. No contact values are copied into the audit. See `research/repository-audit.md/json`.
+- Coordination requests (read-only owner scopes): owners of `data/844ba68e/market_quotes.csv`, `data/external_lines.csv`, `docs/flagged.html` and `docs/verified-lines.html` should review those exact linked records/anchors. No cross-scope edit was made. These source/anchor findings are published on this dashboard's Flagged for Review page and are not silently certified.
+- New primary snapshot from successful run38453511175 was cherry-picked after the main rebase so the bot's data/evidence changes were not lost. Snapshot19:17:27 UTC:258 board fixtures,380 source-state records,14 eligible primary moneylines,8 calculated and250 blank fixture lines. Whole-row source checks and11-page/742-link validation passed again against combined main.
+- Real automatic refresh was independently observed through GitHub's public contents API, updating the local page to snapshot19:22:50 UTC without reload or re-dating. Actual API returned HTTP200 with `Access-Control-Allow-Origin: *`. The portable local Chrome lacks the sandbox outbound proxy CA, so that single transport test allowed only the local test-context TLS exception; web security/CORS remained enabled. Production collector and delivered client do not disable TLS validation. Offline feature tests passed without such an exception.
+- Added permanent real-snapshot browser checks for CI and an offline PR verification workflow. Source docs/schema and complete file/hash ledger are published. Single-book concentration and separate-model evidence scope are explicit review findings, not hidden limitations.
+
+#### Current 4f599d7c status (supersedes historical claim statuses)
+
+| Task | Status | Scope / result |
+|---|---|---|
+| T01 source reverse engineering and repository review | done | `research/`; official public interfaces, privacy correction,255-file/138,290-line ledger, source links and irregularities |
+| T02 exact collector and independently originated lines | done | `collector/`, new scripts/tests/requirements; real primary quote fields and reproducible no-vig math; unknown values blank |
+| T03 clean source-linked dashboard | done | `webui/`, `scripts/build_site.py`, generated `dashboard/`;10 category/transparency views, responsive and browser-tested |
+| T04 isolated final integration, PR, merge and live Pages check | in progress | Main rebase reconciled all boards; new site/data verified. PR/checks/merge and independently confirmed live deployment still pending |

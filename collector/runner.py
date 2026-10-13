@@ -285,6 +285,9 @@ def collect(output: Path) -> dict:
             if len(names_match & names_quote) == 1:
                 findings.append(finding(f"F-IDENTITY-{match['id']}", "Identity mismatch", "Bookmaker naming cannot be automatically verified", f"The official fixture is {match['team_a']} vs {match['team_b']}; a same-game, same-time bookmaker event is {quote['team_a']} vs {quote['team_b']}. Only one team name matches exactly. No alias or pairing is inferred; this fixture's lines remain blank.", [(match["source_url"], "Official fixture"), (quote["source_url"], "Official bookmaker event")]))
                 break
+    if quotes and len({quote["source_id"] for quote in quotes}) == 1:
+        findings.append(finding("F-SINGLE-BOOK", "Coverage limitation", "Only one primary bookmaker is admitted", "The current eligible prices come from one primary book. The formulas support distinct-book averaging, but this snapshot is a single-book no-vig estimate, not an independently cross-checked multi-book consensus. Uncovered fixtures stay blank.", [(PUBLIC_PAGES[0], "Admitted primary source")]))
+    findings.append(finding("F-PARALLEL-SCOPE", "Repository audit", "Parallel models and tables are separate evidence scopes", "The combined repository contains other sessions' rank-based, calibrated-model, secondary-source and curated tables. They are preserved and reviewed in the file/line audit, not silently certified as primary bookmaker inputs or merged into this snapshot. Any unresolved structural/source issue is reported without overwriting another owner.", [(REPO + "/blob/main/research/repository-audit.md", "Combined file/line audit"), (REPO + "/blob/main/COORDINATION.md", "Ownership and release log")]))
     findings.append(finding("F-PRIVACY", "Data minimization", "Unrelated public personal fields are not retained", "Initial normal-page inspection encountered personal-contact fields in an unrelated public leaderboard response. The production collector retains only fixture-specific source state and allowed bookmaker event/market responses, and does not collect or republish leaderboard/account data.", [(LOBBIES[0], "Official lobby"), (REPO + "/blob/main/collector/hotspawn.py", "Collector allowlist")]))
     run_id = os.environ.get("GITHUB_RUN_ID")
     run_url = f"{REPO}/actions/runs/{run_id}" if run_id else None
@@ -298,6 +301,14 @@ def collect(output: Path) -> dict:
         {"name": "Independent probability calculation", "passed": True, "detail": "All no-vig calculations are recomputed from referenced external quote inputs. Hotspawn picks and arbitrary rank heuristics are excluded.", "source_urls": [REPO + "/blob/main/collector/analytics.py", PUBLIC_PAGES[0]]},
         {"name": "Complete lobby reconciliation", "passed": status == "complete", "detail": "Filter totals, source-state entries and rendered cards are distinct. The snapshot is not labeled complete unless every reconciliation check passes.", "source_urls": list(LOBBIES)},
     ]
+    audit_path = Path(__file__).resolve().parent.parent / "research/repository-audit.json"
+    repository_audit = None
+    if audit_path.is_file():
+        audit = json.loads(audit_path.read_text())
+        repository_audit = {key: audit.get(key) for key in ("audit_at", "base_commit", "tracked_files_read", "text_lines_read", "internal_targets_checked")}
+        repository_audit["source_url"] = REPO + "/blob/main/research/repository-audit.json"
+        for index, item in enumerate(audit.get("needs_review", [])):
+            findings.append(finding(f"F-REPO-{index+1}", "Combined repository review", item["kind"] + ": " + item["path"], "The file/line audit at " + audit["audit_at"] + " recorded: " + item["detail"] + " This is a separate preserved owner scope, not an input to the market estimates.", [(item["source_url"], "Exact audited repository file")]))
     data = {
         "schema_version": 1, "generated_at": iso_time(generated), "collection_started_at": started,
         "collection_run_url": run_url, "collection_code_commit": os.environ.get("COLLECTOR_COMMIT"), "max_quote_age_seconds": 3600,
@@ -306,6 +317,7 @@ def collect(output: Path) -> dict:
         "sources": sources, "evidence": list(ledger.entries.values()), "findings": findings,
         "bookmaker_checks": bookmaker_checks, "bookmaker_counters": bookmaker_counters,
         "verification": {"completed_at": iso_time(generated), "checks": verification_checks},
+        "repository_audit": repository_audit,
         "automation": {"branch": "arena/4f599d7c-maltaproj1", "interval_minutes": 30, "delivery": "Scheduled Actions commits to this fixed session branch; the Pages dashboard reads its public verified snapshot via GitHub's official contents API. No Pages-settings change or manual input required."},
     }
     from scripts.validate import validate_data
