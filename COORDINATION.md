@@ -4,6 +4,7 @@
 **Current Date:** 2026-10-13  
 **Active Session ID:** `session-2cb6bff4`  
 **Working Branch:** `arena/2cb6bff4-maltaproj1`  
+**Pull Request:** [#5 (Merged to main)](https://github.com/buffedlizard55-lab/MaltaProj1/pull/5)  
 **Target Deployment:** GitHub Pages (`https://buffedlizard55-lab.github.io/MaltaProj1/`)
 
 ---
@@ -17,7 +18,7 @@
 | **TASK-03** | Originate independent betting lines and win probabilities based on VRS/HLTV ratings, head-to-head, and form | `done` | `session-2cb6bff4` | `src/originate_lines.py`, `src/build_database.py` | 100% of matches (26/26) have originated statistical probabilities and fair decimal odds using modified Bradley-Terry model with BO3/BO1 format variance adjustments. |
 | **TASK-04** | Line-by-line verification, official source linking, and irregularity flagging (Flagged for Review) | `done` | `session-2cb6bff4` | `flagged.html`, `tests/audit_site.py` | Line-by-line audit complete. 18 items flagged (12 unverified bookmaker lines in Elisa BreakOut LAN + 6 extreme public sentiment inversions). Published with source links on `flagged.html`. |
 | **TASK-05** | Build clean, user-friendly GitHub Pages site with landing page dashboard and tournament subpages | `done` | `session-2cb6bff4` | `index.html`, `thunderpick.html`, `stake-pulse.html`, `cct-europe.html`, `elisa-breakout.html`, `esl-challenger.html`, `methodology.html`, `flagged.html`, `css/*`, `js/*` | Complete 8-page responsive dashboard built with KPI metric cards, searchable & filterable table, dark mode UI, zero external dependencies. |
-| **TASK-06** | Integration, link auditing, PR creation to `main`, auto-merge, and deployment verification | `in progress` | `session-2cb6bff4` | Full repository, GitHub Pages deploy | Running automated QA audit, opening PR from `arena/2cb6bff4-maltaproj1` to `main`, merging with `gh pr merge --merge`, and verifying GitHub Pages status. |
+| **TASK-06** | Integration, link auditing, PR creation to `main`, auto-merge, and deployment verification | `done` | `session-2cb6bff4` | Full repository, GitHub Pages deploy | QA audit verified 0 broken links. Pull Request #5 opened and merged to `main`. GitHub Pages deployment confirmed. |
 
 ---
 
@@ -30,4 +31,5 @@
 - **2026-10-13 18:25 UTC**: Originated statistical betting lines and win probabilities for all 26 matches using HLTV World Rankings and Valve Regional Standings (VRS), factoring in BO1 single-map volatility vs BO3 series binomial distributions.
 - **2026-10-13 18:40 UTC**: Constructed responsive GitHub Pages web dashboard with interactive landing page (`index.html`), 5 tournament category deep-dives (`thunderpick.html`, `stake-pulse.html`, `cct-europe.html`, `elisa-breakout.html`, `esl-challenger.html`), quantitative methodology guide (`methodology.html`), and a dedicated `flagged.html` page documenting all 18 flagged items.
 - **2026-10-13 18:50 UTC**: Created `tests/audit_site.py` test suite. Verified 0 broken links across all 8 HTML files and verified 100% data integrity in `data/matches.json` and `data/matches.csv`.
-- **2026-10-13 18:55 UTC**: Final integration session initiating pull request to `main` and automated merge.
+- **2026-10-13 18:55 UTC**: Final integration session opened Pull Request #5 from `arena/2cb6bff4-maltaproj1` to `main`.
+- **2026-10-13 19:00 UTC**: Successfully merged Pull Request #5 into `main` via `gh pr merge 5 --merge`. GitHub Pages deployment verified active at `https://buffedlizard55-lab.github.io/MaltaProj1/`.
