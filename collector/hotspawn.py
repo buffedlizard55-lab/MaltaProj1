@@ -115,7 +115,8 @@ def normalize_record(record: dict, source_url: str, evidence_id: str, locator: s
     return {
         "id": fixture_id,
         "game": record.get("sport_alias") if record.get("sport_alias") in {"cs2", "lol"} else None,
-        "team_a": record.get("participants0_name"), "team_b": record.get("participants1_name"),
+        "team_a": record.get("participants0_name") if isinstance(record.get("participants0_name"), str) and record["participants0_name"].strip() else None,
+        "team_b": record.get("participants1_name") if isinstance(record.get("participants1_name"), str) and record["participants1_name"].strip() else None,
         "team_a_id": record.get("participants0_id"), "team_b_id": record.get("participants1_id"),
         "tournament": record.get("competition_name"), "competition_id": record.get("competition_id"),
         "start_time": epoch_ms(record.get("scheduled_start_time")),
@@ -139,7 +140,7 @@ def extract_records(projection: dict, evidence_id: str) -> tuple[list[dict], lis
     inventory: dict[str, dict] = {}
     for key, entry in projection["cache"].items():
         for index, record in enumerate(entry["body"]):
-            if record.get("sport_alias") not in {"cs2", "lol"} or not record.get("participants0_name") or not record.get("participants1_name"):
+            if record.get("sport_alias") not in {"cs2", "lol"} or not re.fullmatch(r"\d{5,12}", str(record.get("id", ""))):
                 continue
             normalized = normalize_record(record, projection["source_url"], evidence_id, f"/cache/{key}/body/{index}", cards.get(str(record["id"])))
             if not normalized["on_rendered_board"]:
@@ -154,7 +155,7 @@ def extract_records(projection: dict, evidence_id: str) -> tuple[list[dict], lis
             unparsed.append(card_id)
             continue
         # Verbatim DOM identity and underlying source state must agree.
-        if any(card.get(key) is not None and card[key] != record[key] for key in ("team_a", "team_b", "tournament")):
+        if any(card.get(key) is not None and record.get(key) is not None and card[key] != record[key] for key in ("team_a", "team_b", "tournament")):
             card_conflicts.append(card_id)
             continue
         board.append(record)

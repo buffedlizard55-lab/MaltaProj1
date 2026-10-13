@@ -96,7 +96,7 @@ def validate_data(data: dict, evidence_dir: Path | None = None) -> dict:
         require(match.get("evidence_id") in evidence, f"{label}: fixture evidence missing")
         require(match.get("evidence_locator"), f"{label}: precise source locator required")
         require("picked_percent_a" not in match and "hotspawn_probability" not in match, f"{label}: crowd percentage imported")
-        require(match.get("team_a") and match.get("team_b"), f"{label}: missing verified names")
+        require(all(match.get(field) is None or isinstance(match.get(field), str) and bool(match[field].strip()) for field in ("team_a", "team_b")), f"{label}: unconfirmed names must be null, not inferred")
         if match.get("start_time") is not None:
             require(parse_time(match["start_time"]) is not None, f"{label}: inferred/unzoned start time")
         expected = analyze_match(match, quotes, now)
@@ -114,6 +114,11 @@ def validate_data(data: dict, evidence_dir: Path | None = None) -> dict:
             priced += 1
             require(match.get("start_time") is not None, f"{label}: missing start time must leave probability blank")
             require(math.isclose(actual["probability_a"] + actual["probability_b"], 1, abs_tol=1e-12), f"{label}: probabilities do not sum to 1")
+    inventory = data.get("inventory", [])
+    require(isinstance(inventory, list) and len({row.get("id") for row in inventory}) == len(inventory), "Duplicate/malformed source-inventory rows")
+    for row in inventory:
+        require(row.get("evidence_id") in evidence and row.get("evidence_locator"), f"{row.get('id')}: source-inventory evidence missing")
+        require(source_url(row.get("source_url")) and urlparse(row["source_url"]).hostname in FIXTURE_HOSTS, f"{row.get('id')}: official source-inventory URL missing")
     findings = data.get("findings", [])
     for finding in findings:
         require(finding.get("source_urls"), f"{finding.get('id')}: finding has no review source")
@@ -127,7 +132,7 @@ def validate_data(data: dict, evidence_dir: Path | None = None) -> dict:
     if evidence_dir is not None:
         from collector.verification import verify_source_records
         verify_source_records(data, evidence_dir)
-    return {"match_count": len(matches), "quote_count": len(quotes), "priced_count": priced, "unpriced_count": len(matches) - priced, "evidence_count": len(evidence), "finding_count": len(findings)}
+    return {"match_count": len(matches), "quote_count": len(quotes), "priced_count": priced, "unpriced_count": len(matches) - priced, "inventory_count": len(inventory), "evidence_count": len(evidence), "finding_count": len(findings)}
 
 
 class Links(HTMLParser):

@@ -87,8 +87,8 @@ def match_row(match: dict, quote_map: dict) -> str:
             odds_urls.append(url)
     parsed_start = parse_time(match.get("start_time"))
     start = f'{parsed_start.strftime("%d %b %Y")}<span class="subtle">{parsed_start.strftime("%H:%M")} UTC</span>' if parsed_start else ""
-    pair = f'{match.get("team_a", "")} vs {match.get("team_b", "")}'
-    marker = (match.get("team_a") or "?")[:2].upper()
+    pair = f'{match.get("team_a") or ""} vs {match.get("team_b") or ""}'
+    marker = (match.get("team_a") or "")[:2].upper()
     game = match.get("game", "")
     tournament = match.get("tournament") or ""
     if priced:
@@ -134,7 +134,9 @@ def match_table(matches: list[dict], data: dict, title: str, subtitle: str, filt
     empty = '<div class="empty"><strong>No verified fixtures are available in this snapshot.</strong>Source access or parsing must succeed before match values can be published. See <a href="flagged.html">Flagged for Review</a>.</div>' if not matches else ""
     filter_attr = "data-filter-table" if filters else ""
     action = '<a href="matches.html" class="button">All matches →</a>' if overview else f'<button class="button" type="button" id="download-csv">{icon("download")} Export CSV</button>' if filters else ""
-    return f'''<section class="panel"><div class="panel-heading"><div><h2>{e(title)}</h2><p>{e(subtitle)}</p></div>{action}</div>{tabs}{toolbar}<div class="table-scroll"><table {filter_attr}><caption class="sr-only">{e(title)}. Probabilities and fair odds are calculated, not Hotspawn crowd picks. Blank means unverified.</caption><thead><tr><th scope="col"><button class="sort" data-sort="match" type="button">Match / tournament</button></th><th scope="col"><button class="sort" data-sort="start" type="button">Start · UTC</button></th><th scope="col"><button class="sort" data-sort="probability" type="button">Our probability</button></th><th scope="col">Our fair line</th><th scope="col">Evidence status</th><th scope="col">Official sources</th></tr></thead><tbody>{rows}</tbody></table></div>{empty}<div class="empty no-results" id="no-results" hidden><strong>No matches found.</strong>Try a different team, tournament, or coverage filter.</div><div class="table-footer"><span id="result-count">Showing {len(matches)} fixtures</span><a href="methodology.html">How we calculate these lines ↗</a></div></section>'''
+    def sort_label(key, label):
+        return f'<button class="sort" data-sort="{key}" type="button">{label}</button>' if filters else label
+    return f'''<section class="panel"><div class="panel-heading"><div><h2>{e(title)}</h2><p>{e(subtitle)}</p></div>{action}</div>{tabs}{toolbar}<div class="table-scroll"><table {filter_attr}><caption class="sr-only">{e(title)}. Probabilities and fair odds are calculated, not Hotspawn crowd picks. Blank means unverified.</caption><thead><tr><th scope="col">{sort_label("match", "Match / tournament")}</th><th scope="col">{sort_label("start", "Start · UTC")}</th><th scope="col">{sort_label("probability", "Our probability")}</th><th scope="col">Our fair line</th><th scope="col">Evidence status</th><th scope="col">Official sources</th></tr></thead><tbody>{rows}</tbody></table></div>{empty}<div class="empty no-results" id="no-results" hidden><strong>No matches found.</strong>Try a different team, tournament, or coverage filter.</div><div class="table-footer"><span id="result-count">Showing {len(matches)} fixtures</span><a href="methodology.html">How we calculate these lines ↗</a></div></section>'''
 
 
 def metrics(data: dict) -> str:
@@ -201,6 +203,20 @@ def sources_page(data: dict) -> str:
     return f'''<div class="notice">{icon("info")}<p><strong>A link is not proof of a price.</strong> Source access, a parsed observation, and a calculated result are different states. Only retained, timestamped primary-bookmaker evidence can populate our lines. HTTP 200 alone is not verification.</p></div><section class="panel wide-table"><div class="panel-heading"><div><h2>Source registry</h2><p>Primary origins and explicit usage restrictions</p></div></div><div class="table-scroll"><table><caption class="sr-only">Official sources and retrieval status</caption><thead><tr><th>Source / role</th><th>How it is used</th><th>Access state</th><th>Observed · UTC</th><th>Manual review</th></tr></thead><tbody>{rows}</tbody></table></div></section><section class="panel wide-table"><div class="panel-heading"><div><h2>Evidence ledger</h2><p>Content hashes and retrieval timestamps for row-level checking</p></div></div><div class="table-scroll"><table><caption class="sr-only">Retained primary-source evidence</caption><thead><tr><th>Evidence ID</th><th>Observation / content hash</th><th>Retrieved · UTC</th><th>Source + snapshot</th></tr></thead><tbody>{evidence_rows}</tbody></table></div></section><p class="footnote">Evidence retention is intentionally small. The collector never logs account credentials, submits picks, or places wagers. Research and implementation: <a href="{REPO}/tree/main/research" target="_blank" rel="noopener noreferrer">repository source notes ↗</a>.</p>'''
 
 
+def inventory_page(data: dict) -> str:
+    rows = ""
+    at = parse_time(data.get("generated_at"))
+    inventory = data.get("inventory", [])
+    for row in sorted(inventory, key=lambda item: item.get("start_time") or "9999"):
+        started = parse_time(row.get("start_time"))
+        past = bool(started and at and started <= at)
+        presence = pill("Rendered card", "blue") if row.get("on_rendered_board") else pill("Cached state only", "gray")
+        timing = '<div class="subtle">Start is in the past; result not inferred</div>' if past else ""
+        format_value = row.get("series_format") if row.get("series_format") is not None else row.get("best_of")
+        rows += f'<tr><td><strong>{e(row.get("team_a"))} vs {e(row.get("team_b"))}</strong><div class="subtle">{e(row.get("tournament"))} · ID {e(row.get("id"))}</div></td><td>{e(row.get("game", "").upper())}</td><td class="nowrap">{e(stamp(row.get("start_time"), True))}{timing}</td><td>{e(row.get("source_status"))}</td><td>{e(format_value)}</td><td>{presence}</td><td>{ext(row.get("source_url"), "Official fixture/state")}{ext(row.get("lobby_url"), "Official lobby")}</td></tr>'
+    return f'<div class="notice warning">{icon("info")}<p><strong>Source state is not the current pick’em board.</strong> All {len(inventory)} distinct captured fixture-state entries are listed here, including historical records and cached-only entries. A past timestamp does not prove a result. Only rendered, source-matched cards populate the board pages; missing formats stay blank.</p></div><section class="panel wide-table"><div class="panel-heading"><div><h2>Full captured source-state inventory</h2><p>Every retained fixture entry · raw source status preserved</p></div><a class="button" href="matches.html">Rendered board →</a></div><div class="table-scroll"><table><caption class="sr-only">All fixture-state records captured from official public lobbies, not an inferred current match list</caption><thead><tr><th>Source fixture</th><th>Game</th><th>Scheduled start · UTC</th><th>Source status</th><th>Format (if confirmed)</th><th>Presence in this observation</th><th>Official sources</th></tr></thead><tbody>{rows}</tbody></table></div></section>'
+
+
 def flagged_page(data: dict) -> str:
     findings = list(data.get("findings", []))
     for match in data.get("matches", []):
@@ -236,7 +252,7 @@ def layout(key: str, title: str, description: str, content: str, data: dict) -> 
     navigation = [
         ("index", "Overview", "grid"), ("matches", "All matches", "list"),
         ("cs2", "Counter-Strike 2", "game"), ("lol", "League of Legends", "game"),
-        ("markets", "External markets", "chart"), ("sources", "Sources & evidence", "link"),
+        ("markets", "External markets", "chart"), ("inventory", "Source inventory", "list"), ("sources", "Sources & evidence", "link"),
         ("flagged", "Flagged for Review", "flag"), ("methodology", "Methodology", "book"),
         ("repository", "Repository audit", "code"),
     ]
@@ -244,23 +260,23 @@ def layout(key: str, title: str, description: str, content: str, data: dict) -> 
     for i, (page, label, symbol) in enumerate(navigation):
         if i == 0:
             links += '<div class="nav-heading">Workspace</div>'
-        if i == 5:
+        if i == 6:
             links += '<div class="nav-heading">Transparency</div>'
         active = ' active' if key == page else ''
         current = ' aria-current="page"' if key == page else ''
         links += f'<a class="nav-item{active}" href="{page}.html"{current}>{icon(symbol)}{label}</a>'
     at = data.get("generated_at") or ""
-    observed = data.get("coverage", {}).get("observed_at") or at
+    observed = data.get("coverage", {}).get("observed_at") or ""
     label = data.get("coverage", {}).get("status", "unverified")
     coverage_pill = pill("Inventory complete" if label == "complete" else "Inventory needs review", "green" if label == "complete" else "amber")
     return f'''<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Source-linked esports match inventory and independently calculated no-vig lines. Unknown values remain blank."><meta name="color-scheme" content="light"><title>{e(title)} · Linescope</title><link rel="stylesheet" href="assets/dashboard.css"><script src="assets/dashboard.js" defer></script><link rel="icon" href="assets/favicon.svg" type="image/svg+xml"></head>
-<body data-snapshot="{e(at)}" data-verified-at="{e(observed)}" data-max-age="{MAX_QUOTE_AGE_SECONDS}"><a class="skip" href="#main">Skip to content</a>
+<body data-view="{e(key)}" data-snapshot="{e(at)}" data-verified-at="{e(observed)}" data-max-age="{MAX_QUOTE_AGE_SECONDS}"><a class="skip" href="#main">Skip to content</a>
 <aside class="sidebar" id="sidebar"><a class="brand" href="index.html" aria-label="Linescope overview"><span class="brand-mark" aria-hidden="true">≋</span><span><strong>linescope</strong><small>Esports · evidence first</small></span></a><nav aria-label="Dashboard navigation">{links}</nav><div class="sidebar-bottom"><div class="side-status"><span class="dot"></span>Independent of crowd picks</div><p>Official fixtures. Outside odds.<br>Blank where evidence is missing.</p>{ext(REPO, "MaltaProj1 on GitHub", "inline-link")}</div></aside>
 <div id="mobile-shade" class="mobile-shade" aria-hidden="true"></div><div class="app"><header class="topbar"><button id="menu-toggle" class="menu-toggle" type="button" aria-controls="sidebar" aria-expanded="false" aria-label="Open dashboard navigation">{icon("menu")}<strong>linescope</strong></button><div class="breadcrumb">Workspace<span>/</span><b>{e(title)}</b></div><div class="top-actions"><span class="snapshot-indicator"><span class="dot amber"></span><span id="snapshot-freshness">{e(stamp(observed)) or 'Snapshot unverified'}</span></span>{ext(REPO, "Repository ↗", "repo-link")}</div></header>
 <main class="main" id="main"><div class="page-heading"><div><div class="eyebrow"><span class="dot" style="background:var(--blue)"></span>Hotspawn pick’em analysis</div><h1>{e(title)}</h1><p class="page-description">{e(description)}</p></div><div class="heading-actions">{coverage_pill}<a class="button" href="{HOTSPAWN}" target="_blank" rel="noopener noreferrer">Official lobby ↗</a></div></div>
 <div id="snapshot-banner" class="notice warning snapshot-banner" hidden>{icon("clock")}<p><strong>This snapshot is stale or unverified.</strong> Expired quotes and their calculated lines are hidden. Fixture names may reflect a previous collection, not the current lobby. <a href="flagged.html">Review collection limitations →</a></p></div>
-{content}<footer class="footer"><span>Linescope · MaltaProj1<br>Analysis only. No automatic picks or wagers.</span><span>Blank = unverified · probabilities = calculated<br><a href="sources.html">Sources</a> · <a href="methodology.html">Methodology</a> · <a href="flagged.html">Flagged for Review</a></span></footer></main></div></body></html>'''
+<noscript><div class="notice warning"><p>This is a dated, published snapshot. JavaScript is required for automatic updates and quote expiry; displayed prices are historical observations, not current offers.</p></div></noscript>{content}<footer class="footer"><span>Linescope · MaltaProj1<br>Analysis only. No automatic picks or wagers.<br><span id="update-check-status">Published snapshot · automatic check pending</span></span><span>Blank = unverified · probabilities = calculated<br><a href="sources.html">Sources</a> · <a href="methodology.html">Methodology</a> · <a href="flagged.html">Flagged for Review</a></span></footer></main></div></body></html>'''
 
 
 def build(data_path: Path, output: Path) -> list[Path]:
@@ -278,6 +294,10 @@ def build(data_path: Path, output: Path) -> list[Path]:
             if not source.is_file():
                 raise ValueError(f"Missing retained evidence: {source}")
             shutil.copyfile(source, output / "data" / "evidence" / source.name)
+    keep_evidence = {entry.get("file") for entry in data.get("evidence", [])}
+    for previous in (output / "data" / "evidence").glob("*.json.gz"):
+        if previous.name not in keep_evidence:
+            previous.unlink()
     matches = sorted(data.get("matches", []), key=lambda item: item.get("start_time") or "9999")
     pages = {
         "index": ("The pick’em board, with evidence.", "A simple view of official matches, outside betting markets, and our independently calculated fair lines. No crowd-pick probabilities. No invented values.", overview(data)),
@@ -285,6 +305,7 @@ def build(data_path: Path, output: Path) -> list[Path]:
         "cs2": ("Counter-Strike 2", "Source-confirmed CS2 fixtures, outside match-winner markets, and transparent no-vig calculations.", match_table([item for item in matches if item.get("game") == "cs2"], data, "CS2 pick’em fixtures", "Exact game, team pair, and UTC start are required for odds matching.")),
         "lol": ("League of Legends", "LoL fixtures are collected separately so the full pick’em scope is not mistaken for a CS2-only board.", match_table([item for item in matches if item.get("game") == "lol"], data, "League of Legends fixtures", "Unpriced regional matches remain visible, with blank probabilities.")),
         "markets": ("External markets", "The primary-bookmaker observations behind our calculations. Hotspawn is never an odds source.", quote_table(data)),
+        "inventory": ("Source-state inventory", "All captured fixture entries, including cached and historical records—kept separate from the rendered pick’em board.", inventory_page(data)),
         "sources": ("Sources & evidence", "Open every official source, inspect its retrieval status, and trace populated values back to timestamped evidence.", sources_page(data)),
         "flagged": ("Flagged for Review", "Inventory mismatches, unverified fields, missing markets, and source limitations—published for review, never silently filled.", flagged_page(data)),
         "methodology": ("How our lines are calculated", "A reproducible market-based calculation, with strict evidence gates and no unsupported priors.", methodology_page(data)),

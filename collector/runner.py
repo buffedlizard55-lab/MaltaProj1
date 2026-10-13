@@ -266,6 +266,11 @@ def collect(output: Path) -> dict:
     offsets = sorted({row.get("lock_offset_seconds") for row in all_rows if isinstance(row.get("lock_offset_seconds"), int)})
     if policy_seconds is not None and any(offset != policy_seconds for offset in offsets):
         findings.append(finding("F-LOCK-RULE", "Official-source conflict", "Lock metadata disagrees with the published rule", f"The official rules sentence specifies {policy_seconds} seconds; explicit fixture lock_offset_sec values include {', '.join(map(str, offsets))}. We retain the source timestamps and never reconstruct UTC starts from countdowns.", [(RULES_URL, "Official rules"), (LOBBIES[0], "Official fixture state")]))
+    missing_critical = [row for row in all_rows if not row.get("team_a") or not row.get("team_b") or row.get("start_time") is None]
+    if missing_critical:
+        findings.append(finding("F-CRITICAL-FIELDS", "Unverified fields", "Missing names or exact start times remain blank", f"{len(missing_critical)} captured source records lack a named participant or an explicit interpretable schedule. The rows are retained, but missing values and probabilities are not filled from placeholders, countdowns or another fixture.", [(LOBBIES[0], "Official CS2 source"), (LOBBIES[2], "Official LoL source")]))
+    if quotes:
+        findings.append(finding("F-QUOTE-PUBLICATION", "Timestamp limitation", "Quote observation is not a bookmaker publication timestamp", "The captured moneyline responses expose prices and market versions but no confirmed price-publication timestamp. source_published_at remains null. Freshness is based on the explicit retrieval observation; this is not a guaranteed executable offer.", [(PUBLIC_PAGES[0], "Official bookmaker website")]))
     missing_formats = sum(row.get("best_of") is None and row.get("series_format") is None for row in all_rows)
     if missing_formats:
         findings.append(finding("F-FORMAT", "Unverified fields", "Missing match-format values stay blank", f"{missing_formats} source-state records have neither best_of nor series_format confirmed by Hotspawn. Bookmaker format metadata is kept on its own quotes and does not silently fill the official fixture fields.", [(LOBBIES[0], "Official CS2 state"), (LOBBIES[2], "Official LoL state")]))

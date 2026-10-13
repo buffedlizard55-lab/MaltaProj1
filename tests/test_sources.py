@@ -64,6 +64,13 @@ class HotspawnTests(unittest.TestCase):
         for forbidden in ("synthetic-test@example", "userId", "picked_percent", "unrelated-leaderboard"):
             self.assertNotIn(forbidden, serialized)
 
+    def test_missing_names_stay_blank_but_the_row_is_retained(self):
+        rows, inventory, _ = extract_records(project_page(source_html({**FIXTURE, "participants0_name": None}), LOBBY), "test")
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(len(inventory), 1)
+        self.assertIsNone(rows[0]["team_a"])
+        self.assertEqual(rows[0]["team_b"], "Bravo")
+
     def test_source_state_is_not_assumed_rendered(self):
         rows, inventory, info = extract_records(project_page(source_html(card=False), LOBBY), "test")
         self.assertEqual(rows, [])
