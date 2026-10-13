@@ -1732,3 +1732,43 @@ MIBR–BC.Game 1.637/2.230 → 57.7 %/42.3 % (5.9 %); VRS 1543/1716 → 27.0 %/7
   only fixtures that are still pickable; the 59 stale June/July listings stay in one informational entry
   (FL-21). "Needs review" counts therefore read 21 / 2 / 2 / 1 / 2 / 8 / 20 / 3 instead of counting
   fixtures nobody can pick any more. 17/17 unit tests.
+
+#### L-01..L-06 final record — 2026-10-13 23:24 UTC
+
+- **PR #65** (`arena/459ff624-maltaproj1` → `main`): **MERGED** 2026-10-13T23:21:59Z, merge commit
+  `7558e3bfd68a4cacec56af6093936b7cbb087997` (explicit `gh pr merge 65 --merge`). It carried the v3 fixes
+  above, the release record for PR #64 (`4b5075a9cccbe8455c6a052b52ebdf967cf53994`), and a fix to a
+  dangling `flagged.html#FL-25` fragment that the independent assurance workflow
+  (`release-assurance-91e444dd`) had caught on the PR — flag references are now links **only** when the
+  Flagged page publishes that section, and a local run of `scripts/audit_91e444dd.py` passes (exit 0,
+  0 link errors) before and after the merge.
+- **GitHub Pages:** deployment run 38483888198 (`pages build and deployment`) completed **success** for
+  the merge; the live pages were fetched afterwards and confirmed: `/` (landing card present),
+  `/live/` (29 open fixtures — 8 outside bookmaker lines, 27 own lines, 28 picks, 1 blank row) and
+  `/live/data/snapshot_meta.json` regenerated on main at **2026-10-13T23:22:50Z** by the scheduled
+  workflow (run 38483801010).
+- **Automation on main (no manual input):** `.github/workflows/live-459ff624.yml` runs on `main` by cron
+  `37 * * * *` plus `workflow_dispatch`, re-collects the public sources, rebuilds the six pages, runs the
+  unit suite and commits `live/data/**` + `live/*.html` back to `main`. Every run leaves a provenance row
+  per request (URL, HTTP status, bytes, SHA-256, fetch time); a source that refuses to be read produces
+  blanks + a flag, never a guess.
+- **Verification performed for this change-set:** 18/18 unit tests; the third-party auditor
+  `scripts/audit_91e444dd.py` exits 0 with zero link errors over all 112 HTML pages; 369 internal links
+  and fragments resolve; HTML tag-balance clean; the builder is deterministic (re-running it on a frozen
+  snapshot produces no diff) and its own gate fails the run if a crowd field reaches the slate or a pick
+  is published without a probability.
+- **Line-by-line verification with links for manual review:** `reviews/459ff624-verification.md` —
+  fixture identity + exact times against the live board and an HLTV match page (9z v Aurora, 08:30Z,
+  BO3 LAN), published VRS points against Valve's official file (Spirit 2046 #1 … HAVU 937 #124), HLTV
+  World Ranking 2026-10-12 (208 rows: FURIA #4, Falcons #5, Aurora #6, Legacy #7, PARIVISION #11,
+  BetBoom #14, Envy #20, HEROIC #30 …), de-vig recomputed by hand for all eight priced rows, and the
+  crowd-field exclusion checked on the published CSV.
+- **Flagged irregularities (non-blocking, published on `/live/flagged.html`):** FL-01 no market for 21 of
+  29 open rows (own line used, labelled) · FL-02 FORZE Reload v LFO 10 and Heroic v Envy (name absent from
+  Valve's file) · FL-03 two outside sources priced the same pair within a minute · FL-04 the one row with
+  neither a market nor a rating line (blank + no pick) · FL-11 two rows where market and own line diverge
+  by ≥12.5 points · FL-12 no deep Pinnacle per-match URL in the public markup · FL-20 board says "68
+  matches this week" while the payload carries 90 CS2 records · FL-21 59 stale June/July listings ·
+  FL-22 EGamersWorld HTTP 403 from CI · FL-23 single external source · FL-24 no per-match Hotspawn link
+  for some rows · FL-25 prediction-market fallback labelling · FL-26 duplicate Valve roster entries
+  (higher-points entry used, alternative printed).
