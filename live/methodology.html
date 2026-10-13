@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Methodology · Hotspawn Pick'em live slate</title>
+<link rel="stylesheet" href="style.css">
+</head><body>
+<header>
+  <div class="wrap">
+    <h1>Methodology</h1>
+    <p class="sub">Hotspawn Play Pick'em · CS2 · independent line analysis</p>
+    <nav><a href="index.html">Slate</a><a href="matches.html">All rows</a><a href="coverage.html">Coverage</a><a href="flagged.html">Flagged for review</a><a href="sources.html">Sources</a><a href="methodology.html" class="active">Method</a></nav>
+  </div>
+</header>
+<main class="wrap">
+
+<h2>What comes from where</h2>
+<table class="grid plain"><tbody>
+<tr><th>Fixture identity, exact UTC start and lock time</th><td>play.hotspawn.com Pick'em pages —
+their own server-rendered Angular payload (<code>script#ng-state</code>). The board's rendered text is
+never used as a probability.</td></tr>
+<tr><th>External probability</th><td>A two-way bookmaker market, de-vigged. A single source per fixture
+is labelled as such; Pinnacle (direct bookmaker) is preferred over an aggregator listing when both exist.</td></tr>
+<tr><th>Our own line</th><td>Elo over Valve's official Regional Standings points, scale 400. A team
+Valve does not list gets a blank line, never an invented rating.</td></tr>
+<tr><td colspan="2" class="muted">Hotspawn crowd pick percentages are read from the payload for the
+audit page only, are dropped from the dataset by this build script, and never enter a probability or a pick.</td></tr>
+</tbody></table>
+
+<h2>Formulas</h2>
+<pre>de-vig            p_A = (1/o_A) / ((1/o_A) + (1/o_B))        overround = (1/o_A + 1/o_B - 1) * 100
+own line          p_A = 1 / (1 + 10 ** (-(vrs_A - vrs_B) / 400))
+headline          outside market when one exists, else our own line, else blank
+pick              the higher headline probability, labelled with its basis;
+                  "No confident pick" when the two sides are within 2.0 points;
+                  no pick at all when no verified line exists (FL-04)</pre>
+
+<h2>Joining a bookmaker price to a fixture</h2>
+<p>A quote is accepted only when the two team names match the fixture pair after lower-casing,
+punctuation removal and an explicitly documented alias (bookmaker spellings such as
+<code>WBT</code> for <code>WROTBERRY</code>), and — when the source states a start time — that start
+is within 120 minutes of the Pick'em start. Ambiguous joins are left blank and flagged (FL-03).</p>
+
+<h2>What is deliberately blank</h2>
+<ul class="tight">
+<li>No readable bookmaker market → no market column, flagged FL-01 (the row may still carry our own line, FL-13).</li>
+<li>Team absent from Valve's file → no own line, flagged FL-02.</li>
+<li>Neither source → no probability and no pick, flagged FL-04.</li>
+<li>Aggregator placeholder prices (identical both ways, e.g. 1.80/1.80) are treated as unreadable.</li>
+</ul>
+
+<h2>Limits, stated plainly</h2>
+<ul class="tight">
+<li>Prices move. Every page states the snapshot time; the workflow re-collects on a schedule and the
+rows are never re-dated without re-reading the sources.</li>
+<li>One external source is weaker evidence than two. Where only one is readable, that is labelled on the row.</li>
+<li>This is analysis, not betting advice, and it does not predict outcomes — it reports what the
+outside market and an official-rating model imply.</li>
+</ul>
+<footer>
+  <p>As of <b>2026-10-13T22:56:12Z</b> (UTC). Fixture identity and times come from the
+  Pick'em board's own server-rendered payload; probabilities come from outside bookmaker prices
+  (de-vigged) and our own Valve-standings model. Hotspawn's crowd pick percentages are never used
+  as a probability. Every value that could not be confirmed against an official source is left
+  blank and listed on <a href="flagged.html">Flagged for review</a>.</p>
+  <p><a href="../">← back to the repository hub</a> · <a href="../picks/">picks/</a> ·
+  <a href="../today/">today/</a> · <a href="../docs/">docs/</a> ·
+  <a href="../pickem/">pickem/</a> · <a href="../model/">model/</a></p>
+</footer>
+</main></body></html>
