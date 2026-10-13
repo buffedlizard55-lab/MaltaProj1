@@ -17,6 +17,8 @@ ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "refresh" / "data"
 OUT = ROOT / "today"
 
+ELO_SCALE = 400.0   # documented standard Elo logistic scale used by the own-line model
+
 SPORT_LABEL = {"cs2": "CS2", "counterstrike": "CS2", "cs": "CS2",
                "lol": "LoL", "leagueoflegends": "LoL"}
 

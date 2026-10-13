@@ -33,7 +33,12 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Read public sources (Hotspawn payload, EGamersWorld lines, HLTV/Valve ratings)
+      - name: Install the ordinary browser used for the public odds/rating pages
+        run: |
+          python -m pip install --quiet -r requirements.txt
+          python -m playwright install --with-deps chromium
+          python -c "import playwright, sys; print('playwright', playwright.__version__ if hasattr(playwright, '__version__') else 'installed', sys.version)"
+      - name: Read public sources (Hotspawn payload, EGamersWorld lines, Pinnacle/HLTV pages)
         continue-on-error: true
         run: |
           mkdir -p refresh/logs

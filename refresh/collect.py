@@ -240,8 +240,9 @@ def collect_hotspawn() -> dict:
             m = re.search(r"(\d+)\s+matches this week", plain)
             if m:
                 week_total_text = int(m.group(1))
+                week_total_context = plain[max(0, m.start() - 90):m.end() + 40]
                 entry["week_total_text"] = week_total_text
-                entry["week_total_context"] = plain[max(0, m.start() - 90):m.end() + 40]
+                entry["week_total_context"] = week_total_context
             m = re.search(r"Resets in (?:(\d+)d )?(?:(\d+)h )?(?:(\d+)m )?(?:(\d+)s)", plain)
             if m:
                 d, h, mi, s = (int(g) if g else 0 for g in m.groups())

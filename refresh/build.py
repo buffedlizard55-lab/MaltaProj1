@@ -336,6 +336,11 @@ def main() -> int:
         "pickem_week_reset_utc": hs.get("reset_utc"),
         "pickem_week_total_text": hs.get("week_total_text"),
         "pickem_week_total_context": hs.get("week_total_context"),
+        "pickem_page_header_counts": [
+            {"page": p.get("page"), "url": p.get("url"), "matches_this_week_text":
+             p.get("week_total_text"), "context": p.get("week_total_context"),
+             "rows_in_payload": p.get("state_rows"), "cards_rendered": p.get("cards_rendered")}
+            for p in hs.get("pages", [])],
         "valve_vrs_file": vrs.get("file"),
         "method": {
             "market_probability": ("each external source's match-winner prices are converted to "
@@ -377,13 +382,21 @@ def main() -> int:
         add_flag("R-EMPTY", "No fixtures in the current pick'em week",
                  "The collector read the page but no fixture rows fell inside the week window; "
                  "an empty board is not published as a pass.", "https://play.hotspawn.com/lobby")
-    if hs.get("week_total_text") and counts["fixtures_in_week"] != hs["week_total_text"]:
-        add_flag("R-COUNT", "The page's own 'matches this week' count differs from the rows read",
-                 f"The lobby prints {hs['week_total_text']} matches this week "
-                 f"(context: \"{hs.get('week_total_context') or 'n/a'}\"); the payload yields "
-                 f"{counts['fixtures_in_week']} rows inside the week window ending "
-                 f"{hs.get('reset_utc')}. Both numbers are published; the difference is not "
-                 f"explained.", "https://play.hotspawn.com/lobby")
+    lobby_header = next((p.get("week_total_text") for p in hs.get("pages", [])
+                         if p.get("page") == "lobby"), None)
+    header_counts = ", ".join(
+        f"{p.get('page')}={p.get('week_total_text')}" for p in hs.get("pages", [])
+        if p.get("week_total_text")) or "n/a"
+    if lobby_header and counts["fixtures_in_week"] != lobby_header:
+        add_flag("R-COUNT", "The lobby's 'matches this week' count differs from the rows in the "
+                            "payload window",
+                 f"The lobby page prints {lobby_header} matches this week "
+                 f"(context: \"{hs.get('week_total_context') or 'n/a'}\"), while the same page's "
+                 f"payload yields {counts['fixtures_in_week']} rows whose start falls inside the "
+                 f"week window that ends {hs.get('reset_utc')} (the window comes from the page's "
+                 f"own reset countdown). Per-page header counts: {header_counts}. The difference "
+                 f"is published, not explained away; the board shows every row the payload "
+                 f"contains in the window.", "https://play.hotspawn.com/lobby")
     if stale:
         add_flag("R-STALE", f"{len(stale)} payload listings fall outside this pick'em week",
                  "Hotspawn still serves these rows as 'scheduled' although their start time is "
