@@ -558,7 +558,7 @@ tr.muted td{opacity:.55}a{color:var(--acc)}footer{color:var(--mute);font-size:12
 """
 
 JS = """
-(function(){const now=Date.now();document.querySelectorAll('tr[data-lock]').forEach(tr=>{const t=Date.parse(tr.dataset.lock);if(!isNaN(t)&&now>=t){tr.classList.add('muted');tr.querySelectorAll('.lockpill').forEach(p=>p.hidden=false)}})})();
+(function(){const now=Date.now();document.querySelectorAll('tr[data-lock]').forEach(tr=>{const t=Date.parse(tr.dataset.lock);if(!isNaN(t)&&now>=t){tr.classList.add('muted');const c=tr.querySelector('td.st')||tr.querySelector('td.pick');if(c){const sp=document.createElement('span');sp.className='pill';sp.textContent='locked - not actionable';c.appendChild(document.createTextNode(' '));c.appendChild(sp)}}})})();
 function filt(inp,id){const q=inp.value.toLowerCase();document.querySelectorAll('#'+id+' tbody tr').forEach(r=>{r.style.display=r.textContent.toLowerCase().includes(q)?'':'none'})}
 document.querySelectorAll('table.sort').forEach(t=>{t.querySelectorAll('th').forEach((th,i)=>{th.title='Click to sort';th.addEventListener('click',()=>{const b=t.tBodies[0];const rs=[...b.rows];const d=th.dataset.d=th.dataset.d==='a'?'d':'a';
 rs.sort((x,y)=>{const A=x.cells[i].dataset.v??x.cells[i].textContent.trim(),B=y.cells[i].dataset.v??y.cells[i].textContent.trim();const nA=parseFloat(A),nB=parseFloat(B);
@@ -598,8 +598,6 @@ def fixture_table(rows, tid):
               '<span class="pill ok">own line</span>' if own else '<span class="pill bad">blank - unverified</span>')
         if r.get("actionable") == "no":
             st += ' <span class="pill">' + ("started - not actionable" if r["section"] == "started" else "stale - not actionable") + '</span>'
-        else:
-            st += ' <span class="pill lockpill" hidden>locked - not actionable</span>'
         src = " · ".join(x for x in [
             a(r["hotspawn_url"], "Hotspawn fixture"),
             a(r["vrs_a_url"], "VRS A"), a(r["vrs_b_url"], "VRS B"),
@@ -623,7 +621,7 @@ def fixture_table(rows, tid):
             f"<td class=pick>{e(r['pick'])}</td><td>{e(r['confidence'])}</td>"
             f"<td class=num data-v='{e(r.get('valve_raw_p_a', ''))}'>{raw}</td><td class=num data-v='{e(r.get('market_p_a', ''))}'>{mkt}</td>"
             f"<td{ecls} data-v='{e(edge)}'>{e(edge)}</td>"
-            f"<td>{st}</td><td>{src}</td><td class=wrap>{e(r['notes'])}</td></tr>")
+            f"<td class=st>{st}</td><td>{src}</td><td class=wrap>{e(r['notes'])}</td></tr>")
     return (f"<input type=search placeholder='Filter rows…' oninput=\"filt(this,'{tid}')\">"
             f"<div class=tw><table id='{tid}' class=sort><thead>{head}</thead><tbody>{''.join(body)}</tbody></table></div>")
 
@@ -644,7 +642,6 @@ def glance_table(rows) -> str:
                 review += " <span class='pill'>" + ("started - not actionable" if r["section"] == "started" else "stale - not actionable") + "</span>"
                 tr = "<tr class=muted>"
             else:
-                review += " <span class='pill lockpill' hidden>locked - not actionable</span>"
                 tr = f"<tr data-lock='{e(r['lock_utc'].replace(' ', 'T'))}:00Z'>" if r.get("lock_utc") else "<tr>"
             body.append(f"{tr}<td>{e(r['scheduled_start_utc'])}</td><td>{match}</td><td class=pick>{e(r['pick'])}{review}</td>"
                         f"<td class=num data-v='{win:.1f}'><b>{win:.1f}%</b></td><td class=num>{e(odds)}</td>"
