@@ -7,9 +7,7 @@ on:
   push:
     branches: [arena/cc8f4dca-maltaproj1]
     paths:
-      - scripts/picks_probe.py
-      - scripts/picks_collect.py
-      - .github/workflows/picks-cc8f4dca.yml
+      - scripts/picks_pinnacle.py
 
 permissions:
   contents: write

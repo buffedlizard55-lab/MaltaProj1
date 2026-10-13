@@ -176,34 +176,34 @@ def main() -> int:
             )
         print(f"highlighted: {len(out['matchups'])} CS moneylines", flush=True)
 
-    seen = {m["matchup_id"] for m in out["matchups"]}
-    for league_name, matchup_id in matchup_ids:
-        if matchup_id in seen:
-            continue
-        status, payload = get(f"/matchups/{matchup_id}/markets/related/straight")
+    # One call per league returns every matchup with its markets and prices.
+    for league in cs_leagues:
+        league_id = league.get("id")
+        status, payload = get(f"/leagues/{league_id}/markets/straight")
         if not isinstance(payload, list):
-            out["errors"].append({"path": f"/matchups/{matchup_id}/markets/related/straight",
+            out["errors"].append({"path": f"/leagues/{league_id}/markets/straight",
                                   "http_status": status})
-            time.sleep(0.3)
+            time.sleep(0.4)
             continue
+        kept = 0
         for matchup in payload:
-            if matchup.get("id") != matchup_id:
-                continue
             line = moneyline(matchup)
             if not line:
                 continue
             out["matchups"].append(
                 {
-                    "matchup_id": matchup_id,
-                    "league": league_name,
+                    "matchup_id": matchup.get("id"),
+                    "league": league.get("name"),
                     "start_time": matchup.get("startTime"),
                     "status": matchup.get("status"),
                     "best_of": matchup.get("bestOfX"),
-                    "via": "matchups/{id}/markets/related/straight",
+                    "via": "leagues/{id}/markets/straight",
                     **line,
                 }
             )
-        time.sleep(0.3)
+            kept += 1
+        print(f"  league {league_id} ({league.get('name')}): {len(payload)} matchups, {kept} moneylines", flush=True)
+        time.sleep(0.4)
 
     out["matchup_count"] = len(out["matchups"])
     (DATA / "odds_pinnacle.json").write_text(json.dumps(out, indent=2))
