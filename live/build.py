@@ -375,11 +375,18 @@ FLAG_TEXT = {
 }
 
 
+# Row-level findings about the current slate.  The stale June/July listings are documented once as
+# FL-21; they must not inflate the "needs review" counts for values we simply have not collected.
+SLATE_ONLY_FLAGS = {"FL-01", "FL-02", "FL-03", "FL-04", "FL-11", "FL-12", "FL-13", "FL-25", "FL-26"}
+
+
 def collect_flags(rows, snapshot):
     flags = {}
     for row in rows:
         for flag_id in (row["flags"] or "").split(";"):
             if not flag_id:
+                continue
+            if flag_id in SLATE_ONLY_FLAGS and row["not_pickable_reason"].startswith("listed in the payload"):
                 continue
             entry = flags.setdefault(flag_id, {"id": flag_id, "text": "", "source_url": "",
                                                "fixtures": [], "severity": "needs review"})
@@ -549,7 +556,7 @@ def bar(p_a: str, p_b: str, team_a: str, team_b: str) -> str:
             f'<span>{escape(team_b)} {p_b}%</span></div></div>')
 
 
-def fixture_card(row, meta) -> str:
+def fixture_card(row, meta, published=None) -> str:
     pick = row.get("pick") or ""
     pick_class = "pick" if pick and pick != "No confident pick" else "pick none"
     pick_html = (f'<span class="{pick_class}">PICK: {escape(pick)}{" " + row["pick_pct"] + "%" if row.get("pick_pct") else ""}</span>'
@@ -565,7 +572,7 @@ def fixture_card(row, meta) -> str:
     flag_html = ""
     if flag_ids:
         flag_html = ('<div class="flags">' + " ".join(
-            f'<a class="flag" href="flagged.html#{f}">{f}</a>' for f in flag_ids) + "</div>")
+            flag_markup(f, published) for f in flag_ids) + "</div>")
     market = ("—" if not row.get("ext_p_a_pct")
               else f'{row["ext_p_a_pct"]}% / {row["ext_p_b_pct"]}% '
                    f'<span class="muted">@{row["ext_odds_a"]} / {row["ext_odds_b"]} '
@@ -596,9 +603,9 @@ def fixture_card(row, meta) -> str:
 </article>"""
 
 
-def render_index(rows, meta, flags) -> str:
+def render_index(rows, meta, flags, published=None) -> str:
     pickable = [r for r in rows if r["pickable"] == "yes"]
-    cards = "\n".join(fixture_card(row, meta) for row in pickable)
+    cards = "\n".join(fixture_card(row, meta, published) for row in pickable)
     tiers = sorted({r["tier"] for r in pickable if r["tier"]})
     comps = sorted({r["competition"] for r in pickable if r["competition"]})
     tier_opts = "".join(f'<option value="{escape(t)}">{escape(t)}</option>' for t in tiers)
@@ -646,7 +653,14 @@ Cards are ordered by start time. Numbers are percentages for each team to win th
     return page("Live slate — every open CS2 Pick'em fixture", body, "index.html", meta)
 
 
-def render_matches(rows, meta) -> str:
+def flag_markup(flag_id: str, published: set) -> str:
+    """A flag reference is only a link when the Flagged page really publishes that section."""
+    if flag_id in published:
+        return f'<a class="flag" href="flagged.html#{flag_id}">{flag_id}</a>'
+    return f'<span class="flag" title="recorded in the row data"> {flag_id}</span>'
+
+
+def render_matches(rows, meta, published=None) -> str:
     head = ("<tr><th>Start (UTC)</th><th>Lock (UTC)</th><th>Pickable</th><th>Tier</th><th>Pts</th>"
             "<th>Tournament</th><th>Team A</th><th>Team B</th><th>Market %</th><th>Odds</th>"
             "<th>Over</th><th>Own %</th><th>Headline</th><th>Pick</th><th>Sources</th><th>Flags</th></tr>")
@@ -1006,8 +1020,9 @@ def main() -> int:
     (DATA / "slate.json").write_text(json.dumps(rows, indent=1))
 
     LIVE.joinpath("style.css").write_text(STYLE)
-    LIVE.joinpath("index.html").write_text(render_index(rows, meta, flags))
-    LIVE.joinpath("matches.html").write_text(render_matches(rows, meta))
+    published = {flag["id"] for flag in flags}
+    LIVE.joinpath("index.html").write_text(render_index(rows, meta, flags, published))
+    LIVE.joinpath("matches.html").write_text(render_matches(rows, meta, published))
     LIVE.joinpath("coverage.html").write_text(render_coverage(rows, meta, snapshot))
     LIVE.joinpath("flagged.html").write_text(render_flagged(rows, meta, flags))
     LIVE.joinpath("sources.html").write_text(render_sources(snapshot, meta))

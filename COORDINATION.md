@@ -1708,3 +1708,27 @@ fragments 0 broken; HTML tag-balance clean on all six pages; per-row source-link
 builder. Line-by-line figures with links: `reviews/459ff624-verification.md`. Arithmetic re-checked by
 hand from the published inputs (examples): 9z–Aurora 3.550/1.307 → 26.9 %/73.1 % (overround 4.7 %);
 MIBR–BC.Game 1.637/2.230 → 57.7 %/42.3 % (5.9 %); VRS 1543/1716 → 27.0 %/73.0 % own line.
+
+#### Release record #2 — live slate v3 (arena/459ff624), written 2026-10-13 23:20 UTC
+
+- **PR #64** (`arena/459ff624-maltaproj1` → `main`): **MERGED** 2026-10-13T23:14:19Z, merge commit
+  `4b5075a9cccbe8455c6a052b52ebdf967cf53994`, explicit `gh pr merge 64 --merge` (not `--auto`). It carried
+  the HLTV ranking reader fix (`class="position wide-position"` — 208 rows parsed, 52 of our names matched,
+  published as a cross-check column only), the documented `PVISION`→PARIVISION / `BB Team`→BetBoom /
+  `Aurora Gaming`→Aurora joins (each with an evidence link, join still bound by the ±120-minute rule),
+  the duplicate-Valve-roster rule (higher-points entry used, alternative printed beside the row, FL-26)
+  and the updated `reviews/459ff624-verification.md`.
+- **Merge-conflict log:** two conflicts on this branch, both append-only. (1) `COORDINATION.md`: every
+  upstream line kept, this session's section re-appended (markers scanned: 0). (2) after `git merge
+  origin/main`, main's copy of the machine-generated `live/**` artifacts conflicted with this branch's
+  newer ones — resolved by keeping the **newest snapshot** (23:17:56Z) and re-running `live/build.py`, so
+  every page is generated from the snapshot that ships beside it. No other session's file was edited.
+- **Latest published snapshot on the branch:** `2026-10-13T23:17:56Z` (run 38483241383) — 90 CS2 records,
+  29 open, **8 with an outside bookmaker price, 27 with our own line, 28 picks, 1 blank row**, 13 flag
+  sections. A failing unit test pushed by mistake was caught by the workflow's own test gate (run
+  38483218757 failed, no output committed) and fixed in the next commit — the gate stays in front of the
+  commit step on purpose.
+- **Flag scoping tightened:** row-level "needs review" findings (FL-01/02/03/04/11/12/13/25/26) now count
+  only fixtures that are still pickable; the 59 stale June/July listings stay in one informational entry
+  (FL-21). "Needs review" counts therefore read 21 / 2 / 2 / 1 / 2 / 8 / 20 / 3 instead of counting
+  fixtures nobody can pick any more. 17/17 unit tests.
