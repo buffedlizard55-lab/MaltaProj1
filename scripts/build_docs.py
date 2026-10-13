@@ -47,7 +47,7 @@ def match_rows(ids):
             continue
         div = f"<br><small>⚠ {esc(r['divergence_note'])}</small>" if r['divergence_note'] else ''
         out.append(
-            f"<tr><td>{r['id']}<br><small>{r['start_display']} (UTC {r.get('start_utc','')[:16]})</small></td>"
+            f"<tr><td>{r['id']}<br><small>display {r['start_display']} · UTC {r.get('start_utc','')[:16].replace('T',' ')}</small></td>"
             f"<td><b>{esc(r['team_a'])}</b> vs <b>{esc(r['team_b'])}</b><br><small>{esc(r['tournament'])} · Tier {r['tier']} · {r['format']} · {r['points']} pts</small></td>"
             f"<td>{r['odds_a'] or BLANK} / {r['odds_b'] or BLANK}</td>"
             f"<td>{pct(r['market_p_a_pct'])} / {pct(r['market_p_b_pct'])}<br><small>vig {r['overround_pct'] or '—'}%</small></td>"
@@ -282,7 +282,7 @@ A-01…A-11 come from this session's audit (details and evidence on the <a href=
 <tr><td>F-07</td><td>PARIVISION: HLTV team page #11 vs third-party preview #20</td><td><a href="https://www.hltv.org/team/12467/parivision">HLTV PARIVISION</a></td><td>HLTV preferred</td></tr>
 <tr><td>F-08</td><td>HOTU–fnatic: HLTV community/model indicator 68.4% fnatic vs bookmaker near-even (1.88/1.80)</td><td><a href="https://www.hltv.org/matches/2399135/hotu-vs-fnatic-stake-pulse-beat-iii">HLTV match</a> · <a href="https://egamersworld.com/counterstrike/match/EJZmJpBjeNx/hotu-vs-fnatic-KjM3caFTC">EGW</a></td><td>Indicator shown, never used as a probability; market line governs</td></tr>
 <tr><td>F-09</td><td>Outright book attribution differs across articles (Stake vs bet365)</td><td><a href="https://www.freetips.com/esports/thunderpick-world-championship-2026-betting-odds-20261011-0007/">FreeTips</a></td><td>Outrights labelled; never converted to match picks</td></tr>
-<tr><td>F-10</td><td>Hotspawn displays times without a timezone; HLTV/EGW show different clock times for the same fixture</td><td><a href="https://www.hltv.org/news/45706/thunderpick-world-championship-teams-format-schedule-prizes-talent-fantasy">HLTV news 45706</a></td><td>Times reproduced as Hotspawn displays; convert before acting</td></tr>
+<tr><td>F-10</td><td>Hotspawn displays times without a timezone; HLTV/EGW show different clock times for the same fixture</td><td><a href="https://www.hltv.org/news/45706/thunderpick-world-championship-teams-format-schedule-prizes-talent-fantasy">HLTV news 45706</a></td><td><strong>Resolved:</strong> exact UTC start/lock times taken from the site's own payload (<a href="https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/data/pickem_inventory.json">data/pickem_inventory.json</a>, 2026-10-13 18:13Z) and shown next to the display time on <a href="matches.html">matches.html</a>; payload times corroborated by HLTV (9z–Aurora 08:30Z, HOTU–fnatic 10:00Z)</td></tr>
 <tr><td>F-11</td><td>Hotspawn crowd % drifts between fetches and several cards show 100/0 (tiny samples)</td><td><a href="https://play.hotspawn.com/lobby">lobby</a></td><td>Snapshot only; never a probability input</td></tr>
 <tr><td>F-12</td><td>Stake Pulse match-ID gap (1079441 missing between …438/…439/…442)</td><td><a href="https://play.hotspawn.com/cs2-pickems">lobby</a></td><td>Noted; not invented</td></tr>
 </table></div></div>"""

@@ -57,5 +57,8 @@ Canonical dataset: data/fixtures.csv (Hotspawn lobby + `script#ng-state` payload
 ## Irregularities (non-blocking; published on docs/flagged.html)
 - This session: A-01…A-11 (see docs/audit.html). Highlights: A-03/A-01 contradicted PR lines replaced with live values; A-05 PR5 false merge log; A-07 Hotspawn "WROTBERRY" = WBT/WhiteBIT Team on HLTV/Liquipedia/EGW; A-08 pool mystery resolved via payload lock times; A-11 H-12 unplayable (no market, no ranks).
 - Prior sessions: F-02…F-12 (f89fbdfa/390c1f81) · F-01…F-10 + F-COV/F-NOLINE/F-DISPUTE (79a1c6c8, 51fb12f8) — preserved in their sections and rendered on their respective flagged pages (docs/flagged.html, pickem/flagged.html, assurance/flagged.html).
-EOF
-git add COORDINATION.md && echo COORDINATION written
+
+### 2026-10-13 18:19–18:25 UTC — session `79a1c6c8` release record + incident (preserved from main)
+- PR #16 merged (`4400c9a`): 380-fixture slate, external lines, `pickem/`, review CSV; Pages `built`, live pages fetched and confirmed.
+- Incident: leftover conflict markers in root `index.html` shipped in PR #16; fixed by their PR #18 (`d6d0715`). Lesson adopted repo-wide: after every merge, re-read all conflicted paths and scan for markers before staging.
+- Their cross-session note ("docs/ times differ from payload by ~4h") is addressed by this integration: `data/fixtures.csv` now carries exact payload `start_utc`/`lock_utc`, and `docs/matches.html` shows both display and UTC per row (26/26 pairings re-verified against the payload, 0 mismatches).
