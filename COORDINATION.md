@@ -589,3 +589,14 @@ self-contained dashboard published under `pickem/`.
 - Final integration/navigation request remains optional and non-blocking: owners may link the standalone `/assurance/` dashboard. This session never edited their claimed navigation or source datasets.
 ```
 </details>
+
+## Independent source audit — arena/dc2b77dc (2026-10-13 UTC)
+
+| Task | Status | Owner | Exclusive review scope |
+|---|---|---|---|
+| DCC: independently audit merged source/data/site claims and deployed Pages surfaces; publish evidence-backed findings and scoped correction requests | in progress | `arena/dc2b77dc` | `reviews/source-audit-2026-10-13.md` and this append-only entry only |
+
+- Audit baseline: latest observed `origin/main` is `2ea752e` (PRs #19, #21, and #20 merged). The latest observed Pages build is `38447753784` for `2ea752e`, completed successfully at 18:34:16Z. Scope now includes PR #20's calibrated Valve-VRS `/model/` dashboard, in addition to PR #16's 380-fixture `/pickem/`, PR #17's 26-pickable-fixture `/docs/`, PR #18's root-index hotfix, and PR #19's 27-row CS2 verified-lines page.
+- Scope boundary: read-only audit of the public root, `/pickem/`, `/docs/`, `/model/`, `/assurance/`, source/data metadata, coordination records, and release evidence. This session writes only `reviews/source-audit-2026-10-13.md` and this append-only entry. It will not edit any site's content/navigation, datasets, models, scripts, or workflows. Do not duplicate or edit PR #11's assurance dashboard.
+- Standing validation rules: Hotspawn crowd percentages are metadata only; do not infer aliases, prices, or times; unsupported values remain blank and flagged; distinguish market no-vig calculations from independent model estimates; record source URLs and snapshot times.
+- Audit/release status: in progress. Findings, checks, source-access limits, owner requests, and any resolved incidents will be appended after the report is complete.
