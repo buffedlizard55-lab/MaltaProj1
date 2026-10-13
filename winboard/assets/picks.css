@@ -1,0 +1,112 @@
+
+:root{
+  --bg:#0e1116; --panel:#161b22; --panel-2:#1c2230; --line:#2a3140;
+  --text:#e6edf3; --muted:#9aa7b8; --accent:#4d9fff; --good:#3fb950; --warn:#d29922; --bad:#f85149;
+  --radius:12px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--text);
+  font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+a{color:var(--accent)}
+.wrap{max-width:1080px;margin:0 auto;padding:0 14px}
+.site-header{position:sticky;top:0;z-index:20;background:rgba(14,17,22,.94);
+  backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.site-header .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;
+  min-height:58px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px}
+.brand-mark{width:32px;height:32px;border-radius:9px;display:grid;place-items:center;
+  background:linear-gradient(135deg,#4d9fff,#7b61ff);font-weight:700;color:#08101c;font-size:14px}
+.brand-text{display:flex;flex-direction:column;line-height:1.15}
+.brand-text strong{font-size:15px}
+.brand-text span{font-size:12px;color:var(--muted)}
+.nav{display:flex;gap:4px;flex-wrap:wrap}
+.nav-link{padding:7px 11px;border-radius:8px;color:var(--muted);text-decoration:none;font-size:14px}
+.nav-link:hover{background:var(--panel-2);color:var(--text)}
+.nav-link.is-active{background:var(--panel-2);color:var(--text);font-weight:600}
+main{padding:18px 14px 48px}
+h1{font-size:clamp(20px,5vw,28px);margin:6px 0 4px}
+h2{font-size:18px;margin:0 0 10px}
+.subtitle{color:var(--muted);margin:0 0 16px;font-size:15px}
+.note{color:var(--muted);font-size:14px}
+.muted{color:var(--muted)}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+  padding:14px;margin:0 0 18px}
+.panel p{margin:0 0 10px}
+.panel p:last-child{margin-bottom:0}
+.panel ul{margin:0;padding-left:20px}
+.panel li{margin-bottom:6px}
+pre{background:#0b0f15;border:1px solid var(--line);border-radius:8px;padding:10px;overflow-x:auto;
+  font-size:14px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:0 0 16px}
+.stat{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+  padding:12px;text-align:center}
+.stat b{display:block;font-size:24px;line-height:1.1}
+.stat span{font-size:12px;color:var(--muted)}
+.section{margin:0 0 26px}
+.filter-row{display:flex;gap:10px;align-items:center;margin:0 0 12px;flex-wrap:wrap}
+#filter{flex:1;min-width:180px;background:var(--panel);border:1px solid var(--line);
+  border-radius:9px;color:var(--text);padding:9px 11px;font-size:15px}
+.toggle{font-size:14px;color:var(--muted);display:flex;align-items:center;gap:6px}
+.cards{display:grid;gap:12px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:13px}
+.card.is-stale{opacity:.62}
+.card.is-nopick{border-color:#4a3320}
+.card-head{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:7px}
+.tier{font-size:11px;font-weight:700;letter-spacing:.04em;padding:3px 7px;border-radius:6px;
+  background:var(--panel-2);color:var(--muted)}
+.tier-s{background:#3b2f10;color:#f0c674}
+.tier-b{background:#12304a;color:#79c0ff}
+.tier-c{background:#25303a;color:#9aa7b8}
+.comp{font-size:13px;color:var(--muted);flex:1;min-width:120px}
+.card-time{font-size:13px;color:var(--muted);margin-bottom:10px}
+.teams{display:flex;flex-direction:column;gap:6px}
+.team{display:flex;align-items:center;justify-content:space-between;gap:10px;
+  background:var(--panel-2);border:1px solid transparent;border-radius:9px;padding:9px 11px}
+.team.is-pick{border-color:var(--good);background:#12241a}
+.team-id{display:flex;flex-direction:column;min-width:0}
+.team-name{font-weight:600;font-size:16px;overflow-wrap:anywhere}
+.team-meta{font-size:12px;color:var(--muted)}
+.team-prob{font-size:19px;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.bar{display:flex;height:8px;border-radius:6px;overflow:hidden;background:#0b0f15;margin:9px 0 11px}
+.bar-a{background:var(--accent)}
+.bar-b{background:#7b61ff}
+.pick{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.pick-label{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.pick-team{font-weight:700;font-size:17px;color:var(--good)}
+.pick-team.none{color:var(--warn);font-size:15px}
+.pick-conf{font-size:11px;padding:3px 7px;border-radius:6px;background:var(--panel-2);color:var(--muted)}
+.conf-strong{background:#12241a;color:#56d364}
+.conf-clear{background:#122a24;color:#4ac58a}
+.conf-lean{background:#2a2413;color:#d9b263}
+.pick-src{font-size:12px;color:var(--muted)}
+.details{display:grid;gap:5px;margin-bottom:10px}
+.detail{display:flex;align-items:baseline;gap:8px;font-size:13px;flex-wrap:wrap}
+.detail span:first-child{color:var(--muted);min-width:92px}
+.detail b{font-variant-numeric:tabular-nums}
+.detail .blank{color:var(--warn)}
+.sources{display:flex;flex-wrap:wrap;gap:6px}
+.src{font-size:12px;background:var(--panel-2);border:1px solid var(--line);border-radius:999px;
+  padding:4px 10px;text-decoration:none;color:var(--text)}
+.src:hover{border-color:var(--accent)}
+.badges{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}
+.badge{font-size:11px;padding:3px 8px;border-radius:6px}
+.badge-warn{background:#33280f;color:#e3b341}
+.badge-stale{background:#2b2119;color:#c9a26d}
+.flag-notes{margin:8px 0;padding-left:20px;font-size:14px;color:var(--muted)}
+.flag-notes li{margin-bottom:5px}
+.flag-card{border-left:3px solid var(--warn)}
+.empty{color:var(--muted);text-align:center;padding:18px}
+.table-scroll{overflow-x:auto}
+.table{width:100%;border-collapse:collapse;font-size:14px}
+.table th,.table td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);
+  vertical-align:top}
+.table th{color:var(--muted);font-weight:600;font-size:13px;white-space:nowrap}
+.table td a{overflow-wrap:anywhere}
+.site-footer{border-top:1px solid var(--line);padding:16px 0 34px;color:var(--muted);font-size:13px}
+@media (max-width:640px){
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .site-header .wrap{min-height:52px}
+  .nav-link{padding:6px 9px;font-size:13px}
+  .team-prob{font-size:18px}
+}
