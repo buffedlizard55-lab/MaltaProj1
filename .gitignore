@@ -7,3 +7,13 @@ __pycache__/
 *.pyc
 $py.class
 .venv/
+# Raw public source responses and browser tooling stay outside Git.
+.cache/
+.arena/
+node_modules/
+.pytest_cache/
+coverage/
+dist/
+.env
+.env.*
+# Keep only deliberately curated, small evidence snapshots under data/evidence/.
