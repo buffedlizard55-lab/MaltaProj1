@@ -1,0 +1,221 @@
+{
+  "schemaVersion": 1,
+  "snapshotStatus": "partial-baseline",
+  "generatedAt": null,
+  "verifiedOn": "2026-10-13",
+  "coverage": {
+    "isComplete": false,
+    "listedMatches": 3,
+    "bookmakerPricedMatches": 2,
+    "exchangePricedMatches": 3,
+    "unpricedMatches": 0,
+    "note": "This checked-in baseline is deliberately partial. A scheduled GitHub Actions refresh is configured to replace it with the current Hotspawn fixture list and independent public market data. Do not treat this baseline as the full lobby."
+  },
+  "policy": {
+    "hotspawnUse": "fixture scope and fixture source only; Hotspawn pick shares, picks, tiers, points, and crowd selections are never used as probability inputs",
+    "bookmakerProbability": "two-way American bookmaker prices converted to raw implied probabilities, then normalized to remove the quoted overround",
+    "exchangePrice": "Polymarket outcome price shown separately as a market-implied reference; it is not called a sportsbook line or combined with bookmaker prices",
+    "missingValue": "null means no independently confirmed value; the UI renders it blank and flags it"
+  },
+  "sources": [
+    {
+      "id": "hotspawn-lobby",
+      "name": "Hotspawn Pick'ems lobby",
+      "url": "https://play.hotspawn.com/lobby",
+      "role": "Fixture scope only. No pick-share or crowd-prediction values are used."
+    },
+    {
+      "id": "hotspawn-how-it-works",
+      "name": "Hotspawn Pick'ems rules",
+      "url": "https://play.hotspawn.com/how-it-works",
+      "role": "Official explanation of the Pick'ems product; not a probability source."
+    },
+    {
+      "id": "thunderpick-cs2",
+      "name": "Thunderpick CS2 sportsbook market index",
+      "url": "https://thunderpick.io/esports/cs2-betting",
+      "role": "Direct bookmaker odds source. Only the match-winner prices on directly linked, two-outcome pre-match markets are eligible."
+    },
+    {
+      "id": "thunderpick-lol",
+      "name": "Thunderpick League of Legends sportsbook market index",
+      "url": "https://thunderpick.io/esports/league-of-legends",
+      "role": "Direct bookmaker odds source. Only the match-winner prices on directly linked, two-outcome pre-match markets are eligible."
+    },
+    {
+      "id": "polymarket-api-docs",
+      "name": "Polymarket public market-data API documentation",
+      "url": "https://docs.polymarket.com/getting-started/api",
+      "role": "Official documentation for the no-auth public Gamma market API. Prices are shown separately as exchange references."
+    },
+    {
+      "id": "polymarket-clob-docs",
+      "name": "Polymarket order-book and price documentation",
+      "url": "https://docs.polymarket.com/market-data/prices-order-books",
+      "role": "Official documentation for market outcome prices and public order-book data."
+    }
+  ],
+  "auditItems": [
+    {
+      "id": "time-display-localization",
+      "status": "resolved-with-source-metadata",
+      "severity": "info",
+      "title": "Hotspawn lobby and match-detail clocks use different display zones",
+      "details": "For the three audited matches, the lobby/book pages show a clock four hours earlier than the Hotspawn match-detail page. The corresponding Polymarket market descriptions explicitly label the earlier times as ET, while the official market-data records provide an eventStartTime ending in Z. The UTC column below uses only that explicit Z timestamp; raw Hotspawn display text is retained. Future fixtures without explicit timezone metadata are not converted.",
+      "sources": [
+        "https://www.hotspawn.com/matches/9z-vs-aurora-thunderpick-world-championship-2026-1080176",
+        "https://www.hotspawn.com/matches/astralis-vs-sashi-stake-pulse-beat-iii-1079438",
+        "https://www.hotspawn.com/matches/ex-keyd-stars-vs-galorys-esl-challenger-league-season-52-south-america-cup-3-1081076",
+        "https://gamma-api.polymarket.com/markets?slug=cs2-9z-aur1-2026-10-14",
+        "https://gamma-api.polymarket.com/markets?slug=cs2-ast10-sashi-2026-10-14",
+        "https://gamma-api.polymarket.com/markets?slug=cs2-keydst-gls1-2026-10-13"
+      ]
+    },
+    {
+      "id": "partial-baseline",
+      "status": "needs-review",
+      "severity": "review",
+      "title": "Repository baseline is not the complete Hotspawn lobby",
+      "details": "Only three manually checked fixtures are included in the seed snapshot. The automated refresh must succeed before the data can be called complete. Any unmatched bookmaker or exchange field remains blank; the site makes no Hotspawn-derived probability estimate.",
+      "sources": [
+        "https://play.hotspawn.com/lobby",
+        "https://thunderpick.io/esports/cs2-betting",
+        "https://docs.polymarket.com/getting-started/api"
+      ]
+    },
+    {
+      "id": "exchange-only-keyd-galorys",
+      "status": "needs-review",
+      "severity": "review",
+      "title": "ex-Keyd Stars vs Galorys has an exchange price but no verified sportsbook quote",
+      "details": "The Polymarket match-winner contract has a direct official price. No two-sided bookmaker quote was confirmed for this row, so the bookmaker fair-probability fields are blank. The exchange price is displayed in a separate column and is not substituted for a sportsbook line.",
+      "sources": [
+        "https://www.hotspawn.com/matches/ex-keyd-stars-vs-galorys-esl-challenger-league-season-52-south-america-cup-3-1081076",
+        "https://polymarket.com/esports/cs2/general/cs2-keydst-gls1-2026-10-13",
+        "https://gamma-api.polymarket.com/markets?slug=cs2-keydst-gls1-2026-10-13"
+      ]
+    }
+  ],
+  "matches": [
+    {
+      "id": "hotspawn-1080176",
+      "game": "CS2",
+      "tournament": "Thunderpick World Championship 2026",
+      "teamA": "9z Team",
+      "teamB": "Aurora Gaming",
+      "hotspawnTimeLabel": "Oct 14, 04:30 (lobby); 08:30 (match detail; timezone not shown)",
+      "startAtUtc": "2026-10-14T08:30:00Z",
+      "lineStatus": "bookmaker-and-exchange-verified",
+      "bookmaker": {
+        "name": "Thunderpick",
+        "market": "Match Winner",
+        "oddsFormat": "American",
+        "oddsA": "+280",
+        "oddsB": "-455",
+        "rawProbabilityA": 26.31578947368421,
+        "rawProbabilityB": 81.98198198198198,
+        "overroundPct": 8.297771455666193,
+        "noVigProbabilityA": 24.29947460595447,
+        "noVigProbabilityB": 75.70052539404553,
+        "verifiedOn": "2026-10-13",
+        "sourceTimestamp": null,
+        "sourceUrl": "https://thunderpick.io/esports/cs2-betting/thunderpick-world-championship-2026/11024/9z-team-vs-aurora/2796376",
+        "contextUrl": "https://thunderpick.io/esports/cs2-betting/thunderpick-world-championship-2026/11024"
+      },
+      "exchange": {
+        "name": "Polymarket",
+        "marketType": "prediction-market match winner; not a sportsbook",
+        "priceA": 25.5,
+        "priceB": 74.5,
+        "priceUnit": "cents per outcome share",
+        "sourceUpdatedAt": "2026-10-13T17:55:29.60801Z",
+        "volumeUsd": 26101.100469,
+        "sourceUrl": "https://polymarket.com/esports/cs2/general/cs2-9z-aur1-2026-10-14",
+        "apiUrl": "https://gamma-api.polymarket.com/markets?slug=cs2-9z-aur1-2026-10-14"
+      },
+      "sources": {
+        "fixtureUrl": "https://www.hotspawn.com/matches/9z-vs-aurora-thunderpick-world-championship-2026-1080176",
+        "fixtureLabel": "Hotspawn match detail (fixture only)",
+        "scheduleUrl": "https://gamma-api.polymarket.com/markets?slug=cs2-9z-aur1-2026-10-14"
+      },
+      "flags": [
+        "The source pages show a four-hour clock difference. The market metadata labels 04:30 as ET and gives 08:30 UTC; only the explicit UTC field is used for the displayed normalized start."
+      ]
+    },
+    {
+      "id": "hotspawn-1079438",
+      "game": "CS2",
+      "tournament": "Stake Pulse Beat III",
+      "teamA": "Astralis",
+      "teamB": "Sashi Esport",
+      "hotspawnTimeLabel": "Oct 14, 06:00 (lobby); 10:00 (match detail; timezone not shown)",
+      "startAtUtc": "2026-10-14T10:00:00Z",
+      "lineStatus": "bookmaker-and-exchange-verified",
+      "bookmaker": {
+        "name": "Thunderpick",
+        "market": "Match Winner",
+        "oddsFormat": "American",
+        "oddsA": "-1250",
+        "oddsB": "+530",
+        "rawProbabilityA": 92.5925925925926,
+        "rawProbabilityB": 15.873015873015873,
+        "overroundPct": 8.465608465608466,
+        "noVigProbabilityA": 85.36585365853658,
+        "noVigProbabilityB": 14.634146341463415,
+        "verifiedOn": "2026-10-13",
+        "sourceTimestamp": null,
+        "sourceUrl": "https://thunderpick.io/esports/cs2-betting/pulse-beat-iii/11173/astralis-vs-sashi/2767822",
+        "contextUrl": "https://thunderpick.io/esports/cs2-betting/pulse-beat-iii/11173"
+      },
+      "exchange": {
+        "name": "Polymarket",
+        "marketType": "prediction-market match winner; not a sportsbook",
+        "priceA": 85.5,
+        "priceB": 14.5,
+        "priceUnit": "cents per outcome share",
+        "sourceUpdatedAt": "2026-10-13T17:57:28.939774Z",
+        "volumeUsd": 8141.017384,
+        "sourceUrl": "https://polymarket.com/esports/cs2/general/cs2-ast10-sashi-2026-10-14",
+        "apiUrl": "https://gamma-api.polymarket.com/markets?slug=cs2-ast10-sashi-2026-10-14"
+      },
+      "sources": {
+        "fixtureUrl": "https://www.hotspawn.com/matches/astralis-vs-sashi-stake-pulse-beat-iii-1079438",
+        "fixtureLabel": "Hotspawn match detail (fixture only)",
+        "scheduleUrl": "https://gamma-api.polymarket.com/markets?slug=cs2-ast10-sashi-2026-10-14"
+      },
+      "flags": [
+        "The source pages show a four-hour clock difference. The market metadata labels 06:00 as ET and gives 10:00 UTC; only the explicit UTC field is used for the displayed normalized start."
+      ]
+    },
+    {
+      "id": "hotspawn-1081076",
+      "game": "CS2",
+      "tournament": "ESL Challenger League Season 52: South America - Cup #3",
+      "teamA": "ex-Keyd Stars",
+      "teamB": "Galorys",
+      "hotspawnTimeLabel": "Oct 13, 17:00 (lobby); 21:00 (match detail; timezone not shown)",
+      "startAtUtc": "2026-10-13T21:00:00Z",
+      "lineStatus": "exchange-only",
+      "bookmaker": null,
+      "exchange": {
+        "name": "Polymarket",
+        "marketType": "prediction-market match winner; not a sportsbook",
+        "priceA": 32.5,
+        "priceB": 67.5,
+        "priceUnit": "cents per outcome share",
+        "sourceUpdatedAt": "2026-10-13T17:53:29.599538Z",
+        "volumeUsd": 1771.808183,
+        "sourceUrl": "https://polymarket.com/esports/cs2/general/cs2-keydst-gls1-2026-10-13",
+        "apiUrl": "https://gamma-api.polymarket.com/markets?slug=cs2-keydst-gls1-2026-10-13"
+      },
+      "sources": {
+        "fixtureUrl": "https://www.hotspawn.com/matches/ex-keyd-stars-vs-galorys-esl-challenger-league-season-52-south-america-cup-3-1081076",
+        "fixtureLabel": "Hotspawn match detail (fixture only)",
+        "scheduleUrl": "https://gamma-api.polymarket.com/markets?slug=cs2-keydst-gls1-2026-10-13"
+      },
+      "flags": [
+        "No sportsbook match-winner price was confirmed. Bookmaker probability cells stay blank; Polymarket's official exchange prices are shown separately."
+      ]
+    }
+  ]
+}

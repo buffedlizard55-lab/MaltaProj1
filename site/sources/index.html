@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Source policy, probability calculation, data coverage, and verification notes for the Independent Odds Board.">
+  <title>Sources &amp; Audit · Independent Odds Board</title>
+  <link rel="stylesheet" href="../assets/style.css">
+  <script src="../assets/app.js" defer></script>
+</head>
+<body data-view="sources" data-snapshot="../data/snapshot.json">
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="../" aria-label="Independent Odds Board home"><span class="brand-mark" aria-hidden="true">IO</span><span>Independent Odds Board</span></a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="../">Overview</a><a href="../cs2/">CS2</a><a href="../lol/">League of Legends</a><a class="active" href="./">Sources &amp; audit</a>
+      </nav>
+    </div>
+  </header>
+  <main class="page-shell">
+    <div class="breadcrumb"><a href="../">Overview</a><span aria-hidden="true">/</span><span>Sources &amp; audit</span></div>
+    <section class="category-hero source-hero">
+      <div>
+        <div class="eyebrow eyebrow-dark">Methodology &amp; verification</div>
+        <h1>Show the work.</h1>
+        <p>Every probability is traceable to an independent market source. Unknowns stay unknown; a blank is preferable to a guess.</p>
+      </div>
+      <div class="source-hero-mark" aria-hidden="true"><span>↗</span></div>
+    </section>
+    <div id="sources-notice" class="notice notice-neutral" role="status">Loading source and audit data…</div>
+
+    <section class="policy-grid" aria-label="Data policies">
+      <article class="policy-card policy-primary">
+        <div class="policy-number">01</div><h2>Hotspawn is fixture scope only</h2>
+        <p>Hotspawn’s public Pick’ems pages identify which matches to list and link to the match details. Pick selections, crowd shares, displayed percentages, tiers, streaks, and any Hotspawn-derived probability signal are excluded from all probability calculations.</p>
+      </article>
+      <article class="policy-card">
+        <div class="policy-number">02</div><h2>Sportsbook no-vig</h2>
+        <p>For an independently verified two-way Match Winner market, American odds are converted to raw implied probabilities. Each raw value is divided by the sum of both outcomes; the overround is reported as a separate diagnostic. This is an odds-derived market price, not a statistical prediction model.</p>
+      </article>
+      <article class="policy-card">
+        <div class="policy-number">03</div><h2>Exchange is separate</h2>
+        <p>Polymarket prices are quoted in cents per outcome share and explicitly labeled as prediction-market references. Only an active, exact-pair, exact-date series Match Winner contract is eligible. Map Winner contracts are excluded, and exchange prices are never blended into sportsbook no-vig values.</p>
+      </article>
+      <article class="policy-card">
+        <div class="policy-number">04</div><h2>Unverified means blank</h2>
+        <p>We do not infer team mappings, bookmaker lines, exchange prices, dates, or time zones. If a source is missing, ambiguous, closed, or fails exact-match checks, its numeric cell remains empty and the row is flagged with a review note.</p>
+      </article>
+    </section>
+
+    <section class="section-block source-coverage-section">
+      <div class="section-heading section-heading-wrap">
+        <div><div class="eyebrow eyebrow-dark">Collection status</div><h2>Coverage &amp; freshness</h2></div>
+      </div>
+      <div id="source-coverage" class="coverage-grid"></div>
+    </section>
+
+    <section class="section-block">
+      <div class="section-heading"><div><div class="eyebrow eyebrow-dark">Primary sources</div><h2>Source register</h2></div></div>
+      <div id="source-list" class="source-list"></div>
+    </section>
+
+    <section class="section-block">
+      <div class="section-heading section-heading-wrap">
+        <div><div class="eyebrow eyebrow-dark">Line-by-line notes</div><h2>Audit &amp; irregularities</h2></div>
+        <span class="small-label" id="audit-count">—</span>
+      </div>
+      <div id="audit-list" class="audit-list"></div>
+      <div id="audit-empty" class="empty-state" hidden>No audit items are recorded in this snapshot.</div>
+    </section>
+
+    <section class="lower-note method-note">
+      <h2>Calculation details</h2>
+      <div class="formula-block"><code>Raw implied probability (American odds):</code><br><code>+X → 100 / (X + 100) · −X → X / (X + 100)</code><br><code>No-vig p(A) = raw p(A) / [raw p(A) + raw p(B)]</code></div>
+      <p>Markets with three or more outcomes, non-Match-Winner markets, suspended or closed markets, unmatched dates, or ambiguous team mappings are not normalized as two-way sportsbook markets. The data timestamp indicates when the refresh retrieved the source page; it does not imply the bookmaker published an exchange-style tick timestamp.</p>
+    </section>
+  </main>
+  <footer class="site-footer"><div class="footer-inner"><span>Independent Odds Board</span><span>Source-first information, not betting advice.</span><a href="../">Back to overview</a></div></footer>
+</body>
+</html>
