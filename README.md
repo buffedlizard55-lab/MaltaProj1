@@ -73,7 +73,7 @@ Independent win probabilities are originated using a multi-factor logistic Bradl
 MaltaProj1/
 ├── COORDINATION.md         # Shared task board and multi-session coordination log
 ├── README.md               # Repository documentation and verification audit
-├── index.html              # Main dashboard: Master match table, KPI cards, filters
+├── index.html              # Root redirect to docs/ for GitHub Pages
 ├── thunderpick.html        # Tier S Malta LAN flagship deep-dive
 ├── stake-pulse.html        # Stake Pulse Beat III analysis
 ├── cct-europe.html         # CCT Europe Series 11 analysis
@@ -91,7 +91,16 @@ MaltaProj1/
 │   ├── lines.csv           # Bookmaker lines inventory
 │   ├── ratings.csv         # HLTV and VRS rating inputs
 │   └── tournaments_inventory.csv # CS2 tournaments inventory
-├── docs/                   # Full mirror of site for Pages compatibility
+├── docs/                   # Live GitHub Pages site directory
+│   ├── index.html          # Main interactive dashboard
+│   ├── matches.html        # Complete match lines table
+│   ├── s-tier.html         # S-Tier Thunderpick Malta analysis
+│   ├── stake.html          # Stake Pulse Beat III analysis
+│   ├── lower-tiers.html    # B/C-Tier tournaments
+│   ├── analysis.html       # Tournament deep-dives and market edge analysis
+│   ├── methodology.html    # Mathematical formulation
+│   ├── flagged.html        # Flagged for Review page
+│   └── sources.html        # Source directory
 ├── src/
 │   ├── originate_lines.py  # Statistical modeling and de-vigging algorithms
 │   └── build_site.py       # Static site generation pipeline
@@ -110,3 +119,4 @@ All data entries are cross-verified against official portals:
 - [EGamersWorld Esports Odds Database](https://egamersworld.com)
 - [Bwin International Sportsbook](https://www.bwin.com/en/sports/cs2-105)
 - [Polymarket Esports Prediction Markets](https://polymarket.com/esports/cs2)
+- [Stake.com CS2 Sportsbook](https://stake.com)

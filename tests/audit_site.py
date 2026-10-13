@@ -2,7 +2,7 @@
 """
 audit_site.py
 Automated QA suite for MaltaProj1:
-- Validates internal hyperlinks to ensure 0 broken links.
+- Validates internal hyperlinks across root and docs/ to ensure 0 broken links.
 - Confirms all 26 matches are present and line-by-line verified.
 - Confirms that unverified bookmaker lines are strictly blank / labeled.
 - Checks HTML validity and asset references.
@@ -13,9 +13,9 @@ import re
 import os
 import json
 
-def test_links():
-    html_files = glob.glob("*.html")
-    print(f"Auditing {len(html_files)} HTML files for broken links...")
+def test_links(directory="."):
+    html_files = glob.glob(os.path.join(directory, "*.html"))
+    print(f"Auditing {len(html_files)} HTML files in '{directory}' for broken links...")
     
     broken_links = []
     
@@ -32,8 +32,10 @@ def test_links():
             target = link.split("#")[0].split("?")[0]
             if not target:
                 continue
-            if not os.path.exists(target):
-                broken_links.append((hf, link, target))
+            
+            resolved_target = os.path.join(os.path.dirname(hf), target)
+            if not os.path.exists(resolved_target) and not os.path.exists(target):
+                broken_links.append((hf, link, resolved_target))
                 
         # Match src
         srcs = re.findall(r'src=["\'](.*?)["\']', content)
@@ -41,8 +43,9 @@ def test_links():
             if s.startswith("http://") or s.startswith("https://"):
                 continue
             target = s.split("?")[0]
-            if not os.path.exists(target):
-                broken_links.append((hf, s, target))
+            resolved_target = os.path.join(os.path.dirname(hf), target)
+            if not os.path.exists(resolved_target) and not os.path.exists(target):
+                broken_links.append((hf, s, resolved_target))
                 
     if broken_links:
         print(f"FAILED: Found {len(broken_links)} broken links:")
@@ -50,7 +53,7 @@ def test_links():
             print(f"  In {hf}: '{link}' -> target '{target}' does not exist")
         return False
     else:
-        print("PASSED: Zero broken internal links found!")
+        print(f"PASSED: Zero broken internal links found in '{directory}'!")
         return True
 
 def test_data_integrity():
@@ -83,10 +86,11 @@ def test_data_integrity():
     return True
 
 if __name__ == "__main__":
-    links_ok = test_links()
+    r_ok = test_links(".")
+    d_ok = test_links("docs")
     data_ok = test_data_integrity()
-    if links_ok and data_ok:
-        print("\nALL QA CHECKS PASSED SUCCESSFULLY!")
+    if r_ok and d_ok and data_ok:
+        print("\nALL QA CHECKS PASSED SUCCESSFULLY ACROSS ROOT AND DOCS/!")
         exit(0)
     else:
         exit(1)
