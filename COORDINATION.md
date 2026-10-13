@@ -52,3 +52,17 @@ Snapshot (UTC): 2026-10-13
 - F-DISPUTE (H-15 Heroic/Envy): Polymarket Heroic favorite; HLTV widget Envy favorite.
 - F-DISPUTE (H-21 Voca/Phantom): Polymarket Phantom heavy favorite (1.03); HLTV widget 69.2/30.8 Voca.
 - F-LIQUIDITY: Several B/C-tier BO1 markets have low volume and possible stale odds (H-02, H-07, H-18, H-24).
+
+
+## Independent assurance session — arena/5515fcc9 (2026-10-13)
+
+| Task | Status | Owner | Exclusive file scope |
+|---|---|---|---|
+| A5515: independently audit existing published CSV/model/source claims, publish evidence-backed dashboard and flags, automate official-source reachability checks | in progress | arena/5515fcc9 | `assurance/**`, `.github/workflows/assurance-5515.yml` |
+
+- Read the root board and every available remote session board before claiming. Existing root navigation, `docs/**`, CSVs, collector/pipeline/inventory/lines and other sessions' assets remain untouched. This session uses its Arena-fixed branch `arena/5515fcc9-maltaproj1`; it does not switch branches.
+- Coordination discrepancy: session 2cb6bff4's remote log reports PR #5 merged; GitHub currently reports PR #5 OPEN. Do not accept task-board release claims as deployment evidence.
+- Integration request to existing navigation owners: link `assurance/index.html` (Independent verification) after this session's PR is merged. Do not duplicate or overwrite existing navigation scopes.
+- Scope is independent assurance, not a takeover of any active collection/integration task. Sources and results will be recorded below and on `assurance/flagged.html`. No source value is newly marked verified without retained direct evidence.
+
+- Initial claim rebase encountered a concurrent COORDINATION.md update from PR #3. Retained the complete main board and appended this isolated claim; no other work discarded.
