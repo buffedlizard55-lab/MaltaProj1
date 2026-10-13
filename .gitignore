@@ -22,3 +22,6 @@ dist/
 !data/snapshot/evidence/*.json.gz
 !dashboard/data/evidence/
 !dashboard/data/evidence/*.json.gz
+
+# Raw third-party page bodies are CI evidence only, never site content.
+picks/raw/
