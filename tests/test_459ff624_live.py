@@ -239,6 +239,7 @@ class BuildRules(unittest.TestCase):
         snap = snapshot([open_row, stale_row])
         rows = build.build_rows(snap)
         flags = build.collect_flags(rows, snap)
+        flags = {entry["id"]: entry for entry in flags}
         self.assertEqual(sorted(flags["FL-01"]["fixtures"]), ["Alpha vs Bravo"])
         self.assertEqual(len(flags["FL-21"]["fixtures"]), 1)
 
