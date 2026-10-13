@@ -52,3 +52,8 @@ Snapshot (UTC): 2026-10-13
 - F-DISPUTE (H-15 Heroic/Envy): Polymarket Heroic favorite; HLTV widget Envy favorite.
 - F-DISPUTE (H-21 Voca/Phantom): Polymarket Phantom heavy favorite (1.03); HLTV widget 69.2/30.8 Voca.
 - F-LIQUIDITY: Several B/C-tier BO1 markets have low volume and possible stale odds (H-02, H-07, H-18, H-24).
+
+- 2026-10-13 18:13 UTC: Resolved mid-flight merge conflicts from two other parallel sessions that had pushed additional tournament pages (thunderpick/stake-pulse/cct-europe/elisa-breakout/esl-challenger), own-lines page, additional scripts, and data shards. Kept all their additions alongside our integrated dashboard.
+- 2026-10-13 18:13 UTC: PR #9 merged to main. Pages build 1282045331 status "built" (no errors), duration 30.9s, commit 9624f16.
+- Live site: https://buffedlizard55-lab.github.io/MaltaProj1/
+- PR link: https://github.com/buffedlizard55-lab/MaltaProj1/pull/9
