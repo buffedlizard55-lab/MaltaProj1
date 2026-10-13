@@ -963,3 +963,40 @@ Branch: `arena/9569108d-maltaproj1` (fixed by Arena; the brief's `session-<id>/<
 - Fetched `origin/main` and the remote fixed branch, rebased the clean local branch on `d5c476e`, then pushed only `arena/366849f7-maltaproj1` with `--force-with-lease`. New head: `f8809548475d390a80b8944d60b5f8d78733e95c`.
 - PR [#38](https://github.com/buffedlizard55-lab/MaltaProj1/pull/38) remains open against `main`; it contains only `COORDINATION.md` and `reviews/release-smokecheck-366849f7.md`. Its refreshed `verify` run [38471152528](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38471152528) succeeded. GitHub currently reports `MERGEABLE` / `CLEAN`.
 - Updated the PR description with the post-PR #35–#39 findings. No review is being awaited. Merge and the resulting Pages build/route check remain pending.
+
+---
+
+## Session `arena/616c2455` — P-02 refresh: external prices for every open lobby row (2026-10-13 UTC)
+
+- **Fixed branch:** `arena/616c2455-maltaproj1` (Arena session constraint; the `session-<id>/<task>` naming in the brief cannot be used here, and no other branch is created or pushed).
+- **Claim P-02 — in progress → done (this entry):** replace the one-off per-match prices in `picks/` with one dated reading of the EGamersWorld CS2 matches listing, so every open lobby row has an external line or is left blank and flagged.
+- **Exclusive file scope:** `picks/**` (build script, generated pages, `picks/data/egw_listing_2026-10-13.csv`) and this append-only log. No change to root `index.html`, `docs/`, `pickem/`, `data/`, `model/`, workflows, or any other session's files.
+
+### Sources (fetched 2026-10-13 ~21:58–22:05 UTC)
+- Hotspawn lobby, all 3 chunks: https://play.hotspawn.com/lobby (fixture list, times in EDT, Locked/Open state; Hotspawn crowd % not used)
+- EGamersWorld CS2 matches listing, chunks 0–9 read: https://egamersworld.com/counterstrike/matches (headline odds per row; each row's match link is in `picks/data/egw_listing_2026-10-13.csv`)
+- Own line: `model/data/lines.csv` (session 91eff436, Valve Regional Standings model, read-only, not re-run). VRS source: https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md
+
+### Verification performed
+- Pairing check: for each open row the EGW listing's team names were matched to the Hotspawn pair, and EGW kickoff time (UTC+2 on EGW) was converted and matched to the Hotspawn start time (EDT−4 → UTC). Every priced row matches on both.
+- Prices are used only when both sides are shown with distinct odds. 1.80/1.80 pairs and listings with no opponent name are treated as placeholders and left blank (4 rows).
+- De-vig: p_A = (1/o_A)/((1/o_A)+(1/o_B)). Overround is stored per row.
+- Build: `python3 picks/build.py` → 32 rows, 29 open, 25 with an external line, 22 with an own-model line, 25 picks. Local links in `picks/*.html` checked: 0 broken.
+
+### Results
+- 25 of 29 open rows have an external-line pick. 4 open rows are blank (no verified price; placeholders). 1 row (SUKEBAN vs your end) is now Locked and is not pickable.
+- Earlier per-match readings are superseded by the listing reading. Changes are listed in the Flagged page as IR-2210-01.
+
+### Irregularities (published on `picks/flagged.html`, non-blocking)
+- IR-2210-01 superseded prices (drift between readings).
+- IR-2210-02 placeholders 1.80/1.80 on four rows.
+- IR-2210-03 "WBT" = WROTBERRY identity carried from A-07, not re-verified here.
+- IR-2210-04 SUKEBAN row Locked.
+- IR-2210-05 single aggregator for every external price.
+- IR-2210-06 static snapshot; no automated refresh.
+- Carried from earlier: lobby header says 68 matches while the CS2 filter shows 85–90 (not reconciled).
+
+### Limits, stated plainly
+- All external prices come from one aggregator. No second bookmaker was read for any row.
+- The site is a snapshot at 2026-10-13 22:00 UTC; it is not refreshed automatically.
+- The repo-wide line-by-line audit is not repeated here; the earlier audits (docs/audit.html, reviews/, assurance/) remain the reference.

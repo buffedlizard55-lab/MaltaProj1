@@ -19,8 +19,11 @@ import csv, datetime, html, json, os, re
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "picks")
-AS_OF = "2026-10-13 21:30 UTC"
-NOW = datetime.datetime(2026, 10, 13, 21, 30)
+AS_OF = "2026-10-13 22:00 UTC"
+NOW = datetime.datetime(2026, 10, 13, 22, 0)
+EGW_LISTING = "https://egamersworld.com/counterstrike/matches"
+OVERRIDE_CSV = os.path.join(OUT, "data", "egw_listing_2026-10-13.csv")
+EXT_SRC = "EGamersWorld CS2 matches listing (headline odds), read 2026-10-13 ~22:00 UTC"
 
 LOBBY = "https://play.hotspawn.com/lobby"
 EGW_CCT11 = "https://egamersworld.com/counterstrike/event/cct-europe-2026-series-11-_rW8GEyWK"
@@ -111,6 +114,15 @@ FIXTURES = [
 NO_ID_NOTE = "No Hotspawn match ID visible in the lobby capture; the fixture is listed but its ID is not verified."
 
 
+def load_listing():
+    """EGW listing readings (picks/data/egw_listing_2026-10-13.csv), keyed by (start_utc, team_a, team_b)."""
+    out = {}
+    with open(OVERRIDE_CSV, newline="", encoding="utf-8") as f:
+        for r in csv.DictReader(f):
+            out[(r["start_utc"], r["team_a"], r["team_b"])] = r
+    return out
+
+
 def load_own():
     own = {}
     with open(os.path.join(ROOT, "model", "data", "lines.csv"), newline="", encoding="utf-8") as f:
@@ -125,9 +137,18 @@ def pct(x):
 
 def build_rows():
     own_all = load_own()
+    listing = load_listing()
     rows = []
     for i, fx in enumerate(FIXTURES, 1):
         (fid, start, edt, tour, tier, pts, stage, a, b, hs_url, ext, ext_url, ext_src) = fx
+        lst = listing.get((start, a, b))
+        if lst is None:
+            raise SystemExit(f"no EGW listing reading for {start} {a} vs {b}")
+        if lst["status"] == "ok":
+            ext = (float(lst["odds_a"]), float(lst["odds_b"]))
+            ext_url, ext_src = lst["egw_url"], EXT_SRC
+        else:
+            ext, ext_url, ext_src = None, lst["egw_url"], lst["status"]
         start_dt = datetime.datetime.strptime(start, "%Y-%m-%d %H:%M")
         lock_dt = start_dt - datetime.timedelta(minutes=6)
         started = start_dt <= NOW
@@ -148,8 +169,10 @@ def build_rows():
                      ext_p_a=pct(pa), ext_p_b=pct(1 - pa), ext_source=ext_src, ext_url=ext_url)
         else:
             r.update(ext_odds_a=None, ext_odds_b=None, ext_overround_pct=None, ext_p_a=None,
-                     ext_p_b=None, ext_source="", ext_url="")
+                     ext_p_b=None, ext_source=lst["note"] or "No verified price", ext_url=ext_url)
             flags.append("F-NOLINE")
+            if lst["status"] == "placeholder":
+                flags.append("F-PLACEHOLDER")
         # Own line (VRS model, read-only).
         o = own_all.get(fid) if fid else None
         if o and o["own_p_a"]:
@@ -168,8 +191,9 @@ def build_rows():
                 flags.append("F-NOOWN")
         # Pick: external line is primary; own model only when no external line.
         r["own_agrees"] = own_agrees_default
-        if started:
-            r.update(pick="", pick_p=None, basis="Not pickable: start time has passed")
+        if status != "Open":
+            r.update(pick="", pick_p=None, basis=("Not pickable: start time has passed" if started
+                     else "Not pickable: lobby lock time has passed"))
         elif r["ext_p_a"] is not None:
             side = a if r["ext_p_a"] >= r["ext_p_b"] else b
             r.update(pick=side, pick_p=max(r["ext_p_a"], r["ext_p_b"]), basis="External bookmaker line (de-vigged)")
@@ -189,7 +213,9 @@ def build_rows():
             r["own_agrees"] = "n/a"
         if started:
             flags.append("F-STARTED")
-        if r["ext_p_a"] is not None and r["ext_p_a"] and abs(r["ext_p_a"] - 50) < 3 and not started:
+        if status == "Locked":
+            flags.append("F-LOCKED")
+        if r["ext_p_a"] is not None and r["ext_p_a"] and abs(r["ext_p_a"] - 50) < 3 and status == "Open":
             flags.append("F-NEAR50")
         r["flags"] = flags
         rows.append(r)
@@ -202,6 +228,8 @@ FLAG_TEXT = {
  "F-NOOWN": ("No own line", "Our VRS model has no line for this fixture (team not resolvable to one official row, or not in the model). Left blank."),
  "F-DISAGREE": ("Model vs market disagree", "Our VRS model favours the other side from the external line. Shown as found; review."),
  "F-STARTED": ("Started", "Start time has passed at the as-of time. Shown for transparency; not pickable."),
+ "F-LOCKED": ("Locked", "Lobby lock time has passed at the as-of time (Hotspawn shows 'Locked'). Shown for transparency; not pickable."),
+ "F-PLACEHOLDER": ("EGW placeholder", "EGamersWorld lists 1.80/1.80 (or no opponent) for this fixture. Treated as a placeholder, not odds. Left blank; no value inferred."),
  "F-NEAR50": ("Near coin-flip", "External probability within 3 points of 50/50. Low-confidence pick."),
 }
 
@@ -278,7 +306,7 @@ def pick_cell(r):
 def flag_badges(r):
     out = []
     for f in r["flags"]:
-        cls = "bad" if f in ("F-NOID", "F-NOLINE") else ("warn" if f not in ("F-STARTED",) else "")
+        cls = "bad" if f in ("F-NOID", "F-NOLINE", "F-PLACEHOLDER") else ("warn" if f not in ("F-STARTED",) else "")
         out.append(f'<span class="badge {cls}">{esc(FLAG_TEXT[f][0])}</span>')
     return "".join(out)
 
@@ -413,6 +441,12 @@ def main():
      ("IR-9569-08", "Five lobby rows have no visible Hotspawn match ID: SUKEBAN vs your end, Enjoy vs B8 Academy, Banda chuya vs 6666, Ryvex vs PCIFIC, mellren vs Privateer. They are shown as unverified and have no pick.", LOBBY),
      ("IR-9569-09", "Lock time is taken as start minus 6 minutes, which matches the Hotspawn payload value of lock_offset_sec = 360 recorded for other fixtures. It is not confirmed per fixture.", "https://play.hotspawn.com/lobby"),
      ("IR-9569-10", "The EGW headline price is an aggregator figure, and its bookmaker source is not shown on the headline. Only one price pair per match is used, so the sample is thin and there is single-source concentration risk.", "https://egamersworld.com/counterstrike/events"),
+     ("IR-2210-01", "Prices were re-read from the EGamersWorld CS2 listing on 2026-10-13 ~22:00 UTC. They differ from the earlier per-match readings kept in this repo (for example Gothic vs Lavked 2.05/1.64 then, 1.881/1.782 now; Falcons vs NiP 1.2/4.0 then, 1.23/3.81 now). The current listing values are used; the earlier values are superseded.", EGW_LISTING),
+     ("IR-2210-02", "Four fixtures show 1.80/1.80 (or no opponent name) on the EGamersWorld listing: Banda chuya vs 6666, Ryvex vs PCIFIC, FORZE Reload vs LFO 10, mellren vs Privateer. They are treated as placeholders, left blank and have no pick unless the own model covers them.", EGW_LISTING),
+     ("IR-2210-03", "EGamersWorld shows 'WBT' for the team Hotspawn lists as WROTBERRY. The identity was carried over from the prior session (A-07). It was not re-verified in this session. Please check it against HLTV or Liquipedia.", EGW_LISTING),
+     ("IR-2210-04", "Hotspawn lists SUKEBAN vs your end (CCT South America Series #7) as Locked at the as-of time. It is shown but not picked.", LOBBY),
+     ("IR-2210-05", "All external prices come from one aggregator (EGamersWorld headline odds). No second bookmaker or independent line was read for any row in this session. Single-source concentration risk applies to every priced row.", EGW_LISTING),
+     ("IR-2210-06", "The site is a static snapshot. It was built at 2026-10-13 ~22:00 UTC and is not refreshed automatically. Prices and lock state will be stale after a short time.", LOBBY),
      ("IR-9569-11", "The ng-state capture in data/6d9c321d lists 59 stale fixtures from June–July 2026 still marked 'scheduled'. They are excluded here because the live lobby no longer lists them.", "https://play.hotspawn.com/lobby"),
     ]
     irr_html = ("<h2>Review items (published, non-blocking)</h2><table class=\"responsive\"><thead><tr><th>ID</th><th>Item</th><th>Source</th></tr></thead><tbody>"
@@ -423,31 +457,27 @@ def main():
           + gen + irr_html))
 
     srcs = [
-     ("Hotspawn live lobby (fixture list, times, pick % not used)", LOBBY, "Fixture list (30 CS2 rows), tiers, points, times in EDT"),
+     ("Hotspawn live lobby (fixture list, times, lock state; Hotspawn crowd % not used)", LOBBY, "Fixture list (CS2 rows), tiers, points, times in EDT, Locked/Open state, 2026-10-13 ~21:58-22:02 UTC"),
      ("Hotspawn fixture pages (per fixture)", HS, "Fixture links; exact per-row URL in the table"),
-     ("Hotspawn TransferState capture (repo evidence)", "https://play.hotspawn.com/cs2-pickems", "Match IDs and lock times for IDs in data/6d9c321d/ng_state_86_fixtures.csv"),
-     ("EGamersWorld match page: Zomblers vs Overtake Sector", "https://egamersworld.com/counterstrike/match/41yion_ONx/zomblers-vs-overtake-sector-3aN5jQsN_", "Headline odds 2.52/1.48"),
-     ("EGamersWorld match page: Gothic vs Lavked", "https://egamersworld.com/counterstrike/match/_rW8GEyWK/gothic-vs-lavked-GGmfuJ1n4B", "Headline odds 2.05/1.64"),
-     ("EGamersWorld match page: Astralis vs Sashi", "https://egamersworld.com/counterstrike/match/EJZmJpBjeNx/astralis-vs-sashi-esport-aGet1AP-0Z", "Headline odds 1.09/6.27"),
-     ("EGamersWorld match page: ex-Keyd Stars vs Galorys (started)", "https://egamersworld.com/counterstrike/match/Nylyio3_OEx/ex-keyd-stars-vs-galorys-0LRbemybp", "Headline odds 2.62/1.40; not pickable"),
-     ("EGamersWorld Thunderpick event page", EGW_TP, "9z vs Aurora 3.8/1.22; Falcons vs NiP 1.2/4.0 (listing)"),
-     ("EGamersWorld CCT Europe Series #11 event page", EGW_CCT11, "G2 Ares vs The Last Resort 1.465/2.436 (bc.game bets block)"),
-     ("EGamersWorld Stake Pulse Beat III event page", EGW_STAKE, "Schedule only; no price captured for the rows listed"),
-     ("EGamersWorld CCT South America Series #7 event page", EGW_SA7, "your end 1.33 / SUKEBAN 2.96 (listing)"),
-     ("Valve Regional Standings (official GitHub), used by our model", "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md", "Own VRS-model inputs (read via model/)"),
+     ("EGamersWorld CS2 matches listing (headline odds for every open row)", EGW_LISTING, "External bookmaker-odds source for every priced row. Read 2026-10-13 ~22:00 UTC. Per-row match link in the table and in data/egw_listing_2026-10-13.csv"),
+     ("EGamersWorld CCT Europe Series #11 event page", EGW_CCT11, "Event context only (team list); prices come from the listing"),
+     ("EGamersWorld Stake Pulse Beat III event page", EGW_STAKE, "Event context only"),
+     ("EGamersWorld Thunderpick event page", EGW_TP, "Event context only"),
+     ("EGamersWorld CCT South America Series #7 event page", EGW_SA7, "Event context only"),
+     ("Valve Regional Standings (official GitHub), used by our model", "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md", "Own VRS-model inputs (read via model/, not re-run)"),
      ("HLTV World Ranking, used by our model", "https://www.hltv.org/ranking/teams/2026/october/12", "Cross-check ranks (model/)"),
     ]
     srows = "".join(f"<tr><td data-label=\"Source\">{esc(a)}</td><td data-label=\"Link\"><a href=\"{esc(u)}\">{esc(u)}</a></td><td data-label=\"Used for\">{esc(b)}</td></tr>" for a, u, b in srcs)
     write("sources.html", page("Sources", "sources.html",
-          "<h1>Sources</h1><div class=\"sub\">Every external URL used on this site. Fetched in session on 2026-10-13 (~21:15–21:30 UTC) unless stated.</div>"
+          "<h1>Sources</h1><div class=\"sub\">Every external URL used on this site. Fetched in session on 2026-10-13 (~21:58–22:05 UTC) unless stated.</div>"
           f"<table class=\"responsive\"><thead><tr><th>Source</th><th>Link</th><th>Used for</th></tr></thead><tbody>{srows}</tbody></table>"))
 
     method = """
 <h1>Method</h1>
-<div class="note"><b>External line.</b> EGamersWorld headline odds for both sides are read from the match page (or the event page where it lists the match). Implied probability = 1/odds. The two-way pair is normalised: p_A = (1/o_A)/((1/o_A)+(1/o_B)). Overround is shown per row.</div>
+<div class="note"><b>External line.</b> EGamersWorld CS2 matches listing headline odds for both sides (one reading per row, 2026-10-13 ~22:00 UTC; the reading and link for each row are in <code>picks/data/egw_listing_2026-10-13.csv</code>). Implied probability = 1/odds. The two-way pair is normalised: p_A = (1/o_A)/((1/o_A)+(1/o_B)). Overround is shown per row. Prices of 1.80/1.80 or with no opponent name are treated as placeholders and left blank.</div>
 <div class="note"><b>Own line.</b> The Valve Regional Standings points of each roster, through the calibrated model in <code>model/</code> (session 91eff436). Values are read from <code>model/data/lines.csv</code> as published. They are not re-run here. Blank where the team cannot be resolved to one official row.</div>
 <div class="note"><b>Pick.</b> Pick = side with higher external probability. If no external line exists, the own-model side is shown and labelled "own model only". If neither exists, no pick.</div>
-<div class="note"><b>Times.</b> Lobby display is EDT. Converted to UTC. Lock = start − 6 min (see Flagged IR-9569-09).</div>
+<div class="note"><b>Times.</b> Lobby display is EDT. Converted to UTC. Lock = start − 6 min (see Flagged IR-9569-09). A row whose lock time has passed at the as-of time is shown as Locked and is not pickable.</div>
 <div class="note"><b>Not used.</b> Hotspawn crowd percentages are never an input or displayed. HLTV community %, Polymarket, and any other prediction source are not used.</div>
 <div class="note"><b>Build.</b> <code>python3 picks/build.py</code> regenerates every page and <code>data/fixtures.csv</code> from the inputs above.</div>
 """
