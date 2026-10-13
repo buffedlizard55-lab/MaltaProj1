@@ -297,13 +297,26 @@ bookmaker line collection, so this session claims only the origination and offic
 
 ---
 
-## Session `arena/3d05c62d` — automatic-refresh cadence follow-up (2026-10-13 UTC)
+## Session `arena/3d05c62d` — refresh-cadence and cross-page audit (2026-10-13 UTC)
 
 Arena-fixed branch: `arena/3d05c62d-maltaproj1` (the generic `session-&lt;id&gt;/&lt;task&gt;` name in the brief is overridden by the repository session constraint).
 
 | Task | Status | Owner | Exclusive file scope | Notes |
 |---|---|---|---|---|
-| SCHED-01 | in progress | `arena/3d05c62d` | `COORDINATION.md` only; read-only checks of `.github/workflows/update.yml`, GitHub Actions metadata, and the existing snapshot | Verify that the published 30-minute refresh is actually producing fresh data; do not edit the completed `4f599d7c` collector/dashboard scope. |
+| SCHED-01 | done — findings and scoped owner requests recorded | `arena/3d05c62d` | `COORDINATION.md` only; read-only checks of `.github/workflows/update.yml`, GitHub Actions metadata, the published snapshot, and repository HTML anchors | No collector, dashboard, data, generator, or navigation files edited; see verification and requests below. |
+
+### Verification result — 2026-10-13 21:15 UTC
+
+- The [refresh workflow](https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/.github/workflows/update.yml#L1-L8) is configured active with cron `17,47 * * * *`. At 21:15:41Z the official [workflow-runs API](https://api.github.com/repos/buffedlizard55-lab/MaltaProj1/actions/workflows/383534652/runs?per_page=100) listed no `schedule` events; the eligible 19:47, 20:17, and 20:47Z ticks after publication were absent. The last successful collector run was the push-triggered [run 38456771049](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38456771049), which produced the branch snapshot at 19:42:13.725774Z. At audit time that snapshot was about 1h33m old. The main Pages build [run 38459246083](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38459246083) succeeded and the Pages API reported `built`; that confirms static deployment, not a fresh data collection.
+- The dashboard defaults to a 1-hour freshness limit and blanks/hides expired market values; therefore stale prices are not certified as current. The branch snapshot locally validates as 258 rendered matches, 14 source quote records, 8 calculated and 250 unverified/blank fixture lines, 380 inventory rows, 34 retained evidence items, and 22 findings. `python scripts/validate.py` passed: 11 dashboard pages, 743 internal links, and zero table rows without an official source link.
+- A repository-wide read-only HTML crawl found 61 HTML pages / 1,568 internal links and **4 missing fragment targets**, all in `docs/verified-lines.html` and its links from `docs/flagged.html`: `#F-28`, `#F-29`, `#flagged-audit` (plus a same-page `#F-28`). The generated `docs/verified-lines.html` contains an unescaped literal `<script id='ng-state'>` in visible copy at line 112 and further instances in the F-29 text. The corresponding strings in [`scripts/6d9c321d_build.py`](https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/scripts/6d9c321d_build.py#L176-L181) and its F-29 summary are interpolated as markup: the first script opener causes subsequent content to be parsed as script text, so the audit anchors are not present in the parsed page. This conflicts with the earlier PR #33 note that those anchors were present. No source files were edited.
+- Offline verification passed: 37 collector/site/source tests; 22 assurance tests; 13 model tests passed with 1 Valve-JavaScript comparison skipped because `VRS_REPO_DIR` was not supplied; `node --check webui/dashboard.js`; and `git diff --check`. The model test emitted two existing unclosed-file `ResourceWarning`s.
+- An attempted `gh workflow run update.yml --ref main` was denied with HTTP 403 (`Resource not accessible by integration`); this session cannot manually dispatch Actions with its current GitHub integration permissions. The finding is about missing scheduled executions, not proof of why GitHub did not enqueue them.
+
+### Scoped requests — no cross-owner edits
+
+- **Request to the `4f599d7c` collector/dashboard owner:** investigate why the active main-branch cron has no scheduled runs, restore/confirm automated collection, and add the stale-cadence finding to the dashboard's Flagged for Review page. Keep old odds visibly stale/blank until a fresh verified snapshot is delivered. Evidence: workflow file and official run-list API links above; latest collector snapshot is [on the collection branch](https://github.com/buffedlizard55-lab/MaltaProj1/blob/arena/4f599d7c-maltaproj1/data/snapshot/latest.json).
+- **Request to `6d9c321d` owner of `scripts/6d9c321d_build.py` / `docs/verified-lines.html`:** HTML-escape all literal `<script>` examples when generating visible descriptions (including F-28 notes and F-29 title/summary), rebuild the page, then rerun the root/docs anchor crawl. Do not treat the source-text presence of an `id` as proof of a rendered anchor. Relevant published files: [generator](https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/scripts/6d9c321d_build.py) and [generated page](https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/docs/verified-lines.html#L112).
 
 ---
 
