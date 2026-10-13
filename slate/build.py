@@ -335,9 +335,12 @@ def board_table(rows: list[dict], *, show_status=False, caption="") -> str:
         pick = row.get("pick") or ""
         pick_html = (f'<span class="pick">{esc(pick)} {num(row.get("pick_pct"))}</span>' if pick
                      else '<span class="pick none">no pick — see flag</span>')
-        market_html = (f'<span class="pct">{esc(row.get("team_a"))} {num(market_a)}</span>'
-                       + bar(market_a) +
-                       f'<span class="pct mut">{esc(row.get("team_b"))} {num(market_b)}</span>'
+        read_by = row.get("market_read_by") or ""
+        market_html = ((f'<span class="pct">{esc(row.get("team_a"))} {num(market_a)}</span>'
+                        + bar(market_a) +
+                        f'<span class="pct mut">{esc(row.get("team_b"))} {num(market_b)}</span>'
+                        + (f'<div class="mut" style="font-size:11.5px">{esc(read_by)} · '
+                           f'{esc(row.get("market_captured_utc"))}</div>' if read_by else ""))
                        if market_a else '<span class="mut">— no readable price</span>')
         own_html = (f'<span class="pct">{esc(row.get("team_a"))} {num(own_a)}</span>' + bar(own_a) +
                     f'<span class="pct mut">{esc(row.get("team_b"))} {num(own_b)}</span>'
@@ -528,6 +531,8 @@ def page_lines(data: dict) -> str:
     coverage = data["coverage"] or {}
     pin = (coverage.get("pinnacle") or {})
     egw = (coverage.get("egw") or {})
+    sess = (coverage.get("session_readings") or {})
+    carried = (coverage.get("carried_readings") or {})
     body = ["<h1>External market lines</h1>",
             '<p class="lead">Only external sources are used for market probabilities — a bookmaker price or an '
             'aggregated odds table. Hotspawn publishes no odds and its crowd percentages are never converted into '
@@ -536,12 +541,17 @@ def page_lines(data: dict) -> str:
             f'<div class="note"><b>This run.</b> Pinnacle moneyline quotes matched to fixtures: '
             f'{esc(pin.get("matched", 0))} of {esc(pin.get("quotes", 0))} quotes read. '
             f'EGamersWorld match pages matched: {esc(egw.get("matched", 0))}, refused/without a table: '
-            f'{esc(egw.get("refused", 0))}. A refusal is recorded, never filled in.</div>']
+            f'{esc(egw.get("refused", 0))}. '
+            f'The session read {esc(sess.get("matched", 0))} prices itself through the project\'s fetch '
+            f'service from a capture file with one URL and read time per row, and '
+            f'{esc(carried.get("used_for_headline", 0))} rows fall back to a source-linked reading another '
+            f'session published. A refusal is recorded, never filled in.</div>']
     rows = []
     for row in lines:
         rows.append(f'<tr><td data-label="Fixture">{esc(row.get("fixture_id"))}</td>'
                     f'<td data-label="Book / source">{esc(row.get("book"))}<div class="mut" style="font-size:12px">'
-                    f'{esc(row.get("source"))}</div></td>'
+                    f'{esc(row.get("source"))}</div><div class="mut" style="font-size:11.5px">'
+                    f'{esc(row.get("read_by") or "")}</div></td>'
                     f'<td class="num" data-label="Odds">{esc(row.get("odds_a"))} / {esc(row.get("odds_b"))}</td>'
                     f'<td class="num" data-label="De-vigged">{num(row.get("p_a"))} / {num(row.get("p_b"))}</td>'
                     f'<td class="num" data-label="Margin">{num(row.get("overround_pct"))}</td>'

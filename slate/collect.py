@@ -464,6 +464,151 @@ def egw_readings(candidates: list[dict]) -> tuple[list[dict], dict]:
                   "stopped_at_deadline": egw.get("stopped_at_deadline")}
 
 
+# ------------------------------------------------------------- session & carried market readings
+SESSION_READINGS = DATA / "market_readings_session.csv"
+CARRIED_PICKS = ROOT / "picks" / "data" / "fixtures.csv"
+CARRIED_BOARD = ROOT / "board" / "data" / "analysis.csv"
+
+
+def _egw_local_to_utc(text: str, offset_hours: float) -> str | None:
+    m = re.match(r"(\d{2})\.(\d{2})\.(\d{2})\s+(\d{1,2}):(\d{2})", (text or "").strip())
+    if not m:
+        return None
+    day, month, year, hour, minute = (int(g) for g in m.groups())
+    try:
+        dt = datetime(2000 + year, month, day, hour, minute, tzinfo=timezone.utc)
+    except ValueError:
+        return None
+    return (dt - timedelta(hours=offset_hours)).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+
+def session_readings(candidates: list[dict]) -> tuple[list[dict], dict]:
+    """Prices read by this session through the project's fetch service, from the capture file.
+
+    The CI runner cannot reach these hosts (HTTP 403 is recorded in the provenance log), so the
+    session reads them and writes exactly what it saw, with the page URL and the read time. The
+    file is data, not narrative: it is parsed here like any other source.
+    """
+    rows: list[dict] = []
+    meta = {"file": str(SESSION_READINGS.relative_to(ROOT)), "rows": 0, "matched": 0, "unmatched": []}
+    if not SESSION_READINGS.exists():
+        meta["error"] = "capture file missing"
+        return rows, meta
+    with SESSION_READINGS.open(encoding="utf-8", newline="") as fh:
+        entries = list(csv.DictReader(fh))
+    meta["rows"] = len(entries)
+    for entry in entries:
+        try:
+            odds_a, odds_b = float(entry["odds_a"]), float(entry["odds_b"])
+            offset = float(entry.get("display_utc_offset_hours") or 2)
+        except (KeyError, TypeError, ValueError):
+            meta["unmatched"].append(f"{entry.get('egw_team_a')}: unreadable row")
+            continue
+        kickoff = _egw_local_to_utc(entry.get("egw_display_local") or "", offset)
+        best = None
+        for fx in candidates:
+            score = max(
+                (similarity(fx["team_a"], entry["egw_team_a"])
+                 + similarity(fx["team_b"], entry["egw_team_b"])) / 2,
+                (similarity(fx["team_a"], entry["egw_team_b"])
+                 + similarity(fx["team_b"], entry["egw_team_a"])) / 2)
+            if score < 0.55:
+                continue
+            if kickoff and fx.get("scheduled_start_utc"):
+                delta = abs((parse_iso(kickoff) - parse_iso(fx["scheduled_start_utc"])).total_seconds())
+                if delta > 3 * 3600:
+                    continue
+            elif score < 0.70:
+                continue
+            if best is None or score > best[0]:
+                best = (score, fx)
+        if not best:
+            meta["unmatched"].append(f"{entry.get('egw_team_a')} vs {entry.get('egw_team_b')}")
+            continue
+        score, fx = best
+        flipped = (similarity(fx["team_a"], entry["egw_team_b"])
+                   > similarity(fx["team_a"], entry["egw_team_a"]))
+        if flipped:
+            odds_a, odds_b = odds_b, odds_a
+        pa, pb, margin = devig(odds_a, odds_b)
+        printed = entry.get("egw_display_local") or "not printed"
+        note_text = (f"{entry.get('note')} EGamersWorld spelling {entry['egw_team_a']!r} vs "
+                     f"{entry['egw_team_b']!r}; local kickoff {printed} (UTC+{offset:g}) -> "
+                     f"{kickoff or 'not determinable'}.")
+        rows.append({
+            "fixture_id": fx["match_id"],
+            "source": "EGamersWorld (read by session arena/180a42a0 via the project's fetch service)",
+            "source_url": entry["source_url"], "match_url": entry["source_url"],
+            "book": "bc.game (EGamersWorld headline)", "odds_a": odds_a, "odds_b": odds_b,
+            "overround_pct": round(margin, 3), "p_a": round(pa * 100, 2), "p_b": round(pb * 100, 2),
+            "captured_utc": entry.get("read_utc"), "name_similarity": round(score, 3),
+            "team_order_flipped": flipped, "best_of": None, "read_by": "session arena/180a42a0",
+            "note": note_text,
+        })
+        meta["matched"] += 1
+    return rows, meta
+
+
+def carried_readings() -> tuple[list[dict], dict]:
+    """Older, source-linked readings published by other sessions in this repository.
+
+    Used only for fixtures where neither the CI run nor this session could read a price. Every such
+    row says which session read it and when, and is listed on the Flagged page - it is never
+    presented as a fresh reading."""
+    rows: list[dict] = []
+    meta = {"sources": [], "rows": 0}
+    if CARRIED_PICKS.exists():
+        with CARRIED_PICKS.open(encoding="utf-8", newline="") as fh:
+            for entry in csv.DictReader(fh):
+                try:
+                    odds_a, odds_b = float(entry["ext_odds_a"]), float(entry["ext_odds_b"])
+                except (KeyError, TypeError, ValueError):
+                    continue
+                pa, pb, margin = devig(odds_a, odds_b)
+                rows.append({
+                    "fixture_id": entry.get("hotspawn_id") or "", "team_a": entry.get("team_a"),
+                    "team_b": entry.get("team_b"), "start_utc": entry.get("start_utc"),
+                    "source": ("EGamersWorld CS2 listing (headline odds), carried from session "
+                               "arena/cc8f4dca's picks/ dataset"),
+                    "source_url": entry.get("ext_url") or "",
+                    "match_url": entry.get("ext_url") or "", "book": "bc.game (EGW listing)",
+                    "odds_a": odds_a, "odds_b": odds_b, "overround_pct": round(margin, 3),
+                    "p_a": round(pa * 100, 2), "p_b": round(pb * 100, 2),
+                    "captured_utc": "2026-10-13T22:00:00Z", "name_similarity": None,
+                    "team_order_flipped": False, "best_of": None,
+                    "read_by": "session arena/cc8f4dca (picks/data/fixtures.csv, ext_p_a/ext_odds)",
+                    "note": (entry.get("ext_source") or "")[:200],
+                    "carried_file": "picks/data/fixtures.csv",
+                })
+        meta["sources"].append("picks/data/fixtures.csv")
+    if CARRIED_BOARD.exists():
+        with CARRIED_BOARD.open(encoding="utf-8", newline="") as fh:
+            for entry in csv.DictReader(fh):
+                try:
+                    odds_a, odds_b = float(entry["ext_odds_a"]), float(entry["ext_odds_b"])
+                except (KeyError, TypeError, ValueError):
+                    continue
+                pa, pb, margin = devig(odds_a, odds_b)
+                rows.append({
+                    "fixture_id": entry.get("hotspawn_id") or "", "team_a": entry.get("team_a"),
+                    "team_b": entry.get("team_b"), "start_utc": entry.get("start_utc"),
+                    "source": ("EGamersWorld bc.game block, carried from session arena/8e782f95's "
+                               "board/ dataset"),
+                    "source_url": entry.get("ext_url") or "",
+                    "match_url": entry.get("ext_url") or "", "book": "bc.game (EGW match page)",
+                    "odds_a": odds_a, "odds_b": odds_b, "overround_pct": round(margin, 3),
+                    "p_a": round(pa * 100, 2), "p_b": round(pb * 100, 2),
+                    "captured_utc": entry.get("ext_captured_utc") or "", "name_similarity": None,
+                    "team_order_flipped": False, "best_of": None,
+                    "read_by": "session arena/8e782f95 (board/data/analysis.csv)",
+                    "note": (entry.get("ext_source") or "")[:200],
+                    "carried_file": "board/data/analysis.csv",
+                })
+        meta["sources"].append("board/data/analysis.csv")
+    meta["rows"] = len(rows)
+    return rows, meta
+
+
 # --------------------------------------------------------------------------------------- assemble
 ALIAS_TABLE = HERE / "aliases.json"
 
@@ -564,7 +709,10 @@ def main() -> int:
 
     pin_rows, pin_meta = pinnacle_guest(candidates)
     egw_rows, egw_meta = egw_readings(candidates)
-    print(f"[slate] pinnacle matched={len(pin_rows)} egw matched={len(egw_rows)}", flush=True)
+    sess_rows, sess_meta = session_readings(candidates)
+    carried_rows, carried_meta = carried_readings()
+    print(f"[slate] pinnacle matched={len(pin_rows)} egw(ci) matched={len(egw_rows)} "
+          f"session matched={len(sess_rows)} carried={len(carried_rows)}", flush=True)
 
     # ------------------------------------------------------------------ fixtures table (S-01)
     fixtures = []
@@ -698,24 +846,62 @@ def main() -> int:
     own_by_fixture = {o["fixture_id"]: o for o in own_lines}
 
     # ------------------------------------------------------------------ merged analysis table
+    # Every reading is published in lines.csv; the row's headline number is taken in this order:
+    #   1. Pinnacle at capture time (a bookmaker's own line)
+    #   2. EGamersWorld as read by this CI run
+    #   3. EGamersWorld as read by this session through the project's fetch service
+    #   4. the newest source-linked reading another session published in this repository
+    # A lower-priority reading is only used when the ones above are empty for that fixture, and the
+    # row says which one it came from.
     lines_by_fixture: dict[str, list[dict]] = {}
-    for row in pin_rows + egw_rows:
-        lines_by_fixture.setdefault(row["fixture_id"], []).append(row)
+    for row in pin_rows:
+        row["read_by"] = "this CI run (Pinnacle at capture time)"
+    for row in egw_rows:
+        row["read_by"] = "this CI run (EGamersWorld per-match page)"
+    # Carried rows come from other sessions' files, whose fixture id column is not guaranteed to be
+    # the same field; they are re-matched to this capture by team names and kickoff.
+    for row in carried_rows:
+        best = None
+        for fx in candidates:
+            score = max(
+                (similarity(fx["team_a"], row.get("team_a")) + similarity(fx["team_b"], row.get("team_b"))) / 2,
+                (similarity(fx["team_a"], row.get("team_b")) + similarity(fx["team_b"], row.get("team_a"))) / 2)
+            if score < 0.6:
+                continue
+            if row.get("start_utc") and fx.get("scheduled_start_utc"):
+                try:
+                    delta = abs((parse_iso(row["start_utc"].replace(" ", "T") + "Z")
+                                 - parse_iso(fx["scheduled_start_utc"])).total_seconds())
+                except (TypeError, ValueError):
+                    delta = 0
+                if delta > 6 * 3600:
+                    continue
+            if best is None or score > best[0]:
+                best = (score, fx)
+        row["fixture_id"] = best[1]["match_id"] if best else ""
+        row["name_similarity"] = round(best[0], 3) if best else None
+    carried_rows = [r for r in carried_rows if r["fixture_id"]]
+    for rows in (pin_rows, egw_rows, sess_rows, carried_rows):
+        for row in rows:
+            lines_by_fixture.setdefault(row["fixture_id"], []).append(row)
 
     analysis = []
     for fx in candidates:
         own = own_by_fixture.get(fx["match_id"], {})
         market_rows = lines_by_fixture.get(fx["match_id"], [])
         primary = None
-        for wanted in ("Pinnacle", "EGW book table"):
+        for row in market_rows:
+            if row["source"].startswith("Pinnacle"):
+                primary = row
+                break
+        if primary is None:
             for row in market_rows:
-                if row["source"].startswith(wanted) or row["book"] == wanted:
+                if row.get("read_by", "").startswith("this CI run"):
                     primary = row
                     break
-            if primary:
-                break
         if primary is None and market_rows:
-            primary = market_rows[0]
+            primary = sorted(market_rows, key=lambda r: r.get("captured_utc") or "",
+                             reverse=True)[0]
         market_p_a = primary["p_a"] if primary else None
         own_p_a = own.get("own_series_p_a") if own.get("own_series_p_a") is not None else own.get("own_map_p_a")
         own_kind = "series" if own.get("own_series_p_a") is not None else ("map" if own.get("own_map_p_a") else None)
@@ -761,6 +947,8 @@ def main() -> int:
             "market_p_a_pct": market_p_a, "market_p_b_pct": (round(100 - market_p_a, 2) if market_p_a is not None else None),
             "market_captured_utc": primary["captured_utc"] if primary else "",
             "market_url": primary["source_url"] if primary else "",
+            "market_read_by": primary.get("read_by", "") if primary else "",
+            "market_note": (primary.get("note") or "")[:300] if primary else "",
             "own_p_a_pct": own.get("own_map_p_a"), "own_p_b_pct": own.get("own_map_p_b"),
             "own_series_p_a_pct": own.get("own_series_p_a"), "own_series_p_b_pct": own.get("own_series_p_b"),
             "own_basis": own.get("basis") or "no official rating for both teams",
@@ -832,6 +1020,28 @@ def main() -> int:
                  "Neither a market line nor an official rating pair is available for these rows, so "
                  "they are published blank with this flag rather than filled in.",
                  ["https://play.hotspawn.com/cs2-pickems"])
+    carried_used = [a for a in analysis
+                    if a.get("market_read_by", "").startswith("session arena/")]
+    if carried_used:
+        add_flag("S-F-16", "needs review",
+                 f"{len(carried_used)} fixtures carry a price another session read, not re-read here",
+                 "For these rows the CI run could not reach a bookmaker page (HTTP 403 is recorded in "
+                 "the provenance log) and this session did not read that fixture's own page, so the "
+                 "headline price is the newest source-linked reading already published in this "
+                 "repository, with the reading session, its capture time and its page URL shown on the "
+                 "row. Prices move: treat these as the older reading they are, and check the linked "
+                 "page before relying on them.",
+                 sorted({a["market_url"] for a in carried_used if a.get("market_url")}))
+    session_only = [a for a in analysis
+                    if a.get("market_read_by") == "session arena/180a42a0"]
+    if session_only:
+        add_flag("S-F-18", "info",
+                 f"{len(session_only)} fixtures were priced from this session's own page reading",
+                 "EGamersWorld refuses the CI runner (HTTP 403) but serves the project's fetch service, "
+                 "so these prices were read by the session at the times recorded per row, with the page "
+                 "URL on every row. The scheduled CI job keeps trying the same pages and will replace "
+                 "these rows with its own fresh readings whenever the host serves it again.",
+                 sorted({a["market_url"] for a in session_only if a.get("market_url")}))
     add_flag("S-F-01", "needs review",
              "Hotspawn's printed wall-clock time is not a reliable UTC value",
              "The printed time next to a match is rendered for the viewer, and this project's own "
@@ -866,7 +1076,7 @@ def main() -> int:
 
     write_csv(DATA / "fixtures.csv", fixtures)
     write_csv(DATA / "ratings.csv", ratings)
-    write_csv(DATA / "lines.csv", pin_rows + egw_rows)
+    write_csv(DATA / "lines.csv", pin_rows + egw_rows + sess_rows + carried_rows)
     write_csv(DATA / "own_lines.csv", own_lines)
     write_csv(DATA / "analysis.csv", analysis)
     write_csv(DATA / "flags.csv", flags)
@@ -906,6 +1116,8 @@ def main() -> int:
                   "error": valve.get("error")},
         "pinnacle": pin_meta,
         "egw": egw_meta,
+        "session_readings": sess_meta,
+        "carried_readings": {**carried_meta, "used_for_headline": len(carried_used)},
         "counts": {
             "open_fixtures": len(candidates),
             "with_market_line": sum(1 for a in analysis if a["market_p_a_pct"] is not None),
