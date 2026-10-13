@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Methodology — Hotspawn Pick'em Analytics</title>
+<link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+<header class="topbar">
+  <div class="container nav">
+    <a href="../index.html" class="brand">
+      <span class="brand-mark">HS</span>
+      <span class="brand-text">Hotspawn Pick'em Analytics</span>
+    </a>
+    <nav>
+      <a href="../index.html">Dashboard</a>
+      <a href="s-tier.html">S-Tier</a>
+      <a href="b-tier.html">B-Tier</a>
+      <a href="c-tier.html">C-Tier</a>
+      <a href="flagged.html">Flagged for Review</a>
+      <a href="methodology.html" class="active">Methodology</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container page-content">
+  <h1>Methodology</h1>
+
+  <h2>Data sources — in priority order</h2>
+  <ol>
+    <li><strong>Polymarket CS2 markets</strong> — real-money prediction market. Decentralized and transparent, with the most liquid esports markets. Used as the primary line when available.</li>
+    <li><strong>HLTV.org match pages</strong> — show a "Betting" widget with aggregate odds from multiple bookmakers and HLTV's own VRS (Valve Regional Standings) simulation. Used to cross-check and to confirm match metadata.</li>
+    <li><strong>EGamersWorld (EGW)</strong> — aggregator showing bookmaker odds across multiple CS2 titles, plus map-balance stats.</li>
+    <li><strong>vprognoze.ru / stavka.tv / Marathonbet / Betcity / Melbet lines</strong> — used as secondary cross-checks.</li>
+  </ol>
+  <p>We do <strong>NOT</strong> use Hotspawn's public pick percentages (the "% picked" numbers on play.hotspawn.com) when computing probabilities. Those are crowd picks, not market odds, and we have observed them to be heavily skewed by name recognition (e.g., fnatic at 90% when bookmakers price the match ~50/50). We display them in a separate column only so you can see where the public disagrees with the market — that is often where pick'em value exists.</p>
+
+  <h2>Probability derivation</h2>
+  <p>For each match with posted decimal odds (a, b):</p>
+  <ol>
+    <li>Compute raw implied probabilities: p̂<sub>a</sub> = 1/a, p̂<sub>b</sub> = 1/b.</li>
+    <li>Remove the overround (bookmaker margin): normalize so probabilities sum to 100%:
+      <pre style="background:var(--bg-elev);padding:12px;border-radius:8px;border:1px solid var(--border);color:var(--text);overflow-x:auto">P(a) = (1/a) / (1/a + 1/b)
+P(b) = (1/b) / (1/a + 1/b)</pre>
+    </li>
+    <li>This gives the "fair" (margin-removed) implied probability displayed in the table.</li>
+  </ol>
+  <p>For Polymarket, prices are already near-fair (small overround ~1-3% because it's a binary CDA market), but we still normalize to 100% for consistency.</p>
+
+  <h2>What we do NOT do</h2>
+  <ul>
+    <li>We do <strong>not</strong> invent odds. If a verifiable external line could not be confirmed for a match, the probability cells are left blank and the row is marked <span class="status-pill status-no">Unverified</span> and surfaced on the <a href="flagged.html">Flagged for Review</a> page.</li>
+    <li>We do <strong>not</strong> infer odds from team names, rankings, or past results. Rankings are mentioned in notes for context only.</li>
+    <li>We do <strong>not</strong> average conflicting odds arbitrarily. Where sources disagree materially (≥10 percentage points), we pick the highest-liquidity source (usually Polymarket) and flag the discrepancy on the Flagged page.</li>
+  </ul>
+
+  <h2>Verification process</h2>
+  <ol>
+    <li>Match metadata (date, teams, tournament, tier) verified against Hotspawn lobby page.</li>
+    <li>Each match with odds has a <em>Source</em> link column pointing to the public page the odds were taken from.</li>
+    <li>Cross-checked HLTV event pages exist for S-tier and Stake Pulse Beat III matches.</li>
+    <li>Where HLTV aggregate odds materially differ from Polymarket at capture time, the row is flagged as "partial" verification.</li>
+    <li>Rows marked "Verified" have odds from at least two sources in the same direction within ~5pp.</li>
+  </ol>
+
+  <h2>Tiers (Hotspawn definitions)</h2>
+  <ul>
+    <li><span class="tier-badge tier-S">S</span> — 7 base points, ×3 multiplier. Top-tier LAN events (Thunderpick World Championship 2026).</li>
+    <li><span class="tier-badge tier-B">B</span> — 3 base points, ×1.5 multiplier. Mid-tier events (Stake Pulse Beat III, CCT, ESL Challenger regional cups).</li>
+    <li><span class="tier-badge tier-C">C</span> — 2 base points, no multiplier. Smaller online cups (Elisa BreakOut Series, etc.).</li>
+  </ul>
+  <p>Points multiplier (×1.25) is applied per weekly Hotspawn configuration.</p>
+
+  <h2>Known limitations</h2>
+  <ul>
+    <li>The Hotspawn lobby is a React SPA; the full 86-match list is loaded client-side. Our static scraper sees only the ~26 server-rendered matches in "Closing Soon" / "Upcoming". Rows for the rest are not fabricated; this coverage gap is called out on the Flagged page.</li>
+    <li>LoL tab was not rendered in the static HTML fetch; LoL matches are not yet in the data.</li>
+    <li>Odds move. Probabilities shown are snapshots at the time of page generation; the gen-time timestamp is shown on the dashboard.</li>
+    <li>BO1 matches (Elisa BreakOut groups) are more volatile and have thinner markets than BO3s.</li>
+  </ul>
+
+  <h2>Disclaimer</h2>
+  <p>This dashboard is an informational tool for analyzing pick'em value. Nothing here is financial or betting advice. We are not affiliated with Hotspawn, HLTV, Polymarket, or any bookmaker referenced.</p>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <p class="footer-links"><a href="../index.html">Back to dashboard</a></p>
+  </div>
+</footer>
+</body>
+</html>
