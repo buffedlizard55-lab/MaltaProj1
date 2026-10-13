@@ -1335,6 +1335,34 @@ Highlights (all published on `docs/flagged.html` under "V-03 line-by-line verifi
 - **Merge-conflict log (brief requirement):** `git pull --rebase origin main` hit append-only `COORDINATION.md` conflicts twice (once into `b4ff23b`, once into `842bd6a` — parallel sessions kept landing). Each time the resolution kept **both sides verbatim** (all upstream board text preserved, this session's section re-appended; verified by content asserts on the section headers). No other file conflicted; `data/**`, `picks/**`, `today/**`, `mobile/**`, `verify/**`, `model/**` were never edited by this session. Repository-wide marker scan after the final rebase: no conflict markers anywhere.
 - **Follow-up:** this coordination record (statuses → done + release record) ships as a small follow-up PR after which the session's board is complete.
 
+---
+
+## Session `arena/459ff624` — claim (2026-10-13 ~22:55 UTC)
+
+Branch: `arena/459ff624-maltaproj1` (Arena fixes this session to this branch; no other branch is
+created, switched to or pushed). All prior sessions' files are preserved untouched.
+
+**Coordination check before claiming.** Read this board in full. Live claims and their scopes:
+`arena/9920c263` (PR #54 open, `picks/**`), `arena/cc8f4dca` (`picks/**` + a "Picks source probe"
+workflow run in progress), `arena/4f599d7c` (`collector/**`, `webui/**`, `dashboard/**`,
+`data/snapshot/**` — both `update.yml` and `verify.yml` hard-target its branch), `arena/b90700c6`
+(`refresh/**`, `today/**`). None of those paths are touched by this session.
+
+| ID | Task | Status | Owner | Exclusive file scope | Notes |
+|----|------|--------|-------|----------------------|-------|
+| L-01 | `live/collect.py` — public-source collector: Hotspawn Pick'em SSR payload (identity + exact UTC start/lock only), Pinnacle public guest matchups/markets responses the matchups page loads itself, EGamersWorld match pages (headless browser), HLTV ranking, Valve Regional Standings. Provenance (URL, HTTP status, bytes, SHA-256, fetch time) for every request; a source that fails leaves blanks and a flag. | in progress | arena/459ff624 | `live/collect.py` | Sandbox has no route to these hosts; runs on GitHub Actions. |
+| L-02 | `live/build.py` + generated `live/*.html`, `live/data/*` — one row per CS2 fixture in the payload (open, locked and stale), de-vigged outside-market probability, own line from Valve's official standings, explicit pick with its basis, per-row source links, coverage table, Flagged page, provenance page, methodology. | in progress | arena/459ff624 | `live/build.py`, `live/*.html`, `live/style.css`, `live/data/**` | Hotspawn crowd % is read for audit and dropped by the builder; the build fails rather than publish an unverified number. |
+| L-03 | Unit tests for the join, de-vig, own-line and pick rules | in progress | arena/459ff624 | `tests/test_459ff624_live.py` | 13 tests, network-free. |
+| L-04 | Automation: refresh the board on a schedule with no manual input, committing to the branch that serves Pages | in progress | arena/459ff624 | `.github/workflows/live-459ff624.yml` | push (this branch, then main) + hourly schedule. |
+| L-05 | Line-by-line verification of this session's published rows against the live sources, with links for manual review, irregularities flagged (never inferred) | in progress | arena/459ff624 | `reviews/459ff624-verification.md` | Read-only over every other owner's output. |
+| L-06 | Integration: additive landing card in root `index.html`, link/anchor audit, PR → merge (no approval awaited), Pages deploy confirmation, record result here | in progress | arena/459ff624 | `index.html` (additive card only), this section | `git pull --rebase` before every push; append-only conflict resolution keeps both sides verbatim. |
+
+### Log — arena/459ff624
+- 22:44 UTC: session started; repo recon (board, live site, workflows, published datasets) before claiming.
+- 22:55 UTC: claim written and pushed; `live/collect.py`, `live/build.py`, `tests/test_459ff624_live.py`
+  and `.github/workflows/live-459ff624.yml` added (13/13 unit tests pass locally).
+- 23:08 UTC: `reviews/459ff624-verification.md` published (identity/times vs the board and HLTV, VRS values vs Valve's file, de-vig re-computed from the published odds, crowd-field exclusion, 369 internal links 0 broken). Landing card added to root `index.html` (additive, one card). Snapshot published: 90 CS2 records, 29 open — 6 with an outside market line, 27 with our own line, 28 with a pick, 1 blank row (FORZE Reload v LFO 10: no market, team absent from Valve's file).
+
 ## Session arena/91e444dd — independent release assurance and final navigation integration
 
 Claim recorded 2026-10-13. Fixed Arena branch: `arena/91e444dd-maltaproj1` (platform requirement; no alternate branch created).

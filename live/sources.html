@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sources · Hotspawn Pick'em live slate</title>
+<link rel="stylesheet" href="style.css">
+</head><body>
+<header>
+  <div class="wrap">
+    <h1>Sources</h1>
+    <p class="sub">Hotspawn Play Pick'em · CS2 · independent line analysis</p>
+    <nav><a href="index.html">Slate</a><a href="matches.html">All rows</a><a href="coverage.html">Coverage</a><a href="flagged.html">Flagged for review</a><a href="sources.html" class="active">Sources</a><a href="methodology.html">Method</a></nav>
+  </div>
+</header>
+<main class="wrap">
+
+<p class="note">Every URL this run touched, with its HTTP status, byte size, SHA-256 (first 16 hex
+characters) and fetch time, so any row can be re-fetched and compared. Raw bodies are not committed —
+only these digests are.</p>
+<div class="tablewrap"><table class="grid"><thead><tr><th>URL</th><th>Path</th><th>HTTP</th><th>Bytes</th>
+<th>SHA-256</th><th>Fetched (UTC)</th><th>Error</th></tr></thead><tbody><tr><td>https://play.hotspawn.com/lobby</td><td>http</td><td>200</td><td>433814</td><td class="hash">a7147c8ee55c92c2</td><td>2026-10-13T23:04:27Z</td><td>—</td></tr><tr><td>https://play.hotspawn.com/cs2-pickems</td><td>http</td><td>200</td><td>423435</td><td class="hash">c1ec83c755b7249a</td><td>2026-10-13T23:04:28Z</td><td>—</td></tr><tr><td>https://play.hotspawn.com/thp-pickems</td><td>http</td><td>200</td><td>219988</td><td class="hash">7c02b3c89975689f</td><td>2026-10-13T23:04:29Z</td><td>—</td></tr><tr><td>https://play.hotspawn.com/lol-pickems</td><td>http</td><td>200</td><td>2316839</td><td class="hash">a3bea495da025328</td><td>2026-10-13T23:04:30Z</td><td>—</td></tr><tr><td>https://api.github.com/repos/ValveSoftware/counter-strike_regional_standings/contents/live/2026</td><td>http</td><td>200</td><td>50648</td><td class="hash">2d55d193c80e0f80</td><td>2026-10-13T23:04:31Z</td><td>—</td></tr><tr><td>https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md</td><td>http</td><td>200</td><td>77872</td><td class="hash">df96e7fc3cd91a26</td><td>2026-10-13T23:04:31Z</td><td>—</td></tr><tr><td>https://guest.api.arcadia.pinnacle.com/0.1/sports/12/matchups?withSpecials=false</td><td>http</td><td>200</td><td>110122</td><td class="hash">58a7682d3ee50aae</td><td>2026-10-13T23:04:31Z</td><td>—</td></tr><tr><td>https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&amp;withSpecials=false</td><td>http</td><td>200</td><td>503318</td><td class="hash">e2ede976eb6bbdbb</td><td>2026-10-13T23:04:31Z</td><td>—</td></tr><tr><td>https://egamersworld.com/counterstrike/matches</td><td>browser</td><td>403</td><td>5889</td><td class="hash">1aaa0ec5512fd11b</td><td>2026-10-13T23:04:31Z</td><td>—</td></tr><tr><td>https://gamma-api.polymarket.com/markets?closed=false&amp;limit=500&amp;order=volume24hr&amp;ascending=false</td><td>http</td><td>200</td><td>760651</td><td class="hash">9ec6367061a90c50</td><td>2026-10-13T23:04:36Z</td><td>—</td></tr><tr><td>https://www.hltv.org/ranking/teams/2026/october/12</td><td>browser</td><td>200</td><td>1230405</td><td class="hash">8a4068745d86091a</td><td>2026-10-13T23:04:36Z</td><td>—</td></tr><tr><td>https://www.hltv.org/ranking/teams/2026/october/12#markup</td><td>diagnostic</td><td>200</td><td>1229862</td><td class="hash"></td><td>2026-10-13T23:04:36Z</td><td>—</td></tr></tbody></table></div>
+<h2>Rating input</h2>
+<p>Own lines use Valve's official Regional Standings file:
+<a href="https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md" target="_blank" rel="noreferrer noopener">live/2026/standings_global_2026_10_05.md</a>, standings as of
+<b>2026-10-05</b>, 380 teams.
+HLTV world ranking (cross-check only): <a href="https://www.hltv.org/ranking/teams/2026/october/12" target="_blank" rel="noreferrer noopener">https://www.hltv.org/ranking/teams/2026/october/12</a>
+— 0 teams read.</p>
+<footer>
+  <p>As of <b>2026-10-13T23:04:41Z</b> (UTC). Fixture identity and times come from the
+  Pick'em board's own server-rendered payload; probabilities come from outside bookmaker prices
+  (de-vigged) and our own Valve-standings model. Hotspawn's crowd pick percentages are never used
+  as a probability. Every value that could not be confirmed against an official source is left
+  blank and listed on <a href="flagged.html">Flagged for review</a>.</p>
+  <p><a href="../">← back to the repository hub</a> · <a href="../picks/">picks/</a> ·
+  <a href="../today/">today/</a> · <a href="../docs/">docs/</a> ·
+  <a href="../pickem/">pickem/</a> · <a href="../model/">model/</a></p>
+</footer>
+</main></body></html>
