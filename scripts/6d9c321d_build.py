@@ -28,6 +28,7 @@ from __future__ import annotations
 import csv
 import json
 import math
+from html import escape as _esc  # V-01 (arena/c50fb9a8): escape data strings rendered into visible HTML
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -1277,19 +1278,19 @@ def build_verified_html(master_rows: list[dict], team_rows: list[dict]):
         flag_link = f" · <a href='#{m['flag_id']}'>{m['flag_id']}</a>" if m["flag_id"] else ""
 
         match_tr.append(f"""
-        <tr data-tier="{m['tier']}" data-status="{m['status']}" data-search="{(m['code']+' '+m['team1']+' '+m['team2']+' '+m['tournament']).lower()}">
+        <tr data-tier="{m['tier']}" data-status="{m['status']}" data-search="{_esc((m['code']+' '+m['team1']+' '+m['team2']+' '+m['tournament']).lower())}">
           <td><strong>{m['code']}</strong><br><span class="sub">id {m['hotspawn_id']}</span></td>
           <td><strong>{m['utc_start']}</strong><br><span class="sub">SSR: {m['edt_display']}</span></td>
-          <td>{m['tournament']}<br><span class="sub">Tier {m['tier']} · {m['format']} · {m['points']} pts{thp_tag}</span></td>
-          <td><strong>{m['team1']}</strong> vs <strong>{m['team2']}</strong><br>
+          <td>{_esc(m['tournament'])}<br><span class="sub">Tier {m['tier']} · {m['format']} · {m['points']} pts{thp_tag}</span></td>
+          <td><strong>{_esc(m['team1'])}</strong> vs <strong>{_esc(m['team2'])}</strong><br>
               <span class="sub">HLTV: #{m['team1_hltv_rank']} vs #{m['team2_hltv_rank']} · VRS: #{m['team1_vrs_rank']} vs #{m['team2_vrs_rank']}</span></td>
           <td>{ext_cell}</td>
           <td><strong>{m['orig_prob1_pct']}% / {m['orig_prob2_pct']}%</strong><br>
               <span class="sub">Fair: {m['orig_odds1']} / {m['orig_odds2']} (Elo {m['team1_elo']}/{m['team2_elo']})</span></td>
-          <td><strong>{m['recommended_pick']} ({m['recommended_prob_pct']}%)</strong><br>
-              <span class="sub">{m['pick_classification']} · Δ {edge_str}</span></td>
+          <td><strong>{_esc(m['recommended_pick'])} ({m['recommended_prob_pct']}%)</strong><br>
+              <span class="sub">{_esc(m['pick_classification'])} · Δ {edge_str}</span></td>
           <td><span class="sub">{m['hotspawn_crowd_pct1_audit_only']}% / {m['hotspawn_crowd_pct2_audit_only']}%<br>(N={m['hotspawn_total_picks_n']} votes · NOT used)</span></td>
-          <td>{status_badge}{flag_link}<br><span class="sub">{m['notes']}</span></td>
+          <td>{status_badge}{flag_link}<br><span class="sub">{_esc(m['notes'])}</span></td>
           <td>
             <a href="{m['hotspawn_url']}" target="_blank" rel="noopener">Hotspawn</a> ·
             <a href="{m['hltv_url']}" target="_blank" rel="noopener">HLTV</a> ·
@@ -1302,12 +1303,12 @@ def build_verified_html(master_rows: list[dict], team_rows: list[dict]):
         hrank = f"#{t['hltv_rank_2026_10_12']} ({t['hltv_points']} pts)" if t["hltv_rank_2026_10_12"] != "" else f"Unranked (Event seed #{t['event_hltv_seed']})"
         team_tr.append(f"""
         <tr>
-          <td><strong>{t['team']}</strong> <span class="sub">(ID {t['hltv_id']})</span></td>
+          <td><strong>{_esc(t['team'])}</strong> <span class="sub">(ID {t['hltv_id']})</span></td>
           <td>{hrank}</td>
           <td>#{t['vrs_rank']}</td>
           <td>{t['star_rating_3m']:.2f}</td>
           <td><strong>{t['composite_elo']}</strong></td>
-          <td><span class="sub">{t['notes']}</span></td>
+          <td><span class="sub">{_esc(t['notes'])}</span></td>
           <td>
             <a href="{t['hltv_team_url']}" target="_blank" rel="noopener">Team Page</a> ·
             <a href="{t['hltv_ranking_url']}" target="_blank" rel="noopener">Oct 12 Ranking</a> ·
@@ -1324,7 +1325,7 @@ def build_verified_html(master_rows: list[dict], team_rows: list[dict]):
         }.get(cat, cat)
         ng_tr.append(f"""
         <tr>
-          <td><strong>{tname}</strong></td>
+          <td><strong>{_esc(tname)}</strong></td>
           <td>Tier {tier}</td>
           <td><strong>{info['count']}</strong></td>
           <td>{info['first_utc']} → {info['last_utc']}</td>
@@ -1335,11 +1336,11 @@ def build_verified_html(master_rows: list[dict], team_rows: list[dict]):
 
     flags_html = []
     for fl in FLAGS_6D9C321D:
-        links = " · ".join(f'<a href="{u}" target="_blank" rel="noopener">{lbl}</a>' for lbl, u in fl["sources"])
+        links = " · ".join(f'<a href="{u}" target="_blank" rel="noopener">{_esc(lbl)}</a>' for lbl, u in fl["sources"])
         flags_html.append(f"""
         <div class="flag-box" id="{fl['id']}">
-          <h3>{fl['id']} — {fl['severity']}: {fl['matches']}</h3>
-          <p>{fl['summary']}</p>
+          <h3>{fl['id']} — {_esc(fl['severity'])}: {_esc(fl['matches'])}</h3>
+          <p>{_esc(fl['summary'])}</p>
           <p class="sub"><strong>Official Sources:</strong> {links}</p>
         </div>""")
 

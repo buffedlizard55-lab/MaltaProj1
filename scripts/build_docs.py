@@ -12,7 +12,8 @@ SNAP = '2026-10-13 (UTC)'
 NAV = [('index.html', 'Dashboard'), ('matches.html', 'All matches'), ('s-tier.html', 'S-Tier · Thunderpick WC'),
        ('stake.html', 'Stake Pulse Beat III'), ('lower-tiers.html', 'B/C-Tier & inventory'),
        ('methodology.html', 'Methodology'), ('reverse-engineering.html', 'Reverse-engineering'),
-       ('audit.html', 'PR audit'), ('flagged.html', '⚠ Flagged for Review'), ('sources.html', 'Sources')]
+       ('audit.html', 'PR audit'), ('flagged.html', '⚠ Flagged for Review'), ('sources.html', 'Sources'),
+       ('../model/index.html', 'Own lines · Valve VRS model')]  # V-02 (arena/c50fb9a8): 91eff436 O-01/F-91 integration request
 
 def nav(cur):
     links = []
@@ -82,6 +83,8 @@ body = f"""
 <ul>
 <li><a href="../site/index.html">site/ dashboard (PR #4, arena/51fb12f8)</a> — dark-theme JS dashboard reading <code>site/data/matches.json</code>.</li>
 <li><a href="../hub.html">hub.html (PR #5, arena/2cb6bff4)</a> — 8-page hub with per-tournament pages, pipeline (<code>src/</code>) and tests (<code>tests/</code>); reads <code>data/matches.json</code>.</li>
+<li><a href=\"../model/index.html\">model/ — Own lines (Valve VRS model, all 86 fixtures)</a> (PR #20/#23/#29/#30, arena/91eff436) — official Valve Regional Standings expected-win model with per-row Valve/HLTV source links.</li>
+<li><a href=\"verified-lines.html\">verified-lines.html — 27-match verified lines + ng-state audit</a> (PR #19, arena/6d9c321d) — per-row bookmaker verification and the full 86-fixture payload audit.</li>
 </ul></div>
 
 <div class="card"><h2>Reading this dashboard</h2>
@@ -265,7 +268,9 @@ print('built audit')
 body = f"""
 <div class="card flag"><h2>⚠ Flagged for Review — published, not hidden</h2>
 <p>These items do not block the site. Every value that could not be confirmed from an official source is <b>blank</b> in the tables.
-A-01…A-11 come from this session's audit (details and evidence on the <a href="audit.html">PR audit page</a>); F-xx carry over from the 2026-10-13 earlier sessions.</p>
+A-01…A-11 come from this session's audit (details and evidence on the <a href="audit.html">PR audit page</a>); F-xx carry over from the 2026-10-13 earlier sessions.
+Model-level flags (teams absent from Valve's VRS snapshot, ambiguous same-name rosters, alias/identity notes) are published on the
+<a href=\"../model/index.html#flags\">Own lines (Valve VRS model) &rarr; Flagged for review</a> section.</p>
 <div class="wrap"><table><tr><th>ID</th><th>Item</th><th>Evidence / source</th><th>Impact</th></tr>
 <tr><td>A-01</td><td>PR #4 claimed Gothic as market favorite for Gothic–Lavked; live EGW shows Lavked favorite (1.62–1.78 vs 1.78–2.10 today)</td><td><a href="https://egamersworld.com/counterstrike/match/_rW8GEyWK/gothic-vs-lavked-GGmfuJ1n4B">EGW match page</a></td><td>Corrected in canonical data (Lavked pick, 51.4%)</td></tr>
 <tr><td>A-03</td><td>PR #5 claimed Zomblers 1.42 favorites (OddsDigger); live market favors Overtake Sector 1.47</td><td><a href="https://egamersworld.com/counterstrike/match/41yion_ONx/zomblers-vs-overtake-sector-3aN5jQsN_">EGW match page</a></td><td>Corrected (Overtake pick, 63.1%); OddsDigger claim unverifiable</td></tr>
@@ -285,7 +290,12 @@ A-01…A-11 come from this session's audit (details and evidence on the <a href=
 <tr><td>F-10</td><td>Hotspawn displays times without a timezone; HLTV/EGW show different clock times for the same fixture</td><td><a href="https://www.hltv.org/news/45706/thunderpick-world-championship-teams-format-schedule-prizes-talent-fantasy">HLTV news 45706</a></td><td><strong>Resolved:</strong> exact UTC start/lock times taken from the site's own payload (<a href="https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/data/pickem_inventory.json">data/pickem_inventory.json</a>, 2026-10-13 18:13Z) and shown next to the display time on <a href="matches.html">matches.html</a>; payload times corroborated by HLTV (9z–Aurora 08:30Z, HOTU–fnatic 10:00Z)</td></tr>
 <tr><td>F-11</td><td>Hotspawn crowd % drifts between fetches and several cards show 100/0 (tiny samples)</td><td><a href="https://play.hotspawn.com/lobby">lobby</a></td><td>Snapshot only; never a probability input</td></tr>
 <tr><td>F-12</td><td>Stake Pulse match-ID gap (1079441 missing between …438/…439/…442)</td><td><a href="https://play.hotspawn.com/cs2-pickems">lobby</a></td><td>Noted; not invented</td></tr>
-</table></div></div>"""
+<tr><td>V3-03</td><td>data/ratings.csv Elisa rows store VRS ranks in the hltv_world_rank column (WBT 64 vs HLTV World #109; EAC 115 vs #110; BOJONG 387 vs #220) &mdash; own-model cells for the 12 Elisa fixtures mix rank series</td><td><a href="https://www.hltv.org/matches/2399418/wbt-vs-eac-elisa-breakout-series-2">HLTV 2399418 (HLTV #109 / VRS #64)</a> &#183; <a href="https://www.hltv.org/events/9332/elisa-breakout-series-2">HLTV event 9332</a></td><td>Not edited (no values inferred); treat affected model cells as unverified pending relabel &mdash; see reviews/verification-c50fb9a8.md</td></tr>
+<tr><td>V3-04</td><td>data/ratings.csv Legacy row label &quot;World #6 / VRS #2&quot; only half-confirmable: live HLTV page shows World #7 / VRS widget #6; &quot;VRS #2&quot; matches Valve&rsquo;s official 2026-10-05 file</td><td><a href="https://www.hltv.org/team/12468/legacy">HLTV Legacy</a> &#183; <a href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md">Valve VRS file</a></td><td>Not edited; flagged (F-06 snapshot-drift family)</td></tr>
+<tr><td>V3-08</td><td>model/index.html has 22 rows without an inline external link (3 &quot;No line&quot; fixture rows + 19 NOT-IN-VRS/AMBIGUOUS team-flag rows; absence claims)</td><td><a href="../model/index.html">model/index.html</a></td><td>Owner request logged in COORDINATION.md; non-blocking</td></tr>
+</table></div>
+<div class="card"><h2>V-03 line-by-line verification (arena/c50fb9a8, 2026-10-13 22:05&#8211;22:35 UTC)</h2>
+<p>Repository-wide crawl after fixes: 67 HTML pages, 0 broken internal links, 0 broken fragment targets (the earlier <code>#F-28</code>/<code>#F-29</code>/<code>#flagged-audit</code> breakage from unescaped <code>&lt;script&gt;</code> examples is fixed &mdash; V3-01). Per-row source-link scan: docs/matches 26/26, docs/verified-lines all rows, picks 32/32, pickem/cs2 86/86, dashboard/cs2 27/27 (model/ exceptions at V3-08). Live spot-checks with source links for manual review (Hotspawn lobby 30/30 fixture identity, EGW Gothic&#8211;Lavked direction, Valve VRS file, HLTV PARIVISION #11 confirmed, HLTV Legacy, HLTV 2399418 WBT alias, HLTV Oct-12 ranking date) are recorded in <a href="../reviews/verification-c50fb9a8.md">reviews/verification-c50fb9a8.md</a>. Hotspawn crowd % remains excluded from all probabilities.</p></div></div>"""
 (DOCS / 'flagged.html').write_text(page('Flagged', '⚠ Flagged for Review', 'Published irregularities and unverified items — do not block the site · ' + SNAP, 'flagged.html', body))
 print('built flagged')
 
