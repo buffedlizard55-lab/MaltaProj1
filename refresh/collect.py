@@ -551,9 +551,25 @@ def main() -> int:
     DATA.mkdir(parents=True, exist_ok=True)
     hs = collect_hotspawn()
     fixtures = hs["fixtures"]
-    # Slate = fixtures that are still part of the live board window; stale listings are kept in the
-    # payload for transparency but excluded from pricing (build.py re-checks this).
-    egw = collect_egw(fixtures)
+    # Only the live week gets an odds lookup: fixtures outside the window (the stale summer
+    # listings Hotspawn still serves) are kept in the payload for transparency but never priced.
+    now = datetime.now(timezone.utc)
+    reset = None
+    if hs.get("reset_utc"):
+        reset = datetime.strptime(hs["reset_utc"], "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
+    week_end = reset or (now + timedelta(days=7))
+    horizon_start = now - timedelta(hours=36)
+    candidates = []
+    for fx in fixtures:
+        try:
+            start = datetime.strptime(fx["scheduled_start_utc"], "%Y-%m-%dT%H:%M:%SZ").replace(
+                tzinfo=timezone.utc)
+        except (KeyError, ValueError):
+            continue
+        if horizon_start <= start <= week_end:
+            candidates.append(fx)
+    print(f"slate candidates for odds lookup: {len(candidates)} of {len(fixtures)} payload rows")
+    egw = collect_egw(candidates)
     hltv = collect_hltv()
     valve = collect_valve()
 

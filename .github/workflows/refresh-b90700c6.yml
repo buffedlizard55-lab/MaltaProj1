@@ -1,6 +1,8 @@
 # R-01 live refresh (session arena/b90700c6).
 # Reads only public pages, derives probabilities, rebuilds the board in today/** and commits the
 # result back to this session's branch. No credentials, no manual input, no private endpoints.
+# Every step logs to refresh/logs/ and the run commits its own diagnostics, so a failure is
+# inspectable from the branch even when job logs are unavailable.
 name: R-01 refresh (b90700c6)
 
 on:
@@ -11,7 +13,6 @@ on:
       - "refresh/**"
       - ".github/workflows/refresh-b90700c6.yml"
   schedule:
-    # Post-merge housekeeping only: a scheduled workflow fires from the default branch.
     - cron: "23 */3 * * *"
 
 permissions:
@@ -33,28 +34,43 @@ jobs:
         with:
           python-version: "3.12"
       - name: Read public sources (Hotspawn payload, EGamersWorld lines, HLTV/Valve ratings)
-        run: python3 refresh/collect.py | tee refresh_run_summary.txt
+        continue-on-error: true
+        run: |
+          mkdir -p refresh/logs
+          set -o pipefail
+          python3 -u refresh/collect.py > refresh/logs/collect.txt 2>&1
+          echo "collect exit=$?" | tee -a refresh/logs/collect.txt
       - name: Build probabilities, own line and picks
-        run: python3 refresh/build.py
+        continue-on-error: true
+        run: |
+          python3 -u refresh/build.py > refresh/logs/build.txt 2>&1
+          echo "build exit=$?" | tee -a refresh/logs/build.txt
       - name: Render the mobile board (today/**)
-        run: python3 refresh/build_site.py
+        continue-on-error: true
+        run: |
+          python3 -u refresh/build_site.py > refresh/logs/site.txt 2>&1
+          echo "site exit=$?" | tee -a refresh/logs/site.txt
       - name: Verify every row, every link and every calculation
-        run: python3 refresh/verify.py
-      - name: Upload derived data and the run summary
+        continue-on-error: true
+        run: |
+          python3 -u refresh/verify.py > refresh/logs/verify.txt 2>&1
+          echo "verify exit=$?" | tee -a refresh/logs/verify.txt
+      - name: Upload derived data and logs
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: refresh-b90700c6-${{ github.run_id }}
           path: |
             refresh/data/
-            refresh_run_summary.txt
+            refresh/logs/
           retention-days: 7
-      - name: Publish the derived result to this session branch
+      - name: Publish the derived result and diagnostics to this session branch
         if: always()
+        continue-on-error: true
         run: |
           git config user.name "refresh-b90700c6[bot]"
           git config user.email "refresh-b90700c6@users.noreply.github.com"
-          git add refresh/data today
+          git add -A refresh/data refresh/logs today
           if git diff --cached --quiet; then echo "no data change"; exit 0; fi
           git commit -m "data(b90700c6): refreshed public-source board from run ${{ github.run_id }}"
           git pull --rebase origin arena/b90700c6-maltaproj1
@@ -64,18 +80,17 @@ jobs:
         run: |
           {
             echo "## Refresh run ${{ github.run_id }}"
-            echo '```json'
-            python3 - <<'PY'
-            import json, pathlib
-            for name in ("current.json",):
-                p = pathlib.Path("refresh/data") / name
-                if p.exists():
-                    data = json.loads(p.read_text())
-                    print(json.dumps({"counts": data["meta"]["counts"],
-                                      "snapshot": data["meta"]["source_snapshot_utc"],
-                                      "flags": [f["code"] for f in data["flagged"]]}, indent=1))
-                else:
-                    print(f"{name} not produced")
-            PY
+            echo
+            echo '### collected summary'
+            echo '```'
+            head -c 3000 refresh/logs/collect.txt || true
+            echo '```'
+            echo '### build'
+            echo '```'
+            head -c 1500 refresh/logs/build.txt || true
+            echo '```'
+            echo '### verify'
+            echo '```'
+            head -c 1500 refresh/logs/verify.txt || true
             echo '```'
           } >> "$GITHUB_STEP_SUMMARY"
