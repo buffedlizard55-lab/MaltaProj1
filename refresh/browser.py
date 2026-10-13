@@ -94,28 +94,49 @@ class BrowserSession:
         except Exception:  # noqa: BLE001
             pass
 
-    def get(self, url: str) -> dict:
-        """Render one public page; return its HTML plus any captured JSON from that load."""
+    CHALLENGE_MARKERS = ("just a moment", "attention required", "checking your browser")
+
+    def get(self, url: str, retries: int = 3) -> dict:
+        """Render one public page; return its HTML plus any captured JSON from that load.
+
+        A Cloudflare interstitial can appear for the first request from an IP and clear on a
+        later one, so each attempt reloads and waits for the challenge to resolve by itself.
+        Nothing is solved, bypassed or answered — the browser simply waits and asks again.
+        """
         out = {"url": url, "status": None, "html": None, "error": None,
-               "fetched_utc": now_iso(), "captured": []}
-        page = None
-        try:
-            page = self._ctx.new_page()
-            page.on("response", self._on_response)
-            before = len(self.captured)
-            response = page.goto(url, wait_until="domcontentloaded", timeout=self.timeout_ms)
-            page.wait_for_timeout(self.settle_ms)
-            out["status"] = response.status if response else None
-            out["html"] = page.content()
-            out["captured"] = self.captured[before:]
-        except Exception as exc:  # noqa: BLE001
-            out["error"] = f"{type(exc).__name__}: {exc}"
-        finally:
-            if page is not None:
-                try:
-                    page.close()
-                except Exception:  # noqa: BLE001
-                    pass
+               "fetched_utc": now_iso(), "captured": [], "attempts": []}
+        for attempt in range(1, retries + 1):
+            page = None
+            try:
+                page = self._ctx.new_page()
+                page.on("response", self._on_response)
+                before = len(self.captured)
+                response = page.goto(url, wait_until="domcontentloaded", timeout=self.timeout_ms)
+                status = response.status if response else None
+                html = page.content()
+                title = (page.title() or "").lower()
+                challenged = (status in (403, 503) or not html
+                              or any(m in title for m in self.CHALLENGE_MARKERS))
+                out["attempts"].append({"attempt": attempt, "status": status,
+                                        "title": title[:60], "challenged": challenged})
+                if challenged and attempt < retries:
+                    page.wait_for_timeout(7000 * attempt)
+                    continue
+                out["status"], out["html"] = status, html
+                out["captured"] = self.captured[before:]
+                break
+            except Exception as exc:  # noqa: BLE001
+                out["error"] = f"{type(exc).__name__}: {exc}"
+                out["attempts"].append({"attempt": attempt, "error": out["error"][:80]})
+            finally:
+                if page is not None:
+                    try:
+                        page.close()
+                    except Exception:  # noqa: BLE001
+                        pass
+            if attempt < retries:
+                import time as _time
+                _time.sleep(3 * attempt)
         return out
 
 

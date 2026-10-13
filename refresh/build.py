@@ -94,7 +94,11 @@ def main() -> int:
     pinnacle = collected.get("pinnacle") or {"quotes": [], "counters": {}, "pages": []}
     hltv, vrs = collected["hltv"], collected["valve_vrs"]
     reset = parse_utc(hs.get("reset_utc"))
-    hltv_rank, vrs_teams = hltv.get("ranking") or {}, vrs.get("teams") or {}
+    # Rating lookups normalise the Hotspawn team name, so the maps must be keyed the same way.
+    hltv_rank = {norm(name): {**entry, "listed_name": name}
+                 for name, entry in (hltv.get("ranking") or {}).items()}
+    vrs_teams = {norm(name): {**entry, "listed_name": name}
+                 for name, entry in (vrs.get("teams") or {}).items()}
 
     # Pinnacle quotes indexed by sport + normalised team pair; matched on start time below.
     pin_index: dict[tuple[str, str, str], list[dict]] = {}

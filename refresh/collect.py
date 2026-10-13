@@ -54,6 +54,7 @@ EGW_LISTS = [("cs2", "https://egamersworld.com/counterstrike/matches"),
 EGW_EVENTS = [("cs2", "https://egamersworld.com/counterstrike/events"),
               ("lol", "https://egamersworld.com/lol/events")]
 HLTV_PAGES = [("hltv-ranking", "https://www.hltv.org/ranking/teams"),
+              ("hltv-ranking-dated", "https://www.hltv.org/ranking/teams/2026/october/12"),
               ("hltv-matches", "https://www.hltv.org/matches")]
 PINNACLE_PAGES = [("pinnacle-highlights", "https://www.pinnacle.com/en/esports/matchups/highlights"),
                   ("pinnacle-cs2", "https://www.pinnacle.com/en/esports/games/cs2/matchups/"),
@@ -475,7 +476,7 @@ def collect_hltv() -> dict:
         html = got.get("html")
         if not html:
             continue
-        if label == "hltv-ranking":
+        if label.startswith("hltv-ranking"):
             for block in html.split('<div class="ranked-team standard-box">')[1:]:
                 pos = re.search(r'<span class="position[^"]*">#(\d+)</span>', block)
                 name = re.search(r'<span class="name">([^<]+)</span>', block)
