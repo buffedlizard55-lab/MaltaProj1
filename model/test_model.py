@@ -96,6 +96,9 @@ class TestOutputs(unittest.TestCase):
         cls.rows = list(csv.DictReader((ROOT / "data" / "lines.csv").open(encoding="utf-8")))
         cls.teams = list(csv.DictReader((ROOT / "data" / "teams.csv").open(encoding="utf-8")))
         cls.fx = json.loads((ROOT / "input" / "hotspawn_cs2_fixtures.json").read_text())
+        cal = build.load_calibration()
+        cls.k = cal["k_published"] if cal else build.G
+        cls.cal = cal
         cls.pts = {}
         for t in cls.teams:
             if t["vrs_points"]:
@@ -120,9 +123,12 @@ class TestOutputs(unittest.TestCase):
                     self.assertEqual(r[k], "", f"blank row {r['hotspawn_match_id']} has {k}")
                 self.assertTrue(r["notes"], f"blank row {r['hotspawn_match_id']} lacks a reason")
                 continue
-            p = build.valve_expected(int(r["vrs_a_points"]), int(r["vrs_b_points"]))
+            a_, b_ = int(r["vrs_a_points"]), int(r["vrs_b_points"])
+            p = build.p_k(self.k, a_, b_)
             self.assertAlmostEqual(float(r["own_p_a"]), round(100 * p, 1), places=6)
+            self.assertAlmostEqual(float(r["valve_raw_p_a"]), round(100 * build.valve_expected(a_, b_), 1), places=6)
             self.assertAlmostEqual(float(r["own_p_a"]) + float(r["own_p_b"]), 100.0, delta=0.11)
+            # the pick is OUR line's favourite and never depends on the market reference
             self.assertEqual(r["pick"], r["team_a"] if p > 0.5 else r["team_b"])
 
     def test_every_published_value_has_official_source(self):
@@ -151,6 +157,24 @@ class TestOutputs(unittest.TestCase):
             self.assertEqual(cells[1], t["vrs_standing"])
             self.assertEqual(cells[2], t["vrs_points"])
             self.assertEqual(cells[3], t["vrs_name"])
+
+    def test_market_reference_recomputed(self):
+        for r in self.rows:
+            if r["market_p_a"] == "":
+                self.assertEqual(r["edge_pp"], "")
+                continue
+            oa, ob = float(r["market_odds_a"]), float(r["market_odds_b"])
+            self.assertAlmostEqual(float(r["market_p_a"]), round(100 * (1 / oa) / (1 / oa + 1 / ob), 1), places=6)
+            if r["own_p_a"] != "":
+                self.assertAlmostEqual(float(r["edge_pp"]), round(float(r["own_p_a"]) - float(r["market_p_a"]), 1), delta=0.11)
+
+    def test_calibration_sane(self):
+        if not self.cal:
+            self.skipTest("no adopted calibration")
+        self.assertTrue(0.05 < self.cal["k_published"] < 2.0)
+        o = self.cal["out_of_sample"]
+        self.assertLess(o["calibrated_train_k"]["log_loss"], o["raw"]["log_loss"])  # adopted only if it helps out of sample
+        self.assertAlmostEqual(build.p_k(build.G, 1700, 1500), build.valve_expected(1700, 1500), places=12)
 
     def test_no_fuzzy_name_matching(self):
         for t in self.teams:

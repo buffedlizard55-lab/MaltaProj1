@@ -42,6 +42,7 @@ INP = ROOT / "input"
 UA = "Mozilla/5.0 (compatible; MaltaProj1-model/1.0; +https://github.com/buffedlizard55-lab/MaltaProj1)"
 
 HOTSPAWN_URL = "https://play.hotspawn.com/cs2-pickems"
+HOTSPAWN_URLS = [HOTSPAWN_URL, "https://play.hotspawn.com/lobby"]
 HLTV_URL = "https://www.hltv.org/ranking/teams"
 VRS_REPO = "https://github.com/ValveSoftware/counter-strike_regional_standings"
 
@@ -80,59 +81,75 @@ def sha(b: bytes) -> str:
     return hashlib.sha256(b).hexdigest()
 
 
-def fetch_hotspawn(log: dict) -> None:
+def parse_hotspawn_page(url: str) -> tuple[dict, list, dict, dict | None]:
+    """Fetch one Pick'em page; return (page_entry, fixtures, permalinks, week)."""
     t = now()
-    status, body, final = get(HOTSPAWN_URL)
-    entry = {"url": HOTSPAWN_URL, "final_url": final, "fetched_utc": t, "http_status": status,
+    status, body, final = get(url)
+    entry = {"url": url, "final_url": final, "fetched_utc": t, "http_status": status,
              "bytes": len(body), "sha256": sha(body) if status == 200 else None}
     if status != 200:
-        entry["result"] = "FAILED - previous snapshot kept"
-        log["hotspawn"] = entry
-        return
+        entry["result"] = "FAILED - HTTP"
+        return entry, [], {}, None
     text = body.decode("utf-8", "replace")
     m = re.search(r'<script[^>]*id="ng-state"[^>]*>(.*?)</script>', text, re.S)
     if not m:
-        entry["result"] = "FAILED - ng-state TransferState not found; previous snapshot kept"
-        log["hotspawn"] = entry
-        return
+        entry["result"] = "FAILED - ng-state TransferState not found"
+        return entry, [], {}, None
     state = json.loads(m.group(1))
-    fixtures, key_used = None, None
+    fixtures, key_used, week, permalinks = [], None, None, {}
     for k, v in state.items():
         b = v.get("b") if isinstance(v, dict) else None
         if isinstance(b, list) and b and isinstance(b[0], dict) and "participants0_name" in b[0]:
-            if fixtures is None or len(b) > len(fixtures):
+            if len(b) > len(fixtures):
                 fixtures, key_used = b, k
-    if not fixtures:
-        entry["result"] = "FAILED - no fixture list inside TransferState; previous snapshot kept"
-        log["hotspawn"] = entry
-        return
-    week, permalinks = None, {}
-    for v in state.values():
-        b = v.get("b") if isinstance(v, dict) else None
         if isinstance(b, dict) and "weekStartUtc" in b:
-            week = {k: b.get(k) for k in ("weekId", "sportAlias", "status", "weekStartUtc",
-                                          "weekEndUtc", "cutoffUtc")}
+            week = {kk: b.get(kk) for kk in ("weekId", "sportAlias", "status", "weekStartUtc", "weekEndUtc", "cutoffUtc")}
         if isinstance(b, dict) and isinstance(b.get("permalinks"), dict):
-            permalinks.update({str(k): str(u) for k, u in b["permalinks"].items()})
-    # Lobby header ("NN matches this week") and filter total, as printed, for cross-checking.
-    plain = re.sub(r"<[^>]+>", " ", text)
-    plain = htmllib.unescape(re.sub(r"\s+", " ", plain))
+            permalinks.update({str(kk): str(u) for kk, u in b["permalinks"].items()})
+    plain = htmllib.unescape(re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", text)))
     hdr = re.search(r"(\d+)\s*matches this week", plain)
     tot = re.search(r"All tiers \((\d+)\)", plain)
-    slim = [{k: f.get(k) for k in KEEP} for f in fixtures]
+    entry.update({"transferstate_key": key_used, "fixture_count": len(fixtures),
+                  "lobby_header_matches_this_week": int(hdr.group(1)) if hdr else None,
+                  "lobby_filter_all_tiers": int(tot.group(1)) if tot else None,
+                  "result": f"OK - {len(fixtures)} fixtures" if fixtures else "FAILED - no fixture list in TransferState"})
+    return entry, fixtures, permalinks, week
+
+
+def fetch_hotspawn(log: dict) -> None:
+    """Union of the CS2 Pick'em page and the all-games lobby. Both embed the same TransferState request,
+    but they are rendered or cached at different moments, so either one can hold a fixture the other lacks."""
+    pages, union, perm, week = [], {}, {}, None
+    for url in HOTSPAWN_URLS:
+        entry, fixtures, permalinks, wk = parse_hotspawn_page(url)
+        pages.append(entry)
+        perm.update(permalinks)
+        week = week or wk
+        for f in fixtures:
+            if (f.get("sport_alias") or "").lower() not in ("cs2", ""):
+                continue
+            fid = str(f.get("id"))
+            if fid not in union:
+                union[fid] = {k: f.get(k) for k in KEEP}
+                union[fid]["seen_on"] = []
+            union[fid]["seen_on"].append(url)
+    log["hotspawn"] = {"pages": pages, "result": (f"OK - {len(union)} CS2 fixtures (union of {len(pages)} pages)"
+                                                  if union else "FAILED - previous snapshot kept")}
+    if not union:
+        return
+    ok = [p for p in pages if p.get("fixture_count")]
     out = {
-        "source_url": HOTSPAWN_URL, "fetched_utc": t, "http_status": status,
-        "html_sha256": entry["sha256"], "transferstate_key": key_used,
-        "fixture_count": len(slim), "lobby_header_matches_this_week": int(hdr.group(1)) if hdr else None,
-        "lobby_filter_all_tiers": int(tot.group(1)) if tot else None, "pickem_week": week,
-        "fields_dropped_on_ingest": DROPPED,
+        "source_url": HOTSPAWN_URL, "source_urls": HOTSPAWN_URLS,
+        "fetched_utc": max(p["fetched_utc"] for p in ok),
+        "pages": pages, "fixture_count": len(union), "pickem_week": week,
+        "lobby_header_matches_this_week": next((p["lobby_header_matches_this_week"] for p in ok if p.get("lobby_header_matches_this_week") is not None), None),
+        "lobby_filter_all_tiers": next((p["lobby_filter_all_tiers"] for p in ok if p.get("lobby_filter_all_tiers") is not None), None),
+        "html_sha256": ok[0]["sha256"], "fields_dropped_on_ingest": DROPPED,
         "note": "Fixture identity only. Hotspawn pick percentages are dropped on ingest and never used.",
-        "permalinks": permalinks,
-        "fixtures": slim,
+        "permalinks": perm,
+        "fixtures": sorted(union.values(), key=lambda f: (int(f.get("scheduled_start_time") or 0), str(f.get("id")))),
     }
     (INP / "hotspawn_cs2_fixtures.json").write_text(json.dumps(out, indent=1, ensure_ascii=False) + "\n")
-    entry["result"] = f"OK - {len(slim)} fixtures (TransferState key {key_used})"
-    log["hotspawn"] = entry
 
 
 def hltv_candidates() -> list[str]:

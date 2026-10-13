@@ -31,12 +31,14 @@ jobs:
           fetch-depth: 0
       - name: Fetch official inputs
         run: python3 model/fetch.py
-      - name: Build own lines + page
-        run: python3 model/build.py
-      - name: Tests (incl. check against Valve's own glicko.js)
+      - name: Calibrate slope on Valve's published history (no look-ahead)
         run: |
           git clone -q --depth 1 https://github.com/ValveSoftware/counter-strike_regional_standings.git /tmp/vrs
-          VRS_REPO_DIR=/tmp/vrs python3 model/test_model.py -v
+          VRS_REPO_DIR=/tmp/vrs python3 model/calibrate.py
+      - name: Build own lines + page
+        run: python3 model/build.py
+      - name: Tests (incl. check against Valve's own fit.js/glicko.js)
+        run: VRS_REPO_DIR=/tmp/vrs python3 model/test_model.py -v
       - name: Commit refreshed model/** (only if changed)
         run: |
           git config user.name "model-91eff436[bot]"

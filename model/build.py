@@ -57,6 +57,48 @@ def valve_expected(pa: float, pb: float) -> float:
     return 1.0 / (1.0 + 10.0 ** (G * (pa - pb) / -400.0))
 
 
+def p_k(k: float, pa: float, pb: float) -> float:
+    """Same curve family with slope k (k = G reproduces Valve's raw curve)."""
+    return 1.0 / (1.0 + 10.0 ** (-k * (pa - pb) / 400.0))
+
+
+def load_calibration() -> dict | None:
+    f = INP / "vrs" / "calibration.json"
+    if not f.exists():
+        return None
+    c = json.loads(f.read_text())
+    return c if c.get("adopted") and c.get("k_published") else None
+
+
+def load_market(root: Path) -> tuple[dict, dict]:
+    """Read-only: external lines published by session 79a1c6c8 (lines/analysis.csv), if present.
+    Returns ({match_id: row}, provenance). We recompute no-vig from the raw odds ourselves."""
+    f = root / "lines" / "analysis.csv"
+    prov = {"path": "lines/analysis.csv", "present": f.exists(), "commit_utc": None}
+    if not f.exists():
+        return {}, prov
+    try:
+        import subprocess
+        r = subprocess.run(["git", "-C", str(root), "log", "-1", "--format=%cI", "--", "lines/analysis.csv"],
+                           capture_output=True, text=True, timeout=30)
+        prov["commit_utc"] = r.stdout.strip() or None
+    except Exception:  # noqa: BLE001
+        pass
+    out = {}
+    with f.open(encoding="utf-8-sig", newline="") as fh:
+        for r in csv.DictReader(fh):
+            if r.get("sport", "").lower() != "cs2" or r.get("line_status") != "priced":
+                continue
+            try:
+                oa, ob = float(r["odds_a"]), float(r["odds_b"])
+            except (KeyError, ValueError):
+                continue
+            if oa <= 1.0 or ob <= 1.0:
+                continue
+            out[str(r.get("match_id", "")).strip()] = {**r, "_oa": oa, "_ob": ob}
+    return out, prov
+
+
 def norm(s: str) -> str:
     return re.sub(r"\s+", " ", (s or "").strip()).casefold()
 
@@ -140,6 +182,9 @@ def band(p: float) -> str:
 def main() -> int:
     fx, meta, vrs, hltv, flog = load_inputs()
     commit = meta["commit"]
+    cal = load_calibration()
+    K = cal["k_published"] if cal else G
+    market, mprov = load_market(ROOT.parent)
     hltv_by = {norm(t["name"]): t for t in hltv.get("teams", [])}
     hltv_url = hltv.get("canonical_url", "https://www.hltv.org/ranking/teams")
     fetched = fx["fetched_utc"]
@@ -181,15 +226,43 @@ def main() -> int:
             row[f"hltv_{side}_url"] = f"https://www.hltv.org/team/{h['team_id']}/{h['slug']}" if h and h.get("team_id") else ""
             row[f"resolution_{side}"] = r["status"]
         reasons = []
+        # market reference (read-only, session 79a1c6c8); orientation checked by team names
+        mk = market.get(str(f["id"]))
+        mp = None
+        if mk:
+            if norm(mk.get("team_a")) == norm(a) and norm(mk.get("team_b")) == norm(b):
+                oa, ob = mk["_oa"], mk["_ob"]
+            elif norm(mk.get("team_a")) == norm(b) and norm(mk.get("team_b")) == norm(a):
+                oa, ob = mk["_ob"], mk["_oa"]
+            else:
+                oa = ob = None
+                reasons.append("market row team names differ from Hotspawn - not used")
+            if oa:
+                mp = (1 / oa) / (1 / oa + 1 / ob)
+                row.update({"market_odds_a": oa, "market_odds_b": ob, "market_p_a": round(100 * mp, 1),
+                            "market_overround_pct": round(100 * (1 / oa + 1 / ob - 1), 2),
+                            "market_bookmaker": mk.get("bookmaker", ""), "market_source_url": mk.get("odds_source_url", ""),
+                            "market_captured_utc_reported": mk.get("line_captured_utc", "")})
+        for k_ in ("market_odds_a", "market_odds_b", "market_p_a", "market_overround_pct", "market_bookmaker",
+                   "market_source_url", "market_captured_utc_reported"):
+            row.setdefault(k_, "")
         if ra["vrs"] and rb["vrs"] and ra["vrs"] is not rb["vrs"]:
-            p = valve_expected(ra["vrs"]["points"], rb["vrs"]["points"])
+            pa_, pb_ = ra["vrs"]["points"], rb["vrs"]["points"]
+            p = p_k(K, pa_, pb_)
             row.update({
                 "own_p_a": round(100 * p, 1), "own_p_b": round(100 * (1 - p), 1),
                 "fair_odds_a": round(1 / p, 2), "fair_odds_b": round(1 / (1 - p), 2),
                 "pick": a if p > 0.5 else (b if p < 0.5 else ""),
                 "confidence": band(p) if p != 0.5 else "toss-up",
                 "line_status": "OWN LINE",
+                "valve_raw_p_a": round(100 * valve_expected(pa_, pb_), 1),
             })
+            if mp is not None:
+                edge = 100 * (p - mp)
+                row["edge_pp"] = round(edge, 1)
+                row["market_agrees"] = "yes" if (p - 0.5) * (mp - 0.5) > 0 else ("n/a" if p == 0.5 or mp == 0.5 else "NO")
+                if abs(edge) >= 15:
+                    reasons.append(f"our line differs from the market reference by {edge:+.1f} pp - review")
             if any(r["status"].startswith("VERIFIED: HLTV roster") for r in (ra, rb)):
                 reasons.append("team matched to VRS by roster (name differs) - review")
         else:
@@ -199,7 +272,9 @@ def main() -> int:
             if ra["vrs"] is not None and ra["vrs"] is rb["vrs"]:
                 reasons.append("both names resolve to the same VRS row")
             row.update({"own_p_a": "", "own_p_b": "", "fair_odds_a": "", "fair_odds_b": "",
-                        "pick": "", "confidence": "", "line_status": "BLANK - UNVERIFIED"})
+                        "pick": "", "confidence": "", "line_status": "BLANK - UNVERIFIED", "valve_raw_p_a": ""})
+        row.setdefault("edge_pp", "")
+        row.setdefault("market_agrees", "")
         if section == "stale":
             reasons.append("Hotspawn lists a scheduled date before this pick'em week (stale listing)")
         row["notes"] = "; ".join(reasons)
@@ -272,6 +347,39 @@ def main() -> int:
          "Valve's README: the expected-vs-observed slope is shallower than 1; the model 'tends to underestimate win "
          "rates at the low end and overestimate at the high end'. Treat extreme percentages with caution.",
          [VALVE_README.format(c=commit)])
+    if cal:
+        o = cal["out_of_sample"]
+        flag("M-S6", "info", f"Our line = Valve curve re-calibrated on official VRS data (k = {cal['k_published']})",
+             f"Fitted on {cal['n_total']} matches ({cal['windows'][0]['s_prev']}..{cal['windows'][-1]['s_cur']}), each rated with the "
+             f"PREVIOUS monthly VRS snapshot. Held-out test {cal['test_windows']} (n={o['raw']['n']}): log loss "
+             f"{o['raw']['log_loss']} (Valve raw, k={cal['raw_k_valve']}) -> {o['calibrated_train_k']['log_loss']} (calibrated); "
+             f"Brier {o['raw']['brier']} -> {o['calibrated_train_k']['brier']}.", [VALVE_REPO + "/tree/" + cal["valve_commit"]])
+        if cal.get("valve_commit") != commit:
+            flag("M-S7", "needs review", "Calibration and standings come from different Valve commits",
+                 f"calibration {cal.get('valve_commit', '')[:10]} vs standings {commit[:10]}", [VALVE_REPO])
+    else:
+        flag("M-S6", "needs review", "Calibration unavailable - Valve raw curve used",
+             "model/input/vrs/calibration.json missing or not adopted; lines use k = g (Valve raw).", [VALVE_REPO])
+    n_mk = sum(1 for r in rows if r["market_p_a"] != "")
+    if mprov["present"]:
+        late = []
+        cu = mprov.get("commit_utc")
+        if cu:
+            cdt = datetime.fromisoformat(cu)
+            for r in rows:
+                t_ = r["market_captured_utc_reported"]
+                m_ = re.match(r"(\d{4}-\d{2}-\d{2})T(\d{2}):(\d{2})", t_ or "")
+                if m_:
+                    tdt = datetime.fromisoformat(f"{m_[1]}T{m_[2]}:{m_[3]}:00+00:00")
+                    if tdt > cdt:
+                        late.append(f"{r['hotspawn_match_id']} ({t_})")
+        flag("M-S8", "needs review" if late else "info",
+             f"Market reference: {n_mk} fixtures from lines/analysis.csv (session 79a1c6c8), read-only",
+             "Decimal odds as recorded by session 79a1c6c8. No-vig recomputed here as (1/oa)/(1/oa+1/ob). Not re-verified "
+             "by O-01 and never used in our line or pick."
+             + (f" IRREGULARITY: {len(late)} rows report capture times after the file's last commit ({cu}): "
+                + ", ".join(late[:12]) + ". Treat as unverified." if late else ""),
+             ["https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/lines/analysis.csv"])
     for k in ("hotspawn", "vrs", "hltv"):
         e = flog.get(k, {})
         if e and not str(e.get("result", "")).startswith("OK"):
@@ -312,8 +420,12 @@ def main() -> int:
                      "fixtures": len(rows), "pickem_week": week},
         "vrs": {k: meta[k] for k in ("repo", "commit", "commit_date", "path", "standings_date", "sha256", "blob_url")},
         "hltv": {k: hltv.get(k) for k in ("canonical_url", "ranking_date", "fetched_utc", "html_sha256", "team_count")},
-        "model": {"formula": "P(A)=1/(1+10^(-g*(ptsA-ptsB)/400)), g=1/sqrt(1+3q^2*rd^2/pi^2), q=ln10/400, rd=75",
-                  "g": round(G, 6), "valve_fit_js": VALVE_FIT.format(c=commit),
+        "calibration": cal and {k: cal[k] for k in ("k_published", "raw_k_valve", "n_total", "train_windows", "test_windows",
+                                                     "k_fit_on_train", "out_of_sample", "valve_commit")},
+        "market": mprov,
+        "model": {"formula": "P(A)=1/(1+10^(-k*(ptsA-ptsB)/400)); k = calibrated slope (Valve raw: k=g, "
+                             "g=1/sqrt(1+3q^2*rd^2/pi^2), q=ln10/400, rd=75)",
+                  "k_used": round(K, 6), "g": round(G, 6), "valve_fit_js": VALVE_FIT.format(c=commit),
                   "valve_glicko_js": VALVE_GLICKO.format(c=commit), "roster_overlap_rule": OVERLAP,
                   "valve_team_js": VALVE_TEAM.format(c=commit)},
     }
@@ -373,7 +485,10 @@ def pill(status: str) -> str:
 def fixture_table(rows, tid):
     head = ("<tr><th>Start (UTC)</th><th>Tournament</th><th>Tier</th><th>Team A</th><th>Team B</th>"
             "<th>VRS pts A</th><th>VRS pts B</th><th>Our P(A)</th><th>Our P(B)</th><th>Fair odds A</th><th>Fair odds B</th>"
-            "<th>Pick</th><th>Conf.</th><th>Status</th><th>Sources</th><th>Notes</th></tr>")
+            "<th>Pick</th><th>Conf.</th><th title='Valve raw curve, before calibration'>Valve raw P(A)</th>"
+            "<th title='No-vig from odds recorded by session 79a1c6c8 (reference only)'>Market P(A)</th>"
+            "<th title='Our P(A) minus market P(A), percentage points'>Edge (pp)</th>"
+            "<th>Status</th><th>Sources</th><th>Notes</th></tr>")
     body = []
     for r in rows:
         own = r["line_status"] == "OWN LINE"
@@ -382,7 +497,13 @@ def fixture_table(rows, tid):
         src = " · ".join(x for x in [
             a(r["hotspawn_url"], "Hotspawn fixture"),
             a(r["vrs_a_url"], "VRS A"), a(r["vrs_b_url"], "VRS B"),
-            a(r["hltv_a_url"], "HLTV A"), a(r["hltv_b_url"], "HLTV B")] if x)
+            a(r["hltv_a_url"], "HLTV A"), a(r["hltv_b_url"], "HLTV B"),
+            a(r.get("market_source_url", ""), "Market src")] if x)
+        mkt = (f"{r['market_p_a']}% <span class=note>({e(r['market_odds_a'])}/{e(r['market_odds_b'])})</span>"
+               if r.get("market_p_a") not in ("", None) else "")
+        raw = f"{r['valve_raw_p_a']}%" if r.get("valve_raw_p_a") not in ("", None) else ""
+        edge = r.get("edge_pp", "")
+        ecls = " class='num bad'" if edge != "" and abs(float(edge)) >= 15 else " class=num"
         pa = f"{r['own_p_a']}%" if own else ""
         pb = f"{r['own_p_b']}%" if own else ""
         body.append(
@@ -391,7 +512,10 @@ def fixture_table(rows, tid):
             f"<td class=num>{e(r['vrs_a_points'])}</td><td class=num>{e(r['vrs_b_points'])}</td>"
             f"<td class=num data-v='{e(r['own_p_a'])}'>{pa}</td><td class=num data-v='{e(r['own_p_b'])}'>{pb}</td>"
             f"<td class=num>{e(r['fair_odds_a'])}</td><td class=num>{e(r['fair_odds_b'])}</td>"
-            f"<td class=pick>{e(r['pick'])}</td><td>{e(r['confidence'])}</td><td>{st}</td><td>{src}</td><td class=wrap>{e(r['notes'])}</td></tr>")
+            f"<td class=pick>{e(r['pick'])}</td><td>{e(r['confidence'])}</td>"
+            f"<td class=num data-v='{e(r.get('valve_raw_p_a', ''))}'>{raw}</td><td class=num data-v='{e(r.get('market_p_a', ''))}'>{mkt}</td>"
+            f"<td{ecls} data-v='{e(edge)}'>{e(edge)}</td>"
+            f"<td>{st}</td><td>{src}</td><td class=wrap>{e(r['notes'])}</td></tr>")
     return (f"<input type=search placeholder='Filter rows…' oninput=\"filt(this,'{tid}')\">"
             f"<div class=tw><table id='{tid}' class=sort><thead>{head}</thead><tbody>{''.join(body)}</tbody></table></div>")
 
@@ -418,6 +542,19 @@ def render(p, meta, hltv, fx, hltv_url) -> str:
         frs.append(f"<tr><td>{e(f['id'])}</td><td><span class='pill {cls}'>{e(f['severity'])}</span></td><td class=wrap>{e(f['subject'])}</td>"
                    f"<td class=wrap>{e(f['detail'])}</td><td>{links}</td></tr>")
     h = inp["hltv"]
+    c = inp.get("calibration")
+    if c:
+        o = c["out_of_sample"]
+        cal_html = (f"Valve's raw curve is overconfident on its own data. We re-fit the slope by maximum likelihood on "
+                    f"{c['n_total']} matches, each rated with the <i>previous</i> monthly VRS snapshot (Valve's own evaluation recipe; "
+                    f"both sides identified by roster). Result: <b>k = {c['k_published']}</b> vs Valve's {c['raw_k_valve']}. "
+                    f"Held-out test {e(c['test_windows'])} (n = {o['raw']['n']}): log loss {o['raw']['log_loss']} → "
+                    f"<b>{o['calibrated_train_k']['log_loss']}</b>, Brier {o['raw']['brier']} → <b>{o['calibrated_train_k']['brier']}</b>. "
+                    f"Raw-curve favourite bins (expected → observed): "
+                    + ", ".join(f"{b['mean_expected']:.0%}→{b['observed']:.0%}" for b in o['raw']['favourite_bins'])
+                    + ". Code: <code>model/calibrate.py</code>, output <code>model/input/vrs/calibration.json</code>.")
+    else:
+        cal_html = "Calibration file unavailable. This run uses Valve's raw curve (k = g), flagged as M-S6."
     return f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Own lines (Valve VRS model) — Hotspawn CS2 Pick'em</title><style>{CSS}</style></head><body>
 <header><h1>Own lines — Valve Regional Standings model</h1>
@@ -452,9 +589,10 @@ Roster cross-check: <a href="{e(h.get('canonical_url') or hltv_url)}">HLTV World
 <ol>
 <li><b>Fixtures</b> — <a href="{LOBBY}">play.hotspawn.com/cs2-pickems</a> is server-rendered Angular; its <code>&lt;script id="ng-state"&gt;</code> TransferState holds the full fixture list (id, teams, competition, tier, <code>scheduled_start_time</code>). Only identity fields are kept; <code>participants*_picked_percent</code> and <code>total_picks</code> are dropped on ingest.</li>
 <li><b>Ratings</b> — official <a href="{VALVE_REPO}">Valve Regional Standings</a> points (global list, {e(meta['standings_date'])}). Each team row links to its exact line in Valve's file and to Valve's per-team details page.</li>
-<li><b>Our line</b> — Valve's own expected-win-rate function (<a href="{e(inp['model']['valve_fit_js'])}">fit.js priorWinExpectation</a> with <a href="{e(inp['model']['valve_glicko_js'])}">glicko.js</a>, rd = 75): <code>P(A) = 1 / (1 + 10^(−g·(pts<sub>A</sub> − pts<sub>B</sub>)/400))</code>, g = {inp['model']['g']}. Fair decimal odds = 1/P. This closed form is unit-tested against Valve's actual JavaScript.</li>
+<li><b>Our line</b> — Valve's own expected-win-rate function (<a href="{e(inp['model']['valve_fit_js'])}">fit.js priorWinExpectation</a> with <a href="{e(inp['model']['valve_glicko_js'])}">glicko.js</a>, rd = 75): <code>P(A) = 1 / (1 + 10^(−k·(pts<sub>A</sub> − pts<sub>B</sub>)/400))</code>. Valve's raw curve has k = g = {inp['model']['g']}, unit-tested against Valve's actual JavaScript. Our line uses the calibrated k = {inp['model']['k_used']} (next item). Fair decimal odds = 1/P.</li>
+<li><b>Calibration (what makes the line ours)</b>: {cal_html}</li>
 <li><b>Roster check</b> — <a href="{e(h.get('canonical_url') or hltv_url)}">HLTV World Ranking</a> player lists vs VRS rosters (<a href="{e(inp['model']['valve_team_js'])}">team.js</a>: ≥{OVERLAP} shared players = same team). Ambiguous, missing or mismatched teams → blank + flag. No fuzzy or near-name matching.</li>
-<li><b>Market lines</b> — external bookmaker collection is owned by session 79a1c6c8 (C-02) per <a href="https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/COORDINATION.md">COORDINATION.md</a>; this page does not scrape bookmakers.</li>
+<li><b>Market reference</b>: external bookmaker collection belongs to session 79a1c6c8 (C-02) per <a href="https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/COORDINATION.md">COORDINATION.md</a>. This page reads its <code>lines/analysis.csv</code> read-only and recomputes no-vig as (1/o<sub>A</sub>)/(1/o<sub>A</sub>+1/o<sub>B</sub>). Those odds are shown for comparison only. They are never used in our line or pick, and they are not re-verified here (see flag M-S8).</li>
 </ol>
 <p class=note>Reproduce: <code>python3 model/fetch.py &amp;&amp; python3 model/build.py &amp;&amp; python3 model/test_model.py</code>. Refreshed automatically by <code>.github/workflows/model-91eff436.yml</code>.</p>
 </section></main>
