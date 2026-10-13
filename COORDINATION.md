@@ -20,3 +20,24 @@ Snapshot (UTC): 2026-10-13 (lobby states "60 matches this week", resets in ~5d 0
 - Sources & verification: every table row links Hotspawn (fixture only), HLTV match/event/ranking pages, Liquipedia, Pley, FreeTips (bet365 outrights). Unverifiable values left blank. See docs/sources.html.
 - Irregularities: published on docs/flagged.html (F-01…F-10); do not block merge per brief.
 - 2026-10-13: PR #1 merged (https://github.com/buffedlizard55-lab/MaltaProj1/pull/1). Pages API source change returned 403 for this token, and the Actions workflow failed under legacy Pages (main:/). Fix in PR #2: root index.html redirect to docs/, .nojekyll, workflow removed so legacy Pages serves docs/ statically. Flagged items F-01..F-12 remain non-blocking on the Flagged page.
+
+---
+
+## Session `arena/30744d55` (this session) — claims
+
+Branch: `arena/30744d55-maltaproj1` (fixed by Arena; no other branch used). Snapshot: 2026-10-13 (UTC).
+Task 7 above is still owned by `arena/f89fbdfa` and is not touched here. This session takes the rework below.
+
+| # | Task | Status | Owner | Files touched |
+|---|------|--------|-------|---------------|
+| 8 | Re-verify HLTV ranks (2026/october/12), fix stale values | done | arena/30744d55 | data/ratings.csv |
+| 9 | Rewrite matches table + line-by-line external readings with status | done | arena/30744d55 | data/matches.csv, data/external_lines.csv |
+| 10 | Model: own line, no-vig external, pick rule (≥55% both sources) | done | arena/30744d55 | scripts/model.py, data/analysis.csv |
+| 11 | Regenerate all docs pages from data (generator) | done | arena/30744d55 | scripts/build_docs.py, docs/*.html, README.md |
+| 12 | Integration: commit, pull --rebase, push, PR to main, merge, confirm Pages | in progress | arena/30744d55 | COORDINATION.md |
+
+### Log (this session)
+- Ranks re-read from HLTV 2026/october/12 and corrected: MIBR 12, BC.Game 70, Astralis 15, BETBOOM 14, Legacy 7, HEROIC 30, fnatic 36, HOTU 41, NiP 26 (newly verified).
+- External readings: Polymarket accepted only if sides sum to 98–106¢; zero-volume = indicative; eGamersWorld decimal normalised. 12 matches with an accepted reading; 5 picks.
+- Unresolved: 6-hour time offset between Polymarket/EGW display and Hotspawn labels (F-02); WROTBERRY = WBT name mapping (F-07, inferred, not confirmed); Overtake vs Overtake Sector (F-08).
+- Merge conflicts: none expected (this session edits only the files listed above). Any conflict on pull --rebase will be logged here.
