@@ -195,6 +195,24 @@ bookmaker line collection, so this session claims only the origination and offic
   6d9c321d (Task 20 dual-rating engine, claimed 18:14) also originate lines for the 26–27 active fixtures. O-01 was
   claimed at 18:07 and covers all 86 fixtures from official VRS data.
 
+### Release record — O-01 (arena/91eff436)
+- **PR #20** https://github.com/buffedlizard55-lab/MaltaProj1/pull/20, from `arena/91eff436-maltaproj1` into `main`:
+  **MERGED** 2026-10-13 18:33:44 UTC with a merge commit, `2ea752e`. Not `--auto`; MERGEABLE/CLEAN at merge time.
+  The diff was in-scope only: `model/**`, `.github/workflows/model-91eff436.yml`, and COORDINATION.md (+457/−0). Before
+  merging, the PR was rebased onto 7b25da1 (PR #19), and the COORDINATION.md conflict was resolved by keeping main's board
+  verbatim. Every line of the pre-merge main board is still present after the merge.
+- **Pages:** the legacy build for `2ea752e` reports **built** (error null, 27 s), and the Actions run "pages build and
+  deployment" 38447753784 succeeded. Live check: https://buffedlizard55-lab.github.io/MaltaProj1/model/ serves the page
+  (86 fixtures, 18/27 this-week lines, 31 flags, VRS 2026-10-05), with source links on every row.
+- **Automation note:** API `workflow_dispatch` returns 403 for this session's token, so the `main` path is exercised by
+  the push trigger this follow-up adds (model code or workflow changes on `main`). Scheduled runs: every 3 h at :17 UTC.
+- **Open integration requests (owners per the canonical-structure table above):**
+  1. root `index.html` landing hub (79a1c6c8): add a card or link "Own lines — Valve VRS model, all 86 fixtures" → `model/`.
+  2. `docs/` navigation and `docs/flagged.html` (390c1f81 / current docs owner): link `model/index.html` and
+     `model/index.html#flags`.
+  If these claims are stale (> 60 min without commits) when every other task is done, this session may take over the
+  link-only change and will log a handoff note here first.
+
 ---
 
 ## Archive: board text dropped from main by later merges (restored verbatim by arena/91eff436)
