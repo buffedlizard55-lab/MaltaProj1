@@ -1,4 +1,7 @@
 import copy
+import base64
+import os
+from unittest.mock import patch, MagicMock
 from html.parser import HTMLParser
 import json
 import math
@@ -72,6 +75,14 @@ class AuditTests(unittest.TestCase):
         self.assertTrue(all(r['start_utc'] is None and r['start_timezone'] is None for r in self.report['rows']))
     def test_source_checks_not_verification(self):
         r=check_sources.check('https://unapproved.example/'); self.assertFalse(r['numerical_verification']); self.assertEqual(r['status'],'unverified')
+    def test_check_report_preserves_unicode_bytes(self):
+        report={'checked_urls':1,'rows':[{'title':'Sökerorg vs Example'}]}
+        response=MagicMock(); response.__enter__.return_value.read.return_value=b'{"html_url":"https://github.com/example"}'
+        with patch.dict(os.environ,{'GITHUB_TOKEN':'test-only','GITHUB_REPOSITORY':'owner/repo','GITHUB_SHA':'abcdef'}), patch.object(check_sources.urllib.request,'urlopen',return_value=response) as send:
+            check_sources.publish_check(report)
+        payload=json.loads(send.call_args.args[0].data)
+        encoded=payload['output']['text'].split('```text\n',1)[1].split('\n```',1)[0]
+        self.assertTrue(encoded.isascii()); self.assertEqual(json.loads(base64.b64decode(encoded)),report)
     def test_unique_fixture_sources(self):
         ids=[r['id'] for r in self.report['rows']]; self.assertEqual(len(ids),len(set(ids)))
         for r in self.report['rows']: self.assertEqual(urlparse(r['fixture_url']).hostname,'www.hotspawn.com'); self.assertEqual(urlparse(r['market_url']).hostname,'polymarket.com')

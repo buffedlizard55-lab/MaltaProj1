@@ -4,6 +4,7 @@ Public GETs with timeouts and size caps; no auth/captcha bypass. Run on Actions
 because this agent's shell egress excludes source hosts. Output stays isolated.
 """
 import concurrent.futures
+import base64
 from datetime import datetime, timezone
 import hashlib
 import json
@@ -84,14 +85,16 @@ def publish_check(report):
     sha = os.environ.get('GITHUB_SHA')
     if not all((token, repo, sha)):
         raise RuntimeError('GitHub Actions context is required to publish a check report')
-    text = json.dumps(report, indent=2)
+    # GitHub sanitizes Unicode escape sequences in Markdown check output.
+    # An ASCII base64 payload preserves exact machine-readable report bytes.
+    text = base64.b64encode(json.dumps(report, ensure_ascii=False).encode('utf-8')).decode('ascii')
     payload = {
         'name': 'Primary source accessibility — evidence audit', 'head_sha': sha,
         'status': 'completed', 'conclusion': 'neutral',
         'output': {
             'title': f"{report['checked_urls']} HTTP source checks; numerical verification NOT performed",
             'summary': 'Accessibility results only. A reachable page never verifies an odds value. Snapshot timestamps are not refreshed.',
-            'text': '```json\n' + text + '\n```',
+            'text': 'Exact report bytes, UTF-8 JSON encoded as base64:\n\n```text\n' + text + '\n```',
         },
     }
     request = urllib.request.Request(
