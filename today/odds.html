@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bookmaker lines used · Hotspawn Pick'em line board</title>
+<meta name="description" content="Source-linked win probabilities and picks for the CS2/LoL matches in the Hotspawn Play Pick'em, built from external bookmaker lines and official rating data.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top"><div class="top-in">
+  <div class="brand">
+    <h1>Hotspawn Pick'em — line board</h1>
+    <span class="stamp">data snapshot 2026-10-13T22:02:49Z UTC · <span id="count"></span></span>
+  </div>
+  <nav class="pages"><a href="index.html">Dashboard</a><a href="matches.html">All matches</a><a href="cs2.html">CS2</a><a href="lol.html">LoL</a><a href="tournaments.html">Tournaments</a><a href="by-tier.html">Tiers</a><a href="odds.html" class="active">Bookmaker lines</a><a href="ratings.html">Team ratings</a><a href="methodology.html">Method</a><a href="sources.html">Sources</a><a href="flagged.html">Flagged for review</a><a href="repo-review.html">Repo review</a></nav>
+</div></header>
+<main>
+<h2>Bookmaker lines used</h2>
+
+<p class="muted">Every price read this run, one row per bookmaker. The board's market probability is the median of the match-winner column per fixture.</p><div class="tablewrap"><table><thead><tr><th>Match</th><th>Source</th><th>Bookmaker</th><th>Match-winner prices</th><th>De-vigged favourite</th><th>Margin</th><th>Source page</th></tr></thead><tbody><tr><td colspan="7" class="muted">No bookmaker rows collected.</td></tr></tbody></table></div>
+</main>
+<footer>
+  <p><strong>Not betting advice.</strong> Probabilities are derived from third-party bookmaker
+  prices (de-vigged) and from published rating points, each linked per row. Hotspawn Play is used
+  only to identify which matches are in the Pick'em and when they lock; Hotspawn's crowd
+  percentages are not collected into this dataset and never influence a probability or a pick.</p>
+  <p>Values that could not be confirmed from an official page are shown as “—” and listed on the
+  <a href="flagged.html">Flagged for review</a> page. Generated automatically — no manual input.</p>
+</footer>
+<script>
+document.querySelectorAll('[data-filter]').forEach(function(el){
+  el.addEventListener('input', function(){ apply(); });
+});
+function apply(){
+  var q=(document.getElementById('q')||{}).value||'';
+  var tour=(document.getElementById('tournament')||{}).value||'';
+  var sport=(document.getElementById('sport')||{}).value||'';
+  var onlyMissing=document.getElementById('missing')&&document.getElementById('missing').checked;
+  q=q.toLowerCase();
+  document.querySelectorAll('tbody tr').forEach(function(tr){
+    var text=(tr.dataset.search||'');
+    var ok=!q||text.indexOf(q)>=0;
+    if(tour) ok=ok&&tr.dataset.tournament===tour;
+    if(sport) ok=ok&&tr.dataset.sport===sport;
+    if(onlyMissing) ok=ok&&tr.dataset.missing==='1';
+    tr.style.display=ok?'':'none';
+  });
+  var shown=0;document.querySelectorAll('tbody tr').forEach(function(tr){
+    if(tr.style.display!=='none')shown++;});
+  var out=document.getElementById('count');if(out)out.textContent=shown+' rows shown';
+}
+function localise(){
+  var opts={month:'short',day:'numeric',hour:'2-digit',minute:'2-digit',timeZoneName:'short'};
+  document.querySelectorAll('time[data-utc]').forEach(function(t){
+    var d=new Date(t.dataset.utc);
+    if(!isNaN(d)) t.textContent=d.toLocaleString(undefined,opts);
+  });
+}
+document.addEventListener('DOMContentLoaded',function(){localise();apply();});
+</script>
+<script>
+document.querySelectorAll('time[data-utc]').forEach(function(t){
+  var d = new Date(t.dataset.utc);
+  if (isNaN(d)) return;
+  var shown = t.dataset.show || 'both';
+  var local = d.toLocaleString(undefined, {month:'short',day:'numeric',hour:'2-digit',
+    minute:'2-digit',timeZoneName:'short'});
+  t.innerHTML = '<span class="muted">local</span> ' + local +
+    (shown === 'both' ? ' <span class="muted">· UTC</span> ' +
+      t.dataset.utc.replace('T',' ').replace('Z','') : '');
+});
+</script>
+</body>
+</html>

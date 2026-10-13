@@ -1,0 +1,43 @@
+playwright available: True
+probe hotspawn       path=http status=200 bytes=433814 err=None
+probe egw-cs2        path=browser status=403 bytes=4755 err=None
+probe hltv-ranking   path=browser status=200 bytes=1089517 err=None
+probe valve-api      path=http status=200 bytes=50648 err=None
+slate candidates for odds lookup: 128 of 388 payload rows
+{
+ "generated_utc": "2026-10-13T22:02:49Z",
+ "hotspawn_fixtures": 388,
+ "sports": {
+  "cs2": 90,
+  "lol": 298
+ },
+ "week_total_text": 131,
+ "week_total_context": " Tournaments How To Play League of Legends Pick'em Lobby Play other game titles This week 131 matches this week Resets in 5d 01h 59m 46s Sign in to tra",
+ "reset_utc": "2026-10-19T00:00:02Z",
+ "ng_state_rows": {
+  "lobby": 90,
+  "cs2-pickems": 89,
+  "thp-pickems": 13,
+  "lol-pickems": 298
+ },
+ "cards_rendered": {
+  "lobby": 31,
+  "cs2-pickems": 30,
+  "thp-pickems": 13,
+  "lol-pickems": 233
+ },
+ "egw_candidates": 0,
+ "egw_events_scanned": 0,
+ "egw_fixtures_with_book_table": 0,
+ "egw_fixtures_without_link": 128,
+ "egw_deadline_hit": false,
+ "pinnacle_quotes": 0,
+ "pinnacle_counters": {},
+ "hltv_ranking_teams": 0,
+ "hltv_matches": 0,
+ "valve_vrs_file": "standings_global_2026_10_05.md",
+ "valve_vrs_teams": 349,
+ "valve_vrs_error": null,
+ "fetch_failures": []
+}
+collect exit=0

@@ -897,6 +897,53 @@ Snapshot (UTC): 2026-10-13 (lobby states "60 matches this week", resets in ~5d 0
 
 ---
 
+## Session `arena/b90700c6` — claim (2026-10-13 21:20 UTC)
+
+Branch: `arena/b90700c6-maltaproj1` (Arena fixes this session to that branch; no other branch is created or pushed).
+
+Read before claiming: root board (union of f89fbdfa · 51fb12f8 · 2cb6bff4 · 79a1c6c8 · 5515fcc9 · 390c1f81 · 4f599d7c · 91eff436 · 6d9c321d · dc2b77dc · 844ba68e · 30744d55 · fe2de00c).
+**Staleness check at claim time (21:19 UTC):** newest non-main branch tip is `arena/91eff436-maltaproj1` @ 19:58:38Z and
+`arena/4f599d7c-maltaproj1` @ 19:56:12Z; every other session branch is older. All are >60 minutes stale, so under the
+board's own 60-minute handoff rule this session takes over the **refresh + final integration** task and notes the handoff.
+No other session's files are deleted; their dashboards stay published and linked.
+
+| ID | Task | Status | Owner | Exclusive file scope |
+|---|---|---|---|---|
+| R-01 | Live refresh: re-read the public Hotspawn Pick'em TransferState (`lobby`, `cs2-pickems`, `thp-pickems`) at the current timestamp, re-collect external bookmaker match-winner lines (EGamersWorld; HLTV rank context only), recompute de-vigged market probabilities + our own rating-based probabilities, and publish a pick for every fixture with a per-row official source link. Unverifiable rows stay blank + flagged. | done | arena/b90700c6 | `refresh/**`, `.github/workflows/refresh-b90700c6.yml` |
+| R-02 | Publish the mobile-first canonical dashboard for the refreshed slate (landing + category subpages, all rows source-linked) and run the line-by-line verification pass. | done | arena/b90700c6 | `today/**` |
+| R-03 | Final integration: link `today/**` from the root landing, re-verify the combined data, PR from this branch to `main`, merge, confirm GitHub Pages, record the result here. | in progress — PR #41 opened | arena/b90700c6 | `index.html`, `COORDINATION.md`, `README.md` |
+Rules this session follows: Hotspawn crowd pick percentages are **never** an input to any probability (they are recorded as
+reference only, clearly labelled, and are not used by the pick logic). Unknown values stay blank and are flagged.
+
+
+### Session `arena/b90700c6` — evidence, sources and integration record (2026-10-13 UTC)
+
+**R-01 sources and what each contributes (all read from public pages, no login, no evasion):**
+
+| Source | Reached from CI? | Used for | Per-row link |
+|---|---|---|---|
+| `https://play.hotspawn.com/lobby`, `/cs2-pickems`, `/thp-pickems` | yes (HTTP, server-rendered `ng-state`) | fixture list, exact UTC start/lock times, week window from the page's own reset countdown | `hotspawn_url` column |
+| `https://egamersworld.com/counterstrike/matches` + match pages | no — Cloudflare 403 for the runner even with an ordinary browser; prices read by hand from the public pages and recorded in `refresh/logs/`/`odds` rows only when matched | external match-winner prices (never map markets) | EGW match URL in `odds.csv` |
+| `https://www.pinnacle.com/en/esports/games/cs2/matchups/` | intermittent (200 in earlier runs, challenge page in run 38472348079) | independent second price source, de-vigged the same way | capture URL in `odds.csv` |
+| `https://www.hltv.org/ranking/teams/2026/october/12` | intermittent (Cloudflare challenge in run 38472348079 → `R-HLTV` flag) | world-ranking points for the own line | `refresh/data/collected.json` → `hltv.ranking_url` |
+| `https://github.com/ValveSoftware/counter-strike_regional_standings` (raw markdown, weekly) | yes (349 teams) | official Valve Regional Standings points → own line, and the ratings table | `vrs_source_url` column |
+
+**Integration PR:** <https://github.com/buffedlizard55-lab/MaltaProj1/pull/41> (branch `arena/b90700c6-maltaproj1` → `main`), opened 2026-10-13 ~22:5x UTC with the summary, sources and flags above; merged on green CI without waiting for review, per the brief.
+
+**R-02 verification result (run 38472348079, `refresh/logs/verify.txt`):** `rows: 124`, `pages: 12`,
+`errors: []`, `warnings: []`, `OK: all checks passed`; local re-run after the ratings fix reports
+`ratings_rows: 40` (every published VRS team, HLTV columns blank + `R-HLTV` flagged because the ranking
+page was unreadable from the runner). Link check on the landing page and all 12 `today/**` pages:
+0 broken local links. No Hotspawn crowd value is an input: `build.py` gates the dataset by exact key
+name and exits non-zero on a leak.
+
+**Flags carried into the integration (published, non-blocking):** `R-NOMKT` 124 (no external price
+readable for this run), `R-NORATE` 102 rows without an own line, `R-SINGLE` 0 for this snapshot,
+`R-LOCKED` 12, `R-STALE` 260 stale listings excluded, `R-COUNT` 0, `R-HLTV` raised this run.
+Rows without a confirmed value stay blank on the board rather than being estimated.
+
+**Merge note (session `arena/b90700c6`, 2026-10-13 ~23:0x UTC):** merging `main` into `arena/b90700c6-maltaproj1` for PR #41 conflicted in this file because main had gained the sections below while this session appended its own record at the same place. The conflict was resolved by keeping **both**: nothing from main and nothing from this session was dropped, and the same rule was applied to the two additive cards in root `index.html`.
+
 ## Session `arena/9569108d` — claim (2026-10-13 ~21:18 UTC)
 
 Branch: `arena/9569108d-maltaproj1` (fixed by Arena; the brief's `session-<id>/<task>` naming cannot be used, and no other branch is created or pushed).
