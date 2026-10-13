@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Method &amp; policy · Hotspawn Pick'em line board</title>
+<meta name="description" content="Source-linked win probabilities and picks for the CS2/LoL matches in the Hotspawn Play Pick'em, built from external bookmaker lines and official rating data.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top"><div class="top-in">
+  <div class="brand">
+    <h1>Hotspawn Pick'em — line board</h1>
+    <span class="stamp">data snapshot 2026-10-13T21:32:25Z UTC · <span id="count"></span></span>
+  </div>
+  <nav class="pages"><a href="index.html">Dashboard</a><a href="matches.html">All matches</a><a href="cs2.html">CS2</a><a href="lol.html">LoL</a><a href="tournaments.html">Tournaments</a><a href="by-tier.html">Tiers</a><a href="odds.html">Bookmaker lines</a><a href="ratings.html">Team ratings</a><a href="methodology.html" class="active">Method</a><a href="sources.html">Sources</a><a href="flagged.html">Flagged for review</a><a href="repo-review.html">Repo review</a></nav>
+</div></header>
+<main>
+<h2>Method &amp; policy</h2>
+
+
+<div class="note"><strong>What this board does and does not do.</strong>
+<ul>
+<li>Fixture identity and lock times: Hotspawn Play's own payload.</li>
+<li>Market probability: each external source&#x27;s match-winner prices are converted to implied probability and normalised to remove the bookmaker overround; EGamersWorld uses the median price across the bookmakers printed on the page, Pinnacle uses its public guest moneyline; the sources&#x27; de-vigged probabilities are then averaged.</li>
+<li>Own line: standard Elo expectation 1/(1+10^(-dP/400)) on published rating points (HLTV world ranking and Valve Regional Standings, averaged where both cover both teams).</li>
+<li>Combined estimate: 70% market + 30% own line when both exist; whichever single source exists otherwise, flagged.</li>
+<li>Hotspawn crowd pick percentages are read by the collector for transparency, dropped before publication, and never influence a probability or a pick (enforced by the build gate).</li>
+</ul></div>
+<h3>Worked example — Zomblers vs Overtake Sector</h3><p>Median external prices: 2.55 and 1.46 (from 0 bookmaker rows on <a href="https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&amp;withSpecials=false" rel="noopener">EGamersWorld</a>). Raw implied: 39.2% + 68.4% = 107.6% (the 7.6% above 100 is the bookmaker margin). Removing it proportionally gives 36.5% / 63.5%, the number on the board.</p>
+<h3>Limits</h3>
+<ul>
+<li>Bookmaker prices move. Every price on this site carries the UTC time it was read; the
+<a href="sources.html">Sources</a> page lists the exact page and its SHA-256.</li>
+<li>Where only one bookmaker price was readable, the row says so and is listed under
+<a href="flagged.html">Flagged for review</a>.</li>
+<li>Rating points are not Elo ratings; the logistic scale (400) is the standard Elo
+constant and is documented, not fitted to this slate.</li>
+<li>Series format (Bo1/Bo3) is taken from the Pick'em payload when present; where it is absent the
+row shows "Waiting For Information" and no format adjustment is applied.</li>
+<li>Academy teams are never matched to their parent organisation, and no name is ever matched
+fuzzily — an unmatched team produces a blank value plus a flag.</li>
+</ul>
+
+</main>
+<footer>
+  <p><strong>Not betting advice.</strong> Probabilities are derived from third-party bookmaker
+  prices (de-vigged) and from published rating points, each linked per row. Hotspawn Play is used
+  only to identify which matches are in the Pick'em and when they lock; Hotspawn's crowd
+  percentages are not collected into this dataset and never influence a probability or a pick.</p>
+  <p>Values that could not be confirmed from an official page are shown as “—” and listed on the
+  <a href="flagged.html">Flagged for review</a> page. Generated automatically — no manual input.</p>
+</footer>
+<script>
+document.querySelectorAll('[data-filter]').forEach(function(el){
+  el.addEventListener('input', function(){ apply(); });
+});
+function apply(){
+  var q=(document.getElementById('q')||{}).value||'';
+  var tour=(document.getElementById('tournament')||{}).value||'';
+  var sport=(document.getElementById('sport')||{}).value||'';
+  var onlyMissing=document.getElementById('missing')&&document.getElementById('missing').checked;
+  q=q.toLowerCase();
+  document.querySelectorAll('tbody tr').forEach(function(tr){
+    var text=(tr.dataset.search||'');
+    var ok=!q||text.indexOf(q)>=0;
+    if(tour) ok=ok&&tr.dataset.tournament===tour;
+    if(sport) ok=ok&&tr.dataset.sport===sport;
+    if(onlyMissing) ok=ok&&tr.dataset.missing==='1';
+    tr.style.display=ok?'':'none';
+  });
+  var shown=0;document.querySelectorAll('tbody tr').forEach(function(tr){
+    if(tr.style.display!=='none')shown++;});
+  var out=document.getElementById('count');if(out)out.textContent=shown+' rows shown';
+}
+function localise(){
+  var opts={month:'short',day:'numeric',hour:'2-digit',minute:'2-digit',timeZoneName:'short'};
+  document.querySelectorAll('time[data-utc]').forEach(function(t){
+    var d=new Date(t.dataset.utc);
+    if(!isNaN(d)) t.textContent=d.toLocaleString(undefined,opts);
+  });
+}
+document.addEventListener('DOMContentLoaded',function(){localise();apply();});
+</script>
+<script>
+document.querySelectorAll('time[data-utc]').forEach(function(t){
+  var d = new Date(t.dataset.utc);
+  if (isNaN(d)) return;
+  var shown = t.dataset.show || 'both';
+  var local = d.toLocaleString(undefined, {month:'short',day:'numeric',hour:'2-digit',
+    minute:'2-digit',timeZoneName:'short'});
+  t.innerHTML = '<span class="muted">local</span> ' + local +
+    (shown === 'both' ? ' <span class="muted">· UTC</span> ' +
+      t.dataset.utc.replace('T',' ').replace('Z','') : '');
+});
+</script>
+</body>
+</html>

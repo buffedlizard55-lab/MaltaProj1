@@ -1,8 +1,20 @@
-Traceback (most recent call last):
-  File "/home/runner/work/MaltaProj1/MaltaProj1/refresh/build_site.py", line 637, in <module>
-    raise SystemExit(main())
-                     ^^^^^^
-  File "/home/runner/work/MaltaProj1/MaltaProj1/refresh/build_site.py", line 525, in main
-    <li>Rating points are not Elo ratings; the logistic scale ({ELO_SCALE:.0f}) is the standard Elo
-                                                                ^^^^^^^^^
-NameError: name 'ELO_SCALE' is not defined
+{
+ "pages": [
+  "by-tier.html",
+  "cs2.html",
+  "flagged.html",
+  "index.html",
+  "lol.html",
+  "matches.html",
+  "methodology.html",
+  "odds.html",
+  "ratings.html",
+  "sources.html",
+  "tournaments.html"
+ ],
+ "rows": 124,
+ "cs2": 31,
+ "lol": 93,
+ "odds_rows": 6
+}
+site exit=0
