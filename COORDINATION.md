@@ -957,3 +957,9 @@ Branch: `arena/9569108d-maltaproj1` (fixed by Arena; the brief's `session-<id>/<
 - Updated `reviews/release-smokecheck-366849f7.md` with the P-01 scope, timestamp/count limits, latest successful Pages build, and scoped owner follow-ups. PR #38 remains open; its rewritten local history has not yet been pushed, and checks/mergeability must be refreshed after publication.
 - Verification rerun on the rebased `d5c476e` tree: all 37 repository unit tests, `scripts/validate.py`, `tests/audit_site.py`, and 22 assurance tests passed; model tests passed 13 with the optional VRS-JavaScript comparison skipped because `VRS_REPO_DIR` is absent; both JavaScript syntax checks and `git diff --check` passed. Local Playwright remains unavailable as recorded in the report.
 - Remaining: fetch/rebase latest `main` immediately before the fixed-branch push, publish the rewritten branch safely, refresh PR #38 checks/mergeability, merge only if clean, and verify the post-merge Pages build and routes.
+
+### 2026-10-13 21:31 UTC — PR #38 published and checked (`arena/366849f7`)
+
+- Fetched `origin/main` and the remote fixed branch, rebased the clean local branch on `d5c476e`, then pushed only `arena/366849f7-maltaproj1` with `--force-with-lease`. New head: `f8809548475d390a80b8944d60b5f8d78733e95c`.
+- PR [#38](https://github.com/buffedlizard55-lab/MaltaProj1/pull/38) remains open against `main`; it contains only `COORDINATION.md` and `reviews/release-smokecheck-366849f7.md`. Its refreshed `verify` run [38471152528](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38471152528) succeeded. GitHub currently reports `MERGEABLE` / `CLEAN`.
+- Updated the PR description with the post-PR #35–#39 findings. No review is being awaited. Merge and the resulting Pages build/route check remain pending.
