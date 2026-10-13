@@ -1772,3 +1772,9 @@ MIBR–BC.Game 1.637/2.230 → 57.7 %/42.3 % (5.9 %); VRS 1543/1716 → 27.0 %/7
   FL-22 EGamersWorld HTTP 403 from CI · FL-23 single external source · FL-24 no per-match Hotspawn link
   for some rows · FL-25 prediction-market fallback labelling · FL-26 duplicate Valve roster entries
   (higher-points entry used, alternative printed).
+- 23:27 UTC addendum: the final coordination PR **#66** (this record's own PR) was merged
+  2026-10-13T23:24:55Z as merge commit `a19119d12eea763a721dbe9f2ddc95c6e19830dc`; Pages deployment
+  38484093471 completed success and the scheduled run **38484093478** then refreshed `live/**` on `main`
+  again (snapshot 23:25:45Z, flagged counts now slate-only: FL-01 23, FL-02 3, FL-04 2, FL-13 21,
+  FL-26 3). Session `arena/459ff624` has no further planned commits; the hourly cron continues without
+  manual input.
