@@ -12,7 +12,7 @@ Snapshot (UTC): 2026-10-13 (lobby states "60 matches this week", resets in ~5d 0
 | 4 | Originate own model lines (documented, reproducible) | done | arena/f89fbdfa | scripts/model.py, data/ratings.csv, data/matches.csv |
 | 5 | GitHub Pages site (landing + category subpages, tables) | done | arena/f89fbdfa | docs/, .github/workflows/pages.yml |
 | 6 | Line-by-line verification + Flagged for Review page | done | arena/f89fbdfa | docs/flagged.html, docs/sources.html |
-| 7 | Integration, PR to main, merge, confirm Pages deploy | in progress | arena/f89fbdfa | (integration = this session; no parallel sessions found — repo had only README on main) |
+| 7 | Integration, PR to main, merge, confirm Pages deploy | done | arena/f89fbdfa | (integration = this session; no parallel sessions found — repo had only README on main) |
 
 ## Log
 - 2026-10-13: No COORDINATION.md existed; created it. Repo contained only README.md. No other sessions/branches claimed work.
@@ -20,3 +20,4 @@ Snapshot (UTC): 2026-10-13 (lobby states "60 matches this week", resets in ~5d 0
 - Sources & verification: every table row links Hotspawn (fixture only), HLTV match/event/ranking pages, Liquipedia, Pley, FreeTips (bet365 outrights). Unverifiable values left blank. See docs/sources.html.
 - Irregularities: published on docs/flagged.html (F-01…F-10); do not block merge per brief.
 - 2026-10-13: PR #1 merged (https://github.com/buffedlizard55-lab/MaltaProj1/pull/1). Pages API source change returned 403 for this token, and the Actions workflow failed under legacy Pages (main:/). Fix in PR #2: root index.html redirect to docs/, .nojekyll, workflow removed so legacy Pages serves docs/ statically. Flagged items F-01..F-12 remain non-blocking on the Flagged page.
+- 2026-10-13: PR #2 merged. GitHub Pages status=built; live verified: https://buffedlizard55-lab.github.io/MaltaProj1/ -> /docs/ dashboard renders (26 fixtures, 5 own lines, Flagged F-01..F-12, Sources S-01..S-13). All tasks done. NOTE: other arena/* branches appeared in run list (parallel sessions arena/4f599d7c, arena/79a1c6c8) - no file conflicts encountered; this session did not edit their branches.
