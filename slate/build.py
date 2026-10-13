@@ -22,7 +22,7 @@ from __future__ import annotations
 import csv
 import html
 import json
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
@@ -284,6 +284,15 @@ def external_tables():
             "rows": model, "a": "team_a", "b": "team_b", "start": "scheduled_start_utc",
             "pick": "pick", "pick_pct": None, "prob_a": "market_p_a",
         })
+    hltv_read = load_csv(ROOT / "verify" / "data" / "hltv_listing.csv")
+    if hltv_read:
+        tables.append({
+            "name": "verify/ HLTV listing (session 4b9c40b0)",
+            "file": "verify/data/hltv_listing.csv",
+            "url": "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/verify/data/hltv_listing.csv",
+            "rows": hltv_read, "a": "hltv_team1", "b": "hltv_team2", "start": "hltv_display",
+            "pick": None, "pick_pct": None, "prob_a": None, "offset_hours": 4,
+        })
     canonical = load_csv(ROOT / "data" / "matches.csv")
     if canonical:
         tables.append({
@@ -312,6 +321,12 @@ def build_audit(analysis: list[dict]) -> list[dict]:
                 entry["checks"][table["file"]] = {"present": "no", "time": "", "pick": "", "url": table["url"]}
                 continue
             start = (found.get(table["start"]) or "").replace("T", " ").replace("Z", "").strip()
+            if table.get("offset_hours") and start:
+                try:
+                    base = datetime.strptime(start[:16], "%Y-%m-%d %H:%M").replace(tzinfo=timezone.utc)
+                    start = (base + timedelta(hours=table["offset_hours"])).strftime("%Y-%m-%d %H:%M")
+                except ValueError:
+                    pass
             mine = (row["start_utc"] or "").replace("T", " ").replace("Z", "").strip()
             entry["checks"][table["file"]] = {
                 "present": "yes",
@@ -675,14 +690,25 @@ def page_verified(data: dict, audit: list[dict]) -> str:
                 agree += 1
             else:
                 differ += 1
+            found = find_row(table["rows"], entry["team_a"], entry["team_b"], table["a"], table["b"]) or {}
+            match_cell = ""
+            if found.get("hltv_url"):
+                match_cell = '<td data-label="HLTV match">' + link(found.get("hltv_url"), "HLTV") + "</td>"
+            their_pick = esc(check["pick"] or "—")
+            my_pick = esc(entry["my_pick"] or "—")
+            their_time = esc(check["time"])
+            file_cell = link(check["url"], table["file"])
             rows.append(f'<tr><td data-label="Match">{esc(entry["team_a"])} vs {esc(entry["team_b"])}</td>'
-                        f'<td data-label="Their start (UTC)">{esc(check["time"])}</td>'
-                        f'<td data-label="Their pick">{esc(check["pick"])}</td>'
-                        f'<td data-label="My pick">{esc(entry["my_pick"] or "—")}</td>'
-                        f'<td data-label="Their file">{link(check["url"], table["file"])}</td></tr>')
+                        f'<td data-label="Their start (converted to UTC)">{their_time}</td>'
+                        f'<td data-label="Their pick">{their_pick}</td>'
+                        f'<td data-label="My pick">{my_pick}</td>'
+                        + match_cell
+                        + f'<td data-label="Their file">{file_cell}</td></tr>')
+        extra_head = '<th>HLTV match</th>' if any((r.get("hltv_url") for r in table["rows"])) else ""
         body.append(f"<h3>{esc(table['name'])} — {agree} agree, {differ} differ, {absent} not listed</h3>")
-        body.append('<div class="scroll"><table><tr><th>Match</th><th>Their start (UTC)</th><th>Their pick</th>'
-                    '<th>My pick</th><th>Their file</th></tr>' + "".join(rows) + "</table></div>")
+        body.append('<div class="scroll"><table><tr><th>Match</th><th>Their start (converted to UTC)</th>'
+                    '<th>Their pick</th><th>My pick</th>' + extra_head + '<th>Their file</th></tr>'
+                    + "".join(rows) + "</table></div>")
     return page("Verification — Hotspawn Pick'em line board", "".join(body), "verified.html",
                 "Per-row checks against the sources and against this repository's other tables")
 

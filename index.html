@@ -5,116 +5,242 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>MaltaProj1 — Hotspawn Pick'em line analysis</title>
 <style>
-:root{--bg:#0f1216;--panel:#171c22;--panel2:#1e242c;--line:#2b333d;--fg:#e8edf3;--muted:#9aa7b4;--accent:#6d4bbd}
+:root{--bg:#0f1216;--panel:#171c22;--panel2:#1e242c;--line:#2b333d;--fg:#e8edf3;--muted:#9aa7b4;--accent:#6d4bbd;--good:#3fb950}
 *{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
-.wrap{max-width:960px;margin:0 auto;padding:40px 22px 60px}
-h1{font-size:26px;margin:0 0 6px}
-p.lead{color:var(--muted);margin:0 0 26px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
-a.card{display:block;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px;text-decoration:none;color:inherit}
+.wrap{max-width:1020px;margin:0 auto;padding:34px 20px 60px}
+h1{font-size:25px;margin:0 0 6px}
+h2{font-size:15px;margin:30px 0 10px;color:#cfd8e3;text-transform:uppercase;letter-spacing:.06em;font-weight:700}
+p.lead{color:var(--muted);margin:0 0 6px}
+p.lead.small{font-size:13px;margin:14px 0 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:12px}
+a.card{display:block;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px;text-decoration:none;color:inherit}
 a.card:hover{border-color:var(--accent)}
-a.card h2{margin:0 0 6px;font-size:16px;color:#cfd8e3}
-a.card p{margin:0;color:var(--muted);font-size:13px}
-.tag{display:inline-block;font-size:11px;font-weight:700;border:1px solid var(--line);border-radius:999px;padding:1px 8px;color:var(--muted);margin-left:6px}
-.note{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:8px;padding:12px 14px;margin:22px 0 0;font-size:13px;color:var(--muted)}
+a.card h3{margin:0 0 5px;font-size:15.5px;color:#dbe4ee;font-weight:650}
+a.card p{margin:0;color:var(--muted);font-size:12.8px;line-height:1.5}
+a.primary{background:linear-gradient(180deg,#1d2430,#171c22);border-color:var(--accent)}
+.tag{display:inline-block;font-size:10.5px;font-weight:700;border:1px solid var(--line);border-radius:999px;padding:1px 7px;color:var(--muted);margin-left:6px;vertical-align:middle}
+.tag.live{border-color:var(--good);color:#7ee787}
+.tag.new{border-color:var(--accent);color:#c9b6ff}
+.note{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:8px;padding:11px 13px;margin:18px 0 0;font-size:12.8px;color:var(--muted)}
 code{background:#0b0e12;border:1px solid var(--line);border-radius:4px;padding:1px 5px;font-size:12.5px}
 a{color:#8fb4ff}
+.subnav{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 0}
+.subnav a{font-size:12.5px;text-decoration:none;background:var(--panel2);border:1px solid var(--line);border-radius:999px;padding:3px 10px;color:var(--fg)}
+ul.plain{padding-left:18px;margin:8px 0 0}
+ul.plain li{color:var(--muted);font-size:12.8px;margin:3px 0}
 </style>
 </head>
 <body>
 <div class="wrap">
   <h1>Hotspawn Pick'em — line analysis</h1>
-  <p class="lead">Independent, source-linked analysis of the play.hotspawn.com Pick'em board (CS2 + League of Legends).
-  Fixtures come from the board itself; probabilities come only from outside bookmaker prices, de-vigged by this project.
-  Hotspawn's own crowd percentages are never used as a probability.</p>
+  <p class="lead">Independent, source-linked analysis of the <a href="https://play.hotspawn.com/lobby">play.hotspawn.com Pick'em lobby</a>.
+  Fixtures are read from the board's own server-rendered payload; probabilities come from <b>outside</b> sources only —
+  external bookmaker prices, de-vigged here, and this project's own model built on official rating data
+  (HLTV world ranking, Valve Regional Standings). Hotspawn's crowd percentages are never used as a probability.</p>
+  <p class="lead small">Every table row carries a link to the page it was read from. A value that could not be confirmed stays
+  blank and is listed on the <a href="slate/flagged.html">Flagged for review</a> page — nothing is inferred.</p>
 
+  <h2>Start here — current board</h2>
   <div class="grid">
-    <a class="card" href="today/">
-      <h2>This week's line board<span class="tag">refreshed automatically</span></h2>
-      <p>Every fixture in the current Pick'em week — the board counts them itself on every refresh — with its start/lock time, the external
-      bookmaker line where one is readable, our own rating-based line, the resulting pick and a source
-      link on every row. Mobile-first, rebuilt on a schedule from public pages only; unconfirmed values
-      stay blank and are flagged. Categories: CS2, League of Legends, tournaments, tiers, bookmaker
-      lines, team ratings, sources, flagged for review, repository review.</p>
+    <a class="card primary" href="slate/">
+      <h3>Live line board<span class="tag live">auto-refreshed</span></h3>
+      <p>Every fixture the Pick'em lobby lists right now, with a win probability for each team, the explicit pick,
+      the kickoff in UTC and a source link on every row. Mobile-first. Rebuilt from public pages by a scheduled job;
+      unconfirmed values stay blank and are flagged.</p>
     </a>
-    <a class="card" href="pickem/">
-      <h2>Complete slate &amp; external lines<span class="tag">380 fixtures</span></h2>
-      <p>Every match on the board (86 CS2 + 294 LoL) read from the Pick'em pages' own server-rendered payload, with exact
-      UTC start/lock times; 17 fixtures carry a real external price and this project's de-vigged line; the rest are blank on
-      purpose and listed on the Flagged page.</p>
+    <a class="card" href="slate/cs2.html">
+      <h3>CS2 fixtures and picks</h3>
+      <p>Counter-Strike 2 only: the open slate with market and model probabilities per team, plus the stale rows
+      Hotspawn still lists (kept for completeness, marked, never pickable).</p>
     </a>
-    <a class="card" href="docs/">
-      <h2>Tournament dashboards (earlier sessions)</h2>
-      <p>Per-event pages for the Thunderpick World Championship, Stake Pulse Beat III, CCT Europe, ESL Challenger and the
-      lower tiers, with an independent rank-based model and its own flagged/sources pages.</p>
+    <a class="card" href="slate/tournaments.html">
+      <h3>By tournament</h3>
+      <p>The same rows grouped by competition — Thunderpick World Championship 2026, Stake Pulse Beat III,
+      Elisa BreakOut Series #2, the CCT Europe series, ESL Challenger League and the rest.</p>
     </a>
-    <a class="card" href="pickem/flagged.html">
-      <h2>Flagged for Review</h2>
-      <p>Discrepancies between the board's own fields, sources that refuse automated reads, refused blanks and live-market
-      drift — each with a link for manual review.</p>
+    <a class="card" href="slate/tiers.html">
+      <h3>By tier</h3>
+      <p>How the open slate splits across the board's S / B / C tier labels and its points values.</p>
     </a>
-    <a class="card" href="pickem/methodology.html">
-      <h2>Methodology</h2>
-      <p>How the fixture list, the external prices and the de-vigged probability <code>p = (1/o<sub>A</sub>) / (1/o<sub>A</sub> + 1/o<sub>B</sub>)</code>
-      are produced — and exactly what is left blank instead of guessed.</p>
+    <a class="card" href="slate/fixtures.html">
+      <h3>All fixtures (coverage proof)</h3>
+      <p>The complete payload list — every row the lobby carries, with its exact UTC lock time and the page it came
+      from, so nothing on the board is silently skipped.</p>
     </a>
-    <a class="card" href="pickem/sources.html">
-      <h2>Sources</h2>
-      <p>Every source used (Hotspawn Play, EGamersWorld/BC.Game, HLTV, Liquipedia) and the CI probe results showing which
-      odds sites can and cannot be read programmatically.</p>
+    <a class="card" href="slate/lines.html">
+      <h3>Market lines</h3>
+      <p>Every external price reading: bookmaker, odds, de-vigged probability, margin, capture time and page URL —
+      including the fixtures where no price could be read.</p>
     </a>
-    <a class="card" href="docs/verified-lines.html">
-      <h2>Verified 27 Oct Lines &amp; 38 Team Ranks<span class="tag">HLTV Oct 12 + VRS</span></h2>
-      <p>Complete line-by-line verification of all 27 active October CS2 fixtures (26 SSR DOM + <code>#1079620 Black Phoenix vs 6666</code>),
-      all 38 teams' HLTV (2026-10-12) &amp; VRS ranks, 24/27 EGW/BC.Game sportsbook lines, dual-rank originated odds, and <code>total_picks</code> (N=7..21) audit.</p>
+    <a class="card" href="slate/own-lines.html">
+      <h3>Our own lines</h3>
+      <p>This project's own probability for every fixture whose two teams both have an official rating, with the
+      HLTV and Valve numbers and the arithmetic shown next to each result.</p>
     </a>
-    <a class="card" href="lines/analysis.csv">
-      <h2>Review file</h2>
-      <p><code>lines/analysis.csv</code> — one row per fixture with ids, times, crowd metadata, price status, odds, de-vigged
-      probabilities, source URL and capture time.</p>
+    <a class="card" href="slate/verified.html">
+      <h3>Verification</h3>
+      <p>Per-fixture identity and kickoff checks, plus a comparison against every other dataset this repository
+      publishes — disagreements are shown, never silently corrected.</p>
     </a>
-    <a class="card" href="picks/">
-      <h2>Current slate: probability and pick per match<span class="tag">mobile-friendly</span></h2>
-      <p>Every fixture in the live Hotspawn lobby with a win probability for each team from external bookmaker prices
-      (de-vigged) and our own VRS model, the pick, source links for every row, and a Flagged for Review page.</p>
+    <a class="card" href="slate/flagged.html">
+      <h3>Flagged for review<span class="tag new">start here if something looks off</span></h3>
+      <p>Unconfirmed values, source refusals, cross-table disagreements and standing caveats, each with the links
+      needed to check it.</p>
     </a>
-    <a class="card" href="mobile/">
-      <h2>Verified mobile CS2 dashboard<span class="tag">32 current + 59 stale</span></h2>
-      <p>Current-slate mobile-first view with 32 timestamped October CS2 records, 59 stale TransferState records retained for audit, external market probabilities, independently originated VRS lines, explicit picks, and source links on every row. Unverified values remain blank.</p>
+    <a class="card" href="slate/methodology.html">
+      <h3>Method</h3>
+      <p>Exactly how a fixture is read, how a probability is computed, and what is deliberately left blank.</p>
     </a>
-    <a class="card" href="model/">
-      <h2>Own lines: calibrated Valve VRS model<span class="tag">all 86 CS2 fixtures</span></h2>
-      <p>Our own win probability, fair odds and pick for every CS2 fixture. Built from official Valve Regional Standings,
-      re-calibrated on Valve's published match history and tested out of sample. Teams are matched by roster, every row
-      links its sources, and the page has its own flags plus a read-only cross-check of the other datasets. Refreshes
-      automatically.</p>
-    </a>
-    <a class="card" href="dashboard/">
-      <h2>Linescope dashboard<span class="tag">session 4f599d7c</span></h2>
-      <p>"The pick'em board, with evidence": fixtures, markets, inventory, CS2 and LoL views, flagged items, methodology,
-      sources and repository pages from session 4f599d7c's collector.</p>
-    </a>
-    <a class="card" href="assurance/">
-      <h2>Independent assurance<span class="tag">session 5515fcc9</span></h2>
-      <p>An evidence-backed audit dashboard that keeps fixture facts, market observations and calculations separate, with
-      primary-source links on every match.</p>
-    </a>
-    <a class="card" href="https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/reviews/source-audit-2026-10-13.md">
-      <h2>Source audit report<span class="tag">session dc2b77dc</span></h2>
-      <p>A read-only review of the merged data, sources and deployed pages (findings SA-01 to SA-10), with owner
-      requests. Markdown on GitHub.</p>
+    <a class="card" href="slate/sources.html">
+      <h3>Sources</h3>
+      <p>Every URL this board read, with time, HTTP status, size and SHA-256, so any reading can be re-fetched and compared.</p>
     </a>
   </div>
 
-  <div class="note">Built by Arena session <code>79a1c6c8</code>. Values that could not be confirmed from a public source are
-  blank and flagged; odds move and every row keeps its capture timestamp. No login, no evasion, no wagering — public pages only.</div>
-  <div class="note">The <code>today/</code> card was added by Arena session <code>b90700c6</code> as a link-only
-  final integration; it is generated from <code>refresh/</code> by
-  <code>.github/workflows/refresh-b90700c6.yml</code> and every existing card is unchanged.</div>
-  <div class="note">Cards for <code>model/</code>, <code>dashboard/</code>, <code>assurance/</code> and the source audit report were
-  added by Arena session <code>91eff436</code> in a link-only final integration, at their owners' request (see
-  <a href="https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/COORDINATION.md">COORDINATION.md</a>). All existing cards are unchanged.</div>
+  <h2>Other published boards in this repository</h2>
+  <div class="grid">
+    <a class="card" href="today/">
+      <h3>This week's line board<span class="tag">refreshed automatically</span></h3>
+      <p>Every fixture in the current Pick'em week — the board counts them itself on every refresh — with its
+      start/lock time, an external bookmaker line where one is readable, our own rating-based line and a source
+      link per row. Categories: CS2, League of Legends, tournaments, tiers, odds, ratings, sources, flagged.</p>
+    </a>
+    <a class="card" href="picks/">
+      <h3>Current slate: probability and pick per match<span class="tag">mobile-friendly</span></h3>
+      <p>Every fixture in the live lobby with a win probability per team from external bookmaker prices (de-vigged)
+      and a VRS-model line, the pick, per-row source links and its own Flagged page.</p>
+    </a>
+    <a class="card" href="board/">
+      <h3>Consolidated line board<span class="tag">tier pages</span></h3>
+      <p>All fixtures with external lines and an own line from the Valve Regional Standings, split into S / B / C
+      tier pages, with its own sources, method and Flagged pages.</p>
+    </a>
+    <a class="card" href="mobile/">
+      <h3>Verified mobile CS2 dashboard<span class="tag">32 current + 59 stale</span></h3>
+      <p>Timestamped October CS2 records plus the stale TransferState rows retained for audit, with external market
+      probabilities, independently originated lines and explicit picks.</p>
+    </a>
+    <a class="card" href="model/">
+      <h3>Own lines: calibrated Valve VRS model<span class="tag">all CS2 fixtures</span></h3>
+      <p>Win probability, fair odds and pick for every CS2 fixture from official Valve Regional Standings,
+      re-calibrated on Valve's published match history and tested out of sample, with roster-based team matching.</p>
+    </a>
+    <a class="card" href="dashboard/">
+      <h3>Linescope dashboard<span class="tag">session 4f599d7c</span></h3>
+      <p>"The pick'em board, with evidence": fixtures, markets, inventory, CS2 and LoL views, flagged items,
+      methodology, sources and a repository read-through.</p>
+    </a>
+  </div>
+
+  <h2>Wider dataset and earlier analyses</h2>
+  <div class="grid">
+    <a class="card" href="pickem/">
+      <h3>Complete slate &amp; external lines<span class="tag">380 fixtures</span></h3>
+      <p>Every match on the board (CS2 and League of Legends) read from the pick'em pages' own server-rendered
+      payload, with exact UTC start/lock times; priced fixtures carry a de-vigged line, the rest are blank on
+      purpose and listed on the Flagged page.</p>
+    </a>
+    <a class="card" href="docs/">
+      <h3>Tournament dashboards (earlier sessions)</h3>
+      <p>Per-event pages for the Thunderpick World Championship, Stake Pulse Beat III, CCT Europe, ESL Challenger
+      and the lower tiers, with an independent rank-based model and its own flagged/sources pages.</p>
+    </a>
+    <a class="card" href="docs/verified-lines.html">
+      <h3>Verified October lines &amp; 38 team ranks<span class="tag">HLTV Oct 12 + VRS</span></h3>
+      <p>Line-by-line verification of the active October CS2 fixtures, all teams' HLTV and VRS ranks,
+      EGW/BC.Game sportsbook lines, dual-rank originated odds and a pick-count audit.</p>
+    </a>
+    <a class="card" href="assurance/">
+      <h3>Independent assurance<span class="tag">session 5515fcc9</span></h3>
+      <p>An evidence-backed audit dashboard that keeps fixture facts, market observations and calculations
+      separate, with primary-source links on every match.</p>
+    </a>
+    <a class="card" href="hub.html">
+      <h3>Hub dashboard<span class="tag">session 2cb6bff4</span></h3>
+      <p>An earlier single-file hub over the same fixture set, with its own dataset and findings.</p>
+    </a>
+    <a class="card" href="site/">
+      <h3>Standalone dashboard<span class="tag">session 51fb12f8</span></h3>
+      <p>That session's independent dashboard build, preserved as published.</p>
+    </a>
+  </div>
+
+  <h2>Verification &amp; flagged for review</h2>
+  <div class="grid">
+    <a class="card" href="verify/">
+      <h3>Match verification &amp; multi-book odds<span class="tag">session 4b9c40b0</span></h3>
+      <p>Mobile-first verification of every open fixture against HLTV match pages, with per-bookmaker price
+      tables where EGamersWorld served them, and 26 flagged items.</p>
+    </a>
+    <a class="card" href="docs/audit.html">
+      <h3>Parallel-PR audit</h3>
+      <p>A line-by-line audit of the parallel sessions' published datasets, including rows that contradicted the
+      live market at the time they were published.</p>
+    </a>
+    <a class="card" href="https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/reviews/source-audit-2026-10-13.md">
+      <h3>Source audit report<span class="tag">session dc2b77dc</span></h3>
+      <p>A read-only review of the merged data, sources and deployed pages (findings SA-01 to SA-10) with owner
+      requests. Markdown on GitHub.</p>
+    </a>
+    <a class="card" href="https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/reviews/verification-c50fb9a8.md">
+      <h3>Line-by-line verification report<span class="tag">session c50fb9a8</span></h3>
+      <p>Per-row source-link presence, link liveness and value spot-checks against official pages, with the
+      exceptions it found.</p>
+    </a>
+    <a class="card" href="https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/reviews/slate-180a42a0.md">
+      <h3>Board verification report<span class="tag">session 180a42a0</span></h3>
+      <p>What this board's own build checks, which sources it read and when, how each alias was evidenced and
+      every irregularity found — with links for manual review.</p>
+    </a>
+    <a class="card" href="https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/COORDINATION.md">
+      <h3>Coordination board</h3>
+      <p>Every parallel session's claims, file scopes, releases and irregularities, with PR links and results.</p>
+    </a>
+  </div>
+
+  <h2>Data files</h2>
+  <div class="grid">
+    <a class="card" href="slate/data/analysis.csv">
+      <h3>Board dataset (CSV)</h3>
+      <p><code>slate/data/analysis.csv</code> — one row per open fixture: market line and its source, own line and
+      its source, pick, checks and flags.</p>
+    </a>
+    <a class="card" href="slate/data/fixtures.csv">
+      <h3>Fixture list (CSV)</h3>
+      <p><code>slate/data/fixtures.csv</code> — every fixture in the payload with exact UTC times and its page URL.</p>
+    </a>
+    <a class="card" href="slate/data/lines.csv">
+      <h3>Price readings (CSV)</h3>
+      <p><code>slate/data/lines.csv</code> — every external price read, with source, book, capture time and read-by label.</p>
+    </a>
+    <a class="card" href="lines/analysis.csv">
+      <h3>Review file</h3>
+      <p><code>lines/analysis.csv</code> — the earlier sessions' per-fixture export with ids, times, crowd metadata,
+      price status, odds, de-vigged probabilities, source URL and capture time.</p>
+    </a>
+    <a class="card" href="data/matches.csv">
+      <h3>Canonical generated table</h3>
+      <p><code>data/matches.csv</code> — regenerated from <code>data/fixtures.csv</code>, <code>data/lines.csv</code>
+      and <code>data/ratings.csv</code> by <code>scripts/model.py</code>.</p>
+    </a>
+    <a class="card" href="README.md">
+      <h3>Repository README</h3>
+      <p>Where everything lives and how to reproduce the generated pages.</p>
+    </a>
+  </div>
+
+  <div class="note"><b>Policies kept by every page here.</b> Hotspawn's crowd percentages are never converted into
+  a probability; only external bookmaker prices and our own official-rating model produce numbers. A value that
+  cannot be confirmed from a source is left blank and flagged rather than estimated. Every row keeps the time it
+  was read, because odds move. No logins, no challenge solving, no wagers.</div>
+  <div class="note">Landing-page structure (categories and links only, no content removed) by Arena session
+  <code>arena/180a42a0</code>; the <code>slate/</code> board is that session's build, refreshed by
+  <code>.github/workflows/slate-180a42a0.yml</code>. The <code>today/</code> card was added by
+  <code>arena/b90700c6</code>; the <code>model/</code>, <code>dashboard/</code>, <code>assurance/</code> and source-audit
+  cards by <code>arena/91eff436</code>; the <code>board/</code> card answers <code>arena/8e782f95</code>'s request and the
+  <code>verify/</code> card <code>arena/4b9c40b0</code>'s. Every earlier card is unchanged.</div>
 </div>
 </body>
 </html>

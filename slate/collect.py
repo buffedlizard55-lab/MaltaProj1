@@ -1042,6 +1042,17 @@ def main() -> int:
                  "URL on every row. The scheduled CI job keeps trying the same pages and will replace "
                  "these rows with its own fresh readings whenever the host serves it again.",
                  sorted({a["market_url"] for a in session_only if a.get("market_url")}))
+    divergent = [a for a in analysis if "S-F-09" in (a.get("flags") or "")]
+    if divergent:
+        add_flag("S-F-09", "needs review",
+                 f"{len(divergent)} fixtures where the market price and our own rating line disagree",
+                 "For these rows the external bookmaker price and the official-rating model point at "
+                 "different winners. The pick stays with the market price (it is the observable market "
+                 "view), the model's side is shown next to it, and both source links are on the row. A "
+                 "disagreement is information, not an error: it says the two independent methods are "
+                 "not telling the same story here.",
+                 sorted({a["market_url"] for a in divergent if a.get("market_url")} |
+                        {a["hotspawn_url"] for a in divergent if a.get("hotspawn_url")}))
     add_flag("S-F-01", "needs review",
              "Hotspawn's printed wall-clock time is not a reliable UTC value",
              "The printed time next to a match is rendered for the viewer, and this project's own "
