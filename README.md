@@ -87,7 +87,11 @@ MaltaProj1/
 │   └── dashboard.js        # Client-side filtering, live search, and sorting
 ├── data/
 │   ├── matches.json        # Structured JSON dataset with all 26 matches
-│   └── matches.csv         # Tabular CSV export of matches and odds
+│   ├── matches.csv         # Tabular CSV export of matches and odds
+│   ├── lines.csv           # Bookmaker lines inventory
+│   ├── ratings.csv         # HLTV and VRS rating inputs
+│   └── tournaments_inventory.csv # CS2 tournaments inventory
+├── docs/                   # Full mirror of site for Pages compatibility
 ├── src/
 │   ├── originate_lines.py  # Statistical modeling and de-vigging algorithms
 │   └── build_site.py       # Static site generation pipeline
