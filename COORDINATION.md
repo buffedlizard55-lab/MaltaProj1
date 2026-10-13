@@ -1177,3 +1177,105 @@ At 22:02:21 UTC, 19 seconds after this session's claim was pushed, PR #40 (`616c
 - Follow-up fix in this record's PR: on the live page, VF-06 flag text was cut at 170 characters, which left a stray "1" (e.g. "...to win with 1)") that could be misread as a price. It now shows the full reading note. No data changed.
 - Root landing page still has no link to `verify/`. Request stands for the integration owner (`index.html` is not edited by this session).
 - **PR #48** https://github.com/buffedlizard55-lab/MaltaProj1/pull/48 (VF-06 full note + this release record): CI `verify` SUCCESS; **MERGED 2026-10-13 22:22:39 UTC**, merge commit `93666273f9d0c5411588c00248f6680edd0abe62`. Pages build for `9366627`: `built`, error null, 22:23:01 UTC. Live Flagged page re-fetched (cache-busted) and shows the rebuilt content. Session `arena/4b9c40b0` tasks V-01, V-02 and V-03 are **done**; no further edits planned (record written 2026-10-13 22:23 UTC).
+
+
+## Session `arena/8e782f95` — claim (2026-10-13 ~22:00 UTC)
+
+Branch: `arena/8e782f95-maltaproj1` (Arena fixes this session to that branch; no other branch is created or pushed).
+
+Read before claiming: main's board, plus the boards on the currently active remote branches
+`arena/b90700c6-maltaproj1`, `arena/cc8f4dca-maltaproj1`, `arena/e3315a54-maltaproj1`.
+Their live claims (`refresh/**`+`today/**`, `picks/**`, `mobile/**`) are respected: this session does
+**not** touch `refresh/**`, `today/**`, `picks/**`, `mobile/**`, `model/**`, `docs/**`, `pickem/**`,
+`dashboard/**`, `assurance/**`, `site/**`, `reviews/**`, `data/**` (existing files), or root `index.html`.
+
+| ID | Task | Status | Owner | Exclusive file scope |
+|---|---|---|---|---|
+| B-01 | Repo review, line by line: read every session's published data/claim and check it against the official source it cites (Hotspawn lobby/CS2 pick'em pages, HLTV ranking 2026/october/12, Valve Regional Standings). Record source links for manual review and flag irregularities. | in progress | arena/8e782f95 | `reviews/repo-review-8e782f95.md` |
+| B-02 | Fresh capture of the current Hotspawn CS2 pick'em slate (official `play.hotspawn.com/cs2-pickems` + `/lobby`) at 2026-10-13 ~22:00 UTC, with each fixture's UTC lock time, tournament, tier and points. | in progress | arena/8e782f95 | `data/8e782f95/fixtures.csv`, `data/8e782f95/fixtures.json` |
+| B-03 | External match-winner lines from non-Hotspawn esports-betting coverage (EGamersWorld/BC.Game and other bookmaker listings), with a real capture time per row; de-vig to market probability. Never uses Hotspawn crowd %. | in progress | arena/8e782f95 | `data/8e782f95/external_lines.csv` |
+| B-04 | Our own originated lines for every fixture, from official ratings only: HLTV world ranking 2026/october/12 + Valve Regional Standings `standings_global_2026_10_05.md` (pinned commit), with a documented, reproducible formula. Blank + flagged where a team has no official rating. | in progress | arena/8e782f95 | `data/8e782f95/ratings.csv`, `data/8e782f95/own_lines.csv`, `scripts/8e782f95_build.py` |
+| B-05 | Publish a clean, mobile-first GitHub Pages site `board/` (landing + subpages organised by category/tier + all-matches, sources, methodology, Flagged for Review). Every table row carries an official source link; unconfirmed values stay blank and flagged. | in progress | arena/8e782f95 | `board/**` |
+| B-06 | Final integration: link check, tests, `git pull --rebase origin main`, push, PR → `main`, merge, confirm GitHub Pages, record result here. | unclaimed until B-01..B-05 done | arena/8e782f95 | `COORDINATION.md` (this section) |
+
+### Requests to other sessions (no cross-owner edits)
+1. **Root navigation owners** (`arena/b90700c6`, `arena/cc8f4dca`, `arena/e3315a54` all list root `index.html` in their
+   integration scope): please add one card/link for the consolidated board → `board/` ("Consolidated board — all
+   fixtures, external lines + own lines"). This session will not edit root `index.html` while those claims are live.
+2. **`picks/**` owner (`arena/cc8f4dca`)**: `picks/` already exists on `main` from `arena/9569108d` (PR #35). Rebuilding
+   it in place will overwrite a merged session's published page — please confirm the handoff or use a new path.
+
+### Completion record — B-01..B-05 (arena/8e782f95), 2026-10-13 22:05–23:00 UTC
+
+Branch: `arena/8e782f95-maltaproj1`. Files touched: `board/**`, `data/8e782f95/**`,
+`scripts/8e782f95_build.py`, `tests/test_8e782f95.py`, `tests/__init__.py`,
+`reviews/repo-review-8e782f95.md`, and this section only. Nothing else in the repository
+was modified.
+
+**Live capture (all times UTC).**
+- `https://play.hotspawn.com/cs2-pickems` at 22:04:51Z and `https://play.hotspawn.com/lobby`
+  at 22:04:28Z. Header says "68 matches this week"; the CS2 filter says "All tiers (89)" and
+  the /lobby filter "(90)"; **30** fixtures carry a live "Locks in" countdown; **59** rows are
+  still dated 2026-06-26..2026-07-10 (stale summer fixtures Hotspawn keeps as "scheduled").
+- **Time-zone resolution (evidence-backed).** The same fixture renders as `Oct 14, 08:00` on
+  `/cs2-pickems` and `Oct 14, 04:00` on `/lobby`, while both show the identical
+  `Locks in 09:55:0x` countdown. 22:04:51 + 09:55:09 = 2026-10-14 08:00:00 UTC, so
+  `/cs2-pickems` is **UTC** and `/lobby` is **UTC−4**. EGamersWorld independently lists the
+  same match at `14.10.26 10:00` on its own UTC+2 display (= 08:00 UTC). This board publishes
+  the countdown-derived UTC time. (`B-S2`)
+- Spot-check of `picks/` (arena/9569108d, PR #35): Gothic–Lavked, ENCE–BOJONG and
+  Phantom–HAVU times and pairings all agree with my capture. **No defect found** — the
+  EDT→UTC conversion is correct.
+
+**External lines (never Hotspawn %).** 24 of 30 fixtures carry a de-vigged two-way price pair
+read from EGamersWorld's bc.game block, each with its own URL and capture time (22:19–22:33Z).
+The 1.80/1.80 pairs EGamersWorld shows for ex-RUSTEC–mellren and FORZE Reload–LFO 10 are its
+placeholder, so those rows are left **blank**, not converted (`B-S4`). No line found for any
+CCT Europe Series #12 Play-In fixture (`B-S6`). Two fixtures show different prices on EGW's
+event page vs its match page; one pair per fixture is published and the other recorded (`B-S3`).
+
+**Own lines.** Valve Regional Standings, official file `live/2026/standings_global_2026_10_05.md`
+at pinned commit `eec4853d7bcf0f1f7efe7f0d901234bef7e98b75`, sha256
+`df96e7fc3cd91a2687ec08cac0128e50cc4e4e55346581679572e881d79ae61b`; expected-win constants
+from Valve's own `model/glicko.js` (`Q = ln(10)/400`, `rd = 75`, `g = 0.972821`). Valve's
+documented 400-point scale is far too confident on the published (compressed) point column
+(it puts Legacy over PARIVISION at 99.7% for a Bo3 the market prices at 54.6%), so the single
+scale constant is fitted by cross-entropy on the 23 fixtures that have both a market line and
+two rated teams: **S = 1122**, in-sample CE 0.6348, leave-one-out CE 0.6365, market's own
+entropy 0.6214, coin flip 0.6931. Stated openly on the Method page: the own line is
+market-calibrated, so market-vs-own on priced rows is a consistency check, not an independent
+validation. 40/44 slate teams are matched by exact name in Valve's file; `SUKEBAN` and `LFO 10`
+have no row and no evidenced alias, so their own lines are **blank** and flagged.
+`FORZE Reload vs LFO 10` therefore has **no probability and no pick**.
+
+**Verification performed.** 22 unit tests (`python3 -m unittest tests.test_8e782f95 -v`) covering
+de-vig arithmetic, the Bo1/Bo3 series transform and its inverse, the Valve Glicko constants
+re-derived from Valve's own expressions, the 380-row standings file shape, one-source-link-per-row,
+placeholder prices never published, unrated teams never given a number, picks following the stated
+rule, VRS points re-read from the official file, and every internal link resolving. All pass.
+8 board pages, 0 broken local links. `git diff --check` clean.
+
+**Independently re-verified from HLTV this session:** Legacy world rank
+[#7](https://www.hltv.org/ranking/teams/2026/october/12/details/12468) and PARIVISION
+[#11](https://www.hltv.org/ranking/teams/2026/october/12/details/12467) — against Valve's file at
+#2 and #36. Root cause of part of the gap: Valve's 2026-10-05 file lists PARIVISION with
+`slaxejezzz`, while HLTV's current page shows `HObbit` and records the Sep 17 change
+(`B-S9`). My board publishes Valve's number and flags the caveat rather than silently adjusting.
+
+**Flagged for Review** — published on `board/flagged.html`, all non-blocking:
+`B-F-RATING` (2 teams with no official rating), `B-F-ALIAS` (6 name mappings, each with its
+evidence link: WROTBERRY→WBT, RoundsGG→ROUNDS, Envy→3DMAX), `B-F-NOPICK` (FORZE Reload vs LFO 10),
+`B-F-DIVERGE` (4 rows where market and own model pick different winners), `B-F-GAP` (5 rows with a
+≥10pp gap), and system flags `B-S1`..`B-S9`.
+
+**Repo review (B-01)** — `reviews/repo-review-8e782f95.md`, read-only. Notably it *confirms*
+(still broken, at 22:20Z) that `docs/verified-lines.html` embeds an unescaped
+`<script id='ng-state'>` at line 112: parsing the file shows `id="F-28"` (1336), `id="F-29"` (1341)
+and `id="flagged-audit"` (1330) all fall inside script data, so those anchors do not exist even
+though the strings are present. It also confirms `IR-91-12` (the `vrs_rank` column of
+`data/6d9c321d/team_ratings_verified.csv` is HLTV's VRS widget, not Valve's file) and `IR-91-15`
+(`data/lines.csv` rows carry capture times 28–36 min after the commit that publishes them).
+
+**Request (repeated, not acted on):** root `index.html` already carries additive cards for
+`today/`, `picks/` and `mobile/` from `arena/b90700c6` and `arena/e3315a54`. Please add one
+additive card for `board/`. I have not edited that file while those claims are live.

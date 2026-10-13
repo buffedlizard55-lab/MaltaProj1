@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sources — Hotspawn Pick'em line board</title>
+<style>
+:root{--bg:#0f1420;--panel:#161d2c;--panel2:#1d2637;--line:#2a3547;--txt:#e8edf6;
+--dim:#93a1b9;--acc:#4cc2ff;--good:#37d67a;--warn:#ffcc4d;--bad:#ff6b6b;--pick:#7c5cff}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--txt);
+font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+a{color:var(--acc)}
+.wrap{max-width:1100px;margin:0 auto;padding:0 14px 60px}
+header{background:linear-gradient(180deg,#131b2b,#0f1420);border-bottom:1px solid var(--line)}
+header .wrap{padding-top:18px;padding-bottom:14px}
+h1{font-size:22px;margin:0 0 6px}
+.sub{color:var(--dim);font-size:13px;margin:0}
+nav{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 0}
+nav a{padding:7px 11px;border:1px solid var(--line);border-radius:8px;text-decoration:none;
+color:var(--txt);font-size:13px;background:var(--panel)}
+nav a.on{background:var(--acc);color:#08111c;border-color:var(--acc);font-weight:700}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:18px 0}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px}
+.card .k{color:var(--dim);font-size:12px;text-transform:uppercase;letter-spacing:.04em}
+.card .v{font-size:24px;font-weight:800;margin-top:4px}
+h2{font-size:18px;margin:26px 0 10px}
+p{color:#c8d3e6}
+table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);
+border-radius:12px;overflow:hidden}
+th,td{padding:9px 10px;text-align:left;border-bottom:1px solid var(--line);font-size:13px;
+vertical-align:top}
+th{background:var(--panel2);color:var(--dim);font-size:11px;text-transform:uppercase;
+letter-spacing:.05em;white-space:nowrap}
+tr:last-child td{border-bottom:none}
+.tscroll{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:12px}
+.pick{font-weight:800;color:var(--pick)}
+.bar{position:relative;height:22px;border-radius:6px;overflow:hidden;background:#2a3547;
+min-width:120px}
+.bar span{position:absolute;top:0;bottom:0;left:0;background:linear-gradient(90deg,#2f7fd6,#4cc2ff);
+border-radius:6px}
+.bar i{position:absolute;top:0;bottom:0;right:0;background:#3a4busy}
+.bar em{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+font-style:normal;font-size:11px;font-weight:800;text-shadow:0 1px 2px rgba(0,0,0,.6)}
+.dim{color:var(--dim)}
+.stale{opacity:.5}
+.tag{display:inline-block;padding:2px 7px;border-radius:999px;font-size:11px;font-weight:700}
+.t-yes{background:#12341f;color:#5fe08f}
+.t-no{background:#3a1c1c;color:#ff9b9b}
+.tier{display:inline-block;width:20px;height:20px;line-height:20px;text-align:center;
+border-radius:5px;font-weight:800;font-size:12px;background:#2a3547}
+.tier-S{background:#4a2f7a;color:#d9c6ff}
+.tier-B{background:#1f3a5f;color:#a8d5ff}
+.tier-C{background:#333b2a;color:#c8dba0}
+ul.src{font-size:13px}
+ul.src li{margin-bottom:6px}
+code{background:#0b1018;padding:1px 5px;border-radius:4px;font-size:12px}
+footer{border-top:1px solid var(--line);margin-top:40px;padding:18px 0;color:var(--dim);font-size:12px}
+.flag{border:1px solid var(--line);border-left:4px solid var(--warn);border-radius:10px;
+padding:12px;margin-bottom:10px;background:var(--panel)}
+.flag.unverified{border-left-color:var(--bad)}
+.flag h3{margin:0 0 4px;font-size:14px}
+.flag .m{color:var(--dim);font-size:12px;margin-bottom:6px}
+@media(max-width:820px){
+  h1{font-size:19px}
+  th,td{font-size:12px;padding:8px 7px}
+  .card .v{font-size:20px}
+}
+@media(max-width:720px){
+  .tscroll{overflow:visible}
+  table,tbody,tr,td{display:block;width:100%}
+  thead{display:none}
+  table{border:none;background:none}
+  tr{background:var(--panel);border:1px solid var(--line);border-radius:12px;
+     padding:10px 12px;margin:0 0 10px}
+  tr.stale{opacity:.55}
+  td{border:none;padding:4px 0;display:flex;align-items:baseline;
+     justify-content:space-between;gap:12px;text-align:right}
+  td::before{content:attr(data-label);color:var(--dim);font-size:12px;
+     text-transform:uppercase;letter-spacing:.04em;flex:0 0 auto;text-align:left}
+  td.match,td.pick{font-size:15px;font-weight:700}
+  .bar{min-width:160px}
+}
+</style>
+</head><body>
+<header><div class="wrap">
+<h1>Hotspawn Pick'em — CS2 line board</h1>
+<p class="sub">Independent match probabilities from external bookmaker lines and our own Valve&nbsp;Regional&nbsp;Standings model.
+Hotspawn crowd percentages are never used as probability. Data captured 2026-10-13 22:35 UTC.</p>
+<nav><a href="index.html" class="">Picks</a><a href="all-matches.html" class="">All matches</a><a href="s-tier.html" class="">S-tier</a><a href="b-tier.html" class="">B-tier</a><a href="c-tier.html" class="">C-tier</a><a href="sources.html" class="on">Sources</a><a href="method.html" class="">Method</a><a href="flagged.html" class="">Flagged</a></nav>
+</div></header>
+<div class="wrap">
+
+<h2>Primary sources used on every row</h2>
+<ul class="src">
+<li><b>Fixture identity, lock time, tier, points</b> —
+<a href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">play.hotspawn.com/cs2-pickems</a> and
+<a href="https://play.hotspawn.com/lobby" target="_blank" rel="noopener">play.hotspawn.com/lobby</a>, read 2026-10-13 22:35 UTC.
+Hotspawn is used only to say which matches are pickable, never as a probability.</li>
+<li><b>External match-winner prices</b> — EGamersWorld's bookmaker block (bookmaker: bc.game),
+one URL per priced fixture, each with its capture time. Listed below.</li>
+<li><b>Our own line</b> — Valve Regional Standings, official file
+<a href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md" target="_blank" rel="noopener">live/2026/standings_global_2026_10_05.md</a>
+at pinned commit <code>eec4853d7bcf0f1f7efe7f0d901234bef7e98b75</code>
+(sha256 <code>df96e7fc3cd91a2687ec08cac0128e50cc4e4e55346581679572e881d79ae61b</code>),
+with the expected-win constants from Valve's own
+<a href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/model/glicko.js"
+target="_blank" rel="noopener">model/glicko.js</a>.</li>
+</ul>
+<h2>Every URL used</h2>
+<div class="tscroll"><table><thead><tr><th>Fixture</th><th>What it is</th><th>URL</th><th>Captured (UTC)</th></tr></thead><tbody>
+<tr><td>SUKEBAN vs your end</td><td>Hotspawn fixture</td><td><a href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">https://play.hotspawn.com/cs2-pickems</a></td><td class="dim">2026-10-13T22:05Z</td></tr><tr><td>SUKEBAN vs your end</td><td>External line</td><td><a href="https://egamersworld.com/counterstrike/event/cct-south-america-2026-series-7-0U32SId-H" target="_blank" rel="noopener">https://egamersworld.com/counterstrike/event/cct-south-america-2026-series-7-0U32SId-H</a></td><td class="dim">2026-10-13T22:33Z</td></tr><tr><td>Zomblers vs Overtake Sector</td><td>Hotspawn fixture</td><td><a href="https://www.hotspawn.com/matches/zomblers-vs-overtake-sector-esl-challenger-league-season-52-north-america-cup-3-1079546" target="_blank" rel="noopener">https://www.hotspawn.com/matches/zomblers-vs-overtake-sector-esl-challenger-league-season-52-north-america-cup-3-1079546</a></td><td class="dim">2026-10-13T22:05Z</td></tr><tr><td>Zomblers vs Overtake Sector</td><td>External line</td><td><a href="https://egamersworld.com/counterstrike/match/41yion_ONx/zomblers-vs-overtake-sector-3aN5jQsN_" target="_blank" rel="noopener">https://egamersworld.com/counterstrike/match/41yion_ONx/zomblers-vs-overtake-sector-3aN5jQsN_</a></td><td class="dim">2026-10-13T22:24Z</td></tr><tr><td>Gothic vs Lavked</td><td>Hotspawn fixture</td><td><a href="https://www.hotspawn.com/matches/gothic-vs-lavked-cct-europe-2026-series-11-1079621" target="_blank" rel="noopener">https://www.hotspawn.com/matches/gothic-vs-lavked-cct-europe-2026-series-11-1079621</a></td><td class="dim">2026-10-13T22:05Z</td></tr><tr><td>Gothic vs Lavked</td><td>External line</td><td><a href="https://egamersworld.com/counterstrike/event/cct-europe-2026-series-11-_rW8GEyWK" target="_blank" rel="noopener">https://egamersworld.com/counterstrike/event/cct-europe-2026-series-11-_rW8GEyWK</a></td><td class="dim">2026-10-13T22:27Z</td></tr><tr><td>9z vs Aurora</td><td>Hotspawn fixture</td><td><a href="https://www.hotspawn.com/matches/9z-vs-aurora-thunderpick-world-championship-2026-1080176" target="_blank" rel="noopener">https://www.hotspawn.com/matches/9z-vs-aurora-thunderpick-world-championship-2026-1080176</a></td><td class="dim">2026-10-13T22:05Z</td></tr><tr><td>9z vs Aurora</td><td>External line</td><td><a href="https://egamersworld.com/counterstrike/event/thunderpick-world-championship-2026-5X5sFiL7H" target="_blank" rel="noopener">https://egamersworld.com/counterstrike/event/thunderpick-world-championship-2026-5X5sFiL7H</a></td><td class="dim">2026-10-13T22:21Z</td></tr><tr><td>Astralis vs Sashi</td><td>Hotspawn fixture</td><td><a href="https://www.hotspawn.com/matches/astralis-vs-sashi-stake-pulse-beat-iii-1079438" target="_blank" rel="noopener">https://www.hotspawn.com/matches/astralis-vs-sashi-stake-pulse-beat-iii-1079438</a></td><td class="dim">2026-10-13T22:05Z</td></tr><tr><td>Astralis vs Sashi</td><td>External line</td><td><a href="https://egamersworld.com/counterstrike/event/stake-pulse-beat-iii-EJZmJpBjeNx" target="_blank" rel="noopener">https://egamersworld.com/counterstrike/event/stake-pulse-beat-iii-EJZmJpBjeNx</a></td><td class="dim">2026-10-13T22:19Z</td></tr><tr><td>HOTU vs Fnatic</td><td>Hotspawn fixture</td><td><a href="https://www.hotspawn.com/matches/hotu-vs-fnatic-stake-pulse-beat-iii-1079439" target="_blank" rel="noopener">https://www.hotspawn.com/matches/hotu-vs-fnatic-stake-pulse-beat-iii-1079439</a></td><td class="dim">2026-10-13T22:05Z</td></tr><tr><td>ex-RUSTEC vs mellren</td><td>Hotspawn fixture</td><td><a href="https://www.hotspawn.com/matches/ex-rustec-vs-mellren-cct-europe-2026-series-11-1079622" target="_blank" rel="noopener">https://www.hotspawn.com/matches/ex-rustec-vs-mellren-cct-europe-2026-series-11-1079622</a></td><td class="dim">2026-10-13T22:05Z</td></tr><tr><td>Falcons vs Ninjas in Pyjamas</td><td>Hotspawn fixture</td><td><a href="https://www.hotspawn.com/matches/falcons-vs-ninjas-in-pyjamas-thunderpick-world-championship-2026-1080177" target="_blank" rel="noopener">https://www.hotspawn.com/matches/falcons-vs-ninjas-in-pyjamas-thunderpick-world-championship-2026-1080177</a></td><td class="dim">2026-10-13T22:05Z</td></tr><tr><td>Legacy vs PARIVISION</td><td>Hotspawn fixture</td><td><a href="https://www.hotspawn.com/matches/legacy-vs-parivision-thunderpick-world-championship-2026-1080178" target="_blank" rel="noopener">https://www.hotspawn.com/matches/legacy-vs-parivision-thunderpick-world-championship-2026-1080178</a></td><td class="dim">2026-10-13T22:05Z</td></tr><tr><td>G2 Ares vs The Last Resort</td><td>Hotspawn fixture</td><td><a href="https://www.hotspawn.com/matches/g2-ares-vs-the-last-resort-cct-europe-2026-series-11-1079623" target="_blank" rel="noopener">https://www.hotspawn.com/matches/g2-ares-vs-the-last-resort-cct-europe-2026-series-11-1079623</a></td><td class="dim">2026-10-13T22:05Z</td></tr><tr><td>FURIA vs BetBoom</td><td>Hotspawn fixture</td><td><a href="https://www.hotspawn.com/matches/furia-vs-betboom-thunderpick-world-championship-2026-1080179" target="_blank" rel="noopener">https://www.hotspawn.com/matches/furia-vs-betboom-thunderpick-world-championship-2026-1080179</a></td><td class="dim">2026-10-13T22:05Z</td></tr><tr><td>FORZE Reload vs LFO 10</td><td>Hotspawn fixture</td><td><a href="https://www.hotspawn.com/matches/forze-reload-vs-lfo-10-cct-europe-2026-series-11-1079624" target="_blank" rel="noopener">https://www.hotspawn.com/matches/forze-reload-vs-lfo-10-cct-europe-2026-series-11-1079624</a></td><td class="dim">2026-10-13T22:05Z</td></tr><tr><td>WROTBERRY vs EAC</td><td>Hotspawn fixture</td><td><a href="https://www.hotspawn.com/matches/wrotberry-vs-eac-elisa-breakout-series-2-1080279" target="_blank" rel="noopener">https://www.hotspawn.com/matches/wrotberry-vs-eac-elisa-breakout-series-2-1080279</a></td><td class="dim">2026-10-13T22:05Z</td></tr><tr><td>WROTBERRY vs EAC</td><td>External line</td><td><a href="https://egamersworld.com/counterstrike/event/elisa-esports-breakout-series-2-4yn491uUVl" target="_blank" rel="noopener">https://egamersworld.com/counterstrike/event/elisa-esports-breakout-series-2-4yn491uUVl</a></td><td class="dim">2026-10-13T22:26Z</td></tr><tr><td>MIBR vs BC.Game</td><td>Hotspawn fixture</td><td><a href="https://www.hotspawn.com/matches/mibr-vs-bc-game-stake-pulse-beat-iii-1079440" target="_blank" rel="noopener">https://www.hotspawn.com/matches/mibr-vs-bc-game-stake-pulse-beat-iii-1079440</a></td><td class="dim">2026-10-13T22:05Z</td></tr><tr><td>Heroic vs Envy</td><td>Hotspawn fixture</td><td><a href="https://www.hotspawn.com/matches/heroic-vs-envy-stake-pulse-beat-iii-1079442" target="_blank" rel="noopener">https://www.hotspawn.com/matches/heroic-vs-envy-stake-pulse-beat-iii-1079442</a></td><td class="dim">2026-10-13T22:05Z</td></tr><tr><td>ENCE vs BOJONG</td><td>Hotspawn fixture</td><td><a href="https://www.hotspawn.com/matches/ence-vs-bojong-elisa-breakout-series-2-1080280" target="_blank" rel="noopener">https://www.hotspawn.com/matches/ence-vs-bojong-elisa-breakout-series-2-1080280</a></td><td class="dim">2026-10-13T22:05Z</td></tr><tr><td>WROTBERRY vs ENCE</td><td>Hotspawn fixture</td><td><a href="https://www.hotspawn.com/matches/wrotberry-vs-ence-elisa-breakout-series-2-1080281" target="_blank" rel="noopener">https://www.hotspawn.com/matches/wrotberry-vs-ence-elisa-breakout-series-2-1080281</a></td><td class="dim">2026-10-13T22:05Z</td></tr><tr><td>EAC vs BOJONG</td><td>Hotspawn fixture</td><td><a href="https://www.hotspawn.com/matches/eac-vs-bojong-elisa-breakout-series-2-1080282" target="_blank" rel="noopener">https://www.hotspawn.com/matches/eac-vs-bojong-elisa-breakout-series-2-1080282</a></td><td class="dim">2026-10-13T22:05Z</td></tr><tr><td>WROTBERRY vs BOJONG</td><td>Hotspawn fixture</td><td><a href="https://www.hotspawn.com/matches/wrotberry-vs-bojong-elisa-breakout-series-2-1080283" target="_blank" rel="noopener">https://www.hotspawn.com/matches/wrotberry-vs-bojong-elisa-breakout-series-2-1080283</a></td><td class="dim">2026-10-13T22:05Z</td></tr><tr><td>EAC vs ENCE</td><td>Hotspawn fixture</td><td><a href="https://www.hotspawn.com/matches/eac-vs-ence-elisa-breakout-series-2-1080284" target="_blank" rel="noopener">https://www.hotspawn.com/matches/eac-vs-ence-elisa-breakout-series-2-1080284</a></td><td class="dim">2026-10-13T22:05Z</td></tr><tr><td>Voca vs Phantom</td><td>Hotspawn fixture</td><td><a href="https://www.hotspawn.com/matches/voca-vs-phantom-elisa-breakout-series-2-1080285" target="_blank" rel="noopener">https://www.hotspawn.com/matches/voca-vs-phantom-elisa-breakout-series-2-1080285</a></td><td class="dim">2026-10-13T22:05Z</td></tr><tr><td>HAVU vs RoundsGG</td><td>Hotspawn fixture</td><td><a href="https://www.hotspawn.com/matches/havu-vs-roundsgg-elisa-breakout-series-2-1080286" target="_blank" rel="noopener">https://www.hotspawn.com/matches/havu-vs-roundsgg-elisa-breakout-series-2-1080286</a></td><td class="dim">2026-10-13T22:05Z</td></tr><tr><td>Voca vs HAVU</td><td>Hotspawn fixture</td><td><a href="https://www.hotspawn.com/matches/voca-vs-havu-elisa-breakout-series-2-1080287" target="_blank" rel="noopener">https://www.hotspawn.com/matches/voca-vs-havu-elisa-breakout-series-2-1080287</a></td><td class="dim">2026-10-13T22:05Z</td></tr><tr><td>Phantom vs RoundsGG</td><td>Hotspawn fixture</td><td><a href="https://www.hotspawn.com/matches/phantom-vs-roundsgg-elisa-breakout-series-2-1080288" target="_blank" rel="noopener">https://www.hotspawn.com/matches/phantom-vs-roundsgg-elisa-breakout-series-2-1080288</a></td><td class="dim">2026-10-13T22:05Z</td></tr><tr><td>RoundsGG vs Voca</td><td>Hotspawn fixture</td><td><a href="https://www.hotspawn.com/matches/roundsgg-vs-voca-elisa-breakout-series-2-1080289" target="_blank" rel="noopener">https://www.hotspawn.com/matches/roundsgg-vs-voca-elisa-breakout-series-2-1080289</a></td><td class="dim">2026-10-13T22:05Z</td></tr><tr><td>Phantom vs HAVU</td><td>Hotspawn fixture</td><td><a href="https://www.hotspawn.com/matches/phantom-vs-havu-elisa-breakout-series-2-1080290" target="_blank" rel="noopener">https://www.hotspawn.com/matches/phantom-vs-havu-elisa-breakout-series-2-1080290</a></td><td class="dim">2026-10-13T22:05Z</td></tr>
+</tbody></table></div>
+<h2>Raw data</h2>
+<ul class="src">
+<li><a href="data/analysis.csv">board/data/analysis.csv</a> — one verified row per fixture</li>
+<li><a href="data/analysis.json">board/data/analysis.json</a> — the same data as JSON</li>
+<li><code>data/8e782f95/fixtures.csv</code>, <code>external_lines.csv</code>,
+<code>vrs_global_2026_10_05.md</code> in the repository</li>
+</ul>
+
+<footer>
+Built by session <code>arena/8e782f95</code>. Analysis only, not betting advice.
+Every row links the official page the value was read from; anything unconfirmed is left blank and listed on the
+<a href="flagged.html">Flagged for Review</a> page.
+</footer>
+</div></body></html>
