@@ -1620,3 +1620,40 @@ North America` 228002, `CS2 - CCT South America Series` 235977, `CS2 - European 
 are exactly what my collector was missing. My `leagues?all=true` call was returning an empty CS2
 filter in CI; I will use `all=false` plus these ids. No Pinnacle price is published by this session
 either way, because every moneyline endpoint answers 401 to an unauthenticated client.
+
+### Release record — L-01..L-06 (arena/459ff624), written 2026-10-13 23:10 UTC
+
+- **PR #61** https://github.com/buffedlizard55-lab/MaltaProj1/pull/61 (`arena/459ff624-maltaproj1` → `main`):
+  **MERGED** 2026-10-13T23:05:07Z, merge commit `aafa7b5a817fed7df73429a493c5edaa5e891254`. Explicit
+  `gh pr merge 61 --merge` (not `--auto`); PR state was MERGEABLE/CLEAN with no required checks failing.
+- **GitHub Pages:** deployment run 38482025456 (`pages build and deployment`) completed **success** for the
+  merge; live pages fetched after the deploy and confirmed: `/live/` (29 open fixtures, 6 with an outside
+  bookmaker line, 27 with our own line, 28 picks, 14 flags), `/live/data/snapshot_meta.json` (as-of
+  2026-10-13T23:04:41Z), plus `matches.html`, `coverage.html`, `flagged.html`, `sources.html`,
+  `methodology.html` and the landing card on `/`.
+- **Automation on main:** workflow run **38482026216** ("Live slate refresh (459ff624)") ran on `main`
+  after the merge (23:05:09Z, success) and committed a fresh snapshot back to `main` (`fe37021`), i.e. the
+  hourly `37 * * * *` schedule now keeps the published board updating itself with no manual input.
+- **Verification performed for this change-set:** 14/14 unit tests (`tests/test_459ff624_live.py`);
+  builder deterministic (re-running `live/build.py` on the committed snapshot produces no diff); 369
+  internal links + fragments across the six pages, 0 broken; HTML parse-check clean on all pages; every
+  slate row carries at least one official source link (enforced by the build's self-check, which also fails
+  the run if a crowd field reaches the slate or a pick appears without a probability).
+- **Line-by-line verification with links for manual review:** `reviews/459ff624-verification.md` —
+  fixture identity/times against the live board and an HLTV match page (9z v Aurora), published VRS points
+  against Valve's standings file (Spirit 2046 #1 … HAVU 937 #124), de-vig re-computed by hand from the
+  published decimal odds for five rows, and the crowd-field exclusion test.
+- **Merge/conflict log:** `git pull --rebase origin main` conflicted twice on the append-only
+  `COORDINATION.md`; both times every upstream line was kept and this session's section re-appended
+  (markers scanned: 0). A local merge of `main` also auto-merged `index.html` (the landing card sits in a
+  different position to the other sessions' cards) — no other session's file was modified.
+- **Flagged irregularities (non-blocking, published on the live `/live/flagged.html`):** FL-01 no market
+  for 23 of 29 open rows (our own line used, labelled); FL-02 FORZE Reload v LFO 10 (`LFO 10` absent from
+  Valve's file — probability and pick stay blank) and Heroic v Envy (`Envy` absent from Valve's file);
+  FL-03 two sources priced the same pair within a minute; FL-11 MIBR v BC.Game market 57.7 % vs own line
+  82.3 %; FL-12 no deep per-match Pinnacle URL in the public markup; FL-20 board header "68 matches this
+  week" vs 90 CS2 payload records; FL-21 59 stale June/July listings; FL-22 EGamersWorld HTTP 403 from CI
+  and the HLTV ranking table markup unreadable (both recorded in the provenance table, columns blank);
+  FL-23 single external source; FL-24 no per-match Hotspawn link for some rows; FL-25 prediction-market
+  fallback labelling; FL-26 Valve lists some names twice (one entry per roster) — higher-points entry used
+  with the alternative printed beside the row.
