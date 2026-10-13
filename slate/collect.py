@@ -97,13 +97,41 @@ def now_iso() -> str:
     return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
 
+_ALIASES: dict = {}
+
+
+def variants(name: str) -> list[str]:
+    """Every name an evidence-linked alias lets a team also be called."""
+    out = {name}
+    for key, entry in _ALIASES.items():
+        official = (entry or {}).get("official_name") or ""
+        if norm(key) == norm(name) and official:
+            out.add(official)
+        if official and norm(official) == norm(name):
+            out.add(key)
+    return [v for v in out if v]
+
+
+def sim_pair(a: str, b: str, x, y) -> float:
+    """Best team-name similarity over the allowed alias spellings."""
+    best = 0.0
+    for left in variants(a or ""):
+        for right in variants(b or ""):
+            best = max(best, (similarity(left, x or "") + similarity(right, y or "")) / 2)
+    return best
+
+
 def parse_iso(text: str | None) -> datetime | None:
+    """Parse the timestamp spellings used across this repository, all of them UTC."""
     if not text:
         return None
-    try:
-        return datetime.strptime(text, "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
-    except ValueError:
-        return None
+    raw = str(text).strip().replace("T", " ").replace("Z", "")
+    for shape in ("%Y-%m-%d %H:%M:%S", "%Y-%m-%d %H:%M"):
+        try:
+            return datetime.strptime(raw[:19] if len(raw) >= 19 else raw, shape).replace(tzinfo=timezone.utc)
+        except ValueError:
+            continue
+    return None
 
 
 def norm(name: str | None) -> str:
@@ -144,6 +172,23 @@ def hotspawn_capture() -> dict:
         return {"fixtures": [], "pages": [], "error": f"upstream collector unavailable: {UPSTREAM_ERROR}"}
     hs = up.collect_hotspawn()
     return hs
+
+
+def hotspawn_match_urls() -> tuple[dict, dict]:
+    """Per-match Hotspawn pages: /matches/<slug>-<id>.
+
+    The pick'em payload carries only the fixture id, and /matches/<id> alone redirects to the event
+    listing, so the per-match link is read from the public matches index, which links every fixture
+    it lists. Purely additive: a fixture whose link is not on that page keeps its blank cell.
+    """
+    url = "https://www.hotspawn.com/matches"
+    got = up.fetch_html(url)
+    links: dict[str, str] = {}
+    for hit in re.finditer(r'href="(/matches/[a-z0-9\-]*?-(\d{4,}))"', (got.get("html") or "")):
+        links.setdefault(hit.group(2), "https://www.hotspawn.com" + hit.group(1))
+    meta = {"url": url, "status": got.get("status"), "found": len(links),
+            "error": got.get("error")}
+    return links, meta
 
 
 def sport_of(fixture: dict) -> str:
@@ -371,8 +416,8 @@ def pinnacle_guest(candidates: list[dict]) -> tuple[list[dict], dict]:
         for q in quotes:
             if q["game"] != fx.get("sport"):
                 continue
-            same = (similarity(fx["team_a"], q["team_a"]) + similarity(fx["team_b"], q["team_b"])) / 2
-            swapped = (similarity(fx["team_a"], q["team_b"]) + similarity(fx["team_b"], q["team_a"])) / 2
+            same = sim_pair(fx["team_a"], fx["team_b"], q["team_a"], q["team_b"])
+            swapped = sim_pair(fx["team_a"], fx["team_b"], q["team_b"], q["team_a"])
             score = max(same, swapped)
             if score < 0.62:
                 continue
@@ -507,11 +552,8 @@ def session_readings(candidates: list[dict]) -> tuple[list[dict], dict]:
         kickoff = _egw_local_to_utc(entry.get("egw_display_local") or "", offset)
         best = None
         for fx in candidates:
-            score = max(
-                (similarity(fx["team_a"], entry["egw_team_a"])
-                 + similarity(fx["team_b"], entry["egw_team_b"])) / 2,
-                (similarity(fx["team_a"], entry["egw_team_b"])
-                 + similarity(fx["team_b"], entry["egw_team_a"])) / 2)
+            score = max(sim_pair(fx["team_a"], fx["team_b"], entry["egw_team_a"], entry["egw_team_b"]),
+                        sim_pair(fx["team_a"], fx["team_b"], entry["egw_team_b"], entry["egw_team_a"]))
             if score < 0.55:
                 continue
             if kickoff and fx.get("scheduled_start_utc"):
@@ -526,8 +568,8 @@ def session_readings(candidates: list[dict]) -> tuple[list[dict], dict]:
             meta["unmatched"].append(f"{entry.get('egw_team_a')} vs {entry.get('egw_team_b')}")
             continue
         score, fx = best
-        flipped = (similarity(fx["team_a"], entry["egw_team_b"])
-                   > similarity(fx["team_a"], entry["egw_team_a"]))
+        flipped = (sim_pair(fx["team_a"], fx["team_b"], entry["egw_team_b"], entry["egw_team_a"])
+                   > sim_pair(fx["team_a"], fx["team_b"], entry["egw_team_a"], entry["egw_team_b"]))
         if flipped:
             odds_a, odds_b = odds_b, odds_a
         pa, pb, margin = devig(odds_a, odds_b)
@@ -722,6 +764,9 @@ def main() -> int:
     hltv = hltv_pages()
     valve = valve_standings()
     aliases = load_alias_hints()
+    _ALIASES.clear()
+    _ALIASES.update(aliases)
+    match_urls, match_urls_meta = hotspawn_match_urls() if HAVE_UPSTREAM else ({}, {"error": "no upstream"})
 
     for fx in fixtures_raw:
         fx["sport"] = sport_of(fx)
@@ -745,6 +790,7 @@ def main() -> int:
                                                   r.get("match_id") or "")):
         fixtures.append({
             "fixture_id": fx.get("match_id"),
+            "hotspawn_match_url": match_urls.get(str(fx.get("match_id") or ""), ""),
             "sport": fx["sport"],
             "competition": fx.get("competition"),
             "tier": fx.get("tier"),
@@ -881,31 +927,36 @@ def main() -> int:
     lines_by_fixture: dict[str, list[dict]] = {}
     for row in pin_rows:
         row["read_by"] = "this CI run (Pinnacle at capture time)"
+        row["rank"] = 0
     for row in egw_rows:
         row["read_by"] = "this CI run (EGamersWorld per-match page)"
-    # Carried rows come from other sessions' files, whose fixture id column is not guaranteed to be
-    # the same field; they are re-matched to this capture by team names and kickoff.
+        row["rank"] = 1
+    for row in sess_rows:
+        row["rank"] = 2
+    # Carried rows come from other sessions' published files. Their fixture id is the same Hotspawn
+    # id space, but each row is re-matched to this capture's fixtures by team name and kickoff before
+    # it is allowed anywhere near a row, and it is never allowed to displace a fresher reading.
+    carried_kept = []
     for row in carried_rows:
         best = None
         for fx in candidates:
-            score = max(
-                (similarity(fx["team_a"], row.get("team_a")) + similarity(fx["team_b"], row.get("team_b"))) / 2,
-                (similarity(fx["team_a"], row.get("team_b")) + similarity(fx["team_b"], row.get("team_a"))) / 2)
-            if score < 0.6:
+            score = max(sim_pair(fx["team_a"], fx["team_b"], row.get("team_a"), row.get("team_b")),
+                        sim_pair(fx["team_a"], fx["team_b"], row.get("team_b"), row.get("team_a")))
+            if score < 0.60:
                 continue
-            if row.get("start_utc") and fx.get("scheduled_start_utc"):
-                try:
-                    delta = abs((parse_iso(row["start_utc"].replace(" ", "T") + "Z")
-                                 - parse_iso(fx["scheduled_start_utc"])).total_seconds())
-                except (TypeError, ValueError):
-                    delta = 0
-                if delta > 6 * 3600:
-                    continue
+            row_start, fx_start = parse_iso(row.get("start_utc")), parse_iso(fx.get("scheduled_start_utc"))
+            if row_start and fx_start and abs((row_start - fx_start).total_seconds()) > 3 * 3600:
+                continue
             if best is None or score > best[0]:
                 best = (score, fx)
-        row["fixture_id"] = best[1]["match_id"] if best else ""
-        row["name_similarity"] = round(best[0], 3) if best else None
-    carried_rows = [r for r in carried_rows if r["fixture_id"]]
+        if best is None:
+            continue
+        row["fixture_id"] = best[1]["match_id"]
+        row["name_similarity"] = round(best[0], 3)
+        row["rank"] = 3
+        carried_kept.append(row)
+    carried_rows = carried_kept
+    carried_meta["matched"] = len(carried_rows)
     for rows in (pin_rows, egw_rows, sess_rows, carried_rows):
         for row in rows:
             lines_by_fixture.setdefault(row["fixture_id"], []).append(row)
@@ -914,19 +965,10 @@ def main() -> int:
     for fx in candidates:
         own = own_by_fixture.get(fx["match_id"], {})
         market_rows = lines_by_fixture.get(fx["match_id"], [])
-        primary = None
-        for row in market_rows:
-            if row["source"].startswith("Pinnacle"):
-                primary = row
-                break
-        if primary is None:
-            for row in market_rows:
-                if row.get("read_by", "").startswith("this CI run"):
-                    primary = row
-                    break
-        if primary is None and market_rows:
-            primary = sorted(market_rows, key=lambda r: r.get("captured_utc") or "",
-                             reverse=True)[0]
+        # Headline price order: this run's Pinnacle quote, then this run's own EGamersWorld read,
+        # then this session's page reading, then a source-linked reading another session published.
+        primary = (sorted(market_rows, key=lambda r: (r.get("rank", 9), r.get("captured_utc") or ""))[0]
+                   if market_rows else None)
         market_p_a = primary["p_a"] if primary else None
         own_p_a = own.get("own_series_p_a") if own.get("own_series_p_a") is not None else own.get("own_map_p_a")
         own_kind = "series" if own.get("own_series_p_a") is not None else ("map" if own.get("own_map_p_a") else None)
@@ -985,6 +1027,7 @@ def main() -> int:
             "kickoff_check": hltv_ref.get("kickoff_check", "no HLTV listing row matched"),
             "hotspawn_url": (f"https://play.hotspawn.com/{fx['sport']}-pickems"
                              if fx["sport"] in ("cs2", "thp", "lol") else "https://play.hotspawn.com/lobby"),
+            "hotspawn_match_url": match_urls.get(str(fx["match_id"]), ""),
             "captured_utc": fx.get("snapshot_utc"),
             "flags": ";".join([f for f in flag_row if f] + ([own["flags"]] if own.get("flags") else [])),
         })
@@ -1046,7 +1089,8 @@ def main() -> int:
                  "they are published blank with this flag rather than filled in.",
                  ["https://play.hotspawn.com/cs2-pickems"])
     carried_used = [a for a in analysis
-                    if a.get("market_read_by", "").startswith("session arena/")]
+                    if (a.get("market_read_by", "").startswith("session arena/")
+                        and "180a42a0" not in a.get("market_read_by", ""))]
     if carried_used:
         add_flag("S-F-16", "needs review",
                  f"{len(carried_used)} fixtures carry a price another session read, not re-read here",
@@ -1152,6 +1196,7 @@ def main() -> int:
                   "error": valve.get("error")},
         "pinnacle": pin_meta,
         "egw": egw_meta,
+        "hotspawn_match_urls": match_urls_meta,
         "session_readings": sess_meta,
         "carried_readings": {**carried_meta, "used_for_headline": len(carried_used)},
         "counts": {

@@ -158,7 +158,9 @@ def status_tag(status: str) -> str:
 
 
 def sources_cell(row: dict) -> str:
-    bits = [link(row.get("hotspawn_url"), "Hotspawn")]
+    bits = [link(row.get("hotspawn_match_url") or row.get("hotspawn_url"), "Hotspawn match")]
+    if row.get("hotspawn_match_url"):
+        bits.append(link(row.get("hotspawn_url"), "pick'em page"))
     if row.get("hltv_url"):
         bits.append(link(row["hltv_url"], "HLTV"))
     if row.get("market_url"):
@@ -532,7 +534,10 @@ def page_fixtures(data: dict) -> str:
                     f'<td data-label="Tier / points">{esc(row.get("tier"))} · {esc(row.get("points"))}</td>'
                     f'<td data-label="Status">{status_tag(row.get("live_status") or "")}</td>'
                     f'<td data-label="Pages">{esc(row.get("hotspawn_pages"))}</td>'
-                    f'<td data-label="Source">{link(row.get("source_url"), "board")}</td></tr>')
+                    f'<td data-label="Source">{link(row.get("source_url"), "board")}'
+                    + (" · " + link(row.get("hotspawn_match_url"), "Hotspawn match")
+                       if row.get("hotspawn_match_url") else "")
+                    + "</td></tr>")
     body.append('<p class="lead">' + str(len(fixtures)) + " rows.</p>")
     body.append('<div class="scroll"><table><tr><th>Match</th><th>Sport</th><th>Start (UTC)</th>'
                 '<th>Lock (UTC)</th><th>Tournament</th><th>Tier / points</th><th>Status</th><th>Pages</th>'

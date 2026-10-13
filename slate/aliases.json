@@ -1,6 +1,6 @@
 {
   "_readme": [
-    "Evidence-linked aliases only. Each entry must carry an `evidence` URL that a reader can open to",
+    "Evidence-linked aliases only. Each entry must carry an `evidence` URL that a reader can open to confirm the mapping themselves, plus a note saying what the evidence shows. Entries may record either an official rating-source spelling or a bookmaker spelling used by a price source, provided the evidence shows both sides of the mapping. An alias without evidence must not be added here: a Hotspawn team with no exact name match in the official rating sources gets NO rating row and NO originated line, and is flagged on slate/flagged.html instead.",
     "confirm the mapping themselves, plus a note saying what the evidence shows. An alias without",
     "evidence must not be added here: a Hotspawn team with no exact name match in the official rating",
     "sources gets NO rating row and NO originated line, and is flagged on slate/flagged.html instead.",
@@ -28,6 +28,14 @@
     "evidence_extra": [
       "https://www.hltv.org/matches/2399137/heroic-vs-envy-stake-pulse-beat-iii",
       "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/standings_global_2026_10_05.md"
+    ]
+  },
+  "EAC": {
+    "official_name": "EA Copenhagen",
+    "evidence": "https://egamersworld.com/counterstrike/event/elisa-esports-breakout-series-2-4yn491uUVl",
+    "note": "EGamersWorld's page for Elisa BreakOut Series 2 prices the 15.10 10:00 (UTC+2) slot as 'WBT vs EA Copenhagen', which is the same slot the Hotspawn payload carries as 'WROTBERRY vs EAC' at 2026-10-15 08:00 UTC; the other three participants on that schedule (WBT, ENCE, BOJONG) match Hotspawn's spelling exactly, and HLTV's event page for the same tournament lists the fourth team as EAC. Used only so a price row can be matched to the right fixture; the rating row for EAC itself is an exact name match in both official sources. Read by this session on 2026-10-13.",
+    "evidence_extra": [
+      "https://www.hltv.org/events/9332/elisa-breakout-series-2"
     ]
   }
 }
