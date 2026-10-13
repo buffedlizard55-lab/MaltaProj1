@@ -18,9 +18,10 @@ official source without guessing is left blank and flagged.
 
 Reproduce: `python3 model/fetch.py && VRS_REPO_DIR=<clone of ValveSoftware/counter-strike_regional_standings> python3 model/calibrate.py && python3 model/build.py && VRS_REPO_DIR=… python3 model/test_model.py -v`
 
-Automation: `.github/workflows/model-91eff436.yml` runs on push to this session's branch, by manual dispatch, and every
-3 hours from `main` once merged. It commits `model/**` only, and only when the content digest changes; timestamp-only
-refreshes are discarded. To stop it, disable the workflow in the Actions tab.
+Automation: `.github/workflows/model-91eff436.yml` runs every 3 hours from `main` (cron `17 */3 * * *`), on any push to
+`main` or this session's branch that changes the model code or the workflow, and by manual dispatch. It commits
+`model/**` only, and only when the content digest changes; timestamp-only refreshes are discarded. After a data commit
+to `main` it also asks GitHub Pages to rebuild (best effort). To stop it, disable the workflow in the Actions tab.
 
 ## Sources (all official; each row links its exact source)
 
