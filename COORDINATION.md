@@ -811,3 +811,11 @@ Snapshot (UTC): 2026-10-13 (lobby states "60 matches this week", resets in ~5d 0
 | T02 exact collector and independently originated lines | done | `collector/`, new scripts/tests/requirements; real primary quote fields and reproducible no-vig math; unknown values blank |
 | T03 clean source-linked dashboard | done | `webui/`, `scripts/build_site.py`, generated `dashboard/`;10 category/transparency views, responsive and browser-tested |
 | T04 isolated final integration, PR, merge and live Pages check | in progress | Main rebase reconciled all boards; new site/data verified. PR/checks/merge and independently confirmed live deployment still pending |
+
+### 2026-10-13 — PR31 opened after successful publication gates (4f599d7c)
+
+- PR: <https://github.com/buffedlizard55-lab/MaltaProj1/pull/31>, head `arena/4f599d7c-maltaproj1`, base main. It contains only this session's new evidence dashboard/pipeline/docs/outputs, preserved board reconciliation and bounded evidence-ignore exceptions. Existing root/docs/models/CSVs are unchanged.
+- Collection/browser/build gate <https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38456041551> completed success. Offline verify gate <https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38456041978> completed success. Permanent Chromium checks now execute against actual verified snapshot data in the collector job.
+- Source snapshot19:36:36.014920Z:258 rendered fixtures,380 source-state entries,14 eligible primary quotes,8 calculated/250 blank fixture lines,33 retained minimized evidence objects,22 published review findings. Source hashes/pointers/arithmetics and11 HTML pages/742 internal links revalidated locally.
+- Updated combined audit now covers260 tracked files and138,798 text lines;1,564 internal targets checked;6 inherited CSV/static-anchor review items published with exact official file links. This is not blanket source validation of another owner's models.
+- Autonomous merge/deploy will proceed only after the actual PR checks finish successfully. Merge/deployment confirmation remains pending, not assumed.
