@@ -1,3 +1,5 @@
 # Ordinary browser for public bookmaker pages; build/tests otherwise use stdlib.
 # Official distribution: https://pypi.org/project/playwright/1.55.0/
 playwright==1.55.0
+# refresh/ (session arena/b90700c6) uses the same Playwright pin for the public
+# EGamersWorld/HLTV/Pinnacle pages that reject plain HTTP clients.

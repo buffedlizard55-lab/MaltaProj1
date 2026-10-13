@@ -1,0 +1,128 @@
+{
+ "generated_utc": "2026-10-13T21:55:56Z",
+ "intro": "Every row below was produced by re-reading the repository at the paths named in the row, or by re-checking the value against the official page linked in the row. 'Not checked' means exactly that: the check could not be completed from this environment and no conclusion is drawn.",
+ "sections": [
+  {
+   "title": "1. Repository inventory",
+   "rows": [
+    {
+     "item": "Tracked files in the working tree (excluding .git)",
+     "status": "verified",
+     "source": "",
+     "note": "238 files, 73 HTML pages, 33 CSV datasets \u2014 counted by this run at 2026-10-13T21:55:56Z"
+    },
+    {
+     "item": "Parallel dashboards published on the same site",
+     "status": "verified",
+     "source": "https://buffedlizard55-lab.github.io/MaltaProj1/",
+     "note": "docs/, pickem/, model/, dashboard/, assurance/, site/, hub.html and today/ are separate session outputs; this page reviews the shared canonical data, not each dashboard's prose"
+    },
+    {
+     "item": "data/fixtures.csv | verified | | 28 lines, 9912 bytes, last commit 2026-10-13T21:59:36+02:00",
+     "status": "ok"
+    },
+    {
+     "item": "data/lines.csv | verified | | 36 lines, 8093 bytes, last commit 2026-10-13T21:59:36+02:00",
+     "status": "ok"
+    },
+    {
+     "item": "data/ratings.csv | verified | | 23 lines, 3256 bytes, last commit 2026-10-13T21:59:36+02:00",
+     "status": "ok"
+    },
+    {
+     "item": "data/matches.csv | verified | | 28 lines, 12984 bytes, last commit 2026-10-13T21:59:36+02:00",
+     "status": "ok"
+    },
+    {
+     "item": "data/external_lines.csv | verified | | 31 lines, 6106 bytes, last commit 2026-10-13T21:59:36+02:00",
+     "status": "ok"
+    },
+    {
+     "item": "lines/analysis.csv | verified | | 382 lines, 80818 bytes, last commit 2026-10-13T21:59:36+02:00",
+     "status": "ok"
+    },
+    {
+     "item": "data/pickem_inventory.json | verified | | 14179 lines, 388402 bytes, last commit 2026-10-13T21:59:36+02:00",
+     "status": "ok"
+    }
+   ]
+  },
+  {
+   "title": "2. Fixture identity vs the live Hotspawn payload",
+   "rows": [
+    {
+     "item": "data/fixtures.csv rows re-checked against the live payload | verified | https://play.hotspawn.com/lobby | 26 of 26 rows still present at the same UTC start time; 0 not matched (older snapshots of a rolling board), 0 with different team names",
+     "status": "ok"
+    }
+   ]
+  },
+  {
+   "title": "3. Line provenance in the canonical dataset",
+   "rows": [
+    {
+     "item": "data/lines.csv: 34 line rows, last commit 2026-10-13T21:59:36+02:00 | verified | data/lines.csv | every row carries a source_url and a snapshot_utc",
+     "status": "ok"
+    },
+    {
+     "item": "data/external_lines.csv: 29 rows | verified | data/external_lines.csv | 2 rows are malformed (extra columns)",
+     "status": "flagged"
+    }
+   ]
+  },
+  {
+   "title": "4. Team ratings and aliases",
+   "rows": [
+    {
+     "item": "data/ratings.csv: 21 team rows, 21 with an HLTV source URL, 20 cross-present in the fresh Valve VRS file | verified | https://www.hltv.org/ranking/teams | the file's own source column was read for every row",
+     "status": "ok"
+    },
+    {
+     "item": "Alias used for a Hotspawn team name (WROTBERRY = HLTV's WBT) | verified | https://www.hltv.org/team/13683/wbt | HLTV team 13683 is listed as WBT, world rank #109, VRS #64, with upcoming matches on 15 Oct against EAC, ENCE and BOJONG (Elisa BreakOut Series 2) \u2014 the same opponents Hotspawn lists for WROTBERRY; read again by this session on 2026-10-13",
+     "status": "ok"
+    }
+   ]
+  },
+  {
+   "title": "5. Is Hotspawn used as a probability input?",
+   "rows": [
+    {
+     "item": "Does the canonical table simply echo Hotspawn's crowd favourite? | verified | data/matches.csv | 20 of 26 rows with both a crowd snapshot and a pick agree \u2014 the pick column is not a copy of the crowd vote",
+     "status": "ok"
+    },
+    {
+     "item": "Hotspawn crowd percentage stored as a reference column | verified | data/matches.csv | the column hotspawn_pick_a_pct_snapshot exists; this session's board does not carry it at all and its build gate refuses to publish a dataset containing a crowd field",
+     "status": "ok"
+    }
+   ]
+  },
+  {
+   "title": "6. Internal link integrity of the published pages",
+   "rows": [
+    {
+     "item": "Internal HTML links on the landing page and in docs/ | verified | | every local .html target resolves inside the working tree",
+     "status": "ok"
+    }
+   ]
+  },
+  {
+   "title": "7. Coordination claims",
+   "rows": [
+    {
+     "item": "Coordination board exists and preserves every session's record | verified | COORDINATION.md | the file carries the union of the session boards (f89fbdfa, 51fb12f8, 2cb6bff4, 79a1c6c8, 5515fcc9, 390c1f81, 4f599d7c, 91eff436, 6d9c321d, dc2b77dc, 844ba68e, 30744d55, fe2de00c)",
+     "status": "ok"
+    },
+    {
+     "item": "Claim made without touching another session's files | verified | COORDINATION.md | this session writes only refresh/**, today/**, COORDINATION.md, README.md and the landing page, and records the 60-minute staleness check it used to take over integration",
+     "status": "ok"
+    }
+   ]
+  }
+ ],
+ "flagged_count": 1,
+ "flagged": [
+  {
+   "section": "3. Line provenance in the canonical dataset",
+   "item": "data/external_lines.csv: 29 rows | verified | data/external_lines.csv | 2 rows are malformed (extra columns)"
+  }
+ ]
+}

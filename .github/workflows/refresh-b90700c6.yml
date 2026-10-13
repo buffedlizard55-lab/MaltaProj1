@@ -1,0 +1,116 @@
+# R-01 live refresh (session arena/b90700c6).
+# Reads only public pages, derives probabilities, rebuilds the board in today/** and commits the
+# result back to the branch the run started from (this session's branch, or main after integration).
+# No credentials, no manual input, no private endpoints.
+# Every step logs to refresh/logs/ and the run commits its own diagnostics, so a failure is
+# inspectable from the branch even when job logs are unavailable.
+name: R-01 refresh (b90700c6)
+
+on:
+  workflow_dispatch:
+  push:
+    # Runs on this session's branch while the work is in progress and on main once it is
+    # merged, so the published board keeps refreshing itself on the branch that serves Pages.
+    branches: ["arena/b90700c6-maltaproj1", "main"]
+    paths:
+      - "refresh/**"
+      - ".github/workflows/refresh-b90700c6.yml"
+  schedule:
+    - cron: "23 */3 * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-b90700c6
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install the ordinary browser used for the public odds/rating pages
+        run: |
+          python -m pip install --quiet -r requirements.txt
+          python -m playwright install --with-deps chromium
+          python -c "import playwright, sys; print('playwright', playwright.__version__ if hasattr(playwright, '__version__') else 'installed', sys.version)"
+      - name: Probe which public odds/rating sources are reachable from this runner
+        continue-on-error: true
+        run: |
+          mkdir -p refresh/logs
+          python3 -u refresh/probe_sources.py > refresh/logs/probe_sources_stdout.txt 2>&1 || true
+      - name: Read public sources (Hotspawn payload, EGamersWorld lines, Pinnacle/HLTV pages)
+        continue-on-error: true
+        run: |
+          mkdir -p refresh/logs
+          set -o pipefail
+          python3 -u refresh/collect.py > refresh/logs/collect.txt 2>&1
+          echo "collect exit=$?" | tee -a refresh/logs/collect.txt
+      - name: Build probabilities, own line and picks
+        continue-on-error: true
+        run: |
+          python3 -u refresh/build.py > refresh/logs/build.txt 2>&1
+          echo "build exit=$?" | tee -a refresh/logs/build.txt
+      - name: Render the mobile board (today/**)
+        continue-on-error: true
+        run: |
+          python3 -u refresh/build_site.py > refresh/logs/site.txt 2>&1
+          echo "site exit=$?" | tee -a refresh/logs/site.txt
+      - name: Verify every row, every link and every calculation
+        continue-on-error: true
+        run: |
+          python3 -u refresh/verify.py > refresh/logs/verify.txt 2>&1
+          echo "verify exit=$?" | tee -a refresh/logs/verify.txt
+      - name: Upload derived data and logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: refresh-b90700c6-${{ github.run_id }}
+          path: |
+            refresh/data/
+            refresh/logs/
+          retention-days: 7
+      - name: Publish the derived result and diagnostics to the branch this run started from
+        if: always()
+        continue-on-error: true
+        env:
+          TARGET_BRANCH: ${{ github.ref_name }}
+        run: |
+          set -x
+          git config user.name "refresh-b90700c6[bot]"
+          git config user.email "refresh-b90700c6@users.noreply.github.com"
+          mkdir -p refresh/logs refresh/data
+          git add -f refresh/logs refresh/data
+          if [ -d today ]; then git add -f today; fi
+          if git diff --cached --quiet; then echo "no data change"; exit 0; fi
+          git commit -m "data(b90700c6): refreshed public-source board from run ${{ github.run_id }}"
+          git fetch origin "$TARGET_BRANCH"
+          git rebase "origin/$TARGET_BRANCH" || git rebase --abort || true
+          git push origin "HEAD:$TARGET_BRANCH" ||
+            { sleep 5; git push origin "HEAD:$TARGET_BRANCH"; }
+      - name: Job summary
+        if: always()
+        run: |
+          {
+            echo "## Refresh run ${{ github.run_id }}"
+            echo
+            echo '### collected summary'
+            echo '```'
+            head -c 3000 refresh/logs/collect.txt || true
+            echo '```'
+            echo '### build'
+            echo '```'
+            head -c 1500 refresh/logs/build.txt || true
+            echo '```'
+            echo '### verify'
+            echo '```'
+            head -c 1500 refresh/logs/verify.txt || true
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"

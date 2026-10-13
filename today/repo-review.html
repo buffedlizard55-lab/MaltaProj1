@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Repository review · Hotspawn Pick'em line board</title>
+<meta name="description" content="Source-linked win probabilities and picks for the CS2/LoL matches in the Hotspawn Play Pick'em, built from external bookmaker lines and official rating data.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top"><div class="top-in">
+  <div class="brand">
+    <h1>Hotspawn Pick'em — line board</h1>
+    <span class="stamp">data snapshot 2026-10-13T22:29:17Z UTC · <span id="count"></span></span>
+  </div>
+  <nav class="pages"><a href="index.html">Dashboard</a><a href="matches.html">All matches</a><a href="cs2.html">CS2</a><a href="lol.html">LoL</a><a href="tournaments.html">Tournaments</a><a href="by-tier.html">Tiers</a><a href="odds.html">Bookmaker lines</a><a href="ratings.html">Team ratings</a><a href="methodology.html">Method</a><a href="sources.html">Sources</a><a href="flagged.html">Flagged for review</a><a href="repo-review.html" class="active">Repo review</a></nav>
+</div></header>
+<main>
+<h2>Repository review</h2>
+
+<p class="muted">Every row below was produced by re-reading the repository at the paths named in the row, or by re-checking the value against the official page linked in the row. &#x27;Not checked&#x27; means exactly that: the check could not be completed from this environment and no conclusion is drawn.</p><h3>1. Repository inventory</h3><div class="tablewrap"><table><thead><tr><th>Item</th><th>Status</th><th>Evidence / source</th></tr></thead><tbody><tr><td data-label="Item">Tracked files in the working tree (excluding .git)</td><td data-label="Status">verified</td><td data-label="Evidence / source">—<div class="tag">238 files, 73 HTML pages, 33 CSV datasets — counted by this run at 2026-10-13T21:55:56Z</div></td></tr><tr><td data-label="Item">Parallel dashboards published on the same site</td><td data-label="Status">verified</td><td data-label="Evidence / source"><a href="https://buffedlizard55-lab.github.io/MaltaProj1/" rel="noopener">https://buffedlizard55-lab.github.io/MaltaProj1/</a><div class="tag">docs/, pickem/, model/, dashboard/, assurance/, site/, hub.html and today/ are separate session outputs; this page reviews the shared canonical data, not each dashboard&#x27;s prose</div></td></tr><tr><td data-label="Item">data/fixtures.csv | verified | | 28 lines, 9912 bytes, last commit 2026-10-13T21:59:36+02:00</td><td data-label="Status">ok</td><td data-label="Evidence / source">—</td></tr><tr><td data-label="Item">data/lines.csv | verified | | 36 lines, 8093 bytes, last commit 2026-10-13T21:59:36+02:00</td><td data-label="Status">ok</td><td data-label="Evidence / source">—</td></tr><tr><td data-label="Item">data/ratings.csv | verified | | 23 lines, 3256 bytes, last commit 2026-10-13T21:59:36+02:00</td><td data-label="Status">ok</td><td data-label="Evidence / source">—</td></tr><tr><td data-label="Item">data/matches.csv | verified | | 28 lines, 12984 bytes, last commit 2026-10-13T21:59:36+02:00</td><td data-label="Status">ok</td><td data-label="Evidence / source">—</td></tr><tr><td data-label="Item">data/external_lines.csv | verified | | 31 lines, 6106 bytes, last commit 2026-10-13T21:59:36+02:00</td><td data-label="Status">ok</td><td data-label="Evidence / source">—</td></tr><tr><td data-label="Item">lines/analysis.csv | verified | | 382 lines, 80818 bytes, last commit 2026-10-13T21:59:36+02:00</td><td data-label="Status">ok</td><td data-label="Evidence / source">—</td></tr><tr><td data-label="Item">data/pickem_inventory.json | verified | | 14179 lines, 388402 bytes, last commit 2026-10-13T21:59:36+02:00</td><td data-label="Status">ok</td><td data-label="Evidence / source">—</td></tr></tbody></table></div><h3>2. Fixture identity vs the live Hotspawn payload</h3><div class="tablewrap"><table><thead><tr><th>Item</th><th>Status</th><th>Evidence / source</th></tr></thead><tbody><tr><td data-label="Item">data/fixtures.csv rows re-checked against the live payload | verified | https://play.hotspawn.com/lobby | 26 of 26 rows still present at the same UTC start time; 0 not matched (older snapshots of a rolling board), 0 with different team names</td><td data-label="Status">ok</td><td data-label="Evidence / source">—</td></tr></tbody></table></div><h3>3. Line provenance in the canonical dataset</h3><div class="tablewrap"><table><thead><tr><th>Item</th><th>Status</th><th>Evidence / source</th></tr></thead><tbody><tr><td data-label="Item">data/lines.csv: 34 line rows, last commit 2026-10-13T21:59:36+02:00 | verified | data/lines.csv | every row carries a source_url and a snapshot_utc</td><td data-label="Status">ok</td><td data-label="Evidence / source">—</td></tr><tr><td data-label="Item">data/external_lines.csv: 29 rows | verified | data/external_lines.csv | 2 rows are malformed (extra columns)</td><td data-label="Status">flagged</td><td data-label="Evidence / source">—</td></tr></tbody></table></div><h3>4. Team ratings and aliases</h3><div class="tablewrap"><table><thead><tr><th>Item</th><th>Status</th><th>Evidence / source</th></tr></thead><tbody><tr><td data-label="Item">data/ratings.csv: 21 team rows, 21 with an HLTV source URL, 20 cross-present in the fresh Valve VRS file | verified | https://www.hltv.org/ranking/teams | the file&#x27;s own source column was read for every row</td><td data-label="Status">ok</td><td data-label="Evidence / source">—</td></tr><tr><td data-label="Item">Alias used for a Hotspawn team name (WROTBERRY = HLTV&#x27;s WBT) | verified | https://www.hltv.org/team/13683/wbt | HLTV team 13683 is listed as WBT, world rank #109, VRS #64, with upcoming matches on 15 Oct against EAC, ENCE and BOJONG (Elisa BreakOut Series 2) — the same opponents Hotspawn lists for WROTBERRY; read again by this session on 2026-10-13</td><td data-label="Status">ok</td><td data-label="Evidence / source">—</td></tr></tbody></table></div><h3>5. Is Hotspawn used as a probability input?</h3><div class="tablewrap"><table><thead><tr><th>Item</th><th>Status</th><th>Evidence / source</th></tr></thead><tbody><tr><td data-label="Item">Does the canonical table simply echo Hotspawn&#x27;s crowd favourite? | verified | data/matches.csv | 20 of 26 rows with both a crowd snapshot and a pick agree — the pick column is not a copy of the crowd vote</td><td data-label="Status">ok</td><td data-label="Evidence / source">—</td></tr><tr><td data-label="Item">Hotspawn crowd percentage stored as a reference column | verified | data/matches.csv | the column hotspawn_pick_a_pct_snapshot exists; this session&#x27;s board does not carry it at all and its build gate refuses to publish a dataset containing a crowd field</td><td data-label="Status">ok</td><td data-label="Evidence / source">—</td></tr></tbody></table></div><h3>6. Internal link integrity of the published pages</h3><div class="tablewrap"><table><thead><tr><th>Item</th><th>Status</th><th>Evidence / source</th></tr></thead><tbody><tr><td data-label="Item">Internal HTML links on the landing page and in docs/ | verified | | every local .html target resolves inside the working tree</td><td data-label="Status">ok</td><td data-label="Evidence / source">—</td></tr></tbody></table></div><h3>7. Coordination claims</h3><div class="tablewrap"><table><thead><tr><th>Item</th><th>Status</th><th>Evidence / source</th></tr></thead><tbody><tr><td data-label="Item">Coordination board exists and preserves every session&#x27;s record | verified | COORDINATION.md | the file carries the union of the session boards (f89fbdfa, 51fb12f8, 2cb6bff4, 79a1c6c8, 5515fcc9, 390c1f81, 4f599d7c, 91eff436, 6d9c321d, dc2b77dc, 844ba68e, 30744d55, fe2de00c)</td><td data-label="Status">ok</td><td data-label="Evidence / source">—</td></tr><tr><td data-label="Item">Claim made without touching another session&#x27;s files | verified | COORDINATION.md | this session writes only refresh/**, today/**, COORDINATION.md, README.md and the landing page, and records the 60-minute staleness check it used to take over integration</td><td data-label="Status">ok</td><td data-label="Evidence / source">—</td></tr></tbody></table></div>
+</main>
+<footer>
+  <p><strong>Not betting advice.</strong> Probabilities are derived from third-party bookmaker
+  prices (de-vigged) and from published rating points, each linked per row. Hotspawn Play is used
+  only to identify which matches are in the Pick'em and when they lock; Hotspawn's crowd
+  percentages are not collected into this dataset and never influence a probability or a pick.</p>
+  <p>Values that could not be confirmed from an official page are shown as “—” and listed on the
+  <a href="flagged.html">Flagged for review</a> page. Generated automatically — no manual input.</p>
+</footer>
+<script>
+document.querySelectorAll('[data-filter]').forEach(function(el){
+  el.addEventListener('input', function(){ apply(); });
+});
+function apply(){
+  var q=(document.getElementById('q')||{}).value||'';
+  var tour=(document.getElementById('tournament')||{}).value||'';
+  var sport=(document.getElementById('sport')||{}).value||'';
+  var onlyMissing=document.getElementById('missing')&&document.getElementById('missing').checked;
+  q=q.toLowerCase();
+  document.querySelectorAll('tbody tr').forEach(function(tr){
+    var text=(tr.dataset.search||'');
+    var ok=!q||text.indexOf(q)>=0;
+    if(tour) ok=ok&&tr.dataset.tournament===tour;
+    if(sport) ok=ok&&tr.dataset.sport===sport;
+    if(onlyMissing) ok=ok&&tr.dataset.missing==='1';
+    tr.style.display=ok?'':'none';
+  });
+  var shown=0;document.querySelectorAll('tbody tr').forEach(function(tr){
+    if(tr.style.display!=='none')shown++;});
+  var out=document.getElementById('count');if(out)out.textContent=shown+' rows shown';
+}
+function localise(){
+  var opts={month:'short',day:'numeric',hour:'2-digit',minute:'2-digit',timeZoneName:'short'};
+  document.querySelectorAll('time[data-utc]').forEach(function(t){
+    var d=new Date(t.dataset.utc);
+    if(!isNaN(d)) t.textContent=d.toLocaleString(undefined,opts);
+  });
+}
+document.addEventListener('DOMContentLoaded',function(){localise();apply();});
+</script>
+<script>
+document.querySelectorAll('time[data-utc]').forEach(function(t){
+  var d = new Date(t.dataset.utc);
+  if (isNaN(d)) return;
+  var shown = t.dataset.show || 'both';
+  var local = d.toLocaleString(undefined, {month:'short',day:'numeric',hour:'2-digit',
+    minute:'2-digit',timeZoneName:'short'});
+  t.innerHTML = '<span class="muted">local</span> ' + local +
+    (shown === 'both' ? ' <span class="muted">· UTC</span> ' +
+      t.dataset.utc.replace('T',' ').replace('Z','') : '');
+});
+</script>
+</body>
+</html>
