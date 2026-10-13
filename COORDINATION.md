@@ -911,7 +911,7 @@ No other session's files are deleted; their dashboards stay published and linked
 |---|---|---|---|---|
 | R-01 | Live refresh: re-read the public Hotspawn Pick'em TransferState (`lobby`, `cs2-pickems`, `thp-pickems`) at the current timestamp, re-collect external bookmaker match-winner lines (EGamersWorld; HLTV rank context only), recompute de-vigged market probabilities + our own rating-based probabilities, and publish a pick for every fixture with a per-row official source link. Unverifiable rows stay blank + flagged. | done | arena/b90700c6 | `refresh/**`, `.github/workflows/refresh-b90700c6.yml` |
 | R-02 | Publish the mobile-first canonical dashboard for the refreshed slate (landing + category subpages, all rows source-linked) and run the line-by-line verification pass. | done | arena/b90700c6 | `today/**` |
-| R-03 | Final integration: link `today/**` from the root landing, re-verify the combined data, PR from this branch to `main`, merge, confirm GitHub Pages, record the result here. | in progress — PR #41 opened | arena/b90700c6 | `index.html`, `COORDINATION.md`, `README.md` |
+| R-03 | Final integration: link `today/**` from the root landing, re-verify the combined data, PR from this branch to `main`, merge, confirm GitHub Pages, record the result here. | done — PR #41 merged (17d2e9a), Pages built, post-merge refresh run green | arena/b90700c6 | `index.html`, `COORDINATION.md`, `README.md` |
 Rules this session follows: Hotspawn crowd pick percentages are **never** an input to any probability (they are recorded as
 reference only, clearly labelled, and are not used by the pick logic). Unknown values stay blank and are flagged.
 
@@ -928,7 +928,15 @@ reference only, clearly labelled, and are not used by the pick logic). Unknown v
 | `https://www.hltv.org/ranking/teams/2026/october/12` | intermittent (Cloudflare challenge in run 38472348079 → `R-HLTV` flag) | world-ranking points for the own line | `refresh/data/collected.json` → `hltv.ranking_url` |
 | `https://github.com/ValveSoftware/counter-strike_regional_standings` (raw markdown, weekly) | yes (349 teams) | official Valve Regional Standings points → own line, and the ratings table | `vrs_source_url` column |
 
-**Integration PR:** <https://github.com/buffedlizard55-lab/MaltaProj1/pull/41> (branch `arena/b90700c6-maltaproj1` → `main`), opened 2026-10-13 ~22:5x UTC with the summary, sources and flags above; merged on green CI without waiting for review, per the brief.
+**Integration result (final):**
+
+- PR: <https://github.com/buffedlizard55-lab/MaltaProj1/pull/41> — opened 2026-10-13 ~22:0x UTC, **merged 2026-10-13T22:07:47Z** without waiting for review (per the brief), merge commit `17d2e9a` on `main`. Required checks on the PR: `verify` pass.
+- Conflict handling: `main` had gained the `9569108d`, `366849f7`, `616c2455` and `e3315a54` boards plus their `picks/` and `mobile/` dashboards while this session was working. `COORDINATION.md` conflicted; it was resolved by **keeping both sides verbatim** (nothing dropped from main, nothing dropped from this session) and the resolution is logged in this file; root `index.html` keeps all additive cards (`today/`, `picks/`, `mobile/`). Re-checked after merging: `refresh/verify.py` `errors: []`, 0 broken local links on the landing page and all 12 `today/**` pages, no conflict markers anywhere.
+- GitHub Pages: source `main:/` (legacy), status **built** on commit `17d2e9a`; live board confirmed at <https://buffedlizard55-lab.github.io/MaltaProj1/today/index.html> (128 in-week fixtures, per-row Hotspawn + Valve VRS links, banner: 22/128 own lines, picks published 22/128).
+- Post-merge automation: the merge pushed `refresh/**` to `main`, which triggered run <https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38475632334> **on main**; it succeeded and committed its own refreshed data straight to `main` (`5ef53b4`). The cron `23 */3 * * *` therefore keeps the published board current on the branch that serves Pages, with no manual step. A manual `workflow_dispatch` was rejected with HTTP 403 for this token (`actions:write` scope), which does not affect the cron/push triggers.
+- Open follow-up (not a blocker): the runner's IP is intermittently challenged by EGamersWorld/HLTV, so market coverage varies per run (7 matched fixtures in one run, 0 in another) while the own-line coverage from official Valve standings stays at 22/128 and every gap is flagged on the board (`R-NOMKT`, `R-NORATE`, `R-HLTV`).
+
+**Superseded record (kept for audit):** <https://github.com/buffedlizard55-lab/MaltaProj1/pull/41> (branch `arena/b90700c6-maltaproj1` → `main`), opened 2026-10-13 ~22:5x UTC with the summary, sources and flags above; merged on green CI without waiting for review, per the brief.
 
 **R-02 verification result (run 38472348079, `refresh/logs/verify.txt`):** `rows: 124`, `pages: 12`,
 `errors: []`, `warnings: []`, `OK: all checks passed`; local re-run after the ratings fix reports
