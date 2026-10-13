@@ -1,10 +1,10 @@
-name: Build pick'em fixture inventory
+name: Pick'em inventory probe
 
 on:
   push:
     branches: [arena/79a1c6c8-maltaproj1]
     paths:
-      - pipeline/inventory.py
+      - src/pickem_inventory.py
       - .github/workflows/inventory.yml
   workflow_dispatch:
 
@@ -12,7 +12,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: maltaproj1-inventory
+  group: pickem-inventory
   cancel-in-progress: false
 
 jobs:
@@ -24,18 +24,21 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Build inventory
-        run: |
-          mkdir -p pipeline/_scratch
-          python pipeline/inventory.py 2>&1 | tee pipeline/_scratch/ci-inventory.log
-      - name: Commit inventory
+      - name: Fetch and parse Pick'em pages
+        run: python src/pickem_inventory.py
+      - name: Commit parsed inventory and evidence to the session branch
         if: always()
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -f inventory pipeline/_scratch/ci-inventory.log
-          if git diff --cached --quiet; then echo "no change"; else
-            git commit -m "data: rebuild pick'em fixture inventory [run ${{ github.run_id }}]"
-            git pull --rebase origin arena/79a1c6c8-maltaproj1
-            git push
-          fi
+          git config user.name "arena-79a1c6c8"
+          git config user.email "arena@users.noreply.github.com"
+          git add -f data/pickem_inventory.json evidence/ || true
+          git commit -m "probe: pick'em inventory extraction [skip ci]" || echo "nothing to commit"
+          git pull --rebase origin "${GITHUB_REF_NAME}" || true
+          git push origin "HEAD:${GITHUB_REF_NAME}" || echo "push failed"
+      - name: Upload raw evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pickem-evidence
+          path: evidence/
+          retention-days: 5

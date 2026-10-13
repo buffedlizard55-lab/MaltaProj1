@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Flagged for Review — Hotspawn Pick&#x27;em line analysis</title>
+<link rel="stylesheet" href="assets/mpl.css">
+</head><body>
+<header class="top">
+  <h1>Hotspawn Pick'em — external betting-line analysis</h1>
+  <p>Ten flagged items: discrepancies, unverifiable values and sources that resist automated reading.</p>
+</header>
+<nav><a class="" href="index.html">Dashboard</a><a class="" href="cs2.html">CS2</a><a class="" href="lol.html">League of Legends</a><a class="active" href="flagged.html">Flagged for Review</a><a class="" href="sources.html">Sources</a><a class="" href="methodology.html">Methodology</a><a class="" href="../docs/index.html">Other session dashboards</a></nav>
+<main>
+
+<div class="note bad"><b>Nothing on this page blocks publication.</b> Every item below is a value we refused to fill in,
+a source that cannot be read automatically, or a discrepancy between two official sources. Each has a link for manual review.</div>
+
+<h2>F-01 — Header counts exceed the rendered fixture list</h2>
+<p class="small">Hotspawn's Pick'em pages state “60 matches this week” / tier counters of 85 (CS2) and 294 (LoL), but the
+server-rendered pages list 27 CS2 and 231 LoL fixtures. Matches that have already locked, are in progress, or sit
+beyond the rendered window are not emitted into the page HTML. We publish exactly what the page renders and do not invent the
+remainder. Source: <a href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noreferrer noopener">cs2-pickems</a>,
+<a href="https://play.hotspawn.com/lol-pickems" target="_blank" rel="noreferrer noopener">lol-pickems</a>; query-string paging
+(<code>?page=2</code>, <code>?offset=26</code>, <code>?limit=200</code>) returns identical markup (checked 2026-10-13).</p>
+
+<h2 id="f02">F-02 — Hotspawn's “Locks in” countdown contradicts its own printed start time</h2>
+<p class="small">Every Pick'em card prints a kick-off time <i>and</i> a “Locks in HH:MM:SS” countdown. The printed time is the
+correct UTC time — verified against two independent HLTV match anchors:
+<b>(1)</b> 9z vs Aurora: card “Oct 14, 08:30”, HLTV match timestamp <code>data-unix=1791966600000</code> = 2026-10-14 08:30:00 UTC;
+<b>(2)</b> HOTU vs fnatic: card “Oct 14, 10:00”, HLTV countdown read at 2026-10-13 18:09 UTC implied 10:00 UTC
+(<a href="https://www.hltv.org/matches/2399135/hotu-vs-fnatic-stake-pulse-beat-iii" target="_blank" rel="noreferrer noopener">HLTV match page</a>).
+The countdown, however, does not agree with those times: on <b>all 27 CS2 cards</b> it implies a moment <b>+75 minutes</b> after the
+printed time and on <b>all 231 LoL cards +14 minutes</b> after it (delta histogram: 75 min × 27, 14 min × 231, from the 2026-10-13
+18:03 UTC snapshot). The offset is constant per title, so it is a systematic property of Hotspawn's card widget — most plausibly the
+moment of an internal deadline — not a kick-off clock. <b>We publish the printed (UTC) time and keep the countdown value in the
+dataset as <code>countdown_implied_start_utc</code>; the discrepancy itself is left unresolved and flagged here.</b></p>
+
+<h2>F-03 — Missing bookmaker lines (243 fixtures)</h2>
+<p class="small">Blank and flagged, per the project rule “if a value can't be confirmed from an official source, leave it blank”.
+Per-tournament breakdown (fixture-level rows are in the tables):</p>
+<table class="sortable"><thead><tr><th>Tournament</th><th class="num">Fixtures without a usable line</th><th>Status</th></tr></thead>
+<tbody><tr><td>PRM 3rd Division 26-27 Fall</td><td class='num'>66</td><td><span class='badge b-missing'>no usable external line</span></td></tr><tr><td>PRM 2nd Division 26-27 Fall</td><td class='num'>50</td><td><span class='badge b-missing'>no usable external line</span></td></tr><tr><td>Tunisian Super League 2026</td><td class='num'>35</td><td><span class='badge b-missing'>no usable external line</span></td></tr><tr><td>RIVALS LEAGUE Season 2</td><td class='num'>25</td><td><span class='badge b-missing'>no usable external line</span></td></tr><tr><td>Arabian League 2nd Division 2026 Summer</td><td class='num'>16</td><td><span class='badge b-missing'>no usable external line</span></td></tr><tr><td>Komplettligaen 2026 Autumn</td><td class='num'>14</td><td><span class='badge b-missing'>no usable external line</span></td></tr><tr><td>Elisa BreakOut Series #2</td><td class='num'>12</td><td><span class='badge b-missing'>no usable external line</span></td></tr><tr><td>LigaGG CELOL A 2026 Split 2</td><td class='num'>12</td><td><span class='badge b-missing'>no usable external line</span></td></tr><tr><td>Superstrike League 2026</td><td class='num'>4</td><td><span class='badge b-missing'>no usable external line</span></td></tr><tr><td>CCT Europe 2026 Series #11</td><td class='num'>3</td><td><span class='badge b-missing'>no usable external line</span></td></tr><tr><td>Benelux Ascend Series 2027 Winter Promotion</td><td class='num'>2</td><td><span class='badge b-missing'>no usable external line</span></td></tr><tr><td>LGC Rising 2026 Playoffs</td><td class='num'>2</td><td><span class='badge b-missing'>no usable external line</span></td></tr><tr><td>ESL Challenger League Season 52: South America - Cup #3</td><td class='num'>1</td><td><span class='badge b-missing'>no usable external line</span></td></tr><tr><td>MängudeÖÖ 2026</td><td class='num'>1</td><td><span class='badge b-missing'>no usable external line</span></td></tr></tbody></table>
+<p class="small">Sources consulted for these leagues:
+<a href="https://egamersworld.com/lol/matches" target="_blank" rel="noreferrer noopener">EGamersWorld LoL matches</a>,
+<a href="https://egamersworld.com/lol/events" target="_blank" rel="noreferrer noopener">EGamersWorld LoL events</a>,
+<a href="https://egamersworld.com/counterstrike/events" target="_blank" rel="noreferrer noopener">EGamersWorld CS2 events</a>.</p>
+
+<h2>F-04 — EGamersWorld “1.8 / 1.8” is a default, not a line</h2>
+<p class="small">5 fixtures display exactly 1.8/1.8 on EGamersWorld (ex-RUSTEC vs mellren, Black Phoenix vs 6666,
+ex-Keyd Stars vs Galorys, Mental Rush vs SK Gaming Avarosa, Vitality Rising Bees vs G2 Hel). That is EGamersWorld's fallback
+display when no bookmaker price exists — it is never treated as a line here. Example:
+<a href="https://egamersworld.com/counterstrike/match/_rW8GEyWK/ex-rustec-vs-mellren-ZGVCwI7MK" target="_blank" rel="noreferrer noopener">ex-RUSTEC vs mellren</a>.</p>
+
+<h2>F-05 — Two different prices for the same TWC fixture on one source page</h2>
+<p class="small">On the Thunderpick World Championship page the price widget showed 9z 3.6 / Aurora 1.27 while the schedule block
+below it showed 3.8 / 1.22. We publish the widget pair (used consistently for all four TWC fixtures) and note the discrepancy.
+Source: <a href="https://egamersworld.com/counterstrike/event/thunderpick-world-championship-2026-5X5sFiL7H" target="_blank" rel="noreferrer noopener">EGamersWorld TWC event page</a>.</p>
+
+<h2>F-06 — Team-name aliases between sources</h2>
+<p class="small">Mapping applied (Hotspawn → source): BNK FearX → “FearX” (EGamersWorld); BC.Game → “BC.Game Esports”;
+Fnatic → “fnatic”; Envy → “Team Envy”; Sashi → “Sashi Esport”; EM 2026 Summer Main Event → “EMEA Masters 2026 Summer”.
+Every mapped row keeps both the source link and the name used by the source in its note.</p>
+
+<h2>F-07 — Hotspawn crowd percentages drift between snapshots</h2>
+<p class="small">Observed drift within ~40 minutes on 2026-10-13: ex-Keyd Stars 83% → 86%, Legacy 88% → 83%, 9z 0% → 5%,
+Astralis 100% → 95%. The crowd figure shown on the site is a snapshot timestamped per row and is metadata only.</p>
+
+<h2>F-08 — One fixture only appears on the all-games lobby page</h2>
+<p class="small">Black Phoenix vs 6666 (CCT Europe #11, Hotspawn id 1079620) was rendered on
+<a href="https://play.hotspawn.com/lobby" target="_blank" rel="noreferrer noopener">/lobby</a> but not on
+<a href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noreferrer noopener">/cs2-pickems</a> in the same
+collection run (the match was live). It is kept with that provenance and its odds are flagged as live/unusable.</p>
+
+<h2>F-09 — No published line for the majority of the slate</h2>
+<p class="small">243 of 258 fixtures have no confirmed bookmaker line. We did not originate substitute probabilities for
+them: any number would be an invention, and the project rule is explicit that unconfirmable values stay blank. If you want a
+house model instead (for example an Elo-style model fitted to HLTV ranking points, which are published and linkable), say so and
+it can be added as a clearly-labelled, separate column.</p>
+
+<h2>F-10 — Automated collection is not possible for every source</h2>
+<p class="small">EGamersWorld, Liquipedia, SofaScore's API and HLTV's schedule pages return HTTP 403 to datacenter clients
+(GitHub Actions runners), while they render normally in a browser-like fetch; HLTV's analytics pages and ranking pages do return
+200. The line rows therefore carry browser-verified values with explicit capture timestamps, and the CI pipeline keeps collecting
+the fixture inventory automatically (see COORDINATION.md).</p>
+</main>
+<footer>
+  Built 2026-10-13 18:12 UTC by Arena session <code>79a1c6c8</code>. Fixture list: play.hotspawn.com Pick'em lobby pages.
+  Odds: external bookmakers via EGamersWorld / HLTV (see <a href="sources.html">Sources</a>). Values not confirmed from an
+  official source are left blank and listed on the <a href="flagged.html">Flagged for Review</a> page.
+  Odds move continuously; each row carries its capture timestamp.
+</footer>
+<script src="assets/mpl.js"></script>
+</body></html>
