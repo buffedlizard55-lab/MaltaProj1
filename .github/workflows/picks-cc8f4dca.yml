@@ -2,10 +2,6 @@ name: Picks source probe (cc8f4dca)
 
 on:
   workflow_dispatch:
-  push:
-    branches: [arena/cc8f4dca-maltaproj1]
-    paths:
-      - scripts/picks_pinnacle.py
 
 permissions:
   contents: write
