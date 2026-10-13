@@ -225,9 +225,21 @@ def hltv_pages() -> dict:
     for label, url in (("ranking-dated", HLTV_RANKING_DATED), ("matches", HLTV_MATCHES_URL)):
         got = up.fetch_html(url)
         html = got.get("html") or ""
+        # The upcoming-matches page is behind a bot check far more often than the ranking page; wait
+        # and ask again a few times, since the check usually clears by itself. Nothing is solved or
+        # bypassed - the browser just loads the page again later.
+        attempts = 1
+        while (label == "matches" and attempts < 4
+               and (not html or html.count('href="/matches/') == 0)):
+            time.sleep(12 * attempts)
+            got = up.fetch_html(url)
+            html = got.get("html") or ""
+            attempts += 1
+        got["attempts"] = attempts
         out["pages"][label] = {
             "url": url, "status": got.get("status"), "bytes": got.get("bytes"),
             "error": got.get("error"), "path": got.get("path"), "title": _title_of(html),
+            "attempts": got.get("attempts", 1),
             "marker_ranked_team": html.count('class="ranked-team'),
             "marker_match_href": len(re.findall(r'href="/matches/\d+/', html)),
             "marker_data_unix": html.count("data-unix="),
@@ -295,9 +307,19 @@ def pinnacle_guest(candidates: list[dict]) -> tuple[list[dict], dict]:
                 meta[f"{game}_leagues"].append(name)
     meta["leagues_read"] = len(leagues["data"])
     meta["leagues_wanted"] = len(wanted)
+    meta["matchup_endpoint_tries"] = {}
     quotes = []
     for league_id, league_name, game in wanted:
-        matchups = _pin_get(f"/leagues/{league_id}/matchups?withSpecials=false")
+        matchups = {"data": None, "record": {"error": "not tried"}}
+        for label, path in (("league-matchups", f"/leagues/{league_id}/matchups?withSpecials=false"),
+                            ("league-matchups-plain", f"/leagues/{league_id}/matchups"),
+                            ("sport-matchups", "/sports/12/matchups?withSpecials=false")):
+            attempt = _pin_get(path)
+            meta["matchup_endpoint_tries"][label] = attempt["record"]["status"]
+            if attempt["data"] is not None:
+                matchups = attempt
+                meta["matchup_endpoint_used"] = label
+                break
         if matchups["data"] is None:
             meta["errors"].append(f"matchups {league_id}: {matchups['record']['error']}")
             continue
@@ -309,6 +331,11 @@ def pinnacle_guest(candidates: list[dict]) -> tuple[list[dict], dict]:
             start = str(matchup.get("startTime") or "")[:19] + "Z"
             markets = _pin_get(f"/matchups/{matchup.get('id')}/markets/related/straight")
             if markets["data"] is None:
+                markets = _pin_get(f"/matchups/{matchup.get('id')}/markets/related/straight"
+                                   "?primary=false")
+            if markets["data"] is None:
+                meta.setdefault("market_endpoint_status", []).append(
+                    (matchup.get("id"), markets["record"]["status"], markets["record"]["error"]))
                 continue
             for market in markets["data"]:
                 meta["markets_read"] += 1
