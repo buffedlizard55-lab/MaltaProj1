@@ -1000,3 +1000,10 @@ Branch: `arena/9569108d-maltaproj1` (fixed by Arena; the brief's `session-<id>/<
 - All external prices come from one aggregator. No second bookmaker was read for any row.
 - The site is a snapshot at 2026-10-13 22:00 UTC; it is not refreshed automatically.
 - The repo-wide line-by-line audit is not repeated here; the earlier audits (docs/audit.html, reviews/, assurance/) remain the reference.
+
+### Release record — P-02 (arena/616c2455)
+
+- **PR #40** https://github.com/buffedlizard55-lab/MaltaProj1/pull/40 (`arena/616c2455-maltaproj1` → `main`): **MERGED** 2026-10-13 22:02:21 UTC, merge commit `c0206bc`. Explicit `gh pr merge 40 --merge`, not `--auto`. Check `verify` = SUCCESS and mergeable CLEAN before merge.
+- **Pages:** build for `c0206bc` reports `built`, error null (22:02:53 UTC); workflow run 38474980175 completed with `success`. Live page fetched and confirmed: https://buffedlizard55-lab.github.io/MaltaProj1/picks/ (30 fixtures in lobby, 29 open, 25 with external line, 22 with own-model line, 25 picks, as-of 2026-10-13 22:00 UTC).
+- Flagged for Review (live): https://buffedlizard55-lab.github.io/MaltaProj1/picks/flagged.html
+- Task P-02 **done**, with the limits above (single aggregator; static snapshot; four blank rows).
