@@ -22,8 +22,12 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     background: var(--bg-dark);
     color: var(--text-primary);
-    display: flex;
+    display: block;
     min-height: 100vh;
+}
+
+body:has(.sidebar) {
+    display: flex;
 }
 
 /* Sidebar */
@@ -450,3 +454,118 @@ td a:hover {
         grid-template-columns: 1fr;
     }
 }
+
+/* Compatibility styles for top-nav pages (<header><nav><main><footer>) */
+body > header {
+    background: var(--bg-sidebar);
+    border-bottom: 1px solid var(--border);
+    padding: 20px 28px;
+}
+body > header h1 {
+    font-size: 1.45rem;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+}
+body > header p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+body > nav:not(.sidebar) {
+    background: #12151f;
+    border-bottom: 1px solid var(--border);
+    padding: 10px 28px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+body > nav:not(.sidebar) a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.88rem;
+}
+body > nav:not(.sidebar) a:hover,
+body > nav:not(.sidebar) a[aria-current="page"] {
+    background: rgba(59, 130, 246, 0.16);
+    color: var(--accent-blue);
+}
+body > main:not(.content) {
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: 24px 28px;
+}
+.card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    overflow-x: auto;
+}
+.card h2, .card h3 {
+    margin-bottom: 10px;
+}
+.card p, .card li {
+    color: var(--text-secondary);
+    line-height: 1.55;
+    margin-bottom: 8px;
+}
+.card a, body > footer a {
+    color: var(--accent-blue);
+}
+.kpi {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    margin: 14px 0;
+}
+.kpi > div {
+    background: var(--bg-sidebar);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+}
+.kpi > div b {
+    display: block;
+    font-size: 1.5rem;
+    color: var(--accent-blue);
+    margin-bottom: 4px;
+}
+.card table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+    margin-top: 10px;
+}
+.card th, .card td {
+    border-bottom: 1px solid var(--border);
+    padding: 9px 8px;
+    text-align: left;
+    vertical-align: top;
+}
+.card th {
+    color: var(--text-secondary);
+    background: rgba(255,255,255,0.03);
+}
+.badge {
+    display: inline-block;
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-size: 0.76rem;
+    font-weight: 600;
+}
+.badge.ok { background: rgba(16, 185, 129, 0.18); color: #34d399; }
+.badge.warn { background: rgba(245, 158, 11, 0.18); color: #fbbf24; }
+.badge.info { background: rgba(59, 130, 246, 0.18); color: #60a5fa; }
+.badge.err { background: rgba(239, 68, 68, 0.18); color: #f87171; }
+body > footer {
+    border-top: 1px solid var(--border);
+    padding: 18px 28px;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    text-align: center;
+}
+

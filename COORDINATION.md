@@ -62,3 +62,18 @@ Canonical dataset: data/fixtures.csv (Hotspawn lobby + `script#ng-state` payload
 - PR #16 merged (`4400c9a`): 380-fixture slate, external lines, `pickem/`, review CSV; Pages `built`, live pages fetched and confirmed.
 - Incident: leftover conflict markers in root `index.html` shipped in PR #16; fixed by their PR #18 (`d6d0715`). Lesson adopted repo-wide: after every merge, re-read all conflicted paths and scan for markers before staging.
 - Their cross-session note ("docs/ times differ from payload by ~4h") is addressed by this integration: `data/fixtures.csv` now carries exact payload `start_utc`/`lock_utc`, and `docs/matches.html` shows both display and UTC per row (26/26 pairings re-verified against the payload, 0 mismatches).
+
+---
+
+## Session `arena/6d9c321d` — claims & completion log (2026-10-13 UTC)
+
+Branch: `arena/6d9c321d-maltaproj1` (fixed by Arena; no other branch used). Preserves all prior sessions' files intact.
+
+| # | Task | Status | Owner | Exclusive file scope | Notes |
+|---|------|--------|-------|----------------------|-------|
+| 18 | Reverse-engineer Hotspawn Angular SSR TransferState (`<script id="ng-state">`) across `/lobby`, `/cs2-pickems`, `/thp-pickems` (all 86 CS2 fixtures, exact UTC epoch ms `scheduled_start_time`/`lock_time`, `total_picks` sample size `N=7..21`, 27th active Oct 13 fixture `1079620` `Black Phoenix vs 6666`, and 59 stale summer fixtures) | done | arena/6d9c321d | `data/6d9c321d/ng_state_86_fixtures.csv`, `data/6d9c321d/matches_verified.csv`, `data/6d9c321d/matches_verified.json` | Resolves `F-01`/`F-COV`, `F-02`, and `F-05` (`13%+88%=101%` is `1/8` and `7/8` votes). Hotspawn crowd % is never used as probability. |
+| 19 | Line-by-line verification of all 38 teams' HLTV World Ranks (`2026/october/12` #1–#245 + event-start HLTV ranks) & Valve Regional Standings (VRS) from official HLTV match/event pages, plus verified external sportsbook decimal odds for 24/27 active fixtures (incl. all 12 Elisa BreakOut Series 2 BO1 matches on EGamersWorld/BC.Game) | done | arena/6d9c321d | `data/6d9c321d/team_ratings_verified.csv`, `data/6d9c321d/external_bookmaker_lines.csv` | Resolves `F-04`/`F-05` rank gaps (`NiP #26/VRS #16`, `Envy #20/VRS #27`). Unconfirmed bookmaker lines (`1.80/1.80` EGW placeholder on `1079620`, `1079622`, `1079624`) left blank and flagged (`F-28`). |
+| 20 | Reproducible dual-rating (HLTV World Rank + VRS + BO1/BO3 series variance) probability & fair-odds origination engine for all 27 active October fixtures | done | arena/6d9c321d | `scripts/6d9c321d_build.py` | Zero Hotspawn crowd % inputs; outputs vig-free external implied probs, originated BO1/BO3 probs, fair odds, and edge/divergence for 27/27 fixtures. |
+| 21 | Publish standalone verified lines & TransferState audit subpage (`docs/verified-lines.html`), append flags `F-28`..`F-35` to `docs/flagged.html`, add nav links in `index.html` and `docs/index.html`, and fix `docs/style.css` layout compatibility (`body:has(.sidebar)`) | done | arena/6d9c321d | `docs/verified-lines.html`, `docs/flagged.html` (append-only), `docs/index.html` (nav link), `index.html` (card link), `docs/style.css` (compatibility fix) | Restores clean vertical block layout for `<header><nav><main>` pages in `docs/style.css` while keeping `.sidebar` flex layout for `docs/analysis.html`. |
+| 22 | Integration: link/HTML audit, commit, `git pull --rebase origin main`, push, open & merge PR to `main`, confirm GitHub Pages deployment, log PR URL & result here | in progress | arena/6d9c321d | `COORDINATION.md` (this section) | Rebased cleanly onto `origin/main` (`c5cdc3d`) preserving all sessions' work. |
+
