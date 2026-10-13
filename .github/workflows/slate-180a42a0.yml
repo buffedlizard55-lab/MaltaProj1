@@ -56,14 +56,23 @@ jobs:
           python -m pip install -r requirements.txt
           python -m playwright install --with-deps chromium
 
+      # Every step tees its output into slate/data/last_run.log, which the commit step below
+      # publishes on the branch: a failure is then readable from the repository itself, not only
+      # from the job log.
       - name: Capture slate, ratings and external lines
-        run: python slate/collect.py
+        run: |
+          set -o pipefail
+          python slate/collect.py 2>&1 | tee slate/data/last_run.log
 
       - name: Rebuild the dashboard pages
-        run: python slate/build.py
+        run: |
+          set -o pipefail
+          python slate/build.py 2>&1 | tee -a slate/data/last_run.log
 
       - name: Run the offline tests
-        run: python slate/tests.py
+        run: |
+          set -o pipefail
+          python slate/tests.py 2>&1 | tee -a slate/data/last_run.log
 
       - name: Commit data and pages back to this branch
         if: always()
@@ -85,6 +94,7 @@ jobs:
         with:
           name: slate-capture-${{ github.run_id }}
           path: |
+            slate/data/last_run.log
             slate/data/analysis.json
             slate/data/provenance.json
             slate/data/flags.csv

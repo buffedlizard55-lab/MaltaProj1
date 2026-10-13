@@ -343,9 +343,12 @@ def board_table(rows: list[dict], *, show_status=False, caption="") -> str:
                     f'<span class="pct mut">{esc(row.get("team_b"))} {num(own_b)}</span>'
                     if own_a else '<span class="mut">— no official rating pair</span>')
         status = status_tag(row.get("live_status")) if show_status else ""
+        fmt = row.get("best_of") or ""
+        fmt_src = row.get("best_of_source") or "format not stated by any source read"
         body.append(
             "<tr>"
             f'<td data-label="Match"><b>{esc(row.get("team_a"))}</b> vs <b>{esc(row.get("team_b"))}</b>{status}'
+            f'<div class="mut" style="font-size:12px">{"BO" + fmt + " · from " + esc(fmt_src) if fmt else esc(fmt_src)}</div>'
             f'<div class="mut" style="font-size:12px">{esc(row.get("pick_basis"))}</div></td>'
             f'<td data-label="Starts (UTC)">{esc(row.get("start_utc"))}</td>'
             f'<td data-label="Tournament">{esc(row.get("competition"))}'

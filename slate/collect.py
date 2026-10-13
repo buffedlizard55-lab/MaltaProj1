@@ -90,6 +90,9 @@ ELO_SCALE = 400.0            # standard Elo/logistic scale used for HLTV ranking
 DEADLINE_SECONDS = 22 * 60   # stop opening new pages after this long (CI job has 35 minutes)
 
 
+prov_extra: list[dict] = []   # provenance rows written by this module (module-level on purpose)
+
+
 def now_iso() -> str:
     return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
@@ -277,8 +280,8 @@ def pinnacle_guest(candidates: list[dict]) -> tuple[list[dict], dict]:
     """Moneyline quotes for the open slate from Pinnacle's public guest endpoint."""
     if not HAVE_UPSTREAM:
         return [], {"error": f"upstream collector unavailable: {UPSTREAM_ERROR}"}
-    meta = {"leagues_read": 0, "cs2_leagues": [], "matchups_seen": 0, "markets_read": 0,
-            "quotes": 0, "matched": 0, "errors": [], "rejected": 0}
+    meta = {"leagues_read": 0, "cs2_leagues": [], "lol_leagues": [], "matchups_seen": 0,
+            "markets_read": 0, "quotes": 0, "matched": 0, "errors": [], "rejected": 0}
     leagues = _pin_get("/sports/12/leagues?all=false")
     if leagues["data"] is None:
         meta["errors"].append(f"league list failed: {leagues['record']['error']}")
@@ -289,8 +292,7 @@ def pinnacle_guest(candidates: list[dict]) -> tuple[list[dict], dict]:
         for prefix, game in PIN_GAMES.items():
             if name.startswith(prefix):
                 wanted.append((league.get("id"), name, game))
-                if game == "cs2":
-                    meta["cs2_leagues"].append(name)
+                meta[f"{game}_leagues"].append(name)
     meta["leagues_read"] = len(leagues["data"])
     meta["leagues_wanted"] = len(wanted)
     quotes = []
@@ -340,7 +342,7 @@ def pinnacle_guest(candidates: list[dict]) -> tuple[list[dict], dict]:
     for fx in candidates:
         best = None
         for q in quotes:
-            if q["game"] != "cs2":
+            if q["game"] != fx.get("sport"):
                 continue
             same = (similarity(fx["team_a"], q["team_a"]) + similarity(fx["team_b"], q["team_b"])) / 2
             swapped = (similarity(fx["team_a"], q["team_b"]) + similarity(fx["team_b"], q["team_a"])) / 2
@@ -512,7 +514,7 @@ def main() -> int:
     stamp = now_iso()
     now = datetime.now(timezone.utc)
     flags: list[dict] = []
-    prov_extra: list[dict] = []
+    prov_extra.clear()
 
     def add_flag(flag_id: str, severity: str, subject: str, detail: str, links: list[str]) -> None:
         flags.append({"id": flag_id, "severity": severity, "subject": subject, "detail": detail,
