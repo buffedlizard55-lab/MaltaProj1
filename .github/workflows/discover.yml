@@ -17,11 +17,11 @@ concurrency:
 
 jobs:
   inspect:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
         with:
           python-version: '3.12'
       - name: Install ordinary browser tooling
@@ -32,7 +32,7 @@ jobs:
         run: python scripts/discover_sources.py
       - name: Keep source evidence outside Git
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5
         with:
           name: public-source-discovery
           path: .cache/discovery/
@@ -45,6 +45,5 @@ jobs:
           git add research/discovery-index.json research/discovery.tar.gz
           if git diff --cached --quiet; then exit 0; fi
           git commit -m "research: return public parser evidence from run ${{ github.run_id }}"
-          git pull --rebase origin main
           git pull --rebase origin arena/4f599d7c-maltaproj1
           git push origin HEAD:arena/4f599d7c-maltaproj1
