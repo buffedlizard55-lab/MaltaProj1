@@ -14,9 +14,12 @@ MOBILE = ROOT / "mobile"
 class E3315A54PublicationTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.current = list(csv.DictReader((DATA / "current.csv").open(encoding="utf-8")))
-        cls.stale = list(csv.DictReader((DATA / "stale.csv").open(encoding="utf-8")))
-        cls.flags = list(csv.DictReader((DATA / "flags.csv").open(encoding="utf-8")))
+        def load_csv(path):
+            with path.open(encoding="utf-8", newline="") as handle:
+                return list(csv.DictReader(handle))
+        cls.current = load_csv(DATA / "current.csv")
+        cls.stale = load_csv(DATA / "stale.csv")
+        cls.flags = load_csv(DATA / "flags.csv")
         cls.snapshot = json.loads((DATA / "snapshot.json").read_text(encoding="utf-8"))
 
     def test_coverage_and_unique_fixture_ids(self):
@@ -31,6 +34,8 @@ class E3315A54PublicationTests(unittest.TestCase):
         for row in self.current + self.stale:
             self.assertFalse(any("crowd" in key.lower() for key in row))
             self.assertNotIn("picked", row.get("notes", "").lower())
+            self.assertNotIn("crowd", row.get("notes", "").lower())
+            self.assertNotIn("crowd", row.get("status_note", "").lower())
         self.assertFalse(self.snapshot["crowd_percentages_used"])
 
     def test_probability_pairs_are_normalized(self):

@@ -1481,6 +1481,33 @@ def probability_from_text(value: str) -> Optional[float]:
         return None
 
 
+def sanitize_note(text: str) -> str:
+    """Keep crowd data out of published probability notes.
+
+    Crowd percentages are deliberately not part of the dashboard evidence. A
+    review note may say that the crowd signal was excluded, but it must not
+    repeat a crowd percentage or describe it as a predictive input.
+    """
+    if not text:
+        return ""
+    value = str(text)
+    value = re.sub(r"\([^)]*Hotspawn crowd[^)]*\):?\s*", "", value, flags=re.IGNORECASE)
+    value = re.sub(r"Hotspawn crowd[^,;:]*[,;:]\s*", "Hotspawn crowd data excluded; ", value, flags=re.IGNORECASE)
+    value = re.sub(r"Crowd backs [^,;:]*[,;:]\s*", "Hotspawn crowd data excluded; ", value, flags=re.IGNORECASE)
+    value = re.sub(r"Hotspawn crowd[^,;:]*[,;:]\s*", "Hotspawn crowd data excluded; ", value, flags=re.IGNORECASE)
+    value = re.sub(r"\s+", " ", value).strip(" ;")
+    # De-duplicate clauses introduced by the shared raw note and row note.
+    parts = [part.strip() for part in value.split(";") if part.strip()]
+    # If a source note mixes a crowd observation with other prose, drop that
+    # whole clause. The market/model cells already carry the confirmed values.
+    parts = [part for part in parts if "crowd" not in part.lower()]
+    unique: List[str] = []
+    for part in parts:
+        if part not in unique:
+            unique.append(part)
+    return "; ".join(unique)
+
+
 def current_status(start_utc: str, match_id: str) -> Tuple[str, str]:
     """Return (status, actionable) for the fixed capture timestamp."""
     if match_id == "1079620":
@@ -1625,6 +1652,9 @@ def augment_market_and_pick(row: Dict[str, Any], *, own_p_a: Optional[float] = N
             row["flag_code"] = ",".join(x for x in (row["flag_code"], "MODEL-MARKET") if x)
             row["notes"] = "; ".join(x for x in (row["notes"], f"market/model gap {edge:.1f} pp") if x)
             row["flag_note"] = row["notes"]
+    row["notes"] = sanitize_note(row.get("notes", ""))
+    row["status_note"] = sanitize_note(row.get("status_note", ""))
+    row["flag_note"] = row["notes"]
 
 
 def model_lookup() -> Dict[str, Dict[str, str]]:
