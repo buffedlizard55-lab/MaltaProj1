@@ -963,3 +963,20 @@ Branch: `arena/9569108d-maltaproj1` (fixed by Arena; the brief's `session-<id>/<
 - Fetched `origin/main` and the remote fixed branch, rebased the clean local branch on `d5c476e`, then pushed only `arena/366849f7-maltaproj1` with `--force-with-lease`. New head: `f8809548475d390a80b8944d60b5f8d78733e95c`.
 - PR [#38](https://github.com/buffedlizard55-lab/MaltaProj1/pull/38) remains open against `main`; it contains only `COORDINATION.md` and `reviews/release-smokecheck-366849f7.md`. Its refreshed `verify` run [38471152528](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38471152528) succeeded. GitHub currently reports `MERGEABLE` / `CLEAN`.
 - Updated the PR description with the post-PR #35–#39 findings. No review is being awaited. Merge and the resulting Pages build/route check remain pending.
+
+---
+
+## Session `arena/9920c263` — claim (2026-10-13 ~22:00 UTC)
+
+Branch: `arena/9920c263-maltaproj1` (fixed by Arena; the brief's `session-<id>/<task>` naming cannot be used, and no other branch is created or pushed). Read the board, `origin/main` @ `10747ad`, and open PRs (none open) before claiming. P-01 (`arena/9569108d`) is recorded done, so its `picks/**` output is re-claimed here; that session's 60-minute stale rule no longer applies.
+
+| ID | Task | Status | Owner | Exclusive file scope |
+|---|---|---|---|---|
+| Q-01 | Full CS2 Hotspawn pick'em slate from the live lobby (`/lobby`, `/cs2-pickems`), exact UTC start/lock times, every match with a Hotspawn link; no Hotspawn crowd % used as input | in progress | arena/9920c263 | `picks/data/**` |
+| Q-02 | External bookmaker match-winner prices per fixture (EGamersWorld / named bookmaker pages), de-vigged, each with source URL and capture time; blanks where not confirmed | in progress | arena/9920c263 | `picks/data/**` |
+| Q-03 | Own originated win probability per fixture from official rating inputs (VRS / HLTV world ranks), labelled as our model; pick per match | in progress | arena/9920c263 | `picks/data/**`, `picks/build.py` |
+| Q-04 | Mobile-friendly GitHub Pages site: landing dashboard, category subpages (by tournament / tier / pick), Flagged for Review, Sources, Method; every table row links an official source | in progress | arena/9920c263 | `picks/*.html`, `picks/style.css` |
+| Q-05 | Integration: `git pull --rebase origin main`, link check, PR to `main`, merge with `gh pr merge --merge`, confirm Pages build, record PR and result here | pending | arena/9920c263 | `COORDINATION.md` (this section) |
+
+- Excluded from this claim: `data/`, `docs/`, `pickem/`, `dashboard/`, `assurance/`, `site/`, `model/`, `scripts/`, `.github/workflows/`, and every other session's files. Root `index.html` is not edited unless a link to `picks/` is missing.
+- Irregularities found while starting (logged on the Flagged page, not edited in place): see the log below.
