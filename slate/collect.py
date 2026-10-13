@@ -31,8 +31,8 @@ them.
 from __future__ import annotations
 
 import csv
+import hashlib
 import json
-import math
 import re
 import sys
 import time
@@ -40,6 +40,8 @@ from datetime import datetime, timedelta, timezone
 from difflib import SequenceMatcher
 from html import unescape
 from pathlib import Path
+from urllib.error import HTTPError, URLError
+from urllib.request import Request, urlopen
 
 ROOT = Path(__file__).resolve().parent.parent
 HERE = Path(__file__).resolve().parent
@@ -62,9 +64,26 @@ else:
     UPSTREAM_ERROR = None
 
 HLTV_RANKING_URL = "https://www.hltv.org/ranking/teams"
+HLTV_RANKING_DATED = "https://www.hltv.org/ranking/teams/2026/october/12"
 HLTV_MATCHES_URL = "https://www.hltv.org/matches"
 VRS_LISTING_API = ("https://api.github.com/repos/ValveSoftware/"
                    "counter-strike_regional_standings/contents/live/2026")
+
+# Pinnacle's public guest endpoint, the same JSON its own public matchups page loads in the browser.
+# No account, no key of ours: the key below is the one pinnacle.com's own public web app sends, and
+# every response is recorded in the provenance log so a reading can be re-fetched and hashed.
+PIN_BASE = "https://guest.api.arcadia.pinnacle.com/0.1"
+PIN_KEY = "CmX2KcMrXuFmNg6YFbmTxE0y9CIrOi0R"
+PIN_HEADERS = {
+    "X-API-Key": PIN_KEY,
+    "User-Agent": ("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) "
+                   "Chrome/126.0.0.0 Safari/537.36"),
+    "Accept": "application/json",
+    "Accept-Language": "en-US,en;q=0.9",
+    "Origin": "https://www.pinnacle.com",
+    "Referer": "https://www.pinnacle.com/",
+}
+PIN_GAMES = {"CS2 - ": "cs2", "League of Legends - ": "lol"}
 
 # Every value this file writes is derived from these constants; they are printed into the data.
 ELO_SCALE = 400.0            # standard Elo/logistic scale used for HLTV ranking points
@@ -147,36 +166,217 @@ def live_status(fixture: dict, now: datetime) -> str:
 
 
 # -------------------------------------------------------------------------------------- HLTV data
-def hltv_listing() -> dict:
-    """One render of HLTV's upcoming-matches page: per-row match id, URL, teams, event, kickoff."""
-    out = {"url": HLTV_MATCHES_URL, "status": None, "error": None, "rows": [], "fetched_utc": None}
+def _title_of(html: str) -> str:
+    m = re.search(r"<title>(.*?)</title>", html or "", re.S | re.I)
+    return unescape(m.group(1)).strip()[:120] if m else ""
+
+
+def parse_hltv_matches(html: str) -> list[dict]:
+    """HLTV upcoming-matches page -> one row per match.
+
+    The slug in `/matches/<id>/<teamA>-vs-<teamB>-<event>` carries the team names, so a row is only
+    accepted when the slug, a 13-digit `data-unix` and an event name are all present in the same
+    window of the document. Returns [] when the page is a challenge page or an unexpected layout.
+    """
+    rows, seen = [], set()
+    for match in re.finditer(r'href="(/matches/(\d+)/([a-z0-9\-]+))"', html or ""):
+        path, match_id, slug = match.group(1), match.group(2), match.group(3)
+        if match_id in seen:
+            continue
+        window = (html or "")[match.start(): match.start() + 2600]
+        unix = re.search(r"data-unix=\"(\d{13})\"", window)
+        event = re.search(r'class="event-name"[^>]*>\s*([^<]{2,60})\s*<', window)
+        fmt = re.search(r"\b(bo[135])\b", window, re.I)
+        if not unix:
+            continue
+        slug_pair = re.match(r"(.+?)-vs-(.+)$", slug)
+        if not slug_pair:
+            continue
+        teams_live = re.findall(r'class="team[^"]*"[^>]*>\s*([^<]{2,40})\s*<', window)
+        team_a = (unescape(teams_live[0]).strip() if len(teams_live) >= 2
+                  else slug_pair.group(1).replace("-", " ").strip())
+        team_b = (unescape(teams_live[1]).strip() if len(teams_live) >= 2
+                  else slug_pair.group(2).replace("-", " ").strip())
+        seen.add(match_id)
+        rows.append({
+            "hltv_match_id": match_id,
+            "hltv_url": "https://www.hltv.org" + path,
+            "slug": slug,
+            "team_a": team_a,
+            "team_b": team_b,
+            "names_from": "page markup" if len(teams_live) >= 2 else "URL slug",
+            "event": unescape(event.group(1)).strip() if event else None,
+            "format": (fmt.group(1).lower() if fmt else None),
+            "kickoff_utc": datetime.fromtimestamp(int(unix.group(1)) / 1000, timezone.utc)
+                           .strftime("%Y-%m-%dT%H:%M:%SZ"),
+        })
+    return rows
+
+
+def hltv_pages() -> dict:
+    """HLTV ranking (rank + points) and the upcoming-matches listing, with per-page diagnostics."""
+    out = {"pages": {}, "ranking": {}, "matches": [], "ranking_date_text": None, "error": None}
     if not HAVE_UPSTREAM:
         out["error"] = f"upstream collector unavailable: {UPSTREAM_ERROR}"
         return out
-    got = up.fetch_html(HLTV_MATCHES_URL)
-    out["status"], out["error"] = got.get("status"), got.get("error")
-    out["fetched_utc"] = got.get("fetched_utc")
-    html = got.get("html")
-    if not html:
-        return out
-    for block in re.split(r'<div class="match-item', html)[1:]:
-        link = re.search(r'href="(/matches/(\d+)/([^"?#]+))"', block)
-        unix = re.search(r'data-unix="(\d{13})"', block)
-        teams = re.findall(r'class="team[^"]*">\s*([^<]{2,40})\s*<', block)
-        event = re.search(r'class="event-name">([^<]+)<', block)
-        if not (link and len(teams) >= 2):
-            continue
-        out["rows"].append({
-            "hltv_match_id": link.group(2),
-            "hltv_url": "https://www.hltv.org" + link.group(1),
-            "team_a": unescape(teams[0]).strip(),
-            "team_b": unescape(teams[1]).strip(),
-            "event": unescape(event.group(1)).strip() if event else None,
-            "kickoff_utc": (datetime.fromtimestamp(int(unix.group(1)) / 1000, timezone.utc)
-                            .strftime("%Y-%m-%dT%H:%M:%SZ") if unix else None),
-        })
-    out["rows_read"] = len(out["rows"])
+    for label, url in (("ranking-dated", HLTV_RANKING_DATED), ("matches", HLTV_MATCHES_URL)):
+        got = up.fetch_html(url)
+        html = got.get("html") or ""
+        out["pages"][label] = {
+            "url": url, "status": got.get("status"), "bytes": got.get("bytes"),
+            "error": got.get("error"), "path": got.get("path"), "title": _title_of(html),
+            "marker_ranked_team": html.count('class="ranked-team'),
+            "marker_match_href": len(re.findall(r'href="/matches/\d+/', html)),
+            "marker_data_unix": html.count("data-unix="),
+        }
+        if label.startswith("ranking"):
+            for block in html.split('<div class="ranked-team standard-box">')[1:]:
+                pos = re.search(r'<span class="position[^"]*">#(\d+)</span>', block)
+                name = re.search(r'<span class="name">([^<]+)</span>', block)
+                pts = re.search(r'<span class="points">\((\d+)', block)
+                if pos and name:
+                    out["ranking"][unescape(name.group(1)).strip()] = {
+                        "rank": int(pos.group(1)),
+                        "points": int(pts.group(1)) if pts else None,
+                    }
+            date_match = re.search(
+                r"World ranking on ([A-Za-z]+ \d{1,2}(?:st|nd|rd|th)?,? \d{4})", html)
+            out["ranking_date_text"] = date_match.group(1) if date_match else None
+        else:
+            out["matches"] = parse_hltv_matches(html)
+            out["matches_from_block_split"] = sum(
+                1 for block in re.split(r'<div class="match-item', html)[1:]
+                if re.search(r'data-unix="\d{13}"', block))
     return out
+
+
+# --------------------------------------------------------------------------------------- Pinnacle
+def _pin_get(path: str, timeout: int = 30) -> dict:
+    """One JSON GET against Pinnacle's public guest endpoint, recorded in the provenance log."""
+    url = f"{PIN_BASE}{path}"
+    rec = {"url": url, "fetched_utc": now_iso(), "status": None, "bytes": None, "sha256": None,
+           "path": "http", "error": None, "kind": "pinnacle-guest"}
+    try:
+        request = Request(url, headers=PIN_HEADERS)
+        with urlopen(request, timeout=timeout) as resp:
+            body = resp.read(8_000_000)
+            rec.update(status=resp.status, bytes=len(body), sha256=hashlib.sha256(body).hexdigest())
+            data = json.loads(body.decode("utf-8"))
+    except HTTPError as exc:
+        rec["error"] = f"HTTPError {exc.code}"
+        rec["status"] = exc.code
+        data = None
+    except (URLError, TimeoutError, OSError, json.JSONDecodeError) as exc:
+        rec["error"] = f"{type(exc).__name__}: {exc}"
+        data = None
+    prov_extra.append({k: v for k, v in rec.items() if k != "data"})
+    return {"record": rec, "data": data}
+
+
+def pinnacle_guest(candidates: list[dict]) -> tuple[list[dict], dict]:
+    """Moneyline quotes for the open slate from Pinnacle's public guest endpoint."""
+    if not HAVE_UPSTREAM:
+        return [], {"error": f"upstream collector unavailable: {UPSTREAM_ERROR}"}
+    meta = {"leagues_read": 0, "cs2_leagues": [], "matchups_seen": 0, "markets_read": 0,
+            "quotes": 0, "matched": 0, "errors": [], "rejected": 0}
+    leagues = _pin_get("/sports/12/leagues?all=false")
+    if leagues["data"] is None:
+        meta["errors"].append(f"league list failed: {leagues['record']['error']}")
+        return [], meta
+    wanted = []
+    for league in leagues["data"]:
+        name = (league or {}).get("name") or ""
+        for prefix, game in PIN_GAMES.items():
+            if name.startswith(prefix):
+                wanted.append((league.get("id"), name, game))
+                if game == "cs2":
+                    meta["cs2_leagues"].append(name)
+    meta["leagues_read"] = len(leagues["data"])
+    meta["leagues_wanted"] = len(wanted)
+    quotes = []
+    for league_id, league_name, game in wanted:
+        matchups = _pin_get(f"/leagues/{league_id}/matchups?withSpecials=false")
+        if matchups["data"] is None:
+            meta["errors"].append(f"matchups {league_id}: {matchups['record']['error']}")
+            continue
+        for matchup in matchups["data"]:
+            participants = matchup.get("participants") or []
+            if len(participants) != 2:
+                continue
+            meta["matchups_seen"] += 1
+            start = str(matchup.get("startTime") or "")[:19] + "Z"
+            markets = _pin_get(f"/matchups/{matchup.get('id')}/markets/related/straight")
+            if markets["data"] is None:
+                continue
+            for market in markets["data"]:
+                meta["markets_read"] += 1
+                if (market.get("type") != "moneyline" or market.get("period") != 0
+                        or market.get("isAlternate") is not False or market.get("status") != "open"):
+                    meta["rejected"] += 1
+                    continue
+                prices = {p.get("designation"): p.get("price") for p in market.get("prices") or []}
+                if set(prices) != {"home", "away"}:
+                    meta["rejected"] += 1
+                    continue
+                try:
+                    odds_home = american_to_decimal(prices["home"])
+                    odds_away = american_to_decimal(prices["away"])
+                except ValueError:
+                    meta["rejected"] += 1
+                    continue
+                names = {p.get("alignment"): p.get("name") for p in participants}
+                quotes.append({
+                    "game": game, "event_id": matchup.get("id"), "league": league_name,
+                    "team_a": names.get("home"), "team_b": names.get("away"),
+                    "start_utc": start, "best_of": matchup.get("bestOfX"),
+                    "odds_a": odds_home, "odds_b": odds_away,
+                    "native_odds_a": prices["home"], "native_odds_b": prices["away"],
+                    "observed_utc": now_iso(),
+                    "source_url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
+                    "api_url": f"{PIN_BASE}/matchups/{matchup.get('id')}/markets/related/straight",
+                })
+    meta["quotes"] = len(quotes)
+    rows = []
+    for fx in candidates:
+        best = None
+        for q in quotes:
+            if q["game"] != "cs2":
+                continue
+            same = (similarity(fx["team_a"], q["team_a"]) + similarity(fx["team_b"], q["team_b"])) / 2
+            swapped = (similarity(fx["team_a"], q["team_b"]) + similarity(fx["team_b"], q["team_a"])) / 2
+            score = max(same, swapped)
+            if score < 0.62:
+                continue
+            q_start, f_start = parse_iso(q["start_utc"]), parse_iso(fx.get("scheduled_start_utc"))
+            if q_start and f_start and abs((q_start - f_start).total_seconds()) > 6 * 3600:
+                continue
+            if best is None or score > best[0]:
+                best = (score, q, swapped > same)
+        if not best:
+            continue
+        score, q, flipped = best
+        odds_a, odds_b = (q["odds_b"], q["odds_a"]) if flipped else (q["odds_a"], q["odds_b"])
+        pa, pb, margin = devig(float(odds_a), float(odds_b))
+        rows.append({
+            "fixture_id": fx["match_id"], "source": "Pinnacle (public guest matchups/markets)",
+            "source_url": q.get("source_url"), "match_url": q.get("api_url"), "book": "Pinnacle",
+            "odds_a": round(float(odds_a), 3), "odds_b": round(float(odds_b), 3),
+            "overround_pct": round(margin, 3), "p_a": round(pa * 100, 2), "p_b": round(pb * 100, 2),
+            "captured_utc": q.get("observed_utc"), "name_similarity": round(score, 3),
+            "team_order_flipped": flipped, "best_of": q.get("best_of"),
+            "note": (f"Pinnacle event {q['event_id']} in {q.get('league')}; American prices "
+                     f"{q.get('native_odds_a')}/{q.get('native_odds_b')} converted to decimal; matched "
+                     f"to Hotspawn fixture {fx['match_id']} by team name (similarity {score:.2f}) and "
+                     "kickoff within 6 h"),
+        })
+    meta["matched"] = len(rows)
+    return rows, meta
+
+
+def american_to_decimal(value) -> float:
+    if isinstance(value, bool) or not isinstance(value, (int, float)) or abs(value) < 100:
+        raise ValueError("not a valid American price")
+    return 1 + value / 100 if value > 0 else 1 + 100 / abs(value)
 
 
 # --------------------------------------------------------------------------- Valve Regional Standings
@@ -199,47 +399,6 @@ def valve_standings() -> dict:
 
 
 # ------------------------------------------------------------------------------------ market lines
-def pinnacle_markets(candidates: list[dict]) -> tuple[list[dict], dict]:
-    """Pinnacle moneyline quotes (public guest responses of its own public page) matched to fixtures."""
-    if not HAVE_UPSTREAM:
-        return [], {"error": f"upstream collector unavailable: {UPSTREAM_ERROR}"}
-    pinn = up.collect_pinnacle()
-    quotes = pinn.get("quotes") or []
-    rows = []
-    for fx in candidates:
-        best = None
-        for q in quotes:
-            if q.get("game") not in ("cs2",):
-                continue
-            same = (similarity(fx["team_a"], q.get("team_a")) + similarity(fx["team_b"], q.get("team_b"))) / 2
-            swapped = (similarity(fx["team_a"], q.get("team_b")) + similarity(fx["team_b"], q.get("team_a"))) / 2
-            if max(same, swapped) < 0.62:
-                continue
-            q_start, f_start = parse_iso(str(q.get("start_utc") or "")[:19] + "Z"), parse_iso(fx.get("scheduled_start_utc"))
-            if q_start and f_start and abs((q_start - f_start).total_seconds()) > 6 * 3600:
-                continue
-            score = max(same, swapped)
-            if best is None or score > best[0]:
-                best = (score, q, swapped > same)
-        if not best:
-            continue
-        score, q, flipped = best
-        odds_a, odds_b = (q["odds_b"], q["odds_a"]) if flipped else (q["odds_a"], q["odds_b"])
-        pa, pb, margin = devig(float(odds_a), float(odds_b))
-        rows.append({
-            "fixture_id": fx["match_id"], "source": "Pinnacle (public guest matchups/markets)",
-            "source_url": q.get("source_url"), "match_url": q.get("api_url"),
-            "book": "Pinnacle", "odds_a": round(float(odds_a), 3), "odds_b": round(float(odds_b), 3),
-            "overround_pct": round(margin, 3), "p_a": round(pa * 100, 2), "p_b": round(pb * 100, 2),
-            "captured_utc": q.get("observed_utc"), "name_similarity": round(score, 3),
-            "team_order_flipped": flipped, "best_of": q.get("best_of"),
-            "note": f"matched to Hotspawn fixture {fx['match_id']} by team name (similarity "
-                    f"{score:.2f}) and kickoff within 6 h",
-        })
-    return rows, {"quotes": len(quotes), "matched": len(rows),
-                  "counters": pinn.get("counters"), "pages": pinn.get("pages")}
-
-
 def egw_readings(candidates: list[dict]) -> tuple[list[dict], dict]:
     """EGamersWorld per-match readings; a refusal is recorded, never filled in."""
     if not HAVE_UPSTREAM:
@@ -361,7 +520,7 @@ def main() -> int:
 
     hs = hotspawn_capture()
     fixtures_raw = hs.get("fixtures") or []
-    hltv = hltv_listing()
+    hltv = hltv_pages()
     valve = valve_standings()
     aliases = load_alias_hints()
 
@@ -371,10 +530,10 @@ def main() -> int:
 
     candidates = [fx for fx in fixtures_raw if fx["live_status"] == "open"]
     print(f"[slate] payload rows={len(fixtures_raw)} open={len(candidates)} "
-          f"hltv_listing={len(hltv.get('rows') or [])} vrs_teams={len(valve.get('teams') or {})}",
-          flush=True)
+          f"hltv_matches={len(hltv.get('matches') or [])} hltv_ranking={len(hltv.get('ranking') or {})} "
+          f"vrs_teams={len(valve.get('teams') or {})}", flush=True)
 
-    pin_rows, pin_meta = pinnacle_markets(candidates)
+    pin_rows, pin_meta = pinnacle_guest(candidates)
     egw_rows, egw_meta = egw_readings(candidates)
     print(f"[slate] pinnacle matched={len(pin_rows)} egw matched={len(egw_rows)}", flush=True)
 
@@ -389,7 +548,9 @@ def main() -> int:
             "tier": fx.get("tier"),
             "stage": fx.get("stage"),
             "points": fx.get("offered_points"),
-            "best_of": fx.get("best_of"),
+            "best_of_payload": fx.get("best_of"),
+            "best_of_resolved": fx.get("best_of_resolved"),
+            "best_of_source": fx.get("best_of_source"),
             "team_a": fx.get("team_a"),
             "team_b": fx.get("team_b"),
             "start_utc": fx.get("scheduled_start_utc"),
@@ -419,11 +580,11 @@ def main() -> int:
                      [u for u in (row["hltv_source_url"], row["vrs_source_url"]) if u])
     rating_by_team = {r["name"]: r for r in ratings}
 
-    # HLTV listing cross-reference per fixture (match id + URL + kickoff check)
+    # HLTV listing cross-reference per fixture (match id + URL + kickoff + series format)
     hltv_by_fixture: dict[str, dict] = {}
     for fx in fixtures_raw:
         best = None
-        for row in hltv.get("rows") or []:
+        for row in hltv.get("matches") or []:
             same = (similarity(fx.get("team_a"), row.get("team_a"))
                     + similarity(fx.get("team_b"), row.get("team_b"))) / 2
             swapped = (similarity(fx.get("team_a"), row.get("team_b"))
@@ -442,14 +603,26 @@ def main() -> int:
                 "hltv_team_order": "listed B vs A" if flipped else "listed A vs B",
                 "kickoff_check": ("agree" if row["kickoff_utc"] == fx.get("scheduled_start_utc")
                                   else f"differs: HLTV {row.get('kickoff_utc')}"),
+                "hltv_format": row.get("format"),
                 "similarity": round(score, 3),
             }
+    # Series format: the payload's own best_of when present, otherwise HLTV's listing label.
+    for fx in fixtures_raw:
+        ref = hltv_by_fixture.get(fx["match_id"]) or {}
+        payload_best = fx.get("best_of") if isinstance(fx.get("best_of"), int) else None
+        hltv_best = None
+        if ref.get("hltv_format") in ("bo1", "bo3", "bo5"):
+            hltv_best = int(ref["hltv_format"][2:])
+        fx["best_of_resolved"] = payload_best or hltv_best
+        fx["best_of_source"] = ("Hotspawn payload" if payload_best else
+                               ("HLTV match listing" if hltv_best else None))
 
     # ------------------------------------------------------------------ own originated lines (S-03)
     def own_line(fx: dict) -> dict:
         a, b = rating_by_team.get(fx.get("team_a")) or {}, rating_by_team.get(fx.get("team_b")) or {}
-        best_of = fx.get("best_of") if isinstance(fx.get("best_of"), int) else None
+        best_of = fx.get("best_of_resolved") if isinstance(fx.get("best_of_resolved"), int) else None
         out = {"fixture_id": fx["match_id"], "best_of": best_of,
+               "best_of_source": fx.get("best_of_source"),
                "hltv_map_p_a": None, "hltv_map_p_b": None, "hltv_series_p_a": None,
                "vrs_map_p_a": None, "vrs_map_p_b": None, "vrs_series_p_a": None,
                "own_map_p_a": None, "own_map_p_b": None, "own_series_p_a": None,
@@ -481,8 +654,8 @@ def main() -> int:
             out["own_series_p_b"] = round(100 - out["own_series_p_a"], 2)
             out["series_basis"] = " + ".join(series_notes)
             if best_of is None:
-                row_flags.append("S-F-08: source does not state the series format; the series "
-                                 "column assumes a best-of-3 and is shown for reference only")
+                row_flags.append("S-F-08: no source states the series format for this fixture; the "
+                                 "series column assumes a best-of-3 and is shown for reference only")
                 out["series_basis"] += " [best-of-3 assumed]"
         if out["own_map_p_a"] is None:
             row_flags.append("S-F-04: no originated line — at least one team has no official rating")
@@ -549,7 +722,8 @@ def main() -> int:
             "tier": fx.get("tier"), "points": fx.get("offered_points"),
             "start_utc": fx.get("scheduled_start_utc"), "lock_utc": fx.get("lock_utc"),
             "team_a": fx.get("team_a"), "team_b": fx.get("team_b"),
-            "best_of": fx.get("best_of"),
+            "best_of": fx.get("best_of_resolved"),
+            "best_of_source": fx.get("best_of_source"),
             "market_source": primary["source"] if primary else "",
             "market_book": primary["book"] if primary else "",
             "market_odds_a": primary["odds_a"] if primary else None,
@@ -691,11 +865,13 @@ def main() -> int:
                        for s in sorted({f["sport"] for f in fixtures})},
             "source_url": "https://play.hotspawn.com/cs2-pickems",
         },
-        "hltv": {"listing_url": HLTV_MATCHES_URL, "status": hltv.get("status"),
-                 "error": hltv.get("error"), "rows_read": hltv.get("rows_read"),
-                 "ranking_url": f"{HLTV_RANKING_URL}/2026/october/12",
+        "hltv": {"listing_url": HLTV_MATCHES_URL, "error": hltv.get("error"),
+                 "matches_read": len(hltv.get("matches") or []),
+                 "matches_block_split": hltv.get("matches_from_block_split"),
+                 "ranking_url": HLTV_RANKING_DATED,
                  "ranking_teams": len(hltv.get("ranking") or {}),
-                 "ranking_date_text": hltv.get("ranking_date_text")},
+                 "ranking_date_text": hltv.get("ranking_date_text"),
+                 "pages": hltv.get("pages")},
         "valve": {"file": valve.get("file"), "blob_url": valve.get("blob_url"),
                   "teams": len(valve.get("teams") or {}), "rows_read": valve.get("rows_read"),
                   "error": valve.get("error")},
