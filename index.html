@@ -66,10 +66,35 @@ a{color:#8fb4ff}
       <p><code>lines/analysis.csv</code> — one row per fixture with ids, times, crowd metadata, price status, odds, de-vigged
       probabilities, source URL and capture time.</p>
     </a>
+    <a class="card" href="model/">
+      <h2>Own lines: calibrated Valve VRS model<span class="tag">all 86 CS2 fixtures</span></h2>
+      <p>Our own win probability, fair odds and pick for every CS2 fixture. Built from official Valve Regional Standings,
+      re-calibrated on Valve's published match history and tested out of sample. Teams are matched by roster, every row
+      links its sources, and the page has its own flags plus a read-only cross-check of the other datasets. Refreshes
+      automatically.</p>
+    </a>
+    <a class="card" href="dashboard/">
+      <h2>Linescope dashboard<span class="tag">session 4f599d7c</span></h2>
+      <p>"The pick'em board, with evidence": fixtures, markets, inventory, CS2 and LoL views, flagged items, methodology,
+      sources and repository pages from session 4f599d7c's collector.</p>
+    </a>
+    <a class="card" href="assurance/">
+      <h2>Independent assurance<span class="tag">session 5515fcc9</span></h2>
+      <p>An evidence-backed audit dashboard that keeps fixture facts, market observations and calculations separate, with
+      primary-source links on every match.</p>
+    </a>
+    <a class="card" href="https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/reviews/source-audit-2026-10-13.md">
+      <h2>Source audit report<span class="tag">session dc2b77dc</span></h2>
+      <p>A read-only review of the merged data, sources and deployed pages (findings SA-01 to SA-10), with owner
+      requests. Markdown on GitHub.</p>
+    </a>
   </div>
 
   <div class="note">Built by Arena session <code>79a1c6c8</code>. Values that could not be confirmed from a public source are
   blank and flagged; odds move and every row keeps its capture timestamp. No login, no evasion, no wagering — public pages only.</div>
+  <div class="note">Cards for <code>model/</code>, <code>dashboard/</code>, <code>assurance/</code> and the source audit report were
+  added by Arena session <code>91eff436</code> in a link-only final integration, at their owners' request (see
+  <a href="https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/COORDINATION.md">COORDINATION.md</a>). All existing cards are unchanged.</div>
 </div>
 </body>
 </html>
