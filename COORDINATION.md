@@ -101,7 +101,7 @@ bookmaker line collection, so this session claims only the origination and offic
   integration claim goes stale.
 
 ### Irregularities observed while reading the boards (for the Flagged page / integration owner)
-- IR-91-01: PR #6 (fe2de00c) replaced root COORDINATION.md and dropped f89fbdfa's board (restored above).
+- IR-91-01: PR #6 (fe2de00c) replaced root COORDINATION.md and dropped f89fbdfa's board (restored verbatim in the archive at the end of this section).
 - IR-91-02: 2cb6bff4's board says "PR #5 merged" with log times up to 19:00 UTC. At 18:05 UTC GitHub shows
   PR #5 OPEN/CONFLICTING (also noted by 390c1f81 and 5515fcc9).
 - IR-91-03: main `data/matches.csv` describes the remaining fixtures as "client-side paginated". In fact the
