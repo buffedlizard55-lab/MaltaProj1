@@ -117,6 +117,15 @@ def vrs_index(snapshot):
     return table
 
 
+def pick_vrs(entries):
+    """Valve publishes one entry per roster; a name can appear twice. Use the higher-points
+    entry (documented tie-break) and return the other(s) so the row can say so."""
+    if not entries:
+        return None, []
+    ordered = sorted(entries, key=lambda entry: (-entry["points"], entry["vrs_rank"]))
+    return ordered[0], ordered[1:]
+
+
 def external_quotes(snapshot):
     quotes = []
     for quote in snapshot.get("pinnacle", {}).get("quotes", []):
@@ -252,22 +261,28 @@ def build_rows(snapshot):
                        ext_p_a_pct="", ext_p_b_pct="", ext_url="", ext_observed_utc="", ext_note="")
 
         # ---- our own line from Valve's official standings
-        va = vrs.get(norm(row["team_a"]))
-        vb = vrs.get(norm(row["team_b"]))
-        if va and vb and len(va) == 1 and len(vb) == 1:
-            pts_a, pts_b = va[0]["points"], vb[0]["points"]
+        va, va_alt = pick_vrs(vrs.get(norm(row["team_a"])))
+        vb, vb_alt = pick_vrs(vrs.get(norm(row["team_b"])))
+        if va_alt or vb_alt:
+            row_flags.append("FL-26")
+        row["vrs_alt_a"] = "; ".join(f"#{e['vrs_rank']} ({int(e['points'])} pts)" for e in va_alt)
+        row["vrs_alt_b"] = "; ".join(f"#{e['vrs_rank']} ({int(e['points'])} pts)" for e in vb_alt)
+        if va and vb:
+            pts_a, pts_b = va["points"], vb["points"]
             p_a = 100.0 / (1.0 + 10 ** (-(pts_a - pts_b) / 400.0))
             row.update(own_p_a_pct=pct(round(p_a, 1)), own_p_b_pct=pct(round(100 - p_a, 1)),
                        vrs_points_a=int(pts_a), vrs_points_b=int(pts_b),
-                       vrs_rank_a=va[0]["vrs_rank"], vrs_rank_b=vb[0]["vrs_rank"],
+                       vrs_rank_a=va["vrs_rank"], vrs_rank_b=vb["vrs_rank"],
                        vrs_url=vrs_url or "", vrs_as_of=vrs_as_of or "",
                        own_basis="Elo over Valve Regional Standings points, scale 400")
         else:
             missing = [name for name, found in ((row["team_a"], va), (row["team_b"], vb)) if not found]
+            if not missing:
+                missing = ["a duplicate Valve roster entry left no usable line"]
             row_flags.append("FL-02")
             row.update(own_p_a_pct="", own_p_b_pct="",
-                       vrs_points_a=va[0]["points"] if va else "", vrs_points_b=vb[0]["points"] if vb else "",
-                       vrs_rank_a=va[0]["vrs_rank"] if va else "", vrs_rank_b=vb[0]["vrs_rank"] if vb else "",
+                       vrs_points_a=int(va["points"]) if va else "", vrs_points_b=int(vb["points"]) if vb else "",
+                       vrs_rank_a=va["vrs_rank"] if va else "", vrs_rank_b=vb["vrs_rank"] if vb else "",
                        vrs_url=vrs_url or "", vrs_as_of=vrs_as_of or "",
                        own_basis="", own_missing=", ".join(missing))
         hltv_a, hltv_b = hltv_ranks.get(row["team_a"].lower()), hltv_ranks.get(row["team_b"].lower())
@@ -345,6 +360,10 @@ FLAG_TEXT = {
     "FL-25": ("The only outside market readable for this fixture is a prediction market, not a "
               "bookmaker. Its price is labelled as such and is not de-vigged.",
               "https://polymarket.com/esports/cs2"),
+    "FL-26": ("Valve's standings file lists this team name more than once (one entry per roster). The "
+              "higher-points entry is used and the alternative entry is listed beside the row, so the "
+              "choice can be checked by hand. Nothing is averaged and nothing is hidden.",
+              "https://github.com/ValveSoftware/counter-strike_regional_standings"),
 }
 
 
@@ -635,6 +654,10 @@ def render_matches(rows, meta) -> str:
         market_cell = (row["ext_p_a_pct"] + " / " + row["ext_p_b_pct"]) if row.get("ext_p_a_pct") else "—"
         odds_cell = (row["ext_odds_a"] + " / " + row["ext_odds_b"]) if row.get("ext_odds_a") else "—"
         own_cell = (row["own_p_a_pct"] + " / " + row["own_p_b_pct"]) if row.get("own_p_a_pct") else "—"
+        if row.get("vrs_alt_a") or row.get("vrs_alt_b"):
+            own_cell += " (also listed: " + "; ".join(
+                part for part in (row.get("vrs_alt_a"), row.get("vrs_alt_b")) if part) + ")"
+        
         headline_cell = row["probability_source"] if row.get("final_p_a_pct") else "—"
         flag_links = " ".join('<a href="flagged.html#%s">%s</a>' % (f, f)
                               for f in (row["flags"] or "").split(";") if f)
