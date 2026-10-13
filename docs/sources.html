@@ -1,15 +1,131 @@
-<!doctype html><html lang='en'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>Sources & verification index · MaltaProj1</title><link rel='stylesheet' href='style.css'></head><body><header><h1>Sources & verification index</h1><p>Snapshot 2026-10-13 (UTC) · Hotspawn pick % never used as probability.</p></header><nav><a href="index.html">Dashboard</a><a href="matches.html">All matches</a><a href="s-tier.html">S-Tier · Thunderpick WC</a><a href="stake.html">Stake Pulse Beat III</a><a href="lower-tiers.html">B/C-Tier &amp; inventory</a><a href="methodology.html">Methodology</a><a href="flagged.html">⚠ Flagged for Review</a><a href="sources.html">Sources</a></nav><main><div class='card'><h2>Sources — every row links here or to the fixture itself</h2><table><tr><th>#</th><th>Source (official / primary preferred)</th><th>What it verifies</th></tr>
-<tr><td>S-01</td><td><a href='https://play.hotspawn.com/lobby'>Hotspawn Pick'ems Lobby</a></td><td>All 26 fixtures, tournaments, tiers, Hotspawn match URLs, crowd-% snapshot. Fixture source ONLY — never probability.</td></tr>
-<tr><td>S-02</td><td><a href='https://play.hotspawn.com/cs2-pickems'>Hotspawn CS2 Pick'ems Lobby</a></td><td>CS2 filter: 85 total, per-tournament counts (sum = 85), per-team counts.</td></tr>
-<tr><td>S-03</td><td><a href='https://www.hltv.org/news/45706/thunderpick-world-championship-teams-format-schedule-prizes-talent-fantasy'>HLTV — Thunderpick WC teams/format/schedule</a></td><td>8 teams, groups, 2026-10-14 opening fixtures incl. 9z–Aurora, Legacy–PARIVISION, FURIA–BETBOOM.</td></tr>
-<tr><td>S-04</td><td><a href='https://www.hltv.org/events/8932/thunderpick-world-championship-2026'>HLTV — Thunderpick WC 2026 event</a></td><td>Event cross-check (Malta, 2026-10-14–18).</td></tr>
-<tr><td>S-05</td><td><a href='https://www.hltv.org/matches/2399385/falcons-vs-ninjas-in-pyjamas-thunderpick-world-championship-2026'>HLTV — Falcons vs NiP match page</a></td><td>Fixture + HLTV indicator Falcons 79.1% / NiP 20.9% (labelled indicator, not book odds).</td></tr>
-<tr><td>S-06</td><td><a href='https://www.hltv.org/matches/2399135/hotu-vs-fnatic-stake-pulse-beat-iii'>HLTV — HOTU vs fnatic match page</a></td><td>Fixture, HOTU HLTV #42/VRS #34, HLTV indicator 31.6%/68.4%.</td></tr>
-<tr><td>S-07</td><td><a href='https://www.hltv.org/ranking/teams/2026/october/5'>HLTV World Ranking 2026-10-05</a></td><td>FURIA #4 (534), Falcons #5 (496), Astralis #11 (220), HEROIC #29 (64), fnatic #40 (41) — model inputs.</td></tr>
-<tr><td>S-08</td><td><a href='https://www.hltv.org/team/12468/legacy'>HLTV Legacy</a> · <a href='https://www.hltv.org/team/12467/parivision'>PARIVISION</a> · <a href='https://www.hltv.org/team/11861/aurora'>Aurora</a> · <a href='https://www.hltv.org/team/9996/9z'>9z</a> · <a href='https://www.hltv.org/team/12394/betboom'>BETBOOM</a></td><td>Model inputs: Legacy #6, PARIVISION #11, Aurora #6, 9z #17, BETBOOM #13.</td></tr>
-<tr><td>S-09</td><td><a href='https://www.hltv.org/news/45531/bcgame-qualify-for-stake-pulse-beat-iii'>HLTV — BCGame qualify for Stake Pulse Beat III (2026-09-16)</a></td><td>MIBR #18, BC.Game #52; Stake event context (Stockholm, 2026-10-12–17, $80k).</td></tr>
-<tr><td>S-10</td><td><a href='https://liquipedia.net/counterstrike/Stake_Pulse/Beat_III'>Liquipedia — Stake Pulse Beat III</a></td><td>Groups/fixtures cross-check (see F-05 discrepancy).</td></tr>
-<tr><td>S-11</td><td><a href='https://www.freetips.com/esports/thunderpick-world-championship-2026-betting-odds-20261011-0007/'>FreeTips — Thunderpick WC 2026 Betting Odds (2026-10-11)</a></td><td>Bookmaker outrights: Falcons 2.40, Legacy 3.80, FURIA 4.40, Aurora 6.30, BetBoom 12.00, 9z 14.00, PARIVISION 15.00, NiP 25.00. Secondary aggregator — flagged F-09.</td></tr>
-<tr><td>S-12</td><td><a href='https://pley.gg/cs2/thunderpick-world-championship-2026/'>Pley — Thunderpick WC 2026</a></td><td>VRS ranks 2026-10-05 (Legacy #2, FURIA #7, Aurora #9, BetBoom #11, 9z #17, PARIVISION #36); schedule CEST.</td></tr>
-<tr><td>S-13</td><td><a href='https://esports.gg/guides/betting/how-to-read-and-understand-betting-odds/'>esports.gg — betting odds explained</a></td><td>Method only: implied probability = 1/decimal; overround/vig definition.</td></tr>
-</table><p><small>Verification rule applied throughout: fixture = Hotspawn (official for the Pick'em) + HLTV/Liquipedia cross-check where available; probability = our model or a labelled external indicator; anything else = blank + Flagged.</small></p></div></main><footer>Analysis only — not betting advice.</footer></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sources - MaltaProj1</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="nav-brand">
+            <h2>🎯 MaltaProj1</h2>
+            <p>CS2 Betting Analysis</p>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">📊 Dashboard</a></li>
+            <li><a href="matches.html">📋 Match Lines</a></li>
+            <li><a href="analysis.html">📈 Analysis</a></li>
+            <li><a href="flagged.html">🚩 Flagged for Review</a></li>
+            <li><a href="sources.html" class="active">🔗 Sources</a></li>
+        </ul>
+        <div class="nav-footer">
+            <p>Last updated: 2026-10-13</p>
+            <p>Data from: Hotspawn Lobby</p>
+        </div>
+    </nav>
+    <main class="content">
+        <header class="page-header">
+            <h1>Data Sources & Verification</h1>
+            <p class="subtitle">Every data point is sourced from external official sources. No values inferred from Hotspawn.</p>
+        </header>
+
+        <section class="section">
+            <h2>Primary Data Sources</h2>
+            
+            <div class="source-card">
+                <h3>Polymarket — CS2 Prediction Markets</h3>
+                <p><strong>Type:</strong> Prediction market (real-money aggregated odds)</p>
+                <p><strong>Reliability:</strong> High — aggregates informed market participants</p>
+                <p><strong>Coverage:</strong> All 26 Hotspawn matches, most major CS2 events</p>
+                <p><strong>Used for:</strong> Primary odds source for all match probability estimates</p>
+                <p><strong>Link:</strong> <a href="https://polymarket.com/esports/cs2">https://polymarket.com/esports/cs2</a></p>
+            </div>
+
+            <div class="source-card">
+                <h3>HLTV.org — Match Data & VRS Rankings</h3>
+                <p><strong>Type:</strong> Official esports data platform / Valve Regional Standings</p>
+                <p><strong>Reliability:</strong> Highest — industry standard for CS2 data</p>
+                <p><strong>Coverage:</strong> All professional CS2 matches, team/player stats, VRS forecasts</p>
+                <p><strong>Used for:</strong> Team rankings, match verification, VRS win probability forecasts (secondary validation, NOT used as primary probability source)</p>
+                <p><strong>Key pages:</strong></p>
+                <p>• <a href="https://www.hltv.org/events/8932/thunderpick-world-championship-2026">Thunderpick WC 2026</a></p>
+                <p>• <a href="https://www.hltv.org/events/9223/stake-pulse-beat-iii">Stake Pulse Beat III</a></p>
+                <p>• <a href="https://www.hltv.org/events/9442/cct-2026-europe-series-11">CCT Europe 2026 Series #11</a></p>
+                <p>• <a href="https://www.hltv.org/matches/2399386/legacy-vs-parivision-thunderpick-world-championship-2026">Legacy vs PARIVISION</a></p>
+                <p>• <a href="https://www.hltv.org/matches/2399135/hotu-vs-fnatic-stake-pulse-beat-iii">HOTU vs Fnatic</a></p>
+                <p>• <a href="https://www.hltv.org/matches/2399136/mibr-vs-bcgame-stake-pulse-beat-iii">MIBR vs BC.Game</a></p>
+                <p>• <a href="https://www.hltv.org/matches/2399137/heroic-vs-envy-stake-pulse-beat-iii">Heroic vs Envy</a></p>
+                <p>• <a href="https://www.hltv.org/matches/2399424/voca-vs-phantom-elisa-breakout-series-2">Voca vs Phantom</a></p>
+            </div>
+
+            <div class="source-card">
+                <h3>Bwin — Sportsbook Odds</h3>
+                <p><strong>Type:</strong> Licensed sportsbook</p>
+                <p><strong>Reliability:</strong> High — regulated bookmaker</p>
+                <p><strong>Coverage:</strong> Thunderpick World Championship matches</p>
+                <p><strong>Used for:</strong> Secondary odds verification for S-tier matches</p>
+                <p><strong>Link:</strong> <a href="https://www.bwin.com/en/sports/cs2-105/betting/world-6/thunderpick-world-championship-103887">https://www.bwin.com/en/sports/cs2-105/betting/world-6/thunderpick-world-championship-103887</a></p>
+            </div>
+
+            <div class="source-card">
+                <h3>EGamersWorld — Match Odds & Analysis</h3>
+                <p><strong>Type:</strong> Esports betting odds aggregator / analysis</p>
+                <p><strong>Reliability:</strong> High — aggregates multiple bookmaker lines</p>
+                <p><strong>Coverage:</strong> Wide CS2 coverage including Thunderpick, CCT, Elisa BreakOut</p>
+                <p><strong>Used for:</strong> Odds cross-reference, match analysis, form data</p>
+                <p><strong>Key pages:</strong></p>
+                <p>• <a href="https://egamersworld.com/blog/thunderpick-world-championship-2026-schedule-teams-3y5NuMb4pp">Thunderpick WC 2026 overview</a></p>
+                <p>• <a href="https://egamersworld.com/counterstrike/tip/5X5sFiL7H/furia-vs-betboom-team-ZeSbzy91oH">FURIA vs BetBoom analysis</a></p>
+                <p>• <a href="https://egamersworld.com/counterstrike/match/_rW8GEyWK/gothic-vs-lavked-GGmfuJ1n4B">Gothic vs Lavked</a></p>
+                <p>• <a href="https://egamersworld.com/counterstrike/bets">CS2 betting odds comparison</a></p>
+            </div>
+
+            <div class="source-card">
+                <h3>vprognoze.ru — Betting Odds (Russian)</h3>
+                <p><strong>Type:</strong> Russian betting prediction site</p>
+                <p><strong>Reliability:</strong> Medium-High — aggregates bookmaker odds</p>
+                <p><strong>Coverage:</strong> Stake Pulse Beat III matches</p>
+                <p><strong>Used for:</strong> Secondary odds verification for Astralis vs Sashi, MIBR vs BC.Game, Heroic vs Envy</p>
+                <p><strong>Key pages:</strong></p>
+                <p>• <a href="https://vprognoze.ru/topforecast/8186596-astralis-sashi-esport-2026-10-14.html">Astralis vs Sashi</a></p>
+                <p>• <a href="https://vprognoze.ru/topforecast/8186896-mibr-bcg-2026-10-15.html">MIBR vs BC.Game</a></p>
+                <p>• <a href="https://vprognoze.ru/topforecast/8186899-heroic-envy-2026-10-15.html">Heroic vs Envy</a></p>
+            </div>
+
+            <div class="source-card">
+                <h3>Kalshi — Prediction Markets</h3>
+                <p><strong>Type:</strong> Regulated US prediction market</p>
+                <p><strong>Reliability:</strong> High — CFTC-regulated</p>
+                <p><strong>Coverage:</strong> Select CS2 matches including Elisa BreakOut</p>
+                <p><strong>Used for:</strong> Secondary odds verification for HAVU vs RoundsGG</p>
+                <p><strong>Link:</strong> <a href="https://kalshi.com/category/sports/esports/cs2/games">https://kalshi.com/category/sports/esports/cs2/games</a></p>
+            </div>
+
+            <div class="source-card">
+                <h3>Other Sources</h3>
+                <p>• <a href="https://tips.gg/tournament/csgo-esl-challenger-season-52-south-america/">tips.gg</a> — ESL Challenger League SA odds</p>
+                <p>• <a href="https://bo3.gg/">bo3.gg</a> — CS2 match data</p>
+                <p>• <a href="https://stavka.tv/matches/csgo/14-10-2026-furia-betboom-team">stavka.tv</a> — FURIA vs BetBoom odds</p>
+                <p>• <a href="https://www.freetips.com/esports/thunderpick-world-championship-2026-betting-odds-20261011-0007/">freetips.com</a> — Thunderpick WC outright odds</p>
+                <p>• <a href="https://www.cs2bet.io/matches/">cs2bet.io</a> — CS2 betting odds comparison</p>
+                <p>• <a href="https://esportsinsider.com/betting-odds/counter-strike">esportsinsider.com</a> — CS2 betting odds</p>
+                <p>• <a href="https://play.hotspawn.com/lobby">Hotspawn Lobby</a> — Original match list source (not used for probability)</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Data Integrity Notes</h2>
+            <div class="analysis-section">
+                <p>1. <strong>No Hotspawn data used for probabilities:</strong> All probability estimates are derived exclusively from external betting markets and bookmaker odds. Hotspawn pick percentages are shown for comparison only.</p>
+                <p>2. <strong>Implied probability formula:</strong> 1 / decimal_odds × 100. Bookmaker overround means probabilities may sum to >100%.</p>
+                <p>3. <strong>Missing values left blank:</strong> Per verification protocol, any value that cannot be confirmed from an official external source is left blank and flagged.</p>
+                <p>4. <strong>HLTV VRS forecasts are NOT used as primary probabilities:</strong> They serve as a secondary reference for flagging discrepancies with market odds.</p>
+                <p>5. <strong>No inferences made:</strong> Where no external odds exist, the probability field is left blank rather than estimated from other data.</p>
+                <p>6. <strong>All data fetched on 2026-10-13:</strong> Odds may have shifted since collection. Timestamps are recorded in the data files.</p>
+            </div>
+        </section>
+    </main>
+    <script src="app.js"></script>
+</body>
+</html>
