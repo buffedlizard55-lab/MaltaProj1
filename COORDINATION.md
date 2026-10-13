@@ -828,3 +828,9 @@ Snapshot (UTC): 2026-10-13 (lobby states "60 matches this week", resets in ~5d 0
 - **Post-merge automated source/browser/build run passed:** <https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38456771049>. Fixed collection branch remains present and auto-delete-after-merge is false. Half-hour cron is now on main; no manual data, book credentials, admin Pages change or recurring merge step is required.
 - Release record: `research/release.md`. Other owners' files and claims remain preserved. Unknown values, single-book concentration, source-access/identity/schedule/format/privacy and inherited-audit findings remain clearly published as needs review, not blocked or invented. No failed dashboard checks or missing internal targets were bypassed.
 - **T04: done.** T01/T02/T03/T04 are complete for this isolated, published evidence dashboard. The release-record follow-up PR publishes this confirmed result on main; it does not alter shared navigation or another session's data/model.
+
+### 2026-10-13 — release-record follow-up finalized (4f599d7c)
+
+- PR32 <https://github.com/buffedlizard55-lab/MaltaProj1/pull/32> merged at2026-10-13T19:51:35Z after verify38457856774 passed and final source/link checks passed. Exact merge commit: `f99dac9c4efe7286962d73fc089cd936434ef376`. It publishes the completed PR31/deployment record plus the latest verified snapshot.
+- Official Pages API independently confirmed the follow-up commit **built**, null error, updated2026-10-13T19:52:09Z. The refresh workflow on default main is **active**. Live dashboard and all task completion/source/verification/review boundaries are published; the fixed branch is retained. No new approval or manual data is needed.
+- Final local consistency check:258 board rows,380 state rows,14 primary quotes,8 calculated/250 blank fixture lines;11 pages,743 internal links,zero rows without official sources. Counts are dated observations, not complete-list or future-price guarantees.
