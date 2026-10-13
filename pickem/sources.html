@@ -1,68 +1,67 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Sources — Hotspawn Pick&#x27;em line analysis</title>
+<title>Sources — Hotspawn Pick&#x27;em analysis</title>
 <link rel="stylesheet" href="assets/mpl.css">
 </head><body>
 <header class="top">
-  <h1>Hotspawn Pick'em — external betting-line analysis</h1>
-  <p>Every source used, what it was used for, and when it was verified.</p>
+  <h1>Hotspawn Pick'em — complete slate &amp; external betting lines</h1>
+  <p>Every source used, what it provided, how it was read and when.</p>
 </header>
-<nav><a class="" href="index.html">Dashboard</a><a class="" href="cs2.html">CS2</a><a class="" href="lol.html">League of Legends</a><a class="" href="flagged.html">Flagged for Review</a><a class="active" href="sources.html">Sources</a><a class="" href="methodology.html">Methodology</a><a class="" href="../docs/index.html">Other session dashboards</a></nav>
+<nav><a class="" href="index.html">Dashboard</a><a class="" href="cs2.html">CS2 (86)</a><a class="" href="lol.html">League of Legends (294)</a><a class="" href="flagged.html">Flagged for Review</a><a class="active" href="sources.html">Sources</a><a class="" href="methodology.html">Methodology</a><a class="" href="../docs/index.html">Other dashboards</a></nav>
 <main>
 
-<h2>Source registry</h2>
-<table class="sortable"><thead><tr>
-<th>Source</th><th>URL</th><th>Used for</th><th>Verified</th></tr></thead><tbody>
-<tr><td>Hotspawn Play — Pick'em lobby</td><td><a href="https://play.hotspawn.com/lobby" target="_blank" rel="noreferrer noopener">play.hotspawn.com/lobby</a></td>
-<td>Fixture list (all games lobby), tournament/points/tier, crowd % snapshot, match links</td><td>HTTP 200, server-rendered markup parsed automatically (CI)</td></tr>
-<tr><td>Hotspawn Play — CS2 Pick'ems</td><td><a href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noreferrer noopener">play.hotspawn.com/cs2-pickems</a></td>
-<td>CS2 fixture slate</td><td>HTTP 200, parsed (CI)</td></tr>
-<tr><td>Hotspawn Play — LoL Pick'ems</td><td><a href="https://play.hotspawn.com/lol-pickems" target="_blank" rel="noreferrer noopener">play.hotspawn.com/lol-pickems</a></td>
-<td>LoL fixture slate (231 fixtures)</td><td>HTTP 200, parsed (CI)</td></tr>
-<tr><td>Hotspawn Play — Thunderpick Pick'ems</td><td><a href="https://play.hotspawn.com/thp-pickems" target="_blank" rel="noreferrer noopener">play.hotspawn.com/thp-pickems</a></td>
-<td>Thunderpick-sponsored pick'em subset (cross-check)</td><td>HTTP 200, parsed (CI)</td></tr>
-<tr><td>Hotspawn — Pick'em rules</td><td><a href="https://play.hotspawn.com/how-it-works" target="_blank" rel="noreferrer noopener">play.hotspawn.com/how-it-works</a></td>
-<td>Lock rule: picks lock 5 minutes before scheduled start (used for start-time derivation)</td><td>Read 2026-10-13</td></tr>
-<tr><td>EGamersWorld — Thunderpick World Championship 2026</td><td><a href="https://egamersworld.com/counterstrike/event/thunderpick-world-championship-2026-5X5sFiL7H" target="_blank" rel="noreferrer noopener">event page</a></td>
-<td>Bookmaker odds for 4 TWC fixtures (via “Bets on … by BC.Game” widget)</td><td>Read 2026-10-13 18:05 UTC</td></tr>
-<tr><td>EGamersWorld — Stake Pulse Beat III</td><td><a href="https://egamersworld.com/counterstrike/event/stake-pulse-beat-iii-EJZmJpBjeNx" target="_blank" rel="noreferrer noopener">event page</a></td>
-<td>Bookmaker odds for 4 Stake Pulse fixtures</td><td>Read 2026-10-13 18:15 UTC</td></tr>
-<tr><td>EGamersWorld — CCT Europe 2026 Series #11</td><td><a href="https://egamersworld.com/counterstrike/event/cct-europe-2026-series-11-_rW8GEyWK" target="_blank" rel="noreferrer noopener">event page</a></td>
-<td>Bookmaker odds for 2 CCT fixtures; coverage check for the other CCT fixtures</td><td>Read 2026-10-13 18:20 UTC</td></tr>
-<tr><td>EGamersWorld — ESL Challenger League NA Cup 3</td><td><a href="https://egamersworld.com/counterstrike/event/esl-challenger-league-season-52-north-america-cup--41yion_ONx" target="_blank" rel="noreferrer noopener">event page</a></td>
-<td>Bookmaker odds for Zomblers vs Overtake Sector</td><td>Read 2026-10-13 18:30 UTC</td></tr>
-<tr><td>EGamersWorld — CS2 matches / events index</td><td><a href="https://egamersworld.com/counterstrike/matches" target="_blank" rel="noreferrer noopener">matches</a> ·
-<a href="https://egamersworld.com/counterstrike/events" target="_blank" rel="noreferrer noopener">events</a></td>
-<td>Coverage checks (absence of priced fixtures for Elisa BreakOut Series #2 and others)</td><td>Read 2026-10-13 18:20–18:35 UTC</td></tr>
-<tr><td>EGamersWorld — LoL matches</td><td><a href="https://egamersworld.com/lol/matches" target="_blank" rel="noreferrer noopener">egamersworld.com/lol/matches</a></td>
-<td>Bookmaker odds for Worlds 2026 Play-In, Demacia Cup, EMEA Masters fixtures</td><td>Read 2026-10-13 18:25 UTC</td></tr>
-<tr><td>HLTV.org — world ranking</td><td><a href="https://www.hltv.org/ranking/teams" target="_blank" rel="noreferrer noopener">hltv.org/ranking/teams</a></td>
-<td>Informational rank/points column for CS2 teams (never a probability input)</td><td>HTTP 200, parsed 2026-10-13 18:02 UTC</td></tr>
-<tr><td>HLTV.org — Thunderpick event + team pages</td><td><a href="https://www.hltv.org/events/8932/thunderpick-world-championship-2026" target="_blank" rel="noreferrer noopener">event</a> ·
-<a href="https://www.hltv.org/team/9996/9z" target="_blank" rel="noreferrer noopener">9z</a></td>
-<td>Bracket/format cross-checks, form and ranking context</td><td>Read 2026-10-13</td></tr>
-<tr><td>HLTV.org — odds &amp; prediction page</td><td><a href="https://www.hltv.org/betting/analytics/2399384/9z-vs-aurora-thunderpick-world-championship-2026" target="_blank" rel="noreferrer noopener">9z vs Aurora analytics</a></td>
-<td>Corroboration (“Aurora is the bookmaker favorite”), server-side match timestamp used for the timezone finding</td><td>Read 2026-10-13</td></tr>
+<h2>Sources used, and what each one provides</h2>
+<table class="sortable"><thead><tr><th>Source</th><th>Used for</th><th>How it was read</th><th>Link</th></tr></thead><tbody>
+<tr><td>Hotspawn Play — Pick'em pages</td><td>Complete fixture slate: id, competition, tier, points, stage, exact UTC start and
+lock time, board crowd %</td><td>Server-rendered payload fetched in CI (automated, run 38445027513)</td>
+<td><a href="https://play.hotspawn.com/lobby" target="_blank" rel="noreferrer noopener">/lobby</a> ·
+<a href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noreferrer noopener">/cs2-pickems</a> ·
+<a href="https://play.hotspawn.com/lol-pickems" target="_blank" rel="noreferrer noopener">/lol-pickems</a> ·
+<a href="https://play.hotspawn.com/thp-pickems" target="_blank" rel="noreferrer noopener">/thp-pickems</a></td></tr>
+<tr><td>Hotspawn — rules</td><td>Picks lock 6 minutes before start (<code>lock_offset_sec = 360</code>, confirmed in the payload)</td>
+<td>read 2026-10-13</td><td><a href="https://play.hotspawn.com/how-it-works" target="_blank" rel="noreferrer noopener">how-it-works</a></td></tr>
+<tr><td>EGamersWorld — Thunderpick World Championship 2026</td><td>Prices for the four TWC fixtures (BC.Game)</td>
+<td>browser read 18:05 UTC</td><td><a href="https://egamersworld.com/counterstrike/event/thunderpick-world-championship-2026-5X5sFiL7H" target="_blank" rel="noreferrer noopener">event</a></td></tr>
+<tr><td>EGamersWorld — Stake Pulse Beat III</td><td>Prices for the four Stake Pulse fixtures</td>
+<td>browser read 18:15 UTC</td><td><a href="https://egamersworld.com/counterstrike/event/stake-pulse-beat-iii-EJZmJpBjeNx" target="_blank" rel="noreferrer noopener">event</a></td></tr>
+<tr><td>EGamersWorld — CCT Europe 2026 Series #11</td><td>Prices for Gothic–Lavked and G2 Ares–The Last Resort; coverage check for the other three CCT fixtures</td>
+<td>browser read 18:20 UTC</td><td><a href="https://egamersworld.com/counterstrike/event/cct-europe-2026-series-11-_rW8GEyWK" target="_blank" rel="noreferrer noopener">event</a></td></tr>
+<tr><td>EGamersWorld — ESL Challenger League cups</td><td>Prices for Zomblers–Overtake Sector (NA) and ex-Keyd Stars–Galorys (SA)</td>
+<td>browser read 18:30–18:31 UTC</td><td><a href="https://egamersworld.com/counterstrike/event/esl-challenger-league-season-52-north-america-cup--41yion_ONx" target="_blank" rel="noreferrer noopener">NA cup</a> ·
+<a href="https://egamersworld.com/counterstrike/match/Nylyio3_OEx/ex-keyd-stars-vs-galorys-0LRbemybp" target="_blank" rel="noreferrer noopener">SA match</a></td></tr>
+<tr><td>EGamersWorld — LoL match list</td><td>Prices for Worlds 2026 Play-In, Demacia Cup and EMEA Masters fixtures</td>
+<td>browser read 18:25 and 18:31 UTC</td><td><a href="https://egamersworld.com/lol/matches" target="_blank" rel="noreferrer noopener">lol/matches</a></td></tr>
+<tr><td>EGamersWorld — CS2 match list / event index</td><td>Coverage checks (which fixtures carry no price at all)</td>
+<td>browser read 18:20–18:35 UTC</td><td><a href="https://egamersworld.com/counterstrike/matches" target="_blank" rel="noreferrer noopener">matches</a> ·
+<a href="https://egamersworld.com/counterstrike/events" target="_blank" rel="noreferrer noopener">events</a></td></tr>
+<tr><td>HLTV.org</td><td>World ranking context; kick-off timestamp cross-checks; event format facts</td>
+<td>ranking + match pages read 2026-10-13 (403 to CI, browser read for verification)</td>
+<td><a href="https://www.hltv.org/ranking/teams" target="_blank" rel="noreferrer noopener">ranking</a> ·
+<a href="https://www.hltv.org/matches/2399135/hotu-vs-fnatic-stake-pulse-beat-iii" target="_blank" rel="noreferrer noopener">HOTU–fnatic</a> ·
+<a href="https://www.hltv.org/matches/2399384/9z-vs-aurora-thunderpick-world-championship-2026" target="_blank" rel="noreferrer noopener">9z–Aurora</a> ·
+<a href="https://www.hltv.org/events/9332/elisa-breakout-series-2" target="_blank" rel="noreferrer noopener">Elisa BreakOut</a></td></tr>
+<tr><td>Liquipedia / Elisa Esports</td><td>Elisa BreakOut Series #2 facts (dates, venue, format, prize)</td>
+<td>read 2026-10-13</td><td><a href="https://liquipedia.net/counterstrike/Elisa/BreakOut_Series/2" target="_blank" rel="noreferrer noopener">Liquipedia</a></td></tr>
 </tbody></table>
-<h2>Sources checked that could not provide lines</h2>
+<h2>Sources checked that could not supply a line</h2>
 <ul class="small">
-<li><a href="https://www.bovada.lv/sports/esports" target="_blank" rel="noreferrer noopener">Bovada esports</a>, <a href="https://www.betonline.ag/sportsbook/esports" target="_blank" rel="noreferrer noopener">BetOnline esports</a>,
-<a href="https://www.flashscore.com/esports/" target="_blank" rel="noreferrer noopener">Flashscore esports</a>,
+<li><a href="https://www.bovada.lv/sports/esports" target="_blank" rel="noreferrer noopener">Bovada</a>,
+<a href="https://www.betonline.ag/sportsbook/esports" target="_blank" rel="noreferrer noopener">BetOnline</a>,
+<a href="https://www.flashscore.com/esports/" target="_blank" rel="noreferrer noopener">Flashscore</a>,
 <a href="https://oddspedia.com/esports" target="_blank" rel="noreferrer noopener">Oddspedia</a>,
-<a href="https://www.oddsportal.com/esports/" target="_blank" rel="noreferrer noopener">OddsPortal</a>,
-<a href="https://www.pinnacle.com/en/esports/matchups" target="_blank" rel="noreferrer noopener">Pinnacle</a>,
-<a href="https://thunderpick.io/sports/esports" target="_blank" rel="noreferrer noopener">Thunderpick</a> —
-all return HTTP 200 to a browser but render their match lists client-side (no server-side odds in the HTML), so no value could be
-machine-read. They were inspected from CI on 2026-10-13.</li>
-<li><a href="https://www.sofascore.com" target="_blank" rel="noreferrer noopener">SofaScore API</a> returns HTTP 403 to datacenter clients; Liquipedia and EGamersWorld block automated clients (403) while remaining readable in a browser session — human-verified values with capture timestamps are used instead, and nothing is scraped against those blocks by the CI pipeline.</li>
+<a href="https://www.oddsportal.com/esports/" target="_blank" rel="noreferrer noopener">OddsPortal</a> —
+answered 200 to CI but render their boards client-side, so no price could be read from them (checked 2026-10-13; raw evidence kept
+in the session branch's temporary evidence folder, deleted before release).</li>
+<li>EGamersWorld and HLTV answer 403 to CI clients; their values above come from browser reads with explicit timestamps.</li>
+<li>Polymarket search snippets list CCT/Thunderpick markets but with unreadable values in the snippet; not used as a line.</li>
 </ul>
 </main>
 <footer>
-  Built 2026-10-13 18:12 UTC by Arena session <code>79a1c6c8</code>. Fixture list: play.hotspawn.com Pick'em lobby pages.
-  Odds: external bookmakers via EGamersWorld / HLTV (see <a href="sources.html">Sources</a>). Values not confirmed from an
-  official source are left blank and listed on the <a href="flagged.html">Flagged for Review</a> page.
-  Odds move continuously; each row carries its capture timestamp.
+  Built 2026-10-13 18:16 UTC by Arena session <code>79a1c6c8</code>. Fixtures: play.hotspawn.com Pick'em pages (public, server-rendered).
+  Prices: external bookmakers via EGamersWorld (BC.Game) with per-row capture time; HLTV used for ranking context and timestamp
+  cross-checks. Values that could not be confirmed from a public source are blank and listed on
+  <a href="flagged.html">Flagged for Review</a>. Odds move: each row keeps its capture timestamp.
 </footer>
 <script src="assets/mpl.js"></script>
 </body></html>

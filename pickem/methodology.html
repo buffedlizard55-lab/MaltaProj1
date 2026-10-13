@@ -1,55 +1,48 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Methodology — Hotspawn Pick&#x27;em line analysis</title>
+<title>Methodology — Hotspawn Pick&#x27;em analysis</title>
 <link rel="stylesheet" href="assets/mpl.css">
 </head><body>
 <header class="top">
-  <h1>Hotspawn Pick'em — external betting-line analysis</h1>
-  <p>How fixtures, lines and probabilities are produced — and what is deliberately left blank.</p>
+  <h1>Hotspawn Pick'em — complete slate &amp; external betting lines</h1>
+  <p>How the complete fixture list, the external lines and the de-vigged probabilities are produced.</p>
 </header>
-<nav><a class="" href="index.html">Dashboard</a><a class="" href="cs2.html">CS2</a><a class="" href="lol.html">League of Legends</a><a class="" href="flagged.html">Flagged for Review</a><a class="" href="sources.html">Sources</a><a class="active" href="methodology.html">Methodology</a><a class="" href="../docs/index.html">Other session dashboards</a></nav>
+<nav><a class="" href="index.html">Dashboard</a><a class="" href="cs2.html">CS2 (86)</a><a class="" href="lol.html">League of Legends (294)</a><a class="" href="flagged.html">Flagged for Review</a><a class="" href="sources.html">Sources</a><a class="active" href="methodology.html">Methodology</a><a class="" href="../docs/index.html">Other dashboards</a></nav>
 <main>
 
-<h2>How the numbers are produced</h2>
+<h2>How every number on this site is produced</h2>
 <ul>
-<li><b>Fixtures.</b> The CI pipeline fetches the five server-rendered Pick'em pages on play.hotspawn.com, parses every match card
-(<code>app-pickem-vs-card</code>) and de-duplicates on the Hotspawn match id, keeping all source pages per fixture.
-That yields 258 fixtures: 27 CS2 and 231 LoL. Nothing is hand-typed into the fixture list.</li>
-<li><b>Start times (UTC, verified).</b> The published Start column is the time printed on the Pick'em card, read from the
-server-rendered HTML by our UTC CI runner. Two fixtures pin that render to UTC exactly against HLTV's own match clock:
-9z vs Aurora — Hotspawn card “Oct 14, 08:30”, HLTV match timestamp <code>1791966600</code> = 2026-10-14 08:30:00Z;
-HOTU vs fnatic — card “Oct 14, 10:00”, HLTV countdown at 2026-10-13 18:09Z implied 10:00Z.
-Hotspawn's own <code>“Locks in”</code> countdown disagrees with the printed time by a constant +75 min on every CS2 card and
-+14 min on every LoL card; it is kept in the dataset as <code>countdown_implied_start_utc</code> and flagged (F-02) rather than used.</li>
-<li><b>External lines.</b> Match-winner decimal odds are read from off-site bookmaker sources (EGamersWorld's BC.Game price
-widgets for CS2 and its LoL listing for LoL). Every row stores the source URL, the capture timestamp and the bookmaker name.</li>
-<li><b>Own lines (de-vigged probability).</b> For every fixture with a real two-way line we remove the bookmaker margin:
-<code>p(A) = (1/odds_A) / (1/odds_A + 1/odds_B)</code>, and the residual <code>1/odds_A + 1/odds_B</code> is shown as “vig”.
-This is <b>our own published line</b>, derived only from the external odds — never from Hotspawn.</li>
-<li><b>What is never done.</b> No value is inferred, interpolated or copied from Hotspawn's pick percentages. Where no external
-line exists the probability cells are blank and the fixture appears on the Flagged page. EGamersWorld's 1.8/1.8 fallback is
-explicitly excluded (F-04).</li>
-<li><b>Reproducibility.</b> <code>pipeline/inventory.py</code> rebuilds the fixture list from the live pages in CI;
-<code>pipeline/build_site.py</code> rebuilds this site and <code>lines/analysis.csv</code> from
-<code>inventory/fixtures.json</code> + <code>lines/external_lines.json</code>.</li>
+<li><b>Fixture list (complete, not sampled).</b> The five public Pick'em pages are fetched by an Actions job
+(<code>src/pickem_inventory.py</code>, run 38445027513). Each page embeds its full data set in
+<code>&lt;script id="ng-state"&gt;</code>; the parser reads that payload and writes one row per match with the payload's own id,
+competition, tier, offered points, stage, status, exact UTC <code>scheduled_start_time</code> and <code>lock_time</code>, both
+participants and the board's crowd percentages. Rendered-card counts are recorded as a cross-check
+(27 / 26 / 231 cards vs 86 / 85 / 294 payload rows).</li>
+<li><b>External lines.</b> Prices are read from off-site bookmaker pages (EGamersWorld's BC.Game price widgets and its match
+lists). Each row keeps the source URL and the UTC capture time; two readings are kept where a market moved. Nothing is typed from
+memory and no price is inferred from a ranking, a crowd percentage or a model.</li>
+<li><b>Our own line.</b> For every fixture with a real two-way price the margin is removed:
+<code>p(A) = (1/odds_A) / (1/odds_A + 1/odds_B)</code>, and the residual <code>1/odds_A + 1/odds_B</code> is shown as the
+overround. This de-vigged probability is the project's own line and is labeled as such on every page.</li>
+<li><b>What is deliberately blank.</b> Where no public price exists the odds and probability cells are empty and the fixture is
+listed on the Flagged page. Hotspawn's crowd percentage appears in its own column, tagged as metadata, and is never an input.</li>
+<li><b>Reproduce.</b> <code>python src/pickem_inventory.py</code> (needs internet; runs in CI) →
+<code>python pipeline/build_site.py</code> → this site plus <code>lines/analysis.csv</code>.</li>
 </ul>
 <h2>Reading the tables</h2>
 <ul>
-<li><span class="badge b-priced">priced</span> — real two-way bookmaker line; de-vigged probability published.</li>
-<li><span class="badge b-placeholder">no real line</span> — the source shows only its generic 1.8/1.8 default.</li>
-<li><span class="badge b-missing">unverified / blank</span> — no line found in the checked sources; intentionally blank.</li>
-<li>The “Hotspawn crowd” column is metadata for audit only and is labelled as such everywhere it appears.</li>
+<li><span class="badge b-priced">priced</span> — real two-way bookmaker price; own de-vigged probability published.</li>
+<li><span class="badge b-placeholder">no real line</span> — the only thing the source shows is its generic 1.8/1.8 default.</li>
+<li><span class="badge b-missing">blank / unverified</span> — no public price found; intentionally empty.</li>
+<li><span class="badge b-live">live</span> / finished — the payload's own status; picks for those matches are closed.</li>
 </ul>
-<h2>Refresh</h2>
-<p class="small">Run the <code>Build pick'em fixture inventory</code> workflow, re-check the linked odds pages, and re-run
-<code>pipeline/build_site.py</code>. Odds move; timestamps decide what is current.</p>
 </main>
 <footer>
-  Built 2026-10-13 18:12 UTC by Arena session <code>79a1c6c8</code>. Fixture list: play.hotspawn.com Pick'em lobby pages.
-  Odds: external bookmakers via EGamersWorld / HLTV (see <a href="sources.html">Sources</a>). Values not confirmed from an
-  official source are left blank and listed on the <a href="flagged.html">Flagged for Review</a> page.
-  Odds move continuously; each row carries its capture timestamp.
+  Built 2026-10-13 18:16 UTC by Arena session <code>79a1c6c8</code>. Fixtures: play.hotspawn.com Pick'em pages (public, server-rendered).
+  Prices: external bookmakers via EGamersWorld (BC.Game) with per-row capture time; HLTV used for ranking context and timestamp
+  cross-checks. Values that could not be confirmed from a public source are blank and listed on
+  <a href="flagged.html">Flagged for Review</a>. Odds move: each row keeps its capture timestamp.
 </footer>
 <script src="assets/mpl.js"></script>
 </body></html>

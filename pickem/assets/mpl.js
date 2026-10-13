@@ -8,8 +8,7 @@ function filterTable(input, tableId){
   const chip = document.getElementById(tableId+'-count'); if(chip) chip.textContent = shown + ' rows shown';
 }
 function sortTable(table, colIndex, numeric){
-  const tbody = table.tBodies[0];
-  const rows = [...tbody.rows];
+  const tbody = table.tBodies[0]; const rows = [...tbody.rows];
   const dir = table.dataset.sortDir === 'asc' ? -1 : 1;
   table.dataset.sortDir = dir === 1 ? 'asc' : 'desc';
   rows.sort((a,b)=>{

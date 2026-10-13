@@ -1,58 +1,43 @@
 #!/usr/bin/env python3
-"""Build the published dashboard from the collected data.
+"""Build the published Pick'em dashboard from the collected datasets.
 
 Inputs (all committed, all traceable to public source pages):
-  inventory/fixtures.json        Hotspawn Pick'em fixtures (complete slate, both titles)
-  lines/external_lines.json      external bookmaker match-winner lines + coverage checks
-  lines/reference_ranks.json     HLTV world-ranking context (informational only)
+  data/pickem_inventory.json   complete Hotspawn Pick'em slate, straight from the pages' own
+                               server-rendered payload (exact UTC start/lock times)
+  lines/external_lines.json    external bookmaker match-winner lines + coverage checks
+  lines/reference_ranks.json   HLTV world-ranking context (informational only, never a probability)
 
 Outputs:
-  lines/analysis.csv             flat review file (one row per fixture)
-  assets/data/mpl.json           machine-readable dataset used by the site
-  *.html                         dashboard, category pages, flagged, sources, methodology
-  assets/mpl.css, assets/mpl.js  styling + table interactivity
+  pickem/*.html                dashboard, CS2, LoL, flagged, sources, methodology
+  pickem/assets/*              css + js + machine-readable dataset
+  lines/analysis.csv           flat review file, one row per fixture
 
-Rules enforced here:
-  * Hotspawn crowd pick-% is carried as metadata only and is never used in any probability.
-  * Probabilities exist only where an external bookmaker line exists, and are de-vigged:
+Rules enforced here (and stated on the pages):
+  * Hotspawn's crowd pick-% is metadata only and is never used to compute a probability.
+  * A probability exists only where an external bookmaker line exists, and is de-vigged:
         p_a = (1/o_a) / (1/o_a + 1/o_b)
-  * EGamersWorld's generic 1.8/1.8 default is treated as "no line" and never used.
-  * Everything missing stays blank and is listed on flagged.html.
+  * A source's generic 1.8/1.8 default is not a line.
+  * Missing values stay blank and are listed on the Flagged for Review page.
 """
 from __future__ import annotations
 
 import csv
 import html
 import json
-import re
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-INV = json.loads((ROOT / "inventory/fixtures.json").read_text(encoding="utf-8"))
+OUT = ROOT / "pickem"
+INV = json.loads((ROOT / "data/pickem_inventory.json").read_text(encoding="utf-8"))
 LINES = json.loads((ROOT / "lines/external_lines.json").read_text(encoding="utf-8"))
 RANKS = json.loads((ROOT / "lines/reference_ranks.json").read_text(encoding="utf-8"))
-
 BUILT_AT = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
 LINE_BY_ID = {row["match_id"]: row for row in LINES["rows"]}
+SOURCES = LINES.get("environment_findings", [])
 
 
-MONTHS = {m: i for i, m in enumerate(
-    ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"], start=1)}
-
-
-def displayed_utc(text: str):
-    """Parse the card's printed start time. Verified UTC against two HLTV anchors (see flagged F-02)."""
-    m = re.match(r"([A-Z][a-z]{2}) (\d+), (\d{2}):(\d{2})", text or "")
-    if not m:
-        return None
-    try:
-        return datetime(2026, MONTHS[m.group(1)], int(m.group(2)), int(m.group(3)), int(m.group(4)), tzinfo=timezone.utc)
-    except (KeyError, ValueError):
-        return None
-
-
-def rank_of(team: str) -> dict | None:
+def rank_of(team: str):
     if not team:
         return None
     for name, info in RANKS["teams"].items():
@@ -63,8 +48,8 @@ def rank_of(team: str) -> dict | None:
 
 def build_rows() -> list[dict]:
     rows = []
-    for fx in INV["fixtures"]:
-        line = LINE_BY_ID.get(fx["hotspawn_match_id"], {})
+    for fx in INV["matches"]:
+        line = LINE_BY_ID.get(fx["match_id"], {})
         status = line.get("status", "not_found")
         priced = status == "priced"
         oa, ob = line.get("odds_a"), line.get("odds_b")
@@ -73,37 +58,30 @@ def build_rows() -> list[dict]:
             raw_a, raw_b = 1 / oa, 1 / ob
             overround = raw_a + raw_b
             p_a, p_b = raw_a / overround, raw_b / overround
-        shown = displayed_utc(fx.get("display_date_local"))
-        implied = fx.get("utc_start_estimate")
-        delta_min = None
-        if shown and implied:
-            delta_min = round((datetime.fromisoformat(implied.replace("Z", "+00:00")) - shown).total_seconds() / 60)
-        rows.append(
-            {
-                **fx,
-                "start_utc_displayed": shown.strftime("%Y-%m-%dT%H:%MZ") if shown else None,
-                "countdown_implied_start_utc": implied,
-                "display_vs_countdown_min": delta_min,
-                "line_status": status,
-                "odds_a": oa if priced else None,
-                "odds_b": ob if priced else None,
-                "implied_prob_a": round(p_a * 100, 2) if p_a else None,
-                "implied_prob_b": round(p_b * 100, 2) if p_b else None,
-                "overround_pct": round(overround * 100, 2) if overround else None,
-                "bookmaker": line.get("bookmaker"),
-                "odds_source_url": line.get("source_url"),
-                "line_captured_utc": line.get("captured_utc"),
-                "line_note": line.get("note", ""),
-                "rank_a": rank_of(fx.get("team_a")),
-                "rank_b": rank_of(fx.get("team_b")),
-            }
-        )
-    rows.sort(key=lambda r: (r.get("start_utc_displayed") or "9999"))
+        start = fx.get("scheduled_start_utc")
+        rows.append({
+            **fx,
+            "line_status": status,
+            "odds_a": oa if priced else None,
+            "odds_b": ob if priced else None,
+            "implied_prob_a": round(p_a * 100, 2) if p_a else None,
+            "implied_prob_b": round(p_b * 100, 2) if p_b else None,
+            "overround_pct": round(overround * 100, 2) if overround else None,
+            "bookmaker": line.get("bookmaker"),
+            "odds_source_url": line.get("source_url"),
+            "line_captured_utc": line.get("captured_utc"),
+            "line_note": line.get("note", ""),
+            "rank_a": rank_of(fx.get("team_a")),
+            "rank_b": rank_of(fx.get("team_b")),
+            "start_date": (start or "")[:10],
+            "start_hhmm": (start or "")[11:16],
+        })
+    rows.sort(key=lambda r: (r.get("scheduled_start_utc") or "9999"))
     return rows
 
 
-def esc(value) -> str:
-    return html.escape(str(value if value is not None else ""))
+def esc(v) -> str:
+    return html.escape(str(v if v is not None else ""))
 
 
 CSS = """
@@ -112,42 +90,40 @@ CSS = """
 body{margin:0;background:var(--bg);color:var(--fg);font:14px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
 a{color:#8fb4ff;text-decoration:none} a:hover{text-decoration:underline}
 header.top{background:linear-gradient(90deg,#1b2030,#131722);border-bottom:1px solid var(--line);padding:18px 22px}
-header.top h1{margin:0;font-size:20px;letter-spacing:.2px}
-header.top p{margin:4px 0 0;color:var(--muted);font-size:12.5px}
+header.top h1{margin:0;font-size:20px}
+header.top p{margin:4px 0 0;color:var(--muted);font-size:12.5px;max-width:1100px}
 nav{background:var(--panel);border-bottom:1px solid var(--line);padding:0 22px;display:flex;flex-wrap:wrap;gap:2px}
 nav a{display:block;padding:10px 14px;color:var(--muted);font-weight:600;font-size:13px;border-bottom:2px solid transparent}
 nav a.active,nav a:hover{color:var(--fg);border-bottom-color:var(--accent);text-decoration:none}
-main{max-width:1500px;margin:0 auto;padding:22px}
+main{max-width:1600px;margin:0 auto;padding:22px}
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin-bottom:20px}
 .card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px}
 .card .k{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.6px}
 .card .v{font-size:26px;font-weight:700;margin-top:6px}
 .card .s{color:var(--muted);font-size:12px;margin-top:4px}
 h2{font-size:16px;margin:26px 0 10px}
-h3{font-size:14px;margin:18px 0 8px;color:#cfd8e3}
 table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:8px;overflow:hidden}
-th,td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top;font-size:13px}
-th{background:var(--panel2);color:#cfd8e3;font-size:12px;text-transform:uppercase;letter-spacing:.4px;position:sticky;top:0;cursor:pointer;white-space:nowrap}
+th,td{padding:7px 9px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top;font-size:13px}
+th{background:var(--panel2);color:#cfd8e3;font-size:11.5px;text-transform:uppercase;letter-spacing:.4px;position:sticky;top:0;cursor:pointer;white-space:nowrap}
 tr:hover td{background:#1b2129}
 td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
 .team{font-weight:600}
-.badge{display:inline-block;padding:1px 7px;border-radius:999px;font-size:11px;font-weight:700;border:1px solid}
+.badge{display:inline-block;padding:1px 7px;border-radius:999px;font-size:11px;font-weight:700;border:1px solid;white-space:nowrap}
 .b-priced{color:#8ff0c0;border-color:#2ea36f;background:rgba(46,163,111,.12)}
 .b-placeholder{color:#cfd8e3;border-color:#4a5665;background:rgba(120,130,145,.12)}
 .b-missing{color:#ffd08a;border-color:#a5761f;background:rgba(217,154,43,.12)}
-.b-info{color:#a9c6ff;border-color:#3d7dd8;background:rgba(61,125,216,.12)}
+.b-live{color:#ffb4b4;border-color:#a33;background:rgba(208,82,82,.12)}
 .muted{color:var(--muted)}
-.bar{height:7px;border-radius:4px;background:#2b333d;overflow:hidden;min-width:70px;position:relative}
+.bar{height:6px;border-radius:4px;background:#2b333d;overflow:hidden;min-width:60px;margin-top:3px}
 .bar>i{display:block;height:100%;background:linear-gradient(90deg,#3d7dd8,#2ea36f)}
 .toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:12px 0}
-input[type=search],select{background:var(--panel2);border:1px solid var(--line);color:var(--fg);border-radius:6px;padding:8px 10px;font-size:13px;min-width:210px}
+input[type=search]{background:var(--panel2);border:1px solid var(--line);color:var(--fg);border-radius:6px;padding:8px 10px;font-size:13px;min-width:240px}
 .small{font-size:12px;color:var(--muted)}
 .note{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:8px;padding:12px 14px;margin:14px 0}
-.note.warn{border-left-color:var(--amber)}
-.note.bad{border-left-color:var(--red)}
+.note.warn{border-left-color:var(--amber)} .note.bad{border-left-color:var(--red)}
 code{background:#0b0e12;border:1px solid var(--line);border-radius:4px;padding:1px 5px;font-size:12.5px}
 ul{padding-left:18px} li{margin:5px 0}
-footer{max-width:1500px;margin:30px auto;padding:0 22px 40px;color:var(--muted);font-size:12px}
+footer{max-width:1600px;margin:30px auto;padding:0 22px 40px;color:var(--muted);font-size:12px}
 """
 
 JS = """
@@ -160,8 +136,7 @@ function filterTable(input, tableId){
   const chip = document.getElementById(tableId+'-count'); if(chip) chip.textContent = shown + ' rows shown';
 }
 function sortTable(table, colIndex, numeric){
-  const tbody = table.tBodies[0];
-  const rows = [...tbody.rows];
+  const tbody = table.tBodies[0]; const rows = [...tbody.rows];
   const dir = table.dataset.sortDir === 'asc' ? -1 : 1;
   table.dataset.sortDir = dir === 1 ? 'asc' : 'desc';
   rows.sort((a,b)=>{
@@ -178,20 +153,14 @@ document.addEventListener('DOMContentLoaded', ()=>{
 });
 """
 
+NAV = [("index.html", "Dashboard"), ("cs2.html", "CS2 (86)"), ("lol.html", "League of Legends (294)"),
+       ("flagged.html", "Flagged for Review"), ("sources.html", "Sources"), ("methodology.html", "Methodology"),
+       ("../docs/index.html", "Other dashboards")]
+
 
 def nav(active: str) -> str:
-    items = [
-        ("index.html", "Dashboard"),
-        ("cs2.html", "CS2"),
-        ("lol.html", "League of Legends"),
-        ("flagged.html", "Flagged for Review"),
-        ("sources.html", "Sources"),
-        ("methodology.html", "Methodology"),
-        ("../docs/index.html", "Other session dashboards"),
-    ]
     return "<nav>" + "".join(
-        f'<a class="{"active" if f == active else ""}" href="{f}">{t}</a>' for f, t in items
-    ) + "</nav>"
+        f'<a class="{"active" if f == active else ""}" href="{f}">{t}</a>' for f, t in NAV) + "</nav>"
 
 
 def page(title: str, active: str, body: str, subtitle: str = "") -> str:
@@ -202,18 +171,18 @@ def page(title: str, active: str, body: str, subtitle: str = "") -> str:
 <link rel="stylesheet" href="assets/mpl.css">
 </head><body>
 <header class="top">
-  <h1>Hotspawn Pick'em — external betting-line analysis</h1>
-  <p>{esc(subtitle) or "Every row links to the public source page it was read from. Hotspawn's own pick percentages are shown only as metadata and are never used as a probability."}</p>
+  <h1>Hotspawn Pick'em — complete slate &amp; external betting lines</h1>
+  <p>{esc(subtitle) or "Fixture list read from the Pick'em pages' own server-rendered payload. Lines from external bookmakers only; Hotspawn's crowd percentages are metadata and never a probability."}</p>
 </header>
 {nav(active)}
 <main>
 {body}
 </main>
 <footer>
-  Built {esc(BUILT_AT)} by Arena session <code>79a1c6c8</code>. Fixture list: play.hotspawn.com Pick'em lobby pages.
-  Odds: external bookmakers via EGamersWorld / HLTV (see <a href="sources.html">Sources</a>). Values not confirmed from an
-  official source are left blank and listed on the <a href="flagged.html">Flagged for Review</a> page.
-  Odds move continuously; each row carries its capture timestamp.
+  Built {esc(BUILT_AT)} by Arena session <code>79a1c6c8</code>. Fixtures: play.hotspawn.com Pick'em pages (public, server-rendered).
+  Prices: external bookmakers via EGamersWorld (BC.Game) with per-row capture time; HLTV used for ranking context and timestamp
+  cross-checks. Values that could not be confirmed from a public source are blank and listed on
+  <a href="flagged.html">Flagged for Review</a>. Odds move: each row keeps its capture timestamp.
 </footer>
 <script src="assets/mpl.js"></script>
 </body></html>
@@ -222,9 +191,9 @@ def page(title: str, active: str, body: str, subtitle: str = "") -> str:
 
 def odds_cell(row: dict) -> str:
     if row["line_status"] == "priced":
-        return f'<td class="num">{row["odds_a"]:.3g} <span class="muted">/</span> {row["odds_b"]:.3g}</td>'
+        return f'<td class="num">{row["odds_a"]:g} <span class="muted">/</span> {row["odds_b"]:g}</td>'
     if row["line_status"] == "placeholder":
-        return '<td class="num"><span class="badge b-placeholder">no line (EGW 1.8/1.8 default)</span></td>'
+        return '<td class="num"><span class="badge b-placeholder">source default 1.8/1.8 — not a line</span></td>'
     return '<td class="num"><span class="badge b-missing">no line found</span></td>'
 
 
@@ -232,118 +201,97 @@ def prob_cell(row: dict) -> str:
     if row["implied_prob_a"] is None:
         return '<td class="num muted">—</td>'
     pa, pb = row["implied_prob_a"], row["implied_prob_b"]
-    return (
-        f'<td class="num">{pa:.1f}% <span class="muted">/</span> {pb:.1f}%'
-        f'<div class="bar"><i style="width:{pa:.0f}%"></i></div>'
-        f'<span class="small">vig {row["overround_pct"]:.1f}%</span></td>'
-    )
+    return (f'<td class="num">{pa:.1f}% <span class="muted">/</span> {pb:.1f}%'
+            f'<div class="bar"><i style="width:{pa:.0f}%"></i></div>'
+            f'<span class="small">overround {row["overround_pct"]:.1f}%</span></td>')
 
 
 def source_cell(row: dict) -> str:
     if not row.get("odds_source_url"):
         return '<td><span class="muted">—</span></td>'
-    label = {"priced": "odds", "placeholder": "checked", "not_found": "checked"}[row["line_status"]]
-    return (
-        f'<td><a href="{esc(row["odds_source_url"])}" rel="noreferrer noopener" target="_blank">{label}</a>'
-        f'<div class="small">{esc(row["line_captured_utc"] or "")}</div></td>'
-    )
+    label = {"priced": "price", "placeholder": "checked", "not_found": "checked"}[row["line_status"]]
+    return (f'<td><a href="{esc(row["odds_source_url"])}" target="_blank" rel="noreferrer noopener">{label}</a>'
+            f'<div class="small">{esc(row["line_captured_utc"] or "")}</div></td>')
 
 
 def status_cell(row: dict) -> str:
-    if row["line_status"] == "priced":
-        tag = '<span class="badge b-priced">priced</span>'
-    elif row["line_status"] == "placeholder":
-        tag = '<span class="badge b-placeholder">no real line</span>'
-    else:
-        tag = '<span class="badge b-missing">unverified / blank</span>'
+    tag = {"priced": '<span class="badge b-priced">priced</span>',
+           "placeholder": '<span class="badge b-placeholder">no real line</span>',
+           "not_found": '<span class="badge b-missing">blank / unverified</span>'}[row["line_status"]]
+    live = ""
+    if row.get("status") and row["status"] != "scheduled":
+        live = f' <span class="badge b-live">{esc(row["status"])}</span>'
     note = row.get("line_note") or ""
-    return f"<td>{tag}" + (f'<div class="small">{esc(note)}</div>' if note else "") + "</td>"
+    return f"<td>{tag}{live}" + (f'<div class="small">{esc(note)}</div>' if note else "") + "</td>"
 
 
 def rank_cell(row: dict) -> str:
     def fmt(team, info):
         if not info:
-            return f"{esc(team)} <span class='muted'>(unranked)</span>"
+            return f"{esc(team)} <span class='muted'>(outside top-245)</span>"
         return f"{esc(team)} <span class='muted'>#{info['rank']} · {info['points']} pts</span>"
     return f'<td>{fmt(row.get("team_a"), row.get("rank_a"))}<br>{fmt(row.get("team_b"), row.get("rank_b"))}</td>'
 
 
-def fixture_table(rows: list[dict], table_id: str, include_ranks: bool) -> str:
-    head = (
-        "<tr><th>Start (UTC)</th><th>Match</th><th>Tournament</th><th>Tier</th>"
-        "<th class='num'>Bookmaker odds A / B</th><th class='num'>De-vigged P(A) / P(B)</th>"
-        "<th>Source</th>"
-        + ("<th>HLTV rank (info)</th>" if include_ranks else "")
-        + "<th class='num'>Hotspawn crowd A / B (metadata only)</th><th>Status</th></tr>"
-    )
+def fixture_table(rows: list[dict], table_id: str, with_ranks: bool) -> str:
+    head = ("<tr><th>Start (UTC)</th><th>Match</th><th>Competition</th><th>Points / tier</th>"
+            "<th class='num'>External odds A / B</th><th class='num'>Own line P(A) / P(B)</th><th>Price source</th>"
+            + ("<th>HLTV rank (context)</th>" if with_ranks else "")
+            + "<th class='num'>Crowd A / B (metadata)</th><th>Status</th></tr>")
     body = []
     for row in rows:
-        start = (row.get("start_utc_displayed") or "").replace("T", " ").replace("Z", "")
-        implied = (row.get("countdown_implied_start_utc") or "").replace("T", " ").replace("Z", "")
-        crowd = (
-            f'{row.get("hotspawn_pick_pct_a")}% / {row.get("hotspawn_pick_pct_b")}%'
-            if row.get("hotspawn_pick_pct_a") is not None
-            else "blank"
-        )
-        implied_hhmm = row.get("countdown_implied_start_utc") or ""
-        implied_hhmm = implied_hhmm[11:16] if len(implied_hhmm) >= 16 else ""
+        start = f'{esc(row["start_date"])} <span class="muted">{esc(row["start_hhmm"])}</span>'
+        crowd = (f'{row.get("crowd_pct_a")}% / {row.get("crowd_pct_b")}%'
+                 if row.get("crowd_pct_a") is not None else "blank")
         cells = (
-            f'<td class="num">{esc(start)}<span class="small"> UTC</span>'
-            f'<div class="small">card: “{esc(row.get("display_date_local"))}” · countdown implies {esc(implied_hhmm)} '
-            f'(<a href="flagged.html#f02">F-02</a>)</div></td>'
+            f'<td class="num">{start}<div class="small">locks {esc((row.get("lock_utc") or "")[11:16])}</div></td>'
             f'<td><span class="team">{esc(row.get("team_a"))}</span> <span class="muted">vs</span> '
             f'<span class="team">{esc(row.get("team_b"))}</span>'
-            f'<div class="small"><a href="{esc(row["hotspawn_url"])}" target="_blank" rel="noreferrer noopener">Hotspawn match page</a></div></td>'
-            f'<td>{esc(row.get("tournament"))}<div class="small">{esc(row.get("points"))} · tier {esc(row.get("tier"))}</div></td>'
-            f'<td>{esc(row.get("tier"))}<div class="small">{esc(row.get("stage"))}</div></td>'
-            + odds_cell(row)
-            + prob_cell(row)
-            + source_cell(row)
-            + (rank_cell(row) if include_ranks else "")
-            + f'<td class="num muted">{crowd}</td>'
-            + status_cell(row)
-        )
+            f'<div class="small"><a href="{esc(row.get("source_url"))}" target="_blank" rel="noreferrer noopener">Pick\'em page</a></div></td>'
+            f'<td>{esc(row.get("competition"))}<div class="small">{esc(row.get("stage"))}</div></td>'
+            f'<td class="num">{esc(row.get("offered_points"))} pts<div class="small">tier {esc(row.get("tier"))}</div></td>'
+            + odds_cell(row) + prob_cell(row) + source_cell(row)
+            + (rank_cell(row) if with_ranks else "")
+            + f'<td class="num muted">{crowd}</td>' + status_cell(row))
         body.append(f"<tr>{cells}</tr>")
-    return (
-        f'<table class="sortable" id="{table_id}"><thead>{head}</thead><tbody>'
-        + "".join(body)
-        + "</tbody></table>"
-    )
+    return (f'<table class="sortable" id="{table_id}"><thead>{head}</thead><tbody>'
+            + "".join(body) + "</tbody></table>")
 
 
 def toolbar(table_id: str, placeholder: str) -> str:
-    return (
-        '<div class="toolbar">'
-        f'<input type="search" placeholder="{esc(placeholder)}" oninput="filterTable(this, \'{table_id}\')">'
-        f'<span class="small" id="{table_id}-count"></span>'
-        '<span class="small">Click a column header to sort.</span>'
-        "</div>"
-    )
+    return ('<div class="toolbar">'
+            f'<input type="search" placeholder="{esc(placeholder)}" oninput="filterTable(this, \'{table_id}\')">'
+            f'<span class="small" id="{table_id}-count"></span>'
+            '<span class="small">Click any column header to sort.</span></div>')
 
 
-def write_dataset(rows: list[dict]) -> None:
-    (ROOT / "pickem/assets/data").mkdir(parents=True, exist_ok=True)
-    payload = {
+def write_outputs(rows: list[dict]) -> None:
+    (OUT / "assets/data").mkdir(parents=True, exist_ok=True)
+    (OUT / "assets/mpl.css").write_text(CSS, encoding="utf-8")
+    (OUT / "assets/mpl.js").write_text(JS, encoding="utf-8")
+    dataset = {
         "generated_utc": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "fixture_source": INV["source"],
         "rules": {
-            "probability_formula": "p_a = (1/odds_a) / (1/odds_a + 1/odds_b)",
-            "hotspawn_usage": "fixture identification + crowd metadata only; never a probability input",
-            "placeholder_policy": "EGamersWorld 1.8/1.8 default = no line, never used",
+            "fixture_list": "read from the pages' own server-rendered payload (script#ng-state)",
+            "probability": "p_a = (1/odds_a) / (1/odds_a + 1/odds_b); published only where an external price exists",
+            "hotspawn_pick_pct": "crowd metadata only — never an input to any probability",
+            "source_defaults": "EGamersWorld's generic 1.8/1.8 display is not a line and is never used",
         },
+        "totals": {"fixtures": len(rows),
+                   "priced": sum(1 for r in rows if r["line_status"] == "priced"),
+                   "placeholder": sum(1 for r in rows if r["line_status"] == "placeholder"),
+                   "no_line": sum(1 for r in rows if r["line_status"] == "not_found")},
         "fixtures": rows,
         "coverage_checks": LINES["tournament_coverage_checks"],
         "reference_ranks": RANKS,
     }
-    (ROOT / "pickem/assets/data/mpl.json").write_text(json.dumps(payload, indent=1), encoding="utf-8")
+    (OUT / "assets/data/mpl.json").write_text(json.dumps(dataset, indent=1), encoding="utf-8")
 
-
-def write_csv(rows: list[dict]) -> None:
-    cols = [
-        "hotspawn_match_id", "game", "start_utc_displayed", "countdown_implied_start_utc", "display_vs_countdown_min", "team_a", "team_b", "tournament", "tier", "points",
-        "hotspawn_pick_pct_a", "hotspawn_pick_pct_b", "line_status", "odds_a", "odds_b",
-        "implied_prob_a", "implied_prob_b", "overround_pct", "bookmaker", "odds_source_url", "line_captured_utc",
-        "hotspawn_url", "line_note",
-    ]
+    cols = ["match_id", "sport", "competition", "scheduled_start_utc", "lock_utc", "status", "tier", "offered_points",
+            "team_a", "team_b", "crowd_pct_a", "crowd_pct_b", "line_status", "odds_a", "odds_b",
+            "implied_prob_a", "implied_prob_b", "overround_pct", "bookmaker", "odds_source_url", "line_captured_utc",
+            "source_url", "line_note"]
     with open(ROOT / "lines/analysis.csv", "w", newline="", encoding="utf-8") as fh:
         writer = csv.DictWriter(fh, fieldnames=cols, extrasaction="ignore")
         writer.writeheader()
@@ -351,246 +299,225 @@ def write_csv(rows: list[dict]) -> None:
 
 
 def build() -> None:
+    OUT.mkdir(exist_ok=True)
     rows = build_rows()
-    cs2 = [r for r in rows if r["game"] == "CS2"]
-    lol = [r for r in rows if r["game"] == "LoL"]
+    write_outputs(rows)
+    cs2 = [r for r in rows if r["sport"] == "cs2"]
+    lol = [r for r in rows if r["sport"] == "lol"]
     priced = [r for r in rows if r["line_status"] == "priced"]
     placeholder = [r for r in rows if r["line_status"] == "placeholder"]
-    missing = [r for r in rows if r["line_status"] == "not_found"]
+    noline = [r for r in rows if r["line_status"] == "not_found"]
 
-    write_dataset(rows)
-    write_csv(rows)
-    (ROOT / "pickem/assets").mkdir(parents=True, exist_ok=True)
-    (ROOT / "pickem/assets/mpl.css").write_text(CSS, encoding="utf-8")
-    (ROOT / "pickem/assets/mpl.js").write_text(JS, encoding="utf-8")
-
-    # ---------- dashboard ----------
-    cards = f"""
+    dash = f"""
 <div class="cards">
-  <div class="card"><div class="k">Pick'em fixtures tracked</div><div class="v">{len(rows)}</div><div class="s">{len(cs2)} CS2 · {len(lol)} League of Legends</div></div>
-  <div class="card"><div class="k">Fixtures with real external odds</div><div class="v">{len(priced)}</div><div class="s">de-vigged probability published</div></div>
-  <div class="card"><div class="k">No bookmaker line found</div><div class="v">{len(missing) + len(placeholder)}</div><div class="s">{len(placeholder)} placeholder-only · {len(missing)} not covered</div></div>
-  <div class="card"><div class="k">Data collected</div><div class="v" style="font-size:17px">{esc(BUILT_AT)}</div><div class="s">odds move — see capture time per row</div></div>
-</div>"""
-    top = [r for r in rows if r["line_status"] == "priced"]
-    dashboard_body = cards + f"""
+  <div class="card"><div class="k">Fixtures on the board</div><div class="v">{len(rows)}</div>
+    <div class="s">{len(cs2)} CS2 · {len(lol)} League of Legends</div></div>
+  <div class="card"><div class="k">Fixtures with a real external price</div><div class="v">{len(priced)}</div>
+    <div class="s">own de-vigged line published</div></div>
+  <div class="card"><div class="k">Without a usable line</div><div class="v">{len(noline) + len(placeholder)}</div>
+    <div class="s">{len(placeholder)} source default · {len(noline)} not covered anywhere checked</div></div>
+  <div class="card"><div class="k">Collected</div><div class="v" style="font-size:17px">{esc(BUILT_AT)}</div>
+    <div class="s">odds move — every row keeps its capture time</div></div>
+</div>
 <div class="note">
-  <b>What this is.</b> The complete fixture slate of the Hotspawn Pick'em lobby (CS2 + League of Legends), each row tied to
-  the public page it came from, with match-winner odds taken from <b>off-site</b> bookmaker sources only. Hotspawn's “% picked”
-  is reproduced as crowd metadata for audit purposes and is <b>never</b> used to compute a probability.
+  <b>What this is.</b> The <b>complete</b> Hotspawn Pick'em slate — every match the lobby holds for both titles — taken from the
+  pages' own server-rendered payload (<code>script#ng-state</code>), which carries the official id, competition, exact UTC
+  start and lock times and the board's own crowd percentages. Outside bookmaker prices are joined per fixture and de-vigged into
+  this project's own line. Hotspawn's “% picked” is reproduced for audit only and never used as a probability.
 </div>
-<h2>Fixtures with external bookmaker lines ({len(top)})</h2>
-{toolbar("dash", "Filter matches…")}
-{fixture_table(top, "dash", include_ranks=True)}
-<h2>Coverage summary</h2>
+<h2>Fixtures with an external price ({len(priced)})</h2>
+{toolbar("dash", "Filter priced fixtures…")}
+{fixture_table(priced, "dash", True)}
+<h2>Coverage</h2>
 <div class="cards">
-  <div class="card"><div class="k">CS2 fixtures</div><div class="v">{len(cs2)}</div><div class="s"><a href="cs2.html">open CS2 table →</a></div></div>
-  <div class="card"><div class="k">LoL fixtures</div><div class="v">{len(lol)}</div><div class="s"><a href="lol.html">open LoL table →</a></div></div>
-  <div class="card"><div class="k">Flagged items</div><div class="v">10</div><div class="s"><a href="flagged.html">open Flagged for Review →</a></div></div>
+  <div class="card"><div class="k">CS2</div><div class="v">{len(cs2)}</div><div class="s"><a href="cs2.html">open the CS2 table →</a></div></div>
+  <div class="card"><div class="k">League of Legends</div><div class="v">{len(lol)}</div><div class="s"><a href="lol.html">open the LoL table →</a></div></div>
+  <div class="card"><div class="k">Flagged items</div><div class="v">9</div><div class="s"><a href="flagged.html">open Flagged for Review →</a></div></div>
 </div>
 <div class="note warn">
-  <b>Start times.</b> The “Start (UTC)” column is the time printed on the Pick'em card; it matches HLTV's own match clock for the
-  two fixtures that can be cross-checked exactly (9z vs Aurora, HOTU vs fnatic). Hotspawn's on-card countdown disagrees with it by a
-  constant offset per title — see <a href="flagged.html#f02">F-02</a>.
-</div>
-<div class="note warn">
-  <b>Coverage reality check.</b> {len(missing) + len(placeholder)} of {len(rows)} fixtures have no usable bookmaker line.
-  Most of the Pick'em slate is national/amateur league play (Prime League 2nd/3rd Division, Tunisian Super League, LigaGG,
-  Komplettligaen, Arabian League 2nd Division, RIVALS League, LGC Rising, Elisa BreakOut) that mainstream bookmakers do not
-  price. Those cells stay blank and are listed on the Flagged page — no value is ever invented.
+  <b>Why {len(noline) + len(placeholder)} fixtures have no probability.</b> Most of this slate is national and amateur league play
+  (Prime League 2nd/3rd Division, Tunisian Super League, RIVALS League, Komplettligaen, Arabian League 2nd Division, LigaGG,
+  Icelandic league, Elisa BreakOut, Urban Riga Open and other low-tier CS2 cups). Public bookmakers publish no two-way price for
+  those matches in any source checked. The cells stay blank and every affected fixture is listed on the Flagged page with the
+  sources that were checked — no number is invented to fill a cell.
 </div>"""
 
-    # ---------- CS2 ----------
     cs2_body = f"""
-<div class="note"><b>CS2 slate ({len(cs2)} fixtures).</b> Odds: BC.Game prices published on EGamersWorld event pages
-(capture time per row). Reference column: HLTV world ranking (informational context only — not a betting line).
-Source pages are linked per row.</div>
-{toolbar("cs2", "Filter CS2 matches, teams, tournaments…")}
-{fixture_table(cs2, "cs2", include_ranks=True)}"""
+<div class="note"><b>CS2 slate ({len(cs2)} fixtures).</b> Prices for the four headline events (Thunderpick World Championship,
+Stake Pulse Beat III, CCT Europe #11, ESL Challenger League cups) come from BC.Game prices published on EGamersWorld; every row
+links the page it was read from together with the capture time. The HLA rank column is context from
+<a href="https://www.hltv.org/ranking/teams" target="_blank" rel="noreferrer noopener">HLTV's world ranking</a>, never a probability input.</div>
+{toolbar("cs2", "Filter CS2 fixtures…")}
+{fixture_table(cs2, "cs2", True)}"""
 
     lol_body = f"""
-<div class="note"><b>League of Legends slate ({len(lol)} fixtures).</b> Bookmaker coverage in this slate is limited to
-Worlds 2026 Play-In, the Demacia Cup Global Invitational and the EMEA Masters main event; the remaining national/amateur
-leagues are not priced by the checked sources, so their cells stay blank and every such fixture is flagged.</div>
-{toolbar("lol", "Filter LoL matches, teams, tournaments…")}
-{fixture_table(lol, "lol", include_ranks=False)}"""
+<div class="note"><b>League of Legends slate ({len(lol)} fixtures).</b> Priced here: Worlds 2026 Play-In, the Demacia Cup Global
+Invitational, the EMEA Masters main event. The other {len(lol) - len([r for r in lol if r['line_status'] != 'not_found'])} LoL
+fixtures belong to national/regional leagues that the checked odds sources do not carry with prices; they are published blank and
+flagged.</div>
+{toolbar("lol", "Filter LoL fixtures…")}
+{fixture_table(lol, "lol", False)}"""
 
-    # ---------- flagged ----------
-    missing_by_tour: dict[str, int] = {}
+    # ---- flagged ----
+    by_comp: dict[str, int] = {}
     for r in rows:
         if r["line_status"] != "priced":
-            missing_by_tour[r["tournament"]] = missing_by_tour.get(r["tournament"], 0) + 1
-    rows_html = "".join(
-        f"<tr><td>{esc(k)}</td><td class='num'>{v}</td><td><span class='badge b-missing'>no usable external line</span></td></tr>"
-        for k, v in sorted(missing_by_tour.items(), key=lambda kv: -kv[1])
-    )
-    flagged_body = f"""
-<div class="note bad"><b>Nothing on this page blocks publication.</b> Every item below is a value we refused to fill in,
-a source that cannot be read automatically, or a discrepancy between two official sources. Each has a link for manual review.</div>
+            by_comp[r["competition"]] = by_comp.get(r["competition"], 0) + 1
+    comp_rows = "".join(
+        f"<tr><td>{esc(c)}</td><td class='num'>{n}</td><td class='small'>no public two-way price found in the sources listed on the "
+        f"<a href='sources.html'>sources page</a></td></tr>"
+        for c, n in sorted(by_comp.items(), key=lambda kv: -kv[1]))
+    drift = [r for r in priced if "Earlier reading" in (r.get("line_note") or "")]
+    drift_rows = "".join(
+        f"<tr><td>{esc(r['team_a'])} vs {esc(r['team_b'])}</td><td class='small'>{esc(r['line_note'])}</td>"
+        f"<td><a href='{esc(r['odds_source_url'])}' target='_blank' rel='noreferrer noopener'>source</a></td></tr>" for r in drift)
+    flagged = f"""
+<div class="note bad"><b>Nothing on this page blocks publication.</b> Every item is either a value we refused to fill in, a
+discrepancy between the page's own fields, or a source that cannot be read by an automated client. Each carries a link.</div>
 
-<h2>F-01 — Header counts exceed the rendered fixture list</h2>
-<p class="small">Hotspawn's Pick'em pages state “60 matches this week” / tier counters of 85 (CS2) and 294 (LoL), but the
-server-rendered pages list {len(cs2)} CS2 and {len(lol)} LoL fixtures. Matches that have already locked, are in progress, or sit
-beyond the rendered window are not emitted into the page HTML. We publish exactly what the page renders and do not invent the
-remainder. Source: <a href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noreferrer noopener">cs2-pickems</a>,
-<a href="https://play.hotspawn.com/lol-pickems" target="_blank" rel="noreferrer noopener">lol-pickems</a>; query-string paging
-(<code>?page=2</code>, <code>?offset=26</code>, <code>?limit=200</code>) returns identical markup (checked 2026-10-13).</p>
+<h2 id="f01">F-01 — The complete slate comes from the page's own payload</h2>
+<p class="small">The lobby filter advertises 86 CS2 matches and the LoL page 294. Both pages embed all of them in
+<code>&lt;script id="ng-state"&gt;</code>: {len(cs2)} CS2 records (86 on <a href="https://play.hotspawn.com/lobby" target="_blank" rel="noreferrer noopener">/lobby</a>,
+85 on <a href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noreferrer noopener">/cs2-pickems</a>) and {len(lol)} on
+<a href="https://play.hotspawn.com/lol-pickems" target="_blank" rel="noreferrer noopener">/lol-pickems</a>. The HTML itself renders only
+27 / 26 / 231 cards — the rest are in the data, not the markup, which is why a naive HTML reader under-counts. Nothing is inferred:
+every row carries the payload's id, competition, tier, points and start time, and we publish the raw payload-derived table.</p>
 
-<h2 id="f02">F-02 — Hotspawn's “Locks in” countdown contradicts its own printed start time</h2>
-<p class="small">Every Pick'em card prints a kick-off time <i>and</i> a “Locks in HH:MM:SS” countdown. The printed time is the
-correct UTC time — verified against two independent HLTV match anchors:
-<b>(1)</b> 9z vs Aurora: card “Oct 14, 08:30”, HLTV match timestamp <code>data-unix=1791966600000</code> = 2026-10-14 08:30:00 UTC;
-<b>(2)</b> HOTU vs fnatic: card “Oct 14, 10:00”, HLTV countdown read at 2026-10-13 18:09 UTC implied 10:00 UTC
-(<a href="https://www.hltv.org/matches/2399135/hotu-vs-fnatic-stake-pulse-beat-iii" target="_blank" rel="noreferrer noopener">HLTV match page</a>).
-The countdown, however, does not agree with those times: on <b>all 27 CS2 cards</b> it implies a moment <b>+75 minutes</b> after the
-printed time and on <b>all 231 LoL cards +14 minutes</b> after it (delta histogram: 75 min × 27, 14 min × 231, from the 2026-10-13
-18:03 UTC snapshot). The offset is constant per title, so it is a systematic property of Hotspawn's card widget — most plausibly the
-moment of an internal deadline — not a kick-off clock. <b>We publish the printed (UTC) time and keep the countdown value in the
-dataset as <code>countdown_implied_start_utc</code>; the discrepancy itself is left unresolved and flagged here.</b></p>
+<h2 id="f02">F-02 — The card countdown contradicts the payload's own lock time</h2>
+<p class="small">Every rendered card shows “Locks in HH:MM:SS”. Measured against the payload's <code>lock_time</code> on
+2026-10-13 18:03 UTC: the countdown lands 75 minutes after the printed start on all 27 CS2 cards and 14 minutes after it on all
+231 LoL cards (constant per title). The payload's <code>scheduled_start_time</code> is corroborated by HLTV's own timestamps
+(9z vs Aurora: payload <code>1791966600000</code> = 2026-10-14 08:30:00 UTC; HOTU vs fnatic: 2026-10-14 10:00:00 UTC, matching the
+printed card time), so the payload is used and the countdown discrepancy stays flagged.</p>
 
-<h2>F-03 — Missing bookmaker lines ({len(missing) + len(placeholder)} fixtures)</h2>
-<p class="small">Blank and flagged, per the project rule “if a value can't be confirmed from an official source, leave it blank”.
-Per-tournament breakdown (fixture-level rows are in the tables):</p>
-<table class="sortable"><thead><tr><th>Tournament</th><th class="num">Fixtures without a usable line</th><th>Status</th></tr></thead>
-<tbody>{rows_html}</tbody></table>
-<p class="small">Sources consulted for these leagues:
-<a href="https://egamersworld.com/lol/matches" target="_blank" rel="noreferrer noopener">EGamersWorld LoL matches</a>,
-<a href="https://egamersworld.com/lol/events" target="_blank" rel="noreferrer noopener">EGamersWorld LoL events</a>,
-<a href="https://egamersworld.com/counterstrike/events" target="_blank" rel="noreferrer noopener">EGamersWorld CS2 events</a>.</p>
+<h2 id="f03">F-03 — {len(noline) + len(placeholder)} fixture(s) without a usable external price</h2>
+<p class="small">Blank on purpose. Per competition:</p>
+<table class="sortable"><thead><tr><th>Competition</th><th class="num">Fixtures</th><th>Note</th></tr></thead><tbody>{comp_rows}</tbody></table>
 
-<h2>F-04 — EGamersWorld “1.8 / 1.8” is a default, not a line</h2>
-<p class="small">{len(placeholder)} fixtures display exactly 1.8/1.8 on EGamersWorld (ex-RUSTEC vs mellren, Black Phoenix vs 6666,
-ex-Keyd Stars vs Galorys, Mental Rush vs SK Gaming Avarosa, Vitality Rising Bees vs G2 Hel). That is EGamersWorld's fallback
-display when no bookmaker price exists — it is never treated as a line here. Example:
-<a href="https://egamersworld.com/counterstrike/match/_rW8GEyWK/ex-rustec-vs-mellren-ZGVCwI7MK" target="_blank" rel="noreferrer noopener">ex-RUSTEC vs mellren</a>.</p>
+<h2 id="f04">F-04 — A source's generic 1.8/1.8 default is not a line</h2>
+<p class="small">{len(placeholder)} fixture(s) display exactly 1.8 / 1.8 on EGamersWorld. That is its fallback when no bookmaker
+price exists; it is excluded from every probability here. One fixture (ex-Keyd Stars vs Galorys) was seen with the default on its
+match page at 18:40 UTC while the match list carried a real 2.44 / 1.48 price at 18:31 UTC — the priced reading is used.</p>
 
-<h2>F-05 — Two different prices for the same TWC fixture on one source page</h2>
-<p class="small">On the Thunderpick World Championship page the price widget showed 9z 3.6 / Aurora 1.27 while the schedule block
-below it showed 3.8 / 1.22. We publish the widget pair (used consistently for all four TWC fixtures) and note the discrepancy.
-Source: <a href="https://egamersworld.com/counterstrike/event/thunderpick-world-championship-2026-5X5sFiL7H" target="_blank" rel="noreferrer noopener">EGamersWorld TWC event page</a>.</p>
+<h2 id="f05">F-05 — Live markets move between captures</h2>
+<table class="sortable"><thead><tr><th>Fixture</th><th>Drift</th><th>Source</th></tr></thead><tbody>{drift_rows}</tbody></table>
 
-<h2>F-06 — Team-name aliases between sources</h2>
-<p class="small">Mapping applied (Hotspawn → source): BNK FearX → “FearX” (EGamersWorld); BC.Game → “BC.Game Esports”;
-Fnatic → “fnatic”; Envy → “Team Envy”; Sashi → “Sashi Esport”; EM 2026 Summer Main Event → “EMEA Masters 2026 Summer”.
-Every mapped row keeps both the source link and the name used by the source in its note.</p>
+<h2 id="f06">F-06 — One fixture, two prices on the same source page</h2>
+<p class="small">On the Thunderpick World Championship page the price widget shows 9z 3.60 / Aurora 1.27 while the schedule block
+below it shows 3.80 / 1.22. The widget pair is used (consistently for all four TWC fixtures) and the discrepancy is recorded in the
+row note. Source: <a href="https://egamersworld.com/counterstrike/event/thunderpick-world-championship-2026-5X5sFiL7H" target="_blank" rel="noreferrer noopener">EGamersWorld TWC event page</a>.</p>
 
-<h2>F-07 — Hotspawn crowd percentages drift between snapshots</h2>
-<p class="small">Observed drift within ~40 minutes on 2026-10-13: ex-Keyd Stars 83% → 86%, Legacy 88% → 83%, 9z 0% → 5%,
-Astralis 100% → 95%. The crowd figure shown on the site is a snapshot timestamped per row and is metadata only.</p>
+<h2 id="f07">F-07 — Team names differ between the two sides of a join</h2>
+<p class="small">Mapping applied when joining external prices to Hotspawn fixtures (the Hotspawn name is kept in every table):
+“BNK FearX” ↔ “FearX”; “Movistar KOI Fénix” ↔ “KOI Fénix”; “Ninjas in Pyjamas” ↔ “NIP”/“NiP”; “Fnatic” ↔ “fnatic”; “Envy” ↔
+“Team Envy”; “Sashi” ↔ “Sashi Esport”; “BC.Game” ↔ “BC.Game Esports”; “G2 Hel” ↔ “G2 HEL”. Rows whose names could not be matched
+are left unpriced rather than guessed.</p>
 
-<h2>F-08 — One fixture only appears on the all-games lobby page</h2>
-<p class="small">Black Phoenix vs 6666 (CCT Europe #11, Hotspawn id 1079620) was rendered on
-<a href="https://play.hotspawn.com/lobby" target="_blank" rel="noreferrer noopener">/lobby</a> but not on
-<a href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noreferrer noopener">/cs2-pickems</a> in the same
-collection run (the match was live). It is kept with that provenance and its odds are flagged as live/unusable.</p>
+<h2 id="f08">F-08 — Fixtures already started are still on the board</h2>
+<p class="small">The payload's <code>status</code> field marks live/finished matches (they stay listed with their crowd counts).
+Their prices are historical at capture time and are marked in the Status column; picks for them are closed.</p>
 
-<h2>F-09 — No published line for the majority of the slate</h2>
-<p class="small">243 of {len(rows)} fixtures have no confirmed bookmaker line. We did not originate substitute probabilities for
-them: any number would be an invention, and the project rule is explicit that unconfirmable values stay blank. If you want a
-house model instead (for example an Elo-style model fitted to HLTV ranking points, which are published and linkable), say so and
-it can be added as a clearly-labelled, separate column.</p>
+<h2 id="f09">F-09 — Automated collection of prices is blocked by the sources</h2>
+<p class="small">EGamersWorld and HLTV answer HTTP 403 to datacenter clients (GitHub Actions runners) while rendering normally in a
+browser session — verified again in run 38445055709 where all eight URLs answered 403. The prices above were therefore read in a
+browser session with an explicit capture timestamp; the fixture inventory, which is served normally, is collected automatically.
+No block is worked around, and no login or wagering is involved anywhere in this project.</p>
 
-<h2>F-10 — Automated collection is not possible for every source</h2>
-<p class="small">EGamersWorld, Liquipedia, SofaScore's API and HLTV's schedule pages return HTTP 403 to datacenter clients
-(GitHub Actions runners), while they render normally in a browser-like fetch; HLTV's analytics pages and ranking pages do return
-200. The line rows therefore carry browser-verified values with explicit capture timestamps, and the CI pipeline keeps collecting
-the fixture inventory automatically (see COORDINATION.md).</p>"""
+<h2 id="f10">F-10 — Anchor row for manual review</h2>
+<p class="small">To re-verify the join by hand: Hotspawn <a href="https://www.hotspawn.com/matches/9z-vs-aurora-thunderpick-world-championship-2026-1080176" target="_blank" rel="noreferrer noopener">9z vs Aurora (id 1080176)</a>
+↔ EGamersWorld <a href="https://egamersworld.com/counterstrike/event/thunderpick-world-championship-2026-5X5sFiL7H" target="_blank" rel="noreferrer noopener">TWC event page</a>
+(3.60 / 1.27) ↔ HLTV <a href="https://www.hltv.org/matches/2399384/9z-vs-aurora-thunderpick-world-championship-2026" target="_blank" rel="noreferrer noopener">match page</a>
+(timestamp 2026-10-14 08:30 UTC). All three agree on identity and time; the price is the external one.</p>"""
 
-    # ---------- sources ----------
-    sources_body = """
-<h2>Source registry</h2>
-<table class="sortable"><thead><tr>
-<th>Source</th><th>URL</th><th>Used for</th><th>Verified</th></tr></thead><tbody>
-<tr><td>Hotspawn Play — Pick'em lobby</td><td><a href="https://play.hotspawn.com/lobby" target="_blank" rel="noreferrer noopener">play.hotspawn.com/lobby</a></td>
-<td>Fixture list (all games lobby), tournament/points/tier, crowd % snapshot, match links</td><td>HTTP 200, server-rendered markup parsed automatically (CI)</td></tr>
-<tr><td>Hotspawn Play — CS2 Pick'ems</td><td><a href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noreferrer noopener">play.hotspawn.com/cs2-pickems</a></td>
-<td>CS2 fixture slate</td><td>HTTP 200, parsed (CI)</td></tr>
-<tr><td>Hotspawn Play — LoL Pick'ems</td><td><a href="https://play.hotspawn.com/lol-pickems" target="_blank" rel="noreferrer noopener">play.hotspawn.com/lol-pickems</a></td>
-<td>LoL fixture slate (231 fixtures)</td><td>HTTP 200, parsed (CI)</td></tr>
-<tr><td>Hotspawn Play — Thunderpick Pick'ems</td><td><a href="https://play.hotspawn.com/thp-pickems" target="_blank" rel="noreferrer noopener">play.hotspawn.com/thp-pickems</a></td>
-<td>Thunderpick-sponsored pick'em subset (cross-check)</td><td>HTTP 200, parsed (CI)</td></tr>
-<tr><td>Hotspawn — Pick'em rules</td><td><a href="https://play.hotspawn.com/how-it-works" target="_blank" rel="noreferrer noopener">play.hotspawn.com/how-it-works</a></td>
-<td>Lock rule: picks lock 5 minutes before scheduled start (used for start-time derivation)</td><td>Read 2026-10-13</td></tr>
-<tr><td>EGamersWorld — Thunderpick World Championship 2026</td><td><a href="https://egamersworld.com/counterstrike/event/thunderpick-world-championship-2026-5X5sFiL7H" target="_blank" rel="noreferrer noopener">event page</a></td>
-<td>Bookmaker odds for 4 TWC fixtures (via “Bets on … by BC.Game” widget)</td><td>Read 2026-10-13 18:05 UTC</td></tr>
-<tr><td>EGamersWorld — Stake Pulse Beat III</td><td><a href="https://egamersworld.com/counterstrike/event/stake-pulse-beat-iii-EJZmJpBjeNx" target="_blank" rel="noreferrer noopener">event page</a></td>
-<td>Bookmaker odds for 4 Stake Pulse fixtures</td><td>Read 2026-10-13 18:15 UTC</td></tr>
-<tr><td>EGamersWorld — CCT Europe 2026 Series #11</td><td><a href="https://egamersworld.com/counterstrike/event/cct-europe-2026-series-11-_rW8GEyWK" target="_blank" rel="noreferrer noopener">event page</a></td>
-<td>Bookmaker odds for 2 CCT fixtures; coverage check for the other CCT fixtures</td><td>Read 2026-10-13 18:20 UTC</td></tr>
-<tr><td>EGamersWorld — ESL Challenger League NA Cup 3</td><td><a href="https://egamersworld.com/counterstrike/event/esl-challenger-league-season-52-north-america-cup--41yion_ONx" target="_blank" rel="noreferrer noopener">event page</a></td>
-<td>Bookmaker odds for Zomblers vs Overtake Sector</td><td>Read 2026-10-13 18:30 UTC</td></tr>
-<tr><td>EGamersWorld — CS2 matches / events index</td><td><a href="https://egamersworld.com/counterstrike/matches" target="_blank" rel="noreferrer noopener">matches</a> ·
-<a href="https://egamersworld.com/counterstrike/events" target="_blank" rel="noreferrer noopener">events</a></td>
-<td>Coverage checks (absence of priced fixtures for Elisa BreakOut Series #2 and others)</td><td>Read 2026-10-13 18:20–18:35 UTC</td></tr>
-<tr><td>EGamersWorld — LoL matches</td><td><a href="https://egamersworld.com/lol/matches" target="_blank" rel="noreferrer noopener">egamersworld.com/lol/matches</a></td>
-<td>Bookmaker odds for Worlds 2026 Play-In, Demacia Cup, EMEA Masters fixtures</td><td>Read 2026-10-13 18:25 UTC</td></tr>
-<tr><td>HLTV.org — world ranking</td><td><a href="https://www.hltv.org/ranking/teams" target="_blank" rel="noreferrer noopener">hltv.org/ranking/teams</a></td>
-<td>Informational rank/points column for CS2 teams (never a probability input)</td><td>HTTP 200, parsed 2026-10-13 18:02 UTC</td></tr>
-<tr><td>HLTV.org — Thunderpick event + team pages</td><td><a href="https://www.hltv.org/events/8932/thunderpick-world-championship-2026" target="_blank" rel="noreferrer noopener">event</a> ·
-<a href="https://www.hltv.org/team/9996/9z" target="_blank" rel="noreferrer noopener">9z</a></td>
-<td>Bracket/format cross-checks, form and ranking context</td><td>Read 2026-10-13</td></tr>
-<tr><td>HLTV.org — odds &amp; prediction page</td><td><a href="https://www.hltv.org/betting/analytics/2399384/9z-vs-aurora-thunderpick-world-championship-2026" target="_blank" rel="noreferrer noopener">9z vs Aurora analytics</a></td>
-<td>Corroboration (“Aurora is the bookmaker favorite”), server-side match timestamp used for the timezone finding</td><td>Read 2026-10-13</td></tr>
+    sources_body = f"""
+<h2>Sources used, and what each one provides</h2>
+<table class="sortable"><thead><tr><th>Source</th><th>Used for</th><th>How it was read</th><th>Link</th></tr></thead><tbody>
+<tr><td>Hotspawn Play — Pick'em pages</td><td>Complete fixture slate: id, competition, tier, points, stage, exact UTC start and
+lock time, board crowd %</td><td>Server-rendered payload fetched in CI (automated, run 38445027513)</td>
+<td><a href="https://play.hotspawn.com/lobby" target="_blank" rel="noreferrer noopener">/lobby</a> ·
+<a href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noreferrer noopener">/cs2-pickems</a> ·
+<a href="https://play.hotspawn.com/lol-pickems" target="_blank" rel="noreferrer noopener">/lol-pickems</a> ·
+<a href="https://play.hotspawn.com/thp-pickems" target="_blank" rel="noreferrer noopener">/thp-pickems</a></td></tr>
+<tr><td>Hotspawn — rules</td><td>Picks lock 6 minutes before start (<code>lock_offset_sec = 360</code>, confirmed in the payload)</td>
+<td>read 2026-10-13</td><td><a href="https://play.hotspawn.com/how-it-works" target="_blank" rel="noreferrer noopener">how-it-works</a></td></tr>
+<tr><td>EGamersWorld — Thunderpick World Championship 2026</td><td>Prices for the four TWC fixtures (BC.Game)</td>
+<td>browser read 18:05 UTC</td><td><a href="https://egamersworld.com/counterstrike/event/thunderpick-world-championship-2026-5X5sFiL7H" target="_blank" rel="noreferrer noopener">event</a></td></tr>
+<tr><td>EGamersWorld — Stake Pulse Beat III</td><td>Prices for the four Stake Pulse fixtures</td>
+<td>browser read 18:15 UTC</td><td><a href="https://egamersworld.com/counterstrike/event/stake-pulse-beat-iii-EJZmJpBjeNx" target="_blank" rel="noreferrer noopener">event</a></td></tr>
+<tr><td>EGamersWorld — CCT Europe 2026 Series #11</td><td>Prices for Gothic–Lavked and G2 Ares–The Last Resort; coverage check for the other three CCT fixtures</td>
+<td>browser read 18:20 UTC</td><td><a href="https://egamersworld.com/counterstrike/event/cct-europe-2026-series-11-_rW8GEyWK" target="_blank" rel="noreferrer noopener">event</a></td></tr>
+<tr><td>EGamersWorld — ESL Challenger League cups</td><td>Prices for Zomblers–Overtake Sector (NA) and ex-Keyd Stars–Galorys (SA)</td>
+<td>browser read 18:30–18:31 UTC</td><td><a href="https://egamersworld.com/counterstrike/event/esl-challenger-league-season-52-north-america-cup--41yion_ONx" target="_blank" rel="noreferrer noopener">NA cup</a> ·
+<a href="https://egamersworld.com/counterstrike/match/Nylyio3_OEx/ex-keyd-stars-vs-galorys-0LRbemybp" target="_blank" rel="noreferrer noopener">SA match</a></td></tr>
+<tr><td>EGamersWorld — LoL match list</td><td>Prices for Worlds 2026 Play-In, Demacia Cup and EMEA Masters fixtures</td>
+<td>browser read 18:25 and 18:31 UTC</td><td><a href="https://egamersworld.com/lol/matches" target="_blank" rel="noreferrer noopener">lol/matches</a></td></tr>
+<tr><td>EGamersWorld — CS2 match list / event index</td><td>Coverage checks (which fixtures carry no price at all)</td>
+<td>browser read 18:20–18:35 UTC</td><td><a href="https://egamersworld.com/counterstrike/matches" target="_blank" rel="noreferrer noopener">matches</a> ·
+<a href="https://egamersworld.com/counterstrike/events" target="_blank" rel="noreferrer noopener">events</a></td></tr>
+<tr><td>HLTV.org</td><td>World ranking context; kick-off timestamp cross-checks; event format facts</td>
+<td>ranking + match pages read 2026-10-13 (403 to CI, browser read for verification)</td>
+<td><a href="https://www.hltv.org/ranking/teams" target="_blank" rel="noreferrer noopener">ranking</a> ·
+<a href="https://www.hltv.org/matches/2399135/hotu-vs-fnatic-stake-pulse-beat-iii" target="_blank" rel="noreferrer noopener">HOTU–fnatic</a> ·
+<a href="https://www.hltv.org/matches/2399384/9z-vs-aurora-thunderpick-world-championship-2026" target="_blank" rel="noreferrer noopener">9z–Aurora</a> ·
+<a href="https://www.hltv.org/events/9332/elisa-breakout-series-2" target="_blank" rel="noreferrer noopener">Elisa BreakOut</a></td></tr>
+<tr><td>Liquipedia / Elisa Esports</td><td>Elisa BreakOut Series #2 facts (dates, venue, format, prize)</td>
+<td>read 2026-10-13</td><td><a href="https://liquipedia.net/counterstrike/Elisa/BreakOut_Series/2" target="_blank" rel="noreferrer noopener">Liquipedia</a></td></tr>
 </tbody></table>
-<h2>Sources checked that could not provide lines</h2>
+<h2>Sources checked that could not supply a line</h2>
 <ul class="small">
-<li><a href="https://www.bovada.lv/sports/esports" target="_blank" rel="noreferrer noopener">Bovada esports</a>, <a href="https://www.betonline.ag/sportsbook/esports" target="_blank" rel="noreferrer noopener">BetOnline esports</a>,
-<a href="https://www.flashscore.com/esports/" target="_blank" rel="noreferrer noopener">Flashscore esports</a>,
+<li><a href="https://www.bovada.lv/sports/esports" target="_blank" rel="noreferrer noopener">Bovada</a>,
+<a href="https://www.betonline.ag/sportsbook/esports" target="_blank" rel="noreferrer noopener">BetOnline</a>,
+<a href="https://www.flashscore.com/esports/" target="_blank" rel="noreferrer noopener">Flashscore</a>,
 <a href="https://oddspedia.com/esports" target="_blank" rel="noreferrer noopener">Oddspedia</a>,
-<a href="https://www.oddsportal.com/esports/" target="_blank" rel="noreferrer noopener">OddsPortal</a>,
-<a href="https://www.pinnacle.com/en/esports/matchups" target="_blank" rel="noreferrer noopener">Pinnacle</a>,
-<a href="https://thunderpick.io/sports/esports" target="_blank" rel="noreferrer noopener">Thunderpick</a> —
-all return HTTP 200 to a browser but render their match lists client-side (no server-side odds in the HTML), so no value could be
-machine-read. They were inspected from CI on 2026-10-13.</li>
-<li><a href="https://www.sofascore.com" target="_blank" rel="noreferrer noopener">SofaScore API</a> returns HTTP 403 to datacenter clients; Liquipedia and EGamersWorld block automated clients (403) while remaining readable in a browser session — human-verified values with capture timestamps are used instead, and nothing is scraped against those blocks by the CI pipeline.</li>
+<a href="https://www.oddsportal.com/esports/" target="_blank" rel="noreferrer noopener">OddsPortal</a> —
+answered 200 to CI but render their boards client-side, so no price could be read from them (checked 2026-10-13; raw evidence kept
+in the session branch's temporary evidence folder, deleted before release).</li>
+<li>EGamersWorld and HLTV answer 403 to CI clients; their values above come from browser reads with explicit timestamps.</li>
+<li>Polymarket search snippets list CCT/Thunderpick markets but with unreadable values in the snippet; not used as a line.</li>
 </ul>"""
 
-    # ---------- methodology ----------
-    total = len(rows)
     methodology_body = f"""
-<h2>How the numbers are produced</h2>
+<h2>How every number on this site is produced</h2>
 <ul>
-<li><b>Fixtures.</b> The CI pipeline fetches the five server-rendered Pick'em pages on play.hotspawn.com, parses every match card
-(<code>app-pickem-vs-card</code>) and de-duplicates on the Hotspawn match id, keeping all source pages per fixture.
-That yields {total} fixtures: {len(cs2)} CS2 and {len(lol)} LoL. Nothing is hand-typed into the fixture list.</li>
-<li><b>Start times (UTC, verified).</b> The published Start column is the time printed on the Pick'em card, read from the
-server-rendered HTML by our UTC CI runner. Two fixtures pin that render to UTC exactly against HLTV's own match clock:
-9z vs Aurora — Hotspawn card “Oct 14, 08:30”, HLTV match timestamp <code>1791966600</code> = 2026-10-14 08:30:00Z;
-HOTU vs fnatic — card “Oct 14, 10:00”, HLTV countdown at 2026-10-13 18:09Z implied 10:00Z.
-Hotspawn's own <code>“Locks in”</code> countdown disagrees with the printed time by a constant +75 min on every CS2 card and
-+14 min on every LoL card; it is kept in the dataset as <code>countdown_implied_start_utc</code> and flagged (F-02) rather than used.</li>
-<li><b>External lines.</b> Match-winner decimal odds are read from off-site bookmaker sources (EGamersWorld's BC.Game price
-widgets for CS2 and its LoL listing for LoL). Every row stores the source URL, the capture timestamp and the bookmaker name.</li>
-<li><b>Own lines (de-vigged probability).</b> For every fixture with a real two-way line we remove the bookmaker margin:
-<code>p(A) = (1/odds_A) / (1/odds_A + 1/odds_B)</code>, and the residual <code>1/odds_A + 1/odds_B</code> is shown as “vig”.
-This is <b>our own published line</b>, derived only from the external odds — never from Hotspawn.</li>
-<li><b>What is never done.</b> No value is inferred, interpolated or copied from Hotspawn's pick percentages. Where no external
-line exists the probability cells are blank and the fixture appears on the Flagged page. EGamersWorld's 1.8/1.8 fallback is
-explicitly excluded (F-04).</li>
-<li><b>Reproducibility.</b> <code>pipeline/inventory.py</code> rebuilds the fixture list from the live pages in CI;
-<code>pipeline/build_site.py</code> rebuilds this site and <code>lines/analysis.csv</code> from
-<code>inventory/fixtures.json</code> + <code>lines/external_lines.json</code>.</li>
+<li><b>Fixture list (complete, not sampled).</b> The five public Pick'em pages are fetched by an Actions job
+(<code>src/pickem_inventory.py</code>, run 38445027513). Each page embeds its full data set in
+<code>&lt;script id="ng-state"&gt;</code>; the parser reads that payload and writes one row per match with the payload's own id,
+competition, tier, offered points, stage, status, exact UTC <code>scheduled_start_time</code> and <code>lock_time</code>, both
+participants and the board's crowd percentages. Rendered-card counts are recorded as a cross-check
+(27 / 26 / 231 cards vs 86 / 85 / 294 payload rows).</li>
+<li><b>External lines.</b> Prices are read from off-site bookmaker pages (EGamersWorld's BC.Game price widgets and its match
+lists). Each row keeps the source URL and the UTC capture time; two readings are kept where a market moved. Nothing is typed from
+memory and no price is inferred from a ranking, a crowd percentage or a model.</li>
+<li><b>Our own line.</b> For every fixture with a real two-way price the margin is removed:
+<code>p(A) = (1/odds_A) / (1/odds_A + 1/odds_B)</code>, and the residual <code>1/odds_A + 1/odds_B</code> is shown as the
+overround. This de-vigged probability is the project's own line and is labeled as such on every page.</li>
+<li><b>What is deliberately blank.</b> Where no public price exists the odds and probability cells are empty and the fixture is
+listed on the Flagged page. Hotspawn's crowd percentage appears in its own column, tagged as metadata, and is never an input.</li>
+<li><b>Reproduce.</b> <code>python src/pickem_inventory.py</code> (needs internet; runs in CI) →
+<code>python pipeline/build_site.py</code> → this site plus <code>lines/analysis.csv</code>.</li>
 </ul>
 <h2>Reading the tables</h2>
 <ul>
-<li><span class="badge b-priced">priced</span> — real two-way bookmaker line; de-vigged probability published.</li>
-<li><span class="badge b-placeholder">no real line</span> — the source shows only its generic 1.8/1.8 default.</li>
-<li><span class="badge b-missing">unverified / blank</span> — no line found in the checked sources; intentionally blank.</li>
-<li>The “Hotspawn crowd” column is metadata for audit only and is labelled as such everywhere it appears.</li>
-</ul>
-<h2>Refresh</h2>
-<p class="small">Run the <code>Build pick'em fixture inventory</code> workflow, re-check the linked odds pages, and re-run
-<code>pipeline/build_site.py</code>. Odds move; timestamps decide what is current.</p>"""
+<li><span class="badge b-priced">priced</span> — real two-way bookmaker price; own de-vigged probability published.</li>
+<li><span class="badge b-placeholder">no real line</span> — the only thing the source shows is its generic 1.8/1.8 default.</li>
+<li><span class="badge b-missing">blank / unverified</span> — no public price found; intentionally empty.</li>
+<li><span class="badge b-live">live</span> / finished — the payload's own status; picks for those matches are closed.</li>
+</ul>"""
 
-    (ROOT / "pickem" / "index.html").write_text(page("Dashboard — Hotspawn Pick'em line analysis", "index.html", dashboard_body), encoding="utf-8")
-    (ROOT / "pickem" / "cs2.html").write_text(page("CS2 — Hotspawn Pick'em line analysis", "cs2.html", cs2_body, "CS2 Pick'em slate with external bookmaker odds, de-vigged probabilities and source links per row."), encoding="utf-8")
-    (ROOT / "pickem" / "lol.html").write_text(page("League of Legends — Hotspawn Pick'em line analysis", "lol.html", lol_body, "League of Legends Pick'em slate. Blank cells mean no bookmaker line was found — they are flagged, not guessed."), encoding="utf-8")
-    (ROOT / "pickem" / "flagged.html").write_text(page("Flagged for Review — Hotspawn Pick'em line analysis", "flagged.html", flagged_body, "Ten flagged items: discrepancies, unverifiable values and sources that resist automated reading."), encoding="utf-8")
-    (ROOT / "pickem" / "sources.html").write_text(page("Sources — Hotspawn Pick'em line analysis", "sources.html", sources_body, "Every source used, what it was used for, and when it was verified."), encoding="utf-8")
-    (ROOT / "pickem" / "methodology.html").write_text(page("Methodology — Hotspawn Pick'em line analysis", "methodology.html", methodology_body, "How fixtures, lines and probabilities are produced — and what is deliberately left blank."), encoding="utf-8")
+    (OUT / "index.html").write_text(page("Dashboard — Hotspawn Pick'em complete slate + external lines", "index.html", dash), encoding="utf-8")
+    (OUT / "cs2.html").write_text(page("CS2 — Hotspawn Pick'em complete slate + external lines", "cs2.html", cs2_body,
+                                       "All CS2 fixtures on the Pick'em board with external prices where a public source carries them."), encoding="utf-8")
+    (OUT / "lol.html").write_text(page("League of Legends — Hotspawn Pick'em complete slate", "lol.html", lol_body,
+                                       "All 294 LoL fixtures on the Pick'em board; national-league fixtures are blank and flagged."), encoding="utf-8")
+    (OUT / "flagged.html").write_text(page("Flagged for Review — Hotspawn Pick'em analysis", "flagged.html", flagged,
+                                           "Nine flagged items: discrepancies, refused blanks and sources that resist automated reads."), encoding="utf-8")
+    (OUT / "sources.html").write_text(page("Sources — Hotspawn Pick'em analysis", "sources.html", sources_body,
+                                           "Every source used, what it provided, how it was read and when."), encoding="utf-8")
+    (OUT / "methodology.html").write_text(page("Methodology — Hotspawn Pick'em analysis", "methodology.html", methodology_body,
+                                               "How the complete fixture list, the external lines and the de-vigged probabilities are produced."), encoding="utf-8")
 
-    print(f"fixtures={total} cs2={len(cs2)} lol={len(lol)} priced={len(priced)} placeholder={len(placeholder)} missing={len(missing)}")
-    print("wrote pickem/{index,cs2,lol,flagged,sources,methodology}.html, pickem/assets/*, lines/analysis.csv")
+    print(json.dumps({"fixtures": len(rows), "cs2": len(cs2), "lol": len(lol), "priced": len(priced),
+                      "placeholder": len(placeholder), "no_line": len(noline)}, indent=1))
 
 
 if __name__ == "__main__":
