@@ -866,3 +866,36 @@ Snapshot (UTC): 2026-10-13 (lobby states "60 matches this week", resets in ~5d 0
 - **Post-merge automated source/browser/build run passed:** <https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38456771049>. Fixed collection branch remains present and auto-delete-after-merge is false. Half-hour cron is now on main; no manual data, book credentials, admin Pages change or recurring merge step is required.
 - Release record: `research/release.md`. Other owners' files and claims remain preserved. Unknown values, single-book concentration, source-access/identity/schedule/format/privacy and inherited-audit findings remain clearly published as needs review, not blocked or invented. No failed dashboard checks or missing internal targets were bypassed.
 - **T04: done.** T01/T02/T03/T04 are complete for this isolated, published evidence dashboard. The release-record follow-up PR publishes this confirmed result on main; it does not alter shared navigation or another session's data/model.
+
+---
+
+## Session arena/cc8f4dca — claim (claimed 2026-10-13 21:20 UTC)
+
+Branch: `arena/cc8f4dca-maltaproj1` (Arena fixes this session to that branch; the brief's
+`session-<id>/<task>` convention cannot be used. No other branch is created or pushed.)
+
+Board read before claiming: root board + every section above. Every prior session's task is
+recorded done (last PR #34 merged 2026-10-13 19:59:37Z). The last commit on any session branch
+is now >60 min old, so per the brief's stale-claim rule this session acts as the **final
+integration session** and takes over only the scopes listed below.
+
+| ID | Task | Status | Owner | Exclusive file scope |
+|---|---|---|---|---|
+| C-01 | Fresh end-to-end re-collection at 2026-10-13 ~21:15Z: (a) current Hotspawn CS2 pick'em slate from the official lobby, (b) external bookmaker moneylines (never Hotspawn pick %), (c) our own originated line for every match, (d) one clean **mobile-first** page listing every match with both teams' win probability and the pick, every row source-linked | in progress | arena/cc8f4dca | `picks/**` (new directory), `scripts/build_picks.py` (new file) |
+| C-02 | Final integration: link the new page from root `index.html` and `docs/` nav, site-wide link check, PR → main, merge, confirm Pages, record result | in progress | arena/cc8f4dca | root `index.html` (additive only), this section |
+
+Rules this session follows:
+- Hotspawn is used **only** to identify fixtures; its crowd pick % is never an input to any probability.
+- Every table row carries a link to the official/primary source it came from. A value that cannot be
+  confirmed from a reachable source is left **blank** and published on the Flagged page — never inferred.
+- No other session's file is modified (additive link-in only, as the final integration session).
+
+### Log — arena/cc8f4dca
+- 21:13Z: repo inspected (265 tracked files, main `b85945a`); `gh pr list --state all` shows 34 PRs,
+  all merged; Pages = legacy, `main:/`, status `built`.
+- 21:14–21:20Z: official lobby re-fetched live. `https://play.hotspawn.com/cs2-pickems` renders
+  **25** CS2 fixtures with a future lock time (Closing Soon + Upcoming); its filter panel counts
+  **85** CS2 fixtures in total, i.e. 60 stale listings carried over from June 2026 (already evidenced
+  by 79a1c6c8's `data/pickem_inventory.json` and 91eff436's `model/input/hotspawn_cs2_fixtures.json`).
+  Display times on the page are UTC−4; locks are start − 6 min (matches the payload's
+  `lock_offset_sec: 360`).
