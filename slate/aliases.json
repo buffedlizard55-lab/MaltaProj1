@@ -1,0 +1,41 @@
+{
+  "_readme": [
+    "Evidence-linked aliases only. Each entry must carry an `evidence` URL that a reader can open to confirm the mapping themselves, plus a note saying what the evidence shows. Entries may record either an official rating-source spelling or a bookmaker spelling used by a price source, provided the evidence shows both sides of the mapping. An alias without evidence must not be added here: a Hotspawn team with no exact name match in the official rating sources gets NO rating row and NO originated line, and is flagged on slate/flagged.html instead.",
+    "confirm the mapping themselves, plus a note saying what the evidence shows. An alias without",
+    "evidence must not be added here: a Hotspawn team with no exact name match in the official rating",
+    "sources gets NO rating row and NO originated line, and is flagged on slate/flagged.html instead.",
+    "Every use of an alias is printed next to the affected row's rating resolution and flagged (S-F-06)."
+  ],
+  "WROTBERRY": {
+    "official_name": "WBT",
+    "evidence": "https://www.hltv.org/matches/2399418/wbt-vs-eac-elisa-breakout-series-2",
+    "note": "Hotspawn lists 'WROTBERRY vs EAC' in Elisa BreakOut Series #2 at 2026-10-15 08:00 UTC. HLTV's own match page for that slot is 'WBT vs. EAC at Elisa BreakOut Series 2', 15th of October, 'Best of 1 (LAN)', Group A, reading back to team 13683 (WBT). Read by this session on 2026-10-13."
+  },
+  "RoundsGG": {
+    "official_name": "ROUNDS",
+    "evidence": "https://www.hltv.org/events/9332/elisa-breakout-series-2",
+    "note": "HLTV's event page for Elisa BreakOut Series 2 lists team 12457 ROUNDS with group-B matches at the same three slots Hotspawn assigns to 'RoundsGG': 16/10 06:00 (HAVU vs ROUNDS), 16/10 10:00 (Phantom vs ROUNDS) and 16/10 12:00 (Voca vs ROUNDS) as printed on HLTV, i.e. 10:00, 14:00 and 16:00 UTC, matching the Hotspawn payload exactly. Read by this session on 2026-10-13.",
+    "evidence_extra": [
+      "https://www.hltv.org/matches/2399425/havu-vs-rounds-elisa-breakout-series-2",
+      "https://www.hltv.org/matches/2399427/phantom-vs-rounds-elisa-breakout-series-2",
+      "https://www.hltv.org/matches/2399428/voca-vs-rounds-elisa-breakout-series-2"
+    ]
+  },
+  "Envy": {
+    "official_name": "3DMAX",
+    "evidence": "https://www.hltv.org/team/5991/envy",
+    "note": "Hotspawn lists 'Heroic vs Envy' in Stake Pulse Beat III at 2026-10-15 10:00 UTC; HLTV has the same fixture as HEROIC vs. Envy (team 5991, France) with 'Best of 3 (LAN)' and a matching countdown. HLTV's page for that team shows the roster Maka, Lucky, misutaaa, Kursy, Graviti and its Valve ranking, and Valve's official standings file carries exactly that roster under the name 3DMAX (points 1500). The mapping is therefore roster-based, not name-based; it is flagged for review on the site.",
+    "evidence_extra": [
+      "https://www.hltv.org/matches/2399137/heroic-vs-envy-stake-pulse-beat-iii",
+      "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/standings_global_2026_10_05.md"
+    ]
+  },
+  "EAC": {
+    "official_name": "EA Copenhagen",
+    "evidence": "https://egamersworld.com/counterstrike/event/elisa-esports-breakout-series-2-4yn491uUVl",
+    "note": "EGamersWorld's page for Elisa BreakOut Series 2 prices the 15.10 10:00 (UTC+2) slot as 'WBT vs EA Copenhagen', which is the same slot the Hotspawn payload carries as 'WROTBERRY vs EAC' at 2026-10-15 08:00 UTC; the other three participants on that schedule (WBT, ENCE, BOJONG) match Hotspawn's spelling exactly, and HLTV's event page for the same tournament lists the fourth team as EAC. Used only so a price row can be matched to the right fixture; the rating row for EAC itself is an exact name match in both official sources. Read by this session on 2026-10-13.",
+    "evidence_extra": [
+      "https://www.hltv.org/events/9332/elisa-breakout-series-2"
+    ]
+  }
+}

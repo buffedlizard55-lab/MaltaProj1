@@ -1778,3 +1778,51 @@ MIBR–BC.Game 1.637/2.230 → 57.7 %/42.3 % (5.9 %); VRS 1543/1716 → 27.0 %/7
   again (snapshot 23:25:45Z, flagged counts now slate-only: FL-01 23, FL-02 3, FL-04 2, FL-13 21,
   FL-26 3). Session `arena/459ff624` has no further planned commits; the hourly cron continues without
   manual input.
+
+## Session `arena/180a42a0` — claim (2026-10-13 22:5x UTC)
+
+Branch: `arena/180a42a0-maltaproj1` (Arena fixes this session to that branch; no other branch is created or pushed).
+
+**Read before claiming:** this board in full, plus the tip commit of every remote session branch. Live owners at claim
+time (last commit within ~60 min): `arena/b90700c6` (`refresh/**`, `today/**`, 22:36Z), `arena/cc8f4dca` (`picks/**`, 22:26Z),
+`arena/4f599d7c` (`collector/**`, `dashboard/**`, 22:29Z), `arena/8e782f95` (`board/**`, `data/8e782f95/**`, 22:29Z),
+`arena/c50fb9a8` (`scripts/6d9c321d_build.py`, `scripts/build_docs.py`, generated `docs/**`, 22:33Z), `arena/4b9c40b0` (`verify/**`, 22:23Z).
+Their scopes are respected: this session edits **none** of those paths, and does not touch `data/**` (canonical, existing
+files), `model/**`, `pickem/**`, `mobile/**`, `assurance/**`, `site/**`, `hub.html`, `lines/**`, `dashboard/**`, `docs/**`,
+`collector/**`, `index.html` (until integration), or any other session's data directory.
+
+| ID | Task | Status | Owner | Exclusive file scope |
+|----|------|--------|-------|----------------------|
+| S-01 | **Fresh authoritative capture of the whole Hotspawn Play slate** (CS2 + Thunderpick + LoL pick'em pages and `/lobby`) from the server-rendered `ng-state` payload: fixture id, teams, competition, tier, stage, offered points, exact `scheduled_start_time`/lock epoch in UTC, status, plus the site's own per-page fixture counts. Evidence of full coverage: every row cites its page URL + capture time; the site's own counts are recorded next to the parsed count. | done | arena/180a42a0 | `slate/collect.py`, `slate/data/fixtures.*` |
+| S-02 | **External bookmaker lines for the open slate, from non-Hotspawn sources only**: Pinnacle's public guest responses as loaded by its own public matchups page (headless browser capture, no account, no key) and EGamersWorld prices where it serves a page. Per-row capture time, book, price pair, de-vig formula and margin. A source that refuses automated reads is recorded as a refusal, never filled in. | done | arena/180a42a0 | `slate/data/lines.csv` |
+| S-03 | **Our own originated lines** for every fixture with an official rating for both teams: HLTV world-ranking points (Elo form) and Valve Regional Standings points (Valve's own published expected-score expression), converted to series probability with the documented BO1/BO3/BO5 transform. Blank + flagged when a team has no official rating. Hotspawn's crowd % is never an input. | done | arena/180a42a0 | `slate/collect.py`, `slate/data/ratings.csv`, `slate/data/own_lines.csv` |
+| S-04 | **Mobile-first dashboard** `slate/` (landing + CS2 / tournaments / tiers / market lines / own lines / verified / sources / methodology / Flagged for Review) in plain readable tables: probability for each team, the explicit pick, and a source link on every row. Unconfirmed values stay blank and flagged. | done | arena/180a42a0 | `slate/**` (site files) |
+| S-05 | **Coverage & line-by-line verification audit** of the other published tables (read-only): for every fixture currently on Hotspawn, which tables publish it and whether their values agree with the authoritative payload and with live sources; discrepancies flagged, never silently corrected. Report: `reviews/slate-180a42a0.md`. | done | arena/180a42a0 | `reviews/slate-180a42a0.md` (new file only) |
+| S-06 | **Automatic refresh** — `.github/workflows/slate-180a42a0.yml`: scheduled + dispatch + push-triggered, re-captures sources, rebuilds `slate/`, commits back to the branch it runs from. No credentials, no manual input. | done | arena/180a42a0 | `.github/workflows/slate-180a42a0.yml` |
+| S-07 | **Integration**: reorganise the root landing page into categories (additive: every existing card and link preserved), repository-wide link/anchor check, PR → `main`, merge without waiting for approval, confirm the GitHub Pages deploy, record PR link + build result here. | in progress | arena/180a42a0 | `index.html` (integration only), this section |
+
+**Overlaps declared (no action taken in other owners' files).** S-02 reads market prices from the same public sources
+`arena/cc8f4dca` (`picks/**`) and `arena/b90700c6` (`refresh/**`) read; this session's readings are independent and
+published under `slate/` only, and the audit in S-05 compares them against those tables instead of overwriting them.
+
+### Log — arena/180a42a0
+- 22:5x UTC: claim written and pushed.
+- 23:07 UTC: first capture run green (run 38480817756): all four Hotspawn pick'em pages parsed from the ng-state payload,
+  388 fixtures listed / 262 open, Valve standings read, tests pass. HLTV `/matches` and Pinnacle matchups refused at
+  that point (HTTP 403) — recorded as refusals, nothing filled in.
+- 23:13 UTC: Pinnacle guest matchups now served (`league-matchups-plain` shape, 200): 15 moneyline quotes, 12 fixtures
+  priced on the first try; HLTV `/matches` still 403 after 4 tries (ranking page loads, 245 teams).
+- 23:18 UTC: session-read EGamersWorld prices added with per-row provenance + a carried-reading fallback from
+  `picks/data/fixtures.csv` and `board/data/analysis.csv` (labelled per row, flagged S-F-16, never presented as fresh):
+  262 open fixtures, 29 with a market line, 28 with an own line, 32 with a pick, 150 flagged items.
+- 23:2x UTC: root landing page reorganised into categories (additive — every pre-existing card and link kept; the new
+  `slate/` block and the `board/` card requested by `arena/8e782f95` are added).
+- 23:33 UTC: capture run 38484275962 green (`4000b51`). 388 fixtures / 262 open; 29 market lines
+  (12 read by that run from Pinnacle, 8 read by this session from EGamersWorld pages with per-row
+  provenance, 9 carried from other sessions' published tables and labelled as such); 28 originated
+  lines; 32 picks; 150 flagged items; 14/14 offline tests pass. `www.hotspawn.com/matches` returns
+  403 to the runner (per-match Hotspawn links are therefore omitted, not guessed); HLTV `/matches`
+  still refuses (ranking page loads).
+- 23:4x UTC: S-05 report written (`reviews/slate-180a42a0.md`): coverage, provenance classes,
+  cross-table comparison (kickoff cross-check 23 agree / 0 differ) and eight irregularities, each
+  with links. S-07: PR → `main` with the full board under `slate/`.
