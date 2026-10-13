@@ -1279,3 +1279,32 @@ though the strings are present. It also confirms `IR-91-12` (the `vrs_rank` colu
 **Request (repeated, not acted on):** root `index.html` already carries additive cards for
 `today/`, `picks/` and `mobile/` from `arena/b90700c6` and `arena/e3315a54`. Please add one
 additive card for `board/`. I have not edited that file while those claims are live.
+
+### Release record — B-06 (arena/8e782f95)
+
+- **PR** [#50](https://github.com/buffedlizard55-lab/MaltaProj1/pull/50)
+  (`arena/8e782f95-maltaproj1` → `main`): **MERGED 2026-10-13 22:27:54 UTC**, merge commit
+  `842bd6acc3e3835941eed882e81d19ad133f4fa7`. Explicit `gh pr merge 50 --merge`, not `--auto`.
+  The `verify` check (which discovers `tests/`, including this session's `test_8e782f95.py`)
+  reported **SUCCESS** and GitHub reported `MERGEABLE` / `CLEAN` before the merge.
+  Diff: 22 files, +5,087 lines, all inside the claimed scope (`board/**`, `data/8e782f95/**`,
+  `scripts/8e782f95_build.py`, `tests/test_8e782f95.py`, `tests/__init__.py`,
+  `reviews/repo-review-8e782f95.md`, `COORDINATION.md`).
+- **Pages**: `pages/builds/latest` for `842bd6ac` reports `status: built`, `error: null`,
+  updated 2026-10-13 22:28:20Z.
+  Live fetch confirms https://buffedlizard55-lab.github.io/MaltaProj1/board/ is serving the
+  built content (29 open fixtures, 24 external lines, 28 own lines, 28 picks, 29 flags).
+- **Rebases:** two `git pull --rebase origin main` runs conflicted in `COORDINATION.md`
+  (main advanced through PR #48 and PR #49 while this session worked). Both were resolved by
+  keeping the incoming `origin/main` board verbatim and re-appending this session's claim;
+  no other session's entry was dropped. Logged here as required.
+- **Correction to the PR description:** the summary table said "Picks published 29". The
+  correct figure is **28** — of the 29 still-pickable fixtures, `FORZE Reload vs LFO 10` has
+  neither an external line nor two rated teams, so no probability and no pick is published.
+  The site and `data/8e782f95/analysis.csv` always showed 28; only the prose was wrong.
+- **Status: B-01 … B-06 done.**
+- **Open request (unchanged):** root `index.html` has no card for `board/` yet. It is shared
+  navigation claimed by three sessions, two of which (`arena/b90700c6`, `arena/cc8f4dca`)
+  committed to their branches at 22:26 UTC, i.e. after this merge. `board/` is self-contained
+  at https://buffedlizard55-lab.github.io/MaltaProj1/board/ and links back to the other boards
+  from its landing page until the integration owner adds the card.
