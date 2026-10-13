@@ -1007,3 +1007,21 @@ Branch: `arena/9569108d-maltaproj1` (fixed by Arena; the brief's `session-<id>/<
 - **Pages:** build for `c0206bc` reports `built`, error null (22:02:53 UTC); workflow run 38474980175 completed with `success`. Live page fetched and confirmed: https://buffedlizard55-lab.github.io/MaltaProj1/picks/ (30 fixtures in lobby, 29 open, 25 with external line, 22 with own-model line, 25 picks, as-of 2026-10-13 22:00 UTC).
 - Flagged for Review (live): https://buffedlizard55-lab.github.io/MaltaProj1/picks/flagged.html
 - Task P-02 **done**, with the limits above (single aggregator; static snapshot; four blank rows).
+
+---
+
+## Session `arena/e3315a54` — claim (2026-10-13 ~21:19 UTC)
+
+Branch: `arena/e3315a54-maltaproj1` (Arena fixes this session to that branch; no other branch is created or pushed).
+
+Before claiming, read the root board (`COORDINATION.md`) and inspected all remote branches on GitHub:
+- Prior sessions (`f89fbdfa`, `fe2de00c`, `2cb6bff4`, `30744d55`, `51fb12f8`, `844ba68e`, `5515fcc9`, `3ee8c478`, `79a1c6c8`, `390c1f81`, `6d9c321d`, `dc2b77dc`, `4f599d7c`, `91eff436`) are all marked done or >60 minutes stale (latest commit on `main` is `b85945a` at `2026-10-13T19:59:36Z`).
+- Concurrent active sessions observed on remote branches: `arena/366849f7` (`reviews/release-smokecheck-366849f7.md`), `arena/b90700c6` (`refresh/**`, `today/**`, `.github/workflows/refresh-b90700c6.yml`), `arena/cc8f4dca` (`picks/**`, `scripts/build_picks.py`, `scripts/picks_probe.py`, `.github/workflows/picks-cc8f4dca.yml`), `arena/9569108d` (`picks/**`), and `arena/3d05c62d`.
+- To guarantee zero file collisions with concurrent sessions, this session claims strictly non-overlapping paths (`mobile/**`, `data/e3315a54/**`, `scripts/e3315a54_build.py`, `tests/test_e3315a54.py`) and logs cross-scope requests here.
+
+| ID | Task | Status | Owner | Exclusive file scope |
+|---|---|---|---|---|
+| E-01 | Live re-verification of `play.hotspawn.com/lobby` & `/cs2-pickems` at ~21:20 UTC, reconciliation of external sportsbook lines (Pinnacle, EGamersWorld/BC.Game, Polymarket) with verified capture timestamps, and official HLTV Oct 12 (#1–#245) + official pinned Valve Regional Standings (`standings_global_2026_10_05.md`) ratings for every CS2 fixture (addressing audit findings `SA-01`..`SA-10`). Hotspawn crowd % is never used as a probability input; unconfirmed values remain strictly blank and flagged. | in progress | arena/e3315a54 | `data/e3315a54/**` |
+| E-02 | Originate independent CS2 win probabilities, fair decimal odds, and explicit match picks across all 91 Hotspawn CS2 fixtures (32 October week + 59 stale summer TransferState rows) and summarize the 294 LoL fixtures, with deterministic reproducible build script and unit tests. | in progress | arena/e3315a54 | `scripts/e3315a54_build.py`, `tests/test_e3315a54.py` |
+| E-03 | Build a clean, mobile-first dashboard suite (`mobile/index.html`, category subpages `mobile/s-tier.html`, `mobile/b-tier.html`, `mobile/c-tier.html`, `mobile/all-matches.html`, `mobile/methodology.html`, `mobile/sources.html`, `mobile/flagged.html`) designed for phones & desktops where team win probabilities and the recommended pick are immediately obvious on every card and table row, with official source links on every row. | in progress | arena/e3315a54 | `mobile/**` |
+| E-04 | Final integration & release: link `mobile/` from root navigation (`index.html`, additive card only) once ready, run full link/anchor & data verification, open PR to `main`, merge, confirm GitHub Pages deployment, and record results here. | in progress | arena/e3315a54 | `COORDINATION.md` (this section), `index.html` (additive link-in at integration) |
