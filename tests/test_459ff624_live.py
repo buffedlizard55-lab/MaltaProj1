@@ -233,5 +233,15 @@ class BuildRules(unittest.TestCase):
         self.assertIn("bb", build.ALIAS_SOURCES)
 
 
+    def test_stale_listings_do_not_inflate_slate_flags(self):
+        open_row = fixture("1", "Alpha", "Bravo", "2026-11-14T10:00:00Z", "2026-11-14T09:54:00Z")
+        stale_row = fixture("2", "Old", "Stale", "2026-06-26T10:00:00Z", "2026-06-26T09:54:00Z")
+        snap = snapshot([open_row, stale_row])
+        rows = build.build_rows(snap)
+        flags = build.collect_flags(rows, snap)
+        self.assertEqual(sorted(flags["FL-01"]["fixtures"]), ["Alpha vs Bravo"])
+        self.assertEqual(len(flags["FL-21"]["fixtures"]), 1)
+
+
 if __name__ == "__main__":
     unittest.main()

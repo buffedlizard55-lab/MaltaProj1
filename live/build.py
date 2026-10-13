@@ -375,11 +375,18 @@ FLAG_TEXT = {
 }
 
 
+# Row-level findings about the current slate.  The stale June/July listings are documented once as
+# FL-21; they must not inflate the "needs review" counts for values we simply have not collected.
+SLATE_ONLY_FLAGS = {"FL-01", "FL-02", "FL-03", "FL-04", "FL-11", "FL-12", "FL-13", "FL-25", "FL-26"}
+
+
 def collect_flags(rows, snapshot):
     flags = {}
     for row in rows:
         for flag_id in (row["flags"] or "").split(";"):
             if not flag_id:
+                continue
+            if flag_id in SLATE_ONLY_FLAGS and row["pickable"] != "yes":
                 continue
             entry = flags.setdefault(flag_id, {"id": flag_id, "text": "", "source_url": "",
                                                "fixtures": [], "severity": "needs review"})
