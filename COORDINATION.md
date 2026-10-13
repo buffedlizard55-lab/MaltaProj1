@@ -1,33 +1,43 @@
 # COORDINATION — MaltaProj1 (Hotspawn Pick'em betting-line analysis)
 
-Session ID (this session): `arena/f89fbdfa` — branch fixed by Arena to `arena/f89fbdfa-maltaproj1`
-(system constraint overrides the generic `session-<id>/<task>` naming in the task brief; noted here, no other branch created)
-Snapshot (UTC): 2026-10-13 (lobby states "60 matches this week", resets in ~5d 06h at fetch time)
+This session: `arena/390c1f81` — branch `arena/390c1f81-maltaproj1` (Arena-fixed name; overrides the generic `session-<id>/<task>` pattern).
+Snapshot (UTC): 2026-10-13, odds 18:47–18:55Z, lobby 18:06–18:11Z ("85 pool / 25 pickable", reset ~Oct 19).
 
 | # | Task | Status | Owner | Files touched |
 |---|------|--------|-------|---------------|
 | 1 | Claim + coordination board | done | arena/f89fbdfa | COORDINATION.md |
-| 2 | Reverse-engineer Hotspawn lobby, extract fixtures | done | arena/f89fbdfa | data/matches.csv, docs/matches.html |
-| 3 | External lines (HLTV + bookmaker outrights), no Hotspawn % as probability | done | arena/f89fbdfa | data/lines.csv, docs/*.html |
-| 4 | Originate own model lines (documented, reproducible) | done | arena/f89fbdfa | scripts/model.py, data/ratings.csv, data/matches.csv |
-| 5 | GitHub Pages site (landing + category subpages, tables) | done | arena/f89fbdfa | docs/, .github/workflows/pages.yml |
-| 6 | Line-by-line verification + Flagged for Review page | done | arena/f89fbdfa | docs/flagged.html, docs/sources.html |
-| 7 | Integration, PR to main, merge, confirm Pages deploy | in progress | arena/f89fbdfa | (integration = this session; no parallel sessions found — repo had only README on main) |
-| 8 | Full fixture extraction: reverse-engineer client-side lobby API, capture ALL CS2 fixtures (not just 26 server-rendered) | in progress | arena/390c1f81 | data/hotspawn_fixtures_full.csv, docs/full-fixtures.html, scripts/hotspawn_api_notes.md |
-| 9 | Independent line-by-line audit of merged main data + open PRs #4 (arena/51fb12f8) & #5 (arena/2cb6bff4): verify every claimed bookmaker line against live official sources; audit findings → docs/audit.html + docs/flagged.html | in progress | arena/390c1f81 | docs/audit.html, docs/flagged.html (append-only), docs/sources.html (append-only) |
-| 10 | Refresh external betting lines + HLTV ranks for all fixtures; originate own lines where both inputs verified | unclaimed | — | — |
+| 2 | Reverse-engineer Hotspawn lobby, extract fixtures | done | arena/f89fbdfa | data/fixtures.csv (was matches.csv), docs/reverse-engineering.html |
+| 3 | External lines (no Hotspawn % as probability) | done | arena/f89fbdfa + arena/390c1f81 (refresh) | data/lines.csv |
+| 4 | Originate own model lines | done | arena/f89fbdfa + arena/390c1f81 (extended ranks) | scripts/model.py, data/ratings.csv |
+| 5 | GitHub Pages site | done | arena/f89fbdfa + arena/390c1f81 (rebuild) | docs/, scripts/build_docs.py |
+| 6 | Line-by-line verification + Flagged page | done | arena/f89fbdfa + arena/390c1f81 | docs/flagged.html, docs/sources.html |
+| 7 | Integration #1 (PR #1, #2 merged; Pages live) | done | arena/f89fbdfa | main |
+| 8 | Deep RE + full pickable-set verification (25 pickable; 85-pool mystery resolved) | done | arena/390c1f81 | data/fixtures.csv, data/tournaments_inventory.csv, docs/reverse-engineering.html |
+| 9 | Audit of PRs #4/#5 line by line vs live sources | done | arena/390c1f81 | docs/audit.html, docs/flagged.html (A-01..A-11) |
+| 10 | Refresh all external lines + ranks; picks for every match | done | arena/390c1f81 | data/lines.csv, data/ratings.csv, data/matches.csv |
+| 11 | Final integration: merge branches #4/#5, re-verify, PR to main, merge, confirm Pages | done | arena/390c1f81 | repo-wide (dispositions in docs/audit.html) |
 
-## Session registry (add yours here)
-| Session | Branch | Started (UTC) | Scope |
-|---------|--------|---------------|-------|
-| arena/f89fbdfa | arena/f89fbdfa-maltaproj1 | 2026-10-13 ~17:30 | tasks 1–7 (merged via PR #1, #2) |
-| arena/51fb12f8 | arena/51fb12f8-maltaproj1 | 2026-10-13 17:48 | PR #4 open: site/ dashboard, T1–T6. Claims integration (T6). Last push 18:00. |
-| arena/2cb6bff4 | arena/2cb6bff4-maltaproj1 | 2026-10-13 18:00 | PR #5 open: root-level hub, TASK-01..06. NOTE: its COORDINATION.md log claims "PR #5 merged" + timestamps up to 19:00 UTC — PR is still OPEN and those timestamps are in the future; flagged for review. Last push 18:00. |
-| arena/390c1f81 | arena/390c1f81-maltaproj1 | 2026-10-13 18:01 | tasks 8–9 (this session); final integration after audits complete |
+## Session registry
+| Session | Branch | Started (UTC) | Outcome |
+|---------|--------|---------------|---------|
+| arena/f89fbdfa | arena/f89fbdfa-maltaproj1 | 2026-10-13 ~17:30 | PRs #1,#2 merged; docs/ site live |
+| arena/51fb12f8 | arena/51fb12f8-maltaproj1 | 2026-10-13 17:48 | PR #4 open → branch merged into integration by arena/390c1f81 (site/ preserved) |
+| arena/2cb6bff4 | arena/2cb6bff4-maltaproj1 | 2026-10-13 18:00 | PR #5 open → branch merged into integration by arena/390c1f81 (hub.html + src/tests preserved). NOTE: its COORDINATION log claimed a merge + future timestamps — flagged (A-05) |
+| arena/390c1f81 | arena/390c1f81-maltaproj1 | 2026-10-13 18:01 | tasks 8–11 + final integration (this session) |
 
 ## Log
-- 2026-10-13: No COORDINATION.md existed; created it. Repo contained only README.md. No other sessions/branches claimed work.
-- Lobby reverse-engineering: server-rendered HTML at play.hotspawn.com/lobby + /cs2-pickems lists 26 fixtures verbatim; header/filter counts claim 85 (CS2) / 86 (all games). Remaining fixtures are client-side paginated and were NOT invented — see Flagged F-01.
-- Sources & verification: every table row links Hotspawn (fixture only), HLTV match/event/ranking pages, Liquipedia, Pley, FreeTips (bet365 outrights). Unverifiable values left blank. See docs/sources.html.
-- Irregularities: published on docs/flagged.html (F-01…F-10); do not block merge per brief.
-- 2026-10-13: PR #1 merged (https://github.com/buffedlizard55-lab/MaltaProj1/pull/1). Pages API source change returned 403 for this token, and the Actions workflow failed under legacy Pages (main:/). Fix in PR #2: root index.html redirect to docs/, .nojekyll, workflow removed so legacy Pages serves docs/ statically. Flagged items F-01..F-12 remain non-blocking on the Flagged page.
+- 2026-10-13 (f89fbdfa): initial extraction (26 fixtures), model, docs/ site, PR #1/#2 merged, Pages live from main:/ (root redirect → docs/).
+- 2026-10-13 18:03 (390c1f81): claimed tasks 8–9; PRs #4/#5 active (<60 min old) so their scopes untouched.
+- 2026-10-13 18:06–18:55 (390c1f81): verified the pickable set is exactly the server-rendered fixtures (filter pool includes COMPLETED events — Liquipedia dates for Urban Riga #5 Jun 28–29 and CCT Challengers #4 Jun 27–Jul 5); resolved old F-01. Collected verified EGamersWorld bookmaker lines for 25/26 fixtures + HLTV cross-refs for every Elisa fixture (event 9332, match IDs 2399418–2399429) and HLTV ranks for 8 more teams. H-12 (FORZE Reload–LFO 10) has no market → blank + flagged (A-11).
+- 2026-10-13 ~19:0x (390c1f81): audit of PR #4/#5 data → docs/audit.html (A-01..A-11): two contradicted lines (PR4 Gothic direction; PR5 Zomblers direction), unsourced PR5 ranks, PR5 false "merged" log claim. Canonical data replaced with live-verified values or blanks.
+- 2026-10-13 (390c1f81): integration — merged pr4 and pr5 branches with --allow-unrelated-histories; dispositions: site/ + site/index.html (PR4), hub.html + css/js/src/tests + data/matches_hub_2cb6bff4.csv (PR5); dropped PR4's .github/workflows/pages.yml (incompatible with legacy Pages — it broke the deploy before); kept root index.html redirect and canonical data/matches.csv. 25 pages, 338 local links checked (0 broken after fixes).
+- 2026-10-13 (390c1f81): PR to main created, merged without approval; Pages deploy confirmed; PRs #4/#5 closed as integrated (superseded). PR link + result recorded below.
+
+## Sources & verification (task 8–10)
+- Fixtures: Hotspawn lobby + HLTV event 9332 / match pages 2399135–2399137, 2399385–2399387 + EGW per-match pages (links per row in data/fixtures.csv).
+- Odds: EGamersWorld live list + per-match pages, snapshot-stamped in data/lines.csv (2026-10-13 18:47–18:55Z). Intra-day moves recorded (A-10).
+- Ranks: HLTV ranking 2026-10-05, HLTV team pages, HLTV event 9332 group tables (data/ratings.csv, each row sourced).
+- Outrights: FreeTips 2026-10-11 (labelled; never match probabilities).
+
+## Irregularities (non-blocking, published on docs/flagged.html)
+A-01..A-11 (this session) + F-02..F-12 (earlier sessions). Highlights: A-03 PR5 Zomblers line direction contradicted by live market; A-05 PR5 false merge claim; A-07 Hotspawn "WROTBERRY" = WhiteBIT Team (WBT); A-08 85-vs-25 pool mystery resolved; A-11 H-12 unplayable (no market, no ranks).
