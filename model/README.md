@@ -15,7 +15,7 @@ official source without guessing is left blank and flagged.
 | 2. Calibrate the curve on Valve's published history | `calibrate.py` | `input/vrs/calibration.json` |
 | 3. Cross-check rating and fixture values published by other sessions against the official snapshots (read-only) | `crosscheck.py` | `data/crosscheck.csv` |
 | 4. Resolve teams, compute lines, flags, page | `build.py` | `data/lines.csv`, `data/lines.json`, `data/teams.csv`, `data/flags.csv`, `data/digest.txt`, `index.html` |
-| 5. Tests | `test_model.py` | 12 tests |
+| 5. Tests | `test_model.py` | 14 tests |
 
 Reproduce: `python3 model/fetch.py && VRS_REPO_DIR=<clone of ValveSoftware/counter-strike_regional_standings> python3 model/calibrate.py && python3 model/build.py && VRS_REPO_DIR=… python3 model/test_model.py -v`
 
@@ -66,6 +66,13 @@ to `main` it also asks GitHub Pages to rebuild (best effort). To stop it, disabl
   HLTV "WBT", since HLTV's WBT page lists 15 Oct vs EAC, ENCE and BOJONG in Elisa BreakOut Series 2, which are exactly
   Hotspawn's WROTBERRY fixtures. Each build re-verifies the alias by roster (HLTV players vs VRS, ≥ 3 shared). An aliased
   line is always flagged "needs review", with the evidence links.
+* **Identity confirmations** (`aliases.json` → `identity_confirmations`): a team rated through a roster match under a
+  different VRS name is marked "name change confirmed" only with an authoritative source. Example: Envy = VRS "3DMAX".
+  HLTV news 45594 (29-9-2026) reports that Envy signed the ex-3DMAX roster and that the squad is ranked No. 21 in the
+  global VRS standings, and Valve's `team.js` treats rosters sharing ≥ 3 players as the same entity.
+* **Actionable:** `lines.csv` column `actionable` is "yes" only for fixtures still before their Hotspawn lock time at
+  snapshot. Started and stale fixtures keep their model value but are greyed out and labelled "not actionable". The page
+  also locks rows in the browser once the lock time passes.
 * Pick = our line's favourite. Confidence: strong ≥ 75%, lean 60–75%, toss-up < 60%. Fair odds = 1/P.
 
 ## Limitations (all also on the page's Flagged list)

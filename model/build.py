@@ -142,6 +142,17 @@ def load_aliases() -> dict:
     return {norm(a["hotspawn_team"]): a for a in json.loads(f.read_text()).get("aliases", [])}
 
 
+def load_confirmations() -> dict:
+    """Authoritative name-change confirmations for roster-matched teams (model/aliases.json)."""
+    f = ROOT / "aliases.json"
+    if not f.exists():
+        return {}
+    return {norm(c["hotspawn_team"]): c for c in json.loads(f.read_text()).get("identity_confirmations", [])}
+
+
+CONFIRMED_STATUS = "VERIFIED: HLTV roster -> VRS (name change confirmed)"
+
+
 ALIAS_STATUS = "VERIFIED: fixture-matched alias -> HLTV roster -> VRS"
 
 
@@ -241,6 +252,13 @@ def main() -> int:
 
     names = sorted({f["participants0_name"] for f in fx["fixtures"]} | {f["participants1_name"] for f in fx["fixtures"]}, key=str.casefold)
     teams = {n: resolve(n, vrs, hltv_by, aliases, hltv_by_id) for n in names}
+    confirmations = load_confirmations()
+    for n, r in teams.items():
+        c = confirmations.get(norm(n))
+        if c and r["status"] == "VERIFIED: HLTV roster -> VRS (name differs)" and r["vrs"] and norm(r["vrs"]["name"]) == norm(c["vrs_name"]):
+            r["status"] = CONFIRMED_STATUS
+            r["confirmation"] = c
+            r["note"] = f"{n} = VRS '{r['vrs']['name']}' roster (name change confirmed, see flag); " + r["note"]
 
     rows = []
     for f in sorted(fx["fixtures"], key=lambda f: (int(f["scheduled_start_time"] or 0), f["id"])):
@@ -308,8 +326,11 @@ def main() -> int:
                 row["market_agrees"] = "yes" if (p - 0.5) * (mp - 0.5) > 0 else ("n/a" if p == 0.5 or mp == 0.5 else "NO")
                 if abs(edge) >= 15:
                     reasons.append(f"our line differs from the market reference by {edge:+.1f} pp - review")
-            if any(r["status"].startswith("VERIFIED: HLTV roster") for r in (ra, rb)):
+            if any(r["status"] == "VERIFIED: HLTV roster -> VRS (name differs)" for r in (ra, rb)):
                 reasons.append("team matched to VRS by roster (name differs) - review")
+            for r in (ra, rb):
+                if r["status"] == CONFIRMED_STATUS:
+                    reasons.append(f"{r['team']} rated as VRS '{r['vrs']['name']}' (same five players; name change confirmed by HLTV)")
             if any(r["status"] == ALIAS_STATUS for r in (ra, rb)):
                 reasons.append("team rated via fixture-matched HLTV alias (evidence on Flagged list) - review")
         else:
@@ -324,6 +345,10 @@ def main() -> int:
         row.setdefault("market_agrees", "")
         if section == "stale":
             reasons.append("Hotspawn lists a scheduled date before this pick'em week (stale listing)")
+        lock_dt = datetime.fromtimestamp(int(f["lock_time"]) / 1000, timezone.utc) if f.get("lock_time") else st
+        row["actionable"] = "yes" if (section == "upcoming" and lock_dt > fetched_dt) else "no"
+        if section == "started":
+            reasons.append("already started at snapshot time - pick is a non-actionable pre-match estimate")
         row["notes"] = "; ".join(reasons)
         rows.append(row)
 
@@ -382,6 +407,12 @@ def main() -> int:
             flag(fid, "unverified", f"{t}: VRS roster differs from HLTV current roster",
                  f"HLTV lists [{', '.join(r['hltv']['players'])}]; VRS same-name row(s): {c}. Line left BLANK for fixture(s) {ids}.",
                  links + [x["url"] for x in r["candidates"]])
+        elif st == CONFIRMED_STATUS:
+            v, c = r["vrs"], r["confirmation"]
+            flag(fid, "info", f"{t} = VRS '{v['name']}': name change confirmed",
+                 f"Mapping: Hotspawn/HLTV '{t}' -> VRS row #{v['standing']} '{v['name']}' ({v['points']} pts). {c['statement']} "
+                 f"Evidence ({c.get('verified_by')}, {c.get('verified_utc')}): " + " | ".join(ev["fact"] for ev in c.get("evidence", []))
+                 + f". Line published for fixture(s) {ids}.", [ev["url"] for ev in c.get("evidence", [])] + [v["url"]])
         elif st.startswith("VERIFIED: HLTV roster"):
             v = r["vrs"]
             flag(fid, "needs review", f"{t}: rated via roster as VRS '{v['name']}'",
@@ -523,10 +554,11 @@ th,td{border-bottom:1px solid var(--line);padding:5px 7px;text-align:left;vertic
 td.wrap{white-space:normal;min-width:260px}tr:hover td{background:#fafbfd}.num{text-align:right;font-variant-numeric:tabular-nums}
 .pill{display:inline-block;padding:1px 7px;border-radius:10px;font-size:11.5px;background:#eef1f6}.ok{background:#e5f4ea;color:var(--ok)}.warn{background:#fff3e0;color:var(--warn)}.bad{background:#fde8e7;color:var(--bad)}
 .pick{font-weight:600}input[type=search]{padding:6px 9px;border:1px solid var(--line);border-radius:6px;min-width:260px;margin-bottom:8px}
-a{color:var(--acc)}footer{color:var(--mute);font-size:12px;padding:10px 20px 30px;max-width:1500px;margin:auto}
+tr.muted td{opacity:.55}a{color:var(--acc)}footer{color:var(--mute);font-size:12px;padding:10px 20px 30px;max-width:1500px;margin:auto}
 """
 
 JS = """
+(function(){const now=Date.now();document.querySelectorAll('tr[data-lock]').forEach(tr=>{const t=Date.parse(tr.dataset.lock);if(!isNaN(t)&&now>=t){tr.classList.add('muted');tr.querySelectorAll('.lockpill').forEach(p=>p.hidden=false)}})})();
 function filt(inp,id){const q=inp.value.toLowerCase();document.querySelectorAll('#'+id+' tbody tr').forEach(r=>{r.style.display=r.textContent.toLowerCase().includes(q)?'':'none'})}
 document.querySelectorAll('table.sort').forEach(t=>{t.querySelectorAll('th').forEach((th,i)=>{th.title='Click to sort';th.addEventListener('click',()=>{const b=t.tBodies[0];const rs=[...b.rows];const d=th.dataset.d=th.dataset.d==='a'?'d':'a';
 rs.sort((x,y)=>{const A=x.cells[i].dataset.v??x.cells[i].textContent.trim(),B=y.cells[i].dataset.v??y.cells[i].textContent.trim();const nA=parseFloat(A),nB=parseFloat(B);
@@ -546,7 +578,8 @@ def pill(status: str) -> str:
     cls = "ok" if status.startswith("VERIFIED: VRS name") else ("warn" if status.startswith("VERIFIED") else "bad")
     short = {"VERIFIED: VRS name + HLTV roster": "VRS+HLTV roster", "VERIFIED: VRS name": "VRS name",
              "VERIFIED: HLTV roster -> VRS (name differs)": "roster match, name differs",
-             ALIAS_STATUS: "fixture-matched alias"}.get(status, status)
+             ALIAS_STATUS: "fixture-matched alias",
+             CONFIRMED_STATUS: "roster match, name change confirmed"}.get(status, status)
     return f'<span class="pill {cls}">{e(short)}</span>'
 
 
@@ -560,8 +593,13 @@ def fixture_table(rows, tid):
     body = []
     for r in rows:
         own = r["line_status"] == "OWN LINE"
-        st = '<span class="pill ok">own line</span>' if own and not r["notes"] else (
-            '<span class="pill warn">own line - review</span>' if own else '<span class="pill bad">blank - unverified</span>')
+        needs_review = "review" in r["notes"]
+        st = ('<span class="pill warn">own line - review</span>' if own and needs_review else
+              '<span class="pill ok">own line</span>' if own else '<span class="pill bad">blank - unverified</span>')
+        if r.get("actionable") == "no":
+            st += ' <span class="pill">' + ("started - not actionable" if r["section"] == "started" else "stale - not actionable") + '</span>'
+        else:
+            st += ' <span class="pill lockpill" hidden>locked - not actionable</span>'
         src = " · ".join(x for x in [
             a(r["hotspawn_url"], "Hotspawn fixture"),
             a(r["vrs_a_url"], "VRS A"), a(r["vrs_b_url"], "VRS B"),
@@ -574,8 +612,10 @@ def fixture_table(rows, tid):
         ecls = " class='num bad'" if edge != "" and abs(float(edge)) >= 15 else " class=num"
         pa = f"{r['own_p_a']}%" if own else ""
         pb = f"{r['own_p_b']}%" if own else ""
+        lock_attr = f" data-lock='{e(r['lock_utc'].replace(' ', 'T'))}:00Z'" if r.get("actionable") == "yes" and r.get("lock_utc") else ""
+        mcls = " class=muted" if r.get("actionable") == "no" else ""
         body.append(
-            f"<tr><td data-v='{e(r['scheduled_start_utc'])}'>{e(r['scheduled_start_utc'])}</td><td>{e(r['competition'])}</td><td>{e(r['tier'])}</td>"
+            f"<tr{mcls}{lock_attr}><td data-v='{e(r['scheduled_start_utc'])}'>{e(r['scheduled_start_utc'])}</td><td>{e(r['competition'])}</td><td>{e(r['tier'])}</td>"
             f"<td>{e(r['team_a'])}</td><td>{e(r['team_b'])}</td>"
             f"<td class=num>{e(r['vrs_a_points'])}</td><td class=num>{e(r['vrs_b_points'])}</td>"
             f"<td class=num data-v='{e(r['own_p_a'])}'>{pa}</td><td class=num data-v='{e(r['own_p_b'])}'>{pb}</td>"
@@ -599,8 +639,14 @@ def glance_table(rows) -> str:
             odds = r["fair_odds_a"] if r["pick"] == r["team_a"] else r["fair_odds_b"]
             conf_cls = {"strong": "ok", "lean": "", "toss-up": "warn"}.get(r["confidence"], "")
             agree = {"yes": "✓ agrees", "NO": "✗ disagrees", "n/a": "n/a"}.get(r.get("market_agrees", ""), "—")
-            review = " <span class='pill warn'>review</span>" if r["notes"] else ""
-            body.append(f"<tr><td>{e(r['scheduled_start_utc'])}</td><td>{match}</td><td class=pick>{e(r['pick'])}{review}</td>"
+            review = " <span class='pill warn'>review</span>" if "review" in r["notes"] else ""
+            if r.get("actionable") == "no":
+                review += " <span class='pill'>" + ("started - not actionable" if r["section"] == "started" else "stale - not actionable") + "</span>"
+                tr = "<tr class=muted>"
+            else:
+                review += " <span class='pill lockpill' hidden>locked - not actionable</span>"
+                tr = f"<tr data-lock='{e(r['lock_utc'].replace(' ', 'T'))}:00Z'>" if r.get("lock_utc") else "<tr>"
+            body.append(f"{tr}<td>{e(r['scheduled_start_utc'])}</td><td>{match}</td><td class=pick>{e(r['pick'])}{review}</td>"
                         f"<td class=num data-v='{win:.1f}'><b>{win:.1f}%</b></td><td class=num>{e(odds)}</td>"
                         f"<td><span class='pill {conf_cls}'>{e(r['confidence'])}</span></td><td>{agree}</td><td>{e(r['competition'])}</td></tr>")
         else:
@@ -693,7 +739,7 @@ def render(p, meta, hltv, fx, hltv_url) -> str:
 Ratings: <a href="{e(meta['blob_url'])}">Valve VRS {e(meta['path'])}</a> @ <code>{e(commit[:10])}</code>.
 Roster cross-check: <a href="{e(h.get('canonical_url') or hltv_url)}">HLTV World Ranking {e(h.get('ranking_date') or '')}</a> (fetched {e(h.get('fetched_utc') or '')}). All times UTC.</p>
 <section id=glance><h2>Picks at a glance — this week</h2>
-<p class=note>Our pick and its win probability from our own line (calibrated Valve VRS model). "Market" compares our pick with the market reference where one exists. "review" marks a line that rests on a flagged identity match or differs from the market by 15 pp or more. Full numbers and sources are in the next table.</p>
+<p class=note>Our pick and its win probability from our own line (calibrated Valve VRS model). Fixtures that had started at snapshot time, or whose Hotspawn lock time has passed by the time you view this page (checked live in your browser), are greyed out and marked <b>not actionable</b>. "Market" compares our pick with the market reference where one exists. "review" marks a line that rests on a flagged identity match or differs from the market by 15 pp or more. Full numbers and sources are in the next table.</p>
 {glance_table(up)}</section>
 <section id=week><h2>This week — {len(up)} fixtures (full detail)</h2>
 <p class=note>Blank = a team could not be matched to an official VRS rating without guessing; see the Notes column and Flagged for review. "Pick" is the side our line favours; confidence: strong ≥75%, lean 60–75%, toss-up &lt;60%.</p>

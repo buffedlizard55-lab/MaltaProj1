@@ -194,6 +194,25 @@ class TestOutputs(unittest.TestCase):
                 lines = (ROOT / "input" / "vrs" / Path(json.loads((ROOT / "input" / "vrs" / "meta.json").read_text())["path"]).name).read_text(encoding="utf-8")
                 self.assertNotIn(f"| {a['hotspawn_team']} ", lines)
 
+    def test_actionable_only_before_lock(self):
+        from datetime import datetime, timezone
+        fetched = datetime.strptime(self.fx["fetched_utc"], "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
+        for r in self.rows:
+            if r["section"] in ("started", "stale"):
+                self.assertEqual(r["actionable"], "no", r["hotspawn_match_id"])
+            else:
+                lock = datetime.strptime(r["lock_utc"], "%Y-%m-%d %H:%M").replace(tzinfo=timezone.utc)
+                self.assertEqual(r["actionable"], "yes" if lock > fetched else "no", r["hotspawn_match_id"])
+
+    def test_identity_confirmations_cite_hltv(self):
+        conf = json.loads((ROOT / "aliases.json").read_text()).get("identity_confirmations", [])
+        by = {t["hotspawn_team"]: t for t in self.teams}
+        for c in conf:
+            self.assertTrue(any(ev["url"].startswith("https://www.hltv.org/news/") for ev in c["evidence"]), c)
+            t = by.get(c["hotspawn_team"])
+            if t and t["resolution"] == build.CONFIRMED_STATUS:
+                self.assertEqual(build.norm(t["vrs_name"]), build.norm(c["vrs_name"]))
+
     def test_no_fuzzy_name_matching(self):
         for t in self.teams:
             if t["resolution"] in ("VERIFIED: VRS name + HLTV roster", "VERIFIED: VRS name"):
