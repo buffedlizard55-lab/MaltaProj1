@@ -925,3 +925,41 @@ Branch: `arena/9569108d-maltaproj1` (fixed by Arena; the brief's `session-<id>/<
 - **PR #35** https://github.com/buffedlizard55-lab/MaltaProj1/pull/35 (`arena/9569108d-maltaproj1` → `main`): **MERGED** 2026-10-13 21:20:19 UTC, merge commit `094d322`. Explicit `gh pr merge 35 --merge`, not `--auto`. Check `verify` = SUCCESS and mergeable CLEAN before merge.
 - **Pages:** build for `c5f7fcf` (a later main commit from session 3d05c62d, PR #36) reports `built`, error null (21:21:32 UTC). It contains `094d322`. Live pages fetched and confirmed: https://buffedlizard55-lab.github.io/MaltaProj1/picks/ (dashboard, 30 open rows, 7 external-line rows, 22 own-model rows, 24 picks).
 - Task P-01 **done**, with the limits above (most open rows have no captured external line this session; they are blank or own-model-only and labelled). Flagged for Review: https://buffedlizard55-lab.github.io/MaltaProj1/picks/flagged.html
+
+---
+
+## Session `arena/366849f7` — independent release acceptance claim (2026-10-13 UTC)
+
+- **Fixed branch:** `arena/366849f7-maltaproj1` (Arena session constraint; no alternate branch or worktree).
+- **Claim T05 — in progress:** independently verify the post-PR#34 published site, source-linked dashboard, snapshot freshness, automated-refresh configuration/health, and repository verification gates; record only evidence-backed results and scoped review requests. Existing pages, datasets, collector code, model, and workflow files are read-only in this task.
+- **Exclusive file scope:** `reviews/release-smokecheck-366849f7.md` (new independent report) and this append-only coordination record. No changes to `index.html`, `docs/`, `pickem/`, `dashboard/`, `data/`, workflows, or another session's files.
+- **Coordination check:** the latest completion records show T01–T04 and F-91 complete. The historical in-progress rows are superseded by their later completion logs. No active owner claims the report path.
+- Remote session branch did not exist at claim time; initial publication is limited to the fixed Arena branch. Before later pushes, rebase that fixed branch only; do not push any other branch.
+
+### 2026-10-13 21:20 UTC — T05 independent release acceptance complete (`arena/366849f7`)
+
+- Read-only acceptance report: [`reviews/release-smokecheck-366849f7.md`](reviews/release-smokecheck-366849f7.md). The claim commit was `69cd270`; the report/closeout will be published on this session's fixed branch only.
+- Reconfirmed PR #34/main commit `b85945a` and GitHub Pages deployment run [38459246083](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38459246083), status `built`. Live root, dashboard, Flagged page, static pick'em page, and VRS-model page returned expected content.
+- Official Hotspawn pages fetched independently: `/lobby`, `/cs2-pickems`, `/lol-pickems`. Current lobby filter showed 90, dedicated CS2 filter 85; current lobby listed CCT Europe Series #12 Play-In, absent from the last 258-row/380-state Linescope snapshot. The retained snapshot correctly labels itself partial; no missing fixture or line was inferred.
+- At 21:20 UTC the Linescope snapshot was ~98 minutes old. All 14 retained quote observations exceeded its 3,600-second freshness maximum; 0 remained fresh. The live dashboard shows stale/unverified status. No probabilities were re-dated or replaced.
+- Workflow checks: `.github/workflows/update.yml` is active and declares `17,47 * * * *`, but GitHub Actions had zero `schedule` event runs as of 21:20 UTC; its last successful run was push event 38456771049. The old `inventory.yml` and `lines.yml` have only `push`/`workflow_dispatch` triggers. Requests R-04/R-06 are recorded in the report; no owner workflow was edited.
+- Validation: 37 tests in `tests/` passed; `scripts/validate.py` passed on 258 matches / 380 inventory / 14 quotes / 8 calculated / 250 blank / 34 evidence / 22 findings / 743 internal links / 0 source-less rows; `tests/audit_site.py` passed; 22 assurance tests passed; model tests passed 13 with 1 optional VRS/Node test skipped. JS syntax checks passed. The local browser-check command could not import Playwright; the successful collector Actions run includes browser setup and its browser-check step.
+- Root/`pickem/`, `model/`, and Linescope counts are separately scoped snapshots, not one synchronized line set. Review requests to `arena/4f599d7c`, `arena/79a1c6c8`, and `arena/91eff436` are documented in R-04–R-06. Existing `dashboard/flagged.html` already surfaces stale/partial inventory limitations; no changes were made to another session's Flagged page, landing page, datasets, or workflows.
+- **T05: done (acceptance audit complete).** R-02–R-06 remain needs review; the site is live, but this audit does not certify a complete current slate or fresh bookmaker probabilities. Findings are non-blocking by design; report link above provides evidence and owner requests.
+- PR/merge and post-merge Pages confirmation remain pending until the audit closeout PR is processed.
+
+### 2026-10-13 21:28 UTC — post-merge integration recheck (`arena/366849f7`)
+
+- `main` advanced through PR #39 to `d5c476e`. The earlier rebase onto `f69b01e` conflicted only in append-only `COORDINATION.md`; I retained the complete `origin/main` file and this session's claim/closeout. `git pull --rebase origin main` onto `d5c476e` then completed without a second conflict. No other session's files or board entries were dropped. The report records this sequence.
+- PR #39 Pages build [38470534193](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38470534193) completed successfully for `d5c476e`. I fetched the deployed root, `/picks/`, and all-matches page after that build.
+- The newly merged P-01 page is useful but remains a static snapshot: the public table has 32 rows (30 open, 2 started); its dashboard summarizes 30 open, 7 external lines, 22 VRS-model lines, and 24 picks. Four rows are CCT Europe Series #12; unverified IDs/blank lines are visibly flagged. Official Hotspawn counts remain unreconciled (68 matches this week; lobby All tiers 90; CS2 All tiers 85). The page's `21:30 UTC` timestamp was two minutes ahead of the 21:28 recheck; `picks/build.py` holds the fixture/prices list and there is no scheduled `picks` workflow. Hotspawn crowd percentages remain excluded.
+- Schedule-event API count was still zero through 21:28 UTC. The old Linescope snapshot had 14 quotes, none within the 3,600-second age limit; its stale/blank UI is correct. No owner workflow, data, model, or page was edited.
+- Updated `reviews/release-smokecheck-366849f7.md` with the P-01 scope, timestamp/count limits, latest successful Pages build, and scoped owner follow-ups. PR #38 remains open; its rewritten local history has not yet been pushed, and checks/mergeability must be refreshed after publication.
+- Verification rerun on the rebased `d5c476e` tree: all 37 repository unit tests, `scripts/validate.py`, `tests/audit_site.py`, and 22 assurance tests passed; model tests passed 13 with the optional VRS-JavaScript comparison skipped because `VRS_REPO_DIR` is absent; both JavaScript syntax checks and `git diff --check` passed. Local Playwright remains unavailable as recorded in the report.
+- Remaining: fetch/rebase latest `main` immediately before the fixed-branch push, publish the rewritten branch safely, refresh PR #38 checks/mergeability, merge only if clean, and verify the post-merge Pages build and routes.
+
+### 2026-10-13 21:31 UTC — PR #38 published and checked (`arena/366849f7`)
+
+- Fetched `origin/main` and the remote fixed branch, rebased the clean local branch on `d5c476e`, then pushed only `arena/366849f7-maltaproj1` with `--force-with-lease`. New head: `f8809548475d390a80b8944d60b5f8d78733e95c`.
+- PR [#38](https://github.com/buffedlizard55-lab/MaltaProj1/pull/38) remains open against `main`; it contains only `COORDINATION.md` and `reviews/release-smokecheck-366849f7.md`. Its refreshed `verify` run [38471152528](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38471152528) succeeded. GitHub currently reports `MERGEABLE` / `CLEAN`.
+- Updated the PR description with the post-PR #35–#39 findings. No review is being awaited. Merge and the resulting Pages build/route check remain pending.
