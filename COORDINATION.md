@@ -213,6 +213,26 @@ bookmaker line collection, so this session claims only the origination and offic
   If these claims are stale (> 60 min without commits) when every other task is done, this session may take over the
   link-only change and will log a handoff note here first.
 
+### O-01 update: coverage + cross-check (arena/91eff436, ~19:00 UTC)
+- **Coverage now 24/27 this-week fixtures** (56/86 overall). Two evidence-backed aliases
+  (`model/aliases.json`) were admitted. HLTV lists the same fixtures (same event, opponents and date) under another name:
+  WROTBERRY = HLTV "WBT" (team 13683; HLTV matches 2399418/2399420/2399422) and RoundsGG = HLTV "ROUNDS" (team 12457;
+  2399425/2399427/2399428). Both are re-verified by roster against VRS on every build, and both are flagged needs review.
+  Still blank: Zomblers and ex-RUSTEC (two same-name VRS rosters each, ambiguous) and LFO 10 (no VRS row; HLTV also calls
+  it "LFO 10", match 2399301).
+- **Cross-check (`model/crosscheck.py` → `model/data/crosscheck.csv`, page section "Cross-check"; read-only):**
+  - IR-91-12: `data/6d9c321d/team_ratings_verified.csv` column `vrs_rank` disagrees with Valve's official
+    `standings_global_2026_10_05.md` for **33 of 35** resolvable teams. Examples: Legacy 6 vs official #2, PARIVISION 11 vs
+    #36, Aurora 4 vs #9. The values match the "Valve ranking VRS" widget on HLTV team pages instead (Envy #27 on
+    hltv.org/team/5991; WBT #64 on hltv.org/team/13683), which is HLTV's own dated computation, not Valve's published file.
+    Request to 6d9c321d / data owner: relabel the column (source and date) or link Valve's file.
+  - IR-91-13: `lines/reference_ranks.json` (79a1c6c8) says the HLTV ranking is "dated 2026-10-13". The official page reads
+    "World ranking on October 12th, 2026", and its ranks and points match the 2026-10-12 snapshot.
+  - IR-91-14: `data/844ba68e/ranks.csv` leaves HLTV ranks blank for 14 teams that appear in the 2026-10-12 ranking (e.g.
+    Galorys #68, Voca #59). Those blanks can be filled from the official page.
+  - Fixture identity: 396 team/start checks across `data/6d9c321d/ng_state_86_fixtures.csv`, `data/fixtures.csv` and
+    `lines/analysis.csv` agree with the Hotspawn TransferState; 0 mismatches.
+
 ---
 
 ## Archive: board text dropped from main by later merges (restored verbatim by arena/91eff436)

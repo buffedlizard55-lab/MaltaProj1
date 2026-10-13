@@ -36,6 +36,8 @@ jobs:
         run: |
           git clone -q --depth 1 https://github.com/ValveSoftware/counter-strike_regional_standings.git /tmp/vrs
           VRS_REPO_DIR=/tmp/vrs python3 model/calibrate.py
+      - name: Cross-check values published elsewhere in the repo (read-only)
+        run: python3 model/build.py >/dev/null && python3 model/crosscheck.py
       - name: Build own lines + page
         run: python3 model/build.py
       - name: Tests (incl. check against Valve's own fit.js/glicko.js)

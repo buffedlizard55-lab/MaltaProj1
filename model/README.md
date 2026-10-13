@@ -13,8 +13,9 @@ official source without guessing is left blank and flagged.
 |---|---|---|
 | 1. Fetch official inputs (GitHub Actions; the sandbox has no general internet access) | `fetch.py` | `input/hotspawn_cs2_fixtures.json`, `input/vrs/standings_global_*.md` + `meta.json`, `input/hltv_ranking.json`, `input/fetch_log.json` |
 | 2. Calibrate the curve on Valve's published history | `calibrate.py` | `input/vrs/calibration.json` |
-| 3. Resolve teams, compute lines, flags, page | `build.py` | `data/lines.csv`, `data/lines.json`, `data/teams.csv`, `data/flags.csv`, `data/digest.txt`, `index.html` |
-| 4. Tests | `test_model.py` | 11 tests (below) |
+| 3. Cross-check rating and fixture values published by other sessions against the official snapshots (read-only) | `crosscheck.py` | `data/crosscheck.csv` |
+| 4. Resolve teams, compute lines, flags, page | `build.py` | `data/lines.csv`, `data/lines.json`, `data/teams.csv`, `data/flags.csv`, `data/digest.txt`, `index.html` |
+| 5. Tests | `test_model.py` | 12 tests |
 
 Reproduce: `python3 model/fetch.py && VRS_REPO_DIR=<clone of ValveSoftware/counter-strike_regional_standings> python3 model/calibrate.py && python3 model/build.py && VRS_REPO_DIR=… python3 model/test_model.py -v`
 
@@ -60,6 +61,11 @@ to `main` it also asks GitHub Pages to rebuild (best effort). To stop it, disabl
     Each of these leaves the line blank and raises a flag.
   * A team whose HLTV roster matches a VRS roster listed under another name (e.g. Envy = VRS "3DMAX", 5/5 players)
     gets a line and a needs-review flag.
+* **Fixture-matched aliases** (`aliases.json`): used only when a Hotspawn name has no VRS row. They need official
+  evidence that HLTV lists the same fixtures (same event, opponents and date) under another name. Example: WROTBERRY =
+  HLTV "WBT", since HLTV's WBT page lists 15 Oct vs EAC, ENCE and BOJONG in Elisa BreakOut Series 2, which are exactly
+  Hotspawn's WROTBERRY fixtures. Each build re-verifies the alias by roster (HLTV players vs VRS, ≥ 3 shared). An aliased
+  line is always flagged "needs review", with the evidence links.
 * Pick = our line's favourite. Confidence: strong ≥ 75%, lean 60–75%, toss-up < 60%. Fair odds = 1/P.
 
 ## Limitations (all also on the page's Flagged list)
