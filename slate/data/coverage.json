@@ -1,0 +1,138 @@
+{
+ "generated_utc": "2026-10-13T22:56:17Z",
+ "run_seconds": 104.9,
+ "upstream_collector": {
+  "reused": "refresh/collect.py (session arena/b90700c6, read-only)",
+  "available": true,
+  "error": null
+ },
+ "hotspawn": {
+  "pages": {
+   "lobby": {
+    "url": "https://play.hotspawn.com/lobby",
+    "status": 200,
+    "state_rows": 90,
+    "cards_rendered": 31,
+    "week_total_text": 68,
+    "error": null
+   },
+   "cs2-pickems": {
+    "url": "https://play.hotspawn.com/cs2-pickems",
+    "status": 200,
+    "state_rows": 89,
+    "cards_rendered": 30,
+    "week_total_text": 68,
+    "error": null
+   },
+   "thp-pickems": {
+    "url": "https://play.hotspawn.com/thp-pickems",
+    "status": 200,
+    "state_rows": 13,
+    "cards_rendered": 13,
+    "week_total_text": 68,
+    "error": null
+   },
+   "lol-pickems": {
+    "url": "https://play.hotspawn.com/lol-pickems",
+    "status": 200,
+    "state_rows": 298,
+    "cards_rendered": 233,
+    "week_total_text": 131,
+    "error": null
+   }
+  },
+  "week_total_text": 131,
+  "week_total_context": " Tournaments How To Play League of Legends Pick'em Lobby Play other game titles This week 131 matches this week Resets in 5d 01h 59m 46s Sign in to tra",
+  "reset_utc": "2026-10-19T00:54:25Z",
+  "fixtures_total": 388,
+  "fixtures_cs2": 89,
+  "fixtures_open": 262,
+  "fixtures_open_cs2": 29,
+  "fixtures_stale": 114,
+  "sports": {
+   "cs2": 89,
+   "lol": 298,
+   "other": 1
+  },
+  "source_url": "https://play.hotspawn.com/cs2-pickems"
+ },
+ "hltv": {
+  "listing_url": "https://www.hltv.org/matches",
+  "status": 200,
+  "error": null,
+  "rows_read": 0,
+  "ranking_url": "https://www.hltv.org/ranking/teams/2026/october/12",
+  "ranking_teams": 0,
+  "ranking_date_text": null
+ },
+ "valve": {
+  "file": "standings_global_2026_10_05.md",
+  "blob_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/standings_global_2026_10_05.md",
+  "teams": 349,
+  "rows_read": 380,
+  "error": null
+ },
+ "pinnacle": {
+  "quotes": 0,
+  "matched": 0,
+  "counters": {},
+  "pages": [
+   {
+    "label": "pinnacle-highlights",
+    "url": "https://www.pinnacle.com/en/esports/matchups/highlights",
+    "status": 200,
+    "bytes": 6252,
+    "error": null,
+    "captured_json_responses": 0
+   },
+   {
+    "label": "pinnacle-cs2",
+    "url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
+    "status": 200,
+    "bytes": 6250,
+    "error": null,
+    "captured_json_responses": 0
+   },
+   {
+    "label": "pinnacle-lol",
+    "url": "https://www.pinnacle.com/en/esports/games/league-of-legends/matchups/",
+    "status": 200,
+    "bytes": 6250,
+    "error": null,
+    "captured_json_responses": 0
+   }
+  ]
+ },
+ "egw": {
+  "matched": 0,
+  "refused": 262,
+  "lists": {
+   "cs2": {
+    "match_links": 0,
+    "rows": {},
+    "url": "https://egamersworld.com/counterstrike/matches"
+   },
+   "lol": {
+    "match_links": 0,
+    "rows": {},
+    "url": "https://egamersworld.com/lol/matches"
+   }
+  },
+  "candidate_matches": 0,
+  "stopped_at_deadline": false
+ },
+ "counts": {
+  "open_fixtures": 262,
+  "with_market_line": 0,
+  "with_own_line": 21,
+  "with_pick": 21,
+  "kickoff_agrees_with_hltv": 0,
+  "kickoff_differs_from_hltv": 0,
+  "no_hltv_row": 262
+ },
+ "constants": {
+  "elo_scale": 400.0,
+  "series_transform": "BO3 p^2(3-2p); BO5 p^3(10-15p+6p^2); BO1 identity",
+  "devig": "p_a = (1/o_a) / (1/o_a + 1/o_b)"
+ }
+}
