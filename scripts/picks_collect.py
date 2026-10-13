@@ -194,14 +194,24 @@ def collect_vrs() -> dict[str, object]:
     teams: list[dict] = []
     for line in text.splitlines():
         # Valve's markdown table rows look like: | 1 | [Team](url) | 1234 | ... |
+        # Valve's table is: | Standing | Points | Team Name | Roster | details |
         cells = [c.strip() for c in line.strip().strip("|").split("|")]
-        if len(cells) < 3 or not cells[0].isdigit():
+        if len(cells) < 4 or not cells[0].isdigit():
             continue
-        name = re.sub(r"^\[([^\]]+)\].*$", r"\1", cells[1])
-        points = cells[2].replace(",", "").strip()
-        if not points.isdigit():
+        points = cells[1].replace(",", "").strip()
+        name = re.sub(r"^\[([^\]]+)\].*$", r"\1", cells[2]).strip()
+        if not points.isdigit() or not name:
             continue
-        teams.append({"rank": int(cells[0]), "name": name, "points": int(points), "row": line})
+        roster = [x.strip() for x in cells[3].split(",") if x.strip()]
+        teams.append(
+            {
+                "rank": int(cells[0]),
+                "points": int(points),
+                "name": name,
+                "roster": roster,
+                "row": line,
+            }
+        )
     return {
         "source": "Valve Software — official Counter-Strike Regional Standings",
         "source_url": (
