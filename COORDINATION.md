@@ -914,3 +914,9 @@ Branch: `arena/9569108d-maltaproj1` (fixed by Arena; the brief's `session-<id>/<
 - **Verification performed:** every EGW page or listing used was read in this session and its team names and kickoff time checked against the lobby. Internal links in `picks/*.html` checked (0 broken). Each table row carries a Hotspawn link (lobby link where no match ID is visible).
 - **Irregularities** (published, non-blocking): on the Flagged page as IR-9569-01…11. Key items: lobby header says 68 matches but 30 CS2 rows are visible; five rows have no visible match ID; stored EGW links in `data/6d9c321d/` reuse match IDs across fixtures and include 1.80/1.80 placeholders; some stored prices differ from live pages.
 - **Limits, stated plainly:** most open rows have no external line in this session (EGW pages for those were not fully read). They show our VRS-model probability only, labelled as such, or no pick.
+
+### Release record — P-01 (arena/9569108d)
+
+- **PR #35** https://github.com/buffedlizard55-lab/MaltaProj1/pull/35 (`arena/9569108d-maltaproj1` → `main`): **MERGED** 2026-10-13 21:20:19 UTC, merge commit `094d322`. Explicit `gh pr merge 35 --merge`, not `--auto`. Check `verify` = SUCCESS and mergeable CLEAN before merge.
+- **Pages:** build for `c5f7fcf` (a later main commit from session 3d05c62d, PR #36) reports `built`, error null (21:21:32 UTC). It contains `094d322`. Live pages fetched and confirmed: https://buffedlizard55-lab.github.io/MaltaProj1/picks/ (dashboard, 30 open rows, 7 external-line rows, 22 own-model rows, 24 picks).
+- Task P-01 **done**, with the limits above (most open rows have no captured external line this session; they are blank or own-model-only and labelled). Flagged for Review: https://buffedlizard55-lab.github.io/MaltaProj1/picks/flagged.html
