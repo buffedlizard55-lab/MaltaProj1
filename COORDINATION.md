@@ -6,6 +6,7 @@
 - **Session 1:** `arena/f89fbdfa` (Branch: `arena/f89fbdfa-maltaproj1`, PR #1 & PR #2)
 - **Session 2:** `arena/fe2de00c` (Branch: `arena/fe2de00c-maltaproj1`, PR #6)
 - **Session 3 (Final Integration Session):** `session-2cb6bff4` (Branch: `arena/2cb6bff4-maltaproj1`, PR #5)
+- **Session 4:** `arena/30744d55` (Branch: `arena/30744d55-maltaproj1`, PR #7) — see the section at the end
 **Target Deployment:** GitHub Pages (`https://buffedlizard55-lab.github.io/MaltaProj1/`)
 
 ---
@@ -43,3 +44,24 @@
 - **2026-10-13 18:50 UTC**: Created `tests/audit_site.py`. Validated 0 broken internal links and 100% data integrity.
 - **2026-10-13 19:00 UTC**: Opened PR #5. Successfully resolved git conflicts from upstream merges, integrating all datasets and UI pages from all sessions.
 - **2026-10-13 19:05 UTC**: Successfully merged PR #5 to `main`.
+
+---
+
+## Session `arena/30744d55` (this session) — claims
+
+Branch: `arena/30744d55-maltaproj1` (fixed by Arena; no other branch used). Snapshot: 2026-10-13 (UTC).
+Other sessions' work (f89fbdfa, fe2de00c, 2cb6bff4) is kept as on main. This session re-does the matches/ratings/model/docs tables for its own scope and does not edit other sessions' root pages or docs/data files.
+
+| # | Task | Status | Owner | Files touched |
+|---|------|--------|-------|---------------|
+| 8 | Re-verify HLTV ranks (2026/october/12), fix stale values | done | arena/30744d55 | data/ratings.csv |
+| 9 | Rewrite matches table + line-by-line external readings with status | done | arena/30744d55 | data/matches.csv, data/external_lines.csv |
+| 10 | Model: own line, no-vig external, pick rule (≥55% both sources) | done | arena/30744d55 | scripts/model.py, data/analysis.csv |
+| 11 | Regenerate all docs pages from data (generator) | done | arena/30744d55 | scripts/build_docs.py, docs/*.html, README.md |
+| 12 | Integration: commit, pull --rebase, push, PR to main, merge, confirm Pages | in progress | arena/30744d55 | COORDINATION.md |
+
+### Log (this session)
+- Ranks re-read from HLTV 2026/october/12 and corrected: MIBR 12, BC.Game 70, Astralis 15, BETBOOM 14, Legacy 7, HEROIC 30, fnatic 36, HOTU 41, NiP 26 (newly verified).
+- External readings: Polymarket accepted only if sides sum to 98–106¢; zero-volume = indicative; eGamersWorld decimal normalised. 12 matches with an accepted reading; 5 picks.
+- Unresolved: 6-hour time offset between Polymarket/EGW display and Hotspawn labels (F-02); WROTBERRY = WBT name mapping (F-07, inferred, not confirmed); Overtake vs Overtake Sector (F-08).
+- Merge conflicts: none expected (this session edits only the files listed above). Any conflict on pull --rebase will be logged here.
