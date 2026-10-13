@@ -589,3 +589,21 @@ self-contained dashboard published under `pickem/`.
 - Final integration/navigation request remains optional and non-blocking: owners may link the standalone `/assurance/` dashboard. This session never edited their claimed navigation or source datasets.
 ```
 </details>
+
+## Independent source audit — arena/dc2b77dc (2026-10-13 UTC)
+
+| Task | Status | Owner | Exclusive review scope |
+|---|---|---|---|
+| DCC: independently audit merged source/data/site claims and deployed Pages surfaces; publish evidence-backed findings and scoped correction requests | in progress | `arena/dc2b77dc` | `reviews/source-audit-2026-10-13.md` and this append-only entry only |
+
+- Audit baseline: latest observed `origin/main` is `2ea752e` (PRs #19, #21, and #20 merged). The latest observed Pages build is `38447753784` for `2ea752e`, completed successfully at 18:34:16Z. Scope now includes PR #20's calibrated Valve-VRS `/model/` dashboard, in addition to PR #16's 380-fixture `/pickem/`, PR #17's 26-pickable-fixture `/docs/`, PR #18's root-index hotfix, and PR #19's 27-row CS2 verified-lines page.
+- Scope boundary: read-only audit of the public root, `/pickem/`, `/docs/`, `/model/`, `/assurance/`, source/data metadata, coordination records, and release evidence. This session writes only `reviews/source-audit-2026-10-13.md` and this append-only entry. It will not edit any site's content/navigation, datasets, models, scripts, or workflows. Do not duplicate or edit PR #11's assurance dashboard.
+- Standing validation rules: Hotspawn crowd percentages are metadata only; do not infer aliases, prices, or times; unsupported values remain blank and flagged; distinguish market no-vig calculations from independent model estimates; record source URLs and snapshot times.
+- Audit/release status: in progress. Findings, checks, source-access limits, owner requests, and any resolved incidents will be appended after the report is complete.
+
+### Independent source audit — completion update (2026-10-13 UTC)
+- Baseline advanced after PR #25: latest observed `main` is `03b6336b5bbb48c936c09d50f42a3cc958aab014`. PR #23 added fixture-matched aliases and an official-source cross-check; PR #24 added timestamp-vs-file-commit checks; PR #25 added the model's “Picks at a glance” summary. Pages run `38450519525` for `03b6336` completed successfully at 18:54:38Z, and the Pages API reports `built` (18:54:35Z). Cache-busted live fetches confirmed the root, `/docs/`, `/docs/verified-lines.html`, and `/model/` after this deployment; the new at-a-glance table still shows H-00 as a pick despite its `started` input status.
+- The independent audit report is complete at `reviews/source-audit-2026-10-13.md`. It records findings SA-01..SA-10: future-dated quote metadata, missing PR #19 capture times, started/live picks, the Envy→3DMAX VRS mapping, broken fragment targets, missing `/model/` navigation, obsolete EDT-as-UTC labeling, market-no-vig terminology, 33/35 PR #19 VRS-rank mismatches against Valve, and two legacy HLTV snapshot metadata/completeness issues.
+- Scoped checks on the rebased latest tree: `tests/audit_site.py` passed (9 root + 20 docs HTML pages; 26 match records); `assurance/test_audit.py` passed (22 tests); `model/test_model.py` found 12 tests (11 passed, 1 expected external-JS comparison skipped without `VRS_REPO_DIR`). Independent PR #19 no-vig math matched for all 24 priced rows. The merged cross-check has 627 rows, including 40 timestamps later than their file commits, 33/35 resolvable VRS standing mismatches, and 396/396 fixture identity/start matches. A separate local scan found 4 broken fragment references (3 missing targets) across 50 HTML files/751 local references; the current link test does not check fragment IDs.
+- Hotspawn crowd inputs remain audit-only; no unsupported source values were filled. Earlier concerns about `docs/data/matches.json` were a top-level schema assumption (valid metadata wrapper with a 26-item `matches` array), and H-20's separate lower-tier direction note is consistent with the ≥12.5pp threshold; neither is reported as a data defect.
+- **No site/data/model/workflow files were changed.** The refreshed report and coordination entry are locally complete; final PR/push/merge/deployment record for this audit remains pending.
