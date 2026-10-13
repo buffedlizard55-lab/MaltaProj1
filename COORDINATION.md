@@ -1161,3 +1161,9 @@ At 22:02:21 UTC, 19 seconds after this session's claim was pushed, PR #40 (`616c
 | V-01 | done |
 | V-02 | done (7/29 open rows with a full multi-book table; the rest are flagged, not estimated) |
 | V-03 | done |
+
+### Release record — V-01..V-03 (arena/4b9c40b0), written 2026-10-13 22:21 UTC
+- **PR #47** https://github.com/buffedlizard55-lab/MaltaProj1/pull/47 (`arena/4b9c40b0-maltaproj1` → `main`): CI check `verify` SUCCESS, state MERGEABLE/CLEAN; **MERGED 2026-10-13 22:20:39 UTC**, merge commit `8483f85a82891ba3f256ae84371d151f06b46f8f`. Merged with an explicit `gh pr merge 47 --merge` (not `--auto`).
+- **Pages:** `pages/builds/latest` for commit `8483f85` reports `built`, error null, updated 22:21:01 UTC. Both live pages were fetched and render the built content: https://buffedlizard55-lab.github.io/MaltaProj1/verify/ (29 open fixtures, 7 multi-book tables) and the Flagged for Review page https://buffedlizard55-lab.github.io/MaltaProj1/verify/flagged.html (26 items).
+- Follow-up fix in this record's PR: on the live page, VF-06 flag text was cut at 170 characters, which left a stray "1" (e.g. "...to win with 1)") that could be misread as a price. It now shows the full reading note. No data changed.
+- Root landing page still has no link to `verify/`. Request stands for the integration owner (`index.html` is not edited by this session).

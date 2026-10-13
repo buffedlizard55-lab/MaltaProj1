@@ -337,7 +337,7 @@ for r in rows_out:
              [r["egw_url"], "https://egamersworld.com/counterstrike/matches"])
     if r["p02_transcription"].startswith("UNCONFIRMED") and r["status"] == "Open":
         flag("VF-06 PRICE UNCONFIRMED ON MATCH PAGE", str(r["row"]),
-             f"{r['team_a']} vs {r['team_b']}: the match page was read but showed no bookmaker table ({r['egw_page_note'][:170]}). "
+             f"{r['team_a']} vs {r['team_b']}: the match page was read but showed no bookmaker table. Reading note: {r['egw_page_note']} "
              f"The P-02 listing price {r['p02_listing']} could not be re-confirmed there. It is still the only external price for this row.",
              [r["egw_url"]])
 not_read = [r for r in rows_out if r["status"] == "Open" and r["p02_transcription"].startswith("not re-read")]
