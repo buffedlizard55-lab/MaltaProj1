@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Flagged for Review — Hotspawn Pick&#x27;em analysis</title>
+<link rel="stylesheet" href="assets/mpl.css">
+</head><body>
+<header class="top">
+  <h1>Hotspawn Pick'em — complete slate &amp; external betting lines</h1>
+  <p>Nine flagged items: discrepancies, refused blanks and sources that resist automated reads.</p>
+</header>
+<nav><a class="" href="index.html">Dashboard</a><a class="" href="cs2.html">CS2 (86)</a><a class="" href="lol.html">League of Legends (294)</a><a class="active" href="flagged.html">Flagged for Review</a><a class="" href="sources.html">Sources</a><a class="" href="methodology.html">Methodology</a><a class="" href="../docs/index.html">Other dashboards</a></nav>
+<main>
+
+<div class="note bad"><b>Nothing on this page blocks publication.</b> Every item is either a value we refused to fill in, a
+discrepancy between the page's own fields, or a source that cannot be read by an automated client. Each carries a link.</div>
+
+<h2 id="f01">F-01 — The complete slate comes from the page's own payload</h2>
+<p class="small">The lobby filter advertises 86 CS2 matches and the LoL page 294. Both pages embed all of them in
+<code>&lt;script id="ng-state"&gt;</code>: 86 CS2 records (86 on <a href="https://play.hotspawn.com/lobby" target="_blank" rel="noreferrer noopener">/lobby</a>,
+85 on <a href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noreferrer noopener">/cs2-pickems</a>) and 294 on
+<a href="https://play.hotspawn.com/lol-pickems" target="_blank" rel="noreferrer noopener">/lol-pickems</a>. The HTML itself renders only
+27 / 26 / 231 cards — the rest are in the data, not the markup, which is why a naive HTML reader under-counts. Nothing is inferred:
+every row carries the payload's id, competition, tier, points and start time, and we publish the raw payload-derived table.</p>
+
+<h2 id="f02">F-02 — The card countdown contradicts the payload's own lock time</h2>
+<p class="small">Every rendered card shows “Locks in HH:MM:SS”. Measured against the payload's <code>lock_time</code> on
+2026-10-13 18:03 UTC: the countdown lands 75 minutes after the printed start on all 27 CS2 cards and 14 minutes after it on all
+231 LoL cards (constant per title). The payload's <code>scheduled_start_time</code> is corroborated by HLTV's own timestamps
+(9z vs Aurora: payload <code>1791966600000</code> = 2026-10-14 08:30:00 UTC; HOTU vs fnatic: 2026-10-14 10:00:00 UTC, matching the
+printed card time), so the payload is used and the countdown discrepancy stays flagged.</p>
+
+<h2 id="f03">F-03 — 363 fixture(s) without a usable external price</h2>
+<p class="small">Blank on purpose. Per competition:</p>
+<table class="sortable"><thead><tr><th>Competition</th><th class="num">Fixtures</th><th>Note</th></tr></thead><tbody><tr><td>PRM 3rd Division 26-27 Fall</td><td class='num'>69</td><td class='small'>no public two-way price found in the sources listed on the <a href='sources.html'>sources page</a></td></tr><tr><td>PRM 2nd Division 26-27 Fall</td><td class='num'>52</td><td class='small'>no public two-way price found in the sources listed on the <a href='sources.html'>sources page</a></td></tr><tr><td>Tunisian Super League 2026</td><td class='num'>35</td><td class='small'>no public two-way price found in the sources listed on the <a href='sources.html'>sources page</a></td></tr><tr><td>RIVALS LEAGUE Season 2</td><td class='num'>32</td><td class='small'>no public two-way price found in the sources listed on the <a href='sources.html'>sources page</a></td></tr><tr><td>Komplettligaen 2026 Autumn</td><td class='num'>22</td><td class='small'>no public two-way price found in the sources listed on the <a href='sources.html'>sources page</a></td></tr><tr><td>Arabian League 2nd Division 2026 Summer</td><td class='num'>18</td><td class='small'>no public two-way price found in the sources listed on the <a href='sources.html'>sources page</a></td></tr><tr><td>LigaGG CELOL A 2026 Split 2</td><td class='num'>13</td><td class='small'>no public two-way price found in the sources listed on the <a href='sources.html'>sources page</a></td></tr><tr><td>Urban Riga Open #5</td><td class='num'>12</td><td class='small'>no public two-way price found in the sources listed on the <a href='sources.html'>sources page</a></td></tr><tr><td>Icelandic Esports League 2026 Autumn</td><td class='num'>12</td><td class='small'>no public two-way price found in the sources listed on the <a href='sources.html'>sources page</a></td></tr><tr><td>Elisa BreakOut Series #2</td><td class='num'>12</td><td class='small'>no public two-way price found in the sources listed on the <a href='sources.html'>sources page</a></td></tr><tr><td>Superstrike League 2026</td><td class='num'>10</td><td class='small'>no public two-way price found in the sources listed on the <a href='sources.html'>sources page</a></td></tr><tr><td>Thunderpick World Championship 2026: South American Series #1</td><td class='num'>8</td><td class='small'>no public two-way price found in the sources listed on the <a href='sources.html'>sources page</a></td></tr><tr><td>CCT Europe 2026 Challengers #4</td><td class='num'>8</td><td class='small'>no public two-way price found in the sources listed on the <a href='sources.html'>sources page</a></td></tr><tr><td>CCT South America 2026 Series #3</td><td class='num'>8</td><td class='small'>no public two-way price found in the sources listed on the <a href='sources.html'>sources page</a></td></tr><tr><td>European Pro League Series 8 Play-In</td><td class='num'>6</td><td class='small'>no public two-way price found in the sources listed on the <a href='sources.html'>sources page</a></td></tr><tr><td>DraculaN Season 7</td><td class='num'>6</td><td class='small'>no public two-way price found in the sources listed on the <a href='sources.html'>sources page</a></td></tr><tr><td>Svenska CS-Ligan 2026</td><td class='num'>6</td><td class='small'>no public two-way price found in the sources listed on the <a href='sources.html'>sources page</a></td></tr><tr><td>Benelux Ascend Series 2027 Winter Promotion</td><td class='num'>6</td><td class='small'>no public two-way price found in the sources listed on the <a href='sources.html'>sources page</a></td></tr><tr><td>Benelux Ascend Series Rising 2026 Summer Playoffs</td><td class='num'>5</td><td class='small'>no public two-way price found in the sources listed on the <a href='sources.html'>sources page</a></td></tr><tr><td>CCT Europe 2026 Series #11</td><td class='num'>3</td><td class='small'>no public two-way price found in the sources listed on the <a href='sources.html'>sources page</a></td></tr><tr><td>Rainhas do Clutch 2026</td><td class='num'>2</td><td class='small'>no public two-way price found in the sources listed on the <a href='sources.html'>sources page</a></td></tr><tr><td>Benelux Ascend Series 2026 Summer Split</td><td class='num'>2</td><td class='small'>no public two-way price found in the sources listed on the <a href='sources.html'>sources page</a></td></tr><tr><td>LigaGG CELOL B 2026 Split 2</td><td class='num'>2</td><td class='small'>no public two-way price found in the sources listed on the <a href='sources.html'>sources page</a></td></tr><tr><td>LGC Rising 2026 Playoffs</td><td class='num'>2</td><td class='small'>no public two-way price found in the sources listed on the <a href='sources.html'>sources page</a></td></tr><tr><td>LG UltraGear Tournament 2026</td><td class='num'>1</td><td class='small'>no public two-way price found in the sources listed on the <a href='sources.html'>sources page</a></td></tr><tr><td>DACH CS Masters Season 5</td><td class='num'>1</td><td class='small'>no public two-way price found in the sources listed on the <a href='sources.html'>sources page</a></td></tr><tr><td>European Pro League Series 8</td><td class='num'>1</td><td class='small'>no public two-way price found in the sources listed on the <a href='sources.html'>sources page</a></td></tr><tr><td>FPL 2026 Summer Playoffs</td><td class='num'>1</td><td class='small'>no public two-way price found in the sources listed on the <a href='sources.html'>sources page</a></td></tr><tr><td>LIT 2027 Winter Promotion</td><td class='num'>1</td><td class='small'>no public two-way price found in the sources listed on the <a href='sources.html'>sources page</a></td></tr><tr><td>Benelux Ascend Series 2026 Summer Playoffs</td><td class='num'>1</td><td class='small'>no public two-way price found in the sources listed on the <a href='sources.html'>sources page</a></td></tr><tr><td>POP Esports Masters Season 7</td><td class='num'>1</td><td class='small'>no public two-way price found in the sources listed on the <a href='sources.html'>sources page</a></td></tr><tr><td>Legends Academy powered by Żabka Season 3 Playoffs</td><td class='num'>1</td><td class='small'>no public two-way price found in the sources listed on the <a href='sources.html'>sources page</a></td></tr><tr><td>Hitpoint 2nd Div Challengers 2026 Summer Playoffs</td><td class='num'>1</td><td class='small'>no public two-way price found in the sources listed on the <a href='sources.html'>sources page</a></td></tr><tr><td>Demacia Cup Global Invitational 2026</td><td class='num'>1</td><td class='small'>no public two-way price found in the sources listed on the <a href='sources.html'>sources page</a></td></tr><tr><td>LCP Wildcard 2026 Playoffs</td><td class='num'>1</td><td class='small'>no public two-way price found in the sources listed on the <a href='sources.html'>sources page</a></td></tr><tr><td>MängudeÖÖ 2026</td><td class='num'>1</td><td class='small'>no public two-way price found in the sources listed on the <a href='sources.html'>sources page</a></td></tr></tbody></table>
+
+<h2 id="f04">F-04 — A source's generic 1.8/1.8 default is not a line</h2>
+<p class="small">4 fixture(s) display exactly 1.8 / 1.8 on EGamersWorld. That is its fallback when no bookmaker
+price exists; it is excluded from every probability here. One fixture (ex-Keyd Stars vs Galorys) was seen with the default on its
+match page at 18:40 UTC while the match list carried a real 2.44 / 1.48 price at 18:31 UTC — the priced reading is used.</p>
+
+<h2 id="f05">F-05 — Live markets move between captures</h2>
+<table class="sortable"><thead><tr><th>Fixture</th><th>Drift</th><th>Source</th></tr></thead><tbody><tr><td>Zomblers vs Overtake Sector</td><td class='small'>Earlier reading 2.46 / 1.48 on the ECL NA event page at 18:30Z; the later reading on the match list is used.</td><td><a href='https://egamersworld.com/counterstrike/match/41yion_ONx/zomblers-vs-overtake-sector-3aN5jQsN_' target='_blank' rel='noreferrer noopener'>source</a></td></tr><tr><td>KT Rolster vs BNK FearX</td><td class='small'>Earlier reading 1.31 / 3.27 at 18:25Z; later reading used. EGamersWorld lists the fixture as &#x27;FearX vs KT Rolster&#x27; and calls the team &#x27;FearX&#x27; (Hotspawn: &#x27;BNK FearX&#x27;).</td><td><a href='https://egamersworld.com/lol/matches' target='_blank' rel='noreferrer noopener'>source</a></td></tr><tr><td>Solary vs Anubis Gaming</td><td class='small'>Earlier reading 1.13 / 5.29 at 18:25Z; later reading used.</td><td><a href='https://egamersworld.com/lol/matches' target='_blank' rel='noreferrer noopener'>source</a></td></tr></tbody></table>
+
+<h2 id="f06">F-06 — One fixture, two prices on the same source page</h2>
+<p class="small">On the Thunderpick World Championship page the price widget shows 9z 3.60 / Aurora 1.27 while the schedule block
+below it shows 3.80 / 1.22. The widget pair is used (consistently for all four TWC fixtures) and the discrepancy is recorded in the
+row note. Source: <a href="https://egamersworld.com/counterstrike/event/thunderpick-world-championship-2026-5X5sFiL7H" target="_blank" rel="noreferrer noopener">EGamersWorld TWC event page</a>.</p>
+
+<h2 id="f07">F-07 — Team names differ between the two sides of a join</h2>
+<p class="small">Mapping applied when joining external prices to Hotspawn fixtures (the Hotspawn name is kept in every table):
+“BNK FearX” ↔ “FearX”; “Movistar KOI Fénix” ↔ “KOI Fénix”; “Ninjas in Pyjamas” ↔ “NIP”/“NiP”; “Fnatic” ↔ “fnatic”; “Envy” ↔
+“Team Envy”; “Sashi” ↔ “Sashi Esport”; “BC.Game” ↔ “BC.Game Esports”; “G2 Hel” ↔ “G2 HEL”. Rows whose names could not be matched
+are left unpriced rather than guessed.</p>
+
+<h2 id="f08">F-08 — Fixtures already started are still on the board</h2>
+<p class="small">The payload's <code>status</code> field marks live/finished matches (they stay listed with their crowd counts).
+Their prices are historical at capture time and are marked in the Status column; picks for them are closed.</p>
+
+<h2 id="f09">F-09 — Automated collection of prices is blocked by the sources</h2>
+<p class="small">EGamersWorld and HLTV answer HTTP 403 to datacenter clients (GitHub Actions runners) while rendering normally in a
+browser session — verified again in run 38445055709 where all eight URLs answered 403. The prices above were therefore read in a
+browser session with an explicit capture timestamp; the fixture inventory, which is served normally, is collected automatically.
+No block is worked around, and no login or wagering is involved anywhere in this project.</p>
+
+<h2 id="f10">F-10 — Anchor row for manual review</h2>
+<p class="small">To re-verify the join by hand: Hotspawn <a href="https://www.hotspawn.com/matches/9z-vs-aurora-thunderpick-world-championship-2026-1080176" target="_blank" rel="noreferrer noopener">9z vs Aurora (id 1080176)</a>
+↔ EGamersWorld <a href="https://egamersworld.com/counterstrike/event/thunderpick-world-championship-2026-5X5sFiL7H" target="_blank" rel="noreferrer noopener">TWC event page</a>
+(3.60 / 1.27) ↔ HLTV <a href="https://www.hltv.org/matches/2399384/9z-vs-aurora-thunderpick-world-championship-2026" target="_blank" rel="noreferrer noopener">match page</a>
+(timestamp 2026-10-14 08:30 UTC). All three agree on identity and time; the price is the external one.</p>
+</main>
+<footer>
+  Built 2026-10-13 18:19 UTC by Arena session <code>79a1c6c8</code>. Fixtures: play.hotspawn.com Pick'em pages (public, server-rendered).
+  Prices: external bookmakers via EGamersWorld (BC.Game) with per-row capture time; HLTV used for ranking context and timestamp
+  cross-checks. Values that could not be confirmed from a public source are blank and listed on
+  <a href="flagged.html">Flagged for Review</a>. Odds move: each row keeps its capture timestamp.
+</footer>
+<script src="assets/mpl.js"></script>
+</body></html>

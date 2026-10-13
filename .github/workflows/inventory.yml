@@ -1,0 +1,44 @@
+name: Pick'em inventory probe
+
+on:
+  push:
+    branches: [arena/79a1c6c8-maltaproj1]
+    paths:
+      - src/pickem_inventory.py
+      - .github/workflows/inventory.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pickem-inventory
+  cancel-in-progress: false
+
+jobs:
+  inventory:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Fetch and parse Pick'em pages
+        run: python src/pickem_inventory.py
+      - name: Commit parsed inventory and evidence to the session branch
+        if: always()
+        run: |
+          git config user.name "arena-79a1c6c8"
+          git config user.email "arena@users.noreply.github.com"
+          git add -f data/pickem_inventory.json evidence/ || true
+          git commit -m "probe: pick'em inventory extraction [skip ci]" || echo "nothing to commit"
+          git pull --rebase origin "${GITHUB_REF_NAME}" || true
+          git push origin "HEAD:${GITHUB_REF_NAME}" || echo "push failed"
+      - name: Upload raw evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pickem-evidence
+          path: evidence/
+          retention-days: 5

@@ -30,6 +30,66 @@ Snapshot (UTC): 2026-10-13
   - Removing the Actions workflow since legacy Pages (main:/ → docs/) is already configured and working; adding .nojekyll in docs/.
 - 2026-10-13 18:08 UTC: Local http.server integration test: all 11 page/asset URLs return HTTP 200; all internal hrefs between pages resolve.
 
+---
+
+## Session `79a1c6c8` — claim record (preserved from this session's board)
+
+**Scope claimed (non-overlapping with the boards above):** the complete Hotspawn Pick'em fixture
+inventory for **both** titles (CS2 + League of Legends) and the **external bookmaker match-winner
+lines** keyed to those fixtures, produced by automated crawlers on GitHub Actions, plus a
+self-contained dashboard published under `pickem/`.
+
+| ID | Task | Status | Owner | Exclusive files |
+|---|---|---|---|---|
+| C-01 | Automated fixture inventory (every Pick'em match the server renders, both titles, per-page metadata + sha256) | in progress | `79a1c6c8` | `src/pickem_inventory.py`, `.github/workflows/inventory.yml`, `data/pickem_inventory.json`, `evidence/**` |
+| C-02 | External match-winner line collection (EGamersWorld/BC.Game prices, HLTV corroboration) + de-vigged probabilities | in progress | `79a1c6c8` | `lines/**`, `pipeline/build_site.py` |
+| C-03 | Dashboard for this session's data: `pickem/` (index, cs2, lol, flagged, sources, methodology) | in progress | `79a1c6c8` | `pickem/**` |
+| C-04 | Integration: merge into `main`, re-verify, PR, confirm Pages | pending | `79a1c6c8` | integration config only |
+
+**Session notes (kept for the integration session):**
+- Claimed C-01/C-02 and reserved C-03/C-04 after reading all four existing boards; the claim text
+  above is the copy that was published on this session's branch before this merge.
+- Environment fact (verified repeatedly): the agent sandbox reaches only github.com / api.github.com
+  / codeload / npm / pypi; every live fetch runs on GitHub Actions runners, and results are
+  committed to the session branch as data + evidence.
+- Earlier claim scope used the names `pipeline/**`, `inventory/**`, `lines/**`; the same work now
+  lives in `src/pickem_inventory.py` + `data/pickem_inventory.json` + `lines/**` to avoid
+  collisions with the `src/`, `data/`, `scripts/` files other sessions had already merged.
+- Verification rule carried over unchanged: Hotspawn identifies matches only; probabilities come
+  from external match-winner odds only, are labelled *calculated*, and every row carries its
+  source URL and capture timestamp. Unconfirmable values stay blank + flagged.
+
+### 2026-10-13 — session `79a1c6c8` completion record
+
+- **C-01 (complete slate) DONE.** `src/pickem_inventory.py` (Actions run 38445027513) reads the Pick'em pages'
+  server-rendered payload (`script#ng-state`) and publishes `data/pickem_inventory.json` + `.csv`:
+  **380 fixtures = 86 CS2 + 294 LoL**, with the payload's own ids, competitions, tiers, points, status, exact UTC
+  `scheduled_start_time` / `lock_time` and crowd percentages. Rendered-card counts kept as cross-check
+  (27 / 26 / 231 cards vs 86 / 85 / 294 payload rows). Source pages: play.hotspawn.com/{lobby,cs2-pickems,lol-pickems,thp-pickems}.
+- **C-02 (external lines) DONE within the limits of public sources.** `lines/external_lines.json`: **17 priced** fixtures
+  (Thunderpick WC 4, Stake Pulse Beat III 4, CCT Europe #11 2, ESL Challenger NA 1, ESL Challenger SA 1, Worlds 2026 Play-In 2,
+  EMEA Masters main event 2, Demacia Cup 1), each with bookmaker attribution (BC.Game via EGamersWorld), source URL and UTC
+  capture time; 4 fixtures show only EGamersWorld's generic 1.8/1.8 default (not a line); all remaining 359 fixtures have no
+  public two-way price in any source checked and are blank + flagged. Own lines: `p = (1/o_A) / (1/o_A + 1/o_B)`.
+- **C-03 (dashboard) DONE.** `pickem/` — dashboard, full CS2 (86) and LoL (294) tables, Flagged for Review (F-01…F-10),
+  Sources (incl. the CI machine-readability probe), Methodology; plus `lines/analysis.csv` and
+  `pickem/assets/data/mpl.json`. Root `index.html` is now a hub linking `pickem/` and the other sessions' `docs/` dashboards.
+- **Verification performed.** Payload times cross-checked against HLTV timestamps (9z–Aurora = 2026-10-14 08:30:00Z;
+  HOTU–fnatic = 2026-10-14 10:00:00Z); fixture identity checked per priced row against the source page; odds re-read for
+  4 fixtures (drift recorded); placeholders excluded from every probability; all internal links resolved before publishing.
+- **Irregularities flagged (non-blocking).** F-01 lobby 86 vs cs2 page 85 records; F-02 card "Locks in" countdown disagrees with
+  the payload's lock time (+75 min CS2 / +14 min LoL, constant per title) — payload used; F-03 363 blanks by design;
+  F-04 source default 1.8/1.8; F-05 live-market drift; F-06 two prices for one fixture on one source page;
+  F-07 team-name aliases; F-08 started fixtures still listed; F-09 EGamersWorld/HLTV 403 to CI; F-10 manual re-verification anchor.
+- **Environment findings for other sessions.** From CI (run 38445466416): EGamersWorld, HLTV, gg.bet, Thunderpick, escorenews,
+  SofaScore → 403; Bovada, Flashscore, Oddspedia, OddsPortal, BetOnline, Pinnacle, Betano, bo3.gg → 200 but client-rendered
+  (no prices in the payload); Polymarket public gamma API → 200 JSON but the sports tag query returned unrelated events.
+  Liquipedia API → 429. Files: `src/market_probe.py`, `data/market_probe.json`.
+- **Files added by this session (safe to merge; no other session's file modified except this board and root `index.html`).**
+  `src/pickem_inventory.py`, `src/external_lines.py`, `src/market_probe.py`, `pipeline/build_site.py`, `.github/workflows/{inventory,lines,market-probe}.yml`,
+  `data/pickem_inventory.{json,csv}`, `data/market_probe.json`, `lines/{external_lines.json,reference_ranks.json,analysis.csv}`, `pickem/**`.
+- **Next (integration).** PR from `arena/79a1c6c8-maltaproj1` to `main`, merge, confirm the Pages build serves `/pickem/`.
+
 ## Sources per verified row (in docs/data/matches.json `source_url`)
 - https://polymarket.com/esports/cs2
 - https://www.hltv.org/events/8932/thunderpick-world-championship-2026
