@@ -76,6 +76,14 @@ body = f"""
 {match_rows(['H-04','H-08','H-09','H-11','H-05','H-06'])}</table></div>
 <p><a href="matches.html">All 26 matches with per-row sources →</a> · S-tier picks also on <a href="s-tier.html">Thunderpick WC page</a>.</p>
 
+<div class="card"><h2>Contributed dashboards (parallel sessions, preserved)</h2>
+<p>Two parallel sessions built independent dashboards. Both are preserved and reachable, but the <b>canonical, fully verified data is this docs/ dashboard</b>
+(their contradicted rows are documented on the <a href="audit.html">PR audit</a> page):</p>
+<ul>
+<li><a href="../site/index.html">site/ dashboard (PR #4, arena/51fb12f8)</a> — dark-theme JS dashboard reading <code>site/data/matches.json</code>.</li>
+<li><a href="../hub.html">hub.html (PR #5, arena/2cb6bff4)</a> — 8-page hub with per-tournament pages, pipeline (<code>src/</code>) and tests (<code>tests/</code>); reads <code>data/matches.json</code>.</li>
+</ul></div>
+
 <div class="card"><h2>Reading this dashboard</h2>
 <ul>
 <li><b>Market win %</b> = bookmaker odds with the overround removed (see <a href="methodology.html">Methodology</a>).</li>

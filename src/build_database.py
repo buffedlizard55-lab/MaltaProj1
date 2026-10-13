@@ -795,12 +795,12 @@ def process_matches():
         json.dump(processed, f, indent=2)
         
     keys = list(processed[0].keys())
-    with open("data/matches.csv", "w", newline="", encoding="utf-8") as f:
+    with open("data/matches_hub_2cb6bff4.csv", "w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=keys)
         writer.writeheader()
         writer.writerows(processed)
         
-    print(f"Successfully compiled {len(processed)} matches into data/matches.json and data/matches.csv")
+    print(f"Successfully compiled {len(processed)} matches into data/matches.json and data/matches_hub_2cb6bff4.csv")
 
 if __name__ == "__main__":
     process_matches()
