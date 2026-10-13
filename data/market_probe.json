@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-10-13T18:15:37Z",
+ "generated_utc": "2026-10-13T18:17:18Z",
  "note": "read-only probe of public endpoints; 403/blocked sources are recorded, never worked around",
  "results": [
   {
@@ -8,7 +8,7 @@
    "status": 200,
    "bytes": 2253017,
    "sha256": "1c958cd4ba7d1710",
-   "fetched_utc": "2026-10-13T18:15:14Z",
+   "fetched_utc": "2026-10-13T18:17:05Z",
    "content_type": "application/json",
    "odds_like_numbers": 7,
    "has_team_names": true,
@@ -20,7 +20,7 @@
    "status": 200,
    "bytes": 2253017,
    "sha256": "1c958cd4ba7d1710",
-   "fetched_utc": "2026-10-13T18:15:14Z",
+   "fetched_utc": "2026-10-13T18:17:05Z",
    "content_type": "application/json",
    "odds_like_numbers": 7,
    "has_team_names": true,
@@ -32,7 +32,7 @@
    "status": 200,
    "bytes": 1838355,
    "sha256": "ec52cee16ab5a4e5",
-   "fetched_utc": "2026-10-13T18:15:14Z",
+   "fetched_utc": "2026-10-13T18:17:05Z",
    "content_type": "application/json",
    "odds_like_numbers": 4,
    "has_team_names": true,
@@ -43,7 +43,7 @@
    "url": "https://www.sofascore.com/api/v1/sport/esports/scheduled-events/2026-10-14",
    "status": 403,
    "error": "HTTPError 403",
-   "fetched_utc": "2026-10-13T18:15:15Z"
+   "fetched_utc": "2026-10-13T18:17:06Z"
   },
   {
    "label": "leaguepedia-schedule",
@@ -51,7 +51,7 @@
    "status": 200,
    "bytes": 372,
    "sha256": "91f2357c7d0313f0",
-   "fetched_utc": "2026-10-13T18:15:15Z",
+   "fetched_utc": "2026-10-13T18:17:06Z",
    "content_type": "application/json; charset=utf-8",
    "odds_like_numbers": 0,
    "has_team_names": false,
@@ -60,24 +60,24 @@
   {
    "label": "liquipedia-cs2-api",
    "url": "https://liquipedia.net/counterstrike/api.php?action=query&list=recentchanges&format=json&rclimit=5",
-   "status": 429,
-   "error": "HTTPError 429",
-   "fetched_utc": "2026-10-13T18:15:15Z"
+   "status": 406,
+   "error": "HTTPError 406",
+   "fetched_utc": "2026-10-13T18:17:06Z"
   },
   {
    "label": "betexplorer-cs2",
    "url": "https://www.betexplorer.com/esports/",
    "status": 404,
    "error": "HTTPError 404",
-   "fetched_utc": "2026-10-13T18:15:21Z"
+   "fetched_utc": "2026-10-13T18:17:06Z"
   },
   {
    "label": "oddsportal-esports",
    "url": "https://www.oddsportal.com/esports/",
    "status": 200,
-   "bytes": 511672,
-   "sha256": "1d73307b322ce1af",
-   "fetched_utc": "2026-10-13T18:15:22Z",
+   "bytes": 511715,
+   "sha256": "55486d7b23cececb",
+   "fetched_utc": "2026-10-13T18:17:07Z",
    "content_type": "text/html; charset=utf-8",
    "odds_like_numbers": 11,
    "has_team_names": true,
@@ -87,9 +87,9 @@
    "label": "oddspedia-esports",
    "url": "https://oddspedia.com/esports",
    "status": 200,
-   "bytes": 651682,
-   "sha256": "21fc191e41ae38ad",
-   "fetched_utc": "2026-10-13T18:15:25Z",
+   "bytes": 651642,
+   "sha256": "e3cfb54bbbd0b826",
+   "fetched_utc": "2026-10-13T18:17:09Z",
    "content_type": "text/html; charset=utf-8",
    "odds_like_numbers": 31,
    "has_team_names": true,
@@ -100,8 +100,8 @@
    "url": "https://www.flashscore.com/esports/",
    "status": 200,
    "bytes": 709031,
-   "sha256": "6438e2249f108358",
-   "fetched_utc": "2026-10-13T18:15:26Z",
+   "sha256": "53df25015a04cd8f",
+   "fetched_utc": "2026-10-13T18:17:10Z",
    "content_type": "text/html; charset=UTF-8",
    "odds_like_numbers": 117,
    "has_team_names": true,
@@ -113,7 +113,7 @@
    "status": 200,
    "bytes": 2361939,
    "sha256": "eabbcea2349c9ab7",
-   "fetched_utc": "2026-10-13T18:15:27Z",
+   "fetched_utc": "2026-10-13T18:17:10Z",
    "content_type": "text/html; charset=utf-8",
    "odds_like_numbers": 278,
    "has_team_names": true,
@@ -123,9 +123,9 @@
    "label": "betonline-esports",
    "url": "https://www.betonline.ag/sportsbook/esports",
    "status": 200,
-   "bytes": 363950,
-   "sha256": "3eaef9cc5d0b4358",
-   "fetched_utc": "2026-10-13T18:15:33Z",
+   "bytes": 363949,
+   "sha256": "c8652ad0452c67cc",
+   "fetched_utc": "2026-10-13T18:17:15Z",
    "content_type": "text/html",
    "odds_like_numbers": 6,
    "has_team_names": true,
@@ -136,14 +136,14 @@
    "url": "https://gg.bet/en/esports",
    "status": 403,
    "error": "HTTPError 403",
-   "fetched_utc": "2026-10-13T18:15:33Z"
+   "fetched_utc": "2026-10-13T18:17:16Z"
   },
   {
    "label": "thunderpick-esports",
    "url": "https://thunderpick.io/esports",
    "status": 403,
    "error": "HTTPError 403",
-   "fetched_utc": "2026-10-13T18:15:33Z"
+   "fetched_utc": "2026-10-13T18:17:16Z"
   },
   {
    "label": "pinnacle-esports",
@@ -151,7 +151,7 @@
    "status": 200,
    "bytes": 6394,
    "sha256": "3f7de2cdd588e8d6",
-   "fetched_utc": "2026-10-13T18:15:33Z",
+   "fetched_utc": "2026-10-13T18:17:16Z",
    "content_type": "text/html",
    "odds_like_numbers": 0,
    "has_team_names": true,
@@ -161,9 +161,9 @@
    "label": "1xbet-esports",
    "url": "https://1xbet.com/en/line/esports",
    "status": 203,
-   "bytes": 2625,
-   "sha256": "e87c1991a3b137d0",
-   "fetched_utc": "2026-10-13T18:15:34Z",
+   "bytes": 2624,
+   "sha256": "3e6c8e8229777175",
+   "fetched_utc": "2026-10-13T18:17:17Z",
    "content_type": "text/html;charset=utf-8",
    "odds_like_numbers": 0,
    "has_team_names": false,
@@ -174,8 +174,8 @@
    "url": "https://www.betano.com/sport/esports/",
    "status": 200,
    "bytes": 29842,
-   "sha256": "50afbd5cf9207373",
-   "fetched_utc": "2026-10-13T18:15:35Z",
+   "sha256": "80406f9f633d483e",
+   "fetched_utc": "2026-10-13T18:17:17Z",
    "content_type": "text/html; charset=utf-8",
    "odds_like_numbers": 0,
    "has_team_names": true,
@@ -186,7 +186,7 @@
    "url": "https://esportsbattle.com/en/counter-strike",
    "status": 404,
    "error": "HTTPError 404",
-   "fetched_utc": "2026-10-13T18:15:35Z"
+   "fetched_utc": "2026-10-13T18:17:17Z"
   },
   {
    "label": "bo3-gg",
@@ -194,7 +194,7 @@
    "status": 200,
    "bytes": 13111,
    "sha256": "08d830686c3f9e01",
-   "fetched_utc": "2026-10-13T18:15:35Z",
+   "fetched_utc": "2026-10-13T18:17:18Z",
    "content_type": "text/html;charset=utf-8",
    "odds_like_numbers": 0,
    "has_team_names": true,
@@ -205,7 +205,7 @@
    "url": "https://escorenews.com/en/csgo/matches",
    "status": 403,
    "error": "HTTPError 403",
-   "fetched_utc": "2026-10-13T18:15:36Z"
+   "fetched_utc": "2026-10-13T18:17:18Z"
   }
  ]
 }
