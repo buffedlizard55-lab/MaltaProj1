@@ -22,8 +22,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-RAW = ROOT / "picks" / "raw"
-OUT = ROOT / "picks" / "data"
+RAW = ROOT / "winboard" / "raw"
+OUT = ROOT / "winboard" / "data"
 
 BROWSER_HEADERS = {
     "User-Agent": (

@@ -1,11 +1,11 @@
 """Collector for the arena/cc8f4dca picks pipeline. Runs inside GitHub Actions.
 
 Outputs (all committed back to the session branch):
-  picks/data/fixtures.json   every CS2 pick'em fixture in the official Hotspawn SSR payload
-  picks/data/vrs.json        Valve's official regional standings (global)
-  picks/data/odds_<src>.json bookmaker / odds-comparison observations, per source
-  picks/data/_debug_*.txt    small text samples used to write and re-verify the parsers
-  picks/data/collect_meta.json  timestamps, HTTP statuses, hashes of every fetch
+  winboard/data/fixtures.json   every CS2 pick'em fixture in the official Hotspawn SSR payload
+  winboard/data/vrs.json        Valve's official regional standings (global)
+  winboard/data/odds_<src>.json bookmaker / odds-comparison observations, per source
+  winboard/data/_debug_*.txt    small text samples used to write and re-verify the parsers
+  winboard/data/collect_meta.json  timestamps, HTTP statuses, hashes of every fetch
 
 Rules:
   * Hotspawn is a fixture source only. Its crowd pick percentages are never read and never
@@ -29,8 +29,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-DATA = ROOT / "picks" / "data"
-RAW = ROOT / "picks" / "raw"
+DATA = ROOT / "winboard" / "data"
+RAW = ROOT / "winboard" / "raw"
 
 UA = (
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) "

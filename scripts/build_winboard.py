@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """Build the arena/cc8f4dca picks dashboard.
 
-Reads only committed, timestamped source data under ``picks/data/`` plus the HLTV ranking
-snapshot already in the repository, and writes ``picks/*.html``, ``picks/data/matches.csv``
-and ``picks/data/matches.json``.
+Reads only committed, timestamped source data under ``winboard/data/`` plus the HLTV ranking
+snapshot already in the repository, and writes ``winboard/*.html``, ``winboard/data/matches.csv``
+and ``winboard/data/matches.json``.
 
-Rules enforced here (re-checked by scripts/verify_picks.py):
+Rules enforced here (re-checked by scripts/verify_winboard.py):
   * Hotspawn supplies fixture identity only. ``picked_percent`` is never read as a probability.
   * Every published number is computed from a value present in a fetched source file.
     A value that cannot be matched is left blank and published on the Flagged page.
@@ -24,8 +24,8 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-DATA = ROOT / "picks" / "data"
-OUT = ROOT / "picks"
+DATA = ROOT / "winboard" / "data"
+OUT = ROOT / "winboard"
 ASSETS = OUT / "assets"
 
 # ---------------------------------------------------------------------------
@@ -37,7 +37,7 @@ ASSETS = OUT / "assets"
 #   Valve's raw curve is K = g(rd = 75) = 0.972821, which Valve's README calls "shallower than
 #   we'd like". Held-out 2026-08-03..2026-10-05: log loss 0.66185 -> 0.64351,
 #   Brier 0.22936 -> 0.22575. Fit and diagnostics: model/input/vrs/calibration.json
-#   (session arena/91eff436). scripts/verify_picks.py re-checks the numbers against that file.
+#   (session arena/91eff436). scripts/verify_winboard.py re-checks the numbers against that file.
 K_MODEL = 0.4568
 K_VALVE_RAW = 0.972821
 VRS_BLOB_URL = (
@@ -730,7 +730,7 @@ def write_methodology(snapshot_utc):
     </table>
     <p>Full diagnostics: <a href="https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/model/input/vrs/calibration.json">model/input/vrs/calibration.json</a>
     (fitted by session <code>arena/91eff436</code>; the numbers are re-checked against that file by
-    <code>scripts/verify_picks.py</code>).</p>
+    <code>scripts/verify_winboard.py</code>).</p>
     <p>A team that is <b>not</b> in Valve's file, or that matches two different rows, gets no own
     line. The cell stays blank and the reason is published — we never pick a row by guessing.</p>
   </section>

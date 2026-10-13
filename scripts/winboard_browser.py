@@ -19,8 +19,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-DATA = ROOT / "picks" / "data"
-RAW = ROOT / "picks" / "raw"
+DATA = ROOT / "winboard" / "data"
+RAW = ROOT / "winboard" / "raw"
 DEBUG = DATA / "_debug"
 
 TARGETS = [

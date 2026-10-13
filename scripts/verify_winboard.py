@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Verification for the arena/cc8f4dca picks dashboard. Fails loudly on any problem.
 
-Run:  python3 scripts/verify_picks.py
+Run:  python3 scripts/verify_winboard.py
 Exit code 0 = every check passed.
 """
 
@@ -14,8 +14,8 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-DATA = ROOT / "picks" / "data"
-OUT = ROOT / "picks"
+DATA = ROOT / "winboard" / "data"
+OUT = ROOT / "winboard"
 
 FAILURES: list[str] = []
 CHECKS = 0
@@ -30,7 +30,7 @@ def check(condition: bool, message: str) -> None:
 
 def main() -> int:
     sys.path.insert(0, str(ROOT / "scripts"))
-    import build_picks as bp  # noqa: E402  (imported for its constants and maths)
+    import build_winboard as bp  # noqa: E402  (imported for its constants and maths)
 
     # --- 1. the calibration constant is the published one -------------------
     calibration = json.loads((ROOT / "model" / "input" / "vrs" / "calibration.json").read_text())

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Parse Valve's official Regional Standings into picks/data/vrs.json.
+"""Parse Valve's official Regional Standings into winboard/data/vrs.json.
 
 The markdown file in the repository is checked against the SHA-256 GitHub Actions recorded
 when it fetched the same URL, so the parsed values are provably the bytes Valve serves.
@@ -15,7 +15,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 SOURCE_MD = ROOT / "model" / "input" / "vrs" / "standings_global_2026_10_05.md"
-OUT = ROOT / "picks" / "data" / "vrs.json"
+OUT = ROOT / "winboard" / "data" / "vrs.json"
 
 RAW_URL = (
     "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings"
