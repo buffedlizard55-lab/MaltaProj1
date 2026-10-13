@@ -64,6 +64,8 @@ PINNACLE_MARKETS = ("https://guest.api.arcadia.pinnacle.com/0.1/sports/12/market
                     "straight?primaryOnly=false&withSpecials=false")
 PINNACLE_PAGES = ["https://www.pinnacle.com/en/esports/games/cs2/matchups/"]
 EGW_LIST = "https://egamersworld.com/counterstrike/matches"
+POLYMARKET_API = ("https://gamma-api.polymarket.com/markets?closed=false&limit=500"
+                  "&order=volume24hr&ascending=false")
 HLTV_RANKING = "https://www.hltv.org/ranking/teams/2026/october/12"
 
 STATE_SCRIPT = re.compile(r'<script id="ng-state"[^>]*>(.*?)</script>', re.S | re.I)
@@ -302,6 +304,10 @@ def collect_hotspawn() -> dict:
                             "hotspawn_match_url": links.get(match_id),
                             "source_url": url,
                             "snapshot_utc": None,
+                            "payload_keys": sorted(k for k in node if not k.startswith("_")),
+                            "participant_keys": (
+                                sorted({k for p in participants if isinstance(p, dict)
+                                        for k in p}) if isinstance(participants, list) else []),
                             # crowd fields are kept ONLY for the audit page; build.py drops them
                             "crowd_pct_a": crowd[0],
                             "crowd_pct_b": crowd[1],
@@ -329,7 +335,7 @@ def collect_hotspawn() -> dict:
 
 
 # --------------------------------------------------------------- Valve standings
-VRS_ROW = re.compile(r"^\|\s*(\d+)\s*\|\s*([^|]+?)\s*\|\s*([\d.]+)\s*\|", re.M)
+VRS_ROW = re.compile(r"^\|\s*(\d+)\s*\|\s*(\d+)\s*\|\s*([^|]{1,80}?)\s*\|", re.M)
 
 
 def collect_vrs() -> dict:
@@ -356,7 +362,7 @@ def collect_vrs() -> dict:
         md = got["body"].decode("utf-8", errors="replace")
         m = re.search(r"as of (\d{4}_\d{2}_\d{2})", md, re.I)
         as_of = m.group(1).replace("_", "-") if m else None
-        for rank, name, points in VRS_ROW.findall(md):
+        for rank, points, name in VRS_ROW.findall(md):
             teams.append({"vrs_rank": int(rank), "name": name.strip(), "points": float(points)})
     return {"status": "observed" if teams else "unavailable", "url": raw_url,
             "listing_url": VRS_DIR_API, "file": latest, "as_of": as_of,
@@ -525,22 +531,108 @@ def collect_egw(limit: int = 14) -> dict:
             "listing": listing, "detail": detail, "seen_urls": sorted(seen)}
 
 
+# ------------------------------------------------------------------- Polymarket
+def _json_list(value):
+    if isinstance(value, list):
+        return value
+    if isinstance(value, str):
+        try:
+            parsed = json.loads(value)
+        except json.JSONDecodeError:
+            return None
+        return parsed if isinstance(parsed, list) else None
+    return None
+
+
+def collect_polymarket() -> dict:
+    """Public prediction-market prices for CS2 matches.
+
+    Kept strictly separate from bookmaker prices: a prediction market is a different
+    instrument, it is labelled as such on every row that uses it, and it is only
+    published for a fixture pair whose two outcome names both match the fixture.
+    """
+    got = http_get(POLYMARKET_API, accept="application/json")
+    quotes, skipped = [], 0
+    if got["body"]:
+        try:
+            markets = json.loads(got["body"].decode())
+        except json.JSONDecodeError as exc:
+            record({"url": POLYMARKET_API, "fetched_utc": now_iso(), "path": "parse", "status": None,
+                    "bytes": None, "sha256": None, "error": f"polymarket JSON: {exc}"})
+            markets = []
+        for market in markets if isinstance(markets, list) else []:
+            if not isinstance(market, dict):
+                continue
+            slug = str(market.get("slug") or "")
+            question = str(market.get("question") or "")
+            if "cs2-" not in slug.lower() and "counter-strike" not in question.lower():
+                continue
+            outcomes = _json_list(market.get("outcomes"))
+            prices = _json_list(market.get("outcomePrices"))
+            if not (outcomes and prices and len(outcomes) == 2 == len(prices)):
+                skipped += 1
+                continue
+            try:
+                p_a, p_b = float(prices[0]), float(prices[1])
+            except (TypeError, ValueError):
+                skipped += 1
+                continue
+            if not (0.01 < p_a < 0.99 and 0.01 < p_b < 0.99):
+                skipped += 1
+                continue
+            quotes.append({
+                "bookmaker": "Polymarket",
+                "kind": "prediction_market",
+                "market": "match_winner",
+                "team_a": str(outcomes[0]), "team_b": str(outcomes[1]),
+                "start_utc": iso_utc(market.get("gameStartTime") or market.get("startDate")),
+                "implied_p_a": round(100 * p_a, 1), "implied_p_b": round(100 * p_b, 1),
+                "odds_a": round(1 / p_a, 6), "odds_b": round(1 / p_b, 6),
+                "observed_utc": now_iso(),
+                "source_url": f"https://polymarket.com/event/{slug}" if slug else POLYMARKET_API,
+                "note": ("Prediction-market price converted to implied probability; not a "
+                         "bookmaker price and not de-vigged."),
+                "volume_usd": market.get("volumeNum") or market.get("volume"),
+                "liquidity_usd": market.get("liquidityNum") or market.get("liquidity"),
+            })
+    return {"status": "observed" if quotes else "unavailable", "api_url": POLYMARKET_API,
+            "quotes": quotes, "skipped_markets": skipped}
+
+
 # ------------------------------------------------------------------------ HLTV
-HLTV_RANK_ROW = re.compile(
-    r'<div class="rank">\s*#?(\d+)\s*</div>.*?<div class="teamLine">.*?'
-    r'<div class="name">\s*(?:<a[^>]*>)?([^<]+?)(?:</a>)?\s*</div>', re.S)
+HLTV_TEAM_LINK = re.compile(r'/team/(\d+)/([a-z0-9\-]+)', re.I)
+HLTV_BLOCK_SPLIT = re.compile(r'class="ranked-team', re.I)
+HLTV_POSITION = re.compile(r'class="position"[^>]*>\s*#?(\d+)', re.I)
+
+
+def parse_hltv_ranking(html: str) -> dict[str, int]:
+    """Several spellings of the same page have shipped; try the documented shapes in turn."""
+    ranks: dict[str, int] = {}
+    blocks = HLTV_BLOCK_SPLIT.split(html)[1:]
+    for block in blocks:
+        window = block[:4000]
+        position = HLTV_POSITION.search(window)
+        link = HLTV_TEAM_LINK.search(window)
+        if position and link:
+            ranks[link.group(2).replace("-", " ")] = int(position.group(1))
+    if len(ranks) < 10:
+        for position, link in zip(HLTV_POSITION.finditer(html), HLTV_TEAM_LINK.finditer(html)):
+            if link.start() > position.start():
+                ranks.setdefault(link.group(2).replace("-", " "), int(position.group(1)))
+    return ranks
 
 
 def collect_hltv(names: set[str]) -> dict:
     got = browser_get(HLTV_RANKING, wait_ms=3000)
     html = got["html"] or ""
-    ranks = {}
-    for rank, name in HLTV_RANK_ROW.findall(html):
-        ranks[unescape(name).strip()] = int(rank)
+    ranks = parse_hltv_ranking(html)
+    marker = html.lower().find('class="position"')
+    sample = re.sub(r"\s+", " ", html[max(0, marker - 200): marker + 600]) if marker >= 0 else ""
     hit = {n: r for n, r in ranks.items() if n.lower() in {x.lower() for x in names}}
     return {"status": "observed" if ranks else "unavailable", "url": HLTV_RANKING,
             "total_rows": len(ranks), "ranks": ranks, "matched": hit,
-            "fetched_utc": got["fetched_utc"], "sha256": got["sha256"]}
+            "fetched_utc": got["fetched_utc"], "sha256": got["sha256"],
+            "debug_sample": sample[:600]}
 
 
 # ------------------------------------------------------------------------ main
@@ -555,6 +647,8 @@ def main() -> int:
     print(f"[collect] pinnacle quotes={len(pinnacle['quotes'])}", flush=True)
     egw = collect_egw()
     print(f"[collect] egw listing={len(egw['listing'])} detail={len(egw['detail'])}", flush=True)
+    polymarket = collect_polymarket()
+    print(f"[collect] polymarket quotes={len(polymarket['quotes'])}", flush=True)
     cs2_names = {row["team_a"] for row in hotspawn["fixtures"] if row.get("sport") == "cs2"}
     cs2_names |= {row["team_b"] for row in hotspawn["fixtures"] if row.get("sport") == "cs2"}
     hltv = collect_hltv(cs2_names)
@@ -573,6 +667,7 @@ def main() -> int:
         "vrs": vrs,
         "pinnacle": pinnacle,
         "egw": egw,
+        "polymarket": polymarket,
         "hltv": hltv,
         "provenance": provenance,
     }

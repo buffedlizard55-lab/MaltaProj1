@@ -164,6 +164,25 @@ class BuildRules(unittest.TestCase):
             self.assertTrue(row["hotspawn_url"].startswith("https://"))
             self.assertTrue(row["ext_url"].startswith("https://"))
 
+    def test_prediction_market_needs_a_start_time_and_is_flagged(self):
+        fixture_row = fixture("1", "Alpha", "Bravo", "2026-10-14T10:00:00Z", "2026-10-14T09:54:00Z")
+        base = snapshot([fixture_row])
+        base["polymarket"] = {"status": "observed", "quotes": [
+            {"bookmaker": "Polymarket", "kind": "prediction_market", "team_a": "Alpha",
+             "team_b": "Bravo", "start_utc": "2026-10-14T10:00:00Z", "odds_a": 1.25,
+             "odds_b": 5.0, "implied_p_a": 80.0, "implied_p_b": 20.0,
+             "observed_utc": "2026-10-13T22:00:00Z",
+             "source_url": "https://polymarket.com/event/cs2-alpha-bravo",
+             "note": "test"}]}
+        rows = build.build_rows(base)
+        self.assertEqual(rows[0]["ext_p_a_pct"], "80.0")
+        self.assertIn("FL-25", rows[0]["flags"])
+        self.assertIn("prediction market", rows[0]["ext_bookmaker"])
+        # an outright-style market with no start time is never joined
+        base["polymarket"]["quotes"][0]["start_utc"] = None
+        rows = build.build_rows(base)
+        self.assertEqual(rows[0]["ext_p_a_pct"], "")
+
     def test_flags_always_carry_text_and_a_link(self):
         snap = snapshot([fixture("1", "Nobody", "Unknown", "2026-10-14T10:00:00Z", "2026-10-14T09:54:00Z")])
         rows = build.build_rows(snap)
@@ -172,6 +191,25 @@ class BuildRules(unittest.TestCase):
         for flag in flags:
             self.assertTrue(flag["text"])
             self.assertTrue(flag["source_url"].startswith("http"))
+
+    def test_prediction_market_needs_a_start_time_and_is_flagged(self):
+        fixture_row = fixture("1", "Alpha", "Bravo", "2026-10-14T10:00:00Z", "2026-10-14T09:54:00Z")
+        snap = snapshot([fixture_row])
+        snap["polymarket"] = {"status": "observed", "quotes": [
+            {"bookmaker": "Polymarket", "kind": "prediction_market", "team_a": "Alpha",
+             "team_b": "Bravo", "start_utc": "2026-10-14T10:00:00Z", "odds_a": 1.25,
+             "odds_b": 5.0, "implied_p_a": 80.0, "implied_p_b": 20.0,
+             "observed_utc": "2026-10-13T22:00:00Z",
+             "source_url": "https://polymarket.com/event/cs2-alpha-bravo",
+             "note": "test"}]}
+        rows = build.build_rows(snap)
+        self.assertEqual(rows[0]["ext_p_a_pct"], "80.0")
+        self.assertIn("FL-25", rows[0]["flags"])
+        self.assertIn("prediction market", rows[0]["ext_bookmaker"])
+        # an outright-style market with no start time is never joined to a fixture
+        snap["polymarket"]["quotes"][0]["start_utc"] = None
+        rows = build.build_rows(snap)
+        self.assertEqual(rows[0]["ext_p_a_pct"], "")
 
 
 if __name__ == "__main__":

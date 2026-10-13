@@ -121,6 +121,17 @@ def external_quotes(snapshot):
     quotes = []
     for quote in snapshot.get("pinnacle", {}).get("quotes", []):
         quotes.append({**quote, "source_label": "Pinnacle (direct bookmaker)"})
+    for quote in snapshot.get("polymarket", {}).get("quotes", []):
+        quotes.append({"bookmaker": "Polymarket",
+                       "source_label": "Polymarket (prediction market, not a bookmaker)",
+                       "kind": "prediction_market",
+                       "market": "match_winner",
+                       "team_a": quote["team_a"], "team_b": quote["team_b"],
+                       "start_utc": quote.get("start_utc"),
+                       "odds_a": quote["odds_a"], "odds_b": quote["odds_b"],
+                       "observed_utc": quote.get("observed_utc"),
+                       "source_url": quote.get("source_url"),
+                       "note": quote.get("note")})
     for row in snapshot.get("egw", {}).get("detail", []):
         prices = row.get("prices") or []
         if len(prices) != 2:
@@ -190,6 +201,11 @@ def build_rows(snapshot):
                 continue
             if quote["team_a"] is None or quote["team_b"] is None:
                 continue
+            if quote.get("kind") == "prediction_market":
+                # a prediction market is only usable when it names a start time, so that a
+                # tournament outright ("will X win the event?") can never be mistaken for a match
+                if not quote.get("start_utc") or not start:
+                    continue
             delta = None
             if quote.get("start_utc") and start:
                 q_start = parse_iso(quote["start_utc"])
@@ -200,8 +216,13 @@ def build_rows(snapshot):
             candidates.append((quote, delta))
         if len(candidates) > 1:
             # prefer a direct bookmaker, then the closest start time
-            candidates.sort(key=lambda item: (0 if item[0]["bookmaker"] == "Pinnacle" else 1,
-                                              item[1] if item[1] is not None else 1e9))
+            def rank(item):
+                quote_row, delta = item
+                kind_rank = {"Pinnacle": 0, "EGamersWorld": 1, "Polymarket": 2}.get(
+                    quote_row["bookmaker"], 3)
+                return (kind_rank, delta if delta is not None else 1e9)
+
+            candidates.sort(key=rank)
             if (candidates[0][1] is not None and candidates[1][1] is not None
                     and abs(candidates[0][1] - candidates[1][1]) < 1):
                 row_flags.append("FL-03")
@@ -223,6 +244,8 @@ def build_rows(snapshot):
                     row_flags.append("FL-10")
                 if row["ext_url"] and "pinnacle.com/en/esports/matchups/highlights" in row["ext_url"]:
                     row_flags.append("FL-12")
+                if quote.get("kind") == "prediction_market":
+                    row_flags.append("FL-25")
         if not row.get("ext_p_a_pct"):
             row_flags.append("FL-01")
             row.update(ext_bookmaker="", ext_odds_a="", ext_odds_b="", ext_overround_pct="",
@@ -319,6 +342,9 @@ FLAG_TEXT = {
               "evidence than an agreeing pair and is labelled as such.", ""),
     "FL-24": ("Hotspawn does not expose a per-match page link for this fixture in the payload or the "
               "rendered page, so the row links the board itself.", "https://play.hotspawn.com/lobby"),
+    "FL-25": ("The only outside market readable for this fixture is a prediction market, not a "
+              "bookmaker. Its price is labelled as such and is not de-vigged.",
+              "https://polymarket.com/esports/cs2"),
 }
 
 
