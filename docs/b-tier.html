@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>B-Tier — Hotspawn Pick'em Analytics</title><link rel="stylesheet" href="css/styles.css"></head>
+<body>
+<header class="topbar"><div class="container nav">
+  <a href="index.html" class="brand"><span class="brand-mark">HS</span><span class="brand-text">Hotspawn Pick'em Analytics</span></a>
+  <nav><a href="index.html">Dashboard</a><a href="s-tier.html">S-Tier</a><a href="b-tier.html" class="active">B-Tier</a><a href="c-tier.html">C-Tier</a><a href="flagged.html">Flagged for Review</a><a href="methodology.html">Methodology</a></nav>
+</div></header>
+<main class="container page-content">
+  <h1>B-Tier Matches</h1>
+  <p>Medium-tier (B): Stake Pulse Beat III, CCT Europe Series #11, ESL Challenger League regional cups. 3 points ×1.5 multiplier on Hotspawn.</p>
+  <section class="table-wrap" style="margin-top:20px"><table class="matches"><thead><tr><th>Date / Time (UTC)</th><th>Tournament</th><th>Tier</th><th>Team A</th><th>Our line (A)</th><th>Our line (B)</th><th>Team B</th><th>Hotspawn public %</th><th>Odds source</th><th>Status</th></tr></thead><tbody id="matches-body"></tbody></table></section>
+</main>
+<footer class="footer"><div class="container"><p>Independent analysis.</p></div></footer>
+<script src="js/app.js"></script><script>document.addEventListener('DOMContentLoaded',()=>initDashboard(m=>m.filter(x=>x.tier==='B')));</script>
+</body></html>

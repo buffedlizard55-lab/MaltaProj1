@@ -1,15 +1,40 @@
-<!doctype html><html lang='en'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>Flagged for Review · MaltaProj1</title><link rel='stylesheet' href='style.css'></head><body><header><h1>Flagged for Review</h1><p>Snapshot 2026-10-13 (UTC) · Hotspawn pick % never used as probability.</p></header><nav><a href="index.html">Dashboard</a><a href="matches.html">All matches</a><a href="s-tier.html">S-Tier · Thunderpick WC</a><a href="stake.html">Stake Pulse Beat III</a><a href="lower-tiers.html">B/C-Tier &amp; inventory</a><a href="methodology.html">Methodology</a><a href="flagged.html">⚠ Flagged for Review</a><a href="sources.html">Sources</a></nav><main><div class='card flag'><h2>⚠ Flagged for Review — read this first</h2><p>These items are <b>published, not hidden</b>, and do not block the site. Every value that could not be confirmed from an official source is blank in the tables.</p>
-<table><tr><th>ID</th><th>Irregularity / unverified item</th><th>Evidence (official source)</th><th>Impact</th></tr>
-<tr><td>F-01</td><td>59 of 85 CS2 fixtures not individually extracted — lobby paginates client-side; only 26 server-rendered fixtures are listed verbatim.</td><td><a href='https://play.hotspawn.com/cs2-pickems'>Hotspawn CS2 lobby</a> (filter counts)</td><td>Pairings blank in inventory; NOT invented.</td></tr>
-<tr><td>F-02</td><td>CCT Europe 2026 Series #11 count differs: general lobby filter says 5, CS2 filter says 4; only 4 fixtures rendered.</td><td><a href='https://play.hotspawn.com/lobby'>Lobby</a> vs <a href='https://play.hotspawn.com/cs2-pickems'>CS2 lobby</a></td><td>5th fixture, if any, unverified/blank.</td></tr>
-<tr><td>F-03</td><td>No external betting line and/or no verified HLTV rank for 21 of 26 matches (all CCT/Elisa/ESL-Cup and Sashi, Envy, NiP-rank cases).</td><td><a href='https://www.hltv.org/ranking/teams/2026/october/5'>HLTV ranking 2026-10-05</a></td><td>Probabilities blank; no pick given. This is the correct outcome, not missing work — books rarely price C-tier fixtures publicly.</td></tr>
-<tr><td>F-04</td><td>Ninjas in Pyjamas HLTV world rank not cleanly verifiable (HLTV event page mixes VRS/HLTV numbers).</td><td><a href='https://www.hltv.org/events/8932/thunderpick-world-championship-2026'>HLTV Thunderpick WC event</a></td><td>Falcons vs NiP own line blank; HLTV indicator 79.1% Falcons shown instead.</td></tr>
-<tr><td>F-05</td><td>Stake Pulse Beat III: Hotspawn lists Heroic vs Envy; HLTV/Liquipedia Group listings name 3DMAX in the MIBR/BC.Game/HEROIC group and a different Group C composition.</td><td><a href='https://liquipedia.net/counterstrike/Stake_Pulse/Beat_III'>Liquipedia Stake Pulse Beat III</a> · <a href='https://www.hltv.org/matches/2399135/hotu-vs-fnatic-stake-pulse-beat-iii'>HLTV HOTU vs fnatic</a></td><td>Fixture kept as-listed by Hotspawn, flagged; Envy line blank.</td></tr>
-<tr><td>F-06</td><td>Rank snapshots conflict by date: e.g. Astralis #11 (HLTV 2026-10-05 ranking, 220 pts) vs #15 on its team page; Aurora/Legacy both shown #6 from different snapshots; VRS ranks (Legacy #2, FURIA #7, Aurora #9, BetBoom #11, 9z #17, PARIVISION #36) differ from HLTV ranks.</td><td><a href='https://www.hltv.org/ranking/teams/2026/october/5'>HLTV ranking 2026-10-05</a> · <a href='https://pley.gg/cs2/thunderpick-world-championship-2026/'>Pley (VRS 2026-10-05)</a></td><td>Model uses HLTV world rank only, source-dated per row in ratings.csv; expect ±3–5 pts drift.</td></tr>
-<tr><td>F-07</td><td>PARIVISION rank conflict: HLTV team page #11 vs third-party preview “20th”.</td><td><a href='https://www.hltv.org/team/12467/parivision'>HLTV PARIVISION</a></td><td>HLTV (official) preferred; preview disregarded.</td></tr>
-<tr><td>F-08</td><td>Model vs HLTV indicator divergence: HOTU vs fnatic — rank model 49.1/50.9 (coin flip) vs HLTV indicator fnatic 68.4%.</td><td><a href='https://www.hltv.org/matches/2399135/hotu-vs-fnatic-stake-pulse-beat-iii'>HLTV match page</a></td><td>Published as “no confident pick”; do not bet the model alone here.</td></tr>
-<tr><td>F-09</td><td>Outright attribution inconsistency in secondary coverage: one FreeTips article lists Stake, another quotes Aurora 53/10 at bet365; outright favourite order (Falcons/Legacy) also differs from VRS order (Legacy #2).</td><td><a href='https://www.freetips.com/esports/thunderpick-world-championship-2026-betting-odds-20261011-0007/'>FreeTips odds</a></td><td>Outrights shown with source label; never converted into match picks.</td></tr>
-<tr><td>F-10</td><td>Hotspawn start times show no timezone; HLTV lists the same Thunderpick fixtures at different clock times (e.g. 9z–Aurora 10:30 CEST on HLTV/Pley vs 04:30 on Hotspawn).</td><td><a href='https://www.hltv.org/news/45706/thunderpick-world-championship-teams-format-schedule-prizes-talent-fantasy'>HLTV news 45706</a></td><td>Times reproduced as Hotspawn displays them; convert before acting.</td></tr>
-<tr><td>F-11</td><td>Hotspawn crowd % moves between fetches (e.g. 9z–Aurora 0%/100% → 5%/95%; ex-Keyd 83% → 86%) and several cards show 100%/0% (tiny samples).</td><td><a href='https://play.hotspawn.com/lobby'>Hotspawn lobby</a></td><td>Recorded as snapshot only; NEVER used as probability (per brief).</td></tr>
-<tr><td>F-12</td><td>Missing Hotspawn match ID 1079441 between Astralis–Sashi (…438) and HOTU–fnatic (…439)/Heroic–Envy (…442) sequence — likely a withdrawn/unlisted fixture.</td><td><a href='https://play.hotspawn.com/cs2-pickems'>Hotspawn CS2 lobby</a></td><td>Not invented; noted for review.</td></tr>
-</table></div></main><footer>Analysis only — not betting advice.</footer></body></html>
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Flagged for Review — Hotspawn Pick'em Analytics</title><link rel="stylesheet" href="css/styles.css"></head>
+<body>
+<header class="topbar"><div class="container nav">
+  <a href="index.html" class="brand"><span class="brand-mark">HS</span><span class="brand-text">Hotspawn Pick'em Analytics</span></a>
+  <nav><a href="index.html">Dashboard</a><a href="s-tier.html">S-Tier</a><a href="b-tier.html">B-Tier</a><a href="c-tier.html">C-Tier</a><a href="flagged.html" class="active">Flagged for Review</a><a href="methodology.html">Methodology</a></nav>
+</div></header>
+<main class="container page-content">
+<h1>Flagged for Review</h1>
+<p>Every match with missing odds, source discrepancy, or data-quality issue is listed here. Flagged items do <strong>not</strong> block publication — they are surfaced for manual review per the brief.</p>
+<h2>Unverified matches (no confirmed external odds)</h2>
+<div id="unverified-list"><p style="color:var(--muted)">Loading…</p></div>
+<h2>Matches with source discrepancies or caveats</h2>
+<div id="flags-list"><p style="color:var(--muted)">Loading…</p></div>
+<h2>Coverage gaps</h2>
+<div class="note-card"><p>The Hotspawn lobby advertises <strong>86 total matches</strong> (60 this week, CS2 + LoL tabs). The server-rendered lobby page exposes only the "Closing Soon" and "Upcoming" sections (26 matches captured here). The remaining matches (additional CCT, DACH CS Masters, DraculaN S7, European Pro League, LG UltraGear, Rainhas do Clutch, Svenska CS-Ligan, Urban Riga Open, Thunderpick South America, plus all LoL tab fixtures) are loaded client-side via React and could not be enumerated from static fetch. These are NOT listed with fabricated data; they are noted as coverage gaps. LoL tab matches were not rendered in the static HTML and are not yet in the data — no LoL odds were scraped.</p></div>
+<h2>Sources consulted</h2>
+<ul>
+  <li><a href="https://play.hotspawn.com/lobby" target="_blank" rel="noopener">Hotspawn Play lobby</a> — match metadata & public pick % only (never used as probability).</li>
+  <li><a href="https://www.hltv.org/matches" target="_blank" rel="noopener">HLTV matches & event pages</a> — match details, VRS rankings, bookie aggregate.</li>
+  <li><a href="https://polymarket.com/esports/cs2" target="_blank" rel="noopener">Polymarket CS2</a> — primary odds source (real-money prediction markets).</li>
+  <li><a href="https://egamersworld.com/counterstrike/matches" target="_blank" rel="noopener">EGamersWorld</a> — aggregated bookmaker odds.</li>
+  <li><a href="https://vprognoze.ru/" target="_blank" rel="noopener">vprognoze.ru</a> — Russian bookmaker comparison (Marathonbet, Betcity, Melbet, Fonbet).</li>
+  <li><a href="https://www.freetips.com/esports/" target="_blank" rel="noopener">FreeTips</a> — tournament outright odds.</li>
+</ul>
+</main>
+<footer class="footer"><div class="container"><p>Independent analysis.</p><p class="footer-links"><a href="index.html">Back to dashboard</a></p></div></footer>
+<script src="js/app.js"></script>
+<script>
+async function load(){
+  const data=await(await fetch('data/matches.json')).json();
+  const un=data.matches.filter(m=>m.verified==='no');
+  const fl=data.matches.filter(m=>m.flag&&m.verified!=='no');
+  const fmt=(m)=>'<div class="flag-entry"><h3>'+m.team_a+' vs '+m.team_b+' — '+m.tournament+'</h3><p>'+(m.notes||'')+'</p><p class="flag-meta">'+m.date+' '+m.time_utc+' UTC · Tier '+m.tier+' · Hotspawn public: '+m.hotspawn_pick_pct_a+'/'+m.hotspawn_pick_pct_b+' (NOT used)'+(m.source_url?' · <a href="'+m.source_url+'" target="_blank" rel="noopener">Source</a>':'')+'</p></div>';
+  document.getElementById('unverified-list').innerHTML=un.length?un.map(fmt).join(''):'<p>None.</p>';
+  document.getElementById('flags-list').innerHTML=fl.length?fl.map(m=>'<div class="flag-entry"><h3>'+m.team_a+' vs '+m.team_b+' — '+m.tournament+'</h3><p>'+(m.notes||'')+'</p><p class="flag-meta">⚠ '+m.flag+(m.source_url?' · <a href="'+m.source_url+'" target="_blank" rel="noopener">Source</a>':'')+'</p></div>').join(''):'<p>None.</p>';
+}
+load();
+</script>
+</body></html>

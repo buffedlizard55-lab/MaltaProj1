@@ -1,4 +1,55 @@
-<!doctype html><html lang='en'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>Dashboard — Hotspawn Pick&#x27;em line analysis · MaltaProj1</title><link rel='stylesheet' href='style.css'></head><body><header><h1>Dashboard — Hotspawn Pick&#x27;em line analysis</h1><p>Hotspawn Pick'em betting-line analysis · Snapshot 2026-10-13 (UTC) · Hotspawn pick % is NEVER used as probability.</p></header><nav><a href="index.html">Dashboard</a><a href="matches.html">All matches</a><a href="s-tier.html">S-Tier · Thunderpick WC</a><a href="stake.html">Stake Pulse Beat III</a><a href="lower-tiers.html">B/C-Tier &amp; inventory</a><a href="methodology.html">Methodology</a><a href="flagged.html">⚠ Flagged for Review</a><a href="sources.html">Sources</a></nav><main><div class='card'><h2>What this is</h2><p>We reverse-engineered <a href='https://play.hotspawn.com/lobby'>play.hotspawn.com/lobby</a> (and <a href='https://play.hotspawn.com/cs2-pickems'>/cs2-pickems</a>) on 2026-10-13, extracted every server-rendered fixture verbatim (26), then priced each match from <b>outside</b> sources (HLTV rankings/match pages + bookmaker outrights) and from <b>our own documented rank model</b>. Hotspawn crowd % is recorded only as a snapshot for audit and is <b>never</b> used as a probability.</p>
-<div class='kpi'><div><b>85</b>CS2 fixtures claimed in Hotspawn filter</div><div><b>26</b>fixtures extracted verbatim</div><div><b>5</b>matches with our originated line</div><div><b>0</b>invented values</div></div>
-<p><b>Headline picks (our model, where both teams have a verified HLTV rank):</b> Aurora over 9z (68.6%), Legacy over PARIVISION (61.2%), FURIA over BetBoom (70.8%), MIBR over BC.Game (68.9%). HOTU vs fnatic is a coin-flip on rank alone (49.1/50.9) while HLTV's indicator leans fnatic 68.4% — treat as <b>no confident pick</b> (F-08). Falcons vs NiP: no originated line (NiP rank unverified, F-04); HLTV indicator 79.1% Falcons and outrights make Falcons tournament favourites.</p></div>
-<div class='card'><h2>How to use this dashboard</h2><ol><li><a href='s-tier.html'>S-Tier page</a> — the 4 Thunderpick WC matches that matter most (7 pts each on Hotspawn).</li><li><a href='matches.html'>All matches</a> — searchable table of all 26 extracted fixtures.</li><li><a href='flagged.html'>Flagged for Review</a> — everything we could not verify, with links. Nothing there was filled in by guessing.</li></ol></div></main><footer>Analysis only — not betting advice. Unverified values are left blank and flagged. See <a href='flagged.html'>Flagged for Review</a> and <a href='sources.html'>Sources</a>.</footer></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Dashboard — Hotspawn Pick'em Analytics</title>
+<meta name="description" content="Independent betting-line analysis of matches on play.hotspawn.com/lobby. Probabilities derived from external esports odds; Hotspawn public picks shown for comparison only.">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<header class="topbar"><div class="container nav">
+  <a href="index.html" class="brand"><span class="brand-mark">HS</span><span class="brand-text">Hotspawn Pick'em Analytics</span></a>
+  <nav>
+    <a href="index.html" class="active">Dashboard</a>
+    <a href="s-tier.html">S-Tier</a>
+    <a href="b-tier.html">B-Tier</a>
+    <a href="c-tier.html">C-Tier</a>
+    <a href="flagged.html">Flagged for Review</a>
+    <a href="methodology.html">Methodology</a>
+  </nav>
+</div></header>
+<main class="container">
+<section class="hero">
+  <h1>Independent Pick'em Probabilities</h1>
+  <p class="subtitle">Match-by-match win probabilities derived from <strong>external esports betting markets</strong> (HLTV bookie aggregate, Polymarket real-money prediction markets, EGamersWorld, vprognoze bookmakers). Hotspawn's public pick percentages are shown for comparison only and are <em>never</em> used as an input to our lines.</p>
+  <div class="kpi-row">
+    <div class="kpi"><div class="kpi-num" id="kpi-total">—</div><div class="kpi-label">Matches tracked</div></div>
+    <div class="kpi"><div class="kpi-num" id="kpi-verified">—</div><div class="kpi-label">Verified odds</div></div>
+    <div class="kpi warn"><div class="kpi-num" id="kpi-unverified">—</div><div class="kpi-label">Unverified (flagged)</div></div>
+    <div class="kpi"><div class="kpi-num" id="kpi-s">—</div><div class="kpi-label">S-Tier matches</div></div>
+  </div>
+  <p class="gen-time" id="gen-time">Loading data…</p>
+</section>
+<section class="controls">
+  <label>Filter tier:<select id="tier-filter"><option value="all">All</option><option value="S">S</option><option value="B">B</option><option value="C">C</option></select></label>
+  <label>Search:<input type="search" id="search" placeholder="Team, tournament…"></label>
+  <label>Show only:<select id="verif-filter"><option value="all">All matches</option><option value="yes">Verified</option><option value="partial">Partial</option><option value="no">Unverified</option></select></label>
+  <button id="reset" class="btn-ghost">Reset</button>
+</section>
+<section class="table-wrap">
+<table class="matches"><thead><tr>
+  <th>Date / Time (UTC)</th><th>Tournament</th><th>Tier</th><th>Team A</th><th>Our line (A)</th><th>Our line (B)</th><th>Team B</th><th>Hotspawn public %</th><th>Odds source</th><th>Status</th>
+</tr></thead><tbody id="matches-body"></tbody></table>
+</section>
+<section class="note-card">
+  <h2>Data coverage note</h2><p id="coverage-note"></p>
+  <p><a href="flagged.html">See all flagged and unverified matches →</a></p>
+</section>
+</main>
+<footer class="footer"><div class="container">
+  <p>This site is an independent analysis project. Not affiliated with Hotspawn, HLTV, Polymarket, or any bookmaker. All odds sourced from public-facing pages; every row links to its source. Nothing here is financial advice.</p>
+  <p class="footer-links"><a href="methodology.html">Methodology</a> · <a href="flagged.html">Flagged items</a></p>
+</div></footer>
+<script src="js/app.js"></script>
+<script>document.addEventListener('DOMContentLoaded',()=>initDashboard());</script>
+</body></html>
