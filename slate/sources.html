@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sources — Hotspawn Pick&#x27;em line board</title>
+<style>:root{--bg:#0e1116;--panel:#161b22;--panel2:#1c232c;--line:#2a323d;--fg:#e9eef5;--muted:#9aa7b4;
+--accent:#7c5cd6;--good:#3fb950;--warn:#d29922;--bad:#f85149}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.55 -apple-system,BlinkMacSystemFont,
+"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+a{color:#8fb4ff}
+header{background:var(--panel);border-bottom:1px solid var(--line);padding:14px 16px 0;position:sticky;top:0;z-index:5}
+header .brand{font-weight:700;font-size:17px;margin:0 0 2px}
+header .sub{color:var(--muted);font-size:12.5px;margin:0 0 10px}
+nav{display:flex;gap:6px;overflow-x:auto;padding-bottom:10px;scrollbar-width:thin}
+nav a{white-space:nowrap;font-size:13px;text-decoration:none;color:var(--fg);background:var(--panel2);
+border:1px solid var(--line);border-radius:999px;padding:5px 11px}
+nav a.active{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600}
+main{max-width:1080px;margin:0 auto;padding:16px 14px 64px}
+h1{font-size:21px;margin:8px 0 4px}
+h2{font-size:17px;margin:26px 0 8px}
+h3{font-size:15px;margin:20px 0 6px;color:#cfd8e3}
+p.lead{color:var(--muted);margin:0 0 14px;font-size:13.5px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:12px 0 18px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:11px 12px}
+.card .n{font-size:22px;font-weight:700}
+.card .l{color:var(--muted);font-size:12px}
+table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);
+border-radius:10px;overflow:hidden;font-size:13.5px}
+caption{caption-side:top;text-align:left;color:var(--muted);font-size:12.5px;padding:0 0 6px}
+th,td{padding:8px 9px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--panel2);font-size:11.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+tr:last-child td{border-bottom:0}
+td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.pick{display:inline-block;background:#153;border:1px solid var(--good);color:#7ee787;border-radius:6px;
+padding:1px 7px;font-weight:700;font-size:12.5px;white-space:nowrap}
+.pick.none{background:#2a2f38;border-color:var(--line);color:var(--muted);font-weight:500}
+.bar{height:7px;border-radius:4px;background:#2b333d;overflow:hidden;margin-top:3px;min-width:64px}
+.bar>i{display:block;height:100%;background:linear-gradient(90deg,#2f81f7,#7c5cd6)}
+.pct{font-variant-numeric:tabular-nums;font-weight:600}
+.mut{color:var(--muted)}
+.tag{display:inline-block;font-size:11px;border:1px solid var(--line);border-radius:999px;
+padding:0 7px;color:var(--muted);margin-left:5px}
+.tag.open{border-color:var(--good);color:#7ee787}
+.tag.locked,.tag.started{color:var(--warn);border-color:var(--warn)}
+.tag.stale{color:var(--muted)}
+.note{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--accent);
+border-radius:8px;padding:10px 12px;margin:14px 0;font-size:13px;color:var(--muted)}
+.note b{color:var(--fg)}
+code{background:#0a0d12;border:1px solid var(--line);border-radius:4px;padding:1px 5px;font-size:12.5px}
+.scroll{overflow-x:auto}
+footer{color:var(--muted);font-size:12px;padding:22px 14px 40px;max-width:1080px;margin:0 auto}
+@media(max-width:760px){
+  body{font-size:14px}
+  table,thead,tbody,th,td,tr{display:block}
+  table{border:0;background:transparent}
+  thead{display:none}
+  tr{background:var(--panel);border:1px solid var(--line);border-radius:10px;margin:0 0 10px;padding:6px 2px}
+  td{border:0;padding:4px 10px;display:flex;justify-content:space-between;gap:10px}
+  td:before{content:attr(data-label);color:var(--muted);font-size:11.5px;text-transform:uppercase;
+  letter-spacing:.04em;flex:0 0 42%}
+  td.num{text-align:right}
+  .bar{min-width:0;width:100%}
+  td:before{flex-basis:38%}
+}
+</style>
+</head>
+<body>
+<header>
+  <p class="brand">Hotspawn Pick'em — line board</p>
+  <p class="sub">Every URL read, with time, status and hash</p>
+  <nav><a href="index.html">Board</a><a href="cs2.html">CS2</a><a href="lol.html">LoL / other</a><a href="tournaments.html">Tournaments</a><a href="tiers.html">Tiers</a><a href="fixtures.html">All fixtures</a><a href="lines.html">Market lines</a><a href="own-lines.html">Own lines</a><a href="verified.html">Verification</a><a href="sources.html" class="active">Sources</a><a href="methodology.html">Method</a><a href="flagged.html">Flagged for review</a></nav>
+</header>
+<main>
+<h1>Sources</h1><p class="lead">Every fetch behind this page, with the time it was read, the HTTP status, the size and the SHA-256 of the body. Anyone can re-fetch the same URL and compare the hash — that is how a reading here can be checked rather than trusted.</p><div class="note"><b>The board's own words</b> at capture time: <code> Tournaments How To Play League of Legends Pick&#x27;em Lobby Play other game titles This week 131 matches this week Resets in 5d 01h 59m 46s Sign in to tra</code></div><div class="scroll"><table><tr><th>URL</th><th>Read at</th><th>Status</th><th>Bytes</th><th>Method</th><th>SHA-256</th><th>Note</th></tr><tr><td data-label="URL"><a href="https://play.hotspawn.com/lobby" rel="noopener nofollow">https://play.hotspawn.com/lobby</a></td><td data-label="Read at">2026-10-13T23:03:04Z</td><td class="num" data-label="Status">200</td><td class="num" data-label="Bytes">433814</td><td data-label="Method">http</td><td data-label="SHA-256"><code style="font-size:11px">a7147c8ee55c92c294e1777bf9319877</code></td><td data-label="Note"></td></tr><tr><td data-label="URL"><a href="https://play.hotspawn.com/cs2-pickems" rel="noopener nofollow">https://play.hotspawn.com/cs2-pickems</a></td><td data-label="Read at">2026-10-13T23:03:05Z</td><td class="num" data-label="Status">200</td><td class="num" data-label="Bytes">423435</td><td data-label="Method">http</td><td data-label="SHA-256"><code style="font-size:11px">c1ec83c755b7249a1903cd306cdb79ea</code></td><td data-label="Note"></td></tr><tr><td data-label="URL"><a href="https://play.hotspawn.com/thp-pickems" rel="noopener nofollow">https://play.hotspawn.com/thp-pickems</a></td><td data-label="Read at">2026-10-13T23:03:07Z</td><td class="num" data-label="Status">200</td><td class="num" data-label="Bytes">219988</td><td data-label="Method">http</td><td data-label="SHA-256"><code style="font-size:11px">7c02b3c89975689f7ef63e3b86364062</code></td><td data-label="Note"></td></tr><tr><td data-label="URL"><a href="https://play.hotspawn.com/lol-pickems" rel="noopener nofollow">https://play.hotspawn.com/lol-pickems</a></td><td data-label="Read at">2026-10-13T23:03:08Z</td><td class="num" data-label="Status">200</td><td class="num" data-label="Bytes">2316839</td><td data-label="Method">http</td><td data-label="SHA-256"><code style="font-size:11px">a3bea495da025328cb0746f03c430238</code></td><td data-label="Note"></td></tr><tr><td data-label="URL"><a href="https://www.hltv.org/ranking/teams/2026/october/12" rel="noopener nofollow">https://www.hltv.org/ranking/teams/2026/october/12</a></td><td data-label="Read at">2026-10-13T23:03:11Z</td><td class="num" data-label="Status">200</td><td class="num" data-label="Bytes">1080252</td><td data-label="Method">browser</td><td data-label="SHA-256"><code style="font-size:11px">3a0b32d8c403143f52dcc4647d0ba457</code></td><td data-label="Note"></td></tr><tr><td data-label="URL"><a href="https://www.hltv.org/matches" rel="noopener nofollow">https://www.hltv.org/matches</a></td><td data-label="Read at">2026-10-13T23:03:13Z</td><td class="num" data-label="Status">403</td><td class="num" data-label="Bytes">6051</td><td data-label="Method">browser</td><td data-label="SHA-256"><code style="font-size:11px">a5fc5a04e130f5b40e145d618e58b67f</code></td><td data-label="Note"></td></tr><tr><td data-label="URL"><a href="https://api.github.com/repos/ValveSoftware/counter-strike_regional_standings/contents/live/2026" rel="noopener nofollow">https://api.github.com/repos/ValveSoftware/counter-strike_regional_standings/contents/live/2026</a></td><td data-label="Read at">2026-10-13T23:03:34Z</td><td class="num" data-label="Status">200</td><td class="num" data-label="Bytes">50648</td><td data-label="Method">http</td><td data-label="SHA-256"><code style="font-size:11px">2d55d193c80e0f80f0f8e08bbf84a3d4</code></td><td data-label="Note"></td></tr><tr><td data-label="URL"><a href="https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md" rel="noopener nofollow">https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md</a></td><td data-label="Read at">2026-10-13T23:03:35Z</td><td class="num" data-label="Status">200</td><td class="num" data-label="Bytes">77872</td><td data-label="Method">http</td><td data-label="SHA-256"><code style="font-size:11px">df96e7fc3cd91a2687ec08cac0128e50</code></td><td data-label="Note"></td></tr><tr><td data-label="URL"><a href="https://egamersworld.com/counterstrike/matches" rel="noopener nofollow">https://egamersworld.com/counterstrike/matches</a></td><td data-label="Read at">2026-10-13T23:03:38Z</td><td class="num" data-label="Status">403</td><td class="num" data-label="Bytes">4757</td><td data-label="Method">browser</td><td data-label="SHA-256"><code style="font-size:11px">477bad4394e7de4e25f1c04e9bd0e39d</code></td><td data-label="Note"></td></tr><tr><td data-label="URL"><a href="https://egamersworld.com/lol/matches" rel="noopener nofollow">https://egamersworld.com/lol/matches</a></td><td data-label="Read at">2026-10-13T23:03:59Z</td><td class="num" data-label="Status">403</td><td class="num" data-label="Bytes">4757</td><td data-label="Method">browser</td><td data-label="SHA-256"><code style="font-size:11px">29693f51eef15d433cb7e4c821d0188e</code></td><td data-label="Note"></td></tr><tr><td data-label="URL"><a href="https://egamersworld.com/counterstrike/events" rel="noopener nofollow">https://egamersworld.com/counterstrike/events</a></td><td data-label="Read at">2026-10-13T23:04:21Z</td><td class="num" data-label="Status">403</td><td class="num" data-label="Bytes">4757</td><td data-label="Method">browser</td><td data-label="SHA-256"><code style="font-size:11px">ee16433abe1f5b6e0bff6febf556dc32</code></td><td data-label="Note"></td></tr><tr><td data-label="URL"><a href="https://egamersworld.com/lol/events" rel="noopener nofollow">https://egamersworld.com/lol/events</a></td><td data-label="Read at">2026-10-13T23:04:43Z</td><td class="num" data-label="Status">403</td><td class="num" data-label="Bytes">4757</td><td data-label="Method">browser</td><td data-label="SHA-256"><code style="font-size:11px">85899a19b31ff205b5b9ee5fe225ca0f</code></td><td data-label="Note"></td></tr><tr><td data-label="URL"><a href="https://guest.api.arcadia.pinnacle.com/0.1/sports/12/leagues?all=false" rel="noopener nofollow">https://guest.api.arcadia.pinnacle.com/0.1/sports/12/leagues?all=false</a></td><td data-label="Read at">2026-10-13T23:03:35Z</td><td class="num" data-label="Status">200</td><td class="num" data-label="Bytes">7891</td><td data-label="Method">http</td><td data-label="SHA-256"><code style="font-size:11px">ca8303d32607175a3f95bdc4f8e84def</code></td><td data-label="Note"></td></tr><tr><td data-label="URL"><a href="https://guest.api.arcadia.pinnacle.com/0.1/leagues/225201/matchups?withSpecials=false" rel="noopener nofollow">https://guest.api.arcadia.pinnacle.com/0.1/leagues/225201/matchups?withSpecials=false</a></td><td data-label="Read at">2026-10-13T23:03:35Z</td><td class="num" data-label="Status">403</td><td class="num" data-label="Bytes"></td><td data-label="Method">http</td><td data-label="SHA-256"><code style="font-size:11px"></code></td><td data-label="Note">HTTPError 403</td></tr><tr><td data-label="URL"><a href="https://guest.api.arcadia.pinnacle.com/0.1/leagues/293370/matchups?withSpecials=false" rel="noopener nofollow">https://guest.api.arcadia.pinnacle.com/0.1/leagues/293370/matchups?withSpecials=false</a></td><td data-label="Read at">2026-10-13T23:03:36Z</td><td class="num" data-label="Status">403</td><td class="num" data-label="Bytes"></td><td data-label="Method">http</td><td data-label="SHA-256"><code style="font-size:11px"></code></td><td data-label="Note">HTTPError 403</td></tr><tr><td data-label="URL"><a href="https://guest.api.arcadia.pinnacle.com/0.1/leagues/228002/matchups?withSpecials=false" rel="noopener nofollow">https://guest.api.arcadia.pinnacle.com/0.1/leagues/228002/matchups?withSpecials=false</a></td><td data-label="Read at">2026-10-13T23:03:36Z</td><td class="num" data-label="Status">403</td><td class="num" data-label="Bytes"></td><td data-label="Method">http</td><td data-label="SHA-256"><code style="font-size:11px"></code></td><td data-label="Note">HTTPError 403</td></tr><tr><td data-label="URL"><a href="https://guest.api.arcadia.pinnacle.com/0.1/leagues/222042/matchups?withSpecials=false" rel="noopener nofollow">https://guest.api.arcadia.pinnacle.com/0.1/leagues/222042/matchups?withSpecials=false</a></td><td data-label="Read at">2026-10-13T23:03:36Z</td><td class="num" data-label="Status">403</td><td class="num" data-label="Bytes"></td><td data-label="Method">http</td><td data-label="SHA-256"><code style="font-size:11px"></code></td><td data-label="Note">HTTPError 403</td></tr><tr><td data-label="URL"><a href="https://guest.api.arcadia.pinnacle.com/0.1/leagues/7395/matchups?withSpecials=false" rel="noopener nofollow">https://guest.api.arcadia.pinnacle.com/0.1/leagues/7395/matchups?withSpecials=false</a></td><td data-label="Read at">2026-10-13T23:03:37Z</td><td class="num" data-label="Status">403</td><td class="num" data-label="Bytes"></td><td data-label="Method">http</td><td data-label="SHA-256"><code style="font-size:11px"></code></td><td data-label="Note">HTTPError 403</td></tr><tr><td data-label="URL"><a href="https://guest.api.arcadia.pinnacle.com/0.1/leagues/230488/matchups?withSpecials=false" rel="noopener nofollow">https://guest.api.arcadia.pinnacle.com/0.1/leagues/230488/matchups?withSpecials=false</a></td><td data-label="Read at">2026-10-13T23:03:37Z</td><td class="num" data-label="Status">403</td><td class="num" data-label="Bytes"></td><td data-label="Method">http</td><td data-label="SHA-256"><code style="font-size:11px"></code></td><td data-label="Note">HTTPError 403</td></tr><tr><td data-label="URL"><a href="https://guest.api.arcadia.pinnacle.com/0.1/leagues/9587/matchups?withSpecials=false" rel="noopener nofollow">https://guest.api.arcadia.pinnacle.com/0.1/leagues/9587/matchups?withSpecials=false</a></td><td data-label="Read at">2026-10-13T23:03:37Z</td><td class="num" data-label="Status">403</td><td class="num" data-label="Bytes"></td><td data-label="Method">http</td><td data-label="SHA-256"><code style="font-size:11px"></code></td><td data-label="Note">HTTPError 403</td></tr><tr><td data-label="URL"><a href="https://guest.api.arcadia.pinnacle.com/0.1/leagues/230242/matchups?withSpecials=false" rel="noopener nofollow">https://guest.api.arcadia.pinnacle.com/0.1/leagues/230242/matchups?withSpecials=false</a></td><td data-label="Read at">2026-10-13T23:03:37Z</td><td class="num" data-label="Status">403</td><td class="num" data-label="Bytes"></td><td data-label="Method">http</td><td data-label="SHA-256"><code style="font-size:11px"></code></td><td data-label="Note">HTTPError 403</td></tr></table></div><div class="note">Raw bodies are not committed: only size and hash, so the repository stays small and no third-party content is redistributed. Fetch log generated 2026-10-13T23:05:04Z.</div>
+</main>
+<footer>
+Built by Arena session <code>arena/180a42a0</code> from committed data in <code>slate/data/</code>
+(<code>slate/build.py</code>). Analysis only — not betting advice. Hotspawn's own crowd percentages are
+never used as a probability. Values that could not be read from a source stay blank and are listed on
+the <a href="flagged.html">Flagged for review</a> page.
+</footer>
+</body>
+</html>

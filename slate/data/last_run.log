@@ -1,0 +1,33 @@
+[slate] payload rows=388 open=262 hltv_matches=0 hltv_ranking=245 vrs_teams=349
+[slate] pinnacle matched=0 egw matched=0
+{
+ "open_fixtures": 262,
+ "with_market_line": 0,
+ "with_own_line": 28,
+ "with_pick": 28,
+ "kickoff_agrees_with_hltv": 0,
+ "kickoff_differs_from_hltv": 0,
+ "no_hltv_row": 262
+}
+[slate] flags=148 provenance_rows=21
+[slate] wrote 12 pages: cs2.html, fixtures.html, flagged.html, index.html, lines.html, lol.html, methodology.html, own-lines.html, sources.html, tiers.html, tournaments.html, verified.html
+test_crowd_percentages_are_audit_only (__main__.DataInvariants.test_crowd_percentages_are_audit_only)
+No probability column may equal a Hotspawn crowd percentage. ... ok
+test_every_row_carries_a_hotspawn_source (__main__.DataInvariants.test_every_row_carries_a_hotspawn_source) ... ok
+test_never_more_than_100_percent (__main__.DataInvariants.test_never_more_than_100_percent) ... ok
+test_pick_matches_consensus_side (__main__.DataInvariants.test_pick_matches_consensus_side) ... ok
+test_probabilities_complement (__main__.DataInvariants.test_probabilities_complement) ... ok
+test_provenance_exists_for_every_downloaded_source (__main__.DataInvariants.test_provenance_exists_for_every_downloaded_source) ... ok
+test_times_are_utc_and_ordered (__main__.DataInvariants.test_times_are_utc_and_ordered) ... ok
+test_bo1_identity (__main__.SeriesMath.test_bo1_identity) ... ok
+test_devig_ignores_margin (__main__.SeriesMath.test_devig_ignores_margin) ... ok
+test_devig_sums_to_one (__main__.SeriesMath.test_devig_sums_to_one) ... ok
+test_elo_symmetry (__main__.SeriesMath.test_elo_symmetry) ... ok
+test_series_bo3_identity_at_half (__main__.SeriesMath.test_series_bo3_identity_at_half) ... ok
+test_series_bo3_monotone (__main__.SeriesMath.test_series_bo3_monotone) ... ok
+test_series_bo5_bounds (__main__.SeriesMath.test_series_bo5_bounds) ... ok
+
+----------------------------------------------------------------------
+Ran 14 tests in 0.022s
+
+OK

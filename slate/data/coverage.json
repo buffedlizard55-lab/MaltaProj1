@@ -1,6 +1,6 @@
 {
- "generated_utc": "2026-10-13T22:56:17Z",
- "run_seconds": 104.9,
+ "generated_utc": "2026-10-13T23:05:04Z",
+ "run_seconds": 120.5,
  "upstream_collector": {
   "reused": "refresh/collect.py (session arena/b90700c6, read-only)",
   "available": true,
@@ -43,7 +43,7 @@
   },
   "week_total_text": 131,
   "week_total_context": " Tournaments How To Play League of Legends Pick'em Lobby Play other game titles This week 131 matches this week Resets in 5d 01h 59m 46s Sign in to tra",
-  "reset_utc": "2026-10-19T00:54:25Z",
+  "reset_utc": "2026-10-19T01:02:56Z",
   "fixtures_total": 388,
   "fixtures_cs2": 89,
   "fixtures_open": 262,
@@ -58,12 +58,36 @@
  },
  "hltv": {
   "listing_url": "https://www.hltv.org/matches",
-  "status": 200,
   "error": null,
-  "rows_read": 0,
+  "matches_read": 0,
+  "matches_block_split": 0,
   "ranking_url": "https://www.hltv.org/ranking/teams/2026/october/12",
-  "ranking_teams": 0,
-  "ranking_date_text": null
+  "ranking_teams": 245,
+  "ranking_date_text": "October 12th, 2026",
+  "pages": {
+   "ranking-dated": {
+    "url": "https://www.hltv.org/ranking/teams/2026/october/12",
+    "status": 200,
+    "bytes": 1080252,
+    "error": null,
+    "path": "browser",
+    "title": "Counter-Strike Ranking | World Ranking | HLTV.org",
+    "marker_ranked_team": 245,
+    "marker_match_href": 11,
+    "marker_data_unix": 0
+   },
+   "matches": {
+    "url": "https://www.hltv.org/matches",
+    "status": 403,
+    "bytes": 6051,
+    "error": null,
+    "path": "browser",
+    "title": "Just a moment...",
+    "marker_ranked_team": 0,
+    "marker_match_href": 0,
+    "marker_data_unix": 0
+   }
+  }
  },
  "valve": {
   "file": "standings_global_2026_10_05.md",
@@ -73,35 +97,35 @@
   "error": null
  },
  "pinnacle": {
+  "leagues_read": 14,
+  "cs2_leagues": [
+   "CS2 - STK Pulse Beat",
+   "CS2 - ESL Challenger League North America",
+   "CS2 - European Pro League",
+   "CS2 - TP World Championship"
+  ],
+  "lol_leagues": [
+   "League of Legends - EMEA Masters",
+   "League of Legends - World Championship Play-In",
+   "League of Legends - Demacia Cup",
+   "League of Legends - World Championship"
+  ],
+  "matchups_seen": 0,
+  "markets_read": 0,
   "quotes": 0,
   "matched": 0,
-  "counters": {},
-  "pages": [
-   {
-    "label": "pinnacle-highlights",
-    "url": "https://www.pinnacle.com/en/esports/matchups/highlights",
-    "status": 200,
-    "bytes": 6252,
-    "error": null,
-    "captured_json_responses": 0
-   },
-   {
-    "label": "pinnacle-cs2",
-    "url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
-    "status": 200,
-    "bytes": 6250,
-    "error": null,
-    "captured_json_responses": 0
-   },
-   {
-    "label": "pinnacle-lol",
-    "url": "https://www.pinnacle.com/en/esports/games/league-of-legends/matchups/",
-    "status": 200,
-    "bytes": 6250,
-    "error": null,
-    "captured_json_responses": 0
-   }
-  ]
+  "errors": [
+   "matchups 225201: HTTPError 403",
+   "matchups 293370: HTTPError 403",
+   "matchups 228002: HTTPError 403",
+   "matchups 222042: HTTPError 403",
+   "matchups 7395: HTTPError 403",
+   "matchups 230488: HTTPError 403",
+   "matchups 9587: HTTPError 403",
+   "matchups 230242: HTTPError 403"
+  ],
+  "rejected": 0,
+  "leagues_wanted": 8
  },
  "egw": {
   "matched": 0,
@@ -124,8 +148,8 @@
  "counts": {
   "open_fixtures": 262,
   "with_market_line": 0,
-  "with_own_line": 21,
-  "with_pick": 21,
+  "with_own_line": 28,
+  "with_pick": 28,
   "kickoff_agrees_with_hltv": 0,
   "kickoff_differs_from_hltv": 0,
   "no_hltv_row": 262

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Method — Hotspawn Pick&#x27;em line board</title>
+<style>:root{--bg:#0e1116;--panel:#161b22;--panel2:#1c232c;--line:#2a323d;--fg:#e9eef5;--muted:#9aa7b4;
+--accent:#7c5cd6;--good:#3fb950;--warn:#d29922;--bad:#f85149}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.55 -apple-system,BlinkMacSystemFont,
+"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+a{color:#8fb4ff}
+header{background:var(--panel);border-bottom:1px solid var(--line);padding:14px 16px 0;position:sticky;top:0;z-index:5}
+header .brand{font-weight:700;font-size:17px;margin:0 0 2px}
+header .sub{color:var(--muted);font-size:12.5px;margin:0 0 10px}
+nav{display:flex;gap:6px;overflow-x:auto;padding-bottom:10px;scrollbar-width:thin}
+nav a{white-space:nowrap;font-size:13px;text-decoration:none;color:var(--fg);background:var(--panel2);
+border:1px solid var(--line);border-radius:999px;padding:5px 11px}
+nav a.active{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600}
+main{max-width:1080px;margin:0 auto;padding:16px 14px 64px}
+h1{font-size:21px;margin:8px 0 4px}
+h2{font-size:17px;margin:26px 0 8px}
+h3{font-size:15px;margin:20px 0 6px;color:#cfd8e3}
+p.lead{color:var(--muted);margin:0 0 14px;font-size:13.5px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:12px 0 18px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:11px 12px}
+.card .n{font-size:22px;font-weight:700}
+.card .l{color:var(--muted);font-size:12px}
+table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);
+border-radius:10px;overflow:hidden;font-size:13.5px}
+caption{caption-side:top;text-align:left;color:var(--muted);font-size:12.5px;padding:0 0 6px}
+th,td{padding:8px 9px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--panel2);font-size:11.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+tr:last-child td{border-bottom:0}
+td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.pick{display:inline-block;background:#153;border:1px solid var(--good);color:#7ee787;border-radius:6px;
+padding:1px 7px;font-weight:700;font-size:12.5px;white-space:nowrap}
+.pick.none{background:#2a2f38;border-color:var(--line);color:var(--muted);font-weight:500}
+.bar{height:7px;border-radius:4px;background:#2b333d;overflow:hidden;margin-top:3px;min-width:64px}
+.bar>i{display:block;height:100%;background:linear-gradient(90deg,#2f81f7,#7c5cd6)}
+.pct{font-variant-numeric:tabular-nums;font-weight:600}
+.mut{color:var(--muted)}
+.tag{display:inline-block;font-size:11px;border:1px solid var(--line);border-radius:999px;
+padding:0 7px;color:var(--muted);margin-left:5px}
+.tag.open{border-color:var(--good);color:#7ee787}
+.tag.locked,.tag.started{color:var(--warn);border-color:var(--warn)}
+.tag.stale{color:var(--muted)}
+.note{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--accent);
+border-radius:8px;padding:10px 12px;margin:14px 0;font-size:13px;color:var(--muted)}
+.note b{color:var(--fg)}
+code{background:#0a0d12;border:1px solid var(--line);border-radius:4px;padding:1px 5px;font-size:12.5px}
+.scroll{overflow-x:auto}
+footer{color:var(--muted);font-size:12px;padding:22px 14px 40px;max-width:1080px;margin:0 auto}
+@media(max-width:760px){
+  body{font-size:14px}
+  table,thead,tbody,th,td,tr{display:block}
+  table{border:0;background:transparent}
+  thead{display:none}
+  tr{background:var(--panel);border:1px solid var(--line);border-radius:10px;margin:0 0 10px;padding:6px 2px}
+  td{border:0;padding:4px 10px;display:flex;justify-content:space-between;gap:10px}
+  td:before{content:attr(data-label);color:var(--muted);font-size:11.5px;text-transform:uppercase;
+  letter-spacing:.04em;flex:0 0 42%}
+  td.num{text-align:right}
+  .bar{min-width:0;width:100%}
+  td:before{flex-basis:38%}
+}
+</style>
+</head>
+<body>
+<header>
+  <p class="brand">Hotspawn Pick'em — line board</p>
+  <p class="sub">Every rule behind the numbers, in one page</p>
+  <nav><a href="index.html">Board</a><a href="cs2.html">CS2</a><a href="lol.html">LoL / other</a><a href="tournaments.html">Tournaments</a><a href="tiers.html">Tiers</a><a href="fixtures.html">All fixtures</a><a href="lines.html">Market lines</a><a href="own-lines.html">Own lines</a><a href="verified.html">Verification</a><a href="sources.html">Sources</a><a href="methodology.html" class="active">Method</a><a href="flagged.html">Flagged for review</a></nav>
+</header>
+<main>
+<h1>Method</h1>
+<p class="lead">The rules this board follows, stated so that any number on it can be reproduced or refuted.</p>
+
+<h2>1. Where the fixture list comes from</h2>
+<p>The Hotspawn Play pick'em pages are Angular server-side-rendered pages that embed their whole render state in
+<code>&lt;script id="ng-state"&gt;</code>. The fixture list, its competition, tier, stage, offered points and the
+exact <code>scheduled_start_time</code> (milliseconds since the epoch, UTC) and lock offset are read from that
+payload. The wall-clock text printed next to a match is <b>not</b> used: this project's own readings show the same
+fixture printed as both UTC and UTC-4 in different sessions, while the epoch and the page's own countdown always
+agree. Stale rows — fixtures whose scheduled start is months in the past but which the board still lists — are
+kept and labelled, never silently dropped.</p>
+
+<h2>2. Where probabilities come from</h2>
+<p><b>External market line.</b> A two-way moneyline price pair from an external source (a bookmaker's public
+page, or an aggregated odds table) is de-vigged:
+<code>p_a = (1/o_a) / (1/o_a + 1/o_b)</code>. The margin <code>(1/o_a + 1/o_b − 1)</code> is published per row.
+Hotspawn publishes no odds at all, and its crowd pick percentages are never converted into a probability —
+they are copied into the data under column names ending in <code>_audit_only</code> for transparency, and no
+build step reads them.</p>
+<p><b>Our own line.</b> Two independent official inputs: the HLTV world-ranking points and Valve's published
+Regional Standings points. Each becomes a per-map probability with the standard Elo logistic
+<code>p = 1 / (1 + 10^((r_b − r_a)/400))</code>, then a series probability with
+<code>BO3: p²(3−2p)</code> (BO1 identity, BO5 <code>p³(10−15p+6p²)</code>). Both official values are
+published per row, so the arithmetic can be redone by hand. No bookmaker price is an input to this line.</p>
+<p><b>Pick.</b> The side with the higher combined probability. Where the market line and our own line disagree on
+the favourite, the row says so, follows the market, and is listed on the Flagged page.</p>
+
+<h2>3. What is left blank</h2>
+<p>If a price cannot be read, the price column is blank and the fixture is listed on the Flagged page. If a team
+has no exact name match in the official rating sources, it gets no rating row and its fixtures get no originated
+line. Nothing is inferred, interpolated, carried forward from an earlier capture, or filled in from a similar
+name. Alias mappings are used only where an entry carries an evidence link, and each use is flagged.</p>
+
+<h2>4. Verification</h2>
+<p>Every fixture's kickoff is compared against HLTV's own listing and the result is published per row; the
+fixtures are also looked up in the other datasets this repository publishes, and disagreements in start time or
+pick are shown on the Verification page rather than corrected. Each source fetch is logged with its status and
+SHA-256.</p>
+
+<h2>5. Limits, stated plainly</h2>
+<p>Odds move; every row carries its capture time. Aggregated odds tables can show a white-label price for the
+operator that pays for the placement, so the bookmaker name is shown next to each price. Ratings-based
+probabilities are only as good as the ratings and ignore roster changes between the rating date and the match.
+This board is analysis, not betting advice, and it places no wagers.</p>
+
+</main>
+<footer>
+Built by Arena session <code>arena/180a42a0</code> from committed data in <code>slate/data/</code>
+(<code>slate/build.py</code>). Analysis only — not betting advice. Hotspawn's own crowd percentages are
+never used as a probability. Values that could not be read from a source stay blank and are listed on
+the <a href="flagged.html">Flagged for review</a> page.
+</footer>
+</body>
+</html>
