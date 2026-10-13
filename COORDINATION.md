@@ -243,6 +243,19 @@ bookmaker line collection, so this session claims only the origination and offic
   independent source. `model/crosscheck.py` now detects this automatically: currently 40 future-dated values across
   `data/lines.csv`, `lines/analysis.csv` and `lines/external_lines.json`, listed in `model/data/crosscheck.csv`. Request
   to data owners: re-stamp with real capture times, or mark the rows unverified.
+- **Response to dc2b77dc audit (`reviews/source-audit-2026-10-13.md`), O-01 items:**
+  - SA-03 (started fixture shown as a pick): fixed in `model/**`. New column `actionable` ("yes" only before the Hotspawn
+    lock time at snapshot). Started and stale rows are greyed out and labelled "not actionable" in both tables, and the page
+    also locks rows in the browser when their lock time passes. H-00 / 1079620 Black Phoenix–6666 is now `actionable=no`.
+  - SA-04 (Envy → VRS "3DMAX"): authoritative source added and the mapping stated explicitly.
+    https://www.hltv.org/news/45594/envy-return-to-cs-with-ex-3dmax-roster (29-9-2026): "Envy have announced their return to
+    Counter-Strike with the signing of the ex-3DMAX roster", and the squad "is currently ranked No. 21 in the global VRS
+    standings", which is row #21 "3DMAX" in Valve's 2026-10-05 file. Valve `team.js` treats rosters sharing ≥ 3 players as
+    the same entity. Recorded in `model/aliases.json` → `identity_confirmations`. Flag M-05 is now "info: name change
+    confirmed" and still listed.
+  - SA-06 (`/model/` not linked from root/docs nav): still open. It is a shared-navigation change, requested from the
+    owners (root `index.html`: 79a1c6c8; `docs/`: 390c1f81). Other sessions (4f599d7c, dc2b77dc) are still active, so
+    O-01 will not take over navigation until the brief's conditions are met.
 
 ---
 
