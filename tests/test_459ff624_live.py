@@ -244,5 +244,12 @@ class BuildRules(unittest.TestCase):
         self.assertEqual(len(flags["FL-21"]["fixtures"]), 1)
 
 
+    def test_flag_reference_is_only_a_link_when_the_section_exists(self):
+        self.assertIn("href=\"flagged.html#FL-01\"", build.flag_markup("FL-01", {"FL-01"}))
+        plain = build.flag_markup("FL-01", set())
+        self.assertNotIn("href=", plain)
+        self.assertIn("FL-01", plain)
+
+
 if __name__ == "__main__":
     unittest.main()
