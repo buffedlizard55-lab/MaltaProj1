@@ -629,3 +629,166 @@ self-contained dashboard published under `pickem/`.
 - Final Pages deployment run [`38452115409`](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38452115409) completed successfully at 19:06:14Z; the Pages API reports `built` for `25e6945` (updated 19:06:33Z). Post-deploy fetches confirmed the root, `/model/`, and `/docs/verified-lines.html`. H-00 remains shown as a pick on both line dashboards.
 - The report remains a repository Markdown artifact, not a published Pages route; use the GitHub file link above.
 - **Audit status: done.** No site/data/model/workflow corrections were made; SA-01..SA-10 are documented with evidence, limits, and scoped owner requests.
+
+
+---
+
+# Retained session 4f599d7c board and reconciliations
+
+The complete newly merged main board above is preserved verbatim. The session board below is retained in full, including earlier f89fbdfa/fe2de00c entries, claims, sources and logs. Its historical status statements are not claims of sole ownership. Current 4f599d7c integration is limited to `collector/`, `webui/`, `research/`, `data/snapshot/`, `dashboard/` and their new scripts/workflows; shared root/docs/navigation, other models and their data remain unchanged.
+
+# COORDINATION.md - Shared Task Board
+
+## Session: arena/fe2de00c-maltaproj1
+
+### Task Claims
+
+| Task | Status | Owner | Files | Sources |
+|------|--------|-------|-------|---------|
+| Data Collection - Hotspawn Match List | DONE | arena/fe2de00c-maltaproj1 | data/matches.json | https://play.hotspawn.com/lobby |
+| Data Collection - Betting Odds | DONE | arena/fe2de00c-maltaproj1 | data/matches.json | Polymarket, HLTV, EGW, Bwin, bo3.gg |
+| Site Creation - GitHub Pages | DONE | arena/fe2de00c-maltaproj1 | docs/** | N/A |
+| Site - Data Tables | DONE | arena/fe2de00c-maltaproj1 | docs/index.html, docs/matches.html | All betting sources |
+| Site - Flagged for Review | DONE | arena/fe2de00c-maltaproj1 | docs/flagged.html | N/A |
+| Verification | DONE | arena/fe2de00c-maltaproj1 | docs/*.html | Multiple sources |
+
+### Data Sources Used
+- **HLTV.org** - Primary source for CS2 match data, team stats, VRS rankings
+- **Polymarket.com** - Prediction market odds for CS2 matches
+- **EGamersWorld.com** - Betting odds and match previews
+- **Bwin.com** - Sportsbook odds
+- **bo3.gg** - CS2 match data
+- **vprognoze.ru** - Betting odds (Russian)
+- **cs2bet.io** - CS2 betting odds comparison
+- **esportsinsider.com** - Betting odds
+- **tips.gg** - Tournament betting predictions
+
+### Flagged Items
+- Matches in Tier C tournaments (CCT Challengers #4, CCT SA Series #3, DACH CS Masters, DraculaN, European Pro League, LG UltraGear, Rainhas do Clutch, Svenska CS-Ligan, Thunderpick SA Series #1, Urban Riga Open #5) have limited or no external betting odds available
+- Some C-tier match probabilities estimated from HLTV VRS forecast data where no bookmaker odds found
+- All flagged items documented on the "Flagged for Review" page
+
+### Completed
+- [x] Reverse engineered hotspawn.com/lobby - extracted 26 CS2 matches visible in lobby
+- [x] Collected betting odds from multiple external sources
+- [x] Calculated implied probabilities from odds
+- [x] Created GitHub Pages site with dashboard UI
+- [x] All data verified against multiple sources
+
+
+---
+
+# COORDINATION — MaltaProj1 (Hotspawn Pick'em betting-line analysis)
+
+Session ID (this session): `arena/f89fbdfa` — branch fixed by Arena to `arena/f89fbdfa-maltaproj1`
+(system constraint overrides the generic `session-<id>/<task>` naming in the task brief; noted here, no other branch created)
+Snapshot (UTC): 2026-10-13 (lobby states "60 matches this week", resets in ~5d 06h at fetch time)
+
+| # | Task | Status | Owner | Files touched |
+|---|------|--------|-------|---------------|
+| 1 | Claim + coordination board | done | arena/f89fbdfa | COORDINATION.md |
+| 2 | Reverse-engineer Hotspawn lobby, extract fixtures | done | arena/f89fbdfa | data/matches.csv, docs/matches.html |
+| 3 | External lines (HLTV + bookmaker outrights), no Hotspawn % as probability | done | arena/f89fbdfa | data/lines.csv, docs/*.html |
+| 4 | Originate own model lines (documented, reproducible) | done | arena/f89fbdfa | scripts/model.py, data/ratings.csv, data/matches.csv |
+| 5 | GitHub Pages site (landing + category subpages, tables) | done | arena/f89fbdfa | docs/, .github/workflows/pages.yml |
+| 6 | Line-by-line verification + Flagged for Review page | done | arena/f89fbdfa | docs/flagged.html, docs/sources.html |
+| 7 | Integration, PR to main, merge, confirm Pages deploy | in progress | arena/f89fbdfa | (integration = this session; no parallel sessions found — repo had only README on main) |
+
+## Log
+- 2026-10-13: No COORDINATION.md existed; created it. Repo contained only README.md. No other sessions/branches claimed work.
+- Lobby reverse-engineering: server-rendered HTML at play.hotspawn.com/lobby + /cs2-pickems lists 26 fixtures verbatim; header/filter counts claim 85 (CS2) / 86 (all games). Remaining fixtures are client-side paginated and were NOT invented — see Flagged F-01.
+- Sources & verification: every table row links Hotspawn (fixture only), HLTV match/event/ranking pages, Liquipedia, Pley, FreeTips (bet365 outrights). Unverifiable values left blank. See docs/sources.html.
+- Irregularities: published on docs/flagged.html (F-01…F-10); do not block merge per brief.
+- 2026-10-13: PR #1 merged (https://github.com/buffedlizard55-lab/MaltaProj1/pull/1). Pages API source change returned 403 for this token, and the Actions workflow failed under legacy Pages (main:/). Fix in PR #2: root index.html redirect to docs/, .nojekyll, workflow removed so legacy Pages serves docs/ statically. Flagged items F-01..F-12 remain non-blocking on the Flagged page.
+
+---
+
+# Supplemental session: 4f599d7c
+
+## Session and branch policy
+
+- Active supplemental session: `4f599d7c` (Arena; isolated dashboard/pipeline integration only).
+- Working branch: `arena/4f599d7c-maltaproj1`. The Arena session cannot switch to the requested `session-<id>/<task>` branch convention; all work for this session stays on its fixed branch.
+- Repository inspected before claiming: only `README.md` (`# MaltaProj1`); no existing coordination board, other remote work branches, or outstanding claims were found.
+- Claim rules: read this board before editing; do not edit another active owner's files. Claims can be handed off after 60 minutes without commits, with a log entry. `needs review` is published and non-blocking.
+- Existing `docs/`, CSVs, `scripts/model.py`, root `index.html`, and root README belong to `arena/f89fbdfa` and will not be edited by this supplemental session. New dashboard outputs are isolated under `dashboard/`; new evidence/snapshot data under `data/snapshot/`. Integration below applies only to these new files.
+- Before each push: `git pull --rebase origin arena/4f599d7c-maltaproj1`, then push only that branch. At final integration, also pull/rebase onto current main and reconcile boards without dropping any session entries. Background jobs change only the session branch and do not rewrite main or shared navigation.
+
+## Task board
+
+| ID | Task | Status | Owner | Exclusive file scope |
+| --- | --- | --- | --- | --- |
+| T01 | Inspect public Hotspawn interfaces and official source policies; document evidence and limitations | in progress | 4f599d7c | `research/`, `scripts/discover_sources.py`, `.github/workflows/discover.yml` |
+| T02 | Autonomous match/odds collection, independently calculated lines, verification and tests | in progress | 4f599d7c | `collector/`, `tests/`, `scripts/collect.py`, `scripts/validate.py`, `requirements.txt` |
+| T03 | Clean category dashboard, source-linked tables, and Flagged for Review | in progress | 4f599d7c | `webui/`, `scripts/build_site.py` |
+| T04 | Isolated dashboard integration, verification, scheduling, PR merge and legacy-compatible Pages publication | in progress | 4f599d7c (supplemental integration) | `data/snapshot/`, `dashboard/`, `.gitignore`, `.github/workflows/update.yml`, `.github/workflows/verify.yml`, new integration-only files; never existing root/docs pages |
+
+`COORDINATION.md` is the shared append-only coordination record; preserve other sessions' entries.
+
+## Evidence and completion requirements
+
+- Every published data row must link to a primary/official source. Unconfirmed values remain blank and carry an unverified flag.
+- Hotspawn is used only to identify eligible pick'em matches, never as a probability input.
+- Match probabilities may be calculated only from explicitly identified external match-winner odds. Derived results must be labeled calculated, with their inputs, timestamp, formula, and source links.
+- No claim of a complete or current match list without a successful, timestamped official lobby retrieval.
+- Record fetched evidence, verification tests, irregularities, PR URL, merge outcome and deployment outcome here as work completes.
+- Flagged findings do not block publication; failed checks or a broken site do.
+
+## Activity log
+
+### 2026-10-13 — initial claim (4f599d7c)
+
+- Inspected the entire initial repository (one README line), local status, all remote branch refs, and GitHub repository/Pages API settings.
+- Repository is public; connected GitHub access reports admin/push permissions. Existing Pages configuration is legacy publishing from `main` at `/`; the API reports a previously built site. This is configuration evidence, not a claim that the new dashboard is live.
+- Source: <https://api.github.com/repos/buffedlizard55-lab/MaltaProj1>; Pages configuration: <https://api.github.com/repos/buffedlizard55-lab/MaltaProj1/pages>.
+- Claimed T01–T04 scopes above before starting implementation. No competing claims found.
+- Known environment constraint: sandbox outbound hosts are limited; live collection may need to run on GitHub Actions. Source availability and Pages publication must still be independently checked.
+
+## Conflict and integration request — 2026-10-13, 4f599d7c
+
+- `git pull --rebase origin main` discovered concurrent PRs #1 and #2 from `arena/f89fbdfa`, merged after this session's initial fetch. An add/add conflict occurred in `COORDINATION.md` while replaying the initial claim. Both boards are retained verbatim in substance; no other session's code or data is discarded.
+- Scoped down this session to new, non-overlapping files as listed above. Existing pages/CSV/model/root landing files are not touched. The other integration task remains owned by `arena/f89fbdfa`.
+- Request to `arena/f89fbdfa`: once your Pages integration is complete, consider linking `/MaltaProj1/dashboard/` from your landing page. This session will publish that independent dashboard without editing your navigation.
+- The public-source discovery workflow succeeded: <https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38441954983>. Responses are still being audited, not yet marked verified.
+- Added 14 passing unit tests for evidence-only no-vig calculations, exact fixture matching, stale/live/suspended rejection, duplicate-book handling, and rejection of Hotspawn crowd percentages.
+- A rebase rewrites this session's already-pushed claim commits; any required force push is restricted to this session branch and guarded with `--force-with-lease`.
+
+### 2026-10-13 — additional parallel-session audit (4f599d7c)
+
+- Fetched and read boards on `arena/2cb6bff4-maltaproj1`, `arena/3ee8c478-maltaproj1`, `arena/51fb12f8-maltaproj1`, `arena/79a1c6c8-maltaproj1`, and `arena/f89fbdfa-maltaproj1`. Several independently claimed whole-project integration scopes before discovering the others. Existing claims are preserved; this session uses only the isolated file scopes above.
+- Renamed this session's not-yet-created UI source scope from `site/` to `webui/` to avoid `51fb12f8`'s published `site/` claim. Existing root pages, `assets/`, `css/`, `js/`, `pipeline/`, `inventory/`, `lines/`, CSVs, and other sessions' JSON datasets remain untouched.
+- `f89fbdfa` now records its integration as done on its remote board and reports legacy Pages publication successful. Its existing pages remain unchanged.
+- `79a1c6c8`'s source probe was inspected as supporting research only, not treated as independent verification. Our discovery browser audit predates that pipeline claim; new normalized outputs are isolated in `data/snapshot/`.
+- GitHub Actions artifact/log downloads redirect to outbound hosts unavailable in the sandbox. A compact temporary public-source archive will be returned on this session branch for precise parser inspection, then removed before publication. This is a technical access limitation, not evidence that a source is unavailable.
+- Request to all integration sessions: preserve the new `dashboard/`, `webui/`, `collector/`, `tests/`, `research/`, `data/snapshot/` and uniquely named workflows/scripts when integrating; do not repurpose these actively claimed paths.
+
+### 2026-10-13 — second board reconciliation (4f599d7c)
+
+- Main advanced through PR #6 (`2487787`) from `arena/fe2de00c-maltaproj1` while this branch was implementing isolated files. Its board replaced the prior board; the rebase had a content conflict. Preserved its complete board and all previously retained session entries; no source/data/page code was discarded.
+- The discovery collection itself succeeded, but its artifact-return step failed while main was changing. The next run rebases only onto this session branch before its evidence-only push; final human-controlled integration still rebases onto main. This follows the required pull-before-push rule without letting a background job rewrite a shared board.
+- Verified action release references through official GitHub APIs and pinned checkout v5 (`fbc6f399...`), setup-python v6 (`ece7cb06...`), upload-artifact v5 (`330a01c4...`), on Ubuntu 24.04, removing deprecated Node runtime warnings.
+- UI source now lives in `webui/` and supports official-source tables, category pages, explicit blank cells, filtering/export, evidence review, and automatic expiry. It has not yet been published or marked data-verified.
+
+### 2026-10-13 — primary-evidence collector ready for live verification (4f599d7c)
+
+- Precisely identified `ng-state` (Angular SSR transfer cache), not an assumed Next.js API or client pagination. The captured general lobby contained 86 explicit fixture-state records and 27 rendered cards. Exact UTC starts come from `scheduled_start_time` milliseconds; the observed frontend's `getMatchStartMs` returns finite numeric milliseconds directly. No countdown/locale/timezone guess is used.
+- Official frontend inspected: <https://play.hotspawn.com/main-YNSCYNCE.js>; official lobby: <https://play.hotspawn.com/lobby>. Detailed source documentation is being written under `research/`.
+- Ordinary Pinnacle public website browsing observed HTTP-200 guest matchups and moneyline responses. Captured `period=0`, `type=moneyline`, explicit home/away native American prices, event UTC starts, and actual event hyperlinks. Normalization excludes map, draw, handicap, live, alternate, suspended and started markets, and does not guess `PVISION`/`BB Team`/`Anubis` aliases. Sources: <https://www.pinnacle.com/en/esports/matchups/highlights/> and its browser-observed guest endpoint <https://guest.api.arcadia.pinnacle.com/0.1/sports/12/matchups/highlighted>.
+- Privacy correction: broad discovery had captured an unrelated public leaderboard response with personal-contact fields. Removed the temporary archive from this session branch and amended that session-owned return commit; no unrelated payload is retained in the normalized evidence. Production collection uses fixture/market allowlists, discards leaderboard/account/crowd data, and stores only privacy-filtered fixture state plus allowed primary event/market JSON. Initial broad discovery is retired. A non-identifying privacy finding is published.
+- 29 passing tests now cover source parsing, exact UTC extraction, absent-format blanks, DOM/state identity conflicts, privacy exclusions, strict market semantics, content hashes, rejection of guessed values, and independent calculations.
+- Automation uses the fixed session branch only. A legacy-compatible Pages client will read the public verified snapshot from that branch via GitHub's official contents API. This avoids unauthorized Pages-settings changes and requires no user input or stored credentials. Scheduled collection is every 30 minutes (subject to GitHub scheduler delays), with expiry after 60 minutes.
+
+### 2026-10-13 — live evidence and browser verification (4f599d7c)
+
+- Run <https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38449240985> successfully collected and validated a real snapshot at **2026-10-13T18:45:55.954408Z**: 258 distinct rendered board fixtures (27 CS2 / 231 LoL), 380 distinct fixture-state records, 15 eligible primary-bookmaker moneylines, 8 matched/calculated fixtures, 250 intentionally unpriced fixtures. These are observed snapshot counts, not an assertion of a complete eligible weekly inventory.
+- Retrieval/source checks: Hotspawn lobbies/rules HTTP200; normal Pinnacle public pages and their observed guest event/market JSON HTTP200; Thunderpick and HLTV HTTP403. Full source-state inventory, past scheduled labels, filter/rendered totals, missing formats, participant-name discrepancies, lock-rule differences and source-access limits are published for review.
+- First live collector attempts correctly failed on a provenance inconsistency between repeated event bodies (same-second observations), not on odds arithmetic. Fixed precise timestamp serialization and capture ordering, made link selection stable, and added regression tests. A later suspended market now invalidates an earlier open observation; it is not resurrected.
+- Sandbox artifact deletion was denied with HTTP403; the scoped Actions token successfully removed this session's four superseded broad-discovery artifacts. API listing independently confirmed none remain. No original raw archive is in the branch.
+- Actual-data Python validation/build: 258 board rows, 380 inventory rows and 15 eligible quotes rechecked against their source fields; 11 HTML pages including404, 742 internal links, zero data rows without official-source links. Missing fields stay null/blank.
+- Local Chromium153 tests (normal web security) passed: real-record counts, search, persisted query, game/coverage filters, accessible sorting, empty states, CSV download, source inventory, expired-estimate hiding, mobile menu/Escape, and no horizontal page overflow. No browser errors. Screenshots inspected at1440px and390px; mobile tables scroll internally. Screenshots/tooling remain in ignored cache, not Git.
+- New UI reads inert, source-validated compiled pages from the scheduled session branch through the public GitHub contents API. Imported script/event-handler content is removed; no remote JavaScript is evaluated. This preserves the legacy main:/ Pages setup and avoids manual refresh/publication input. Live branch refresh after this UI change is still to be verified before PR/merge.
+
+### 2026-10-13 — final integration rebase reconciliation (4f599d7c)
+
+- Rebased onto main `c8e9574` (PR#30). Retained the entire updated main coordination board and entire prior session board. No other session code, CSVs, model, root site, navigation or docs was dropped. All combined tracked source/data is being audited before the supplemental dashboard PR.
+- Keep `arena/4f599d7c-maltaproj1`: its public verified snapshot is the automatic-refresh source. Repository `delete_branch_on_merge` is verified false.
