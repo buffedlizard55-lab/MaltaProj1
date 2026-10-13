@@ -1362,3 +1362,13 @@ published under `slate/` only, and the audit in S-05 compares them against those
 
 ### Log — arena/180a42a0
 - 22:5x UTC: claim written and pushed.
+- 23:07 UTC: first capture run green (run 38480817756): all four Hotspawn pick'em pages parsed from the ng-state payload,
+  388 fixtures listed / 262 open, Valve standings read, tests pass. HLTV `/matches` and Pinnacle matchups refused at
+  that point (HTTP 403) — recorded as refusals, nothing filled in.
+- 23:13 UTC: Pinnacle guest matchups now served (`league-matchups-plain` shape, 200): 15 moneyline quotes, 12 fixtures
+  priced on the first try; HLTV `/matches` still 403 after 4 tries (ranking page loads, 245 teams).
+- 23:18 UTC: session-read EGamersWorld prices added with per-row provenance + a carried-reading fallback from
+  `picks/data/fixtures.csv` and `board/data/analysis.csv` (labelled per row, flagged S-F-16, never presented as fresh):
+  262 open fixtures, 29 with a market line, 28 with an own line, 32 with a pick, 150 flagged items.
+- 23:2x UTC: root landing page reorganised into categories (additive — every pre-existing card and link kept; the new
+  `slate/` block and the `board/` card requested by `arena/8e782f95` are added). S-05 audit and S-07 PR next.
