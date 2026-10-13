@@ -1,13 +1,13 @@
 {
  "meta": {
-  "generated_utc": "2026-10-13T21:32:26Z",
-  "source_snapshot_utc": "2026-10-13T21:32:25Z",
-  "hotspawn_snapshot_utc": "2026-10-13T21:32:00Z",
-  "egw_snapshot_utc": "2026-10-13T21:32:06Z",
-  "pinnacle_snapshot_utc": "2026-10-13T21:32:13Z",
-  "hltv_snapshot_utc": "2026-10-13T21:32:21Z",
-  "valve_snapshot_utc": "2026-10-13T21:32:25Z",
-  "pickem_week_reset_utc": "2026-10-19T03:42:46Z",
+  "generated_utc": "2026-10-13T21:37:42Z",
+  "source_snapshot_utc": "2026-10-13T21:37:42Z",
+  "hotspawn_snapshot_utc": "2026-10-13T21:37:15Z",
+  "egw_snapshot_utc": "2026-10-13T21:37:22Z",
+  "pinnacle_snapshot_utc": "2026-10-13T21:37:29Z",
+  "hltv_snapshot_utc": "2026-10-13T21:37:38Z",
+  "valve_snapshot_utc": "2026-10-13T21:37:42Z",
+  "pickem_week_reset_utc": "2026-10-19T03:48:02Z",
   "pickem_week_total_text": 126,
   "pickem_week_total_context": " Tournaments How To Play League of Legends Pick'em Lobby Play other game titles This week 126 matches this week Resets in 5d 06h 10m 40s Sign in to tra",
   "pickem_page_header_counts": [
@@ -93,10 +93,10 @@
    "fixtures_in_week": 124,
    "cs2": 31,
    "lol": 93,
-   "with_market_probability": 6,
+   "with_market_probability": 7,
    "with_own_line": 0,
-   "with_pick": 6,
-   "pinnacle_matched": 6,
+   "with_pick": 7,
+   "pinnacle_matched": 7,
    "stale_listings_excluded": 260
   },
   "weights": {
@@ -671,7 +671,7 @@
    "odds_kind": null,
    "odds_bookmakers": [],
    "odds_source_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
-   "odds_fetched_utc": "2026-10-13T21:32:21Z",
+   "odds_fetched_utc": "2026-10-13T21:37:36Z",
    "market_sources": [
     {
      "source": "Pinnacle (public guest moneyline)",
@@ -685,8 +685,8 @@
       "format": "american (converted to decimal with 1 + value/100 for positive prices and 1 + 100/|value| for negative prices)"
      },
      "url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
-     "page_url": "https://www.pinnacle.com/en/esports/games/league-of-legends/matchups/",
-     "fetched_utc": "2026-10-13T21:32:21Z"
+     "page_url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
+     "fetched_utc": "2026-10-13T21:37:36Z"
     }
    ],
    "overround_pct": 7.57,
@@ -812,7 +812,7 @@
    "odds_kind": null,
    "odds_bookmakers": [],
    "odds_source_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
-   "odds_fetched_utc": "2026-10-13T21:32:21Z",
+   "odds_fetched_utc": "2026-10-13T21:37:36Z",
    "market_sources": [
     {
      "source": "Pinnacle (public guest moneyline)",
@@ -826,8 +826,8 @@
       "format": "american (converted to decimal with 1 + value/100 for positive prices and 1 + 100/|value| for negative prices)"
      },
      "url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
-     "page_url": "https://www.pinnacle.com/en/esports/games/league-of-legends/matchups/",
-     "fetched_utc": "2026-10-13T21:32:21Z"
+     "page_url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
+     "fetched_utc": "2026-10-13T21:37:36Z"
     }
    ],
    "overround_pct": 4.71,
@@ -864,30 +864,46 @@
    "status": "scheduled",
    "hotspawn_url": "https://www.hotspawn.com/matches/1076650",
    "hotspawn_page": "https://play.hotspawn.com/lol-pickems",
-   "odds_a": null,
-   "odds_b": null,
+   "odds_a": 1.62111801242236,
+   "odds_b": 2.3200000000000003,
    "odds_kind": null,
    "odds_bookmakers": [],
-   "odds_source_url": null,
-   "odds_fetched_utc": null,
-   "market_sources": [],
-   "overround_pct": null,
-   "market_p_a_pct": null,
-   "market_p_b_pct": null,
+   "odds_source_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
+   "odds_fetched_utc": "2026-10-13T21:37:36Z",
+   "market_sources": [
+    {
+     "source": "Pinnacle (public guest moneyline)",
+     "odds_a": 1.62111801242236,
+     "odds_b": 2.3200000000000003,
+     "p_a_pct": 58.9,
+     "overround_pct": 4.79,
+     "native": {
+      "odds_a": 132,
+      "odds_b": -161,
+      "format": "american (converted to decimal with 1 + value/100 for positive prices and 1 + 100/|value| for negative prices)"
+     },
+     "url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
+     "page_url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
+     "fetched_utc": "2026-10-13T21:37:36Z"
+    }
+   ],
+   "overround_pct": 4.79,
+   "market_p_a_pct": 58.9,
+   "market_p_b_pct": 41.1,
    "own_model_p_a_pct": null,
    "own_model_p_b_pct": null,
    "model_inputs": [],
-   "final_p_a_pct": null,
-   "final_p_b_pct": null,
-   "estimate_basis": "unavailable \u2014 neither a bookmaker price nor a rating line could be sourced",
-   "pick": null,
-   "pick_pct": null,
+   "final_p_a_pct": 58.9,
+   "final_p_b_pct": 41.1,
+   "estimate_basis": "market only (no rating line for both teams)",
+   "pick": "KT Rolster",
+   "pick_pct": 58.9,
    "locked": false,
    "started": false,
    "flags": [
-    "no_external_match_page_matched",
-    "no_external_price_found",
-    "no_probability_available",
+    "market_only_no_own_line",
+    "pinnacle_pair_order_reversed",
+    "single_market_source",
     "vrs_rating_missing:KT Rolster,BNK FearX"
    ]
   },
@@ -953,7 +969,7 @@
    "odds_kind": null,
    "odds_bookmakers": [],
    "odds_source_url": "https://guest.api.arcadia.pinnacle.com/0.1/leagues/293370/markets/straight",
-   "odds_fetched_utc": "2026-10-13T21:32:21Z",
+   "odds_fetched_utc": "2026-10-13T21:37:36Z",
    "market_sources": [
     {
      "source": "Pinnacle (public guest moneyline)",
@@ -967,8 +983,8 @@
       "format": "american (converted to decimal with 1 + value/100 for positive prices and 1 + 100/|value| for negative prices)"
      },
      "url": "https://guest.api.arcadia.pinnacle.com/0.1/leagues/293370/markets/straight",
-     "page_url": "https://www.pinnacle.com/en/esports/games/league-of-legends/matchups/",
-     "fetched_utc": "2026-10-13T21:32:21Z"
+     "page_url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
+     "fetched_utc": "2026-10-13T21:37:36Z"
     }
    ],
    "overround_pct": 5.8,
@@ -1052,7 +1068,7 @@
    "odds_kind": null,
    "odds_bookmakers": [],
    "odds_source_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
-   "odds_fetched_utc": "2026-10-13T21:32:21Z",
+   "odds_fetched_utc": "2026-10-13T21:37:36Z",
    "market_sources": [
     {
      "source": "Pinnacle (public guest moneyline)",
@@ -1066,8 +1082,8 @@
       "format": "american (converted to decimal with 1 + value/100 for positive prices and 1 + 100/|value| for negative prices)"
      },
      "url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
-     "page_url": "https://www.pinnacle.com/en/esports/games/league-of-legends/matchups/",
-     "fetched_utc": "2026-10-13T21:32:21Z"
+     "page_url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
+     "fetched_utc": "2026-10-13T21:37:36Z"
     }
    ],
    "overround_pct": 4.63,
@@ -1739,7 +1755,7 @@
    "odds_kind": null,
    "odds_bookmakers": [],
    "odds_source_url": "https://guest.api.arcadia.pinnacle.com/0.1/leagues/293370/markets/straight",
-   "odds_fetched_utc": "2026-10-13T21:32:21Z",
+   "odds_fetched_utc": "2026-10-13T21:37:36Z",
    "market_sources": [
     {
      "source": "Pinnacle (public guest moneyline)",
@@ -1753,8 +1769,8 @@
       "format": "american (converted to decimal with 1 + value/100 for positive prices and 1 + 100/|value| for negative prices)"
      },
      "url": "https://guest.api.arcadia.pinnacle.com/0.1/leagues/293370/markets/straight",
-     "page_url": "https://www.pinnacle.com/en/esports/games/league-of-legends/matchups/",
-     "fetched_utc": "2026-10-13T21:32:21Z"
+     "page_url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
+     "fetched_utc": "2026-10-13T21:37:36Z"
     }
    ],
    "overround_pct": 5.93,
@@ -1796,7 +1812,7 @@
    "odds_kind": null,
    "odds_bookmakers": [],
    "odds_source_url": "https://guest.api.arcadia.pinnacle.com/0.1/leagues/293370/markets/straight",
-   "odds_fetched_utc": "2026-10-13T21:32:21Z",
+   "odds_fetched_utc": "2026-10-13T21:37:36Z",
    "market_sources": [
     {
      "source": "Pinnacle (public guest moneyline)",
@@ -1810,8 +1826,8 @@
       "format": "american (converted to decimal with 1 + value/100 for positive prices and 1 + 100/|value| for negative prices)"
      },
      "url": "https://guest.api.arcadia.pinnacle.com/0.1/leagues/293370/markets/straight",
-     "page_url": "https://www.pinnacle.com/en/esports/games/league-of-legends/matchups/",
-     "fetched_utc": "2026-10-13T21:32:21Z"
+     "page_url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
+     "fetched_utc": "2026-10-13T21:37:36Z"
     }
    ],
    "overround_pct": 5.99,
@@ -5408,7 +5424,7 @@
   {
    "code": "R-COUNT",
    "title": "The lobby's 'matches this week' count differs from the rows in the payload window",
-   "detail": "The lobby page prints 68 matches this week (context: \" Tournaments How To Play League of Legends Pick'em Lobby Play other game titles This week 126 matches this week Resets in 5d 06h 10m 40s Sign in to tra\"), while the same page's payload yields 124 rows whose start falls inside the week window that ends 2026-10-19T03:42:46Z (the window comes from the page's own reset countdown). Per-page header counts: lobby=68, cs2-pickems=60, thp-pickems=60, lol-pickems=126. The difference is published, not explained away; the board shows every row the payload contains in the window.",
+   "detail": "The lobby page prints 68 matches this week (context: \" Tournaments How To Play League of Legends Pick'em Lobby Play other game titles This week 126 matches this week Resets in 5d 06h 10m 40s Sign in to tra\"), while the same page's payload yields 124 rows whose start falls inside the week window that ends 2026-10-19T03:48:02Z (the window comes from the page's own reset countdown). Per-page header counts: lobby=68, cs2-pickems=60, thp-pickems=60, lol-pickems=126. The difference is published, not explained away; the board shows every row the payload contains in the window.",
    "source_url": "https://play.hotspawn.com/lobby",
    "items": []
   },
@@ -8022,7 +8038,7 @@
   },
   {
    "code": "R-NOMKT",
-   "title": "118 fixtures have no external bookmaker price",
+   "title": "117 fixtures have no external bookmaker price",
    "detail": "Those values are left blank in the published dataset and shown as \"-\" on the board.",
    "source_url": "https://egamersworld.com/counterstrike/matches",
    "items": [
@@ -8041,7 +8057,6 @@
     "1081105",
     "1079621",
     "1081111",
-    "1076650",
     "1079438",
     "1079622",
     "1081112",
@@ -8280,12 +8295,13 @@
   },
   {
    "code": "R-SINGLE",
-   "title": "6 fixtures rest on a single price reading",
+   "title": "7 fixtures rest on a single price reading",
    "detail": "Only one bookmaker price (or one source) was readable, so there is no cross-source agreement behind the median.",
    "source_url": "https://egamersworld.com/counterstrike/matches",
    "items": [
     "1079546",
     "1080176",
+    "1076650",
     "1079439",
     "1080177",
     "1079440",

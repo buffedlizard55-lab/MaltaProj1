@@ -1,11 +1,11 @@
 playwright available: True
 probe hotspawn       path=http status=200 bytes=433814 err=None
-probe egw-cs2        path=browser status=403 bytes=5815 err=None
-probe hltv-ranking   path=browser status=200 bytes=1246943 err=None
+probe egw-cs2        path=browser status=403 bytes=5814 err=None
+probe hltv-ranking   path=browser status=200 bytes=1247932 err=None
 probe valve-api      path=http status=200 bytes=50648 err=None
 slate candidates for odds lookup: 124 of 384 payload rows
 {
- "generated_utc": "2026-10-13T21:32:25Z",
+ "generated_utc": "2026-10-13T21:37:42Z",
  "hotspawn_fixtures": 384,
  "sports": {
   "cs2": 90,
@@ -13,7 +13,7 @@ slate candidates for odds lookup: 124 of 384 payload rows
  },
  "week_total_text": 126,
  "week_total_context": " Tournaments How To Play League of Legends Pick'em Lobby Play other game titles This week 126 matches this week Resets in 5d 06h 10m 40s Sign in to tra",
- "reset_utc": "2026-10-19T03:42:46Z",
+ "reset_utc": "2026-10-19T03:48:02Z",
  "ng_state_rows": {
   "lobby": 90,
   "cs2-pickems": 85,
@@ -31,12 +31,12 @@ slate candidates for odds lookup: 124 of 384 payload rows
  "egw_fixtures_with_book_table": 0,
  "egw_fixtures_without_link": 124,
  "egw_deadline_hit": false,
- "pinnacle_quotes": 31,
+ "pinnacle_quotes": 14,
  "pinnacle_counters": {
-  "events": 184,
-  "market_records": 2629,
-  "rejected": 2550,
-  "quotes": 73
+  "events": 101,
+  "market_records": 1543,
+  "rejected": 1517,
+  "quotes": 23
  },
  "hltv_ranking_teams": 0,
  "hltv_matches": 0,
