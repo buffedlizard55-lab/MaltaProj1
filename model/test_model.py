@@ -176,6 +176,24 @@ class TestOutputs(unittest.TestCase):
         self.assertLess(o["calibrated_train_k"]["log_loss"], o["raw"]["log_loss"])  # adopted only if it helps out of sample
         self.assertAlmostEqual(build.p_k(build.G, 1700, 1500), build.valve_expected(1700, 1500), places=12)
 
+    def test_aliases_are_evidence_backed_and_reverified(self):
+        al = json.loads((ROOT / "aliases.json").read_text())["aliases"]
+        by = {t["hotspawn_team"]: t for t in self.teams}
+        vrs_names = {build.norm(t["vrs_name"]) for t in self.teams if t["vrs_name"]}
+        for a in al:
+            urls = [e["url"] for e in a["evidence"]]
+            self.assertTrue(all(u.startswith(("https://www.hltv.org/", "https://www.hotspawn.com/")) for u in urls), a)
+            self.assertTrue(any("hotspawn.com/matches/" in u for u in urls) and any("hltv.org/matches/" in u for u in urls), a)
+            t = by.get(a["hotspawn_team"])
+            if t is None:
+                continue  # team not on the current slate
+            if t["resolution"] == build.ALIAS_STATUS:
+                self.assertTrue(t["hltv_url"].startswith(f"https://www.hltv.org/team/{a['hltv_team_id']}/"), t)
+                self.assertTrue(t["vrs_url"].startswith(OFFICIAL[2]))
+                # alias used only when no VRS row carries the Hotspawn name itself
+                lines = (ROOT / "input" / "vrs" / Path(json.loads((ROOT / "input" / "vrs" / "meta.json").read_text())["path"]).name).read_text(encoding="utf-8")
+                self.assertNotIn(f"| {a['hotspawn_team']} ", lines)
+
     def test_no_fuzzy_name_matching(self):
         for t in self.teams:
             if t["resolution"] in ("VERIFIED: VRS name + HLTV roster", "VERIFIED: VRS name"):

@@ -50,6 +50,7 @@ VALVE_GLICKO = VALVE_REPO + "/blob/{c}/model/glicko.js"
 VALVE_TEAM = VALVE_REPO + "/blob/{c}/model/team.js"
 VALVE_README = VALVE_REPO + "/blob/{c}/readme.md"
 LOBBY = "https://play.hotspawn.com/cs2-pickems"
+GH_MAIN = "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/"
 
 
 def valve_expected(pa: float, pb: float) -> float:
@@ -81,7 +82,9 @@ def load_market(root: Path) -> tuple[dict, dict]:
         import subprocess
         r = subprocess.run(["git", "-C", str(root), "log", "-1", "--format=%cI", "--", "lines/analysis.csv"],
                            capture_output=True, text=True, timeout=30)
-        prov["commit_utc"] = r.stdout.strip() or None
+        raw = r.stdout.strip()
+        if raw:  # normalise (git prints +00:00 or Z depending on version) so the digest is environment-independent
+            prov["commit_utc"] = datetime.fromisoformat(raw.replace("Z", "+00:00")).astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     except Exception:  # noqa: BLE001
         pass
     out = {}
@@ -132,15 +135,55 @@ def load_inputs():
     return fx, meta, vrs, hltv, flog
 
 
+def load_aliases() -> dict:
+    f = ROOT / "aliases.json"
+    if not f.exists():
+        return {}
+    return {norm(a["hotspawn_team"]): a for a in json.loads(f.read_text()).get("aliases", [])}
+
+
+ALIAS_STATUS = "VERIFIED: fixture-matched alias -> HLTV roster -> VRS"
+
+
+def try_alias(name: str, vrs: list[dict], aliases: dict, hltv_by_id: dict):
+    """Evidence-backed alias (model/aliases.json), re-verified by roster on every build."""
+    a = aliases.get(norm(name))
+    if not a:
+        return None
+    h = hltv_by_id.get(str(a.get("hltv_team_id")))
+    if not h or not h.get("players"):
+        return {"status": "NOT IN VRS", "hltv": None, "alias": a,
+                "note": f"alias to HLTV '{a.get('hltv_name')}' is recorded but that team is not in the HLTV ranking snapshot, "
+                        "so its roster can't be re-verified"}
+    rows = [r for r in vrs if overlap(r["roster"], h["players"]) >= OVERLAP]
+    if len(rows) == 1:
+        r = rows[0]
+        return {"status": ALIAS_STATUS, "vrs": r, "hltv": h, "alias": a,
+                "note": f"HLTV lists the same fixtures as '{h['name']}' (team {h['team_id']}); its players share "
+                        f"{overlap(r['roster'], h['players'])} with VRS '{r['name']}'"}
+    return {"status": "AMBIGUOUS" if rows else "NOT IN VRS", "hltv": h, "alias": a,
+            "note": f"alias HLTV '{h['name']}' roster matches {len(rows)} VRS rows"}
+
+
 def overlap(a: list[str], b: list[str]) -> int:
     return len({x.casefold() for x in a} & {x.casefold() for x in b})
 
 
-def resolve(name: str, vrs: list[dict], hltv_by: dict) -> dict:
+def resolve(name: str, vrs: list[dict], hltv_by: dict, aliases: dict | None = None,
+            hltv_by_id: dict | None = None) -> dict:
     """Resolve one Hotspawn team name to a VRS row. Returns a dict with status and evidence."""
+    res = _resolve(name, vrs, hltv_by)
+    if res["status"] == "NOT IN VRS" and aliases:
+        al = try_alias(name, vrs, aliases, hltv_by_id or {})
+        if al:
+            res.update({k: v for k, v in al.items()})
+    return res
+
+
+def _resolve(name: str, vrs: list[dict], hltv_by: dict) -> dict:
     cands = [r for r in vrs if norm(r["name"]) == norm(name)]
     h = hltv_by.get(norm(name))
-    res = {"team": name, "vrs": None, "hltv": h, "candidates": cands, "status": "", "note": ""}
+    res = {"team": name, "vrs": None, "hltv": h, "candidates": cands, "status": "", "note": "", "alias": None}
     if h and h.get("players"):
         named_ok = [r for r in cands if overlap(r["roster"], h["players"]) >= OVERLAP]
         if len(named_ok) == 1:
@@ -186,6 +229,8 @@ def main() -> int:
     K = cal["k_published"] if cal else G
     market, mprov = load_market(ROOT.parent)
     hltv_by = {norm(t["name"]): t for t in hltv.get("teams", [])}
+    hltv_by_id = {str(t.get("team_id")): t for t in hltv.get("teams", []) if t.get("team_id")}
+    aliases = load_aliases()
     hltv_url = hltv.get("canonical_url", "https://www.hltv.org/ranking/teams")
     fetched = fx["fetched_utc"]
     week = fx.get("pickem_week") or {}
@@ -195,7 +240,7 @@ def main() -> int:
     perm = fx.get("permalinks", {})
 
     names = sorted({f["participants0_name"] for f in fx["fixtures"]} | {f["participants1_name"] for f in fx["fixtures"]}, key=str.casefold)
-    teams = {n: resolve(n, vrs, hltv_by) for n in names}
+    teams = {n: resolve(n, vrs, hltv_by, aliases, hltv_by_id) for n in names}
 
     rows = []
     for f in sorted(fx["fixtures"], key=lambda f: (int(f["scheduled_start_time"] or 0), f["id"])):
@@ -265,6 +310,8 @@ def main() -> int:
                     reasons.append(f"our line differs from the market reference by {edge:+.1f} pp - review")
             if any(r["status"].startswith("VERIFIED: HLTV roster") for r in (ra, rb)):
                 reasons.append("team matched to VRS by roster (name differs) - review")
+            if any(r["status"] == ALIAS_STATUS for r in (ra, rb)):
+                reasons.append("team rated via fixture-matched HLTV alias (evidence on Flagged list) - review")
         else:
             for r in (ra, rb):
                 if not r["vrs"]:
@@ -307,9 +354,29 @@ def main() -> int:
                  links + [meta["blob_url"]])
         elif st == "AMBIGUOUS":
             c = "; ".join(f"#{x['standing']} {x['name']} {x['points']} pts [{', '.join(x['roster'])}]" for x in r["candidates"]) or r["note"]
+            what_if = []
+            for fr in rows:
+                if t not in (fr["team_a"], fr["team_b"]) or not r["candidates"]:
+                    continue
+                other = teams[fr["team_b"] if fr["team_a"] == t else fr["team_a"]]
+                if not other["vrs"]:
+                    continue
+                ps = [p_k(K, x["points"], other["vrs"]["points"]) for x in r["candidates"]]
+                lo, hi = min(ps), max(ps)
+                same = all(pp > 0.5 for pp in ps) or all(pp < 0.5 for pp in ps)
+                what_if.append(f"{fr['hotspawn_match_id']} vs {other['team']}: P({t}) {100 * lo:.1f}-{100 * hi:.1f}% "
+                               + ("(same pick under every candidate)" if same else "(pick FLIPS between candidates)"))
+            extra = (" For review only, NOT published: " + "; ".join(what_if) + ".") if what_if else ""
             flag(fid, "unverified", f"{t}: ambiguous VRS identity",
-                 f"{r['note']}. Candidates: {c}. Line left BLANK for fixture(s) {ids}.",
+                 f"{r['note']}. Candidates: {c}. Line left BLANK for fixture(s) {ids}.{extra}",
                  links + [x["url"] for x in r["candidates"]])
+        elif st == ALIAS_STATUS:
+            v, al = r["vrs"], r["alias"]
+            flag(fid, "needs review", f"{t}: rated as VRS '{v['name']}' via fixture-matched HLTV team '{r['hltv']['name']}'",
+                 f"{r['note']}. Evidence ({al.get('verified_by')}, {al.get('verified_utc')}): "
+                 + " | ".join(ev["fact"] for ev in al.get("evidence", []))
+                 + f". VRS roster [{', '.join(v['roster'])}]; HLTV players [{', '.join(r['hltv']['players'])}]. Line published for fixture(s) {ids}.",
+                 [ev["url"] for ev in al.get("evidence", [])] + [v["url"]])
         elif st == "ROSTER MISMATCH":
             c = "; ".join(f"#{x['standing']} {x['name']} [{', '.join(x['roster'])}]" for x in r["candidates"])
             flag(fid, "unverified", f"{t}: VRS roster differs from HLTV current roster",
@@ -365,7 +432,7 @@ def main() -> int:
         late = []
         cu = mprov.get("commit_utc")
         if cu:
-            cdt = datetime.fromisoformat(cu)
+            cdt = datetime.fromisoformat(cu.replace("Z", "+00:00"))
             for r in rows:
                 t_ = r["market_captured_utc_reported"]
                 m_ = re.match(r"(\d{4}-\d{2}-\d{2})T(\d{2}):(\d{2})", t_ or "")
@@ -478,7 +545,8 @@ def a(url: str, text: str) -> str:
 def pill(status: str) -> str:
     cls = "ok" if status.startswith("VERIFIED: VRS name") else ("warn" if status.startswith("VERIFIED") else "bad")
     short = {"VERIFIED: VRS name + HLTV roster": "VRS+HLTV roster", "VERIFIED: VRS name": "VRS name",
-             "VERIFIED: HLTV roster -> VRS (name differs)": "roster match, name differs"}.get(status, status)
+             "VERIFIED: HLTV roster -> VRS (name differs)": "roster match, name differs",
+             ALIAS_STATUS: "fixture-matched alias"}.get(status, status)
     return f'<span class="pill {cls}">{e(short)}</span>'
 
 
@@ -520,6 +588,33 @@ def fixture_table(rows, tid):
             f"<div class=tw><table id='{tid}' class=sort><thead>{head}</thead><tbody>{''.join(body)}</tbody></table></div>")
 
 
+def render_crosscheck() -> str:
+    f = OUT / "crosscheck.csv"
+    if not f.exists():
+        return ""
+    rows = list(csv.DictReader(f.open(encoding="utf-8")))
+    if not rows:
+        return ""
+    from collections import Counter, defaultdict
+    per = defaultdict(Counter)
+    for r in rows:
+        per[r["file"]][r["status"].split(" (")[0]] += 1
+    summ = "".join(f"<tr><td>{a(GH_MAIN + k, k)}</td><td class=num>{v.get('match', 0)}</td><td class=num>{v.get('MISMATCH', 0)}</td>"
+                   f"<td class=num>{sum(n for s_, n in v.items() if s_ not in ('match', 'MISMATCH'))}</td></tr>" for k, v in sorted(per.items()))
+    bad = [r for r in rows if r["status"] != "match"]
+    det = "".join(
+        f"<tr><td>{e(r['check'])}</td><td>{a(r['file_url'], r['file'])}</td><td>{e(r['key'])}</td><td>{e(r['field'])}</td>"
+        f"<td>{e(r['published'])}</td><td>{e(r['official'])}</td><td>{a(r['official_source'], 'official source')}</td>"
+        f"<td><span class='pill {'bad' if r['status'].startswith('MISMATCH') else ''}'>{e(r['status'])}</span></td></tr>" for r in bad)
+    return (f"<section id=crosscheck><h2>Cross-check: values published elsewhere in this repo vs official snapshots</h2>"
+            f"<p class=note>Read-only. Other sessions' files are never edited; findings are logged in COORDINATION.md. Only like-for-like "
+            f"comparisons are made (same source and same date). Produced by <code>model/crosscheck.py</code>.</p>"
+            f"<div class=tw><table class=sort><thead><tr><th>File</th><th>match</th><th>MISMATCH</th><th>other</th></tr></thead><tbody>{summ}</tbody></table></div>"
+            f"<details><summary>{len(bad)} non-matching rows</summary><input type=search placeholder='Filter…' oninput=\"filt(this,'tx')\">"
+            f"<div class=tw><table id=tx class=sort><thead><tr><th>Check</th><th>File</th><th>Key</th><th>Field</th><th>Published</th><th>Official</th>"
+            f"<th>Source</th><th>Status</th></tr></thead><tbody>{det}</tbody></table></div></details></section>")
+
+
 def render(p, meta, hltv, fx, hltv_url) -> str:
     rows, teams, flags, inp = p["fixtures"], p["teams"], p["flags"], p["inputs"]
     up = [r for r in rows if r["section"] in ("upcoming", "started")]
@@ -542,6 +637,7 @@ def render(p, meta, hltv, fx, hltv_url) -> str:
         frs.append(f"<tr><td>{e(f['id'])}</td><td><span class='pill {cls}'>{e(f['severity'])}</span></td><td class=wrap>{e(f['subject'])}</td>"
                    f"<td class=wrap>{e(f['detail'])}</td><td>{links}</td></tr>")
     h = inp["hltv"]
+    xc_html = render_crosscheck()
     c = inp.get("calibration")
     if c:
         o = c["out_of_sample"]
@@ -560,7 +656,7 @@ def render(p, meta, hltv, fx, hltv_url) -> str:
 <header><h1>Own lines — Valve Regional Standings model</h1>
 <p>Our own originated win probability for every Hotspawn CS2 Pick'em fixture. Hotspawn crowd picks are never used. Analysis only — not betting advice.
 &nbsp;<a href="../">← main dashboard</a></p></header>
-<nav><a href="#week">This week</a><a href="#stale">Stale listings</a><a href="#teams">Team ratings</a><a href="#flags">Flagged for review</a><a href="#method">Method &amp; sources</a><a href="data/lines.csv">lines.csv</a><a href="data/teams.csv">teams.csv</a><a href="data/flags.csv">flags.csv</a></nav>
+<nav><a href="#week">This week</a><a href="#stale">Stale listings</a><a href="#teams">Team ratings</a><a href="#flags">Flagged for review</a><a href="#crosscheck">Cross-check</a><a href="#method">Method &amp; sources</a><a href="data/lines.csv">lines.csv</a><a href="data/teams.csv">teams.csv</a><a href="data/flags.csv">flags.csv</a></nav>
 <main>
 <div class=cards>
 <div class=card><b>{len(rows)}</b><span>CS2 fixtures in Hotspawn TransferState</span></div>
@@ -585,13 +681,14 @@ Roster cross-check: <a href="{e(h.get('canonical_url') or hltv_url)}">HLTV World
 <section id=flags><h2>Flagged for review — {len(flags)}</h2>
 <p class=note>Unverified = value left blank. Needs review = value published but please confirm. Info = context.</p>
 <div class=tw><table id=tf class=sort><thead><tr><th>ID</th><th>Severity</th><th>Subject</th><th>Detail</th><th>Sources</th></tr></thead><tbody>{''.join(frs)}</tbody></table></div></section>
+{xc_html}
 <section id=method><h2>Method &amp; sources</h2>
 <ol>
 <li><b>Fixtures</b> — <a href="{LOBBY}">play.hotspawn.com/cs2-pickems</a> is server-rendered Angular; its <code>&lt;script id="ng-state"&gt;</code> TransferState holds the full fixture list (id, teams, competition, tier, <code>scheduled_start_time</code>). Only identity fields are kept; <code>participants*_picked_percent</code> and <code>total_picks</code> are dropped on ingest.</li>
 <li><b>Ratings</b> — official <a href="{VALVE_REPO}">Valve Regional Standings</a> points (global list, {e(meta['standings_date'])}). Each team row links to its exact line in Valve's file and to Valve's per-team details page.</li>
 <li><b>Our line</b> — Valve's own expected-win-rate function (<a href="{e(inp['model']['valve_fit_js'])}">fit.js priorWinExpectation</a> with <a href="{e(inp['model']['valve_glicko_js'])}">glicko.js</a>, rd = 75): <code>P(A) = 1 / (1 + 10^(−k·(pts<sub>A</sub> − pts<sub>B</sub>)/400))</code>. Valve's raw curve has k = g = {inp['model']['g']}, unit-tested against Valve's actual JavaScript. Our line uses the calibrated k = {inp['model']['k_used']} (next item). Fair decimal odds = 1/P.</li>
 <li><b>Calibration (what makes the line ours)</b>: {cal_html}</li>
-<li><b>Roster check</b> — <a href="{e(h.get('canonical_url') or hltv_url)}">HLTV World Ranking</a> player lists vs VRS rosters (<a href="{e(inp['model']['valve_team_js'])}">team.js</a>: ≥{OVERLAP} shared players = same team). Ambiguous, missing or mismatched teams → blank + flag. No fuzzy or near-name matching.</li>
+<li><b>Roster check</b> — <a href="{e(h.get('canonical_url') or hltv_url)}">HLTV World Ranking</a> player lists vs VRS rosters (<a href="{e(inp['model']['valve_team_js'])}">team.js</a>: ≥{OVERLAP} shared players = same team). Ambiguous, missing or mismatched teams → blank + flag. No fuzzy or near-name matching. One exception: when HLTV lists the <i>same fixtures</i> (same event, opponents and date) under another team name, an evidence-backed alias in <code>model/aliases.json</code> links them. It is re-verified by roster on every build and always flagged for review.</li>
 <li><b>Market reference</b>: external bookmaker collection belongs to session 79a1c6c8 (C-02) per <a href="https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/COORDINATION.md">COORDINATION.md</a>. This page reads its <code>lines/analysis.csv</code> read-only and recomputes no-vig as (1/o<sub>A</sub>)/(1/o<sub>A</sub>+1/o<sub>B</sub>). Those odds are shown for comparison only. They are never used in our line or pick, and they are not re-verified here (see flag M-S8).</li>
 </ol>
 <p class=note>Reproduce: <code>python3 model/fetch.py &amp;&amp; python3 model/build.py &amp;&amp; python3 model/test_model.py</code>. Refreshed automatically by <code>.github/workflows/model-91eff436.yml</code>.</p>
