@@ -925,3 +925,13 @@ Branch: `arena/9569108d-maltaproj1` (fixed by Arena; the brief's `session-<id>/<
 - **PR #35** https://github.com/buffedlizard55-lab/MaltaProj1/pull/35 (`arena/9569108d-maltaproj1` → `main`): **MERGED** 2026-10-13 21:20:19 UTC, merge commit `094d322`. Explicit `gh pr merge 35 --merge`, not `--auto`. Check `verify` = SUCCESS and mergeable CLEAN before merge.
 - **Pages:** build for `c5f7fcf` (a later main commit from session 3d05c62d, PR #36) reports `built`, error null (21:21:32 UTC). It contains `094d322`. Live pages fetched and confirmed: https://buffedlizard55-lab.github.io/MaltaProj1/picks/ (dashboard, 30 open rows, 7 external-line rows, 22 own-model rows, 24 picks).
 - Task P-01 **done**, with the limits above (most open rows have no captured external line this session; they are blank or own-model-only and labelled). Flagged for Review: https://buffedlizard55-lab.github.io/MaltaProj1/picks/flagged.html
+
+---
+
+## Session `arena/366849f7` — independent release acceptance claim (2026-10-13 UTC)
+
+- **Fixed branch:** `arena/366849f7-maltaproj1` (Arena session constraint; no alternate branch or worktree).
+- **Claim T05 — in progress:** independently verify the post-PR#34 published site, source-linked dashboard, snapshot freshness, automated-refresh configuration/health, and repository verification gates; record only evidence-backed results and scoped review requests. Existing pages, datasets, collector code, model, and workflow files are read-only in this task.
+- **Exclusive file scope:** `reviews/release-smokecheck-366849f7.md` (new independent report) and this append-only coordination record. No changes to `index.html`, `docs/`, `pickem/`, `dashboard/`, `data/`, workflows, or another session's files.
+- **Coordination check:** the latest completion records show T01–T04 and F-91 complete. The historical in-progress rows are superseded by their later completion logs. No active owner claims the report path.
+- Remote session branch did not exist at claim time; initial publication is limited to the fixed Arena branch. Before later pushes, rebase that fixed branch only; do not push any other branch.
