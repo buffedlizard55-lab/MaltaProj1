@@ -17,3 +17,8 @@ dist/
 .env
 .env.*
 # Keep only deliberately curated, small evidence snapshots under data/evidence/.
+# This session's bounded, privacy-minimized primary evidence is a requested deliverable.
+!data/snapshot/evidence/
+!data/snapshot/evidence/*.json.gz
+!dashboard/data/evidence/
+!dashboard/data/evidence/*.json.gz

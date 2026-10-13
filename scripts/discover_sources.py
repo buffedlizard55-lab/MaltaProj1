@@ -135,3 +135,13 @@ if __name__ == "__main__":
     finally:
         summary["finished_at"] = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
         (OUT / "summary.json").write_text(json.dumps(summary, indent=2, ensure_ascii=False) + "\n")
+        # GitHub artifact downloads redirect to hosts unavailable to this sandbox.
+        # A small, temporary public-source archive is required for parser audit.
+        # It is removed before final publication; no account data/headers are saved.
+        import tarfile
+        Path("research").mkdir(exist_ok=True)
+        with tarfile.open("research/discovery.tar.gz", "w:gz") as archive:
+            for source_file in sorted(OUT.iterdir()):
+                if source_file.suffix in {".html", ".txt", ".json", ".js"}:
+                    archive.add(source_file, arcname=source_file.name)
+        Path("research/discovery-index.json").write_text(json.dumps(summary, indent=2, ensure_ascii=False) + "\n")

@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: public-source-discovery
@@ -37,3 +37,14 @@ jobs:
           name: public-source-discovery
           path: .cache/discovery/
           retention-days: 7
+      - name: Return small public parser evidence on the session branch
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research/discovery-index.json research/discovery.tar.gz
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "research: return public parser evidence from run ${{ github.run_id }}"
+          git pull --rebase origin main
+          git pull --rebase origin arena/4f599d7c-maltaproj1
+          git push origin HEAD:arena/4f599d7c-maltaproj1

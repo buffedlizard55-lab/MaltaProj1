@@ -792,3 +792,5 @@ Snapshot (UTC): 2026-10-13 (lobby states "60 matches this week", resets in ~5d 0
 
 - Rebased onto main `c8e9574` (PR#30). Retained the entire updated main coordination board and entire prior session board. No other session code, CSVs, model, root site, navigation or docs was dropped. All combined tracked source/data is being audited before the supplemental dashboard PR.
 - Keep `arena/4f599d7c-maltaproj1`: its public verified snapshot is the automatic-refresh source. Repository `delete_branch_on_merge` is verified false.
+
+- The shared `.gitignore` add/add conflict preserved every rule from both versions. Added narrow exceptions only for this session's deliberately minimized `data/snapshot/evidence/*.json.gz` and `dashboard/data/evidence/*.json.gz`; other raw evidence folders remain ignored.
