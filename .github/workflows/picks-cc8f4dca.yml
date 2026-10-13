@@ -36,7 +36,9 @@ jobs:
           python -m pip install playwright==1.49.0
           python -m playwright install --with-deps chromium
       - name: Render the odds sources with a real browser
-        run: python3 scripts/picks_browser.py
+        run: python3 scripts/picks_browser.py || true
+      - name: Collect Pinnacle public moneylines
+        run: python3 scripts/picks_pinnacle.py
       - name: Probe every candidate primary source
         run: |
           python3 scripts/picks_probe.py || true
