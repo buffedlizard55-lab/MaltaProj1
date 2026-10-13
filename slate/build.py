@@ -158,9 +158,13 @@ def status_tag(status: str) -> str:
 
 
 def sources_cell(row: dict) -> str:
-    bits = [link(row.get("hotspawn_match_url") or row.get("hotspawn_url"), "Hotspawn match")]
     if row.get("hotspawn_match_url"):
-        bits.append(link(row.get("hotspawn_url"), "pick'em page"))
+        bits = [link(row["hotspawn_match_url"], "Hotspawn match"),
+                link(row.get("hotspawn_url"), "pick'em board")]
+    else:
+        # The per-match page is only linked when this run actually read it; otherwise the row links
+        # the pick'em board the fixture came from, and says so.
+        bits = [link(row.get("hotspawn_url"), "Hotspawn board")]
     if row.get("hltv_url"):
         bits.append(link(row["hltv_url"], "HLTV"))
     if row.get("market_url"):
