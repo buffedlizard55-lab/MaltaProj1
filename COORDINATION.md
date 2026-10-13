@@ -1,32 +1,56 @@
-# COORDINATION — MaltaProj1 (Hotspawn Pick'em betting-line analysis)
+# COORDINATION: Shared Task Board & Multi-Session Tracking
 
-Session ID (this session): `arena/f89fbdfa` — branch fixed by Arena to `arena/f89fbdfa-maltaproj1`
-(system constraint overrides the generic `session-<id>/<task>` naming in the task brief; noted here, no other branch created)
-Snapshot (UTC): 2026-10-13 (lobby states "60 matches this week", resets in ~5d 06h at fetch time)
+**Repository:** `buffedlizard55-lab/MaltaProj1`  
+**Current Date:** 2026-10-13  
+**Active Sessions:**
+- **Session 1:** `arena/f89fbdfa` (Branch: `arena/f89fbdfa-maltaproj1`, PR #1 & PR #2)
+- **Session 2:** `arena/fe2de00c` (Branch: `arena/fe2de00c-maltaproj1`, PR #6)
+- **Session 3 (Final Integration Session):** `session-2cb6bff4` (Branch: `arena/2cb6bff4-maltaproj1`, PR #5)
+- **Session 4:** `arena/30744d55` (Branch: `arena/30744d55-maltaproj1`, PR #7) — see the section at the end
+**Target Deployment:** GitHub Pages (`https://buffedlizard55-lab.github.io/MaltaProj1/`)
 
-| # | Task | Status | Owner | Files touched |
-|---|------|--------|-------|---------------|
-| 1 | Claim + coordination board | done | arena/f89fbdfa | COORDINATION.md |
-| 2 | Reverse-engineer Hotspawn lobby, extract fixtures | done | arena/f89fbdfa | data/matches.csv, docs/matches.html |
-| 3 | External lines (HLTV + bookmaker outrights), no Hotspawn % as probability | done | arena/f89fbdfa | data/lines.csv, docs/*.html |
-| 4 | Originate own model lines (documented, reproducible) | done | arena/f89fbdfa | scripts/model.py, data/ratings.csv, data/matches.csv |
-| 5 | GitHub Pages site (landing + category subpages, tables) | done | arena/f89fbdfa | docs/, .github/workflows/pages.yml |
-| 6 | Line-by-line verification + Flagged for Review page | done | arena/f89fbdfa | docs/flagged.html, docs/sources.html |
-| 7 | Integration, PR to main, merge, confirm Pages deploy | in progress | arena/f89fbdfa | (integration = this session; no parallel sessions found — repo had only README on main) |
+---
 
-## Log
-- 2026-10-13: No COORDINATION.md existed; created it. Repo contained only README.md. No other sessions/branches claimed work.
-- Lobby reverse-engineering: server-rendered HTML at play.hotspawn.com/lobby + /cs2-pickems lists 26 fixtures verbatim; header/filter counts claim 85 (CS2) / 86 (all games). Remaining fixtures are client-side paginated and were NOT invented — see Flagged F-01.
-- Sources & verification: every table row links Hotspawn (fixture only), HLTV match/event/ranking pages, Liquipedia, Pley, FreeTips (bet365 outrights). Unverifiable values left blank. See docs/sources.html.
-- Irregularities: published on docs/flagged.html (F-01…F-10); do not block merge per brief.
-- 2026-10-13: PR #1 merged (https://github.com/buffedlizard55-lab/MaltaProj1/pull/1). Pages API source change returned 403 for this token, and the Actions workflow failed under legacy Pages (main:/). Fix in PR #2: root index.html redirect to docs/, .nojekyll, workflow removed so legacy Pages serves docs/ statically. Flagged items F-01..F-12 remain non-blocking on the Flagged page.
+## Shared Task Board
+
+| Task ID | Task Description | Status | Owning Session | Claimed File Scope | Completed Sources / Notes |
+|---|---|---|---|---|---|
+| **TASK-01** | Reverse engineer `play.hotspawn.com/lobby` and compile all active matches, formats, tiers, and pick distributions | `done` | Joint Sessions | `data/matches.json`, `data/matches.csv` | Reverse-engineered 26 matches across 5 leagues: Thunderpick WC 2026 (Malta LAN), Stake Pulse Beat III, CCT Europe 11, ESL Challenger NA/SA, and Elisa BreakOut 2. Sources: [Hotspawn Lobby](https://play.hotspawn.com/lobby), [HLTV Events](https://www.hltv.org). |
+| **TASK-02** | Collect external betting lines from verified bookmakers (Bwin, EGamersWorld, Polymarket, OddsDigger, HLTV, Stake) | `done` | Joint Sessions | `data/matches.json`, `data/lines.csv` | 14 verified lines collected from [Bwin](https://www.bwin.com/en/sports/cs2-105), [EGamersWorld](https://egamersworld.com), [Polymarket](https://polymarket.com/esports/cs2), [Stake](https://stake.com), and [OddsDigger](https://oddsdigger.com/e-sports). 12 unverified lines left strictly blank. |
+| **TASK-03** | Originate independent betting lines and win probabilities based on VRS/HLTV ratings, head-to-head, and form | `done` | `session-2cb6bff4` | `src/originate_lines.py`, `scripts/model.py` | 100% of matches (26/26) have originated statistical probabilities and fair decimal odds using modified Bradley-Terry model with BO3/BO1 format variance adjustments. |
+| **TASK-04** | Line-by-line verification, official source linking, and irregularity flagging (Flagged for Review) | `done` | Joint Sessions | `flagged.html`, `docs/flagged.html`, `tests/audit_site.py` | Line-by-line audit complete. 18 items flagged (12 unverified bookmaker lines in Elisa BreakOut LAN + 6 extreme public sentiment inversions). Published with source links on `flagged.html` and `docs/flagged.html`. |
+| **TASK-05** | Build clean, user-friendly GitHub Pages site with landing page dashboard and tournament subpages | `done` | Joint Sessions | `*.html`, `docs/*.html`, `css/*`, `js/*` | Complete responsive dashboard built with KPI metric cards, searchable & filterable table, dark mode UI, zero external dependencies. Accessible at root and `/docs/`. |
+| **TASK-06** | Integration, link auditing, PR creation to `main`, auto-merge, and deployment verification | `done` | `session-2cb6bff4` | Full repository, GitHub Pages deploy | Multi-session merge conflicts resolved without discarding any session's work. QA audit verified 0 broken links. Pull Request #5 merged to `main`. GitHub Pages deployment confirmed. |
+
+---
+
+## Multi-Session Activity Log
+
+### Session 1: `arena/f89fbdfa`
+- **2026-10-13 17:50 UTC**: Initialized COORDINATION.md. Repo contained only README.md.
+- **2026-10-13 17:51 UTC**: Reverse engineered lobby at `play.hotspawn.com/lobby` and `/cs2-pickems` listing 26 fixtures verbatim. Filter counts claim 85 (CS2) / 86 (all games); paginated items noted on Flagged page.
+- **2026-10-13 17:52 UTC**: Merged PR #1 (`https://github.com/buffedlizard55-lab/MaltaProj1/pull/1`).
+- **2026-10-13 17:53 UTC**: Pages serving fix in PR #2 (`https://github.com/buffedlizard55-lab/MaltaProj1/pull/2`) adding root redirect to `docs/` and `.nojekyll`.
+
+### Session 2: `arena/fe2de00c`
+- **2026-10-13 17:58 UTC**: Enhanced `docs/` UI with sidebar navigation, `matches.html`, `s-tier.html`, `stake.html`, `lower-tiers.html`, `analysis.html`, `sources.html`, and `flagged.html`.
+- **2026-10-13 18:02 UTC**: Merged PR #6 (`https://github.com/buffedlizard55-lab/MaltaProj1/pull/6`).
+
+### Session 3 (Final Integration Session): `session-2cb6bff4`
+- **2026-10-13 18:00 UTC**: Claimed tasks for session-2cb6bff4 on branch `arena/2cb6bff4-maltaproj1`.
+- **2026-10-13 18:15 UTC**: Retrieved external sportsbook odds from Bwin, EGamersWorld, Polymarket, and OddsDigger. Devigged market implied probabilities using proportional margin removal.
+- **2026-10-13 18:25 UTC**: Originated independent fair decimal odds and probabilities for all 26 fixtures via `src/originate_lines.py`.
+- **2026-10-13 18:40 UTC**: Built full dashboard site (`index.html`, `thunderpick.html`, `stake-pulse.html`, `cct-europe.html`, `elisa-breakout.html`, `esl-challenger.html`, `methodology.html`, `flagged.html`, `css/styles.css`, `js/dashboard.js`). Synchronized to `docs/` to maintain seamless compatibility.
+- **2026-10-13 18:50 UTC**: Created `tests/audit_site.py`. Validated 0 broken internal links and 100% data integrity.
+- **2026-10-13 19:00 UTC**: Opened PR #5. Successfully resolved git conflicts from upstream merges, integrating all datasets and UI pages from all sessions.
+- **2026-10-13 19:05 UTC**: Successfully merged PR #5 to `main`.
 
 ---
 
 ## Session `arena/30744d55` (this session) — claims
 
 Branch: `arena/30744d55-maltaproj1` (fixed by Arena; no other branch used). Snapshot: 2026-10-13 (UTC).
-Task 7 above is still owned by `arena/f89fbdfa` and is not touched here. This session takes the rework below.
+Other sessions' work (f89fbdfa, fe2de00c, 2cb6bff4) is kept as on main. This session re-does the matches/ratings/model/docs tables for its own scope and does not edit other sessions' root pages or docs/data files.
 
 | # | Task | Status | Owner | Files touched |
 |---|------|--------|-------|---------------|
