@@ -599,8 +599,13 @@ fuzzily — an unmatched team produces a blank value plus a flag.</li>
 
     # ---------------------------------------------------------------- repo review page (if present)
     review_path = DATA / "repo_review.json"
-    if review_path.exists():
+    if not review_path.exists():
+        review = {"intro": ("Repository review has not been generated for this refresh yet. "
+                           "The pipeline writes it before the integration pull request."),
+                  "sections": []}
+    else:
         review = json.loads(review_path.read_text(encoding="utf-8"))
+    if True:
         blocks = []
         for section in review["sections"]:
             rows_html = "".join(

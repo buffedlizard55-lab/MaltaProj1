@@ -115,9 +115,21 @@ def main() -> int:
                   f"{row['match_id']}: teams differ from the payload")
 
     # 4. policy -------------------------------------------------------------------------------
-    blob = json.dumps(payload)
-    for token in ("crowd", "picked_percent", "total_picks"):
-        check(token not in blob, f"policy: '{token}' present in the published dataset")
+    def key_paths(node, path=""):
+        found = []
+        if isinstance(node, dict):
+            for k, val in node.items():
+                if k.lower() in {"crowd_pct_a", "crowd_pct_b", "total_picks", "picked_percent",
+                                 "crowd"}:
+                    found.append(f"{path}.{k}".strip("."))
+                found += key_paths(val, f"{path}.{k}".strip("."))
+        elif isinstance(node, list):
+            for i, val in enumerate(node):
+                found += key_paths(val, f"{path}[{i}]")
+        return found
+
+    for leak in key_paths(payload):
+        errors.append(f"policy: Hotspawn crowd field present in the published dataset: {leak}")
 
     # 5. HTML checks ---------------------------------------------------------------------------
     pages = sorted(OUT.glob("*.html"))

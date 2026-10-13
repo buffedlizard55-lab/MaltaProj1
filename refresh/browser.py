@@ -147,8 +147,10 @@ def extract_pinnacle_quotes(captured: list[dict], page_url: str) -> tuple[list[d
             counters["rejected"] += 1
             continue
         league = event.get("league") or {}
-        sport = (league.get("sport") or {}).get("id")
-        game = "cs2" if sport == 12 else ("lol" if sport == 2 else None)
+        # The sport id on Pinnacle's esports parent is not per-title: the league name is.
+        league_name = league.get("name") or ""
+        game = ("cs2" if league_name.startswith("CS2 - ")
+                else ("lol" if league_name.startswith("League of Legends - ") else None))
         participants = event.get("participants") or []
         prices = market.get("prices") or []
         if game is None or len(participants) != 2 or len(prices) != 2:

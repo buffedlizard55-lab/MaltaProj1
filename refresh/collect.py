@@ -476,15 +476,22 @@ def collect_hltv() -> dict:
         if not html:
             continue
         if label == "hltv-ranking":
-            for block in re.split(r'<div class="ranked-team', html)[1:]:
-                pos = re.search(r'class="position[^"]*">#(\d+)<', block)
-                name = re.search(r'class="name">([^<]+)</span>', block)
-                pts = re.search(r'class="points">\((\d+)', block)
+            for block in html.split('<div class="ranked-team standard-box">')[1:]:
+                pos = re.search(r'<span class="position[^"]*">#(\d+)</span>', block)
+                name = re.search(r'<span class="name">([^<]+)</span>', block)
+                pts = re.search(r'<span class="points">\((\d+)', block)
                 if pos and name:
                     out["ranking"][unescape(name.group(1)).strip()] = {
                         "rank": int(pos.group(1)), "points": int(pts.group(1)) if pts else None}
             out["ranking_url"] = url
-            out["ranking_blocks"] = html.count('class="ranked-team')
+            out["ranking_blocks"] = html.count('<div class="ranked-team standard-box">')
+            date_match = re.search(
+                r"World ranking on ([A-Za-z]+ \d{1,2}(?:st|nd|rd|th)?,? \d{4})", html)
+            out["ranking_date_text"] = date_match.group(1) if date_match else None
+            if not out["ranking"]:
+                marker = html.find('ranked-team')
+                out["ranking_debug_snippet"] = html[max(0, marker - 200): marker + 700] \
+                    if marker >= 0 else html[:400]
         elif label == "hltv-matches":
             for block in re.split(r'<div class="match-item', html)[1:]:
                 unix = re.search(r'data-unix="(\d{13})"', block)

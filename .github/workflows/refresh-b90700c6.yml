@@ -38,6 +38,11 @@ jobs:
           python -m pip install --quiet -r requirements.txt
           python -m playwright install --with-deps chromium
           python -c "import playwright, sys; print('playwright', playwright.__version__ if hasattr(playwright, '__version__') else 'installed', sys.version)"
+      - name: Probe which public odds/rating sources are reachable from this runner
+        continue-on-error: true
+        run: |
+          mkdir -p refresh/logs
+          python3 -u refresh/probe_sources.py > refresh/logs/probe_sources_stdout.txt 2>&1 || true
       - name: Read public sources (Hotspawn payload, EGamersWorld lines, Pinnacle/HLTV pages)
         continue-on-error: true
         run: |
