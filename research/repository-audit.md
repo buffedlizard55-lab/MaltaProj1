@@ -1,9 +1,9 @@
 # Combined repository audit
 
-Audit UTC: **2026-10-13T19:28:52.946393+00:00**
-Base commit: [`e5dd68e58f47`](https://github.com/buffedlizard55-lab/MaltaProj1/commit/e5dd68e58f47330bd9b238b62ea6b9503182af13)
+Audit UTC: **2026-10-13T19:35:23.216879+00:00**
+Base commit: [`f1db7c0882b1`](https://github.com/buffedlizard55-lab/MaltaProj1/commit/f1db7c0882b1d6f48df73814a5a0c96a826fab4e)
 
-Read **255 tracked files / 138,290 text lines**; checked **1,564 internal HTML targets**.
+Read **260 tracked files / 138,798 text lines**; checked **1,564 internal HTML targets**.
 
 > This verifies inventory, syntax/data shape and link consistency—not the truth of every inherited sports assertion. Only the evidence dashboard snapshot is admitted to the primary-bookmaker calculation and rechecked field by field. Other owners' work is preserved, not silently certified or overwritten.
 
@@ -11,12 +11,12 @@ Read **255 tracked files / 138,290 text lines**; checked **1,564 internal HTML t
 
 | File | Review type | Detail | Official repository source |
 |---|---|---|---|
-| `data/844ba68e/market_quotes.csv` | CSV shape | 1 row(s) have excess fields. | [Review file](https://github.com/buffedlizard55-lab/MaltaProj1/blob/e5dd68e58f47330bd9b238b62ea6b9503182af13/data/844ba68e/market_quotes.csv) |
-| `data/external_lines.csv` | CSV shape | 2 row(s) have excess fields. | [Review file](https://github.com/buffedlizard55-lab/MaltaProj1/blob/e5dd68e58f47330bd9b238b62ea6b9503182af13/data/external_lines.csv) |
-| `docs/flagged.html` | anchor review | No static anchor: verified-lines.html#F-28; may be client-generated. | [Review file](https://github.com/buffedlizard55-lab/MaltaProj1/blob/e5dd68e58f47330bd9b238b62ea6b9503182af13/docs/flagged.html) |
-| `docs/flagged.html` | anchor review | No static anchor: verified-lines.html#F-29; may be client-generated. | [Review file](https://github.com/buffedlizard55-lab/MaltaProj1/blob/e5dd68e58f47330bd9b238b62ea6b9503182af13/docs/flagged.html) |
-| `docs/flagged.html` | anchor review | No static anchor: verified-lines.html#flagged-audit; may be client-generated. | [Review file](https://github.com/buffedlizard55-lab/MaltaProj1/blob/e5dd68e58f47330bd9b238b62ea6b9503182af13/docs/flagged.html) |
-| `docs/verified-lines.html` | anchor review | No static anchor: #F-28; may be client-generated. | [Review file](https://github.com/buffedlizard55-lab/MaltaProj1/blob/e5dd68e58f47330bd9b238b62ea6b9503182af13/docs/verified-lines.html) |
+| `data/844ba68e/market_quotes.csv` | CSV shape | 1 row(s) have excess fields. | [Review file](https://github.com/buffedlizard55-lab/MaltaProj1/blob/f1db7c0882b1d6f48df73814a5a0c96a826fab4e/data/844ba68e/market_quotes.csv) |
+| `data/external_lines.csv` | CSV shape | 2 row(s) have excess fields. | [Review file](https://github.com/buffedlizard55-lab/MaltaProj1/blob/f1db7c0882b1d6f48df73814a5a0c96a826fab4e/data/external_lines.csv) |
+| `docs/flagged.html` | anchor review | No static anchor: verified-lines.html#F-28; may be client-generated. | [Review file](https://github.com/buffedlizard55-lab/MaltaProj1/blob/f1db7c0882b1d6f48df73814a5a0c96a826fab4e/docs/flagged.html) |
+| `docs/flagged.html` | anchor review | No static anchor: verified-lines.html#F-29; may be client-generated. | [Review file](https://github.com/buffedlizard55-lab/MaltaProj1/blob/f1db7c0882b1d6f48df73814a5a0c96a826fab4e/docs/flagged.html) |
+| `docs/flagged.html` | anchor review | No static anchor: verified-lines.html#flagged-audit; may be client-generated. | [Review file](https://github.com/buffedlizard55-lab/MaltaProj1/blob/f1db7c0882b1d6f48df73814a5a0c96a826fab4e/docs/flagged.html) |
+| `docs/verified-lines.html` | anchor review | No static anchor: #F-28; may be client-generated. | [Review file](https://github.com/buffedlizard55-lab/MaltaProj1/blob/f1db7c0882b1d6f48df73814a5a0c96a826fab4e/docs/verified-lines.html) |
 
 ## Line-by-line file ledger
 
