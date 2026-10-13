@@ -2,7 +2,7 @@
  "inputs": {
   "hotspawn": {
    "url": "https://play.hotspawn.com/cs2-pickems",
-   "fetched_utc": "2026-10-13T18:26:55Z",
+   "fetched_utc": "2026-10-13T18:45:29Z",
    "html_sha256": "cc6f31651d5ecd507fe06873f52ecc72048ce776270641c72e0454c5f2308622",
    "fixtures": 86,
    "pickem_week": {
@@ -26,8 +26,8 @@
   "hltv": {
    "canonical_url": "https://www.hltv.org/ranking/teams/2026/october/12",
    "ranking_date": "2026-10-12",
-   "fetched_utc": "2026-10-13T18:27:00Z",
-   "html_sha256": "8d77923bef46c5e3379663d340db74267fbdb6fc8ecc3a10996603388fac713d",
+   "fetched_utc": "2026-10-13T18:45:34Z",
+   "html_sha256": "ec4d3393b3fbe5f97a79f0c4dd220096c9b1db228fba7bfa7950e78e8c03a8f7",
    "team_count": 245
   },
   "calibration": {
@@ -118,7 +118,7 @@
   "market": {
    "path": "lines/analysis.csv",
    "present": true,
-   "commit_utc": "2026-10-13T18:16:50+00:00"
+   "commit_utc": "2026-10-13T18:16:50Z"
   },
   "model": {
    "formula": "P(A)=1/(1+10^(-k*(ptsA-ptsB)/400)); k = calibrated slope (Valve raw: k=g, g=1/sqrt(1+3q^2*rd^2/pi^2), q=ln10/400, rd=75)",
@@ -6033,7 +6033,7 @@
    "id": "M-S8",
    "severity": "needs review",
    "subject": "Market reference: 12 fixtures from lines/analysis.csv (session 79a1c6c8), read-only",
-   "detail": "Decimal odds as recorded by session 79a1c6c8. No-vig recomputed here as (1/oa)/(1/oa+1/ob). Not re-verified by O-01 and never used in our line or pick. IRREGULARITY: 4 rows report capture times after the file's last commit (2026-10-13T18:16:50+00:00): 1081076 (2026-10-13T18:31Z), 1079546 (2026-10-13T18:31Z), 1079621 (2026-10-13T18:20Z), 1079623 (2026-10-13T18:20Z). Treat as unverified.",
+   "detail": "Decimal odds as recorded by session 79a1c6c8. No-vig recomputed here as (1/oa)/(1/oa+1/ob). Not re-verified by O-01 and never used in our line or pick. IRREGULARITY: 4 rows report capture times after the file's last commit (2026-10-13T18:16:50Z): 1081076 (2026-10-13T18:31Z), 1079546 (2026-10-13T18:31Z), 1079621 (2026-10-13T18:20Z), 1079623 (2026-10-13T18:20Z). Treat as unverified.",
    "links": "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/lines/analysis.csv"
   }
  ]
