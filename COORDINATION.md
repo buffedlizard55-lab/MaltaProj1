@@ -1341,8 +1341,8 @@ Read the complete board before claiming; existing collector/data/dashboard owner
 
 | ID | Task | Status | Owner | Exclusive file scope |
 |---|---|---|---|---|
-| RA91-01 | Read-only independent coverage, provenance, freshness and repository-link audit; publish evidence-backed status and Flagged for Review with no fabricated source verification | in progress | arena/91e444dd | `status/**`, `scripts/audit_91e444dd.py`, `tests/test_release_91e444dd.py`, `.github/workflows/release-assurance-91e444dd.yml` (all new) |
-| RA91-02 | Final integration after RA91-01: additive root link only, test, PR, merge, confirm Pages; preserve other sessions' content | in progress | arena/91e444dd | `index.html` (additive link only), this appended coordination section |
+| RA91-01 | Read-only independent coverage, provenance, freshness and repository-link audit; publish evidence-backed status and Flagged for Review with no fabricated source verification | done | arena/91e444dd | `status/**`, `scripts/audit_91e444dd.py`, `tests/test_release_91e444dd.py`, `.github/workflows/release-assurance-91e444dd.yml` (all new) |
+| RA91-02 | Final integration after RA91-01: additive root link only, test, PR, merge, confirm Pages; preserve other sessions' content | done | arena/91e444dd | `index.html` (additive link only), this appended coordination section |
 
 Coordination: prior root link-in tasks have completion/release records; this scope is only a new status-page card, not a redesign or replacement. No existing dataset, collector, generator, model, or refresh workflow is edited. Parallel PR #54 remains its owner's responsibility.
 Source access: official Hotspawn lobby was read through the page-fetch tool this turn; shell outbound access is restricted, so no row-level odds verification is claimed. Official deployment/workflow evidence comes from authenticated GitHub API. Stored observations are explicitly distinguished from live verification.
@@ -1397,3 +1397,9 @@ Enjoy v B8 Academy (10-14 08:00 UTC), Banda chuya v 6666 (10-14 11:00), ex-RUSTE
 
 **Scope check:** only `gapfill/**` and this section of `COORDINATION.md` were changed. Hotspawn crowd percentages were never used as an input or a displayed probability.
 
+
+### RA91 release record
+- **PR #55 MERGED:** https://github.com/buffedlizard55-lab/MaltaProj1/pull/55 — merged without waiting for approval at `2026-10-13T22:55:58Z`, merge commit `1fa9744039a75d3924fa71e91d809932930a334d`; explicit `gh pr merge 55 --merge`. Both `audit` and existing `verify` checks passed before merge.
+- **Pages confirmed built** for that exact merge commit; [deployment run 38481030591](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38481030591) succeeded. Official Pages API reports `built`, error null. Live page reads at approximately 22:56:46 UTC confirmed `status/` renders all 31 source-linked CS2 rows (0 market, 22 model), open/locked states and unverified labels; `status/flagged.html` renders RA91 findings and per-match official links. URLs: https://buffedlizard55-lab.github.io/MaltaProj1/status/ and https://buffedlizard55-lab.github.io/MaltaProj1/status/flagged.html.
+- RA91-01 and RA91-02 **done**; data gaps remain **needs review**, published rather than guessed. No merge conflicts occurred. A tiny follow-up adds a null-widget guard so the shared browser script does not request snapshot widgets on the text-only methodology page, and publishes this release record. Source-data scopes remain untouched.
+- **Follow-up conflict log:** rebase onto `ba0ad96` encountered an append-only `COORDINATION.md` conflict with the newly merged `arena/aecb4b5a` gap-fill section. Work stopped to resolve it; both sections were kept verbatim, with no other owner’s file altered. The initial PR #55 release had no conflict. A post-resolution full-site audit is rerun against the combined pages.
