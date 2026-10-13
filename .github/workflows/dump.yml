@@ -26,9 +26,13 @@ jobs:
         with:
           python-version: '3.12'
       - name: Dump pick'em pages (temporary scratch, deleted before publication)
-        run: python pipeline/dump_raw.py 2>&1 | tee pipeline/_scratch/ci-dump.log
+        run: |
+          mkdir -p pipeline/_scratch
+          python pipeline/dump_raw.py 2>&1 | tee pipeline/_scratch/ci-dump.log
       - name: Probe external odds sources
-        run: python pipeline/probe2.py 2>&1 | tee pipeline/_scratch/ci-probe2.log
+        run: |
+          mkdir -p pipeline/_scratch
+          python pipeline/probe2.py 2>&1 | tee pipeline/_scratch/ci-probe2.log
       - name: Commit scratch + probe summary
         if: always()
         run: |
