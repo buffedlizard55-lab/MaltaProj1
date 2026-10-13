@@ -58,10 +58,15 @@ Other sessions' work (f89fbdfa, fe2de00c, 2cb6bff4) is kept as on main. This ses
 | 9 | Rewrite matches table + line-by-line external readings with status | done | arena/30744d55 | data/matches.csv, data/external_lines.csv |
 | 10 | Model: own line, no-vig external, pick rule (≥55% both sources) | done | arena/30744d55 | scripts/model.py, data/analysis.csv |
 | 11 | Regenerate all docs pages from data (generator) | done | arena/30744d55 | scripts/build_docs.py, docs/*.html, README.md |
-| 12 | Integration: commit, pull --rebase, push, PR to main, merge, confirm Pages | in progress | arena/30744d55 | COORDINATION.md |
+| 12 | Integration: commit, pull --rebase, push, PR to main, merge, confirm Pages | done | arena/30744d55 | COORDINATION.md |
 
 ### Log (this session)
 - Ranks re-read from HLTV 2026/october/12 and corrected: MIBR 12, BC.Game 70, Astralis 15, BETBOOM 14, Legacy 7, HEROIC 30, fnatic 36, HOTU 41, NiP 26 (newly verified).
 - External readings: Polymarket accepted only if sides sum to 98–106¢; zero-volume = indicative; eGamersWorld decimal normalised. 12 matches with an accepted reading; 5 picks.
 - Unresolved: 6-hour time offset between Polymarket/EGW display and Hotspawn labels (F-02); WROTBERRY = WBT name mapping (F-07, inferred, not confirmed); Overtake vs Overtake Sector (F-08).
 - Merge conflicts: none expected (this session edits only the files listed above). Any conflict on pull --rebase will be logged here.
+- 2026-10-13 18:09 UTC: PR #7 (`https://github.com/buffedlizard55-lab/MaltaProj1/pull/7`) opened from `arena/30744d55-maltaproj1` to `main`. Main had moved (PR #5/#6 from other sessions), so `origin/main` was merged into the branch; conflicts were limited to files in this session's scope (data/matches.csv, docs/{index,matches,methodology,sources,flagged}.html, README.md, COORDINATION.md). Resolution: this session's versions for its own pages and data; main's COORDINATION.md board kept with this section appended. Other sessions' files were not changed.
+- Merge result: PR #7 MERGED with a merge commit (`232c6bc`, 2026-10-13 18:09:21 UTC). Not `--auto`.
+- Pages: GitHub Pages API reports the build for `232c6bc` as `built` (source `main` `/`, legacy). The sandbox cannot reach github.io directly, so the live URL check was done via the Pages API only.
+- Merge conflicts logged: yes, as above. None left unresolved.
+
