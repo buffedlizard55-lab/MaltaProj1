@@ -1356,3 +1356,44 @@ Request to refresh workflow owner `arena/b90700c6`: `.github/workflows/refresh-b
 - **Official/manual review sources:** [Hotspawn lobby](https://play.hotspawn.com/lobby), [CS2 pick’ems](https://play.hotspawn.com/cs2-pickems), [Valve’s official standings/model repository](https://github.com/ValveSoftware/counter-strike_regional_standings), [HLTV’s own Oct 12 ranking](https://www.hltv.org/ranking/teams/2026/october/12), [GitHub Pages configuration](https://api.github.com/repos/buffedlizard55-lab/MaltaProj1/pages), [official workflow definitions](https://github.com/buffedlizard55-lab/MaltaProj1/tree/main/.github/workflows). [EGamersWorld coverage](https://egamersworld.com/counterstrike/matches) is explicitly labeled an aggregator, not a primary bookmaker; [Pinnacle official markets](https://www.pinnacle.com/en/esports/matchups/highlights) linked for manual review only. No sportsbook odds were independently re-verified in this session.
 - **Non-blocking irregularities published on `status/flagged.html`:** RA91-COVERAGE (header/payload/rendered counts differ; complete live coverage not established); RA91-NOMARKET (successful refresh returned no market odds); RA91-MODEL (rating estimates and calibration differ across dashboards); RA91-AUTO (`continue-on-error` refresh publication; another scheduled collector targets a session branch, not Pages main). Requests logged above; no cross-owner workflow edits. Earlier per-team rank/alias irregularities remain linked on their owners’ Flagged pages.
 - RA91-02 additive integration: only one new status card added to root `index.html`; every existing card remains unchanged. Existing dashboard, collector, odds, rating and model files untouched. Release PR/merge/deploy confirmation follows below.
+## Session `arena/aecb4b5a` — claim (2026-10-13 ~22:55 UTC)
+
+Branch: `arena/aecb4b5a-maltaproj1` (fixed by Arena for this session; no other branch is created or pushed).
+
+**Board read before claiming:** `main` @ `ba038c1`; open PR #54 (`arena/9920c263`, full CS2 slate, `mergeStateStatus` DIRTY/CONFLICTING, opened 22:47 UTC; owner's last commit 22:09 UTC, so its Q-05 claim is not stale under the 60-minute rule and is **not** taken over). Read-only input: `picks/data/slate.csv` on `arena/9920c263` (32 lobby rows: 29 open, 1 locked, 2 started; 23 open rows priced, 6 open rows unpriced).
+
+**Gap this session fills:** the 6 open Hotspawn CS2 rows with no external price in that slate (all CCT Europe Series #11 / Play-In):
+Enjoy v B8 Academy (10-14 08:00 UTC), Banda chuya v 6666 (10-14 11:00), ex-RUSTEC v mellren (10-14 11:00), Ryvex v PCIFIC (10-14 14:00), FORZE Reload v LFO 10 (10-14 17:00), mellren v Privateer (10-16 14:00).
+
+| ID | Task | Status | Owner | Exclusive file scope |
+|---|---|---|---|---|
+| G-01 | External match-winner prices for the 6 unpriced open rows above, read directly from EGamersWorld match/event pages or named bookmaker pages (not CI). Team and kickoff matched to the Hotspawn row before a price is accepted; de-vigged probability; capture time in UTC; blank + flagged where not confirmable. Hotspawn crowd % is never used. | done (2 priced, 4 blank + flagged) | arena/aecb4b5a | `gapfill/data/**` |
+| G-02 | Mobile-first page `gapfill/index.html` and `gapfill/flagged.html` (Flagged for Review), one row per gap-fill fixture with Hotspawn, HLTV/EGW and bookmaker source links. Generator `gapfill/build.py`. No edits to shared navigation. | done (published on this branch) | arena/aecb4b5a | `gapfill/**` |
+| G-03 | Integration request (not performed by this session): the final integration owner ingests `gapfill/data/gapfill.csv` into the canonical slate and links `gapfill/` from the landing page. | requested | integrator (after PR #54 is resolved) | none (shared files: `picks/**`, `index.html`, `COORDINATION.md`) |
+
+- Not touched: `picks/**`, `data/**`, `index.html`, `README.md`, `docs/**`, `today/**`, `mobile/**`, `verify/**`, `board/**`, `model/**`, `refresh/**`, `.github/**`, PR #54.
+- Note: the lobby header "68 matches this week" vs the rendered CS2 rows is already logged by earlier sessions (IR-9569-*); not re-investigated here.
+
+### Completion record — G-01..G-02 (arena/aecb4b5a), 2026-10-13 ~22:50–23:05 UTC
+
+**Result:** 2 of the 6 unpriced rows now have an external line; 4 remain blank and are flagged (no value inferred).
+
+| Row | Hotspawn fixture (UTC) | Result | Source of the line |
+|---|---|---|---|
+| G1 | Enjoy v B8 Academy, 10-14 08:00 | **Priced** (Low): Enjoy 61.0% / B8 39.0% | Polymarket CCT Europe tab (`cs2-enjoy-b8acad-2026-10-14`) |
+| G2 | Banda chuya v 6666, 10-14 11:00 | Blank | none: EGW 1.8/1.8 placeholders; not on Polymarket CCT tab |
+| G3 | ex-RUSTEC v mellren, 10-14 11:00 | **Priced** (Low): ex-RUSTEC 61.4% / mellren 38.6% | Polymarket CCT Europe tab (`cs2-rustec-mellre-2026-10-14`) |
+| G4 | Ryvex v PCIFIC, 10-14 14:00 | Blank | identity unresolved (WRAITH PCIFIC vs PCIFIC Espor) |
+| G5 | FORZE Reload v LFO 10, 10-14 17:00 | Blank | opponent conflict (Polymarket: Sökerorg) |
+| G6 | mellren v Privateer, 10-16 14:00 | Blank | Polymarket both sides 97¢, $0.00 volume |
+
+**Sources (all read this session):** Hotspawn CS2 lobby https://play.hotspawn.com/cs2-pickems (fixture identity, 22:4x–22:5x UTC); Hotspawn match pages https://www.hotspawn.com/matches/ex-rustec-vs-mellren-cct-europe-2026-series-11-1079622 and https://www.hotspawn.com/matches/forze-reload-vs-lfo-10-cct-europe-2026-series-11-1079624; Polymarket https://polymarket.com/esports/cs2 (listing), https://polymarket.com/esports/cs2/cct-europe (CCT Europe tab, 10 markets); EGamersWorld match pages linked per row in `gapfill/data/gapfill.csv` (page titles and schema start times in UTC) and event pages https://egamersworld.com/counterstrike/event/cct-europe-2026-series-12-play-in-1sGIL2gAYu and https://egamersworld.com/counterstrike/event/cct-europe-2026-series-11-_rW8GEyWK. Pinnacle's CS2 league feed was checked: it does not list CCT Europe, so it cannot price these rows.
+
+**Verification performed:** (1) kickoff of all 6 rows matched to Hotspawn UTC on EGamersWorld page titles/schema (`startDate` 'Z'); (2) Polymarket listing times fit a fixed UTC-4 offset on 9 of 9 comparable Hotspawn rows, card times do not (flagged GF-07); (3) de-vig recomputed by `gapfill/build.py`, which asserts the stored percentages; (4) every row's Hotspawn, EGW and Polymarket links are in the page; (5) both HTML pages parse with 0 unclosed or mismatched tags and 0 broken local links. Not done: a real-browser screenshot test on a phone (no headless browser in this sandbox), so mobile layout is verified by CSS and markup only.
+
+**Irregularities (non-blocking, all on `gapfill/flagged.html`):** GF-01 Banda chuya v 6666 no line; GF-02 PCIFIC naming (Hotspawn PCIFIC / Polymarket WRAITH PCIFIC / EGW both names on the same slot); GF-03 FORZE Reload opponent conflict (Hotspawn LFO 10 vs Polymarket Sökerorg; EGW opponent blank); GF-04 mellren v Privateer degenerate quote (97¢/97¢, $0.00); GF-05 Enjoy single-source, zero volume, two reads 9.0 pp apart; GF-06 ex-RUSTEC single-source, two reads 5.8 pp apart; GF-07 Polymarket time display inconsistent (card vs listing). Also noted: EGamersWorld shows 1.8/1.8 placeholders on all six rows, so the PR #54 'EGW 1.80/1.80 placeholder (not used)' finding is confirmed by direct read.
+
+**Integration request (G-03, not performed here):** For the integrator of PR #54 (`arena/9920c263`, currently DIRTY): ingest `gapfill/data/gapfill.csv` for these six rows. The two priced rows (G1, G3) replace PR #54's no-price rows; the four blank rows stay blank with their flags. Do not use the Polymarket values for G4/G5/G6 until the identity/opponent/quote issues are resolved by a source. The landing-page card for `gapfill/` is also requested from the integrator (shared `index.html`, not edited here).
+
+**Scope check:** only `gapfill/**` and this section of `COORDINATION.md` were changed. Hotspawn crowd percentages were never used as an input or a displayed probability.
+
