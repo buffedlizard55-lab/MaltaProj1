@@ -16,6 +16,7 @@ matches; [`cs2/`](cs2/index.html) is the hourly line-analysis board.
 
 | Category | Page | Data / verification |
 |---|---|---|
+| **All picks (executive summary)** | `every/index.html` | **A pick + win probability for every open CS2 Pick'em match** (market lines where they exist, originated HLTV/Valve rating lines for the rest), per-row sources, `every/data/picks.csv` |
 | CS2 matches & picks | `slate/cs2.html` | All captured CS2 fixtures; open, locked and stale rows kept separately |
 | Tournaments / tiers | `slate/tournaments.html`, `slate/tiers.html` | Source-linked tables, team/tournament search |
 | Complete payload inventory | `slate/fixtures.html` | All successfully parsed fixtures, source and capture time on every row |
