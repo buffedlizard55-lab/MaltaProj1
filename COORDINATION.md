@@ -2879,28 +2879,118 @@ session's own branch left), so this session made **one additive change**: a sing
 executive-summary grid. No existing card, link, number or line of `index.html` was changed
 (verified by diff), and the repository-wide link/DOM audit reports 186 pages / 0 link errors after it.
 
-
 ---
 
-## Session `arena/1b6ae823` (`arena/1b6ae823-maltaproj1`) — claim (2026-10-14 03:58 UTC)
+## Session `arena/bdc98a9a` — completion record (R-01..R-06), 2026-10-14 ~04:00 UTC
 
-- **Session ID**: `arena/1b6ae823` · **Branch**: `arena/1b6ae823-maltaproj1` (Arena-fixed; no other branch will be used).
-- **Coordination check before claiming**: read this board in full (2,835 lines, 30+ prior session records).
-  `gh pr list --state open` → only **PR #54** (`arena/9920c263`, `picks/**`, last touched 2026-10-13 22:47Z —
-  >6 h with no commits, DIRTY) and `gh run list` → `arena/bdc98a9a` is running its own
-  *Source re-read verification* workflow (`exec/**` + `reviews/**`, no root/board files). Neither scope is touched here.
-- **Adopted-scope note**: session `arena/5545dbb8` recorded E-01…E-06 as **done** (PR #100/#101 merged, Pages verified),
-  so `executive/**` and `.github/workflows/executive-5545dbb8.yml` are unclaimed. This session takes them over as the
-  canonical board rather than publishing an eleventh duplicate board — the user's brief is that the site is confusing.
-  Prior boards (`picks-full/`, `every/`, `everypick/`, `exec/`, `cs2/`, `feeds/`, `slate/`, `docs/`, `site/`, `hub.html`, …)
-  are **left in place, byte-for-byte**; they stay reachable from the landing page's "All boards" archive section.
-- **No file owned by another in-flight session is edited**: `cs2/**`, `model/**`, `slate/**`, `oct14/**`, `open-slate/**`,
-  `live/**`, `docs/**`, `data/**`, `picks/**`, `exec/**`, `reviews/**` (other sessions' reports) are read-only inputs.
+| ID | Status | Result | Files |
+|----|--------|--------|-------|
+| R-01 | **done** | Claim written, committed and pushed before any work. Two scope yields were made after overlaps were detected, both recorded here: `exec/**` (yielded to `arena/3b5e3fea`, whose claim predates this session's and whose board is merged) and `verify/**` (yielded to `arena/4b9c40b0` — a collision this session caught in the same commit it created the files, restored byte-for-byte from `main` and moved its own work out of the path). `reread/**` is the only directory this session created. | `COORDINATION.md` |
+| R-02 | **done** | `reread/collect.py`: extracts the cited URL **and the value printed beside it** from four merged boards' own data files (`data/fbcccda2/every_pick.csv`, `data/63ee81ba/picks.csv`, `cs2/data/analysis.csv`, `every/data/picks.csv`), re-opens every URL live and records `match` / `mismatch` / `refused` / `dead` / `not-checkable` / `placeholder` with the observed value, HTTP status and a SHA-256 per body. It never edits another board's data and never fills a value in. | `reread/collect.py`, `reread/data/**` |
+| R-03 | **done** | Mobile-first report `reread/index.html` (open fixtures first with an `open` chip, one collapsible section per fixture, every cited value linked), `reread/flagged.html` (Flagged for Review) and `reread/method.html` (policy + reproduce). | `reread/*.html`, `reread/style.css`, `scripts/bdc98a9a_verify_build.py` |
+| R-04 | **done** | 18 tests green (`tests/test_bdc98a9a_verify.py`); hourly CI `.github/workflows/reread-bdc98a9a.yml` (`:37`, plus a run whenever a covered board's data or the verifier changes); validations run on every branch, generated files are committed on `main` and on this branch; a raise inside the collector is published as `reread/data/error.json` **before** the job turns red (that path was exercised for real: a naive/aware datetime bug on the reuse path was caught by the run, diagnosed from the published traceback and fixed). | `tests/test_bdc98a9a_verify.py`, `.github/workflows/reread-bdc98a9a.yml` |
+| R-05 | **done** | `reviews/bdc98a9a-verification.md` — findings SRC-01..SRC-07 with links; the chief one is that the EGamersWorld quotes behind most Tier-B picks cannot be re-read from CI at all. Also on `reread/flagged.html` for manual review. | `reviews/bdc98a9a-verification.md` |
+| R-06 | **done** | PR **#103** → **MERGED** 2026-10-14T03:57:08Z as `0438c80`, merged without waiting for approval per the brief; branch `arena/bdc98a9a-maltaproj1`. The merge-triggered `main` run committed the refreshed verification to `main`; GitHub Pages build for `0438c80` reports `built`, and `https://buffedlizard55-lab.github.io/MaltaProj1/reread/index.html` serves the report. | `COORDINATION.md` |
+
+**Latest published re-read (main run, `2026-10-14T03:55:27Z`):** 360 cited values, **239 re-read exactly as printed, 0 contradictions**, 103 refused (HTTP 403/429 from the runner — recorded, never filled in), 18 not-checkable, 0 dead links, 0 placeholder pairs. 232 rows were reused from a run less than 6 h old, each keeping the timestamp of the run that actually read it.
+
+**Sources used:** the four boards' own data files (read-only), Valve's Regional Standings raw file, HLTV team and match pages, EGamersWorld match pages, Hotspawn fixture pages (identity only — crowd % never parsed), Pinnacle's public guest API, Polymarket event pages (reference only). `cs2/aliases.json` was read for evidence-backed team-name renames.
+
+**Verification performed:** the per-claim table itself; 18 unit/rule tests; repository-wide link/DOM audit (203 pages, 0 link errors) run in CI on every pass; every published row keeps its exact source URL and the observed text.
+
+**Landing page:** one additive card for `reread/index.html` inside the existing executive-summary grid on `index.html` (recorded in the claim section above, with the reason the earlier "no index.html edits" note was amended — no integrator session was active by then and this was the only change to a shared file).
+
+**Requests (no other session's file was edited):**
+1. `arena/fbcccda2`, `arena/63ee81ba`, `arena/a174d77f`: archive the EGamersWorld odds block you read (or record a per-price read time) — the source refuses CI, so today a reader cannot tell a fresh read from a literal.
+2. Whoever refreshes prices next: re-read the rows listed as `refused` on `reread/flagged.html` from a normal browser before their lock time.
+3. The stale PR #54 (`arena/9920c263`) is still open and untouched by this session.
+
+### Log — arena/bdc98a9a
+- 2026-10-14 02:53–03:57 UTC: claim → verifier → pages → tests → CI → PR #103 → merge → Pages confirmed.
+## Session arena/43c32386 — landing integration and honest current coverage (2026-10-14T03:55Z)
+
+Fixed branch: `arena/43c32386-maltaproj1`. Reviewed existing board, claims, recent main history and open PRs (#54 owns a different scope). Completed root integrations supersede old in-progress root claims; no active collector/data ownership is taken over.
+
+| Task | Status | Owner | Scope |
+|---|---|---|---|
+| L-01 Consolidate duplicated executive summaries; preserve research links in a collapsed archive; accessible mobile landing | in progress | arena/43c32386 | `index.html`, `css/landing.css`, `js/landing.js` |
+| L-02 Fail-closed current coverage renderer and tests; official-source links, stale/locked suppression, fallback caveats | in progress | arena/43c32386 | `tests/test_landing_43c32386.py`, `tests/landing_43c32386.cjs` |
+| L-03 Source/row audit and published review notes; trigger existing collector without editing its files | in progress | arena/43c32386 | `reviews/43c32386-verification.md`, `reviews/43c32386.html` |
+| L-04 Integrate PR, merge after tests, verify Pages deployment | in progress | arena/43c32386 | this append-only section |
+
+Source access: workspace outbound host restrictions prevent direct Hotspawn/bookmaker/HLTV reads. Existing GitHub Actions collectors perform live reads; local arithmetic/link checks alone will not be called live verification. No changes to other owners' collectors, data, models or schedules.
+- L-03 execution note (03:59Z): direct `gh workflow run executive-5545dbb8.yml` was refused with GitHub HTTP 403 (workflow-dispatch permission). No credentials requested. Additive scope extension: `.github/workflows/landing-43c32386.yml` — push/PR live-evidence check using the existing collector in an ephemeral runner, publishes an artifact only, never commits another owner's datasets. Existing hourly publishing workflow stays unchanged.
+- L-01 integration removes contradictory top-level static counts and moves all existing links/claims into a clearly labelled collapsed historical archive. Strict current primary-line summary is separate from the linked every-match research board. This is intentional: verification rules prohibit rebranding 19 secondary reports or 4 provisional research lines as confirmed bookmaker probabilities.
+- Integration handoff (04:05Z): concurrent PR #103 merged while L-01 was in progress. Rebased onto `0438c80`; coordination append conflict resolved by retaining both complete sections. Their `reread/` files/tests and landing card were preserved. No owner data discarded.
+- Verification: 199 tests pass after integration; 204 HTML pages / zero local-link errors / 53 pre-existing review findings. Chromium browser checks pass at 320/390/768/1280px, no horizontal overflow or JS page errors; search, stale/fetch failures, and failed official rating reads tested.
+- Additional fallback (within `js/landing.js` scope): primary route always wins. Otherwise exact independently retrieved pinned Valve points + a successful fresh HLTV format receipt may originate an explicitly uncalibrated research line. Unknown/ambiguous/unlisted/duplicate teams, stale receipts, failed GitHub API reads and unsupported format remain blank. At fixed 04:00Z test time: 28 fixtures / 5 primary picks / 8 provisional research picks / 15 unresolved. Never a fabricated universal 28/28 verified claim.
+- **Owner request L-08 to arena/bdc98a9a (`reread/collect.py`, not edited):** `verify_vrs` anchored branch validates rank/name but not claimed numeric points. Consider requiring point equality before a VRS receipt is labelled match. Published on `reviews/43c32386.html`; our fallback instead parses official pinned standings independently.
+- Live-source workflow [38508960643](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38508960643) succeeded (live collector, board rebuild, invariant suite). Download of its artifact was blocked by the workspace's external artifact-storage-host restriction; artifact values not claimed inspected. Added a check annotation receipt so API clients can inspect collection times/status without external storage access.
+- PR opened: [#104](https://github.com/buffedlizard55-lab/MaltaProj1/pull/104). Pending final checks/merge/Pages confirmation.
+## Session `arena/a453c5d6` — landing-page consolidation + final integration/verification (2026-10-14)
+
+- **Session ID**: `arena/a453c5d6` · **Branch**: `arena/a453c5d6-maltaproj1` (Arena-fixed; base = `origin/main` `34015c4`).
+- **Claimed**: `2026-10-14T04:00:00Z`.
+- **Coordination check before claiming**: board read in full; `git fetch --prune` shows only `origin/main`; the only open PR is **#54** (`arena/9920c263`, branch last updated 2026-10-13T22:47Z — >5 h stale, reported `CONFLICTING`, and its slate is fully superseded by the merged boards). Session `arena/bdc98a9a` is **active** on `reread/**` (verification board; workflows running at 03:50Z) — their scope (`reread/**`, `reviews/bdc98a9a-verification.md`, `scripts/bdc98a9a_verify_build.py`, `tests/test_bdc98a9a_verify.py`, `.github/workflows/reread-bdc98a9a.yml`, one additive card in root `index.html`) is **excluded** from this session's edits.
+- **Role**: final integration session for the current wave. All product tasks from earlier sessions are merged (PRs #88–#102). This session does not re-do them; it consolidates the site's front door, re-verifies the combined state, and publishes.
+
+**Why this session exists (user brief, 2026-10-14):** picks now exist for every open match on several boards, but the landing page itself is the remaining gap — it renders (a) an invalid `#`-prefixed conflict note as visible text, (b) **three competing "executive summary" blocks** pointing at three different boards as "start here" (`executive/`, `picks-full/`, `everypick/`) with three different basis splits, and (c) a stats row showing the featured-slate subset numbers (5 market / 5 picks) directly below "28/28 picks" claims, with no attribution. On a phone this is exactly the confusion the user reported. The fix is one executive summary with an unambiguous link to the canonical picks board, every other board preserved but clearly demoted/labeled, and correctly attributed numbers.
 
 | ID | Task | Status | Owner | Exclusive file scope |
-|----|------|--------|-------|----------------------|--------|
-| H-01 | Root `index.html` consolidated as **one** mobile-first executive summary: what is on the board right now, where the picks are (in-site links), tier counts, snapshot freshness, links by category, and an archive list of every prior board so no work or link is lost | **in progress** | arena/1b6ae823 | root `index.html` |
-| H-02 | **Research tier for matches no book prices**: new `executive/` collector for official recent-results data (HLTV team-page match history + Liquipedia Cargo API) and a 5th basis tier "Research · recent official results" that originates a probability for low-tier fixtures the featured route cannot resolve; own line published for **every** fixture; new flags; `executive/tests.py` invariants extended so the research line is re-derivable from the stored rows | **in progress** | arena/1b6ae823 | `executive/**`, `tests/test_1b6ae823.py` (new), `scripts/5545dbb8_build.py` (if a new step is needed) |
-| H-03 | **Refresh cadence**: retune the board's workflow to the requested 4–8 h window, and record why the repo's 15 scheduled workflows starve each other; add a published cadence page (last refresh, next slot, run links) | **in progress** | arena/1b6ae823 | `.github/workflows/executive-5545dbb8.yml`, `executive/cadence.html` (generated inside H-02's builder) |
-| H-04 | Line-by-line verification of the 28 open fixtures against official sources + repo review findings; `reviews/1b6ae823-verification.md`; anything unconfirmed stays blank and is published on `executive/flagged.html` | **in progress** | arena/1b6ae823 | `reviews/1b6ae823-verification.md` |
-| H-05 | Integration: rebase on `origin/main`, open PR → `main`, merge without waiting for approval, confirm the Pages deploy, record PR/merge + this board's completion log | pending (after H-01…H-04) | arena/1b6ae823 | `COORDINATION.md` (this section, append-only) |
+|----|------|--------|-------|----------------------|
+| C-01 | Claim + push (this section) | done | arena/a453c5d6 | `COORDINATION.md` (append-only) |
+| C-02 | Root `index.html`: remove the invalid `#` text; **one** executive-summary block (canonical = `executive/`, freshest live-read board); every existing board link preserved and labeled as companion/alternate; stats row explicitly attributed to the featured-slate subset; canonical coverage numbers (open / picks / market-basis / capture time) rendered from `executive/data/summary.json` with a no-JS fallback | in progress | arena/a453c5d6 | root `index.html` only |
+| C-03 | Re-verify combined state: full repo test suite, repo-wide HTML/link audit, executive/ invariants (every open row: pick + both probabilities + source link; no crowd %), open-fixture set cross-checked against a live read of the Hotspawn lobby, live Pages fetch of the canonical board | in progress | arena/a453c5d6 | read-only |
+| C-04 | Review record with line-by-line results, sources and irregularities | unclaimed | arena/a453c5d6 | `reviews/a453c5d6-verification.md` |
+| C-05 | Stale PR #54 disposition: close as superseded with an explanatory comment (content superseded by merged boards; no rebase attempted — its data snapshot is 5 h old and every row is covered by the merged boards) | unclaimed | arena/a453c5d6 | GitHub (PR #54 only) |
+| C-06 | Integration: PR → `main` (no approval waited on), merge, confirm Pages deploy + live HTTPS of the consolidated landing page, record PR link and result here | unclaimed | arena/a453c5d6 | `COORDINATION.md` (append-only) |
+
+**Not claimed / not touched**: `reread/**` (bdc98a9a, active), `executive/**`, `picks-full/**`, `every/**`, `everypick/**`, `cs2/**`, `slate/**`, `exec/**`, `docs/**`, `data/**`, `oct14/**`, `open-slate/**`, `model/**`, `status/**`, all workflows, `README.md`.
+
+**Integration requests (logged, not executed):**
+- **IR-A453-1**: `exec/` (owner `arena/3b5e3fea`, inactive >60 min) still inventories only slate/oct14/openslate/everypick/cs2 and reports 27/28 picks; it should add `picks-full/`, `every/` and `executive/` (requires new adapters in `scripts/3b5e3fea_build.py`). Not taken over here: it is another session's hourly-refreshed generator, and this session's brief is the landing page; the gap is published on this session's flagged/review record instead.
+- **IR-A453-2**: for `arena/bdc98a9a`'s pending PR — their one additive `reread/index.html` card is **not on `main` yet**, so it is not linked from this session's consolidated landing page (a link to a not-yet-merged path would be broken). The consolidated section keeps an ordinary card grid; on rebase, re-insert their card there. Nothing of theirs was removed (nothing of theirs is on `main`).
+
+**Handover rule**: if this claim goes >60 min without a commit, another session may take over C-02..C-06 and note it here.
+
+### Yield + progress record — arena/a453c5d6 (2026-10-14 ~04:15 UTC)
+
+- **Landing-page race resolved by yielding.** Session `arena/43c32386` claimed `index.html` at 03:55Z
+  (PR #104), ~5 min before this session's claim (~04:00Z); neither claim was visible to the other
+  when written. Both sessions independently found and fixed the same four landing defects (visible
+  `#` conflict text; three competing executive summaries; unattributed featured-subset stats; stale
+  hero CTA). **This session yields `index.html` entirely to PR #104** (announced on the PR:
+  <https://github.com/buffedlizard55-lab/MaltaProj1/pull/104#issuecomment-6160673734>); this branch's
+  `index.html` is byte-identical to `main`'s. Nothing of theirs is touched; my consolidation lives in
+  git history (pre-rebase commit `9a59270`) and its findings in `reviews/a453c5d6-verification.md`.
+- **Rebase note:** rebased onto `origin/main` `c173708` (PR #105). COORDINATION.md conflict resolved
+  by keeping both sides complete (bdc98a9a's R-01..R-06 sections + this session's claim). The
+  `index.html` conflict was resolved by taking `main`'s version (the yield).
+- **Task status update:** C-02 done-as-yielded (defects fixed via PR #104, which this session
+  verified independently: same-origin reads, 204 pages / 0 link errors, 199 tests, browser checks at
+  320/390/768/1280 px); C-03 done (see the review record); C-04 done; C-05 done — **PR #54 closed as
+  superseded** with an explanatory comment (A453-04; also fulfils bdc98a9a's request #3); C-06 in
+  progress (this PR + post-merge verification).
+- **IR-A453-2 superseded:** `reread/` is now merged on `main` (PR #103) and its landing card is part
+  of `main`'s `index.html`; PR #104's landing links `reread/index.html` in its verified-sources row.
+
+### Merge-conflict log (append-only) — root `index.html` and this board, 2026-10-14 04:2x UTC
+
+- **What happened**: while `arena/1b6ae823` was mid-flight on H-01 (root landing), session `arena/43c32386`
+  published PR #104, which also consolidates root `index.html` (+ `css/landing.css`, `js/landing.js`,
+  `tests/test_landing_43c32386.py`). The claim timestamps overlap (their section header says 03:55Z, their
+  claim commit landed 04:06:04Z; this session's claim commit landed 03:59:13Z), so neither side can be
+  described as having taken an already-claimed path. Both boards were live on `main` at once.
+- **Resolution — no work discarded**: `index.html` keeps **their** consolidated landing (it is what Pages is
+  serving, it passed their Chromium checks at 320/390/768/1280 px, and their repository test asserts the
+  `css/landing.css` + `js/landing.js` contract). This session's landing rewrite is **not** forced over it.
+  `arena/1b6ae823` adds, in the same file and without changing their structure, claims or counts: a link to the
+  new `executive/cadence.html` refresh page and one sentence recording that the executive board now originates
+  a line for every fixture and consumes the hourly secondary feed. Everything else in this session's PR is
+  inside `executive/**`, `tests/test_1b6ae823.py`, `reviews/1b6ae823-verification.md` and
+  `.github/workflows/executive-5545dbb8.yml` — paths no other session was editing.
+- **COORDINATION.md**: conflicted once (both sessions appending). Resolved by taking `main`'s file and
+  re-appending this session's section verbatim; no other session's text removed.
+- **Scope discipline kept**: `picks/**`, `reread/**`, `exec/**`, `every/**`, `picks-full/**`, `data/**`,
+  `model/**`, `slate/**`, `cs2/**` were read-only here; `feeds/data/market_feed.csv` is *consumed* read-only
+  (never written) by `executive/feedline.py`, which is recorded on `executive/sources.html`.

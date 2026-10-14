@@ -18,22 +18,22 @@ own data files, then re-reads each URL live in CI:
 | `every/data/picks.csv` (mobile every-match board) | 164 |
 | **deduplicated worklist** | **360** |
 
-Run: `2026-10-14T03:50:04Z`, CI run `38507818310` (188 rows reused from the run 6 minutes earlier,
-which is why the run is cheap), machine-readable result
+Run: `2026-10-14T03:55:27Z`, the merge-triggered run on `main` (232 rows reused from the run six
+minutes earlier, which is why the run is cheap), machine-readable result
 `reread/data/source_check.csv` (one row per cited value, source link on every row) plus the fetch log
 with a SHA-256 per body in `reread/data/log.jsonl`.
 
 ## Result
 
-**232 of 360 cited values re-read exactly as published. 0 rows where a live source contradicted a
-published value. 111 refused, 17 not-checkable, 0 dead links, 0 placeholder pairs.**
+**239 of 360 cited values re-read exactly as published. 0 rows where a live source contradicted a
+published value. 103 refused, 18 not-checkable, 0 dead links, 0 placeholder pairs.**
 
 | Kind of citation | Total | Re-read as printed | Needs review |
 |---|---|---|---|
 | Valve Regional Standings line (`github.com`/`raw.githubusercontent.com`) | 170 | **170** | 0 |
 | HLTV team page (team exists, name present) | 39 | **39** | 0 |
-| HLTV match page (team names + series format) | 56 | 18 | 38 refused |
-| EGamersWorld match page (market quote) | 49 | 0 | 49 refused |
+| HLTV match page (team names + series format) | 56 | 25 | 31 refused |
+| EGamersWorld match page (market quote) | 49 | 0 | 48 refused, 1 no odds table served |
 | Hotspawn fixture page (identity only) | 26 | 2 | 24 refused |
 | Pinnacle page / guest API | 17 | 0 | 17 not-checkable |
 | Polymarket event (reference only) | 3 | 3 | 0 |
@@ -61,7 +61,7 @@ Four boards are covered: `data/fbcccda2/every_pick.csv`, `data/63ee81ba/picks.cs
   risk the repository audit raised when it found these prices are literals in data files. Anyone
   relying on a Tier-B price should open the link from a normal browser before the match.
 - **SRC-03 — HLTV serves team pages but bot-checks match pages.** 39/39 HLTV team pages re-read
-  (headless Chromium was needed for most of them), but 38 of 56 match-page citations returned 403 even
+  (headless Chromium was needed for most of them), but 31 of 56 match-page citations returned 403 even
   through a browser. Refusals are recorded as refusals; the affected rows keep their link and the "refused"
   chip so a human can check the page in one tap.
 - **SRC-04 — Hotspawn per-fixture pages refuse the runner too.** 24 of 26 `www.hotspawn.com/matches/…`
