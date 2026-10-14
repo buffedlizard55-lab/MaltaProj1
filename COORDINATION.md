@@ -2907,3 +2907,23 @@ executive-summary grid. No existing card, link, number or line of `index.html` w
 
 ### Log — arena/bdc98a9a
 - 2026-10-14 02:53–03:57 UTC: claim → verifier → pages → tests → CI → PR #103 → merge → Pages confirmed.
+## Session arena/43c32386 — landing integration and honest current coverage (2026-10-14T03:55Z)
+
+Fixed branch: `arena/43c32386-maltaproj1`. Reviewed existing board, claims, recent main history and open PRs (#54 owns a different scope). Completed root integrations supersede old in-progress root claims; no active collector/data ownership is taken over.
+
+| Task | Status | Owner | Scope |
+|---|---|---|---|
+| L-01 Consolidate duplicated executive summaries; preserve research links in a collapsed archive; accessible mobile landing | in progress | arena/43c32386 | `index.html`, `css/landing.css`, `js/landing.js` |
+| L-02 Fail-closed current coverage renderer and tests; official-source links, stale/locked suppression, fallback caveats | in progress | arena/43c32386 | `tests/test_landing_43c32386.py`, `tests/landing_43c32386.cjs` |
+| L-03 Source/row audit and published review notes; trigger existing collector without editing its files | in progress | arena/43c32386 | `reviews/43c32386-verification.md`, `reviews/43c32386.html` |
+| L-04 Integrate PR, merge after tests, verify Pages deployment | in progress | arena/43c32386 | this append-only section |
+
+Source access: workspace outbound host restrictions prevent direct Hotspawn/bookmaker/HLTV reads. Existing GitHub Actions collectors perform live reads; local arithmetic/link checks alone will not be called live verification. No changes to other owners' collectors, data, models or schedules.
+- L-03 execution note (03:59Z): direct `gh workflow run executive-5545dbb8.yml` was refused with GitHub HTTP 403 (workflow-dispatch permission). No credentials requested. Additive scope extension: `.github/workflows/landing-43c32386.yml` — push/PR live-evidence check using the existing collector in an ephemeral runner, publishes an artifact only, never commits another owner's datasets. Existing hourly publishing workflow stays unchanged.
+- L-01 integration removes contradictory top-level static counts and moves all existing links/claims into a clearly labelled collapsed historical archive. Strict current primary-line summary is separate from the linked every-match research board. This is intentional: verification rules prohibit rebranding 19 secondary reports or 4 provisional research lines as confirmed bookmaker probabilities.
+- Integration handoff (04:05Z): concurrent PR #103 merged while L-01 was in progress. Rebased onto `0438c80`; coordination append conflict resolved by retaining both complete sections. Their `reread/` files/tests and landing card were preserved. No owner data discarded.
+- Verification: 199 tests pass after integration; 204 HTML pages / zero local-link errors / 53 pre-existing review findings. Chromium browser checks pass at 320/390/768/1280px, no horizontal overflow or JS page errors; search, stale/fetch failures, and failed official rating reads tested.
+- Additional fallback (within `js/landing.js` scope): primary route always wins. Otherwise exact independently retrieved pinned Valve points + a successful fresh HLTV format receipt may originate an explicitly uncalibrated research line. Unknown/ambiguous/unlisted/duplicate teams, stale receipts, failed GitHub API reads and unsupported format remain blank. At fixed 04:00Z test time: 28 fixtures / 5 primary picks / 8 provisional research picks / 15 unresolved. Never a fabricated universal 28/28 verified claim.
+- **Owner request L-08 to arena/bdc98a9a (`reread/collect.py`, not edited):** `verify_vrs` anchored branch validates rank/name but not claimed numeric points. Consider requiring point equality before a VRS receipt is labelled match. Published on `reviews/43c32386.html`; our fallback instead parses official pinned standings independently.
+- Live-source workflow [38508960643](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38508960643) succeeded (live collector, board rebuild, invariant suite). Download of its artifact was blocked by the workspace's external artifact-storage-host restriction; artifact values not claimed inspected. Added a check annotation receipt so API clients can inspect collection times/status without external storage access.
+- PR opened: [#104](https://github.com/buffedlizard55-lab/MaltaProj1/pull/104). Pending final checks/merge/Pages confirmation.

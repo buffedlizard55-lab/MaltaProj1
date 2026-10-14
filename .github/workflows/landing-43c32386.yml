@@ -1,0 +1,100 @@
+name: Landing and live-source evidence
+on:
+  push:
+    branches: [main, arena/43c32386-maltaproj1]
+    paths:
+      - index.html
+      - css/landing.css
+      - js/landing.js
+      - tests/test_landing_43c32386.py
+      - tests/landing_43c32386.cjs
+      - .github/workflows/landing-43c32386.yml
+  pull_request:
+    branches: [main]
+    paths:
+      - index.html
+      - css/landing.css
+      - js/landing.js
+      - .github/workflows/landing-43c32386.yml
+permissions:
+  contents: read
+concurrency:
+  group: landing-evidence-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Stored-evidence and landing regressions
+        run: |
+          python -m unittest discover -s tests -v
+          node --check js/landing.js
+          python scripts/audit_91e444dd.py --output /tmp/landing-links.json
+      - name: Re-read public fixture, bookmaker and official rating sources
+        run: |
+          python executive/collect.py
+          python executive/build.py
+          python executive/tests.py
+      - name: Publish inspectable source receipt
+        if: always()
+        run: |
+          python - <<'PY'
+          import json, pathlib
+          summary = pathlib.Path('executive/data/summary.json')
+          provenance = pathlib.Path('executive/data/provenance.json')
+          if summary.exists() and provenance.exists():
+              s, p = json.loads(summary.read_text()), json.loads(provenance.read_text())
+              report = {'meta': s.get('meta'), 'coverage': s.get('coverage'), 'fetches': [
+                  {k: f.get(k) for k in ('url', 'fetched_utc', 'status', 'mode')}
+                  for f in p.get('fetches', []) if 'play.hotspawn.com' in f.get('url', '') or 'pinnacle' in f.get('url', '') or 'ValveSoftware' in f.get('url', '')]}
+              print('::notice title=Live source receipt::' + json.dumps(report))
+          PY
+      - name: Preserve live evidence for manual review (no data commits)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: landing-live-evidence-${{ github.run_id }}
+          path: |
+            /tmp/landing-links.json
+            executive/data/analysis.json
+            executive/data/provenance.json
+            executive/data/summary.json
+            executive/data/flags.csv
+          retention-days: 14
+      - name: Confirm public deployment on main
+        if: success() && github.ref_name == 'main'
+        env:
+          RUN_ID: ${{ github.run_id }}
+        run: |
+          python - <<'PY'
+          import os, time, urllib.request
+          base = 'https://buffedlizard55-lab.github.io/MaltaProj1/'
+          checks = {'': 'Your matches.', 'js/landing.js': 'function parseStandings',
+                    'css/landing.css': 'color-scheme:dark', 'reviews/43c32386.html': 'Flagged for Review'}
+          for attempt in range(12):
+              try:
+                  for path, marker in checks.items():
+                      request = urllib.request.Request(base + path + '?release=' + os.environ['RUN_ID'], headers={'User-Agent': 'MaltaProj1-release-verification'})
+                      with urllib.request.urlopen(request, timeout=20) as response:
+                          body = response.read().decode('utf-8')
+                          if response.status != 200 or marker not in body:
+                              raise RuntimeError(f'{path}: deployment marker missing')
+                  print('::notice title=Public deployment verified::Landing, JavaScript, stylesheet and Flagged for Review returned HTTP 200 with expected release markers.')
+                  break
+              except Exception as error:
+                  if attempt == 11:
+                      raise
+                  print(f'Pages not ready yet: {error}')
+                  time.sleep(15)
+          PY
+      - name: Explain verification boundary
+        if: always()
+        run: echo 'Source refusals are recorded in provenance. A successful test is not proof that every quote is available or every forecast is calibrated. This workflow never writes collector-owned datasets to Git.' >> "$GITHUB_STEP_SUMMARY"
