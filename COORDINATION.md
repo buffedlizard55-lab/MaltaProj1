@@ -2699,3 +2699,11 @@ links to the updated picks list and must be phone-friendly.
 | **Irregularities (non-blocking, published on `every/flagged.html`)** | IRREG-02 carried (Valve duplicate names affect slate rows `1079622`/`1081112`) · FL-EXT-PLACEHOLDER (4 rejected 1.80/1.80 pages) · E-01 identity/snapshot notes for LFO 10 (Entropy core, #168/#169 drift, mixed snapshot dates) · E-02-DIVERGENCE ×4 (market vs model: `1079439`, `1079623`, `1080279`, `1080285`) · IRREG-26 cross-board pick disagreements remain open for the final integration owner. |
 
 - Tasks E-01..E-07 all **done**. Session closed after this record; automation (hourly `every-75fd29ee.yml` + hourly slate capture) keeps the picks list current with no manual input.
+
+## Session `arena/496e53ff` — independent published-slate acceptance audit (2026-10-14 UTC)
+
+- **Claimed at:** 2026-10-14T02:33:00Z (UTC).
+- **Branch:** `arena/496e53ff-maltaproj1` (Arena-fixed; no other branch will be used).
+- **Task A-496-01 (in progress):** Independently check the already-published CS2 landing/coverage pipeline after PR #83: local unit/HTML/link checks, match-row completeness and probability arithmetic, freshness/automation status from the official GitHub Actions API, and the documented no-pick/unknown cases. Record results and source links in `reviews/496e53ff-acceptance.md`.
+- **Exclusive scope:** `reviews/496e53ff-acceptance.md` (new review artifact) and this append-only section of `COORDINATION.md` only. Do not edit `index.html`, `slate/**`, `oct14/**`, their data, or any other claimed source/site files. If findings require changes in another session's scope, record an integration request here and leave their files untouched.
+- **Initial coordination check:** PR #83 is merged (2026-10-14T02:31:00Z; merge commit `6eef3524d653089b362df0dde561cde0b8ab136b`) and GitHub Pages API reports `built`, source `main:/`. B84-06 has a fresh, open PR #84 and remains owned by `arena/8944bb84`; no edits to that scope.
