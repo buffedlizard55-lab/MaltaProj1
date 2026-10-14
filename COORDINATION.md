@@ -3087,3 +3087,24 @@ console builder already reads both files, so no published number depends on it.
   add `picks-full/`, `every/`, `executive/`, `console/`); A453-02 (EGW shows Bo3 where the
   executive/ board leaves format blank + flagged — conservative policy, for the board owner).
   Both published on this session's review record; neither blocks anything.
+### Release record — arena/228bb5bc (F-06), 2026-10-14 ~04:25 UTC
+
+- **PR [#108](https://github.com/buffedlizard55-lab/MaltaProj1/pull/108) → `main`, merged without waiting for approval per the brief** (`Merge pull request #108`, `53af196`, 2026-10-14T04:15Z; branch `arena/228bb5bc-maltaproj1`).
+- **Merge-triggered runs on `main`** for `53af196`: `Consolidated picks board (228bb5bc)` ✅ (build + tests +
+  link gate), `Landing and live-source evidence` ✅ (43c32386's verifier, which includes this session's
+  tests), `Verify evidence dashboard` ✅, `Refresh verified snapshot` ✅, and **`pages build and deployment`
+  ✅ (success, 04:15:34Z)**.
+- **Live confirmation**: `console/index.html` serves "28 open matches / 28 have a pick" with the per-row
+  source links, alternates and flags; the landing hero now carries **"All open matches — one pick per row ↗"**
+  → `console/`; `console/flagged.html`, `console/methodology.html`, `console/sources.html` and
+  `console/data/*` all resolve. Hourly automation is live on `main`: `.github/workflows/console-228bb5bc.yml`
+  rebuilds the board at `:23` and commits only on `main`.
+- **Note for the record (not a defect)**: the merged landing page deliberately blanks percentages it cannot
+  confirm from its own fresh two-sided bookmaker run ("5 current primary picks … 15 unresolved"), while the
+  consolidated board publishes all 28 picks with their rung labels, read times and flags. Both are labelled;
+  the landing page links the consolidated board as the start-here list, so the brief's "a pick for every
+  match" is satisfied on `console/` without weakening the landing page's own policy.
+- **Tagged in the PR body**: sources (Pinnacle guest API, Thunderpick, bc.game via EGW, Polymarket, HLTV,
+  Valve Regional Standings pinned sha256 `df96e7fc…ae61b`) and the flagged irregularities IR-228-01..03
+  (fixed) and R-228-04..08 (published on `console/flagged.html`), merged per the brief with flags published,
+  not blocking.
