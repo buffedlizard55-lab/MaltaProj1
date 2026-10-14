@@ -12,7 +12,7 @@ test_own_line_reproducible (__main__.TestAnalysis.test_own_line_reproducible) ..
 test_pick_is_the_consensus_side (__main__.TestAnalysis.test_pick_is_the_consensus_side) ... ok
 test_probabilities_complement (__main__.TestAnalysis.test_probabilities_complement) ... ok
 test_published_prices_exist_in_the_archived_bytes (__main__.TestAnalysis.test_published_prices_exist_in_the_archived_bytes)
-No published book price may be anything other than a number inside the archived payload. ... ok
+No published book price may be anything other than a number inside the archived payload. ... FAIL
 test_times_are_utc_and_ordered (__main__.TestAnalysis.test_times_are_utc_and_ordered) ... ok
 test_vrs_links_point_at_the_exact_row_they_claim (__main__.TestAnalysis.test_vrs_links_point_at_the_exact_row_they_claim)
 Every published rating must be re-findable on the linked line of Valve's own file. ... ok
@@ -20,7 +20,16 @@ test_anchors_resolve_on_flagged_page (__main__.TestSite.test_anchors_resolve_on_
 test_internal_links_resolve (__main__.TestSite.test_internal_links_resolve) ... ok
 test_pages_declare_viewport_and_are_self_contained (__main__.TestSite.test_pages_declare_viewport_and_are_self_contained) ... ok
 
+======================================================================
+FAIL: test_published_prices_exist_in_the_archived_bytes (__main__.TestAnalysis.test_published_prices_exist_in_the_archived_bytes)
+No published book price may be anything other than a number inside the archived payload.
 ----------------------------------------------------------------------
-Ran 17 tests in 0.079s
+Traceback (most recent call last):
+  File "/home/runner/work/MaltaProj1/MaltaProj1/cs2/tests.py", line 238, in test_published_prices_exist_in_the_archived_bytes
+    self.assertTrue(hit, f"published price {a} v {b} {oa}/{ob} is not in the archived payload")
+AssertionError: False is not true : published price ryvex v pcific 1.126103/4.79 is not in the archived payload
 
-OK
+----------------------------------------------------------------------
+Ran 17 tests in 0.116s
+
+FAILED (failures=1)
