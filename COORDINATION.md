@@ -2250,3 +2250,29 @@ the slate auto-refresh commit). No other session has pushed in >2 hours, so all 
   preserved both boards, generated comparisons rebuilt. Fixed branch only; no other branch created or pushed.
 - Final release-log changes are documentation only; source code and public site already validated above.
   Session has no further planned code changes after recording this release.
+
+---
+
+## Session `arena/8944bb84` (`arena/8944bb84-maltaproj1`) — 2026-10-14 Live CS2 Verification, HLTV Match-Page Audit & Categorized Board
+
+- **Session ID**: `arena/8944bb84`
+- **Branch**: `arena/8944bb84-maltaproj1`
+- **Claimed Timestamp**: `2026-10-14T01:48:00Z` (updated `2026-10-14T02:26:00Z`)
+- **Exclusive Non-Overlapping File Scope**:
+  - `data/8944bb84/**` (`fixtures.csv`, `external_lines.csv`, `ratings.csv`, `own_lines.csv`, `analysis.csv`, `flags.csv`, `coverage.json`)
+  - `oct14/**` (`index.html`, `s-tier.html`, `b-tier.html`, `c-tier.html`, `tournaments.html`, `market-lines.html`, `own-lines.html`, `coverage-all-91.html`, `methodology.html`, `sources.html`, `flagged.html`, `style.css`)
+  - `scripts/8944bb84_build.py`
+  - `tests/test_8944bb84.py`
+  - `.github/workflows/oct14-8944bb84.yml`
+  - `reviews/8944bb84-verification.md`
+  - `index.html` (additive link card only) and `COORDINATION.md` (append-only)
+
+| Task ID | Status | Owner | Scope | Timestamp (UTC) | Notes |
+|---|---|---|---|---|---|
+| `B84-01` | `done` | `arena/8944bb84` | `data/8944bb84/fixtures.csv`, `data/8944bb84/coverage.json` | `2026-10-14T02:26:00Z` | Full 91-fixture CS2 coverage (`28` open Oct 14–16, `4` started/completed Oct 13–14, `59` stale June–July TransferState records) cross-verified with official HLTV match pages (`2399134`–`2399471`). |
+| `B84-02` | `done` | `arena/8944bb84` | `data/8944bb84/external_lines.csv` | `2026-10-14T02:26:00Z` | Live external betting lines (`7` Direct Pinnacle + `17` EGamersWorld `bc.game` = `24/28` open matches priced; `4` `1.80/1.80` placeholders rejected & flagged `FL-EXT-PLACEHOLDER`). |
+| `B84-03` | `done` | `arena/8944bb84` | `data/8944bb84/ratings.csv`, `data/8944bb84/own_lines.csv`, `data/8944bb84/analysis.csv` | `2026-10-14T02:26:00Z` | Originated win probabilities from official `2026-10-05` Valve VRS (`D=372.12`) + `2026-10-12` HLTV rankings (`0.0%` Hotspawn crowd input); disambiguated duplicate VRS team names (`ex-RUSTEC` `#92/1066 pts`, `6666` `#127/923 pts`, `Banda Chuya` `#165/801 pts`, `Zomblers` `#254/639 pts`); left `#1079624` (`FORZE Reload vs LFO 10`) blank & flagged. |
+| `B84-04` | `done` | `arena/8944bb84` | `reviews/8944bb84-verification.md`, `oct14/flagged.html`, `data/8944bb84/flags.csv` | `2026-10-14T02:26:00Z` | Line-by-line repo review documenting `IRREG-01`..`IRREG-08` and all fixture/team flags with official source URLs on every row. |
+| `B84-05` | `done` | `arena/8944bb84` | `oct14/**`, `scripts/8944bb84_build.py`, `tests/test_8944bb84.py`, `.github/workflows/oct14-8944bb84.yml` | `2026-10-14T02:26:00Z` | 11-page mobile-friendly categorized dashboard (`oct14/`), 3-hour scheduled refresh workflow, and unit/assurance test suite passing with `0` link errors. |
+| `B84-06` | `in_progress` | `arena/8944bb84` | `index.html`, `COORDINATION.md` | `2026-10-14T02:26:00Z` | Rebased onto `origin/main`, opening PR to `main`, merging, and verifying GitHub Pages deployment. |
+
