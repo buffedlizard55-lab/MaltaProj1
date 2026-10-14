@@ -1,0 +1,162 @@
+# Executive board refresh — session arena/5545dbb8.
+#
+# What it does with no credentials and no manual input:
+#   1. Reads the public Hotspawn Pick'em pages (/cs2-pickems, /lobby, /thp-pickems) and takes fixture
+#      identity, tier, offered points and the exact UTC lock/start epochs out of the Angular
+#      TransferState payload. Crowd pick percentages are dropped at ingest and never stored.
+#   2. Reads outside prices (Pinnacle's public guest response first, then other public listings), the
+#      official Valve Regional Standings repository, and HLTV's public ranking/match/team pages.
+#   3. Rebuilds executive/*.html plus the data files, then runs the invariant suite: every published
+#      probability is re-derived from the stored quote or the official rating points, every row must
+#      carry a source link or a flag, and a stored Hotspawn crowd value fails the build.
+#   4. Commits only after collect + build + tests pass, so a bad capture never replaces a good board.
+#
+# A source that refuses the read is recorded as a refusal and its value stays blank and flagged.
+name: Executive board refresh (5545dbb8)
+
+on:
+  schedule:
+    # Hourly. GitHub schedules are best-effort and can be delayed or skipped under load.
+    - cron: "17 * * * *"
+  workflow_dispatch: {}
+  push:
+    branches: ["arena/5545dbb8-maltaproj1", "main"]
+    paths:
+      - "executive/collect.py"
+      - "executive/build.py"
+      - "executive/tests.py"
+      - "executive/common.py"
+      - "executive/style.css"
+      - "executive/board.js"
+      - "executive/aliases.json"
+      - "executive/README.md"
+      - "scripts/5545dbb8_build.py"
+      - "tests/test_5545dbb8.py"
+      - ".github/workflows/executive-5545dbb8.yml"
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: executive-5545dbb8-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Collect fixtures, prices, ratings (live)
+        run: |
+          set -o pipefail
+          python executive/collect.py 2>&1 | tee /tmp/executive-collect.log
+
+      - name: Build the board
+        run: |
+          set -o pipefail
+          python executive/build.py 2>&1 | tee -a /tmp/executive-build.log
+
+      - name: Run the invariant suite
+        run: |
+          set -o pipefail
+          python executive/tests.py 2>&1 | tee -a /tmp/executive-tests.log
+
+      - name: Run the repository test discovery for this session
+        run: python -m unittest tests/test_5545dbb8.py -v
+
+      - name: Summarise the run
+        if: always()
+        run: |
+          {
+            echo "### Executive board run"
+            echo
+            python - <<'PY'
+          import json, pathlib
+          summary = pathlib.Path("executive/data/summary.json")
+          if not summary.exists():
+              print("no summary.json — the build did not complete")
+          else:
+              data = json.loads(summary.read_text())
+              cov, meta, checks = data["coverage"], data["meta"], data["checks"]
+              print(f"- snapshot: {meta.get('generated_utc')} · {meta.get('snapshot_age_text')}")
+              print(f"- fixtures: {cov['total_fixtures']} total · {cov['open_fixtures']} open · "
+                    f"{cov['open_with_pick']} with a pick · {cov['open_provisional']} provisional · "
+                    f"{cov['open_no_pick']} without a pick")
+              print(f"- basis: {cov['open_market_basis']} market · {cov['open_model_basis']} model · "
+                    f"{cov['teams_resolved_official']} teams resolved to official ratings")
+              for check in checks:
+                  if not check["passed"]:
+                      print(f"- FAILED CHECK: {check['name']} — {check['detail']}")
+          PY
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Commit the validated snapshot
+        if: ${{ github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' || github.event_name == 'push' }}
+        run: |
+          set -euo pipefail
+          git config user.name "arena-5545dbb8"
+          git config user.email "arena-5545dbb8@users.noreply.github.com"
+          git add executive/data executive/*.html
+          if git diff --cached --quiet; then
+            echo "no change to commit"
+            exit 0
+          fi
+          git commit -m "executive(5545dbb8): validated refresh from run ${GITHUB_RUN_ID}"
+          # Never suppress a failed rebase or discard another session's edits.
+          git pull --rebase=merges origin "${GITHUB_REF_NAME}"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
+
+      - name: Request a Pages build for a successful main refresh
+        if: success() && github.ref_name == 'main'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --method POST "repos/${GITHUB_REPOSITORY}/pages/builds"
+
+      - name: Confirm the public pages actually respond after deployment
+        if: success() && github.ref_name == 'main'
+        run: |
+          set -euo pipefail
+          base="https://buffedlizard55-lab.github.io/MaltaProj1/executive"
+          # Pages needs a moment after the build is requested; retry a few times.
+          for attempt in 1 2 3 4 5 6; do
+            sleep 20
+            code=$(curl -s -o /tmp/live-index.html -w '%{http_code}' "$base/index.html?cb=${GITHUB_RUN_ID}" || true)
+            if [ "$code" = "200" ] && grep -q "Executive summary" /tmp/live-index.html; then
+              echo "public index OK (attempt $attempt)"
+              break
+            fi
+            echo "attempt $attempt: HTTP $code"
+          done
+          grep -q "Executive summary" /tmp/live-index.html || { echo "public index did not contain the summary marker"; exit 1; }
+          for page in picks.html flagged.html methodology.html sources.html coverage.html lines.html; do
+            code=$(curl -s -o /dev/null -w '%{http_code}' "$base/$page?cb=${GITHUB_RUN_ID}")
+            echo "$page HTTP $code"
+            [ "$code" = "200" ] || { echo "public page $page is not reachable"; exit 1; }
+          done
+          echo "public Pages verification complete"
+
+      - name: Upload the run logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: executive-5545dbb8-${{ github.run_id }}
+          path: |
+            /tmp/executive-collect.log
+            /tmp/executive-build.log
+            /tmp/executive-tests.log
+            executive/data/provenance.json
+          if-no-files-found: ignore
