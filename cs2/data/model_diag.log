@@ -1,4 +1,4 @@
-== O-01 reproduction (session arena/a174d77f, run 38502607814) ==
+== O-01 reproduction (session arena/a174d77f, run 38537291906) ==
 -- fetch --
   "commit": "eec4853d7bcf0f1f7efe7f0d901234bef7e98b75",
   "path": "live/2026/standings_global_2026_10_05.md"
@@ -6,14 +6,14 @@
  "hltv": {
   "url": "https://www.hltv.org/ranking/teams",
   "final_url": "https://www.hltv.org/ranking/teams/2026/october/12",
-  "fetched_utc": "2026-10-14T02:47:31Z",
+  "fetched_utc": "2026-10-14T08:47:40Z",
   "http_status": 200,
-  "bytes": 1036998,
-  "sha256": "7ca185f8d5e5eb868b8520a5f8bb5e01457548a1279c834a657e343f18a17a97",
+  "bytes": 1075510,
+  "sha256": "2080b90ade7f4a6aee38902ac6292e036ab48d49f56040d7b0a68c9cc49f350f",
   "attempts": [
    {
     "url": "https://www.hltv.org/ranking/teams",
-    "fetched_utc": "2026-10-14T02:47:31Z",
+    "fetched_utc": "2026-10-14T08:47:40Z",
     "http_status": 200
    }
   ],
@@ -67,6 +67,6 @@ Traceback (most recent call last):
 AssertionError: 'no per-match Hotspawn permalink' not found in "Hotspawn lists a scheduled date before this pick'em week (stale listing)" : 1052746
 
 ----------------------------------------------------------------------
-Ran 16 tests in 0.472s
+Ran 16 tests in 0.216s
 
 FAILED (failures=1)
