@@ -1,0 +1,63 @@
+{
+ "generated_utc": "2026-10-14T02:50:49Z",
+ "as_of_utc": "2026-10-14T02:50:49Z",
+ "hotspawn_cs2_fixtures": 88,
+ "open_cs2_fixtures": 28,
+ "priced_any": 22,
+ "priced_both": 10,
+ "priced_bookmaker": 17,
+ "priced_polymarket": 15,
+ "format_known": 23,
+ "feed_rows": 32,
+ "review_rows": 16,
+ "flags": 29,
+ "polymarket_events": 96,
+ "bo3_matches": 344,
+ "polymarket_status": "observed",
+ "bo3_status": "observed",
+ "hotspawn_fallback": {
+  "path": "cs2/data/capture.json",
+  "generated_utc": "2026-10-14T02:45:17Z"
+ },
+ "hotspawn_pages": [
+  {
+   "page": "cs2-pickems",
+   "url": "https://play.hotspawn.com/cs2-pickems",
+   "status": 403,
+   "cs2_rows": 0,
+   "fetched_utc": "2026-10-14T02:50:42Z"
+  },
+  {
+   "page": "lobby",
+   "url": "https://play.hotspawn.com/lobby",
+   "status": 403,
+   "cs2_rows": 0,
+   "fetched_utc": "2026-10-14T02:50:43Z"
+  },
+  {
+   "page": "thp-pickems",
+   "url": "https://play.hotspawn.com/thp-pickems",
+   "status": 403,
+   "cs2_rows": 0,
+   "fetched_utc": "2026-10-14T02:50:43Z"
+  }
+ ],
+ "probes": [
+  {
+   "source": "OddsDigger e-sports index",
+   "url": "https://oddsdigger.com/e-sports",
+   "status": 200,
+   "bytes": 255603,
+   "error": null,
+   "fetched_utc": "2026-10-14T02:50:48Z"
+  },
+  {
+   "source": "bookmaker page relayed by bo3.gg (thunderpick)",
+   "url": "https://thunderpick.io/match/2812130",
+   "status": 403,
+   "bytes": 0,
+   "error": "HTTPError 403",
+   "fetched_utc": "2026-10-14T02:50:48Z"
+  }
+ ]
+}
