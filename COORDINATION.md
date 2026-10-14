@@ -2393,3 +2393,61 @@ Read-only for this session: `cs2/**`, `oct14/**`, `index.html`, `.github/workflo
 | Repo-wide link check after merge | 152 HTML pages, 3,123 relative targets, **0 broken** (with `<script>` bodies excluded so JS template strings are not false positives). |
 | Scheduled refresh | cron `13 * * * *` on `main` (`cs2-a174d77f.yml`), serialised by `concurrency`, and the data commit now skips instead of failing when the branch moved in a way it will not force — so a mid-flight human edit elsewhere in the repo can make us skip a publish, never overwrite it. |
 | Follow-ups filed, not fixed | `reviews/cs2-a174d77f.md` items 1–6 (hand-read EGW prices in four merged datasets; `refresh/data/odds.csv` committed empty while `refresh/build.py` cites it; an assumed best-of-3 that moves a published probability; cross-board disagreements no board publishes; the stale "slate cron never ran" claim). The still-open request from `arena/08031d30` for an `open-slate/` card in `index.html` was deliberately left for its own author. |
+
+---
+
+## Session `arena/3b5e3fea` — claim (2026-10-14 ~02:35 UTC)
+
+Branch: `arena/3b5e3fea-maltaproj1` (Arena fixes this session to that branch; the brief's
+`session-<id>/<task>` naming cannot be used, so no other branch is created or pushed).
+
+**Read before claiming:** this board in full; `gh pr list` (open: #82 `arena/a174d77f`, #54 `arena/9920c263`
+stale/DIRTY); `git ls-remote origin`; live Hotspawn CS2 pick'em page fetched at 02:34 UTC
+(88 CS2 rows, "68 matches this week", reset in 4d 21h). Newest published board is `slate/`
+(capture `2026-10-14T02:23:08Z`), then `oct14/` (`arena/8944bb84`, PR #83 merged 02:30Z).
+
+**Gap this session addresses (from the user brief):** "the site is a bit confusing… we should have an
+executive summary that provides links within our site to where an updated list of picks can be found…
+easily readable and accessible on phone". Today the root `index.html` is a 40-card chronological list of
+parallel session boards, and the newest board's own data shows **23 of 28 open fixtures with no pick**
+(`slate/data/analysis.csv`: `pick` blank, reason "series format unverified"), so a phone visitor cannot
+see, in one place, what the pick is for each open match and which page to trust.
+
+| ID | Task | Status | Owner | Exclusive file scope |
+|----|------|--------|-------|----------------------|
+| X-01 | Claim, commit, push (this section) | done | arena/3b5e3fea | `COORDINATION.md` (append-only) |
+| X-02 | Independent live re-verification of the open CS2 pick'em slate (Hotspawn `/cs2-pickems` + `/lobby`), per-row capture time, reconciled against the newest captured board; mismatches flagged, never silently resolved | in progress | arena/3b5e3fea | `exec/data/live_check.json`, `exec/data/live_check.md` |
+| X-03 | Mobile-first **executive summary** page: coverage tiles, one-tap links to every page that lists picks, and a per-match pick list (teams, pick, probability, basis tier, source link) that renders from committed data | in progress | arena/3b5e3fea | `exec/**` |
+| X-04 | Coverage audit: every open fixture × every board that publishes a pick for it (present / absent / disagrees), so gaps are visible per row instead of per site | in progress | arena/3b5e3fea | `exec/coverage.html`, `exec/data/coverage_audit.csv` |
+| X-05 | Source ladder for matches no bookmaker prices (the brief's "look for information sources… only for matches that cannot be resolved like the featured picks"), with access status verified from this sandbox | in progress | arena/3b5e3fea | `exec/sources.html` |
+| X-06 | Repository review notes (read-only) for every irregularity found this session, each with its source link | in progress | arena/3b5e3fea | `reviews/3b5e3fea-review.md`, `exec/flagged.html` |
+| X-07 | Integration: disposition open PR #82 (merge if verified and static), rebase, link/HTML check, PR → `main`, merge without waiting, confirm Pages build, record PR + result here | unclaimed until X-02..X-06 done | arena/3b5e3fea | `index.html` (one additive card at the top of the current-board section), this section |
+
+**Deliberately not touched (other owners' files):** `slate/**`, `cs2/**` (PR #82), `oct14/**` + `data/8944bb84/**`,
+`open-slate/**` + `data/08031d30/**`, `model/**`, `live/**`, `today/**`, `picks/**`, `winboard/**`, `site/**`,
+`docs/**`, `assurance/**`, `dashboard/**`. Every other session's newest shared output is read read-only.
+
+### Log — arena/3b5e3fea
+- 2026-10-14 ~02:35 UTC: claim written and pushed.
+
+### Completion record — arena/3b5e3fea (2026-10-14, UTC)
+
+| ID | Status | Result | Files |
+|----|--------|--------|-------|
+| X-01 | **done** | Claim written, committed (`a14e2bf`) and pushed before any work; rebased onto `origin/main` (`936d577`) with a COORDINATION.md conflict resolved by keeping both upstream sections (a174d77f, fbcccda2) **and** this section — no other session's text was dropped. | `COORDINATION.md` |
+| X-02 | **done** | Independent live re-read of the Hotspawn CS2 pick'em board (3 chunks, 02:34–02:40 UTC): the same 28 open fixtures, same teams, same order as `slate/data/fixtures.csv`; header counts (88 CS2 rows, tier chips B 24 / C 60 / S 4, "68 matches this week") match the payload; card clock confirmed to be UTC−4 (R-7). I also re-read Pinnacle's public guest response for fixture `1080176` (`matchupId 1638111785`, home 241 / away −307, `cutoffAt 2026-10-14T08:30:00Z`) and reproduced the board's de-vigged 27.99/72.01 % exactly (C-1). | `exec/data/`, `reviews/3b5e3fea-review.md` |
+| X-03 | **done** | Mobile-first executive summary at `exec/index.html`: coverage tiles, one-tap list of every board that publishes picks (with its own capture stamp and pick count), per-match cards (both teams' %, the explicit pick, basis rung, market/own/model/prediction-market numbers, format, Hotspawn + board links) and the unverified-items list. Re-renders from `exec/data/picks.json` in the browser and marks rows locked at lock time. | `exec/**`, `scripts/3b5e3fea_build.py`, `tests/test_3b5e3fea.py` |
+| X-04 | **done** | `exec/coverage.html` + `exec/data/coverage_audit.csv`: every open fixture × every board (slate, oct14, open-slate, cs2, everypick) with price / own-line / pick presence, plus the whole-payload inventory (88 CS2 rows = 28 open + 60 locked, 59 of them stale). Cross-board checks print the three rows where merged boards name different winners (R-3). | `exec/coverage.html`, `exec/data/coverage_audit.csv` |
+| X-05 | **done** | `exec/sources.html`: the documented ladder (direct bookmaker → aggregator-mediated price → prediction market reference → own line from Valve VRS / HLTV ranking → blank+flag) with access status verified today, and `exec/collect_polymarket.py`, which reads Polymarket's public CS2 events in CI and refuses to treat a per-map market as a series probability (R-5). | `exec/sources.html`, `exec/collect_polymarket.py` |
+| X-06 | **done** | `reviews/3b5e3fea-review.md`: R-1…R-8 (all with file/API links) and C-1…C-3 as passed spot-checks; rendered on `exec/flagged.html`. Chief finding: the hourly board's own row `1079621` publishes an own line and denies having any rating in the same row (R-1), and 23/28 open rows carry no pick there while three other merged boards pick all but one (R-2). | `reviews/3b5e3fea-review.md`, `exec/flagged.html` |
+| X-07 | **in progress** | PR #82 was **already merged by its own session** at 02:34:41Z; the merged content is present on `main` and is read by this board (7 direct Pinnacle prices, 27/28 picks — cross-checked). One additive card for `exec/` added to the root landing page's executive-summary grid; README gains a "start here" line. Build checked with the repo-wide audit (`scripts/audit_91e444dd.py`: 173 pages, 0 link errors) and `python -m unittest discover -s tests` (138 tests, OK). PR to `main` pending and recorded below. | `index.html` (one card), `README.md`, `COORDINATION.md` |
+
+**Sources used by this session:** Hotspawn `/cs2-pickems` (fixture identity only, never crowd %);
+Pinnacle public guest matchups; Valve Regional Standings (official Valve GitHub file); HLTV world ranking;
+Polymarket public gamma API. Every published number links to the board and the underlying source it came from.
+
+**Verification performed:** de-vig arithmetic re-derived by hand against the live Pinnacle response (C-1);
+fixture-by-fixture comparison of the live page against the captured payload (C-2); rating coverage of all 39
+teams (C-3); 18 unit/rule tests in `tests/test_3b5e3fea.py`; 138 tests repo-wide; 173-page link audit with 0
+errors. Nothing was marked verified without the link that proves it; unverifiable fields stay blank and are
+flagged (`X-NO-BASIS`, `X-MODEL-ONLY`, `X-SECONDARY-PRICE`, `X-FORMAT-UNVERIFIED`, `X-IDENTICAL-ODDS`).

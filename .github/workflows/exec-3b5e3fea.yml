@@ -1,0 +1,84 @@
+# Executive-summary board (exec/) — session arena/3b5e3fea
+#
+# What it does with no credentials and no manual input:
+#   1. Reads Polymarket's public CS2 markets (extra outside reference for low-tier cups that the
+#      large bookmakers do not price). Refusals are recorded as refusals, never filled in.
+#   2. Rebuilds exec/ from the committed data of the other boards in this repository
+#      (slate/, oct14/, open-slate/, cs2/, everypick/) — it collects no bookmaker price itself
+#      and invents none.
+#   3. Runs the exec test suite and the repository-wide link/DOM audit. The commit step only runs
+#      when all of those pass, and only on `main`: on a session branch the run validates without
+#      pushing, so a working branch and its own bot cannot overwrite each other in a loop.
+#
+# The page's own numbers therefore cannot drift from the boards it summarizes: if a board goes
+# stale or missing, the summary says so on the coverage audit instead of hiding it.
+name: Executive summary board (3b5e3fea)
+
+on:
+  workflow_dispatch: {}
+  push:
+    branches: ["arena/3b5e3fea-maltaproj1", "main"]
+    paths:
+      - "scripts/3b5e3fea_build.py"
+      - "tests/test_3b5e3fea.py"
+      - "exec/**"
+      - ".github/workflows/exec-3b5e3fea.yml"
+  schedule:
+    # Hourly, ten minutes after the slate collector's slot; GitHub schedules are best-effort.
+    - cron: "51 * * * *"
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: exec-3b5e3fea-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build-and-verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Collect the optional outside prediction-market reference
+        run: python3 exec/collect_polymarket.py
+        continue-on-error: true
+
+      - name: Rebuild the executive summary from committed board data
+        run: python3 scripts/3b5e3fea_build.py
+
+      - name: Run the exec unit and rule suite
+        run: python3 -m unittest tests.test_3b5e3fea -v
+
+      - name: Run the repository-wide HTML link and fragment audit
+        run: python3 scripts/audit_91e444dd.py --output /tmp/audit-exec-3b5e3fea.json
+
+      - name: Commit the rebuilt summary (main only)
+        if: github.ref == 'refs/heads/main'
+        run: |
+          git config user.name "arena-3b5e3fea"
+          git config user.email "arena-3b5e3fea@users.noreply.github.com"
+          git add exec scripts/3b5e3fea_build.py
+          if git diff --cached --quiet; then
+            echo "no change to commit"
+          else
+            git commit -m "exec(3b5e3fea): rebuild executive summary from run ${GITHUB_RUN_ID}"
+            git pull --rebase=merges origin "${GITHUB_REF_NAME}"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
+
+      - name: Request a Pages build when main changed
+        if: github.ref == 'refs/heads/main'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh api --method POST "repos/${GITHUB_REPOSITORY}/pages/builds"
