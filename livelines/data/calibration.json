@@ -2,30 +2,30 @@
  "calibration": {
   "fitted": true,
   "n": 14,
-  "scale": 1154.0,
-  "mae_pp": 7.25,
-  "logloss": 0.4452,
+  "scale": 878.25,
+  "mae_pp": 6.17,
+  "logloss": 0.4262,
   "grid": "20.0-2000.0 points per 90% favourite, step 0.25; mean absolute error against the outside market's de-vigged probability",
   "default_scale": 400.0,
   "logloss_alternative": {
-   "scale": 96.75,
-   "mae_pp": 26.25,
-   "logloss": 0.149
+   "scale": 258.5,
+   "mae_pp": 19.7,
+   "logloss": 0.3051
   },
   "objective": "mae",
   "candidate_transforms": {
    "vrs_points": {
     "fitted": true,
     "n": 14,
-    "scale": 1154.0,
-    "mae_pp": 7.25,
-    "logloss": 0.4452,
+    "scale": 878.25,
+    "mae_pp": 6.17,
+    "logloss": 0.4262,
     "grid": "20.0-2000.0 points per 90% favourite, step 0.25; mean absolute error against the outside market's de-vigged probability",
     "default_scale": 400.0,
     "logloss_alternative": {
-     "scale": 96.75,
-     "mae_pp": 26.25,
-     "logloss": 0.149
+     "scale": 258.5,
+     "mae_pp": 19.7,
+     "logloss": 0.3051
     },
     "objective": "mae"
    },
@@ -33,13 +33,13 @@
     "fitted": true,
     "n": 13,
     "scale": 20.0,
-    "mae_pp": 13.52,
+    "mae_pp": 13.11,
     "logloss": 0.4913,
     "grid": "20.0-2000.0 points per 90% favourite, step 0.25; mean absolute error against the outside market's de-vigged probability",
     "default_scale": 400.0,
     "logloss_alternative": {
      "scale": 20.0,
-     "mae_pp": 13.52,
+     "mae_pp": 13.11,
      "logloss": 0.4913
     },
     "objective": "mae"
@@ -48,14 +48,14 @@
     "fitted": true,
     "n": 14,
     "scale": 2000.0,
-    "mae_pp": 22.32,
-    "logloss": 0.7686,
+    "mae_pp": 21.53,
+    "logloss": 0.7651,
     "grid": "20.0-2000.0 points per 90% favourite, step 0.25; mean absolute error against the outside market's de-vigged probability",
     "default_scale": 400.0,
     "logloss_alternative": {
      "scale": 2000.0,
-     "mae_pp": 22.32,
-     "logloss": 0.7686
+     "mae_pp": 21.53,
+     "logloss": 0.7651
     },
     "objective": "mae"
    },
@@ -63,8 +63,8 @@
     "fitted": true,
     "n": 14,
     "scale": 0.05,
-    "logloss": 0.7152,
-    "mae_pp": 19.88
+    "logloss": 0.7133,
+    "mae_pp": 19.17
    }
   },
   "chosen": "official Valve Regional Standings points (vrs_points) at the calibration (MAE) optimum, because that is the transform whose published percentage is closest to the outside market on the same rows and it has the widest team coverage; the log-loss optimum is disclosed next to it and the disagreement is flagged on every row that depends on the scale"
@@ -77,10 +77,10 @@
    "vrs_b": 1035,
    "hltv_a": 109,
    "hltv_b": 110,
-   "market_p_a_pct": 50.5,
-   "source": "Polymarket",
-   "captured_utc": "2026-10-14T14:39:28Z",
-   "url": "https://polymarket.com/event/cs2-wbt-eac-2026-10-15"
+   "market_p_a_pct": 46.24,
+   "source": "bo3.gg",
+   "captured_utc": "2026-10-14T18:53:16Z",
+   "url": "https://bo3.gg/matches/wbt-vs-esport-academy-copenhagen-15-10-2026"
   },
   {
    "match_id": "1079440",
@@ -89,10 +89,10 @@
    "vrs_b": 1318,
    "hltv_a": 12,
    "hltv_b": 70,
-   "market_p_a_pct": 57.2,
-   "source": "Pinnacle",
-   "captured_utc": "2026-10-14T17:29:42Z",
-   "url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/"
+   "market_p_a_pct": 57.03,
+   "source": "bo3.gg",
+   "captured_utc": "2026-10-14T18:53:16Z",
+   "url": "https://bo3.gg/matches/mibr-vs-bc-game-15-10-2026"
   },
   {
    "match_id": "1079442",
@@ -101,10 +101,10 @@
    "vrs_b": 1500,
    "hltv_a": 30,
    "hltv_b": null,
-   "market_p_a_pct": 64.07,
-   "source": "Pinnacle",
-   "captured_utc": "2026-10-14T17:29:42Z",
-   "url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/"
+   "market_p_a_pct": 62.81,
+   "source": "bo3.gg",
+   "captured_utc": "2026-10-14T18:53:16Z",
+   "url": "https://bo3.gg/matches/heroic-vs-envyus-15-10-2026"
   },
   {
    "match_id": "1080280",
@@ -113,10 +113,10 @@
    "vrs_b": 463,
    "hltv_a": 114,
    "hltv_b": 220,
-   "market_p_a_pct": 71.2,
-   "source": "Pinnacle",
-   "captured_utc": "2026-10-14T17:29:42Z",
-   "url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/"
+   "market_p_a_pct": 71.11,
+   "source": "bo3.gg",
+   "captured_utc": "2026-10-14T18:53:16Z",
+   "url": "https://bo3.gg/matches/ence-vs-bojong-15-10-2026"
   },
   {
    "match_id": "1080281",
@@ -125,9 +125,9 @@
    "vrs_b": 1025,
    "hltv_a": 109,
    "hltv_b": 114,
-   "market_p_a_pct": 57.03,
+   "market_p_a_pct": 61.54,
    "source": "bo3.gg",
-   "captured_utc": "2026-10-14T14:39:28Z",
+   "captured_utc": "2026-10-14T18:53:16Z",
    "url": "https://bo3.gg/matches/wbt-vs-ence-15-10-2026"
   },
   {
@@ -137,10 +137,10 @@
    "vrs_b": 463,
    "hltv_a": 110,
    "hltv_b": 220,
-   "market_p_a_pct": 75.79,
-   "source": "Pinnacle",
-   "captured_utc": "2026-10-14T17:29:42Z",
-   "url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/"
+   "market_p_a_pct": 76.92,
+   "source": "bo3.gg",
+   "captured_utc": "2026-10-14T18:53:16Z",
+   "url": "https://bo3.gg/matches/esport-academy-copenhagen-vs-bojong-15-10-2026"
   },
   {
    "match_id": "1080283",
@@ -151,7 +151,7 @@
    "hltv_b": 220,
    "market_p_a_pct": 76.92,
    "source": "bo3.gg",
-   "captured_utc": "2026-10-14T14:39:28Z",
+   "captured_utc": "2026-10-14T18:53:16Z",
    "url": "https://bo3.gg/matches/wbt-vs-bojong-15-10-2026"
   },
   {
@@ -161,10 +161,10 @@
    "vrs_b": 1025,
    "hltv_a": 110,
    "hltv_b": 114,
-   "market_p_a_pct": 66.9,
-   "source": "Pinnacle",
-   "captured_utc": "2026-10-14T17:29:42Z",
-   "url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/"
+   "market_p_a_pct": 61.54,
+   "source": "bo3.gg",
+   "captured_utc": "2026-10-14T18:53:16Z",
+   "url": "https://bo3.gg/matches/esport-academy-copenhagen-vs-ence-15-10-2026"
   },
   {
    "match_id": "1080285",
@@ -173,10 +173,10 @@
    "vrs_b": 1147,
    "hltv_a": 59,
    "hltv_b": 88,
-   "market_p_a_pct": 44.5,
-   "source": "Polymarket",
-   "captured_utc": "2026-10-14T14:39:28Z",
-   "url": "https://polymarket.com/event/cs2-voc-pha-2026-10-16"
+   "market_p_a_pct": 48.65,
+   "source": "bo3.gg",
+   "captured_utc": "2026-10-14T18:53:16Z",
+   "url": "https://bo3.gg/matches/voca-vs-phantom-esports-16-10-2026"
   },
   {
    "match_id": "1080286",
@@ -187,7 +187,7 @@
    "hltv_b": 237,
    "market_p_a_pct": 76.92,
    "source": "bo3.gg",
-   "captured_utc": "2026-10-14T14:39:28Z",
+   "captured_utc": "2026-10-14T18:53:16Z",
    "url": "https://bo3.gg/matches/havu-vs-roundsgg-16-10-2026"
   },
   {
@@ -199,7 +199,7 @@
    "hltv_b": 118,
    "market_p_a_pct": 65.53,
    "source": "bo3.gg",
-   "captured_utc": "2026-10-14T14:39:28Z",
+   "captured_utc": "2026-10-14T18:53:16Z",
    "url": "https://bo3.gg/matches/voca-vs-havu-16-10-2026"
   },
   {
@@ -209,10 +209,10 @@
    "vrs_b": 548,
    "hltv_a": 88,
    "hltv_b": 237,
-   "market_p_a_pct": 92.0,
-   "source": "Polymarket",
-   "captured_utc": "2026-10-14T14:39:28Z",
-   "url": "https://polymarket.com/event/cs2-pha-rgg-2026-10-16"
+   "market_p_a_pct": 86.85,
+   "source": "bo3.gg",
+   "captured_utc": "2026-10-14T18:53:16Z",
+   "url": "https://bo3.gg/matches/phantom-esports-vs-roundsgg-16-10-2026"
   },
   {
    "match_id": "1080289",
@@ -221,9 +221,9 @@
    "vrs_b": 1182,
    "hltv_a": 237,
    "hltv_b": 59,
-   "market_p_a_pct": 14.63,
+   "market_p_a_pct": 15.94,
    "source": "bo3.gg",
-   "captured_utc": "2026-10-14T14:39:28Z",
+   "captured_utc": "2026-10-14T18:53:16Z",
    "url": "https://bo3.gg/matches/voca-vs-roundsgg-16-10-2026"
   },
   {
@@ -235,7 +235,7 @@
    "hltv_b": 118,
    "market_p_a_pct": 68.24,
    "source": "bo3.gg",
-   "captured_utc": "2026-10-14T14:39:28Z",
+   "captured_utc": "2026-10-14T18:53:16Z",
    "url": "https://bo3.gg/matches/phantom-esports-vs-havu-16-10-2026"
   }
  ],
