@@ -2393,3 +2393,39 @@ Read-only for this session: `cs2/**`, `oct14/**`, `index.html`, `.github/workflo
 | Repo-wide link check after merge | 152 HTML pages, 3,123 relative targets, **0 broken** (with `<script>` bodies excluded so JS template strings are not false positives). |
 | Scheduled refresh | cron `13 * * * *` on `main` (`cs2-a174d77f.yml`), serialised by `concurrency`, and the data commit now skips instead of failing when the branch moved in a way it will not force — so a mid-flight human edit elsewhere in the repo can make us skip a publish, never overwrite it. |
 | Follow-ups filed, not fixed | `reviews/cs2-a174d77f.md` items 1–6 (hand-read EGW prices in four merged datasets; `refresh/data/odds.csv` committed empty while `refresh/build.py` cites it; an assumed best-of-3 that moves a published probability; cross-board disagreements no board publishes; the stale "slate cron never ran" claim). The still-open request from `arena/08031d30` for an `open-slate/` card in `index.html` was deliberately left for its own author. |
+
+---
+
+## Session `arena/3b5e3fea` — claim (2026-10-14 ~02:35 UTC)
+
+Branch: `arena/3b5e3fea-maltaproj1` (Arena fixes this session to that branch; the brief's
+`session-<id>/<task>` naming cannot be used, so no other branch is created or pushed).
+
+**Read before claiming:** this board in full; `gh pr list` (open: #82 `arena/a174d77f`, #54 `arena/9920c263`
+stale/DIRTY); `git ls-remote origin`; live Hotspawn CS2 pick'em page fetched at 02:34 UTC
+(88 CS2 rows, "68 matches this week", reset in 4d 21h). Newest published board is `slate/`
+(capture `2026-10-14T02:23:08Z`), then `oct14/` (`arena/8944bb84`, PR #83 merged 02:30Z).
+
+**Gap this session addresses (from the user brief):** "the site is a bit confusing… we should have an
+executive summary that provides links within our site to where an updated list of picks can be found…
+easily readable and accessible on phone". Today the root `index.html` is a 40-card chronological list of
+parallel session boards, and the newest board's own data shows **23 of 28 open fixtures with no pick**
+(`slate/data/analysis.csv`: `pick` blank, reason "series format unverified"), so a phone visitor cannot
+see, in one place, what the pick is for each open match and which page to trust.
+
+| ID | Task | Status | Owner | Exclusive file scope |
+|----|------|--------|-------|----------------------|
+| X-01 | Claim, commit, push (this section) | done | arena/3b5e3fea | `COORDINATION.md` (append-only) |
+| X-02 | Independent live re-verification of the open CS2 pick'em slate (Hotspawn `/cs2-pickems` + `/lobby`), per-row capture time, reconciled against the newest captured board; mismatches flagged, never silently resolved | in progress | arena/3b5e3fea | `exec/data/live_check.json`, `exec/data/live_check.md` |
+| X-03 | Mobile-first **executive summary** page: coverage tiles, one-tap links to every page that lists picks, and a per-match pick list (teams, pick, probability, basis tier, source link) that renders from committed data | in progress | arena/3b5e3fea | `exec/**` |
+| X-04 | Coverage audit: every open fixture × every board that publishes a pick for it (present / absent / disagrees), so gaps are visible per row instead of per site | in progress | arena/3b5e3fea | `exec/coverage.html`, `exec/data/coverage_audit.csv` |
+| X-05 | Source ladder for matches no bookmaker prices (the brief's "look for information sources… only for matches that cannot be resolved like the featured picks"), with access status verified from this sandbox | in progress | arena/3b5e3fea | `exec/sources.html` |
+| X-06 | Repository review notes (read-only) for every irregularity found this session, each with its source link | in progress | arena/3b5e3fea | `reviews/3b5e3fea-review.md`, `exec/flagged.html` |
+| X-07 | Integration: disposition open PR #82 (merge if verified and static), rebase, link/HTML check, PR → `main`, merge without waiting, confirm Pages build, record PR + result here | unclaimed until X-02..X-06 done | arena/3b5e3fea | `index.html` (one additive card at the top of the current-board section), this section |
+
+**Deliberately not touched (other owners' files):** `slate/**`, `cs2/**` (PR #82), `oct14/**` + `data/8944bb84/**`,
+`open-slate/**` + `data/08031d30/**`, `model/**`, `live/**`, `today/**`, `picks/**`, `winboard/**`, `site/**`,
+`docs/**`, `assurance/**`, `dashboard/**`. Every other session's newest shared output is read read-only.
+
+### Log — arena/3b5e3fea
+- 2026-10-14 ~02:35 UTC: claim written and pushed.
