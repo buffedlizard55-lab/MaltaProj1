@@ -1,23 +1,23 @@
 {
- "generated_utc": "2026-10-14T08:03:41Z",
+ "generated_utc": "2026-10-14T14:05:15Z",
  "fixture_spine": "slate/data/fixtures.csv",
  "totals": {
-  "open_fixtures": 26,
-  "with_pick": 25,
-  "with_market": 22,
-  "with_market_direct": 7,
-  "with_market_secondary": 15,
-  "model_only": 3,
+  "open_fixtures": 17,
+  "with_pick": 16,
+  "with_market": 15,
+  "with_market_direct": 3,
+  "with_market_secondary": 12,
+  "model_only": 1,
   "no_basis": 1,
-  "flagged_rows": 19,
-  "disagreement_rows": 21,
-  "locked_or_started": 62,
+  "flagged_rows": 14,
+  "disagreement_rows": 14,
+  "locked_or_started": 71,
   "inventory": {
    "payload_rows": 88,
-   "open": 26,
-   "locked_or_started": 62,
+   "open": 17,
+   "locked_or_started": 71,
    "stale_over_a_day": 59,
-   "started_within_a_day": 3
+   "started_within_a_day": 12
   }
  },
  "boards": [
@@ -34,8 +34,8 @@
    "present": true,
    "rows": 28,
    "captured_utc": "2026-10-14T02:23:08Z",
-   "open_rows_with_pick": 5,
-   "open_rows_covered": 26
+   "open_rows_with_pick": 2,
+   "open_rows_covered": 17
   },
   {
    "id": "oct14",
@@ -50,8 +50,8 @@
    "present": true,
    "rows": 32,
    "captured_utc": "2026-10-14T01:58:00Z",
-   "open_rows_with_pick": 25,
-   "open_rows_covered": 26
+   "open_rows_with_pick": 16,
+   "open_rows_covered": 17
   },
   {
    "id": "openslate",
@@ -66,8 +66,8 @@
    "present": true,
    "rows": 28,
    "captured_utc": "2026-10-14T01:41Z-01:58Z",
-   "open_rows_with_pick": 25,
-   "open_rows_covered": 26
+   "open_rows_with_pick": 16,
+   "open_rows_covered": 17
   },
   {
    "id": "everypick",
@@ -82,8 +82,8 @@
    "present": true,
    "rows": 28,
    "captured_utc": "2026-10-14T02:23:08Z",
-   "open_rows_with_pick": 26,
-   "open_rows_covered": 26
+   "open_rows_with_pick": 17,
+   "open_rows_covered": 17
   },
   {
    "id": "cs2",
@@ -94,729 +94,15 @@
    "method": "cs2/methodology.html",
    "owner": "arena/a174d77f",
    "what": "Pinnacle guest prices and a model slope re-fitted on Valve's own match archive.",
-   "captured_sidecar": "2026-10-14T02:47:24Z",
+   "captured_sidecar": "2026-10-14T08:47:33Z",
    "present": true,
    "rows": 88,
-   "captured_utc": "2026-10-14T02:47:24Z",
-   "open_rows_with_pick": 25,
-   "open_rows_covered": 26
+   "captured_utc": "2026-10-14T08:47:33Z",
+   "open_rows_with_pick": 16,
+   "open_rows_covered": 17
   }
  ],
  "open": [
-  {
-   "poly_reference": {
-    "p_a": 26.5,
-    "p_b": 73.5,
-    "url": "https://polymarket.com/event/cs2-9z-aur1-2026-10-14",
-    "board": "cs2"
-   },
-   "fixture_id": "1080176",
-   "kickoff_utc": "2026-10-14T08:30:00Z",
-   "lock_utc": "2026-10-14T08:24:00Z",
-   "competition": "Thunderpick World Championship 2026",
-   "tier": "S",
-   "team_a": "9z",
-   "team_b": "Aurora",
-   "hotspawn_match_url": "",
-   "hotspawn_fixture_url": "https://play.hotspawn.com/cs2-pickems",
-   "best_of": "BO3",
-   "best_of_source": "Pinnacle matched event",
-   "market_book": "Pinnacle",
-   "market_class": "direct",
-   "market_odds_a": 3.41,
-   "market_odds_b": 1.325733,
-   "market_p_a": 28.0,
-   "market_p_b": 72.0,
-   "market_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
-   "market_captured_utc": "2026-10-14T02:45:17Z",
-   "market_board": "cs2",
-   "market_page": "cs2/index.html",
-   "market_note": "",
-   "own_p_a": 38.7,
-   "own_p_b": 61.3,
-   "own_basis": "P=1/(1+10^(-0.4630*\u0394pts/400)); slope re-fit by cs2/calibrate.py on Valve's own match results",
-   "own_url": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md?plain=1#L22",
-   "own_board": "cs2",
-   "own_page": "cs2/index.html",
-   "line_source": "market-direct",
-   "p_a": 28.0,
-   "p_b": 72.0,
-   "pick": "Aurora",
-   "pick_pct": 72.0,
-   "pick_basis": "external bookmaker price, de-vigged (direct)",
-   "pick_source_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
-   "pick_board": "cs2",
-   "pick_page": "cs2/index.html",
-   "boards_publishing": {
-    "slate": {
-     "market": true,
-     "model": true,
-     "pick": true
-    },
-    "oct14": {
-     "market": true,
-     "model": true,
-     "pick": true
-    },
-    "openslate": {
-     "market": false,
-     "model": true,
-     "pick": true
-    },
-    "everypick": {
-     "market": true,
-     "model": true,
-     "pick": true
-    },
-    "cs2": {
-     "market": true,
-     "model": true,
-     "pick": true
-    }
-   },
-   "disagreements": [
-    "market 28% vs our model 39% for 9z (11 pp)",
-    "our own lines differ between boards: 20%\u201339% for 9z"
-   ],
-   "flags": [],
-   "state": "open"
-  },
-  {
-   "poly_reference": null,
-   "fixture_id": "1079438",
-   "kickoff_utc": "2026-10-14T10:00:00Z",
-   "lock_utc": "2026-10-14T09:54:00Z",
-   "competition": "Stake Pulse Beat III",
-   "tier": "B",
-   "team_a": "Astralis",
-   "team_b": "Sashi",
-   "hotspawn_match_url": "",
-   "hotspawn_fixture_url": "https://play.hotspawn.com/cs2-pickems",
-   "best_of": "BO3",
-   "best_of_source": "https://www.hltv.org/matches/2399134/astralis-vs-sashi-stake-pulse-beat-iii",
-   "market_book": "bc.game (EGamersWorld)",
-   "market_class": "secondary",
-   "market_odds_a": 1.09,
-   "market_odds_b": 6.33,
-   "market_p_a": 85.3,
-   "market_p_b": 14.7,
-   "market_url": "https://egamersworld.com/counterstrike/match/EJZmJpBjeNx/astralis-vs-sashi-esport-aGet1AP-0Z",
-   "market_captured_utc": "2026-10-14T01:48:00Z",
-   "market_board": "everypick",
-   "market_page": "everypick/index.html",
-   "market_note": "External market \u2014 EGamersWorld bc.game report (secondary, not re-read vs bookmaker), de-vigged",
-   "own_p_a": 96.6,
-   "own_p_b": 3.4,
-   "own_basis": "100% Valve VRS Glicko (1 team outside HLTV Top-245; BO3)",
-   "own_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L15",
-   "own_board": "everypick",
-   "own_page": "everypick/index.html",
-   "line_source": "market-secondary",
-   "p_a": 85.3,
-   "p_b": 14.7,
-   "pick": "Astralis",
-   "pick_pct": 85.3,
-   "pick_basis": "external bookmaker price, de-vigged (aggregator-mediated)",
-   "pick_source_url": "https://egamersworld.com/counterstrike/match/EJZmJpBjeNx/astralis-vs-sashi-esport-aGet1AP-0Z",
-   "pick_board": "everypick",
-   "pick_page": "everypick/index.html",
-   "boards_publishing": {
-    "slate": {
-     "market": false,
-     "model": true,
-     "pick": false
-    },
-    "oct14": {
-     "market": true,
-     "model": true,
-     "pick": true
-    },
-    "openslate": {
-     "market": false,
-     "model": true,
-     "pick": true
-    },
-    "everypick": {
-     "market": true,
-     "model": true,
-     "pick": true
-    },
-    "cs2": {
-     "market": false,
-     "model": true,
-     "pick": true
-    }
-   },
-   "disagreements": [
-    "market 85% vs our model 97% for Astralis (11 pp)",
-    "our own lines differ between boards: 81%\u201397% for Astralis"
-   ],
-   "flags": [
-    {
-     "code": "X-SECONDARY-PRICE",
-     "severity": "caveat",
-     "text": "Price comes from a bookmaker listing served by an aggregator, not from the bookmaker's own response."
-    }
-   ],
-   "state": "open"
-  },
-  {
-   "poly_reference": {
-    "p_a": 45.5,
-    "p_b": 54.5,
-    "url": "https://polymarket.com/event/cs2-hotu-fnc-2026-10-14",
-    "board": "exec/collect_polymarket.py",
-    "source": "Polymarket",
-    "updated_utc": "2026-10-14T08:02:55.182018Z",
-    "liquidity_usd": 69762.0908
-   },
-   "fixture_id": "1079439",
-   "kickoff_utc": "2026-10-14T10:00:00Z",
-   "lock_utc": "2026-10-14T09:54:00Z",
-   "competition": "Stake Pulse Beat III",
-   "tier": "B",
-   "team_a": "HOTU",
-   "team_b": "Fnatic",
-   "hotspawn_match_url": "",
-   "hotspawn_fixture_url": "https://play.hotspawn.com/cs2-pickems",
-   "best_of": "BO3",
-   "best_of_source": "Pinnacle matched event",
-   "market_book": "Pinnacle",
-   "market_class": "direct",
-   "market_odds_a": 1.909091,
-   "market_odds_b": 1.877193,
-   "market_p_a": 49.6,
-   "market_p_b": 50.4,
-   "market_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
-   "market_captured_utc": "2026-10-14T02:45:17Z",
-   "market_board": "cs2",
-   "market_page": "cs2/index.html",
-   "market_note": "",
-   "own_p_a": 51.3,
-   "own_p_b": 48.7,
-   "own_basis": "P=1/(1+10^(-0.4630*\u0394pts/400)); slope re-fit by cs2/calibrate.py on Valve's own match results",
-   "own_url": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md?plain=1#L36",
-   "own_board": "cs2",
-   "own_page": "cs2/index.html",
-   "line_source": "market-direct",
-   "p_a": 49.6,
-   "p_b": 50.4,
-   "pick": "Fnatic",
-   "pick_pct": 50.4,
-   "pick_basis": "external bookmaker price, de-vigged (direct)",
-   "pick_source_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
-   "pick_board": "cs2",
-   "pick_page": "cs2/index.html",
-   "boards_publishing": {
-    "slate": {
-     "market": true,
-     "model": true,
-     "pick": true
-    },
-    "oct14": {
-     "market": true,
-     "model": true,
-     "pick": true
-    },
-    "openslate": {
-     "market": false,
-     "model": true,
-     "pick": true
-    },
-    "everypick": {
-     "market": true,
-     "model": true,
-     "pick": true
-    },
-    "cs2": {
-     "market": true,
-     "model": true,
-     "pick": true
-    }
-   },
-   "disagreements": [],
-   "flags": [],
-   "state": "open"
-  },
-  {
-   "poly_reference": {
-    "p_a": 63.5,
-    "p_b": 36.5,
-    "url": "https://polymarket.com/event/cs2-rustec-mellre-2026-10-14",
-    "board": "exec/collect_polymarket.py",
-    "source": "Polymarket",
-    "updated_utc": "2026-10-14T08:02:55.182018Z",
-    "liquidity_usd": 15619.215
-   },
-   "fixture_id": "1079622",
-   "kickoff_utc": "2026-10-14T11:00:00Z",
-   "lock_utc": "2026-10-14T10:54:00Z",
-   "competition": "CCT Europe 2026 Series #11",
-   "tier": "B",
-   "team_a": "ex-RUSTEC",
-   "team_b": "mellren",
-   "hotspawn_match_url": "",
-   "hotspawn_fixture_url": "https://play.hotspawn.com/cs2-pickems",
-   "best_of": "BO3",
-   "best_of_source": "https://www.hltv.org/matches/2399299/ex-rustec-vs-mellren-cct-2026-europe-series-11",
-   "market_book": "bc.game (EGamersWorld)",
-   "market_class": "secondary",
-   "market_odds_a": 1.4,
-   "market_odds_b": 2.68,
-   "market_p_a": 65.7,
-   "market_p_b": 34.3,
-   "market_url": "https://egamersworld.com/counterstrike/match/_rW8GEyWK/ex-rustec-vs-mellren-ZGVCwI7MK",
-   "market_captured_utc": "2026-10-14T01:48:00Z",
-   "market_board": "everypick",
-   "market_page": "everypick/index.html",
-   "market_note": "External market \u2014 EGamersWorld bc.game report (secondary, not re-read vs bookmaker), de-vigged",
-   "own_p_a": 66.3,
-   "own_p_b": 33.7,
-   "own_basis": "80% Valve VRS Glicko + 20% HLTV Ranking (BO3)",
-   "own_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L97",
-   "own_board": "everypick",
-   "own_page": "everypick/index.html",
-   "line_source": "market-secondary",
-   "p_a": 65.7,
-   "p_b": 34.3,
-   "pick": "ex-RUSTEC",
-   "pick_pct": 65.7,
-   "pick_basis": "external bookmaker price, de-vigged (aggregator-mediated)",
-   "pick_source_url": "https://egamersworld.com/counterstrike/match/_rW8GEyWK/ex-rustec-vs-mellren-ZGVCwI7MK",
-   "pick_board": "everypick",
-   "pick_page": "everypick/index.html",
-   "boards_publishing": {
-    "slate": {
-     "market": false,
-     "model": true,
-     "pick": false
-    },
-    "oct14": {
-     "market": true,
-     "model": true,
-     "pick": true
-    },
-    "openslate": {
-     "market": false,
-     "model": true,
-     "pick": true
-    },
-    "everypick": {
-     "market": true,
-     "model": true,
-     "pick": true
-    },
-    "cs2": {
-     "market": false,
-     "model": true,
-     "pick": true
-    }
-   },
-   "disagreements": [
-    "our own lines differ between boards: 42%\u201366% for ex-RUSTEC"
-   ],
-   "flags": [
-    {
-     "code": "X-SECONDARY-PRICE",
-     "severity": "caveat",
-     "text": "Price comes from a bookmaker listing served by an aggregator, not from the bookmaker's own response."
-    }
-   ],
-   "state": "open"
-  },
-  {
-   "poly_reference": null,
-   "fixture_id": "1080177",
-   "kickoff_utc": "2026-10-14T11:00:00Z",
-   "lock_utc": "2026-10-14T10:54:00Z",
-   "competition": "Thunderpick World Championship 2026",
-   "tier": "S",
-   "team_a": "Falcons",
-   "team_b": "Ninjas in Pyjamas",
-   "hotspawn_match_url": "",
-   "hotspawn_fixture_url": "https://play.hotspawn.com/cs2-pickems",
-   "best_of": "BO3",
-   "best_of_source": "Pinnacle matched event",
-   "market_book": "Pinnacle",
-   "market_class": "direct",
-   "market_odds_a": 1.27027,
-   "market_odds_b": 3.85,
-   "market_p_a": 75.2,
-   "market_p_b": 24.8,
-   "market_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
-   "market_captured_utc": "2026-10-14T02:45:17Z",
-   "market_board": "cs2",
-   "market_page": "cs2/index.html",
-   "market_note": "",
-   "own_p_a": 69.5,
-   "own_p_b": 30.5,
-   "own_basis": "P=1/(1+10^(-0.4630*\u0394pts/400)); slope re-fit by cs2/calibrate.py on Valve's own match results",
-   "own_url": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md?plain=1#L11",
-   "own_board": "cs2",
-   "own_page": "cs2/index.html",
-   "line_source": "market-direct",
-   "p_a": 75.2,
-   "p_b": 24.8,
-   "pick": "Falcons",
-   "pick_pct": 75.2,
-   "pick_basis": "external bookmaker price, de-vigged (direct)",
-   "pick_source_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
-   "pick_board": "cs2",
-   "pick_page": "cs2/index.html",
-   "boards_publishing": {
-    "slate": {
-     "market": true,
-     "model": true,
-     "pick": true
-    },
-    "oct14": {
-     "market": true,
-     "model": true,
-     "pick": true
-    },
-    "openslate": {
-     "market": false,
-     "model": true,
-     "pick": true
-    },
-    "everypick": {
-     "market": true,
-     "model": true,
-     "pick": true
-    },
-    "cs2": {
-     "market": true,
-     "model": true,
-     "pick": true
-    }
-   },
-   "disagreements": [
-    "our own lines differ between boards: 70%\u201388% for Falcons"
-   ],
-   "flags": [],
-   "state": "open"
-  },
-  {
-   "poly_reference": null,
-   "fixture_id": "1081112",
-   "kickoff_utc": "2026-10-14T11:00:00Z",
-   "lock_utc": "2026-10-14T10:54:00Z",
-   "competition": "CCT Europe 2026 Series #12 Play-In",
-   "tier": "C",
-   "team_a": "Banda chuya",
-   "team_b": "6666",
-   "hotspawn_match_url": "",
-   "hotspawn_fixture_url": "https://play.hotspawn.com/cs2-pickems",
-   "best_of": "BO3",
-   "best_of_source": "https://www.hltv.org/matches/2399462/banda-chuya-vs-6666-cct-2026-europe-series-12-closed-qualifier",
-   "market_book": "",
-   "market_class": "",
-   "market_odds_a": null,
-   "market_odds_b": null,
-   "market_p_a": null,
-   "market_p_b": null,
-   "market_url": "",
-   "market_captured_utc": "",
-   "market_board": "",
-   "market_page": "",
-   "market_note": "",
-   "own_p_a": 32.0,
-   "own_p_b": 68.0,
-   "own_basis": "100% Valve VRS Glicko (1 team outside HLTV Top-245; BO3)",
-   "own_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L170",
-   "own_board": "everypick",
-   "own_page": "everypick/index.html",
-   "line_source": "model",
-   "p_a": 32.0,
-   "p_b": 68.0,
-   "pick": "6666",
-   "pick_pct": 68.0,
-   "pick_basis": "our own line from official ratings, no bookmaker price found",
-   "pick_source_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L170",
-   "pick_board": "everypick",
-   "pick_page": "everypick/index.html",
-   "boards_publishing": {
-    "slate": {
-     "market": false,
-     "model": true,
-     "pick": false
-    },
-    "oct14": {
-     "market": false,
-     "model": true,
-     "pick": true
-    },
-    "openslate": {
-     "market": false,
-     "model": true,
-     "pick": true
-    },
-    "everypick": {
-     "market": false,
-     "model": true,
-     "pick": true
-    },
-    "cs2": {
-     "market": false,
-     "model": true,
-     "pick": true
-    }
-   },
-   "disagreements": [
-    "our own lines differ between boards: 32%\u201347% for Banda chuya"
-   ],
-   "flags": [
-    {
-     "code": "X-MODEL-ONLY",
-     "severity": "caveat",
-     "text": "No bookmaker prices this match outside Hotspawn; the pick is our own line from official ratings only."
-    }
-   ],
-   "state": "open"
-  },
-  {
-   "poly_reference": {
-    "p_a": 57.5,
-    "p_b": 42.5,
-    "url": "https://polymarket.com/event/cs2-lgc-prv-2026-10-14",
-    "board": "exec/collect_polymarket.py",
-    "source": "Polymarket",
-    "updated_utc": "2026-10-14T08:02:55.182018Z",
-    "liquidity_usd": 244782.6336
-   },
-   "fixture_id": "1080178",
-   "kickoff_utc": "2026-10-14T13:30:00Z",
-   "lock_utc": "2026-10-14T13:24:00Z",
-   "competition": "Thunderpick World Championship 2026",
-   "tier": "S",
-   "team_a": "Legacy",
-   "team_b": "PARIVISION",
-   "hotspawn_match_url": "",
-   "hotspawn_fixture_url": "https://play.hotspawn.com/cs2-pickems",
-   "best_of": "BO3",
-   "best_of_source": "https://www.hltv.org/matches/2399386/legacy-vs-parivision-thunderpick-world-championship-2026",
-   "market_book": "Pinnacle",
-   "market_class": "direct",
-   "market_odds_a": 1.769231,
-   "market_odds_b": 2.07,
-   "market_p_a": 53.9,
-   "market_p_b": 46.1,
-   "market_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
-   "market_captured_utc": "2026-10-14T02:45:17Z",
-   "market_board": "cs2",
-   "market_page": "cs2/index.html",
-   "market_note": "",
-   "own_p_a": 80.0,
-   "own_p_b": 20.0,
-   "own_basis": "P=1/(1+10^(-0.4630*\u0394pts/400)); slope re-fit by cs2/calibrate.py on Valve's own match results",
-   "own_url": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md?plain=1#L7",
-   "own_board": "cs2",
-   "own_page": "cs2/index.html",
-   "line_source": "market-direct",
-   "p_a": 53.9,
-   "p_b": 46.1,
-   "pick": "Legacy",
-   "pick_pct": 53.9,
-   "pick_basis": "external bookmaker price, de-vigged (direct)",
-   "pick_source_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
-   "pick_board": "cs2",
-   "pick_page": "cs2/index.html",
-   "boards_publishing": {
-    "slate": {
-     "market": false,
-     "model": true,
-     "pick": false
-    },
-    "oct14": {
-     "market": true,
-     "model": true,
-     "pick": true
-    },
-    "openslate": {
-     "market": false,
-     "model": true,
-     "pick": true
-    },
-    "everypick": {
-     "market": true,
-     "model": true,
-     "pick": true
-    },
-    "cs2": {
-     "market": true,
-     "model": true,
-     "pick": true
-    }
-   },
-   "disagreements": [
-    "market 54% vs our model 80% for Legacy (26 pp)"
-   ],
-   "flags": [],
-   "state": "open"
-  },
-  {
-   "poly_reference": {
-    "p_a": 67.5,
-    "p_b": 32.5,
-    "url": "https://polymarket.com/event/cs2-g2a-tlr-2026-10-14",
-    "board": "exec/collect_polymarket.py",
-    "source": "Polymarket",
-    "updated_utc": "2026-10-14T08:02:55.182018Z",
-    "liquidity_usd": 7347.7978
-   },
-   "fixture_id": "1079623",
-   "kickoff_utc": "2026-10-14T14:00:00Z",
-   "lock_utc": "2026-10-14T13:54:00Z",
-   "competition": "CCT Europe 2026 Series #11",
-   "tier": "B",
-   "team_a": "G2 Ares",
-   "team_b": "The Last Resort",
-   "hotspawn_match_url": "",
-   "hotspawn_fixture_url": "https://play.hotspawn.com/cs2-pickems",
-   "best_of": "BO3",
-   "best_of_source": "https://www.hltv.org/matches/2399300/g2-ares-vs-the-last-resort-cct-2026-europe-series-11",
-   "market_book": "bc.game (EGamersWorld)",
-   "market_class": "secondary",
-   "market_odds_a": 1.465,
-   "market_odds_b": 2.436,
-   "market_p_a": 62.4,
-   "market_p_b": 37.6,
-   "market_url": "https://egamersworld.com/counterstrike/match/_rW8GEyWK/g2-ares-vs-the-last-resort-7GWb9EDd9L",
-   "market_captured_utc": "2026-10-14T01:48:00Z",
-   "market_board": "everypick",
-   "market_page": "everypick/index.html",
-   "market_note": "External market \u2014 EGamersWorld bc.game report (secondary, not re-read vs bookmaker), de-vigged",
-   "own_p_a": 51.0,
-   "own_p_b": 49.0,
-   "own_basis": "80% Valve VRS Glicko + 20% HLTV Ranking (BO3)",
-   "own_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L134",
-   "own_board": "everypick",
-   "own_page": "everypick/index.html",
-   "line_source": "market-secondary",
-   "p_a": 62.4,
-   "p_b": 37.6,
-   "pick": "G2 Ares",
-   "pick_pct": 62.4,
-   "pick_basis": "external bookmaker price, de-vigged (aggregator-mediated)",
-   "pick_source_url": "https://egamersworld.com/counterstrike/match/_rW8GEyWK/g2-ares-vs-the-last-resort-7GWb9EDd9L",
-   "pick_board": "everypick",
-   "pick_page": "everypick/index.html",
-   "boards_publishing": {
-    "slate": {
-     "market": false,
-     "model": true,
-     "pick": false
-    },
-    "oct14": {
-     "market": true,
-     "model": true,
-     "pick": true
-    },
-    "openslate": {
-     "market": false,
-     "model": true,
-     "pick": true
-    },
-    "everypick": {
-     "market": true,
-     "model": true,
-     "pick": true
-    },
-    "cs2": {
-     "market": false,
-     "model": true,
-     "pick": true
-    }
-   },
-   "disagreements": [
-    "market 62% vs our model 51% for G2 Ares (11 pp)",
-    "boards name different winners \u2014 cs2: The Last Resort, everypick: G2 Ares, oct14: G2 Ares, openslate: G2 Ares (this page: G2 Ares)"
-   ],
-   "flags": [
-    {
-     "code": "X-SECONDARY-PRICE",
-     "severity": "caveat",
-     "text": "Price comes from a bookmaker listing served by an aggregator, not from the bookmaker's own response."
-    }
-   ],
-   "state": "open"
-  },
-  {
-   "poly_reference": null,
-   "fixture_id": "1081113",
-   "kickoff_utc": "2026-10-14T14:00:00Z",
-   "lock_utc": "2026-10-14T13:54:00Z",
-   "competition": "CCT Europe 2026 Series #12 Play-In",
-   "tier": "C",
-   "team_a": "Ryvex",
-   "team_b": "PCIFIC",
-   "hotspawn_match_url": "",
-   "hotspawn_fixture_url": "https://play.hotspawn.com/cs2-pickems",
-   "best_of": "BO3",
-   "best_of_source": "https://www.hltv.org/matches/2399463/pcific-vs-ryvex-cct-2026-europe-series-12-closed-qualifier",
-   "market_book": "",
-   "market_class": "",
-   "market_odds_a": null,
-   "market_odds_b": null,
-   "market_p_a": null,
-   "market_p_b": null,
-   "market_url": "",
-   "market_captured_utc": "",
-   "market_board": "",
-   "market_page": "",
-   "market_note": "",
-   "own_p_a": 30.1,
-   "own_p_b": 69.9,
-   "own_basis": "80% Valve VRS Glicko + 20% HLTV Ranking (BO3)",
-   "own_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L212",
-   "own_board": "everypick",
-   "own_page": "everypick/index.html",
-   "line_source": "model",
-   "p_a": 30.1,
-   "p_b": 69.9,
-   "pick": "PCIFIC",
-   "pick_pct": 69.9,
-   "pick_basis": "our own line from official ratings, no bookmaker price found",
-   "pick_source_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L212",
-   "pick_board": "everypick",
-   "pick_page": "everypick/index.html",
-   "boards_publishing": {
-    "slate": {
-     "market": false,
-     "model": true,
-     "pick": false
-    },
-    "oct14": {
-     "market": false,
-     "model": true,
-     "pick": true
-    },
-    "openslate": {
-     "market": false,
-     "model": true,
-     "pick": true
-    },
-    "everypick": {
-     "market": false,
-     "model": true,
-     "pick": true
-    },
-    "cs2": {
-     "market": false,
-     "model": true,
-     "pick": true
-    }
-   },
-   "disagreements": [],
-   "flags": [
-    {
-     "code": "X-MODEL-ONLY",
-     "severity": "caveat",
-     "text": "No bookmaker prices this match outside Hotspawn; the pick is our own line from official ratings only."
-    }
-   ],
-   "state": "open"
-  },
   {
    "poly_reference": null,
    "fixture_id": "1080179",
@@ -832,12 +118,12 @@
    "best_of_source": "https://www.hltv.org/matches/2399387/furia-vs-betboom-thunderpick-world-championship-2026",
    "market_book": "Pinnacle",
    "market_class": "direct",
-   "market_odds_a": 1.363636,
-   "market_odds_b": 3.18,
-   "market_p_a": 70.0,
-   "market_p_b": 30.0,
+   "market_odds_a": 1.340136,
+   "market_odds_b": 3.32,
+   "market_p_a": 71.2,
+   "market_p_b": 28.8,
    "market_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
-   "market_captured_utc": "2026-10-14T02:45:17Z",
+   "market_captured_utc": "2026-10-14T08:45:23Z",
    "market_board": "cs2",
    "market_page": "cs2/index.html",
    "market_note": "",
@@ -848,10 +134,10 @@
    "own_board": "cs2",
    "own_page": "cs2/index.html",
    "line_source": "market-direct",
-   "p_a": 70.0,
-   "p_b": 30.0,
+   "p_a": 71.2,
+   "p_b": 28.8,
    "pick": "FURIA",
-   "pick_pct": 70.0,
+   "pick_pct": 71.2,
    "pick_basis": "external bookmaker price, de-vigged (direct)",
    "pick_source_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
    "pick_board": "cs2",
@@ -1064,12 +350,12 @@
    "best_of_source": "Pinnacle matched event",
    "market_book": "Pinnacle",
    "market_class": "direct",
-   "market_odds_a": 1.649351,
-   "market_odds_b": 2.22,
-   "market_p_a": 57.4,
-   "market_p_b": 42.6,
+   "market_odds_a": 1.662252,
+   "market_odds_b": 2.19,
+   "market_p_a": 56.8,
+   "market_p_b": 43.2,
    "market_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
-   "market_captured_utc": "2026-10-14T02:45:17Z",
+   "market_captured_utc": "2026-10-14T08:45:23Z",
    "market_board": "cs2",
    "market_page": "cs2/index.html",
    "market_note": "",
@@ -1080,10 +366,10 @@
    "own_board": "cs2",
    "own_page": "cs2/index.html",
    "line_source": "market-direct",
-   "p_a": 57.4,
-   "p_b": 42.6,
+   "p_a": 56.8,
+   "p_b": 43.2,
    "pick": "MIBR",
-   "pick_pct": 57.4,
+   "pick_pct": 56.8,
    "pick_basis": "external bookmaker price, de-vigged (direct)",
    "pick_source_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
    "pick_board": "cs2",
@@ -1116,6 +402,7 @@
     }
    },
    "disagreements": [
+    "market 57% vs our model 67% for MIBR (10 pp)",
     "our own lines differ between boards: 67%\u201382% for MIBR"
    ],
    "flags": [],
@@ -1128,8 +415,8 @@
     "url": "https://polymarket.com/event/cs2-hero-envy-2026-10-15",
     "board": "exec/collect_polymarket.py",
     "source": "Polymarket",
-    "updated_utc": "2026-10-14T07:52:56.761886Z",
-    "liquidity_usd": 19244.6032
+    "updated_utc": "2026-10-14T14:04:45.655355Z",
+    "liquidity_usd": 20112.8064
    },
    "fixture_id": "1079442",
    "kickoff_utc": "2026-10-15T10:00:00Z",
@@ -1149,7 +436,7 @@
    "market_p_a": 64.1,
    "market_p_b": 35.9,
    "market_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
-   "market_captured_utc": "2026-10-14T02:45:17Z",
+   "market_captured_utc": "2026-10-14T08:45:23Z",
    "market_board": "cs2",
    "market_page": "cs2/index.html",
    "market_note": "",
@@ -1201,13 +488,13 @@
   },
   {
    "poly_reference": {
-    "p_a": 63.5,
-    "p_b": 36.5,
+    "p_a": 75.5,
+    "p_b": 24.5,
     "url": "https://polymarket.com/event/cs2-ence-bojong-2026-10-15",
     "board": "exec/collect_polymarket.py",
     "source": "Polymarket",
-    "updated_utc": "2026-10-14T08:02:55.182018Z",
-    "liquidity_usd": 7155.8598
+    "updated_utc": "2026-10-14T14:04:45.655355Z",
+    "liquidity_usd": 7310.9419
    },
    "fixture_id": "1080280",
    "kickoff_utc": "2026-10-15T10:00:00Z",
@@ -1600,13 +887,13 @@
   },
   {
    "poly_reference": {
-    "p_a": 44.0,
-    "p_b": 56.0,
+    "p_a": 44.5,
+    "p_b": 55.5,
     "url": "https://polymarket.com/event/cs2-voc-pha-2026-10-16",
     "board": "exec/collect_polymarket.py",
     "source": "Polymarket",
-    "updated_utc": "2026-10-14T08:00:55.86268Z",
-    "liquidity_usd": 5628.2301
+    "updated_utc": "2026-10-14T14:04:45.655355Z",
+    "liquidity_usd": 5479.3915
    },
    "fixture_id": "1080285",
    "kickoff_utc": "2026-10-16T08:00:00Z",
@@ -1765,13 +1052,13 @@
   },
   {
    "poly_reference": {
-    "p_a": 62.5,
-    "p_b": 37.5,
+    "p_a": 62.0,
+    "p_b": 38.0,
     "url": "https://polymarket.com/event/cs2-voc-havu-2026-10-16",
     "board": "exec/collect_polymarket.py",
     "source": "Polymarket",
-    "updated_utc": "2026-10-14T08:02:55.182018Z",
-    "liquidity_usd": 6764.8123
+    "updated_utc": "2026-10-14T14:04:45.655355Z",
+    "liquidity_usd": 5925.2579
    },
    "fixture_id": "1080287",
    "kickoff_utc": "2026-10-16T12:00:00Z",
@@ -2086,13 +1373,13 @@
   },
   {
    "poly_reference": {
-    "p_a": 64.5,
-    "p_b": 35.5,
+    "p_a": 63.0,
+    "p_b": 37.0,
     "url": "https://polymarket.com/event/cs2-pha-havu-2026-10-16",
     "board": "exec/collect_polymarket.py",
     "source": "Polymarket",
-    "updated_utc": "2026-10-14T08:02:55.182018Z",
-    "liquidity_usd": 6299.0055
+    "updated_utc": "2026-10-14T14:04:45.655355Z",
+    "liquidity_usd": 5621.5615
    },
    "fixture_id": "1080290",
    "kickoff_utc": "2026-10-16T18:00:00Z",
@@ -2172,6 +1459,456 @@
   }
  ],
  "locked_or_started": [
+  {
+   "poly_reference": null,
+   "fixture_id": "1079623",
+   "kickoff_utc": "2026-10-14T14:00:00Z",
+   "lock_utc": "2026-10-14T13:54:00Z",
+   "competition": "CCT Europe 2026 Series #11",
+   "tier": "B",
+   "team_a": "G2 Ares",
+   "team_b": "The Last Resort",
+   "hotspawn_match_url": "",
+   "hotspawn_fixture_url": "https://play.hotspawn.com/cs2-pickems",
+   "best_of": "BO3",
+   "best_of_source": "https://www.hltv.org/matches/2399300/g2-ares-vs-the-last-resort-cct-2026-europe-series-11",
+   "market_book": "bc.game (EGamersWorld)",
+   "market_class": "secondary",
+   "market_odds_a": 1.465,
+   "market_odds_b": 2.436,
+   "market_p_a": 62.4,
+   "market_p_b": 37.6,
+   "market_url": "https://egamersworld.com/counterstrike/match/_rW8GEyWK/g2-ares-vs-the-last-resort-7GWb9EDd9L",
+   "market_captured_utc": "2026-10-14T01:48:00Z",
+   "market_board": "everypick",
+   "market_page": "everypick/index.html",
+   "market_note": "External market \u2014 EGamersWorld bc.game report (secondary, not re-read vs bookmaker), de-vigged",
+   "own_p_a": 51.0,
+   "own_p_b": 49.0,
+   "own_basis": "80% Valve VRS Glicko + 20% HLTV Ranking (BO3)",
+   "own_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L134",
+   "own_board": "everypick",
+   "own_page": "everypick/index.html",
+   "line_source": "market-secondary",
+   "p_a": 62.4,
+   "p_b": 37.6,
+   "pick": "G2 Ares",
+   "pick_pct": 62.4,
+   "pick_basis": "external bookmaker price, de-vigged (aggregator-mediated)",
+   "pick_source_url": "https://egamersworld.com/counterstrike/match/_rW8GEyWK/g2-ares-vs-the-last-resort-7GWb9EDd9L",
+   "pick_board": "everypick",
+   "pick_page": "everypick/index.html",
+   "disagreements": [
+    "market 62% vs our model 51% for G2 Ares (11 pp)",
+    "boards name different winners \u2014 cs2: The Last Resort, everypick: G2 Ares, oct14: G2 Ares, openslate: G2 Ares (this page: G2 Ares)"
+   ],
+   "flags": [
+    {
+     "code": "X-SECONDARY-PRICE",
+     "severity": "caveat",
+     "text": "Price comes from a bookmaker listing served by an aggregator, not from the bookmaker's own response."
+    }
+   ],
+   "state": "locked_or_started"
+  },
+  {
+   "poly_reference": null,
+   "fixture_id": "1081113",
+   "kickoff_utc": "2026-10-14T14:00:00Z",
+   "lock_utc": "2026-10-14T13:54:00Z",
+   "competition": "CCT Europe 2026 Series #12 Play-In",
+   "tier": "C",
+   "team_a": "Ryvex",
+   "team_b": "PCIFIC",
+   "hotspawn_match_url": "",
+   "hotspawn_fixture_url": "https://play.hotspawn.com/cs2-pickems",
+   "best_of": "BO3",
+   "best_of_source": "https://www.hltv.org/matches/2399463/pcific-vs-ryvex-cct-2026-europe-series-12-closed-qualifier",
+   "market_book": "Pinnacle",
+   "market_class": "direct",
+   "market_odds_a": 1.126103,
+   "market_odds_b": 4.79,
+   "market_p_a": 81.0,
+   "market_p_b": 19.0,
+   "market_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
+   "market_captured_utc": "2026-10-14T08:45:23Z",
+   "market_board": "cs2",
+   "market_page": "cs2/index.html",
+   "market_note": "",
+   "own_p_a": 39.8,
+   "own_p_b": 60.2,
+   "own_basis": "P=1/(1+10^(-0.4630*\u0394pts/400)); slope re-fit by cs2/calibrate.py on Valve's own match results",
+   "own_url": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md?plain=1#L212",
+   "own_board": "cs2",
+   "own_page": "cs2/index.html",
+   "line_source": "market-direct",
+   "p_a": 81.0,
+   "p_b": 19.0,
+   "pick": "Ryvex",
+   "pick_pct": 81.0,
+   "pick_basis": "external bookmaker price, de-vigged (direct)",
+   "pick_source_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
+   "pick_board": "cs2",
+   "pick_page": "cs2/index.html",
+   "disagreements": [
+    "market 81% vs our model 40% for Ryvex (41 pp)",
+    "boards name different winners \u2014 cs2: Ryvex, everypick: PCIFIC, oct14: PCIFIC, openslate: PCIFIC (this page: Ryvex)"
+   ],
+   "flags": [],
+   "state": "locked_or_started"
+  },
+  {
+   "poly_reference": {
+    "p_a": 57.5,
+    "p_b": 42.5,
+    "url": "https://polymarket.com/event/cs2-lgc-prv-2026-10-14",
+    "board": "cs2"
+   },
+   "fixture_id": "1080178",
+   "kickoff_utc": "2026-10-14T13:30:00Z",
+   "lock_utc": "2026-10-14T13:24:00Z",
+   "competition": "Thunderpick World Championship 2026",
+   "tier": "S",
+   "team_a": "Legacy",
+   "team_b": "PARIVISION",
+   "hotspawn_match_url": "",
+   "hotspawn_fixture_url": "https://play.hotspawn.com/cs2-pickems",
+   "best_of": "BO3",
+   "best_of_source": "https://www.hltv.org/matches/2399386/legacy-vs-parivision-thunderpick-world-championship-2026",
+   "market_book": "Pinnacle",
+   "market_class": "direct",
+   "market_odds_a": 1.662252,
+   "market_odds_b": 2.24,
+   "market_p_a": 57.4,
+   "market_p_b": 42.6,
+   "market_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
+   "market_captured_utc": "2026-10-14T08:45:23Z",
+   "market_board": "cs2",
+   "market_page": "cs2/index.html",
+   "market_note": "",
+   "own_p_a": 80.0,
+   "own_p_b": 20.0,
+   "own_basis": "P=1/(1+10^(-0.4630*\u0394pts/400)); slope re-fit by cs2/calibrate.py on Valve's own match results",
+   "own_url": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md?plain=1#L7",
+   "own_board": "cs2",
+   "own_page": "cs2/index.html",
+   "line_source": "market-direct",
+   "p_a": 57.4,
+   "p_b": 42.6,
+   "pick": "Legacy",
+   "pick_pct": 57.4,
+   "pick_basis": "external bookmaker price, de-vigged (direct)",
+   "pick_source_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
+   "pick_board": "cs2",
+   "pick_page": "cs2/index.html",
+   "disagreements": [
+    "market 57% vs our model 80% for Legacy (23 pp)"
+   ],
+   "flags": [],
+   "state": "locked_or_started"
+  },
+  {
+   "poly_reference": null,
+   "fixture_id": "1079622",
+   "kickoff_utc": "2026-10-14T11:00:00Z",
+   "lock_utc": "2026-10-14T10:54:00Z",
+   "competition": "CCT Europe 2026 Series #11",
+   "tier": "B",
+   "team_a": "ex-RUSTEC",
+   "team_b": "mellren",
+   "hotspawn_match_url": "",
+   "hotspawn_fixture_url": "https://play.hotspawn.com/cs2-pickems",
+   "best_of": "BO3",
+   "best_of_source": "https://www.hltv.org/matches/2399299/ex-rustec-vs-mellren-cct-2026-europe-series-11",
+   "market_book": "bc.game (EGamersWorld)",
+   "market_class": "secondary",
+   "market_odds_a": 1.4,
+   "market_odds_b": 2.68,
+   "market_p_a": 65.7,
+   "market_p_b": 34.3,
+   "market_url": "https://egamersworld.com/counterstrike/match/_rW8GEyWK/ex-rustec-vs-mellren-ZGVCwI7MK",
+   "market_captured_utc": "2026-10-14T01:48:00Z",
+   "market_board": "everypick",
+   "market_page": "everypick/index.html",
+   "market_note": "External market \u2014 EGamersWorld bc.game report (secondary, not re-read vs bookmaker), de-vigged",
+   "own_p_a": 66.3,
+   "own_p_b": 33.7,
+   "own_basis": "80% Valve VRS Glicko + 20% HLTV Ranking (BO3)",
+   "own_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L97",
+   "own_board": "everypick",
+   "own_page": "everypick/index.html",
+   "line_source": "market-secondary",
+   "p_a": 65.7,
+   "p_b": 34.3,
+   "pick": "ex-RUSTEC",
+   "pick_pct": 65.7,
+   "pick_basis": "external bookmaker price, de-vigged (aggregator-mediated)",
+   "pick_source_url": "https://egamersworld.com/counterstrike/match/_rW8GEyWK/ex-rustec-vs-mellren-ZGVCwI7MK",
+   "pick_board": "everypick",
+   "pick_page": "everypick/index.html",
+   "disagreements": [
+    "our own lines differ between boards: 42%\u201366% for ex-RUSTEC"
+   ],
+   "flags": [
+    {
+     "code": "X-SECONDARY-PRICE",
+     "severity": "caveat",
+     "text": "Price comes from a bookmaker listing served by an aggregator, not from the bookmaker's own response."
+    }
+   ],
+   "state": "locked_or_started"
+  },
+  {
+   "poly_reference": null,
+   "fixture_id": "1080177",
+   "kickoff_utc": "2026-10-14T11:00:00Z",
+   "lock_utc": "2026-10-14T10:54:00Z",
+   "competition": "Thunderpick World Championship 2026",
+   "tier": "S",
+   "team_a": "Falcons",
+   "team_b": "Ninjas in Pyjamas",
+   "hotspawn_match_url": "",
+   "hotspawn_fixture_url": "https://play.hotspawn.com/cs2-pickems",
+   "best_of": "BO3",
+   "best_of_source": "Pinnacle matched event",
+   "market_book": "Pinnacle",
+   "market_class": "direct",
+   "market_odds_a": 1.331126,
+   "market_odds_b": 3.38,
+   "market_p_a": 71.7,
+   "market_p_b": 28.3,
+   "market_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
+   "market_captured_utc": "2026-10-14T08:45:23Z",
+   "market_board": "cs2",
+   "market_page": "cs2/index.html",
+   "market_note": "",
+   "own_p_a": 69.5,
+   "own_p_b": 30.5,
+   "own_basis": "P=1/(1+10^(-0.4630*\u0394pts/400)); slope re-fit by cs2/calibrate.py on Valve's own match results",
+   "own_url": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md?plain=1#L11",
+   "own_board": "cs2",
+   "own_page": "cs2/index.html",
+   "line_source": "market-direct",
+   "p_a": 71.7,
+   "p_b": 28.3,
+   "pick": "Falcons",
+   "pick_pct": 71.7,
+   "pick_basis": "external bookmaker price, de-vigged (direct)",
+   "pick_source_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
+   "pick_board": "cs2",
+   "pick_page": "cs2/index.html",
+   "disagreements": [
+    "our own lines differ between boards: 70%\u201388% for Falcons"
+   ],
+   "flags": [],
+   "state": "locked_or_started"
+  },
+  {
+   "poly_reference": null,
+   "fixture_id": "1081112",
+   "kickoff_utc": "2026-10-14T11:00:00Z",
+   "lock_utc": "2026-10-14T10:54:00Z",
+   "competition": "CCT Europe 2026 Series #12 Play-In",
+   "tier": "C",
+   "team_a": "Banda chuya",
+   "team_b": "6666",
+   "hotspawn_match_url": "",
+   "hotspawn_fixture_url": "https://play.hotspawn.com/cs2-pickems",
+   "best_of": "BO3",
+   "best_of_source": "https://www.hltv.org/matches/2399462/banda-chuya-vs-6666-cct-2026-europe-series-12-closed-qualifier",
+   "market_book": "",
+   "market_class": "",
+   "market_odds_a": null,
+   "market_odds_b": null,
+   "market_p_a": null,
+   "market_p_b": null,
+   "market_url": "",
+   "market_captured_utc": "",
+   "market_board": "",
+   "market_page": "",
+   "market_note": "",
+   "own_p_a": 32.0,
+   "own_p_b": 68.0,
+   "own_basis": "100% Valve VRS Glicko (1 team outside HLTV Top-245; BO3)",
+   "own_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L170",
+   "own_board": "everypick",
+   "own_page": "everypick/index.html",
+   "line_source": "model",
+   "p_a": 32.0,
+   "p_b": 68.0,
+   "pick": "6666",
+   "pick_pct": 68.0,
+   "pick_basis": "our own line from official ratings, no bookmaker price found",
+   "pick_source_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L170",
+   "pick_board": "everypick",
+   "pick_page": "everypick/index.html",
+   "disagreements": [
+    "our own lines differ between boards: 32%\u201347% for Banda chuya"
+   ],
+   "flags": [
+    {
+     "code": "X-MODEL-ONLY",
+     "severity": "caveat",
+     "text": "No bookmaker prices this match outside Hotspawn; the pick is our own line from official ratings only."
+    }
+   ],
+   "state": "locked_or_started"
+  },
+  {
+   "poly_reference": {
+    "p_a": 83.5,
+    "p_b": 16.5,
+    "url": "https://polymarket.com/event/cs2-ast10-sashi-2026-10-14",
+    "board": "cs2"
+   },
+   "fixture_id": "1079438",
+   "kickoff_utc": "2026-10-14T10:00:00Z",
+   "lock_utc": "2026-10-14T09:54:00Z",
+   "competition": "Stake Pulse Beat III",
+   "tier": "B",
+   "team_a": "Astralis",
+   "team_b": "Sashi",
+   "hotspawn_match_url": "",
+   "hotspawn_fixture_url": "https://play.hotspawn.com/cs2-pickems",
+   "best_of": "BO3",
+   "best_of_source": "https://www.hltv.org/matches/2399134/astralis-vs-sashi-stake-pulse-beat-iii",
+   "market_book": "bc.game (EGamersWorld)",
+   "market_class": "secondary",
+   "market_odds_a": 1.09,
+   "market_odds_b": 6.33,
+   "market_p_a": 85.3,
+   "market_p_b": 14.7,
+   "market_url": "https://egamersworld.com/counterstrike/match/EJZmJpBjeNx/astralis-vs-sashi-esport-aGet1AP-0Z",
+   "market_captured_utc": "2026-10-14T01:48:00Z",
+   "market_board": "everypick",
+   "market_page": "everypick/index.html",
+   "market_note": "External market \u2014 EGamersWorld bc.game report (secondary, not re-read vs bookmaker), de-vigged",
+   "own_p_a": 96.6,
+   "own_p_b": 3.4,
+   "own_basis": "100% Valve VRS Glicko (1 team outside HLTV Top-245; BO3)",
+   "own_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L15",
+   "own_board": "everypick",
+   "own_page": "everypick/index.html",
+   "line_source": "market-secondary",
+   "p_a": 85.3,
+   "p_b": 14.7,
+   "pick": "Astralis",
+   "pick_pct": 85.3,
+   "pick_basis": "external bookmaker price, de-vigged (aggregator-mediated)",
+   "pick_source_url": "https://egamersworld.com/counterstrike/match/EJZmJpBjeNx/astralis-vs-sashi-esport-aGet1AP-0Z",
+   "pick_board": "everypick",
+   "pick_page": "everypick/index.html",
+   "disagreements": [
+    "market 85% vs our model 97% for Astralis (11 pp)",
+    "our own lines differ between boards: 81%\u201397% for Astralis"
+   ],
+   "flags": [
+    {
+     "code": "X-SECONDARY-PRICE",
+     "severity": "caveat",
+     "text": "Price comes from a bookmaker listing served by an aggregator, not from the bookmaker's own response."
+    }
+   ],
+   "state": "locked_or_started"
+  },
+  {
+   "poly_reference": {
+    "p_a": 45.5,
+    "p_b": 54.5,
+    "url": "https://polymarket.com/event/cs2-hotu-fnc-2026-10-14",
+    "board": "cs2"
+   },
+   "fixture_id": "1079439",
+   "kickoff_utc": "2026-10-14T10:00:00Z",
+   "lock_utc": "2026-10-14T09:54:00Z",
+   "competition": "Stake Pulse Beat III",
+   "tier": "B",
+   "team_a": "HOTU",
+   "team_b": "Fnatic",
+   "hotspawn_match_url": "",
+   "hotspawn_fixture_url": "https://play.hotspawn.com/cs2-pickems",
+   "best_of": "BO3",
+   "best_of_source": "Pinnacle matched event",
+   "market_book": "Pinnacle",
+   "market_class": "direct",
+   "market_odds_a": 2.06,
+   "market_odds_b": 1.75188,
+   "market_p_a": 46.0,
+   "market_p_b": 54.0,
+   "market_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
+   "market_captured_utc": "2026-10-14T08:45:23Z",
+   "market_board": "cs2",
+   "market_page": "cs2/index.html",
+   "market_note": "",
+   "own_p_a": 51.3,
+   "own_p_b": 48.7,
+   "own_basis": "P=1/(1+10^(-0.4630*\u0394pts/400)); slope re-fit by cs2/calibrate.py on Valve's own match results",
+   "own_url": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md?plain=1#L36",
+   "own_board": "cs2",
+   "own_page": "cs2/index.html",
+   "line_source": "market-direct",
+   "p_a": 46.0,
+   "p_b": 54.0,
+   "pick": "Fnatic",
+   "pick_pct": 54.0,
+   "pick_basis": "external bookmaker price, de-vigged (direct)",
+   "pick_source_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
+   "pick_board": "cs2",
+   "pick_page": "cs2/index.html",
+   "disagreements": [],
+   "flags": [],
+   "state": "locked_or_started"
+  },
+  {
+   "poly_reference": {
+    "p_a": 25.5,
+    "p_b": 74.5,
+    "url": "https://polymarket.com/event/cs2-9z-aur1-2026-10-14",
+    "board": "cs2"
+   },
+   "fixture_id": "1080176",
+   "kickoff_utc": "2026-10-14T08:30:00Z",
+   "lock_utc": "2026-10-14T08:24:00Z",
+   "competition": "Thunderpick World Championship 2026",
+   "tier": "S",
+   "team_a": "9z",
+   "team_b": "Aurora",
+   "hotspawn_match_url": "",
+   "hotspawn_fixture_url": "https://play.hotspawn.com/cs2-pickems",
+   "best_of": "BO3",
+   "best_of_source": "Pinnacle matched event",
+   "market_book": "Pinnacle",
+   "market_class": "direct",
+   "market_odds_a": 3.29,
+   "market_odds_b": 1.327869,
+   "market_p_a": 28.8,
+   "market_p_b": 71.2,
+   "market_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
+   "market_captured_utc": "2026-10-14T08:45:23Z",
+   "market_board": "cs2",
+   "market_page": "cs2/index.html",
+   "market_note": "",
+   "own_p_a": 38.7,
+   "own_p_b": 61.3,
+   "own_basis": "P=1/(1+10^(-0.4630*\u0394pts/400)); slope re-fit by cs2/calibrate.py on Valve's own match results",
+   "own_url": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md?plain=1#L22",
+   "own_board": "cs2",
+   "own_page": "cs2/index.html",
+   "line_source": "market-direct",
+   "p_a": 28.8,
+   "p_b": 71.2,
+   "pick": "Aurora",
+   "pick_pct": 71.2,
+   "pick_basis": "external bookmaker price, de-vigged (direct)",
+   "pick_source_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
+   "pick_board": "cs2",
+   "pick_page": "cs2/index.html",
+   "disagreements": [
+    "our own lines differ between boards: 20%\u201339% for 9z"
+   ],
+   "flags": [],
+   "state": "locked_or_started"
+  },
   {
    "poly_reference": null,
    "fixture_id": "1079621",
