@@ -4,9 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0d1218">
-  <meta name="description" content="A mobile-first executive summary for Hotspawn Counter-Strike 2 Pick'em matches: sourced win probabilities, picks, read times, and limitations.">
-  <title>Hotspawn CS2 — picks &amp; research</title>
+  <meta name="description" content="Source-linked current Hotspawn CS2 picks, transparent probabilities, an unresolved review route, and complete fixture coverage.">
+  <title>Hotspawn CS2 — current picks &amp; evidence</title>
   <link rel="stylesheet" href="css/landing.css">
+  <script defer src="js/262b4d3b-picks.js"></script>
   <style>
     :root { color-scheme: dark; }
     .home-hero { padding: 28px 0 24px; max-width: 850px; }
@@ -21,6 +22,16 @@
     .quick-link.primary { background: #bbaaff; border-color: #bbaaff; color: #17132b; }
     .quick-link.primary strong, .quick-link.primary span { color: #17132b; }
     .coverage-panel { padding: 16px; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); }
+    .current-capture { margin: 18px 0 24px; }
+    .current-capture .stats { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .secondary-snapshot { margin: 22px 0; border: 1px solid var(--line); border-radius: 10px; padding: 0 14px 14px; }
+    .secondary-snapshot > summary { min-height: 44px; padding: 12px 0; cursor: pointer; font-weight: 650; }
+    .comparison-links { grid-column: 1 / -1; border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; background: var(--panel); }
+    .comparison-links > summary { min-height: 44px; cursor: pointer; font-weight: 700; }
+    .comparison-links a { display: inline-flex; align-items: center; min-height: 44px; margin-right: 14px; }
+    .current-search { display: flex; flex-wrap: wrap; gap: 10px; align-items: end; max-width: 620px; margin: 20px 0; }
+    .current-search label { flex: 1 1 240px; font-weight: 650; }
+    .current-search input { display: block; width: 100%; min-height: 48px; margin-top: 7px; padding: 12px; border: 1px solid var(--line); border-radius: 8px; background: var(--panel); color: var(--text); font: inherit; }
     .coverage-panel .stats { grid-template-columns: repeat(5, minmax(0, 1fr)); margin: 12px 0; }
     .coverage-panel .stats > div { padding: 12px; }
     .coverage-panel .stats b { font-size: 27px; }
@@ -72,35 +83,69 @@
   <header>
     <a class="brand" href="index.html">HOTSPAWN <span>/ independent CS2 research</span></a>
     <nav aria-label="Primary navigation">
-      <a href="#picks">Picks</a>
-      <a href="#research">Research &amp; review</a>
+      <a href="current-picks.html" aria-current="page">Current picks</a>
+      <a href="current-picks.html#unresolved">Unresolved picks</a>
+      <a href="live/flagged.html">Flagged for Review</a>
       <a href="#freshness">Snapshot freshness</a>
     </nav>
   </header>
 
   <main id="main">
     <section class="home-hero" aria-labelledby="page-title">
-      <p class="eyebrow">Executive summary · Counter-Strike 2 Pick'em</p>
-      <h1 id="page-title">Every match. One clear picks list.</h1>
-      <p>The first link below opens the verified executive board: each open match has one pick, both teams’ win probabilities, an evidence basis, source links, and row-level read times. The separate unresolved section explains the research ladder used when a match has no primary-book line and states what limits each fallback.</p>
+      <p class="eyebrow">Current snapshot · Counter-Strike 2 Pick'em</p>
+      <h1 id="page-title">Every current match. One source-first picks list.</h1>
+      <p>The first route opens the freshest captured Hotspawn fixture inventory with source-linked picks, both teams’ probabilities, and exact lock-time filtering. Current rows use validated outside prices first and a transparent VRS calculation only when its exact team, rating, and series-format evidence is available. Missing or uncertain values remain blank and flagged. Hotspawn crowd percentages are never probabilities.</p>
 
       <div class="quick-links" aria-label="Start here">
-        <a class="quick-link primary" href="executive/picks.html">
-          <strong>View all picks &amp; probabilities →</strong>
-          <span>One mobile-friendly card per open match, with both teams’ percentages, the pick, and its sources.</span>
+        <a class="quick-link primary" id="primary-picks" href="current-picks.html">
+          <strong>Open current picks &amp; probabilities →</strong>
+          <span>One mobile-friendly card per captured fixture whose UTC lock is still ahead; both team values and each row’s evidence.</span>
         </a>
-        <a class="quick-link" href="executive/unresolved.html">
+        <a class="quick-link" href="current-picks.html#unresolved">
           <strong>Unresolved picks &amp; limitations</strong>
-          <span>Research ladder: HLTV → esportsbooks → betting lines; includes refused prices and per-route limitations.</span>
+          <span>Identity questions, refused markets, missing rating evidence, and exactly what remains unverified.</span>
         </a>
-        <a class="quick-link" href="executive/own-lines.html">
-          <strong>Matches with no market price</strong>
-          <span>Our originated estimates, rating evidence, flags, and the limits of model-only picks.</span>
+        <a class="quick-link" href="live/coverage.html">
+          <strong>Every captured fixture</strong>
+          <span>Full 88-row inventory, including low-tier, locked, stale, and unpriced matches.</span>
         </a>
+        <a class="quick-link" href="live/flagged.html">
+          <strong>Flagged for Review</strong>
+          <span>Source gaps, aliases, rejected quotes, and model limitations with manual-review links.</span>
+        </a>
+        <details class="comparison-links">
+          <summary>Separate executive snapshot &amp; research pages (comparison only)</summary>
+          <a href="executive/picks.html">Executive picks snapshot</a>
+          <a href="executive/unresolved.html">Executive unresolved research</a>
+          <a href="executive/own-lines.html">Executive own-line research</a>
+        </details>
       </div>
+      <form class="current-search" action="current-picks.html" method="get">
+        <label for="match-search">Find a team or Hotspawn fixture ID
+          <input id="match-search" name="q" type="search" autocomplete="off" placeholder="For example, FORZE or 1079624">
+        </label>
+        <button class="button secondary" type="submit">Search current picks</button>
+      </form>
+      <p class="small"><a href="#matches">Jump to current-match coverage ↓</a> · <a href="#archive">Browse previous boards and historical links</a></p>
 
-      <section id="freshness" class="coverage-panel" aria-labelledby="coverage-title">
-        <h2 id="coverage-title">Published executive snapshot</h2>
+      <section id="freshness" class="coverage-panel current-capture" aria-labelledby="live-capture-title">
+        <h2 id="live-capture-title">Freshest captured Hotspawn fixture inventory</h2>
+        <p class="small">This landing’s current route reads <code>live/data/slate.csv</code> and <code>live/data/snapshot_meta.json</code>. Exact fixture counts, names, and UTC locks come from that capture; the separate executive board below is not the fixture spine.</p>
+        <div class="stats" aria-label="Live-data-backed current match counts">
+          <div><b id="root-open">—</b><span>Captured fixtures before lock</span></div>
+          <div><b id="root-market">—</b><span>Verified market lines</span></div>
+          <div><b id="root-model">—</b><span>VRS estimates</span></div>
+          <div><b id="root-unresolved">—</b><span>Unresolved / flagged</span></div>
+        </div>
+        <p id="landing-status" class="snapshot-status" role="status" aria-live="polite">Loading committed Hotspawn capture and row-level source checks. No fallback count is assumed.</p>
+        <p id="capture-status" class="snapshot-meta">The current view expires rows at their captured UTC lock and suppresses stale or unverified estimates.</p>
+        <p id="display-count" class="small" aria-live="polite"></p>
+        <p><a class="button" href="current-picks.html">Open every current pick and its sources →</a></p>
+      </section>
+      <details class="secondary-snapshot">
+        <summary>Separate executive-board snapshot (comparison only; not the current fixture spine)</summary>
+      <section class="coverage-panel" aria-labelledby="coverage-title">
+        <h2 id="coverage-title">Separate executive snapshot · comparison only</h2>
         <div class="stats" aria-label="Coverage counts from the published executive snapshot">
           <div><b id="open-count">—</b><span>Open at capture</span></div>
           <div><b id="pick-count">—</b><span>Picks published</span></div>
@@ -111,7 +156,7 @@
         <p id="snapshot-status" class="snapshot-status" role="status" aria-live="polite">Loading the published snapshot timestamp and coverage counts…</p>
         <p id="research-status" class="snapshot-meta">Loading the source read times…</p>
         <button id="recheck-snapshot" class="recheck" type="button">Check for a newer published snapshot</button>
-        <p class="small">Counts describe the saved capture, not a live query to Hotspawn. Exact UTC lock times and each quote’s read time are shown on the picks page. GitHub Actions refreshes are scheduled every four hours but run best-effort; check timestamps before relying on an estimate.</p>
+        <p class="small">This separate board is a cross-check only; it does not supply the current fixture inventory or probabilities above. Counts describe the saved capture, not a live query to Hotspawn. Exact UTC lock times and each quote’s read time are shown on the picks page. GitHub Actions refreshes are scheduled every four hours but run best-effort; check timestamps before relying on an estimate.</p>
         <p class="small"><strong>Lock display caveat:</strong> the linked executive picks page includes generated “in X h” countdowns that can be stale after a match locks. Use the absolute UTC lock time and row-level source-read time—not the relative countdown—to judge whether a fixture is still open/actionable.</p>
         <div class="inline-links">
           <a href="executive/data/analysis.csv">Machine-readable pick rows (CSV)</a>
@@ -120,19 +165,23 @@
           <a href="executive/cadence.html">Detailed cadence page (check absolute timestamps)</a>
         </div>
       </section>
+      </details>
     </section>
 
     <span id="matches" aria-hidden="true"></span>
     <section id="picks" aria-labelledby="picks-title">
       <h2 id="picks-title">Find the match picks</h2>
-      <p>The all-match list is designed for phone screens: the recommended pick and both probabilities are prominent, followed by the match, UTC lock time, evidence tier, and source links for each row.</p>
-      <p><a class="button" href="executive/picks.html">Open the complete picks list →</a></p>
+      <p>The current-picks page is designed for phone screens: the recommendation and both team probabilities are prominent, with fixture time, market/model basis, and manual-review source links on each row.</p>
+      <p><a class="button" href="current-picks.html">Open the complete source-linked current picks list →</a></p>
     </section>
 
     <section id="research" aria-labelledby="research-title">
       <h2 id="research-title">Research, coverage &amp; review</h2>
       <div class="category-grid">
-        <a class="category-card" href="executive/unresolved.html"><strong>Unresolved picks &amp; limitations</strong><span>Every non-featured route in the research snapshot, its source trail, refused quotes, and concrete limits.</span></a>
+        <a class="category-card" href="live/coverage.html"><strong>Complete live fixture coverage</strong><span>All captured Hotspawn rows, including low-tier, locked, stale, and unpriced fixtures.</span></a>
+        <a class="category-card" href="current-picks.html#unresolved"><strong>Current unresolved picks &amp; limitations</strong><span>Unconfirmed identities, withheld market values, source trail, and concrete limits.</span></a>
+        <a class="category-card" href="reviews/262b4d3b-final-audit.md"><strong>Current integration evidence audit</strong><span>Source decisions, row-level verification, methodology, and release status.</span></a>
+        <a class="category-card" href="executive/unresolved.html"><strong>Separate executive unresolved snapshot</strong><span>Cross-board research only; not the current page’s fixture inventory.</span></a>
         <a class="category-card" href="executive/lines.html"><strong>Outside betting lines</strong><span>Named bookmakers and secondary listings, with odds and capture times.</span></a>
         <a class="category-card" href="executive/own-lines.html"><strong>Our own lines</strong><span>Official Valve standings, HLTV cross-checks, model arithmetic, and unpriced matches.</span></a>
         <a class="category-card" href="executive/sources.html"><strong>Sources &amp; read times</strong><span>What each source returned, where it was read, and which observations were refused.</span></a>
@@ -159,14 +208,20 @@
 
     <section class="notice flag-note" aria-labelledby="source-flag-title">
       <h2 id="source-flag-title">Flagged for review: newer parallel board has a broken Valve source link</h2>
-      <p>The separate live-read board under <code>livelines/</code> has a later page-build timestamp, but its published Valve standings URLs use a file-blob SHA where GitHub expects a commit SHA and return 404. Its stored payload also has 89 fixtures while a later Hotspawn lobby read shows 88. Until that board’s owner repairs and rechecks it, this site uses the executive board above as the primary verified destination.</p>
-      <p><a href="reviews/6f9eab3b-acceptance.html">Open the source-link and coverage evidence, corrected official URL, and coordination request →</a></p>
+      <p>The separate live-read board under <code>livelines/</code> has a later page-build timestamp, but its published Valve standings URLs use a file-blob SHA where GitHub expects a commit SHA and return 404. Its stored payload also has 89 fixtures while a later Hotspawn lobby read shows 88. This current landing instead uses the separately captured <code>live/</code> fixture inventory and row-level market/model checks. Keep the other board archived until its owner repairs and rechecks its own source links and inventory.</p>
+      <p><a href="reviews/6f9eab3b-acceptance.html">Open the source-link and coverage evidence, corrected official URL, and coordination request →</a> · <a href="live/flagged.html">Open the current Flagged for Review page</a></p>
+    </section>
+
+    <section class="notice flag-note" aria-labelledby="lfo-scope-title">
+      <h2 id="lfo-scope-title">Flagged for Review: FORZE Reload vs LFO 10 remains unresolved</h2>
+      <p>The historical Polymarket 84.6% / 15.4% quote for fixture 1079624 settles on <strong>Map 1</strong>, not the BO3 series. A separate Series Moneyline names Sökerorg, and no authoritative source confirms that identity as LFO 10. Do not transfer the quote: this row has no pick and both probabilities stay blank until a series-level source or two-sided identity/rating evidence is verified.</p>
+      <p><a href="current-picks.html#unresolved">Open the exact source links and limitations →</a></p>
     </section>
 
     <details class="archive">
-      <summary>Other dashboards &amp; historical research (different snapshots and methods)</summary>
+      <summary id="archive">Other dashboards &amp; historical research (different snapshots and methods)</summary>
       <div class="legacy">
-        <p>Several sessions produced independent boards and audits. Their coverage counts, dates, source integrity, and model assumptions are not interchangeable with the executive board above. Check each board’s own snapshot and Flagged for Review page before comparing it.</p>
+        <p>Several sessions produced independent boards and audits. Their counts, dates, source integrity, and assumptions are not interchangeable with the current live-capture route above. Check each board’s own snapshot and Flagged for Review page before comparing it.</p>
         <div class="archive-grid">
           <a href="livelines/picks.html"><strong>Newer live-read board — flagged pending correction</strong><span>08:04Z page build; review the broken VRS source URL and 89-vs-88 fixture difference before using this board as authoritative.</span></a>
           <a href="livelines/flagged.html"><strong>Newer live-read board’s flags</strong><span>Published flags for its source observations, read times, placeholders, and model caveats.</span></a>
@@ -272,6 +327,18 @@
           <li><a href="winboard/flagged.html">winboard/flagged.html</a></li>
           <li><a href="winboard/methodology.html">winboard/methodology.html</a></li>
           <li><a href="winboard/sources.html">winboard/sources.html</a></li>
+          <li><a href="#picks">Retained landing destination: #picks</a></li>
+          <li><a href="#research">Retained landing destination: #research</a></li>
+          <li><a href="https://github.com/buffedlizard55-lab/MaltaProj1/actions/workflows/executive-5545dbb8.yml">Retained landing destination: https://github.com/buffedlizard55-lab/MaltaProj1/actions/workflows/executive-5545dbb8.yml</a></li>
+          <li><a href="https://github.com/buffedlizard55-lab/MaltaProj1/actions/workflows/slate-180a42a0.yml">Retained landing destination: https://github.com/buffedlizard55-lab/MaltaProj1/actions/workflows/slate-180a42a0.yml</a></li>
+          <li><a href="https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/reviews/228bb5bc-verification.md">Retained landing destination: https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/reviews/228bb5bc-verification.md</a></li>
+          <li><a href="https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/reviews/slate-180a42a0.md">Retained landing destination: https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/reviews/slate-180a42a0.md</a></li>
+          <li><a href="https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/reviews/source-audit-2026-10-13.md">Retained landing destination: https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/reviews/source-audit-2026-10-13.md</a></li>
+          <li><a href="https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/reviews/verification-c50fb9a8.md">Retained landing destination: https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/reviews/verification-c50fb9a8.md</a></li>
+          <li><a href="live/data/slate.csv">Retained landing destination: live/data/slate.csv</a></li>
+          <li><a href="live/data/snapshot_meta.json">Retained landing destination: live/data/snapshot_meta.json</a></li>
+          <li><a href="live/methodology.html">Retained landing destination: live/methodology.html</a></li>
+          <li><a href="live/sources.html">Retained landing destination: live/sources.html</a></li>
           </ul>
         </details>
     </details>
@@ -287,7 +354,7 @@
     </div>
   </footer>
 
-  <noscript><p class="notice">JavaScript is disabled, so summary counts and live age cannot update. The <a href="executive/picks.html">complete source-linked picks list</a>, unresolved research, and timestamps remain available as static pages.</p></noscript>
+  <noscript><p class="notice">JavaScript is required to validate current lock times and render the live-data counts. No probability fallback is provided. Open the <a href="live/matches.html">captured fixture inventory</a>, <a href="live/flagged.html">Flagged for Review</a>, and the <a href="current-picks.html">current picks page</a>; check their timestamps before relying on any row.</p></noscript>
   <script>
     (function () {
       "use strict";

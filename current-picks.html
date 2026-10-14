@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Every currently unlocked Hotspawn CS2 fixture, with linked market or transparent VRS research evidence; unresolved probabilities stay blank.">
+  <title>Current CS2 picks · Hotspawn evidence</title>
+  <link rel="stylesheet" href="css/landing.css">
+  <script defer src="js/262b4d3b-picks.js"></script>
+  <style>
+    .current-hero{max-width:920px;padding:28px 0 12px}
+    .current-hero h1{font-size:clamp(32px,6vw,54px)}
+    .capture-box{border:1px solid var(--line);background:var(--panel);border-radius:10px;padding:14px 18px;margin:18px 0}
+    .capture-box p{margin:5px 0}
+    .filter-row{display:grid;grid-template-columns:minmax(0,2fr) minmax(150px,1fr);gap:14px;align-items:end;margin:24px 0 14px}
+    .filter-row label{display:block;font-weight:650}
+    .filter-row input,.filter-row select{width:100%;margin-top:7px;min-height:48px;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--panel);color:var(--text);font:inherit}
+    .match-topline{display:flex;flex-wrap:wrap;align-items:center;gap:5px 12px;margin-bottom:8px}
+    .probability-cell{min-width:0}
+    .probabilities .probability-cell{background:var(--bg);padding:12px;border-radius:8px}
+    .probabilities .probability-name{display:block;overflow-wrap:anywhere}
+    .probabilities .probability-cell b{font-size:24px;line-height:1.2}
+    .probabilities .probability-track{height:8px;padding:0;margin-top:8px;background:#34414d;border-radius:99px;overflow:hidden}
+    .probability-track span{display:block;height:100%;background:var(--green);border-radius:99px}
+    .probability-track.b span{background:var(--accent)}
+    .pick-call{font-weight:800;color:var(--text);font-size:18px}
+    .basis-label{font-weight:700;color:var(--green)}
+    .review .basis-label{color:var(--amber)}
+    .review-note{border-left:3px solid var(--amber);padding-left:10px;color:var(--amber)}
+    .source-links{margin-top:14px}
+    .source-links a{overflow-wrap:anywhere}
+    .unresolved-item{border:1px solid var(--line);border-radius:10px;background:var(--bg);padding:16px;margin:18px 0}
+    .unresolved-item li{margin:7px 0;color:var(--muted)}
+    .unresolved-item strong{color:var(--text)}
+    .small code{overflow-wrap:anywhere}
+    @media(max-width:560px){
+      .filter-row{grid-template-columns:1fr}
+      .probabilities{grid-template-columns:1fr}
+      .current-hero{padding-top:14px}
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to current picks</a>
+  <header>
+    <a class="brand" href="index.html">HOTSPAWN <span>/ independent CS2 research</span></a>
+    <nav aria-label="Main navigation">
+      <a href="current-picks.html" aria-current="page">Current picks</a>
+      <a href="#unresolved">Unresolved &amp; limitations</a>
+      <a href="live/flagged.html">Flagged for Review</a>
+      <a href="index.html#archive">Earlier boards</a>
+    </nav>
+  </header>
+  <main id="main">
+    <section class="current-hero" aria-labelledby="page-title">
+      <p class="eyebrow">CS2 · source-linked · lock-filtered</p>
+      <h1 id="page-title">Current picks &amp; honest unknowns</h1>
+      <p>Every fixture begins with the latest integrated Hotspawn capture. A current two-sided bookmaker quote takes precedence; secondary aggregate quotes need a per-match page and the 1.80/1.80 placeholder is rejected. A Polymarket line is shown only when its exact series-moneyline scope is verified. Without a usable market, the page calculates a transparent VRS-based series estimate only when both official ratings and an exact-fixture HLTV best-of source are present. Otherwise the pick and both probabilities stay blank.</p>
+      <div class="actions">
+        <a class="button" href="#match-list">Browse current matches ↓</a>
+        <a class="button secondary" href="#unresolved">Unresolved picks &amp; limitations</a>
+        <a class="button secondary" href="live/flagged.html">Flagged for Review</a>
+      </div>
+      <p class="small">Hotspawn audience / crowd percentages are never read or used as win probabilities. “Own estimate” is a project calculation, not an official forecast or calibrated betting edge.</p>
+    </section>
+
+    <section aria-labelledby="summary-heading">
+      <h2 id="summary-heading">Current capture summary</h2>
+      <div class="stats" aria-label="Data-backed current match counts">
+        <div><b id="root-open">—</b><span>Captured fixtures still before their UTC lock</span></div>
+        <div><b id="root-market">—</b><span>Open rows with a verified fresh market line</span></div>
+        <div><b id="root-model">—</b><span>Open rows with a sourced VRS estimate</span></div>
+        <div><b id="root-unresolved">—</b><span>Open rows without a verified probability</span></div>
+      </div>
+      <div class="capture-box">
+        <p id="landing-status" role="status" aria-live="polite">Loading the committed fixture CSV and evidence metadata. No fallback count is assumed.</p>
+        <p id="capture-status" class="small">The fixture inventory is taken from <code>live/data/slate.csv</code>; rows are filtered against their UTC lock time in your browser.</p>
+        <p id="display-count" class="small" aria-live="polite"></p>
+      </div>
+      <p class="small">The cross-board build is not used for fixture inventory, row counts, team names, lock times, or its own published probabilities. It supplies an HLTV format link only after exact fixture ID, team order, kickoff, and lock-time validation. The VRS model is recomputed here from the live CSV's official points.</p>
+    </section>
+
+    <section id="match-list" aria-labelledby="list-heading">
+      <div class="section-heading">
+        <div><p class="eyebrow">Rows with a future captured lock</p><h2 id="list-heading">Every current fixture</h2></div>
+        <a href="live/matches.html">Open the full 88-row captured inventory →</a>
+      </div>
+      <div class="filter-row">
+        <label for="pick-search">Find a team, event, or Hotspawn ID
+          <input id="pick-search" type="search" autocomplete="off" placeholder="For example, FORZE or 1079624">
+        </label>
+        <label for="tier-filter">Filter by tier
+          <select id="tier-filter">
+            <option value="">All tiers</option>
+            <option value="S">S tier</option>
+            <option value="A">A tier</option>
+            <option value="B">B tier</option>
+            <option value="C">C tier</option>
+          </select>
+        </label>
+      </div>
+      <div id="pick-list" class="match-list" aria-label="Current CS2 fixtures"></div>
+      <noscript>
+        <p class="notice">JavaScript is required for the lock-time filter and source validation, so no probabilities are printed in this fallback. Open the <a href="live/matches.html">published live inventory</a>, check its capture time, and inspect the <a href="live/flagged.html">Flagged for Review</a> page before relying on any row.</p>
+      </noscript>
+    </section>
+
+    <section id="unresolved" class="notice" aria-labelledby="unresolved-heading">
+      <p class="eyebrow">No identity guess · no price transfer</p>
+      <h2 id="unresolved-heading">Unresolved picks &amp; limitations</h2>
+      <p class="small">Manual source review below was checked around 2026-10-14 08:40Z; re-read the linked markets and roster evidence after that observation.</p>
+      <div id="unresolved-list" aria-label="Current unresolved fixtures"><p class="small">Loading unresolved rows and their evidence.</p></div>
+      <h3>Detailed review: FORZE Reload vs LFO 10</h3>
+      <p><strong>Hotspawn fixture 1079624</strong> (CCT 2026 Europe Series 11, BO3) remains unresolved. The current captured row has no outside series price, no two-sided own line, and no pick. The verified project VRS source lists FORZE Reload but has no LFO 10 rating; HLTV's LFO 10 profile currently shows no active players or current rank. There is therefore no two-sided official-rating basis. Both probabilities are intentionally blank.</p>
+      <div class="unresolved-item">
+        <h3>Why a Polymarket number is not assigned</h3>
+        <ul>
+          <li>The older <strong>84.6% / 15.4%</strong> line on the other live-lines board was captured at 04:50Z against a generic multi-market event URL; the contract scope tied to that quote settles on <strong>Map 1</strong>, not the BO3 series. It is not shown as a series probability here.</li>
+          <li>A separate Polymarket <strong>Series Moneyline</strong> now appears for <strong>FORZE Reload vs Sökerorg</strong> (roughly 77–78¢ / 24–25¢ when read at about 08:40Z on 2026-10-14). That contract resolves on the match winner, but no authoritative source links Sökerorg to Hotspawn's LFO 10 identity. Third-party roster overlap is a lead for manual review, not sufficient to transfer the price.</li>
+          <li>EGamersWorld's FORZE listing shows the opponent name absent with 1.80 / 1.80 placeholder values. It is not a usable two-sided quote or an identity proof.</li>
+        </ul>
+      </div>
+      <div class="source-links" aria-label="Manual verification sources">
+        <a href="https://www.hotspawn.com/matches/forze-reload-vs-lfo-10-cct-europe-2026-series-11-1079624" target="_blank" rel="noopener noreferrer">Hotspawn fixture</a>
+        <a href="https://www.hltv.org/matches/2399301/forze-reload-vs-lfo-10-cct-2026-europe-series-11" target="_blank" rel="noopener noreferrer">HLTV BO3 match</a>
+        <a href="https://www.hltv.org/team/14084/lfo-10" target="_blank" rel="noopener noreferrer">HLTV LFO 10 profile</a>
+        <a href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md" target="_blank" rel="noopener noreferrer">Pinned official Valve standings</a>
+        <a href="https://egamersworld.com/counterstrike/match/_rW8GEyWK/forze-reload-vs-Gr_YhyKi3" target="_blank" rel="noopener noreferrer">EGamersWorld FORZE listing</a>
+        <a href="https://polymarket.com/esports/cs2/cct-europe/cs2-forzer-skr2-2026-10-14" target="_blank" rel="noopener noreferrer">Polymarket event and separate contract scopes</a>
+        <a href="https://bo3.gg/teams/sokerorg" target="_blank" rel="noopener noreferrer">Third-party Sökerorg roster lead (not identity proof)</a>
+      </div>
+      <p class="small">The previous 84.6% / 15.4% quote is rejected for this series. No LFO 10 pick or percentage will be published until a current series-level source or an authoritative two-sided rating/identity link is verified.</p>
+    </section>
+
+    <section class="categories" aria-label="Related evidence pages">
+      <a href="live/coverage.html"><b>Coverage audit →</b><span>All captured rows, including low-tier, locked, stale and unpriced fixtures.</span></a>
+      <a href="live/sources.html"><b>Sources &amp; capture times →</b><span>What the live collector read and when.</span></a>
+      <a href="live/methodology.html"><b>Method →</b><span>Market de-vigging, VRS assumptions, and refusal rules.</span></a>
+      <a href="exec/index.html"><b>Cross-board research →</b><span>A separately built board; its fixture spine is older and counts are not interchangeable.</span></a>
+      <a href="reviews/262b4d3b-final-audit.md"><b>Final evidence audit →</b><span>Source decisions, validation scope, limitations and release checks.</span></a>
+      <a href="index.html#archive"><b>Earlier boards →</b><span>Historical project links and archived claims, kept for audit.</span></a>
+    </section>
+  </main>
+  <footer>Independent analysis. Not affiliated with Hotspawn. Not betting advice.<br>
+    <a href="https://play.hotspawn.com/lobby">Official Hotspawn lobby</a> ·
+    <a href="live/data/slate.csv">Current captured fixture CSV</a> ·
+    <a href="live/data/snapshot_meta.json">Capture metadata</a> ·
+    <a href="index.html">Project landing page</a>
+  </footer>
+</body>
+</html>
