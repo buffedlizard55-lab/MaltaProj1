@@ -83,7 +83,7 @@ jobs:
         run: |
           git config user.name "arena-bdc98a9a"
           git config user.email "arena-bdc98a9a@users.noreply.github.com"
-          git add verify scripts/bdc98a9a_verify_build.py
+          git add reread scripts/bdc98a9a_verify_build.py
           if git diff --cached --quiet; then
             echo "no change to commit"
           else
