@@ -400,25 +400,54 @@ class MobileLandingTests(unittest.TestCase):
 
 
 class NoCrowdDataTests(unittest.TestCase):
+    """Hotspawn's crowd is the thing the brief forbids as an input.
+
+    The rule is about *stored values*, so the gate walks the parsed JSON rather than grepping the
+    bytes: an ingest log that says which fields it dropped is allowed to spell their names, a fixture
+    record that carries one is not. The board's own build check (``executive/tests.py``) keeps the
+    same rule at fixture level; this one covers every file the board writes.
+    """
+
+    CROWD_KEYS = CROWD_TOKENS + ("pickedpercentage", "pickpercentage", "pick_percent", "pick_pct")
+    LOG_KEYS = ("crowd_fields_dropped", "dropped_fields", "fields_dropped")
+
+    def _crowd_values(self, node, path=""):
+        if isinstance(node, dict):
+            for key, value in node.items():
+                here = f"{path}.{key}"
+                lowered = str(key).lower().strip("_")
+                if lowered in self.CROWD_KEYS or lowered.endswith(self.CROWD_KEYS):
+                    if value not in (None, "", [], {}, 0, 0.0):
+                        yield here, value
+                if lowered in self.LOG_KEYS:
+                    continue
+                yield from self._crowd_values(value, here)
+        elif isinstance(node, list):
+            for index, value in enumerate(node):
+                yield from self._crowd_values(value, f"{path}[{index}]")
+
     def test_no_hotspawn_crowd_value_in_the_board_data(self):
-        paths = list(DATA.glob("*.json")) + list(DATA.glob("*.csv")) + [EXEC / "aliases.json"]
-        for path in paths:
-            if not path.exists():
+        offenders = []
+        for path in sorted(list(DATA.glob("*.json")) + [EXEC / "aliases.json"]):
+            payload = read_json(path, None)
+            if payload is None:
                 continue
-            if path.suffix == ".csv":
-                text = (path.read_text(encoding="utf-8", errors="ignore").splitlines() or [""])[0]
-            else:
-                text = path.read_text(encoding="utf-8")
-            lowered = text.lower()
-            for token in CROWD_TOKENS:
-                if path.name == "hotspawn_pages.json":
-                    # the ingest log names the fields it dropped; that mention is not a stored crowd value
-                    lowered = lowered.replace('"crowd_fields_dropped"', "").replace(token, "", 0)
-                    body = re.sub(r'"crowd_fields_dropped"\s*:\s*\[[^\]]*\]', "",
-                                  path.read_text(encoding="utf-8")).lower()
-                else:
-                    body = lowered
-                self.assertNotIn(token, body, f"{path.name} stores a crowd field {token!r}")
+            offenders.extend(f"{path.name}{where} = {value!r}"
+                             for where, value in self._crowd_values(payload))
+        for path in sorted(DATA.glob("*.csv")):
+            header = (path.read_text(encoding="utf-8", errors="ignore").splitlines() or [""])[0]
+            names = [name.strip().lower() for name in header.split(",")]
+            offenders.extend(f"{path.name} column {name!r}" for name in names
+                             if name in self.CROWD_KEYS or name.endswith(self.CROWD_KEYS))
+        self.assertEqual(offenders, [], "the board stored a Hotspawn crowd value: " + "; ".join(offenders[:6]))
+
+    def test_the_ingest_log_records_what_it_dropped(self):
+        payload = read_json(DATA / "hotspawn_pages.json", None)
+        if payload is None:
+            self.skipTest("no Hotspawn ingest log in this checkout")
+        dropped = payload.get("crowd_fields_dropped")
+        self.assertIsInstance(dropped, list, "the ingest log must record the crowd fields it removed")
+        self.assertTrue(dropped, "the ingest log recorded no dropped crowd fields at all")
 
 
 if __name__ == "__main__":
