@@ -150,8 +150,49 @@ def norm(text: str) -> str:
     return re.sub(r"[^a-z0-9]", "", (text or "").lower())
 
 
+ALIAS_PATH = ROOT / "cs2" / "aliases.json"
+
+
+def load_aliases() -> dict:
+    """Evidence-backed rename map published by another board (read-only).
+
+    Only entries that carry a confirming session and an evidence URL are used; the note on every
+    affected row names the file and the alias so a reader can re-check the evidence independently.
+    """
+    if not ALIAS_PATH.exists():
+        return {}
+    try:
+        data = json.loads(ALIAS_PATH.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return {}
+    out = {}
+    for name, entry in data.items():
+        if name.startswith("_") or not isinstance(entry, dict):
+            continue
+        alias = entry.get("alias_of")
+        if alias and entry.get("evidence_url") and entry.get("confirmed_by"):
+            out[name] = alias
+    return out
+
+
+ALIASES = load_aliases()
+
+
+def name_candidates(team: str) -> list[str]:
+    """The printed name plus any evidence-backed alias for it (both directions)."""
+    names = [team] if team else []
+    if team in ALIASES:
+        names.append(ALIASES[team])
+    names += [k for k, v in ALIASES.items() if v == team]
+    return names
+
+
 def tokens_present(html: str, teams: list[str]) -> tuple[bool, str]:
-    """Check each team name (full, else its longest word >=4 chars) appears in the body."""
+    """Check each team name (full, else its longest word >=4 chars) appears in the body.
+
+    A name that only matches through an evidence-backed alias is reported as such rather than as a
+    miss; an alias is never invented here, it is read from cs2/aliases.json.
+    """
     flat = norm(html)
     ok, detail = True, []
     for team in teams:
@@ -164,6 +205,10 @@ def tokens_present(html: str, teams: list[str]) -> tuple[bool, str]:
             continue
         words = sorted((w for w in re.split(r"[^A-Za-z0-9]+", team) if len(w) >= 4),
                        key=len, reverse=True)
+        aliases = [n for n in name_candidates(team)[1:] if norm(n) and norm(n) in flat]
+        if aliases:
+            detail.append(f"{team}=alias:{aliases[0]}")
+            continue
         hit = next((w for w in words if norm(w) in flat), None)
         if hit:
             detail.append(f"{team}=partial:{hit}")
@@ -557,8 +602,16 @@ def run(only: str | None, limit: int | None, offline: bool) -> dict:
     if limit:
         claims = claims[:limit]
 
+    previous = {}
+    prev_path = OUT / "source_check.csv"
+    if prev_path.exists():
+        for row in csv.DictReader(io.StringIO(prev_path.read_text(encoding="utf-8"))):
+            key = (row.get("board", ""), row.get("kind", ""), row.get("url", ""),
+                   row.get("claimed", ""))
+            previous[key] = row
     started = time.time()
     budget_seconds = 20 * 60
+    reuse_hours = 6
     results = []
     for i, c in enumerate(claims, 1):
         if not offline and time.time() - started > budget_seconds:
@@ -568,11 +621,28 @@ def run(only: str | None, limit: int | None, offline: bool) -> dict:
             results.append({**{k: c[k] for k in ("board", "fixture_id", "team_a", "team_b", "kind",
                                                  "url", "claimed")}, **res})
             continue
-        if offline:
+        prev = previous.get((c["board"], c["kind"], c["url"], c.get("claimed", "")))
+        reused = False
+        if (not offline and prev and prev.get("verdict") == "match"
+                and prev.get("checked_utc")):
+            try:
+                age = (datetime.now(timezone.utc) -
+                       datetime.strptime(prev["checked_utc"], "%Y-%m-%dT%H:%M:%SZ")).total_seconds()
+            except ValueError:
+                age = reuse_hours * 3601
+            if age < reuse_hours * 3600:
+                reused = True
+                res = {"verdict": "match", "http_status": prev.get("http_status"),
+                       "observed": prev.get("observed", ""),
+                       "note": (prev.get("note", "") +
+                                f" · reused from the {prev['checked_utc']} run (<{reuse_hours} h)"),
+                       "sha256": prev.get("sha256"), "bytes": prev.get("bytes") or 0,
+                       "fetched_utc": prev["checked_utc"]}
+        if not reused and offline:
             res = {"verdict": "not-checkable", "http_status": None, "observed": "",
                    "note": "offline run: no network attempted", "sha256": None, "bytes": 0,
                    "fetched_utc": now_iso()}
-        else:
+        elif not reused:
             try:
                 res = VERIFIERS[c["kind"]](c)
             except Exception as exc:  # noqa: BLE001 - one bad row must not lose the run
@@ -581,13 +651,14 @@ def run(only: str | None, limit: int | None, offline: bool) -> dict:
                        "sha256": None, "bytes": 0, "fetched_utc": now_iso()}
             time.sleep(0.4)
         results.append({**{k: c[k] for k in ("board", "fixture_id", "team_a", "team_b", "kind",
-                                             "url", "claimed")}, **res})
+                                             "url", "claimed")}, **res, "reused": "yes" if reused
+                         else "no"})
         if i % 25 == 0:
             print(f"  ... {i}/{len(claims)}", flush=True)
 
     OUT.mkdir(parents=True, exist_ok=True)
     fields = ["checked_utc", "board", "fixture_id", "team_a", "team_b", "kind", "url", "claimed",
-              "verdict", "http_status", "observed", "note", "sha256", "bytes"]
+              "verdict", "http_status", "observed", "note", "reused", "sha256", "bytes"]
     with open(OUT / "source_check.csv", "w", newline="", encoding="utf-8") as fh:
         writer = csv.DictWriter(fh, fieldnames=fields)
         writer.writeheader()
@@ -618,6 +689,8 @@ def run(only: str | None, limit: int | None, offline: bool) -> dict:
         "by_host": dict(sorted(hosts.items(), key=lambda kv: -kv[1])),
         "fetches": len(LOG),
         "fetch_errors": sum(1 for e in LOG if e.get("error")),
+        "reused_within_hours": reuse_hours,
+        "reused_rows": sum(1 for r in results if r.get("reused") == "yes"),
         "policy": ("Hotspawn is read for fixture identity and series format only, never for a "
                    "probability. A refusal or a mismatch is recorded and flagged; this tool never "
                    "edits another board's data and never fills a value in."),

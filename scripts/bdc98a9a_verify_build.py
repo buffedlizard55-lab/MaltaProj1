@@ -116,6 +116,8 @@ def claim_cell(row: dict) -> str:
         bits.append(f'<span class="obs">source says: {esc(row["observed"])}</span>')
     if row.get("note"):
         bits.append(f'<span class="meta">{esc(row["note"])}</span>')
+    if row.get("reused") == "yes":
+        bits.append('<span class="meta">reused from a run less than 6 h old</span>')
     return "<br>".join(bits)
 
 
@@ -237,6 +239,11 @@ never filled in with an assumed value.</li>
 <li>This tool never edits another board's data. A disagreement is published on
 <a href="flagged.html">Flagged for Review</a> with the source link.</li>
 <li>The 1.80/1.80 EGamersWorld pair is recognised as a placeholder, not a market.</li>
+<li>A row whose source is re-read less often than every 6 hours is marked "reused"; the row keeps
+the timestamp of the run that actually read it.</li>
+<li>Team names are compared against the evidence-backed rename map published by the
+line-analysis board (<code>cs2/aliases.json</code>); a name that only matches through such an alias
+is reported as <code>alias:</code>, never as a silent pass and never invented here.</li>
 </ul>
 <h2>Reproduce</h2>
 <pre><code>python3 reread/collect.py            # re-read every cited URL (needs network)
