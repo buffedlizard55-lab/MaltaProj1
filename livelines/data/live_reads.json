@@ -1,0 +1,516 @@
+{
+  "about": "Fresh observations read by session arena/457629c4 on 2026-10-14 through this workspace's platform fetch tool (the sandbox shell cannot reach these hosts; fetch_page can). Values are transcribed from the page text returned at read time. Nothing here is inferred: if a value was not printed on the page it is absent from this file. Read times are anchored to the two countdown-derived instants (04:31:25Z from the Hotspawn lobby card, 04:38:05Z from the Polymarket match page) and ordered around them; the session's own clock read 04:33:24Z between the two, which is consistent with the ordering.",
+  "reader": "arena/457629c4",
+  "method": "Each entry carries the URL read, the UTC time of the read, how that time was established, and the values printed on the page at that moment.",
+  "reads": [
+    {
+      "id": "HS-LOBBY",
+      "url": "https://play.hotspawn.com/lobby",
+      "read_utc": "2026-10-14T04:31:25Z",
+      "read_utc_basis": "page countdown arithmetic: the first card printed 'Locks in 03:22:35' for the fixture whose exact lock epoch is 2026-10-14T07:54:00Z in the site payload capture (Gothic v Lavked, match 1079621). 07:54:00Z minus 03:22:35 = 04:31:25Z.",
+      "observed": {
+        "slate_header": "This week 68 matches this week",
+        "week_reset_countdown": "Resets in 4d 19h 28m 35s",
+        "tier_filter_counts": {
+          "All tiers": 88,
+          "B": 24,
+          "C": 60,
+          "S": 4
+        },
+        "tournament_filter_count": 17,
+        "tournament_filter_names": [
+          "CCT Europe 2026 Challengers #4",
+          "CCT Europe 2026 Series #11",
+          "CCT Europe 2026 Series #12 Play-In",
+          "CCT South America 2026 Series #3",
+          "CCT South America 2026 Series #7",
+          "DACH CS Masters Season 5",
+          "DraculaN Season 7",
+          "Elisa BreakOut Series #2",
+          "European Pro League Series 8",
+          "European Pro League Series 8 Play-In",
+          "LG UltraGear Tournament 2026",
+          "Rainhas do Clutch 2026",
+          "Stake Pulse Beat III",
+          "Svenska CS-Ligan 2026",
+          "Thunderpick World Championship 2026",
+          "Thunderpick World Championship 2026: South American Series #1",
+          "Urban Riga Open #5"
+        ],
+        "note_no_esl_challenger_entry": "The tournament filter list above contains no ESL Challenger League entry, while the site payload capture of 2026-10-14T02:06:30Z still carried fixture 1079546 (Zomblers v Overtake Sector, ESL Challenger League Season 52: North America - Cup #3, lock 2026-10-14T00:54:00Z). The locked fixture has therefore been removed from the board since that capture; this is the only slate difference found between the two.",
+        "closing_soon_cards": [
+          {
+            "display_time": "Oct 14, 04:00",
+            "tournament": "CCT Europe 2026 Series #12 Play-In",
+            "tier": "C",
+            "points": 2,
+            "team_a": "Enjoy",
+            "team_b": "B8 Academy",
+            "view_match_url": null
+          },
+          {
+            "display_time": "Oct 14, 04:00",
+            "tournament": "CCT Europe 2026 Series #11",
+            "tier": "B",
+            "points": 3,
+            "team_a": "Gothic",
+            "team_b": "Lavked",
+            "view_match_url": "https://www.hotspawn.com/matches/gothic-vs-lavked-cct-europe-2026-series-11-1079621"
+          },
+          {
+            "display_time": "Oct 14, 04:30",
+            "tournament": "Thunderpick World Championship 2026",
+            "tier": "S",
+            "points": 7,
+            "team_a": "9z",
+            "team_b": "Aurora",
+            "view_match_url": "https://www.hotspawn.com/matches/9z-vs-aurora-thunderpick-world-championship-2026-1080176"
+          },
+          {
+            "display_time": "Oct 14, 06:00",
+            "tournament": "Stake Pulse Beat III",
+            "tier": "B",
+            "points": 3,
+            "team_a": "Astralis",
+            "team_b": "Sashi",
+            "view_match_url": "https://www.hotspawn.com/matches/astralis-vs-sashi-stake-pulse-beat-iii-1079438"
+          },
+          {
+            "display_time": "Oct 14, 06:00",
+            "tournament": "Stake Pulse Beat III",
+            "tier": "B",
+            "points": 3,
+            "team_a": "HOTU",
+            "team_b": "Fnatic",
+            "view_match_url": "https://www.hotspawn.com/matches/hotu-vs-fnatic-stake-pulse-beat-iii-1079439"
+          },
+          {
+            "display_time": "Oct 14, 07:00",
+            "tournament": "CCT Europe 2026 Series #12 Play-In",
+            "tier": "C",
+            "points": 2,
+            "team_a": "Banda chuya",
+            "team_b": "6666",
+            "view_match_url": null
+          },
+          {
+            "display_time": "Oct 14, 07:00",
+            "tournament": "CCT Europe 2026 Series #11",
+            "tier": "B",
+            "points": 3,
+            "team_a": "ex-RUSTEC",
+            "team_b": "mellren",
+            "view_match_url": "https://www.hotspawn.com/matches/ex-rustec-vs-mellren-cct-europe-2026-series-11-1079622"
+          },
+          {
+            "display_time": "Oct 14, 07:00",
+            "tournament": "Thunderpick World Championship 2026",
+            "tier": "S",
+            "points": 7,
+            "team_a": "Falcons",
+            "team_b": "Ninjas in Pyjamas",
+            "view_match_url": "https://www.hotspawn.com/matches/falcons-vs-ninjas-in-pyjamas-thunderpick-world-championship-2026-1080177"
+          },
+          {
+            "display_time": "Oct 14, 09:30",
+            "tournament": "Thunderpick World Championship 2026",
+            "tier": "S",
+            "points": 7,
+            "team_a": "Legacy",
+            "team_b": "PARIVISION",
+            "view_match_url": "https://www.hotspawn.com/matches/legacy-vs-parivision-thunderpick-world-championship-2026-1080178"
+          },
+          {
+            "display_time": "Oct 14, 10:00",
+            "tournament": "CCT Europe 2026 Series #12 Play-In",
+            "tier": "C",
+            "points": 2,
+            "team_a": "Ryvex",
+            "team_b": "PCIFIC",
+            "view_match_url": null
+          },
+          {
+            "display_time": "Oct 14, 10:00",
+            "tournament": "CCT Europe 2026 Series #11",
+            "tier": "B",
+            "points": 3,
+            "team_a": "G2 Ares",
+            "team_b": "The Last Resort",
+            "view_match_url": "https://www.hotspawn.com/matches/g2-ares-vs-the-last-resort-cct-europe-2026-series-11-1079623"
+          },
+          {
+            "display_time": "Oct 14, 12:00",
+            "tournament": "Thunderpick World Championship 2026",
+            "tier": "S",
+            "points": 7,
+            "team_a": "FURIA",
+            "team_b": "BetBoom",
+            "view_match_url": "https://www.hotspawn.com/matches/furia-vs-betboom-thunderpick-world-championship-2026-1080179"
+          }
+        ],
+        "crowd_percentages_present_on_page": true,
+        "crowd_percentages_stored_here": false,
+        "crowd_note": "The board prints a crowd pick percentage per side. Per the project rule it is never stored on this board and never used as an input; only the card identities, tiers and points above are transcribed."
+      }
+    },
+    {
+      "id": "HS-CS2-PICKEMS",
+      "url": "https://play.hotspawn.com/cs2-pickems",
+      "read_utc": "2026-10-14T04:32:30Z",
+      "read_utc_basis": "retrieval time of this session's read. The page's own countdowns ('Locks in 05:09:39' on the first card, whose lock epoch is 2026-10-14T07:54:00Z) imply the HTML that was served had been rendered at 2026-10-14T02:44:21Z, i.e. the response was a cached render about 2 h older than the retrieval; recorded rather than silently corrected.",
+      "observed": {
+        "tier_filter_counts": {
+          "All tiers": 88,
+          "B": 24,
+          "C": 60,
+          "S": 4
+        },
+        "tournament_filter_count": 17,
+        "tournament_filter_names_same_as_lobby_read": true,
+        "first_card": {
+          "display_time": "Oct 14, 08:00",
+          "tournament": "CCT Europe 2026 Series #12 Play-In",
+          "tier": "C",
+          "points": 2,
+          "team_a": "Enjoy",
+          "team_b": "B8 Academy"
+        },
+        "note": "Second independent read of the same slate: 88 fixtures, same 17 tournaments, same tier split, same first card as the lobby read. No new fixture appeared between the 02:06:30Z payload capture and this read."
+      }
+    },
+    {
+      "id": "HS-DISPLAY-TZ",
+      "url": "https://play.hotspawn.com/lobby",
+      "read_utc": "2026-10-14T04:31:25Z",
+      "read_utc_basis": "as HS-LOBBY",
+      "observed": {
+        "convention": "The board prints wall-clock times in the viewer's timezone; the reads above rendered in UTC-4 (ET). Gothic v Lavked printed 'Oct 14, 04:00' while the site payload gives scheduled_start_time 2026-10-14T08:00:00Z, and Polymarket's own text for the same fixture says 'initially scheduled for October 14, 2026 at 4:00 AM ET'.",
+        "consequence": "Second-precision lock/start instants are taken only from the site payload capture (epoch milliseconds), never from printed times."
+      }
+    },
+    {
+      "id": "EGW-CS2-LISTING",
+      "url": "https://egamersworld.com/counterstrike",
+      "read_utc": "2026-10-14T04:34:00Z",
+      "read_utc_basis": "retrieval time of this session's read (the page prints no clock and no countdown; minute-level).",
+      "observed": {
+        "timezone": "the page prints match times in UTC+2 (Gothic v Lavked printed 10:00 for a 08:00Z start)",
+        "odds_printed": [
+          {
+            "event": "CCT South America 2026 Series #7",
+            "team_a": "your end",
+            "odds_a": 1.51,
+            "team_b": "SUKEBAN",
+            "odds_b": 2.33,
+            "format": "Bo3",
+            "status": "Live"
+          },
+          {
+            "event": "CCT Europe 2026 Series #11",
+            "team_a": "Gothic",
+            "odds_a": 2.05,
+            "team_b": "Lavked",
+            "odds_b": 1.64,
+            "format": "Bo3"
+          },
+          {
+            "event": "CCT Europe 2026 Series #12 Play-In",
+            "team_a": "ENJOY",
+            "odds_a": 1.61,
+            "team_b": "B8 Academy",
+            "odds_b": 2.21,
+            "format": "Bo3"
+          },
+          {
+            "event": "Thunderpick World Championship 2026",
+            "team_a": "9z",
+            "odds_a": 3.87,
+            "team_b": "Aurora",
+            "odds_b": 1.2,
+            "format": "Bo3"
+          },
+          {
+            "event": "NODWIN Clutch Series 13",
+            "team_a": "GenOne",
+            "odds_a": 1.44,
+            "team_b": "6666",
+            "odds_b": 2.72,
+            "format": "Bo3",
+            "note": "not a Hotspawn Pick'em fixture"
+          },
+          {
+            "event": "ESL Challenger League Season 52 Oceania Cup 3",
+            "team_a": "MARKandLARRY",
+            "odds_a": 4.78,
+            "team_b": "Rooster",
+            "odds_b": 1.13,
+            "format": "Bo3",
+            "note": "not a Hotspawn Pick'em fixture"
+          }
+        ]
+      }
+    },
+    {
+      "id": "EGW-CCT-EU-12",
+      "url": "https://egamersworld.com/counterstrike/event/cct-europe-2026-series-12-play-in-1sGIL2gAYu",
+      "read_utc": "2026-10-14T04:36:30Z",
+      "read_utc_basis": "retrieval time of this session's read (minute-level).",
+      "observed": {
+        "event_meta": {
+          "start": "14.10.26",
+          "finish": "19.10.26",
+          "tier": "Qualifier-Tier",
+          "region": "Europe",
+          "location": "Online",
+          "prize": "Spots in CCT Series 12"
+        },
+        "schedule_with_odds": [
+          {
+            "team_a": "ENJOY",
+            "odds_a": 1.61,
+            "team_b": "B8 Academy",
+            "odds_b": 2.21,
+            "printed_local": "14.10.26 10:00",
+            "format": "Bo3"
+          },
+          {
+            "team_a": "banda chuya",
+            "odds_a": 1.8,
+            "team_b": "6666",
+            "odds_b": 1.8,
+            "printed_local": "14.10.26 13:00",
+            "format": "Bo3",
+            "match_url": "https://egamersworld.com/counterstrike/match/1sGIL2gAYu/banda-chuya-vs-6666-JdPgKgp5y"
+          },
+          {
+            "team_a": "WRAITH PCIFIC",
+            "odds_a": 1.8,
+            "team_b": "Ryvex",
+            "odds_b": 1.8,
+            "printed_local": "14.10.26 16:00",
+            "format": "Bo3",
+            "match_url": "https://egamersworld.com/counterstrike/match/1sGIL2gAYu/wraith-pcific-vs-ryvex-bBH6HvaalZ"
+          },
+          {
+            "team_a": "Saint Sinners",
+            "odds_a": 1.8,
+            "team_b": "MAYBE",
+            "odds_b": 1.8,
+            "printed_local": "14.10.26 19:00",
+            "format": "Bo3",
+            "match_url": "https://egamersworld.com/counterstrike/match/1sGIL2gAYu/saint-sinners-vs-maybe-DgOTgfuyw"
+          },
+          {
+            "team_a": "Lilmix",
+            "odds_a": 1.8,
+            "team_b": "Revise",
+            "odds_b": 1.8,
+            "printed_local": "16.10.26 10:00",
+            "format": "Bo3",
+            "match_url": "https://egamersworld.com/counterstrike/match/1sGIL2gAYu/lilmix-vs-revise-yi0VDogekG"
+          },
+          {
+            "team_a": "mellren",
+            "odds_a": 1.8,
+            "team_b": "Privateer Gaming",
+            "odds_b": 1.8,
+            "printed_local": "16.10.26 16:00",
+            "format": "Bo3",
+            "match_url": "https://egamersworld.com/counterstrike/match/1sGIL2gAYu/mellren-vs-privateer-gaming-ASh_MyDBS"
+          }
+        ],
+        "egw_rank_badges_printed": {
+          "ENJOY": 347,
+          "banda chuya": 902,
+          "6666": 515,
+          "WRAITH PCIFIC": 655,
+          "Ryvex": 1145,
+          "MAYBE": 814,
+          "Lilmix": 167,
+          "Revise": 774,
+          "mellren": 505,
+          "Privateer Gaming": 1059,
+          "PCIFIC Espor": 236,
+          "B8 Academy": 651
+        },
+        "egw_rank_note": "These '#nnn' badges are EGamersWorld's own ranking positions, not HLTV or Valve positions: on the same pages EGamersWorld shows Gothic at #756 and Lavked at #164 while HLTV's world ranking puts Lavked at #140 and does not list Gothic in its top 245, and it shows FORZE Reload at #123 where HLTV has #75. They are recorded here as page content, not used as a rating input."
+      }
+    },
+    {
+      "id": "EGW-CCT-EU-11",
+      "url": "https://egamersworld.com/counterstrike/event/cct-europe-2026-series-11-_rW8GEyWK",
+      "read_utc": "2026-10-14T04:37:30Z",
+      "read_utc_basis": "retrieval time of this session's read (minute-level).",
+      "observed": {
+        "event_meta": {
+          "start": "13.10.26",
+          "finish": "25.10.26",
+          "prize": "$25,000",
+          "region": "Europe",
+          "location": "Online"
+        },
+        "schedule_with_odds": [
+          {
+            "team_a": "Gothic",
+            "odds_a": 1.881,
+            "team_b": "Lavked",
+            "odds_b": 1.782,
+            "printed_local": "14.10.26 10:00",
+            "format": "Bo3",
+            "match_url": "https://egamersworld.com/counterstrike/match/_rW8GEyWK/gothic-vs-lavked-GGmfuJ1n4B",
+            "note": "moved from 2.05 / 1.64 read at 04:35Z in the same session"
+          },
+          {
+            "team_a": "ex-RUSTEC",
+            "odds_a": 1.8,
+            "team_b": "mellren",
+            "odds_b": 1.8,
+            "printed_local": "14.10.26 13:00",
+            "format": "Bo3",
+            "match_url": "https://egamersworld.com/counterstrike/match/_rW8GEyWK/ex-rustec-vs-mellren-ZGVCwI7MK"
+          },
+          {
+            "team_a": "G2 Ares",
+            "odds_a": 1.46,
+            "team_b": "The Last Resort",
+            "odds_b": 2.45,
+            "printed_local": "14.10.26 16:00",
+            "format": "Bo3",
+            "match_url": "https://egamersworld.com/counterstrike/match/_rW8GEyWK/g2-ares-vs-the-last-resort-7GWb9EDd9L"
+          },
+          {
+            "team_a": "FORZE Reload",
+            "odds_a": 1.8,
+            "team_b": "",
+            "odds_b": 1.8,
+            "printed_local": "14.10.26 19:00",
+            "format": "Bo3",
+            "match_url": "https://egamersworld.com/counterstrike/match/_rW8GEyWK/forze-reload-vs-Gr_YhyKi3",
+            "note": "the opponent cell is printed empty on EGamersWorld for the fixture Hotspawn lists as 'FORZE Reload v LFO 10' (match 1079624); the page shows no opponent name, no flag and no team link. The match URL slug is literally 'forze-reload-vs-'. This is the only outside listing found for that fixture and it cannot identify the opponent."
+          }
+        ],
+        "past_results_printed": [
+          {
+            "date_local": "13.10.26 19:00",
+            "team_a": "Black Phoenix",
+            "score_a": 2,
+            "team_b": "6666",
+            "score_b": 0,
+            "format": "Bo3",
+            "event": "CCT Europe 2026 Series #11"
+          },
+          {
+            "date_local": "13.10.26 13:00",
+            "team_a": "Bushido Wildcats",
+            "score_a": 0,
+            "team_b": "ILLYRIANS",
+            "score_b": 2,
+            "format": "Bo3",
+            "event": "CCT Europe 2026 Series #11"
+          },
+          {
+            "date_local": "13.10.26 10:00",
+            "team_a": "BakS eSports",
+            "score_a": 2,
+            "team_b": "Spirit Academy",
+            "score_b": 0,
+            "format": "Bo3",
+            "event": "CCT Europe 2026 Series #11"
+          },
+          {
+            "date_local": "12.10.26 19:45",
+            "team_a": "6666",
+            "score_a": 2,
+            "team_b": "megoshort",
+            "score_b": 0,
+            "format": "Bo3",
+            "event": "CCT Europe 2026 Series #11 Play-In"
+          }
+        ],
+        "egw_rank_badges_printed": {
+          "Gothic": 756,
+          "Lavked": 164,
+          "ex-RUSTEC": 266,
+          "mellren": 505,
+          "G2 Ares": 190,
+          "The Last Resort": 288,
+          "FORZE Reload": 123,
+          "Black Phoenix": 237,
+          "6666": 515,
+          "Bushido Wildcats": 248,
+          "ILLYRIANS": 504,
+          "BakS eSports": 200,
+          "Spirit Academy": 71,
+          "megoshort": 254
+        }
+      }
+    },
+    {
+      "id": "PM-GOTHIC-LAVKED",
+      "url": "https://polymarket.com/event/cs2-gothic-lavked-2026-10-14",
+      "read_utc": "2026-10-14T04:38:05Z",
+      "read_utc_basis": "page countdown arithmetic: the page printed '3h 21m 55s' to the 08:00:00Z scheduled start of this fixture, giving 04:38:05Z.",
+      "observed": {
+        "title": "Gothic - Lavked",
+        "series_moneyline_cents": {
+          "gothic": 50,
+          "lavked": 51
+        },
+        "volume_usd": 303.73,
+        "resolved_from_redirect": "https://polymarket.com/esports/cs2/cct-europe/cs2-gothic-lavked-2026-10-14",
+        "printed_start": "initially scheduled for October 14, 2026 at 4:00 AM ET",
+        "resolution_source_printed": "official information from https://hltv.org"
+      }
+    },
+    {
+      "id": "HLTV-RANKING-OCT12",
+      "url": "https://www.hltv.org/ranking/teams/2026/october/12",
+      "read_utc": "2026-10-14T04:33:30Z",
+      "read_utc_basis": "retrieval time of this session's read (minute-level).",
+      "observed": {
+        "page_title": "Counter-Strike World ranking on October 12th, 2026",
+        "top_three": [
+          {
+            "rank": 1,
+            "team": "Spirit",
+            "hltv_points": 972
+          },
+          {
+            "rank": 2,
+            "team": "Vitality",
+            "hltv_points": 894
+          },
+          {
+            "rank": 3,
+            "team": "MOUZ",
+            "hltv_points": 692
+          }
+        ],
+        "cross_check": "identical to the repository's capture of the same ranking page (model/input/hltv_ranking.json, fetched 2026-10-14T02:06:35Z, http_status 200): Spirit 972, Vitality 894, MOUZ 692.",
+        "valve_ranking_link_printed": "https://www.hltv.org/valve-ranking/teams/2026/october/14/region/Europe (Valve regional ranking dated 2026/october/14 is linked from HLTV; it was not read line-by-line in this session, so this board uses the official Valve standings file dated 2026-10-05 and flags its age)"
+      }
+    },
+    {
+      "id": "HLTV-RANKING-13-NOT-FOUND",
+      "url": "https://www.hltv.org/ranking/teams/2026/october/13",
+      "read_utc": "2026-10-14T04:33:00Z",
+      "read_utc_basis": "retrieval time of this session's read.",
+      "observed": {
+        "http_result": "404 page returned ('Page not found')",
+        "consequence": "the weekly ranking dated 2026-10-13 does not exist; 2026-10-12 (Monday) is the current published world ranking"
+      }
+    }
+  ],
+  "hosts_refused": [
+    {
+      "url": "https://www.hltv.org/",
+      "from": "sandbox shell (curl)",
+      "result": "no HTTP response (network blocked for the shell in this workspace); the same host is reachable through the platform fetch tool, which is how the HLTV reads above were taken"
+    },
+    {
+      "url": "https://play.hotspawn.com/lobby",
+      "from": "sandbox shell (curl)",
+      "result": "no HTTP response (network blocked for the shell)"
+    }
+  ]
+}

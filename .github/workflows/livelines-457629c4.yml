@@ -1,0 +1,95 @@
+# Live picks board (457629c4) — one pick and both win probabilities for every open Hotspawn CS2 fixture.
+#
+# Exclusive scope of the owning session (arena/457629c4): livelines/** plus this file.
+#
+# What it does, in order:
+#   1. rebuilds the board offline and deterministically from the committed captures
+#      (Hotspawn payload, outside market feed, official Valve standings, this session's live reads);
+#   2. runs the board invariants in livelines/tests.py — a failing invariant means the numbers are not
+#      reproducible, and the job stops WITHOUT committing, so the last good board stays live;
+#   3. commits only livelines/** back to the branch that ran it.
+# It never edits another board's files.
+#
+# Trigger set:
+#   * schedule: every 4 hours (inside the requested 4-8 h window). GitHub treats schedules as
+#     best-effort and drops them on inactive repositories, which is why the two workflow_run
+#     triggers below also exist: the board refreshes whenever the slate capture or the outside
+#     market feed finishes, instead of waiting for a cron slot that may never arrive.
+#   * workflow_run on "Slate capture (180a42a0)"  -> new Hotspawn fixtures / exact lock epochs
+#   * workflow_run on "Secondary-market feed (a0bdf924)" -> fresh outside prices
+#   * push on main or this session's branch when this board's files change
+#   * manual dispatch
+#
+# The sandbox that authored this file cannot reach the source hosts from a shell (curl gets no
+# response); the live reads it publishes were taken through the platform fetch tool and are stored
+# verbatim, with their URLs and read times, in livelines/data/live_reads.json. On GitHub-hosted
+# runners the same hosts are reachable, which is why the capture jobs above run here.
+name: Live picks board (457629c4)
+
+on:
+  push:
+    branches: ["arena/457629c4-maltaproj1", "main"]
+    paths:
+      - "livelines/**"
+      - ".github/workflows/livelines-457629c4.yml"
+      - "tests/test_457629c4.py"
+  workflow_run:
+    workflows: ["Slate capture (180a42a0)", "Secondary-market feed (a0bdf924)"]
+    types: [completed]
+  workflow_dispatch: {}
+  schedule:
+    - cron: "33 */4 * * *"
+
+permissions:
+  contents: write
+  actions: write
+  pages: write
+
+concurrency:
+  group: livelines-457629c4-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  board:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Rebuild the board from the committed captures
+        run: python3 livelines/build.py
+
+      - name: Invariants (a failure here blocks the commit below)
+        run: |
+          python3 -m unittest discover -s livelines -p 'tests.py' -v
+          python3 -m unittest tests.test_457629c4 -v
+
+      - name: Publish only if the invariants passed
+        run: |
+          set -euo pipefail
+          git config user.name "livelines-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add livelines/ tests/test_457629c4.py
+          if git diff --cached --quiet; then
+            echo "board unchanged; nothing to publish"
+          else
+            git commit -m "livelines: refresh board ($(date -u +%Y-%m-%dT%H:%MZ))"
+            git pull --rebase origin "${GITHUB_REF_NAME}"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
+
+      - name: Record the run for the cadence page
+        if: always()
+        run: |
+          {
+            echo "run_id=${GITHUB_RUN_ID}"
+            echo "run_attempt=${GITHUB_RUN_ATTEMPT}"
+            echo "event=${GITHUB_EVENT_NAME}"
+            echo "sha=${GITHUB_SHA}"
+            echo "finished_utc=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          } >> "$GITHUB_STEP_SUMMARY"

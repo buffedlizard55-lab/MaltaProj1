@@ -3416,3 +3416,87 @@ the new archive heading verbatim.
 - **Working-tree note**: running `python3 -m unittest discover -s tests` regenerates `summary/**` (`tests/test_20d753a2.py`). Those regenerated files were **not** committed by this session; they were reverted before commit.
 - **PR #119** (follow-up, same branch) **merged** at `83d5cc0`, merged without waiting for review. Pages `pages build and deployment` for `83d5cc0` **succeeded**. The live `reconcile/flagged.html` shows the corrected F-02 (89.3%) and F-16 after the CDN caught up (a plain URL served the cached page for a short time; `?v=83d5cc0` showed the new content).
 - **Status at the end of this session**: this session's pages are live on Pages. The open items are in the flags: F-01 (re-read before lock), F-02 (roster identity), F-03 (identity), F-04 (G2 refresh), F-08 (landing snapshot, owner B-04), F-14/F-15 (cross-board and own-line method), F-16 (rating age).
+
+## Session `arena/457629c4` (`arena/457629c4-maltaproj1`) — live-source picks for every open match + unresolved-pick section + integration (2026-10-14 04:45 UTC)
+
+**Why this session exists (user brief, 2026-10-14):** (a) every match on the Hotspawn CS2 board must carry a pick —
+including the low-tier fixtures no sportsbook prices — and anything that genuinely cannot be resolved must live in
+its own **Unresolved picks** section together with the limitation that blocked it; (b) the site must be obvious on a
+phone, with an executive summary that links *inside* the site to the picks; (c) coverage has to refresh every 4–8 h.
+The repo has several boards that claim this, but the newest builds are **stale or fallback-only**: the `executive`
+board's 2026-10-14T04:23:08Z build reports `"Snapshot is 8.7 h old"` and used the repo fallback capture
+(`provenance.json`: HLTV ranking reads `status: 0  HLTV ranking read failed`), and the `Executive board refresh
+(5545dbb8)` workflow run **38511378749 failed on `main` at 2026-10-14T04:1xZ**. This session therefore starts from a
+**fresh live capture** taken from this workspace (which can reach the source hosts through the platform fetch tool,
+unlike the sandbox shell) and publishes a board whose every row names the URL it was read from and the UTC minute it
+was read.
+
+| ID | Task | Status | Owner | Exclusive file scope |
+|----|------|--------|-------|----------------------|
+| L-01 | **Live capture** of the Hotspawn CS2 Pick'em slate (all 88 listed fixtures, exact UTC lock/start epochs where published) plus outside sources read at capture time: HLTV world ranking + team pages, EGamersWorld/other book listings, Valve regional standings via the GitHub API. Provenance per fetch (URL, UTC, HTTP status, bytes, SHA-256) in `livelines/data/provenance.json` | **in progress** | arena/457629c4 | `livelines/**` |
+| L-02 | **A pick for every open fixture**: market de-vig where a book actually prices it (primary) → second outside listing → own originated rating line from official ranking/standings data; Hotspawn crowd % never an input; unconfirmable values stay blank and flagged | **in progress** | arena/457629c4 | `livelines/**` |
+| L-03 | **`livelines/` board**: mobile-first executive summary with in-site links to the picks, one-row-per-match picks table (both win %, explicit pick, basis, per-row source link, read time), an explicitly separate **Unresolved picks & limitations** page, Flagged for Review, methodology, sources | **in progress** | arena/457629c4 | `livelines/**` |
+| L-04 | **Refresh cadence inside the requested 4–8 h window**: own workflow `livelines-457629c4.yml` + `livelines/cadence.html` publishing the cron, the last run, and the age of every input; the repo-wide workflow starvation that produced the failed/stale runs is measured and published, not hidden | **in progress** | arena/457629c4 | `.github/workflows/livelines-457629c4.yml`, `livelines/cadence.html` |
+| L-05 | **Line-by-line verification**: `reviews/457629c4-verification.md` (every published number against its cited source, arithmetic re-run, link check on every URL the board emits), `tests/test_457629c4.py`, plus the repository test suite | **in progress** | arena/457629c4 | `reviews/457629c4-verification.md`, `tests/test_457629c4.py` |
+| L-06 | **Integration**: rebase on `origin/main`, additive links in root `index.html` (executive summary → this board's picks page + the unresolved section), PR → `main` merged without waiting for approval, Pages deploy confirmed over HTTPS, PR/merge recorded here | **pending** (after L-01…L-05) | arena/457629c4 | `COORDINATION.md` (this section, append-only), root `index.html` (additive lines only) |
+
+**Read-only inputs (other sessions' work, never modified):** `executive/**`, `console/**`, `picks-full/**`, `picks/**`,
+`every/**`, `exec/**`, `slate/**`, `cs2/**`, `model/**`, `dashboard/**`, `board/**`, `docs/**`, `data/**`,
+`reviews/*` (other sessions'), `feeds/**`. This session writes only inside `livelines/**`, plus its own workflow,
+its own test file, `reviews/457629c4-verification.md`, the additive root-`index.html` lines and this section.
+
+**Claim commit/push:** written and pushed before any task work, per the coordination protocol.
+
+### Completion record (append-only) — session `arena/457629c4`, 2026-10-14 ~05:20 UTC
+
+All six tasks are **done** on branch `arena/457629c4-maltaproj1` (rebased on `main` at `75cb255`; PR **#121** → `main`).
+Files, all inside the claimed scope: `livelines/**` (board, data, tests), `.github/workflows/livelines-457629c4.yml`,
+`tests/test_457629c4.py`, `reviews/457629c4-verification.md`, plus the additive root-`index.html` lines and this section.
+
+**What was built.** One mobile-first board: `livelines/index.html` (executive summary with in-site links to the
+picks and the unresolved section), `picks.html` (one card + one row per open fixture: both win probabilities, the
+explicit pick, its basis, the source link and the read minute), `unresolved.html` (the brief's separate
+Unresolved-picks section: the fixture that cannot be resolved like the featured picks plus the limitations that
+blocked it), `flagged.html`, `methodology.html`, `sources.html`, `cadence.html`.
+
+**Coverage at build time (2026-10-14T04:48Z).** 89 fixtures on the slate, **28 open**, 61 locked/past;
+**27 with a pick** — 25 from an outside listing (de-vigged two-way; Polymarket, Thunderpick via bo3.gg,
+EGamersWorld/bc.game) and 2 from our own line — and **1 published as a lower bound with no pick** (`1079624`
+FORZE Reload v LFO 10). 23 of 28 carry a stated series length. Own-line scale fitted to the outside market by
+minimum mean absolute error: **K = 877.75 pts, MAE 8.66 pp, n = 25**; the log-loss-optimal alternative (K ≈ 184)
+is disclosed on every row that depends on the scale. Hotspawn crowd percentages are never stored or used.
+
+**Sources (all live-read this session, URLs + read times in `livelines/data/live_reads.json`).**
+`play.hotspawn.com/lobby` and `/cs2-pickems` (fixture identity, exact UTC lock epochs; page countdowns are
+render-time and are not used as evidence — the payload epochs are); `egamersworld.com` CCT Europe #11 and #12
+Play-In event pages; `polymarket.com/event/cs2-gothic-lavked-2026-10-14` (50¢/51¢, volume $303.73);
+`hltv.org/ranking/teams/2026/october/12` (the 2026-10-13 page is a 404 — the weekly ranking is Monday's);
+Valve Regional Standings via the GitHub contents API (`ValveSoftware/counter-strike_regional_standings`,
+standings dated **2026-10-05**, blob `2aa28053…`, saved byte-for-byte at `livelines/data/raw/`); this
+repository's hourly outside-market feed `feeds/data/market_feed.csv` (read-only).
+
+**Verification.** `python3 -m unittest tests.test_457629c4 -v` → **20/20 pass** (13 board invariants +
+7 repository checks), including: the de-vig arithmetic is re-derived from the printed prices; the pick is the
+higher-probability side; probabilities sum to 100; **no Hotspawn crowd value is stored**; every row carries a
+source link; bound rows are labelled as lower bounds; coverage counts match the rows; no broken internal link;
+no `1.80/1.80` placeholder published; two builds on a pinned clock reproduce `picks.csv`. Full record:
+`reviews/457629c4-verification.md` (nine live re-reads, the 28-row table with each number's source, the
+irregularities list).
+
+**Flagged irregularities (published, never hidden).** (1) EGamersWorld prints the identical `1.80 / 1.80` pair
+for five CCT EU #12 Play-In fixtures → treated as a listing placeholder, rejected, flagged; (2) `1079624`'s
+opponent is unnamed outside Hotspawn (EGW URL slug `forze-reload-vs-`) and LFO 10 is absent from both official
+rating sources → bound only, no pick; (3) price drift between reads (Gothic v Lavked 2.05/1.64 → 1.881/1.782)
+kept as `FL-PRICE-DRIFT` with the archived value and its read minute; (4) own line vs market gaps ≥ 15 pp stay
+visible and are never averaged; (5) official rating snapshots are weekly (VRS 2026-10-05, HLTV 2026-10-12,
+245-team cap); (6) Hotspawn still lists 61 June-dated locked fixtures and `1079546` dropped off the board
+between captures — counted, not dropped silently; (7) scheduled-workflow reliability: run **38511378749**
+failed on `main` on 2026-10-14, so this board also refreshes on the slate capture / market feed finishing and
+prints the age of every input; its own workflow fails closed.
+
+**Cadence.** `.github/workflows/livelines-457629c4.yml`: cron `33 */4 * * *` (inside the requested 4–8 h
+window) plus `workflow_run` on `Slate capture (180a42a0)` and `Secondary-market feed (a0bdf924)` plus
+`workflow_dispatch`; it rebuilds, runs both test modules and commits `livelines/` only when they pass.
+
+**Merge record.** PR #121 raised from `arena/457629c4-maltaproj1` → `main` at 2026-10-14 ~05:20 UTC and merged
+without waiting for review; merge result and Pages check appended below after the merge.
