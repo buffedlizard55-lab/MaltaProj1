@@ -1,32 +1,32 @@
 {
  "meta": {
-  "generated_utc": "2026-10-14T02:50:00Z",
+  "generated_utc": "2026-10-14T02:47:12Z",
   "capture_utc": "2026-10-13T19:42:13Z",
   "snapshot_age_text": "Snapshot is 7.1 h old",
-  "hotspawn_read_text": "2026-10-14T02:06Z (repo_capture)",
+  "hotspawn_read_text": "2026-10-14T02:46Z (live)",
   "market_read_text": "2026-10-13T19:42 (10 CS2 quotes)",
   "vrs_read_text": "official standings 2026-10-05",
   "stale": true
  },
  "coverage": {
-  "total_fixtures": 89,
+  "total_fixtures": 88,
   "open_fixtures": 28,
-  "locked_fixtures": 61,
+  "locked_fixtures": 60,
   "stale_fixtures": 59,
   "open_with_pick": 28,
   "open_market_basis": 24,
   "open_model_basis": 4,
   "open_provisional": 1,
   "open_no_pick": 0,
-  "flagged_rows": 89,
-  "unique_teams": 112,
-  "teams_resolved_official": 89
+  "flagged_rows": 88,
+  "unique_teams": 110,
+  "teams_resolved_official": 104
  },
  "checks": [
   {
    "name": "Hotspawn payload read",
    "passed": true,
-   "detail": "89 CS2 fixtures from 2 pages, mode repo_capture."
+   "detail": "88 CS2 fixtures from 3 pages, mode live."
   },
   {
    "name": "Official standings read",

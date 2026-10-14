@@ -1,19 +1,37 @@
 {
- "generated_utc": "2026-10-14T02:43:17Z",
- "offline": true,
+ "generated_utc": "2026-10-14T02:47:12Z",
+ "offline": false,
  "fetches": [
   {
-   "url": "/home/user/MaltaProj1/model/input/hotspawn_cs2_fixtures.json",
-   "fetched_utc": "2026-10-14T02:42:36Z",
+   "url": "https://play.hotspawn.com/cs2-pickems",
+   "fetched_utc": "2026-10-14T02:46:47Z",
    "status": 200,
-   "bytes": 70766,
-   "sha256": null,
-   "mode": "repo_capture",
-   "note": "offline/repo fallback snapshot captured 2026-10-14T02:06:30Z"
+   "bytes": 406883,
+   "sha256": "6ef14a6a2a3fbfb37468382734dbef5f05b022822cbb61c378918e63f67c33c1",
+   "mode": "live",
+   "note": null
+  },
+  {
+   "url": "https://play.hotspawn.com/lobby",
+   "fetched_utc": "2026-10-14T02:46:47Z",
+   "status": 200,
+   "bytes": 408057,
+   "sha256": "2ecdeec301126c0bcb297f2a0be0333ca18c1490936979460f6445a4b6756f59",
+   "mode": "live",
+   "note": null
+  },
+  {
+   "url": "https://play.hotspawn.com/thp-pickems",
+   "fetched_utc": "2026-10-14T02:46:48Z",
+   "status": 200,
+   "bytes": 209373,
+   "sha256": "9cf95e5f512456a2b74429a15f6ca54d5a91a507b6c1eab88eea7f20b14aa3cd",
+   "mode": "live",
+   "note": null
   },
   {
    "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
-   "fetched_utc": "2026-10-14T02:42:40Z",
+   "fetched_utc": "2026-10-14T02:46:52Z",
    "status": 200,
    "bytes": 77861,
    "sha256": "df96e7fc3cd91a2687ec08cac0128e50cc4e4e55346581679572e881d79ae61b",
@@ -22,70 +40,70 @@
   },
   {
    "url": "https://www.hltv.org/ranking/teams",
-   "fetched_utc": "2026-10-14T02:42:47Z",
-   "status": 0,
-   "bytes": null,
-   "sha256": null,
-   "mode": "live",
-   "note": "HLTV ranking read failed"
-  },
-  {
-   "url": "https://www.hltv.org/ranking/teams/2026/october/12",
-   "fetched_utc": "2026-10-14T02:42:53Z",
-   "status": 0,
-   "bytes": null,
-   "sha256": null,
-   "mode": "live",
-   "note": "HLTV ranking read failed"
-  },
-  {
-   "url": "https://www.hltv.org/ranking/teams/2026/october/5",
-   "fetched_utc": "2026-10-14T02:42:59Z",
-   "status": 0,
-   "bytes": null,
-   "sha256": null,
-   "mode": "live",
-   "note": "HLTV ranking read failed"
-  },
-  {
-   "url": "https://www.hltv.org/ranking/teams/2026/september/28",
-   "fetched_utc": "2026-10-14T02:43:05Z",
-   "status": 0,
-   "bytes": null,
-   "sha256": null,
-   "mode": "live",
-   "note": "HLTV ranking read failed"
-  },
-  {
-   "url": "/home/user/MaltaProj1/model/input/hltv_ranking.json",
-   "fetched_utc": "2026-10-14T02:43:05Z",
+   "fetched_utc": "2026-10-14T02:46:53Z",
    "status": 200,
-   "bytes": 48241,
-   "sha256": null,
-   "mode": "repo_capture",
-   "note": "repo HLTV ranking capture (World ranking on October 12th, 2026)"
+   "bytes": 1039920,
+   "sha256": "dd9ce172d082f6bf4e1984419f5b4b66f9016e68951cab8e32faeecaef6ed32d",
+   "mode": "live",
+   "note": null
   },
   {
    "url": "https://www.hltv.org/matches",
-   "fetched_utc": "2026-10-14T02:43:11Z",
-   "status": 0,
-   "bytes": 69,
-   "sha256": "6e2ececaded4630b7a8888c18c8e58543dee0da33800091aeb5cbea496e69426",
+   "fetched_utc": "2026-10-14T02:46:57Z",
+   "status": 403,
+   "bytes": null,
+   "sha256": null,
    "mode": "live",
    "note": null
   },
   {
    "url": "https://www.hltv.org/results",
-   "fetched_utc": "2026-10-14T02:43:17Z",
-   "status": 0,
-   "bytes": 69,
-   "sha256": "6e2ececaded4630b7a8888c18c8e58543dee0da33800091aeb5cbea496e69426",
+   "fetched_utc": "2026-10-14T02:46:57Z",
+   "status": 200,
+   "bytes": 280779,
+   "sha256": "043f78e2fae9dc0a4a25c0c61610d1703b5f1a9435e32b342255d80bf32cccb1",
    "mode": "live",
    "note": null
   },
   {
-   "url": "/home/user/MaltaProj1/data/snapshot/latest.json",
-   "fetched_utc": "2026-10-14T02:43:17Z",
+   "url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/leagues?all=false",
+   "fetched_utc": "2026-10-14T02:46:57Z",
+   "status": 200,
+   "bytes": 7312,
+   "sha256": "73c678608e30b22ae6edaf58a143283d04451634644deeaacadc6c30a763d9ab",
+   "mode": "live",
+   "note": "Pinnacle public guest response (same endpoint pinnacle.com's own page loads)"
+  },
+  {
+   "url": "https://guest.api.arcadia.pinnacle.com/0.1/leagues/230488/matchups?withSpecials=false",
+   "fetched_utc": "2026-10-14T02:47:01Z",
+   "status": 403,
+   "bytes": null,
+   "sha256": null,
+   "mode": "live",
+   "note": "Pinnacle public guest response (same endpoint pinnacle.com's own page loads)"
+  },
+  {
+   "url": "https://guest.api.arcadia.pinnacle.com/0.1/leagues/293370/matchups?withSpecials=false",
+   "fetched_utc": "2026-10-14T02:47:04Z",
+   "status": 403,
+   "bytes": null,
+   "sha256": null,
+   "mode": "live",
+   "note": "Pinnacle public guest response (same endpoint pinnacle.com's own page loads)"
+  },
+  {
+   "url": "https://guest.api.arcadia.pinnacle.com/0.1/leagues/230242/matchups?withSpecials=false",
+   "fetched_utc": "2026-10-14T02:47:07Z",
+   "status": 403,
+   "bytes": null,
+   "sha256": null,
+   "mode": "live",
+   "note": "Pinnacle public guest response (same endpoint pinnacle.com's own page loads)"
+  },
+  {
+   "url": "/home/runner/work/MaltaProj1/MaltaProj1/data/snapshot/latest.json",
+   "fetched_utc": "2026-10-14T02:47:07Z",
    "status": 200,
    "bytes": 958210,
    "sha256": null,
@@ -93,8 +111,17 @@
    "note": "repo Pinnacle capture generated 2026-10-13T19:42:13.725774Z"
   },
   {
-   "url": "/home/user/MaltaProj1/data/8944bb84/external_lines.csv",
-   "fetched_utc": "2026-10-14T02:43:17Z",
+   "url": "https://egamersworld.com/counterstrike/matches",
+   "fetched_utc": "2026-10-14T02:47:10Z",
+   "status": 403,
+   "bytes": null,
+   "sha256": null,
+   "mode": "live",
+   "note": null
+  },
+  {
+   "url": "/home/runner/work/MaltaProj1/MaltaProj1/data/8944bb84/external_lines.csv",
+   "fetched_utc": "2026-10-14T02:47:10Z",
    "status": 200,
    "bytes": 18150,
    "sha256": null,
@@ -102,13 +129,22 @@
    "note": "repo secondary-bookmaker capture (EGamersWorld listing of bc.game prices)"
   },
   {
-   "url": "/home/user/MaltaProj1/data/8944bb84/ratings.csv",
-   "fetched_utc": "2026-10-14T02:43:17Z",
+   "url": "/home/runner/work/MaltaProj1/MaltaProj1/data/8944bb84/ratings.csv",
+   "fetched_utc": "2026-10-14T02:47:10Z",
    "status": 200,
    "bytes": 63343,
    "sha256": null,
    "mode": "repo_capture",
    "note": "repo HLTV team rosters capture (read-only)"
+  },
+  {
+   "url": "https://www.hltv.org/ranking/teams/2026/october/12",
+   "fetched_utc": "2026-10-14T02:47:11Z",
+   "status": 200,
+   "bytes": 1039090,
+   "sha256": "9bd0f7e758421a5ce4c391a1b1a9faa0b980a06bc5c622881b099e7ae35e76bf",
+   "mode": "live",
+   "note": null
   }
  ],
  "note": "Every fetch attempt: URL, UTC minute, HTTP status, byte count, SHA-256, mode."
