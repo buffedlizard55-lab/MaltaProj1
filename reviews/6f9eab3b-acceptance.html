@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0d1218">
+  <meta name="description" content="Acceptance review of the E-08 landing integration: verified executive board selection, broken Valve source URL, and Hotspawn fixture-count discrepancy.">
+  <title>E-08 acceptance review — Hotspawn CS2</title>
+  <style>
+    :root { color-scheme: dark; --bg: #0d1218; --panel: #151e28; --text: #edf2f7; --muted: #b7c3cf; --line: #334454; --link: #bbaaff; --warn: #ffd16b; --bad: #ff9292; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.6 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    header, main, footer { width: min(100%, 1040px); margin: auto; padding: 20px 24px; }
+    header { display: flex; justify-content: space-between; align-items: center; gap: 18px; border-bottom: 1px solid var(--line); }
+    main { padding-top: 28px; }
+    h1 { max-width: 23ch; font-size: clamp(2rem, 7vw, 3.25rem); line-height: 1.08; margin: 12px 0 16px; }
+    h2 { margin-top: 32px; font-size: 1.45rem; }
+    h3 { margin-top: 24px; font-size: 1.12rem; }
+    p, li { color: var(--muted); }
+    strong { color: var(--text); }
+    a { color: var(--link); text-underline-offset: 3px; overflow-wrap: anywhere; }
+    a:focus-visible { outline: 3px solid var(--warn); outline-offset: 3px; border-radius: 2px; }
+    .brand { color: var(--text); font-weight: 750; text-decoration: none; letter-spacing: .04em; }
+    nav { display: flex; flex-wrap: wrap; gap: 8px 18px; }
+    nav a { display: inline-flex; align-items: center; min-height: 44px; }
+    .eyebrow { color: var(--warn); font-size: .9rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; }
+    .panel { padding: 18px 20px; margin: 20px 0; border: 1px solid var(--line); border-left: 4px solid var(--warn); border-radius: 10px; background: var(--panel); }
+    .panel.bad { border-left-color: var(--bad); }
+    .panel.good { border-left-color: #77d6a2; }
+    .table-wrap { max-width: 100%; overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; }
+    table { width: 100%; min-width: 620px; border-collapse: collapse; background: var(--panel); }
+    th, td { text-align: left; vertical-align: top; padding: 12px; border-bottom: 1px solid var(--line); }
+    th { color: var(--text); background: #1d2935; }
+    td { color: var(--muted); }
+    code { overflow-wrap: anywhere; color: #e4dfff; }
+    .button { display: inline-flex; min-height: 44px; align-items: center; padding: 9px 14px; margin: 4px 6px 4px 0; border: 1px solid var(--line); border-radius: 8px; background: #263544; text-decoration: none; }
+    .small { font-size: .92rem; }
+    footer { border-top: 1px solid var(--line); font-size: .9rem; }
+    @media (max-width: 560px) {
+      header, main, footer { padding: 16px; }
+      header { align-items: flex-start; flex-direction: column; gap: 4px; }
+      .panel { padding: 14px; }
+      h1 { font-size: clamp(2rem, 10vw, 2.8rem); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a class="brand" href="../index.html">HOTSPAWN / research review</a>
+    <nav aria-label="Page navigation">
+      <a href="../index.html">Landing page</a>
+      <a href="../executive/picks.html">Primary picks</a>
+      <a href="../executive/unresolved.html">Unresolved &amp; limits</a>
+    </nav>
+  </header>
+  <main id="main">
+    <p class="eyebrow">E-08 · acceptance record · 2026-10-14 UTC</p>
+    <h1>Why the landing page uses the executive board</h1>
+    <p>This review records a source-link defect and a one-fixture discrepancy in the newer separate live-read board, the evidence behind the primary-board choice, and the limits of this acceptance check.</p>
+
+    <section class="panel good" aria-labelledby="decision">
+      <h2 id="decision">Decision: verified executive snapshot is primary</h2>
+      <p>The root landing and README now point to <a href="../executive/picks.html">executive/picks.html</a>. Its capture at <strong>2026-10-14 05:11:44Z</strong> contains 88 fixtures and, at that capture, 28 open fixtures with picks: 26 outside-market basis, 2 model basis, and 0 without a pick. Its Valve Regional Standings links use a valid, verified commit ref.</p>
+      <p>The root reads the capture timestamp and counts from <a href="../executive/data/summary.json">summary.json</a>, computes elapsed age in the browser, and warns after four hours / marks stale after eight hours. This is a snapshot, not a live betting feed: “open” refers to the capture, not necessarily now. Use each row’s UTC lock and quote-read time. At an earlier review around 08:37Z, the 07:54Z and 08:24Z locks had passed.</p>
+    </section>
+    <p>A separate <a href="../fullpicks/index.html"><code>fullpicks/</code> board</a> from PR #127 is retained in the archive: it covers the full 88-fixture capture with open picks, 54 source-verified historical results, and 6 DraculaN result rows left blank and flagged when they could not be verified. It does not change which open-match board is primary here.</p>
+
+    <h2 id="vrs">Flag 1 — the newer board's Valve source URL is invalid</h2>
+    <p>The board output contains the malformed VRS URL in 88 of 89 fixture rows. The `2aa280…` segment is the file’s Git blob SHA, not a commit SHA; a GitHub <code>blob/{ref}/path</code> URL needs a commit, branch, or tag ref.</p>
+    <div class="panel bad">
+      <p><strong>Broken URL emitted:</strong><br>
+        <a href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/2aa2805394fbc68f36a5752a5b16026f2ab2fed5/live/2026/standings_global_2026_10_05.md">Valve standings at blob/2aa2805394fbc68f36a5752a5b16026f2ab2fed5/…</a>
+      </p>
+      <p>The official GitHub REST API request for <a href="https://api.github.com/repos/ValveSoftware/counter-strike_regional_standings/commits/2aa2805394fbc68f36a5752a5b16026f2ab2fed5">commit 2aa280…</a> returned HTTP 422, “No commit found for SHA.” The contents API at a valid commit confirms that `2aa280…` is the file-object SHA, which explains the mistaken URL component.</p>
+      <p><strong>Verified corrected URL:</strong><br>
+        <a href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md">Valve standings at commit eec4853d7bcf0f1f7efe7f0d901234bef7e98b75</a>
+      </p>
+      <p>The <a href="https://api.github.com/repos/ValveSoftware/counter-strike_regional_standings/commits/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75">commit API</a> resolves. The <a href="https://api.github.com/repos/ValveSoftware/counter-strike_regional_standings/contents/live/2026/standings_global_2026_10_05.md?ref=eec4853d7bcf0f1f7efe7f0d901234bef7e98b75">official contents API</a> returns the expected path, 77,872-byte file, and blob SHA `2aa280…`. The verified file is dated 2026-10-05; its corrected URL is used by the executive board.</p>
+    </div>
+
+    <h2 id="slate">Flag 2 — 89 stored fixtures versus two 88-fixture reads</h2>
+    <p>The snapshot data and reread notes are in <a href="../livelines/data/picks.json">livelines/data/picks.json</a> and <a href="../livelines/data/live_reads.json">livelines/data/live_reads.json</a>. The 08:04:51Z page generation still references an earlier 02:06:30Z payload capture that contains 89 rows.</p>
+    <div class="table-wrap" role="region" aria-label="Hotspawn fixture-count evidence" tabindex="0">
+      <table>
+        <thead><tr><th>Read</th><th>Time (UTC)</th><th>Result</th></tr></thead>
+        <tbody>
+          <tr><td>Stored Hotspawn payload</td><td>2026-10-14 02:06:30</td><td>89 fixture objects in the captured slate.</td></tr>
+          <tr><td><a href="https://play.hotspawn.com/lobby">Hotspawn /lobby</a></td><td>2026-10-14 04:31:25</td><td>88 total; B 24 / C 60 / S 4; 17 tournaments. The note identifies match 1079546 as present only in the older payload.</td></tr>
+          <tr><td><a href="https://play.hotspawn.com/cs2-pickems">Hotspawn /cs2-pickems</a></td><td>2026-10-14 04:32:30</td><td>Independent reread: 88 total, same tier split and same 17 tournaments.</td></tr>
+          <tr><td><a href="../executive/data/summary.json">Executive capture</a></td><td>2026-10-14 05:11:44</td><td>88 total fixtures; 28 open at capture.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>The extra saved fixture is <strong>1079546, Zomblers vs Overtake Sector</strong>, marked locked at 00:54Z (start 01:00Z). The reread says it is absent from the later tournament filter. This is evidence of a stale/retired locked entry in the older capture, not a basis for making up a replacement. The rereads establish what was observed then; they do not certify the current lobby.</p>
+
+    <h2 id="snapshot">Executive snapshot details and freshness</h2>
+    <ul>
+      <li>Capture: <code>2026-10-14T05:11:44Z</code>; generated: <code>2026-10-14T05:13:38Z</code>.</li>
+      <li>Coverage: 88 fixtures total; 28 open at capture; 28/28 with a pick; 26 outside-market basis; 2 model basis; 0 without a sourced pick.</li>
+      <li>Input read labels: Hotspawn at 05:11Z; outside prices at 05:11Z (9 CS2 quotes); Valve standings dated 2026-10-05; HLTV ranking dated 2026-10-12. Per-row read time remains authoritative for that row.</li>
+      <li>The root computes age from `capture_utc` and does not use the executive cadence page’s previously observed stale “0.0 h old” label or static lock countdowns.</li>
+      <li>Hotspawn crowd-pick percentages are not used. Unsupported source values stay blank/flagged; this landing change adds no probabilities.</li>
+    </ul>
+
+    <h2 id="scope">Scope and owner handoff</h2>
+    <p>This integration changes the root landing, README start-here links, regression tests, and this review. It does not change `livelines/**`, executive research/data, or another session’s collectors. The root links the newer board only inside an archive disclosure and puts the defect warning and this review in the visible page.</p>
+    <div class="panel">
+      <p><strong>Request recorded for `arena/457629c4`, owner of `livelines/**`:</strong></p>
+      <ol>
+        <li>Build VRS links from the verified commit SHA `eec4853d7bcf0f1f7efe7f0d901234bef7e98b75`, not blob SHA `2aa2805394fbc68f36a5752a5b16026f2ab2fed5`, then re-fetch every published URL and check status.</li>
+        <li>Re-read `/lobby` and `/cs2-pickems` in the same build; reconcile the 89-entry stored payload and the 88-entry later reads, including locked fixture 1079546; expose the true read time and inventory.</li>
+        <li>Keep the issue flagged until both the link and fixture inventory are independently verified.</li>
+      </ol>
+    </div>
+    <p class="small">Test, link-audit, PR, merge, and Pages deployment outcomes are recorded in the final E-08 completion/release entry of <a href="../COORDINATION.md">COORDINATION.md</a>. This report does not claim a deployment before that verification.</p>
+
+    <p>
+      <a class="button" href="../executive/picks.html">Open the primary picks list →</a>
+      <a class="button" href="../executive/unresolved.html">Read unresolved picks &amp; limitations →</a>
+      <a class="button" href="../livelines/picks.html">Open the archived newer board (flagged) →</a>
+    </p>
+  </main>
+  <footer>
+    <p>Independent acceptance record · no betting advice. <a href="../index.html">Return to the landing page.</a></p>
+  </footer>
+</body>
+</html>
