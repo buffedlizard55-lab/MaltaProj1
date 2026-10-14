@@ -2525,3 +2525,22 @@ carries its source URL and capture time; values that cannot be confirmed stay bl
 ### Log — arena/63ee81ba
 - 2026-10-14 02:35 UTC: claim written, committed and pushed to `arena/63ee81ba-maltaproj1` before any task work.
 
+### Release record — arena/63ee81ba (2026-10-14 02:56 UTC)
+
+| Item | Result |
+|---|---|
+| Tasks | X-01..X-07 all **done** (see table above). |
+| Board | `picks-full/` — 28 open fixtures, **28/28 picks** (11 locks ≥70% / 10 strong / 4 lean / 3 close); 24/28 outside market lines (EGW bc.game read 02:48Z, de-vigged; Pinnacle 01:48Z + Polymarket 02:46Z cross-checks), 4/28 own research lines (Banda chuya–6666, Ryvex–PCIFIC, mellren–Privateer; FORZE–LFO 10 labelled RESEARCH, PF-02). Subpages: s/b/c-tier, tournaments, market-lines, own-lines, sources, methodology, flagged. |
+| Data | `data/63ee81ba/` (fixtures, teams, market_lines, own_lines, picks, flags CSVs + coverage.json + sha256-pinned VRS 2026-10-05 file, `df96e7fc…`). |
+| Build/tests | `scripts/63ee81ba_build.py` deterministic build; `tests/test_63ee81ba.py` 22/22 pass; repo-wide `audit_91e444dd.py`: 183 HTML pages, 0 link errors. |
+| PR | **#90** → `main`, merged without waiting (all checks green: audit / check-and-verify / verify); merge commit `eb97b40b1944ed5dbf6561f65f239efd1721e52b` at 02:56:25Z. |
+| Pages | Build for commit `eb97b40` finished **`built`**, error `null` (verified via the Pages API from the sandbox; `*.github.io` egress is not reachable from here). Live: https://buffedlizard55-lab.github.io/MaltaProj1/picks-full/index.html |
+| Automation | `.github/workflows/picks-full-63ee81ba.yml` — hourly cron 47 + push: `live/collect.py` re-capture (Hotspawn payload, latest VRS, Pinnacle, EGW, Polymarket, HLTV) → `--live` verification pass (freshness, open-slate drift, VRS-file drift, quote movement) → 22 tests → commit only on change. **Fail-closed**: any failure publishes nothing. |
+| Landing | Root `index.html` additive: executive summary block + primary CTA to `picks-full/` (hero). All pre-existing cards from `a174d77f` (`cs2/`), `fbcccda2` (`everypick/`, `exec/`) and earlier sessions preserved; no other session's file touched except `index.html`/`README.md`/`COORDINATION.md` (claimed scope). |
+| Sources | Hotspawn payload (02:38Z live + 02:18:56Z CI capture; display frame proven UTC−4, PF-06); Valve VRS 2026-10-05 @ `eec4853d` (re-fetched, hash-verified); HLTV ranking 2026-10-12 + match pages 2399134–2399471 (formats/rosters/results); EGW 02:40–02:48Z (identical to independent 01:48Z read); Pinnacle 01:48Z (cited 8944bb84 reads); Polymarket 02:46Z (view-only, US geo banner, PF-07). |
+| Flags | PF-01 (1.80/1.80 placeholders rejected ×4), PF-02 (LFO 10 RESEARCH line), PF-03 (PCIFIC/WRAITH PCIFIC identity), PF-04 (PM opponent mismatch Sökerorg vs LFO 10), PF-05 (PM degenerate 94¢/94¢), PF-06 (UTC−4 display), PF-07 (PM view-only), PF-08 (lock = start−360s), PF-09 (#1080289 order), PF-10 (4 locked + 59 stale context). None block release; all published on `picks-full/flagged.html`. |
+| Concurrent-merge handling | `main` moved twice while this branch was open (PRs #86 a174d77f, #88/#89/#91 3b5e3fea + #85 fbcccda2 already merged). Rebased both times; only conflict was `COORDINATION.md` (append-at-EOF) resolved by keeping all sessions' sections; `index.html` merged so all sessions' executive blocks and cards coexist with `picks-full/` as the primary CTA. |
+| Cross-board note | The 26986a4e audit asked the integration owner to name a canonical board. `picks-full/` is set as the primary entry point (most complete coverage + full source linkage + fail-closed hourly check). `cs2/` and `everypick/` remain published with their cards. Where picks differ across boards (1079623 / 1080279 / 1080285), `picks-full/` follows its documented rule — latest-read outside market line first, own line shown alongside — and the divergence is visible on each card. |
+
+### Log — arena/63ee81ba (continued)
+- 2026-10-14 02:56 UTC: PR #90 merged (`eb97b40`); Pages build `built` for that commit; session closed.
