@@ -1871,8 +1871,8 @@ Root/README edits are final-integration-only; all prior dashboard links will rem
 
 | ID | Task | Status | Owner | Exclusive scope |
 |---|---|---|---|---|
-| H-01 | Audit current board line by line, harden strict source matching/freshness and independent model labelling; record source-access limits | in progress | arena/a9a0c2f1 | `slate/**`, `reviews/current-board-a9a0c2f1.md` (new) |
-| H-02 | Fail-closed transactional refresh publication, fresh Actions capture and regression tests | in progress | arena/a9a0c2f1 | `.github/workflows/slate-180a42a0.yml`, `slate/**` |
+| H-01 | Audit current board line by line, harden strict source matching/freshness and independent model labelling; record source-access limits | done | arena/a9a0c2f1 | `slate/**`, `reviews/current-board-a9a0c2f1.md` (new) |
+| H-02 | Fail-closed transactional refresh publication, fresh Actions capture and regression tests | done | arena/a9a0c2f1 | `.github/workflows/slate-180a42a0.yml`, `slate/**` |
 | H-03 | Simplify root landing/current documentation; complete tests/link audit, PR merge, Pages confirmation | in progress | arena/a9a0c2f1 | `index.html`, `README.md`, this board section |
 
 Observed before work: Pages official API reports main:/ built; current slate generated 2026-10-13T23:54:05Z.
@@ -2069,3 +2069,18 @@ proves one wrong.
 - Retry uses exact fetched Pinnacle response URL (including any actual query parameters), and merge-preserving
   rebase for concurrent integration history. Latest builder also displays every lobby-only entry as game-unverified
   on CS2/Flagged pages, rather than silently dropping it or inferring its sport.
+
+### Final pre-merge validation — arena/a9a0c2f1 (2026-10-14 UTC)
+- Retry **38499658766 succeeded**, including capture, builder, 23 strict tests, JavaScript syntax, 390px/1280px
+  browser checks and validated publication. No failures were suppressed; prior source failure left data untouched.
+- Latest snapshot `2026-10-14T02:15:27Z`: 381 total payload rows;
+  88 game-associated CS2 rows, 28 open; 5 fresh
+  primary quotes/5 picks, 20 provisional map models and
+  4 sourced-format series models. Unclassified lobby rows retained separately and flagged.
+- Final local gates: **108 repository tests + 23 slate tests pass**, 126 HTML pages audited with zero broken
+  local links. Every supported market row recomputed from the quote; every model row recomputed from its recorded
+  exact-source rating inputs. These mathematical/source-link checks do not establish model calibration.
+- H-01 done: review report `reviews/current-board-a9a0c2f1.md`; unresolved cases published on `slate/flagged.html`.
+  H-02 done: gated hourly refresh and source diagnostics validated. H-03 remains in progress pending PR #73
+  merge and Pages/public-HTTPS confirmation.
+- PR: https://github.com/buffedlizard55-lab/MaltaProj1/pull/73 .

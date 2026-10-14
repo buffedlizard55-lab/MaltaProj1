@@ -59,3 +59,7 @@ The final capture/run and deployment evidence are recorded in the session's rele
 - GitHub's hourly schedules are best-effort, not an uptime guarantee. Source read time, snapshot generation time, workflow completion and Pages deployment are separate events.
 
 All current unresolved per-fixture gaps and standing caveats are published on [Flagged for Review](../slate/flagged.html), with official fixture/rating/bookmaker links for manual checking.
+
+## Final validated capture
+
+[Run 38499658766](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38499658766) succeeded, including mobile/desktop rendering and publication. Snapshot **2026-10-14T02:15:27Z**: 381 union payload rows; 88 game-associated CS2 rows / 28 open; 5 primary quotes/picks; 20 provisional map estimates, 4 sourced-format series estimates. Unclassified lobby-only rows remain in the inventory, CS2 review section and Flagged page without an inferred sport. Final tests: 108 repository + 23 slate; 126 HTML pages, zero broken local links.
