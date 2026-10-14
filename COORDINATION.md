@@ -2826,6 +2826,9 @@ links to the updated picks list and must be phone-friendly.
   checked, 0 broken; 27 of 28 open fixtures carry an HLTV match-page link; Hotspawn live read `03:26Z`,
   outside prices live `03:26Z` (8 CS2 quotes); Polymarket live (2 matches that minute, none on this board);
   `meta.stale: false`.
+- **How this record reached `main`**: PR [#100](https://github.com/buffedlizard55-lab/MaltaProj1/pull/100) carried the work itself; this integration note
+  was added by follow-up PR [#101](https://github.com/buffedlizard55-lab/MaltaProj1/pull/101) (merged `2026-10-14T03:30:20Z`,
+  merge commit `526bc9e`), which is documentation-only and leaves `executive/**` untouched.
 - **Flagged items are published, not merge-blocking**, exactly as the brief requires: see
   `executive/flagged.html` and §4 of `reviews/5545dbb8-verification.md` (`FL-FORMAT-UNKNOWN` ×88,
   `FL-RATINGS-WEEK-OLD` ×59, `FL-AMBIGUOUS-NAME` ×5, `FL-UNLISTED-OPPONENT` ×2,
