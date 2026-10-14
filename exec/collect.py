@@ -599,8 +599,6 @@ def hltv_match_details(fixtures: list[dict], day_cache: dict, limit: int = 40) -
                                else "HLTV listing" if row.get("format") else None),
             "url_source": row.get("url_source"),
             "team_ranks": badges,
-            "lineup_badges_note": ("no rank badge printed for either side"
-                                   if not badges else "rank badges read from the lineup block"),
             "event_url": page.get("event_url"), "event_name": page.get("event_name"),
             "status": page.get("status"), "sha256": page.get("sha256"), "error": page.get("error"),
             "captured_utc": page.get("captured_utc"),

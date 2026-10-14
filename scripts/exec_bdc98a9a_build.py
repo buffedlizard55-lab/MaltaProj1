@@ -50,8 +50,8 @@ ELO_SCALE = 400.0
 STALE_DAYS = 2                 # a fixture older than this is published as `stale`, never as open
 
 SOURCE_LABELS = {
-    "T1": "external market — primary book",
-    "T2": "external market — secondary book/aggregator",
+    "T1": "external market — primary book (a price this project read directly from the book)",
+    "T2": "external market — secondary reading (aggregator page naming the book, not confirmed with it)",
     "T3": "our own line — official ratings (Valve VRS / HLTV World Ranking)",
     "T4": "ranked vs unranked — qualitative pick, no numeric line",
     "T5": "no usable source",
@@ -169,6 +169,20 @@ def match_team(target: str, table: dict) -> tuple[str, dict] | tuple[None, None]
 
 
 # ------------------------------------------------------------------------------ evidence records
+def market_rank(url: str, claimed: str = "") -> str:
+    """`primary` only for a direct primary-bookmaker response; everything else is secondary.
+
+    A price read off an aggregator page is a secondary reading even when the aggregator names a
+    bookmaker, because this project has not confirmed the price with that book itself.
+    """
+    host = re.sub(r"^https?://", "", (url or "")).split("/")[0].lower()
+    if "pinnacle" in host:
+        return "primary"
+    if claimed.lower() == "primary" and "egamersworld" in host:
+        return "secondary"
+    return "secondary" if claimed.lower() in ("", "secondary") or "egamersworld" in host else claimed.lower()
+
+
 def market_candidates() -> list[dict]:
     """Every external price reading this repository has captured, with its source URL."""
     out = []
@@ -183,7 +197,7 @@ def market_candidates() -> list[dict]:
             "fixture_id": row.get("fixture_id", ""), "book": row.get("book") or row.get("source"),
             "odds_a": oa, "odds_b": ob, "url": url,
             "captured_utc": row.get("captured_utc", ""),
-            "rank": (row.get("rank") or "").lower(),
+            "rank": market_rank(url, row.get("rank") or ""),
             "dataset": "slate/data/lines.csv", "order_flipped": row.get("team_order_flipped") == "True",
             "note": row.get("note", ""),
         })
@@ -192,14 +206,16 @@ def market_candidates() -> list[dict]:
         if oa and ob and oa > 1 and ob > 1 and (row.get("primary_source_url") or "").startswith("http"):
             out.append({"fixture_id": row.get("match_id", ""), "book": row.get("primary_book") or "book",
                         "odds_a": oa, "odds_b": ob, "url": row["primary_source_url"],
-                        "captured_utc": row.get("captured_utc", ""), "rank": "primary",
+                        "captured_utc": row.get("captured_utc", ""),
+                        "rank": market_rank(row["primary_source_url"], "primary"),
                         "dataset": "data/8944bb84/external_lines.csv", "order_flipped": False,
                         "note": row.get("note", "")})
         ea, eb = fnum(row.get("egw_odds_a")), fnum(row.get("egw_odds_b"))
         if ea and eb and ea > 1 and eb > 1 and (row.get("egw_url") or "").startswith("http"):
             out.append({"fixture_id": row.get("match_id", ""), "book": "bc.game (via EGamersWorld)",
                         "odds_a": ea, "odds_b": eb, "url": row["egw_url"],
-                        "captured_utc": row.get("captured_utc", ""), "rank": "secondary",
+                        "captured_utc": row.get("captured_utc", ""),
+                        "rank": market_rank(row["egw_url"], "secondary"),
                         "dataset": "data/8944bb84/external_lines.csv", "order_flipped": False,
                         "note": "secondary aggregator reading"})
     for row in read_csv(LIVE / ".." / ".." / ".." / "live" / "data" / "slate.csv"):
@@ -208,7 +224,8 @@ def market_candidates() -> list[dict]:
         if oa and ob and oa > 1 and ob > 1 and url.startswith("http"):
             out.append({"fixture_id": row.get("match_id", ""), "book": row.get("ext_bookmaker") or "book",
                         "odds_a": oa, "odds_b": ob, "url": url,
-                        "captured_utc": row.get("ext_observed_utc", ""), "rank": "primary",
+                        "captured_utc": row.get("ext_observed_utc", ""),
+                        "rank": market_rank(url, "primary"),
                         "dataset": "live/data/slate.csv", "order_flipped": False,
                         "note": "live board external reading"})
     cs2_path = ROOT / "cs2" / "data" / "analysis.csv"
@@ -218,7 +235,8 @@ def market_candidates() -> list[dict]:
         if oa and ob and oa > 1 and ob > 1 and url.startswith("http"):
             out.append({"fixture_id": row.get("fixture_id", ""), "book": row.get("market_book") or "book",
                         "odds_a": oa, "odds_b": ob, "url": url,
-                        "captured_utc": row.get("market_captured_utc", ""), "rank": "secondary",
+                        "captured_utc": row.get("market_captured_utc", ""),
+                        "rank": market_rank(url, "secondary"),
                         "dataset": "cs2/data/analysis.csv", "order_flipped": False,
                         "note": row.get("market_source", "")})
     return out
@@ -614,7 +632,8 @@ def render_card(row: dict) -> str:
         f' {esc(row["pick_pct"])}%' if row["pick_pct"] else "") + '</span>'
     src = "".join(f'<li><a href="{esc(s["url"])}" rel="noopener nofollow">{esc(s["what"])}</a> — '
                   f'{esc(s["note"])}</li>' for s in row["sources"] if (s.get("url") or "").startswith("http"))
-    flags = "".join(f'<span class="flag">{esc(f)}</span>' for f in row["flags"])
+    flag_list = (row["flags"].split(" | ") if isinstance(row["flags"], str) else row["flags"]) or []
+    flags = "".join(f'<span class="flag">{esc(f)}</span>' for f in flag_list)
     kickoff = row["start_utc"].replace("T", " ").replace("Z", " UTC")
     extra = ""
     if row["market_odds_a"]:
@@ -765,11 +784,14 @@ def main(argv=None) -> int:
                "market_book", "market_odds_a", "market_odds_b", "market_p_a_pct", "market_p_b_pct",
                "market_url", "market_captured_utc", "own_source", "own_p_a_pct", "own_p_b_pct",
                "own_url", "own_inputs", "pick", "pick_pct", "confidence", "fair_odds_a",
-               "fair_odds_b", "hltv_url", "hotspawn_url", "evidence_utc", "flags", "why"]
+               "fair_odds_b", "hltv_url", "hotspawn_url", "evidence_utc", "source_urls", "flags",
+               "why"]
     for row in rows:
         row["fair_odds_a"] = f"{100 / float(row['p_a_pct']):.2f}" if row["p_a_pct"] else ""
         row["fair_odds_b"] = f"{100 / float(row['p_b_pct']):.2f}" if row["p_b_pct"] else ""
         row["flags"] = " | ".join(row["flags"])
+        row["source_urls"] = " | ".join(s["url"] for s in row["sources"]
+                                        if (s.get("url") or "").startswith("http"))
     write_csv(DATA / "picks.csv", rows, columns)
     (DATA / "picks.json").write_text(json.dumps(rows, indent=1) + "\n", encoding="utf-8")
     (DATA / "summary.json").write_text(json.dumps(summary, indent=1) + "\n", encoding="utf-8")
