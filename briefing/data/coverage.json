@@ -1,0 +1,25 @@
+{
+ "generated_utc": "2026-10-14T04:10:00Z",
+ "counts": {
+  "fixtures": 88,
+  "open": 28,
+  "locked": 1,
+  "stale": 59,
+  "picks": 28,
+  "market": 0,
+  "model": 28,
+  "blank": 0
+ },
+ "fit": {
+  "ok": false,
+  "n": 0,
+  "scale": 400.0,
+  "rmse_pp": null,
+  "max_abs_error_pp": null,
+  "note": "only 0 market-priced fixture(s) with two officially rated teams, so the scale could not be fitted this run; the board falls back to the default 400-point logistic scale and labels every model line as uncalibrated"
+ },
+ "flag_counts": {
+  "FL-FORMAT-UNKNOWN": 28,
+  "FL-RATING-AMBIGUOUS": 31
+ }
+}

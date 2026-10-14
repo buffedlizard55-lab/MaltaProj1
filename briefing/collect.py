@@ -1,26 +1,27 @@
 #!/usr/bin/env python3
 """Network collection for the canonical CS2 briefing board (session arena/198cf31e).
 
-Runs on GitHub Actions: the agent sandbox has no general egress to these hosts, so collection
-happens in CI and every response is archived (gzip JSON/HTML under briefing/data/raw/) together
-with its HTTP status, byte count, SHA-256 and capture time in briefing/data/capture.json.
-The published pages are then rendered offline from those committed bytes by build.py, so every
-number on the site re-derives from archived official responses.
+Runs on GitHub Actions: the agent sandbox has no egress to these hosts, so collection happens
+in CI and every response is archived (gzip under briefing/data/raw/) together with its HTTP
+status, byte count, SHA-256 and capture time in briefing/data/capture.json. build.py then
+renders the board offline from those committed bytes, so every published number re-derives
+from archived official responses.
 
-What is read, with an honest identifiable User-Agent and no credentials / no bypass:
+Sources, read with an honest identifiable User-Agent, no credentials and no bypass:
 
   1. Hotspawn pick'em pages (play.hotspawn.com /lobby, /cs2-pickems, /thp-pickems):
      Angular TransferState <script id="ng-state"> -> CS2 fixture identity, kickoff + lock
      epochs, tournament, tier, stage, permalink.
      Crowd pick percentages (participants*_picked_percent / total_picks) are dropped at parse
      time and never written to disk. They are NEVER a probability input.
-  2. Pinnacle public guest API, sport 12 (esports): matchups + straight markets -> moneylines.
-  3. bo3.gg public API (the JSON its own pages load): upcoming CS2 matches with series format
-     (bo_type) and the bookmaker quote it relays (provider + bookmaker match URL).
+  2. Pinnacle public guest API, sport 12 (esports) - the same guest responses Pinnacle's own
+     CS2 matchups page loads: matchups + straight markets -> whole-match moneylines.
+  3. bo3.gg public API: upcoming CS2 matches with series format (bo_type) and the bookmaker
+     quote it relays (provider + bookmaker match URL + both decimal prices).
   4. Polymarket Gamma API, series 10310 ("Counter Strike"): match-winner markets.
-  5. Valve Regional Standings: the official ValveSoftware GitHub repo, newest live/2026 global
-     markdown file.
-  6. HLTV: world ranking and Valve-ranking pages (public HTML).
+  5. Valve Regional Standings: official ValveSoftware GitHub repo, newest live/2026 global file.
+  6. HLTV world ranking (dated page, HTML): parsed best-effort; if the ranking block is not in
+     the response the source is recorded as unavailable and flagged, never guessed.
 
 Exit status 2 = no Hotspawn fixture list could be read -> the workflow publishes nothing
 (fail-closed: the last good board stays live).
@@ -36,8 +37,9 @@ import re
 import sys
 import time
 import urllib.error
+import urllib.parse
 import urllib.request
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
@@ -63,9 +65,12 @@ PIN_BASE = "https://guest.api.arcadia.pinnacle.com/0.1"
 PIN_SPORT = "12"                      # esports
 PIN_MATCHUPS = f"{PIN_BASE}/sports/{PIN_SPORT}/matchups?withSpecials=false"
 PIN_MARKETS = f"{PIN_BASE}/sports/{PIN_SPORT}/markets/straight?primaryOnly=false&withSpecials=false"
+PIN_PAGE = "https://www.pinnacle.com/en/esports/games/cs2/matchups/"
 
 PM_EVENTS = "https://gamma-api.polymarket.com/events"
 PM_SERIES_ID = "10310"                # /series?slug=counter-strike -> id 10310
+PM_MARKET_KEEP = ("id", "question", "sportsMarketType", "outcomes", "outcomePrices",
+                  "bestBid", "bestAsk", "spread", "volume", "liquidity", "active", "closed")
 
 BO3_MATCHES = "https://api.bo3.gg/api/v1/matches"
 
@@ -73,9 +78,10 @@ VALVE_API_DIR = ("https://api.github.com/repos/ValveSoftware/"
                  "counter-strike_regional_standings/contents/live/2026")
 VALVE_RAW = ("https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/"
              "main/live/2026/")
+VALVE_FALLBACK = "standings_global_2026_10_05.md"   # newest file on the official repo
 
-HLTV_WORLD = "https://www.hltv.org/ranking/teams/"
-HLTV_VALVE = "https://www.hltv.org/valve-ranking/teams/"
+HLTV_WORLD = "https://www.hltv.org/ranking/teams/2026/october/12"
+HLTV_VALVE = "https://www.hltv.org/valve-ranking/teams/2026/october/14"
 
 
 def now() -> datetime:
@@ -111,8 +117,7 @@ def http_get(url: str, timeout: int = 45, retries: int = 2, html: bool = False) 
                 head = ""
             title = re.search(r"<title[^>]*>(.*?)</title>", head, re.S | re.I)
             rec.update(status=exc.code, error="HTTPError %s%s" % (
-                exc.code,
-                f" title={title.group(1).strip()[:60]!r}" if title else ""))
+                exc.code, f" title={title.group(1).strip()[:60]!r}" if title else ""))
             if exc.code not in (429, 500, 502, 503, 504):
                 return rec
         except Exception as exc:  # noqa: BLE001 - recorded, never hidden
@@ -135,6 +140,17 @@ def save_raw(name: str, payload) -> str:
         with gzip.GzipFile(fileobj=fh, mode="wb", mtime=0) as gz:
             gz.write(blob)
     return hashlib.sha256(blob).hexdigest()
+
+
+def get_json(url: str, timeout: int = 60) -> tuple[object, dict]:
+    rec = http_get(url, timeout=timeout)
+    if not rec["body"]:
+        return None, rec
+    try:
+        return json.loads(rec["body"].decode("utf-8", errors="replace")), rec
+    except ValueError as exc:
+        rec["error"] = (rec["error"] or "") + f" JSON: {exc}"[:150]
+        return None, rec
 
 
 # --------------------------------------------------------------------------- 1 Hotspawn
@@ -211,9 +227,8 @@ def collect_hotspawn() -> dict:
                     row["lock_epoch_ms"] = node.get("lock_time")
                     fid = str(row["id"])
                     prev = fixtures.get(fid)
-                    # keep the most complete row; record the page it came from
-                    if prev is None or sum(bool(v) for v in row.values()) > sum(
-                            bool(v) for v in prev.values()):
+                    score = lambda r: sum(bool(v) for v in r.values())  # noqa: E731
+                    if prev is None or score(row) > score(prev):
                         row["source_page"] = name
                         fixtures[fid] = row
                 page["cs2_rows"] = sum(1 for n in nodes
@@ -224,180 +239,166 @@ def collect_hotspawn() -> dict:
     for fid, row in fixtures.items():
         row["permalink"] = links.get(fid, "")
     out = sorted(fixtures.values(), key=lambda r: (r.get("start_utc") or "", str(r.get("id"))))
-    return {"fixtures": out, "pages": pages,
-            "count": len(out), "captured_utc": iso(now())}
+    return {"fixtures": out, "pages": pages, "count": len(out), "captured_utc": iso(now())}
 
 
 # --------------------------------------------------------------------------- 2 Pinnacle
-def collect_pinnacle() -> tuple[dict, dict]:
-    m_rec = http_get(PIN_MATCHUPS, timeout=60)
-    matchups = []
-    if m_rec["body"]:
-        try:
-            matchups = json.loads(m_rec["body"].decode("utf-8", errors="replace"))
-        except ValueError as exc:
-            m_rec["error"] = (m_rec["error"] or "") + f" JSON: {exc}"[:150]
-    k_rec = http_get(PIN_MARKETS, timeout=60)
-    markets = []
-    if k_rec["body"]:
-        try:
-            markets = json.loads(k_rec["body"].decode("utf-8", errors="replace"))
-        except ValueError as exc:
-            k_rec["error"] = (k_rec["error"] or "") + f" JSON: {exc}"[:150]
+def _trim_pin_matchup(node: dict) -> dict | None:
+    if node.get("type") != "matchup" or node.get("parentId") is not None:
+        return None
+    league = node.get("league") or {}
+    if not str(league.get("name", "")).startswith("CS2 - "):
+        return None
+    parts = node.get("participants") or []
+    if len(parts) != 2:
+        return None
+    names = {p.get("alignment"): p.get("name") for p in parts}
+    if set(names) != {"home", "away"}:
+        return None
+    return {"event_id": node.get("id"), "league": league.get("name"),
+            "league_id": league.get("id"),
+            "team_a": names["home"], "team_b": names["away"],
+            "start_utc": (node.get("startTime") or "") or None,
+            "status": node.get("status")}
 
-    # Archive only moneyline-relevant fields: the published board re-derives from these bytes.
-    slim_m = []
-    for m in matchups if isinstance(matchups, list) else []:
-        if m.get("type") != "matchup":
+
+def collect_pinnacle() -> tuple[dict, dict]:
+    matchups, m_rec = get_json(PIN_MATCHUPS, timeout=60)
+    markets, k_rec = get_json(PIN_MARKETS, timeout=60)
+    events = []
+    for node in matchups or []:
+        if not isinstance(node, dict):
             continue
-        parts = m.get("participants") or []
-        slim_m.append({
-            "id": m.get("id"), "league": (m.get("league") or {}).get("name"),
-            "startTime": m.get("startTime"), "type": m.get("type"),
-            "status": m.get("status"),
-            "participants": [{"name": p.get("name"), "alignment": p.get("alignment")}
-                             for p in parts],
-        })
-    slim_k = []
-    for k in markets if isinstance(markets, list) else []:
-        if k.get("marketType") != "moneyline":
+        row = _trim_pin_matchup(node)
+        if row:
+            events.append(row)
+    quotes = []
+    for market in markets or []:
+        if not isinstance(market, dict):
             continue
-        slim_k.append({
-            "matchupId": k.get("matchupId"), "type": k.get("type"),
-            "marketType": k.get("marketType"), "period": k.get("period"),
-            "status": k.get("status"), "isAlternate": k.get("isAlternate"),
-            "prices": [{"participantId": p.get("participantId"), "decimal": p.get("decimal"),
-                        "american": p.get("american"), "status": p.get("status")}
-                       for p in (k.get("prices") or [])],
-        })
-    payload = {"matchups": slim_m, "moneylines": slim_k}
-    log(f"  pinnacle: matchups status={m_rec['status']} ({len(slim_m)} matchups), "
-        f"markets status={k_rec['status']} ({len(slim_k)} moneylines)")
-    return payload, {"matchups": meta(m_rec), "markets": meta(k_rec)}
+        if market.get("type") != "moneyline" or market.get("period") != 0:
+            continue
+        if market.get("isAlternate") is not False or market.get("status") != "open":
+            continue
+        event = next((e for e in events if e["event_id"] == market.get("matchupId")), None)
+        if not event:
+            continue
+        prices = {p.get("designation"): p.get("price")
+                  for p in (market.get("prices") or []) if isinstance(p, dict)}
+        if set(prices) != {"home", "away"}:
+            continue
+        quotes.append({**event, "american_a": prices["home"], "american_b": prices["away"],
+                       "market_url": PIN_MARKETS, "page_url": PIN_PAGE})
+    log(f"  pinnacle: status={m_rec['status']}/{k_rec['status']} "
+        f"{len(events)} CS2 matchups, {len(quotes)} whole-match moneylines")
+    return {"cs2_matchups": events, "moneylines": quotes,
+            "all_matchups": len(matchups or []), "all_markets": len(markets or [])}, \
+        {"matchups": meta(m_rec), "markets": meta(k_rec)}
 
 
 # --------------------------------------------------------------------------- 3 bo3.gg
+def _trim_bo3(m: dict) -> dict:
+    def team(t):
+        t = t or {}
+        return {"id": t.get("id"), "name": t.get("name"), "slug": t.get("slug")}
+    tour = m.get("tournament") or {}
+    return {"id": m.get("id"), "slug": m.get("slug"), "status": m.get("status"),
+            "bo_type": m.get("bo_type"), "start_date": m.get("start_date"),
+            "tier": m.get("tier"),
+            "team1": team(m.get("team1")), "team2": team(m.get("team2")),
+            "tournament": {"id": tour.get("id"), "name": tour.get("name"),
+                           "slug": tour.get("slug"), "tier": tour.get("tier")},
+            "bet_updates": m.get("bet_updates")}
+
+
 def collect_bo3() -> tuple[dict, dict]:
-    rows, page_recs, page_no = [], [], 1
-    while page_no <= 4:
-        url = (f"{BO3_MATCHES}?filter[matches.status][in]=upcoming"
-               f"&filter[matches.discipline_id][eq]=1&with=teams,tournament"
-               f"&page[number]={page_no}&page[size]=100")
-        rec = http_get(url, timeout=60)
-        data = None
-        if rec["body"]:
-            try:
-                data = json.loads(rec["body"].decode("utf-8", errors="replace"))
-            except ValueError as exc:
-                rec["error"] = (rec["error"] or "") + f" JSON: {exc}"[:150]
-        items = (data or {}).get("data") if isinstance(data, dict) else None
-        page_recs.append({**meta(rec), "page": page_no, "rows": len(items or [])})
-        if not items:
+    out, reqs, offset, limit = [], [], 0, 100
+    total = None
+    while offset <= 400:
+        params = [("page[offset]", str(offset)), ("page[limit]", str(limit)),
+                  ("sort", "start_date"),
+                  ("filter[matches.status][in]", "upcoming"),
+                  ("filter[matches.discipline_id][eq]", "1"),
+                  ("with", "teams,tournament")]
+        data, rec = get_json(BO3_MATCHES + "?" + urllib.parse.urlencode(params), timeout=60)
+        reqs.append({**meta(rec), "offset": offset})
+        if not isinstance(data, dict) or not isinstance(data.get("results"), list):
             break
-        for it in items:
-            attrs = it.get("attributes") or it
-            teams = []
-            for rel in ((it.get("relationships") or {}).get("teams") or {}).get("data") or []:
-                teams.append(rel)
-            rows.append({
-                "id": attrs.get("id") or it.get("id"),
-                "start_date": attrs.get("start_date"),
-                "status": attrs.get("status"),
-                "bo_type": attrs.get("bo_type"),
-                "tournament": ((attrs.get("tournament") or {}).get("name")
-                               if isinstance(attrs.get("tournament"), dict)
-                               else attrs.get("tournament_name")),
-                "team_ids": [t.get("id") for t in teams],
-                "bet_updates": attrs.get("bet_updates"),
-                "slug": attrs.get("slug"),
-            })
-        page_no += 1
-    # team names come from the "included" array of the first page; re-fetch page 1 and keep it
-    rec1 = http_get(f"{BO3_MATCHES}?filter[matches.status][in]=upcoming"
-                    f"&filter[matches.discipline_id][eq]=1&with=teams,tournament"
-                    f"&page[number]=1&page[size]=100", timeout=60)
-    included = []
-    if rec1["body"]:
-        try:
-            included = (json.loads(rec1["body"].decode("utf-8", errors="replace"))
-                        or {}).get("included") or []
-        except ValueError:
-            included = []
-    names = {}
-    for inc in included:
-        if (inc.get("type") or "").startswith("team"):
-            names[str(inc.get("id"))] = ((inc.get("attributes") or {}).get("name")
-                                         or (inc.get("attributes") or {}).get("slug"))
-    for row in rows:
-        row["team_names"] = [names.get(str(t), "") for t in (row.get("team_ids") or [])]
-    log(f"  bo3.gg: {len(rows)} upcoming CS2 matches, {len(names)} team names resolved")
-    return {"matches": rows, "team_names": names}, {"pages": page_recs}
+        total = (data.get("total") or {}).get("count")
+        out.extend(_trim_bo3(m) for m in data["results"] if isinstance(m, dict))
+        if len(data["results"]) < limit or (total and offset + limit >= total):
+            break
+        offset += limit
+        time.sleep(0.3)
+    quoted = sum(1 for m in out if isinstance(m.get("bet_updates"), dict)
+                 and (m["bet_updates"].get("team_1") or {}).get("coeff"))
+    log(f"  bo3.gg: {len(out)} upcoming CS2 matches ({quoted} with a relayed quote); "
+        f"API total={total}")
+    return {"matches": out, "total": total}, {"requests": reqs}
 
 
 # --------------------------------------------------------------------------- 4 Polymarket
+def _trim_pm_event(ev: dict) -> dict:
+    markets = []
+    for m in ev.get("markets") or []:
+        if not isinstance(m, dict):
+            continue
+        if m.get("sportsMarketType") != "moneyline":
+            continue
+        markets.append({k: m.get(k) for k in PM_MARKET_KEEP})
+    md = ev.get("eventMetadata") or {}
+    return {"id": ev.get("id"), "slug": ev.get("slug"), "title": ev.get("title"),
+            "startTime": ev.get("startTime"), "endDate": ev.get("endDate"),
+            "closed": ev.get("closed"), "active": ev.get("active"),
+            "eventMetadata": {k: md.get(k) for k in
+                              ("league", "leagueTier", "pandascoreMatchId", "serie",
+                               "tournament")},
+            "markets": markets}
+
+
 def collect_polymarket() -> tuple[dict, dict]:
-    url = f"{PM_EVENTS}?series_id={PM_SERIES_ID}&closed=false&limit=500&order=startTime"
-    rec = http_get(url, timeout=60)
-    events = []
-    if rec["body"]:
-        try:
-            events = json.loads(rec["body"].decode("utf-8", errors="replace"))
-        except ValueError as exc:
-            rec["error"] = (rec["error"] or "") + f" JSON: {exc}"[:150]
-    slim = []
-    for ev in events if isinstance(events, list) else []:
-        markets = []
-        for mk in ev.get("markets") or []:
-            if str(mk.get("marketSlug") or mk.get("slug") or "").lower() != "moneyline":
+    since = iso(now() - timedelta(hours=12))
+    events, reqs, seen, offset = [], [], set(), 0
+    while offset <= 800:
+        params = {"series_id": PM_SERIES_ID, "closed": "false", "limit": "100",
+                  "offset": str(offset)}
+        data, rec = get_json(PM_EVENTS + "?" + urllib.parse.urlencode(params), timeout=60)
+        reqs.append({**meta(rec), "offset": offset})
+        if not isinstance(data, list):
+            break
+        for ev in data:
+            if not isinstance(ev, dict) or str(ev.get("id")) in seen:
                 continue
-            outcomes, prices, bids, asks = [], [], [], []
-            try:
-                outs = json.loads(mk.get("outcomes") or "[]")
-                prs = json.loads(mk.get("outcomePrices") or "[]")
-            except ValueError:
+            seen.add(str(ev.get("id")))
+            end = str(ev.get("endDate") or "")
+            if end and end < since:      # skip events already finished
                 continue
-            for i, o in enumerate(outs):
-                outcomes.append(o)
-                prices.append(float(prs[i]) if i < len(prs) else None)
-            markets.append({"outcomes": outcomes, "prices": prices,
-                            "bestBid": mk.get("bestBid"), "bestAsk": mk.get("bestAsk"),
-                            "spread": mk.get("spread"), "volume": mk.get("volume"),
-                            "liquidity": mk.get("liquidity"), "active": mk.get("active"),
-                            "closed": mk.get("closed")})
-        slim.append({
-            "id": ev.get("id"), "slug": ev.get("slug"), "title": ev.get("title"),
-            "startDate": ev.get("startDate") or ev.get("gameStartTime"),
-            "gameStartTime": (ev.get("eventMetadata") or {}).get("gameStartTime"),
-            "league": (ev.get("eventMetadata") or {}).get("league"),
-            "pandascoreMatchId": (ev.get("eventMetadata") or {}).get("pandascoreMatchId"),
-            "markets": markets,
-        })
-    log(f"  polymarket: status={rec['status']} {len(slim)} open CS2 series events")
-    return {"events": slim}, meta(rec)
+            events.append(_trim_pm_event(ev))
+        if len(data) < 100:
+            break
+        offset += 100
+        time.sleep(0.3)
+    log(f"  polymarket: {len(events)} open CS2 series events")
+    return {"events": events, "since": since}, {"requests": reqs}
 
 
 # --------------------------------------------------------------------------- 5 Valve VRS
 VALVE_ROW = re.compile(
-    r"^\|\s*(\d+)\s*\|\s*(\d+)\s*\|\s*([^|]+?)\s*\|\s*([^|]*?)\s*\|\s*(?:\[details\]\(([^)]+)\))?\s*\|",
-    re.M)
+    r"^\|\s*(\d+)\s*\|\s*(\d+)\s*\|\s*([^|]+?)\s*\|\s*([^|]*?)\s*\|"
+    r"\s*(?:\[details\]\(([^)]+)\))?\s*\|", re.M)
 
 
 def collect_valve() -> tuple[dict, dict]:
-    recs = {"dir": None, "file": None}
-    d = http_get(VALVE_API_DIR, timeout=45)
-    recs["dir"] = meta(d)
+    d, dir_rec = get_json(VALVE_API_DIR, timeout=45)
+    recs = {"dir": meta(dir_rec)}
     newest = ""
-    if d["body"]:
-        try:
-            entries = json.loads(d["body"].decode("utf-8", errors="replace"))
-            names = [e["name"] for e in entries
-                     if isinstance(e, dict) and re.match(r"standings_global_\d{4}_\d{2}_\d{2}\.md$",
-                                                         e.get("name", ""))]
-            newest = sorted(names)[-1] if names else ""
-        except ValueError as exc:
-            recs["dir"]["error"] = (recs["dir"]["error"] or "") + f" JSON: {exc}"[:150]
+    if isinstance(d, list):
+        names = [e["name"] for e in d if isinstance(e, dict) and re.match(
+            r"standings_global_\d{4}_\d{2}_\d{2}\.md$", e.get("name", ""))]
+        newest = sorted(names)[-1] if names else ""
     if not newest:
-        newest = "standings_global_2026_10_05.md"   # last file verified present on the official repo
+        newest = VALVE_FALLBACK
+        recs["dir"]["error"] = (recs["dir"]["error"] or "") + " using verified fallback filename"
     f = http_get(VALVE_RAW + newest, timeout=60)
     recs["file"] = meta(f)
     recs["file"]["name"] = newest
@@ -409,23 +410,50 @@ def collect_valve() -> tuple[dict, dict]:
                      "team": m.group(3).strip(), "roster": m.group(4).strip(),
                      "details": m.group(5) or ""})
     log(f"  valve: {newest} status={f['status']} {len(rows)} ranked teams")
-    return {"file": newest, "as_of": date_m.group(1) if date_m else "", "rows": rows}, recs
+    return {"file": newest, "as_of": date_m.group(1) if date_m else "", "rows": rows,
+            "source_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/"
+                          f"blob/main/live/2026/{newest}"}, recs
 
 
 # --------------------------------------------------------------------------- 6 HLTV
+HLTV_PATTERNS = [
+    re.compile(r'class="position">#?(\d+)</span>.{0,4000}?class="name">([^<]+)</span>'
+               r'.{0,2000}?class="points">\(?([\d,]+)\s*(?:HLTV\s*)?points?\)?', re.S),
+    re.compile(r"#(\d+)!\[[^\]]*\]\([^)]*\)!\[[^\]]*\]\([^)]*\)[\s\S]{0,120}?"
+               r"([^\n(]+?)\((\d+)\s*HLTV points\)"),
+]
+
+
+def _parse_hltv_ranking(text: str) -> list:
+    rows, seen = [], set()
+    for pat in HLTV_PATTERNS:
+        rows = []
+        for m in pat.finditer(text):
+            name = re.sub(r"\s+", " ", m.group(2 if pat is HLTV_PATTERNS[0] else 2)).strip()
+            pts = int(str(m.group(3 if pat is HLTV_PATTERNS[0] else 3)).replace(",", ""))
+            rank = int(m.group(1))
+            key = name.casefold()
+            if key in seen or not name:
+                continue
+            seen.add(key)
+            rows.append({"rank": rank, "name": name, "points": pts})
+        if rows:
+            return rows
+    return []
+
+
 def collect_hltv() -> tuple[dict, dict]:
     out, recs = {}, {}
-    targets = {
-        "world_ranking": HLTV_WORLD,
-        "valve_ranking": HLTV_VALVE,
-    }
-    for key, url in targets.items():
+    for key, url in (("world_ranking", HLTV_WORLD), ("valve_ranking", HLTV_VALVE)):
         rec = http_get(url, timeout=60, html=True)
-        recs[key] = meta(rec)
         body = rec["body"].decode("utf-8", errors="replace") if rec["body"] else ""
-        save_raw(f"hltv_{key}", body)
-        out[key] = {"chars": len(body)}
-        log(f"  hltv/{key}: status={rec['status']} {len(body)} chars")
+        rows = _parse_hltv_ranking(body)
+        out[key] = {"url": url, "rows": rows}
+        r = meta(rec)
+        r["ranking_rows"] = len(rows)
+        r["marker_found"] = bool(re.search(r"HLTV points|World ranking", body))
+        recs[key] = r
+        log(f"  hltv/{key}: status={rec['status']} {len(body)} chars, {len(rows)} ranking rows")
     return out, recs
 
 
@@ -442,7 +470,7 @@ def main() -> int:
                                       "pages": hs["pages"], "fixtures": hs["count"]}
     if not hs["fixtures"]:
         log("FATAL: no Hotspawn fixtures parsed")
-        (DATA / "capture.json").write_text(json.dumps(capture, indent=1))
+        (DATA / "capture.json").write_text(json.dumps(capture, indent=1, sort_keys=True))
         return 2
 
     pin, pin_meta = collect_pinnacle()
