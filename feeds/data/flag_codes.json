@@ -1,0 +1,16 @@
+{
+ "MF-01": "No secondary market found: neither Polymarket nor the bookmaker quote relayed by bo3.gg lists this fixture (or every listing failed a quality gate). Blank, not inferred.",
+ "MF-02": "Opponent conflict: a source lists one of the teams at the same kickoff against a different opponent. Not used.",
+ "MF-03": "Kickoff mismatch: both team names match but the source's kickoff differs by more than the allowed window. Not used.",
+ "MF-04": "Name variant accepted (substring/initials) with identical opponent and kickoff. Review the identity link.",
+ "MF-05": "Polymarket listing found but its quote failed a quality gate (spread, depth, degenerate prices, closed/live). Not used.",
+ "MF-06": "Bookmaker quote relayed by bo3.gg found but unusable (suspended, invalid odds or margin). Not used.",
+ "MF-07": "Sources disagree on the favourite.",
+ "MF-08": "Sources disagree on the series format (best-of).",
+ "MF-09": "Bookmaker price read through bo3.gg's public API relay, not from the bookmaker's own site; the bookmaker match URL is linked for manual checking.",
+ "MF-10": "Polymarket is a prediction market (traded probabilities, no bookmaker margin); thin books move quickly.",
+ "MF-11": "A source was unavailable in this run; its column is blank for every fixture.",
+ "MF-12": "Hotspawn fixture list taken from another board's committed capture because the site did not answer this run.",
+ "MF-13": "Hotspawn's payload does not state the series format (best_of/series_format null); format comes from the external source named in the row.",
+ "MF-14": "Even market: the source prices both teams at exactly 50%, so it names no favourite (it may be an opening quote nobody has traded against yet)."
+}

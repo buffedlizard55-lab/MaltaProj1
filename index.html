@@ -33,6 +33,19 @@ h1{font-size:clamp(28px,6vw,46px);line-height:1.15;max-width:700px;margin:12px 0
 <p class="lead">Counter-Strike 2 fixtures from Hotspawn. Win estimates from outside markets and our own provisional model — <strong>never crowd pick percentages.</strong></p>
 <div class="hero-actions"><a class="cta" href="picks-full/index.html">All 28 open CS2 picks — one per match →</a><a href="picks-full/flagged.html">Flagged for Review</a></div>
 </section>
+# Conflict resolved 2026-10-14 (arena/5545dbb8): both blocks kept — this session's
+# executive-summary section first, then the pre-existing #exec-summary note. Nothing removed.
+<section aria-label="Executive summary and picks for every match">
+<h2>Executive summary &amp; picks for every match</h2>
+<div class="grid">
+<a class="card primary" href="executive/index.html"><h3>Executive summary — start here<span class="tag new">mobile ready</span></h3><p>One page for a phone: how many Hotspawn CS2 fixtures are open right now, how many have a pick, what each pick rests on, and links to the full table.</p></a>
+<a class="card" href="executive/picks.html"><h3>Picks &amp; probabilities for every match</h3><p>One row per fixture — our pick, both teams' win probabilities, and the source link behind every number.</p></a>
+<a class="card" href="executive/lines.html"><h3>Outside betting lines</h3><p>Bookmaker moneylines with margin and de-vigged probabilities, each stamped with the minute it was read.</p></a>
+<a class="card" href="executive/own-lines.html"><h3>Our own lines for unpriced matches</h3><p>Fixtures no book covers get a line originated from the official Valve Regional Standings, with the arithmetic shown.</p></a>
+<a class="card" href="executive/flagged.html"><h3>Flagged for review</h3><p>Provisional bound-based picks, name ambiguities, source refusals and anything left blank rather than guessed.</p></a>
+<a class="card" href="executive/coverage.html"><h3>Coverage of the Hotspawn board</h3><p>Every fixture in the Hotspawn payload, including the stale rows the site still lists, and where its own counts disagree.</p></a>
+</div>
+</section>
 <div class="note" id="exec-summary" role="region" aria-label="Executive summary" style="margin-top:22px">
 <b>Executive summary — where to find the updated picks:</b>
 <a href="picks-full/index.html"><b>Full picks board: all 28 open CS2 matches</b></a> (Oct 14–16, UTC) — every match shows both teams' win probability, an explicit pick, and its basis.
@@ -43,7 +56,8 @@ Crowd pick percentages are never used. Subpages:
 <a href="picks-full/tournaments.html">Tournaments</a> · <a href="picks-full/market-lines.html">Market lines</a> ·
 <a href="picks-full/own-lines.html">Own lines</a> · <a href="picks-full/methodology.html">Method</a> ·
 <a href="picks-full/sources.html">Sources</a> · <a href="picks-full/flagged.html">Flagged for Review</a>.
-Mobile-friendly card layout; checked hourly by GitHub Actions (fail-closed). Snapshot 2026-10-14T02:48Z.
+Mobile-friendly card layout; checked hourly by GitHub Actions (fail-closed). Snapshot 2026-10-14T02:48Z.<br>
+<span class="mut">Independent source-verified copy (model-parity checks, researched LFO 10 rating so <code>1079624</code> carries a pick + probability, explicit market/model divergence flags): <a href="every/index.html">every/ all picks</a> · <a href="every/flagged.html">its flagged items</a>.</span>
 </div>
 <div id="freshness" class="note" role="status">Checking published snapshot… Coverage and freshness are unverified until loaded.</div>
 <section class="stats" aria-label="Published CS2 coverage"><div class="stat"><b id="cs-count">—</b><span>CS2 rows captured</span></div><div class="stat"><b id="open-count">—</b><span>Lock time still ahead</span></div><div class="stat"><b id="market-count">—</b><span>Primary market quotes</span></div><div class="stat"><b id="pick-count">—</b><span>Supported picks</span></div></section>
@@ -61,6 +75,7 @@ Mobile-friendly card layout; checked hourly by GitHub Actions (fail-closed). Sna
 <h2>Explore the current board</h2><div class="grid">
 <a class="card primary" href="picks-full/index.html"><h3>Full picks — every open CS2 match<span class="tag new">28/28 picks · hourly check</span></h3><p>Every open Pick'em fixture with both teams' win %, the pick, its basis (outside market line or our own VRS+HLTV research line), lock time and source links on every row. Tier / tournament / market / own-line subpages.</p></a>
 <a class="card" href="cs2/index.html"><h3>Line-analysis board (session <code>a174d77f</code>)</h3><p>Every open CS2 fixture, refreshed hourly in CI: the outside price where a reachable book publishes one (de-vigged two-way probability, overround and read time), our own re-calibrated Valve-rating line everywhere else, an explicit pick, and a link to the exact source line on every row. 28 open, 7 externally priced, 26 with our own line, 27 with a pick; anything unverifiable is blank, flagged and listed. Pages are published only when the board&#8217;s 17 invariants pass, two of which prove that no crowd percentage and no un-archived price is ever printed. Its 16-check verification log is on <a href="cs2/verification.html">the verification page</a>; machine-readable tables are <a href="cs2/data/analysis.csv">analysis.csv</a> and <a href="cs2/data/market_rows.csv">market_rows.csv</a>.</p></a>
+<a class="card" href="feeds/index.html"><h3>Secondary betting lines (session <code>a0bdf924</code>)</h3><p>Bookmaker odds relayed by bo3.gg and Polymarket match markets for the open CS2 matches Pinnacle does not price — de-vigged, matched to each Hotspawn fixture by team and kickoff, with the series format. Refreshed hourly in CI; a data source for the picks, with its own Flagged for Review.</p></a>
 <a class="card" href="slate/cs2.html"><h3>CS2 matches &amp; picks (working board)</h3><p>Both teams' market win estimates, a separate provisional model, and the explicit pick. All locked and stale fixtures retained.</p></a>
 <a class="card" href="slate/tournaments.html"><h3>By tournament</h3><p>Simple source-linked tables grouped by competition. Filter by team or tournament.</p></a>
 <a class="card" href="slate/lines.html"><h3>Outside betting lines</h3><p>Primary bookmaker quotes, odds, margin and read time. Secondary aggregator reports are labelled unverified.</p></a>

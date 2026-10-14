@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>Method · Hotspawn CS2 · independent lines</title>
+<meta name="description" content="Every CS2 fixture on the Hotspawn Pick'em board with our pick, the probability for each team, and a source link for every number.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <div class="topbar__inner">
+    <a class="brand" href="index.html"><span class="brand__mark">◎</span><span class="brand__text">Hotspawn CS2 · independent lines</span></a>
+    <div class="topbar__meta">
+      <strong>Snapshot is 0.0 h old</strong>
+      <span class="muted">2026-10-14T03:26Z (live)</span>
+    </div>
+  </div>
+  <nav class="nav" aria-label="Sections"><a class="nav__link" href="index.html">Summary</a><a class="nav__link" href="picks.html">All picks</a><a class="nav__link" href="lines.html">Betting lines</a><a class="nav__link" href="own-lines.html">Our lines</a><a class="nav__link" href="tournaments.html">Tournaments</a><a class="nav__link" href="coverage.html">Coverage</a><a class="nav__link" href="verification.html">Verification</a><a class="nav__link" href="sources.html">Sources</a><a class="nav__link nav__link--active" href="methodology.html">Method</a><a class="nav__link" href="flagged.html">Flagged</a></nav>
+</header>
+<main id="main" class="wrap">
+
+
+<section class="hero hero--tight">
+  <p class="eyebrow">Method</p>
+  <h1>Selection rules, and what they cannot do</h1>
+</section>
+<section class="prose">
+<h2>1. The slate</h2>
+<p>Hotspawn's <code>/cs2-pickems</code>, <code>/lobby</code> and <code>/thp-pickems</code> pages are read in
+full. The Angular render state (<code>&lt;script id="ng-state"&gt;</code>) carries every fixture the board
+knows about, including rows it no longer paints. We keep fixture id, teams, tournament, tier, offered
+points, stage and the exact UTC start/lock epochs. Crowd pick percentages and pick counts are dropped at
+ingest and never stored. Fixtures whose lock time is in the past are labelled <em>locked</em> and kept only
+for the record. Fixtures dated months ago are labelled stale, exactly as Hotspawn still lists them.</p>
+
+<h2>2. Outside prices (the preferred basis)</h2>
+<p>Whole-match moneylines only, read from public pages at the printed UTC minute. Pinnacle's public guest
+response is the primary basis because it is the book's own price feed; aggregator listings (EGamersWorld's
+bc.game prices) are a secondary basis and are labelled as such wherever used. Equal-pair placeholders
+(1.80/1.80) are treated as “no market posted” and rejected. De-vig is proportional:
+<code>p = (1/o) / Σ(1/o)</code>, and the overround is printed per row. A quote is only accepted when the
+team pair matches the fixture in either order <em>and</em> the kickoff agrees within 15 minutes.</p>
+
+<h2>3. Our own lines</h2>
+<p>Where no outside line exists, we originate one from the official Valve Regional Standings points of both
+teams: <code>p = 1/(1+10^((Rb−Ra)/−400))</code>, the relation Valve publish in
+<a href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/model/glicko.js" target="_blank" rel="noopener noreferrer">model/glicko.js</a>. This line is
+<strong>not calibrated</strong> in this project: a 90% favourite is not observed to win 90% of the time, so the
+rows carry a low-confidence label and the arithmetic is printed. Ranks are matched to Hotspawn's spelling by
+exact name, HLTV's spelling, a ≥4-of-5 roster match, or an evidence-linked rename — every match method is
+printed with its evidence link.</p>
+
+<h2>4. The fallback for low-tier fixtures no book prices</h2>
+<p>Some fixtures on Hotspawn are below the level any bookmaker prices (recent examples: CCT play-in rounds,
+Elisa BreakOut, Svenska CS-Ligan). For those:</p>
+<ul>
+  <li>If <strong>both</strong> teams are in the official standings, the line is originated as in §3.</li>
+  <li>If <strong>one</strong> team is listed and the other is absent from the entire official file, the absent
+  team is bounded by the lowest published value in that same file — its ceiling, not its measured value.
+  The favourite's probability from that bound is a conservative estimate and the row is labelled
+  <em>provisional</em> and flagged, every time.</li>
+  <li>If <strong>neither</strong> team is listed, or the standings file itself could not be read, the row shows
+  no pick and carries the flag for review. Nothing is filled in.</li>
+</ul>
+
+<h2>5. What this board does not claim</h2>
+<ul>
+  <li>It is not betting advice, and no number here is an offer you can take.</li>
+  <li>Hotspawn's crowd percentages are not evidence and are never used.</li>
+  <li>Coverage of outside prices is limited by which books publish CS2 at the time. When the total number of
+  priced fixtures is low, that is a coverage fact, not a modelling choice.</li>
+  <li>Ratings are from the newest official snapshot Valve publish (weekly). The file's own date is printed
+  everywhere it is used.</li>
+  <li>Where a source refused the read, the row shows the refusal. Automation bias is visible on
+  <a href="flagged.html">Flagged for review</a> and on <a href="verification.html">Verification</a>.</li>
+</ul>
+</section>
+
+</main>
+<footer class="foot">
+  <p><strong>Analysis only — not betting advice.</strong> Outside prices are public website reads at the
+  times printed on each row; they move. Our own lines are uncalibrated unless a row says otherwise.
+  Hotspawn supplies fixture identity, tier, points and UTC lock/start times only and is never used as a
+  probability input. Values that no source confirms stay blank and are listed on
+  <a href="flagged.html">Flagged for review</a>.</p>
+  <p class="muted">Built by the executive-board session from <a href="sources.html">these sources</a>.
+  Snapshot 2026-10-14T03:28:20Z · capture 2026-10-14T03:26:31Z ·
+  <a href="../index.html">all boards on this site</a></p>
+</footer>
+<script src="board.js" defer></script>
+</body>
+</html>

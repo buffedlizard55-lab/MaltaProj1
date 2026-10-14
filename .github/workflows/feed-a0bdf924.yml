@@ -1,0 +1,125 @@
+# MF-02 — automatic refresh of the secondary-market feed (session arena/a0bdf924).
+#
+# No credentials, no secrets, no manual input. Each run:
+#   1. offline unit tests (feeds/tests.py) — the logic must be sound before anything is fetched;
+#   2. feeds/collect.py — Hotspawn pick'em pages (fixture identity + lock epochs), Polymarket Gamma
+#      API series 10310 (CS2 match-winner markets), bo3.gg public API (series format + relayed
+#      bookmaker quote), reachability probes; trimmed raw responses archived under feeds/data/raw;
+#   3. feeds/join.py — strict team + kickoff matching, de-vig, flags;  4. feeds/build.py — pages;
+#   5. feeds/tests.py again — re-derivation from archived bytes, arithmetic, no crowd data, links;
+#   6. commit feeds/data + pages ONLY if every step passed (a failed step publishes nothing, so the
+#      last good build stays live); the push itself triggers the Pages build.
+# Commits carry [skip ci] and are made with GITHUB_TOKEN, so a refresh never re-triggers itself.
+name: Secondary-market feed (a0bdf924)
+
+on:
+  workflow_dispatch: {}
+  push:
+    branches: ["arena/a0bdf924-maltaproj1", "main"]
+    paths:
+      - "feeds/**.py"
+      - "feeds/aliases.json"
+      - "feeds/style.css"
+      - ".github/workflows/feed-a0bdf924.yml"
+  schedule:
+    - cron: "41 * * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: feed-a0bdf924-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  feed:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Offline unit tests (logic before data)
+        run: python3 feeds/tests.py Names Prices Matching
+
+      - name: Collect Hotspawn + Polymarket + bo3.gg (+ probes)
+        run: |
+          set -o pipefail
+          python3 -u feeds/collect.py 2>&1 | tee "$RUNNER_TEMP/feed-collect.log"
+
+      - name: Join fixtures to source quotes (strict identity + kickoff, de-vig, flags)
+        run: python3 -u feeds/join.py
+
+      - name: Build pages
+        run: python3 -u feeds/build.py
+
+      - name: Publication invariants (re-derivation, arithmetic, no crowd data, links)
+        run: python3 feeds/tests.py
+
+      - name: Commit refreshed feed back to this branch
+        # Generated files are a snapshot, not something to merge: a rebase of one run's feeds/data onto
+        # another run's feeds/data always conflicts (run 38504490705 failed exactly that way). So reset
+        # to the branch tip, skip if the tip already carries a capture at least as new as ours, otherwise
+        # overwrite the generated files and push. Code on the tip is never touched.
+        run: |
+          set -euo pipefail
+          BR="${GITHUB_REF_NAME}"
+          OUT="$RUNNER_TEMP/feed-out"
+          rm -rf "$OUT"; mkdir -p "$OUT"
+          cp -r feeds/data "$OUT/data"
+          cp feeds/index.html feeds/flagged.html feeds/method.html "$OUT/"
+          OURS=$(python3 -c "import json;print(json.load(open('$OUT/data/capture.json'))['generated_utc'])")
+          git config user.name "feed-a0bdf924[bot]"
+          git config user.email "feed-a0bdf924@users.noreply.github.com"
+          for i in 1 2 3 4 5; do
+            git fetch -q origin "$BR"
+            git reset -q --hard "origin/$BR"
+            TIP=$(python3 -c "import json;print(json.load(open('feeds/data/capture.json')).get('generated_utc',''))" 2>/dev/null || true)
+            if [ -n "$TIP" ] && [ ! "$TIP" \< "$OURS" ]; then
+              echo "branch tip already publishes capture $TIP (ours: $OURS) - nothing to do"
+              exit 0
+            fi
+            rm -rf feeds/data
+            cp -r "$OUT/data" feeds/data
+            cp "$OUT"/index.html "$OUT"/flagged.html "$OUT"/method.html feeds/
+            git add -A feeds/data feeds/index.html feeds/flagged.html feeds/method.html
+            if git diff --cached --quiet; then
+              echo "no change to publish"
+              exit 0
+            fi
+            git commit -q -m "feeds(a0bdf924): secondary-market refresh [skip ci] [run ${GITHUB_RUN_ID}]"
+            if git push -q origin "HEAD:$BR"; then
+              echo "pushed capture $OURS on attempt $i"
+              exit 0
+            fi
+            sleep $((i * 7))
+          done
+          echo "could not push after 5 attempts"
+          exit 1
+
+      # No explicit Pages build request: the push above already triggers "pages build and deployment".
+      # Evidence (2026-10-14): commit dd6f075 pushed by this workflow got TWO Pages runs (38504189309
+      # cancelled, 38504189993 success) because an explicit POST /pages/builds was also sent; the
+      # cancelled twin left an "errored" record in the legacy Pages builds API and flipped the repo's
+      # Pages status to "errored" although deployment 7055721742 succeeded. One trigger, one build.
+
+      - name: Upload the collection log and capture metadata
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: feed-a0bdf924-${{ github.run_id }}
+          path: |
+            ${{ runner.temp }}/feed-collect.log
+            feeds/data/capture.json
+          retention-days: 14
+          if-no-files-found: ignore

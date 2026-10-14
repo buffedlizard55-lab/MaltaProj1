@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Flagged for review — CS2 Picks</title>
+<meta name="description" content="Irregularities, unverified items and data-quality notes with source links.">
+<link rel="stylesheet" href="style.css">
+</head><body>
+<header class="top"><div class="wrap">
+<a class="brand" href="index.html">CS2 Picks</a>
+<nav class="chips">
+<a href="index.html">All picks</a>
+<a href="methodology.html">Methodology</a>
+<a href="flagged.html" class="on">Flagged</a>
+<a href="sources.html">Sources</a>
+<a href="../index.html">Site home</a>
+</nav>
+</div></header>
+<div class="wrap">
+
+<h1>Flagged for review</h1>
+<p class="lead">Irregularities and unverified items. None of these blocks a pick; each keeps its source
+links so you can check it yourself. Generated 2026-10-14T03:08:10Z.</p>
+<h2>Row-level flags (8)</h2>
+<table class="resp"><thead><tr><th>Code</th><th>Subject</th><th>Detail</th><th>Source</th></tr></thead>
+<tbody><tr><td><code>E-02-DIVERGENCE</code></td>
+<td>HOTU vs Fnatic<div class="mut">1079439</div></td>
+<td>market favourite Fnatic vs model favourite HOTU</td>
+<td><a href="https://www.pinnacle.com/en/esports/games/cs2/matchups/" target="_blank" rel="noopener">source</a></td></tr><tr><td><code>FL-EXT-PLACEHOLDER</code></td>
+<td>Banda chuya vs 6666<div class="mut">1081112</div></td>
+<td>aggregator page showed 1.80/1.80 placeholder prices — rejected, no market line used</td>
+<td><a href="https://egamersworld.com/counterstrike/match/1sGIL2gAYu/banda-chuya-vs-6666-JdPgKgp5y" target="_blank" rel="noopener">source</a></td></tr><tr><td><code>E-02-DIVERGENCE</code></td>
+<td>G2 Ares vs The Last Resort<div class="mut">1079623</div></td>
+<td>market favourite G2 Ares vs model favourite The Last Resort</td>
+<td><a href="https://egamersworld.com/counterstrike/match/_rW8GEyWK/g2-ares-vs-the-last-resort-7GWb9EDd9L" target="_blank" rel="noopener">source</a></td></tr><tr><td><code>FL-EXT-PLACEHOLDER</code></td>
+<td>Ryvex vs PCIFIC<div class="mut">1081113</div></td>
+<td>aggregator page showed 1.80/1.80 placeholder prices — rejected, no market line used</td>
+<td><a href="https://egamersworld.com/counterstrike/match/1sGIL2gAYu/pcific-espor-vs-ryvex-WPw_DghZr3" target="_blank" rel="noopener">source</a></td></tr><tr><td><code>FL-EXT-PLACEHOLDER</code></td>
+<td>FORZE Reload vs LFO 10<div class="mut">1079624</div></td>
+<td>aggregator page showed 1.80/1.80 placeholder prices — rejected, no market line used</td>
+<td><a href="https://egamersworld.com/counterstrike/match/_rW8GEyWK/forze-reload-vs-Gr_YhyKi3" target="_blank" rel="noopener">source</a></td></tr><tr><td><code>E-02-DIVERGENCE</code></td>
+<td>WROTBERRY vs EAC<div class="mut">1080279</div></td>
+<td>market favourite EAC vs model favourite WROTBERRY</td>
+<td><a href="https://egamersworld.com/counterstrike/match/4yn491uUVl/wbt-vs-ea-copenhagen-hSC7a2mtP" target="_blank" rel="noopener">source</a></td></tr><tr><td><code>E-02-DIVERGENCE</code></td>
+<td>Voca vs Phantom<div class="mut">1080285</div></td>
+<td>market favourite Phantom vs model favourite Voca</td>
+<td><a href="https://egamersworld.com/counterstrike/match/4yn491uUVl/voca-vs-phantom-esports-zby52fbAja" target="_blank" rel="noopener">source</a></td></tr><tr><td><code>FL-EXT-PLACEHOLDER</code></td>
+<td>mellren vs Privateer<div class="mut">1081120</div></td>
+<td>aggregator page showed 1.80/1.80 placeholder prices — rejected, no market line used</td>
+<td><a href="https://egamersworld.com/counterstrike/match/1sGIL2gAYu/mellren-vs-privateer-gaming-ASh_MyDBS" target="_blank" rel="noopener">source</a></td></tr></tbody></table>
+
+<h2>Carried irregularities (from prior sessions, still open for review)</h2>
+<ul class="plain">
+<li><strong>IRREG-02</strong> — Valve's 2026-10-05 standings file contains duplicate team names
+(ex-RUSTEC, 6666, Banda Chuya and others). <code>slate/collect.py</code> keeps the last (often
+partial-roster) row; this board uses the roster-verified rows from
+<a href="../reviews/8944bb84-verification.md">reviews/8944bb84-verification.md</a>
+with line-anchored Valve links. Slate own-lines for those fixtures can read differently until the
+collector is fixed. <a href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md">Valve file</a></li>
+<li><strong>FL-EXT-PLACEHOLDER</strong> — EGamersWorld pages for fixtures 1081112, 1081113, 1079624,
+1081120 showed 1.80/1.80 placeholder prices; rejected as market evidence
+(source: <a href="https://egamersworld.com/counterstrike/matches">egamersworld.com</a>).</li>
+<li><strong>E-01 identity note</strong> — LFO 10&rsquo;s 3-man core (dottie/flaw/Sapec) appears as
+&ldquo;Entropy&rdquo; #156 (813 pts) in Valve&rsquo;s 2026-10-05 file and as &ldquo;LFO 10&rdquo;
+(771 Valve points, #168) on HLTV&rsquo;s Valve ranking of 2026-10-10. The match-page badge shows live
+VRS #169. All three observations are recorded; the dated 2026-10-10 value is used.
+<a href="https://www.hltv.org/valve-ranking/teams/2026/october/10">ranking page</a> ·
+<a href="https://www.hltv.org/matches/2399301/forze-reload-vs-lfo-10-cct-2026-europe-series-11">match 2399301</a></li>
+<li><strong>Alias inputs</strong> — WROTBERRY→WBT, RoundsGG→ROUNDS, EAC→EA Copenhagen, Envy→3DMAX are
+evidence-linked but flagged for review (see <code>slate/aliases.json</code> evidence URLs).</li>
+</ul>
+
+
+<footer>
+<p>Analysis only — not betting advice. Hotspawn supplies fixture identity and UTC times only;
+its crowd pick percentages are never used as probability inputs. Unknown values stay blank and flagged.</p>
+<p>Generated from committed evidence by <code>scripts/75fd29ee_build.py</code> ·
+<a href="data/picks.csv">picks.csv</a> · <a href="data/coverage.json">coverage.json</a></p>
+</footer>
+</div>
+</body></html>

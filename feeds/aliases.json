@@ -1,0 +1,21 @@
+{
+  "_doc": "Evidence-linked team-name equivalences used ONLY to attach an external quote to a Hotspawn fixture. Each group lists names that refer to the same roster, with an official page that proves it. Names that differ only by case, accents, punctuation or a leading 'Team' / trailing 'Esports|Gaming|Team|Club|Clan' need no entry (feeds/match.py norm_name). Session arena/a0bdf924.",
+  "groups": [
+    {
+      "names": ["WROTBERRY", "WBT"],
+      "evidence_url": "https://www.hltv.org/matches/2399418/wbt-vs-eac-elisa-breakout-series-2",
+      "evidence_2": "https://www.hltv.org/team/13683/wbt",
+      "why": "HLTV match 2399418: 'WBT vs. EAC', Elisa BreakOut Series 2, Group A, Best of 1 (LAN), 04:00 15 Oct in the page's UTC-4 rendering = 2026-10-15T08:00:00Z, exactly Hotspawn's WROTBERRY v EAC (#1080279). Group A is WBT/EAC/ENCE/BOJONG on HLTV, bo3.gg (team id 22734 'WBT') and Polymarket (PandaScore 1743516/1743518/1743520), and WROTBERRY/EAC/ENCE/BOJONG on Hotspawn, at the same three kickoffs (Oct 15 08:00, 12:00, 16:00 UTC).",
+      "confirmed_by": "arena/a0bdf924 (re-checked independently; the same link was first recorded by arena/a174d77f in cs2/aliases.json)",
+      "checked_utc": "2026-10-14T02:52Z (minute precision)"
+    },
+    {
+      "names": ["RoundsGG", "ROUNDS"],
+      "evidence_url": "https://www.hltv.org/matches/2399427/phantom-vs-rounds-elisa-breakout-series-2",
+      "evidence_2": "https://bo3.gg/matches/phantom-esports-vs-roundsgg-16-10-2026",
+      "why": "HLTV match 2399427: 'Phantom vs. ROUNDS', Elisa BreakOut Series 2, Group B, Best of 1 (LAN), 10:00 16 Oct in the page's UTC-4 rendering = 2026-10-16T14:00:00Z, exactly Hotspawn's Phantom v RoundsGG (#1080288). bo3.gg displays the team as 'ROUNDS' while its own match slug keeps 'roundsgg'.",
+      "confirmed_by": "arena/a0bdf924 (re-checked independently; the same link was first recorded by arena/a174d77f in cs2/aliases.json)",
+      "checked_utc": "2026-10-14T02:53Z (minute precision)"
+    }
+  ]
+}

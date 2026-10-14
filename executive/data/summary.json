@@ -1,0 +1,62 @@
+{
+ "meta": {
+  "generated_utc": "2026-10-14T03:28:20Z",
+  "capture_utc": "2026-10-14T03:26:31Z",
+  "snapshot_age_text": "Snapshot is 0.0 h old",
+  "hotspawn_read_text": "2026-10-14T03:26Z (live)",
+  "market_read_text": "live read 2026-10-14T03:26 (8 CS2 quotes)",
+  "vrs_read_text": "official standings 2026-10-05",
+  "stale": false
+ },
+ "coverage": {
+  "total_fixtures": 88,
+  "open_fixtures": 28,
+  "locked_fixtures": 60,
+  "stale_fixtures": 59,
+  "open_with_pick": 28,
+  "open_market_basis": 24,
+  "open_model_basis": 4,
+  "open_provisional": 1,
+  "open_no_pick": 0,
+  "flagged_rows": 88,
+  "unique_teams": 110,
+  "teams_resolved_official": 104
+ },
+ "checks": [
+  {
+   "name": "Hotspawn payload read",
+   "passed": true,
+   "detail": "88 CS2 fixtures from 3 pages, mode live."
+  },
+  {
+   "name": "Official standings read",
+   "passed": true,
+   "detail": "380 teams, standings 2026-10-05, mode live."
+  },
+  {
+   "name": "Outside prices read",
+   "passed": true,
+   "detail": "Pinnacle 8 quotes (live); secondary 28 (repo_capture+polymarket)."
+  },
+  {
+   "name": "Pick coverage on open fixtures",
+   "passed": true,
+   "detail": "28/28 open fixtures have a pick; 0 flagged without one."
+  },
+  {
+   "name": "No Hotspawn crowd value stored",
+   "passed": true,
+   "detail": "No stored fixture object contains a crowd pick percentage, pick count or crowd field."
+  },
+  {
+   "name": "Every analysed row has a source link",
+   "passed": true,
+   "detail": "Rows without a basis carry a flag; every published number names its input."
+  },
+  {
+   "name": "Snapshot age",
+   "passed": true,
+   "detail": "Oldest capture behind this board: 2026-10-14T03:26:31Z (Snapshot is 0.0 h old)."
+  }
+ ]
+}
