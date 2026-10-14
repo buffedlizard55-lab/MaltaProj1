@@ -336,10 +336,15 @@ def build() -> dict:
 
     vrs_idx, vrs_ambiguous = build_rating_index(vrs)
     flags: list[tuple[str, str, str, str]] = []
+    needed = {norm(t) for f in hs.get("fixtures", [])
+              for t in (f.get("participants0_name"), f.get("participants1_name"))}
     for key in vrs_ambiguous:
+        if key not in needed:
+            continue          # unused duplicate: noted in the review, not on the board
         flags.append(("FL-RATING-AMBIGUOUS", "",
                       f'"{key}" appears more than once with different points in the official '
-                      f'Valve file, so no rating is published for it.', vrs.get("source_url", "")))
+                      f'Valve file, so the plain name lookup cannot be used; the row resolves '
+                      f'it against HLTV and cites that page.', vrs.get("source_url", "")))
 
     fixtures = []
     for f in hs.get("fixtures", []):
@@ -381,7 +386,7 @@ def build() -> dict:
         ra, rb = fx["rating_a"]["points"], fx["rating_b"]["points"]
         if ra is None or rb is None:
             continue
-        pairs.append((float(ra), float(rb), q["p_a"]))
+        pairs.append((float(ra), float(rb), q["p_a"], fx.get("best_of")))
     fit = calibrate_scale(pairs)
 
     # --- originate our own line for every fixture whose two teams are officially rated

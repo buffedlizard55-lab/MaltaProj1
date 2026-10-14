@@ -47,8 +47,8 @@ def t_maths() -> None:
               - 1.0) < 1e-12)
     check("equal ratings -> 50%",
           abs(map_prob_from_rating(1000, 1000, 400) - 0.5) < 1e-12)
-    fit = calibrate_scale([(1600, 1400, 0.7), (1500, 1450, 0.58), (1300, 1500, 0.22),
-                           (1400, 1400, 0.5), (1700, 1300, 0.85)])
+    fit = calibrate_scale([(1600, 1400, 0.7, 3), (1500, 1450, 0.58, 1), (1300, 1500, 0.22, 3),
+                           (1400, 1400, 0.5, 1), (1700, 1300, 0.85, 3)])
     check("calibration runs on 5 pairs", fit["ok"] and fit["n"] == 5, json.dumps(fit))
     check("calibration rmse sane", fit["ok"] and fit["rmse_pp"] < 15, json.dumps(fit))
     check("norm strips punctuation",

@@ -6,22 +6,20 @@
   "locked": 1,
   "stale": 59,
   "picks": 28,
-  "market": 17,
-  "model": 11,
+  "market": 0,
+  "model": 28,
   "blank": 0
  },
  "fit": {
-  "ok": true,
-  "n": 17,
-  "scale": 1068.2,
-  "rmse_pp": 10.11,
-  "max_abs_error_pp": 20.46,
-  "note": "least-squares fit of our logistic rating scale against the de-vigged outside market prices read in this run (in-sample)"
+  "ok": false,
+  "n": 0,
+  "scale": 400.0,
+  "rmse_pp": null,
+  "max_abs_error_pp": null,
+  "note": "only 0 market-priced fixture(s) with two officially rated teams, so the scale could not be fitted this run; the board falls back to the default 400-point logistic scale and labels every model line as uncalibrated"
  },
  "flag_counts": {
-  "FL-FORMAT-UNKNOWN": 5,
-  "FL-MODEL-MARKET-SPLIT": 3,
-  "FL-PREDICTION-MARKET": 14,
-  "FL-RATING-AMBIGUOUS": 31
+  "FL-FORMAT-UNKNOWN": 28,
+  "FL-RATING-AMBIGUOUS": 13
  }
 }

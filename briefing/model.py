@@ -223,14 +223,18 @@ def map_prob_from_rating(points_a: float, points_b: float, scale: float) -> floa
     return 1.0 / (1.0 + 10.0 ** (-(float(points_a) - float(points_b)) / float(scale)))
 
 
-def calibrate_scale(pairs: list[tuple[float, float, float]],
-                    lo: float = 50.0, hi: float = 2000.0) -> dict:
+def calibrate_scale(pairs: list, lo: float = 50.0, hi: float = 2000.0) -> dict:
     """Fit `scale` so our rating line tracks observed market-implied probabilities.
 
-    pairs: (points_a, points_b, market_implied_p_a) for every fixture where BOTH an outside
-    price and official ratings for both teams exist.  Least squares on a log-spaced grid, then
-    a golden-section refine.  Returns the fit diagnostics so they can be published; an empty
-    or one-point fit is reported as uncalibrated instead of silently defaulting.
+    pairs: (points_a, points_b, market_implied_p_a, best_of) for every fixture where BOTH an
+    outside price and official ratings for both teams exist.  The comparison is made on the
+    same quantity the market prices: our map probability is carried through the series
+    transform for the sourced best-of *before* it is scored against the market price, so a
+    BO3 price is never compared against a single-map probability.
+
+    Least squares on a log-spaced grid, then a golden-section refine.  Returns the fit
+    diagnostics so they can be published; an empty or one-point fit is reported as
+    uncalibrated instead of silently defaulting.
     """
     if len(pairs) < 3:
         # No fit is possible, so the DEFAULT_SCALE below is used and the board says so.
@@ -242,7 +246,10 @@ def calibrate_scale(pairs: list[tuple[float, float, float]],
                         f"labels every model line as uncalibrated"}
 
     def sse(k: float) -> float:
-        return sum((map_prob_from_rating(a, b, k) - p) ** 2 for a, b, p in pairs)
+        total = 0.0
+        for a, b, p, bo in pairs:
+            total += (series_prob(map_prob_from_rating(a, b, k), bo) - p) ** 2
+        return total
 
     best_k, best_v = None, float("inf")
     steps = 240
@@ -261,7 +268,7 @@ def calibrate_scale(pairs: list[tuple[float, float, float]],
         else:
             a = c
     k = (a + b) / 2.0
-    resid = [map_prob_from_rating(x, y, k) - p for x, y, p in pairs]
+    resid = [series_prob(map_prob_from_rating(x, y, k), bo) - p for x, y, p, bo in pairs]
     rmse = math.sqrt(sum(r * r for r in resid) / len(resid))
     worst = max(abs(r) for r in resid)
     return {"ok": True, "n": len(pairs), "scale": round(k, 1), "rmse_pp": round(rmse * 100, 2),
