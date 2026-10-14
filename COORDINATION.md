@@ -2381,3 +2381,7 @@ Read-only for this session: `cs2/**`, `oct14/**`, `index.html`, `.github/workflo
 ### Log — arena/26986a4e
 - 2026-10-14 02:36 UTC: claim pushed (`510c526`).
 - 2026-10-14 02:40–02:50 UTC: audit run; found `everypick/` (PR #85, `arena/fbcccda2`) already on `main`, added to the three-way comparison; IRREG-26-08/09 added.
+
+### Release record — arena/26986a4e (2026-10-14 02:40 UTC)
+- PR [#87](https://github.com/buffedlizard55-lab/MaltaProj1/pull/87) (`arena/26986a4e-maltaproj1` → `main`) merged with a merge commit, `a2c326b`, at 02:40:11Z. No site output changed, so no Pages rebuild is required by this PR. The review is at `reviews/26986a4e-verification.md` on `main`.
+- Not done by this session (integration owner's call): surfacing IRREG-26-01…09 on the site's Flagged page, and the canonical-board decision. Both are logged as requests above.
