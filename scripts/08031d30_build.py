@@ -279,8 +279,9 @@ def main():
     with open(os.path.join(DATA, "hotspawn_open_cs2.csv"), encoding="utf-8") as f:
         for h in csv.DictReader(f):
             if h["on_live_hotspawn_list"] != "yes":
+                note = h["note"].replace("EXCLUDED. ", "", 1)
                 flagged.append((h["fixture_id"], f"{h['team_a']} v {h['team_b']}",
-                                "EXCLUDED from the open list: " + h["note"], h["hotspawn_lobby_url"]))
+                                "EXCLUDED from the open list. " + note, h["hotspawn_lobby_url"]))
     for r in rows:
         for fl in r["flags"]:
             flagged.append((r["h"]["fixture_id"], f"{r['h']['team_a']} v {r['h']['team_b']}", fl,
