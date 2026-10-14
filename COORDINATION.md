@@ -1943,3 +1943,11 @@ Branch: `arena/08031d30-maltaproj1` (Arena fixes this session to that branch; no
 - ~02:00 UTC: outputs built; 15/15 tests pass; local link check on `open-slate/` clean.
 
 - H-03 integration conflict: concurrent PR #71 added another session board during work. The rebase stopped on COORDINATION.md; aborted that rebase without losing commits, merged origin/main and preserved both session sections in full. Added the requested open-slate/ links only in the legacy research section; other owner files remain unchanged.
+- Additional strict audit: CS2 rating names can collide with other esports teams (e.g. shared organisation
+  names). Rating calculation is now CS2-only; other-title inventory remains complete but no CS2 rating is reused
+  as a LoL forecast. Missing timestamps no longer default to "open". Added regression checks for both.
+- Push race with this session's own successful refresh bot was reconciled by pulling its commit, retaining the
+  captured files and rebasing only local work. Main PR #71 coordination append also preserved in full; used
+  merge-preserving rebase to avoid flattening that concurrent history. No other session's code/data was modified.
+- Browser gates now exercise 390px/1280px layout, filtering, real snapshot loading and failed-fetch state.
+  Nested anchors inherited from legacy landing cards were found and fixed while preserving every destination.

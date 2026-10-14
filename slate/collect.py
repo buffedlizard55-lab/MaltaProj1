@@ -211,6 +211,8 @@ def sport_of(fixture: dict) -> str:
 
 def live_status(fixture: dict, now: datetime) -> str:
     lock, start = parse_iso(fixture.get("lock_utc")), parse_iso(fixture.get("scheduled_start_utc"))
+    if not lock or not start:
+        return "unverified schedule (not pickable)"
     if start and start < now - timedelta(hours=36):
         return "stale listing (start in the past)"
     if start and start < now:
@@ -840,8 +842,8 @@ def main() -> int:
         })
 
     # ------------------------------------------------------------------ team ratings (S-03)
-    open_teams = sorted({t for fx in candidates for t in (fx.get("team_a"), fx.get("team_b")) if t})
-    all_teams = sorted({t for fx in fixtures_raw for t in (fx.get("team_a"), fx.get("team_b")) if t})
+    open_teams = sorted({t for fx in candidates if fx["sport"] == "cs2" for t in (fx.get("team_a"), fx.get("team_b")) if t})
+    all_teams = sorted({t for fx in fixtures_raw if fx["sport"] == "cs2" for t in (fx.get("team_a"), fx.get("team_b")) if t})
     ratings = []
     for name in all_teams:
         row = resolve_team(name, hltv, valve, aliases)
@@ -897,8 +899,8 @@ def main() -> int:
     def own_line(fx: dict) -> dict:
         a, b = rating_by_team.get(fx.get("team_a")) or {}, rating_by_team.get(fx.get("team_b")) or {}
         # Roster-based and unconfirmed aliases are not silently used as official inputs.
-        a = a if "alias" not in (a.get("method") or "") else {}
-        b = b if "alias" not in (b.get("method") or "") else {}
+        a = a if fx["sport"] == "cs2" and "alias" not in (a.get("method") or "") else {}
+        b = b if fx["sport"] == "cs2" and "alias" not in (b.get("method") or "") else {}
         best_of = fx.get("best_of_resolved") if isinstance(fx.get("best_of_resolved"), int) else None
         out = {"fixture_id": fx["match_id"], "best_of": best_of,
                "best_of_source": fx.get("best_of_source"),

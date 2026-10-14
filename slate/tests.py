@@ -112,6 +112,15 @@ class DataInvariants(unittest.TestCase):
 
 
 class StrictGuards(unittest.TestCase):
+    def test_no_rating_leakage_between_sports(self):
+        for row in DataInvariants().rows():
+            if row['sport'] != 'cs2':
+                for column in ('own_p_a_pct', 'own_series_p_a_pct', 'market_p_a_pct', 'pick'):
+                    self.assertFalse(row.get(column), (row['fixture_id'], column))
+
+    def test_unknown_schedule_not_open(self):
+        self.assertNotEqual(collect.live_status({}, datetime.now(timezone.utc)), 'open')
+
     def test_exact_orientation(self):
         self.assertIs(guards.aligned_pair('NAVI', 'Vitality', 'Vitality', 'NAVI', collect.norm), True)
         self.assertIsNone(guards.aligned_pair('NAVI', 'Vitality', 'NAVI Junior', 'Vitality', collect.norm))
