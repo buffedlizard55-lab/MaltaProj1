@@ -3184,3 +3184,19 @@ console builder already reads both files, so no published number depends on it.
 **Deliverable / integration:** PR **https://github.com/buffedlizard55-lab/MaltaProj1/pull/112** (branch `arena/1b6ae823-maltaproj1`, base `main`) — merged without waiting for review per the protocol; the merge commit and the Pages deployment check are recorded in the commit immediately after this one. Flagged items do not block it and are published at `executive/flagged.html`.
 
 **Open gaps handed to the next session (do not "fix" by guessing):** `1079624` FORZE Reload v LFO 10 has no accepted outside price (LFO 10 absent from every ranking → bound); 4 direction conflicts; 59 stale June-dated fixtures Hotspawn never closed; 3 open rows with no stated series length; `FL-RATINGS-WEEK-OLD` is unavoidable while the newest global standings file is `standings_global_2026_10_05.md`; HLTV `/matches/<id>` 403s and Pinnacle's per-match pages 500 from non-browser clients, so results-based research stays dead; `gh workflow run` returns 403 for the session token, and this board's workflow is triggered only on `main`/`arena/5545dbb8-maltaproj1`, so a branch run of the live path is not possible from here.
+
+---
+
+## Session arena/57dbfba4 — gap-resolution for non-featured matches + mobile executive summary (2026-10-14)
+
+| ID | Task | Status | Owner | Exclusive file scope |
+|----|------|--------|-------|----------------------|
+| G-01 | Claim (this section) | done | arena/57dbfba4 | `COORDINATION.md` (append-only) |
+| G-02 | Research ladder for matches the featured/market route cannot resolve (HLTV first, then esports books / betting lines: Pinnacle, Thunderpick via bo3.gg, EGamersWorld/bc.game, Polymarket; then own VRS/HLTV line; then flagged research) — evidence recorded per match, no invented odds | in progress | arena/57dbfba4 | `gap-resolution/data/unresolved.csv`, `reviews/57dbfba4-verification.md` |
+| G-03 | Mobile-first executive summary + separate Unresolved Picks section: `gap-resolution/index.html`, `gap-resolution/unresolved.html`, `gap-resolution/flagged.html`, `gap-resolution/methodology.html`, `gap-resolution/style.css` — one-tap in-site links to the updated picks list (`console/`), per-row source links | in progress | arena/57dbfba4 | `gap-resolution/**` |
+| G-04 | Reproducible generator + tests + 4-hourly fail-closed refresh workflow | unclaimed | arena/57dbfba4 | `scripts/57dbfba4_build.py`, `tests/test_57dbfba4.py`, `.github/workflows/gap-resolution-57dbfba4.yml` |
+| G-05 | Root landing: one additive executive-summary link to `gap-resolution/` (no existing link removed) | unclaimed | arena/57dbfba4 | `index.html` (additive only), `README.md` (pointer only) |
+| G-06 | Release: rebase, PR to main, merge without waiting, confirm Pages | unclaimed until G-02..G-05 done | arena/57dbfba4 | `COORDINATION.md` (this section) |
+
+- Read-only inputs (other sessions): `console/**`, `every/**`, `picks-full/**`, `executive/**`, `exec/**`, `data/**`, `cs2/**`, `feeds/**` — joined, never edited.
+- Rule restated: Hotspawn supplies fixture identity/times only, never a probability. Unconfirmable values stay blank and flagged.
