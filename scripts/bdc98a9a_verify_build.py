@@ -17,6 +17,11 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+OPEN_BOARDS = [  # files that list the fixtures whose lock time is still ahead
+    (ROOT / "data" / "fbcccda2" / "every_pick.csv", "fixture_id"),
+    (ROOT / "every" / "data" / "picks.csv", "fixture_id"),
+    (ROOT / "data" / "63ee81ba" / "picks.csv", "match_id"),
+]
 VER = ROOT / "reread"
 DATA = VER / "data"
 
@@ -135,6 +140,27 @@ def claims_table(rows: list[dict]) -> str:
             "</tr></thead><tbody>" + "".join(body) + "</tbody></table>")
 
 
+def open_fixtures() -> dict[str, str]:
+    """fixture_id -> lock time, for every fixture a picks board still lists as open."""
+    import csv as _csv  # local import keeps the module import cheap for tests
+    order: dict[str, str] = {}
+    for path, id_col in OPEN_BOARDS:
+        if not path.exists():
+            continue
+        with open(path, newline="", encoding="utf-8", errors="replace") as fh:
+            for row in _csv.DictReader(fh):
+                fid = (row.get(id_col) or "").strip()
+                if fid and fid not in order:
+                    order[fid] = row.get("lock_utc", "")
+    return order
+
+
+def fixture_order_key(fid: str, open_map: dict[str, str]) -> tuple:
+    if fid in open_map:
+        return (0, open_map[fid] or "9999", fid)
+    return (1, "", fid)
+
+
 def fixture_sections(rows: list[dict]) -> str:
     order: list[tuple[str, str, str]] = []
     grouped: dict[tuple[str, str], list[dict]] = {}
@@ -144,6 +170,8 @@ def fixture_sections(rows: list[dict]) -> str:
             grouped[key] = []
             order.append((r["fixture_id"], r["team_a"], r["team_b"]))
         grouped[key].append(r)
+    open_map = open_fixtures()
+    order.sort(key=lambda triple: fixture_order_key(triple[0], open_map))
     out = []
     for fid, a, b in order:
         key = (fid, a + (" / " + b if b else ""))
@@ -152,6 +180,8 @@ def fixture_sections(rows: list[dict]) -> str:
         for r in rows_here:
             counts[r["verdict"]] = counts.get(r["verdict"], 0) + 1
         title = f"#{esc(fid)} {esc(a)}" + (f" vs {esc(b)}" if b else "")
+        if fid in open_map:
+            title += ' <span class="chip ok">open</span>' 
         meta = " · ".join(f"{n} {v}" for v, n in sorted(counts.items()))
         out.append(f"<details><summary>{title} <span class=\"meta\">{esc(meta)}</span></summary>"
                    + claims_table(rows_here) + "</details>")

@@ -195,6 +195,14 @@ class RenderTests(unittest.TestCase):
         sections = build.fixture_sections([row])
         self.assertIn("#1 Enjoy vs B8 Academy", sections)
 
+    def test_open_fixtures_sort_before_locked_ones_on_the_page(self):
+        open_map = {"111": "2026-10-14T08:00:00Z", "222": "2026-10-14T09:00:00Z"}
+        keyed = sorted([("999", "open_map"), ("222", ""), ("111", ""), ("555", "")],
+                       key=lambda t: build.fixture_order_key(t[0], open_map))
+        self.assertEqual([fid for fid, _ in keyed], ["111", "222", "555", "999"])
+        self.assertTrue(build.fixture_order_key("111", open_map)[0] <
+                        build.fixture_order_key("555", open_map)[0])
+
     def test_published_page_rows_all_carry_a_link(self):
         path = ROOT / "reread" / "data" / "source_check.csv"
         if not path.exists():

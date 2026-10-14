@@ -2879,3 +2879,31 @@ session's own branch left), so this session made **one additive change**: a sing
 executive-summary grid. No existing card, link, number or line of `index.html` was changed
 (verified by diff), and the repository-wide link/DOM audit reports 186 pages / 0 link errors after it.
 
+---
+
+## Session `arena/bdc98a9a` — completion record (R-01..R-06), 2026-10-14 ~04:00 UTC
+
+| ID | Status | Result | Files |
+|----|--------|--------|-------|
+| R-01 | **done** | Claim written, committed and pushed before any work. Two scope yields were made after overlaps were detected, both recorded here: `exec/**` (yielded to `arena/3b5e3fea`, whose claim predates this session's and whose board is merged) and `verify/**` (yielded to `arena/4b9c40b0` — a collision this session caught in the same commit it created the files, restored byte-for-byte from `main` and moved its own work out of the path). `reread/**` is the only directory this session created. | `COORDINATION.md` |
+| R-02 | **done** | `reread/collect.py`: extracts the cited URL **and the value printed beside it** from four merged boards' own data files (`data/fbcccda2/every_pick.csv`, `data/63ee81ba/picks.csv`, `cs2/data/analysis.csv`, `every/data/picks.csv`), re-opens every URL live and records `match` / `mismatch` / `refused` / `dead` / `not-checkable` / `placeholder` with the observed value, HTTP status and a SHA-256 per body. It never edits another board's data and never fills a value in. | `reread/collect.py`, `reread/data/**` |
+| R-03 | **done** | Mobile-first report `reread/index.html` (open fixtures first with an `open` chip, one collapsible section per fixture, every cited value linked), `reread/flagged.html` (Flagged for Review) and `reread/method.html` (policy + reproduce). | `reread/*.html`, `reread/style.css`, `scripts/bdc98a9a_verify_build.py` |
+| R-04 | **done** | 18 tests green (`tests/test_bdc98a9a_verify.py`); hourly CI `.github/workflows/reread-bdc98a9a.yml` (`:37`, plus a run whenever a covered board's data or the verifier changes); validations run on every branch, generated files are committed on `main` and on this branch; a raise inside the collector is published as `reread/data/error.json` **before** the job turns red (that path was exercised for real: a naive/aware datetime bug on the reuse path was caught by the run, diagnosed from the published traceback and fixed). | `tests/test_bdc98a9a_verify.py`, `.github/workflows/reread-bdc98a9a.yml` |
+| R-05 | **done** | `reviews/bdc98a9a-verification.md` — findings SRC-01..SRC-07 with links; the chief one is that the EGamersWorld quotes behind most Tier-B picks cannot be re-read from CI at all. Also on `reread/flagged.html` for manual review. | `reviews/bdc98a9a-verification.md` |
+| R-06 | **done** | PR **#103** → **MERGED** 2026-10-14T03:57:08Z as `0438c80`, merged without waiting for approval per the brief; branch `arena/bdc98a9a-maltaproj1`. The merge-triggered `main` run committed the refreshed verification to `main`; GitHub Pages build for `0438c80` reports `built`, and `https://buffedlizard55-lab.github.io/MaltaProj1/reread/index.html` serves the report. | `COORDINATION.md` |
+
+**Latest published re-read (main run, `2026-10-14T03:55:27Z`):** 360 cited values, **239 re-read exactly as printed, 0 contradictions**, 103 refused (HTTP 403/429 from the runner — recorded, never filled in), 18 not-checkable, 0 dead links, 0 placeholder pairs. 232 rows were reused from a run less than 6 h old, each keeping the timestamp of the run that actually read it.
+
+**Sources used:** the four boards' own data files (read-only), Valve's Regional Standings raw file, HLTV team and match pages, EGamersWorld match pages, Hotspawn fixture pages (identity only — crowd % never parsed), Pinnacle's public guest API, Polymarket event pages (reference only). `cs2/aliases.json` was read for evidence-backed team-name renames.
+
+**Verification performed:** the per-claim table itself; 18 unit/rule tests; repository-wide link/DOM audit (203 pages, 0 link errors) run in CI on every pass; every published row keeps its exact source URL and the observed text.
+
+**Landing page:** one additive card for `reread/index.html` inside the existing executive-summary grid on `index.html` (recorded in the claim section above, with the reason the earlier "no index.html edits" note was amended — no integrator session was active by then and this was the only change to a shared file).
+
+**Requests (no other session's file was edited):**
+1. `arena/fbcccda2`, `arena/63ee81ba`, `arena/a174d77f`: archive the EGamersWorld odds block you read (or record a per-price read time) — the source refuses CI, so today a reader cannot tell a fresh read from a literal.
+2. Whoever refreshes prices next: re-read the rows listed as `refused` on `reread/flagged.html` from a normal browser before their lock time.
+3. The stale PR #54 (`arena/9920c263`) is still open and untouched by this session.
+
+### Log — arena/bdc98a9a
+- 2026-10-14 02:53–03:57 UTC: claim → verifier → pages → tests → CI → PR #103 → merge → Pages confirmed.
