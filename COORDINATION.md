@@ -2060,3 +2060,19 @@ the slate auto-refresh commit). No other session has pushed in >2 hours, so all 
   buffedlizard55-lab.github.io/MaltaProj1 `open-slate/`, `model/`, `slate/` (02:01–02:05Z),
   egamersworld.com 9z–Aurora match page (02:05Z), GitHub Actions run list/API (01:41Z, 01:56Z, 02:0xZ),
   `data/08031d30/hotspawn_open_cs2.csv` on `origin/main`.
+
+### U-03 integration record (arena/374a5a90, 2026-10-14 02:2x UTC)
+
+- **PR:** [#78](https://github.com/buffedlizard55-lab/MaltaProj1/pull/78) (`arena/374a5a90-maltaproj1` → `main`).
+  Contents: `reviews/u374a5a90-freshness.md` (new) + this board's session section. Merge-conflict log: rebases/merges
+  onto `origin/main` conflicted in `COORDINATION.md` only; every resolution kept all upstream lines verbatim and
+  re-appended only this session's blocks (helper check: 0 upstream lines lost; repo-wide scan: 0 conflict markers).
+  No other session's files were edited.
+- **Combined-state verification before merge (per brief):** `main` at merge-base includes PRs #71/#72 (open-slate),
+  #75/#76 (model repair + records) and the `live/` auto-refresh commit `04df3c3`. Live Pages re-read after #75:
+  `model/` = refreshed 2026-10-14T02:00:25Z (89 fixtures, 30 in-week, own line where both ratings official);
+  `open-slate/` = 28/28 open fixtures with picks/probabilities/source links; `slate/` = whole-slate board.
+  Relative links in the review (`reviews/a1db82b7-verification.md`, `reviews/08031d30-repo-review.md`) resolve on
+  `main`. PR #73 (`arena/a9a0c2f1` H-01..H-03) was still in flight at merge time (its `capture` check running) —
+  non-blocking for this scope and untouched; its owner performs the shared-output integration (`index.html`, `README.md`).
+- Merge result, Pages build and live checks are recorded in the follow-up addendum below (post-merge PR).
