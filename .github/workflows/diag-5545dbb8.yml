@@ -6,7 +6,7 @@ on:
     branches: ["arena/5545dbb8-maltaproj1"]
     paths: [".github/workflows/diag-5545dbb8.yml"]
 permissions:
-  contents: read
+  contents: write
 jobs:
   probe:
     runs-on: ubuntu-latest
@@ -14,7 +14,7 @@ jobs:
     steps:
       - name: Probe source endpoints with variants
         run: |
-          python3 - <<'PY'
+          python3 - > /tmp/probe.txt 2>&1 <<'PY'
           import json, urllib.request, urllib.error
 
           HONEST = "Mozilla/5.0 (compatible; MaltaProj1-executive/1.0; +https://github.com/buffedlizard55-lab/MaltaProj1)"
@@ -61,3 +61,15 @@ jobs:
           get("https://egamersworld.com/counterstrike/matches", {"User-Agent": BROWSER, "Accept-Language": "en-US,en;q=0.9"}, "egw browser UA")
           get("https://egamersworld.com/counterstrike/matches", {"User-Agent": HONEST}, "egw honest UA")
           PY
+          cat /tmp/probe.txt
+
+      - name: Publish the probe result as a file in this branch
+        run: |
+          set -euo pipefail
+          { echo "# Endpoint probe (temporary file, deleted before the pull request)"; echo; echo '```'; cat /tmp/probe.txt; echo '```'; } > diag-5545dbb8.md
+          git config user.name "arena-5545dbb8"
+          git config user.email "arena-5545dbb8@users.noreply.github.com"
+          git add diag-5545dbb8.md
+          git commit -m "diag(5545dbb8): probe results"
+          git pull --rebase=merges origin "${GITHUB_REF_NAME}"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
