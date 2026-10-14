@@ -2,6 +2,7 @@
 
 **Site:** https://buffedlizard55-lab.github.io/MaltaProj1/  
 **Consolidated picks board (start here):** https://buffedlizard55-lab.github.io/MaltaProj1/console/  
+**Executive summary + unresolved (no-book) picks & limitations:** https://buffedlizard55-lab.github.io/MaltaProj1/gap-resolution/  
 **Flagged for Review:** https://buffedlizard55-lab.github.io/MaltaProj1/console/flagged.html
 
 A mobile-first source-linked dashboard for the public [Hotspawn Pick'em lobby](https://play.hotspawn.com/lobby).

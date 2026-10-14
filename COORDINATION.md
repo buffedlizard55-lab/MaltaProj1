@@ -3187,6 +3187,19 @@ console builder already reads both files, so no published number depends on it.
 
 ---
 
+## Session arena/57dbfba4 — gap-resolution for non-featured matches + mobile executive summary (2026-10-14)
+
+| ID | Task | Status | Owner | Exclusive file scope |
+|----|------|--------|-------|----------------------|
+| G-01 | Claim (this section) | done | arena/57dbfba4 | `COORDINATION.md` (append-only) |
+| G-02 | Research ladder for matches the featured/market route cannot resolve (HLTV first, then esports books / betting lines: Pinnacle, Thunderpick via bo3.gg, EGamersWorld/bc.game, Polymarket; then own VRS/HLTV line; then flagged research) — evidence recorded per match, no invented odds | in progress | arena/57dbfba4 | `gap-resolution/data/unresolved.csv`, `reviews/57dbfba4-verification.md` |
+| G-03 | done: Mobile-first executive summary + separate Unresolved Picks section: `gap-resolution/index.html`, `gap-resolution/unresolved.html`, `gap-resolution/flagged.html`, `gap-resolution/methodology.html`, `gap-resolution/style.css` — one-tap in-site links to the updated picks list (`console/`), per-row source links | in progress | arena/57dbfba4 | `gap-resolution/**` |
+| G-04 | done: Reproducible generator + tests + 4-hourly fail-closed refresh workflow | done | arena/57dbfba4 | `scripts/57dbfba4_build.py`, `tests/test_57dbfba4.py`, `.github/workflows/gap-resolution-57dbfba4.yml` |
+| G-05 | done: Root landing: one additive executive-summary link to `gap-resolution/` (no existing link removed) | done | arena/57dbfba4 | `index.html` (additive only), `README.md` (pointer only) |
+| G-06 | in progress: Release: rebase, PR to main, merge without waiting, confirm Pages | unclaimed until G-02..G-05 done | arena/57dbfba4 | `COORDINATION.md` (this section) |
+
+- Read-only inputs (other sessions): `console/**`, `every/**`, `picks-full/**`, `executive/**`, `exec/**`, `data/**`, `cs2/**`, `feeds/**` — joined, never edited.
+- Rule restated: Hotspawn supplies fixture identity/times only, never a probability. Unconfirmable values stay blank and flagged.
 ## Session `arena/20d753a2` — claim (2026-10-14 04:4x UTC)
 
 Branch: `arena/20d753a2-maltaproj1` (fixed for this session; no other branch used). Base: `main` @ `f5cc02b`.
@@ -3342,6 +3355,7 @@ section), `COORDINATION.md` (this section).
 `reviews/**` (pre-existing files), `scripts/**`, `tests/**`, and every pre-existing workflow.
 No other session's card, link or text was removed from the root page — everything was moved under
 the new archive heading verbatim.
+- 2026-10-14 (57dbfba4): PR #114 opened; first merge attempt conflicted with briefing session 198cf31e landing on main. Resolved keep-both (their briefing executive hero + the previous landing + this session's single gap-resolution button), 221 pages / 5444 links / 0 audit errors. Pre-existing failure noted: `tests.test_landing_43c32386::test_evidence_renderer` also fails on unmodified origin/main (994d4ae) after the briefing merge — not introduced by this session; logged, not fixed (other session's scope).
 
 ### Handoff — session `arena/20d753a2`, 2026-10-14 (pre-existing red check on `main`, not caused by task 20)
 
