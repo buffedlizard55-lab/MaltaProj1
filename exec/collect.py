@@ -106,6 +106,7 @@ def http_get(url: str, timeout: int = 30, headers: dict | None = None) -> dict:
 
 
 _BROWSER: dict = {}
+BROWSER_BUDGET = {"left": 10}   # per run: a browser render is the fallback, not the normal path
 
 
 def browser_render(url: str, wait_ms: int = 2500, timeout: int = 45000) -> dict:
@@ -164,6 +165,11 @@ def fetch(url: str, marker: str | None = None, force_browser: bool = False) -> d
             # Served, but not the expected layout: record it, still try the browser once.
             log({**{k: got[k] for k in ("url", "status", "bytes", "sha256", "path", "error")},
                  "error": (got["error"] or "") + f" marker {marker!r} absent"})
+    if not BROWSER_BUDGET["left"]:
+        got["error"] = (got["error"] or "") + " browser-fallback budget exhausted for this run"
+        log({k: got[k] for k in ("url", "status", "bytes", "sha256", "path", "error")})
+        return got
+    BROWSER_BUDGET["left"] -= 1
     seen = browser_render(url)
     if not seen["body"] or (marker is not None and marker not in seen["body"]):
         seen["error"] = (seen["error"] or "") + ("" if not seen["body"] else
@@ -185,26 +191,44 @@ def save(name: str, payload, raw_body: str | None = None) -> None:
 
 
 # ------------------------------------------------------------------------------------- Hotspawn
+def _ms(value):
+    """Hotspawn sends epoch milliseconds as a string; accept number or string, never guess."""
+    try:
+        number = float(value)
+    except (TypeError, ValueError):
+        return None
+    if number <= 0:
+        return None
+    return datetime.fromtimestamp(number / 1000, timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+
 def _walk_fixtures(node, out: list) -> None:
+    """Collect fixture records out of the TransferState JSON.
+
+    Hotspawn's fixture objects are flat: participants0_name / participants1_name /
+    scheduled_start_time (ms epoch as a string) / tier / competition_name / sport_alias. Only a record
+    that carries a fixture id, both participant names and a start epoch is accepted.
+    """
     if isinstance(node, dict):
-        teams = node.get("teams")
-        start = node.get("scheduled_start_time") or node.get("scheduledStartTime")
-        if isinstance(teams, list) and len(teams) >= 2 and isinstance(start, (int, float)):
-            names = []
-            for team in teams[:2]:
-                if isinstance(team, dict):
-                    names.append(str(team.get("name") or team.get("title") or "").strip())
-            if all(names):
+        if ("participants0_name" in node and "participants1_name" in node
+                and node.get("scheduled_start_time")):
+            start = _ms(node.get("scheduled_start_time"))
+            team_a = str(node.get("participants0_name") or "").strip()
+            team_b = str(node.get("participants1_name") or "").strip()
+            if start and team_a and team_b:
                 out.append({
-                    "fixture_id": str(node.get("id") or node.get("fixture_id") or ""),
-                    "team_a": names[0], "team_b": names[1],
-                    "start_utc": datetime.fromtimestamp(float(start) / 1000, timezone.utc)
-                                 .strftime("%Y-%m-%dT%H:%M:%SZ"),
-                    "lock_offset_sec": node.get("lock_offset_sec") or node.get("lockOffsetSec"),
-                    "tier": node.get("tier"), "competition": (node.get("competition") or {}).get("name")
-                    if isinstance(node.get("competition"), dict) else node.get("competition"),
+                    "fixture_id": str(node.get("id") or ""),
+                    "team_a": team_a, "team_b": team_b,
+                    "start_utc": start,
+                    "lock_utc": _ms(node.get("lock_time")),
+                    "lock_offset_sec": node.get("lock_offset_sec"),
+                    "tier": node.get("tier"),
+                    "competition": node.get("competition_name"),
+                    "sport": node.get("sport_alias") or node.get("sport_name"),
+                    "stage": node.get("stage"),
+                    "best_of": node.get("best_of") or node.get("series_format"),
                     "status": node.get("status"),
-            })
+                })
         for value in node.values():
             _walk_fixtures(value, out)
     elif isinstance(node, list):
@@ -220,7 +244,14 @@ def hotspawn_capture() -> dict:
         page = {"url": url, "status": got["status"], "bytes": got["bytes"],
                 "sha256": got["sha256"], "path": got["path"], "error": got["error"],
                 "fixtures": 0}
-        match = re.search(r'<script[^>]+id="ng-state"[^>]*>(.*?)</script>', got["body"], re.S)
+        match = re.search(r'<script\s+id="ng-state"[^>]*>(.*?)</script>', got["body"], re.S | re.I)
+        if not match:
+            match = re.search(r'<script[^>]*id=["\']ng-state["\'][^>]*>(.*?)</script>', got["body"], re.S | re.I)
+        page["payload_markers"] = {
+            "ng_state_script": bool(match),
+            "participants0_name": len(re.findall(r"participants0_name", got["body"])),
+            "scheduled_start_time": len(re.findall(r"scheduled_start_time", got["body"])),
+        }
         if match:
             try:
                 state = json.loads(unescape(match.group(1)).strip())
@@ -230,14 +261,33 @@ def hotspawn_capture() -> dict:
                 for row in rows:
                     if row["fixture_id"]:
                         seen[row["fixture_id"]] = row
-                page["fixtures"] = len(seen)
+                cs2 = {k: v for k, v in seen.items() if (v.get("sport") or "").lower() == "cs2"}
+                page["fixtures"] = len(cs2) if label == "cs2-pickems" else len(seen)
+                page["fixtures_all_sports"] = len(seen)
                 out["pages"][label] = page
                 if label == "cs2-pickems":
-                    out["fixtures"] = sorted(seen.values(), key=lambda r: (r["start_utc"], r["team_a"]))
+                    out["fixtures"] = sorted(cs2.values(), key=lambda r: (r["start_utc"], r["team_a"]))
                 else:
                     out["lobby_fixture_ids"] = sorted(seen)
+                    out["lobby_sports"] = sorted({(v.get("sport") or "?") for v in seen.values()})
             except Exception as exc:  # noqa: BLE001
-                page["error"] = f"ng-state parse failed: {type(exc).__name__}: {exc}"
+                # Some builds double-encode the state (a JSON string holding JSON). One retry.
+                try:
+                    state = json.loads(json.loads(unescape(match.group(1)).strip()))
+                    rows = []
+                    _walk_fixtures(state, rows)
+                    seen = {r["fixture_id"]: r for r in rows if r["fixture_id"]}
+                    cs2 = {k: v for k, v in seen.items() if (v.get("sport") or "").lower() == "cs2"}
+                    page["fixtures"] = len(cs2) if label == "cs2-pickems" else len(seen)
+                    page["fixtures_all_sports"] = len(seen)
+                    page["note"] = "double-encoded ng-state payload"
+                    if label == "cs2-pickems":
+                        out["fixtures"] = sorted(cs2.values(), key=lambda r: (r["start_utc"], r["team_a"]))
+                    else:
+                        out["lobby_fixture_ids"] = sorted(seen)
+                except Exception as exc2:  # noqa: BLE001
+                    page["error"] = (f"ng-state parse failed: {type(exc).__name__}: {exc} / "
+                                     f"{type(exc2).__name__}: {exc2}")
                 out["pages"][label] = page
         else:
             page["error"] = page["error"] or "ng-state payload not found in the served HTML"
@@ -312,7 +362,10 @@ def hltv_ranking() -> dict:
                 "rank": int(pos.group(1)), "points": int(pts.group(1)) if pts else None}
     date_m = re.search(r"World ranking on ([A-Za-z]+ \d{1,2}(?:st|nd|rd|th)?,? \d{4})", got["body"])
     out["date_text"] = date_m.group(1) if date_m else None
-    out.update({"status": got["status"], "sha256": got["sha256"], "teams_total": len(out["teams"])})
+    out.update({"status": got["status"], "sha256": got["sha256"], "teams_total": len(out["teams"]),
+                "blocks_seen": len(got["body"].split('<div class="ranked-team')) - 1,
+                "names_sample": list(out["teams"])[:5],
+                "forze_like": [n for n in out["teams"] if "orze" in n or "LFO" in n][:5]})
     return out
 
 
@@ -530,9 +583,7 @@ def main(argv: list[str] | None = None) -> int:
     if args.only in ("all", "hltv"):
         print("HLTV — World Ranking + per-day match listings", flush=True)
         ranking = hltv_ranking()
-        save("hltv_ranking.json", {k: v for k, v in ranking.items() if k != "teams"} |
-             {"teams_total": len(ranking["teams"]),
-              "teams_sample": dict(list(ranking["teams"].items())[:0])})
+        save("hltv_ranking.json", ranking | {"teams_total": len(ranking["teams"])})
         print(f"  ranked teams: {len(ranking['teams'])} date: {ranking['date_text']}"
               f" error: {ranking['error']}", flush=True)
 
