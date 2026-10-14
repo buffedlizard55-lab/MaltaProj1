@@ -88,6 +88,10 @@ jobs:
                       continue
                   if not href.strip():
                       continue
+                  # Skip links that are assembled in client-side JavaScript rather than written
+                  # into the markup (e.g. href="'+m.source_url+'"): those are not static targets.
+                  if not re.fullmatch(r"[A-Za-z0-9_./%\-]+", href):
+                      continue
                   target = (page.parent / href.split('#')[0].split('?')[0]).resolve()
                   checked += 1
                   if not target.exists():
