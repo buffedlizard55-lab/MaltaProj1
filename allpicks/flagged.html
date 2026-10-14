@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<meta name="description" content="Flagged for review">
+<title>Flagged for review · Hotspawn CS2 picks</title>
+<style>
+:root{
+  --bg:#0b0f17; --panel:#131a26; --panel2:#0f1520; --line:#22304a; --line2:#2f4160;
+  --ink:#e9eef7; --dim:#9fb0c8; --dim2:#7488a3;
+  --a:#4ea1ff; --b:#ffb454; --pick:#22c55e; --warn:#f59e0b; --bad:#ef4444; --ok:#22c55e;
+  --S:#f472b6; --B:#60a5fa; --C:#94a3b8;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  padding-bottom:5rem}
+a{color:var(--a);text-decoration:none}
+a:hover,a:focus{text-decoration:underline}
+.wrap{max-width:1100px;margin:0 auto;padding:0 .75rem}
+header.top{position:sticky;top:0;z-index:30;background:rgba(11,15,23,.96);
+  border-bottom:1px solid var(--line);backdrop-filter:blur(6px)}
+.brand{display:flex;align-items:baseline;gap:.5rem;flex-wrap:wrap;padding:.6rem 0 .35rem}
+.brand h1{font-size:1.05rem;margin:0;letter-spacing:.2px}
+.brand .tag{color:var(--dim2);font-size:.78rem}
+nav.jump{display:flex;gap:.4rem;overflow-x:auto;padding:.35rem 0 .55rem;
+  -webkit-overflow-scrolling:touch;scrollbar-width:none}
+nav.jump::-webkit-scrollbar{display:none}
+nav.jump a{flex:0 0 auto;padding:.42rem .7rem;border:1px solid var(--line);border-radius:999px;
+  background:var(--panel2);color:var(--dim);font-size:.83rem;white-space:nowrap}
+nav.jump a[aria-current="page"]{background:var(--a);border-color:var(--a);color:#04101f;font-weight:700}
+main{padding-top:.9rem}
+h2{font-size:1.12rem;margin:1.5rem 0 .5rem}
+h3{font-size:.98rem;margin:1.15rem 0 .4rem;color:var(--dim)}
+p{margin:.45rem 0}
+.lede{color:var(--dim);font-size:.93rem}
+.small{font-size:.8rem;color:var(--dim2)}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:.85rem;margin:.7rem 0}
+.hero{background:linear-gradient(160deg,#152238,#0f1520);border:1px solid var(--line2)}
+.hero .big{font-size:1.55rem;font-weight:800;line-height:1.15;margin:.15rem 0}
+.hero .big span{color:var(--pick)}
+.stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.5rem;margin:.7rem 0 0}
+@media(min-width:720px){.stats{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.stat{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:.55rem .65rem}
+.stat b{display:block;font-size:1.3rem;line-height:1.1}
+.stat span{color:var(--dim2);font-size:.74rem;display:block;margin-top:.15rem}
+.cta{display:block;background:var(--pick);color:#05230f;font-weight:800;border-radius:12px;
+  padding:.85rem .9rem;margin:.7rem 0;font-size:1.02rem;text-align:center}
+.cta:hover,.cta:focus{text-decoration:none;filter:brightness(1.06)}
+.cta.alt{background:var(--panel2);color:var(--ink);border:1px solid var(--line2);font-weight:600}
+.grid{display:grid;grid-template-columns:1fr;gap:.55rem}
+@media(min-width:820px){.grid.two{grid-template-columns:1fr 1fr}}
+
+/* match card */
+.match{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:.7rem .75rem .6rem;
+  margin:.55rem 0;break-inside:avoid}
+.match.no-pick{border-left:4px solid var(--bad)}
+.match.tierA{border-left:4px solid var(--ok)}
+.match.tierB{border-left:4px solid var(--a)}
+.match.tierC{border-left:4px solid var(--b)}
+.match.tierD{border-left:4px solid #a78bfa}
+.match.tierE{border-left:4px solid var(--warn)}
+.match.tierF{border-left:4px solid var(--bad)}
+.mrow{display:flex;align-items:center;gap:.45rem;flex-wrap:wrap;font-size:.76rem;color:var(--dim2)}
+.badge{border:1px solid var(--line2);border-radius:999px;padding:.1rem .48rem;font-size:.72rem;
+  color:var(--dim);background:var(--panel2);white-space:nowrap}
+.badge.S{color:#0b0f17;background:var(--S);border-color:var(--S);font-weight:700}
+.badge.Bt{color:#0b0f17;background:var(--B);border-color:var(--B);font-weight:700}
+.badge.Ct{color:#0b0f17;background:var(--C);border-color:var(--C);font-weight:700}
+.badge.locked{color:#ffd9d9;border-color:#5b2b2b;background:#2a1414}
+.badge.live{color:#d9ffe6;border-color:#255c39;background:#12291c}
+.teams{margin:.5rem 0 .35rem}
+.tline{display:grid;grid-template-columns:1fr auto;gap:.5rem;align-items:center;padding:.28rem 0}
+.tname{font-weight:650;font-size:1rem;display:flex;align-items:center;gap:.4rem;min-width:0}
+.tname .star{color:var(--pick);font-weight:800}
+.tname span.nm{overflow-wrap:anywhere}
+.tpct{font-variant-numeric:tabular-nums;font-weight:800;font-size:1.12rem;text-align:right;
+  min-width:4.1rem}
+.tpct.mute{color:var(--dim2);font-weight:600;font-size:.86rem}
+.bar{height:.55rem;border-radius:999px;background:#25324a;overflow:hidden;display:flex;margin:.3rem 0 .1rem}
+.bar i{display:block;height:100%}
+.bar i.pa{background:var(--a)}
+.bar i.pb{background:var(--b)}
+.basis{font-size:.79rem;color:var(--dim);margin-top:.4rem}
+.basis b{color:var(--ink)}
+.links{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.5rem}
+.links a{font-size:.74rem;border:1px solid var(--line);background:var(--panel2);color:var(--dim);
+  border-radius:8px;padding:.24rem .5rem}
+.links a:hover,.links a:focus{color:var(--ink);border-color:var(--line2);text-decoration:none}
+.flagchip{font-size:.72rem;color:#ffd9a8;border:1px solid #6b4a1f;background:#2a1e0f;
+  border-radius:8px;padding:.2rem .45rem}
+
+/* tables */
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:12px;
+  margin:.6rem 0}
+table{border-collapse:collapse;width:100%;font-size:.84rem;min-width:640px}
+th,td{text-align:left;padding:.5rem .55rem;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--panel2);color:var(--dim);font-size:.75rem;text-transform:uppercase;
+  letter-spacing:.04em;position:sticky;top:0}
+tbody tr:nth-child(even){background:rgba(255,255,255,.015)}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+.pill{display:inline-block;border-radius:6px;padding:.05rem .35rem;font-size:.72rem;font-weight:700}
+.pill.A{background:#0f2f1c;color:#7ee2a8}.pill.B{background:#0f2438;color:#8cc4ff}
+.pill.C{background:#33270f;color:#ffcf87}.pill.D{background:#251b3d;color:#c4b0ff}
+.pill.E{background:#33260f;color:#ffcf87}.pill.F{background:#331414;color:#ff9d9d}
+.blank{color:var(--dim2);font-style:italic}
+ul.tight{margin:.35rem 0 .35rem 1.1rem;padding:0}
+ul.tight li{margin:.22rem 0}
+.note{border-left:3px solid var(--line2);padding:.2rem 0 .2rem .7rem;color:var(--dim);font-size:.86rem}
+.warn{border-left:3px solid var(--warn);background:#221a0c;padding:.6rem .7rem;border-radius:8px;
+  font-size:.86rem;margin:.6rem 0}
+footer{margin:2rem 0 1rem;padding-top:1rem;border-top:1px solid var(--line);color:var(--dim2);
+  font-size:.78rem}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+<div class="brand"><h1>Hotspawn CS2 — every match, one pick</h1>
+<span class="tag">independent lines · never Hotspawn crowd&nbsp;%</span></div>
+<nav class="jump" aria-label="Board sections"><a href="index.html">Executive summary</a>
+<a href="open.html">Open matches</a>
+<a href="all.html">All 89 fixtures</a>
+<a href="tiers.html">By tier</a>
+<a href="tournaments.html">By tournament</a>
+<a href="market.html">Outside lines</a>
+<a href="own-lines.html">Our own lines</a>
+<a href="ratings.html">Team ratings</a>
+<a href="methodology.html">Methodology</a>
+<a href="sources.html">Sources</a>
+<a href="flagged.html" aria-current="page">Flagged for review</a></nav>
+</div></header>
+<main class="wrap">
+
+<p class="lede"><b>12</b> items we could not confirm from an official source, or where two official sources disagree. None of them blocks publication, and none of them was filled in with a guess &mdash; the affected value is blank on the board.</p><h2>MARKET-PLACEHOLDER <span class="small">(3)</span></h2><div class="tw"><table><thead><tr><th>Flag id</th><th>Severity</th><th>Item</th><th>What we found</th><th>Sources</th></tr></thead><tbody><tr><td class="small"><code>MARKET-PLACEHOLDER-8</code></td><td>INFO</td><td>Banda chuya vs 6666 (1081112)</td><td>bc.game/EGamersWorld rejected this fixture&#x27;s price: 1.80/1.80 is EGamersWorld&#x27;s un-priced placeholder (identical both sides, zero information); rejected, not de-vigged</td><td><a href="https://egamersworld.com/counterstrike/match/1sGIL2gAYu/banda-chuya-vs-6666-JdPgKgp5y" rel="noopener">official</a></td></tr><tr><td class="small"><code>MARKET-PLACEHOLDER-9</code></td><td>INFO</td><td>Ryvex vs PCIFIC (1081113)</td><td>bc.game/EGamersWorld rejected this fixture&#x27;s price: 1.80/1.80 placeholder; also EGW lists the same fixture twice with a second team name (WRAITH PCIFIC vs Ryvex) at 1.80/1.80 — un-priced</td><td><a href="https://egamersworld.com/counterstrike/match/1sGIL2gAYu/pcific-espor-vs-ryvex-WPw_DghZr3" rel="noopener">official</a></td></tr><tr><td class="small"><code>MARKET-PLACEHOLDER-10</code></td><td>INFO</td><td>FORZE Reload vs LFO 10 (1079624)</td><td>bc.game/EGamersWorld rejected this fixture&#x27;s price: 1.80/1.80 placeholder AND the opposing team is missing from the aggregator row entirely; no market price exists for LFO 10</td><td><a href="https://egamersworld.com/counterstrike/match/_rW8GEyWK/forze-reload-vs-Gr_YhyKi3" rel="noopener">official</a></td></tr></tbody></table></div><h2>NO-PICK <span class="small">(3)</span></h2><div class="tw"><table><thead><tr><th>Flag id</th><th>Severity</th><th>Item</th><th>What we found</th><th>Sources</th></tr></thead><tbody><tr><td class="small"><code>NO-PICK-2</code></td><td>NEEDS REVIEW</td><td>Acend vs Infinite (1051339)</td><td>Neither an outside market price nor an official Valve rating exists for both sides, so no pick and no probability is published.</td><td><a href="https://play.hotspawn.com/cs2-pickems" rel="noopener">official</a></td></tr><tr><td class="small"><code>NO-PICK-4</code></td><td>NEEDS REVIEW</td><td>Mai Tai vs Megoshort (1052599)</td><td>Neither an outside market price nor an official Valve rating exists for both sides, so no pick and no probability is published.</td><td><a href="https://play.hotspawn.com/cs2-pickems" rel="noopener">official</a></td></tr><tr><td class="small"><code>NO-PICK-6</code></td><td>NEEDS REVIEW</td><td>GameHunters vs VEXA (1052700)</td><td>Neither an outside market price nor an official Valve rating exists for both sides, so no pick and no probability is published.</td><td><a href="https://play.hotspawn.com/cs2-pickems" rel="noopener">official</a></td></tr></tbody></table></div><h2>PICK-WITHOUT-PROBABILITY <span class="small">(1)</span></h2><div class="tw"><table><thead><tr><th>Flag id</th><th>Severity</th><th>Item</th><th>What we found</th><th>Sources</th></tr></thead><tbody><tr><td class="small"><code>PICK-WITHOUT-PROBABILITY-12</code></td><td>NEEDS REVIEW</td><td>FORZE Reload vs LFO 10 (1079624)</td><td>official-ranking asymmetry: FORZE Reload is ranked in Valve&#x27;s 2026-10-05 standings (#84, 1100 pts) while LFO 10 is confirmed unranked in every official Valve period and on HLTV. Probability deliberately left blank — no number is invented for an unranked side.</td><td><a href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L89" rel="noopener">official</a> <a href="https://www.hltv.org/matches/2399301/forze-reload-vs-lfo-10-cct-2026-europe-series-11" rel="noopener">source</a> <a href="https://www.hltv.org/team/14084/lfo-10" rel="noopener">source</a> <a href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L174" rel="noopener">source</a></td></tr></tbody></table></div><h2>RATING-AMBIGUOUS <span class="small">(3)</span></h2><div class="tw"><table><thead><tr><th>Flag id</th><th>Severity</th><th>Item</th><th>What we found</th><th>Sources</th></tr></thead><tbody><tr><td class="small"><code>RATING-AMBIGUOUS-1</code></td><td>NEEDS REVIEW</td><td>Acend vs Infinite (1051339)</td><td>Valve&#x27;s standings contain more than one row with this exact team name and the admissible ratings disagree on which side is the favourite. No probability is inferred and no pick is published.</td><td><a href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_06_01.md?plain=1#L66" rel="noopener">official</a> <a href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_06_01.md?plain=1#L53" rel="noopener">source</a></td></tr><tr><td class="small"><code>RATING-AMBIGUOUS-3</code></td><td>NEEDS REVIEW</td><td>Mai Tai vs Megoshort (1052599)</td><td>Valve&#x27;s standings contain more than one row with this exact team name and the admissible ratings disagree on which side is the favourite. No probability is inferred and no pick is published.</td><td><a href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_07_06.md?plain=1#L171" rel="noopener">official</a> <a href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_06_01.md?plain=1#L173" rel="noopener">source</a></td></tr><tr><td class="small"><code>RATING-AMBIGUOUS-5</code></td><td>NEEDS REVIEW</td><td>GameHunters vs VEXA (1052700)</td><td>Valve&#x27;s standings contain more than one row with this exact team name and the admissible ratings disagree on which side is the favourite. No probability is inferred and no pick is published.</td><td><a href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_06_01.md?plain=1#L197" rel="noopener">official</a> <a href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_06_01.md?plain=1#L262" rel="noopener">source</a></td></tr></tbody></table></div><h2>RATING-MISSING <span class="small">(2)</span></h2><div class="tw"><table><thead><tr><th>Flag id</th><th>Severity</th><th>Item</th><th>What we found</th><th>Sources</th></tr></thead><tbody><tr><td class="small"><code>RATING-MISSING-7</code></td><td>NEEDS REVIEW</td><td>SUKEBAN (SUKEBAN vs your end, 1081105)</td><td>HLTV&#x27;s match page for fixture 1081105 states &#x27;HLTV: Unranked&#x27; and &#x27;VRS: Unranked&#x27; for SUKEBAN (team 14091), roster RAYQUAZA, thpp, thoth, k1st, pml. The name appears in no Valve Regional Standings period. The same HLTV page records that SUKEBAN forfeited: &#x27;SUKEBAN forfeit the match as they are unable to field a complete roster.&#x27;</td><td><a href="https://www.hltv.org/matches/2399460/your-end-vs-sukeban-cct-2026-south-america-series-7" rel="noopener">official</a> <a href="https://www.hltv.org/team/14091/sukeban" rel="noopener">source</a></td></tr><tr><td class="small"><code>RATING-MISSING-11</code></td><td>NEEDS REVIEW</td><td>LFO 10 (FORZE Reload vs LFO 10, 1079624)</td><td>Absent from all five official Valve Regional Standings periods under any name. A roster search for LFO 10&#x27;s HLTV five (Jackinho, Sapec, flaw, dottie, tvs) returns at most 3/5 overlap, with Entropy (#156, 813 pts) — a different team. Valve ranks LFO 7, LFO 8 and LFO 9 but not LFO 10. HLTV shows &#x27;HLTV: Unranked&#x27; and a &#x27;VRS: #169&#x27; badge that contradicts Valve&#x27;s own file (#169 there is Honvéd, 788 pts), so the badge is not usable.</td><td><a href="https://www.hltv.org/matches/2399301/forze-reload-vs-lfo-10-cct-2026-europe-series-11" rel="noopener">official</a> <a href="https://www.hltv.org/team/14084/lfo-10" rel="noopener">source</a> <a href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L174" rel="noopener">source</a></td></tr></tbody></table></div>
+<h2>Repository irregularities found during this review</h2>
+<p class="lede">Raised while reviewing <code>main</code> line by line against official sources. Each
+has the source we checked. None blocks publication; all are for human review.</p>
+<div class="tw"><table><thead><tr><th>ID</th><th>Finding</th><th>Evidence</th></tr></thead><tbody>
+<tr><td><b>IR-05-01</b></td>
+<td><b>Period-mismatch caused 23 of main's 25 blank picks.</b> Every board on <code>main</code>
+resolves team ratings against Valve's <code>standings_global_2026_10_05.md</code> only. 23 fixtures
+were played 2026-06-26 to 2026-07-10, so the October file is the wrong official source: the teams
+are ranked in Valve's 2026-06-01 and 2026-07-06 files. Fixed here by selecting the period in force at
+the match date.</td>
+<td><a href="https://github.com/ValveSoftware/counter-strike_regional_standings/tree/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026" rel="noopener">Valve live/2026 directory</a></td></tr>
+
+<tr><td><b>IR-05-02</b></td>
+<td><b>Galorys was marked unrated although Valve ranks it.</b> <code>data/8944bb84/analysis.csv</code>
+leaves <code>vrs_standing_b</code> blank for fixture 1081076 (ex-Keyd Stars vs Galorys) and
+<code>ratings.csv</code> has no Galorys row, yet Valve's 2026-10-05 standings rank
+<b>Galorys #85 with 1099 pts</b> at line 90. A lookup gap, not a data gap.</td>
+<td><a href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L90" rel="noopener">Valve standings line 90</a></td></tr>
+
+<tr><td><b>IR-05-03</b></td>
+<td><b>HLTV's <code>VRS: #N</code> badges do not match Valve's published standings.</b> HLTV's match
+2399137 shows HEROIC &ldquo;VRS: #22&rdquo; while Valve's 2026-10-05 file ranks HEROIC <b>#15</b>
+(1550 pts). HLTV's match 2399301 shows LFO 10 &ldquo;VRS: #169&rdquo; while Valve's file ranks
+<b>Honvéd #169</b> (788 pts) and contains no LFO 10 at all. HLTV is rendering a newer Valve snapshot
+(its links point at <code>/valve-ranking/teams/2026/october/14</code>). Mixing the two numbering
+systems silently would corrupt every rating, so this board uses Valve's file exclusively and cites
+the exact line.</td>
+<td><a href="https://www.hltv.org/matches/2399137/heroic-vs-envy-stake-pulse-beat-iii" rel="noopener">HLTV 2399137</a> ·
+<a href="https://www.hltv.org/matches/2399301/forze-reload-vs-lfo-10-cct-2026-europe-series-11" rel="noopener">HLTV 2399301</a> ·
+<a href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L20" rel="noopener">Valve line 20</a></td></tr>
+
+<tr><td><b>IR-05-04</b></td>
+<td><b>Two boards on <code>main</code> disagree about the team &ldquo;Envy&rdquo;.</b>
+<code>data/8944bb84/ratings.csv</code> asserts <code>Envy → 3DMAX</code> (VRS #21), while
+<code>COORDINATION.md</code> records an earlier session's claim of &ldquo;Envy #20 / VRS #27&rdquo;
+(VRS #27 is <b>GamerLegion</b>). We settled it from the official sources: HLTV's match 2399137 lineup
+for Envy is Graviti, Kursy, Maka, misutaaa, Lucky &mdash; a <b>5/5 exact match</b> to Valve's #21 row
+&ldquo;3DMAX&rdquo;. <code>Envy = 3DMAX</code> is correct; the #27 claim is wrong. Note
+<code>cs2/data/analysis.csv</code> leaves Envy blank rather than asserting either, which is why this
+only affected one board.</td>
+<td><a href="https://www.hltv.org/matches/2399137/heroic-vs-envy-stake-pulse-beat-iii" rel="noopener">HLTV 2399137 lineups</a> ·
+<a href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L26" rel="noopener">Valve line 26</a></td></tr>
+
+<tr><td><b>IR-05-05</b></td>
+<td><b>Market prices drift inside an hour and the boards do not always say which read they show.</b>
+For fixture 1080177 (Falcons vs Ninjas in Pyjamas) <code>data/8944bb84/external_lines.csv</code>
+records Pinnacle 1.254/4.010 at 01:48Z while <code>cs2/data/market_rows.csv</code> records Pinnacle
+1.27027/3.85 at 02:35:36Z. For 1080176 (9z vs Aurora) the same two files record 3.550/1.307 and
+3.41/1.325733. Both are real reads of a moving market; neither is wrong, but a reader comparing pages
+sees different numbers for the same match. This board prints the read time on every price row.</td>
+<td><a href="https://www.pinnacle.com/en/esports/games/cs2/matchups/" rel="noopener">Pinnacle CS2 matchups</a></td></tr>
+
+<tr><td><b>IR-05-06</b></td>
+<td><b>Hotspawn's own counts disagree with its payload.</b> The CS2 page header says &ldquo;68 matches
+this week&rdquo; and its tier filter says &ldquo;All tiers (88)&rdquo;, while the
+<code>TransferState</code> payload in the same response holds 89 CS2 rows (the lobby holds 89 and
+renders 29 cards). We publish all payload rows and record the disagreement instead of asserting that
+a successful parse proves coverage.</td>
+<td><a href="https://play.hotspawn.com/cs2-pickems" rel="noopener">play.hotspawn.com/cs2-pickems</a></td></tr>
+
+<tr><td><b>IR-05-07</b></td>
+<td><b>Four fixtures have no Hotspawn permalink.</b> The CCT Europe 2026 Series #12 Play-In fixtures
+(1081111 Enjoy vs B8 Academy, 1081112 Banda chuya vs 6666, 1081113 Ryvex vs PCIFIC, 1081120 mellren
+vs Privateer) have no <code>/matches/&hellip;</code> URL in Hotspawn's payload. This board links the
+CS2 lobby and the official HLTV match page for those rows instead of printing a broken link. This is
+also the null-permalink bug that crashed <code>model/build.py</code> in CI run 38489574648.</td>
+<td><a href="https://www.hltv.org/events/9456/cct-2026-europe-series-12-closed-qualifier" rel="noopener">HLTV event 9456</a></td></tr>
+
+<tr><td><b>IR-05-08</b></td>
+<td><b>EGamersWorld lists fixture 1079624 with no away team.</b> Its row for
+&ldquo;FORZE Reload&rdquo; on 14.10.26 19:00 has an empty opponent string in both the link text and
+the title, priced 1.80/1.80. Hotspawn names the opponent LFO 10 and HLTV confirms the fixture, so the
+aggregator row is incomplete rather than the fixture being unplayed. No price was taken from it.</td>
+<td><a href="https://egamersworld.com/counterstrike/match/_rW8GEyWK/forze-reload-vs-Gr_YhyKi3" rel="noopener">EGW match row</a> ·
+<a href="https://www.hltv.org/matches/2399301/forze-reload-vs-lfo-10-cct-2026-europe-series-11" rel="noopener">HLTV 2399301</a></td></tr>
+
+<tr><td><b>IR-05-09</b></td>
+<td><b>Stale PR #54 is still open.</b> <code>arena/9920c263-maltaproj1</code> (PR #54) has been open
+since 2026-10-13T22:47Z and was already recorded as needing disposition by an earlier session
+(flag U-F-7). It is left untouched here; the integration owner should close or rebase it.</td>
+<td><a href="https://github.com/buffedlizard55-lab/MaltaProj1/pull/54" rel="noopener">PR #54</a></td></tr>
+
+<tr><td><b>IR-05-10</b></td>
+<td><b>Two published boards give different own-line probabilities for the same fixtures.</b>
+<code>slate/data/analysis.csv</code> and <code>cs2/data/analysis.csv</code> both compute a Valve-points
+logistic but use different constants (a project-assumed 400-point scale with no fitted k, versus the
+calibrated k = 0.4630) and different rating periods. They are not interchangeable. This board states
+its own constant and period on every row and does not modify either of theirs.</td>
+<td><a href="https://buffedlizard55-lab.github.io/MaltaProj1/slate/methodology.html" rel="noopener">slate methodology</a> ·
+<a href="https://buffedlizard55-lab.github.io/MaltaProj1/cs2/methodology.html" rel="noopener">cs2 methodology</a></td></tr>
+<tr><td><b>IR-05-11</b></td>
+<td><b><code>data/8944bb84/external_lines.csv</code> carries two different market reads per row with
+no marker saying which one is published.</b> Each row holds <code>primary_book</code> /
+<code>primary_odds_*</code> / <code>primary_source_url</code> <i>and</i> <code>egw_odds_*</code> /
+<code>egw_url</code>. On 8 fixtures the two reads disagree (1079546 Pinnacle 2.700/1.410 vs
+EGamersWorld bc.game 2.450/1.480; 1080176 3.550/1.307 vs 3.870/1.200; 1080177 1.254/4.010 vs
+1.190/3.950; plus 1079439, 1079440, 1079442, 1080178, 1080179). A consumer that takes the label
+from one column group and the numbers from the other silently misattributes the price &mdash; the
+first draft of this board did exactly that on all 8 rows, labelling EGamersWorld&rsquo;s numbers
+&ldquo;Pinnacle (Direct)&rdquo;. Fixed here: label, odds and URL now always come from the same read,
+and the other read is printed as a labelled cross-check. Recorded because the trap is live for every
+downstream board reading that file.</td>
+<td><a href="https://guest.api.arcadia.pinnacle.com/0.1/matchups/1638279105/markets/related/straight" rel="noopener">Pinnacle read for 1079546</a> ·
+<a href="https://egamersworld.com/counterstrike/match/41yion_ONx/zomblers-vs-overtake-sector-3aN5jQsN_" rel="noopener">EGamersWorld read for 1079546</a></td></tr>
+</tbody></table></div>
+
+<footer>
+<p>Independent analysis for research purposes only — not betting advice. Fixture identity and
+UTC start/lock times come from Hotspawn's public pick'em pages; every probability comes from an
+outside bookmaker price or from Valve's official Regional Standings, never from Hotspawn's crowd
+pick percentages and never from HLTV's &ldquo;Pick a winner&rdquo; vote.</p>
+<p>Built by session <code>arena/5bcfd1b5</code> from committed evidence.
+See <a href="methodology.html">Methodology</a> and <a href="flagged.html">Flagged for review</a>.</p>
+</footer>
+</main>
+<script>
+/* Progressive enhancement only: the board is complete, readable HTML without JS. */
+(function(){
+  var f=document.getElementById('q');
+  if(!f) return;
+  f.addEventListener('input',function(){
+    var v=f.value.trim().toLowerCase();
+    document.querySelectorAll('[data-search]').forEach(function(el){
+      el.style.display = !v || el.getAttribute('data-search').toLowerCase().indexOf(v)>=0 ? '' : 'none';
+    });
+    var n=document.getElementById('qcount');
+    if(n) n.textContent = v ? 'filter: "'+f.value+'"' : '';
+  });
+})();
+</script>
+</body></html>

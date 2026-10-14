@@ -181,7 +181,7 @@ NO_OFFICIAL_RATING: dict[str, dict] = {
                     "returns at most 3/5 overlap, with Entropy (#156, 813 pts) — a different team. "
                     "Valve ranks LFO 7, LFO 8 and LFO 9 but not LFO 10. HLTV shows "
                     "'HLTV: Unranked' and a 'VRS: #169' badge that contradicts Valve's own file "
-                    "(#169 there is Honved, 788 pts), so the badge is not usable."),
+                    "(#169 there is Honvéd, 788 pts), so the badge is not usable."),
         "urls": ["https://www.hltv.org/matches/2399301/forze-reload-vs-lfo-10-cct-2026-europe-"
                  "series-11",
                  "https://www.hltv.org/team/14084/lfo-10",
@@ -343,12 +343,23 @@ def resolve_team(st: Standings, team: str, when: dt.datetime,
         return out
 
     names = [team]
+    alias_of = {}
     if team in ALIASES:
         a = ALIASES[team]
         names.append(a["vrs_name"])
-        out["alias"] = "%s → %s" % (team, a["vrs_name"])
-        out["alias_evidence"] = a["evidence"]
-        out["alias_urls"] = list(a["urls"])
+        alias_of[a["vrs_name"]] = a
+
+    def claim_alias(matched_name: str) -> None:
+        """Record the alias only if the alias name is what matched Valve's file.
+
+        WROTBERRY appears under its own name in Valve's June standings and only becomes WBT
+        by October, so a June fixture must not be reported as alias-resolved.
+        """
+        a = alias_of.get(matched_name)
+        if a and matched_name != team:
+            out["alias"] = "%s → %s" % (team, matched_name)
+            out["alias_evidence"] = a["evidence"]
+            out["alias_urls"] = list(a["urls"])
 
     # 1. period in force, exact name (alias second)
     for n in names:
@@ -361,6 +372,7 @@ def resolve_team(st: Standings, team: str, when: dt.datetime,
                 if match:
                     out["candidates"] = match
                     out["period"] = period.isoformat()
+                    claim_alias(n)
                     out["pin"] = ("duplicate Valve name disambiguated by the HLTV roster check "
                                   "recorded in data/8944bb84/ratings.csv (%s) and re-verified "
                                   "line-by-line against Valve's file by this session"
@@ -370,6 +382,7 @@ def resolve_team(st: Standings, team: str, when: dt.datetime,
                     return out
             out["candidates"] = hits
             out["period"] = period.isoformat()
+            claim_alias(n)
             out["basis"] = ("official Valve Regional Standings in force at the match date "
                             "(%s)" % period.isoformat())
             return out
@@ -381,6 +394,7 @@ def resolve_team(st: Standings, team: str, when: dt.datetime,
             p, hits = found
             out["candidates"] = hits
             out["period"] = p.isoformat()
+            claim_alias(n)
             out["anachronistic"] = p != period
             out["basis"] = ("team absent from the %s standings; earliest official Valve period "
                             "containing this exact name is %s" % (period.isoformat(), p.isoformat()))
@@ -394,6 +408,66 @@ def resolve_team(st: Standings, team: str, when: dt.datetime,
     else:
         out["basis"] = "not found in any official Valve Regional Standings period"
     return out
+
+
+LIVECHECK = os.path.join(OUT, "livecheck.json")
+
+
+def merge_live_fixtures(fixtures: list[dict], flag, now_s: str) -> int:
+    """Append fixtures the scheduled live check found on Hotspawn that the board lacks.
+
+    `scripts/5bcfd1b5_livecheck.py` re-reads Hotspawn's own Angular payload and reports
+    fixtures it now lists. Merging them here closes the loop: a newly listed match reaches
+    the board, gets the same official-rating cascade and our own line as every other row,
+    and is flagged NEEDS REVIEW so a human sees that it was discovered after the capture.
+
+    Only values Hotspawn's payload actually carries are copied. Anything it does not carry
+    (its point value, an HLTV match id) is left BLANK and never inferred.
+    """
+    if not os.path.exists(LIVECHECK):
+        return 0
+    try:
+        with open(LIVECHECK, encoding="utf-8") as fh:
+            report = json.load(fh)
+    except (OSError, ValueError):
+        return 0
+    if not report.get("comparison_possible") or not report.get("new_on_hotspawn"):
+        return 0
+    have = {f["fixture_id"] for f in fixtures}
+    added = 0
+    for n in report["new_on_hotspawn"]:
+        fid = str(n.get("fixture_id") or "")
+        if not fid or fid in have:
+            continue
+        lock = n.get("lock_utc") or ""
+        start = n.get("start_utc") or ""
+        is_open = bool(lock) and lock > now_s
+        fmt = (n.get("series_format") or "").strip()
+        best_of = fmt.replace("BO", "").strip() if fmt else ""
+        fixtures.append({
+            "fixture_id": fid, "state": "open" if is_open else "stale",
+            "pickable": "yes" if is_open else "no",
+            "start_utc": start, "lock_utc": lock,
+            "competition": n.get("tournament") or "", "tier": n.get("tier") or "",
+            # Hotspawn's payload does not carry the pick'em point value: blank, not guessed.
+            "points": "", "best_of": best_of if best_of in ("1", "3", "5") else "",
+            "team_a": n.get("team_a") or "", "team_b": n.get("team_b") or "",
+            "hotspawn_url": "https://play.hotspawn.com/lobby",
+            "hotspawn_match_url": n.get("source_url") or "",
+            "captured_utc": report.get("compared_utc") or now_s,
+            "live_discovered": "yes",
+        })
+        have.add(fid)
+        added += 1
+        flag("LIVE-NEW-FIXTURE", "%s vs %s (%s)" % (n.get("team_a"), n.get("team_b"), fid),
+             "Hotspawn began listing this fixture after the board's capture (%s). It was picked up "
+             "by the scheduled live check and added to the board with the same official-rating "
+             "cascade as every other row. Its Hotspawn point value is not in the payload, so it is "
+             "left blank rather than inferred. Needs review: confirm the rating resolution and, if "
+             "a book prices it, that the market line is picked up on the next cycle."
+             % (report.get("compared_utc") or "unknown"),
+             [n.get("source_url") or "https://play.hotspawn.com/lobby"], "NEEDS REVIEW")
+    return added
 
 
 def main() -> int:
@@ -422,6 +496,10 @@ def main() -> int:
                       "other_source_urls": ";".join(urls[1:]) if len(urls) > 1 else "",
                       "raised_utc": NOW_S, "raised_by": "arena/5bcfd1b5"})
 
+    n_live = merge_live_fixtures(fixtures, flag, NOW_S)
+    if n_live:
+        print("[5bcfd1b5] live check added %d newly listed fixture(s) to the board" % n_live)
+
     for f in fixtures:
         fid = f["fixture_id"]
         start = dt.datetime.strptime(f["start_utc"], "%Y-%m-%dT%H:%M:%SZ").replace(
@@ -439,10 +517,16 @@ def main() -> int:
 
         ra = resolve_team(st, ta, start, pins)
         rb = resolve_team(st, tb, start, pins)
+        # Keyed by (team, rating period): the same Hotspawn name can legitimately resolve to
+        # DIFFERENT Valve rows in different periods (WROTBERRY is itself in the June standings
+        # but is WBT by October), so collapsing on the name alone would hide a real resolution.
         for side, r in ((ta, ra), (tb, rb)):
-            if side not in team_log:
-                team_log[side] = dict(r)
-                team_log[side]["cand_count"] = len(r["candidates"])
+            key = (side, r["period"] or ("unranked" if r["unranked"] else "unresolved"))
+            if key not in team_log:
+                team_log[key] = dict(r)
+                team_log[key]["cand_count"] = len(r["candidates"])
+                team_log[key]["fixtures"] = []
+            team_log[key]["fixtures"].append(fid)
 
         # ---- market: tier A (primary book) then tier B (named secondary book) ----
         m_tier = m_book = m_oa = m_ob = m_url = m_cap = m_read = ""
@@ -481,22 +565,39 @@ def main() -> int:
                     oa, ob = float(oa_s), float(ob_s)
                     book_lbl = "%s via %s (secondary)" % (book, agg)
                 else:
-                    oa_s = src.get("egw_odds_a") or src.get("primary_odds_a") or ""
-                    ob_s = src.get("egw_odds_b") or src.get("primary_odds_b") or ""
+                    # CITATION INTEGRITY: book label, odds and source URL must all come from the
+                    # SAME read. Upstream records two independent reads for 8 fixtures — a direct
+                    # Pinnacle API read and an EGamersWorld bc.game read — with different numbers.
+                    # An earlier draft of this build paired Pinnacle's label with EGamersWorld's
+                    # odds and URL, which misattributes the price; the primary read wins and its
+                    # own URL is cited, with the aggregator read kept as a cross-check note.
+                    pk_book = (src.get("primary_book") or "").strip()
+                    pk_oa, pk_ob = src.get("primary_odds_a") or "", src.get("primary_odds_b") or ""
+                    pk_url = (src.get("primary_source_url") or "").strip()
+                    cap = src.get("captured_utc", "")
+                    if pk_book and pk_oa and pk_ob and pk_url:
+                        oa_s, ob_s, url = pk_oa, pk_ob, pk_url
+                        book_lbl = "%s — read directly at %s (arena/8944bb84), not re-read this " \
+                                   "cycle" % (pk_book, cap or "an unstated time")
+                        if src.get("egw_odds_a") and src.get("egw_odds_a") != pk_oa:
+                            book_lbl += "; cross-check: EGamersWorld reports bc.game %s/%s at %s" \
+                                        % (src["egw_odds_a"], src["egw_odds_b"],
+                                           src.get("egw_url") or "egamersworld.com")
+                    else:
+                        oa_s = src.get("egw_odds_a") or ""
+                        ob_s = src.get("egw_odds_b") or ""
+                        url = src.get("egw_url") or ""
+                        book_lbl = ("%s (secondary)" % pk_book) if pk_book else \
+                                   "bc.game via EGamersWorld (secondary)"
                     if not oa_s or not ob_s:
                         continue
                     if is_placeholder(oa_s, ob_s):
                         flag("MARKET-PLACEHOLDER", "%s vs %s (%s)" % (ta, tb, fid),
-                             "EGamersWorld shows the 1.80/1.80 un-priced placeholder; rejected, "
-                             "not de-vigged.",
-                             [src.get("egw_url") or "https://egamersworld.com/counterstrike/matches"],
-                             "INFO")
+                             "%s shows the 1.80/1.80 un-priced placeholder; rejected, not "
+                             "de-vigged." % (pk_book or "EGamersWorld"),
+                             [url or "https://egamersworld.com/counterstrike/matches"], "INFO")
                         continue
                     oa, ob = float(oa_s), float(ob_s)
-                    url = src.get("egw_url") or ""
-                    cap = src.get("captured_utc", "")
-                    book_lbl = "%s (secondary)" % (src.get("primary_book") or "bc.game via "
-                                                   "EGamersWorld")
                     orient = ""
                 pa, pb, ov = devig(oa, ob)
                 m_tier, m_book = "B", book_lbl
@@ -533,13 +634,17 @@ def main() -> int:
                 own_pb = "%.1f" % ((1 - head_a) * 100)
                 own_basis = ("Valve VRS points logistic k=%.4f (%s); %s" % (K, K_BASIS, tf))
                 if len(combos) > 1:
-                    own_basis += ("; %d same-name Valve rows are admissible for at least one team — "
-                                  "the favourite side is identical under all %d combinations, so the "
-                                  "pick stands and the probability is published at its conservative "
+                    dupes = []
+                    if len(cand_a) > 1:
+                        dupes.append("%d admissible same-name rows for %s" % (len(cand_a), ta))
+                    if len(cand_b) > 1:
+                        dupes.append("%d admissible same-name rows for %s" % (len(cand_b), tb))
+                    own_basis += ("; Valve publishes %s, giving %d rating combinations — the "
+                                  "favourite side is identical under every combination, so the pick "
+                                  "stands and the probability is published at its conservative "
                                   "bound (team-A range %s%%–%s%%)"
-                                  % (len(set(id(c[1]) for c in combos))
-                                     + len(set(id(c[2]) for c in combos)), len(combos),
-                                     own_lo, own_hi))
+                                  % (" and ".join(dupes) or "%d combinations" % len(combos),
+                                     len(combos), own_lo, own_hi))
                     rating_note.append("VRS-DUPLICATE-NAME-BRACKETED")
                 if ra["pin"] or rb["pin"]:
                     rating_note.append("VRS-DUPLICATE-ROW-PINNED")
@@ -633,6 +738,9 @@ def main() -> int:
 
         rows.append({
             "fixture_id": fid, "state": f["state"], "pickable": f["pickable"],
+            "fixture_origin": ("live Hotspawn payload via scripts/5bcfd1b5_livecheck.py"
+                               if f.get("live_discovered") == "yes"
+                               else "cs2/data/analysis.csv capture"),
             "actionable": "yes" if actionable else "no",
             "start_utc": f["start_utc"], "lock_utc": f["lock_utc"],
             "competition": f["competition"], "tier": f["tier"], "points": f["points"],
@@ -645,6 +753,9 @@ def main() -> int:
             "vrs_roster_a": (ra["candidates"][0]["roster"] if len(ra["candidates"]) == 1 else ""),
             "vrs_url_a": (st.source_url(ra["candidates"][0]) if len(ra["candidates"]) == 1 else ""),
             "vrs_n_candidates_a": len(ra["candidates"]),
+            # Every admissible Valve row is cited even when no single row was chosen, so a
+            # bracketed or unresolved rating stays clickable back to Valve's own file.
+            "vrs_cand_urls_a": ";".join(st.source_url(c) for c in ra["candidates"]),
             "vrs_period_b": rb["period"], "vrs_rank_b": (rb["candidates"][0]["standing"]
                                                          if len(rb["candidates"]) == 1 else ""),
             "vrs_points_b": (rb["candidates"][0]["points"] if len(rb["candidates"]) == 1 else ""),
@@ -652,6 +763,7 @@ def main() -> int:
             "vrs_roster_b": (rb["candidates"][0]["roster"] if len(rb["candidates"]) == 1 else ""),
             "vrs_url_b": (st.source_url(rb["candidates"][0]) if len(rb["candidates"]) == 1 else ""),
             "vrs_n_candidates_b": len(rb["candidates"]),
+            "vrs_cand_urls_b": ";".join(st.source_url(c) for c in rb["candidates"]),
             "pin_a": ra["pin"], "pin_b": rb["pin"],
             "alias_a": ra["alias"], "alias_b": rb["alias"],
             "alias_evidence": ra["alias_evidence"] or rb["alias_evidence"],
@@ -695,10 +807,11 @@ def write_outputs(rows, flags, team_log, st, K, K_BASIS, K_N):
         w.writeheader()
         w.writerows(flags)
     tl = []
-    for name, r in sorted(team_log.items()):
+    for (name, _period), r in sorted(team_log.items()):
         c = r["candidates"]
         tl.append({
             "hotspawn_team": name, "resolved_vrs_name": c[0]["team"] if len(c) == 1 else "",
+            "fixtures": ";".join(r["fixtures"]),
             "n_candidates": len(c),
             "candidate_standings": ";".join("#%d/%dpts/%s/L%d" % (x["standing"], x["points"],
                                                                   x["file"].replace(

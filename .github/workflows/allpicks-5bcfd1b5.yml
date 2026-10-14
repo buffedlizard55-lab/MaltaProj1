@@ -1,0 +1,118 @@
+name: All Picks CS2 Board — live check, rebuild, verify (5bcfd1b5)
+
+# Requirement this satisfies: the board must "regularly check for updates to Hotspawn's
+# listed matches". Every 3 hours this workflow re-reads Hotspawn's own Angular payload,
+# merges any newly listed fixture onto the board, re-resolves ratings against Valve's
+# official Regional Standings, re-reads outside market prices, re-renders allpicks/, runs
+# the verification suite and the repository-wide link audit, then commits the result.
+#
+# Every step is offline-safe: the only networked step is the Hotspawn live check, which
+# records a failure as a finding instead of raising, so an unreachable Hotspawn never
+# breaks the board. Ratings come from committed Valve bytes; market prices from committed
+# reads plus this session's live read log.
+
+on:
+  schedule:
+    # :47 every 3 hours — offset from oct14-8944bb84 (:23) so the two do not contend
+    - cron: '47 */3 * * *'
+  workflow_dispatch:
+  push:
+    branches: [ main, 'arena/5bcfd1b5-maltaproj1' ]
+    paths:
+      - 'scripts/5bcfd1b5_build.py'
+      - 'scripts/5bcfd1b5_ratings.py'
+      - 'scripts/5bcfd1b5_site.py'
+      - 'scripts/5bcfd1b5_livecheck.py'
+      - 'tests/test_5bcfd1b5.py'
+      - 'data/5bcfd1b5/**'
+      - 'allpicks/**'
+      - '.github/workflows/allpicks-5bcfd1b5.yml'
+  pull_request:
+    paths:
+      - 'scripts/5bcfd1b5_build.py'
+      - 'scripts/5bcfd1b5_ratings.py'
+      - 'scripts/5bcfd1b5_site.py'
+      - 'scripts/5bcfd1b5_livecheck.py'
+      - 'tests/test_5bcfd1b5.py'
+      - 'data/5bcfd1b5/**'
+      - 'allpicks/**'
+      - '.github/workflows/allpicks-5bcfd1b5.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: allpicks-5bcfd1b5-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  live-check-build-verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Live check Hotspawn for newly listed or changed CS2 matches
+        # Never fails the run: an unreachable Hotspawn is recorded in livecheck.json as a
+        # finding, and the committed board is left as it is.
+        run: python3 scripts/5bcfd1b5_livecheck.py
+
+      - name: Rebuild the every-match board (ratings, lines, picks, flags)
+        run: python3 scripts/5bcfd1b5_build.py
+
+      - name: Render the mobile-first allpicks/ board
+        run: python3 scripts/5bcfd1b5_site.py
+
+      - name: Run the 5bcfd1b5 verification suite
+        run: python3 -m unittest discover -s tests -p 'test_5bcfd1b5.py' -v
+
+      - name: Run repository-wide HTML link and DOM fragment audit
+        run: python3 scripts/audit_91e444dd.py --output /tmp/audit-5bcfd1b5.json
+
+      - name: Report whether the live check found anything new
+        if: always()
+        run: |
+          python3 - <<'PY'
+          import json, os
+          p = "data/5bcfd1b5/livecheck.json"
+          if not os.path.exists(p):
+              print("::notice::no live check report was written")
+              raise SystemExit(0)
+          r = json.load(open(p, encoding="utf-8"))
+          print("live check: %s" % r["verdict"])
+          print("  board=%s live_cs2=%s new=%s changed=%s reachable=%s"
+                % (r["board_fixtures"], r["live_cs2_fixtures"], len(r["new_on_hotspawn"]),
+                   len(r["changed_on_hotspawn"]), r["reachable"]))
+          for n in r["new_on_hotspawn"]:
+              print("::warning title=New Hotspawn fixture merged onto the board::%s %s vs %s (%s) - flagged LIVE-NEW-FIXTURE, point value left blank"
+                    % (n["fixture_id"], n["team_a"], n["team_b"], n.get("tournament")))
+          for c in r["changed_on_hotspawn"]:
+              print("::warning title=Hotspawn fixture changed::%s %s vs %s - %s"
+                    % (c["fixture_id"], c["team_a"], c["team_b"],
+                       "; ".join("%s: %s -> %s" % (d["field"], d["board"], d["hotspawn_now"])
+                                 for d in c["differences"])))
+          if not r["reachable"]:
+              print("::notice title=Hotspawn unreachable this cycle::%s" % "; ".join(r["errors"]))
+          PY
+
+      - name: Commit and push refreshed board on scheduled or manual runs
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/5bcfd1b5 allpicks
+          if ! git diff --cached --quiet; then
+            git pull --rebase origin "${GITHUB_REF_NAME}"
+            git commit -m "allpicks(5bcfd1b5): scheduled Hotspawn live check and CS2 board refresh"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          else
+            echo "no change to commit"
+          fi

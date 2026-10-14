@@ -108,7 +108,8 @@ class Standings:
         return best
 
     def source_url(self, row: dict) -> str:
-        return VALVE_BLOB % (row["file"] + ".md", row["line"])
+        name = row["file"] if row["file"].endswith(".md") else row["file"] + ".md"
+        return VALVE_BLOB % (name, row["line"])
 
     def details_url(self, row: dict) -> str:
         if not row.get("details"):

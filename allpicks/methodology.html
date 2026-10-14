@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<meta name="description" content="Methodology">
+<title>Methodology · Hotspawn CS2 picks</title>
+<style>
+:root{
+  --bg:#0b0f17; --panel:#131a26; --panel2:#0f1520; --line:#22304a; --line2:#2f4160;
+  --ink:#e9eef7; --dim:#9fb0c8; --dim2:#7488a3;
+  --a:#4ea1ff; --b:#ffb454; --pick:#22c55e; --warn:#f59e0b; --bad:#ef4444; --ok:#22c55e;
+  --S:#f472b6; --B:#60a5fa; --C:#94a3b8;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  padding-bottom:5rem}
+a{color:var(--a);text-decoration:none}
+a:hover,a:focus{text-decoration:underline}
+.wrap{max-width:1100px;margin:0 auto;padding:0 .75rem}
+header.top{position:sticky;top:0;z-index:30;background:rgba(11,15,23,.96);
+  border-bottom:1px solid var(--line);backdrop-filter:blur(6px)}
+.brand{display:flex;align-items:baseline;gap:.5rem;flex-wrap:wrap;padding:.6rem 0 .35rem}
+.brand h1{font-size:1.05rem;margin:0;letter-spacing:.2px}
+.brand .tag{color:var(--dim2);font-size:.78rem}
+nav.jump{display:flex;gap:.4rem;overflow-x:auto;padding:.35rem 0 .55rem;
+  -webkit-overflow-scrolling:touch;scrollbar-width:none}
+nav.jump::-webkit-scrollbar{display:none}
+nav.jump a{flex:0 0 auto;padding:.42rem .7rem;border:1px solid var(--line);border-radius:999px;
+  background:var(--panel2);color:var(--dim);font-size:.83rem;white-space:nowrap}
+nav.jump a[aria-current="page"]{background:var(--a);border-color:var(--a);color:#04101f;font-weight:700}
+main{padding-top:.9rem}
+h2{font-size:1.12rem;margin:1.5rem 0 .5rem}
+h3{font-size:.98rem;margin:1.15rem 0 .4rem;color:var(--dim)}
+p{margin:.45rem 0}
+.lede{color:var(--dim);font-size:.93rem}
+.small{font-size:.8rem;color:var(--dim2)}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:.85rem;margin:.7rem 0}
+.hero{background:linear-gradient(160deg,#152238,#0f1520);border:1px solid var(--line2)}
+.hero .big{font-size:1.55rem;font-weight:800;line-height:1.15;margin:.15rem 0}
+.hero .big span{color:var(--pick)}
+.stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.5rem;margin:.7rem 0 0}
+@media(min-width:720px){.stats{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.stat{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:.55rem .65rem}
+.stat b{display:block;font-size:1.3rem;line-height:1.1}
+.stat span{color:var(--dim2);font-size:.74rem;display:block;margin-top:.15rem}
+.cta{display:block;background:var(--pick);color:#05230f;font-weight:800;border-radius:12px;
+  padding:.85rem .9rem;margin:.7rem 0;font-size:1.02rem;text-align:center}
+.cta:hover,.cta:focus{text-decoration:none;filter:brightness(1.06)}
+.cta.alt{background:var(--panel2);color:var(--ink);border:1px solid var(--line2);font-weight:600}
+.grid{display:grid;grid-template-columns:1fr;gap:.55rem}
+@media(min-width:820px){.grid.two{grid-template-columns:1fr 1fr}}
+
+/* match card */
+.match{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:.7rem .75rem .6rem;
+  margin:.55rem 0;break-inside:avoid}
+.match.no-pick{border-left:4px solid var(--bad)}
+.match.tierA{border-left:4px solid var(--ok)}
+.match.tierB{border-left:4px solid var(--a)}
+.match.tierC{border-left:4px solid var(--b)}
+.match.tierD{border-left:4px solid #a78bfa}
+.match.tierE{border-left:4px solid var(--warn)}
+.match.tierF{border-left:4px solid var(--bad)}
+.mrow{display:flex;align-items:center;gap:.45rem;flex-wrap:wrap;font-size:.76rem;color:var(--dim2)}
+.badge{border:1px solid var(--line2);border-radius:999px;padding:.1rem .48rem;font-size:.72rem;
+  color:var(--dim);background:var(--panel2);white-space:nowrap}
+.badge.S{color:#0b0f17;background:var(--S);border-color:var(--S);font-weight:700}
+.badge.Bt{color:#0b0f17;background:var(--B);border-color:var(--B);font-weight:700}
+.badge.Ct{color:#0b0f17;background:var(--C);border-color:var(--C);font-weight:700}
+.badge.locked{color:#ffd9d9;border-color:#5b2b2b;background:#2a1414}
+.badge.live{color:#d9ffe6;border-color:#255c39;background:#12291c}
+.teams{margin:.5rem 0 .35rem}
+.tline{display:grid;grid-template-columns:1fr auto;gap:.5rem;align-items:center;padding:.28rem 0}
+.tname{font-weight:650;font-size:1rem;display:flex;align-items:center;gap:.4rem;min-width:0}
+.tname .star{color:var(--pick);font-weight:800}
+.tname span.nm{overflow-wrap:anywhere}
+.tpct{font-variant-numeric:tabular-nums;font-weight:800;font-size:1.12rem;text-align:right;
+  min-width:4.1rem}
+.tpct.mute{color:var(--dim2);font-weight:600;font-size:.86rem}
+.bar{height:.55rem;border-radius:999px;background:#25324a;overflow:hidden;display:flex;margin:.3rem 0 .1rem}
+.bar i{display:block;height:100%}
+.bar i.pa{background:var(--a)}
+.bar i.pb{background:var(--b)}
+.basis{font-size:.79rem;color:var(--dim);margin-top:.4rem}
+.basis b{color:var(--ink)}
+.links{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.5rem}
+.links a{font-size:.74rem;border:1px solid var(--line);background:var(--panel2);color:var(--dim);
+  border-radius:8px;padding:.24rem .5rem}
+.links a:hover,.links a:focus{color:var(--ink);border-color:var(--line2);text-decoration:none}
+.flagchip{font-size:.72rem;color:#ffd9a8;border:1px solid #6b4a1f;background:#2a1e0f;
+  border-radius:8px;padding:.2rem .45rem}
+
+/* tables */
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:12px;
+  margin:.6rem 0}
+table{border-collapse:collapse;width:100%;font-size:.84rem;min-width:640px}
+th,td{text-align:left;padding:.5rem .55rem;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--panel2);color:var(--dim);font-size:.75rem;text-transform:uppercase;
+  letter-spacing:.04em;position:sticky;top:0}
+tbody tr:nth-child(even){background:rgba(255,255,255,.015)}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+.pill{display:inline-block;border-radius:6px;padding:.05rem .35rem;font-size:.72rem;font-weight:700}
+.pill.A{background:#0f2f1c;color:#7ee2a8}.pill.B{background:#0f2438;color:#8cc4ff}
+.pill.C{background:#33270f;color:#ffcf87}.pill.D{background:#251b3d;color:#c4b0ff}
+.pill.E{background:#33260f;color:#ffcf87}.pill.F{background:#331414;color:#ff9d9d}
+.blank{color:var(--dim2);font-style:italic}
+ul.tight{margin:.35rem 0 .35rem 1.1rem;padding:0}
+ul.tight li{margin:.22rem 0}
+.note{border-left:3px solid var(--line2);padding:.2rem 0 .2rem .7rem;color:var(--dim);font-size:.86rem}
+.warn{border-left:3px solid var(--warn);background:#221a0c;padding:.6rem .7rem;border-radius:8px;
+  font-size:.86rem;margin:.6rem 0}
+footer{margin:2rem 0 1rem;padding-top:1rem;border-top:1px solid var(--line);color:var(--dim2);
+  font-size:.78rem}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+<div class="brand"><h1>Hotspawn CS2 — every match, one pick</h1>
+<span class="tag">independent lines · never Hotspawn crowd&nbsp;%</span></div>
+<nav class="jump" aria-label="Board sections"><a href="index.html">Executive summary</a>
+<a href="open.html">Open matches</a>
+<a href="all.html">All 89 fixtures</a>
+<a href="tiers.html">By tier</a>
+<a href="tournaments.html">By tournament</a>
+<a href="market.html">Outside lines</a>
+<a href="own-lines.html">Our own lines</a>
+<a href="ratings.html">Team ratings</a>
+<a href="methodology.html" aria-current="page">Methodology</a>
+<a href="sources.html">Sources</a>
+<a href="flagged.html">Flagged for review</a></nav>
+</div></header>
+<main class="wrap">
+
+
+<p class="lede">Exactly how every number on this board is produced, and what we refuse to produce.
+Generated 2026-10-14T03:47:12Z.</p>
+
+<h2>1. What Hotspawn gives us &mdash; and what it does not</h2>
+<div class="panel">
+<p>From <a href="https://play.hotspawn.com/lobby" rel="noopener">play.hotspawn.com/lobby</a> and
+<a href="https://play.hotspawn.com/cs2-pickems" rel="noopener">/cs2-pickems</a> we take <b>fixture identity only</b>: the fixture
+id, the two team names, the competition, Hotspawn's tier and point value, and the UTC start and lock
+epochs embedded in the page's Angular <code>TransferState</code> payload.</p>
+<p><b>Hotspawn's &ldquo;% picked&rdquo; figures are never used as a probability.</b> They are a crowd
+poll of the site's own users, sampled at an unknown size, and the brief for this project excludes them
+explicitly. The same rule applies to HLTV's &ldquo;Pick a winner&rdquo; vote, which is also a crowd
+poll (for example HLTV shows 87.5%/12.5% on fixture 1079624; that number appears nowhere in our
+output).</p>
+</div>
+
+<h2>2. Coverage: 89 fixtures, 28 open</h2>
+<div class="panel">
+<p>Hotspawn's own tier filter reports 88&ndash;89 CS2 fixtures while its page header says
+&ldquo;68 matches this week&rdquo;. We publish what the payload actually contains &mdash;
+<b>89</b> CS2 rows &mdash; and record the disagreement as a flag rather than claiming the
+header proves coverage. Of those, <b>28</b> have a lock time still in the future and are
+pickable; 2 are locked/started; the remainder are June&ndash;July 2026 fixtures Hotspawn still
+carries.</p>
+</div>
+
+<h2>3. Outside market lines</h2>
+<div class="panel">
+<p>A bookmaker price is converted to a two-way probability by removing the overround:</p>
+<p><code>p(A) = (1/o_A) / (1/o_A + 1/o_B)</code> &nbsp;&nbsp;
+<code>overround = (1/o_A + 1/o_B &minus; 1) &times; 100</code></p>
+<ul class="tight">
+<li><b>Tier A</b> &mdash; a primary bookmaker's own public price feed, read by CI during the run
+(Pinnacle's public guest moneyline endpoint, the payload its CS2 matchups page loads). Decimal odds
+are converted from the American prices in that response.</li>
+<li><b>Tier B</b> &mdash; a book price we could not re-read during this build. Two kinds, labelled
+apart on every row: a <b>direct read of a primary book&rsquo;s own price feed</b> at an earlier
+timestamp (Pinnacle&rsquo;s public guest API, read 2026-10-14T01:48Z by session
+<code>arena/8944bb84</code>), and a <b>named aggregator&rsquo;s report</b> of a book price
+(EGamersWorld reporting bc.game). We print the book, the exact URL carrying those numbers and the
+read time, and we state plainly that the price was not re-read this cycle.</li>
+<li><b>Citation integrity:</b> the book label, the odds and the source URL on a row always come from
+the <em>same</em> read. Eight fixtures carry two independent reads upstream whose numbers differ
+&mdash; for example Pinnacle 2.700/1.410 against EGamersWorld&rsquo;s bc.game 2.450/1.480 on
+fixture 1079546. The primary read wins and the other is printed as a labelled cross-check, never
+mixed into one row.</li>
+<li><b>Rejected:</b> EGamersWorld prints <code>1.80/1.80</code> when it has no price. Identical
+prices on both sides carry zero information, so those rows are rejected and flagged, never
+de-vigged into a fake 50/50.</li>
+<li><b>Orientation:</b> aggregators do not always list the teams in Hotspawn's order. Odds are mapped
+by team name, not by column position, and every swap is recorded in
+<code>data/5bcfd1b5/market_reads.csv</code>.</li>
+</ul>
+</div>
+
+<h2>4. Our own line</h2>
+<div class="panel">
+<p><code>p_map(A) = 1 / (1 + 10^(-k &middot; (pts_A &minus; pts_B) / 400))</code></p>
+<p><b>k = 0.463</b> &mdash; cs2 calibrate.py (MLE on Valve&#x27;s published match results), fitted on 14188 of Valve's own published match results.
+This constant is inherited from <code>main</code>'s calibrated model
+(<code>cs2/data/summary.json</code>) and is read at build time, not hard-coded.</p>
+<p>Series transform from a single-map probability: BO1 identity; BO3 <code>p&sup2;(3-2p)</code>;
+BO5 <code>p&sup3;(10-15p+6p&sup2;)</code>. Both transforms are strictly increasing on [0,1] and fix
+0.5, so <b>the favourite side is format-invariant</b>. Where the format is unverified we publish the
+single-map estimate and label it as such; the pick is still sound.</p>
+<p><b>Rating input:</b> official Valve Regional Standings points for the period <em>in force at the
+match date</em> &mdash; the latest Valve publication on or before that date. If the team is absent
+there, we use the earliest later official period containing that exact name and flag the row as
+anachronistic. This is the single biggest reason the previous boards had 25 blank picks: they read
+only the 2026-10-05 file, but 23 of the blank fixtures were played in June and July 2026.</p>
+</div>
+
+<h2>5. Pick hierarchy</h2>
+<div class="panel">
+<p>The first tier with a usable input decides the pick. Tiers are never averaged.</p>
+<ul class="tight">
+<li><b>A</b> &mdash; primary book moneyline, de-vigged.</li>
+<li><b>B</b> &mdash; named secondary book moneyline, de-vigged.</li>
+<li><b>C</b> &mdash; our own line, both teams uniquely ranked in the official Valve standings in
+force at the match date.</li>
+<li><b>D</b> &mdash; our own line where a rating needed a roster-verified alias, a pinned
+duplicate-name row, or a later Valve period. Same arithmetic, weaker provenance, labelled.</li>
+<li><b>E</b> &mdash; directional only: one side officially ranked, the other confirmed unranked in
+every Valve period and on HLTV. A pick is published; the probability is <b>deliberately blank</b>
+because no official number exists for the unranked side.</li>
+<li><b>F</b> &mdash; no pick: no official rating for both sides and no market price. Blank and
+flagged.</li>
+</ul>
+</div>
+
+<h2>6. Duplicate team names in Valve's own file</h2>
+<div class="panel">
+<p>Valve's standings legitimately contain more than one row with the same team name (an active
+five-man roster and an older or partial one). We handle this in two ways and never guess:</p>
+<ul class="tight">
+<li>If a roster check pins one row &mdash; inherited from <code>data/8944bb84/ratings.csv</code> and
+<b>re-verified line by line against Valve's file</b> before use (94 accepted, 0 rejected) &mdash; that
+row is used and the pin is cited.</li>
+<li>Otherwise <b>every</b> same-name row stays admissible and we evaluate all combinations. If they
+all agree on the favourite, the pick is published at the <b>conservative</b> bound of the probability
+range and the range is printed. If they disagree on the favourite, no probability and no pick are
+published at all.</li>
+</ul>
+</div>
+
+<h2>7. What we never do</h2>
+<div class="panel">
+<ul class="tight">
+<li>No invented odds, timestamps, ratings, rosters or formats.</li>
+<li>No 50/50 fallback, no averaging of market and model, no crowd poll as a probability.</li>
+<li>No mixing of HLTV's <code>VRS: #N</code> badge numbers with Valve's published standings. They are
+different snapshots: HLTV shows HEROIC as &ldquo;VRS #22&rdquo; while Valve's 2026-10-05 file ranks
+HEROIC #15 (1550 pts). We use Valve's file and cite the exact line.</li>
+<li>Unverifiable means blank plus a flag on <a href="flagged.html">Flagged for review</a>.</li>
+</ul>
+</div>
+
+<h2>8. Limits</h2>
+<div class="panel">
+<p>Valve's standings are published roughly monthly, so a rating can be weeks older than the match and
+cannot reflect a last-minute roster change. A points logistic is a coarse model: it knows nothing
+about map pool, form, travel or a team's motivation in a dead rubber. Aggregator prices can drift
+within the hour, and we print the read time so you can judge the age yourself. Locked and expired
+fixtures cannot be picked in Hotspawn's game; their rows are archival and are labelled as such.
+Nothing here is betting advice.</p>
+</div>
+
+<footer>
+<p>Independent analysis for research purposes only — not betting advice. Fixture identity and
+UTC start/lock times come from Hotspawn's public pick'em pages; every probability comes from an
+outside bookmaker price or from Valve's official Regional Standings, never from Hotspawn's crowd
+pick percentages and never from HLTV's &ldquo;Pick a winner&rdquo; vote.</p>
+<p>Built by session <code>arena/5bcfd1b5</code> from committed evidence.
+See <a href="methodology.html">Methodology</a> and <a href="flagged.html">Flagged for review</a>.</p>
+</footer>
+</main>
+<script>
+/* Progressive enhancement only: the board is complete, readable HTML without JS. */
+(function(){
+  var f=document.getElementById('q');
+  if(!f) return;
+  f.addEventListener('input',function(){
+    var v=f.value.trim().toLowerCase();
+    document.querySelectorAll('[data-search]').forEach(function(el){
+      el.style.display = !v || el.getAttribute('data-search').toLowerCase().indexOf(v)>=0 ? '' : 'none';
+    });
+    var n=document.getElementById('qcount');
+    if(n) n.textContent = v ? 'filter: "'+f.value+'"' : '';
+  });
+})();
+</script>
+</body></html>

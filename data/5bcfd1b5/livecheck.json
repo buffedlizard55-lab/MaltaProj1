@@ -1,0 +1,41 @@
+{
+ "compared_utc": "2026-10-14T03:43:13Z",
+ "board_fixtures": 89,
+ "live_cs2_fixtures": 0,
+ "live_open_fixtures": 0,
+ "new_on_hotspawn": [],
+ "changed_on_hotspawn": [],
+ "unchanged": 0,
+ "no_longer_listed": [],
+ "unexpectedly_missing": [],
+ "comparison_possible": false,
+ "count_disagreement": {
+  "note": "Hotspawn prints a weekly count and per-filter counts that do not equal the number of CS2 rows in its own payload. Recorded, never asserted as coverage.",
+  "filter_totals_by_page": {
+   "lobby": null,
+   "cs2-pickems": null
+  },
+  "payload_cs2_rows": 0
+ },
+ "reachable": false,
+ "errors": [
+  "https://play.hotspawn.com/lobby: network: TLS/SSL connection has been closed (EOF) (_ssl.c:992)",
+  "https://play.hotspawn.com/cs2-pickems: network: TLS/SSL connection has been closed (EOF) (_ssl.c:992)"
+ ],
+ "verdict": "no live comparison possible \u2014 Hotspawn unreachable; the committed board is unchanged and its own capture time still applies",
+ "pages": {
+  "lobby": {
+   "url": "https://play.hotspawn.com/lobby",
+   "fetched_utc": "2026-10-14T03:43:13Z",
+   "error": "network: TLS/SSL connection has been closed (EOF) (_ssl.c:992)"
+  },
+  "cs2-pickems": {
+   "url": "https://play.hotspawn.com/cs2-pickems",
+   "fetched_utc": "2026-10-14T03:43:13Z",
+   "error": "network: TLS/SSL connection has been closed (EOF) (_ssl.c:992)"
+  }
+ },
+ "generated_by": "scripts/5bcfd1b5_livecheck.py (arena/5bcfd1b5)",
+ "crowd_percentages_read": false,
+ "crowd_note": "collector/hotspawn.py projects fixture identity, epochs, tier, format and permalinks only, and documents that crowd pick values are discarded; this check reads no crowd percentage."
+}

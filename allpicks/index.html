@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<meta name="description" content="&lt;p class=&quot;lede&quot;&gt;Every Counter-Strike 2 match Hotspawn lists, with our pick and a win probability from outside betting markets and Valve&#x27;s official team standings.&lt;/p&gt;">
+<title>Executive summary · Hotspawn CS2 picks</title>
+<style>
+:root{
+  --bg:#0b0f17; --panel:#131a26; --panel2:#0f1520; --line:#22304a; --line2:#2f4160;
+  --ink:#e9eef7; --dim:#9fb0c8; --dim2:#7488a3;
+  --a:#4ea1ff; --b:#ffb454; --pick:#22c55e; --warn:#f59e0b; --bad:#ef4444; --ok:#22c55e;
+  --S:#f472b6; --B:#60a5fa; --C:#94a3b8;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  padding-bottom:5rem}
+a{color:var(--a);text-decoration:none}
+a:hover,a:focus{text-decoration:underline}
+.wrap{max-width:1100px;margin:0 auto;padding:0 .75rem}
+header.top{position:sticky;top:0;z-index:30;background:rgba(11,15,23,.96);
+  border-bottom:1px solid var(--line);backdrop-filter:blur(6px)}
+.brand{display:flex;align-items:baseline;gap:.5rem;flex-wrap:wrap;padding:.6rem 0 .35rem}
+.brand h1{font-size:1.05rem;margin:0;letter-spacing:.2px}
+.brand .tag{color:var(--dim2);font-size:.78rem}
+nav.jump{display:flex;gap:.4rem;overflow-x:auto;padding:.35rem 0 .55rem;
+  -webkit-overflow-scrolling:touch;scrollbar-width:none}
+nav.jump::-webkit-scrollbar{display:none}
+nav.jump a{flex:0 0 auto;padding:.42rem .7rem;border:1px solid var(--line);border-radius:999px;
+  background:var(--panel2);color:var(--dim);font-size:.83rem;white-space:nowrap}
+nav.jump a[aria-current="page"]{background:var(--a);border-color:var(--a);color:#04101f;font-weight:700}
+main{padding-top:.9rem}
+h2{font-size:1.12rem;margin:1.5rem 0 .5rem}
+h3{font-size:.98rem;margin:1.15rem 0 .4rem;color:var(--dim)}
+p{margin:.45rem 0}
+.lede{color:var(--dim);font-size:.93rem}
+.small{font-size:.8rem;color:var(--dim2)}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:.85rem;margin:.7rem 0}
+.hero{background:linear-gradient(160deg,#152238,#0f1520);border:1px solid var(--line2)}
+.hero .big{font-size:1.55rem;font-weight:800;line-height:1.15;margin:.15rem 0}
+.hero .big span{color:var(--pick)}
+.stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.5rem;margin:.7rem 0 0}
+@media(min-width:720px){.stats{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.stat{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:.55rem .65rem}
+.stat b{display:block;font-size:1.3rem;line-height:1.1}
+.stat span{color:var(--dim2);font-size:.74rem;display:block;margin-top:.15rem}
+.cta{display:block;background:var(--pick);color:#05230f;font-weight:800;border-radius:12px;
+  padding:.85rem .9rem;margin:.7rem 0;font-size:1.02rem;text-align:center}
+.cta:hover,.cta:focus{text-decoration:none;filter:brightness(1.06)}
+.cta.alt{background:var(--panel2);color:var(--ink);border:1px solid var(--line2);font-weight:600}
+.grid{display:grid;grid-template-columns:1fr;gap:.55rem}
+@media(min-width:820px){.grid.two{grid-template-columns:1fr 1fr}}
+
+/* match card */
+.match{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:.7rem .75rem .6rem;
+  margin:.55rem 0;break-inside:avoid}
+.match.no-pick{border-left:4px solid var(--bad)}
+.match.tierA{border-left:4px solid var(--ok)}
+.match.tierB{border-left:4px solid var(--a)}
+.match.tierC{border-left:4px solid var(--b)}
+.match.tierD{border-left:4px solid #a78bfa}
+.match.tierE{border-left:4px solid var(--warn)}
+.match.tierF{border-left:4px solid var(--bad)}
+.mrow{display:flex;align-items:center;gap:.45rem;flex-wrap:wrap;font-size:.76rem;color:var(--dim2)}
+.badge{border:1px solid var(--line2);border-radius:999px;padding:.1rem .48rem;font-size:.72rem;
+  color:var(--dim);background:var(--panel2);white-space:nowrap}
+.badge.S{color:#0b0f17;background:var(--S);border-color:var(--S);font-weight:700}
+.badge.Bt{color:#0b0f17;background:var(--B);border-color:var(--B);font-weight:700}
+.badge.Ct{color:#0b0f17;background:var(--C);border-color:var(--C);font-weight:700}
+.badge.locked{color:#ffd9d9;border-color:#5b2b2b;background:#2a1414}
+.badge.live{color:#d9ffe6;border-color:#255c39;background:#12291c}
+.teams{margin:.5rem 0 .35rem}
+.tline{display:grid;grid-template-columns:1fr auto;gap:.5rem;align-items:center;padding:.28rem 0}
+.tname{font-weight:650;font-size:1rem;display:flex;align-items:center;gap:.4rem;min-width:0}
+.tname .star{color:var(--pick);font-weight:800}
+.tname span.nm{overflow-wrap:anywhere}
+.tpct{font-variant-numeric:tabular-nums;font-weight:800;font-size:1.12rem;text-align:right;
+  min-width:4.1rem}
+.tpct.mute{color:var(--dim2);font-weight:600;font-size:.86rem}
+.bar{height:.55rem;border-radius:999px;background:#25324a;overflow:hidden;display:flex;margin:.3rem 0 .1rem}
+.bar i{display:block;height:100%}
+.bar i.pa{background:var(--a)}
+.bar i.pb{background:var(--b)}
+.basis{font-size:.79rem;color:var(--dim);margin-top:.4rem}
+.basis b{color:var(--ink)}
+.links{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.5rem}
+.links a{font-size:.74rem;border:1px solid var(--line);background:var(--panel2);color:var(--dim);
+  border-radius:8px;padding:.24rem .5rem}
+.links a:hover,.links a:focus{color:var(--ink);border-color:var(--line2);text-decoration:none}
+.flagchip{font-size:.72rem;color:#ffd9a8;border:1px solid #6b4a1f;background:#2a1e0f;
+  border-radius:8px;padding:.2rem .45rem}
+
+/* tables */
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:12px;
+  margin:.6rem 0}
+table{border-collapse:collapse;width:100%;font-size:.84rem;min-width:640px}
+th,td{text-align:left;padding:.5rem .55rem;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--panel2);color:var(--dim);font-size:.75rem;text-transform:uppercase;
+  letter-spacing:.04em;position:sticky;top:0}
+tbody tr:nth-child(even){background:rgba(255,255,255,.015)}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+.pill{display:inline-block;border-radius:6px;padding:.05rem .35rem;font-size:.72rem;font-weight:700}
+.pill.A{background:#0f2f1c;color:#7ee2a8}.pill.B{background:#0f2438;color:#8cc4ff}
+.pill.C{background:#33270f;color:#ffcf87}.pill.D{background:#251b3d;color:#c4b0ff}
+.pill.E{background:#33260f;color:#ffcf87}.pill.F{background:#331414;color:#ff9d9d}
+.blank{color:var(--dim2);font-style:italic}
+ul.tight{margin:.35rem 0 .35rem 1.1rem;padding:0}
+ul.tight li{margin:.22rem 0}
+.note{border-left:3px solid var(--line2);padding:.2rem 0 .2rem .7rem;color:var(--dim);font-size:.86rem}
+.warn{border-left:3px solid var(--warn);background:#221a0c;padding:.6rem .7rem;border-radius:8px;
+  font-size:.86rem;margin:.6rem 0}
+footer{margin:2rem 0 1rem;padding-top:1rem;border-top:1px solid var(--line);color:var(--dim2);
+  font-size:.78rem}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+<div class="brand"><h1>Hotspawn CS2 — every match, one pick</h1>
+<span class="tag">independent lines · never Hotspawn crowd&nbsp;%</span></div>
+<nav class="jump" aria-label="Board sections"><a href="index.html" aria-current="page">Executive summary</a>
+<a href="open.html">Open matches</a>
+<a href="all.html">All 89 fixtures</a>
+<a href="tiers.html">By tier</a>
+<a href="tournaments.html">By tournament</a>
+<a href="market.html">Outside lines</a>
+<a href="own-lines.html">Our own lines</a>
+<a href="ratings.html">Team ratings</a>
+<a href="methodology.html">Methodology</a>
+<a href="sources.html">Sources</a>
+<a href="flagged.html">Flagged for review</a></nav>
+</div></header>
+<main class="wrap">
+<p class="lede">Every Counter-Strike 2 match Hotspawn lists, with our pick and a win probability from outside betting markets and Valve's official team standings.</p>
+
+<section class="panel hero">
+<p class="small" style="margin:0">Executive summary &middot; generated 2026-10-14T03:47:12Z &middot;
+Hotspawn capture 2026-10-14T02:35:29Z</p>
+<div class="big">Picks for <span>28 of 28</span> open matches<br>
+and 86 of 89 listed matches</div>
+<p class="lede" style="margin-top:.4rem">Hotspawn's own lobby lists <b>89</b> CS2 fixtures
+(this week's filter says 88&ndash;89; the payload holds 89). Only <b>28</b> are still
+pickable &mdash; the rest are locked or expired. Every one of them is on this board.</p>
+<div class="stats">
+<div class="stat"><b>28</b><span>open &amp; pickable now</span></div>
+<div class="stat"><b>27</b><span>open with a numeric win&nbsp;%</span></div>
+<div class="stat"><b>7</b><span>priced by a primary book</span></div>
+<div class="stat"><b>19</b><span>priced by a secondary book</span></div>
+</div>
+<a class="cta" href="open.html">&#9733; See the 28 open matches &amp; picks</a>
+<a class="cta alt" href="all.html">See all 89 fixtures (open, locked and expired)</a>
+</section>
+
+<h2>Where the picks are</h2>
+<div class="grid two">
+<div class="panel">
+<h3 style="margin-top:0">On your phone, start here</h3>
+<ul class="tight">
+<li><a href="open.html"><b>Open matches</b></a> &mdash; the 28 fixtures you can still pick in
+Hotspawn's game. One card per match: the pick starred, both teams' win&nbsp;%, a probability bar,
+why, and a source link on every row.</li>
+<li><a href="all.html"><b>All fixtures</b></a> &mdash; the full 89-match list including locked
+and expired matches, so nothing Hotspawn lists is missing.</li>
+<li><a href="flagged.html"><b>Flagged for review</b></a> &mdash; the 12 items we could not
+verify, with the source links we did check.</li>
+</ul>
+</div>
+<div class="panel">
+<h3 style="margin-top:0">By category</h3>
+<ul class="tight">
+<li><a href="tiers.html">By Hotspawn tier</a> &mdash; S (4), B (25), C (60).</li>
+<li><a href="tournaments.html">By tournament</a> &mdash; 18 competitions.</li>
+<li><a href="market.html">Outside betting lines</a> &mdash; bookmaker odds, de-vigged, with the
+overround and the read time.</li>
+<li><a href="own-lines.html">Our own lines</a> &mdash; the model, its Valve inputs and the arithmetic.</li>
+<li><a href="ratings.html">Team ratings</a> &mdash; how each of the 112 team names resolved to an
+official Valve standing, with the exact file line.</li>
+<li><a href="methodology.html">Methodology</a> &middot; <a href="sources.html">Sources</a></li>
+</ul>
+</div>
+</div>
+
+<h2>How each pick was decided</h2>
+<div class="panel">
+<p>Picks follow a fixed hierarchy. A match is decided by the <b>first</b> tier that has a usable
+input; tiers are never averaged together, and the tier is printed on every card.</p>
+<ul class="tight"><li><b>A</b> — Primary book: <b>7</b> matches</li><li><b>B</b> — Book price, not re-read this cycle: <b>19</b> matches</li><li><b>C</b> — Our own line: <b>25</b> matches</li><li><b>D</b> — Our own line (soft): <b>34</b> matches</li><li><b>E</b> — Directional only: <b>1</b> match</li><li><b>F</b> — No pick: <b>3</b> matches</li></ul>
+<p class="small">Hotspawn's crowd &ldquo;% picked&rdquo; and HLTV's &ldquo;Pick a winner&rdquo; vote
+are crowd polls. Neither is used as a probability anywhere on this board.</p>
+</div>
+
+<h2>Open now &mdash; first 6 of 28</h2>
+<p class="small"><a href="open.html">Open the full list &rarr;</a></p>
+<article class="match tierB" data-search="Gothic Lavked CCT Europe 2026 Series #11 1079621 B B 2026-10-14T08:00:00Z"><div class="mrow"><strong>Wed 14 Oct · 08:00 UTC</strong><span>CCT Europe 2026 Series #11</span><span style="margin-left:auto">#1079621</span></div><div class="mrow" style="margin-top:.3rem"><span class="badge live">OPEN — pickable</span><span class="badge Bt">Tier B · 3 pts</span><span class="badge">BO3</span><span class="badge">pick tier B</span></div><div class="teams"><div class="tline"><div class="tname"><span class="nm">Gothic</span></div><span class="tpct">44.4%</span></div><div class="bar" role="img" aria-label="Win probability 44.4% vs 55.6%"><i class="pa" style="width:44.40%"></i><i class="pb" style="width:55.60%"></i></div><div class="tline"><div class="tname"><span class="star" aria-hidden="true">★</span><span class="nm">Lavked</span></div><span class="tpct">55.6% <span class="sr">(our pick)</span></span></div></div><div class="basis"><b>Why:</b> bc.game via EGamersWorld (secondary) moneyline, de-vigged — secondary aggregator report, not re-read at the book</div><div class="small" style="margin-top:.35rem">Our own model says 34.8% / 65.2% &middot; Valve VRS points logistic k=0.4630 (cs2 calibrate.py (MLE on Valve&#x27;s published match results)); BO3 p^2(3-2p)</div><div class="links"><a href="https://www.hotspawn.com/matches/gothic-vs-lavked-cct-europe-2026-series-11-1079621" rel="noopener">Hotspawn fixture</a><a href="https://www.hltv.org/matches/2399298/gothic-vs-lavked-cct-2026-europe-series-11" rel="noopener">HLTV match</a><a href="https://egamersworld.com/counterstrike/match/_rW8GEyWK/gothic-vs-lavked-GGmfuJ1n4B" rel="noopener">Market price (bc.game)</a><a href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L216" rel="noopener">Valve VRS · Gothic</a><a href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L148" rel="noopener">Valve VRS · Lavked</a></div></article><article class="match tierB" data-search="Enjoy B8 Academy CCT Europe 2026 Series #12 Play-In 1081111 C B 2026-10-14T08:00:00Z"><div class="mrow"><strong>Wed 14 Oct · 08:00 UTC</strong><span>CCT Europe 2026 Series #12 Play-In</span><span style="margin-left:auto">#1081111</span></div><div class="mrow" style="margin-top:.3rem"><span class="badge live">OPEN — pickable</span><span class="badge Ct">Tier C · 2 pts</span><span class="badge">BO3</span><span class="badge">pick tier B</span></div><div class="teams"><div class="tline"><div class="tname"><span class="star" aria-hidden="true">★</span><span class="nm">Enjoy</span></div><span class="tpct">60.2% <span class="sr">(our pick)</span></span></div><div class="bar" role="img" aria-label="Win probability 60.2% vs 39.8%"><i class="pa" style="width:60.20%"></i><i class="pb" style="width:39.80%"></i></div><div class="tline"><div class="tname"><span class="nm">B8 Academy</span></div><span class="tpct">39.8%</span></div></div><div class="basis"><b>Why:</b> bc.game via EGamersWorld (secondary) moneyline, de-vigged — secondary aggregator report, not re-read at the book</div><div class="small" style="margin-top:.35rem">Our own model says 72.5% / 27.5% &middot; Valve VRS points logistic k=0.4630 (cs2 calibrate.py (MLE on Valve&#x27;s published match results)); BO3 p^2(3-2p)</div><div class="links"><a href="https://play.hotspawn.com/lobby" rel="noopener">Hotspawn fixture</a><a href="https://www.hltv.org/matches/2399461/enjoy-vs-b8-academy-cct-2026-europe-series-12-closed-qualifier" rel="noopener">HLTV match</a><a href="https://egamersworld.com/counterstrike/match/1sGIL2gAYu/enjoy-vs-b8-academy-qwO9cEnL7" rel="noopener">Market price (bc.game)</a><a href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L143" rel="noopener">Valve VRS · Enjoy</a><a href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L266" rel="noopener">Valve VRS · B8 Academy</a></div></article><article class="match tierA" data-search="9z Aurora Thunderpick World Championship 2026 1080176 S A 2026-10-14T08:30:00Z"><div class="mrow"><strong>Wed 14 Oct · 08:30 UTC</strong><span>Thunderpick World Championship 2026</span><span style="margin-left:auto">#1080176</span></div><div class="mrow" style="margin-top:.3rem"><span class="badge live">OPEN — pickable</span><span class="badge S">Tier S · 7 pts</span><span class="badge">BO3</span><span class="badge">pick tier A</span></div><div class="teams"><div class="tline"><div class="tname"><span class="nm">9z</span></div><span class="tpct">28.0%</span></div><div class="bar" role="img" aria-label="Win probability 28.0% vs 72.0%"><i class="pa" style="width:28.00%"></i><i class="pb" style="width:72.00%"></i></div><div class="tline"><div class="tname"><span class="star" aria-hidden="true">★</span><span class="nm">Aurora</span></div><span class="tpct">72.0% <span class="sr">(our pick)</span></span></div></div><div class="basis"><b>Why:</b> Pinnacle (primary, read by CI) moneyline, de-vigged — primary book read by CI this cycle</div><div class="small" style="margin-top:.35rem">Our own model says 33.3% / 66.7% &middot; Valve VRS points logistic k=0.4630 (cs2 calibrate.py (MLE on Valve&#x27;s published match results)); BO3 p^2(3-2p)</div><div class="links"><a href="https://www.hotspawn.com/matches/9z-vs-aurora-thunderpick-world-championship-2026-1080176" rel="noopener">Hotspawn fixture</a><a href="https://www.hltv.org/matches/2399384/9z-vs-aurora-thunderpick-world-championship-2026" rel="noopener">HLTV match</a><a href="https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&amp;withSpecials=false" rel="noopener">Market price (Pinnacle)</a><a href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L22" rel="noopener">Valve VRS · 9z</a><a href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L14" rel="noopener">Valve VRS · Aurora</a></div></article><article class="match tierB" data-search="Astralis Sashi Stake Pulse Beat III 1079438 B B 2026-10-14T10:00:00Z"><div class="mrow"><strong>Wed 14 Oct · 10:00 UTC</strong><span>Stake Pulse Beat III</span><span style="margin-left:auto">#1079438</span></div><div class="mrow" style="margin-top:.3rem"><span class="badge live">OPEN — pickable</span><span class="badge Bt">Tier B · 3 pts</span><span class="badge">BO3</span><span class="badge">pick tier B</span></div><div class="teams"><div class="tline"><div class="tname"><span class="star" aria-hidden="true">★</span><span class="nm">Astralis</span></div><span class="tpct">85.3% <span class="sr">(our pick)</span></span></div><div class="bar" role="img" aria-label="Win probability 85.3% vs 14.7%"><i class="pa" style="width:85.30%"></i><i class="pb" style="width:14.70%"></i></div><div class="tline"><div class="tname"><span class="nm">Sashi</span></div><span class="tpct">14.7%</span></div></div><div class="basis"><b>Why:</b> bc.game via EGamersWorld (secondary) moneyline, de-vigged — secondary aggregator report, not re-read at the book</div><div class="small" style="margin-top:.35rem">Our own model says 90.5% / 9.5% &middot; Valve VRS points logistic k=0.4630 (cs2 calibrate.py (MLE on Valve&#x27;s published match results)); BO3 p^2(3-2p)</div><div class="links"><a href="https://www.hotspawn.com/matches/astralis-vs-sashi-stake-pulse-beat-iii-1079438" rel="noopener">Hotspawn fixture</a><a href="https://www.hltv.org/matches/2399134/astralis-vs-sashi-stake-pulse-beat-iii" rel="noopener">HLTV match</a><a href="https://egamersworld.com/counterstrike/match/EJZmJpBjeNx/astralis-vs-sashi-esport-aGet1AP-0Z" rel="noopener">Market price (bc.game)</a><a href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L15" rel="noopener">Valve VRS · Astralis</a><a href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L78" rel="noopener">Valve VRS · Sashi</a></div></article><article class="match tierA" data-search="HOTU Fnatic Stake Pulse Beat III 1079439 B A 2026-10-14T10:00:00Z"><div class="mrow"><strong>Wed 14 Oct · 10:00 UTC</strong><span>Stake Pulse Beat III</span><span style="margin-left:auto">#1079439</span></div><div class="mrow" style="margin-top:.3rem"><span class="badge live">OPEN — pickable</span><span class="badge Bt">Tier B · 3 pts</span><span class="badge">BO3</span><span class="badge">pick tier A</span></div><div class="teams"><div class="tline"><div class="tname"><span class="nm">HOTU</span></div><span class="tpct">47.5%</span></div><div class="bar" role="img" aria-label="Win probability 47.5% vs 52.5%"><i class="pa" style="width:47.50%"></i><i class="pb" style="width:52.50%"></i></div><div class="tline"><div class="tname"><span class="star" aria-hidden="true">★</span><span class="nm">Fnatic</span></div><span class="tpct">52.5% <span class="sr">(our pick)</span></span></div></div><div class="basis"><b>Why:</b> Pinnacle (primary, read by CI) moneyline, de-vigged — primary book read by CI this cycle</div><div class="small" style="margin-top:.35rem">Our own model says 52.0% / 48.0% &middot; Valve VRS points logistic k=0.4630 (cs2 calibrate.py (MLE on Valve&#x27;s published match results)); BO3 p^2(3-2p)</div><div class="links"><a href="https://www.hotspawn.com/matches/hotu-vs-fnatic-stake-pulse-beat-iii-1079439" rel="noopener">Hotspawn fixture</a><a href="https://www.hltv.org/matches/2399135/hotu-vs-fnatic-stake-pulse-beat-iii" rel="noopener">HLTV match</a><a href="https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&amp;withSpecials=false" rel="noopener">Market price (Pinnacle)</a><a href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L36" rel="noopener">Valve VRS · HOTU</a><a href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L40" rel="noopener">Valve VRS · fnatic</a></div></article><article class="match tierB" data-search="ex-RUSTEC mellren CCT Europe 2026 Series #11 1079622 B B 2026-10-14T11:00:00Z"><div class="mrow"><strong>Wed 14 Oct · 11:00 UTC</strong><span>CCT Europe 2026 Series #11</span><span style="margin-left:auto">#1079622</span></div><div class="mrow" style="margin-top:.3rem"><span class="badge live">OPEN — pickable</span><span class="badge Bt">Tier B · 3 pts</span><span class="badge">BO3</span><span class="badge">pick tier B</span><span class="flagchip">VRS-DUPLICATE-ROW-PINNED</span></div><div class="teams"><div class="tline"><div class="tname"><span class="star" aria-hidden="true">★</span><span class="nm">ex-RUSTEC</span></div><span class="tpct">65.7% <span class="sr">(our pick)</span></span></div><div class="bar" role="img" aria-label="Win probability 65.7% vs 34.3%"><i class="pa" style="width:65.70%"></i><i class="pb" style="width:34.30%"></i></div><div class="tline"><div class="tname"><span class="nm">mellren</span></div><span class="tpct">34.3%</span></div></div><div class="basis"><b>Why:</b> bc.game via EGamersWorld (secondary) moneyline, de-vigged — secondary aggregator report, not re-read at the book</div><div class="small" style="margin-top:.35rem">Our own model says 63.1% / 36.9% &middot; Valve VRS points logistic k=0.4630 (cs2 calibrate.py (MLE on Valve&#x27;s published match results)); BO3 p^2(3-2p)</div><div class="links"><a href="https://www.hotspawn.com/matches/ex-rustec-vs-mellren-cct-europe-2026-series-11-1079622" rel="noopener">Hotspawn fixture</a><a href="https://www.hltv.org/matches/2399299/ex-rustec-vs-mellren-cct-2026-europe-series-11" rel="noopener">HLTV match</a><a href="https://egamersworld.com/counterstrike/match/_rW8GEyWK/ex-rustec-vs-mellren-ZGVCwI7MK" rel="noopener">Market price (bc.game)</a><a href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L97" rel="noopener">Valve VRS · ex-RUSTEC</a><a href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L130" rel="noopener">Valve VRS · mellren</a></div></article>
+
+<h2>What this session changed</h2>
+<div class="panel">
+<p>Before this pass, the boards on <code>main</code> published a pick for <b>64 of 89</b>
+fixtures and <b>27 of 28</b> open matches. The 25 blanks were all rating lookups against
+Valve's <b>2026-10-05</b> standings &mdash; but 23 of those fixtures were played in June/July 2026,
+so the October file was the wrong official source for them.</p>
+<ul class="tight">
+<li>Ratings are now taken from the official Valve standings <b>in force at the match date</b>
+(five periods, 5 committed).</li>
+<li>Six roster-verified name aliases were added &mdash; e.g. <b>Envy = 3DMAX</b>, proven by a 5/5
+roster match between HLTV's match page and Valve's #21 row.</li>
+<li>All 94 inherited duplicate-name row pins were re-checked line by line against Valve's own file
+before use: <b>94 accepted, 0 rejected</b>.</li>
+<li><b>LFO 10</b> is confirmed absent from every Valve period and unranked on HLTV, so its match
+gets a directional pick with the probability deliberately blank rather than an invented number.</li>
+<li>3 expired June fixtures stay blank: Valve publishes two same-name rows whose ratings disagree on
+the favourite. Nothing is inferred &mdash; they are flagged.</li>
+</ul>
+</div>
+
+<div class="warn"><b>Read this before using any number here.</b> Market probabilities are
+de-vigged bookmaker prices, not guaranteed outcomes. Our own lines come from Valve's published
+standings points through a logistic curve fitted on Valve's own match results; they are estimates,
+uncalibrated per tournament, and diverge from the market on some matches. Those divergences are
+listed on <a href="flagged.html">Flagged for review</a>, not hidden. Locked and expired fixtures
+cannot be picked in Hotspawn's game; their rows are archival.</div>
+
+<footer>
+<p>Independent analysis for research purposes only — not betting advice. Fixture identity and
+UTC start/lock times come from Hotspawn's public pick'em pages; every probability comes from an
+outside bookmaker price or from Valve's official Regional Standings, never from Hotspawn's crowd
+pick percentages and never from HLTV's &ldquo;Pick a winner&rdquo; vote.</p>
+<p>Built by session <code>arena/5bcfd1b5</code> from committed evidence.
+See <a href="methodology.html">Methodology</a> and <a href="flagged.html">Flagged for review</a>.</p>
+</footer>
+</main>
+<script>
+/* Progressive enhancement only: the board is complete, readable HTML without JS. */
+(function(){
+  var f=document.getElementById('q');
+  if(!f) return;
+  f.addEventListener('input',function(){
+    var v=f.value.trim().toLowerCase();
+    document.querySelectorAll('[data-search]').forEach(function(el){
+      el.style.display = !v || el.getAttribute('data-search').toLowerCase().indexOf(v)>=0 ? '' : 'none';
+    });
+    var n=document.getElementById('qcount');
+    if(n) n.textContent = v ? 'filter: "'+f.value+'"' : '';
+  });
+})();
+</script>
+</body></html>

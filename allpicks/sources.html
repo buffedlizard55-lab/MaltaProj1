@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<meta name="description" content="Sources">
+<title>Sources · Hotspawn CS2 picks</title>
+<style>
+:root{
+  --bg:#0b0f17; --panel:#131a26; --panel2:#0f1520; --line:#22304a; --line2:#2f4160;
+  --ink:#e9eef7; --dim:#9fb0c8; --dim2:#7488a3;
+  --a:#4ea1ff; --b:#ffb454; --pick:#22c55e; --warn:#f59e0b; --bad:#ef4444; --ok:#22c55e;
+  --S:#f472b6; --B:#60a5fa; --C:#94a3b8;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  padding-bottom:5rem}
+a{color:var(--a);text-decoration:none}
+a:hover,a:focus{text-decoration:underline}
+.wrap{max-width:1100px;margin:0 auto;padding:0 .75rem}
+header.top{position:sticky;top:0;z-index:30;background:rgba(11,15,23,.96);
+  border-bottom:1px solid var(--line);backdrop-filter:blur(6px)}
+.brand{display:flex;align-items:baseline;gap:.5rem;flex-wrap:wrap;padding:.6rem 0 .35rem}
+.brand h1{font-size:1.05rem;margin:0;letter-spacing:.2px}
+.brand .tag{color:var(--dim2);font-size:.78rem}
+nav.jump{display:flex;gap:.4rem;overflow-x:auto;padding:.35rem 0 .55rem;
+  -webkit-overflow-scrolling:touch;scrollbar-width:none}
+nav.jump::-webkit-scrollbar{display:none}
+nav.jump a{flex:0 0 auto;padding:.42rem .7rem;border:1px solid var(--line);border-radius:999px;
+  background:var(--panel2);color:var(--dim);font-size:.83rem;white-space:nowrap}
+nav.jump a[aria-current="page"]{background:var(--a);border-color:var(--a);color:#04101f;font-weight:700}
+main{padding-top:.9rem}
+h2{font-size:1.12rem;margin:1.5rem 0 .5rem}
+h3{font-size:.98rem;margin:1.15rem 0 .4rem;color:var(--dim)}
+p{margin:.45rem 0}
+.lede{color:var(--dim);font-size:.93rem}
+.small{font-size:.8rem;color:var(--dim2)}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:.85rem;margin:.7rem 0}
+.hero{background:linear-gradient(160deg,#152238,#0f1520);border:1px solid var(--line2)}
+.hero .big{font-size:1.55rem;font-weight:800;line-height:1.15;margin:.15rem 0}
+.hero .big span{color:var(--pick)}
+.stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.5rem;margin:.7rem 0 0}
+@media(min-width:720px){.stats{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.stat{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:.55rem .65rem}
+.stat b{display:block;font-size:1.3rem;line-height:1.1}
+.stat span{color:var(--dim2);font-size:.74rem;display:block;margin-top:.15rem}
+.cta{display:block;background:var(--pick);color:#05230f;font-weight:800;border-radius:12px;
+  padding:.85rem .9rem;margin:.7rem 0;font-size:1.02rem;text-align:center}
+.cta:hover,.cta:focus{text-decoration:none;filter:brightness(1.06)}
+.cta.alt{background:var(--panel2);color:var(--ink);border:1px solid var(--line2);font-weight:600}
+.grid{display:grid;grid-template-columns:1fr;gap:.55rem}
+@media(min-width:820px){.grid.two{grid-template-columns:1fr 1fr}}
+
+/* match card */
+.match{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:.7rem .75rem .6rem;
+  margin:.55rem 0;break-inside:avoid}
+.match.no-pick{border-left:4px solid var(--bad)}
+.match.tierA{border-left:4px solid var(--ok)}
+.match.tierB{border-left:4px solid var(--a)}
+.match.tierC{border-left:4px solid var(--b)}
+.match.tierD{border-left:4px solid #a78bfa}
+.match.tierE{border-left:4px solid var(--warn)}
+.match.tierF{border-left:4px solid var(--bad)}
+.mrow{display:flex;align-items:center;gap:.45rem;flex-wrap:wrap;font-size:.76rem;color:var(--dim2)}
+.badge{border:1px solid var(--line2);border-radius:999px;padding:.1rem .48rem;font-size:.72rem;
+  color:var(--dim);background:var(--panel2);white-space:nowrap}
+.badge.S{color:#0b0f17;background:var(--S);border-color:var(--S);font-weight:700}
+.badge.Bt{color:#0b0f17;background:var(--B);border-color:var(--B);font-weight:700}
+.badge.Ct{color:#0b0f17;background:var(--C);border-color:var(--C);font-weight:700}
+.badge.locked{color:#ffd9d9;border-color:#5b2b2b;background:#2a1414}
+.badge.live{color:#d9ffe6;border-color:#255c39;background:#12291c}
+.teams{margin:.5rem 0 .35rem}
+.tline{display:grid;grid-template-columns:1fr auto;gap:.5rem;align-items:center;padding:.28rem 0}
+.tname{font-weight:650;font-size:1rem;display:flex;align-items:center;gap:.4rem;min-width:0}
+.tname .star{color:var(--pick);font-weight:800}
+.tname span.nm{overflow-wrap:anywhere}
+.tpct{font-variant-numeric:tabular-nums;font-weight:800;font-size:1.12rem;text-align:right;
+  min-width:4.1rem}
+.tpct.mute{color:var(--dim2);font-weight:600;font-size:.86rem}
+.bar{height:.55rem;border-radius:999px;background:#25324a;overflow:hidden;display:flex;margin:.3rem 0 .1rem}
+.bar i{display:block;height:100%}
+.bar i.pa{background:var(--a)}
+.bar i.pb{background:var(--b)}
+.basis{font-size:.79rem;color:var(--dim);margin-top:.4rem}
+.basis b{color:var(--ink)}
+.links{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.5rem}
+.links a{font-size:.74rem;border:1px solid var(--line);background:var(--panel2);color:var(--dim);
+  border-radius:8px;padding:.24rem .5rem}
+.links a:hover,.links a:focus{color:var(--ink);border-color:var(--line2);text-decoration:none}
+.flagchip{font-size:.72rem;color:#ffd9a8;border:1px solid #6b4a1f;background:#2a1e0f;
+  border-radius:8px;padding:.2rem .45rem}
+
+/* tables */
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:12px;
+  margin:.6rem 0}
+table{border-collapse:collapse;width:100%;font-size:.84rem;min-width:640px}
+th,td{text-align:left;padding:.5rem .55rem;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--panel2);color:var(--dim);font-size:.75rem;text-transform:uppercase;
+  letter-spacing:.04em;position:sticky;top:0}
+tbody tr:nth-child(even){background:rgba(255,255,255,.015)}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+.pill{display:inline-block;border-radius:6px;padding:.05rem .35rem;font-size:.72rem;font-weight:700}
+.pill.A{background:#0f2f1c;color:#7ee2a8}.pill.B{background:#0f2438;color:#8cc4ff}
+.pill.C{background:#33270f;color:#ffcf87}.pill.D{background:#251b3d;color:#c4b0ff}
+.pill.E{background:#33260f;color:#ffcf87}.pill.F{background:#331414;color:#ff9d9d}
+.blank{color:var(--dim2);font-style:italic}
+ul.tight{margin:.35rem 0 .35rem 1.1rem;padding:0}
+ul.tight li{margin:.22rem 0}
+.note{border-left:3px solid var(--line2);padding:.2rem 0 .2rem .7rem;color:var(--dim);font-size:.86rem}
+.warn{border-left:3px solid var(--warn);background:#221a0c;padding:.6rem .7rem;border-radius:8px;
+  font-size:.86rem;margin:.6rem 0}
+footer{margin:2rem 0 1rem;padding-top:1rem;border-top:1px solid var(--line);color:var(--dim2);
+  font-size:.78rem}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+<div class="brand"><h1>Hotspawn CS2 — every match, one pick</h1>
+<span class="tag">independent lines · never Hotspawn crowd&nbsp;%</span></div>
+<nav class="jump" aria-label="Board sections"><a href="index.html">Executive summary</a>
+<a href="open.html">Open matches</a>
+<a href="all.html">All 89 fixtures</a>
+<a href="tiers.html">By tier</a>
+<a href="tournaments.html">By tournament</a>
+<a href="market.html">Outside lines</a>
+<a href="own-lines.html">Our own lines</a>
+<a href="ratings.html">Team ratings</a>
+<a href="methodology.html">Methodology</a>
+<a href="sources.html" aria-current="page">Sources</a>
+<a href="flagged.html">Flagged for review</a></nav>
+</div></header>
+<main class="wrap">
+
+
+<p class="lede">Every source used to build this board, with what was taken from it. Board generated
+2026-10-14T03:47:12Z from a Hotspawn capture at 2026-10-14T02:35:29Z.</p>
+
+<h2>Fixture identity and schedule</h2>
+<div class="panel"><ul class="tight">
+<li><a href="https://play.hotspawn.com/lobby" rel="noopener">play.hotspawn.com/lobby</a> &mdash; fixture ids, team names,
+competition, tier, points, and the Angular <code>TransferState</code> payload carrying UTC start and
+lock epochs. <b>Identity and schedule only.</b> Its &ldquo;% picked&rdquo; crowd poll is never a
+probability input.</li>
+<li><a href="https://play.hotspawn.com/cs2-pickems" rel="noopener">play.hotspawn.com/cs2-pickems</a> &mdash; the CS2-filtered view,
+read in full (all chunks) and cross-checked against the lobby payload.</li>
+<li><a href="https://www.hotspawn.com/matches" rel="noopener">hotspawn.com/matches</a> &mdash;
+per-fixture permalink where Hotspawn publishes one. Four CCT Europe Series #12 Play-In fixtures have
+no permalink; those rows link the lobby and the official HLTV match page instead.</li>
+</ul></div>
+
+<h2>Team ratings (official)</h2>
+<div class="panel">
+<p>Publisher: <b>Valve Corporation</b>. Repository:
+<a href="https://github.com/ValveSoftware/counter-strike_regional_standings" rel="noopener">
+ValveSoftware/counter-strike_regional_standings</a>. Pinned commit
+<code>eec4853d7bcf0f1f7efe7f0d901234bef7e98b75</code> (HEAD of <code>live/2026</code> at capture time).</p>
+<p>Files committed to this repository under <code>data/5bcfd1b5/vrs/</code>, with the SHA-256 of each
+gzipped copy so any reader can prove the bytes we used:</p>
+<div class="tw"><table><thead><tr><th>File</th><th>SHA-256 (gzipped)</th><th>Upstream</th></tr>
+</thead><tbody><tr><td><code>standings_americas_2026_10_05.md.gz</code></td><td class="small"><code>2f8c4ffc8f41b31bd89c30b3aab04dc3574266d366291969801d0ae971234c55</code></td><td><a href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_americas_2026_10_05.md" rel="noopener">Valve &middot; live/2026/standings_americas_2026_10_05.md</a></td></tr><tr><td><code>standings_asia_2026_10_05.md.gz</code></td><td class="small"><code>7e73c757d7cb0880940f918ded0d0d96aa4dc32351d9d6ade57573545b3f6365</code></td><td><a href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_asia_2026_10_05.md" rel="noopener">Valve &middot; live/2026/standings_asia_2026_10_05.md</a></td></tr><tr><td><code>standings_europe_2026_10_05.md.gz</code></td><td class="small"><code>32b749edb05e0f95f9ec55d19dc66ca13d861b107990cff9c6781e3d402b8e30</code></td><td><a href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_europe_2026_10_05.md" rel="noopener">Valve &middot; live/2026/standings_europe_2026_10_05.md</a></td></tr><tr><td><code>standings_global_2026_06_01.md.gz</code></td><td class="small"><code>52074755f3619ff6df7bcd6f1a5180d752ca4f4254a84b9c30105577ec4d6cbe</code></td><td><a href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_06_01.md" rel="noopener">Valve &middot; live/2026/standings_global_2026_06_01.md</a></td></tr><tr><td><code>standings_global_2026_07_06.md.gz</code></td><td class="small"><code>fd151513cb4ea392fd05a5cb3888ca9f147bb119673ebe29c6d3999653bb7ad6</code></td><td><a href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_07_06.md" rel="noopener">Valve &middot; live/2026/standings_global_2026_07_06.md</a></td></tr><tr><td><code>standings_global_2026_08_03.md.gz</code></td><td class="small"><code>700d57a4c9c8f9da028472c53ab2b8fc3d9f90cf14a85c96ab3fdf759b5b72ba</code></td><td><a href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_08_03.md" rel="noopener">Valve &middot; live/2026/standings_global_2026_08_03.md</a></td></tr><tr><td><code>standings_global_2026_09_07.md.gz</code></td><td class="small"><code>eebb6ca05544411a9ac7dd3436ad13a763fb1e963aeb1ad16eaeb5aa0995fb7b</code></td><td><a href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_09_07.md" rel="noopener">Valve &middot; live/2026/standings_global_2026_09_07.md</a></td></tr><tr><td><code>standings_global_2026_10_05.md.gz</code></td><td class="small"><code>1075ba215fa3a843a77861fe2c6b6921e1abb250876f6969f01565a39595a870</code></td><td><a href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md" rel="noopener">Valve &middot; live/2026/standings_global_2026_10_05.md</a></td></tr></tbody></table></div>
+<p class="small">Selection rule: the latest official publication on or before the match date; if the
+team is absent there, the earliest later official period containing that exact name, flagged as
+anachronistic.</p>
+</div>
+
+<h2>Outside market prices</h2>
+<div class="panel"><ul class="tight">
+<li><b>Pinnacle</b> &mdash; public guest moneyline feed
+(<code>guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight</code>), the payload
+<a href="https://www.pinnacle.com/en/esports/games/cs2/matchups/" rel="noopener">Pinnacle's own CS2
+matchups page</a> loads. Read by CI; tier A. Note: this endpoint returns HTTP 401 without a token from
+our build sandbox, so tier-A rows come from <code>main</code>'s scheduled CI capture
+(<code>cs2/data/market_rows.csv</code>) rather than from a live read in this session.</li>
+<li><b>EGamersWorld reporting BC.Game</b> &mdash;
+<a href="https://egamersworld.com/counterstrike/matches" rel="noopener">
+egamersworld.com/counterstrike/matches</a> and the per-match pages it links. Tier B: an aggregator's
+report of a book price, not a re-read at the book. 14 prices were read live during this session and
+are recorded with their exact URLs and read times in
+<code>data/5bcfd1b5/market_reads.csv</code>; the remainder come from <code>main</code>'s committed
+read at <code>data/8944bb84/external_lines.csv</code>.</li>
+<li><b>Rejected:</b> <code>1.80/1.80</code> is EGamersWorld's un-priced placeholder. Those rows are
+refused and flagged.</li>
+</ul></div>
+
+<h2>Match pages used for verification</h2>
+<div class="panel"><ul class="tight">
+<li><b>HLTV</b> &mdash; match pages, team pages, event pages and the world ranking. Used to confirm
+rosters, formats, official results and name changes. HLTV's <code>VRS: #N</code> badges are a
+<i>different, newer</i> Valve snapshot than Valve's published file and are never mixed with it.</li>
+<li><b>Liquipedia</b> &mdash; used only to corroborate the 2026-06-01 Tricked&rarr;Echo transfer that
+proves the <code>ex-Tricked</code> alias.</li>
+</ul></div>
+
+<h2>Not used</h2>
+<div class="panel"><ul class="tight">
+<li>Hotspawn crowd &ldquo;% picked&rdquo; &mdash; crowd poll.</li>
+<li>HLTV &ldquo;Pick a winner&rdquo; vote &mdash; crowd poll.</li>
+<li>Polymarket &mdash; no CS2 market for these fixtures was reachable in this session; it is not a
+source for any number here.</li>
+<li>Any historical session price carried forward into a current pick.</li>
+</ul></div>
+
+<h2>Reproduce</h2>
+<div class="panel"><pre style="overflow-x:auto;font-size:.8rem"><code>python3 scripts/5bcfd1b5_build.py   # resolve ratings, read markets, decide picks
+python3 scripts/5bcfd1b5_site.py    # render allpicks/ from the committed CSVs
+python3 -m unittest discover -s tests -p 'test_5bcfd1b5.py' -v</code></pre>
+<p class="small">Both scripts are offline: they read only committed evidence. 12 flags are
+published on <a href="flagged.html">Flagged for review</a>. The model constant k = 0.463 is read from
+<code>cs2/data/summary.json</code> at build time.</p></div>
+
+<footer>
+<p>Independent analysis for research purposes only — not betting advice. Fixture identity and
+UTC start/lock times come from Hotspawn's public pick'em pages; every probability comes from an
+outside bookmaker price or from Valve's official Regional Standings, never from Hotspawn's crowd
+pick percentages and never from HLTV's &ldquo;Pick a winner&rdquo; vote.</p>
+<p>Built by session <code>arena/5bcfd1b5</code> from committed evidence.
+See <a href="methodology.html">Methodology</a> and <a href="flagged.html">Flagged for review</a>.</p>
+</footer>
+</main>
+<script>
+/* Progressive enhancement only: the board is complete, readable HTML without JS. */
+(function(){
+  var f=document.getElementById('q');
+  if(!f) return;
+  f.addEventListener('input',function(){
+    var v=f.value.trim().toLowerCase();
+    document.querySelectorAll('[data-search]').forEach(function(el){
+      el.style.display = !v || el.getAttribute('data-search').toLowerCase().indexOf(v)>=0 ? '' : 'none';
+    });
+    var n=document.getElementById('qcount');
+    if(n) n.textContent = v ? 'filter: "'+f.value+'"' : '';
+  });
+})();
+</script>
+</body></html>
