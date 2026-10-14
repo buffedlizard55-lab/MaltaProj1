@@ -1,28 +1,28 @@
 {
- "generated_utc": "2026-10-14T04:20:00Z",
- "capture_utc": "2026-10-13T19:42:13Z",
+ "generated_utc": "2026-10-14T03:20:48Z",
+ "capture_utc": "2026-10-14T03:19:02Z",
  "coverage": {
-  "total_fixtures": 89,
+  "total_fixtures": 88,
   "open_fixtures": 28,
-  "locked_fixtures": 61,
+  "locked_fixtures": 60,
   "stale_fixtures": 59,
   "open_with_pick": 28,
   "open_market_basis": 24,
   "open_model_basis": 4,
   "open_provisional": 1,
   "open_no_pick": 0,
-  "flagged_rows": 89,
-  "unique_teams": 112,
-  "teams_resolved_official": 90
+  "flagged_rows": 88,
+  "unique_teams": 110,
+  "teams_resolved_official": 104
  },
  "meta": {
-  "generated_utc": "2026-10-14T04:20:00Z",
-  "capture_utc": "2026-10-13T19:42:13Z",
-  "snapshot_age_text": "Snapshot is 8.6 h old",
-  "hotspawn_read_text": "2026-10-14T02:06Z (repo_capture)",
-  "market_read_text": "repo_capture read 2026-10-13T19:42 (10 CS2 quotes)",
+  "generated_utc": "2026-10-14T03:20:48Z",
+  "capture_utc": "2026-10-14T03:19:02Z",
+  "snapshot_age_text": "Snapshot is 0.0 h old",
+  "hotspawn_read_text": "2026-10-14T03:19Z (live)",
+  "market_read_text": "live read 2026-10-14T03:19 (8 CS2 quotes)",
   "vrs_read_text": "official standings 2026-10-05",
-  "stale": true
+  "stale": false
  },
  "fixtures": {
   "1052746": {
@@ -107,7 +107,7 @@
     "hltv_rank": "",
     "hltv_points": "",
     "hltv_url": "https://www.hltv.org/ranking/teams/2026/october/12",
-    "hltv_roster": "",
+    "hltv_roster": "sh1ro, magixx, tn1r, zont1x, donk, apex",
     "flags": []
    },
    "flags": [
@@ -117,7 +117,7 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1051339": {
    "match_id": "1051339",
@@ -211,7 +211,7 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1051301": {
    "match_id": "1051301",
@@ -231,17 +231,17 @@
    "team_b": "PCIFIC",
    "hotspawn_pickem_url": "https://play.hotspawn.com/cs2-pickems",
    "hotspawn_match_url": "",
-   "basis_tier": 4,
-   "basis_label": "Model · official bound (provisional)",
-   "basis_detail": "Provisional bound: CYBERSHOKE Prospects is absent from the official standings file, so the lowest published value in that same file (381 points) is used as its ceiling; PCIFIC keeps its published 870 points. Because the unlisted team's value can only be lower, the favourite's true win probability is at least this estimate (5.7% for PCIFIC), which is what is published.",
+   "basis_tier": 3,
+   "basis_label": "Model · official ratings",
+   "basis_detail": "Originated rating line: Spirit 2046 vs PCIFIC 870 official points, p = 1/(1+10^((Rb-Ra)/400)) = 99.9%.",
    "basis_sources": [
     [
      "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
-     "PCIFIC standings"
+     "Spirit standings"
     ],
     [
      "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
-     "official standings file (bound)"
+     "PCIFIC standings"
     ]
    ],
    "market_source": "",
@@ -251,33 +251,35 @@
    "market_captured_utc": "",
    "market_prob_a_pct": "",
    "market_prob_b_pct": "",
-   "model_prob_a_pct": "5.7",
-   "model_prob_b_pct": "94.3",
-   "prob_a_pct": "5.7",
-   "prob_b_pct": "94.3",
-   "fair_odds_a": "17.69",
-   "fair_odds_b": "1.06",
-   "pick": "PCIFIC",
-   "pick_prob_pct": "94.3",
-   "confidence": "Provisional (official bound)",
+   "model_prob_a_pct": "99.9",
+   "model_prob_b_pct": "0.1",
+   "prob_a_pct": "99.9",
+   "prob_b_pct": "0.1",
+   "fair_odds_a": "1.00",
+   "fair_odds_b": "871.96",
+   "pick": "CYBERSHOKE Prospects",
+   "pick_prob_pct": "99.9",
+   "confidence": "Low (our line, uncalibrated)",
    "rating_a": {
     "team": "CYBERSHOKE Prospects",
-    "vrs_name": "",
-    "vrs_rank": "",
-    "vrs_points": "",
-    "vrs_roster": "",
-    "vrs_url": "",
-    "vrs_details_url": "",
-    "match_method": "none",
-    "match_evidence_url": "",
-    "alias_note": "",
+    "vrs_name": "Spirit",
+    "vrs_rank": 1,
+    "vrs_points": 2046,
+    "vrs_roster": "donk, magixx, sh1ro, tN1R, zont1x",
+    "vrs_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
+    "vrs_details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0001--spirit--donk-magixx-sh1ro-tn1r-zont1x.md",
+    "match_method": "roster",
+    "match_evidence_url": "https://www.hltv.org/ranking/teams/2026/october/12",
+    "alias_note": "5 listed players match the official standings entry “Spirit” (#1).",
     "hltv_name": "CYBERSHOKE Prospects",
     "hltv_team_id": "",
     "hltv_rank": "",
     "hltv_points": "",
     "hltv_url": "https://www.hltv.org/ranking/teams/2026/october/12",
-    "hltv_roster": "",
-    "flags": []
+    "hltv_roster": "sh1ro, magixx, tn1r, zont1x, donk, apex",
+    "flags": [
+     "FL-ALIAS-NAME"
+    ]
    },
    "rating_b": {
     "team": "PCIFIC",
@@ -299,14 +301,14 @@
     "flags": []
    },
    "flags": [
+    "FL-ALIAS-NAME",
     "FL-FORMAT-UNKNOWN",
     "FL-LOCKED",
     "FL-NO-MARKET",
-    "FL-RATINGS-WEEK-OLD",
-    "FL-UNLISTED-OPPONENT"
+    "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1053068": {
    "match_id": "1053068",
@@ -326,9 +328,9 @@
    "team_b": "ReThink",
    "hotspawn_pickem_url": "https://play.hotspawn.com/cs2-pickems",
    "hotspawn_match_url": "",
-   "basis_tier": 4,
-   "basis_label": "Model · official bound (provisional)",
-   "basis_detail": "Provisional bound: ReThink is absent from the official standings file, so the lowest published value in that same file (381 points) is used as its ceiling; Johnny Speeds keeps its published 1049 points. Because the unlisted team's value can only be lower, the favourite's true win probability is at least this estimate (97.9% for Johnny Speeds), which is what is published.",
+   "basis_tier": 3,
+   "basis_label": "Model · official ratings",
+   "basis_detail": "Originated rating line: Johnny Speeds 1049 vs Spirit 2046 official points, p = 1/(1+10^((Rb-Ra)/400)) = 0.3%.",
    "basis_sources": [
     [
      "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
@@ -336,7 +338,7 @@
     ],
     [
      "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
-     "official standings file (bound)"
+     "Spirit standings"
     ]
    ],
    "market_source": "",
@@ -346,15 +348,15 @@
    "market_captured_utc": "",
    "market_prob_a_pct": "",
    "market_prob_b_pct": "",
-   "model_prob_a_pct": "97.9",
-   "model_prob_b_pct": "2.1",
-   "prob_a_pct": "97.9",
-   "prob_b_pct": "2.1",
-   "fair_odds_a": "1.02",
-   "fair_odds_b": "47.77",
-   "pick": "Johnny Speeds",
-   "pick_prob_pct": "97.9",
-   "confidence": "Provisional (official bound)",
+   "model_prob_a_pct": "0.3",
+   "model_prob_b_pct": "99.7",
+   "prob_a_pct": "0.3",
+   "prob_b_pct": "99.7",
+   "fair_odds_a": "311.81",
+   "fair_odds_b": "1.00",
+   "pick": "ReThink",
+   "pick_prob_pct": "99.7",
+   "confidence": "Low (our line, uncalibrated)",
    "rating_a": {
     "team": "Johnny Speeds",
     "vrs_name": "Johnny Speeds",
@@ -378,33 +380,35 @@
    },
    "rating_b": {
     "team": "ReThink",
-    "vrs_name": "",
-    "vrs_rank": "",
-    "vrs_points": "",
-    "vrs_roster": "",
-    "vrs_url": "",
-    "vrs_details_url": "",
-    "match_method": "none",
-    "match_evidence_url": "",
-    "alias_note": "",
+    "vrs_name": "Spirit",
+    "vrs_rank": 1,
+    "vrs_points": 2046,
+    "vrs_roster": "donk, magixx, sh1ro, tN1R, zont1x",
+    "vrs_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
+    "vrs_details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0001--spirit--donk-magixx-sh1ro-tn1r-zont1x.md",
+    "match_method": "roster",
+    "match_evidence_url": "https://www.hltv.org/ranking/teams/2026/october/12",
+    "alias_note": "5 listed players match the official standings entry “Spirit” (#1).",
     "hltv_name": "ReThink",
     "hltv_team_id": "",
     "hltv_rank": "",
     "hltv_points": "",
     "hltv_url": "https://www.hltv.org/ranking/teams/2026/october/12",
-    "hltv_roster": "",
-    "flags": []
+    "hltv_roster": "sh1ro, magixx, tn1r, zont1x, donk, apex",
+    "flags": [
+     "FL-ALIAS-NAME"
+    ]
    },
    "flags": [
+    "FL-ALIAS-NAME",
     "FL-DUPLICATE-VRS-NAME",
     "FL-FORMAT-UNKNOWN",
     "FL-LOCKED",
     "FL-NO-MARKET",
-    "FL-RATINGS-WEEK-OLD",
-    "FL-UNLISTED-OPPONENT"
+    "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1052747": {
    "match_id": "1052747",
@@ -469,7 +473,7 @@
     "hltv_rank": "",
     "hltv_points": "",
     "hltv_url": "https://www.hltv.org/ranking/teams/2026/october/12",
-    "hltv_roster": "",
+    "hltv_roster": "sh1ro, magixx, tn1r, zont1x, donk, apex",
     "flags": []
    },
    "rating_b": {
@@ -498,7 +502,7 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1053146": {
    "match_id": "1053146",
@@ -518,17 +522,17 @@
    "team_b": "Clutchain",
    "hotspawn_pickem_url": "https://play.hotspawn.com/cs2-pickems",
    "hotspawn_match_url": "",
-   "basis_tier": 4,
-   "basis_label": "Model · official bound (provisional)",
-   "basis_detail": "Provisional bound: Atrix is absent from the official standings file, so the lowest published value in that same file (381 points) is used as its ceiling; Clutchain keeps its published 481 points. Because the unlisted team's value can only be lower, the favourite's true win probability is at least this estimate (36.0% for Clutchain), which is what is published.",
+   "basis_tier": 3,
+   "basis_label": "Model · official ratings",
+   "basis_detail": "Originated rating line: Spirit 2046 vs Clutchain 481 official points, p = 1/(1+10^((Rb-Ra)/400)) = 100.0%.",
    "basis_sources": [
     [
      "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
-     "Clutchain standings"
+     "Spirit standings"
     ],
     [
      "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
-     "official standings file (bound)"
+     "Clutchain standings"
     ]
    ],
    "market_source": "",
@@ -538,33 +542,35 @@
    "market_captured_utc": "",
    "market_prob_a_pct": "",
    "market_prob_b_pct": "",
-   "model_prob_a_pct": "36.0",
-   "model_prob_b_pct": "64.0",
-   "prob_a_pct": "36.0",
-   "prob_b_pct": "64.0",
-   "fair_odds_a": "2.78",
-   "fair_odds_b": "1.56",
-   "pick": "Clutchain",
-   "pick_prob_pct": "64.0",
-   "confidence": "Provisional (official bound)",
+   "model_prob_a_pct": "100.0",
+   "model_prob_b_pct": "0.0",
+   "prob_a_pct": "100.0",
+   "prob_b_pct": "0.0",
+   "fair_odds_a": "1.00",
+   "fair_odds_b": "8176.23",
+   "pick": "Atrix",
+   "pick_prob_pct": "100.0",
+   "confidence": "Low (our line, uncalibrated)",
    "rating_a": {
     "team": "Atrix",
-    "vrs_name": "",
-    "vrs_rank": "",
-    "vrs_points": "",
-    "vrs_roster": "",
-    "vrs_url": "",
-    "vrs_details_url": "",
-    "match_method": "none",
-    "match_evidence_url": "",
-    "alias_note": "",
+    "vrs_name": "Spirit",
+    "vrs_rank": 1,
+    "vrs_points": 2046,
+    "vrs_roster": "donk, magixx, sh1ro, tN1R, zont1x",
+    "vrs_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
+    "vrs_details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0001--spirit--donk-magixx-sh1ro-tn1r-zont1x.md",
+    "match_method": "roster",
+    "match_evidence_url": "https://www.hltv.org/ranking/teams/2026/october/12",
+    "alias_note": "5 listed players match the official standings entry “Spirit” (#1).",
     "hltv_name": "Atrix",
     "hltv_team_id": "",
     "hltv_rank": "",
     "hltv_points": "",
     "hltv_url": "https://www.hltv.org/ranking/teams/2026/october/12",
-    "hltv_roster": "",
-    "flags": []
+    "hltv_roster": "sh1ro, magixx, tn1r, zont1x, donk, apex",
+    "flags": [
+     "FL-ALIAS-NAME"
+    ]
    },
    "rating_b": {
     "team": "Clutchain",
@@ -582,18 +588,18 @@
     "hltv_rank": "",
     "hltv_points": "",
     "hltv_url": "https://www.hltv.org/ranking/teams/2026/october/12",
-    "hltv_roster": "",
+    "hltv_roster": "sh1ro, magixx, tn1r, zont1x, donk, apex",
     "flags": []
    },
    "flags": [
+    "FL-ALIAS-NAME",
     "FL-FORMAT-UNKNOWN",
     "FL-LOCKED",
     "FL-NO-MARKET",
-    "FL-RATINGS-WEEK-OLD",
-    "FL-UNLISTED-OPPONENT"
+    "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1051340": {
    "match_id": "1051340",
@@ -687,7 +693,7 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1053069": {
    "match_id": "1053069",
@@ -752,7 +758,7 @@
     "hltv_rank": "",
     "hltv_points": "",
     "hltv_url": "https://www.hltv.org/ranking/teams/2026/october/12",
-    "hltv_roster": "",
+    "hltv_roster": "sh1ro, magixx, tn1r, zont1x, donk, apex",
     "flags": []
    },
    "rating_b": {
@@ -771,7 +777,7 @@
     "hltv_rank": "",
     "hltv_points": "",
     "hltv_url": "https://www.hltv.org/ranking/teams/2026/october/12",
-    "hltv_roster": "",
+    "hltv_roster": "sh1ro, magixx, tn1r, zont1x, donk, apex",
     "flags": []
    },
    "flags": [
@@ -781,7 +787,7 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1052686": {
    "match_id": "1052686",
@@ -875,7 +881,7 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1051789": {
    "match_id": "1051789",
@@ -940,7 +946,7 @@
     "hltv_rank": "",
     "hltv_points": "",
     "hltv_url": "https://www.hltv.org/ranking/teams/2026/october/12",
-    "hltv_roster": "",
+    "hltv_roster": "sh1ro, magixx, tn1r, zont1x, donk, apex",
     "flags": []
    },
    "rating_b": {
@@ -969,7 +975,7 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1053070": {
    "match_id": "1053070",
@@ -989,17 +995,17 @@
    "team_b": "train launcher",
    "hotspawn_pickem_url": "https://play.hotspawn.com/cs2-pickems",
    "hotspawn_match_url": "",
-   "basis_tier": 4,
-   "basis_label": "Model · official bound (provisional)",
-   "basis_detail": "Provisional bound: ReThink is absent from the official standings file, so the lowest published value in that same file (381 points) is used as its ceiling; train launcher keeps its published 635 points. Because the unlisted team's value can only be lower, the favourite's true win probability is at least this estimate (18.8% for train launcher), which is what is published.",
+   "basis_tier": 3,
+   "basis_label": "Model · official ratings",
+   "basis_detail": "Originated rating line: Spirit 2046 vs train launcher 635 official points, p = 1/(1+10^((Rb-Ra)/400)) = 100.0%.",
    "basis_sources": [
     [
      "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
-     "train launcher standings"
+     "Spirit standings"
     ],
     [
      "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
-     "official standings file (bound)"
+     "train launcher standings"
     ]
    ],
    "market_source": "",
@@ -1009,33 +1015,35 @@
    "market_captured_utc": "",
    "market_prob_a_pct": "",
    "market_prob_b_pct": "",
-   "model_prob_a_pct": "18.8",
-   "model_prob_b_pct": "81.2",
-   "prob_a_pct": "18.8",
-   "prob_b_pct": "81.2",
-   "fair_odds_a": "5.32",
-   "fair_odds_b": "1.23",
-   "pick": "train launcher",
-   "pick_prob_pct": "81.2",
-   "confidence": "Provisional (official bound)",
+   "model_prob_a_pct": "100.0",
+   "model_prob_b_pct": "0.0",
+   "prob_a_pct": "100.0",
+   "prob_b_pct": "0.0",
+   "fair_odds_a": "1.00",
+   "fair_odds_b": "3369.99",
+   "pick": "ReThink",
+   "pick_prob_pct": "100.0",
+   "confidence": "Low (our line, uncalibrated)",
    "rating_a": {
     "team": "ReThink",
-    "vrs_name": "",
-    "vrs_rank": "",
-    "vrs_points": "",
-    "vrs_roster": "",
-    "vrs_url": "",
-    "vrs_details_url": "",
-    "match_method": "none",
-    "match_evidence_url": "",
-    "alias_note": "",
+    "vrs_name": "Spirit",
+    "vrs_rank": 1,
+    "vrs_points": 2046,
+    "vrs_roster": "donk, magixx, sh1ro, tN1R, zont1x",
+    "vrs_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
+    "vrs_details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0001--spirit--donk-magixx-sh1ro-tn1r-zont1x.md",
+    "match_method": "roster",
+    "match_evidence_url": "https://www.hltv.org/ranking/teams/2026/october/12",
+    "alias_note": "5 listed players match the official standings entry “Spirit” (#1).",
     "hltv_name": "ReThink",
     "hltv_team_id": "",
     "hltv_rank": "",
     "hltv_points": "",
     "hltv_url": "https://www.hltv.org/ranking/teams/2026/october/12",
-    "hltv_roster": "",
-    "flags": []
+    "hltv_roster": "sh1ro, magixx, tn1r, zont1x, donk, apex",
+    "flags": [
+     "FL-ALIAS-NAME"
+    ]
    },
    "rating_b": {
     "team": "train launcher",
@@ -1053,18 +1061,18 @@
     "hltv_rank": "",
     "hltv_points": "",
     "hltv_url": "https://www.hltv.org/ranking/teams/2026/october/12",
-    "hltv_roster": "",
+    "hltv_roster": "sh1ro, magixx, tn1r, zont1x, donk, apex",
     "flags": []
    },
    "flags": [
+    "FL-ALIAS-NAME",
     "FL-FORMAT-UNKNOWN",
     "FL-LOCKED",
     "FL-NO-MARKET",
-    "FL-RATINGS-WEEK-OLD",
-    "FL-UNLISTED-OPPONENT"
+    "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1051790": {
    "match_id": "1051790",
@@ -1084,17 +1092,17 @@
    "team_b": "Yawara",
    "hotspawn_pickem_url": "https://play.hotspawn.com/cs2-pickems",
    "hotspawn_match_url": "",
-   "basis_tier": 4,
-   "basis_label": "Model · official bound (provisional)",
-   "basis_detail": "Provisional bound: Keyd is absent from the official standings file, so the lowest published value in that same file (381 points) is used as its ceiling; Yawara keeps its published 845 points. Because the unlisted team's value can only be lower, the favourite's true win probability is at least this estimate (6.5% for Yawara), which is what is published.",
+   "basis_tier": 3,
+   "basis_label": "Model · official ratings",
+   "basis_detail": "Originated rating line: Spirit 2046 vs Yawara 845 official points, p = 1/(1+10^((Rb-Ra)/400)) = 99.9%.",
    "basis_sources": [
     [
      "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
-     "Yawara standings"
+     "Spirit standings"
     ],
     [
      "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
-     "official standings file (bound)"
+     "Yawara standings"
     ]
    ],
    "market_source": "",
@@ -1104,33 +1112,35 @@
    "market_captured_utc": "",
    "market_prob_a_pct": "",
    "market_prob_b_pct": "",
-   "model_prob_a_pct": "6.5",
-   "model_prob_b_pct": "93.5",
-   "prob_a_pct": "6.5",
-   "prob_b_pct": "93.5",
-   "fair_odds_a": "15.45",
-   "fair_odds_b": "1.07",
-   "pick": "Yawara",
-   "pick_prob_pct": "93.5",
-   "confidence": "Provisional (official bound)",
+   "model_prob_a_pct": "99.9",
+   "model_prob_b_pct": "0.1",
+   "prob_a_pct": "99.9",
+   "prob_b_pct": "0.1",
+   "fair_odds_a": "1.00",
+   "fair_odds_b": "1006.77",
+   "pick": "Keyd",
+   "pick_prob_pct": "99.9",
+   "confidence": "Low (our line, uncalibrated)",
    "rating_a": {
     "team": "Keyd",
-    "vrs_name": "",
-    "vrs_rank": "",
-    "vrs_points": "",
-    "vrs_roster": "",
-    "vrs_url": "",
-    "vrs_details_url": "",
-    "match_method": "none",
-    "match_evidence_url": "",
-    "alias_note": "",
+    "vrs_name": "Spirit",
+    "vrs_rank": 1,
+    "vrs_points": 2046,
+    "vrs_roster": "donk, magixx, sh1ro, tN1R, zont1x",
+    "vrs_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
+    "vrs_details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0001--spirit--donk-magixx-sh1ro-tn1r-zont1x.md",
+    "match_method": "roster",
+    "match_evidence_url": "https://www.hltv.org/ranking/teams/2026/october/12",
+    "alias_note": "5 listed players match the official standings entry “Spirit” (#1).",
     "hltv_name": "Keyd",
     "hltv_team_id": "",
     "hltv_rank": "",
     "hltv_points": "",
     "hltv_url": "https://www.hltv.org/ranking/teams/2026/october/12",
-    "hltv_roster": "",
-    "flags": []
+    "hltv_roster": "sh1ro, magixx, tn1r, zont1x, donk, apex",
+    "flags": [
+     "FL-ALIAS-NAME"
+    ]
    },
    "rating_b": {
     "team": "Yawara",
@@ -1152,14 +1162,14 @@
     "flags": []
    },
    "flags": [
+    "FL-ALIAS-NAME",
     "FL-FORMAT-UNKNOWN",
     "FL-LOCKED",
     "FL-NO-MARKET",
-    "FL-RATINGS-WEEK-OLD",
-    "FL-UNLISTED-OPPONENT"
+    "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1052748": {
    "match_id": "1052748",
@@ -1253,7 +1263,7 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1053071": {
    "match_id": "1053071",
@@ -1339,7 +1349,7 @@
     "hltv_rank": "",
     "hltv_points": "",
     "hltv_url": "https://www.hltv.org/ranking/teams/2026/october/12",
-    "hltv_roster": "",
+    "hltv_roster": "sh1ro, magixx, tn1r, zont1x, donk, apex",
     "flags": []
    },
    "flags": [
@@ -1350,7 +1360,7 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1052749": {
    "match_id": "1052749",
@@ -1450,7 +1460,7 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1052180": {
    "match_id": "1052180",
@@ -1515,7 +1525,7 @@
     "hltv_rank": "",
     "hltv_points": "",
     "hltv_url": "https://www.hltv.org/ranking/teams/2026/october/12",
-    "hltv_roster": "",
+    "hltv_roster": "sh1ro, magixx, tn1r, zont1x, donk, apex",
     "flags": []
    },
    "rating_b": {
@@ -1534,7 +1544,7 @@
     "hltv_rank": "",
     "hltv_points": "",
     "hltv_url": "https://www.hltv.org/ranking/teams/2026/october/12",
-    "hltv_roster": "",
+    "hltv_roster": "sh1ro, magixx, tn1r, zont1x, donk, apex",
     "flags": []
    },
    "flags": [
@@ -1544,7 +1554,7 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1052181": {
    "match_id": "1052181",
@@ -1630,7 +1640,7 @@
     "hltv_rank": "",
     "hltv_points": "",
     "hltv_url": "https://www.hltv.org/ranking/teams/2026/october/12",
-    "hltv_roster": "",
+    "hltv_roster": "sh1ro, magixx, tn1r, zont1x, donk, apex",
     "flags": []
    },
    "flags": [
@@ -1641,7 +1651,7 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1051800": {
    "match_id": "1051800",
@@ -1725,7 +1735,7 @@
     "hltv_rank": "",
     "hltv_points": "",
     "hltv_url": "https://www.hltv.org/ranking/teams/2026/october/12",
-    "hltv_roster": "",
+    "hltv_roster": "sh1ro, magixx, tn1r, zont1x, donk, apex",
     "flags": []
    },
    "flags": [
@@ -1735,7 +1745,7 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1052699": {
    "match_id": "1052699",
@@ -1755,9 +1765,9 @@
    "team_b": "Red Feet",
    "hotspawn_pickem_url": "https://play.hotspawn.com/cs2-pickems",
    "hotspawn_match_url": "",
-   "basis_tier": 4,
-   "basis_label": "Model · official bound (provisional)",
-   "basis_detail": "Provisional bound: Red Feet is absent from the official standings file, so the lowest published value in that same file (381 points) is used as its ceiling; Vasco keeps its published 552 points. Because the unlisted team's value can only be lower, the favourite's true win probability is at least this estimate (72.8% for Vasco), which is what is published.",
+   "basis_tier": 3,
+   "basis_label": "Model · official ratings",
+   "basis_detail": "Originated rating line: Vasco 552 vs Spirit 2046 official points, p = 1/(1+10^((Rb-Ra)/400)) = 0.0%.",
    "basis_sources": [
     [
      "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
@@ -1765,7 +1775,7 @@
     ],
     [
      "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
-     "official standings file (bound)"
+     "Spirit standings"
     ]
    ],
    "market_source": "",
@@ -1775,15 +1785,15 @@
    "market_captured_utc": "",
    "market_prob_a_pct": "",
    "market_prob_b_pct": "",
-   "model_prob_a_pct": "72.8",
-   "model_prob_b_pct": "27.2",
-   "prob_a_pct": "72.8",
-   "prob_b_pct": "27.2",
-   "fair_odds_a": "1.37",
-   "fair_odds_b": "3.68",
-   "pick": "Vasco",
-   "pick_prob_pct": "72.8",
-   "confidence": "Provisional (official bound)",
+   "model_prob_a_pct": "0.0",
+   "model_prob_b_pct": "100.0",
+   "prob_a_pct": "0.0",
+   "prob_b_pct": "100.0",
+   "fair_odds_a": "5433.50",
+   "fair_odds_b": "1.00",
+   "pick": "Red Feet",
+   "pick_prob_pct": "100.0",
+   "confidence": "Low (our line, uncalibrated)",
    "rating_a": {
     "team": "Vasco",
     "vrs_name": "Vasco",
@@ -1800,37 +1810,39 @@
     "hltv_rank": "",
     "hltv_points": "",
     "hltv_url": "https://www.hltv.org/ranking/teams/2026/october/12",
-    "hltv_roster": "",
+    "hltv_roster": "sh1ro, magixx, tn1r, zont1x, donk, apex",
     "flags": []
    },
    "rating_b": {
     "team": "Red Feet",
-    "vrs_name": "",
-    "vrs_rank": "",
-    "vrs_points": "",
-    "vrs_roster": "",
-    "vrs_url": "",
-    "vrs_details_url": "",
-    "match_method": "none",
-    "match_evidence_url": "",
-    "alias_note": "",
+    "vrs_name": "Spirit",
+    "vrs_rank": 1,
+    "vrs_points": 2046,
+    "vrs_roster": "donk, magixx, sh1ro, tN1R, zont1x",
+    "vrs_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
+    "vrs_details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0001--spirit--donk-magixx-sh1ro-tn1r-zont1x.md",
+    "match_method": "roster",
+    "match_evidence_url": "https://www.hltv.org/ranking/teams/2026/october/12",
+    "alias_note": "5 listed players match the official standings entry “Spirit” (#1).",
     "hltv_name": "Red Feet",
     "hltv_team_id": "",
     "hltv_rank": "",
     "hltv_points": "",
     "hltv_url": "https://www.hltv.org/ranking/teams/2026/october/12",
-    "hltv_roster": "",
-    "flags": []
+    "hltv_roster": "sh1ro, magixx, tn1r, zont1x, donk, apex",
+    "flags": [
+     "FL-ALIAS-NAME"
+    ]
    },
    "flags": [
+    "FL-ALIAS-NAME",
     "FL-FORMAT-UNKNOWN",
     "FL-LOCKED",
     "FL-NO-MARKET",
-    "FL-RATINGS-WEEK-OLD",
-    "FL-UNLISTED-OPPONENT"
+    "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1052183": {
    "match_id": "1052183",
@@ -1850,9 +1862,9 @@
    "team_b": "Wampirki",
    "hotspawn_pickem_url": "https://play.hotspawn.com/cs2-pickems",
    "hotspawn_match_url": "",
-   "basis_tier": 4,
-   "basis_label": "Model · official bound (provisional)",
-   "basis_detail": "Provisional bound: Wampirki is absent from the official standings file, so the lowest published value in that same file (381 points) is used as its ceiling; Misa keeps its published 883 points. Because the unlisted team's value can only be lower, the favourite's true win probability is at least this estimate (94.7% for Misa), which is what is published.",
+   "basis_tier": 3,
+   "basis_label": "Model · official ratings",
+   "basis_detail": "Originated rating line: Misa 883 vs Spirit 2046 official points, p = 1/(1+10^((Rb-Ra)/400)) = 0.1%.",
    "basis_sources": [
     [
      "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
@@ -1860,7 +1872,7 @@
     ],
     [
      "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
-     "official standings file (bound)"
+     "Spirit standings"
     ]
    ],
    "market_source": "",
@@ -1870,15 +1882,15 @@
    "market_captured_utc": "",
    "market_prob_a_pct": "",
    "market_prob_b_pct": "",
-   "model_prob_a_pct": "94.7",
-   "model_prob_b_pct": "5.3",
-   "prob_a_pct": "94.7",
-   "prob_b_pct": "5.3",
-   "fair_odds_a": "1.06",
-   "fair_odds_b": "18.99",
-   "pick": "Misa",
-   "pick_prob_pct": "94.7",
-   "confidence": "Provisional (official bound)",
+   "model_prob_a_pct": "0.1",
+   "model_prob_b_pct": "99.9",
+   "prob_a_pct": "0.1",
+   "prob_b_pct": "99.9",
+   "fair_odds_a": "809.16",
+   "fair_odds_b": "1.00",
+   "pick": "Wampirki",
+   "pick_prob_pct": "99.9",
+   "confidence": "Low (our line, uncalibrated)",
    "rating_a": {
     "team": "Misa",
     "vrs_name": "Misa",
@@ -1902,33 +1914,35 @@
    },
    "rating_b": {
     "team": "Wampirki",
-    "vrs_name": "",
-    "vrs_rank": "",
-    "vrs_points": "",
-    "vrs_roster": "",
-    "vrs_url": "",
-    "vrs_details_url": "",
-    "match_method": "none",
-    "match_evidence_url": "",
-    "alias_note": "",
+    "vrs_name": "Spirit",
+    "vrs_rank": 1,
+    "vrs_points": 2046,
+    "vrs_roster": "donk, magixx, sh1ro, tN1R, zont1x",
+    "vrs_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
+    "vrs_details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0001--spirit--donk-magixx-sh1ro-tn1r-zont1x.md",
+    "match_method": "roster",
+    "match_evidence_url": "https://www.hltv.org/ranking/teams/2026/october/12",
+    "alias_note": "5 listed players match the official standings entry “Spirit” (#1).",
     "hltv_name": "Wampirki",
     "hltv_team_id": "",
     "hltv_rank": "",
     "hltv_points": "",
     "hltv_url": "https://www.hltv.org/ranking/teams/2026/october/12",
-    "hltv_roster": "",
-    "flags": []
+    "hltv_roster": "sh1ro, magixx, tn1r, zont1x, donk, apex",
+    "flags": [
+     "FL-ALIAS-NAME"
+    ]
    },
    "flags": [
+    "FL-ALIAS-NAME",
     "FL-DUPLICATE-VRS-NAME",
     "FL-FORMAT-UNKNOWN",
     "FL-LOCKED",
     "FL-NO-MARKET",
-    "FL-RATINGS-WEEK-OLD",
-    "FL-UNLISTED-OPPONENT"
+    "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1051341": {
    "match_id": "1051341",
@@ -1948,17 +1962,17 @@
    "team_b": "Inner Circle",
    "hotspawn_pickem_url": "https://play.hotspawn.com/cs2-pickems",
    "hotspawn_match_url": "",
-   "basis_tier": 4,
-   "basis_label": "Model · official bound (provisional)",
-   "basis_detail": "Provisional bound: Sharks is absent from the official standings file, so the lowest published value in that same file (381 points) is used as its ceiling; Inner Circle keeps its published 1516 points. Because the unlisted team's value can only be lower, the favourite's true win probability is at least this estimate (0.1% for Inner Circle), which is what is published.",
+   "basis_tier": 3,
+   "basis_label": "Model · official ratings",
+   "basis_detail": "Originated rating line: Spirit 2046 vs Inner Circle 1516 official points, p = 1/(1+10^((Rb-Ra)/400)) = 95.5%.",
    "basis_sources": [
     [
      "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
-     "Inner Circle standings"
+     "Spirit standings"
     ],
     [
      "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
-     "official standings file (bound)"
+     "Inner Circle standings"
     ]
    ],
    "market_source": "",
@@ -1968,33 +1982,35 @@
    "market_captured_utc": "",
    "market_prob_a_pct": "",
    "market_prob_b_pct": "",
-   "model_prob_a_pct": "0.1",
-   "model_prob_b_pct": "99.9",
-   "prob_a_pct": "0.1",
-   "prob_b_pct": "99.9",
-   "fair_odds_a": "688.86",
-   "fair_odds_b": "1.00",
-   "pick": "Inner Circle",
-   "pick_prob_pct": "99.9",
-   "confidence": "Provisional (official bound)",
+   "model_prob_a_pct": "95.5",
+   "model_prob_b_pct": "4.5",
+   "prob_a_pct": "95.5",
+   "prob_b_pct": "4.5",
+   "fair_odds_a": "1.05",
+   "fair_odds_b": "22.13",
+   "pick": "Sharks",
+   "pick_prob_pct": "95.5",
+   "confidence": "Low (our line, uncalibrated)",
    "rating_a": {
     "team": "Sharks",
-    "vrs_name": "",
-    "vrs_rank": "",
-    "vrs_points": "",
-    "vrs_roster": "",
-    "vrs_url": "",
-    "vrs_details_url": "",
-    "match_method": "none",
-    "match_evidence_url": "",
-    "alias_note": "",
+    "vrs_name": "Spirit",
+    "vrs_rank": 1,
+    "vrs_points": 2046,
+    "vrs_roster": "donk, magixx, sh1ro, tN1R, zont1x",
+    "vrs_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
+    "vrs_details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0001--spirit--donk-magixx-sh1ro-tn1r-zont1x.md",
+    "match_method": "roster",
+    "match_evidence_url": "https://www.hltv.org/ranking/teams/2026/october/12",
+    "alias_note": "5 listed players match the official standings entry “Spirit” (#1).",
     "hltv_name": "Sharks",
     "hltv_team_id": "",
     "hltv_rank": "",
     "hltv_points": "",
     "hltv_url": "https://www.hltv.org/ranking/teams/2026/october/12",
-    "hltv_roster": "",
-    "flags": []
+    "hltv_roster": "sh1ro, magixx, tn1r, zont1x, donk, apex",
+    "flags": [
+     "FL-ALIAS-NAME"
+    ]
    },
    "rating_b": {
     "team": "Inner Circle",
@@ -2016,14 +2032,14 @@
     "flags": []
    },
    "flags": [
+    "FL-ALIAS-NAME",
     "FL-FORMAT-UNKNOWN",
     "FL-LOCKED",
     "FL-NO-MARKET",
-    "FL-RATINGS-WEEK-OLD",
-    "FL-UNLISTED-OPPONENT"
+    "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1052599": {
    "match_id": "1052599",
@@ -2110,7 +2126,7 @@
     "FL-NO-MARKET"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1053072": {
    "match_id": "1053072",
@@ -2175,7 +2191,7 @@
     "hltv_rank": "",
     "hltv_points": "",
     "hltv_url": "https://www.hltv.org/ranking/teams/2026/october/12",
-    "hltv_roster": "",
+    "hltv_roster": "sh1ro, magixx, tn1r, zont1x, donk, apex",
     "flags": []
    },
    "rating_b": {
@@ -2194,7 +2210,7 @@
     "hltv_rank": "",
     "hltv_points": "",
     "hltv_url": "https://www.hltv.org/ranking/teams/2026/october/12",
-    "hltv_roster": "",
+    "hltv_roster": "sh1ro, magixx, tn1r, zont1x, donk, apex",
     "flags": []
    },
    "flags": [
@@ -2204,7 +2220,7 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1052357": {
    "match_id": "1052357",
@@ -2301,7 +2317,7 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1051801": {
    "match_id": "1051801",
@@ -2388,7 +2404,7 @@
     "FL-NO-MARKET"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1052700": {
    "match_id": "1052700",
@@ -2453,7 +2469,7 @@
     "hltv_rank": "",
     "hltv_points": "",
     "hltv_url": "https://www.hltv.org/ranking/teams/2026/october/12",
-    "hltv_roster": "",
+    "hltv_roster": "sh1ro, magixx, tn1r, zont1x, donk, apex",
     "flags": []
    },
    "rating_b": {
@@ -2472,7 +2488,7 @@
     "hltv_rank": "",
     "hltv_points": "",
     "hltv_url": "https://www.hltv.org/ranking/teams/2026/october/12",
-    "hltv_roster": "",
+    "hltv_roster": "sh1ro, magixx, tn1r, zont1x, donk, apex",
     "flags": []
    },
    "flags": [
@@ -2482,7 +2498,7 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1051342": {
    "match_id": "1051342",
@@ -2502,17 +2518,17 @@
    "team_b": "Acend",
    "hotspawn_pickem_url": "https://play.hotspawn.com/cs2-pickems",
    "hotspawn_match_url": "",
-   "basis_tier": 4,
-   "basis_label": "Model · official bound (provisional)",
-   "basis_detail": "Provisional bound: ex-Tricked is absent from the official standings file, so the lowest published value in that same file (381 points) is used as its ceiling; Acend keeps its published 1197 points. Because the unlisted team's value can only be lower, the favourite's true win probability is at least this estimate (0.9% for Acend), which is what is published.",
+   "basis_tier": 3,
+   "basis_label": "Model · official ratings",
+   "basis_detail": "Originated rating line: Spirit 2046 vs Acend 1197 official points, p = 1/(1+10^((Rb-Ra)/400)) = 99.3%.",
    "basis_sources": [
     [
      "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
-     "Acend standings"
+     "Spirit standings"
     ],
     [
      "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
-     "official standings file (bound)"
+     "Acend standings"
     ]
    ],
    "market_source": "",
@@ -2522,33 +2538,35 @@
    "market_captured_utc": "",
    "market_prob_a_pct": "",
    "market_prob_b_pct": "",
-   "model_prob_a_pct": "0.9",
-   "model_prob_b_pct": "99.1",
-   "prob_a_pct": "0.9",
-   "prob_b_pct": "99.1",
-   "fair_odds_a": "110.65",
-   "fair_odds_b": "1.01",
-   "pick": "Acend",
-   "pick_prob_pct": "99.1",
-   "confidence": "Provisional (official bound)",
+   "model_prob_a_pct": "99.3",
+   "model_prob_b_pct": "0.7",
+   "prob_a_pct": "99.3",
+   "prob_b_pct": "0.7",
+   "fair_odds_a": "1.01",
+   "fair_odds_b": "133.59",
+   "pick": "ex-Tricked",
+   "pick_prob_pct": "99.3",
+   "confidence": "Low (our line, uncalibrated)",
    "rating_a": {
     "team": "ex-Tricked",
-    "vrs_name": "",
-    "vrs_rank": "",
-    "vrs_points": "",
-    "vrs_roster": "",
-    "vrs_url": "",
-    "vrs_details_url": "",
-    "match_method": "none",
-    "match_evidence_url": "",
-    "alias_note": "",
+    "vrs_name": "Spirit",
+    "vrs_rank": 1,
+    "vrs_points": 2046,
+    "vrs_roster": "donk, magixx, sh1ro, tN1R, zont1x",
+    "vrs_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
+    "vrs_details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0001--spirit--donk-magixx-sh1ro-tn1r-zont1x.md",
+    "match_method": "roster",
+    "match_evidence_url": "https://www.hltv.org/ranking/teams/2026/october/12",
+    "alias_note": "5 listed players match the official standings entry “Spirit” (#1).",
     "hltv_name": "ex-Tricked",
     "hltv_team_id": "",
     "hltv_rank": "",
     "hltv_points": "",
     "hltv_url": "https://www.hltv.org/ranking/teams/2026/october/12",
-    "hltv_roster": "",
-    "flags": []
+    "hltv_roster": "sh1ro, magixx, tn1r, zont1x, donk, apex",
+    "flags": [
+     "FL-ALIAS-NAME"
+    ]
    },
    "rating_b": {
     "team": "Acend",
@@ -2570,14 +2588,14 @@
     "flags": []
    },
    "flags": [
+    "FL-ALIAS-NAME",
     "FL-FORMAT-UNKNOWN",
     "FL-LOCKED",
     "FL-NO-MARKET",
-    "FL-RATINGS-WEEK-OLD",
-    "FL-UNLISTED-OPPONENT"
+    "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1053073": {
    "match_id": "1053073",
@@ -2597,9 +2615,9 @@
    "team_b": "ReThink",
    "hotspawn_pickem_url": "https://play.hotspawn.com/cs2-pickems",
    "hotspawn_match_url": "",
-   "basis_tier": 4,
-   "basis_label": "Model · official bound (provisional)",
-   "basis_detail": "Provisional bound: ReThink is absent from the official standings file, so the lowest published value in that same file (381 points) is used as its ceiling; roamsfiest keeps its published 723 points. Because the unlisted team's value can only be lower, the favourite's true win probability is at least this estimate (87.7% for roamsfiest), which is what is published.",
+   "basis_tier": 3,
+   "basis_label": "Model · official ratings",
+   "basis_detail": "Originated rating line: roamsfiest 723 vs Spirit 2046 official points, p = 1/(1+10^((Rb-Ra)/400)) = 0.0%.",
    "basis_sources": [
     [
      "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
@@ -2607,7 +2625,7 @@
     ],
     [
      "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
-     "official standings file (bound)"
+     "Spirit standings"
     ]
    ],
    "market_source": "",
@@ -2617,15 +2635,15 @@
    "market_captured_utc": "",
    "market_prob_a_pct": "",
    "market_prob_b_pct": "",
-   "model_prob_a_pct": "87.7",
-   "model_prob_b_pct": "12.3",
-   "prob_a_pct": "87.7",
-   "prob_b_pct": "12.3",
-   "fair_odds_a": "1.14",
-   "fair_odds_b": "8.16",
-   "pick": "roamsfiest",
-   "pick_prob_pct": "87.7",
-   "confidence": "Provisional (official bound)",
+   "model_prob_a_pct": "0.0",
+   "model_prob_b_pct": "100.0",
+   "prob_a_pct": "0.0",
+   "prob_b_pct": "100.0",
+   "fair_odds_a": "2031.02",
+   "fair_odds_b": "1.00",
+   "pick": "ReThink",
+   "pick_prob_pct": "100.0",
+   "confidence": "Low (our line, uncalibrated)",
    "rating_a": {
     "team": "roamsfiest",
     "vrs_name": "roamsfiest",
@@ -2642,37 +2660,39 @@
     "hltv_rank": "",
     "hltv_points": "",
     "hltv_url": "https://www.hltv.org/ranking/teams/2026/october/12",
-    "hltv_roster": "",
+    "hltv_roster": "sh1ro, magixx, tn1r, zont1x, donk, apex",
     "flags": []
    },
    "rating_b": {
     "team": "ReThink",
-    "vrs_name": "",
-    "vrs_rank": "",
-    "vrs_points": "",
-    "vrs_roster": "",
-    "vrs_url": "",
-    "vrs_details_url": "",
-    "match_method": "none",
-    "match_evidence_url": "",
-    "alias_note": "",
+    "vrs_name": "Spirit",
+    "vrs_rank": 1,
+    "vrs_points": 2046,
+    "vrs_roster": "donk, magixx, sh1ro, tN1R, zont1x",
+    "vrs_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
+    "vrs_details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0001--spirit--donk-magixx-sh1ro-tn1r-zont1x.md",
+    "match_method": "roster",
+    "match_evidence_url": "https://www.hltv.org/ranking/teams/2026/october/12",
+    "alias_note": "5 listed players match the official standings entry “Spirit” (#1).",
     "hltv_name": "ReThink",
     "hltv_team_id": "",
     "hltv_rank": "",
     "hltv_points": "",
     "hltv_url": "https://www.hltv.org/ranking/teams/2026/october/12",
-    "hltv_roster": "",
-    "flags": []
+    "hltv_roster": "sh1ro, magixx, tn1r, zont1x, donk, apex",
+    "flags": [
+     "FL-ALIAS-NAME"
+    ]
    },
    "flags": [
+    "FL-ALIAS-NAME",
     "FL-FORMAT-UNKNOWN",
     "FL-LOCKED",
     "FL-NO-MARKET",
-    "FL-RATINGS-WEEK-OLD",
-    "FL-UNLISTED-OPPONENT"
+    "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1052701": {
    "match_id": "1052701",
@@ -2737,7 +2757,7 @@
     "hltv_rank": "",
     "hltv_points": "",
     "hltv_url": "https://www.hltv.org/ranking/teams/2026/october/12",
-    "hltv_roster": "",
+    "hltv_roster": "sh1ro, magixx, tn1r, zont1x, donk, apex",
     "flags": []
    },
    "rating_b": {
@@ -2766,7 +2786,7 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1053313": {
    "match_id": "1053313",
@@ -2831,7 +2851,7 @@
     "hltv_rank": "",
     "hltv_points": "",
     "hltv_url": "https://www.hltv.org/ranking/teams/2026/october/12",
-    "hltv_roster": "",
+    "hltv_roster": "sh1ro, magixx, tn1r, zont1x, donk, apex",
     "flags": []
    },
    "rating_b": {
@@ -2860,7 +2880,7 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1051803": {
    "match_id": "1051803",
@@ -2880,9 +2900,9 @@
    "team_b": "Keyd",
    "hotspawn_pickem_url": "https://play.hotspawn.com/cs2-pickems",
    "hotspawn_match_url": "",
-   "basis_tier": 4,
-   "basis_label": "Model · official bound (provisional)",
-   "basis_detail": "Provisional bound: Keyd is absent from the official standings file, so the lowest published value in that same file (381 points) is used as its ceiling; Fluxo keeps its published 1277 points. Because the unlisted team's value can only be lower, the favourite's true win probability is at least this estimate (99.4% for Fluxo), which is what is published.",
+   "basis_tier": 3,
+   "basis_label": "Model · official ratings",
+   "basis_detail": "Originated rating line: Fluxo 1277 vs Spirit 2046 official points, p = 1/(1+10^((Rb-Ra)/400)) = 1.2%.",
    "basis_sources": [
     [
      "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
@@ -2890,7 +2910,7 @@
     ],
     [
      "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
-     "official standings file (bound)"
+     "Spirit standings"
     ]
    ],
    "market_source": "",
@@ -2900,15 +2920,15 @@
    "market_captured_utc": "",
    "market_prob_a_pct": "",
    "market_prob_b_pct": "",
-   "model_prob_a_pct": "99.4",
-   "model_prob_b_pct": "0.6",
-   "prob_a_pct": "99.4",
-   "prob_b_pct": "0.6",
-   "fair_odds_a": "1.01",
-   "fair_odds_b": "174.78",
-   "pick": "Fluxo",
-   "pick_prob_pct": "99.4",
-   "confidence": "Provisional (official bound)",
+   "model_prob_a_pct": "1.2",
+   "model_prob_b_pct": "98.8",
+   "prob_a_pct": "1.2",
+   "prob_b_pct": "98.8",
+   "fair_odds_a": "84.66",
+   "fair_odds_b": "1.01",
+   "pick": "Keyd",
+   "pick_prob_pct": "98.8",
+   "confidence": "Low (our line, uncalibrated)",
    "rating_a": {
     "team": "Fluxo",
     "vrs_name": "Fluxo",
@@ -2930,32 +2950,34 @@
    },
    "rating_b": {
     "team": "Keyd",
-    "vrs_name": "",
-    "vrs_rank": "",
-    "vrs_points": "",
-    "vrs_roster": "",
-    "vrs_url": "",
-    "vrs_details_url": "",
-    "match_method": "none",
-    "match_evidence_url": "",
-    "alias_note": "",
+    "vrs_name": "Spirit",
+    "vrs_rank": 1,
+    "vrs_points": 2046,
+    "vrs_roster": "donk, magixx, sh1ro, tN1R, zont1x",
+    "vrs_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
+    "vrs_details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0001--spirit--donk-magixx-sh1ro-tn1r-zont1x.md",
+    "match_method": "roster",
+    "match_evidence_url": "https://www.hltv.org/ranking/teams/2026/october/12",
+    "alias_note": "5 listed players match the official standings entry “Spirit” (#1).",
     "hltv_name": "Keyd",
     "hltv_team_id": "",
     "hltv_rank": "",
     "hltv_points": "",
     "hltv_url": "https://www.hltv.org/ranking/teams/2026/october/12",
-    "hltv_roster": "",
-    "flags": []
+    "hltv_roster": "sh1ro, magixx, tn1r, zont1x, donk, apex",
+    "flags": [
+     "FL-ALIAS-NAME"
+    ]
    },
    "flags": [
+    "FL-ALIAS-NAME",
     "FL-FORMAT-UNKNOWN",
     "FL-LOCKED",
     "FL-NO-MARKET",
-    "FL-RATINGS-WEEK-OLD",
-    "FL-UNLISTED-OPPONENT"
+    "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1052702": {
    "match_id": "1052702",
@@ -3050,7 +3072,7 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1052750": {
    "match_id": "1052750",
@@ -3136,7 +3158,7 @@
     "hltv_rank": "",
     "hltv_points": "",
     "hltv_url": "https://www.hltv.org/ranking/teams/2026/october/12",
-    "hltv_roster": "",
+    "hltv_roster": "sh1ro, magixx, tn1r, zont1x, donk, apex",
     "flags": []
    },
    "flags": [
@@ -3147,7 +3169,7 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1052751": {
    "match_id": "1052751",
@@ -3167,17 +3189,17 @@
    "team_b": "Subtop De France",
    "hotspawn_pickem_url": "https://play.hotspawn.com/cs2-pickems",
    "hotspawn_match_url": "",
-   "basis_tier": 4,
-   "basis_label": "Model · official bound (provisional)",
-   "basis_detail": "Provisional bound: ex-MANA is absent from the official standings file, so the lowest published value in that same file (381 points) is used as its ceiling; Subtop De France keeps its published 484 points. Because the unlisted team's value can only be lower, the favourite's true win probability is at least this estimate (35.6% for Subtop De France), which is what is published.",
+   "basis_tier": 3,
+   "basis_label": "Model · official ratings",
+   "basis_detail": "Originated rating line: Spirit 2046 vs Subtop De France 484 official points, p = 1/(1+10^((Rb-Ra)/400)) = 100.0%.",
    "basis_sources": [
     [
      "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
-     "Subtop De France standings"
+     "Spirit standings"
     ],
     [
      "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
-     "official standings file (bound)"
+     "Subtop De France standings"
     ]
    ],
    "market_source": "",
@@ -3187,33 +3209,35 @@
    "market_captured_utc": "",
    "market_prob_a_pct": "",
    "market_prob_b_pct": "",
-   "model_prob_a_pct": "35.6",
-   "model_prob_b_pct": "64.4",
-   "prob_a_pct": "35.6",
-   "prob_b_pct": "64.4",
-   "fair_odds_a": "2.81",
-   "fair_odds_b": "1.55",
-   "pick": "Subtop De France",
-   "pick_prob_pct": "64.4",
-   "confidence": "Provisional (official bound)",
+   "model_prob_a_pct": "100.0",
+   "model_prob_b_pct": "0.0",
+   "prob_a_pct": "100.0",
+   "prob_b_pct": "0.0",
+   "fair_odds_a": "1.00",
+   "fair_odds_b": "8036.26",
+   "pick": "ex-MANA",
+   "pick_prob_pct": "100.0",
+   "confidence": "Low (our line, uncalibrated)",
    "rating_a": {
     "team": "ex-MANA",
-    "vrs_name": "",
-    "vrs_rank": "",
-    "vrs_points": "",
-    "vrs_roster": "",
-    "vrs_url": "",
-    "vrs_details_url": "",
-    "match_method": "none",
-    "match_evidence_url": "",
-    "alias_note": "",
+    "vrs_name": "Spirit",
+    "vrs_rank": 1,
+    "vrs_points": 2046,
+    "vrs_roster": "donk, magixx, sh1ro, tN1R, zont1x",
+    "vrs_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
+    "vrs_details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0001--spirit--donk-magixx-sh1ro-tn1r-zont1x.md",
+    "match_method": "roster",
+    "match_evidence_url": "https://www.hltv.org/ranking/teams/2026/october/12",
+    "alias_note": "5 listed players match the official standings entry “Spirit” (#1).",
     "hltv_name": "ex-MANA",
     "hltv_team_id": "",
     "hltv_rank": "",
     "hltv_points": "",
     "hltv_url": "https://www.hltv.org/ranking/teams/2026/october/12",
-    "hltv_roster": "",
-    "flags": []
+    "hltv_roster": "sh1ro, magixx, tn1r, zont1x, donk, apex",
+    "flags": [
+     "FL-ALIAS-NAME"
+    ]
    },
    "rating_b": {
     "team": "Subtop De France",
@@ -3231,18 +3255,18 @@
     "hltv_rank": "",
     "hltv_points": "",
     "hltv_url": "https://www.hltv.org/ranking/teams/2026/october/12",
-    "hltv_roster": "",
+    "hltv_roster": "sh1ro, magixx, tn1r, zont1x, donk, apex",
     "flags": []
    },
    "flags": [
+    "FL-ALIAS-NAME",
     "FL-FORMAT-UNKNOWN",
     "FL-LOCKED",
     "FL-NO-MARKET",
-    "FL-RATINGS-WEEK-OLD",
-    "FL-UNLISTED-OPPONENT"
+    "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1052185": {
    "match_id": "1052185",
@@ -3326,7 +3350,7 @@
     "hltv_rank": "",
     "hltv_points": "",
     "hltv_url": "https://www.hltv.org/ranking/teams/2026/october/12",
-    "hltv_roster": "",
+    "hltv_roster": "sh1ro, magixx, tn1r, zont1x, donk, apex",
     "flags": []
    },
    "flags": [
@@ -3336,7 +3360,7 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1053431": {
    "match_id": "1053431",
@@ -3356,17 +3380,17 @@
    "team_b": "Coalesce",
    "hotspawn_pickem_url": "https://play.hotspawn.com/cs2-pickems",
    "hotspawn_match_url": "",
-   "basis_tier": 4,
-   "basis_label": "Model · official bound (provisional)",
-   "basis_detail": "Provisional bound: GAMEHARMONY is absent from the official standings file, so the lowest published value in that same file (381 points) is used as its ceiling; Coalesce keeps its published 460 points. Because the unlisted team's value can only be lower, the favourite's true win probability is at least this estimate (38.8% for Coalesce), which is what is published.",
+   "basis_tier": 3,
+   "basis_label": "Model · official ratings",
+   "basis_detail": "Originated rating line: Spirit 2046 vs Coalesce 460 official points, p = 1/(1+10^((Rb-Ra)/400)) = 100.0%.",
    "basis_sources": [
     [
      "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
-     "Coalesce standings"
+     "Spirit standings"
     ],
     [
      "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
-     "official standings file (bound)"
+     "Coalesce standings"
     ]
    ],
    "market_source": "",
@@ -3376,33 +3400,35 @@
    "market_captured_utc": "",
    "market_prob_a_pct": "",
    "market_prob_b_pct": "",
-   "model_prob_a_pct": "38.8",
-   "model_prob_b_pct": "61.2",
-   "prob_a_pct": "38.8",
-   "prob_b_pct": "61.2",
-   "fair_odds_a": "2.58",
-   "fair_odds_b": "1.63",
-   "pick": "Coalesce",
-   "pick_prob_pct": "61.2",
-   "confidence": "Provisional (official bound)",
+   "model_prob_a_pct": "100.0",
+   "model_prob_b_pct": "0.0",
+   "prob_a_pct": "100.0",
+   "prob_b_pct": "0.0",
+   "fair_odds_a": "1.00",
+   "fair_odds_b": "9226.71",
+   "pick": "GAMEHARMONY",
+   "pick_prob_pct": "100.0",
+   "confidence": "Low (our line, uncalibrated)",
    "rating_a": {
     "team": "GAMEHARMONY",
-    "vrs_name": "",
-    "vrs_rank": "",
-    "vrs_points": "",
-    "vrs_roster": "",
-    "vrs_url": "",
-    "vrs_details_url": "",
-    "match_method": "none",
-    "match_evidence_url": "",
-    "alias_note": "",
+    "vrs_name": "Spirit",
+    "vrs_rank": 1,
+    "vrs_points": 2046,
+    "vrs_roster": "donk, magixx, sh1ro, tN1R, zont1x",
+    "vrs_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
+    "vrs_details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0001--spirit--donk-magixx-sh1ro-tn1r-zont1x.md",
+    "match_method": "roster",
+    "match_evidence_url": "https://www.hltv.org/ranking/teams/2026/october/12",
+    "alias_note": "5 listed players match the official standings entry “Spirit” (#1).",
     "hltv_name": "GAMEHARMONY",
     "hltv_team_id": "",
     "hltv_rank": "",
     "hltv_points": "",
     "hltv_url": "https://www.hltv.org/ranking/teams/2026/october/12",
-    "hltv_roster": "",
-    "flags": []
+    "hltv_roster": "sh1ro, magixx, tn1r, zont1x, donk, apex",
+    "flags": [
+     "FL-ALIAS-NAME"
+    ]
    },
    "rating_b": {
     "team": "Coalesce",
@@ -3420,18 +3446,18 @@
     "hltv_rank": "",
     "hltv_points": "",
     "hltv_url": "https://www.hltv.org/ranking/teams/2026/october/12",
-    "hltv_roster": "",
+    "hltv_roster": "sh1ro, magixx, tn1r, zont1x, donk, apex",
     "flags": []
    },
    "flags": [
+    "FL-ALIAS-NAME",
     "FL-FORMAT-UNKNOWN",
     "FL-LOCKED",
     "FL-NO-MARKET",
-    "FL-RATINGS-WEEK-OLD",
-    "FL-UNLISTED-OPPONENT"
+    "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1053432": {
    "match_id": "1053432",
@@ -3517,7 +3543,7 @@
     "hltv_rank": "",
     "hltv_points": "",
     "hltv_url": "https://www.hltv.org/ranking/teams/2026/october/12",
-    "hltv_roster": "",
+    "hltv_roster": "sh1ro, magixx, tn1r, zont1x, donk, apex",
     "flags": []
    },
    "flags": [
@@ -3528,7 +3554,7 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1053433": {
    "match_id": "1053433",
@@ -3548,17 +3574,17 @@
    "team_b": "Aimhaus",
    "hotspawn_pickem_url": "https://play.hotspawn.com/cs2-pickems",
    "hotspawn_match_url": "",
-   "basis_tier": 4,
-   "basis_label": "Model · official bound (provisional)",
-   "basis_detail": "Provisional bound: GAMEHARMONY is absent from the official standings file, so the lowest published value in that same file (381 points) is used as its ceiling; Aimhaus keeps its published 421 points. Because the unlisted team's value can only be lower, the favourite's true win probability is at least this estimate (44.3% for Aimhaus), which is what is published.",
+   "basis_tier": 3,
+   "basis_label": "Model · official ratings",
+   "basis_detail": "Originated rating line: Spirit 2046 vs Aimhaus 421 official points, p = 1/(1+10^((Rb-Ra)/400)) = 100.0%.",
    "basis_sources": [
     [
      "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
-     "Aimhaus standings"
+     "Spirit standings"
     ],
     [
      "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
-     "official standings file (bound)"
+     "Aimhaus standings"
     ]
    ],
    "market_source": "",
@@ -3568,33 +3594,35 @@
    "market_captured_utc": "",
    "market_prob_a_pct": "",
    "market_prob_b_pct": "",
-   "model_prob_a_pct": "44.3",
-   "model_prob_b_pct": "55.7",
-   "prob_a_pct": "44.3",
-   "prob_b_pct": "55.7",
-   "fair_odds_a": "2.26",
-   "fair_odds_b": "1.79",
-   "pick": "Aimhaus",
-   "pick_prob_pct": "55.7",
-   "confidence": "Provisional (official bound)",
+   "model_prob_a_pct": "100.0",
+   "model_prob_b_pct": "0.0",
+   "prob_a_pct": "100.0",
+   "prob_b_pct": "0.0",
+   "fair_odds_a": "1.00",
+   "fair_odds_b": "11548.82",
+   "pick": "GAMEHARMONY",
+   "pick_prob_pct": "100.0",
+   "confidence": "Low (our line, uncalibrated)",
    "rating_a": {
     "team": "GAMEHARMONY",
-    "vrs_name": "",
-    "vrs_rank": "",
-    "vrs_points": "",
-    "vrs_roster": "",
-    "vrs_url": "",
-    "vrs_details_url": "",
-    "match_method": "none",
-    "match_evidence_url": "",
-    "alias_note": "",
+    "vrs_name": "Spirit",
+    "vrs_rank": 1,
+    "vrs_points": 2046,
+    "vrs_roster": "donk, magixx, sh1ro, tN1R, zont1x",
+    "vrs_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
+    "vrs_details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0001--spirit--donk-magixx-sh1ro-tn1r-zont1x.md",
+    "match_method": "roster",
+    "match_evidence_url": "https://www.hltv.org/ranking/teams/2026/october/12",
+    "alias_note": "5 listed players match the official standings entry “Spirit” (#1).",
     "hltv_name": "GAMEHARMONY",
     "hltv_team_id": "",
     "hltv_rank": "",
     "hltv_points": "",
     "hltv_url": "https://www.hltv.org/ranking/teams/2026/october/12",
-    "hltv_roster": "",
-    "flags": []
+    "hltv_roster": "sh1ro, magixx, tn1r, zont1x, donk, apex",
+    "flags": [
+     "FL-ALIAS-NAME"
+    ]
    },
    "rating_b": {
     "team": "Aimhaus",
@@ -3612,18 +3640,18 @@
     "hltv_rank": "",
     "hltv_points": "",
     "hltv_url": "https://www.hltv.org/ranking/teams/2026/october/12",
-    "hltv_roster": "",
+    "hltv_roster": "sh1ro, magixx, tn1r, zont1x, donk, apex",
     "flags": []
    },
    "flags": [
+    "FL-ALIAS-NAME",
     "FL-FORMAT-UNKNOWN",
     "FL-LOCKED",
     "FL-NO-MARKET",
-    "FL-RATINGS-WEEK-OLD",
-    "FL-UNLISTED-OPPONENT"
+    "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1053434": {
    "match_id": "1053434",
@@ -3709,7 +3737,7 @@
     "hltv_rank": "",
     "hltv_points": "",
     "hltv_url": "https://www.hltv.org/ranking/teams/2026/october/12",
-    "hltv_roster": "",
+    "hltv_roster": "sh1ro, magixx, tn1r, zont1x, donk, apex",
     "flags": []
    },
    "flags": [
@@ -3720,7 +3748,7 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1052698": {
    "match_id": "1052698",
@@ -3740,9 +3768,9 @@
    "team_b": "MAGICOS",
    "hotspawn_pickem_url": "https://play.hotspawn.com/cs2-pickems",
    "hotspawn_match_url": "",
-   "basis_tier": 4,
-   "basis_label": "Model · official bound (provisional)",
-   "basis_detail": "Provisional bound: MAGICOS is absent from the official standings file, so the lowest published value in that same file (381 points) is used as its ceiling; ex-KRÜ keeps its published 464 points. Because the unlisted team's value can only be lower, the favourite's true win probability is at least this estimate (61.7% for ex-KRÜ), which is what is published.",
+   "basis_tier": 3,
+   "basis_label": "Model · official ratings",
+   "basis_detail": "Originated rating line: ex-KRÜ 464 vs Spirit 2046 official points, p = 1/(1+10^((Rb-Ra)/400)) = 0.0%.",
    "basis_sources": [
     [
      "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
@@ -3750,7 +3778,7 @@
     ],
     [
      "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
-     "official standings file (bound)"
+     "Spirit standings"
     ]
    ],
    "market_source": "",
@@ -3760,15 +3788,15 @@
    "market_captured_utc": "",
    "market_prob_a_pct": "",
    "market_prob_b_pct": "",
-   "model_prob_a_pct": "61.7",
-   "model_prob_b_pct": "38.3",
-   "prob_a_pct": "61.7",
-   "prob_b_pct": "38.3",
-   "fair_odds_a": "1.62",
-   "fair_odds_b": "2.61",
-   "pick": "ex-KRÜ",
-   "pick_prob_pct": "61.7",
-   "confidence": "Provisional (official bound)",
+   "model_prob_a_pct": "0.0",
+   "model_prob_b_pct": "100.0",
+   "prob_a_pct": "0.0",
+   "prob_b_pct": "100.0",
+   "fair_odds_a": "9016.71",
+   "fair_odds_b": "1.00",
+   "pick": "MAGICOS",
+   "pick_prob_pct": "100.0",
+   "confidence": "Low (our line, uncalibrated)",
    "rating_a": {
     "team": "ex-KRÜ",
     "vrs_name": "ex-KRÜ",
@@ -3785,37 +3813,39 @@
     "hltv_rank": "",
     "hltv_points": "",
     "hltv_url": "https://www.hltv.org/ranking/teams/2026/october/12",
-    "hltv_roster": "",
+    "hltv_roster": "sh1ro, magixx, tn1r, zont1x, donk, apex",
     "flags": []
    },
    "rating_b": {
     "team": "MAGICOS",
-    "vrs_name": "",
-    "vrs_rank": "",
-    "vrs_points": "",
-    "vrs_roster": "",
-    "vrs_url": "",
-    "vrs_details_url": "",
-    "match_method": "none",
-    "match_evidence_url": "",
-    "alias_note": "",
+    "vrs_name": "Spirit",
+    "vrs_rank": 1,
+    "vrs_points": 2046,
+    "vrs_roster": "donk, magixx, sh1ro, tN1R, zont1x",
+    "vrs_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
+    "vrs_details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0001--spirit--donk-magixx-sh1ro-tn1r-zont1x.md",
+    "match_method": "roster",
+    "match_evidence_url": "https://www.hltv.org/ranking/teams/2026/october/12",
+    "alias_note": "5 listed players match the official standings entry “Spirit” (#1).",
     "hltv_name": "MAGICOS",
     "hltv_team_id": "",
     "hltv_rank": "",
     "hltv_points": "",
     "hltv_url": "https://www.hltv.org/ranking/teams/2026/october/12",
-    "hltv_roster": "",
-    "flags": []
+    "hltv_roster": "sh1ro, magixx, tn1r, zont1x, donk, apex",
+    "flags": [
+     "FL-ALIAS-NAME"
+    ]
    },
    "flags": [
+    "FL-ALIAS-NAME",
     "FL-FORMAT-UNKNOWN",
     "FL-LOCKED",
     "FL-NO-MARKET",
-    "FL-RATINGS-WEEK-OLD",
-    "FL-UNLISTED-OPPONENT"
+    "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1053435": {
    "match_id": "1053435",
@@ -3835,17 +3865,17 @@
    "team_b": "Leo",
    "hotspawn_pickem_url": "https://play.hotspawn.com/cs2-pickems",
    "hotspawn_match_url": "",
-   "basis_tier": 4,
-   "basis_label": "Model · official bound (provisional)",
-   "basis_detail": "Provisional bound: GAMEHARMONY is absent from the official standings file, so the lowest published value in that same file (381 points) is used as its ceiling; Leo keeps its published 1001 points. Because the unlisted team's value can only be lower, the favourite's true win probability is at least this estimate (2.7% for Leo), which is what is published.",
+   "basis_tier": 3,
+   "basis_label": "Model · official ratings",
+   "basis_detail": "Originated rating line: Spirit 2046 vs Leo 1001 official points, p = 1/(1+10^((Rb-Ra)/400)) = 99.8%.",
    "basis_sources": [
     [
      "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
-     "Leo standings"
+     "Spirit standings"
     ],
     [
      "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
-     "official standings file (bound)"
+     "Leo standings"
     ]
    ],
    "market_source": "",
@@ -3855,33 +3885,35 @@
    "market_captured_utc": "",
    "market_prob_a_pct": "",
    "market_prob_b_pct": "",
-   "model_prob_a_pct": "2.7",
-   "model_prob_b_pct": "97.3",
-   "prob_a_pct": "2.7",
-   "prob_b_pct": "97.3",
-   "fair_odds_a": "36.48",
-   "fair_odds_b": "1.03",
-   "pick": "Leo",
-   "pick_prob_pct": "97.3",
-   "confidence": "Provisional (official bound)",
+   "model_prob_a_pct": "99.8",
+   "model_prob_b_pct": "0.2",
+   "prob_a_pct": "99.8",
+   "prob_b_pct": "0.2",
+   "fair_odds_a": "1.00",
+   "fair_odds_b": "410.73",
+   "pick": "GAMEHARMONY",
+   "pick_prob_pct": "99.8",
+   "confidence": "Low (our line, uncalibrated)",
    "rating_a": {
     "team": "GAMEHARMONY",
-    "vrs_name": "",
-    "vrs_rank": "",
-    "vrs_points": "",
-    "vrs_roster": "",
-    "vrs_url": "",
-    "vrs_details_url": "",
-    "match_method": "none",
-    "match_evidence_url": "",
-    "alias_note": "",
+    "vrs_name": "Spirit",
+    "vrs_rank": 1,
+    "vrs_points": 2046,
+    "vrs_roster": "donk, magixx, sh1ro, tN1R, zont1x",
+    "vrs_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
+    "vrs_details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0001--spirit--donk-magixx-sh1ro-tn1r-zont1x.md",
+    "match_method": "roster",
+    "match_evidence_url": "https://www.hltv.org/ranking/teams/2026/october/12",
+    "alias_note": "5 listed players match the official standings entry “Spirit” (#1).",
     "hltv_name": "GAMEHARMONY",
     "hltv_team_id": "",
     "hltv_rank": "",
     "hltv_points": "",
     "hltv_url": "https://www.hltv.org/ranking/teams/2026/october/12",
-    "hltv_roster": "",
-    "flags": []
+    "hltv_roster": "sh1ro, magixx, tn1r, zont1x, donk, apex",
+    "flags": [
+     "FL-ALIAS-NAME"
+    ]
    },
    "rating_b": {
     "team": "Leo",
@@ -3905,15 +3937,15 @@
     ]
    },
    "flags": [
+    "FL-ALIAS-NAME",
     "FL-DUPLICATE-VRS-NAME",
     "FL-FORMAT-UNKNOWN",
     "FL-LOCKED",
     "FL-NO-MARKET",
-    "FL-RATINGS-WEEK-OLD",
-    "FL-UNLISTED-OPPONENT"
+    "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1053436": {
    "match_id": "1053436",
@@ -3978,7 +4010,7 @@
     "hltv_rank": "",
     "hltv_points": "",
     "hltv_url": "https://www.hltv.org/ranking/teams/2026/october/12",
-    "hltv_roster": "",
+    "hltv_roster": "sh1ro, magixx, tn1r, zont1x, donk, apex",
     "flags": []
    },
    "rating_b": {
@@ -3997,7 +4029,7 @@
     "hltv_rank": "",
     "hltv_points": "",
     "hltv_url": "https://www.hltv.org/ranking/teams/2026/october/12",
-    "hltv_roster": "",
+    "hltv_roster": "sh1ro, magixx, tn1r, zont1x, donk, apex",
     "flags": []
    },
    "flags": [
@@ -4007,7 +4039,7 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1051343": {
    "match_id": "1051343",
@@ -4027,10 +4059,19 @@
    "team_b": "ex-Tricked",
    "hotspawn_pickem_url": "https://play.hotspawn.com/cs2-pickems",
    "hotspawn_match_url": "",
-   "basis_tier": 0,
-   "basis_label": "No sourced basis",
-   "basis_detail": "",
-   "basis_sources": [],
+   "basis_tier": 3,
+   "basis_label": "Model · official ratings",
+   "basis_detail": "Originated rating line: Spirit 2046 vs Spirit 2046 official points, p = 1/(1+10^((Rb-Ra)/400)) = 50.0%.",
+   "basis_sources": [
+    [
+     "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
+     "Spirit standings"
+    ],
+    [
+     "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
+     "Spirit standings"
+    ]
+   ],
    "market_source": "",
    "market_odds_a": "",
    "market_odds_b": "",
@@ -4038,61 +4079,67 @@
    "market_captured_utc": "",
    "market_prob_a_pct": "",
    "market_prob_b_pct": "",
-   "model_prob_a_pct": "",
-   "model_prob_b_pct": "",
-   "prob_a_pct": "",
-   "prob_b_pct": "",
-   "fair_odds_a": "",
-   "fair_odds_b": "",
-   "pick": "",
+   "model_prob_a_pct": "50.0",
+   "model_prob_b_pct": "50.0",
+   "prob_a_pct": "50.0",
+   "prob_b_pct": "50.0",
+   "fair_odds_a": "2.00",
+   "fair_odds_b": "2.00",
+   "pick": "(no side — 50/50)",
    "pick_prob_pct": "",
-   "confidence": "",
+   "confidence": "Low (our line, uncalibrated)",
    "rating_a": {
     "team": "Sharks",
-    "vrs_name": "",
-    "vrs_rank": "",
-    "vrs_points": "",
-    "vrs_roster": "",
-    "vrs_url": "",
-    "vrs_details_url": "",
-    "match_method": "none",
-    "match_evidence_url": "",
-    "alias_note": "",
+    "vrs_name": "Spirit",
+    "vrs_rank": 1,
+    "vrs_points": 2046,
+    "vrs_roster": "donk, magixx, sh1ro, tN1R, zont1x",
+    "vrs_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
+    "vrs_details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0001--spirit--donk-magixx-sh1ro-tn1r-zont1x.md",
+    "match_method": "roster",
+    "match_evidence_url": "https://www.hltv.org/ranking/teams/2026/october/12",
+    "alias_note": "5 listed players match the official standings entry “Spirit” (#1).",
     "hltv_name": "Sharks",
     "hltv_team_id": "",
     "hltv_rank": "",
     "hltv_points": "",
     "hltv_url": "https://www.hltv.org/ranking/teams/2026/october/12",
-    "hltv_roster": "",
-    "flags": []
+    "hltv_roster": "sh1ro, magixx, tn1r, zont1x, donk, apex",
+    "flags": [
+     "FL-ALIAS-NAME"
+    ]
    },
    "rating_b": {
     "team": "ex-Tricked",
-    "vrs_name": "",
-    "vrs_rank": "",
-    "vrs_points": "",
-    "vrs_roster": "",
-    "vrs_url": "",
-    "vrs_details_url": "",
-    "match_method": "none",
-    "match_evidence_url": "",
-    "alias_note": "",
+    "vrs_name": "Spirit",
+    "vrs_rank": 1,
+    "vrs_points": 2046,
+    "vrs_roster": "donk, magixx, sh1ro, tN1R, zont1x",
+    "vrs_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
+    "vrs_details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0001--spirit--donk-magixx-sh1ro-tn1r-zont1x.md",
+    "match_method": "roster",
+    "match_evidence_url": "https://www.hltv.org/ranking/teams/2026/october/12",
+    "alias_note": "5 listed players match the official standings entry “Spirit” (#1).",
     "hltv_name": "ex-Tricked",
     "hltv_team_id": "",
     "hltv_rank": "",
     "hltv_points": "",
     "hltv_url": "https://www.hltv.org/ranking/teams/2026/october/12",
-    "hltv_roster": "",
-    "flags": []
+    "hltv_roster": "sh1ro, magixx, tn1r, zont1x, donk, apex",
+    "flags": [
+     "FL-ALIAS-NAME"
+    ]
    },
    "flags": [
+    "FL-ALIAS-NAME",
+    "FL-COINFLIP",
     "FL-FORMAT-UNKNOWN",
     "FL-LOCKED",
     "FL-NO-MARKET",
-    "FL-RATING-MISSING"
+    "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1052186": {
    "match_id": "1052186",
@@ -4178,7 +4225,7 @@
     "hltv_rank": "",
     "hltv_points": "",
     "hltv_url": "https://www.hltv.org/ranking/teams/2026/october/12",
-    "hltv_roster": "",
+    "hltv_roster": "sh1ro, magixx, tn1r, zont1x, donk, apex",
     "flags": []
    },
    "flags": [
@@ -4189,7 +4236,7 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1052187": {
    "match_id": "1052187",
@@ -4275,7 +4322,7 @@
     "hltv_rank": "",
     "hltv_points": "",
     "hltv_url": "https://www.hltv.org/ranking/teams/2026/october/12",
-    "hltv_roster": "",
+    "hltv_roster": "sh1ro, magixx, tn1r, zont1x, donk, apex",
     "flags": []
    },
    "flags": [
@@ -4286,7 +4333,7 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1052184": {
    "match_id": "1052184",
@@ -4306,17 +4353,17 @@
    "team_b": "Donstu",
    "hotspawn_pickem_url": "https://play.hotspawn.com/cs2-pickems",
    "hotspawn_match_url": "",
-   "basis_tier": 4,
-   "basis_label": "Model · official bound (provisional)",
-   "basis_detail": "Provisional bound: Atreides is absent from the official standings file, so the lowest published value in that same file (381 points) is used as its ceiling; DONSTU keeps its published 732 points. Because the unlisted team's value can only be lower, the favourite's true win probability is at least this estimate (11.7% for Donstu), which is what is published.",
+   "basis_tier": 3,
+   "basis_label": "Model · official ratings",
+   "basis_detail": "Originated rating line: Spirit 2046 vs DONSTU 732 official points, p = 1/(1+10^((Rb-Ra)/400)) = 99.9%.",
    "basis_sources": [
     [
      "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
-     "DONSTU standings"
+     "Spirit standings"
     ],
     [
      "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
-     "official standings file (bound)"
+     "DONSTU standings"
     ]
    ],
    "market_source": "",
@@ -4326,33 +4373,35 @@
    "market_captured_utc": "",
    "market_prob_a_pct": "",
    "market_prob_b_pct": "",
-   "model_prob_a_pct": "11.7",
-   "model_prob_b_pct": "88.3",
-   "prob_a_pct": "11.7",
-   "prob_b_pct": "88.3",
-   "fair_odds_a": "8.54",
-   "fair_odds_b": "1.13",
-   "pick": "Donstu",
-   "pick_prob_pct": "88.3",
-   "confidence": "Provisional (official bound)",
+   "model_prob_a_pct": "99.9",
+   "model_prob_b_pct": "0.1",
+   "prob_a_pct": "99.9",
+   "prob_b_pct": "0.1",
+   "fair_odds_a": "1.00",
+   "fair_odds_b": "1928.52",
+   "pick": "Atreides",
+   "pick_prob_pct": "99.9",
+   "confidence": "Low (our line, uncalibrated)",
    "rating_a": {
     "team": "Atreides",
-    "vrs_name": "",
-    "vrs_rank": "",
-    "vrs_points": "",
-    "vrs_roster": "",
-    "vrs_url": "",
-    "vrs_details_url": "",
-    "match_method": "none",
-    "match_evidence_url": "",
-    "alias_note": "",
+    "vrs_name": "Spirit",
+    "vrs_rank": 1,
+    "vrs_points": 2046,
+    "vrs_roster": "donk, magixx, sh1ro, tN1R, zont1x",
+    "vrs_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
+    "vrs_details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0001--spirit--donk-magixx-sh1ro-tn1r-zont1x.md",
+    "match_method": "roster",
+    "match_evidence_url": "https://www.hltv.org/ranking/teams/2026/october/12",
+    "alias_note": "5 listed players match the official standings entry “Spirit” (#1).",
     "hltv_name": "Atreides",
     "hltv_team_id": "",
     "hltv_rank": "",
     "hltv_points": "",
     "hltv_url": "https://www.hltv.org/ranking/teams/2026/october/12",
-    "hltv_roster": "",
-    "flags": []
+    "hltv_roster": "sh1ro, magixx, tn1r, zont1x, donk, apex",
+    "flags": [
+     "FL-ALIAS-NAME"
+    ]
    },
    "rating_b": {
     "team": "Donstu",
@@ -4374,14 +4423,14 @@
     "flags": []
    },
    "flags": [
+    "FL-ALIAS-NAME",
     "FL-FORMAT-UNKNOWN",
     "FL-LOCKED",
     "FL-NO-MARKET",
-    "FL-RATINGS-WEEK-OLD",
-    "FL-UNLISTED-OPPONENT"
+    "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1052696": {
    "match_id": "1052696",
@@ -4401,9 +4450,9 @@
    "team_b": "Blitzkrieg",
    "hotspawn_pickem_url": "https://play.hotspawn.com/cs2-pickems",
    "hotspawn_match_url": "",
-   "basis_tier": 4,
-   "basis_label": "Model · official bound (provisional)",
-   "basis_detail": "Provisional bound: Blitzkrieg is absent from the official standings file, so the lowest published value in that same file (381 points) is used as its ceiling; Yawara keeps its published 845 points. Because the unlisted team's value can only be lower, the favourite's true win probability is at least this estimate (93.5% for Yawara), which is what is published.",
+   "basis_tier": 3,
+   "basis_label": "Model · official ratings",
+   "basis_detail": "Originated rating line: Yawara 845 vs Spirit 2046 official points, p = 1/(1+10^((Rb-Ra)/400)) = 0.1%.",
    "basis_sources": [
     [
      "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
@@ -4411,7 +4460,7 @@
     ],
     [
      "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
-     "official standings file (bound)"
+     "Spirit standings"
     ]
    ],
    "market_source": "",
@@ -4421,15 +4470,15 @@
    "market_captured_utc": "",
    "market_prob_a_pct": "",
    "market_prob_b_pct": "",
-   "model_prob_a_pct": "93.5",
-   "model_prob_b_pct": "6.5",
-   "prob_a_pct": "93.5",
-   "prob_b_pct": "6.5",
-   "fair_odds_a": "1.07",
-   "fair_odds_b": "15.45",
-   "pick": "Yawara",
-   "pick_prob_pct": "93.5",
-   "confidence": "Provisional (official bound)",
+   "model_prob_a_pct": "0.1",
+   "model_prob_b_pct": "99.9",
+   "prob_a_pct": "0.1",
+   "prob_b_pct": "99.9",
+   "fair_odds_a": "1006.77",
+   "fair_odds_b": "1.00",
+   "pick": "Blitzkrieg",
+   "pick_prob_pct": "99.9",
+   "confidence": "Low (our line, uncalibrated)",
    "rating_a": {
     "team": "Yawara",
     "vrs_name": "Yawara",
@@ -4451,32 +4500,34 @@
    },
    "rating_b": {
     "team": "Blitzkrieg",
-    "vrs_name": "",
-    "vrs_rank": "",
-    "vrs_points": "",
-    "vrs_roster": "",
-    "vrs_url": "",
-    "vrs_details_url": "",
-    "match_method": "none",
-    "match_evidence_url": "",
-    "alias_note": "",
+    "vrs_name": "Spirit",
+    "vrs_rank": 1,
+    "vrs_points": 2046,
+    "vrs_roster": "donk, magixx, sh1ro, tN1R, zont1x",
+    "vrs_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
+    "vrs_details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0001--spirit--donk-magixx-sh1ro-tn1r-zont1x.md",
+    "match_method": "roster",
+    "match_evidence_url": "https://www.hltv.org/ranking/teams/2026/october/12",
+    "alias_note": "5 listed players match the official standings entry “Spirit” (#1).",
     "hltv_name": "Blitzkrieg",
     "hltv_team_id": "",
     "hltv_rank": "",
     "hltv_points": "",
     "hltv_url": "https://www.hltv.org/ranking/teams/2026/october/12",
-    "hltv_roster": "",
-    "flags": []
+    "hltv_roster": "sh1ro, magixx, tn1r, zont1x, donk, apex",
+    "flags": [
+     "FL-ALIAS-NAME"
+    ]
    },
    "flags": [
+    "FL-ALIAS-NAME",
     "FL-FORMAT-UNKNOWN",
     "FL-LOCKED",
     "FL-NO-MARKET",
-    "FL-RATINGS-WEEK-OLD",
-    "FL-UNLISTED-OPPONENT"
+    "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1053439": {
    "match_id": "1053439",
@@ -4573,7 +4624,7 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1053469": {
    "match_id": "1053469",
@@ -4593,9 +4644,9 @@
    "team_b": "SINQU REHTI",
    "hotspawn_pickem_url": "https://play.hotspawn.com/cs2-pickems",
    "hotspawn_match_url": "",
-   "basis_tier": 4,
-   "basis_label": "Model · official bound (provisional)",
-   "basis_detail": "Provisional bound: SINQU REHTI is absent from the official standings file, so the lowest published value in that same file (381 points) is used as its ceiling; BERG keeps its published 754 points. Because the unlisted team's value can only be lower, the favourite's true win probability is at least this estimate (89.5% for BERG), which is what is published.",
+   "basis_tier": 3,
+   "basis_label": "Model · official ratings",
+   "basis_detail": "Originated rating line: BERG 754 vs Spirit 2046 official points, p = 1/(1+10^((Rb-Ra)/400)) = 0.1%.",
    "basis_sources": [
     [
      "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
@@ -4603,7 +4654,7 @@
     ],
     [
      "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
-     "official standings file (bound)"
+     "Spirit standings"
     ]
    ],
    "market_source": "",
@@ -4613,15 +4664,15 @@
    "market_captured_utc": "",
    "market_prob_a_pct": "",
    "market_prob_b_pct": "",
-   "model_prob_a_pct": "89.5",
-   "model_prob_b_pct": "10.5",
-   "prob_a_pct": "89.5",
-   "prob_b_pct": "10.5",
-   "fair_odds_a": "1.12",
-   "fair_odds_b": "9.56",
-   "pick": "BERG",
-   "pick_prob_pct": "89.5",
-   "confidence": "Provisional (official bound)",
+   "model_prob_a_pct": "0.1",
+   "model_prob_b_pct": "99.9",
+   "prob_a_pct": "0.1",
+   "prob_b_pct": "99.9",
+   "fair_odds_a": "1699.24",
+   "fair_odds_b": "1.00",
+   "pick": "SINQU REHTI",
+   "pick_prob_pct": "99.9",
+   "confidence": "Low (our line, uncalibrated)",
    "rating_a": {
     "team": "BERG",
     "vrs_name": "BERG",
@@ -4643,32 +4694,34 @@
    },
    "rating_b": {
     "team": "SINQU REHTI",
-    "vrs_name": "",
-    "vrs_rank": "",
-    "vrs_points": "",
-    "vrs_roster": "",
-    "vrs_url": "",
-    "vrs_details_url": "",
-    "match_method": "none",
-    "match_evidence_url": "",
-    "alias_note": "",
+    "vrs_name": "Spirit",
+    "vrs_rank": 1,
+    "vrs_points": 2046,
+    "vrs_roster": "donk, magixx, sh1ro, tN1R, zont1x",
+    "vrs_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
+    "vrs_details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0001--spirit--donk-magixx-sh1ro-tn1r-zont1x.md",
+    "match_method": "roster",
+    "match_evidence_url": "https://www.hltv.org/ranking/teams/2026/october/12",
+    "alias_note": "5 listed players match the official standings entry “Spirit” (#1).",
     "hltv_name": "SINQU REHTI",
     "hltv_team_id": "",
     "hltv_rank": "",
     "hltv_points": "",
     "hltv_url": "https://www.hltv.org/ranking/teams/2026/october/12",
-    "hltv_roster": "",
-    "flags": []
+    "hltv_roster": "sh1ro, magixx, tn1r, zont1x, donk, apex",
+    "flags": [
+     "FL-ALIAS-NAME"
+    ]
    },
    "flags": [
+    "FL-ALIAS-NAME",
     "FL-FORMAT-UNKNOWN",
     "FL-LOCKED",
     "FL-NO-MARKET",
-    "FL-RATINGS-WEEK-OLD",
-    "FL-UNLISTED-OPPONENT"
+    "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1053441": {
    "match_id": "1053441",
@@ -4762,7 +4815,7 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1053470": {
    "match_id": "1053470",
@@ -4782,9 +4835,9 @@
    "team_b": "SINQU REHTI",
    "hotspawn_pickem_url": "https://play.hotspawn.com/cs2-pickems",
    "hotspawn_match_url": "",
-   "basis_tier": 4,
-   "basis_label": "Model · official bound (provisional)",
-   "basis_detail": "Provisional bound: SINQU REHTI is absent from the official standings file, so the lowest published value in that same file (381 points) is used as its ceiling; 6666 keeps its published 923 points. Because the unlisted team's value can only be lower, the favourite's true win probability is at least this estimate (95.8% for 6666), which is what is published.",
+   "basis_tier": 3,
+   "basis_label": "Model · official ratings",
+   "basis_detail": "Originated rating line: 6666 923 vs Spirit 2046 official points, p = 1/(1+10^((Rb-Ra)/400)) = 0.2%.",
    "basis_sources": [
     [
      "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
@@ -4792,7 +4845,7 @@
     ],
     [
      "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
-     "official standings file (bound)"
+     "Spirit standings"
     ]
    ],
    "market_source": "",
@@ -4802,15 +4855,15 @@
    "market_captured_utc": "",
    "market_prob_a_pct": "",
    "market_prob_b_pct": "",
-   "model_prob_a_pct": "95.8",
-   "model_prob_b_pct": "4.2",
-   "prob_a_pct": "95.8",
-   "prob_b_pct": "4.2",
-   "fair_odds_a": "1.04",
-   "fair_odds_b": "23.65",
-   "pick": "6666",
-   "pick_prob_pct": "95.8",
-   "confidence": "Provisional (official bound)",
+   "model_prob_a_pct": "0.2",
+   "model_prob_b_pct": "99.8",
+   "prob_a_pct": "0.2",
+   "prob_b_pct": "99.8",
+   "fair_odds_a": "642.95",
+   "fair_odds_b": "1.00",
+   "pick": "SINQU REHTI",
+   "pick_prob_pct": "99.8",
+   "confidence": "Low (our line, uncalibrated)",
    "rating_a": {
     "team": "6666",
     "vrs_name": "6666",
@@ -4834,33 +4887,35 @@
    },
    "rating_b": {
     "team": "SINQU REHTI",
-    "vrs_name": "",
-    "vrs_rank": "",
-    "vrs_points": "",
-    "vrs_roster": "",
-    "vrs_url": "",
-    "vrs_details_url": "",
-    "match_method": "none",
-    "match_evidence_url": "",
-    "alias_note": "",
+    "vrs_name": "Spirit",
+    "vrs_rank": 1,
+    "vrs_points": 2046,
+    "vrs_roster": "donk, magixx, sh1ro, tN1R, zont1x",
+    "vrs_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
+    "vrs_details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0001--spirit--donk-magixx-sh1ro-tn1r-zont1x.md",
+    "match_method": "roster",
+    "match_evidence_url": "https://www.hltv.org/ranking/teams/2026/october/12",
+    "alias_note": "5 listed players match the official standings entry “Spirit” (#1).",
     "hltv_name": "SINQU REHTI",
     "hltv_team_id": "",
     "hltv_rank": "",
     "hltv_points": "",
     "hltv_url": "https://www.hltv.org/ranking/teams/2026/october/12",
-    "hltv_roster": "",
-    "flags": []
+    "hltv_roster": "sh1ro, magixx, tn1r, zont1x, donk, apex",
+    "flags": [
+     "FL-ALIAS-NAME"
+    ]
    },
    "flags": [
+    "FL-ALIAS-NAME",
     "FL-DUPLICATE-VRS-NAME",
     "FL-FORMAT-UNKNOWN",
     "FL-LOCKED",
     "FL-NO-MARKET",
-    "FL-RATINGS-WEEK-OLD",
-    "FL-UNLISTED-OPPONENT"
+    "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1051344": {
    "match_id": "1051344",
@@ -4954,7 +5009,7 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1051804": {
    "match_id": "1051804",
@@ -5041,7 +5096,7 @@
     "FL-NO-MARKET"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1053442": {
    "match_id": "1053442",
@@ -5138,7 +5193,7 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1053471": {
    "match_id": "1053471",
@@ -5158,9 +5213,9 @@
    "team_b": "SINQU REHTI",
    "hotspawn_pickem_url": "https://play.hotspawn.com/cs2-pickems",
    "hotspawn_match_url": "",
-   "basis_tier": 4,
-   "basis_label": "Model · official bound (provisional)",
-   "basis_detail": "Provisional bound: SINQU REHTI is absent from the official standings file, so the lowest published value in that same file (381 points) is used as its ceiling; ASTRAL keeps its published 1072 points. Because the unlisted team's value can only be lower, the favourite's true win probability is at least this estimate (98.2% for ASTRAL), which is what is published.",
+   "basis_tier": 3,
+   "basis_label": "Model · official ratings",
+   "basis_detail": "Originated rating line: ASTRAL 1072 vs Spirit 2046 official points, p = 1/(1+10^((Rb-Ra)/400)) = 0.4%.",
    "basis_sources": [
     [
      "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
@@ -5168,7 +5223,7 @@
     ],
     [
      "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
-     "official standings file (bound)"
+     "Spirit standings"
     ]
    ],
    "market_source": "",
@@ -5178,15 +5233,15 @@
    "market_captured_utc": "",
    "market_prob_a_pct": "",
    "market_prob_b_pct": "",
-   "model_prob_a_pct": "98.2",
-   "model_prob_b_pct": "1.8",
-   "prob_a_pct": "98.2",
-   "prob_b_pct": "1.8",
-   "fair_odds_a": "1.02",
-   "fair_odds_b": "54.39",
-   "pick": "ASTRAL",
-   "pick_prob_pct": "98.2",
-   "confidence": "Provisional (official bound)",
+   "model_prob_a_pct": "0.4",
+   "model_prob_b_pct": "99.6",
+   "prob_a_pct": "0.4",
+   "prob_b_pct": "99.6",
+   "fair_odds_a": "273.27",
+   "fair_odds_b": "1.00",
+   "pick": "SINQU REHTI",
+   "pick_prob_pct": "99.6",
+   "confidence": "Low (our line, uncalibrated)",
    "rating_a": {
     "team": "ASTRAL",
     "vrs_name": "ASTRAL",
@@ -5208,32 +5263,34 @@
    },
    "rating_b": {
     "team": "SINQU REHTI",
-    "vrs_name": "",
-    "vrs_rank": "",
-    "vrs_points": "",
-    "vrs_roster": "",
-    "vrs_url": "",
-    "vrs_details_url": "",
-    "match_method": "none",
-    "match_evidence_url": "",
-    "alias_note": "",
+    "vrs_name": "Spirit",
+    "vrs_rank": 1,
+    "vrs_points": 2046,
+    "vrs_roster": "donk, magixx, sh1ro, tN1R, zont1x",
+    "vrs_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
+    "vrs_details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0001--spirit--donk-magixx-sh1ro-tn1r-zont1x.md",
+    "match_method": "roster",
+    "match_evidence_url": "https://www.hltv.org/ranking/teams/2026/october/12",
+    "alias_note": "5 listed players match the official standings entry “Spirit” (#1).",
     "hltv_name": "SINQU REHTI",
     "hltv_team_id": "",
     "hltv_rank": "",
     "hltv_points": "",
     "hltv_url": "https://www.hltv.org/ranking/teams/2026/october/12",
-    "hltv_roster": "",
-    "flags": []
+    "hltv_roster": "sh1ro, magixx, tn1r, zont1x, donk, apex",
+    "flags": [
+     "FL-ALIAS-NAME"
+    ]
    },
    "flags": [
+    "FL-ALIAS-NAME",
     "FL-FORMAT-UNKNOWN",
     "FL-LOCKED",
     "FL-NO-MARKET",
-    "FL-RATINGS-WEEK-OLD",
-    "FL-UNLISTED-OPPONENT"
+    "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1052697": {
    "match_id": "1052697",
@@ -5310,7 +5367,7 @@
     "hltv_rank": "",
     "hltv_points": "",
     "hltv_url": "https://www.hltv.org/ranking/teams/2026/october/12",
-    "hltv_roster": "",
+    "hltv_roster": "sh1ro, magixx, tn1r, zont1x, donk, apex",
     "flags": []
    },
    "flags": [
@@ -5320,7 +5377,7 @@
     "FL-NO-MARKET"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1053679": {
    "match_id": "1053679",
@@ -5414,7 +5471,7 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1052695": {
    "match_id": "1052695",
@@ -5434,9 +5491,9 @@
    "team_b": "Patins de Ferrari",
    "hotspawn_pickem_url": "https://play.hotspawn.com/cs2-pickems",
    "hotspawn_match_url": "",
-   "basis_tier": 4,
-   "basis_label": "Model · official bound (provisional)",
-   "basis_detail": "Provisional bound: Patins de Ferrari is absent from the official standings file, so the lowest published value in that same file (381 points) is used as its ceiling; MIBR Academy keeps its published 628 points. Because the unlisted team's value can only be lower, the favourite's true win probability is at least this estimate (80.6% for MIBR Academy), which is what is published.",
+   "basis_tier": 3,
+   "basis_label": "Model · official ratings",
+   "basis_detail": "Originated rating line: MIBR Academy 628 vs Spirit 2046 official points, p = 1/(1+10^((Rb-Ra)/400)) = 0.0%.",
    "basis_sources": [
     [
      "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
@@ -5444,7 +5501,7 @@
     ],
     [
      "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
-     "official standings file (bound)"
+     "Spirit standings"
     ]
    ],
    "market_source": "",
@@ -5454,15 +5511,15 @@
    "market_captured_utc": "",
    "market_prob_a_pct": "",
    "market_prob_b_pct": "",
-   "model_prob_a_pct": "80.6",
-   "model_prob_b_pct": "19.4",
-   "prob_a_pct": "80.6",
-   "prob_b_pct": "19.4",
-   "fair_odds_a": "1.24",
-   "fair_odds_b": "5.14",
-   "pick": "MIBR Academy",
-   "pick_prob_pct": "80.6",
-   "confidence": "Provisional (official bound)",
+   "model_prob_a_pct": "0.0",
+   "model_prob_b_pct": "100.0",
+   "prob_a_pct": "0.0",
+   "prob_b_pct": "100.0",
+   "fair_odds_a": "3508.52",
+   "fair_odds_b": "1.00",
+   "pick": "Patins de Ferrari",
+   "pick_prob_pct": "100.0",
+   "confidence": "Low (our line, uncalibrated)",
    "rating_a": {
     "team": "MIBR Academy",
     "vrs_name": "MIBR Academy",
@@ -5479,37 +5536,39 @@
     "hltv_rank": "",
     "hltv_points": "",
     "hltv_url": "https://www.hltv.org/ranking/teams/2026/october/12",
-    "hltv_roster": "",
+    "hltv_roster": "sh1ro, magixx, tn1r, zont1x, donk, apex",
     "flags": []
    },
    "rating_b": {
     "team": "Patins de Ferrari",
-    "vrs_name": "",
-    "vrs_rank": "",
-    "vrs_points": "",
-    "vrs_roster": "",
-    "vrs_url": "",
-    "vrs_details_url": "",
-    "match_method": "none",
-    "match_evidence_url": "",
-    "alias_note": "",
+    "vrs_name": "Spirit",
+    "vrs_rank": 1,
+    "vrs_points": 2046,
+    "vrs_roster": "donk, magixx, sh1ro, tN1R, zont1x",
+    "vrs_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
+    "vrs_details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0001--spirit--donk-magixx-sh1ro-tn1r-zont1x.md",
+    "match_method": "roster",
+    "match_evidence_url": "https://www.hltv.org/ranking/teams/2026/october/12",
+    "alias_note": "5 listed players match the official standings entry “Spirit” (#1).",
     "hltv_name": "Patins de Ferrari",
     "hltv_team_id": "",
     "hltv_rank": "",
     "hltv_points": "",
     "hltv_url": "https://www.hltv.org/ranking/teams/2026/october/12",
-    "hltv_roster": "",
-    "flags": []
+    "hltv_roster": "sh1ro, magixx, tn1r, zont1x, donk, apex",
+    "flags": [
+     "FL-ALIAS-NAME"
+    ]
    },
    "flags": [
+    "FL-ALIAS-NAME",
     "FL-FORMAT-UNKNOWN",
     "FL-LOCKED",
     "FL-NO-MARKET",
-    "FL-RATINGS-WEEK-OLD",
-    "FL-UNLISTED-OPPONENT"
+    "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1055478": {
    "match_id": "1055478",
@@ -5574,7 +5633,7 @@
     "hltv_rank": "",
     "hltv_points": "",
     "hltv_url": "https://www.hltv.org/ranking/teams/2026/october/12",
-    "hltv_roster": "",
+    "hltv_roster": "sh1ro, magixx, tn1r, zont1x, donk, apex",
     "flags": []
    },
    "rating_b": {
@@ -5603,7 +5662,7 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1081105": {
    "match_id": "1081105",
@@ -5701,103 +5760,7 @@
     "FL-UNLISTED-OPPONENT"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
-  },
-  "1079546": {
-   "match_id": "1079546",
-   "tournament": "ESL Challenger League Season 52: North America - Cup #3",
-   "tier": "B",
-   "offered_points": 3,
-   "stage": "waiting for information",
-   "series_format": "",
-   "series_format_source": "",
-   "hltv_match_url": "",
-   "hltv_match_id": "",
-   "hltv_schedule_note": "",
-   "start_utc": "2026-10-14T01:00:00Z",
-   "lock_utc": "2026-10-14T00:54:00Z",
-   "status": "locked",
-   "team_a": "Zomblers",
-   "team_b": "Overtake Sector",
-   "hotspawn_pickem_url": "https://play.hotspawn.com/cs2-pickems",
-   "hotspawn_match_url": "https://www.hotspawn.com/matches/zomblers-vs-overtake-sector-esl-challenger-league-season-52-north-america-cup-3-1079546",
-   "basis_tier": 1,
-   "basis_label": "Market · primary book",
-   "basis_detail": "Pinnacle whole-match moneyline 2.55 / 1.46 (native american), overround 7.57%, proportional de-vig. No originated line: 2 entries in the official standings share this name and the roster evidence does not separate them: #254, #259. No rating is attached.",
-   "basis_sources": [
-    [
-     "https://www.pinnacle.com/en/esports/cs2-esl-challenger-league-north-america/zomblers-vs-overtake-sector/1638279105/",
-     "Pinnacle"
-    ],
-    [
-     "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
-     "raw response"
-    ]
-   ],
-   "market_source": "Pinnacle",
-   "market_odds_a": "2.55",
-   "market_odds_b": "1.46",
-   "market_overround_pct": "7.57",
-   "market_captured_utc": "2026-10-13T19:42:13Z",
-   "market_prob_a_pct": "36.5",
-   "market_prob_b_pct": "63.5",
-   "model_prob_a_pct": "",
-   "model_prob_b_pct": "",
-   "prob_a_pct": "36.5",
-   "prob_b_pct": "63.5",
-   "fair_odds_a": "2.74",
-   "fair_odds_b": "1.57",
-   "pick": "Overtake Sector",
-   "pick_prob_pct": "63.5",
-   "confidence": "High (market line)",
-   "rating_a": {
-    "team": "Zomblers",
-    "vrs_name": "",
-    "vrs_rank": "",
-    "vrs_points": "",
-    "vrs_roster": "",
-    "vrs_url": "",
-    "vrs_details_url": "",
-    "match_method": "ambiguous",
-    "match_evidence_url": "",
-    "alias_note": "2 entries in the official standings share this name and the roster evidence does not separate them: #254, #259. No rating is attached.",
-    "hltv_name": "Zomblers",
-    "hltv_team_id": "12164",
-    "hltv_rank": 197,
-    "hltv_points": 3,
-    "hltv_url": "https://www.hltv.org/ranking/teams/2026/october/12",
-    "hltv_roster": "",
-    "flags": [
-     "FL-AMBIGUOUS-NAME"
-    ]
-   },
-   "rating_b": {
-    "team": "Overtake Sector",
-    "vrs_name": "Overtake Sector",
-    "vrs_rank": 177,
-    "vrs_points": 774,
-    "vrs_roster": "corim, intra, jason, LEARSI, Umar",
-    "vrs_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
-    "vrs_details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0177--overtake_sector--corim-intra-jason-learsi-umar.md",
-    "match_method": "exact",
-    "match_evidence_url": "",
-    "alias_note": "",
-    "hltv_name": "Overtake Sector",
-    "hltv_team_id": "13855",
-    "hltv_rank": 143,
-    "hltv_points": 5,
-    "hltv_url": "https://www.hltv.org/team/13855/overtake-sector",
-    "hltv_roster": "intra, LEARSI, jason, corim",
-    "flags": []
-   },
-   "flags": [
-    "FL-AMBIGUOUS-NAME",
-    "FL-FORMAT-UNKNOWN",
-    "FL-LOCKED",
-    "FL-STALE-CAPTURE"
-   ],
-   "first_seen_utc": "2026-10-14T04:20:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1079621": {
    "match_id": "1079621",
@@ -5893,7 +5856,7 @@
     "FL-MODEL-MARKET-SPLIT"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1081111": {
    "match_id": "1081111",
@@ -5989,7 +5952,7 @@
     "FL-MODEL-MARKET-SPLIT"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1080176": {
    "match_id": "1080176",
@@ -6011,14 +5974,14 @@
    "hotspawn_match_url": "https://www.hotspawn.com/matches/9z-vs-aurora-thunderpick-world-championship-2026-1080176",
    "basis_tier": 1,
    "basis_label": "Market · primary book",
-   "basis_detail": "Pinnacle whole-match moneyline 3.65 / 1.29 (native american), overround 4.72%, proportional de-vig. Originated rating line: 9z 1543 vs Aurora 1716 official points, p = 1/(1+10^((Rb-Ra)/400)) = 27.0%.",
+   "basis_detail": "Pinnacle whole-match moneyline 3.46 / 1.32 (native american), overround 4.75%, proportional de-vig. Originated rating line: 9z 1543 vs Aurora 1716 official points, p = 1/(1+10^((Rb-Ra)/400)) = 27.0%.",
    "basis_sources": [
     [
-     "https://www.pinnacle.com/en/esports/cs2-tp-world-championship/9z-vs-aurora/1638111785/",
+     "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
      "Pinnacle"
     ],
     [
-     "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
+     "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight",
      "raw response"
     ],
     [
@@ -6031,20 +5994,20 @@
     ]
    ],
    "market_source": "Pinnacle",
-   "market_odds_a": "3.65",
-   "market_odds_b": "1.29",
-   "market_overround_pct": "4.72",
-   "market_captured_utc": "2026-10-13T19:42:13Z",
-   "market_prob_a_pct": "26.2",
-   "market_prob_b_pct": "73.8",
+   "market_odds_a": "3.46",
+   "market_odds_b": "1.32",
+   "market_overround_pct": "4.75",
+   "market_captured_utc": "2026-10-14T03:19:11Z",
+   "market_prob_a_pct": "27.6",
+   "market_prob_b_pct": "72.4",
    "model_prob_a_pct": "27.0",
    "model_prob_b_pct": "73.0",
-   "prob_a_pct": "26.2",
-   "prob_b_pct": "73.8",
-   "fair_odds_a": "3.82",
-   "fair_odds_b": "1.35",
+   "prob_a_pct": "27.6",
+   "prob_b_pct": "72.4",
+   "fair_odds_a": "3.62",
+   "fair_odds_b": "1.38",
    "pick": "Aurora",
-   "pick_prob_pct": "73.8",
+   "pick_prob_pct": "72.4",
    "confidence": "High (market line)",
    "rating_a": {
     "team": "9z",
@@ -6085,11 +6048,10 @@
     "flags": []
    },
    "flags": [
-    "FL-FORMAT-UNKNOWN",
-    "FL-STALE-CAPTURE"
+    "FL-FORMAT-UNKNOWN"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1079438": {
    "match_id": "1079438",
@@ -6184,7 +6146,7 @@
     "FL-FORMAT-UNKNOWN"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1079439": {
    "match_id": "1079439",
@@ -6206,14 +6168,14 @@
    "hotspawn_match_url": "https://www.hotspawn.com/matches/hotu-vs-fnatic-stake-pulse-beat-iii-1079439",
    "basis_tier": 1,
    "basis_label": "Market · primary book",
-   "basis_detail": "Pinnacle whole-match moneyline 1.99 / 1.80 (native american), overround 5.80%, proportional de-vig. Originated rating line: HOTU 1437 vs fnatic 1417 official points, p = 1/(1+10^((Rb-Ra)/400)) = 52.9%.",
+   "basis_detail": "Pinnacle whole-match moneyline 2.04 / 1.76 (native american), overround 5.73%, proportional de-vig. Originated rating line: HOTU 1437 vs fnatic 1417 official points, p = 1/(1+10^((Rb-Ra)/400)) = 52.9%.",
    "basis_sources": [
     [
-     "https://www.pinnacle.com/en/esports/cs2-stk-pulse-beat/hotu-vs-fnatic/1637867148/",
+     "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
      "Pinnacle"
     ],
     [
-     "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
+     "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight",
      "raw response"
     ],
     [
@@ -6226,20 +6188,20 @@
     ]
    ],
    "market_source": "Pinnacle",
-   "market_odds_a": "1.99",
-   "market_odds_b": "1.80",
-   "market_overround_pct": "5.80",
-   "market_captured_utc": "2026-10-13T19:42:13Z",
-   "market_prob_a_pct": "47.5",
-   "market_prob_b_pct": "52.5",
+   "market_odds_a": "2.04",
+   "market_odds_b": "1.76",
+   "market_overround_pct": "5.73",
+   "market_captured_utc": "2026-10-14T03:19:11Z",
+   "market_prob_a_pct": "46.4",
+   "market_prob_b_pct": "53.6",
    "model_prob_a_pct": "52.9",
    "model_prob_b_pct": "47.1",
-   "prob_a_pct": "47.5",
-   "prob_b_pct": "52.5",
-   "fair_odds_a": "2.11",
-   "fair_odds_b": "1.90",
+   "prob_a_pct": "46.4",
+   "prob_b_pct": "53.6",
+   "fair_odds_a": "2.16",
+   "fair_odds_b": "1.86",
    "pick": "Fnatic",
-   "pick_prob_pct": "52.5",
+   "pick_prob_pct": "53.6",
    "confidence": "High (market line)",
    "rating_a": {
     "team": "HOTU",
@@ -6280,11 +6242,10 @@
     "flags": []
    },
    "flags": [
-    "FL-FORMAT-UNKNOWN",
-    "FL-STALE-CAPTURE"
+    "FL-FORMAT-UNKNOWN"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1079622": {
    "match_id": "1079622",
@@ -6374,7 +6335,7 @@
     "FL-FORMAT-UNKNOWN"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1080177": {
    "match_id": "1080177",
@@ -6396,14 +6357,14 @@
    "hotspawn_match_url": "https://www.hotspawn.com/matches/falcons-vs-ninjas-in-pyjamas-thunderpick-world-championship-2026-1080177",
    "basis_tier": 1,
    "basis_label": "Market · primary book",
-   "basis_detail": "Pinnacle whole-match moneyline 1.25 / 4.06 (native american), overround 4.67%, proportional de-vig. Originated rating line: Falcons 1843 vs Ninjas in Pyjamas 1534 official points, p = 1/(1+10^((Rb-Ra)/400)) = 85.6%.",
+   "basis_detail": "Pinnacle whole-match moneyline 1.27 / 3.85 (native american), overround 4.70%, proportional de-vig. Originated rating line: Falcons 1843 vs Ninjas in Pyjamas 1534 official points, p = 1/(1+10^((Rb-Ra)/400)) = 85.6%.",
    "basis_sources": [
     [
-     "https://www.pinnacle.com/en/esports/cs2-tp-world-championship/falcons-vs-ninjas-in-pyjamas/1638111674/",
+     "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
      "Pinnacle"
     ],
     [
-     "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
+     "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight",
      "raw response"
     ],
     [
@@ -6416,20 +6377,20 @@
     ]
    ],
    "market_source": "Pinnacle",
-   "market_odds_a": "1.25",
-   "market_odds_b": "4.06",
-   "market_overround_pct": "4.67",
-   "market_captured_utc": "2026-10-13T19:42:13Z",
-   "market_prob_a_pct": "76.5",
-   "market_prob_b_pct": "23.5",
+   "market_odds_a": "1.27",
+   "market_odds_b": "3.85",
+   "market_overround_pct": "4.70",
+   "market_captured_utc": "2026-10-14T03:19:11Z",
+   "market_prob_a_pct": "75.2",
+   "market_prob_b_pct": "24.8",
    "model_prob_a_pct": "85.6",
    "model_prob_b_pct": "14.4",
-   "prob_a_pct": "76.5",
-   "prob_b_pct": "23.5",
-   "fair_odds_a": "1.31",
-   "fair_odds_b": "4.25",
+   "prob_a_pct": "75.2",
+   "prob_b_pct": "24.8",
+   "fair_odds_a": "1.33",
+   "fair_odds_b": "4.03",
    "pick": "Falcons",
-   "pick_prob_pct": "76.5",
+   "pick_prob_pct": "75.2",
    "confidence": "High (market line)",
    "rating_a": {
     "team": "Falcons",
@@ -6470,11 +6431,10 @@
     "flags": []
    },
    "flags": [
-    "FL-FORMAT-UNKNOWN",
-    "FL-STALE-CAPTURE"
+    "FL-FORMAT-UNKNOWN"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1081112": {
    "match_id": "1081112",
@@ -6572,7 +6532,7 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1080178": {
    "match_id": "1080178",
@@ -6668,7 +6628,7 @@
     "FL-MODEL-MARKET-SPLIT"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1079623": {
    "match_id": "1079623",
@@ -6763,7 +6723,7 @@
     "FL-FORMAT-UNKNOWN"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1081113": {
    "match_id": "1081113",
@@ -6856,7 +6816,7 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1080179": {
    "match_id": "1080179",
@@ -6951,7 +6911,7 @@
     "FL-FORMAT-UNKNOWN"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1079624": {
    "match_id": "1079624",
@@ -7045,7 +7005,7 @@
     "FL-UNLISTED-OPPONENT"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1080279": {
    "match_id": "1080279",
@@ -7144,7 +7104,7 @@
     "FL-MODEL-MARKET-SPLIT"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1079440": {
    "match_id": "1079440",
@@ -7166,14 +7126,14 @@
    "hotspawn_match_url": "https://www.hotspawn.com/matches/mibr-vs-bc-game-stake-pulse-beat-iii-1079440",
    "basis_tier": 1,
    "basis_label": "Market · primary book",
-   "basis_detail": "Pinnacle whole-match moneyline 1.64 / 2.23 (native american), overround 5.93%, proportional de-vig. Originated rating line: MIBR 1585 vs BC.Game 1318 official points, p = 1/(1+10^((Rb-Ra)/400)) = 82.3%.",
+   "basis_detail": "Pinnacle whole-match moneyline 1.65 / 2.22 (native american), overround 5.67%, proportional de-vig. Originated rating line: MIBR 1585 vs BC.Game 1318 official points, p = 1/(1+10^((Rb-Ra)/400)) = 82.3%.",
    "basis_sources": [
     [
-     "https://www.pinnacle.com/en/esports/cs2-stk-pulse-beat/mibr-vs-bcgame/1637936745/",
+     "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
      "Pinnacle"
     ],
     [
-     "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
+     "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight",
      "raw response"
     ],
     [
@@ -7186,20 +7146,20 @@
     ]
    ],
    "market_source": "Pinnacle",
-   "market_odds_a": "1.64",
-   "market_odds_b": "2.23",
-   "market_overround_pct": "5.93",
-   "market_captured_utc": "2026-10-13T19:42:13Z",
-   "market_prob_a_pct": "57.7",
-   "market_prob_b_pct": "42.3",
+   "market_odds_a": "1.65",
+   "market_odds_b": "2.22",
+   "market_overround_pct": "5.67",
+   "market_captured_utc": "2026-10-14T03:19:11Z",
+   "market_prob_a_pct": "57.4",
+   "market_prob_b_pct": "42.6",
    "model_prob_a_pct": "82.3",
    "model_prob_b_pct": "17.7",
-   "prob_a_pct": "57.7",
-   "prob_b_pct": "42.3",
-   "fair_odds_a": "1.73",
-   "fair_odds_b": "2.36",
+   "prob_a_pct": "57.4",
+   "prob_b_pct": "42.6",
+   "fair_odds_a": "1.74",
+   "fair_odds_b": "2.35",
    "pick": "MIBR",
-   "pick_prob_pct": "57.7",
+   "pick_prob_pct": "57.4",
    "confidence": "High (market line)",
    "rating_a": {
     "team": "MIBR",
@@ -7241,11 +7201,10 @@
    },
    "flags": [
     "FL-FORMAT-UNKNOWN",
-    "FL-MODEL-MARKET-SPLIT",
-    "FL-STALE-CAPTURE"
+    "FL-MODEL-MARKET-SPLIT"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1079442": {
    "match_id": "1079442",
@@ -7267,14 +7226,14 @@
    "hotspawn_match_url": "https://www.hotspawn.com/matches/heroic-vs-envy-stake-pulse-beat-iii-1079442",
    "basis_tier": 1,
    "basis_label": "Market · primary book",
-   "basis_detail": "Pinnacle whole-match moneyline 1.52 / 2.50 (native american), overround 5.99%, proportional de-vig. Originated rating line: HEROIC 1550 vs 3DMAX 1500 official points, p = 1/(1+10^((Rb-Ra)/400)) = 57.1%.",
+   "basis_detail": "Pinnacle whole-match moneyline 1.47 / 2.62 (native american), overround 6.22%, proportional de-vig. Originated rating line: HEROIC 1550 vs 3DMAX 1500 official points, p = 1/(1+10^((Rb-Ra)/400)) = 57.1%.",
    "basis_sources": [
     [
-     "https://www.pinnacle.com/en/esports/cs2-stk-pulse-beat/heroic-vs-envy/1637999450/",
+     "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
      "Pinnacle"
     ],
     [
-     "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
+     "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight",
      "raw response"
     ],
     [
@@ -7287,20 +7246,20 @@
     ]
    ],
    "market_source": "Pinnacle",
-   "market_odds_a": "1.52",
-   "market_odds_b": "2.50",
-   "market_overround_pct": "5.99",
-   "market_captured_utc": "2026-10-13T19:42:13Z",
-   "market_prob_a_pct": "62.3",
-   "market_prob_b_pct": "37.7",
+   "market_odds_a": "1.47",
+   "market_odds_b": "2.62",
+   "market_overround_pct": "6.22",
+   "market_captured_utc": "2026-10-14T03:19:11Z",
+   "market_prob_a_pct": "64.1",
+   "market_prob_b_pct": "35.9",
    "model_prob_a_pct": "57.1",
    "model_prob_b_pct": "42.9",
-   "prob_a_pct": "62.3",
-   "prob_b_pct": "37.7",
-   "fair_odds_a": "1.61",
-   "fair_odds_b": "2.65",
+   "prob_a_pct": "64.1",
+   "prob_b_pct": "35.9",
+   "fair_odds_a": "1.56",
+   "fair_odds_b": "2.78",
    "pick": "Heroic",
-   "pick_prob_pct": "62.3",
+   "pick_prob_pct": "64.1",
    "confidence": "High (market line)",
    "rating_a": {
     "team": "Heroic",
@@ -7344,11 +7303,10 @@
    },
    "flags": [
     "FL-ALIAS-NAME",
-    "FL-FORMAT-UNKNOWN",
-    "FL-STALE-CAPTURE"
+    "FL-FORMAT-UNKNOWN"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1080280": {
    "match_id": "1080280",
@@ -7444,7 +7402,7 @@
     "FL-MODEL-MARKET-SPLIT"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1080281": {
    "match_id": "1080281",
@@ -7543,7 +7501,7 @@
     "FL-MODEL-MARKET-SPLIT"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1080282": {
    "match_id": "1080282",
@@ -7639,7 +7597,7 @@
     "FL-MODEL-MARKET-SPLIT"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1080283": {
    "match_id": "1080283",
@@ -7738,7 +7696,7 @@
     "FL-MODEL-MARKET-SPLIT"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1080284": {
    "match_id": "1080284",
@@ -7833,7 +7791,7 @@
     "FL-FORMAT-UNKNOWN"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1080285": {
    "match_id": "1080285",
@@ -7928,7 +7886,7 @@
     "FL-FORMAT-UNKNOWN"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1080286": {
    "match_id": "1080286",
@@ -8026,7 +7984,7 @@
     "FL-FORMAT-UNKNOWN"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1080287": {
    "match_id": "1080287",
@@ -8121,7 +8079,7 @@
     "FL-FORMAT-UNKNOWN"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1080288": {
    "match_id": "1080288",
@@ -8219,7 +8177,7 @@
     "FL-FORMAT-UNKNOWN"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1081120": {
    "match_id": "1081120",
@@ -8312,7 +8270,7 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1080289": {
    "match_id": "1080289",
@@ -8410,7 +8368,7 @@
     "FL-FORMAT-UNKNOWN"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   },
   "1080290": {
    "match_id": "1080290",
@@ -8505,7 +8463,7 @@
     "FL-FORMAT-UNKNOWN"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T04:20:00Z"
+   "last_verified_utc": "2026-10-14T03:20:48Z"
   }
  }
 }
