@@ -1,0 +1,1309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Flagged for Review — Unverified Items &amp; Line-by-Line Repository Audit — Hotspawn CS2 Pick'em Intelligence (Oct 14, 2026)</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <span class="brand-badge">Oct 14 Live</span>
+        <span>Hotspawn CS2 Pick'em Verification &amp; Lines Board</span>
+      </div>
+      <nav class="nav" aria-label="Category Navigation">
+      <a href="../index.html">Hub Home</a>
+      <a href="index.html">Open Slate (28)</a>
+      <a href="s-tier.html">S-Tier (4)</a>
+      <a href="b-tier.html">B-Tier (8)</a>
+      <a href="c-tier.html">C-Tier (16)</a>
+      <a href="tournaments.html">By Tournament (18)</a>
+      <a href="market-lines.html">External Lines (24/28)</a>
+      <a href="own-lines.html">Originated Lines &amp; Teams</a>
+      <a href="coverage-all-91.html">All 91 CS2 Fixtures</a>
+      <a href="methodology.html">Methodology</a>
+      <a href="sources.html">Official Sources</a>
+      <a href="flagged.html" class="active">Flagged for Review</a>
+      </nav>
+    </div>
+  </header>
+  <main class="container">
+    <section class="hero">
+      <h1>Flagged for Review — Unverified Items &amp; Line-by-Line Repository Audit</h1>
+      <p>All unverified fields (left blank per policy), rejected 1.80/1.80 placeholder odds, coin-flip splits, and cross-repo audit findings.</p>
+      <div class="policy-banner">
+        <strong>Strict Zero-Hotspawn-Crowd &amp; Zero-Inference Guarantee:</strong>
+        Hotspawn crowd pick percentages are <strong>never</strong> used as an indicator of match probability (0.0% weight).
+        Every rating, external bookmaker quote, and originated probability below is linked on every row to official verified sources
+        (<a href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md" target="_blank" rel="noopener">Valve Regional Standings 2026-10-05</a>,
+        <a href="https://www.hltv.org/ranking/teams/2026/october/12" target="_blank" rel="noopener">HLTV World Ranking 2026-10-12</a>,
+        <a href="https://www.hltv.org/matches" target="_blank" rel="noopener">HLTV Match Pages</a>,
+        <a href="https://www.pinnacle.com/en/esports/games/cs2/matchups/" target="_blank" rel="noopener">Direct Pinnacle</a>, and
+        <a href="https://egamersworld.com/counterstrike/matches" target="_blank" rel="noopener">EGamersWorld</a>).
+        Any value that cannot be confirmed from an official source without inference is left <strong>blank</strong> and published on
+        <a href="flagged.html">Flagged for Review</a>.
+      </div>
+    </section>
+    
+    <section class="section-card" id="repo-irregularities">
+      <h2>Part 1 — Line-by-Line Repository Audit Irregularities (8 Findings: IRREG-01..IRREG-08)</h2>
+      <p class="section-desc">
+        Concrete bugs, data overwrites, format assumptions, and truncation issues discovered during our line-by-line audit of the
+        repository's existing pipelines (<code>model/</code>, <code>slate/</code>, <code>live/</code>, <code>picks/</code>, <code>today/</code>),
+        together with how our verified <code>oct14/</code> &amp; <code>data/8944bb84/</code> build resolves each item.
+      </p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Flag ID &amp; Severity</th>
+              <th>Category &amp; Repo Location</th>
+              <th>Affected Matches / Teams</th>
+              <th>Detailed Finding from Line-by-Line Review</th>
+              <th>How Session arena/8944bb84 Resolves It</th>
+              <th>Official Verification Link</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+        <tr id="irreg-01">
+          <td class="mono"><strong>IRREG-01</strong><br><span class="badge badge-unv">HIGH</span></td>
+          <td><strong>Pipeline Crash / Null Permalink Coercion</strong><br><span class="mono muted">model/build.py:289 (CI run 38489574648)</span></td>
+          <td>Fixtures 1081111, 1081112, 1081113, 1081120 (CCT Europe 2026 Series #12 Play-In)</td>
+          <td>Hotspawn&#x27;s ng-state JSON omits the permalink field on the 4 newly added CCT Series #12 Play-In fixtures. In model/build.py, stringifying a missing permalink emitted a literal placeholder word into model/data/lines.csv, failing model/test_model.py::test_every_published_value_has_official_source in scheduled run 38489574648.</td>
+          <td>In data/8944bb84/fixtures.csv, hotspawn_match_url is left blank (&#x27;&#x27;) when Hotspawn has no /matches/ permalink, hotspawn_lobby_url links to https://play.hotspawn.com/cs2-pickems, and official HLTV match URLs (2399461, 2399462, 2399463, 2399471) are linked on every row.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://www.hltv.org/events/9456/cct-2026-europe-series-12-closed-qualifier" target="_blank" rel="noopener">Official Verification</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md" target="_blank" rel="noopener">Valve VRS</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="irreg-02">
+          <td class="mono"><strong>IRREG-02</strong><br><span class="badge badge-unv">HIGH</span></td>
+          <td><strong>Duplicate VRS Team-Name Overwrite Flipping Pick</strong><br><span class="mono muted">slate/collect.py &amp; slate/data/ratings.csv:269 &amp; slate/data/analysis.csv:9</span></td>
+          <td>1079622 ex-RUSTEC vs mellren + 13 other CS2 teams (6666, Banda chuya, Zomblers, BIG Academy, Honved, Johnny Speeds, Just Players, Leo, Lilmix, Misa, METANOIA Wolves, Mai Tai, UNO MILLE)</td>
+          <td>Valve&#x27;s standings_global_2026_10_05.md contains 31 duplicate team names (active 5-man roster higher up, older/partial roster lower down). slate/collect.py iterates top-to-bottom and overwrites vrs[key]=row, replacing ex-RUSTEC #92 (1066 pts, #L97) with #152 (824 pts, #L157), 6666 #127 (923 pts) with #368 (425 pts), and Banda Chuya #165 (801 pts) with #373 (402 pts). For 1079622 (ex-RUSTEC vs mellren), this bug flipped slate/data/analysis.csv&#x27;s own-line probability to 42.54% ex-RUSTEC / 57.46% mellren and triggered a false S-F-09 disagreement flag.</td>
+          <td>Disambiguated every duplicate VRS team name using official 5-man lineups and live VRS badges on HLTV match pages (2399299 confirms ex-RUSTEC #92/1066 pts &amp; live VRS #93; 2399462 confirms Banda Chuya #165/801 pts and 6666 #127/923 pts).</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://www.hltv.org/matches/2399299/ex-rustec-vs-mellren-cct-2026-europe-series-11" target="_blank" rel="noopener">Official Verification</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md" target="_blank" rel="noopener">Valve VRS</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="irreg-03">
+          <td class="mono"><strong>IRREG-03</strong><br><span class="badge badge-lean">MEDIUM</span></td>
+          <td><strong>Started CS2 Fixture Misclassified as sport=&#x27;other&#x27;</strong><br><span class="mono muted">slate/collect.py &amp; slate/data/fixtures.csv:66</span></td>
+          <td>1081076 ex-Keyd Stars vs Galorys (ESL Challenger League Season 52 SA Cup #3)</td>
+          <td>slate/collect.py&#x27;s sport_of(fixture) classifies sport solely by which page (cs2-pickems vs lobby) rendered the card and ignores sport_alias=&#x27;cs2&#x27; in the TransferState payload. Once 1081076 kicked off at 2026-10-13T21:00:00Z, /cs2-pickems dropped it while /lobby retained it with sport_alias=&#x27;cs2&#x27;, causing slate/data/fixtures.csv to misclassify 1081076 as sport=&#x27;other&#x27; and omit it from CS2 analysis.</td>
+          <td>Classified by sport_alias=&#x27;cs2&#x27; and verified official final score (ex-Keyd Stars 0 - 2 Galorys) on HLTV match 2399204.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://www.hltv.org/matches/2399204/ex-keyd-stars-vs-galorys-esl-challenger-league-season-52-south-america-cup-3" target="_blank" rel="noopener">Official Verification</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md" target="_blank" rel="noopener">Valve VRS</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="irreg-04">
+          <td class="mono"><strong>IRREG-04</strong><br><span class="badge badge-lean">MEDIUM</span></td>
+          <td><strong>HTML Block Truncation Dropping 37 HLTV Ranks &amp; False FL-03 Flags</strong><br><span class="mono muted">live/collect.py:614 &amp; live/data/slate.csv</span></td>
+          <td>9z (#17), MIBR (#12), Ninjas in Pyjamas (#26), HOTU (#41), Voca (#59), BC.Game (#70), ex-RUSTEC (#79), Phantom (#88), WBT/WROTBERRY (#109), ROUNDS/RoundsGG (#237)</td>
+          <td>live/collect.py truncates each .ranked-team HTML block at block[:4000] before searching for /team/&lt;id&gt;/&lt;slug&gt;. For 37 of the 245 ranked teams on HLTV (including open-slate teams MIBR #12, 9z #17, NiP #26, HOTU #41, Voca #59, Phantom #88), the team profile link sits past byte 4000, leaving hltv_rank blank in live/data/slate.csv and triggering false FL-03 (&#x27;missing from HLTV top-30&#x27;) flags on 9z (#17) and MIBR (#12). Also, slug.replace(&#x27;-&#x27;, &#x27; &#x27;) turns ex-rustec into &#x27;ex rustec&#x27; and bcgame into &#x27;bcgame&#x27;, failing exact match for ex-RUSTEC (#79) and BC.Game (#70).</td>
+          <td>Parsed the full 245-team HLTV ranking snapshot without 4,000-byte truncation and verified team IDs directly against HLTV match pages.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://www.hltv.org/ranking/teams/2026/october/12" target="_blank" rel="noopener">Official Verification</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md" target="_blank" rel="noopener">Valve VRS</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="irreg-05">
+          <td class="mono"><strong>IRREG-05</strong><br><span class="badge badge-lean">MEDIUM</span></td>
+          <td><strong>Series Format Assumed BO3 on 12 Official BO1 Matches</strong><br><span class="mono muted">slate/data/own_lines.csv &amp; slate/data/analysis.csv (rows 1080279..1080290)</span></td>
+          <td>All 12 Elisa BreakOut Series #2 Group Stage matches (1080279 through 1080290)</td>
+          <td>slate/data/own_lines.csv and slate/data/analysis.csv flag S-F-08 (&#x27;no source states the series format; assumes best-of-3&#x27;) and apply a BO3 series expansion p^2(3-2p) to all 12 Elisa BreakOut Series #2 matches, inflating favorites&#x27; originated probabilities. Both HLTV (matches 2399418..2399429) and EGamersWorld explicitly list all 12 group-stage matches as Best-of-1 (BO1).</td>
+          <td>Verified series_format=&#x27;BO1&#x27; for 1080279..1080290 directly from HLTV match pages 2399418..2399429 and EGW.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://www.hltv.org/matches/2399418/wbt-vs-eac-elisa-breakout-series-2" target="_blank" rel="noopener">Official Verification</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md" target="_blank" rel="noopener">Valve VRS</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="irreg-06">
+          <td class="mono"><strong>IRREG-06</strong><br><span class="badge badge-c">LOW</span></td>
+          <td><strong>Inverted S-F-05 Single-Source Flag Wording</strong><br><span class="mono muted">slate/data/ratings.csv (lines 32, 82, 95, 114, 146, 151, 179, 249, 267)</span></td>
+          <td>Banda chuya, Gothic, ex-Keyd Stars, Endless Journey, KOLESIE, Mai Tai, METANOIA Wolves, Patins da Ferrari, UNO MILLE</td>
+          <td>When a team is found in Valve VRS (vrs_points populated) but absent from HLTV&#x27;s top-245 ranking (hltv_rank blank), slate/data/ratings.csv emits &#x27;S-F-05: team found in one official rating source only (HLTV)&#x27;, inverting the name of the source that actually matched.</td>
+          <td>Explicitly state in data/8944bb84/ratings.csv whether a team is verified in both Valve VRS + HLTV Ranking, or verified in Valve VRS + HLTV Match Page (outside HLTV top-245).</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md" target="_blank" rel="noopener">Official Verification</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md" target="_blank" rel="noopener">Valve VRS</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="irreg-07">
+          <td class="mono"><strong>IRREG-07</strong><br><span class="badge badge-c">LOW</span></td>
+          <td><strong>Missing Hotspawn Fixture IDs on 5 Current-Week Rows</strong><br><span class="mono muted">picks/data/fixtures.csv</span></td>
+          <td>1081105 (SUKEBAN vs your end), 1081111 (Enjoy vs B8 Academy), 1081112 (Banda chuya vs 6666), 1081113 (Ryvex vs PCIFIC), 1081120 (mellren vs Privateer)</td>
+          <td>picks/data/fixtures.csv lists these 5 current-week matches with an empty hotspawn_id (&#x27;&#x27;) column because they were added after the initial TransferState ID capture.</td>
+          <td>Verified all 5 Hotspawn TransferState IDs (1081105, 1081111, 1081112, 1081113, 1081120) from Hotspawn&#x27;s ng-state payload.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Official Verification</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md" target="_blank" rel="noopener">Valve VRS</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="irreg-08">
+          <td class="mono"><strong>IRREG-08</strong><br><span class="badge badge-c">LOW</span></td>
+          <td><strong>Stale Snapshot Coverage in Earlier Boards</strong><br><span class="mono muted">today/data/current.json &amp; data/snapshot/latest.json</span></td>
+          <td>today/data/current.json (85 fixtures, 25 current-week as of 2026-10-13T16:40:14Z)</td>
+          <td>Earlier static snapshots predate the 5 CCT SA #7 / CCT EU #12 Play-In matches added on 2026-10-13 21:00–23:30 UTC (1081105, 1081111, 1081112, 1081113, 1081120) and the 2026-10-14 EGW line movements (e.g., 1079621 Gothic vs Lavked moving from 1.881/1.782 to 2.050/1.640).</td>
+          <td>Full 91-fixture coverage (28 open Oct 14-16 + 4 started/completed Oct 13-14 + 59 stale summer) with scheduled GitHub Actions refresh in .github/workflows/oct14-8944bb84.yml.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Official Verification</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md" target="_blank" rel="noopener">Valve VRS</a>
+            </div>
+          </td>
+        </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section-card" id="fixture-flags">
+      <h2>Part 2 — Flagged Current-Week CS2 Matches (Unverified Teams, Rejected 1.80/1.80 Placeholders &amp; Toss-Up Splits)</h2>
+      <p class="section-desc">
+        Every current-week CS2 fixture carrying an unverified team flag (<code>FL-UNVERIFIED-TEAM</code>), rejected placeholder odds flag
+        (<code>FL-EXT-PLACEHOLDER</code>), missing Hotspawn permalink flag (<code>FL-NO-HOTSPAWN-PERMALINK</code>), reversed team order on HLTV/EGW
+        (<code>FL-TEAM-ORDER-REVERSED</code>), duplicate VRS disambiguation (<code>FL-DUPLICATE-VRS-DISAMBIGUATED</code>), or market-vs-rating split.
+      </p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Match ID</th>
+              <th>Status &amp; Flag Codes</th>
+              <th>Fixture &amp; Tournament</th>
+              <th>Verification Details &amp; Why Flagged</th>
+              <th>Official Source Links</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+        <tr id="flag-1079620">
+          <td class="mono"><a href="index.html#match-1079620"><strong>#1079620</strong></a></td>
+          <td><span class="badge badge-lean">VERIFIED_WITH_FLAG</span><br><span class="mono muted">FL-LOCKED-NO-PREMATCH-ODDS</span></td>
+          <td><strong>Black Phoenix vs 6666 (CCT Europe 2026 Series #11, 2026-10-13T17:00:00Z)</strong></td>
+          <td>Started/Completed Week-270 match (BO3): Black Phoenix 2 - 0 6666 (Final).</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://www.hltv.org/matches/2399297/black-phoenix-vs-6666-cct-2026-europe-series-11" target="_blank" rel="noopener">Primary Official Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L81" target="_blank" rel="noopener">Valve VRS Reference</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1081076">
+          <td class="mono"><a href="index.html#match-1081076"><strong>#1081076</strong></a></td>
+          <td><span class="badge badge-unv">ACTION_REQUIRED</span><br><span class="mono muted">FL-UNVERIFIED-TEAM;FL-LOCKED-NO-PREMATCH-ODDS</span></td>
+          <td><strong>ex-Keyd Stars vs Galorys (ESL Challenger League Season 52: South America - Cup #3, 2026-10-13T21:00:00Z)</strong></td>
+          <td>Started/Completed Week-270 match (BO3): ex-Keyd Stars 0 - 2 Galorys (Final).</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://www.hltv.org/matches/2399204/ex-keyd-stars-vs-galorys-esl-challenger-league-season-52-south-america-cup-3" target="_blank" rel="noopener">Primary Official Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L149" target="_blank" rel="noopener">Valve VRS Reference</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1081105">
+          <td class="mono"><a href="index.html#match-1081105"><strong>#1081105</strong></a></td>
+          <td><span class="badge badge-unv">ACTION_REQUIRED</span><br><span class="mono muted">FL-UNVERIFIED-TEAM;FL-NO-HOTSPAWN-PERMALINK;FL-TEAM-ORDER-REVERSED;FL-FORFEIT-DEFAULT</span></td>
+          <td><strong>SUKEBAN vs your end (CCT South America 2026 Series #7, 2026-10-13T22:00:00Z)</strong></td>
+          <td>Started/Completed Week-270 match (BO3): your end 1 - 0 SUKEBAN (Default / Forfeit).</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://www.hltv.org/matches/2399460/your-end-vs-sukeban-cct-2026-south-america-series-7" target="_blank" rel="noopener">Primary Official Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md" target="_blank" rel="noopener">Valve VRS Reference</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1079546">
+          <td class="mono"><a href="index.html#match-1079546"><strong>#1079546</strong></a></td>
+          <td><span class="badge badge-lean">VERIFIED_WITH_FLAG</span><br><span class="mono muted">FL-DUPLICATE-VRS-DISAMBIGUATED</span></td>
+          <td><strong>Zomblers vs Overtake Sector (ESL Challenger League Season 52: North America - Cup #3, 2026-10-14T01:00:00Z)</strong></td>
+          <td>Started/Completed Week-270 match (BO3): LIVE (Overtake Sector 1 - 0 Zomblers after Map 1 13-8).</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://www.hltv.org/matches/2399232/zomblers-vs-overtake-sector-esl-challenger-league-season-52-north-america-cup-3" target="_blank" rel="noopener">Primary Official Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L259" target="_blank" rel="noopener">Valve VRS Reference</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1079621">
+          <td class="mono"><a href="index.html#match-1079621"><strong>#1079621</strong></a></td>
+          <td><span class="badge badge-lean">VERIFIED_WITH_FLAG</span><br><span class="mono muted">FL-MODEL-MARKET-GAP</span></td>
+          <td><strong>Gothic vs Lavked (CCT Europe 2026 Series #11, 2026-10-14T08:00:00Z)</strong></td>
+          <td>BO3 (B-Tier, 3 pts): bc.game (EGamersWorld) prices Gothic 2.050 / Lavked 1.640 (44.4% / 55.6% de-vigged); Official VRS+HLTV rating model gives 27.5% / 72.5% (VRS #211 vs #143, HLTV #NR vs #140) — sources agree.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://www.hltv.org/matches/2399298/gothic-vs-lavked-cct-2026-europe-series-11" target="_blank" rel="noopener">Primary Official Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L216" target="_blank" rel="noopener">Valve VRS Reference</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1081111">
+          <td class="mono"><a href="index.html#match-1081111"><strong>#1081111</strong></a></td>
+          <td><span class="badge badge-lean">VERIFIED_WITH_FLAG</span><br><span class="mono muted">FL-NO-HOTSPAWN-PERMALINK;FL-MODEL-MARKET-GAP</span></td>
+          <td><strong>Enjoy vs B8 Academy (CCT Europe 2026 Series #12 Play-In, 2026-10-14T08:00:00Z)</strong></td>
+          <td>BO3 (C-Tier, 2 pts): bc.game (EGamersWorld) prices Enjoy 1.520 / B8 Academy 2.300 (60.2% / 39.8% de-vigged); Official VRS+HLTV rating model gives 76.8% / 23.2% (VRS #138 vs #261, HLTV #199 vs #229) — sources agree.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://www.hltv.org/matches/2399461/enjoy-vs-b8-academy-cct-2026-europe-series-12-closed-qualifier" target="_blank" rel="noopener">Primary Official Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L143" target="_blank" rel="noopener">Valve VRS Reference</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1079439">
+          <td class="mono"><a href="index.html#match-1079439"><strong>#1079439</strong></a></td>
+          <td><span class="badge badge-lean">VERIFIED_WITH_FLAG</span><br><span class="mono muted">FL-COINFLIP-SPLIT</span></td>
+          <td><strong>HOTU vs Fnatic (Stake Pulse Beat III, 2026-10-14T10:00:00Z)</strong></td>
+          <td>BO3 (B-Tier, 3 pts): Pinnacle (Direct) prices HOTU 1.990 / Fnatic 1.800 (47.5% / 52.5% de-vigged); Official VRS+HLTV rating model gives 52.2% / 47.8% (VRS #31 vs #35, HLTV #41 vs #36) — sources split.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://www.hltv.org/matches/2399135/hotu-vs-fnatic-stake-pulse-beat-iii" target="_blank" rel="noopener">Primary Official Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L36" target="_blank" rel="noopener">Valve VRS Reference</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1079622">
+          <td class="mono"><a href="index.html#match-1079622"><strong>#1079622</strong></a></td>
+          <td><span class="badge badge-lean">VERIFIED_WITH_FLAG</span><br><span class="mono muted">FL-DUPLICATE-VRS-DISAMBIGUATED</span></td>
+          <td><strong>ex-RUSTEC vs mellren (CCT Europe 2026 Series #11, 2026-10-14T11:00:00Z)</strong></td>
+          <td>BO3 (B-Tier, 3 pts): bc.game (EGamersWorld) prices ex-RUSTEC 1.400 / mellren 2.680 (65.7% / 34.3% de-vigged); Official VRS+HLTV rating model gives 66.3% / 33.7% (VRS #92 vs #125, HLTV #79 vs #94) — sources agree.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://www.hltv.org/matches/2399299/ex-rustec-vs-mellren-cct-2026-europe-series-11" target="_blank" rel="noopener">Primary Official Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L97" target="_blank" rel="noopener">Valve VRS Reference</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1081112">
+          <td class="mono"><a href="index.html#match-1081112"><strong>#1081112</strong></a></td>
+          <td><span class="badge badge-lean">VERIFIED_WITH_FLAG</span><br><span class="mono muted">FL-EXT-PLACEHOLDER;FL-NO-HOTSPAWN-PERMALINK;FL-DUPLICATE-VRS-DISAMBIGUATED</span></td>
+          <td><strong>Banda chuya vs 6666 (CCT Europe 2026 Series #12 Play-In, 2026-10-14T11:00:00Z)</strong></td>
+          <td>BO3 (C-Tier, 2 pts): EGW shows 1.80/1.80 placeholder (rejected); pick originated strictly from official VRS (#165 801 pts vs #127 923 pts) &amp; HLTV (#NR vs #80).</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://www.hltv.org/matches/2399462/banda-chuya-vs-6666-cct-2026-europe-series-12-closed-qualifier" target="_blank" rel="noopener">Primary Official Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L170" target="_blank" rel="noopener">Valve VRS Reference</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1080178">
+          <td class="mono"><a href="index.html#match-1080178"><strong>#1080178</strong></a></td>
+          <td><span class="badge badge-lean">VERIFIED_WITH_FLAG</span><br><span class="mono muted">FL-MODEL-MARKET-GAP</span></td>
+          <td><strong>Legacy vs PARIVISION (Thunderpick World Championship 2026, 2026-10-14T13:30:00Z)</strong></td>
+          <td>BO3 (S-Tier, 7 pts): Pinnacle (Direct) prices Legacy 1.654 / PARIVISION 2.260 (57.7% / 42.3% de-vigged); Official VRS+HLTV rating model gives 88.1% / 11.9% (VRS #2 vs #36, HLTV #7 vs #11) — sources agree.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://www.hltv.org/matches/2399386/legacy-vs-parivision-thunderpick-world-championship-2026" target="_blank" rel="noopener">Primary Official Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L7" target="_blank" rel="noopener">Valve VRS Reference</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1081113">
+          <td class="mono"><a href="index.html#match-1081113"><strong>#1081113</strong></a></td>
+          <td><span class="badge badge-lean">VERIFIED_WITH_FLAG</span><br><span class="mono muted">FL-EXT-PLACEHOLDER;FL-NO-HOTSPAWN-PERMALINK;FL-TEAM-ORDER-REVERSED</span></td>
+          <td><strong>Ryvex vs PCIFIC (CCT Europe 2026 Series #12 Play-In, 2026-10-14T14:00:00Z)</strong></td>
+          <td>BO3 (C-Tier, 2 pts): EGW shows 1.80/1.80 placeholder (rejected); pick originated strictly from official VRS (#207 714 pts vs #139 870 pts) &amp; HLTV (#181 vs #135).</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://www.hltv.org/matches/2399463/pcific-vs-ryvex-cct-2026-europe-series-12-closed-qualifier" target="_blank" rel="noopener">Primary Official Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L212" target="_blank" rel="noopener">Valve VRS Reference</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1079624">
+          <td class="mono"><a href="index.html#match-1079624"><strong>#1079624</strong></a></td>
+          <td><span class="badge badge-unv">ACTION_REQUIRED</span><br><span class="mono muted">FL-UNVERIFIED-TEAM;FL-EXT-PLACEHOLDER</span></td>
+          <td><strong>FORZE Reload vs LFO 10 (CCT Europe 2026 Series #11, 2026-10-14T17:00:00Z)</strong></td>
+          <td>UNVERIFIED / BLANK: FORZE Reload is VRS #84 (1100 pts) &amp; HLTV #75 (11 pts), while LFO 10 is absent by name from the 2026-10-05 VRS file (HLTV match 2399301 lists LFO 10 at live VRS #169 with the 4-man core of VRS #156 Entropy, 813 pts) and EGW shows 1.80/1.80 placeholder.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://www.hltv.org/matches/2399301/forze-reload-vs-lfo-10-cct-2026-europe-series-11" target="_blank" rel="noopener">Primary Official Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L89" target="_blank" rel="noopener">Valve VRS Reference</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1080279">
+          <td class="mono"><a href="index.html#match-1080279"><strong>#1080279</strong></a></td>
+          <td><span class="badge badge-lean">VERIFIED_WITH_FLAG</span><br><span class="mono muted">FL-MARKET-VRS-SPLIT;FL-ALIAS-RESOLVED</span></td>
+          <td><strong>WROTBERRY vs EAC (Elisa BreakOut Series #2, 2026-10-15T08:00:00Z)</strong></td>
+          <td>BO1 (C-Tier, 2 pts): bc.game (EGamersWorld) prices WROTBERRY 2.010 / EAC 1.690 (45.7% / 54.3% de-vigged); Official VRS+HLTV rating model gives 68.9% / 31.1% (VRS #60 vs #103, HLTV #109 vs #110) — sources split.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://www.hltv.org/matches/2399418/wbt-vs-eac-elisa-breakout-series-2" target="_blank" rel="noopener">Primary Official Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L65" target="_blank" rel="noopener">Valve VRS Reference</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1079440">
+          <td class="mono"><a href="index.html#match-1079440"><strong>#1079440</strong></a></td>
+          <td><span class="badge badge-lean">VERIFIED_WITH_FLAG</span><br><span class="mono muted">FL-MODEL-MARKET-GAP</span></td>
+          <td><strong>MIBR vs BC.Game (Stake Pulse Beat III, 2026-10-15T10:00:00Z)</strong></td>
+          <td>BO3 (B-Tier, 3 pts): Pinnacle (Direct) prices MIBR 1.637 / BC.Game 2.230 (57.7% / 42.3% de-vigged); Official VRS+HLTV rating model gives 82.2% / 17.8% (VRS #12 vs #50, HLTV #12 vs #70) — sources agree.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://www.hltv.org/matches/2399136/mibr-vs-bcgame-stake-pulse-beat-iii" target="_blank" rel="noopener">Primary Official Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L17" target="_blank" rel="noopener">Valve VRS Reference</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1079442">
+          <td class="mono"><a href="index.html#match-1079442"><strong>#1079442</strong></a></td>
+          <td><span class="badge badge-lean">VERIFIED_WITH_FLAG</span><br><span class="mono muted">FL-ALIAS-RESOLVED</span></td>
+          <td><strong>Heroic vs Envy (Stake Pulse Beat III, 2026-10-15T10:00:00Z)</strong></td>
+          <td>BO3 (B-Tier, 3 pts): Pinnacle (Direct) prices Heroic 1.469 / Envy 2.620 (64.1% / 35.9% de-vigged); Official VRS+HLTV rating model gives 55.1% / 44.9% (VRS #15 vs #21, HLTV #30 vs #20) — sources agree.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://www.hltv.org/matches/2399137/heroic-vs-envy-stake-pulse-beat-iii" target="_blank" rel="noopener">Primary Official Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L20" target="_blank" rel="noopener">Valve VRS Reference</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1080280">
+          <td class="mono"><a href="index.html#match-1080280"><strong>#1080280</strong></a></td>
+          <td><span class="badge badge-lean">VERIFIED_WITH_FLAG</span><br><span class="mono muted">FL-MODEL-MARKET-GAP</span></td>
+          <td><strong>ENCE vs BOJONG (Elisa BreakOut Series #2, 2026-10-15T10:00:00Z)</strong></td>
+          <td>BO1 (C-Tier, 2 pts): bc.game (EGamersWorld) prices ENCE 1.300 / BOJONG 3.170 (70.9% / 29.1% de-vigged); Official VRS+HLTV rating model gives 92.0% / 8.0% (VRS #105 vs #363, HLTV #114 vs #220) — sources agree.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://www.hltv.org/matches/2399419/ence-vs-bojong-elisa-breakout-series-2" target="_blank" rel="noopener">Primary Official Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L110" target="_blank" rel="noopener">Valve VRS Reference</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1080281">
+          <td class="mono"><a href="index.html#match-1080281"><strong>#1080281</strong></a></td>
+          <td><span class="badge badge-lean">VERIFIED_WITH_FLAG</span><br><span class="mono muted">FL-MODEL-MARKET-GAP;FL-ALIAS-RESOLVED</span></td>
+          <td><strong>WROTBERRY vs ENCE (Elisa BreakOut Series #2, 2026-10-15T12:00:00Z)</strong></td>
+          <td>BO1 (C-Tier, 2 pts): bc.game (EGamersWorld) prices WROTBERRY 1.620 / ENCE 2.107 (56.5% / 43.5% de-vigged); Official VRS+HLTV rating model gives 70.0% / 30.0% (VRS #60 vs #105, HLTV #109 vs #114) — sources agree.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://www.hltv.org/matches/2399420/wbt-vs-ence-elisa-breakout-series-2" target="_blank" rel="noopener">Primary Official Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L65" target="_blank" rel="noopener">Valve VRS Reference</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1080282">
+          <td class="mono"><a href="index.html#match-1080282"><strong>#1080282</strong></a></td>
+          <td><span class="badge badge-lean">VERIFIED_WITH_FLAG</span><br><span class="mono muted">FL-MODEL-MARKET-GAP</span></td>
+          <td><strong>EAC vs BOJONG (Elisa BreakOut Series #2, 2026-10-15T14:00:00Z)</strong></td>
+          <td>BO1 (C-Tier, 2 pts): bc.game (EGamersWorld) prices EAC 1.190 / BOJONG 4.020 (77.2% / 22.8% de-vigged); Official VRS+HLTV rating model gives 92.3% / 7.7% (VRS #103 vs #363, HLTV #110 vs #220) — sources agree.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://www.hltv.org/matches/2399421/eac-vs-bojong-elisa-breakout-series-2" target="_blank" rel="noopener">Primary Official Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L108" target="_blank" rel="noopener">Valve VRS Reference</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1080283">
+          <td class="mono"><a href="index.html#match-1080283"><strong>#1080283</strong></a></td>
+          <td><span class="badge badge-lean">VERIFIED_WITH_FLAG</span><br><span class="mono muted">FL-MODEL-MARKET-GAP;FL-ALIAS-RESOLVED</span></td>
+          <td><strong>WROTBERRY vs BOJONG (Elisa BreakOut Series #2, 2026-10-15T16:00:00Z)</strong></td>
+          <td>BO1 (C-Tier, 2 pts): bc.game (EGamersWorld) prices WROTBERRY 1.210 / BOJONG 3.990 (76.7% / 23.3% de-vigged); Official VRS+HLTV rating model gives 93.7% / 6.3% (VRS #60 vs #363, HLTV #109 vs #220) — sources agree.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://www.hltv.org/matches/2399422/wbt-vs-bojong-elisa-breakout-series-2" target="_blank" rel="noopener">Primary Official Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L65" target="_blank" rel="noopener">Valve VRS Reference</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1080285">
+          <td class="mono"><a href="index.html#match-1080285"><strong>#1080285</strong></a></td>
+          <td><span class="badge badge-lean">VERIFIED_WITH_FLAG</span><br><span class="mono muted">FL-COINFLIP-SPLIT</span></td>
+          <td><strong>Voca vs Phantom (Elisa BreakOut Series #2, 2026-10-16T08:00:00Z)</strong></td>
+          <td>BO1 (C-Tier, 2 pts): bc.game (EGamersWorld) prices Voca 1.870 / Phantom 1.770 (48.6% / 51.4% de-vigged); Official VRS+HLTV rating model gives 56.0% / 44.0% (VRS #68 vs #72, HLTV #59 vs #88) — sources split.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://www.hltv.org/matches/2399424/voca-vs-phantom-elisa-breakout-series-2" target="_blank" rel="noopener">Primary Official Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L73" target="_blank" rel="noopener">Valve VRS Reference</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1080286">
+          <td class="mono"><a href="index.html#match-1080286"><strong>#1080286</strong></a></td>
+          <td><span class="badge badge-lean">VERIFIED_WITH_FLAG</span><br><span class="mono muted">FL-ALIAS-RESOLVED</span></td>
+          <td><strong>HAVU vs RoundsGG (Elisa BreakOut Series #2, 2026-10-16T10:00:00Z)</strong></td>
+          <td>BO1 (C-Tier, 2 pts): bc.game (EGamersWorld) prices HAVU 1.190 / RoundsGG 4.020 (77.2% / 22.8% de-vigged); Official VRS+HLTV rating model gives 88.4% / 11.6% (VRS #124 vs #310, HLTV #118 vs #237) — sources agree.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://www.hltv.org/matches/2399425/havu-vs-rounds-elisa-breakout-series-2" target="_blank" rel="noopener">Primary Official Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L129" target="_blank" rel="noopener">Valve VRS Reference</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1080287">
+          <td class="mono"><a href="index.html#match-1080287"><strong>#1080287</strong></a></td>
+          <td><span class="badge badge-lean">VERIFIED_WITH_FLAG</span><br><span class="mono muted">FL-MODEL-MARKET-GAP</span></td>
+          <td><strong>Voca vs HAVU (Elisa BreakOut Series #2, 2026-10-16T12:00:00Z)</strong></td>
+          <td>BO1 (C-Tier, 2 pts): bc.game (EGamersWorld) prices Voca 1.380 / HAVU 2.700 (66.2% / 33.8% de-vigged); Official VRS+HLTV rating model gives 78.5% / 21.5% (VRS #68 vs #124, HLTV #59 vs #118) — sources agree.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://www.hltv.org/matches/2399426/voca-vs-havu-elisa-breakout-series-2" target="_blank" rel="noopener">Primary Official Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L73" target="_blank" rel="noopener">Valve VRS Reference</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1080288">
+          <td class="mono"><a href="index.html#match-1080288"><strong>#1080288</strong></a></td>
+          <td><span class="badge badge-lean">VERIFIED_WITH_FLAG</span><br><span class="mono muted">FL-ALIAS-RESOLVED</span></td>
+          <td><strong>Phantom vs RoundsGG (Elisa BreakOut Series #2, 2026-10-16T14:00:00Z)</strong></td>
+          <td>BO1 (C-Tier, 2 pts): bc.game (EGamersWorld) prices Phantom 1.080 / RoundsGG 6.940 (86.5% / 13.5% de-vigged); Official VRS+HLTV rating model gives 94.0% / 6.0% (VRS #72 vs #310, HLTV #88 vs #237) — sources agree.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://www.hltv.org/matches/2399427/phantom-vs-rounds-elisa-breakout-series-2" target="_blank" rel="noopener">Primary Official Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L77" target="_blank" rel="noopener">Valve VRS Reference</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1081120">
+          <td class="mono"><a href="index.html#match-1081120"><strong>#1081120</strong></a></td>
+          <td><span class="badge badge-lean">VERIFIED_WITH_FLAG</span><br><span class="mono muted">FL-EXT-PLACEHOLDER;FL-NO-HOTSPAWN-PERMALINK</span></td>
+          <td><strong>mellren vs Privateer (CCT Europe 2026 Series #12 Play-In, 2026-10-16T14:00:00Z)</strong></td>
+          <td>BO3 (C-Tier, 2 pts): EGW shows 1.80/1.80 placeholder (rejected); pick originated strictly from official VRS (#125 932 pts vs #271 608 pts) &amp; HLTV (#94 vs #226).</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://www.hltv.org/matches/2399471/mellren-vs-privateer-cct-2026-europe-series-12-closed-qualifier" target="_blank" rel="noopener">Primary Official Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L130" target="_blank" rel="noopener">Valve VRS Reference</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1080289">
+          <td class="mono"><a href="index.html#match-1080289"><strong>#1080289</strong></a></td>
+          <td><span class="badge badge-lean">VERIFIED_WITH_FLAG</span><br><span class="mono muted">FL-TEAM-ORDER-REVERSED;FL-ALIAS-RESOLVED</span></td>
+          <td><strong>RoundsGG vs Voca (Elisa BreakOut Series #2, 2026-10-16T16:00:00Z)</strong></td>
+          <td>BO1 (C-Tier, 2 pts): bc.game (EGamersWorld) prices RoundsGG 6.400 / Voca 1.063 (14.2% / 85.8% de-vigged); Official VRS+HLTV rating model gives 4.6% / 95.4% (VRS #310 vs #68, HLTV #237 vs #59) — sources agree.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://www.hltv.org/matches/2399428/voca-vs-rounds-elisa-breakout-series-2" target="_blank" rel="noopener">Primary Official Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L315" target="_blank" rel="noopener">Valve VRS Reference</a>
+            </div>
+          </td>
+        </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section-card" id="stale-transferstate-summary">
+      <h2>Part 3 — Stale June–July 2026 TransferState Fixtures (59 Records Flagged FL-STALE-TRANSFERSTATE)</h2>
+      <p class="section-desc">
+        Hotspawn's Angular <code>TransferState</code> payload retains 59 historical CS2 fixtures from June 26 – July 5, 2026 alongside the
+        32 current-week (Oct 13–16, 2026) fixtures. Every stale record is listed below with its official verification links and excluded from active picks.
+      </p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Match ID</th>
+              <th>Flag Codes</th>
+              <th>Historical Fixture &amp; Timestamp</th>
+              <th>Verification Explanation</th>
+              <th>Official Source Links</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+        <tr id="flag-1052746">
+          <td class="mono"><a href="coverage-all-91.html#match-1052746"><strong>#1052746</strong></a></td>
+          <td><span class="badge badge-c">FL-STALE-TRANSFERSTATE</span></td>
+          <td><strong>Fortress vs Endless Journey</strong> (European Pro League Series 8 Play-In, 2026-06-26 10:30 UTC)</td>
+          <td>Stale June–July 2026 TransferState record retained in Hotspawn's SSR payload; excluded from active open slate.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L244" target="_blank" rel="noopener">VRS A</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L224" target="_blank" rel="noopener">VRS B</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1051339">
+          <td class="mono"><a href="coverage-all-91.html#match-1051339"><strong>#1051339</strong></a></td>
+          <td><span class="badge badge-c">FL-STALE-TRANSFERSTATE</span></td>
+          <td><strong>Acend vs Infinite</strong> (DraculaN Season 7, 2026-06-26 12:00 UTC)</td>
+          <td>Stale June–July 2026 TransferState record retained in Hotspawn's SSR payload; excluded from active open slate.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L68" target="_blank" rel="noopener">VRS A</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L61" target="_blank" rel="noopener">VRS B</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1051301">
+          <td class="mono"><a href="coverage-all-91.html#match-1051301"><strong>#1051301</strong></a></td>
+          <td><span class="badge badge-c">FL-UNVERIFIED-TEAM;FL-STALE-TRANSFERSTATE</span></td>
+          <td><strong>CYBERSHOKE Prospects vs PCIFIC</strong> (LG UltraGear Tournament 2026, 2026-06-26 13:00 UTC)</td>
+          <td>Stale June–July 2026 TransferState record retained in Hotspawn's SSR payload; excluded from active open slate.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md" target="_blank" rel="noopener">VRS A</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L144" target="_blank" rel="noopener">VRS B</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1053068">
+          <td class="mono"><a href="coverage-all-91.html#match-1053068"><strong>#1053068</strong></a></td>
+          <td><span class="badge badge-c">FL-UNVERIFIED-TEAM;FL-STALE-TRANSFERSTATE</span></td>
+          <td><strong>Johnny Speeds vs ReThink</strong> (Svenska CS-Ligan 2026, 2026-06-26 13:00 UTC)</td>
+          <td>Stale June–July 2026 TransferState record retained in Hotspawn's SSR payload; excluded from active open slate.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L104" target="_blank" rel="noopener">VRS A</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md" target="_blank" rel="noopener">VRS B</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1052747">
+          <td class="mono"><a href="coverage-all-91.html#match-1052747"><strong>#1052747</strong></a></td>
+          <td><span class="badge badge-c">FL-STALE-TRANSFERSTATE</span></td>
+          <td><strong>Sashi Academy vs eternal premium</strong> (European Pro League Series 8 Play-In, 2026-06-26 13:10 UTC)</td>
+          <td>Stale June–July 2026 TransferState record retained in Hotspawn's SSR payload; excluded from active open slate.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L298" target="_blank" rel="noopener">VRS A</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L292" target="_blank" rel="noopener">VRS B</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1053146">
+          <td class="mono"><a href="coverage-all-91.html#match-1053146"><strong>#1053146</strong></a></td>
+          <td><span class="badge badge-c">FL-UNVERIFIED-TEAM;FL-STALE-TRANSFERSTATE</span></td>
+          <td><strong>Atrix vs Clutchain</strong> (Rainhas do Clutch 2026, 2026-06-26 14:00 UTC)</td>
+          <td>Stale June–July 2026 TransferState record retained in Hotspawn's SSR payload; excluded from active open slate.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md" target="_blank" rel="noopener">VRS A</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L358" target="_blank" rel="noopener">VRS B</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1051340">
+          <td class="mono"><a href="coverage-all-91.html#match-1051340"><strong>#1051340</strong></a></td>
+          <td><span class="badge badge-c">FL-STALE-TRANSFERSTATE</span></td>
+          <td><strong>Walczaki vs Inner Circle</strong> (DraculaN Season 7, 2026-06-26 15:00 UTC)</td>
+          <td>Stale June–July 2026 TransferState record retained in Hotspawn's SSR payload; excluded from active open slate.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L125" target="_blank" rel="noopener">VRS A</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L25" target="_blank" rel="noopener">VRS B</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1053069">
+          <td class="mono"><a href="coverage-all-91.html#match-1053069"><strong>#1053069</strong></a></td>
+          <td><span class="badge badge-c">FL-STALE-TRANSFERSTATE</span></td>
+          <td><strong>roamsfiest vs train launcher</strong> (Svenska CS-Ligan 2026, 2026-06-26 16:45 UTC)</td>
+          <td>Stale June–July 2026 TransferState record retained in Hotspawn's SSR payload; excluded from active open slate.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L207" target="_blank" rel="noopener">VRS A</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L262" target="_blank" rel="noopener">VRS B</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1052686">
+          <td class="mono"><a href="coverage-all-91.html#match-1052686"><strong>#1052686</strong></a></td>
+          <td><span class="badge badge-c">FL-STALE-TRANSFERSTATE</span></td>
+          <td><strong>shimmer vs MIBR fe</strong> (Rainhas do Clutch 2026, 2026-06-26 17:45 UTC)</td>
+          <td>Stale June–July 2026 TransferState record retained in Hotspawn's SSR payload; excluded from active open slate.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L261" target="_blank" rel="noopener">VRS A</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L203" target="_blank" rel="noopener">VRS B</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1051789">
+          <td class="mono"><a href="coverage-all-91.html#match-1051789"><strong>#1051789</strong></a></td>
+          <td><span class="badge badge-c">FL-STALE-TRANSFERSTATE</span></td>
+          <td><strong>MIBR Academy vs Isurus</strong> (Thunderpick World Championship 2026: South American Series #1, 2026-06-26 18:00 UTC)</td>
+          <td>Stale June–July 2026 TransferState record retained in Hotspawn's SSR payload; excluded from active open slate.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L268" target="_blank" rel="noopener">VRS A</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L178" target="_blank" rel="noopener">VRS B</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1053070">
+          <td class="mono"><a href="coverage-all-91.html#match-1053070"><strong>#1053070</strong></a></td>
+          <td><span class="badge badge-c">FL-UNVERIFIED-TEAM;FL-STALE-TRANSFERSTATE</span></td>
+          <td><strong>ReThink vs train launcher</strong> (Svenska CS-Ligan 2026, 2026-06-26 19:00 UTC)</td>
+          <td>Stale June–July 2026 TransferState record retained in Hotspawn's SSR payload; excluded from active open slate.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md" target="_blank" rel="noopener">VRS A</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L262" target="_blank" rel="noopener">VRS B</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1051790">
+          <td class="mono"><a href="coverage-all-91.html#match-1051790"><strong>#1051790</strong></a></td>
+          <td><span class="badge badge-c">FL-UNVERIFIED-TEAM;FL-STALE-TRANSFERSTATE</span></td>
+          <td><strong>Keyd vs Yawara</strong> (Thunderpick World Championship 2026: South American Series #1, 2026-06-26 21:00 UTC)</td>
+          <td>Stale June–July 2026 TransferState record retained in Hotspawn's SSR payload; excluded from active open slate.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md" target="_blank" rel="noopener">VRS A</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L152" target="_blank" rel="noopener">VRS B</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1052748">
+          <td class="mono"><a href="coverage-all-91.html#match-1052748"><strong>#1052748</strong></a></td>
+          <td><span class="badge badge-c">FL-STALE-TRANSFERSTATE</span></td>
+          <td><strong>Inner Circle Academy vs sAw</strong> (European Pro League Series 8 Play-In, 2026-06-27 08:00 UTC)</td>
+          <td>Stale June–July 2026 TransferState record retained in Hotspawn's SSR payload; excluded from active open slate.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L99" target="_blank" rel="noopener">VRS A</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L47" target="_blank" rel="noopener">VRS B</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1053071">
+          <td class="mono"><a href="coverage-all-91.html#match-1053071"><strong>#1053071</strong></a></td>
+          <td><span class="badge badge-c">FL-STALE-TRANSFERSTATE</span></td>
+          <td><strong>Johnny Speeds vs roamsfiest</strong> (Svenska CS-Ligan 2026, 2026-06-27 10:00 UTC)</td>
+          <td>Stale June–July 2026 TransferState record retained in Hotspawn's SSR payload; excluded from active open slate.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L104" target="_blank" rel="noopener">VRS A</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L207" target="_blank" rel="noopener">VRS B</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1052749">
+          <td class="mono"><a href="coverage-all-91.html#match-1052749"><strong>#1052749</strong></a></td>
+          <td><span class="badge badge-c">FL-ALIAS-RESOLVED;FL-STALE-TRANSFERSTATE</span></td>
+          <td><strong>Misa vs WROTBERRY</strong> (European Pro League Series 8 Play-In, 2026-06-27 10:30 UTC)</td>
+          <td>Stale June–July 2026 TransferState record retained in Hotspawn's SSR payload; excluded from active open slate.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L139" target="_blank" rel="noopener">VRS A</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L65" target="_blank" rel="noopener">VRS B</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1052180">
+          <td class="mono"><a href="coverage-all-91.html#match-1052180"><strong>#1052180</strong></a></td>
+          <td><span class="badge badge-c">FL-STALE-TRANSFERSTATE</span></td>
+          <td><strong>NEW VISION vs Julie&amp;Cie</strong> (CCT Europe 2026 Challengers #4, 2026-06-27 11:00 UTC)</td>
+          <td>Stale June–July 2026 TransferState record retained in Hotspawn's SSR payload; excluded from active open slate.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L246" target="_blank" rel="noopener">VRS A</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L380" target="_blank" rel="noopener">VRS B</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1052181">
+          <td class="mono"><a href="coverage-all-91.html#match-1052181"><strong>#1052181</strong></a></td>
+          <td><span class="badge badge-c">FL-STALE-TRANSFERSTATE</span></td>
+          <td><strong>Just Players vs OlyBet</strong> (CCT Europe 2026 Challengers #4, 2026-06-27 11:00 UTC)</td>
+          <td>Stale June–July 2026 TransferState record retained in Hotspawn's SSR payload; excluded from active open slate.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L123" target="_blank" rel="noopener">VRS A</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L357" target="_blank" rel="noopener">VRS B</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1051800">
+          <td class="mono"><a href="coverage-all-91.html#match-1051800"><strong>#1051800</strong></a></td>
+          <td><span class="badge badge-c">FL-STALE-TRANSFERSTATE</span></td>
+          <td><strong>ShindeN vs MIBR Academy</strong> (Thunderpick World Championship 2026: South American Series #1, 2026-06-27 13:00 UTC)</td>
+          <td>Stale June–July 2026 TransferState record retained in Hotspawn's SSR payload; excluded from active open slate.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L79" target="_blank" rel="noopener">VRS A</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L268" target="_blank" rel="noopener">VRS B</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1052699">
+          <td class="mono"><a href="coverage-all-91.html#match-1052699"><strong>#1052699</strong></a></td>
+          <td><span class="badge badge-c">FL-UNVERIFIED-TEAM;FL-STALE-TRANSFERSTATE</span></td>
+          <td><strong>Vasco vs Red Feet</strong> (CCT South America 2026 Series #3, 2026-06-27 13:00 UTC)</td>
+          <td>Stale June–July 2026 TransferState record retained in Hotspawn's SSR payload; excluded from active open slate.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L314" target="_blank" rel="noopener">VRS A</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md" target="_blank" rel="noopener">VRS B</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1052183">
+          <td class="mono"><a href="coverage-all-91.html#match-1052183"><strong>#1052183</strong></a></td>
+          <td><span class="badge badge-c">FL-UNVERIFIED-TEAM;FL-STALE-TRANSFERSTATE</span></td>
+          <td><strong>Misa vs Wampirki</strong> (CCT Europe 2026 Challengers #4, 2026-06-27 13:45 UTC)</td>
+          <td>Stale June–July 2026 TransferState record retained in Hotspawn's SSR payload; excluded from active open slate.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L139" target="_blank" rel="noopener">VRS A</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md" target="_blank" rel="noopener">VRS B</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1051341">
+          <td class="mono"><a href="coverage-all-91.html#match-1051341"><strong>#1051341</strong></a></td>
+          <td><span class="badge badge-c">FL-UNVERIFIED-TEAM;FL-STALE-TRANSFERSTATE</span></td>
+          <td><strong>Sharks vs Inner Circle</strong> (DraculaN Season 7, 2026-06-27 13:50 UTC)</td>
+          <td>Stale June–July 2026 TransferState record retained in Hotspawn's SSR payload; excluded from active open slate.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md" target="_blank" rel="noopener">VRS A</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L25" target="_blank" rel="noopener">VRS B</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1052599">
+          <td class="mono"><a href="coverage-all-91.html#match-1052599"><strong>#1052599</strong></a></td>
+          <td><span class="badge badge-c">FL-UNVERIFIED-TEAM;FL-STALE-TRANSFERSTATE</span></td>
+          <td><strong>Mai Tai vs Megoshort</strong> (CCT Europe 2026 Challengers #4, 2026-06-27 14:00 UTC)</td>
+          <td>Stale June–July 2026 TransferState record retained in Hotspawn's SSR payload; excluded from active open slate.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md" target="_blank" rel="noopener">VRS A</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L165" target="_blank" rel="noopener">VRS B</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1053072">
+          <td class="mono"><a href="coverage-all-91.html#match-1053072"><strong>#1053072</strong></a></td>
+          <td><span class="badge badge-c">FL-STALE-TRANSFERSTATE</span></td>
+          <td><strong>train launcher vs roamsfiest</strong> (Svenska CS-Ligan 2026, 2026-06-27 14:10 UTC)</td>
+          <td>Stale June–July 2026 TransferState record retained in Hotspawn's SSR payload; excluded from active open slate.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L262" target="_blank" rel="noopener">VRS A</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L207" target="_blank" rel="noopener">VRS B</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1052357">
+          <td class="mono"><a href="coverage-all-91.html#match-1052357"><strong>#1052357</strong></a></td>
+          <td><span class="badge badge-c">FL-STALE-TRANSFERSTATE</span></td>
+          <td><strong>BIG Academy vs BERG</strong> (DACH CS Masters Season 5, 2026-06-27 15:00 UTC)</td>
+          <td>Stale June–July 2026 TransferState record retained in Hotspawn's SSR payload; excluded from active open slate.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L285" target="_blank" rel="noopener">VRS A</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L190" target="_blank" rel="noopener">VRS B</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1051801">
+          <td class="mono"><a href="coverage-all-91.html#match-1051801"><strong>#1051801</strong></a></td>
+          <td><span class="badge badge-c">FL-UNVERIFIED-TEAM;FL-STALE-TRANSFERSTATE</span></td>
+          <td><strong>Bounty Hunters vs UNO MILLE</strong> (Thunderpick World Championship 2026: South American Series #1, 2026-06-27 16:00 UTC)</td>
+          <td>Stale June–July 2026 TransferState record retained in Hotspawn's SSR payload; excluded from active open slate.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L101" target="_blank" rel="noopener">VRS A</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md" target="_blank" rel="noopener">VRS B</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1052700">
+          <td class="mono"><a href="coverage-all-91.html#match-1052700"><strong>#1052700</strong></a></td>
+          <td><span class="badge badge-c">FL-STALE-TRANSFERSTATE</span></td>
+          <td><strong>GameHunters vs VEXA</strong> (CCT South America 2026 Series #3, 2026-06-27 16:00 UTC)</td>
+          <td>Stale June–July 2026 TransferState record retained in Hotspawn's SSR payload; excluded from active open slate.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L356" target="_blank" rel="noopener">VRS A</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L308" target="_blank" rel="noopener">VRS B</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1051342">
+          <td class="mono"><a href="coverage-all-91.html#match-1051342"><strong>#1051342</strong></a></td>
+          <td><span class="badge badge-c">FL-UNVERIFIED-TEAM;FL-STALE-TRANSFERSTATE</span></td>
+          <td><strong>ex-Tricked vs Acend</strong> (DraculaN Season 7, 2026-06-27 17:00 UTC)</td>
+          <td>Stale June–July 2026 TransferState record retained in Hotspawn's SSR payload; excluded from active open slate.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md" target="_blank" rel="noopener">VRS A</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L68" target="_blank" rel="noopener">VRS B</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1053073">
+          <td class="mono"><a href="coverage-all-91.html#match-1053073"><strong>#1053073</strong></a></td>
+          <td><span class="badge badge-c">FL-UNVERIFIED-TEAM;FL-STALE-TRANSFERSTATE</span></td>
+          <td><strong>roamsfiest vs ReThink</strong> (Svenska CS-Ligan 2026, 2026-06-27 17:00 UTC)</td>
+          <td>Stale June–July 2026 TransferState record retained in Hotspawn's SSR payload; excluded from active open slate.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L207" target="_blank" rel="noopener">VRS A</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md" target="_blank" rel="noopener">VRS B</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1052701">
+          <td class="mono"><a href="coverage-all-91.html#match-1052701"><strong>#1052701</strong></a></td>
+          <td><span class="badge badge-c">FL-STALE-TRANSFERSTATE</span></td>
+          <td><strong>paiN Academy vs Alka</strong> (CCT South America 2026 Series #3, 2026-06-27 19:00 UTC)</td>
+          <td>Stale June–July 2026 TransferState record retained in Hotspawn's SSR payload; excluded from active open slate.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L288" target="_blank" rel="noopener">VRS A</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L168" target="_blank" rel="noopener">VRS B</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1053313">
+          <td class="mono"><a href="coverage-all-91.html#match-1053313"><strong>#1053313</strong></a></td>
+          <td><span class="badge badge-c">FL-STALE-TRANSFERSTATE</span></td>
+          <td><strong>Fake do Biru vs LP</strong> (Thunderpick World Championship 2026: South American Series #1, 2026-06-27 19:00 UTC)</td>
+          <td>Stale June–July 2026 TransferState record retained in Hotspawn's SSR payload; excluded from active open slate.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L215" target="_blank" rel="noopener">VRS A</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L95" target="_blank" rel="noopener">VRS B</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1051803">
+          <td class="mono"><a href="coverage-all-91.html#match-1051803"><strong>#1051803</strong></a></td>
+          <td><span class="badge badge-c">FL-UNVERIFIED-TEAM;FL-STALE-TRANSFERSTATE</span></td>
+          <td><strong>Fluxo vs Keyd</strong> (Thunderpick World Championship 2026: South American Series #1, 2026-06-27 22:00 UTC)</td>
+          <td>Stale June–July 2026 TransferState record retained in Hotspawn's SSR payload; excluded from active open slate.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L60" target="_blank" rel="noopener">VRS A</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md" target="_blank" rel="noopener">VRS B</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1052702">
+          <td class="mono"><a href="coverage-all-91.html#match-1052702"><strong>#1052702</strong></a></td>
+          <td><span class="badge badge-c">FL-STALE-TRANSFERSTATE</span></td>
+          <td><strong>Procyon vs BESTIA Academy</strong> (CCT South America 2026 Series #3, 2026-06-27 22:00 UTC)</td>
+          <td>Stale June–July 2026 TransferState record retained in Hotspawn's SSR payload; excluded from active open slate.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L154" target="_blank" rel="noopener">VRS A</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L220" target="_blank" rel="noopener">VRS B</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1052750">
+          <td class="mono"><a href="coverage-all-91.html#match-1052750"><strong>#1052750</strong></a></td>
+          <td><span class="badge badge-c">FL-STALE-TRANSFERSTATE</span></td>
+          <td><strong>Honvéd vs OlyBet</strong> (European Pro League Series 8 Play-In, 2026-06-28 08:00 UTC)</td>
+          <td>Stale June–July 2026 TransferState record retained in Hotspawn's SSR payload; excluded from active open slate.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L174" target="_blank" rel="noopener">VRS A</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L357" target="_blank" rel="noopener">VRS B</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1052751">
+          <td class="mono"><a href="coverage-all-91.html#match-1052751"><strong>#1052751</strong></a></td>
+          <td><span class="badge badge-c">FL-UNVERIFIED-TEAM;FL-STALE-TRANSFERSTATE</span></td>
+          <td><strong>ex-MANA vs Subtop De France</strong> (European Pro League Series 8 Play-In, 2026-06-28 10:50 UTC)</td>
+          <td>Stale June–July 2026 TransferState record retained in Hotspawn's SSR payload; excluded from active open slate.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md" target="_blank" rel="noopener">VRS A</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L353" target="_blank" rel="noopener">VRS B</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1052185">
+          <td class="mono"><a href="coverage-all-91.html#match-1052185"><strong>#1052185</strong></a></td>
+          <td><span class="badge badge-c">FL-STALE-TRANSFERSTATE</span></td>
+          <td><strong>sAw vs Entropy</strong> (CCT Europe 2026 Challengers #4, 2026-06-28 11:00 UTC)</td>
+          <td>Stale June–July 2026 TransferState record retained in Hotspawn's SSR payload; excluded from active open slate.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L47" target="_blank" rel="noopener">VRS A</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L161" target="_blank" rel="noopener">VRS B</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1053431">
+          <td class="mono"><a href="coverage-all-91.html#match-1053431"><strong>#1053431</strong></a></td>
+          <td><span class="badge badge-c">FL-UNVERIFIED-TEAM;FL-STALE-TRANSFERSTATE</span></td>
+          <td><strong>GAMEHARMONY vs Coalesce</strong> (Urban Riga Open #5, 2026-06-28 11:00 UTC)</td>
+          <td>Stale June–July 2026 TransferState record retained in Hotspawn's SSR payload; excluded from active open slate.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md" target="_blank" rel="noopener">VRS A</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L369" target="_blank" rel="noopener">VRS B</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1053432">
+          <td class="mono"><a href="coverage-all-91.html#match-1053432"><strong>#1053432</strong></a></td>
+          <td><span class="badge badge-c">FL-STALE-TRANSFERSTATE</span></td>
+          <td><strong>Leo vs Aimhaus</strong> (Urban Riga Open #5, 2026-06-28 11:00 UTC)</td>
+          <td>Stale June–July 2026 TransferState record retained in Hotspawn's SSR payload; excluded from active open slate.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L117" target="_blank" rel="noopener">VRS A</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L374" target="_blank" rel="noopener">VRS B</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1053433">
+          <td class="mono"><a href="coverage-all-91.html#match-1053433"><strong>#1053433</strong></a></td>
+          <td><span class="badge badge-c">FL-UNVERIFIED-TEAM;FL-STALE-TRANSFERSTATE</span></td>
+          <td><strong>GAMEHARMONY vs Aimhaus</strong> (Urban Riga Open #5, 2026-06-28 12:00 UTC)</td>
+          <td>Stale June–July 2026 TransferState record retained in Hotspawn's SSR payload; excluded from active open slate.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md" target="_blank" rel="noopener">VRS A</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L374" target="_blank" rel="noopener">VRS B</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1053434">
+          <td class="mono"><a href="coverage-all-91.html#match-1053434"><strong>#1053434</strong></a></td>
+          <td><span class="badge badge-c">FL-STALE-TRANSFERSTATE</span></td>
+          <td><strong>Leo vs Coalesce</strong> (Urban Riga Open #5, 2026-06-28 12:00 UTC)</td>
+          <td>Stale June–July 2026 TransferState record retained in Hotspawn's SSR payload; excluded from active open slate.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L117" target="_blank" rel="noopener">VRS A</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L369" target="_blank" rel="noopener">VRS B</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1052698">
+          <td class="mono"><a href="coverage-all-91.html#match-1052698"><strong>#1052698</strong></a></td>
+          <td><span class="badge badge-c">FL-UNVERIFIED-TEAM;FL-STALE-TRANSFERSTATE</span></td>
+          <td><strong>ex-KRÜ vs MAGICOS</strong> (CCT South America 2026 Series #3, 2026-06-28 13:00 UTC)</td>
+          <td>Stale June–July 2026 TransferState record retained in Hotspawn's SSR payload; excluded from active open slate.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L367" target="_blank" rel="noopener">VRS A</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md" target="_blank" rel="noopener">VRS B</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1053435">
+          <td class="mono"><a href="coverage-all-91.html#match-1053435"><strong>#1053435</strong></a></td>
+          <td><span class="badge badge-c">FL-UNVERIFIED-TEAM;FL-STALE-TRANSFERSTATE</span></td>
+          <td><strong>GAMEHARMONY vs Leo</strong> (Urban Riga Open #5, 2026-06-28 13:00 UTC)</td>
+          <td>Stale June–July 2026 TransferState record retained in Hotspawn's SSR payload; excluded from active open slate.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md" target="_blank" rel="noopener">VRS A</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L117" target="_blank" rel="noopener">VRS B</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1053436">
+          <td class="mono"><a href="coverage-all-91.html#match-1053436"><strong>#1053436</strong></a></td>
+          <td><span class="badge badge-c">FL-STALE-TRANSFERSTATE</span></td>
+          <td><strong>Aimhaus vs Coalesce</strong> (Urban Riga Open #5, 2026-06-28 13:00 UTC)</td>
+          <td>Stale June–July 2026 TransferState record retained in Hotspawn's SSR payload; excluded from active open slate.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L374" target="_blank" rel="noopener">VRS A</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L369" target="_blank" rel="noopener">VRS B</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1051343">
+          <td class="mono"><a href="coverage-all-91.html#match-1051343"><strong>#1051343</strong></a></td>
+          <td><span class="badge badge-c">FL-UNVERIFIED-TEAM;FL-STALE-TRANSFERSTATE</span></td>
+          <td><strong>Sharks vs ex-Tricked</strong> (DraculaN Season 7, 2026-06-28 13:35 UTC)</td>
+          <td>Stale June–July 2026 TransferState record retained in Hotspawn's SSR payload; excluded from active open slate.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md" target="_blank" rel="noopener">VRS A</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md" target="_blank" rel="noopener">VRS B</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1052186">
+          <td class="mono"><a href="coverage-all-91.html#match-1052186"><strong>#1052186</strong></a></td>
+          <td><span class="badge badge-c">FL-STALE-TRANSFERSTATE</span></td>
+          <td><strong>Lilmix vs Subtop De France</strong> (CCT Europe 2026 Challengers #4, 2026-06-28 13:45 UTC)</td>
+          <td>Stale June–July 2026 TransferState record retained in Hotspawn's SSR payload; excluded from active open slate.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L172" target="_blank" rel="noopener">VRS A</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L353" target="_blank" rel="noopener">VRS B</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1052187">
+          <td class="mono"><a href="coverage-all-91.html#match-1052187"><strong>#1052187</strong></a></td>
+          <td><span class="badge badge-c">FL-STALE-TRANSFERSTATE</span></td>
+          <td><strong>BIG Academy vs Endless Journey</strong> (CCT Europe 2026 Challengers #4, 2026-06-28 13:45 UTC)</td>
+          <td>Stale June–July 2026 TransferState record retained in Hotspawn's SSR payload; excluded from active open slate.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L285" target="_blank" rel="noopener">VRS A</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L224" target="_blank" rel="noopener">VRS B</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1052184">
+          <td class="mono"><a href="coverage-all-91.html#match-1052184"><strong>#1052184</strong></a></td>
+          <td><span class="badge badge-c">FL-UNVERIFIED-TEAM;FL-STALE-TRANSFERSTATE</span></td>
+          <td><strong>Atreides vs Donstu</strong> (CCT Europe 2026 Challengers #4, 2026-06-28 14:05 UTC)</td>
+          <td>Stale June–July 2026 TransferState record retained in Hotspawn's SSR payload; excluded from active open slate.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md" target="_blank" rel="noopener">VRS A</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L202" target="_blank" rel="noopener">VRS B</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1052696">
+          <td class="mono"><a href="coverage-all-91.html#match-1052696"><strong>#1052696</strong></a></td>
+          <td><span class="badge badge-c">FL-UNVERIFIED-TEAM;FL-STALE-TRANSFERSTATE</span></td>
+          <td><strong>Yawara vs Blitzkrieg</strong> (CCT South America 2026 Series #3, 2026-06-28 16:00 UTC)</td>
+          <td>Stale June–July 2026 TransferState record retained in Hotspawn's SSR payload; excluded from active open slate.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L152" target="_blank" rel="noopener">VRS A</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md" target="_blank" rel="noopener">VRS B</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1053439">
+          <td class="mono"><a href="coverage-all-91.html#match-1053439"><strong>#1053439</strong></a></td>
+          <td><span class="badge badge-c">FL-STALE-TRANSFERSTATE</span></td>
+          <td><strong>6666 vs ASTRAL</strong> (Urban Riga Open #5, 2026-06-28 16:00 UTC)</td>
+          <td>Stale June–July 2026 TransferState record retained in Hotspawn's SSR payload; excluded from active open slate.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L132" target="_blank" rel="noopener">VRS A</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L96" target="_blank" rel="noopener">VRS B</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1053469">
+          <td class="mono"><a href="coverage-all-91.html#match-1053469"><strong>#1053469</strong></a></td>
+          <td><span class="badge badge-c">FL-UNVERIFIED-TEAM;FL-STALE-TRANSFERSTATE</span></td>
+          <td><strong>BERG vs SINQU REHTI</strong> (Urban Riga Open #5, 2026-06-28 16:00 UTC)</td>
+          <td>Stale June–July 2026 TransferState record retained in Hotspawn's SSR payload; excluded from active open slate.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L190" target="_blank" rel="noopener">VRS A</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md" target="_blank" rel="noopener">VRS B</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1053441">
+          <td class="mono"><a href="coverage-all-91.html#match-1053441"><strong>#1053441</strong></a></td>
+          <td><span class="badge badge-c">FL-STALE-TRANSFERSTATE</span></td>
+          <td><strong>ASTRAL vs BERG</strong> (Urban Riga Open #5, 2026-06-28 17:00 UTC)</td>
+          <td>Stale June–July 2026 TransferState record retained in Hotspawn's SSR payload; excluded from active open slate.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L96" target="_blank" rel="noopener">VRS A</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L190" target="_blank" rel="noopener">VRS B</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1053470">
+          <td class="mono"><a href="coverage-all-91.html#match-1053470"><strong>#1053470</strong></a></td>
+          <td><span class="badge badge-c">FL-UNVERIFIED-TEAM;FL-STALE-TRANSFERSTATE</span></td>
+          <td><strong>6666 vs SINQU REHTI</strong> (Urban Riga Open #5, 2026-06-28 17:00 UTC)</td>
+          <td>Stale June–July 2026 TransferState record retained in Hotspawn's SSR payload; excluded from active open slate.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L132" target="_blank" rel="noopener">VRS A</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md" target="_blank" rel="noopener">VRS B</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1051344">
+          <td class="mono"><a href="coverage-all-91.html#match-1051344"><strong>#1051344</strong></a></td>
+          <td><span class="badge badge-c">FL-STALE-TRANSFERSTATE</span></td>
+          <td><strong>Inner Circle vs Acend</strong> (DraculaN Season 7, 2026-06-28 17:30 UTC)</td>
+          <td>Stale June–July 2026 TransferState record retained in Hotspawn's SSR payload; excluded from active open slate.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L25" target="_blank" rel="noopener">VRS A</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L68" target="_blank" rel="noopener">VRS B</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1051804">
+          <td class="mono"><a href="coverage-all-91.html#match-1051804"><strong>#1051804</strong></a></td>
+          <td><span class="badge badge-c">FL-UNVERIFIED-TEAM;FL-STALE-TRANSFERSTATE</span></td>
+          <td><strong>Fluxo vs UNO MILLE</strong> (Thunderpick World Championship 2026: South American Series #1, 2026-06-28 18:00 UTC)</td>
+          <td>Stale June–July 2026 TransferState record retained in Hotspawn's SSR payload; excluded from active open slate.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L60" target="_blank" rel="noopener">VRS A</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md" target="_blank" rel="noopener">VRS B</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1053442">
+          <td class="mono"><a href="coverage-all-91.html#match-1053442"><strong>#1053442</strong></a></td>
+          <td><span class="badge badge-c">FL-STALE-TRANSFERSTATE</span></td>
+          <td><strong>6666 vs BERG</strong> (Urban Riga Open #5, 2026-06-28 18:00 UTC)</td>
+          <td>Stale June–July 2026 TransferState record retained in Hotspawn's SSR payload; excluded from active open slate.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L132" target="_blank" rel="noopener">VRS A</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L190" target="_blank" rel="noopener">VRS B</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1053471">
+          <td class="mono"><a href="coverage-all-91.html#match-1053471"><strong>#1053471</strong></a></td>
+          <td><span class="badge badge-c">FL-UNVERIFIED-TEAM;FL-STALE-TRANSFERSTATE</span></td>
+          <td><strong>ASTRAL vs SINQU REHTI</strong> (Urban Riga Open #5, 2026-06-28 18:00 UTC)</td>
+          <td>Stale June–July 2026 TransferState record retained in Hotspawn's SSR payload; excluded from active open slate.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L96" target="_blank" rel="noopener">VRS A</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md" target="_blank" rel="noopener">VRS B</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1052697">
+          <td class="mono"><a href="coverage-all-91.html#match-1052697"><strong>#1052697</strong></a></td>
+          <td><span class="badge badge-c">FL-UNVERIFIED-TEAM;FL-STALE-TRANSFERSTATE</span></td>
+          <td><strong>METANOIA Wolves vs Guara</strong> (CCT South America 2026 Series #3, 2026-06-28 19:05 UTC)</td>
+          <td>Stale June–July 2026 TransferState record retained in Hotspawn's SSR payload; excluded from active open slate.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md" target="_blank" rel="noopener">VRS A</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L363" target="_blank" rel="noopener">VRS B</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1053679">
+          <td class="mono"><a href="coverage-all-91.html#match-1053679"><strong>#1053679</strong></a></td>
+          <td><span class="badge badge-c">FL-STALE-TRANSFERSTATE</span></td>
+          <td><strong>ShindeN vs LP</strong> (Thunderpick World Championship 2026: South American Series #1, 2026-06-28 21:15 UTC)</td>
+          <td>Stale June–July 2026 TransferState record retained in Hotspawn's SSR payload; excluded from active open slate.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L79" target="_blank" rel="noopener">VRS A</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L95" target="_blank" rel="noopener">VRS B</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1052695">
+          <td class="mono"><a href="coverage-all-91.html#match-1052695"><strong>#1052695</strong></a></td>
+          <td><span class="badge badge-c">FL-UNVERIFIED-TEAM;FL-STALE-TRANSFERSTATE</span></td>
+          <td><strong>MIBR Academy vs Patins de Ferrari</strong> (CCT South America 2026 Series #3, 2026-06-28 22:00 UTC)</td>
+          <td>Stale June–July 2026 TransferState record retained in Hotspawn's SSR payload; excluded from active open slate.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L268" target="_blank" rel="noopener">VRS A</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md" target="_blank" rel="noopener">VRS B</a>
+            </div>
+          </td>
+        </tr>
+        <tr id="flag-1055478">
+          <td class="mono"><a href="coverage-all-91.html#match-1055478"><strong>#1055478</strong></a></td>
+          <td><span class="badge badge-c">FL-STALE-TRANSFERSTATE</span></td>
+          <td><strong>illwill vs Lavked</strong> (European Pro League Series 8, 2026-07-10 08:00 UTC)</td>
+          <td>Stale June–July 2026 TransferState record retained in Hotspawn's SSR payload; excluded from active open slate.</td>
+          <td>
+            <div class="src-list">
+              <a class="src-pill" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn Source</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L260" target="_blank" rel="noopener">VRS A</a>
+              <a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L148" target="_blank" rel="noopener">VRS B</a>
+            </div>
+          </td>
+        </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    
+  </main>
+  <footer class="footer">
+    Session <code>arena/8944bb84</code> &bull; Branch <code>arena/8944bb84-maltaproj1</code> &bull;
+     Snapshot Verified <code>2026-10-14T01:58:00Z</code> &bull;
+    Data exports: <a href="../data/8944bb84/analysis.csv">analysis.csv</a> |
+    <a href="../data/8944bb84/fixtures.csv">fixtures.csv</a> |
+    <a href="../data/8944bb84/external_lines.csv">external_lines.csv</a> |
+    <a href="../data/8944bb84/own_lines.csv">own_lines.csv</a> |
+    <a href="../data/8944bb84/ratings.csv">ratings.csv</a> |
+    <a href="../data/8944bb84/flags.csv">flags.csv</a> |
+    <a href="../data/8944bb84/coverage.json">coverage.json</a>
+  </footer>
+</body>
+</html>

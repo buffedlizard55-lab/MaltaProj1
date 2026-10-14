@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Official Verification Sources &amp; Provenance Digests — Hotspawn CS2 Pick'em Intelligence (Oct 14, 2026)</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <span class="brand-badge">Oct 14 Live</span>
+        <span>Hotspawn CS2 Pick'em Verification &amp; Lines Board</span>
+      </div>
+      <nav class="nav" aria-label="Category Navigation">
+      <a href="../index.html">Hub Home</a>
+      <a href="index.html">Open Slate (28)</a>
+      <a href="s-tier.html">S-Tier (4)</a>
+      <a href="b-tier.html">B-Tier (8)</a>
+      <a href="c-tier.html">C-Tier (16)</a>
+      <a href="tournaments.html">By Tournament (18)</a>
+      <a href="market-lines.html">External Lines (24/28)</a>
+      <a href="own-lines.html">Originated Lines &amp; Teams</a>
+      <a href="coverage-all-91.html">All 91 CS2 Fixtures</a>
+      <a href="methodology.html">Methodology</a>
+      <a href="sources.html" class="active">Official Sources</a>
+      <a href="flagged.html">Flagged for Review</a>
+      </nav>
+    </div>
+  </header>
+  <main class="container">
+    <section class="hero">
+      <h1>Official Verification Sources &amp; Provenance Digests</h1>
+      <p>Authoritative CS2 rating, match schedule, and external bookmaker sources backing every row on this site.</p>
+      <div class="policy-banner">
+        <strong>Strict Zero-Hotspawn-Crowd &amp; Zero-Inference Guarantee:</strong>
+        Hotspawn crowd pick percentages are <strong>never</strong> used as an indicator of match probability (0.0% weight).
+        Every rating, external bookmaker quote, and originated probability below is linked on every row to official verified sources
+        (<a href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md" target="_blank" rel="noopener">Valve Regional Standings 2026-10-05</a>,
+        <a href="https://www.hltv.org/ranking/teams/2026/october/12" target="_blank" rel="noopener">HLTV World Ranking 2026-10-12</a>,
+        <a href="https://www.hltv.org/matches" target="_blank" rel="noopener">HLTV Match Pages</a>,
+        <a href="https://www.pinnacle.com/en/esports/games/cs2/matchups/" target="_blank" rel="noopener">Direct Pinnacle</a>, and
+        <a href="https://egamersworld.com/counterstrike/matches" target="_blank" rel="noopener">EGamersWorld</a>).
+        Any value that cannot be confirmed from an official source without inference is left <strong>blank</strong> and published on
+        <a href="flagged.html">Flagged for Review</a>.
+      </div>
+    </section>
+    
+    <section class="section-card" id="official-sources-registry">
+      <h2>Official Verification Sources &amp; Provenance Registry</h2>
+      <p class="section-desc">
+        Every external source used to verify fixtures, rosters, rankings, series formats, and betting lines, with SHA-256 digests of local evidence snapshots.
+      </p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Source Tier &amp; Name</th>
+              <th>Role in Pipeline</th>
+              <th>Snapshot / Commit / Timestamp</th>
+              <th>Local Evidence File &amp; SHA-256</th>
+              <th>Official URL</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Valve Regional Standings (VRS)</strong></td>
+              <td>Primary official CS2 team rating &amp; 5-man roster source for originated win probabilities (<code>D = 372.12</code>).</td>
+              <td class="mono">Commit eec4853d7bcf<br>File: standings_global_2026_10_05.md (388 rows)</td>
+              <td class="mono">model/input/vrs/standings_global_2026_10_05.md<br>SHA-256: df96e7fc3cd91a2687ec08ca...</td>
+              <td><a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md" target="_blank" rel="noopener">Valve VRS 2026-10-05</a></td>
+            </tr>
+            <tr>
+              <td><strong>Valve VRS Glicko Model Code</strong></td>
+              <td>Official mathematical specification for <code>expectedWinRate(rA, rB)</code> and converged RD=75.</td>
+              <td class="mono">Commit eec4853d7bcf<br>model/glicko.js &amp; model/fit.js</td>
+              <td class="mono">model/calibrate.py &amp; data/8944bb84/own_lines.csv</td>
+              <td><a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/model/glicko.js" target="_blank" rel="noopener">Valve model/glicko.js</a></td>
+            </tr>
+            <tr>
+              <td><strong>HLTV World Team Ranking</strong></td>
+              <td>Secondary official CS2 ranking (245 ranked teams, points, and 5-man rosters) for roster disambiguation &amp; rating blend.</td>
+              <td class="mono">Published 2026-10-12<br>245 ranked CS2 teams</td>
+              <td class="mono">model/input/hltv_ranking.json<br>SHA-256: 26d23c9db60a582add49c8e1...</td>
+              <td><a class="src-pill" href="https://www.hltv.org/ranking/teams/2026/october/12" target="_blank" rel="noopener">HLTV Ranking 2026-10-12</a></td>
+            </tr>
+            <tr>
+              <td><strong>HLTV Official Match Pages (32 Matches)</strong></td>
+              <td>Confirms official series format (<code>BO1</code> vs <code>BO3</code>), active 5-man lineups, live VRS badges, and final scores for all 32 Week-270 matches.</td>
+              <td class="mono">Verified 2026-10-14T01:50:00Z<br>Match IDs 2399134–2399471</td>
+              <td class="mono">data/8944bb84/fixtures.csv</td>
+              <td><a class="src-pill" href="https://www.hltv.org/matches" target="_blank" rel="noopener">HLTV Matches</a></td>
+            </tr>
+            <tr>
+              <td><strong>Direct Pinnacle Guest API (Arcadia)</strong></td>
+              <td>Primary sharp sportsbook moneyline odds (8 current-week CS2 matches).</td>
+              <td class="mono">Captured 2026-10-13T23:52:00Z<br>Events 1637867148–1638279105</td>
+              <td class="mono">live/data/snapshot.json &amp; data/8944bb84/external_lines.csv</td>
+              <td><a class="src-pill" href="https://www.pinnacle.com/en/esports/games/cs2/matchups/" target="_blank" rel="noopener">Pinnacle CS2 Matchups</a></td>
+            </tr>
+            <tr>
+              <td><strong>EGamersWorld CS2 Bookmaker Feed (bc.game)</strong></td>
+              <td>External bookmaker decimal odds &amp; per-match pages across 26 priced current-week CS2 matches (4 equal 1.80/1.80 placeholders rejected).</td>
+              <td class="mono">Verified 2026-10-14T01:48:00Z<br>30 match pages inspected</td>
+              <td class="mono">data/8944bb84/external_lines.csv</td>
+              <td><a class="src-pill" href="https://egamersworld.com/counterstrike/matches" target="_blank" rel="noopener">EGamersWorld CS2</a></td>
+            </tr>
+            <tr>
+              <td><strong>Hotspawn Pick'em Lobby &amp; Matches</strong></td>
+              <td>Fixture schedule, match IDs, competition tiers/points, and lock times ONLY (crowd pick percentages strictly ignored).</td>
+              <td class="mono">Verified 2026-10-14T01:47:00Z<br>91 total CS2 fixtures (28 open)</td>
+              <td class="mono">live/data/snapshot.json &amp; data/8944bb84/fixtures.csv</td>
+              <td><a class="src-pill" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn CS2 Pick'em</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    
+  </main>
+  <footer class="footer">
+    Session <code>arena/8944bb84</code> &bull; Branch <code>arena/8944bb84-maltaproj1</code> &bull;
+     Snapshot Verified <code>2026-10-14T01:58:00Z</code> &bull;
+    Data exports: <a href="../data/8944bb84/analysis.csv">analysis.csv</a> |
+    <a href="../data/8944bb84/fixtures.csv">fixtures.csv</a> |
+    <a href="../data/8944bb84/external_lines.csv">external_lines.csv</a> |
+    <a href="../data/8944bb84/own_lines.csv">own_lines.csv</a> |
+    <a href="../data/8944bb84/ratings.csv">ratings.csv</a> |
+    <a href="../data/8944bb84/flags.csv">flags.csv</a> |
+    <a href="../data/8944bb84/coverage.json">coverage.json</a>
+  </footer>
+</body>
+</html>

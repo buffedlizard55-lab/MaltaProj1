@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Methodology — Originated CS2 Lines, De-Vigging &amp; Scheduled Refresh — Hotspawn CS2 Pick'em Intelligence (Oct 14, 2026)</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <span class="brand-badge">Oct 14 Live</span>
+        <span>Hotspawn CS2 Pick'em Verification &amp; Lines Board</span>
+      </div>
+      <nav class="nav" aria-label="Category Navigation">
+      <a href="../index.html">Hub Home</a>
+      <a href="index.html">Open Slate (28)</a>
+      <a href="s-tier.html">S-Tier (4)</a>
+      <a href="b-tier.html">B-Tier (8)</a>
+      <a href="c-tier.html">C-Tier (16)</a>
+      <a href="tournaments.html">By Tournament (18)</a>
+      <a href="market-lines.html">External Lines (24/28)</a>
+      <a href="own-lines.html">Originated Lines &amp; Teams</a>
+      <a href="coverage-all-91.html">All 91 CS2 Fixtures</a>
+      <a href="methodology.html" class="active">Methodology</a>
+      <a href="sources.html">Official Sources</a>
+      <a href="flagged.html">Flagged for Review</a>
+      </nav>
+    </div>
+  </header>
+  <main class="container">
+    <section class="hero">
+      <h1>Methodology — Originated CS2 Lines, De-Vigging &amp; Scheduled Refresh</h1>
+      <p>Complete mathematical specification and automated update pipeline for Session arena/8944bb84.</p>
+      <div class="policy-banner">
+        <strong>Strict Zero-Hotspawn-Crowd &amp; Zero-Inference Guarantee:</strong>
+        Hotspawn crowd pick percentages are <strong>never</strong> used as an indicator of match probability (0.0% weight).
+        Every rating, external bookmaker quote, and originated probability below is linked on every row to official verified sources
+        (<a href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md" target="_blank" rel="noopener">Valve Regional Standings 2026-10-05</a>,
+        <a href="https://www.hltv.org/ranking/teams/2026/october/12" target="_blank" rel="noopener">HLTV World Ranking 2026-10-12</a>,
+        <a href="https://www.hltv.org/matches" target="_blank" rel="noopener">HLTV Match Pages</a>,
+        <a href="https://www.pinnacle.com/en/esports/games/cs2/matchups/" target="_blank" rel="noopener">Direct Pinnacle</a>, and
+        <a href="https://egamersworld.com/counterstrike/matches" target="_blank" rel="noopener">EGamersWorld</a>).
+        Any value that cannot be confirmed from an official source without inference is left <strong>blank</strong> and published on
+        <a href="flagged.html">Flagged for Review</a>.
+      </div>
+    </section>
+    
+    <section class="section-card" id="model-equations">
+      <h2>1. Originated Official CS2 Rating Model &amp; De-Vigging Equations</h2>
+      <p class="section-desc">
+        Every formula used in <code>scripts/8944bb84_build.py</code> is deterministic, auditable, and anchored strictly to official CS2 data.
+      </p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Component</th>
+              <th>Formula / Rule</th>
+              <th>Parameters &amp; Calibration</th>
+              <th>Official Reference Link</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>1. Valve VRS Glicko Win Probability</strong></td>
+              <td class="mono">P_vrs(A) = 1 / (1 + 10^((VRS_B - VRS_A) / 372.12))</td>
+              <td>Calibrated directly against Valve's official <code>expectedWinRate(rA, rB)</code> in <code>model/glicko.js</code> and <code>model/fit.js</code> at converged RD=75 (<code>1 VRS point = 1.0749 Glicko rating points</code>, <code>R^2 = 0.999993</code>).</td>
+              <td><a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/model/glicko.js" target="_blank" rel="noopener">Valve model/glicko.js</a></td>
+            </tr>
+            <tr>
+              <td><strong>2. HLTV World Ranking Component</strong></td>
+              <td class="mono">Δ = 120 * log10((Pts_A + 3)/(Pts_B + 3)) + 1.2 * (Rank_B - Rank_A)<br>P_hltv(A) = 1 / (1 + 10^(-Δ / 400))</td>
+              <td>Applied only when both teams are ranked in HLTV's official <code>2026-10-12</code> top-245 world ranking. Captures recent tournament form and rank ordinal separation.</td>
+              <td><a class="src-pill" href="https://www.hltv.org/ranking/teams/2026/october/12" target="_blank" rel="noopener">HLTV Ranking 2026-10-12</a></td>
+            </tr>
+            <tr>
+              <td><strong>3. Originated Official Rating Line (Own P%)</strong></td>
+              <td class="mono">P_own(A) = 0.80 * P_vrs(A) + 0.20 * P_hltv(A) (both ranked)<br>P_own(A) = P_vrs(A) (1 team outside HLTV top 245)</td>
+              <td>Left strictly <strong>BLANK</strong> if either team lacks a verified <code>2026-10-05</code> Valve VRS standing without roster inference (e.g., <code>#1079624 FORZE Reload vs LFO 10</code>).</td>
+              <td><a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md" target="_blank" rel="noopener">Valve VRS 2026-10-05</a></td>
+            </tr>
+            <tr>
+              <td><strong>4. External Bookmaker Proportional De-Vigging</strong></td>
+              <td class="mono">q_A = 1/d_A, q_B = 1/d_B<br>Overround = (q_A + q_B - 1) * 100%<br>P_mkt(A) = q_A / (q_A + q_B)</td>
+              <td>Applied to Direct Pinnacle Straight Moneyline odds (primary) and EGamersWorld <code>bc.game</code> decimal odds (secondary/primary). Equal <code>1.80 / 1.80</code> placeholders are rejected and left blank.</td>
+              <td><a class="src-pill" href="https://www.pinnacle.com/en/esports/games/cs2/matchups/" target="_blank" rel="noopener">Pinnacle CS2 Matchups</a></td>
+            </tr>
+            <tr>
+              <td><strong>5. Combined Consensus Win Probability</strong></td>
+              <td class="mono">P_cons(A) = 0.50 * P_own(A) + 0.50 * P_mkt(A) (when both exist)<br>P_cons(A) = P_own(A) (when market is placeholder)</td>
+              <td>Combines independent official CS2 rating signal with de-vigged sharp bookmaker price. Confidence tiers: <code>OBVIOUS LOCK (&ge;70%)</code>, <code>STRONG PICK (60–69%)</code>, <code>SOLID LEAN (55–59%)</code>, <code>CLOSE TOSS-UP (&lt;55%)</code>.</td>
+              <td><a class="src-pill" href="https://www.hltv.org/matches" target="_blank" rel="noopener">HLTV Matches Schedule</a></td>
+            </tr>
+            <tr>
+              <td><strong>6. Hotspawn Crowd Pick Exclusion</strong></td>
+              <td class="mono">Weight(Hotspawn Crowd Share) = 0.0%</td>
+              <td>Hotspawn crowd pick fields are stripped on ingestion and never used in any probability or pick calculation.</td>
+              <td><a class="src-pill" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn CS2 Pick'em</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section-card" id="automation-schedule">
+      <h2>2. Automated Regular Update Architecture</h2>
+      <p class="section-desc">
+        How this repository regularly checks Hotspawn's listed matches, Valve VRS, and external bookmakers for updates.
+      </p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Workflow / Script</th>
+              <th>Schedule &amp; Trigger</th>
+              <th>What It Checks &amp; Updates</th>
+              <th>Official Source Link</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="mono">.github/workflows/oct14-8944bb84.yml<br>scripts/8944bb84_build.py --live-check</td>
+              <td>Every 3 hours (<code>23 */3 * * *</code>) + <code>workflow_dispatch</code></td>
+              <td>Checks Valve's official VRS repository for new <code>standings_global_2026_*.md</code> commits, rebuilds <code>data/8944bb84/*</code> and <code>oct14/*</code>, runs unit &amp; link/DOM assurance tests, and commits updates.</td>
+              <td><a class="src-pill" href="https://github.com/ValveSoftware/counter-strike_regional_standings/tree/main/live/2026" target="_blank" rel="noopener">Valve VRS Repo</a></td>
+            </tr>
+            <tr>
+              <td class="mono">.github/workflows/live-459ff624.yml<br>live/collect.py</td>
+              <td>Every 3 hours (<code>17 */3 * * *</code>) + <code>workflow_dispatch</code></td>
+              <td>Fetches live Hotspawn Angular <code>TransferState</code> across <code>/lobby</code> and <code>/cs2-pickems</code>, Direct Pinnacle guest API quotes, and HLTV rankings into <code>live/data/snapshot.json</code>.</td>
+              <td><a class="src-pill" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn CS2 Lobby</a></td>
+            </tr>
+            <tr>
+              <td class="mono">.github/workflows/slate-180a42a0.yml<br>slate/collect.py</td>
+              <td>Every 6 hours (<code>17 */6 * * *</code>) + <code>workflow_dispatch</code></td>
+              <td>Refreshes multi-page Hotspawn slate, Pinnacle markets, and provenance digests.</td>
+              <td><a class="src-pill" href="https://play.hotspawn.com/lobby" target="_blank" rel="noopener">Hotspawn Main Lobby</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    
+  </main>
+  <footer class="footer">
+    Session <code>arena/8944bb84</code> &bull; Branch <code>arena/8944bb84-maltaproj1</code> &bull;
+     Snapshot Verified <code>2026-10-14T01:58:00Z</code> &bull;
+    Data exports: <a href="../data/8944bb84/analysis.csv">analysis.csv</a> |
+    <a href="../data/8944bb84/fixtures.csv">fixtures.csv</a> |
+    <a href="../data/8944bb84/external_lines.csv">external_lines.csv</a> |
+    <a href="../data/8944bb84/own_lines.csv">own_lines.csv</a> |
+    <a href="../data/8944bb84/ratings.csv">ratings.csv</a> |
+    <a href="../data/8944bb84/flags.csv">flags.csv</a> |
+    <a href="../data/8944bb84/coverage.json">coverage.json</a>
+  </footer>
+</body>
+</html>
