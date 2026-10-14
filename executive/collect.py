@@ -1096,6 +1096,17 @@ def collect_hltv_teams(hotspawn: dict, vrs: dict, ranking: dict, hltv_matches: d
                     "the board always prints Hotspawn's own spelling."}
 
 
+def _workflow_cron(path: Path | None = None) -> str | None:
+    """Read the cron expression straight out of this board's workflow file (no guessing)."""
+    path = path or (ROOT_REPO / ".github" / "workflows" / "executive-5545dbb8.yml")
+    try:
+        text = path.read_text(encoding="utf-8")
+    except OSError:
+        return None
+    match = re.search(r'schedule:\s*\n(?:\s*#[^\n]*\n)*\s*-\s*cron:\s*["\']([^"\']+)["\']', text)
+    return match.group(1) if match else None
+
+
 # ------------------------------------------------------------------ main
 def main() -> int:
     parser = argparse.ArgumentParser(description="Collect executive-board inputs")
@@ -1133,6 +1144,27 @@ def main() -> int:
         secondary["quotes"] = list(secondary.get("quotes") or []) + list(polymarket["quotes"])
         secondary["mode"] = f"{secondary.get('mode', 'unknown')}+polymarket"
 
+    # Low-tier matches (CCT Play-In, Elisa BreakOut, qualifiers) are the ones most often unpriced.  The
+    # repository's own hourly secondary feed (bo3.gg-relayed bookmaker odds + Polymarket, joined to a
+    # Hotspawn fixture by team pair and kickoff) is merged in as a further listing, keeping its own
+    # capture minute.  See executive/feedline.py for the rules; nothing here writes into feeds/.
+    import feedline
+    feed = feedline.read_quotes()
+    if feed.get("quotes"):
+        secondary = dict(secondary)
+        secondary["quotes"] = list(secondary.get("quotes") or []) + list(feed["quotes"])
+        secondary["mode"] = f"{secondary.get('mode', 'unknown')}+feed"
+        secondary["feed"] = {k: v for k, v in feed.items() if k != "quotes"}
+        prov(str(feedline.FEED_CSV), status=200 if feed["status"] == "ok" else 0,
+             mode="repo_capture", note=f"secondary feed {feed['status']}: "
+                                       f"{feed['used']} of {feed['rows']} rows usable, "
+                                       f"captured {feed.get('captured_utc')}")
+    else:
+        secondary = dict(secondary)
+        secondary["feed"] = {k: v for k, v in feed.items() if k != "quotes"}
+        prov(str(feedline.FEED_CSV), status=0, mode="skipped",
+             note=f"secondary feed not used ({feed['status']}); no price invented in its place")
+
     hltv_teams = collect_hltv_teams(hotspawn, vrs, hltv_ranking, hltv_matches, offline=args.offline)
 
     # HLTV match links for the fixtures on the board.  Only the teams that actually play are read,
@@ -1156,6 +1188,23 @@ def main() -> int:
     hltv_schedule = collect_hltv_team_schedule(schedule_urls, offline=args.offline)
 
     from common import write_json
+    import os
+    # Cadence record — read by build.py and published on executive/cadence.html so a reader can see how
+    # old this snapshot is and which run produced it, without leaving the site.
+    write_json(DATA / "cadence.json", {
+        "generated_utc": now_iso(),
+        "event": os.environ.get("GITHUB_EVENT_NAME") or "local",
+        "run_id": os.environ.get("GITHUB_RUN_ID") or "",
+        "run_attempt": os.environ.get("GITHUB_RUN_ATTEMPT") or "",
+        "sha": os.environ.get("GITHUB_SHA") or "",
+        "workflow": ".github/workflows/executive-5545dbb8.yml",
+        "schedule_cron": _workflow_cron() or "",
+        "cadence_hours": 4,
+        "cadence_window_hours": [4, 8],
+        "note": ("Refreshed on the cron above; GitHub treats scheduled runs as best-effort under load, so the "
+                 "workflow also runs on every push to main that touches the collector, the builder or the data. "
+                 "If this file is older than 8 h the site says so rather than presenting stale numbers as live."),
+    })
     write_json(DATA / "hltv_teams.json", hltv_teams)
     write_json(DATA / "hltv_schedule.json", hltv_schedule)
     write_json(DATA / "hotspawn_pages.json", hotspawn)
@@ -1184,7 +1233,10 @@ def main() -> int:
                           "link_rows": sum(len(p.get("matches") or [])
                                            for p in (hltv_schedule.get("teams") or {}).values())},
         "pinnacle": {"mode": pinnacle.get("mode"), "quotes": len(pinnacle.get("quotes", []))},
-        "secondary": {"mode": secondary.get("mode"), "quotes": len(secondary.get("quotes", []))},
+        "secondary": {"mode": secondary.get("mode"), "quotes": len(secondary.get("quotes", [])),
+                      "feed": (secondary.get("feed") or {}).get("status"),
+                      "feed_quotes": (secondary.get("feed") or {}).get("used"),
+                      "feed_captured_utc": (secondary.get("feed") or {}).get("captured_utc")},
         "polymarket": {"mode": polymarket.get("mode"), "quotes": len(polymarket.get("quotes", [])),
                        "events_scanned": polymarket.get("events_scanned")},
     }, indent=1))

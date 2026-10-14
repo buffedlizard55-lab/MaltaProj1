@@ -38,7 +38,8 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from common import (  # noqa: E402
-    DATA, EXEC, EGW_MATCHES, HLTV_MATCHES, HLTV_RANKING, HOTSPAWN_CS2, VRS_GLICKO_FILE as HLTV_GLICKO_FILE,
+    DATA, EXEC, EGW_MATCHES, HLTV_MATCHES, HLTV_RANKING, HOTSPAWN_CS2, HOTSPAWN_LOBBY,
+    VRS_GLICKO_FILE as HLTV_GLICKO_FILE,
     PINNACLE_CS2_PAGE, PROB_SCALE_POINTS, VRS_REPO, devig_pair, epoch_ms_to_iso, fair_odds,
     iso, logit_prob, norm, odds_text, parse_iso, pct, read_csv, read_json, roster_key,
     official_url_safe, write_csv, write_json,
@@ -50,14 +51,19 @@ MARKET_MAX_AGE_HOURS = 12  # a price older than this may not drive the headline 
 RATINGS_WEEK_DAYS = 7      # the official standings file is published weekly
 KICKOFF_TOLERANCE_MIN = 15
 
+# Own-line origination for every fixture + the research tier for matches no site prices (session 1b6ae823).
+import ownlines  # noqa: E402
+
 TIER_LABELS = {
     1: "Market · primary book",
     2: "Market · secondary listing",
     3: "Model · official ratings",
     4: "Model · official bound (provisional)",
+    5: "Research · official ranking line",
     0: "No sourced basis",
 }
-TIER_SHORT = {1: "T1 market", 2: "T2 market", 3: "T3 model", 4: "T4 provisional", 0: "no basis"}
+TIER_SHORT = {1: "T1 market", 2: "T2 market", 3: "T3 model", 4: "T4 provisional",
+              5: "T5 research line", 0: "no basis"}
 
 FLAG_DEFS = {
     "FL-NO-MARKET": "No outside bookmaker line for this fixture was readable at capture time.",
@@ -84,6 +90,11 @@ FLAG_DEFS = {
     "FL-DUPLICATE-VRS-NAME": "Several standings entries share this name; the roster evidence selects one, and that evidence is linked on the row.",
     "FL-HLTV-IDENTITY-AMBIGUOUS": "HLTV's team pages list more than one match for this team pair in the same event, so no HLTV link is published.",
     "FL-PREDICTION-MARKET-BASIS": "No bookmaker line exists for this fixture; the headline probability comes from a prediction market (Polymarket), flagged so it is never read as a bookmaker price.",
+    "FL-FORMAT-FROM-LISTING": "Hotspawn states no series format; the length shown is the one printed on the outside listing named on the row (linked), not an assumption.",
+    "FL-RESEARCH-BASIS": "No outside price and no official VRS point pair: the published probability is this board's own ranking line, flagged as uncalibrated and never a price.",
+    "FL-RANK-FLOOR-BOUND": "A team is absent from the official HLTV world ranking, so one place below the last ranked team is used as a conservative bound.",
+    "FL-NO-HLTV-RANKING": "The official HLTV world ranking could not be read this run, so no ranking line was originated.",
+    "FL-OWN-LINE-MARKET-SPLIT": "Our originated ranking line and the outside price disagree by more than 15 points on this row; both are published.",
 }
 
 
@@ -123,6 +134,7 @@ def load_inputs() -> dict:
         "aliases": read_json(EXEC / "aliases.json", {}) or {},
         "previous": read_json(DATA / "analysis.json", {}) or {},
         "provenance": read_json(DATA / "provenance.json", {}) or {},
+        "cadence": read_json(DATA / "cadence.json", {}) or {},
     }
 
 
@@ -526,6 +538,23 @@ def analyse(fixture: dict, ratings: dict, market: list[dict], secondary: list[di
     else:
         flags.append("FL-NO-MARKET")
 
+    # Hotspawn publishes no series length.  Where the outside listing that prices this fixture states
+    # one, that stated length is used (and linked) instead of leaving the row blank: the format changes
+    # what a per-map rating line means for the series.  Nothing is guessed where no listing states it.
+    if not series_format and used:
+        listing_bo = ownlines.format_to_best_of(used.get("best_of"))
+        listing_url = used.get("source_url") or used.get("book_url") or ""
+        if listing_bo and listing_url:
+            series_format = f"BO{listing_bo}"
+            series_format_source = listing_url
+            flags = [f for f in flags if f != "FL-FORMAT-UNKNOWN"]
+            flags.append("FL-FORMAT-FROM-LISTING")
+            basis_detail = (basis_detail + " " if basis_detail else "") + (
+                f"Series length {series_format} as stated by the pricing listing "
+                f"({used.get('source_name', 'listing')}); Hotspawn states none.")
+        else:
+            flags.append("FL-FORMAT-UNKNOWN")
+
     have_vrs_a = bool(a["vrs_points"])
     have_vrs_b = bool(b["vrs_points"])
     ranked_floor = 0
@@ -637,6 +666,7 @@ def analyse(fixture: dict, ratings: dict, market: list[dict], secondary: list[di
         "fair_odds_b": odds_text(fair_odds(prob_b)) if prob_b else "",
         "pick": pick, "pick_prob_pct": pct(pick_prob) if pick_prob is not None else "", "confidence": confidence,
         "rating_a": a, "rating_b": b,
+        "_market_prob_a": market_prob_a,
         "flags": sorted(set(flags)),
     }
 
@@ -646,7 +676,8 @@ def page(title: str, body: str, meta: dict, active: str = "") -> str:
     nav = [
         ("index.html", "Summary"), ("picks.html", "All picks"), ("lines.html", "Betting lines"),
         ("own-lines.html", "Our lines"), ("tournaments.html", "Tournaments"),
-        ("coverage.html", "Coverage"), ("verification.html", "Verification"),
+        ("coverage.html", "Coverage"), ("cadence.html", "Refresh"),
+        ("verification.html", "Verification"),
         ("sources.html", "Sources"), ("methodology.html", "Method"), ("flagged.html", "Flagged"),
     ]
     links = "".join(
@@ -658,8 +689,8 @@ def page(title: str, body: str, meta: dict, active: str = "") -> str:
             '<div class="banner" role="status"><strong>Snapshot is '
             f'{esc(meta.get("snapshot_age_text", "").replace("Snapshot is ", ""))}.</strong> '
             'Prices shown are the last readable capture — each row prints its own read time. '
-            'The hourly refresh replaces this snapshot with a live read; nothing here is presented as a '
-            'current price until it is.</div>')
+            'The scheduled refresh replaces this snapshot with a live read; nothing here is presented '
+            'as a current price until it is.</div>')
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -730,6 +761,15 @@ def pick_card(row: dict, now: datetime) -> str:
                            ([(row["hltv_match_url"], "HLTV match")] if row.get("hltv_match_url") else []))
     hltv_note = (f'<p class="pick__note">HLTV: {esc(row["hltv_schedule_note"])}</p>'
                  if row.get("hltv_schedule_note") else "")
+    own = row.get("own") or {}
+    if own.get("p_series") is not None:
+        own_a = f"{own['p_series'] * 100.0:.1f}%"
+        own_b = f"{(1.0 - own['p_series']) * 100.0:.1f}%"
+        own_bound = ", official bound" if (own.get("bound_a") or own.get("bound_b")) else ""
+        own_text = (f'{esc(own_a)} / {esc(own_b)} <span class="muted">({esc(own.get("method") or "own line")}'
+                    f'{esc(own_bound)})</span>')
+    else:
+        own_text = '<span class="muted">not originated — see the flags on this row</span>'
     return f"""<article class="pick" data-tier="{row['basis_tier']}" data-status="{esc(row['status'])}"
   data-team="{esc(row['team_a'].lower())} {esc(row['team_b'].lower())}"
   data-search="{esc((row['team_a'] + ' ' + row['team_b'] + ' ' + row['tournament']).lower())}">
@@ -751,7 +791,8 @@ def pick_card(row: dict, now: datetime) -> str:
   <dl class="pick__meta">
     <div><dt>Locks</dt><dd>{esc(row['lock_utc'])} <span class="muted">({esc(when)})</span></dd></div>
     <div><dt>Tier / value</dt><dd>{esc(row['tier'] or '—')} · {esc(row['offered_points'] or '—')} pts</dd></div>
-    <div><dt>Format</dt><dd>{esc(row['series_format'] or '—')}</dd></div>
+    <div><dt>Format</dt><dd>{esc(row['series_format'] or '—')}{(' ' + link(row['series_format_source'], 'stated by')) if row.get('series_format_source') else ''}</dd></div>
+    <div><dt>Our own line</dt><dd>{own_text}</dd></div>
     <div><dt>Confidence</dt><dd>{esc(row['confidence'] or '—')}</dd></div>
   </dl>
   <p class="pick__basis">{esc(row['basis_detail'])}</p>
@@ -783,7 +824,9 @@ def render_index(rows: list[dict], meta: dict, coverage: dict) -> str:
         ("picks.html", "All picks & probabilities", f"{len(with_pick)} of {len(open_rows)} open fixtures"),
         ("picks.html#today", "Picks locking soon", "next 24 hours, mobile cards"),
         ("lines.html", "Betting lines from outside books", f"{len(market_rows)} fixtures priced"),
-        ("own-lines.html", "Our own lines", f"{len(model_rows)} fixtures from official ratings"),
+        ("own-lines.html", "Our own line for every fixture",
+         f"{coverage.get('open_own_line', 0)} of {len(open_rows)} open fixtures carry it"),
+        ("cadence.html", "How current is this?", f"refreshed every {4} h · read times per input"),
         ("coverage.html", "Hotspawn coverage check", f"{coverage['total_fixtures']} fixtures in the payload"),
         ("flagged.html", "Flagged for review", f"{coverage['flagged_rows']} rows to check"),
     ]
@@ -812,7 +855,8 @@ def render_index(rows: list[dict], meta: dict, coverage: dict) -> str:
     {''.join(f'<a class="button" href="{href}"><strong>{label}</strong><span>{esc(sub)}</span></a>' for href, label, sub in board_buttons)}
   </div>
   <p class="muted small">Bookmark <code>…/executive/</code> — this page and the picks table are rebuilt
-  automatically every hour from the Hotspawn board and the outside sources.</p>
+  automatically every four hours from the Hotspawn board and the outside sources, and every published
+  number keeps the minute it was read. <a href="cadence.html">Refresh &amp; read times</a>.</p>
 </section>
 
 <section>
@@ -825,6 +869,8 @@ def render_index(rows: list[dict], meta: dict, coverage: dict) -> str:
     <div class="stat"><b>{len(model_rows)}</b><span>from official ratings</span></div>
     <div class="stat"><b>{len(provisional)}</b><span>provisional (bound-based)</span></div>
     <div class="stat"><b>{len(no_pick)}</b><span>no sourced basis (flagged)</span></div>
+    <div class="stat"><b>{coverage.get('open_own_line', 0)}</b><span>with our own originated line</span></div>
+    <div class="stat"><b>{coverage.get('fixtures_with_stated_format', 0)}</b><span>with a stated series length</span></div>
     <div class="stat"><b>{coverage['stale_fixtures']}</b><span>stale fixtures kept by Hotspawn</span></div>
   </div>
 </section>
@@ -860,8 +906,18 @@ def render_index(rows: list[dict], meta: dict, coverage: dict) -> str:
     <li><strong>Model · official bound (provisional)</strong> — the fallback for low-tier fixtures no book
       prices: when one team is not in the official standings at all, the lowest published value in that
       same official file is used as that team's ceiling. Always flagged.</li>
+    <li><strong>Research · official ranking line</strong> — the tier for matches nothing else can resolve
+      (low-tier CCT / Elisa / qualifier fixtures). Both teams' positions in the official HLTV world ranking
+      go through a logistic whose scale is <strong>fitted on this board's own priced fixtures</strong>
+      ({esc((meta.get('own_line') or {}).get('calibration', {}).get('reason', ''))}), then converted to the
+      stated series length. Flagged
+      <code>FL-RESEARCH-BASIS</code>, always low confidence, and never printed over a readable price.</li>
     <li><strong>No sourced basis</strong> — the pick stays blank and the row is flagged. Nothing is invented.</li>
   </ol>
+  <p class="muted small">Secondary listings also include this repository's own hourly market feed
+  (<a href="../feeds/index.html">bo3.gg-relayed bookmaker prices and Polymarket match markets</a>), consumed
+  read-only with its own capture minute — that is where most C-tier fixtures get a price. A quote whose
+  kickoff does not agree with the fixture, or whose price is an equal-pair placeholder, is dropped.</p>
   <p class="muted small">Hotspawn's own crowd percentages are never read, stored or used — Hotspawn supplies
   fixture identity, tier, points and UTC lock/start times only.
   <a href="methodology.html">Full method and limits</a>.</p>
@@ -987,34 +1043,77 @@ def render_lines(rows: list[dict], inputs: dict, meta: dict) -> str:
 """
 
 
-def render_own_lines(rows: list[dict], meta: dict) -> str:
+def render_own_lines(rows: list[dict], meta: dict, own_meta: dict | None = None) -> str:
+    cal = (own_meta or {}).get("calibration") or {}
     body = []
     for row in sorted(rows, key=lambda r: (r["status"], r["lock_utc"] or "9999")):
         a, b = row["rating_a"], row["rating_b"]
+        own = row.get("own") or {}
+        if own.get("p_series") is not None:
+            own_cell = (f'<strong>{own["p_series"] * 100.0:.1f}% / {(1 - own["p_series"]) * 100.0:.1f}%</strong>'
+                        f'<span class="cell-sub">{esc(own.get("method") or "")} · '
+                        f'{esc(row["series_format"] or "length unstated")} · scale {own.get("scale"):g}</span>'
+                        + ('<span class="cell-sub">one side bounded (flagged)</span>'
+                           if (own.get("bound_a") or own.get("bound_b")) else ""))
+        else:
+            own_cell = '<span class="muted">not originated</span>'
+        vrs_cell = (f'{own["vrs_p_series"] * 100.0:.1f}%' if own.get("vrs_p_series") is not None
+                    else '<span class="muted">no point pair</span>')
+        gap = ""
+        if own.get("p_series") is not None and row.get("market_prob_a_pct"):
+            delta = float(row["market_prob_a_pct"]) - own["p_series"] * 100.0
+            gap = f'{delta:+.1f} pp'
         body.append([
-            f'{esc(row["team_a"])} <span class="muted">vs</span> {esc(row["team_b"])}',
-            f'{esc(a["vrs_name"] or "—")} {esc(a["vrs_rank"] or "")} <span class="muted">{esc(a["vrs_points"] or "not listed")}</span>',
-            f'{esc(b["vrs_name"] or "—")} {esc(b["vrs_rank"] or "")} <span class="muted">{esc(b["vrs_points"] or "not listed")}</span>',
-            esc(row["model_prob_a_pct"] or "—") + "% / " + esc(row["model_prob_b_pct"] or "—") + "%",
-            esc(row["basis_tier"]) if row["basis_tier"] in (3, 4) else '<span class="muted">market basis used</span>',
+            f'{esc(row["team_a"])} <span class="muted">vs</span> {esc(row["team_b"])}'
+            f'<span class="cell-sub">{esc(row["tournament"])}</span>',
+            f'{esc(a["vrs_name"] or "—")} {esc(a["vrs_rank"] or "")} <span class="muted">{esc(a["vrs_points"] or "not listed")}</span>'
+            f'<span class="cell-sub">HLTV rank {esc(a["hltv_rank"] or "—")}</span>',
+            f'{esc(b["vrs_name"] or "—")} {esc(b["vrs_rank"] or "")} <span class="muted">{esc(b["vrs_points"] or "not listed")}</span>'
+            f'<span class="cell-sub">HLTV rank {esc(b["hltv_rank"] or "—")}</span>',
+            own_cell,
+            vrs_cell,
+            gap or '<span class="muted">no price</span>',
+            esc(row["basis_tier"]),
             source_links([(a["vrs_url"], "A standings"), (a["vrs_details_url"], "A detail"),
-                          (b["vrs_url"], "B standings"), (b["vrs_details_url"], "B detail")]),
+                          (b["vrs_url"], "B standings"), (b["vrs_details_url"], "B detail"),
+                          *[(u, "HLTV rank") for u, _ in (own.get("sources") or [])][:1],
+                          *(row["basis_sources"][:1] if row["market_prob_a_pct"] else [])]),
         ])
+    priced = len([r for r in rows if (r.get("own") or {}).get("p_series") is not None])
+    scale_note = (f"fitted on {cal.get('n')} fixtures that an outside market prices "
+                  f"(mean absolute error {cal.get('mae_pp')} pp against that price)"
+                  if cal.get("fitted") else
+                  f"documented default ({cal.get('reason', 'too few priced fixtures to fit')})")
     return f"""
 <section class="hero hero--tight">
   <p class="eyebrow">Our own lines</p>
-  <h1>Originated from Valve's official standings</h1>
-  <p class="lede">For fixtures no bookmaker prices, we originate the line ourselves from the official
-  Valve Regional Standings points of both teams, through the points-to-probability relation Valve publish
-  in <a href="{esc(HLTV_GLICKO_FILE)}" target="_blank" rel="noopener noreferrer">model/glicko.js</a>:
-  <code>p = 1/(1+10^((Rb−Ra)/−400))</code>. Rows where a team is not listed at all use the published
-  floor of the same official file as a conservative bound and are always flagged.</p>
+  <h1>An originated line for every fixture</h1>
+  <p class="lede">Two independent, official inputs, printed on every row — {priced} of {len(rows)}
+  fixtures carry a line from them right now. Where an outside book prices the match the market number
+  stays the headline and this line is the cross-check; where nothing prices it (low-tier CCT, Elisa,
+  qualifier matches) the same line becomes the basis and the row is badged
+  {badge(TIER_SHORT[5], 'tier-5')}.</p>
+  <ul class="lede plain">
+    <li><strong>Valve Regional Standings points</strong> — the official points file, through the relation
+      Valve publish in <a href="{esc(HLTV_GLICKO_FILE)}" target="_blank" rel="noopener noreferrer">model/glicko.js</a>:
+      <code>p = 1/(1+10^((Rb−Ra)/400))</code>.</li>
+    <li><strong>HLTV world ranking</strong> — rank numbers only, from the official ranking page, through
+      <code>p = 1/(1+10^((rank_b−rank_a)/{esc(cal.get('scale'))}))</code> with a scale of
+      {esc(scale_note)}. This is what reaches the smaller rosters VRS does not list.</li>
+    <li><strong>Series length</strong> — a per-map probability is converted to the stated best-of with the
+      exact closed form (BO3 = 3p²−2p³, BO5 = 10p³−15p⁴+6p⁵). If no source states a length, the
+      per-map value is published as-is and the row keeps its format flag.</li>
+    <li><strong>Absent from an official list</strong> — the team is bounded one place below the last ranked
+      team in that same list and the row is flagged; it is never given an invented rating.</li>
+  </ul>
 </section>
 <section>
   <h2>Rating inputs and originated probabilities</h2>
-  {table(["Match", "Team A rating", "Team B rating", "Our probability A / B", "Basis tier", "Sources"], body)}
-  <p class="muted small">Our line is an information value, not a price you can take. It is not calibrated to
-  observed outcomes in this project — treat it as low confidence.</p>
+  {table(["Match", "Team A rating", "Team B rating", "Our line A / B", "VRS point line (A)",
+          "Our line vs the price", "Basis tier", "Sources"], body)}
+  <p class="muted small">Our line is an information value, not a price you can take. It is calibrated to
+  nothing but its own inputs, so treat it as low confidence — the “vs the price” column is published so the
+  disagreement is visible instead of smoothed away.</p>
 </section>
 """
 
@@ -1103,6 +1202,127 @@ def render_coverage(rows: list[dict], inputs: dict, coverage: dict, meta: dict) 
 """
 
 
+def render_cadence(rows: list[dict], inputs: dict, coverage: dict, meta: dict) -> str:
+    """How current this board is, what refreshes it and what happens when a refresh cannot read a source."""
+    cadence = inputs.get("cadence") or {}
+    now = meta["now"]
+    provenance = inputs.get("provenance") or {}
+    actions_url = ("https://github.com/buffedlizard55-lab/MaltaProj1/actions/workflows/"
+                   "executive-5545dbb8.yml")
+    run_id = str(cadence.get("run_id") or "")
+    run_link = (f'<a href="{actions_url}" target="_blank" rel="noopener noreferrer">run {esc(run_id)}</a>'
+                if run_id else '<span class="muted">not a workflow run (local build)</span>')
+    generated = parse_iso(cadence.get("generated_utc") or meta["generated_utc"])
+    interval = float(cadence.get("cadence_hours") or 4)
+    next_due = (generated + timedelta(hours=interval)) if generated else None
+    overdue = bool(next_due and now > next_due + timedelta(hours=float(cadence.get("cadence_window_hours", [4, 8])[1]) - interval))
+
+    def age_of(value) -> str:
+        stamp = parse_iso(value)
+        if not stamp:
+            return '<span class="muted">no time recorded</span>'
+        hours = (now - stamp).total_seconds() / 3600.0
+        if hours < 1:
+            text = f"{int(hours * 60)} min old"
+        elif hours < 48:
+            text = f"{hours:.1f} h old"
+        else:
+            text = f"{hours / 24:.1f} days old"
+        cls = "ok" if hours <= STALE_HOURS else "warn"
+        return f'<span class="{cls}">{esc(text)}</span>'
+
+    pinnacle = inputs.get("pinnacle") or {}
+    secondary = inputs.get("secondary") or {}
+    feed = secondary.get("feed") or {}
+    freshness = [
+        ("Hotspawn board (fixture list, tiers, lock times)",
+         inputs["hotspawn"].get("fetched_utc"), inputs["hotspawn"].get("mode"),
+         f'{len(inputs["hotspawn"].get("fixtures") or [])} CS2 fixtures · '
+         f'{len(inputs["hotspawn"].get("pages") or [])} pages read',
+         HOTSPAWN_LOBBY),
+        ("Primary bookmaker prices (Pinnacle guest response)",
+         pinnacle.get("captured_utc") or pinnacle.get("fetched_utc"), pinnacle.get("mode"),
+         f'{len(pinnacle.get("quotes") or [])} CS2 moneylines', PINNACLE_CS2_PAGE),
+        ("Secondary listings (aggregator + prediction market + this repo's hourly feed)",
+         secondary.get("captured_utc") or cadence.get("generated_utc"), secondary.get("mode"),
+         f'{len(secondary.get("quotes") or [])} quotes; feed rows used: '
+         f'{feed.get("used", 0)} of {feed.get("rows", 0)} ({feed.get("status", "not read")})',
+         "https://buffedlizard55-lab.github.io/MaltaProj1/feeds/index.html"),
+        ("Official Valve Regional Standings file",
+         (inputs.get("vrs") or {}).get("fetched_utc") or (inputs.get("vrs") or {}).get("standings_date"),
+         (inputs.get("vrs") or {}).get("mode"),
+         f'{len((inputs.get("vrs") or {}).get("rows") or [])} teams, standings dated '
+         f'{(inputs.get("vrs") or {}).get("standings_date") or "not read"}', VRS_REPO),
+        ("Official HLTV world ranking (our own lines)",
+         (inputs.get("hltv_ranking") or {}).get("fetched_utc")
+         or (inputs.get("hltv_ranking") or {}).get("ranking_date"),
+         (inputs.get("hltv_ranking") or {}).get("mode"),
+         f'{len((inputs.get("hltv_ranking") or {}).get("teams") or [])} teams, ranking dated '
+         f'{(inputs.get("hltv_ranking") or {}).get("ranking_date") or "not read"}', HLTV_RANKING),
+        ("HLTV team pages (identity, formats, links)",
+         (inputs.get("hltv_schedule") or {}).get("generated_utc"), (inputs.get("hltv_schedule") or {}).get("mode"),
+         f'{len((inputs.get("hltv_schedule") or {}).get("teams") or [])} pages read', HLTV_MATCHES),
+    ]
+    fresh_rows = [[esc(label), f'<code>{esc(stamp or "—")}</code>' if stamp else '<span class="muted">—</span>',
+                   age_of(stamp), esc(mode or "unknown"), esc(detail),
+                   link(url, "source")] for label, stamp, mode, detail, url in freshness]
+
+    fetches = provenance.get("fetches") or []
+    refused = [f for f in fetches if f.get("status") not in (200, None)]
+    board = [r for r in rows if r["status"] == "open"]
+    lock_list = sorted((r for r in board if r["lock_utc"]), key=lambda r: r["lock_utc"])[:6]
+    locks_rows = [[f'<code>{esc(r["lock_utc"])}</code>',
+                   f'{esc(r["team_a"])} vs {esc(r["team_b"])}',
+                   badge(TIER_SHORT[r["basis_tier"]], "tier-" + str(r["basis_tier"])),
+                   esc(r["pick"] or "—")] for r in lock_list]
+    return f"""
+<section class="hero hero--tight">
+  <p class="eyebrow">Refresh</p>
+  <h1>What runs this board, and how old it is</h1>
+  <p class="lede">Nothing here is typed in by hand. A scheduled workflow re-reads Hotspawn and every
+  outside source, rebuilds these pages, re-runs the invariant suite, and only then replaces the published
+  snapshot — so a failed read leaves the last good board standing instead of a half-updated one.</p>
+</section>
+<section>
+  <h2>Cadence</h2>
+  <div class="stats">
+    <div class="stat"><b>{esc(cadence.get("schedule_cron") or "not scheduled")}</b><span>cron the refresh runs on</span></div>
+    <div class="stat"><b>every {esc(f"{interval:g}")} h</b><span>requested window: 4–8 h</span></div>
+    <div class="stat"><b>{esc(next_due.strftime("%Y-%m-%dT%H:%MZ") if next_due else "—")}</b><span>next expected run</span></div>
+    <div class="stat"><b>{esc(meta.get("snapshot_age_text", "age unknown").replace("Snapshot is ", ""))}</b><span>age of the published snapshot</span></div>
+  </div>
+  <p class="lede">This snapshot was written by {run_link} (event <code>{esc(cadence.get("event") or "local")}</code>,
+  commit <code>{esc((str(cadence.get("sha") or ""))[:7] or "—")}</code>).
+  {("The next run is overdue — scheduled runs are best-effort on GitHub and can be delayed under load; "
+    "if the number above is more than 8 h old, treat every row as its own printed read time.") if overdue else
+   "Within the requested 4–8 h window."}</p>
+  <p class="muted small">Scheduled triggers, source:
+  <a href="{esc(actions_url)}" target="_blank" rel="noopener noreferrer">GitHub Actions for this workflow</a>.
+  GitHub documents schedule events as best-effort, which is why the freshness above is published rather than assumed.</p>
+</section>
+<section>
+  <h2>Read times behind this snapshot</h2>
+  {table(["Input", "Recorded at (UTC)", "Age", "Mode", "What was read", "Source"], fresh_rows)}
+  <p class="muted small">Mode <code>live</code> means the value was read from the source during this run;
+  <code>repo_capture</code> / <code>previous_capture</code> means the source refused the read and the last
+  committed capture is being reused — its own timestamp is printed, never this run's.</p>
+</section>
+<section>
+  <h2>Source refusals this run</h2>
+  {table(["URL", "HTTP", "Mode", "Note"],
+         [[link(f.get("url"), (f.get("url") or "").replace("https://", "")[:70]), esc(f.get("status")),
+           esc(f.get("mode")), esc(f.get("note") or "")] for f in refused]) if refused
+   else '<p class="muted">Every source answered this run.</p>'}
+</section>
+<section>
+  <h2>Next locks on the board</h2>
+  {table(["Locks (UTC)", "Match", "Basis", "Pick"], locks_rows)}
+  <p class="muted small">{len(board)} open fixtures; {coverage["open_with_pick"]} carry a pick. A refresh after a
+  lock time retires that row and promotes whatever Hotspawn has listed next.</p>
+</section>
+"""
+
+
 def render_sources(inputs: dict, meta: dict) -> str:
     prov = inputs["provenance"].get("fetches", [])
     rows = []
@@ -1130,6 +1350,16 @@ def render_sources(inputs: dict, meta: dict) -> str:
          "World ranking, match pages, team rosters — reference only, never a probability input on its own."],
         ["EGamersWorld (bc.game prices)", EGW_MATCHES,
          "Secondary public listing of bookmaker prices; labelled secondary wherever used."],
+        ["bo3.gg match pages (relay) + Polymarket match markets",
+         "https://buffedlizard55-lab.github.io/MaltaProj1/feeds/index.html",
+         "This repository's own hourly secondary feed, consumed read-only: bookmaker prices relayed by "
+         "bo3.gg and Polymarket implied probabilities, each joined to a Hotspawn fixture by team pair and "
+         "kickoff. This is the source that reaches most C-tier fixtures; each row keeps the feed's own "
+         "capture minute and the underlying listing URL."],
+        ["HLTV world ranking (official)", (inputs.get("hltv_ranking") or {}).get("canonical_url") or HLTV_RANKING,
+         f"Rank numbers behind our own originated line — {(inputs.get('hltv_ranking') or {}).get('team_count') or 0} "
+         f"teams, ranking dated {(inputs.get('hltv_ranking') or {}).get('ranking_date') or 'not read'}. "
+         "Used for identity and for our own arithmetic; never as a market."],
     ]
     return f"""
 <section class="hero hero--tight">
@@ -1194,6 +1424,35 @@ Elisa BreakOut, Svenska CS-Ligan). For those:</p>
   <li>If <strong>neither</strong> team is listed, or the standings file itself could not be read, the row shows
   no pick and carries the flag for review. Nothing is filled in.</li>
 </ul>
+
+<h2>4b. The ranking line for matches nothing else resolves (session <code>1b6ae823</code>)</h2>
+<p>Most fixtures on the lower tiers are not priced by any book, and the standings file in §3 only reaches the
+teams Valve ranks. The research tier therefore uses the <strong>official HLTV world ranking</strong> — the same
+list every outlet quotes — and only its <em>rank numbers</em>:</p>
+<ul>
+  <li>per-map probability <code>p = 1/(1+10^((rank_b−rank_a)/S))</code> with a higher-is-better strength of
+  <code>{{rank places − team rank}}</code>, so the scale stays in ranking places;</li>
+  <li><code>S</code> = {esc((meta.get('own_line') or {}).get('calibration', {}).get('scale', ''))} places for a
+  90% per-map favourite, <strong>fitted</strong> on the {(meta.get('own_line') or {}).get('calibration', {}).get('n', 0)}
+  fixtures on this board that an outside market prices (lowest mean absolute error over a whole-number grid
+  5–400; mean absolute error
+  {(meta.get('own_line') or {}).get('calibration', {}).get('mae_pp', '—')} pp against those prices). Where there
+  are too few priced fixtures to fit, the documented default 100 is used and the page says so;</li>
+  <li>a per-map line is then converted to the stated series length with the exact closed form
+  <code>BO1 = p</code>, <code>BO3 = 3p²−2p³</code>, <code>BO5 = 10p³−15p⁴+6p⁵</code>. Series length is used only
+  when a source states it (Hotspawn never does); where the listing that prices the fixture prints a length, the
+  row links to that listing and carries <code>FL-FORMAT-FROM-LISTING</code>;</li>
+  <li>a team absent from the ranking is bounded <strong>one place below the last ranked team in that same
+  official list</strong> ({esc((meta.get('own_line') or {}).get('rank_floor', '—'))}) and the row is flagged
+  <code>FL-RANK-FLOOR-BOUND</code> — a bound, never an invented rating;</li>
+  <li>this line only becomes the headline where tiers 1–3 are unavailable, and it is always badged
+  {esc(TIER_SHORT[5])} / <code>FL-RESEARCH-BASIS</code>. Where a price <em>does</em> exist, the line is published
+  beside it as a cross-check, and a gap over 15 points is flagged
+  <code>FL-OWN-LINE-MARKET-SPLIT</code> rather than averaged away.</li>
+</ul>
+<p class="muted small">Every one of these numbers is re-derived by <code>executive/tests.py</code> and
+<code>tests/test_1b6ae823.py</code> from the stored ranking and price files before a snapshot is published, so a
+page can never print a value its own inputs do not produce.</p>
 
 <h2>5. What this board does not claim</h2>
 <ul>
@@ -1328,6 +1587,28 @@ def main() -> int:
 
     open_rows = [r for r in rows if r["status"] == "open"]
     locked_rows = [r for r in rows if r["status"] != "open"]
+
+    # ---- an originated line for EVERY fixture, and a research tier for the ones nothing else resolves
+    ranking = inputs.get("hltv_ranking") or {}
+    calibration_pairs = {r["match_id"]: r["_market_prob_a"] for r in rows
+                         if r.get("_market_prob_a") is not None}
+    own_meta = ownlines.originate(rows, ranking, ranking.get("teams", []) or [], calibration_pairs)
+    for row in rows:
+        own = row["own"]
+        if own.get("p_series") is not None and int(row["basis_tier"] or 0) in (1, 2) \
+                and row.get("market_prob_a_pct"):
+            gap = abs(own["p_series"] - float(row["market_prob_a_pct"]) / 100.0) * 100.0
+            row["basis_detail"] = (row["basis_detail"] + " " if row["basis_detail"] else "") + (
+                f"Our own line for the same fixture, from the official ranking only: "
+                f"{own['p_series'] * 100:.1f}% for {row['team_a']} "
+                f"({gap:.1f} pp from the price this row is based on).")
+            if gap > 15.0:
+                row["flags"] = sorted(set(row["flags"] + ["FL-OWN-LINE-MARKET-SPLIT"]))
+        if own.get("sources"):
+            seen_urls = {url for url, _ in row["basis_sources"] if url}
+            row["basis_sources"] = list(row["basis_sources"]) + [
+                (url, label) for url, label in own["sources"] if url and url not in seen_urls]
+
     stale_rows = [r for r in rows
                   if parse_iso(r["start_utc"]) and parse_iso(r["start_utc"]) < now - timedelta(days=7)]
     capture_times = [parse_iso(v) for v in
@@ -1348,7 +1629,9 @@ def main() -> int:
             f"{inputs['pinnacle'].get('mode') or 'not read'} read "
             f"{(inputs['pinnacle'].get('captured_utc') or inputs['pinnacle'].get('fetched_utc') or 'time unknown')[:16]}"
             f" ({len(market_quotes)} CS2 quotes)"),
-        "vrs_read_text": (f"official standings {inputs['vrs'].get('standings_date') or 'not read'}"),
+        "vrs_read_text": (f"official standings {inputs['vrs'].get('standings_date') or 'not read'}"
+                          f" · HLTV ranking {own_meta.get('ranking_date') or 'not read'}"),
+        "own_line": own_meta,
         "stale": bool(fresh_hours is not None and fresh_hours > STALE_HOURS),
     }
     coverage = {
@@ -1362,6 +1645,16 @@ def main() -> int:
         "flagged_rows": len([r for r in rows if r["flags"]]),
         "unique_teams": len(ratings),
         "teams_resolved_official": len([r for r in ratings.values() if r["vrs_points"]]),
+        # ---- added by session arena/1b6ae823: research tier + own-line coverage
+        "open_research_basis": len([r for r in open_rows if r["basis_tier"] == 5]),
+        "open_own_line": len([r for r in open_rows if r["own"].get("p_series") is not None]),
+        "fixtures_with_stated_format": len([r for r in open_rows if r["series_format"]]),
+        "own_line_scale": own_meta["calibration"]["scale"],
+        "own_line_scale_fitted": bool(own_meta["calibration"]["fitted"]),
+        "own_line_calibration_n": own_meta["calibration"]["n"],
+        "own_line_calibration_mae_pp": own_meta["calibration"].get("mae_pp"),
+        "hltv_ranking_teams": own_meta["rank_count"],
+        "hltv_ranking_date": own_meta.get("ranking_date") or "",
     }
 
     checks = [
@@ -1382,6 +1675,23 @@ def main() -> int:
          "detail": "Rows without a basis carry a flag; every published number names its input."},
         {"name": "Snapshot age", "passed": not meta["stale"],
          "detail": f"Oldest capture behind this board: {meta['capture_utc']} ({meta['snapshot_age_text']})."},
+        {"name": "Every open fixture carries an originated line or a reason it cannot",
+         "passed": all(r["own"].get("p_series") is not None or r["flags"] for r in open_rows),
+         "detail": (f"{coverage['open_own_line']}/{len(open_rows)} open fixtures have our own ranking line "
+                    f"(scale {own_meta['calibration']['scale']:g} ranks per 90%, "
+                    f"{'fitted on ' + str(own_meta['calibration']['n']) + ' priced fixtures' if own_meta['calibration']['fitted'] else 'documented default, too few priced fixtures to fit'}); "
+                    "rows without one are flagged.")},
+        {"name": "Research tier only where no market line exists",
+         "passed": all(int(r["basis_tier"]) != 5
+                       or not [q for q in r["_market"] + r["_secondary"] if not q.get("placeholder")]
+                       for r in rows),
+         "detail": "A T5 ranking line is never printed over a price that was actually readable."},
+        {"name": "Official ranking read for the own lines",
+         "passed": bool(own_meta["rank_count"]),
+         "detail": (f"HLTV world ranking: {own_meta['rank_count']} teams, dated "
+                    f"{own_meta.get('ranking_date') or 'not read'}, mode {own_meta.get('ranking_mode')},"
+                    f" lowest ranked position used as the bound for unlisted teams: "
+                    f"{own_meta['rank_floor'] + 1}.")},
     ]
 
     # -------- write data
@@ -1399,6 +1709,22 @@ def main() -> int:
             "source_links": " | ".join(u for u, _ in row["basis_sources"] if u),
             "flags": ";".join(row["flags"]),
         })
+        own = row.get("own") or {}
+        record.update({
+            "own_method": own.get("method") or "",
+            "own_best_of": own.get("best_of") or "",
+            "own_rank_a": own.get("rank_a") or "",
+            "own_rank_b": own.get("rank_b") or "",
+            "own_scale": own.get("scale") if own.get("scale") is not None else "",
+            "own_bound_a": "official bound" if own.get("bound_a") else "",
+            "own_bound_b": "official bound" if own.get("bound_b") else "",
+            "own_prob_map_a_pct": pct(own.get("p_map")),
+            "own_prob_a_pct": pct(own.get("p_series")),
+            "own_prob_b_pct": pct(1.0 - own["p_series"]) if own.get("p_series") is not None else "",
+            "own_vrs_prob_a_pct": pct(own.get("vrs_p_series")),
+            "own_detail": own.get("detail") or "",
+            "own_sources": " | ".join(u for u, _ in (own.get("sources") or []) if u),
+        })
         record.pop("rating_a", None)
         record.pop("rating_b", None)
         analysis_rows.append(record)
@@ -1411,7 +1737,11 @@ def main() -> int:
               "model_prob_b_pct", "rating_a_value", "rating_a_source", "rating_a_method",
               "rating_a_match_evidence", "rating_b_value", "rating_b_source", "rating_b_method",
               "rating_b_match_evidence", "hotspawn_pickem_url", "hotspawn_match_url", "source_links",
-              "first_seen_utc", "last_verified_utc", "flags"]
+              "first_seen_utc", "last_verified_utc", "flags",
+              # added by session arena/1b6ae823: the originated line that every fixture carries
+              "own_method", "own_best_of", "own_rank_a", "own_rank_b", "own_scale", "own_bound_a",
+              "own_bound_b", "own_prob_map_a_pct", "own_prob_a_pct", "own_prob_b_pct",
+              "own_vrs_prob_a_pct", "own_detail", "own_sources"]
     write_csv(DATA / "analysis.csv", analysis_rows, fields)
     write_json(DATA / "analysis.json", {
         "generated_utc": meta["generated_utc"], "capture_utc": meta["capture_utc"],
@@ -1452,16 +1782,18 @@ def main() -> int:
     write_csv(DATA / "flags.csv", flag_rows, ["match_id", "teams", "tournament", "lock_utc", "code",
                                               "meaning", "detail", "source_url", "secondary_source_url"])
     write_json(DATA / "summary.json", {"meta": {k: v for k, v in meta.items() if k != "now"},
-                                       "coverage": coverage, "checks": checks})
+                                       "coverage": coverage, "checks": checks,
+                                       "own_lines": own_meta})
 
     # -------- render
     pages = {
         "index.html": ("Executive summary", render_index(rows, meta, coverage)),
         "picks.html": ("All picks", render_picks(rows, meta)),
         "lines.html": ("Betting lines", render_lines(rows, inputs, meta)),
-        "own-lines.html": ("Our own lines", render_own_lines(rows, meta)),
+        "own-lines.html": ("Our own lines", render_own_lines(rows, meta, own_meta)),
         "tournaments.html": ("Tournaments", render_tournaments(rows, meta)),
         "coverage.html": ("Coverage", render_coverage(rows, inputs, coverage, meta)),
+        "cadence.html": ("Refresh", render_cadence(rows, inputs, coverage, meta)),
         "sources.html": ("Sources", render_sources(inputs, meta)),
         "methodology.html": ("Method", render_methodology(rows, meta)),
         "flagged.html": ("Flagged for review", render_flagged(rows, inputs, meta)),
