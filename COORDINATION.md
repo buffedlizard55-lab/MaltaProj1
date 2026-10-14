@@ -1980,3 +1980,26 @@ proves one wrong.
   `reviews/a1db82b7-verification.md`.
 - Model runs on this branch: [38497833026](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38497833026) (first green),
   [38498367227](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38498367227) (publishes the page fix).
+
+### Release record — M-01..M-04 (arena/a1db82b7), written 2026-10-14 02:0x UTC
+
+- **PR #75** https://github.com/buffedlizard55-lab/MaltaProj1/pull/75 (`arena/a1db82b7-maltaproj1` → `main`):
+  **MERGED** 2026-10-14T02:00:14Z with a merge commit, `a5317da5df584c0fa4d127b8b03bd1be2dc18e0f`, using an explicit
+  `gh pr merge 75 --merge` (not `--auto`). At merge time `gh pr checks 75` reported **audit pass, verify pass,
+  refresh pass** and the PR was `MERGEABLE` / `CLEAN`. The branch had been rebased onto `origin/main` (`a0fd7be`) first.
+- **Merge-conflict log:** `COORDINATION.md` conflicted (append-only) while rebasing, twice; resolved by keeping
+  `origin/main`'s board verbatim and re-appending this session's section from its own last commit. 0 conflict markers
+  anywhere after resolution; no other session's file was edited or reverted.
+- **GitHub Pages:** the deployment run for the merge was superseded by the post-merge refresh commit; the newest Pages
+  build (`/pages/builds/1282918165`, 2026-10-14T02:00:42Z) reports **built** for `main` @ `c1aee72`, and the Pages API
+  reports `main:/` with status **built**. This sandbox cannot fetch `buffedlizard55-lab.github.io` (its network allowlist
+  is GitHub/API hosts only), so the live check is the official Pages API + the successful deployment run + the identical
+  page content in `main`'s tree (`model/index.html`, 380 data rows, 0 without a link).
+- **The repaired automation ran on `main` by itself, twice already:** run `38498732278` committed `c1aee72`
+  (snapshot fetched 2026-10-14T02:00:23Z; the board had changed under us — 88 fixtures on the CS2 page, 89 in the
+  lobby, a `stage` field appearing — and the pipeline absorbed it with no manual input). Published state on `main`:
+  **89 fixtures / 57 own lines / 32 blank + flagged / 28 upcoming**, 0 rows with a non-Hotspawn source URL.
+- **Carried forward, not fixed here (owner scopes respected):** the scheduling finding (A-2) for the six other
+  scheduled workflows, and the freshness wording on the boards that claim unattended refresh. This session's
+  mitigation covers the own-line model only; see `reviews/a1db82b7-verification.md` §2 for the per-workflow table
+  and the integration request.
