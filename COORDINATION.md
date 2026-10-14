@@ -2927,3 +2927,49 @@ Source access: workspace outbound host restrictions prevent direct Hotspawn/book
 - **Owner request L-08 to arena/bdc98a9a (`reread/collect.py`, not edited):** `verify_vrs` anchored branch validates rank/name but not claimed numeric points. Consider requiring point equality before a VRS receipt is labelled match. Published on `reviews/43c32386.html`; our fallback instead parses official pinned standings independently.
 - Live-source workflow [38508960643](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38508960643) succeeded (live collector, board rebuild, invariant suite). Download of its artifact was blocked by the workspace's external artifact-storage-host restriction; artifact values not claimed inspected. Added a check annotation receipt so API clients can inspect collection times/status without external storage access.
 - PR opened: [#104](https://github.com/buffedlizard55-lab/MaltaProj1/pull/104). Pending final checks/merge/Pages confirmation.
+## Session `arena/a453c5d6` — landing-page consolidation + final integration/verification (2026-10-14)
+
+- **Session ID**: `arena/a453c5d6` · **Branch**: `arena/a453c5d6-maltaproj1` (Arena-fixed; base = `origin/main` `34015c4`).
+- **Claimed**: `2026-10-14T04:00:00Z`.
+- **Coordination check before claiming**: board read in full; `git fetch --prune` shows only `origin/main`; the only open PR is **#54** (`arena/9920c263`, branch last updated 2026-10-13T22:47Z — >5 h stale, reported `CONFLICTING`, and its slate is fully superseded by the merged boards). Session `arena/bdc98a9a` is **active** on `reread/**` (verification board; workflows running at 03:50Z) — their scope (`reread/**`, `reviews/bdc98a9a-verification.md`, `scripts/bdc98a9a_verify_build.py`, `tests/test_bdc98a9a_verify.py`, `.github/workflows/reread-bdc98a9a.yml`, one additive card in root `index.html`) is **excluded** from this session's edits.
+- **Role**: final integration session for the current wave. All product tasks from earlier sessions are merged (PRs #88–#102). This session does not re-do them; it consolidates the site's front door, re-verifies the combined state, and publishes.
+
+**Why this session exists (user brief, 2026-10-14):** picks now exist for every open match on several boards, but the landing page itself is the remaining gap — it renders (a) an invalid `#`-prefixed conflict note as visible text, (b) **three competing "executive summary" blocks** pointing at three different boards as "start here" (`executive/`, `picks-full/`, `everypick/`) with three different basis splits, and (c) a stats row showing the featured-slate subset numbers (5 market / 5 picks) directly below "28/28 picks" claims, with no attribution. On a phone this is exactly the confusion the user reported. The fix is one executive summary with an unambiguous link to the canonical picks board, every other board preserved but clearly demoted/labeled, and correctly attributed numbers.
+
+| ID | Task | Status | Owner | Exclusive file scope |
+|----|------|--------|-------|----------------------|
+| C-01 | Claim + push (this section) | done | arena/a453c5d6 | `COORDINATION.md` (append-only) |
+| C-02 | Root `index.html`: remove the invalid `#` text; **one** executive-summary block (canonical = `executive/`, freshest live-read board); every existing board link preserved and labeled as companion/alternate; stats row explicitly attributed to the featured-slate subset; canonical coverage numbers (open / picks / market-basis / capture time) rendered from `executive/data/summary.json` with a no-JS fallback | in progress | arena/a453c5d6 | root `index.html` only |
+| C-03 | Re-verify combined state: full repo test suite, repo-wide HTML/link audit, executive/ invariants (every open row: pick + both probabilities + source link; no crowd %), open-fixture set cross-checked against a live read of the Hotspawn lobby, live Pages fetch of the canonical board | in progress | arena/a453c5d6 | read-only |
+| C-04 | Review record with line-by-line results, sources and irregularities | unclaimed | arena/a453c5d6 | `reviews/a453c5d6-verification.md` |
+| C-05 | Stale PR #54 disposition: close as superseded with an explanatory comment (content superseded by merged boards; no rebase attempted — its data snapshot is 5 h old and every row is covered by the merged boards) | unclaimed | arena/a453c5d6 | GitHub (PR #54 only) |
+| C-06 | Integration: PR → `main` (no approval waited on), merge, confirm Pages deploy + live HTTPS of the consolidated landing page, record PR link and result here | unclaimed | arena/a453c5d6 | `COORDINATION.md` (append-only) |
+
+**Not claimed / not touched**: `reread/**` (bdc98a9a, active), `executive/**`, `picks-full/**`, `every/**`, `everypick/**`, `cs2/**`, `slate/**`, `exec/**`, `docs/**`, `data/**`, `oct14/**`, `open-slate/**`, `model/**`, `status/**`, all workflows, `README.md`.
+
+**Integration requests (logged, not executed):**
+- **IR-A453-1**: `exec/` (owner `arena/3b5e3fea`, inactive >60 min) still inventories only slate/oct14/openslate/everypick/cs2 and reports 27/28 picks; it should add `picks-full/`, `every/` and `executive/` (requires new adapters in `scripts/3b5e3fea_build.py`). Not taken over here: it is another session's hourly-refreshed generator, and this session's brief is the landing page; the gap is published on this session's flagged/review record instead.
+- **IR-A453-2**: for `arena/bdc98a9a`'s pending PR — their one additive `reread/index.html` card is **not on `main` yet**, so it is not linked from this session's consolidated landing page (a link to a not-yet-merged path would be broken). The consolidated section keeps an ordinary card grid; on rebase, re-insert their card there. Nothing of theirs was removed (nothing of theirs is on `main`).
+
+**Handover rule**: if this claim goes >60 min without a commit, another session may take over C-02..C-06 and note it here.
+
+### Yield + progress record — arena/a453c5d6 (2026-10-14 ~04:15 UTC)
+
+- **Landing-page race resolved by yielding.** Session `arena/43c32386` claimed `index.html` at 03:55Z
+  (PR #104), ~5 min before this session's claim (~04:00Z); neither claim was visible to the other
+  when written. Both sessions independently found and fixed the same four landing defects (visible
+  `#` conflict text; three competing executive summaries; unattributed featured-subset stats; stale
+  hero CTA). **This session yields `index.html` entirely to PR #104** (announced on the PR:
+  <https://github.com/buffedlizard55-lab/MaltaProj1/pull/104#issuecomment-6160673734>); this branch's
+  `index.html` is byte-identical to `main`'s. Nothing of theirs is touched; my consolidation lives in
+  git history (pre-rebase commit `9a59270`) and its findings in `reviews/a453c5d6-verification.md`.
+- **Rebase note:** rebased onto `origin/main` `c173708` (PR #105). COORDINATION.md conflict resolved
+  by keeping both sides complete (bdc98a9a's R-01..R-06 sections + this session's claim). The
+  `index.html` conflict was resolved by taking `main`'s version (the yield).
+- **Task status update:** C-02 done-as-yielded (defects fixed via PR #104, which this session
+  verified independently: same-origin reads, 204 pages / 0 link errors, 199 tests, browser checks at
+  320/390/768/1280 px); C-03 done (see the review record); C-04 done; C-05 done — **PR #54 closed as
+  superseded** with an explanatory comment (A453-04; also fulfils bdc98a9a's request #3); C-06 in
+  progress (this PR + post-merge verification).
+- **IR-A453-2 superseded:** `reread/` is now merged on `main` (PR #103) and its landing card is part
+  of `main`'s `index.html`; PR #104's landing links `reread/index.html` in its verified-sources row.
