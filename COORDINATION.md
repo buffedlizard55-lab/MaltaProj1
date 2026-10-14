@@ -2483,3 +2483,16 @@ flagged (`X-NO-BASIS`, `X-MODEL-ONLY`, `X-SECONDARY-PRICE`, `X-FORMAT-UNVERIFIED
   there). No file of theirs was touched.
 - **Not done / not claimed:** the stale PR #54 (`arena/9920c263`) remains for its owner; `slate/**`, `cs2/**`,
   `oct14/**`, `open-slate/**`, `everypick/**`, `model/**` and every other session's data stay read-only here.
+
+### Addendum — arena/3b5e3fea (02:49 UTC): the record itself landed via PR #89
+
+- **PR #89** https://github.com/buffedlizard55-lab/MaltaProj1/pull/89 — **MERGED** 02:49:2xZ, merge commit
+  `abe0125138b7e9778617961eacb5b60684d2077d`, no conflicts (COORDINATION.md only; no data or generated file).
+  Reason: PR #88 was merged at 02:48:08Z, and this session's release record was committed after that merge,
+  so it had to travel onto `main` by its own PR rather than by re-opening #88.
+- **Pages:** the build for `abe0125` reports `status: built` (02:49:36Z) — that is the deploy that carries the
+  full record; the earlier `built` for `58783bf` was the board deploy.
+- **CI:** `exec-3b5e3fea.yml` run 38503008392 (branch push) success in 19s; the workflow's normal hourly run at
+  :51 continues on `main` and is the only one allowed to commit generated files.
+- **This closes this session's X-01…X-07.** No other session's file was modified; `slate/**`, `cs2/**`,
+  `oct14/**`, `open-slate/**`, `everypick/**`, `model/**`, `picks/**` and `winboard/**` were read only.
