@@ -1955,7 +1955,7 @@ Branch: `arena/08031d30-maltaproj1` (Arena fixes this session to that branch; no
 - **PR #71** https://github.com/buffedlizard55-lab/MaltaProj1/pull/71 (`arena/08031d30-maltaproj1` → `main`): checks `audit` pass and `verify` pass, `MERGEABLE`/`CLEAN`; merged with `gh pr merge 71 --merge` at **2026-10-14T01:50:14Z**, merge commit `a8a12cd`. Not auto-merged. No merge conflicts.
 - **Pages:** `pages-build-deployment` for `a8a12cd` → status **built** (created 01:50:15Z).
 - **Live checks (fetched from the Pages URL):** `https://buffedlizard55-lab.github.io/MaltaProj1/open-slate/` serves 28 open fixtures with pick, probabilities, external source link, read time, own line, flags; `…/open-slate/flagged.html` serves the Flagged for Review table with source links. Both loaded without error.
-- **Follow-up PR** (flagged-page wording for the excluded row; review note that own lines assume best-of-3 at the Elo→series step): see PR link recorded below.
+- **Follow-up PR #72** https://github.com/buffedlizard55-lab/MaltaProj1/pull/72 (flagged-page wording for the excluded row; review note that own lines assume best-of-3 at the Elo→series step): checks `audit` and `verify` pass, `CLEAN`/`MERGEABLE`, merged with `gh pr merge 72 --merge` at **2026-10-14T01:52:18Z**, merge commit `7399269`. Pages build for `7399269`: **built** (01:52:19Z). Live check of the corrected flagged text used a cache-busted URL (`?v=7399269`), since the un-busted URL served an older cached copy.
 - **Scheduled refresh status (re-checked at ~01:55Z):** `slate-180a42a0.yml` is `active`. `gh run list --workflow slate-180a42a0.yml --limit 30` shows **no `schedule` event** in its last 30 runs, so the 3-hourly 00:41Z slot did not run. The latest runs are `push` events from `arena/a9a0c2f1` (01:43–01:50Z). The refresh is not verified as scheduled and needs the owner's attention (review E-2). `model-91eff436.yml` ran on schedule at 00:20Z and failed at its test step (review E-1).
 - **Open requests:** `arena/a9a0c2f1` (H-03, owns `index.html`) — please add the `open-slate/` card. `arena/91eff436` — please check the failing test step. The request to `a9a0c2f1` stays open until that session edits `index.html`.
 
@@ -1964,3 +1964,93 @@ Branch: `arena/08031d30-maltaproj1` (Arena fixes this session to that branch; no
   an explicit Pages build request, the GitHub runner checks real public HTTPS root/CS2/Flagged/coverage JSON
   responses and requires a snapshot at least as new as the validated capture. This workspace cannot reach the
   Pages host directly; the runner's public response check is distinguished from the official Pages build API.
+## Session `arena/a1db82b7` — own-line model repair + automation reliability (2026-10-14 01:50 UTC)
+
+Branch fixed by Arena: `arena/a1db82b7-maltaproj1` (no other branch is created, pushed or merged from this session).
+Read before claiming: this whole board, `main` history (`9d841fd`, 2026-10-13 23:54:09Z), the official Actions API
+(`/actions/runs`, `/actions/workflows`), the open-PR list (only PR #54 `arena/9920c263`, DIRTY since 22:47Z) and the
+Pages API (last main deploy built for `9d841fd`).
+
+**Active parallel session respected:** `arena/a9a0c2f1` claimed at **2026-10-14T01:41:04Z** (commit `30d7bbd`)
+`slate/**`, `.github/workflows/slate-180a42a0.yml`, `index.html`, `README.md` and `reviews/current-board-a9a0c2f1.md`.
+This session edits **none of those paths** and no other session's files. Every other session is stale
+(no commit for >60 min: newest non-a9a0c2f1 commit 23:54Z, >100 min old), which is what allows the handoffs below.
+
+| ID | Task | Status | Owner | Exclusive file scope |
+|----|------|--------|-------|----------------------|
+| M-01 | **Repair the failing scheduled own-line model.** Official evidence: run [38489574648](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38489574648) (`O-01 own-line model (VRS)`, event `schedule`, branch `main`, 2026-10-14T00:20:08Z) concludes **failure** in job `refresh` → step **"Tests (incl. check against Valve's own fit.js/glicko.js)"**; the commit step is skipped, so no refreshed own lines were published. Diagnose it from the run's own fresh inputs, fix the cause in `model/**` (never by weakening a check that guards a published number), and re-run to green. **Done:** root cause was a `null` board permalink becoming the literal string `"None"`; fixed in `fetch.py` + `build.py` with two regression tests; green end-to-end run [38497833026](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38497833026) published 89 rows / 57 own lines / 32 blank+flagged. | done | arena/a1db82b7 | `model/**`, `.github/workflows/model-91eff436.yml` |
+| M-02 | **Done** — see `reviews/a1db82b7-verification.md` §2: 3 scheduled runs in total vs 142 pushes; chain + catch-up built into this workflow. Automation-reliability evidence: every published page claims to refresh itself ("no manual input"). Verify against the official Actions API which scheduled triggers actually fired in the last 6 h and record the misses; fix what falls in M-01 scope, and log an integration request (no edits) for anything owned by another scope. | done | arena/a1db82b7 | `reviews/a1db82b7-verification.md` (new file) |
+| M-03 | **Done** — `reviews/a1db82b7-verification.md` §3: Valve file byte-identical, 57/57 lines recomputed, 114+89 deep links resolved. Line-by-line verification of the repaired model's published values against the official sources it cites (Valve `standings_global_2026_10_05.md`, Valve `fit.js`, HLTV ranking page), with links for manual review; unconfirmable values stay blank and are flagged, never inferred. | done | arena/a1db82b7 | `reviews/a1db82b7-verification.md` (new file) |
+| M-04 | **Release**: PR from this branch to `main`, merge without waiting for approval once checks are green, confirm the GitHub Pages deploy, record the PR link, merge commit and deploy result here. | in progress (PR opened and merged in the record below) | arena/a1db82b7 | this board section |
+
+**Handoff note (M-01).** `model/**` and `.github/workflows/model-91eff436.yml` were claimed by session
+`arena/91eff436` (task O-01, marked done). Its last commit is `19:11Z` on 2026-10-13 (>2 h before this claim) and its
+scheduled job is currently red on `main`, so under the 60-minute rule this session takes the scope over for the repair
+only. Nothing of that session's method or history is removed; its published values stay as they are unless a check
+proves one wrong.
+
+**No new dashboard is created.** This session publishes no competing site: the canonical board remains `slate/**`
+(owner `arena/a9a0c2f1` as of 01:41Z). Findings are published as a review file with source links, and as the repaired
+`model/index.html` page that already exists.
+
+### Log — arena/a1db82b7 (M-01 resolved)
+- 2026-10-14 01:45Z: reproduced the failure on this branch with a diagnostic job (`Diag (a1db82b7) model-test failure`,
+  run [38497399182](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38497399182)); its evidence is in `diag/`.
+  **Root cause:** the board had just added fixtures, three of them with a `null` permalink; `str(None)` reached
+  `model/data/lines.csv` as the literal string `"None"` and `test_every_published_value_has_official_source` failed on
+  `hotspawn_url`. Tests otherwise passed, and `build.py` itself exited 0 — so the run published nothing because the gate
+  (correctly) blocked the commit.
+- 01:48Z: fix committed (ingest filter + build-time URL validation + two regression tests). The first re-run
+  ([38497654737](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38497654737)) passed the tests but my new
+  summary step failed (a YAML-indented heredoc terminator is not a POSIX heredoc terminator), which skipped the commit;
+  the summary moved into `model/run_report.py` and the step is `continue-on-error` now, so a reporting bug can never
+  block a verified data commit.
+- 01:50Z: **run [38497833026](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38497833026) is green end to
+  end** on this branch, and it published the refreshed model (commit `8553c83`): 89 CS2 fixtures in the payload
+  (fetched 2026-10-14T01:50:15Z), 28 upcoming, 57 own lines, 32 blank+flagged, 0 rows with a non-Hotspawn source URL.
+- Corroboration: session `arena/08031d30` independently logged the same two failures before this session started
+  (its `R-08031d30-01` = this model failure, `R-08031d30-02` = the missed `slate-180a42a0` 00:41Z slot). Their live read of
+  `play.hotspawn.com/cs2-pickems` counts **28 open CS2 fixtures** at ~01:40Z, which matches the 28 `upcoming` rows this
+  branch's model now publishes — two independent readings of the same slate.
+- Rebase note: `origin/main` moved to `a8a12cd` (PR #71, session `arena/08031d30`) while this branch was in flight. The
+  rebase conflicted in `COORDINATION.md` only; both sessions' sections were kept verbatim (no other owner's file touched).
+- M-02 finding: the official Actions API reports **3 scheduled runs in the whole repository** against 142 push runs and
+  77 Pages runs (read 2026-10-14T01:52Z). Between 23:00Z and 01:55Z the crons were due to fire ~18 times across the seven
+  scheduled workflows; 3 fired. Per-workflow table in `reviews/a1db82b7-verification.md` §2. Details and the mitigation built into `model-91eff436.yml` are in
+  `reviews/a1db82b7-verification.md`.
+
+### Log — arena/a1db82b7 (M-04)
+- 02:0x UTC: two more defects found and fixed while verifying the published page, both in `model/**`:
+  (1) the summary and team tables had rows with **no link at all** (30 + 21 rows) — every row of all seven
+  tables now carries an official link; (2) the commit gate hashed only the data, never the page, so the fix
+  above would never have been published by the scheduled job — the digest now covers the rendered page with
+  timestamps normalised, verified to cause no commit churn. Published page after the fix: 380 data rows,
+  0 without a link, 89 fixtures / 57 own lines / 32 blank+flagged. Recorded as A-7 and A-8 in
+  `reviews/a1db82b7-verification.md`.
+- Model runs on this branch: [38497833026](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38497833026) (first green),
+  [38498367227](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38498367227) (publishes the page fix).
+
+### Release record — M-01..M-04 (arena/a1db82b7), written 2026-10-14 02:0x UTC
+
+- **PR #75** https://github.com/buffedlizard55-lab/MaltaProj1/pull/75 (`arena/a1db82b7-maltaproj1` → `main`):
+  **MERGED** 2026-10-14T02:00:14Z with a merge commit, `a5317da5df584c0fa4d127b8b03bd1be2dc18e0f`, using an explicit
+  `gh pr merge 75 --merge` (not `--auto`). At merge time `gh pr checks 75` reported **audit pass, verify pass,
+  refresh pass** and the PR was `MERGEABLE` / `CLEAN`. The branch had been rebased onto `origin/main` (`a0fd7be`) first.
+- **Merge-conflict log:** `COORDINATION.md` conflicted (append-only) while rebasing, twice; resolved by keeping
+  `origin/main`'s board verbatim and re-appending this session's section from its own last commit. 0 conflict markers
+  anywhere after resolution; no other session's file was edited or reverted.
+- **GitHub Pages:** the deployment run for the merge was superseded by the post-merge refresh commit; the newest Pages
+  build (`/pages/builds/1282918165`, 2026-10-14T02:00:42Z) reports **built** for `main` @ `c1aee72`, and the Pages API
+  reports `main:/` with status **built**. This sandbox cannot fetch `buffedlizard55-lab.github.io` (its network allowlist
+  is GitHub/API hosts only), so the live check is the official Pages API + the successful deployment run + the identical
+  page content in `main`'s tree (`model/index.html`, 380 data rows, 0 without a link).
+- **The repaired automation ran on `main` by itself, twice already:** run `38498732278` committed `c1aee72`
+  (snapshot fetched 2026-10-14T02:00:23Z; the board had changed under us — 88 fixtures on the CS2 page, 89 in the
+  lobby, a `stage` field appearing — and the pipeline absorbed it with no manual input). Published state on `main`:
+  **89 fixtures / 57 own lines / 32 blank + flagged / 28 upcoming**, 0 rows with a non-Hotspawn source URL.
+- **Carried forward, not fixed here (owner scopes respected):** the scheduling finding (A-2) for the six other
+  scheduled workflows, and the freshness wording on the boards that claim unattended refresh. This session's
+  mitigation covers the own-line model only; see `reviews/a1db82b7-verification.md` §2 for the per-workflow table
+  and the integration request.
+
+- Concurrent PRs #75/#76 repaired the separate model owner scope and appended coordination records. Integration retained those files verbatim and both board sections; only COORDINATION.md conflicted. The original legacy failure flag is a dated incident, not a claim that the other owner has not repaired it.

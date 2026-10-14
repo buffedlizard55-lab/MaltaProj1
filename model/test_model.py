@@ -146,6 +146,29 @@ class TestOutputs(unittest.TestCase):
             else:
                 self.assertTrue(t["resolution"] in ("NOT IN VRS", "AMBIGUOUS", "ROSTER MISMATCH"), t)
 
+    def test_every_row_links_an_official_hotspawn_url(self):
+        """Regression guard for the failure of scheduled run 38489574648 (2026-10-14T00:20:08Z):
+        a fixture the board had just added carried a null permalink, str(None) reached the page as the
+        literal string "None", and the source test failed. Every row must now carry a real URL on an
+        official Hotspawn host, and a fixture without a per-match permalink must say so in its notes."""
+        for r in self.rows:
+            u = r["hotspawn_url"]
+            self.assertIsInstance(u, str, r["hotspawn_match_id"])
+            self.assertTrue(u.startswith(("https://www.hotspawn.com/", "https://play.hotspawn.com/")),
+                            (r["hotspawn_match_id"], u))
+            self.assertNotIn(u.strip().lower(), ("none", "null", ""), r["hotspawn_match_id"])
+            permalink = self.fx.get("permalinks", {}).get(str(r["hotspawn_match_id"]))
+            if permalink is None:
+                self.assertIn("no per-match Hotspawn permalink", r["notes"], r["hotspawn_match_id"])
+            else:
+                self.assertEqual(u, permalink)
+
+    def test_permalinks_ingested_are_real_urls(self):
+        """A null/blank permalink must be dropped at ingest, never stringified into a published value."""
+        for k, v in (self.fx.get("permalinks") or {}).items():
+            self.assertIsInstance(v, str, k)
+            self.assertTrue(v.startswith(("https://www.hotspawn.com/", "https://play.hotspawn.com/")), (k, v))
+
     def test_vrs_values_match_snapshot_file(self):
         meta = json.loads((ROOT / "input" / "vrs" / "meta.json").read_text())
         lines = (ROOT / "input" / "vrs" / Path(meta["path"]).name).read_text(encoding="utf-8").splitlines()

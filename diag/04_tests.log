@@ -1,0 +1,34 @@
+test_against_valve_javascript (__main__.TestFormula.test_against_valve_javascript) ... ok
+test_closed_form_matches_port (__main__.TestFormula.test_closed_form_matches_port) ... ok
+test_symmetry_and_bounds (__main__.TestFormula.test_symmetry_and_bounds) ... ok
+/home/runner/work/MaltaProj1/MaltaProj1/model/test_model.py:96: ResourceWarning: unclosed file <_io.TextIOWrapper name='/home/runner/work/MaltaProj1/MaltaProj1/model/data/lines.csv' mode='r' encoding='utf-8'>
+  cls.rows = list(csv.DictReader((ROOT / "data" / "lines.csv").open(encoding="utf-8")))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/runner/work/MaltaProj1/MaltaProj1/model/test_model.py:97: ResourceWarning: unclosed file <_io.TextIOWrapper name='/home/runner/work/MaltaProj1/MaltaProj1/model/data/teams.csv' mode='r' encoding='utf-8'>
+  cls.teams = list(csv.DictReader((ROOT / "data" / "teams.csv").open(encoding="utf-8")))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+test_actionable_only_before_lock (__main__.TestOutputs.test_actionable_only_before_lock) ... ok
+test_aliases_are_evidence_backed_and_reverified (__main__.TestOutputs.test_aliases_are_evidence_backed_and_reverified) ... ok
+test_calibration_sane (__main__.TestOutputs.test_calibration_sane) ... ok
+test_every_fixture_present_once (__main__.TestOutputs.test_every_fixture_present_once) ... ok
+test_every_published_value_has_official_source (__main__.TestOutputs.test_every_published_value_has_official_source) ... FAIL
+test_hotspawn_pick_percentages_never_ingested (__main__.TestOutputs.test_hotspawn_pick_percentages_never_ingested) ... ok
+test_identity_confirmations_cite_hltv (__main__.TestOutputs.test_identity_confirmations_cite_hltv) ... ok
+test_lines_recompute_exactly (__main__.TestOutputs.test_lines_recompute_exactly) ... ok
+test_market_reference_recomputed (__main__.TestOutputs.test_market_reference_recomputed) ... ok
+test_no_fuzzy_name_matching (__main__.TestOutputs.test_no_fuzzy_name_matching) ... ok
+test_vrs_values_match_snapshot_file (__main__.TestOutputs.test_vrs_values_match_snapshot_file) ... ok
+
+======================================================================
+FAIL: test_every_published_value_has_official_source (__main__.TestOutputs.test_every_published_value_has_official_source)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/runner/work/MaltaProj1/MaltaProj1/model/test_model.py", line 136, in test_every_published_value_has_official_source
+    self.assertTrue(r["hotspawn_url"].startswith(OFFICIAL[:2]), r["hotspawn_url"])
+AssertionError: False is not true : None
+
+----------------------------------------------------------------------
+Ran 14 tests in 0.190s
+
+FAILED (failures=1)
+TEST_EXIT=1

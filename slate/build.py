@@ -477,6 +477,11 @@ def page_cs2(data: dict) -> str:
                         f'<td data-label="Source">{link(row.get("source_url"), "Hotspawn")}</td></tr>')
         body.append('<div class="scroll"><table><tr><th>Match</th><th>Date listed</th><th>Tournament</th>'
                     '<th>Source</th></tr>' + "".join(rows) + "</table></div>")
+    uncertain = [r for r in data["fixtures"] if r.get("sport") == "other"]
+    if uncertain:
+        body.append('<h2>Unclassified lobby rows — game unverified</h2><p class="lead">These captured lobby entries no longer appear on a game-specific page. They are retained here as coverage gaps, not guessed to be CS2.</p>')
+        items = [f'<tr><td data-label="Match">{esc(r.get("team_a"))} vs {esc(r.get("team_b"))}</td><td data-label="Status">{esc(r.get("live_status"))}</td><td data-label="Start UTC">{esc(r.get("start_utc"))}</td><td data-label="Verification">Game unverified — no active pick</td><td data-label="Source">{link(r.get("source_url"), "Official lobby")}</td></tr>' for r in uncertain]
+        body.append('<div class="scroll"><table><tr><th>Match</th><th>Status</th><th>Start UTC</th><th>Verification</th><th>Source</th></tr>' + ''.join(items) + '</table></div>')
     return page("CS2 — Hotspawn Pick'em line board", "".join(body), "cs2.html",
                 "Counter-Strike 2 fixtures on the board, with sources")
 
@@ -821,7 +826,10 @@ def page_methodology() -> str:
 
 
 def page_flags(data: dict) -> str:
-    flags = data["flags"]
+    flags = list(data["flags"])
+    for row in data["fixtures"]:
+        if row.get("sport") == "other":
+            flags.append({"id": "H-F-CLASS", "severity": "unverified", "subject": f"{row['fixture_id']}: game classification unavailable", "detail": f"{row['team_a']} vs {row['team_b']} appears only in the captured lobby, not a game-specific page. Retained in full inventory and the CS2 page's unclassified section; no sport or probability inferred.", "links": row.get("source_url") or "https://play.hotspawn.com/lobby"})
     severity_order = {"needs review": 0, "unverified": 1, "info": 2}
     flags = sorted(flags, key=lambda f: severity_order.get(f.get("severity") or "", 3))
     body = ["<h1>Flagged for review</h1>",
