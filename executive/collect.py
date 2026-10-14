@@ -746,7 +746,8 @@ def collect_secondary_lines_from_repo() -> dict:
             "captured_utc": None}
 
 
-POLY_EVENTS = "https://gamma-api.polymarket.com/events?closed=false&limit=500&order=startDate&ascending=false"
+POLY_EVENTS = "https://gamma-api.polymarket.com/events?closed=false&limit=100&order=startDate&ascending=false"
+POLY_PAGE_PARAM = "&offset={offset}"
 POLY_TAG_EVENTS = "https://gamma-api.polymarket.com/events?closed=false&limit=200&tag_slug=counter-strike"
 POLY_KEYWORDS = ("counter-strike", "counter strike", "cs2", "csgo", "cs:go")
 
@@ -823,23 +824,31 @@ def collect_polymarket() -> dict:
     back empty or refuse, that is recorded and no number is invented.
     """
     from common import sha256_bytes
-    status, body, _ = http_get(POLY_EVENTS, tries=2)
-    prov(POLY_EVENTS, status=status, bytes=len(body) or None,
-         sha256=sha256_bytes(body) if status == 200 and body else None, mode="live",
-         note="Polymarket public gamma API (prediction market) — secondary listing only")
-    quotes, events_scanned = [], 0
-    if status == 200:
+    # The gamma feed returns at most 100 events per request, so the newest ones are paged through
+    # (a CS2 head-to-head is created close to the match, so newest-first is where they live).
+    quotes, events_scanned, status = [], 0, 0
+    for page in range(5):
+        url = POLY_EVENTS + (POLY_PAGE_PARAM.format(offset=page * 100) if page else "")
+        status, body, _ = http_get(url, tries=2)
+        prov(url, status=status, bytes=len(body) or None,
+             sha256=sha256_bytes(body) if status == 200 and body else None, mode="live",
+             note="Polymarket public gamma API (prediction market) — secondary listing only")
+        if status != 200:
+            break
         try:
             events = json.loads(body.decode("utf-8"))
         except json.JSONDecodeError:
-            events = None
+            break
         if isinstance(events, dict):
             events = events.get("events") or events.get("data") or []
-        if isinstance(events, list):
-            events_scanned = len(events)
-            quotes = _polymarket_quotes_from_events(events)
+        if not isinstance(events, list) or not events:
+            break
+        events_scanned += len(events)
+        quotes.extend(_polymarket_quotes_from_events(events))
+        if len(events) < 100:
+            break
     if quotes:
-        return {"quotes": quotes, "mode": "live", "read": "newest events feed",
+        return {"quotes": quotes, "mode": "live", "read": "newest events feed (paged)",
                 "events_scanned": events_scanned, "source_url": POLY_EVENTS, "fetched_utc": now_iso()}
 
     status2, body2, _ = http_get(POLY_TAG_EVENTS, tries=2)

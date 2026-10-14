@@ -849,7 +849,10 @@ def render_index(rows: list[dict], meta: dict, coverage: dict) -> str:
     <li><strong>Market · primary book</strong> — the outside bookmaker's own public response
       (Pinnacle guest endpoint), de-vigged proportionally. Highest confidence.</li>
     <li><strong>Market · secondary listing</strong> — prices quoted through a public aggregator
-      (EGamersWorld/bc.game). Labelled secondary and never presented as the book's own feed.</li>
+      (EGamersWorld/bc.game) or, where no bookmaker prices the fixture at all, a prediction market's
+      implied probability (Polymarket, normalised the same way). Labelled secondary, flagged
+      <code>FL-PREDICTION-MARKET-BASIS</code> when it is a prediction market, and never presented as
+      the book's own feed.</li>
     <li><strong>Model · official ratings</strong> — both teams' points in Valve's official Regional
       Standings through the relation Valve publish in
       <a href="{esc(HLTV_GLICKO_FILE)}" target="_blank" rel="noopener noreferrer">model/glicko.js</a>
