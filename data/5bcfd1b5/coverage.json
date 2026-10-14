@@ -1,0 +1,65 @@
+{
+ "session": "arena/5bcfd1b5",
+ "generated_utc": "2026-10-14T03:13:13Z",
+ "hotspawn_crowd_percentages_used_as_probability": false,
+ "hltv_pick_a_winner_vote_used_as_probability": false,
+ "fixture_source": {
+  "path": "cs2/data/analysis.csv",
+  "captured_utc": "2026-10-14T02:35:29Z",
+  "origin": "main CI capture of play.hotspawn.com/lobby + /cs2-pickems"
+ },
+ "counts": {
+  "fixtures_total": 89,
+  "state_open": 28,
+  "state_started": 2,
+  "state_stale": 59,
+  "with_pick": 86,
+  "without_pick": 3,
+  "with_numeric_probability": 85,
+  "open_with_pick": 28,
+  "open_with_numeric_probability": 27,
+  "open_without_pick": 0,
+  "pick_tiers": {
+   "C": 24,
+   "F": 3,
+   "D": 35,
+   "B": 19,
+   "A": 7,
+   "E": 1
+  },
+  "market_tier_A": 7,
+  "market_tier_B": 19,
+  "own_line_computed": 84,
+  "flags": 12
+ },
+ "model": {
+  "k": 0.463,
+  "k_basis": "cs2 calibrate.py (MLE on Valve's published match results)",
+  "k_calibrated_on": 14188,
+  "formula": "p_map(A)=1/(1+10^(-k*(ptsA-ptsB)/400))",
+  "series": "BO1 identity; BO3 p^2(3-2p); BO5 p^3(10-15p+6p^2); unverified format publishes the single-map estimate"
+ },
+ "official_rating_source": {
+  "publisher": "Valve Corporation",
+  "repository": "https://github.com/ValveSoftware/counter-strike_regional_standings",
+  "pinned_commit": "eec4853d7bcf0f1f7efe7f0d901234bef7e98b75",
+  "periods_used": [
+   "2026-06-01",
+   "2026-07-06",
+   "2026-08-03",
+   "2026-09-07",
+   "2026-10-05"
+  ],
+  "files": {
+   "standings_americas_2026_10_05.md.gz": "2f8c4ffc8f41b31bd89c30b3aab04dc3574266d366291969801d0ae971234c55",
+   "standings_asia_2026_10_05.md.gz": "7e73c757d7cb0880940f918ded0d0d96aa4dc32351d9d6ade57573545b3f6365",
+   "standings_europe_2026_10_05.md.gz": "32b749edb05e0f95f9ec55d19dc66ca13d861b107990cff9c6781e3d402b8e30",
+   "standings_global_2026_06_01.md.gz": "52074755f3619ff6df7bcd6f1a5180d752ca4f4254a84b9c30105577ec4d6cbe",
+   "standings_global_2026_07_06.md.gz": "fd151513cb4ea392fd05a5cb3888ca9f147bb119673ebe29c6d3999653bb7ad6",
+   "standings_global_2026_08_03.md.gz": "700d57a4c9c8f9da028472c53ab2b8fc3d9f90cf14a85c96ab3fdf759b5b72ba",
+   "standings_global_2026_09_07.md.gz": "eebb6ca05544411a9ac7dd3436ad13a763fb1e963aeb1ad16eaeb5aa0995fb7b",
+   "standings_global_2026_10_05.md.gz": "1075ba215fa3a843a77861fe2c6b6921e1abb250876f6969f01565a39595a870"
+  },
+  "selection_rule": "latest official publication on or before the match date; if the team is absent there, the earliest later official period containing the exact name, flagged as anachronistic"
+ }
+}
