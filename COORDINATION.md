@@ -2624,6 +2624,29 @@ log 02:26Z/02:33Z). No session has claimed a CI-run Polymarket reader (`63ee81ba
 - 2026-10-14 03:00 UTC: MF-05 — one `<a class="card">` added to the root "Explore the current board" grid (after the
   `cs2/` card), nothing else in `index.html` changed (`git diff` = 1 insertion). Repo audit `scripts/audit_91e444dd.py`:
   186 HTML pages, 0 link errors; `python -m unittest discover -s tests`: 160 tests OK; `feeds/tests.py`: OK.
+
+### Release record — arena/a0bdf924 (PR #92, 2026-10-14 03:05 UTC)
+| Item | Result |
+|---|---|
+| PR | **#92** https://github.com/buffedlizard55-lab/MaltaProj1/pull/92 — **MERGED** 2026-10-14T03:02:09Z, merge commit `79acf6fc212515fbd07edb364fc8f05b3c7cd14e`. Checks on head `46a4ba3`: `audit` ✓, `verify` ✓. Two COORDINATION.md conflicts on the way (EOF appends by `3b5e3fea`, `63ee81ba`) resolved by keeping every line of theirs. |
+| First run on `main` | "Secondary-market feed (a0bdf924)" run [38504159208](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38504159208) ✓ → bot commit `dd6f075` (capture 03:02:29Z: Hotspawn 200 ×3, Polymarket 96 events, bo3.gg 344 matches). |
+| Coverage | 28 open CS2 fixtures → **25 priced** by ≥1 secondary market (20 bookmaker via bo3.gg, 15 Polymarket, 10 both); **26 with series format**; 3 blank + flagged (#1079624, #1081112 opponent conflicts; #1081120 thin book). |
+| Pages | Deployment `7055721742` for `dd6f075`: **state success** at 03:03:03Z, environment https://buffedlizard55-lab.github.io/MaltaProj1/ (Actions run 38504189993: build ✓ deploy ✓ report ✓). Live check through the agent's page fetcher: `/feeds/` serves the 03:02Z capture (28 rows, links, flags; local-time conversion works); root page shows the MF-05 card. |
+| Pages API quirk (fixed) | Legacy `pages/builds` lists `dd6f075` twice and `79acf6f` once as `errored`, duration 0, and the repo `pages.status` read `errored`, although the deployment succeeded. Cause on this side: the workflow's explicit `POST /pages/builds` duplicated the build the bot push already triggers; the cancelled twin left the errored record. Follow-up PR removes the request (and the now-unneeded `pages: write`). |
+| Audits | `scripts/audit_91e444dd.py`: 186 HTML pages, 0 link errors. `unittest discover -s tests`: 160 OK. `feeds/tests.py`: OK in every CI run. |
+
+**Observations for the user / any later integrator (not touched — root integration is closed):**
+- The root page now opens with **two competing "executive summary" blocks** — `63ee81ba`'s (→ `picks-full/`, "24/28 outside lines")
+  and `fbcccda2`'s "Executive summary — start here" (→ `everypick/`, "28/28") — plus a stats strip from `slate/` saying
+  "5 Supported picks" (02:23Z snapshot). Three different first impressions; a single summary would remove the confusion.
+- `picks-full/`'s 24/28 outside lines are EGamersWorld reads from 02:48Z; EGW refuses CI runners (several sessions' logs), so
+  those prices cannot refresh automatically. `feeds/data/fixtures.csv` refreshes hourly and covers 25/28 with linked sources.
+- 2026-10-14 03:09 UTC: feed run 38504490705 on this branch failed at its commit step (nothing published; the tip kept
+  run 38504470984's tested refresh). Cause: two overlapping runs each regenerate `feeds/data`, and a rebase of one
+  snapshot onto the other always conflicts. Fix in `feed-a0bdf924.yml`: generated files are treated as a snapshot —
+  reset to the branch tip, skip if the tip's capture is at least as new, otherwise overwrite `feeds/data` + pages and push
+  (code on the tip never touched). Simulated against a local bare repo: normal push ✓, older-base/newer-capture overwrite ✓,
+  stale capture skipped ✓.
 ## Session arena/75fd29ee (`arena/75fd29ee-maltaproj1`) — claims (2026-10-14 02:40 UTC)
 
 Branch fixed by Arena: `arena/75fd29ee-maltaproj1` (rebased onto `origin/main` @ `8394993` before claiming).
@@ -2663,26 +2686,16 @@ links to the updated picks list and must be phone-friendly.
   divergence flags. Cross-board pick disagreements flagged by `26986a4e` (IRREG-26) remain open for
   the final integration owner and are listed on `every/flagged.html`.
 
+### Release & deployment record — arena/75fd29ee (2026-10-14 03:1x UTC)
 
-### Release record — arena/a0bdf924 (PR #92, 2026-10-14 03:05 UTC)
 | Item | Result |
 |---|---|
-| PR | **#92** https://github.com/buffedlizard55-lab/MaltaProj1/pull/92 — **MERGED** 2026-10-14T03:02:09Z, merge commit `79acf6fc212515fbd07edb364fc8f05b3c7cd14e`. Checks on head `46a4ba3`: `audit` ✓, `verify` ✓. Two COORDINATION.md conflicts on the way (EOF appends by `3b5e3fea`, `63ee81ba`) resolved by keeping every line of theirs. |
-| First run on `main` | "Secondary-market feed (a0bdf924)" run [38504159208](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38504159208) ✓ → bot commit `dd6f075` (capture 03:02:29Z: Hotspawn 200 ×3, Polymarket 96 events, bo3.gg 344 matches). |
-| Coverage | 28 open CS2 fixtures → **25 priced** by ≥1 secondary market (20 bookmaker via bo3.gg, 15 Polymarket, 10 both); **26 with series format**; 3 blank + flagged (#1079624, #1081112 opponent conflicts; #1081120 thin book). |
-| Pages | Deployment `7055721742` for `dd6f075`: **state success** at 03:03:03Z, environment https://buffedlizard55-lab.github.io/MaltaProj1/ (Actions run 38504189993: build ✓ deploy ✓ report ✓). Live check through the agent's page fetcher: `/feeds/` serves the 03:02Z capture (28 rows, links, flags; local-time conversion works); root page shows the MF-05 card. |
-| Pages API quirk (fixed) | Legacy `pages/builds` lists `dd6f075` twice and `79acf6f` once as `errored`, duration 0, and the repo `pages.status` read `errored`, although the deployment succeeded. Cause on this side: the workflow's explicit `POST /pages/builds` duplicated the build the bot push already triggers; the cancelled twin left the errored record. Follow-up PR removes the request (and the now-unneeded `pages: write`). |
-| Audits | `scripts/audit_91e444dd.py`: 186 HTML pages, 0 link errors. `unittest discover -s tests`: 160 OK. `feeds/tests.py`: OK in every CI run. |
+| **PR** | [#94](https://github.com/buffedlizard55-lab/MaltaProj1/pull/94) (`arena/75fd29ee-maltaproj1` → `main`) — **MERGED** with merge commit `1c65c97d9d3ab04be71bdc1d2c2afa866645ae00`, explicit `gh pr merge 94 --merge` (no `--auto`, no approval wait). Pre-merge checks all **pass**: `audit`, `rebuild-and-verify` (17 acceptance tests incl. pick-set equality vs the open slate), `verify`. |
+| **Pages** | Build `built` at 2026-10-14T03:09:56Z for the merge commit (`/repos/.../pages/builds/latest`); Pages API reports `main:/` **built** at https://buffedlizard55-lab.github.io/MaltaProj1/ . This sandbox cannot fetch `*.github.io` directly (network allowlist), so the deployed-tree evidence is the official Pages build record + `every/` tree present at the merge commit (`every/index.html` 58,479 bytes via the contents API). |
+| **Published** | `every/index.html` (28/28 picks), `every/{methodology,flagged,sources}.html`, `every/data/{picks.csv,picks.json,coverage.json,flags.csv}`, `data/75fd29ee/team_research.csv`, root `#exec-summary` additive link, README row, `reviews/75fd29ee-review.md`, `.github/workflows/every-75fd29ee.yml` (hourly rebuild + tests + audit + Pages request + public-response check). |
+| **Verification** | 17/17 session tests; **177/177 repository tests** after rebase; `scripts/audit_91e444dd.py`: 190 HTML pages, **0 broken links**. Slate-model parity 18/20 exact (2 documented IRREG-02 input corrections, flagged). Every row carries https source links; `hotspawn_crowd_used=false`. |
+| **Merge hygiene** | Rebase onto `dd6f075` conflicted twice in `COORDINATION.md` and once in `index.html`; every conflict resolved by keeping main's content verbatim and re-appending/adding only this session's material (see the overlap resolution note above). No other session's file was modified or reverted. Force-with-lease used only on this session's own branch after the rebase. |
+| **Sources** | Hotspawn payload (identity + epochs only) · Pinnacle guest moneylines 2026-10-14T02:21Z · EGamersWorld/bc.game captures 2026-10-14T01:48–02:26Z (flagged aggregator-reported) · HLTV match pages (formats/lineups) · HLTV world ranking 2026-10-12 · HLTV Valve global ranking 2026-10-10 (LFO 10: #168, 771 pts) · Valve `standings_global_2026_10_05.md` (line-anchored). Full links per row in `every/data/picks.csv` and `reviews/75fd29ee-review.md`. |
+| **Irregularities (non-blocking, published on `every/flagged.html`)** | IRREG-02 carried (Valve duplicate names affect slate rows `1079622`/`1081112`) · FL-EXT-PLACEHOLDER (4 rejected 1.80/1.80 pages) · E-01 identity/snapshot notes for LFO 10 (Entropy core, #168/#169 drift, mixed snapshot dates) · E-02-DIVERGENCE ×4 (market vs model: `1079439`, `1079623`, `1080279`, `1080285`) · IRREG-26 cross-board pick disagreements remain open for the final integration owner. |
 
-**Observations for the user / any later integrator (not touched — root integration is closed):**
-- The root page now opens with **two competing "executive summary" blocks** — `63ee81ba`'s (→ `picks-full/`, "24/28 outside lines")
-  and `fbcccda2`'s "Executive summary — start here" (→ `everypick/`, "28/28") — plus a stats strip from `slate/` saying
-  "5 Supported picks" (02:23Z snapshot). Three different first impressions; a single summary would remove the confusion.
-- `picks-full/`'s 24/28 outside lines are EGamersWorld reads from 02:48Z; EGW refuses CI runners (several sessions' logs), so
-  those prices cannot refresh automatically. `feeds/data/fixtures.csv` refreshes hourly and covers 25/28 with linked sources.
-- 2026-10-14 03:09 UTC: feed run 38504490705 on this branch failed at its commit step (nothing published; the tip kept
-  run 38504470984's tested refresh). Cause: two overlapping runs each regenerate `feeds/data`, and a rebase of one
-  snapshot onto the other always conflicts. Fix in `feed-a0bdf924.yml`: generated files are treated as a snapshot —
-  reset to the branch tip, skip if the tip's capture is at least as new, otherwise overwrite `feeds/data` + pages and push
-  (code on the tip never touched). Simulated against a local bare repo: normal push ✓, older-base/newer-capture overwrite ✓,
-  stale capture skipped ✓.
+- Tasks E-01..E-07 all **done**. Session closed after this record; automation (hourly `every-75fd29ee.yml` + hourly slate capture) keeps the picks list current with no manual input.
