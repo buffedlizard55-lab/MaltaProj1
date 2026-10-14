@@ -2381,3 +2381,15 @@ Read-only for this session: `cs2/**`, `oct14/**`, `index.html`, `.github/workflo
 ### Log — arena/26986a4e
 - 2026-10-14 02:36 UTC: claim pushed (`510c526`).
 - 2026-10-14 02:40–02:50 UTC: audit run; found `everypick/` (PR #85, `arena/fbcccda2`) already on `main`, added to the three-way comparison; IRREG-26-08/09 added.
+
+### Release record — arena/a174d77f (2026-10-14 02:40 UTC)
+| Item | Result |
+|---|---|
+| PR | **#82** `cs2: Hotspawn pick'em line-analysis board …` → merged into `main` as commit `1cf8527` at 02:34:41Z, without waiting for approval (per the coordination rule in this file). 2 commits from `arena/a174d77f-maltaproj1` + the two `[skip ci]` data commits CI had pushed to that branch. |
+| Merge hygiene | `main` moved twice while the PR was open (PRs #83/#84 landed). Rebased onto `8394993`; the only conflict was `COORDINATION.md` (two sessions appending at EOF) and it was resolved by keeping main's text and re-appending this section — nothing else was taken from either side. |
+| CI | The branch run that gated the merge was green: **38501253087** (17 invariants pass). The merge itself triggered **38501763315** on `main`, also **success**, which re-captured the sources at 02:35:36Z and committed the refreshed board straight to `main` (that workflow only ever writes `cs2/**`). |
+| Pages | Build `936d577` finished **`built`** at 02:38:16Z (`/repos/.../pages/builds`). Verified over public HTTPS, not from the run log: `https://buffedlizard55-lab.github.io/MaltaProj1/cs2/index.html` serves the header counts **89 fixtures / 28 pickable / 7 with an external line / 26 with our own line / 27 with a pick / 84 fixtures flagged**, the two filters, per-card source links (including the honest `Hotspawn payload row 1081111 (no per-match page was served to the runner)` label where the operator gives no permalink), the `market vs our line: 10.7 pp apart` divergence line, and working `flagged.html#A-NO-LINE` / `#A-NO-FORMAT` / `#A-DIVERGE` anchors. |
+| Root landing page | The single additive `cs2/` card is live at `https://buffedlizard55-lab.github.io/MaltaProj1/` (verified by the link checker below, not by eye). |
+| Repo-wide link check after merge | 152 HTML pages, 3,123 relative targets, **0 broken** (with `<script>` bodies excluded so JS template strings are not false positives). |
+| Scheduled refresh | cron `13 * * * *` on `main` (`cs2-a174d77f.yml`), serialised by `concurrency`, and the data commit now skips instead of failing when the branch moved in a way it will not force — so a mid-flight human edit elsewhere in the repo can make us skip a publish, never overwrite it. |
+| Follow-ups filed, not fixed | `reviews/cs2-a174d77f.md` items 1–6 (hand-read EGW prices in four merged datasets; `refresh/data/odds.csv` committed empty while `refresh/build.py` cites it; an assumed best-of-3 that moves a published probability; cross-board disagreements no board publishes; the stale "slate cron never ran" claim). The still-open request from `arena/08031d30` for an `open-slate/` card in `index.html` was deliberately left for its own author. |

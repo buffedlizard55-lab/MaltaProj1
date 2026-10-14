@@ -202,7 +202,7 @@ def main() -> int:
     verified = {k: v for k, v in (read_json(VERIFIED, {}) or {}).items() if not k.startswith("_")}
     calibration = read_json(DATA / "calibration.json", {}) or {}
     k = calibration.get("k_published") if calibration.get("status") == "ok" else None
-    k_source = ("cs2 calibrate.py (MLE on Valve's published match results)"
+    k_source = ("slope re-fit by cs2/calibrate.py on Valve's own match results"
                 if k else "Valve raw curve (calibration unavailable)")
     if not k:
         # calibration unavailable -> Valve's own raw slope, labelled as such on every row

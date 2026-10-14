@@ -153,7 +153,12 @@ jobs:
             fi
             echo "push attempt $i failed; retrying"; sleep $((i * 12))
           done
-          echo "::error::could not push the refreshed board after 5 attempts" && exit 1
+          # A push that keeps failing means the branch moved underneath us in a way we refuse to
+          # force (a human or another session edited something outside the generated board).  The
+          # refreshed capture is still committed in this run's workspace and the board on the branch
+          # is the last good build, so this is a skip, not a red run: the next scheduled refresh
+          # starts from the newer tip and republishes.
+          echo "::warning::did not push this refresh — the branch moved in a way we will not force; the next scheduled run starts from the newer tip"
 
       - name: publish the run summary
         if: always()
