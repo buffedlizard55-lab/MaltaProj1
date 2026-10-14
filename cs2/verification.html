@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0d1117">
+<meta name="description" content="Hotspawn Pick'em CS2 board: win probability per team for every listed match, built from external bookmaker lines and our own VRS line. Mobile first.">
+<title>Verification · Hotspawn CS2 board</title>
+<link rel="stylesheet" href="style.css">
+</head><body>
+<header class="top">
+  <div class="brand"><span class="mark">CS2</span>
+    <div><strong>Hotspawn Pick&#8217;em board</strong><small>independent lines · mobile first · not betting advice</small></div>
+  </div>
+  <p class="asof">captured <b>2026-10-14T02:23:54Z</b> UTC</p>
+  <nav class="scrollnav"><a class="" href="index.html">Board</a><a class="" href="lines.html">Market lines</a><a class="" href="own-lines.html">Our own lines</a><a class="" href="tournaments.html">Tournaments</a><a class="" href="fixtures.html">Full slate</a><a class="" href="coverage.html">Coverage</a><a class="" href="methodology.html">Method</a><a class="" href="sources.html">Sources</a><a class="" href="flagged.html">Flagged for review</a></nav>
+</header>
+<main><section class="hero"><h1>Verification log — every check, its source and its result</h1><p class="lead">Each row is a check a human (or an offline test) can repeat from the linked official source. The rule used throughout: if a value cannot be re-derived from what was archived, it is not published — it is blank and listed on <a href="flagged.html">Flagged for review</a>.</p></section>
+<p>No manual verification log has been written for this capture yet.</p>
+<h2>Automatic re-checks (run in CI on every refresh, <code>cs2/tests.py</code>)</h2><ul class="src-list"><li>Market probabilities are re-derived from the archived price pairs (multiplicative de-vig) and must match the published figure to 0.3 pp.</li><li>Every own line is recomputed from the linked Valve standings row and must match to 0.2 pp.</li><li>Every published rating link must point at the exact line of Valve&#8217;s file carrying that team and those points.</li><li>No probability column may equal the Hotspawn crowd percentage of the same side (leakage guard).</li><li>Every row carries a source link; every blank is flagged; every internal link resolves.</li></ul></main>
+<footer class="foot">
+  <p>Session <code>arena/a174d77f</code> · generated 2026-10-14T02:26:03Z by <code>cs2/build.py</code> from
+  <code>cs2/data</code> · refreshed automatically by <code>.github/workflows/cs2-a174d77f.yml</code>.</p>
+  <p>Probabilities come from external bookmaker prices (de-vigged) and our own rating line.
+  Hotspawn&#8217;s crowd pick percentages are excluded from every number on this site; they appear only on the
+  <a href="coverage.html">coverage page</a> as evidence that they were seen and dropped.
+  Analysis only — not betting advice.</p>
+</footer>
+</body></html>

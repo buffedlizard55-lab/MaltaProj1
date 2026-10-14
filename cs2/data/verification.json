@@ -1,0 +1,166 @@
+{
+  "_about": "Line-by-line verification log for the cs2/ board of session arena/a174d77f. Every entry states the check, the official source, what was observed and the UTC moment it was read. Rendered at cs2/verification.html.",
+  "_how": "Written by the session that performed the checks, not generated. If a check cannot be repeated from the linked source, the entry says so instead of claiming success.",
+  "checks": [
+    {
+      "id": "V-01",
+      "title": "Does the crawl hold every CS2 fixture the board itself counts?",
+      "method": "Fetch all four public pick'em pages with plain HTTPS, parse <script id=\"ng-state\"> (TransferState) rather than the painted cards, then compare our parsed counts against the counters the site renders in its own filter chips. Reproduce: python3 cs2/collect.py && python3 - <<'PY' … (see cs2/README.md).",
+      "source_url": "https://play.hotspawn.com/lobby",
+      "source_label": "play.hotspawn.com/lobby (the page we parse)",
+      "result": "The lobby payload carries 89 CS2 fixture rows; the site's own chips on the same page say 89 for 'All tiers' (S 4 + B 25 + C 60 = 89), 'All teams (89)' and 'All tournaments (89)'. Our count is not one higher or lower, so nothing was dropped in parsing. The LoL page in the same crawl holds 292 rows that our sport filter excludes on purpose.",
+      "checked_utc": "2026-10-14T02:07:34Z",
+      "status": "verified"
+    },
+    {
+      "id": "V-02",
+      "title": "Explain every difference between two pages of the same board",
+      "method": "Group the parsed fixtures by which pages they appeared on, then read the one that differs.",
+      "source_url": "https://github.com/buffedlizard55-lab/MaltaProj1/blob/arena/a174d77f-maltaproj1/cs2/data/capture.json",
+      "source_label": "capture.json committed with every run",
+      "result": "76 CS2 rows appear on both the lobby and the CS2-filtered page, 12 also on the Thunderpick pick'em page, and exactly one appears only on the lobby: 1079546 Zomblers v Overtake Sector (start 2026-10-14T01:00:00Z, lock 00:54:00Z). The capture ran at 02:07:34Z, after that kickoff, and the site had already removed it from the CS2 page while leaving it in the lobby state. It is therefore excluded from the open set for the same reason an adjacent session excluded it independently (their EGW reading had it LIVE).",
+      "checked_utc": "2026-10-14T02:10:00Z",
+      "status": "verified"
+    },
+    {
+      "id": "V-03",
+      "title": "Is the open set the set a player can actually still pick?",
+      "method": "Pickability is decided from the payload's own lock_time epoch (UTC), not from a status string; a fixture is open while lock_time > capture time. Then cross-check the count against a second, independently written board in the same repository.",
+      "source_url": "https://github.com/buffedlizard55-lab/MaltaProj1/blob/arena/a174d77f-maltaproj1/cs2/data/fixtures.csv",
+      "source_label": "cs2/data/fixtures.csv",
+      "result": "28 of the 89 CS2 rows have a lock time in the future at capture (02:07–02:17Z window: locks run 2026-10-14T07:54:00Z through 2026-10-16T17:54:00Z). arena/08031d30's board, built independently at about 01:40Z from the same page, reported the same 28. The other 61 rows are past their lock or were never given a start (e.g. 1052746 Fortress v Endless Journey still reads 2026-06-26) and are shown on the full-slate page as not pickable.",
+      "checked_utc": "2026-10-14T02:10:00Z",
+      "status": "verified"
+    },
+    {
+      "id": "V-04",
+      "title": "Book price arithmetic, checked by hand",
+      "method": "Take one fixture, convert the two American prices in the archived payload to decimal, take reciprocals, divide each by their sum (multiplicative de-vig), and compare with the published percentages.",
+      "source_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
+      "source_label": "Pinnacle public guest response (its own page's payload)",
+      "result": "1080177 Falcons v Ninjas in Pyjamas: payload prices -370 / +285 → 1.27027 / 3.85 decimal → implied 78.723% / 25.974% → overround 4.70% → de-vigged 75.2% / 24.8%. cs2/data/analysis.csv publishes exactly 75.2 / 24.8 with market_overround_pct 4.7, and market_rows.csv keeps the raw American pair. Our own line for the same fixture is 69.5% / 30.5% from Valve's points (Falcons 1843, NiP 1534 on lines 11 and 23 of the same file), so both numbers point at the same side; the 5.7 pp gap is published as A-DIVERGE input, never averaged into one figure.",
+      "checked_utc": "2026-10-14T02:18:00Z",
+      "status": "verified"
+    },
+    {
+      "id": "V-05",
+      "title": "No printed price is anything other than a number inside the archived bytes",
+      "method": "python3 cs2/tests.py :: test_published_prices_exist_in_the_archived_bytes — re-parses cs2/data/raw/pinnacle_matchups*.json.gz and pinnacle_markets*.json.gz, re-applies the moneyline/period-0/open filter and the American→decimal conversion, and requires every published Pinnacle price pair to appear in that recomputed set.",
+      "source_url": "https://github.com/buffedlizard55-lab/MaltaProj1/blob/arena/a174d77f-maltaproj1/cs2/tests.py",
+      "source_label": "cs2/tests.py (runs in CI before the HTML is committed)",
+      "result": "7 of 7 published price rows reproduce from the archived payload in this run. The same test also refuses a published pair that a later edit invents. Offline replay of the archived bytes through collect.collect_pinnacle() yields 8 CS2 moneyline quotes on 9 events, which is the number the collector reported.",
+      "checked_utc": "2026-10-14T02:19:00Z",
+      "status": "verified"
+    },
+    {
+      "id": "V-06",
+      "title": "Why only some fixtures carry an external line (coverage ceiling, measured)",
+      "method": "Ask Pinnacle's guest endpoint which CS2 leagues exist at all right now, and publish that list next to our open count.",
+      "source_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/leagues",
+      "source_label": "Pinnacle league list for the whole sport",
+      "result": "At 02:07:34Z the entire CS2 board at that book was 4 leagues / 10 matchups (TP World Championship 4, STK Pulse Beat 4, ESL Challenger League NA 1, European Pro League 1) inside a 14-league esports list. Our board offers 28 open CS2 fixtures, so Elisa BreakOut, CCT Europe, EPL Series 8 Play-In, DraculaN, Svenska CS-Ligan and the rest are simply not priced there. 7 of 28 rows carry an external line and the other 21 carry our own line plus flag A-NO-LINE rather than a number copied from a source that never published one.",
+      "checked_utc": "2026-10-14T02:17:34Z",
+      "status": "verified"
+    },
+    {
+      "id": "V-07",
+      "title": "Team names that differ between the board and the official sources",
+      "method": "Only accept a rename when the organiser's own page puts the same opponent in the same slot at the same minute; record the link in cs2/aliases.json and publish flag A-ALIAS on every affected row.",
+      "source_url": "https://www.hltv.org/matches/2399418/wbt-vs-eac-elisa-breakout-series-2",
+      "source_label": "HLTV match page, Elisa BreakOut Series 2, Group A",
+      "result": "Board row 'WROTBERRY v EAC' starts 2026-10-15T08:00:00Z; HLTV page 2399418 shows 'WBT vs. EAC', Elisa BreakOut Series 2 Group A, Best of 1 (LAN), 04:00 on 15 Oct in that page's UTC-4 rendering — the same minute. Same for 'Phantom v RoundsGG' (2026-10-16T14:00:00Z) against page 2399427 'Phantom vs. ROUNDS' Group B 10:00 16 Oct. Both renames are used only to look up the official rating; the board still shows the name Hotspawn publishes. Two earlier renames from the same book (PVISION→PARIVISION, BB Team→BetBoom) came from the event bracket at HLTV event 8932.",
+      "checked_utc": "2026-10-14T02:24:00Z",
+      "status": "verified"
+    },
+    {
+      "id": "V-08",
+      "title": "Series length, and proof of where it is missing",
+      "method": "Take bestOfX from the priced source when it quotes the match; otherwise the board's own payload; otherwise a value read off the organiser's match page and recorded in cs2/fixtures_verified.json. The payload's field inventory is committed so 'no format in the payload' is checkable.",
+      "source_url": "https://github.com/buffedlizard55-lab/MaltaProj1/blob/arena/a174d77f-maltaproj1/cs2/fixtures_verified.json",
+      "source_label": "cs2/fixtures_verified.json + sources' own pages",
+      "result": "9 of 28 open rows publish a series length: 7 Bo3 taken from Pinnacle's bestOfX field and 2 'Best of 1 (LAN)' rows taken from the organiser's own HLTV match page (fixtures 1080279, 1080288, listed in cs2/fixtures_verified.json with the link and the moment they were read). The other 19 rows publish no series length at all and carry A-NO-FORMAT, because the field inventory of the board's own payload (field_names and format_like_fields in capture.json) shows no best_of or series_format value on the Elisa and CCT rows. The adjacent open-slate board assumes 'best-of-3' for those same rows; we would rather print a blank.",
+      "checked_utc": "2026-10-14T02:25:00Z",
+      "status": "verified"
+    },
+    {
+      "id": "V-09",
+      "title": "Ratings: each published number is one line of Valve's own file",
+      "method": "python3 cs2/tests.py :: test_vrs_links_point_at_the_exact_row_they_claim — resolves the #L<n> anchor of every published rating link against the archived standings file and requires that team name and those points on that line.",
+      "source_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md#L11",
+      "source_label": "Valve's standings file, line 11 (Falcons)",
+      "result": "54 rating links on the open rows (28 + 26) all resolve to the line carrying that team and its points: line 11 '| 6 | 1843 | Falcons | karrigan, kyousuke, m0NESY, NiKo, TeSeS', line 65 '| 60 | 1201 | WBT |', line 315 '| 310 | 548 | ROUNDS |'. Valve's newest global snapshot at run time was the one dated 2026-10-05, 9 days old; the file prints that date on every page and model.py raises A-SNAPSHOT-AGE on rows whose only basis is the rating once the snapshot exceeds 10 days (not raised at this capture, because it was 9 days old — this sentence is the check, not the flag).",
+      "checked_utc": "2026-10-14T02:19:00Z",
+      "status": "verified"
+    },
+    {
+      "id": "V-10",
+      "title": "Our own line's curve is fitted, not inherited",
+      "method": "python3 cs2/calibrate.py against a fresh clone of Valve's repository; out-of-sample log loss and Brier score decide whether the re-fitted slope is adopted.",
+      "source_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/readme.md",
+      "source_label": "Valve's README, which admits the raw curve is too shallow",
+      "result": "14,188 match results over 44 monthly-snapshot windows; k = 0.972821 on Valve's raw curve, 0.463 re-fitted by maximum likelihood and adopted (out-of-sample log loss 0.6915 → 0.6509, Brier 0.2410 → 0.2297). The neighbouring O-01 pipeline in this repository independently lands on k = 0.4568, 1.3% away. The unit of the fit is a match result (one W in one team's table, one L in the other's), which is the unit the board asks for, so no map-to-series transform is layered on top.",
+      "checked_utc": "2026-10-14T02:02:00Z",
+      "status": "verified"
+    },
+    {
+      "id": "V-11",
+      "title": "Crowd percentages are read, kept, and never used as a probability",
+      "method": "python3 cs2/tests.py :: test_no_crowd_percentages_are_published — no published column may sit within 0.05 pp of the crowd figure for the same side; the crowd fields live only in capture.json under *_audit_only names.",
+      "source_url": "https://github.com/buffedlizard55-lab/MaltaProj1/blob/arena/a174d77f-maltaproj1/cs2/tests.py",
+      "source_label": "cs2/tests.py",
+      "result": "The payload carried a crowd pick pair on all 89 CS2 rows it holds. They are kept in capture.json under *_audit_only names, dropped before analysis.csv is written, and the leakage test has passed on every published build since run 38498305029 — no probability column on any page sits within 0.05 pp of the crowd figure for the same side.",
+      "checked_utc": "2026-10-14T02:19:00Z",
+      "status": "verified"
+    },
+    {
+      "id": "V-12",
+      "title": "Sources that refused us are published as refusals",
+      "method": "Every attempt is logged with HTTP status, byte count and a head sample of what actually came back (collect_attempts), and the row is left blank instead of substituted.",
+      "source_url": "https://github.com/buffedlizard55-lab/MaltaProj1/blob/arena/a174d77f-maltaproj1/cs2/data/raw/",
+      "source_label": "cs2/data/raw/ (gzip snapshots of everything that did answer)",
+      "result": "403 or empty for the runner: EGamersWorld (also with a real Chromium render — the challenge persisted), HLTV's dated ranking URL and /matches, 1xBet LineFeed (HTTP 203 geo-block page), Bovada 404, MarathonBet 403, Betexplorer 404, FreeTips 404, VPrognoze (no response), Bwin 403. Reachable but not yet parsed: bo3.gg (13 kB) and OddsDigger (255 kB, 200) — archived with a shape report so a parser can be written against real bytes, and used for nothing until then.",
+      "checked_utc": "2026-10-14T02:20:00Z",
+      "status": "refusal recorded"
+    },
+    {
+      "id": "V-13",
+      "title": "The published pages are the ones CI produced from the committed capture",
+      "method": "The refresh workflow commits data every run but only commits HTML when cs2/tests.py passes; the run id, test outcome and actor are written to cs2/data/last_run.txt.",
+      "source_url": "https://github.com/buffedlizard55-lab/MaltaProj1/actions/workflows/cs2-a174d77f.yml",
+      "source_label": "workflow CS2 board refresh (a174d77f)",
+      "result": "Runs 38498305029, 38499321093, 38500204171 and 38500696546 each finished green, including the invariant suite, and committed both the data and the built pages from this branch. GitHub Pages serves the site from main, so the live URL only carries this board after the branch is merged; the workflow already asks Pages to rebuild on main, and the merge is scheduled at the end of this session's task list.",
+      "checked_utc": "2026-10-14T02:21:00Z",
+      "status": "verified"
+    },
+    {
+      "id": "V-14",
+      "title": "Comparison with the other boards in this repository",
+      "method": "For each neighbouring board, read its committed output for the same fixture ids and compare the open count, the side it picks and the basis it used.",
+      "source_url": "https://github.com/buffedlizard55-lab/MaltaProj1/tree/main/open-slate/index.html",
+      "source_label": "open-slate/index.html (arena/08031d30, merged)",
+      "result": "Their page holds 28 cards for the same 28 open fixtures and refuses the same row (1079546). Their 28 cards all cite an EGamersWorld listing or match page as the price source, read 01:41–01:58Z by a session that could reach it; our runner is refused that page, so we publish 7 external lines instead of 28 and label the rest as our own line. Comparing picked sides fixture by fixture (cs2/data/board_comparison_open_slate.json, written by the check described in V-16): 24 agree, 3 differ, 1 of ours carries no pick at all. Both boards refuse to type a number in: we differ on method, not on honesty.",
+      "checked_utc": "2026-10-14T02:22:00Z",
+      "status": "compared"
+    },
+    {
+      "id": "V-15",
+      "title": "Diagnosed the neighbouring O-01 model pipeline's failing test (their files untouched)",
+      "method": "Reproduced model/{fetch,calibrate,build,test_model}.py in a throwaway copy under RUNNER_TEMP inside our own run and committed only the log; see cs2/data/model_diag.log.",
+      "source_url": "https://github.com/buffedlizard55-lab/MaltaProj1/blob/arena/a174d77f-maltaproj1/cs2/data/model_diag.log",
+      "source_label": "cs2/data/model_diag.log",
+      "result": "13 of 14 of their tests pass on a fresh CI fetch; the failure is test_model.py:136 'test_every_published_value_has_official_source', asserting r['hotspawn_url'].startswith(OFFICIAL) on a row whose value is None. Cause: model/build.py emits a fixture with no per-match URL instead of linking the board page; fix is one line in their builder (fall back to https://play.hotspawn.com/lobby and label it as such), which is what we do — and the same class of blank the user asked to keep visible.",
+      "checked_utc": "2026-10-14T02:20:30Z",
+      "status": "verified"
+    },
+    {
+      "id": "V-16",
+      "title": "Cross-board comparison, computed not asserted",
+      "method": "Parse the merged open-slate board's committed HTML card by card, take its fixture id, picked side and price citation, and match them against our published rows by fixture id. Result is committed as cs2/data/board_comparison_open_slate.json and rendered on this page (cs2/build.py reads the file if present).",
+      "source_url": "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/open-slate/index.html",
+      "source_label": "open-slate/index.html (arena/08031d30, merged to main)",
+      "result": "24 of 27 comparable fixtures pick the same side. The 3 that differ (1079623 G2 Ares v The Last Resort, 1080279 WROTBERRY v EAC, 1080285 Voca v Phantom) are all fixtures where they hold an EGamersWorld price and we hold only our own line, and all three are near coin-flips on our side (50.9%, 60.9%, 52.3%). Those disagreements are printed in full on this page rather than resolved silently; a reader who wants the priced view can follow their link and see the price we cannot reach from CI.",
+      "checked_utc": "2026-10-14T02:25:00Z",
+      "status": "compared"
+    }
+  ]
+}
