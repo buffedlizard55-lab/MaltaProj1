@@ -1,0 +1,87 @@
+name: Every-match CS2 picks rebuild (75fd29ee)
+
+on:
+  schedule:
+    # hourly, shortly after the slate snapshot cron, so every/ tracks the newest Hotspawn capture
+    - cron: '47 * * * *'
+  workflow_dispatch:
+  push:
+    branches: [ main, 'arena/75fd29ee-maltaproj1' ]
+    paths:
+      - 'scripts/75fd29ee_build.py'
+      - 'tests/test_75fd29ee.py'
+      - 'data/75fd29ee/**'
+      - 'every/**'
+      - '.github/workflows/every-75fd29ee.yml'
+  pull_request:
+    paths:
+      - 'scripts/75fd29ee_build.py'
+      - 'tests/test_75fd29ee.py'
+      - 'data/75fd29ee/**'
+      - 'every/**'
+      - '.github/workflows/every-75fd29ee.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: every-75fd29ee-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  rebuild-and-verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Rebuild every-match picks board from committed evidence
+        run: python3 scripts/75fd29ee_build.py
+
+      - name: Run 75fd29ee acceptance tests
+        run: python3 -m unittest tests.test_75fd29ee -v
+
+      - name: Repository-wide HTML link and DOM fragment audit
+        run: python3 scripts/audit_91e444dd.py --output /tmp/audit-75fd29ee.json
+
+      - name: Commit refreshed picks on scheduled/manual runs
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add every data/75fd29ee
+          if ! git diff --cached --quiet; then
+            git pull --rebase origin "${GITHUB_REF_NAME}"
+            git commit -m "every(75fd29ee): automated every-match picks rebuild"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
+
+      - name: Request GitHub Pages build
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --method POST "repos/${GITHUB_REPOSITORY}/pages/builds"
+
+      - name: Confirm public picks page responds after deployment
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        run: |
+          sleep 45
+          for i in 1 2 3 4 5 6; do
+            code=$(curl -s -o /tmp/every.html -w '%{http_code}' "https://buffedlizard55-lab.github.io/MaltaProj1/every/index.html" || echo 000)
+            if [ "$code" = "200" ] && grep -q 'Every CS2 Pick' /tmp/every.html; then
+              echo "public picks page OK (HTTP 200, expected content present)"
+              exit 0
+            fi
+            echo "attempt $i: HTTP $code — retrying in 30s"
+            sleep 30
+          done
+          echo "public picks page did not respond with expected content" >&2
+          exit 1

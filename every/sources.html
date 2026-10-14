@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sources — CS2 Picks</title>
+<meta name="description" content="Source register for every input behind the picks, with capture times and links.">
+<link rel="stylesheet" href="style.css">
+</head><body>
+<header class="top"><div class="wrap">
+<a class="brand" href="index.html">CS2 Picks</a>
+<nav class="chips">
+<a href="index.html">All picks</a>
+<a href="methodology.html">Methodology</a>
+<a href="flagged.html">Flagged</a>
+<a href="sources.html" class="on">Sources</a>
+<a href="../index.html">Site home</a>
+</nav>
+</div></header>
+<div class="wrap">
+
+<h1>Sources</h1>
+<p class="lead">Every input used to build the picks. Generated 2026-10-14T03:08:10Z.</p>
+<h2>Registers</h2>
+<table class="resp"><thead><tr><th>Source</th><th>What it provides</th><th>Captured / dated</th><th>Link</th></tr></thead>
+<tbody>
+<tr><td>Hotspawn Pick'em lobby</td><td>Fixture identity, UTC start/lock (never probabilities)</td>
+<td>2026-10-14T02:23:08Z</td>
+<td><a href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">play.hotspawn.com</a></td></tr>
+<tr><td>Pinnacle guest moneylines</td><td>Primary market quotes (5 fixtures this snapshot)</td>
+<td>2026-10-14T02:21Z</td>
+<td><a href="https://www.pinnacle.com/en/esports/games/cs2/matchups/" target="_blank" rel="noopener">pinnacle.com</a></td></tr>
+<tr><td>EGamersWorld listing bc.game prices</td><td>Aggregator-reported market quotes (flagged)</td>
+<td>2026-10-14T01:48–02:26Z</td>
+<td><a href="https://egamersworld.com/counterstrike/matches" target="_blank" rel="noopener">egamersworld.com</a></td></tr>
+<tr><td>HLTV match pages</td><td>Series formats (BO1/BO3/BO5), team identity, rosters</td>
+<td>per row</td>
+<td><a href="https://www.hltv.org/matches" target="_blank" rel="noopener">hltv.org/matches</a></td></tr>
+<tr><td>HLTV world ranking</td><td>HLTV ranking points</td><td>2026-10-12</td>
+<td><a href="https://www.hltv.org/ranking/teams" target="_blank" rel="noopener">hltv.org/ranking/teams</a></td></tr>
+<tr><td>Valve Regional Standings (official GitHub)</td><td>VRS points/standings</td><td>2026-10-05</td>
+<td><a href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/standings_global_2026_10_05.md" target="_blank" rel="noopener">standings_global_2026_10_05.md</a></td></tr>
+<tr><td>HLTV Valve global ranking</td><td>Researched addition (LFO 10: #168, 771 pts)</td><td>2026-10-10</td>
+<td><a href="https://www.hltv.org/valve-ranking/teams/2026/october/10" target="_blank" rel="noopener">hltv.org/valve-ranking</a></td></tr>
+</tbody></table>
+
+<h2>Machine-readable outputs</h2>
+<ul class="plain">
+<li><a href="data/picks.csv" target="_blank" rel="noopener">every/data/picks.csv</a> — one row per open fixture (pick, probabilities, sources).</li>
+<li><a href="data/picks.json" target="_blank" rel="noopener">every/data/picks.json</a> — the same data as JSON.</li>
+<li><a href="data/coverage.json" target="_blank" rel="noopener">every/data/coverage.json</a> — counts and input stamps.</li>
+<li><a href="data/flags.csv" target="_blank" rel="noopener">every/data/flags.csv</a> — flag register.</li>
+</ul>
+
+<footer>
+<p>Analysis only — not betting advice. Hotspawn supplies fixture identity and UTC times only;
+its crowd pick percentages are never used as probability inputs. Unknown values stay blank and flagged.</p>
+<p>Generated from committed evidence by <code>scripts/75fd29ee_build.py</code> ·
+<a href="data/picks.csv">picks.csv</a> · <a href="data/coverage.json">coverage.json</a></p>
+</footer>
+</div>
+</body></html>
