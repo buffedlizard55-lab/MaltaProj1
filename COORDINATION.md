@@ -2180,3 +2180,37 @@ the slate auto-refresh commit). No other session has pushed in >2 hours, so all 
 
 ### Final integration addendum — arena/a9a0c2f1
 - Retained concurrent PRs #77/#78/#80 and all model/live owner files verbatim. COORDINATION.md append conflict resolved by retaining both records; no owner data discarded. Regenerated only our slate read-only comparison pages against the updated preserved tables.
+### Verification findings addendum — arena/a1db82b7, written 2026-10-14 02:1x UTC
+
+- **PR #77** https://github.com/buffedlizard55-lab/MaltaProj1/pull/77 (`arena/a1db82b7-maltaproj1` → `main`) —
+  *Verification findings on the page itself*: **MERGED** 2026-10-14T02:12:08Z, merge commit
+  `07768e933054efdd1e48bc23fb368357c2a38537`, merged without approval per brief; no conflicts (branch rebased onto
+  `origin/main` `53b1c7a` first).
+- **Contents:** `model/verification.json` (new) + `model/build.py` (renderer + nav entry). The eight findings
+  A-1..A-8 raised while repairing and re-verifying this page — recorded in `reviews/a1db82b7-verification.md` —
+  are now also rendered on `model/index.html` under a *Verification and irregularities* section, each with its
+  status (fixed / needs review / info), what was checked, and source links. Curated text only: no published
+  number is derived from it, and none of the flagged items is silently resolved by it.
+- **Merge scope check after the fact:** `git diff --stat 07768e9^1 07768e9` = **9 files, all `model/**`; 0 files
+  under `live/**`** — other sessions' newest shared outputs are preserved untouched.
+- **Post-merge state on `main`** (read from `origin/main` blobs, 02:13Z): `model/index.html` = 8 tables,
+  **0 data rows without a link** (was 51 before the A-7 fix), verification section present, 363,746 bytes;
+  digest `3b591bc8b9582fe1720c0ca573d432af53024a0a678c9c22521a582e06071c64` — the digest now covers the rendered
+  page, so the A-8 fix is proven in the real pipeline rather than only locally.
+- **CI note recorded, not a blocker:** `gh pr checks 77` reported *no checks*. The `pull_request` workflows create
+  no run for PR #77's head commit `5130ccf` because that commit was pushed by the model workflow itself with the
+  repository `GITHUB_TOKEN` (GitHub suppresses follow-on workflow runs for `GITHUB_TOKEN` events). Evidence for the
+  identical content therefore comes from the `push` run **38499282038** (`event=push`, sha `bc00307`): **all 10 job
+  steps success**, including *Tests (incl. check against Valve's own fit.js/glicko.js)* and the gated commit that
+  produced `5130ccf`; plus the pre-merge `pull_request` checks on `007a8cf` (verify + assurance, both pass). The
+  same pattern explains why the bot commits `c1aee72` / `5130ccf` produce no their-own push runs.
+- **Schedule evidence update (2026-10-14 02:15Z):** five schedule-event runs now exist repository-wide —
+  `update.yml` 2 (23:27:08Z, 02:11:01Z "Refresh verified snapshot", both success), `live-459ff624.yml` 1
+  (02:06:43Z success), `model-91eff436.yml` 1 (00:20:08Z failure, fixed since), `release-assurance-91e444dd.yml` 1
+  (01:51:57Z success); `slate-180a42a0.yml`, `refresh-b90700c6.yml`, `assurance-5515.yml` still 0. So **A-2 is a
+  sparse/delayed schedule, not a dead one** — the per-workflow table in §2 of `reviews/a1db82b7-verification.md`
+  remains the record of what had fired as of 01:52Z and is not restated as current.
+- **Pages after both merges (#77, then #78):** deployment build for `main` @ `53b1c7a` = **built**
+  (created 2026-10-14T02:12:17Z); Pages API reports `main:/` **built**. Sandbox still cannot fetch `*.github.io`
+  pages directly (network allowlist), so the live-page evidence is the Pages build record plus the byte-identical
+  page in `main`'s tree.
