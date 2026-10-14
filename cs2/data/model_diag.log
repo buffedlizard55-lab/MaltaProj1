@@ -1,4 +1,4 @@
-== O-01 reproduction (session arena/a174d77f, run 38500696546) ==
+== O-01 reproduction (session arena/a174d77f, run 38500978829) ==
 -- fetch --
   "commit": "eec4853d7bcf0f1f7efe7f0d901234bef7e98b75",
   "path": "live/2026/standings_global_2026_10_05.md"
@@ -6,14 +6,14 @@
  "hltv": {
   "url": "https://www.hltv.org/ranking/teams",
   "final_url": "https://www.hltv.org/ranking/teams/2026/october/12",
-  "fetched_utc": "2026-10-14T02:26:09Z",
+  "fetched_utc": "2026-10-14T02:29:13Z",
   "http_status": 200,
-  "bytes": 1039663,
-  "sha256": "c6aa8b66985e463c6a438051375b01e951e8d8cef18c8f1fc0b7614666cbdc83",
+  "bytes": 1038416,
+  "sha256": "1e0c9e75d277f905a81f49f04222b93c664504e097b0ec3b1a16e67e8e314962",
   "attempts": [
    {
     "url": "https://www.hltv.org/ranking/teams",
-    "fetched_utc": "2026-10-14T02:26:09Z",
+    "fetched_utc": "2026-10-14T02:29:13Z",
     "http_status": 200
    }
   ],
@@ -62,6 +62,6 @@ Traceback (most recent call last):
 AssertionError: False is not true : None
 
 ----------------------------------------------------------------------
-Ran 14 tests in 0.210s
+Ran 14 tests in 0.203s
 
 FAILED (failures=1)
