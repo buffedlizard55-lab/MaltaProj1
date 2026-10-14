@@ -633,6 +633,34 @@ def fixture_table(rows, tid):
             f"<div class=tw><table id='{tid}' class=sort><thead>{head}</thead><tbody>{''.join(body)}</tbody></table></div>")
 
 
+def team_sources(t) -> str:
+    """At least one official link on every team row, including teams with no rating at all.
+
+    A team that is not in Valve's standings has nothing to link on Valve's side, so the row links the
+    official Hotspawn page where the team name appears as a fixture participant, and its absence from
+    the standings is stated in the Resolution column and on the Flagged list.
+    """
+    return " · ".join(x for x in [
+        a(t.get("vrs_url"), f"VRS #{t['vrs_standing']}") if t.get("vrs_url") else "",
+        a(t.get("vrs_details_url"), "VRS details") if t.get("vrs_details_url") else "",
+        a(t.get("hltv_url"), "HLTV team") if t.get("hltv_url") else "",
+        a(LOBBY, "Hotspawn Pick'em page"),
+    ] if x)
+
+
+def glance_sources(r) -> str:
+    """At least one official link on every row of the summary table (the project's per-row source rule).
+
+    The Hotspawn link is the fixture's own match page when the board published a permalink for it;
+    otherwise it is the Pick'em page the fixture was read from, and the row's notes say so. The market
+    price, when one exists, links to the page the price was read from.
+    """
+    return " · ".join(x for x in [
+        a(r.get("hotspawn_url"), "Hotspawn Pick'em page" if r.get("hotspawn_url") == LOBBY else "Hotspawn fixture"),
+        a(r.get("market_source_url"), "Market source") if r.get("market_source_url") else "",
+    ] if x)
+
+
 def glance_table(rows) -> str:
     """Compact, plain-language view: one line per fixture, our pick first."""
     body = []
@@ -652,12 +680,13 @@ def glance_table(rows) -> str:
                 tr = f"<tr data-lock='{e(r['lock_utc'].replace(' ', 'T'))}:00Z'>" if r.get("lock_utc") else "<tr>"
             body.append(f"{tr}<td>{e(r['scheduled_start_utc'])}</td><td>{match}</td><td class=pick>{e(r['pick'])}{review}</td>"
                         f"<td class=num data-v='{win:.1f}'><b>{win:.1f}%</b></td><td class=num>{e(odds)}</td>"
-                        f"<td><span class='pill {conf_cls}'>{e(r['confidence'])}</span></td><td>{agree}</td><td>{e(r['competition'])}</td></tr>")
+                        f"<td><span class='pill {conf_cls}'>{e(r['confidence'])}</span></td><td>{agree}</td><td>{e(r['competition'])}</td>"
+                        f"<td>{glance_sources(r)}</td></tr>")
         else:
             body.append(f"<tr><td>{e(r['scheduled_start_utc'])}</td><td>{match}</td><td class=note colspan=5>No line: {e(r['notes'])}</td>"
-                        f"<td>{e(r['competition'])}</td></tr>")
+                        f"<td>{e(r['competition'])}</td><td>{glance_sources(r)}</td></tr>")
     return ("<div class=tw><table class=sort><thead><tr><th>Start (UTC)</th><th>Match</th><th>Our pick</th><th>Win %</th>"
-            "<th>Fair odds</th><th>Confidence</th><th>Market</th><th>Tournament</th></tr></thead><tbody>"
+            "<th>Fair odds</th><th>Confidence</th><th>Market</th><th>Tournament</th><th>Sources</th></tr></thead><tbody>"
             + "".join(body) + "</tbody></table></div>")
 
 
@@ -700,7 +729,7 @@ def render(p, meta, hltv, fx, hltv_url) -> str:
         trs.append(
             f"<tr><td>{e(t['hotspawn_team'])}</td><td>{pill(t['resolution'])}</td><td>{a(t['vrs_url'], t['vrs_name'])}</td>"
             f"<td class=num>{e(t['vrs_standing'])}</td><td class=num>{e(t['vrs_points'])}</td><td class=wrap>{e(t['vrs_roster'])}</td>"
-            f"<td>{a(t['vrs_details_url'], 'VRS details' if t['vrs_details_url'] else '')}</td>"
+            f"<td>{team_sources(t)}</td>"
             f"<td class=num>{e(t['hltv_rank'])}</td><td class=num>{e(t['hltv_points'])}</td><td class=wrap>{e(t['hltv_players'])}</td>"
             f"<td>{a(t['hltv_url'], 'HLTV team')}</td><td class=wrap>{e(t['note'])}</td><td class=wrap>{e(t['fixtures'])}</td></tr>")
     frs = []
@@ -753,7 +782,7 @@ Roster cross-check: <a href="{e(h.get('canonical_url') or hltv_url)}">HLTV World
 {fixture_table(stale, 'ts')}</section>
 <section id=teams><h2>Team ratings — {len(teams)} Hotspawn team names</h2>
 <p class=note>Each Hotspawn name is matched to the Valve Regional Standings by exact (case-insensitive) name; when HLTV's ranking lists the team, its players are compared with the VRS roster (Valve's own rule: ≥{OVERLAP} shared players = same team).</p>
-<input type=search placeholder="Filter teams…" oninput="filt(this,'tt')"><div class=tw><table id=tt class=sort><thead><tr><th>Hotspawn team</th><th>Resolution</th><th>VRS team</th><th>VRS #</th><th>VRS pts</th><th>VRS roster</th><th>Details</th><th>HLTV #</th><th>HLTV pts</th><th>HLTV players</th><th>HLTV</th><th>Note</th><th>Fixtures</th></tr></thead><tbody>{''.join(trs)}</tbody></table></div></section>
+<input type=search placeholder="Filter teams…" oninput="filt(this,'tt')"><div class=tw><table id=tt class=sort><thead><tr><th>Hotspawn team</th><th>Resolution</th><th>VRS team</th><th>VRS #</th><th>VRS pts</th><th>VRS roster</th><th>Sources</th><th>HLTV #</th><th>HLTV pts</th><th>HLTV players</th><th>HLTV</th><th>Note</th><th>Fixtures</th></tr></thead><tbody>{''.join(trs)}</tbody></table></div></section>
 <section id=flags><h2>Flagged for review — {len(flags)}</h2>
 <p class=note>Unverified = value left blank. Needs review = value published but please confirm. Info = context.</p>
 <div class=tw><table id=tf class=sort><thead><tr><th>ID</th><th>Severity</th><th>Subject</th><th>Detail</th><th>Sources</th></tr></thead><tbody>{''.join(frs)}</tbody></table></div></section>
