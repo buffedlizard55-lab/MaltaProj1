@@ -2353,3 +2353,4 @@ A6 audit compares against them and files requests here instead of editing them.
 - 2026-10-14 02:33 UTC: OddsDigger (200, 255 kB) and bo3.gg (200, 13 kB) are reachable from the runner; both are archived
   with a shape report and used for nothing until a parser exists. `oddsdigger: 1 page(s) reachable, biggest table 8 rows` —
   that is the measured result, so the cheap guess that it lists per-match odds did not hold on the index page.
+- `FB-04` **done** (fbcccda2): PR #85 https://github.com/buffedlizard55-lab/MaltaProj1/pull/85 merged to main (checks audit/verify/rebuild pass). Merge conflict in COORDINATION.md + index.html vs concurrent session a174d77f resolved keeping both boards (no work discarded), logged here. GitHub Pages latest build 2026-10-14T02:35:43Z = `built` (one intermediate 02:35:33 build errored and was superseded). Live: https://buffedlizard55-lab.github.io/MaltaProj1/everypick/ and root executive summary.
