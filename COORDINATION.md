@@ -2276,3 +2276,39 @@ the slate auto-refresh commit). No other session has pushed in >2 hours, so all 
 | `B84-05` | `done` | `arena/8944bb84` | `oct14/**`, `scripts/8944bb84_build.py`, `tests/test_8944bb84.py`, `.github/workflows/oct14-8944bb84.yml` | `2026-10-14T02:26:00Z` | 11-page mobile-friendly categorized dashboard (`oct14/`), 3-hour scheduled refresh workflow, and unit/assurance test suite passing with `0` link errors. |
 | `B84-06` | `in_progress` | `arena/8944bb84` | `index.html`, `COORDINATION.md` | `2026-10-14T02:26:00Z` | Rebased onto `origin/main`, opening PR to `main`, merging, and verifying GitHub Pages deployment. |
 
+
+---
+
+## Session `arena/bdc98a9a` — claim (2026-10-14 02:36 UTC)
+
+Branch: `arena/bdc98a9a-maltaproj1` (fixed by Arena; no other branch is created or pushed).
+
+**Coordination check before claiming (2026-10-14 02:33–02:36 UTC):** read this board in full and `git fetch --prune`
+— `origin/main` = `6eef352` (PR #83 merged 02:30:19Z). `arena/a174d77f` is **active** (push run 38501253087 in
+progress, PR #82 OPEN) and owns `cs2/**`; `arena/8944bb84` finished at PR #83; `arena/a9a0c2f1`, `arena/a1db82b7`,
+`arena/374a5a90` finished. This session therefore claims **no** file under `cs2/**`, `slate/**`, `live/**`,
+`model/**`, `oct14/**`, `data/**`, `docs/**`, `pickem/**`, `assurance/**`, `today/**`, `winboard/**`, `board/**`,
+`picks/**`, `mobile/**`, `status/**`, `gapfill/**`, `verify/**`, `dashboard/**` — all are read-only inputs here.
+
+The user's brief for this session has three parts that are **not** yet delivered by any existing board:
+1. an **executive summary front door** with in-site links to where the picks live, readable on a phone;
+2. a **pick for *every* match** Hotspawn lists, including low-tier matches no featured bookmaker prices (today:
+   `#1079624` FORZE Reload vs LFO 10 is blank on both `data/8944bb84/analysis.csv` and `cs2/data/analysis.csv`);
+3. a **recurring coverage check** against Hotspawn's live list.
+
+| ID | Task | Status | Owner | Exclusive file scope |
+|----|------|--------|-------|----------------------|
+| E-01 | **Executive summary + mobile-first pick navigator.** A single front door that states snapshot freshness, coverage counts, the pick for every open CS2 fixture, and in-site links to every picks table; phone-first layout, no external JS/CSS. | in progress | arena/bdc98a9a | `exec/**` |
+| E-02 | **Pick for every match, including unpriced low tier.** Documented fallback source hierarchy (primary book → secondary book/aggregator → Valve VRS → HLTV World Ranking → HLTV event/match page) applied to the fixtures that have no featured-book line, e.g. `#1079624`; every value linked, blanks stay blank + flagged. | in progress | arena/bdc98a9a | `exec/**`, `scripts/exec_bdc98a9a_build.py`, `reviews/bdc98a9a-executive-summary.md` |
+| E-03 | **Recurring coverage check vs Hotspawn.** Live comparison of the Hotspawn CS2 pick'em list against the published board plus a scheduled/`workflow_dispatch` refresh that rebuilds `exec/**` from the newest committed evidence and fails closed. | in progress | arena/bdc98a9a | `.github/workflows/exec-bdc98a9a.yml`, `scripts/exec_bdc98a9a_build.py` |
+| E-04 | **Integration.** Additive link only on the root landing page, PR → `main` (merged without approval per brief), GitHub Pages deployment confirmed, release record appended here. | in progress | arena/bdc98a9a | `index.html` (additive hero block only), `COORDINATION.md` (append-only), `tests/test_exec_bdc98a9a.py` |
+
+- Measured baseline for E-02 (read from `main` @ `6eef352`, not restated as current): of the 28 open CS2 fixtures,
+  `data/8944bb84/analysis.csv` publishes 27 picks + 1 blank-and-flagged, `cs2/data/analysis.csv` (PR #82 branch)
+  publishes 27 picks + the same 1 blank, `slate/data/analysis.csv` publishes 5 market picks and blanks the rest
+  by policy. Target: **28/28 with a sourced pick, 0 blanks**, or the residual published on Flagged.
+- Requests to other owners: none (no file I need is owned elsewhere). `arena/a174d77f`: if PR #82 merges while this
+  session runs, the merge is integrated by rebase and nothing under `cs2/**` is modified.
+
+### Log — arena/bdc98a9a
+- 2026-10-14 02:36 UTC: claim written; committing and pushing to the fixed branch before any build work.
