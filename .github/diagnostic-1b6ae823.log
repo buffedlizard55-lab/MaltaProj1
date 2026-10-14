@@ -1,0 +1,41 @@
+# gate diagnostic — run 38511978333 on main (2026-10-14T04:35:09Z)
+
+test_cadence_page_exists_and_states_the_window (tests.test_1b6ae823.CadenceTests.test_cadence_page_exists_and_states_the_window) ... ok
+test_cadence_record_is_written_by_the_collector (tests.test_1b6ae823.CadenceTests.test_cadence_record_is_written_by_the_collector) ... ok
+test_summary_reports_the_snapshot_age_honestly (tests.test_1b6ae823.CadenceTests.test_summary_reports_the_snapshot_age_honestly) ... ok
+test_workflow_cadence_is_in_the_requested_window (tests.test_1b6ae823.CadenceTests.test_workflow_cadence_is_in_the_requested_window) ... ok
+test_feed_is_only_read_never_written (tests.test_1b6ae823.FeedConsumptionTests.test_feed_is_only_read_never_written) ... ok
+test_feed_quotes_keep_their_own_minute_and_page (tests.test_1b6ae823.FeedConsumptionTests.test_feed_quotes_keep_their_own_minute_and_page) ... ok
+test_stale_feed_is_refused_not_recycled (tests.test_1b6ae823.FeedConsumptionTests.test_stale_feed_is_refused_not_recycled) ... ok
+test_every_internal_link_on_the_landing_resolves (tests.test_1b6ae823.MobileLandingTests.test_every_internal_link_on_the_landing_resolves) ... ok
+test_landing_is_mobile_ready (tests.test_1b6ae823.MobileLandingTests.test_landing_is_mobile_ready) ... ok
+test_no_third_party_requests_on_the_landing (tests.test_1b6ae823.MobileLandingTests.test_no_third_party_requests_on_the_landing) ... ok
+test_one_visible_executive_summary (tests.test_1b6ae823.MobileLandingTests.test_one_visible_executive_summary)
+The brief's complaint was competing summaries; archived blocks must stay collapsed. ... ok
+test_picks_are_one_tap_away_and_the_flagged_page_is_linked (tests.test_1b6ae823.MobileLandingTests.test_picks_are_one_tap_away_and_the_flagged_page_is_linked) ... ok
+test_no_hotspawn_crowd_value_in_the_board_data (tests.test_1b6ae823.NoCrowdDataTests.test_no_hotspawn_crowd_value_in_the_board_data) ... ok
+test_the_ingest_log_records_what_it_dropped (tests.test_1b6ae823.NoCrowdDataTests.test_the_ingest_log_records_what_it_dropped) ... ok
+test_calibration_is_deterministic_and_refuses_small_samples (tests.test_1b6ae823.OwnLineMathTests.test_calibration_is_deterministic_and_refuses_small_samples) ... ok
+test_format_parsing_never_invents_a_length (tests.test_1b6ae823.OwnLineMathTests.test_format_parsing_never_invents_a_length) ... ok
+test_logistic_is_symmetric_and_official_scale_matches_valve (tests.test_1b6ae823.OwnLineMathTests.test_logistic_is_symmetric_and_official_scale_matches_valve) ... ok
+test_series_closed_forms_match_enumeration (tests.test_1b6ae823.OwnLineMathTests.test_series_closed_forms_match_enumeration) ... ok
+test_series_formula_known_values (tests.test_1b6ae823.OwnLineMathTests.test_series_formula_known_values) ... ok
+test_a_price_never_comes_from_hotspawn (tests.test_1b6ae823.PublishedOwnLinesTests.test_a_price_never_comes_from_hotspawn) ... ok
+test_calibration_reproduces_the_published_scale (tests.test_1b6ae823.PublishedOwnLinesTests.test_calibration_reproduces_the_published_scale) ... FAIL
+test_every_open_fixture_carries_an_own_line_or_a_reason (tests.test_1b6ae823.PublishedOwnLinesTests.test_every_open_fixture_carries_an_own_line_or_a_reason) ... ok
+test_own_lines_recompute_from_the_stored_ranking (tests.test_1b6ae823.PublishedOwnLinesTests.test_own_lines_recompute_from_the_stored_ranking) ... ok
+test_research_tier_is_only_used_where_no_price_exists (tests.test_1b6ae823.PublishedOwnLinesTests.test_research_tier_is_only_used_where_no_price_exists) ... ok
+test_stated_series_format_always_names_where_it_was_stated (tests.test_1b6ae823.PublishedOwnLinesTests.test_stated_series_format_always_names_where_it_was_stated) ... ok
+
+======================================================================
+FAIL: test_calibration_reproduces_the_published_scale (tests.test_1b6ae823.PublishedOwnLinesTests.test_calibration_reproduces_the_published_scale)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/runner/work/MaltaProj1/MaltaProj1/tests/test_1b6ae823.py", line 200, in test_calibration_reproduces_the_published_scale
+    self.assertAlmostEqual(float(recomputed["scale"]), float(cal["scale"]), places=6,
+AssertionError: 212.0 != 211.0 within 6 places (1.0 difference) : the published scale is not the argmin over the stored priced rows
+
+----------------------------------------------------------------------
+Ran 25 tests in 0.057s
+
+FAILED (failures=1)
