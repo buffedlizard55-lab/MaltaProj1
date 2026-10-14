@@ -21,7 +21,11 @@ def load(name):
     if not p.exists():
         return None
     with gzip.open(p, "rb") as fh:
-        return json.loads(fh.read().decode())
+        text = fh.read().decode("utf-8", errors="replace")
+    try:
+        return json.loads(text)
+    except ValueError:
+        return text
 
 
 def shape(obj, depth=0, maxdepth=3, maxlist=2):
@@ -52,6 +56,7 @@ def shape(obj, depth=0, maxdepth=3, maxlist=2):
 def main() -> None:
     out = []
     w = out.append
+
 
     for p in sorted(RAW.glob("*.json.gz")):
         w(f"- `{p.name}` {p.stat().st_size} bytes")

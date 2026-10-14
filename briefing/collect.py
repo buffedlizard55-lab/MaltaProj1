@@ -128,11 +128,8 @@ def meta(rec: dict) -> dict:
 def save_raw(name: str, payload) -> str:
     """Archive a parsed object (deterministic bytes -> no git diff when unchanged)."""
     RAW.mkdir(parents=True, exist_ok=True)
-    if isinstance(payload, str):
-        blob = payload.encode()
-    else:
-        blob = json.dumps(payload, ensure_ascii=False, sort_keys=True,
-                          separators=(",", ":")).encode()
+    blob = json.dumps(payload, ensure_ascii=False, sort_keys=True,
+                      separators=(",", ":")).encode()
     path = RAW / f"{name}.json.gz"
     with open(path, "wb") as fh:
         with gzip.GzipFile(fileobj=fh, mode="wb", mtime=0) as gz:
