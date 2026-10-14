@@ -1,0 +1,85 @@
+{
+ "session": "arena/a1db82b7",
+ "written_utc": "2026-10-14T02:0xZ",
+ "review_file": "reviews/a1db82b7-verification.md",
+ "note": "Findings raised while repairing and re-verifying this page. They are listed here so they are readable on the published site, not only in the repository. Nothing below changes a published number: each entry says what was checked, what was found, and where the evidence lives.",
+ "findings": [
+  {
+   "id": "A-1",
+   "severity": "fixed",
+   "title": "The scheduled own-line run was failing on main, so this page had stopped refreshing",
+   "detail": "Run 38489574648 (schedule, main, 2026-10-14T00:20:08Z) failed in its test step and the commit was skipped. Root cause: the board had just added fixtures, one with a null permalink; the null became the literal string \"None\" and this project's own source check refused it. The check was right - the data was wrong. Fixed at ingest and at build time, with two regression tests.",
+   "links": [
+    "https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38489574648",
+    "https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38497833026"
+   ]
+  },
+  {
+   "id": "A-2",
+   "severity": "needs review",
+   "title": "Scheduled triggers are being dropped: 3 scheduled runs in the whole repository against 142 push runs",
+   "detail": "Between 2026-10-13T23:00Z and 2026-10-14T01:55Z the seven scheduled workflows were due about 18 times and fired three times. Boards that say 'auto-refreshed' should not promise what the schedule does not deliver. This workflow now also refreshes when the board's capture job finishes and asks that job to catch up when it has been idle for more than six hours; the other six scheduled workflows still rely on their crons.",
+   "links": [
+    "https://api.github.com/repos/buffedlizard55-lab/MaltaProj1/actions/runs?event=schedule",
+    "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/reviews/a1db82b7-verification.md"
+   ]
+  },
+  {
+   "id": "A-3",
+   "severity": "needs review",
+   "title": "32 of 89 fixtures have no line, because the team has no usable official rating",
+   "detail": "No probability, fair odds or pick is published for those fixtures. Nothing is inferred to fill them: every blank names the reason (not in Valve's standings, an ambiguous name, or a roster mismatch) and appears in the Flagged for review table below with a source link.",
+   "links": [
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
+    "https://play.hotspawn.com/cs2-pickems"
+   ]
+  },
+  {
+   "id": "A-4",
+   "severity": "info",
+   "title": "Most rows have no per-match Hotspawn permalink in the board's own payload",
+   "detail": "The board publishes a match URL only for fixtures of the current week. Rows without one link the Pick'em page they were read from, and each says so in its Notes column; no URL is invented.",
+   "links": [
+    "https://play.hotspawn.com/cs2-pickems"
+   ]
+  },
+  {
+   "id": "A-5",
+   "severity": "info",
+   "title": "The board's headline count disagrees with its own payload",
+   "detail": "At the last snapshot the page header said 68 matches this week while the payload carried 89 CS2 fixture records (88 on the CS2 page, 89 in the lobby) and its filter said 89. Pre-existing, recorded here rather than silently reconciled.",
+   "links": [
+    "https://play.hotspawn.com/cs2-pickems",
+    "https://play.hotspawn.com/lobby"
+   ]
+  },
+  {
+   "id": "A-6",
+   "severity": "fixed",
+   "title": "The README described only a 3-hourly cron",
+   "detail": "Corrected: the real trigger set is pushes, the board's capture job finishing, the cron and manual dispatch, plus the stale-capture catch-up.",
+   "links": [
+    "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/model/README.md"
+   ]
+  },
+  {
+   "id": "A-7",
+   "severity": "fixed",
+   "title": "Some rows of the summary and team tables had no source link at all",
+   "detail": "The 'Picks at a glance' table (30 rows) and 21 team rows for teams absent from Valve's standings had no link of their own. Every row of all seven tables now carries at least one official link.",
+   "links": [
+    "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/model/build.py"
+   ]
+  },
+  {
+   "id": "A-8",
+   "severity": "fixed",
+   "title": "The commit gate could not see presentation changes, so a fixed page would never have been published",
+   "detail": "The refresh job commits only when a content digest changes, and that digest covered the data but not the rendered page - so the fix in A-7 would have been discarded every run. The digest now covers the page too, with volatile timestamps normalised so a plain re-read still does not create a commit.",
+   "links": [
+    "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/model/build.py",
+    "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/reviews/a1db82b7-verification.md"
+   ]
+  }
+ ]
+}
