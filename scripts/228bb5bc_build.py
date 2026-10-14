@@ -806,6 +806,19 @@ def build_rows(inputs: dict, now: datetime) -> tuple[list[dict], list[dict], dic
         })
 
     meta = summarise(rows, inputs, now)
+    # curated manual-review findings, maintained by hand in console/data/review_findings.csv
+    findings_path = DATA / "review_findings.csv"
+    if findings_path.exists():
+        with findings_path.open(encoding="utf-8") as fh:
+            for f in csv.DictReader(fh):
+                code = (f.get("code") or "").strip()
+                if not code:
+                    continue
+                add_flag(code, (f.get("finding") or "").strip(),
+                         (f.get("fixture_id") or "").strip() or "*",
+                         (f.get("source_url") or "").strip(),
+                         (f.get("detail") or "").strip())
+
     return rows, sorted(flags.values(), key=lambda f: (-len(f["rows"]), f["code"])), meta
 
 
@@ -1135,8 +1148,10 @@ def render_flagged(rows: list[dict], flags: list[dict], meta: dict) -> str:
             seen_pairs.add(key)
             link = f' — <a href="{esc(r["source_url"])}" rel="noopener">source</a>' if is_http(r["source_url"]) else ""
             detail = f' <span class="muted">({esc(r["detail"])})</span>' if r.get("detail") else ""
-            anchor = f'../console/index.html#{slug(r["fixture_id"])}'
-            row_list.append(f'<li><a href="{anchor}">{esc(r["fixture_id"])}</a>{link}{detail}</li>')
+            fid = r["fixture_id"]
+            label = (f'<a href="../console/index.html#{slug(fid)}">{esc(fid)}</a>'
+                     if fid.isdigit() else f'<b>{esc(fid)}</b>')
+            row_list.append(f'<li>{label}{link}{detail}</li>')
         body.append(f'''<section class="m"><div class="head"><b><code>{esc(f["code"])}</code></b>
  <span class="muted">{len(f["rows"])} row(s)</span></div>
  <p class="basis">{esc(f["meaning"])}</p><ul>{''.join(row_list)}</ul></section>''')
@@ -1153,7 +1168,11 @@ affects and the source link to check by hand. Flags never block publication of t
 they mark them.</p>
 <div class="note">Data as of {esc(meta['data_as_of_utc'] or 'unknown')}. {len(flags)} flag codes across
 {meta['counts']['rows']} rows. Registered at row level on
-<a href="index.html">the board</a> and reproduced here with counts.</div>
+<a href="index.html">the board</a> and reproduced here with counts.
+<code>R-228-*</code> entries are curated manual-review findings maintained in
+<code>console/data/review_findings.csv</code>; the site-level irregularities IR-228-01..03 found by this
+integration are fixed and documented in
+<a href="https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/reviews/228bb5bc-verification.md" rel="noopener">the review record</a>.</div>
 {''.join(body)}
 <footer><p class="small">These flags are informative, not blockers: the brief requires unverified values to be
 published blank and flagged rather than guessed or silently dropped.</p></footer>
@@ -1257,6 +1276,12 @@ file read.</p>
 <div class="tablewrap"><table><thead><tr><th>Board</th><th>File</th><th>Captured (UTC)</th>
 <th>SHA-256 (head)</th><th>Rows</th></tr></thead><tbody>{''.join(rows)}</tbody></table></div>
 {rating_note_html}
+<h2>Curated manual-review findings</h2>
+<div class="note">Hand-maintained findings that are not derivable from the input files live in
+<a href="data/review_findings.csv">data/review_findings.csv</a> and are rendered on the
+<a href="flagged.html">Flagged for Review</a> page as <code>R-228-*</code> entries: the
+PCIFIC/WRAITH PCIFIC name variant, the Envy/3DMAX alias location, the Pinnacle endpoint-only
+citation and the EGamersWorld CI refusal.</div>
 <h2>Original sources those boards read</h2>
 <div class="tablewrap"><table><thead><tr><th>Source</th><th>What it provides</th><th>Where</th></tr></thead><tbody>
 <tr><td>Hotspawn Pick'em</td><td>Fixture identity, teams, competition, tier, kickoff and lock epoch — never a probability</td><td><a href="https://play.hotspawn.com/cs2-pickems" rel="noopener">play.hotspawn.com/cs2-pickems</a></td></tr>
