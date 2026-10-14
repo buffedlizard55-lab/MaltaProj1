@@ -31,6 +31,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "exec", "data")
 RAW = os.path.join(OUT, "raw")
 ENDPOINT = "https://gamma-api.polymarket.com/events"
+SEARCH = "https://gamma-api.polymarket.com/public-search"
 UA = "MaltaProj1-exec-board/1.0 (+https://github.com/buffedlizard55-lab/MaltaProj1)"
 MAX_SKEW = timedelta(minutes=15)
 SERIES_RE = re.compile(r"\b(bo[135])\b", re.I)
@@ -134,10 +135,26 @@ def market_rows(event):
     return series, maps
 
 
+def event_start(event):
+    """The match kickoff as the market itself states it. `startDate` is when the market was created,
+    so it is never used as a kickoff — only the explicit game/event start fields are."""
+    for key in ("gameStartTime", "eventStartTime"):
+        stamp = parse_time(event.get(key) or "")
+        if stamp:
+            return stamp
+    for market in event.get("markets", []) or []:
+        for key in ("gameStartTime", "eventStartTime"):
+            stamp = parse_time(market.get(key) or "")
+            if stamp:
+                return stamp
+    return None
+
+
 def match_fixture(event, fixtures):
-    """Match by both team names (in any order) and a start time within MAX_SKEW."""
+    """Match by both team names (in any order) and, when the market states a kickoff, by a start time
+    within MAX_SKEW. Returns (fixture, how) or (None, reason)."""
     title = event.get("title") or ""
-    start = parse_time(event.get("gameStartTime") or "") or parse_time(event.get("startDate") or "")
+    start = event_start(event)
     for fx in fixtures:
         a, b = norm(fx["team_a"]), norm(fx["team_b"])
         if not a or not b:
@@ -145,61 +162,73 @@ def match_fixture(event, fixtures):
         hay = norm(title)
         if a in hay and b in hay:
             fx_start = parse_time(fx["start_utc"])
-            if start and fx_start and abs(start - fx_start) > MAX_SKEW:
-                continue
-            return fx
-    return None
+            if start is None:
+                return fx, "names-only (market states no kickoff)"
+            if fx_start and abs(start - fx_start) > MAX_SKEW:
+                return None, f"kickoff mismatch ({iso(start)} vs {fx['start_utc']})"
+            return fx, "names+kickoff"
+    return None, "no title match"
+
+
+def search_event(team_a: str, team_b: str):
+    """Ask Polymarket's public search for this pairing. Returns (events, raw_bytes) or raises."""
+    query = urllib.parse.urlencode({"q": f"{team_a} {team_b}", "limit_per_type": "4"})
+    body = fetch(f"{SEARCH}?{query}")
+    payload = json.loads(body.decode("utf-8"))
+    events = payload.get("events") or []
+    return events, body
 
 
 def main() -> int:
+    """One search per open fixture. A fixture whose market cannot be found is recorded as unmatched,
+    never guessed from a neighbouring market."""
     os.makedirs(RAW, exist_ok=True)
     captured = datetime.now(timezone.utc)
     fixtures = load_open_fixtures()
     result = {
         "status": "ok",
-        "endpoint": f"{ENDPOINT}?tag_slug=cs2&closed=false&limit=200",
+        "endpoint": f"{SEARCH}?q=<team_a> <team_b>&limit_per_type=4 (one lookup per open fixture)",
         "captured_utc": iso(captured),
         "fixtures_considered": len(fixtures),
         "note": ("Polymarket lists some of the low-tier cups that big bookmakers skip. Only whole-match "
                  "(series) markets are republished as a series reference; per-map markets are recorded "
-                 "separately and are never used as a series probability."),
+                 "separately and are never used as a series probability. A fixture with no matching event "
+                 "is recorded as unmatched, not filled in."),
         "matches": [],
         "map_markets": [],
-        "unmatched_events": 0,
+        "unmatched": [],
         "errors": [],
     }
-    events = []
-    query = urllib.parse.urlencode({"tag_slug": "cs2", "closed": "false", "limit": "200"})
-    url = f"{ENDPOINT}?{query}"
-    for attempt in (1, 2, 3):
+    search_log = []
+    for fx in fixtures:
         try:
-            body = fetch(url)
-            with gzip.open(os.path.join(RAW, f"polymarket_cs2_{captured.strftime('%Y%m%dT%H%M%SZ')}.json.gz"), "wb") as fh:
-                fh.write(body)
-            events = json.loads(body.decode("utf-8"))
-            break
-        except Exception as exc:  # surfaced, never hidden
-            result["errors"].append(f"attempt {attempt}: {type(exc).__name__}: {exc}")
-            time.sleep(3 * attempt)
-    if not events:
-        result["status"] = "unreachable" if result["errors"] else "empty"
-        with open(os.path.join(OUT, "polymarket.json"), "w", encoding="utf-8") as fh:
-            json.dump(result, fh, indent=1)
-        print(f"polymarket: {result['status']} — {len(result['errors'])} error(s) recorded", file=sys.stderr)
-        return 0  # a missing optional source is a flag, not a build failure
-
-    for event in events if isinstance(events, list) else []:
-        fx = match_fixture(event, fixtures)
-        if not fx:
-            result["unmatched_events"] += 1
+            events, body = search_event(fx["team_a"], fx["team_b"])
+        except Exception as exc:
+            result["errors"].append(f"{fx['fixture_id']}: {type(exc).__name__}: {exc}")
+            search_log.append({"fixture_id": fx["fixture_id"], "events": 0, "matched": ""})
             continue
-        series, maps = market_rows(event)
-        slug = event.get("slug") or ""
+        with gzip.open(os.path.join(RAW, f"polymarket_search_{fx['fixture_id']}.json.gz"), "wb") as fh:
+            fh.write(body)
+        chosen, how = None, "no events returned"
+        for event in events:
+            fx_match, why = match_fixture(event, [fx])
+            if fx_match:
+                chosen, how = event, why
+                break
+            how = why
+        search_log.append({"fixture_id": fx["fixture_id"], "events": len(events),
+                           "matched": (chosen or {}).get("slug", ""), "how": how})
+        if not chosen:
+            result["unmatched"].append({"fixture_id": fx["fixture_id"],
+                                        "team_a": fx["team_a"], "team_b": fx["team_b"]})
+            continue
+        series, maps = market_rows(chosen)
+        slug = chosen.get("slug") or ""
         page = f"https://polymarket.com/event/{slug}" if slug else "https://polymarket.com/esports/cs2"
         for rec in series:
             result["matches"].append({
                 "fixture_id": fx["fixture_id"], "team_a": fx["team_a"], "team_b": fx["team_b"],
-                "title": event.get("title") or "", "market_kind": "series",
+                "title": chosen.get("title") or "", "market_kind": "series",
                 "question": rec["question"], "outcomes": rec["outcomes"],
                 "p_a": round(rec["prices"][0] * 100, 2), "p_b": round(rec["prices"][1] * 100, 2),
                 "best_bid": rec["best_bid"], "best_ask": rec["best_ask"],
@@ -208,16 +237,20 @@ def main() -> int:
             })
         for rec in maps:
             result["map_markets"].append({
-                "fixture_id": fx["fixture_id"], "title": event.get("title") or "",
+                "fixture_id": fx["fixture_id"], "title": chosen.get("title") or "",
                 "market_kind": "map", "question": rec["question"],
                 "p_a": round(rec["prices"][0] * 100, 2), "p_b": round(rec["prices"][1] * 100, 2),
                 "liquidity_usd": rec["liquidity"], "updated_utc": rec["updated_utc"], "url": page,
             })
-
+    result["search_log"] = search_log
+    result["matched_fixtures"] = len({m["fixture_id"] for m in result["matches"]} |
+                                     {m["fixture_id"] for m in result["map_markets"]})
+    if result["errors"] and not result["search_log"]:
+        result["status"] = "unreachable"
     with open(os.path.join(OUT, "polymarket.json"), "w", encoding="utf-8") as fh:
         json.dump(result, fh, indent=1)
     print(f"polymarket: {len(result['matches'])} series markets, {len(result['map_markets'])} map markets, "
-          f"{result['unmatched_events']} unmatched events")
+          f"{len(result['unmatched'])} fixtures without a market, {len(result['errors'])} error(s)")
     return 0
 
 

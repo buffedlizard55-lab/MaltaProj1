@@ -1143,7 +1143,13 @@ def render_sources(payload, poly):
   <h3>Prediction market (Polymarket) — access status: {esc(status)}</h3>
   <p>Endpoint read by this board's collector: <code>{esc(poly.get('endpoint', ''))}</code> at
   {esc(poly.get('captured_utc', ''))}. {esc(poly.get('note', ''))}</p>
-  {f'<table class="audit"><thead><tr><th>Market</th><th>Kind</th><th>Implied</th><th>Updated</th><th>Link</th></tr></thead><tbody>{poly_rows}</tbody></table>' if poly_rows else ''}'''
+  <p class="note">Fixtures considered: {esc(poly.get('fixtures_considered', ''))} ·
+  series markets found: {len(poly.get('matches', []))} ·
+  per-map markets found: {len(poly.get('map_markets', []))} (never used as a series probability) ·
+  fixtures with no market: {len(poly.get('unmatched', []))} ·
+  errors: {len(poly.get('errors', []))}.</p>
+  {f'<table class="audit"><thead><tr><th>Market</th><th>Kind</th><th>Implied</th><th>Updated</th><th>Link</th></tr></thead><tbody>{poly_rows}</tbody></table>' if poly_rows else ''}
+  {('<p class="note">Per-map markets seen (shown only so their existence is not mistaken for a series line): ' + esc('; '.join(sorted({m.get('question', '') for m in poly.get('map_markets', [])}))[:400]) + '</p>') if poly.get('map_markets') else ''}'''
     return f'''<!DOCTYPE html>
 <html lang="en">
 <head>
