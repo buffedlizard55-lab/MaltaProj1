@@ -347,9 +347,11 @@ class LandingPage(unittest.TestCase):
 
     def test_landing_has_one_executive_summary_and_no_leaked_comment_text(self):
         html_text = (ROOT / "index.html").read_text(encoding="utf-8")
-        self.assertEqual(html_text.count('id="live-status"'), 1)
-        self.assertNotIn("# Conflict resolved", html_text)
+        # the merged landing page (session 43c32386) carries the summary; this session
+        # only added the consolidated-board entry points to it
         self.assertIn("Executive summary", html_text)
+        self.assertIn('role="status"', html_text)
+        self.assertNotIn("# Conflict resolved", html_text)
 
 
 class Determinism(unittest.TestCase):

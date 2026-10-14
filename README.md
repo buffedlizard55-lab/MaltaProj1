@@ -1,10 +1,25 @@
 # Hotspawn · independent CS2 lines
 
 **Site:** https://buffedlizard55-lab.github.io/MaltaProj1/  
-**Current CS2 board:** https://buffedlizard55-lab.github.io/MaltaProj1/slate/cs2.html
+**Consolidated picks board (start here):** https://buffedlizard55-lab.github.io/MaltaProj1/console/  
+**Flagged for Review:** https://buffedlizard55-lab.github.io/MaltaProj1/console/flagged.html
 
 A mobile-first source-linked dashboard for the public [Hotspawn Pick'em lobby](https://play.hotspawn.com/lobby).
 Hotspawn supplies **fixture identity and UTC lock/start epochs only**, never a probability input.
+
+## The consolidated board (session `228bb5bc`, 2026-10-14)
+
+[`console/`](console/index.html) holds **one row for every open CS2 Pick'em match** on the Hotspawn board:
+both teams' win probability, the explicit pick, the basis rung (primary book → relayed book → prediction
+market → own originated line → research, flagged), the read time and the source URL behind every number.
+It is assembled from the committed captures of the boards below — `scripts/228bb5bc_build.py`, rebuilt
+hourly by `.github/workflows/console-228bb5bc.yml`, fail-closed on stale inputs, missing sources or a
+Hotspawn-sourced probability. Machine-readable: `console/data/picks.csv`, `picks.json`, `coverage.json`,
+`sources.csv`, `flags.csv`.
+
+The root [`index.html`](index.html) is now a single executive summary — live counts, one-tap links to the
+picks, and categories — with **every link that page had before the restructure still resolving**
+(`console/data/landing_links.csv` is the registry and `tests/test_228bb5bc.py` enforces it).
 
 ## Current board
 
