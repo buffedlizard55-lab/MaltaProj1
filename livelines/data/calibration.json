@@ -1,159 +1,75 @@
 {
  "calibration": {
   "fitted": true,
-  "n": 22,
-  "scale": 827.75,
-  "mae_pp": 8.73,
-  "logloss": 0.4309,
+  "n": 15,
+  "scale": 878.0,
+  "mae_pp": 7.18,
+  "logloss": 0.4267,
   "grid": "20.0-2000.0 points per 90% favourite, step 0.25; mean absolute error against the outside market's de-vigged probability",
   "default_scale": 400.0,
   "logloss_alternative": {
-   "scale": 210.0,
-   "mae_pp": 21.13,
-   "logloss": 0.291
+   "scale": 241.0,
+   "mae_pp": 20.53,
+   "logloss": 0.2921
   },
   "objective": "mae",
   "candidate_transforms": {
    "vrs_points": {
     "fitted": true,
-    "n": 22,
-    "scale": 827.75,
-    "mae_pp": 8.73,
-    "logloss": 0.4309,
+    "n": 15,
+    "scale": 878.0,
+    "mae_pp": 7.18,
+    "logloss": 0.4267,
     "grid": "20.0-2000.0 points per 90% favourite, step 0.25; mean absolute error against the outside market's de-vigged probability",
     "default_scale": 400.0,
     "logloss_alternative": {
-     "scale": 210.0,
-     "mae_pp": 21.13,
-     "logloss": 0.291
+     "scale": 241.0,
+     "mae_pp": 20.53,
+     "logloss": 0.2921
     },
     "objective": "mae"
    },
    "hltv_points": {
     "fitted": true,
-    "n": 20,
-    "scale": 1001.75,
-    "mae_pp": 15.69,
-    "logloss": 0.6361,
+    "n": 14,
+    "scale": 20.0,
+    "mae_pp": 14.58,
+    "logloss": 0.4562,
     "grid": "20.0-2000.0 points per 90% favourite, step 0.25; mean absolute error against the outside market's de-vigged probability",
     "default_scale": 400.0,
     "logloss_alternative": {
      "scale": 20.0,
-     "mae_pp": 16.27,
-     "logloss": 0.4293
+     "mae_pp": 14.58,
+     "logloss": 0.4562
     },
     "objective": "mae"
    },
    "vrs_rank": {
     "fitted": true,
-    "n": 22,
+    "n": 15,
     "scale": 2000.0,
-    "mae_pp": 21.3,
-    "logloss": 0.7444,
+    "mae_pp": 21.92,
+    "logloss": 0.7605,
     "grid": "20.0-2000.0 points per 90% favourite, step 0.25; mean absolute error against the outside market's de-vigged probability",
     "default_scale": 400.0,
     "logloss_alternative": {
      "scale": 2000.0,
-     "mae_pp": 21.3,
-     "logloss": 0.7444
+     "mae_pp": 21.92,
+     "logloss": 0.7605
     },
     "objective": "mae"
    },
    "vrs_log_rank": {
     "fitted": true,
-    "n": 22,
+    "n": 15,
     "scale": 0.05,
-    "logloss": 0.7141,
-    "mae_pp": 19.93
+    "logloss": 0.7127,
+    "mae_pp": 19.75
    }
   },
   "chosen": "official Valve Regional Standings points (vrs_points) at the calibration (MAE) optimum, because that is the transform whose published percentage is closest to the outside market on the same rows and it has the widest team coverage; the log-loss optimum is disclosed next to it and the disagreement is flagged on every row that depends on the scale"
  },
  "fit_rows": [
-  {
-   "match_id": "1079438",
-   "teams": "Astralis v Sashi",
-   "vrs_a": 1674,
-   "vrs_b": 1131,
-   "hltv_a": 15,
-   "hltv_b": null,
-   "market_p_a_pct": 83.5,
-   "source": "Polymarket",
-   "captured_utc": "2026-10-14T09:00:16Z",
-   "url": "https://polymarket.com/event/cs2-ast10-sashi-2026-10-14"
-  },
-  {
-   "match_id": "1079439",
-   "teams": "HOTU v Fnatic",
-   "vrs_a": 1437,
-   "vrs_b": 1417,
-   "hltv_a": 41,
-   "hltv_b": 36,
-   "market_p_a_pct": 45.5,
-   "source": "Polymarket",
-   "captured_utc": "2026-10-14T09:00:16Z",
-   "url": "https://polymarket.com/event/cs2-hotu-fnc-2026-10-14"
-  },
-  {
-   "match_id": "1079622",
-   "teams": "ex-RUSTEC v mellren",
-   "vrs_a": 1066,
-   "vrs_b": 932,
-   "hltv_a": 79,
-   "hltv_b": 94,
-   "market_p_a_pct": 61.0,
-   "source": "Polymarket",
-   "captured_utc": "2026-10-14T09:00:16Z",
-   "url": "https://polymarket.com/event/cs2-rustec-mellre-2026-10-14"
-  },
-  {
-   "match_id": "1080177",
-   "teams": "Falcons v Ninjas in Pyjamas",
-   "vrs_a": 1843,
-   "vrs_b": 1534,
-   "hltv_a": 5,
-   "hltv_b": 26,
-   "market_p_a_pct": 73.5,
-   "source": "Polymarket",
-   "captured_utc": "2026-10-14T09:00:16Z",
-   "url": "https://polymarket.com/event/cs2-fal2-nip-2026-10-14"
-  },
-  {
-   "match_id": "1080178",
-   "teams": "Legacy v PARIVISION",
-   "vrs_a": 1931,
-   "vrs_b": 1411,
-   "hltv_a": 7,
-   "hltv_b": 11,
-   "market_p_a_pct": 57.5,
-   "source": "Polymarket",
-   "captured_utc": "2026-10-14T09:00:16Z",
-   "url": "https://polymarket.com/event/cs2-lgc-prv-2026-10-14"
-  },
-  {
-   "match_id": "1079623",
-   "teams": "G2 Ares v The Last Resort",
-   "vrs_a": 913,
-   "vrs_b": 926,
-   "hltv_a": 103,
-   "hltv_b": 159,
-   "market_p_a_pct": 69.5,
-   "source": "Polymarket",
-   "captured_utc": "2026-10-14T09:00:16Z",
-   "url": "https://polymarket.com/event/cs2-g2a-tlr-2026-10-14"
-  },
-  {
-   "match_id": "1081113",
-   "teams": "Ryvex v PCIFIC",
-   "vrs_a": 714,
-   "vrs_b": 870,
-   "hltv_a": 181,
-   "hltv_b": 135,
-   "market_p_a_pct": 16.5,
-   "source": "Polymarket",
-   "captured_utc": "2026-10-14T09:00:16Z",
-   "url": "https://polymarket.com/event/cs2-wraith-ryvex-2026-10-14"
-  },
   {
    "match_id": "1080179",
    "teams": "FURIA v BetBoom",
@@ -185,10 +101,10 @@
    "vrs_b": 1318,
    "hltv_a": 12,
    "hltv_b": 70,
-   "market_p_a_pct": 55.5,
-   "source": "Polymarket",
-   "captured_utc": "2026-10-14T09:00:16Z",
-   "url": "https://polymarket.com/event/cs2-mibr-bcg-2026-10-15"
+   "market_p_a_pct": 56.85,
+   "source": "Pinnacle",
+   "captured_utc": "2026-10-14T09:40:22Z",
+   "url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/"
   },
   {
    "match_id": "1079442",
@@ -197,10 +113,10 @@
    "vrs_b": 1500,
    "hltv_a": 30,
    "hltv_b": null,
-   "market_p_a_pct": 66.5,
-   "source": "Polymarket",
-   "captured_utc": "2026-10-14T09:00:16Z",
-   "url": "https://polymarket.com/event/cs2-hero-envy-2026-10-15"
+   "market_p_a_pct": 64.07,
+   "source": "Pinnacle",
+   "captured_utc": "2026-10-14T09:40:22Z",
+   "url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/"
   },
   {
    "match_id": "1080280",
