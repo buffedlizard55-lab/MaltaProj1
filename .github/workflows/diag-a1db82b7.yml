@@ -1,0 +1,116 @@
+# Diagnostic workflow for session arena/a1db82b7 (task M-01).
+#
+# Purpose: the scheduled own-line model run 38489574648 on `main` (2026-10-14T00:20:08Z) failed in its
+# "Tests" step, and the agent sandbox has no network access to the live sources, while Actions runners do.
+# This job therefore re-runs the model pipeline on THIS BRANCH exactly as the scheduled job does, captures
+# the verbose test output, and commits the evidence under diag/ so it can be read from the repository.
+#
+# It is evidence-only: it writes nothing under model/ back to the repository (only diag/ is committed).
+# Delete this file once M-01 is closed.
+name: Diag (a1db82b7) model-test failure
+
+on:
+  workflow_dispatch: {}
+  push:
+    branches: ["arena/a1db82b7-maltaproj1"]
+    paths:
+      - ".github/workflows/diag-a1db82b7.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: diag-a1db82b7-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  diag:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.ref_name }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Prepare diag directory
+        run: mkdir -p diag
+
+      - name: "1: fetch official inputs (exactly as the scheduled job)"
+        run: |
+          set +e
+          python3 model/fetch.py > diag/01_fetch.log 2>&1
+          echo "FETCH_EXIT=$?" | tee -a diag/01_fetch.log
+          cp -f model/input/fetch_log.json diag/06_fetch_log.json 2>/dev/null || true
+          echo "--- fetch_log.json ---" | tee -a diag/01_fetch.log
+          cat diag/06_fetch_log.json 2>/dev/null | tee -a diag/01_fetch.log || true
+
+      - name: "2: clone Valve's official standings repo + calibrate"
+        run: |
+          set +e
+          {
+            echo "--- Valve repo HEAD ---"
+            rm -rf /tmp/vrs
+            git clone -q --depth 1 https://github.com/ValveSoftware/counter-strike_regional_standings.git /tmp/vrs
+            cd /tmp/vrs && git rev-parse HEAD && git log -1 --format='%ci %s' && ls live/2026/ | tail -5
+            cd "$GITHUB_WORKSPACE"
+            echo "--- calibrate.py ---"
+            VRS_REPO_DIR=/tmp/vrs python3 model/calibrate.py
+            echo "CALIBRATE_EXIT=$?"
+            cp -f model/input/vrs/meta.json diag/07_vrs_meta.json 2>/dev/null || true
+          } > diag/02_vrs.log 2>&1
+
+      - name: "3: build own lines + page"
+        run: |
+          set +e
+          python3 model/build.py > diag/03_build.log 2>&1
+          echo "BUILD_EXIT=$?" >> diag/03_build.log
+
+      - name: "4: tests, verbose (this is the step that fails in the scheduled run)"
+        run: |
+          set +e
+          VRS_REPO_DIR=/tmp/vrs python3 model/test_model.py -v > diag/04_tests.log 2>&1
+          code=$?
+          echo "TEST_EXIT=$code" >> diag/04_tests.log
+          echo "TEST_EXIT=$code"
+
+      - name: "5: what the fresh inputs changed against the committed snapshot"
+        run: |
+          set +e
+          {
+            echo "--- git status --porcelain ---"
+            git status --porcelain
+            echo "--- git diff --stat (working tree vs committed) ---"
+            git diff --stat
+            echo "--- git diff -- model/data/lines.csv (first 400 lines) ---"
+            git diff -- model/data/lines.csv | head -400
+            echo "--- git diff -- model/data/teams.csv (first 200 lines) ---"
+            git diff -- model/data/teams.csv | head -200
+          } > diag/05_changed.log 2>&1
+
+      - name: "6: publish diag evidence on the branch"
+        if: always()
+        run: |
+          git config user.name "diag-a1db82b7[bot]"
+          git config user.email "diag-a1db82b7@users.noreply.github.com"
+          git add -f diag/
+          if git diff --cached --quiet; then
+            echo "no diag change to publish"
+            exit 0
+          fi
+          git commit -q -m "diag(a1db82b7): model-test diagnosis from run ${GITHUB_RUN_ID} [skip ci]"
+          for i in 1 2 3; do
+            if git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}"; then
+              echo "diag evidence pushed"
+              exit 0
+            fi
+            sleep 5
+          done
+          echo "could not push diag evidence"
+          exit 1
