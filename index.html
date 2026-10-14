@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Hotspawn CS2 — picks &amp; coverage</title><meta name="description" content="One clear entry point for every captured Hotspawn CS2 match, sourced estimates, freshness and unresolved picks.">
+<title>Hotspawn CS2 Pick&#39;em — full-coverage board (all 88 matches)</title><meta name="description" content="One clear entry point for every captured Hotspawn CS2 match: a pick and win probability for the 28 open matches, officially verified results for the 54 played ones, and flagged unresolved picks.">
 <link rel="stylesheet" href="css/landing.css"><script defer src="js/landing.js"></script>
 <style>
 /* ---- briefing executive summary (session arena/198cf31e); self-contained on purpose ---- */
@@ -22,8 +22,64 @@
 @media(max-width:560px){.bs-hero{padding:14px}.bs-actions a{width:100%;justify-content:center}}
 </style>
 </head>
-<body><a class="skip" href="#matches">Skip to matches</a><header><a class="brand" href="index.html">HOTSPAWN <span>/ independent CS2 research</span></a><nav aria-label="Main"><a href="#matches">Matches</a><a href="executive/picks.html">All-match research</a><a href="reviews/43c32386.html">Flagged for Review</a></nav></header>
-<main><section class="bs-hero" id="start" aria-label="Executive summary">
+</head>
+<body><a class="skip" href="#matches">Skip to matches</a><header><a class="brand" href="index.html">HOTSPAWN <span>/ independent CS2 research</span></a><nav aria-label="Main"><a href="fullpicks/index.html">Full-coverage board</a><a href="fullpicks/unresolved.html">Unresolved &amp; limitations</a><a href="briefing/index.html">Current picks</a><a href="executive/picks.html">All-match research</a><a href="reviews/43c32386.html">Flagged for Review</a></nav></header>
+<main>
+<section class="bs-hero" id="c13-summary" aria-label="Start here — full-coverage board">
+<div class="bs-eyebrow">Start here &middot; one board for all 88 Hotspawn CS2 matches &middot; auto-refresh every 4 h</div>
+<h1>Every match: pick, probability, result</h1>
+<p>One clear entry point for the Hotspawn CS2 Pick&#39;em board, covering <strong>all 88</strong> captured
+fixtures &mdash; not just the open week. The <strong>28 open</strong> matches each carry a pick and win
+probabilities for both teams (outside betting and prediction markets first; where no market prices a match,
+our own line originated from the official Valve Regional Standings and the official HLTV ranking, labelled
+as an uncalibrated research estimate). The <strong>54 already-played</strong> matches show the officially
+verified result (HLTV match pages; Liquipedia for DACH CS Masters S5) next to the pick we originally
+published. <strong>6 matches are unresolved</strong> and are flagged with their evidence instead of a
+guessed pick. Hotspawn supplies the fixture list and lock times only &mdash; its crowd pick percentages are
+never an input. Every row links to the source behind its numbers.</p>
+<div class="bs-actions">
+<a class="bs-cta" href="fullpicks/index.html">Open the full-coverage board &rarr;</a>
+<a href="fullpicks/unresolved.html">Unresolved picks &amp; limitations</a>
+<a href="briefing/index.html">Current-week picks board</a>
+<a href="executive/picks.html">Every-match research table</a>
+</div>
+<div class="bs-stats">
+<div class="bs-stat"><b>88</b><span>Total CS2 fixtures</span></div>
+<div class="bs-stat"><b>28</b><span>Open &middot; live pick + %</span></div>
+<div class="bs-stat"><b>54</b><span>Played &middot; result verified</span></div>
+<div class="bs-stat"><b>6</b><span>Unresolved &middot; flagged, no pick</span></div>
+</div>
+<div class="bs-note"><b>Verification:</b> every table row on the board carries an official source link;
+values that could not be confirmed are left blank and flagged, never inferred.
+Full line-by-line record: <a href="reviews/c13ca42a-verification.md">reviews/c13ca42a-verification.md</a> &middot;
+Machine-readable data: <a href="fullpicks/data/fullpicks_board.csv">fullpicks_board.csv</a>,
+<a href="fullpicks/data/stale_results.csv">stale_results.csv</a> &middot;
+Data checked 2026-10-14T08:35Z; the board rebuilds automatically every 4 hours (fail-closed invariants).</div>
+</section>
+<section aria-labelledby="what-title">
+<h2 id="what-title">What&rsquo;s on the board</h2>
+<p class="small">All <b>88</b> captured CS2 Pick&#39;em fixtures, one row each:
+<b>28 open</b> &mdash; pick + win probability for both teams, outside markets first, our own
+originated line (official Valve standings / HLTV ranking) only where no market prices the match;
+<b>54 played</b> &mdash; the officially verified result (HLTV match pages; Liquipedia for DACH CS
+Masters S5) next to the pick we originally published; <b>6 unresolved</b> &mdash; flagged with
+evidence, no guessed pick. Every row links to its official source. Refreshed automatically every
+4 hours; unconfirmable values stay blank and flagged, never inferred.</p>
+</section>
+<section aria-labelledby="boards-title">
+<h2 id="boards-title">Current boards by session</h2>
+<p class="small" style="margin:0">The full-coverage board above is the canonical entry point. The session
+boards below remain live with their own snapshots:
+<a href="briefing/index.html">briefing/ &mdash; current-week picks (28 open)</a> &middot;
+<a href="executive/picks.html">executive/ &mdash; every-match research table</a> &middot;
+<a href="executive/unresolved.html">executive/unresolved.html &mdash; executive unresolved section</a> &middot;
+<a href="console/index.html">console/ &mdash; consolidated one-row-per-match board</a> &middot;
+<a href="reviews/43c32386.html">Flagged for Review &amp; release audit</a>.</p>
+</section>
+<details class="archive">
+<summary>Previous session boards &amp; earlier summaries &mdash; preserved for audit (the entry point above is current)</summary>
+<p class="notice">The blocks below were published by earlier sessions and remain linked in full. Their snapshots, counts and model assumptions differ from the full-coverage board above; they are not interchangeable with it. Session <code>arena/c13ca42a</code> moved them here so the page has a single clear start point.</p>
+<section class="bs-hero" id="start" aria-label="Executive summary">
 <div class="bs-eyebrow">Start here &middot; refreshed automatically every 4 hours</div>
 <h1>Where the picks are</h1>
 <p>Every open Counter-Strike&nbsp;2 Pick&#39;em match listed on Hotspawn, with a pick and a win
@@ -301,4 +357,5 @@ Mobile-friendly card layout; checked hourly by GitHub Actions (fail-closed). Sna
 
   <div class="note">Archived claims are preserved for audit, not endorsed as newly verified. The current methodology applies to <code>slate/</code> only. Consult each previous board's capture dates and review findings.</div>
 </details>
-<footer>Independent analysis — not affiliated with Hotspawn, not betting advice. <a href="https://play.hotspawn.com/lobby">Official Hotspawn lobby</a> · <a href="https://github.com/buffedlizard55-lab/MaltaProj1">Source repository</a> · <a href="winboard/methodology.html">Previous winboard method</a> · <a href="winboard/sources.html">Previous winboard sources</a> · <a href="winboard/flagged.html">Previous winboard flags</a> · <a href="pickem/methodology.html">Previous inventory method</a> · <a href="pickem/sources.html">Previous inventory sources</a> · <a href="pickem/flagged.html">Previous inventory flags</a></footer></div></details></main><footer>Independent analysis. Not affiliated with Hotspawn. Not betting advice.<br><a href="https://play.hotspawn.com/lobby">Official Hotspawn lobby</a> · <a href="https://github.com/buffedlizard55-lab/MaltaProj1">Repository &amp; evidence</a></footer></body></html>
+<footer>Independent analysis — not affiliated with Hotspawn, not betting advice. <a href="https://play.hotspawn.com/lobby">Official Hotspawn lobby</a> · <a href="https://github.com/buffedlizard55-lab/MaltaProj1">Source repository</a> · <a href="winboard/methodology.html">Previous winboard method</a> · <a href="winboard/sources.html">Previous winboard sources</a> · <a href="winboard/flagged.html">Previous winboard flags</a> · <a href="pickem/methodology.html">Previous inventory method</a> · <a href="pickem/sources.html">Previous inventory sources</a> · <a href="pickem/flagged.html">Previous inventory flags</a></footer></div></details></details></main>
+<footer>Independent analysis. Not affiliated with Hotspawn. Not betting advice.<br><a href="fullpicks/index.html">Full-coverage board (all 88 matches)</a> · <a href="fullpicks/unresolved.html">Unresolved picks &amp; limitations</a> · <a href="https://play.hotspawn.com/lobby">Official Hotspawn lobby</a> · <a href="https://github.com/buffedlizard55-lab/MaltaProj1">Repository &amp; evidence</a></footer></body></html>

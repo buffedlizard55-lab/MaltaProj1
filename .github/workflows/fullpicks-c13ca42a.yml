@@ -1,0 +1,72 @@
+name: Full-coverage picks board refresh (c13ca42a)
+
+# Rebuilds the full-coverage pick'em board (all 88 Hotspawn CS2 fixtures: open picks,
+# verified stale results, unresolved flags) from verified repository data.
+# Fail-closed: invariant check -> rebuild -> tests -> commit ONLY if validated output
+# changed (a failed run publishes nothing; the last good board stays live).
+#
+# Data flow: the executive pipeline's scheduled Hotspawn capture updates
+# executive/data/analysis.csv; when that changes, this workflow re-joins it with the
+# officially verified stale results (data/c13ca42a/stale_result_rows.py) and republishes
+# fullpicks/. The 4-hour schedule also acts as a periodic re-verification of invariants.
+
+on:
+  schedule:
+    # Every 4 hours, offset from the other boards' slots so the runners do not collide.
+    - cron: "7 */4 * * *"
+  workflow_dispatch:
+  push:
+    branches: [main, "arena/c13ca42a-maltaproj1"]
+    paths:
+      - "fullpicks/**"
+      - "executive/data/analysis.csv"
+      - "data/c13ca42a/stale_result_rows.py"
+      - "scripts/c13ca42a_build_fullpicks.py"
+      - "tests/test_c13ca42a.py"
+      - ".github/workflows/fullpicks-c13ca42a.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: fullpicks-c13ca42a
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Validate inputs (fail-closed)
+        run: python scripts/c13ca42a_build_fullpicks.py --check
+
+      - name: Rebuild board from verified data
+        run: python scripts/c13ca42a_build_fullpicks.py
+
+      - name: Regression + invariant tests
+        run: python -m unittest tests.test_c13ca42a
+
+      - name: Commit validated snapshot
+        if: github.event_name != 'pull_request'
+        run: |
+          git config user.name "arena-c13ca42a"
+          git config user.email "arena-c13ca42a@users.noreply.github.com"
+          if [ -z "$(git status --porcelain fullpicks)" ]; then
+            echo "no change in fullpicks/"
+            exit 0
+          fi
+          git add fullpicks
+          git commit -m "fullpicks(c13ca42a): validated refresh from run ${{ github.run_id }}"
+          for i in 1 2 3; do
+            git pull --rebase --autostash origin "${GITHUB_REF_NAME}" \
+              -X theirs --strategy-option=theirs && break
+            echo "rebase attempt $i failed, retrying"
+            sleep 5
+          done
+          git push origin "HEAD:${GITHUB_REF_NAME}"
