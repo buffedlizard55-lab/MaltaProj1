@@ -3416,3 +3416,33 @@ the new archive heading verbatim.
 - **Working-tree note**: running `python3 -m unittest discover -s tests` regenerates `summary/**` (`tests/test_20d753a2.py`). Those regenerated files were **not** committed by this session; they were reverted before commit.
 - **PR #119** (follow-up, same branch) **merged** at `83d5cc0`, merged without waiting for review. Pages `pages build and deployment` for `83d5cc0` **succeeded**. The live `reconcile/flagged.html` shows the corrected F-02 (89.3%) and F-16 after the CDN caught up (a plain URL served the cached page for a short time; `?v=83d5cc0` showed the new content).
 - **Status at the end of this session**: this session's pages are live on Pages. The open items are in the flags: F-01 (re-read before lock), F-02 (roster identity), F-03 (identity), F-04 (G2 refresh), F-08 (landing snapshot, owner B-04), F-14/F-15 (cross-board and own-line method), F-16 (rating age).
+
+## Session `arena/457629c4` (`arena/457629c4-maltaproj1`) — live-source picks for every open match + unresolved-pick section + integration (2026-10-14 04:45 UTC)
+
+**Why this session exists (user brief, 2026-10-14):** (a) every match on the Hotspawn CS2 board must carry a pick —
+including the low-tier fixtures no sportsbook prices — and anything that genuinely cannot be resolved must live in
+its own **Unresolved picks** section together with the limitation that blocked it; (b) the site must be obvious on a
+phone, with an executive summary that links *inside* the site to the picks; (c) coverage has to refresh every 4–8 h.
+The repo has several boards that claim this, but the newest builds are **stale or fallback-only**: the `executive`
+board's 2026-10-14T04:23:08Z build reports `"Snapshot is 8.7 h old"` and used the repo fallback capture
+(`provenance.json`: HLTV ranking reads `status: 0  HLTV ranking read failed`), and the `Executive board refresh
+(5545dbb8)` workflow run **38511378749 failed on `main` at 2026-10-14T04:1xZ**. This session therefore starts from a
+**fresh live capture** taken from this workspace (which can reach the source hosts through the platform fetch tool,
+unlike the sandbox shell) and publishes a board whose every row names the URL it was read from and the UTC minute it
+was read.
+
+| ID | Task | Status | Owner | Exclusive file scope |
+|----|------|--------|-------|----------------------|
+| L-01 | **Live capture** of the Hotspawn CS2 Pick'em slate (all 88 listed fixtures, exact UTC lock/start epochs where published) plus outside sources read at capture time: HLTV world ranking + team pages, EGamersWorld/other book listings, Valve regional standings via the GitHub API. Provenance per fetch (URL, UTC, HTTP status, bytes, SHA-256) in `livelines/data/provenance.json` | **in progress** | arena/457629c4 | `livelines/**` |
+| L-02 | **A pick for every open fixture**: market de-vig where a book actually prices it (primary) → second outside listing → own originated rating line from official ranking/standings data; Hotspawn crowd % never an input; unconfirmable values stay blank and flagged | **in progress** | arena/457629c4 | `livelines/**` |
+| L-03 | **`livelines/` board**: mobile-first executive summary with in-site links to the picks, one-row-per-match picks table (both win %, explicit pick, basis, per-row source link, read time), an explicitly separate **Unresolved picks & limitations** page, Flagged for Review, methodology, sources | **in progress** | arena/457629c4 | `livelines/**` |
+| L-04 | **Refresh cadence inside the requested 4–8 h window**: own workflow `livelines-457629c4.yml` + `livelines/cadence.html` publishing the cron, the last run, and the age of every input; the repo-wide workflow starvation that produced the failed/stale runs is measured and published, not hidden | **in progress** | arena/457629c4 | `.github/workflows/livelines-457629c4.yml`, `livelines/cadence.html` |
+| L-05 | **Line-by-line verification**: `reviews/457629c4-verification.md` (every published number against its cited source, arithmetic re-run, link check on every URL the board emits), `tests/test_457629c4.py`, plus the repository test suite | **in progress** | arena/457629c4 | `reviews/457629c4-verification.md`, `tests/test_457629c4.py` |
+| L-06 | **Integration**: rebase on `origin/main`, additive links in root `index.html` (executive summary → this board's picks page + the unresolved section), PR → `main` merged without waiting for approval, Pages deploy confirmed over HTTPS, PR/merge recorded here | **pending** (after L-01…L-05) | arena/457629c4 | `COORDINATION.md` (this section, append-only), root `index.html` (additive lines only) |
+
+**Read-only inputs (other sessions' work, never modified):** `executive/**`, `console/**`, `picks-full/**`, `picks/**`,
+`every/**`, `exec/**`, `slate/**`, `cs2/**`, `model/**`, `dashboard/**`, `board/**`, `docs/**`, `data/**`,
+`reviews/*` (other sessions'), `feeds/**`. This session writes only inside `livelines/**`, plus its own workflow,
+its own test file, `reviews/457629c4-verification.md`, the additive root-`index.html` lines and this section.
+
+**Claim commit/push:** written and pushed before any task work, per the coordination protocol.
