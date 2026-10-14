@@ -2787,7 +2787,7 @@ links to the updated picks list and must be phone-friendly.
 | E-03 | Automatic hourly refresh of new Hotspawn fixtures: `.github/workflows/executive-5545dbb8.yml` (gated commit: tests + zero-broken-link check before publishing) | **done** — runs 38502799917, 38504903054, 38505308547, 38505602376 all green and committed the validated snapshot | arena/5545dbb8 | `.github/workflows/executive-5545dbb8.yml` |
 | E-04 | One **additive** executive-summary block at the top of root `index.html` linking to the picks board (no other card, sentence or link touched) | **done** (`79bf75b`) — block inserted before the live-refresh panel, existing ids untouched | arena/5545dbb8 | root `index.html` (additive block only) |
 | E-05 | Line-by-line verification report + flags: `reviews/5545dbb8-verification.md`, `executive/flagged.html` | **done** — 28 open fixtures line by line with an official link per row, flag table with counts, endpoint probe log, known gaps | arena/5545dbb8 | `reviews/5545dbb8-verification.md`, `executive/flagged.html` |
-| E-06 | Integration: rebase on `origin/main`, PR → `main` (no approval waited on), confirm Pages deploy + live HTTPS, record PR link and result here | **in progress** — PR link recorded in the integration note below; merge + Pages check to follow in this session | arena/5545dbb8 | `COORDINATION.md` (this section, append-only) |
+| E-06 | Integration: rebase on `origin/main`, PR → `main` (no approval waited on), confirm Pages deploy + live HTTPS, record PR link and result here | **done** — PR [#100](https://github.com/buffedlizard55-lab/MaltaProj1/pull/100) merged into `main` at `2026-10-14T03:26:19Z` (merge commit `b6b2883`); run [38506251175](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38506251175) rebuilt, committed the validated snapshot and **verified the public pages over HTTPS** | arena/5545dbb8 | `COORDINATION.md` (this section, append-only) |
 
 - **Not claimed / not touched**: `cs2/**`, `model/**`, `slate/**`, `oct14/**`, `open-slate/**`, `live/**`,
   `docs/**`, `data/**` (other sessions' datasets are read-only inputs), `README.md`.
@@ -2809,3 +2809,24 @@ links to the updated picks list and must be phone-friendly.
   then the pre-existing note, then `#freshness` and the stats/card sections beneath, unchanged.
 - **Other sessions untouched**: only `executive/**`, `reviews/5545dbb8-verification.md`, `scripts/5545dbb8_build.py`, `tests/test_5545dbb8.py`, `.github/workflows/executive-5545dbb8.yml`, the additive block in root `index.html` and this section were edited; `cs2/**`/`model/**`/`slate/**`/`oct14/**`/`data/**` are read-only inputs here. PR **#82** (`arena/a174d77f`) remains open and unmerged — no work of theirs was touched.
 - **Temporary files removed before the PR**: `.github/workflows/diag-5545dbb8.yml`, `diag-5545dbb8.md`.
+- **Pull request**: [#100](https://github.com/buffedlizard55-lab/MaltaProj1/pull/100) —
+  `arena/5545dbb8-maltaproj1` → `main`, opened `2026-10-14T03:22Z`, **merged without waiting for approval** at
+  `2026-10-14T03:26:19Z`; merge commit `b6b28835d9ec0e86050e814750c13692ff1273c9` (`gh pr merge 100 --merge`).
+  PR checks at merge time: `refresh` (this session's own workflow) success, `audit` pass, `verify` pass;
+  `mergeable: MERGEABLE`, merge state `UNSTABLE` only because GitHub lists the advisory Node-20 deprecation
+  annotation on the runner actions.
+- **Pages deploy confirmed**: the `main` run of `.github/workflows/executive-5545dbb8.yml`
+  ([38506251175](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38506251175)) requested the
+  Pages build and then checked the live site over HTTPS with a cache-busting query: `executive/index.html`
+  returned 200 **and** contained the "Executive summary" marker, and `picks.html`, `flagged.html`,
+  `methodology.html`, `sources.html`, `coverage.html`, `lines.html` each returned 200. The same run committed
+  the validated snapshot as `135cbdd` on `main`.
+- **Post-merge live snapshot** (`main`, run 38506251175, generated `2026-10-14T03:28:20Z`): 88 fixtures /
+  28 open / 28 picks / 24 market / 3 model-line / 1 provisional / 0 blank; 110 teams, 104 resolved; 166 links
+  checked, 0 broken; 27 of 28 open fixtures carry an HLTV match-page link; Hotspawn live read `03:26Z`,
+  outside prices live `03:26Z` (8 CS2 quotes); Polymarket live (2 matches that minute, none on this board);
+  `meta.stale: false`.
+- **Flagged items are published, not merge-blocking**, exactly as the brief requires: see
+  `executive/flagged.html` and §4 of `reviews/5545dbb8-verification.md` (`FL-FORMAT-UNKNOWN` ×88,
+  `FL-RATINGS-WEEK-OLD` ×59, `FL-AMBIGUOUS-NAME` ×5, `FL-UNLISTED-OPPONENT` ×2,
+  `FL-HLTV-IDENTITY-AMBIGUOUS` ×1, `FL-COINFLIP` ×1, `FL-MODEL-MARKET-SPLIT` ×10).
