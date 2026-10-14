@@ -2054,3 +2054,18 @@ proves one wrong.
   and the integration request.
 
 - Concurrent PRs #75/#76 repaired the separate model owner scope and appended coordination records. Integration retained those files verbatim and both board sections; only COORDINATION.md conflicted. The original legacy failure flag is a dated incident, not a claim that the other owner has not repaired it.
+
+### H-02 validation and retries — arena/a9a0c2f1
+- Final source/model/math pass 38498387665 succeeded (all 23 strict tests, mobile/desktop browser checks and
+  validated publication on the session branch): 2026-10-14T02:05:05Z, 381 total payload rows, 88 game-associated
+  CS2 rows + one lobby-only unclassified row, 28 open CS2 fixtures, 5 primary quotes/picks, 20 provisional map
+  estimates and 4 sourced-format series estimates. Every model row recomputed from the recorded rating inputs;
+  every primary quote has a HTTP-200 hashed response in provenance. No cross-sport probabilities remained.
+- Run 38498052682 passed collection/build/tests/browser but rejected a publication race. Previous data retained.
+  Run 38499351453 failed at collection and committed nothing. The official API confirms the failed step; full
+  log download is blocked by this workspace's network limits, so the reason is NOT guessed. Added explicit
+  source-failure annotations to expose future failures in the official checks API; optional market exceptions
+  become missing quotes + visible flags, never fabricated values. Required Hotspawn failures still fail closed.
+- Retry uses exact fetched Pinnacle response URL (including any actual query parameters), and merge-preserving
+  rebase for concurrent integration history. Latest builder also displays every lobby-only entry as game-unverified
+  on CS2/Flagged pages, rather than silently dropping it or inferring its sport.

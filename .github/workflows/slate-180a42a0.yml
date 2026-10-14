@@ -95,7 +95,7 @@ jobs:
           else
             git commit -m "slate(180a42a0): capture + rebuild from run ${GITHUB_RUN_ID}"
             # Never suppress a failed rebase, discard another session's edits, or publish partial data.
-            git pull --rebase origin "${GITHUB_REF_NAME}"
+            git pull --rebase=merges origin "${GITHUB_REF_NAME}"
             git push origin "HEAD:${GITHUB_REF_NAME}"
           fi
 

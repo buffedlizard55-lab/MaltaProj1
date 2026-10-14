@@ -428,7 +428,7 @@ def pinnacle_guest(candidates: list[dict]) -> tuple[list[dict], dict]:
                     "native_odds_a": prices["home"], "native_odds_b": prices["away"],
                     "observed_utc": now_iso(),
                     "source_url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
-                    "api_url": f"{PIN_BASE}/matchups/{matchup.get('id')}/markets/related/straight",
+                    "api_url": markets["record"]["url"],
                 })
     meta["quotes"] = len(quotes)
     rows = []
@@ -781,7 +781,8 @@ def main() -> int:
     healthy = {p["page"] for p in hs.get("pages", [])
                if p.get("status") == 200 and not p.get("error") and p.get("state_rows", 0) > 0}
     if not fixtures_raw or not required <= healthy:
-        print(f"FATAL: incomplete Hotspawn capture; missing {sorted(required - healthy)}. Previous snapshot retained.", file=sys.stderr)
+        detail = f"Incomplete Hotspawn capture; missing {sorted(required - healthy)}. Previous snapshot retained. Pages: {hs.get('pages')}"
+        print(f"::error title=Required source unavailable::{detail}", file=sys.stderr)
         return 1
 
     hltv = hltv_pages()
@@ -803,8 +804,16 @@ def main() -> int:
     # This project's priority is CS2. Keep the entire payload inventory, but do not let LoL
     # API retries consume the CS2 refresh budget. Other-title market cells remain unverified.
     cs2_candidates = [fx for fx in candidates if fx["sport"] == "cs2"]
-    pin_rows, pin_meta = pinnacle_guest(cs2_candidates)
-    egw_rows, egw_meta = egw_readings(cs2_candidates)
+    def optional_market(callback, rows):
+        try:
+            return callback(rows)
+        except Exception as exc:
+            # Bookmaker/aggregator failures must not invent odds or destroy a good fixture capture.
+            detail = f"{type(exc).__name__}: {exc}"
+            print(f"::warning title=Optional market unavailable::{callback.__name__}: {detail}", flush=True)
+            return [], {"error": detail, "matched": 0}
+    pin_rows, pin_meta = optional_market(pinnacle_guest, cs2_candidates)
+    egw_rows, egw_meta = optional_market(egw_readings, cs2_candidates)
     # Historical session readings are not independently verified in this run. Never carry them
     # into current probabilities or invent a read timestamp. Original CSV retained as evidence.
     sess_rows, sess_meta = [], {"disabled": "historical readings excluded from current analysis"}
@@ -1282,7 +1291,11 @@ def main() -> int:
 
 
 if __name__ == "__main__":
-    code = main()
+    try:
+        code = main()
+    except Exception as exc:
+        print(f"::error title=Capture failed::{type(exc).__name__}: {exc}", file=sys.stderr)
+        raise
     if HAVE_UPSTREAM and getattr(up, "_browser", None) is not None:
         try:
             up._browser.__exit__(None, None, None)
