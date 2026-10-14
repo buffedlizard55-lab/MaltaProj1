@@ -2736,10 +2736,16 @@ links to the updated picks list and must be phone-friendly.
 
 - PR #93 merged at 03:13:56Z. The subsequent feed refresh at 03:14:16Z remains 25/28 priced (20 book quotes relayed by bo3.gg, 14 Polymarket, 9 overlapping; 26 formats); #1079624 still has no match-identity-accepted outside quote because both candidates say Sökerorg, not LFO 10.
 - Current secondary corroboration for direction conflicts: #1079623 G2 Ares 67.5% Polymarket; #1080279 EAC 53.8% Thunderpick via bo3.gg; #1080285 Phantom 51.4% Thunderpick via bo3.gg and 56.5% Polymarket (mean 53.9%). The latest report records these as distinct inputs, not substitutes for the earlier picks-board price snapshots.
-- Main is now `6839a99`; Pages run [38505206311](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38505206311) succeeded and the API reports `built`. Public `/feeds/`, `/every/`, `/everypick/`, `/exec/`, and root were fetched; `exec/` remains 27/28 and omits both new pick boards. Local rebase and test rerun on this newer main remain pending.
+- Main is now `6839a99`; Pages run [38505206311](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38505206311) succeeded and the API reports `built`. Public `/feeds/`, `/every/`, `/everypick/`, `/exec/`, and root were fetched; `exec/` remains 27/28 and omits both new pick boards. Local rebase and test rerun on this newer main were pending at 03:15; see the final check below.
 
 ### Final local verification — 2026-10-14 03:13 UTC
 
 - Rebased this fixed branch onto `origin/main` `1c65c97` after PR #94; preserved the appended claims and records from the `75fd29ee` session. The previous PR head conflicted only because main advanced; the refreshed PR head is to be pushed after this append.
 - Full repository suite on `1c65c97`: 177 pass; feed tests: 15; focused pick-board suites: everypick 5, picks-full 22, `/every/` 17; CS2 23; slate 17; JS syntax passes. Repo HTML audit: 190 pages, 0 internal-link errors, 53 review findings. Legacy unclosed-file `ResourceWarning`s are non-fatal.
 - Independently confirmed `/every/` matches the same 28 open IDs as `everypick/`, `cs2/`, `exec/`, and `picks-full/`. Public root/`every/`/`everypick/`/`exec/` loads; Pages build run [38504826038](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38504826038) succeeded and the Pages API reports `built`.
+
+### Latest rebase verification — 2026-10-14 03:16 UTC
+
+- Rebased this fixed branch onto `origin/main` `6839a99`, preserving the PR #93/#96 release records and all session append-only text. `COORDINATION.md` was the only rebase conflict.
+- Latest checks on `6839a99`: 177 repository tests pass; feed tests 15; focused everypick/picks-full/`every/` 44; CS2 23; slate 17; JS syntax check passes. HTML audit: 190 pages, 0 link errors, 53 review findings. All five pick boards still have identical 28 open IDs.
+- Current Pages run [38505206311](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38505206311) succeeds and API is `built`. PR #95's remote head is still pre-rebase; refresh/push and checks remain before merge. No product/data files changed.

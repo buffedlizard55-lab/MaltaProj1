@@ -98,7 +98,7 @@ The new 95.31% output comes from the board's uncalibrated standard Elo-400 slope
 
 After PR #94, I re-fetched the root, `/every/`, legacy `/everypick/`, and `/exec/`; the new page and links load, while `exec/` remains at 27/28 picks and still inventories neither `picks-full/` nor `/every/`. Pages build run [38504826038](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38504826038) succeeded for `1c65c97`, the refreshed main Pages API now reports `built`, and the public routes serve the new content. This clears the transient `status: errored` discrepancy reported in the earlier post-audit check.
 
-Final local verification against `1c65c97`: `python3 -m unittest discover -s tests -q` passed **177**; `feeds/tests.py` passed **15**; focused pick-board suites passed **44** total (everypick 5, picks-full 22, `/every/` 17), `cs2/tests.py` **23**, and `slate/tests.py` **17**; `node --check slate/dashboard.js` passed. The repo HTML audit found **190 pages, 0 internal-link errors, 53 review findings**; all five local Markdown links in this report resolve. Existing non-fatal `ResourceWarning`s for unclosed files remain in legacy tests.
+Final local verification after rebasing onto latest main `6839a99`: `python3 -m unittest discover -s tests -q` passed **177**; `feeds/tests.py` passed **15**; focused pick-board suites passed **44** total (everypick 5, picks-full 22, `/every/` 17), `cs2/tests.py` **23**, and `slate/tests.py` **17**; `node --check slate/dashboard.js` passed. The repo HTML audit found **190 pages, 0 internal-link errors, 53 review findings**; all five local Markdown links in this report resolve. Existing non-fatal `ResourceWarning`s for unclosed files remain in legacy tests.
 
 ### Latest feed refresh — 03:14–03:15Z
 
