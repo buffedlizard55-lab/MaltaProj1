@@ -1,6 +1,6 @@
 {
- "generated_utc": "2026-10-14T02:58:14Z",
- "as_of_utc": "2026-10-14T02:58:14Z",
+ "generated_utc": "2026-10-14T03:02:29Z",
+ "as_of_utc": "2026-10-14T03:02:29Z",
  "hotspawn_cs2_fixtures": 88,
  "open_cs2_fixtures": 28,
  "priced_any": 25,
@@ -22,31 +22,31 @@
    "url": "https://play.hotspawn.com/cs2-pickems",
    "status": 200,
    "cs2_rows": 88,
-   "fetched_utc": "2026-10-14T02:57:39Z"
+   "fetched_utc": "2026-10-14T03:02:19Z"
   },
   {
    "page": "lobby",
    "url": "https://play.hotspawn.com/lobby",
    "status": 200,
    "cs2_rows": 88,
-   "fetched_utc": "2026-10-14T02:57:41Z"
+   "fetched_utc": "2026-10-14T03:02:21Z"
   },
   {
    "page": "thp-pickems",
    "url": "https://play.hotspawn.com/thp-pickems",
    "status": 200,
    "cs2_rows": 12,
-   "fetched_utc": "2026-10-14T02:57:42Z"
+   "fetched_utc": "2026-10-14T03:02:23Z"
   }
  ],
  "probes": [
   {
    "source": "OddsDigger e-sports index",
    "url": "https://oddsdigger.com/e-sports",
-   "status": null,
-   "bytes": 0,
-   "error": "TimeoutError: The read operation timed out",
-   "fetched_utc": "2026-10-14T02:57:47Z"
+   "status": 200,
+   "bytes": 255603,
+   "error": null,
+   "fetched_utc": "2026-10-14T03:02:28Z"
   },
   {
    "source": "bookmaker page relayed by bo3.gg (thunderpick)",
@@ -54,7 +54,7 @@
    "status": 403,
    "bytes": 0,
    "error": "HTTPError 403 server=cloudflare title='Just a moment...'",
-   "fetched_utc": "2026-10-14T02:58:14Z"
+   "fetched_utc": "2026-10-14T03:02:29Z"
   }
  ]
 }
