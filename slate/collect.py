@@ -202,10 +202,8 @@ def hotspawn_match_urls() -> tuple[dict, dict]:
 
 def sport_of(fixture: dict) -> str:
     pages = fixture.get("pages") or []
-    if "cs2-pickems" in pages:
+    if {"cs2-pickems", "thp-pickems"} & set(pages):
         return "cs2"
-    if "thp-pickems" in pages:
-        return "thp"
     if "lol-pickems" in pages:
         return "lol"
     return "other"
@@ -355,11 +353,12 @@ def pinnacle_guest(candidates: list[dict]) -> tuple[list[dict], dict]:
     if leagues["data"] is None:
         meta["errors"].append(f"league list failed: {leagues['record']['error']}")
         return [], meta
+    started_deadline = time.time() + 8 * 60
     wanted = []
     for league in leagues["data"]:
         name = (league or {}).get("name") or ""
         for prefix, game in PIN_GAMES.items():
-            if name.startswith(prefix):
+            if name.startswith(prefix) and game in {fx.get("sport") for fx in candidates}:
                 wanted.append((league.get("id"), name, game))
                 meta[f"{game}_leagues"].append(name)
     meta["leagues_read"] = len(leagues["data"])
@@ -381,11 +380,19 @@ def pinnacle_guest(candidates: list[dict]) -> tuple[list[dict], dict]:
             meta["errors"].append(f"matchups {league_id}: {matchups['record']['error']}")
             continue
         for matchup in matchups["data"]:
+            if time.time() > started_deadline:
+                meta["errors"].append("CS2 quote-collection deadline reached; missing values stay blank")
+                break
             participants = matchup.get("participants") or []
             if len(participants) != 2:
                 continue
             meta["matchups_seen"] += 1
             start = str(matchup.get("startTime") or "")[:19] + "Z"
+            names = {p.get("alignment"): p.get("name") for p in participants}
+            # Do not request markets for events that cannot match any CS2 fixture exactly.
+            if not any(guards.aligned_pair(f["team_a"], f["team_b"], names.get("home"), names.get("away"), canonical) is not None
+                       and guards.kickoff_agrees(start, f.get("scheduled_start_utc")) for f in candidates):
+                continue
             markets = _pin_get(f"/matchups/{matchup.get('id')}/markets/related/straight")
             if markets["data"] is None:
                 markets = _pin_get(f"/matchups/{matchup.get('id')}/markets/related/straight"
@@ -791,8 +798,11 @@ def main() -> int:
           f"hltv_matches={len(hltv.get('matches') or [])} hltv_ranking={len(hltv.get('ranking') or {})} "
           f"vrs_teams={len(valve.get('teams') or {})}", flush=True)
 
-    pin_rows, pin_meta = pinnacle_guest(candidates)
-    egw_rows, egw_meta = egw_readings(candidates)
+    # This project's priority is CS2. Keep the entire payload inventory, but do not let LoL
+    # API retries consume the CS2 refresh budget. Other-title market cells remain unverified.
+    cs2_candidates = [fx for fx in candidates if fx["sport"] == "cs2"]
+    pin_rows, pin_meta = pinnacle_guest(cs2_candidates)
+    egw_rows, egw_meta = egw_readings(cs2_candidates)
     # Historical session readings are not independently verified in this run. Never carry them
     # into current probabilities or invent a read timestamp. Original CSV retained as evidence.
     sess_rows, sess_meta = [], {"disabled": "historical readings excluded from current analysis"}
@@ -1042,8 +1052,7 @@ def main() -> int:
             "pick": pick, "pick_pct": pick_p, "pick_basis": basis,
             "hltv_url": hltv_ref.get("hltv_url", ""), "hltv_match_id": hltv_ref.get("hltv_match_id", ""),
             "kickoff_check": hltv_ref.get("kickoff_check", "no HLTV listing row matched"),
-            "hotspawn_url": (f"https://play.hotspawn.com/{fx['sport']}-pickems"
-                             if fx["sport"] in ("cs2", "thp", "lol") else "https://play.hotspawn.com/lobby"),
+            "hotspawn_url": fx.get("source_url") or "https://play.hotspawn.com/lobby",
             "hotspawn_match_url": match_urls.get(str(fx["match_id"]), ""),
             "captured_utc": fx.get("snapshot_utc"),
             "flags": ";".join([f for f in flag_row if f] + ([own["flags"]] if own.get("flags") else [])),
