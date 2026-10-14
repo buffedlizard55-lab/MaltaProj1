@@ -208,7 +208,7 @@ def page(title: str, body: str, active: str, subtitle: str) -> str:
 Collected automatically, maintained by sessions <code>180a42a0 / a9a0c2f1</code> from committed data in <code>slate/data/</code>
 (<code>slate/build.py</code>). Analysis only — not betting advice. Hotspawn's own crowd percentages are
 never used as a probability. Values that could not be read from a source stay blank and are listed on
-the <a href="flagged.html">Flagged for review</a> page.
+the <a href="flagged.html">Flagged for review</a> page. <a href="../reviews/current-board-a9a0c2f1.md">Maintenance verification report</a>.
 </footer>
 <script src="dashboard.js" defer></script>
 </body>
@@ -378,7 +378,7 @@ def board_table(rows: list[dict], *, show_status=False, caption="") -> str:
         fmt = row.get("best_of") or ""
         fmt_src = row.get("best_of_source") or "format not stated by any source read"
         body.append(
-            f'<tr class="fixture-row" data-lock="{esc(row.get("lock_utc"))}" data-quote="{esc(row.get("market_captured_utc"))}">'
+            f'<tr class="fixture-row" data-lock="{esc(row.get("lock_utc"))}" data-captured="{esc(row.get("captured_utc"))}" data-quote="{esc(row.get("market_captured_utc"))}">'
             f'<td data-label="Match"><b>{esc(row.get("team_a"))}</b> vs <b>{esc(row.get("team_b"))}</b>{status}'
             f'<div class="mut" style="font-size:12px">{"BO" + str(fmt) + " · from " + esc(fmt_src) if fmt else esc(fmt_src)}</div>'
             f'<div class="mut" style="font-size:12px">{esc(row.get("pick_basis"))}</div></td>'
