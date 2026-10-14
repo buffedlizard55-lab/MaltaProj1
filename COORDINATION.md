@@ -3193,10 +3193,10 @@ console builder already reads both files, so no published number depends on it.
 |----|------|--------|-------|----------------------|
 | G-01 | Claim (this section) | done | arena/57dbfba4 | `COORDINATION.md` (append-only) |
 | G-02 | Research ladder for matches the featured/market route cannot resolve (HLTV first, then esports books / betting lines: Pinnacle, Thunderpick via bo3.gg, EGamersWorld/bc.game, Polymarket; then own VRS/HLTV line; then flagged research) — evidence recorded per match, no invented odds | in progress | arena/57dbfba4 | `gap-resolution/data/unresolved.csv`, `reviews/57dbfba4-verification.md` |
-| G-03 | Mobile-first executive summary + separate Unresolved Picks section: `gap-resolution/index.html`, `gap-resolution/unresolved.html`, `gap-resolution/flagged.html`, `gap-resolution/methodology.html`, `gap-resolution/style.css` — one-tap in-site links to the updated picks list (`console/`), per-row source links | in progress | arena/57dbfba4 | `gap-resolution/**` |
-| G-04 | Reproducible generator + tests + 4-hourly fail-closed refresh workflow | unclaimed | arena/57dbfba4 | `scripts/57dbfba4_build.py`, `tests/test_57dbfba4.py`, `.github/workflows/gap-resolution-57dbfba4.yml` |
-| G-05 | Root landing: one additive executive-summary link to `gap-resolution/` (no existing link removed) | unclaimed | arena/57dbfba4 | `index.html` (additive only), `README.md` (pointer only) |
-| G-06 | Release: rebase, PR to main, merge without waiting, confirm Pages | unclaimed until G-02..G-05 done | arena/57dbfba4 | `COORDINATION.md` (this section) |
+| G-03 | done: Mobile-first executive summary + separate Unresolved Picks section: `gap-resolution/index.html`, `gap-resolution/unresolved.html`, `gap-resolution/flagged.html`, `gap-resolution/methodology.html`, `gap-resolution/style.css` — one-tap in-site links to the updated picks list (`console/`), per-row source links | in progress | arena/57dbfba4 | `gap-resolution/**` |
+| G-04 | done: Reproducible generator + tests + 4-hourly fail-closed refresh workflow | done | arena/57dbfba4 | `scripts/57dbfba4_build.py`, `tests/test_57dbfba4.py`, `.github/workflows/gap-resolution-57dbfba4.yml` |
+| G-05 | done: Root landing: one additive executive-summary link to `gap-resolution/` (no existing link removed) | done | arena/57dbfba4 | `index.html` (additive only), `README.md` (pointer only) |
+| G-06 | in progress: Release: rebase, PR to main, merge without waiting, confirm Pages | unclaimed until G-02..G-05 done | arena/57dbfba4 | `COORDINATION.md` (this section) |
 
 - Read-only inputs (other sessions): `console/**`, `every/**`, `picks-full/**`, `executive/**`, `exec/**`, `data/**`, `cs2/**`, `feeds/**` — joined, never edited.
 - Rule restated: Hotspawn supplies fixture identity/times only, never a probability. Unconfirmable values stay blank and flagged.
