@@ -3611,3 +3611,29 @@ session `5545dbb8`'s).
 all. The two workflows above are the ones that fire on `pull_request` for this repo; the board's
 own gate is the fail-closed branch run (`38512502436`, success). There are no branch-protection
 rules on `main`.
+
+### Follow-up merge: PR #122
+
+**PR:** https://github.com/buffedlizard55-lab/MaltaProj1/pull/122
+**Result:** merged 2026-10-14T05:00:02Z as commit `83e1c69`.
+**Live confirmations after the merge:** `briefing/flagged.html` renders the flag counts
+(`FL-BOOK-RELAYED` 9, `FL-PREDICTION-MARKET` 14, `FL-RATING-AMBIGUOUS` 13, `FL-FORMAT-UNKNOWN` 5,
+`FL-MODEL-MARKET-SPLIT` 3, `FL-DUPLICATE-QUOTE` 4) at snapshot 2026-10-14T05:00:14Z, and the
+root landing page still leads with the executive summary and pulls 28 / 28 / 17 / 11 live from
+`briefing/data/coverage.json`.
+
+`FL-BOOK-RELAYED` fires only when the relayed quote is the one the row actually publishes
+(`q["basis"] == "BOOK"`), so it lands on exactly the 9 `BOOK`-basis rows
+(1079438, 1080178, 1080179, 1080280, 1080282, 1080284, 1080285, 1080287, 1080290) and on no
+Pinnacle or Polymarket row. An earlier version emitted it from inside the bo3.gg join, which put
+it on 14 fixtures including five whose published price is direct Pinnacle; that was wrong and was
+corrected before merge.
+
+**Also worth knowing for whoever runs the next session here:** rebasing this branch onto a `main`
+that has moved several times produced conflicts in the *generated* `briefing/*.html` and
+`briefing/data/*.csv`. Those files are rebuilt by CI on every push, so the cheap way to rebase is
+to restart the branch from `origin/main` and re-apply only the source changes
+(`briefing/build.py` plus an append to `COORDINATION.md`) — a 2-file diff instead of fighting
+conflicts in output. Two side effects of force-pushing are expected and harmless: other sessions'
+`push`-triggered workflows fire on the large push diff, and `gh pr checks` may show
+`action_required` (first-run approval) rather than a conclusion.
