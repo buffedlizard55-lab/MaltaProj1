@@ -1,0 +1,84 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Methodology</title><style>
+:root{--bg:#0d1117;--card:#161b22;--line:#30363d;--fg:#e6edf3;--dim:#9aa4b2;--acc:#58a6ff;
+--good:#3fb950;--warn:#d29922;--bad:#f85149}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+padding:12px 12px 64px;max-width:900px;margin:0 auto;-webkit-text-size-adjust:100%}
+h1{font-size:1.45rem;margin:.2rem 0 .6rem}h2{font-size:1.15rem;margin:1.4rem 0 .5rem}h3{font-size:1rem;margin:1rem 0 .3rem}
+a{color:var(--acc)}
+.nav{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 16px}
+.nav a{display:inline-block;padding:10px 12px;border:1px solid var(--line);border-radius:10px;text-decoration:none;
+background:var(--card);font-size:.95rem;min-height:44px}
+.nav a[aria-current=page]{border-color:var(--acc);color:#fff;background:#1f6feb33}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;margin:10px 0}
+.pick{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.pick .name{font-size:1.25rem;font-weight:700;color:var(--good)}
+.pick .pct{font-size:1.25rem;font-weight:700}
+.meta{color:var(--dim);font-size:.86rem;margin-top:4px;word-break:break-word}
+.bars{margin:8px 0 4px}
+.bar{display:flex;height:26px;border-radius:6px;overflow:hidden;border:1px solid var(--line)}
+.bar i{display:block;font-style:normal;font-size:.8rem;line-height:26px;text-align:center;white-space:nowrap;overflow:hidden}
+.bar .a{background:#1f6feb}
+.bar .b{background:#6e7681}
+table{width:100%;border-collapse:collapse;font-size:.9rem}
+th,td{border:1px solid var(--line);padding:8px;text-align:left;vertical-align:top}
+th{background:#1c2128}
+.tag{display:inline-block;padding:2px 7px;border-radius:999px;font-size:.75rem;border:1px solid var(--line);color:var(--dim);margin:2px 4px 0 0}
+.tag.T1,.tag.T2{color:#7ee787;border-color:#238636}
+.tag.T3{color:#e3b341;border-color:#9e6a03}
+.tag.T4,.tag.bad{color:#ff7b72;border-color:#8b2c25}
+.note{background:#161b22;border-left:3px solid var(--warn);padding:10px 12px;border-radius:0 8px 8px 0;margin:10px 0;color:var(--fg)}
+.tiles{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:10px 0}
+.tile{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px;text-align:center}
+.tile b{display:block;font-size:1.5rem}
+.tile span{color:var(--dim);font-size:.8rem}
+.cta{display:block;background:#1f6feb;color:#fff;text-align:center;padding:16px;border-radius:12px;font-weight:700;
+text-decoration:none;font-size:1.05rem;margin:12px 0;min-height:54px}
+.cta.alt{background:#238636}
+.cta.warn{background:#9e6a03}
+details{margin:8px 0;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 12px}
+summary{cursor:pointer;font-weight:600}
+@media(max-width:420px){body{padding:8px 8px 48px}.tiles{grid-template-columns:1fr}}
+</style></head><body><h1>Methodology</h1><nav class="nav"><a href="index.html">Summary</a><a href="picks.html">All picks</a><a href="unresolved.html">Unresolved</a><a href="flagged.html">Flagged</a><a href="methodology.html" aria-current="page">Method</a><a href="sources.html">Sources</a><a href="cadence.html">Refresh</a></nav>
+<h2>The basis ladder</h2>
+<div class="card"><div class="meta">
+<b>T1 — primary bookmaker.</b> A Pinnacle guest-market quote captured by this repo's pipeline. De-vigged:
+p = (1/odds) / Σ(1/odds). No T1 quote existed for any open fixture at build time, so every market row below is T2.<br><br>
+<b>T2 — outside listing or prediction market.</b> The newest readable price for the fixture from Polymarket
+(share price in USD 0-1, used directly as the market's own probability), Thunderpick prices relayed by bo3.gg, or the
+EGamersWorld listing of bc.game prices (de-vigged as above). Pairs that are identical across unrelated fixtures on the
+same page (1.80/1.80) are rejected as placeholders and published on the Flagged page instead.<br><br>
+<b>T3 — our own originated line.</b> p = 1/(1+10^((vrs_b − vrs_a)/877.75)) × 100, where vrs_a / vrs_b are the official
+Valve Regional Standings points for the two teams. The scale 877.75 points per 90% favourite is fitted at build time by
+grid search against the fixtures an outside market actually prices (25 fit rows,
+mean absolute error 8.66 percentage points), not assumed. If fewer than four such fixtures exist the
+project default of 400 points applies instead and the fit is marked unfitted.<br><br>
+<b>T4 — bound only.</b> If a team is absent from the official standings, the lowest published value in the same file is
+used as its ceiling. The known side's true win probability is then <i>at least</i> the published number, so no pick is
+published for that fixture — it is listed on <a href="unresolved.html">Unresolved</a>.
+</div></div>
+<h2>Rules the board enforces</h2>
+<div class="card"><div class="meta">
+· Hotspawn's crowd pick percentage is never read, stored or used — a build test fails if it appears.<br>
+· A pick is only published when the row has a probability for both sides from the basis in the basis column.<br>
+· No averaging of two sources into one number: the newest readable price for the fixture is published, older ones are
+shown as drift when they differ by ≥ 0.5 pp.<br>
+· Unknowns stay blank and are flagged; nothing is inferred from a name, a tier or a crowd vote.<br>
+· Every row carries the URL it came from; every source URL is listed with its read time on
+<a href="sources.html">Sources</a>.
+</div></div>
+<h2>What could be wrong</h2>
+<div class="card"><div class="meta">
+· Our line is a rating transform, not a calibrated model of CS2 outcomes, and the official ratings it uses are weekly.<br>
+· Prediction-market prices are last-traded prices on thin books (Gothic v Lavked traded $304 of volume at read time).<br>
+· Series length can change how a rating gap converts into a series probability; where no source states the length the
+row says so.<br>
+· A match can be postponed or cancelled after publication; the board prints lock times, and prices are read times,
+not guarantees.
+</div></div>
+<h2>Reproduce</h2>
+<div class="card"><div class="meta"><code>python3 livelines/build.py</code> rebuilds this board offline from the committed
+captures listed in <a href="data/provenance.json">data/provenance.json</a>. <code>python3 -m unittest tests.test_457629c4</code>
+runs the invariants. The live reads taken on 2026-10-14 are stored verbatim in
+<a href="data/live_reads.json">data/live_reads.json</a> with their URLs and read times.</div></div>
+<p class="meta">Independent analysis, not betting advice. Hotspawn supplies fixture identity only; its crowd percentages are never stored or used. Every number above names the page it was read from.</p></body></html>

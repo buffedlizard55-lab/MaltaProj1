@@ -1,0 +1,37 @@
+{
+ "generated_utc": "2026-10-14T04:48:30Z",
+ "inputs": [
+  {
+   "what": "Hotspawn CS2 Pick'em slate (identity + exact UTC epochs)",
+   "path": "model/input/hotspawn_cs2_fixtures.json",
+   "source_url": "https://play.hotspawn.com/cs2-pickems",
+   "captured_utc": "2026-10-14T02:06:30Z",
+   "sha256": "a7c1237ccb3d6b9d373adf66955ad099056e171087f1ca4ef4e24baa1e74dfac"
+  },
+  {
+   "what": "HLTV world ranking 2026-10-12",
+   "path": "model/input/hltv_ranking.json",
+   "source_url": "https://www.hltv.org/ranking/teams/2026/october/12",
+   "captured_utc": "2026-10-14T02:06:35Z",
+   "sha256": "26d23c9db60a582add49c8e1567373389f8f18abb8a598413c8ca047dee75538"
+  },
+  {
+   "what": "official Valve Regional Standings 2026-10-05",
+   "path": "livelines/data/raw/valve_standings_global_2026_10_05.md",
+   "source_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/2aa2805394fbc68f36a5752a5b16026f2ab2fed5/live/2026/standings_global_2026_10_05.md",
+   "blob_sha": "2aa2805394fbc68f36a5752a5b16026f2ab2fed5",
+   "sha256": "df96e7fc3cd91a2687ec08cac0128e50cc4e4e55346581679572e881d79ae61b"
+  },
+  {
+   "what": "outside market feed (hourly)",
+   "path": "feeds/data/market_feed.csv",
+   "sha256": "1e18a495276bf5921bcb927b180b8a1cc780c780f6280e79b3f15f3cb4f9d877"
+  },
+  {
+   "what": "this session's live reads (EGamersWorld, Polymarket, HLTV, Hotspawn)",
+   "path": "livelines/data/live_reads.json",
+   "sha256": "7a5a989cc9534a7e7f3f577fc8b9e2399182376c13aad756c4a2569e792f39f5"
+  }
+ ],
+ "rule": "No value on this board is invented. Hotspawn crowd pick percentages are never read, stored or used. Where two sources disagreed, both are printed."
+}

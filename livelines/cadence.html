@@ -1,0 +1,64 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Refresh cadence</title><style>
+:root{--bg:#0d1117;--card:#161b22;--line:#30363d;--fg:#e6edf3;--dim:#9aa4b2;--acc:#58a6ff;
+--good:#3fb950;--warn:#d29922;--bad:#f85149}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+padding:12px 12px 64px;max-width:900px;margin:0 auto;-webkit-text-size-adjust:100%}
+h1{font-size:1.45rem;margin:.2rem 0 .6rem}h2{font-size:1.15rem;margin:1.4rem 0 .5rem}h3{font-size:1rem;margin:1rem 0 .3rem}
+a{color:var(--acc)}
+.nav{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 16px}
+.nav a{display:inline-block;padding:10px 12px;border:1px solid var(--line);border-radius:10px;text-decoration:none;
+background:var(--card);font-size:.95rem;min-height:44px}
+.nav a[aria-current=page]{border-color:var(--acc);color:#fff;background:#1f6feb33}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;margin:10px 0}
+.pick{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.pick .name{font-size:1.25rem;font-weight:700;color:var(--good)}
+.pick .pct{font-size:1.25rem;font-weight:700}
+.meta{color:var(--dim);font-size:.86rem;margin-top:4px;word-break:break-word}
+.bars{margin:8px 0 4px}
+.bar{display:flex;height:26px;border-radius:6px;overflow:hidden;border:1px solid var(--line)}
+.bar i{display:block;font-style:normal;font-size:.8rem;line-height:26px;text-align:center;white-space:nowrap;overflow:hidden}
+.bar .a{background:#1f6feb}
+.bar .b{background:#6e7681}
+table{width:100%;border-collapse:collapse;font-size:.9rem}
+th,td{border:1px solid var(--line);padding:8px;text-align:left;vertical-align:top}
+th{background:#1c2128}
+.tag{display:inline-block;padding:2px 7px;border-radius:999px;font-size:.75rem;border:1px solid var(--line);color:var(--dim);margin:2px 4px 0 0}
+.tag.T1,.tag.T2{color:#7ee787;border-color:#238636}
+.tag.T3{color:#e3b341;border-color:#9e6a03}
+.tag.T4,.tag.bad{color:#ff7b72;border-color:#8b2c25}
+.note{background:#161b22;border-left:3px solid var(--warn);padding:10px 12px;border-radius:0 8px 8px 0;margin:10px 0;color:var(--fg)}
+.tiles{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:10px 0}
+.tile{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px;text-align:center}
+.tile b{display:block;font-size:1.5rem}
+.tile span{color:var(--dim);font-size:.8rem}
+.cta{display:block;background:#1f6feb;color:#fff;text-align:center;padding:16px;border-radius:12px;font-weight:700;
+text-decoration:none;font-size:1.05rem;margin:12px 0;min-height:54px}
+.cta.alt{background:#238636}
+.cta.warn{background:#9e6a03}
+details{margin:8px 0;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 12px}
+summary{cursor:pointer;font-weight:600}
+@media(max-width:420px){body{padding:8px 8px 48px}.tiles{grid-template-columns:1fr}}
+</style></head><body><h1>Refresh cadence</h1><nav class="nav"><a href="index.html">Summary</a><a href="picks.html">All picks</a><a href="unresolved.html">Unresolved</a><a href="flagged.html">Flagged</a><a href="methodology.html">Method</a><a href="sources.html">Sources</a><a href="cadence.html" aria-current="page">Refresh</a></nav>
+<div class="card"><div class="tiles">
+<div class="tile"><b>4 h</b><span>refresh cadence (cron 33 */4 * * *)</span></div>
+<div class="tile"><b>2026-10-14T04:48:30Z</b><span>this build</span></div>
+<div class="tile"><b>2026-10-14T02:06:30Z</b><span>Hotspawn slate capture</span></div>
+<div class="tile"><b>2026-10-05</b><span>official standings</span></div>
+</div></div>
+<h2>How refresh works</h2>
+<div class="card"><div class="meta">
+<code>.github/workflows/livelines-457629c4.yml</code> runs every 4 hours (inside the 4–8 h window the brief asks for), on
+every push that touches this board, and on manual dispatch. It re-reads the Hotspawn Pick'em payload, the outside
+market feed and the official Valve standings, then runs <code>livelines/build.py</code> and the invariant tests, and
+commits only if the tests pass — a failed refresh leaves the last good board published and says so here rather than
+overwriting it.<br><br>
+GitHub treats scheduled runs as best-effort and drops them on inactive repositories, and this repository has many
+scheduled workflows competing for the same slots: on 2026-10-14 the “Executive board refresh” run
+<a href="https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38511378749">38511378749</a> failed on main, and
+the newest build of that board published itself as 8.7 h old. This page therefore prints the age of every input
+instead of asserting freshness, and the workflow above writes its own result here.
+</div></div>
+<h2>Age of every input at this build</h2>
+<table><tr><th>Input</th><th>Read/captured (UTC)</th><th>Age at build</th><th>Source</th></tr>
+<tr><td>Hotspawn CS2 Pick'em payload (fixtures, exact lock epochs)</td><td>2026-10-14T02:06:30Z</td><td>2.7 h</td><td><a href="https://play.hotspawn.com/cs2-pickems">link</a></td></tr><tr><td>Outside market feed (Polymarket, Thunderpick via bo3.gg)</td><td>2026-10-14T04:38:05Z</td><td>0.2 h</td><td><a href="https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/feeds/data/market_feed.csv">link</a></td></tr><tr><td>This session's live reads (EGamersWorld, Polymarket, HLTV)</td><td>2026-10-14T04:38:05Z</td><td>0.2 h</td><td><a href="data/live_reads.json">link</a></td></tr><tr><td>Official Valve Regional Standings</td><td>2026-10-05T00:00:00Z</td><td>9.2 days</td><td><a href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/2aa2805394fbc68f36a5752a5b16026f2ab2fed5/live/2026/standings_global_2026_10_05.md">link</a></td></tr><tr><td>HLTV world ranking</td><td>2026-10-12T00:00:00Z</td><td>2.2 days</td><td><a href="https://www.hltv.org/ranking/teams/2026/october/12">link</a></td></tr></table><p class="meta">Independent analysis, not betting advice. Hotspawn supplies fixture identity only; its crowd percentages are never stored or used. Every number above names the page it was read from.</p></body></html>
