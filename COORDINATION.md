@@ -2624,6 +2624,45 @@ log 02:26Z/02:33Z). No session has claimed a CI-run Polymarket reader (`63ee81ba
 - 2026-10-14 03:00 UTC: MF-05 — one `<a class="card">` added to the root "Explore the current board" grid (after the
   `cs2/` card), nothing else in `index.html` changed (`git diff` = 1 insertion). Repo audit `scripts/audit_91e444dd.py`:
   186 HTML pages, 0 link errors; `python -m unittest discover -s tests`: 160 tests OK; `feeds/tests.py`: OK.
+## Session arena/75fd29ee (`arena/75fd29ee-maltaproj1`) — claims (2026-10-14 02:40 UTC)
+
+Branch fixed by Arena: `arena/75fd29ee-maltaproj1` (rebased onto `origin/main` @ `8394993` before claiming).
+Coordination check: `git fetch --prune` shows only `origin/main`; last human-session commits were the
+8944bb84 PRs #83/#84 merged 02:31–02:33 UTC. All older claims are marked done. No live unclaimed board
+conflicts with the scopes below. Prior sessions' files are read-only inputs except where noted.
+
+**User brief driving these tasks (2026-10-14):** picks must exist for *every* Hotspawn CS2 match,
+including low-tier matches with no bookmaker coverage — those get picks guided by information sources
+(HLTV / Valve VRS ratings) instead of market lines; the site must open with an executive summary that
+links to the updated picks list and must be phone-friendly.
+
+| ID | Task | Status | Owner | Exclusive file scope | Notes |
+|----|------|--------|-------|----------------------|-------|
+| E-01 | Research information sources for open CS2 teams the boards could not rate (first: `LFO 10` on fixture `1079624`), verify identity + rating against official sources, record per-row source links | done | arena/75fd29ee | `data/75fd29ee/**` | LFO 10 verified on HLTV's Valve global ranking 2026-10-10: #168, 771 Valve points, roster dottie/flaw/Sapec (team 14084), cross-checked vs EGW lineup on the CCT EU #11 match page |
+| E-02 | Every-match picks engine: one pick (and win probability where inputs allow) for **every** open Hotspawn CS2 fixture, driven by a documented hierarchy — primary bookmaker line > aggregator-reported line (flagged) > originated rating line (Elo-400 model, slate formula, disambiguated + researched inputs) > one-sided evidence pick. Hotspawn crowd % is never an input. Own originated line published for every match | done | arena/75fd29ee | `scripts/75fd29ee_build.py`, `every/data/**` | Reads `slate/data/**`, `data/8944bb84/**`, `data/75fd29ee/**` read-only |
+| E-03 | Mobile-first site pages: `every/` (all picks list + executive summary + methodology + flagged + sources), self-contained CSS, 390 px verified | done | arena/75fd29ee | `every/**` | Single "where are the picks" destination |
+| E-04 | Root landing executive summary (additive block at top linking to `every/index.html`) + README pointer | done | arena/75fd29ee | `index.html` (additive section only), `README.md` | Shared-output edit limited to the additive executive-summary block + one README table row |
+| E-05 | Line-by-line verification review + unit tests (formula parity vs slate own-lines, link audit, no-row-without-source) | done | arena/75fd29ee | `reviews/75fd29ee-review.md`, `tests/test_75fd29ee.py` | Irregularities carried: IRREG-02 (Valve file duplicate-name rows — slate model used wrong rows for ex-RUSTEC/6666/Banda Chuya), FL-EXT-PLACEHOLDER rejections |
+| E-06 | Scheduled automation: rebuild `every/` after slate snapshot commits, tests + link audit, commit, request Pages | done | arena/75fd29ee | `.github/workflows/every-75fd29ee.yml` | Hourly (best-effort) + workflow_dispatch + push paths |
+| E-07 | Integration: rebase, PR → `main`, merge without approval, confirm Pages deploy, record here | done | arena/75fd29ee | `COORDINATION.md` (this section) | PR link + Pages build recorded in the completion record below |
+
+### Log — arena/75fd29ee
+- 2026-10-14 02:40 UTC: claims written; committing and pushing to the fixed branch before task work.
+
+### Overlap resolution note — arena/75fd29ee (written during rebase onto `dd6f075`, 2026-10-14 03:0x UTC)
+- Main moved under this session while it worked (PRs #85–#92 from `fbcccda2`, `3b5e3fea`, `63ee81ba`,
+  `26986a4e`, `a174d77f`, `a0bdf924`). All of their files were kept verbatim during the rebase.
+- **Task overlap declared:** `fbcccda2` (`everypick/**` + `picks-full/**` from `63ee81ba`) and this session
+  (`every/**`) independently implement the same user ask. File scopes do not overlap. To avoid a second
+  confusing executive-summary block on the root page, this session's `index.html` change is **minimized**
+  to a single additive link inside the existing `#exec-summary` region (no content of any other session
+  is removed). `README.md` gets one additive table row.
+- Unique contribution kept: `every/` publishes a researched, source-linked rating for **LFO 10**
+  (HLTV Valve global ranking 2026-10-10, #168 / 771 Valve points) so fixture `1079624` gets a real
+  pick + probability instead of a blank/lean; strict slate-model parity tests; explicit market/model
+  divergence flags. Cross-board pick disagreements flagged by `26986a4e` (IRREG-26) remain open for
+  the final integration owner and are listed on `every/flagged.html`.
+
 
 ### Release record — arena/a0bdf924 (PR #92, 2026-10-14 03:05 UTC)
 | Item | Result |
