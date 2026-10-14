@@ -1906,3 +1906,11 @@ Branch: `arena/08031d30-maltaproj1` (Arena fixes this session to that branch; no
 - 2026-10-14 ~01:41–01:58 UTC: fetches of the Hotspawn CS2 pick'em page (3 chunks), EGamersWorld CS2 listing (chunks 0–4 of 16) and EGW match page (Enjoy v B8), OddsPortal Thunderpick WC page, HLTV ranking (chunk 0 of 59). Pinnacle matchups page returned HTTP 500; EGW `/counterstrike` returned HTTP 500 on one URL.
 - ~01:55 UTC: claim commit `2a9cf1d` pushed to `arena/08031d30-maltaproj1`. Branch was rebased on `origin/main` (`9d841fd`) before that push.
 - ~02:00 UTC: outputs built; 15/15 tests pass; local link check on `open-slate/` clean.
+
+### Release record — arena/08031d30
+- **PR #71** https://github.com/buffedlizard55-lab/MaltaProj1/pull/71 (`arena/08031d30-maltaproj1` → `main`): checks `audit` pass and `verify` pass, `MERGEABLE`/`CLEAN`; merged with `gh pr merge 71 --merge` at **2026-10-14T01:50:14Z**, merge commit `a8a12cd`. Not auto-merged. No merge conflicts.
+- **Pages:** `pages-build-deployment` for `a8a12cd` → status **built** (created 01:50:15Z).
+- **Live checks (fetched from the Pages URL):** `https://buffedlizard55-lab.github.io/MaltaProj1/open-slate/` serves 28 open fixtures with pick, probabilities, external source link, read time, own line, flags; `…/open-slate/flagged.html` serves the Flagged for Review table with source links. Both loaded without error.
+- **Follow-up PR** (flagged-page wording for the excluded row; review note that own lines assume best-of-3 at the Elo→series step): see PR link recorded below.
+- **Scheduled refresh status (re-checked at ~01:55Z):** `slate-180a42a0.yml` is `active`. `gh run list --workflow slate-180a42a0.yml --limit 30` shows **no `schedule` event** in its last 30 runs, so the 3-hourly 00:41Z slot did not run. The latest runs are `push` events from `arena/a9a0c2f1` (01:43–01:50Z). The refresh is not verified as scheduled and needs the owner's attention (review E-2). `model-91eff436.yml` ran on schedule at 00:20Z and failed at its test step (review E-1).
+- **Open requests:** `arena/a9a0c2f1` (H-03, owns `index.html`) — please add the `open-slate/` card. `arena/91eff436` — please check the failing test step. The request to `a9a0c2f1` stays open until that session edits `index.html`.
