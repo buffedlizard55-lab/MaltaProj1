@@ -303,6 +303,14 @@ def main() -> int:
             "n_sources": len(ps), "status": status, "hotspawn_url": fx["hotspawn_url"],
             "captured_utc": fx["captured_utc"], "flags": ";".join(dict.fromkeys(row_flags))})
 
+    # MF-09 / MF-10 are attached to every row they apply to; register them once with the row count so
+    # the Flagged page never says "none" while the caveat applies to published numbers.
+    for code, src in (("MF-09", "bo3.gg"), ("MF-10", "Polymarket")):
+        n = sum(1 for r in feed_rows if r["source"] == src)
+        if n:
+            flags.append({"code": code, "fixture_id": "", "match": "",
+                          "message": f"{FLAG_TEXT[code]} Applies to all {n} {src} rows in market_feed.csv.",
+                          "source_url": "", "hotspawn_url": ""})
     for r in feed_rows:
         r.pop("_p_a", None)
     flags.sort(key=lambda f: (f["code"], f["fixture_id"], f["message"]))
