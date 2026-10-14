@@ -99,6 +99,7 @@
       <li>Coverage: 88 fixtures total; 28 open at capture; 28/28 with a pick; 26 outside-market basis; 2 model basis; 0 without a sourced pick.</li>
       <li>Input read labels: Hotspawn at 05:11Z; outside prices at 05:11Z (9 CS2 quotes); Valve standings dated 2026-10-05; HLTV ranking dated 2026-10-12. Per-row read time remains authoritative for that row.</li>
       <li>The root computes age from `capture_utc` and does not use the executive cadence page’s previously observed stale “0.0 h old” label or static lock countdowns.</li>
+      <li>A cache-busted post-deployment read at 2026-10-14 09:03Z found the static picks page still showing a 2026-10-14T07:54:00Z lock as “in 2.8 h” after that time had passed. Relative countdowns are generated with the snapshot, not a live clock. The root and README warn users to use absolute UTC lock and row-level read times; no `executive/**` source files were changed.</li>
       <li>Hotspawn crowd-pick percentages are not used. Unsupported source values stay blank/flagged; this landing change adds no probabilities.</li>
     </ul>
 
@@ -112,7 +113,7 @@
         <li>Keep the issue flagged until both the link and fixture inventory are independently verified.</li>
       </ol>
     </div>
-    <p class="small">Test, link-audit, PR, merge, and Pages deployment outcomes are recorded in the final E-08 completion/release entry of <a href="../COORDINATION.md">COORDINATION.md</a>. This report does not claim a deployment before that verification.</p>
+    <p class="small"><strong>Deployment status — PR #129:</strong> merged at 2026-10-14T09:02:52Z as <code>9b5a44bd1e9dccff17954c27fbc93b651367fba7</code>. GitHub Pages build <a href="https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38539490886">38539490886</a> completed successfully; the Pages API reported <code>built</code> at 09:03:29Z. Cache-busted HTTPS reads of the root landing, <a href="../executive/picks.html">executive picks</a>, this review, and <a href="../fullpicks/index.html">fullpicks</a> returned expected content. The root rendered the 05:11:44Z executive capture as 3.9 hours old at the 09:03Z read. That verification surfaced the stale relative lock-countdown caveat above; the landing/README warning and regression assertion are included in the follow-up, with final deployment recorded in <a href="../COORDINATION.md">COORDINATION.md</a>.</p>
 
     <p>
       <a class="button" href="../executive/picks.html">Open the primary picks list →</a>

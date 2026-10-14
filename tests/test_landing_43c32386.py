@@ -89,6 +89,8 @@ class LandingAcceptanceTests(unittest.TestCase):
         self.assertIn("Date.now() - Date.parse(value)", self.html)
         self.assertIn("beyond the requested 4–8 hour update window", self.html)
         self.assertIn("GitHub Actions refreshes are scheduled every four hours but run best-effort", self.html)
+        self.assertIn("Lock display caveat:", self.html)
+        self.assertIn("absolute UTC lock time and row-level source-read time—not the relative countdown", self.html)
         self.assertIn("Hotspawn crowd-pick percentages are never probability inputs", self.html)
         self.assertNotIn("All 28 open", self.html)
         self.assertNotIn("0.0 h old", self.html)
