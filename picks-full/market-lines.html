@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Outside market lines (de-vigged) — Hotspawn CS2 Full Picks</title>
+<style>
+:root{--bg:#0b0f17;--panel:#121826;--panel2:#18202f;--line:#26314a;--fg:#e9eef7;--muted:#9aa9c2;--accent:#4ea8de;--accent2:#38bdf8;--green:#22c55e;--greenbg:rgba(34,197,94,.13);--amber:#f59e0b;--amberbg:rgba(245,158,11,.14);--red:#ef4444;--redbg:rgba(239,68,68,.15);--purple:#a855f7;--purplebg:rgba(168,85,247,.15)}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+a{color:var(--accent2);text-decoration:none}a:hover{text-decoration:underline}
+.topbar{background:#070b13;border-bottom:1px solid var(--line);padding:10px 12px;position:sticky;top:0;z-index:40}
+.topbar .in{max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between}
+.brand{font-weight:700;font-size:14.5px}.brand b{color:var(--accent2)}
+.nav{display:flex;flex-wrap:wrap;gap:5px}
+.nav a{padding:5px 9px;border-radius:7px;background:var(--panel);border:1px solid var(--line);font-size:12px;color:var(--fg);white-space:nowrap}
+.nav a.act,.nav a:hover{background:var(--accent);color:#04101c;border-color:var(--accent);text-decoration:none;font-weight:700}
+.wrap{max-width:1100px;margin:0 auto;padding:14px 12px 48px}
+.hero{background:linear-gradient(135deg,#111827,#16213c);border:1px solid var(--line);border-radius:14px;padding:18px 16px;margin:12px 0}
+.hero h1{margin:0 0 6px;font-size:clamp(20px,4.5vw,28px);line-height:1.2}
+.hero p{margin:0;color:var(--muted);font-size:13.5px}
+.banner{background:rgba(56,189,248,.08);border-left:4px solid var(--accent2);padding:10px 12px;border-radius:8px;font-size:12.8px;margin-top:12px;color:#cfe3f7}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:14px 0}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px}
+.kpi b{display:block;font-size:24px;margin:2px 0}.kpi span{color:var(--muted);font-size:11.5px;text-transform:uppercase;letter-spacing:.04em}
+.kpi i{font-style:normal;color:var(--muted);font-size:11.5px;display:block}
+section.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;margin:16px 0}
+section.card h2{margin:0 0 4px;font-size:17px}
+section.card .desc{margin:0 0 10px;color:var(--muted);font-size:12.8px}
+table{width:100%;border-collapse:collapse;font-size:12.8px}
+.tw{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:10px}
+th{background:#0d1322;color:var(--muted);text-transform:uppercase;font-size:10.8px;letter-spacing:.03em;text-align:left;padding:8px 9px;position:sticky;top:0}
+td{padding:9px;border-bottom:1px solid var(--line);vertical-align:top}
+tbody tr:nth-child(even){background:var(--panel2)}
+tbody tr:hover{background:rgba(78,168,222,.08)}
+.badge{display:inline-block;padding:2px 7px;border-radius:6px;font-size:10.8px;font-weight:700;white-space:nowrap}
+.b-s{background:var(--purplebg);color:#d8b4fe;border:1px solid var(--purple)}
+.b-b{background:rgba(56,189,248,.15);color:#7dd3fc;border:1px solid var(--accent2)}
+.b-c{background:rgba(148,163,184,.15);color:#cbd5e1;border:1px solid #64748b}
+.b-lock{background:var(--greenbg);color:#86efac;border:1px solid var(--green)}
+.b-strong{background:rgba(56,189,248,.15);color:#7dd3fc;border:1px solid var(--accent2)}
+.b-lean{background:var(--amberbg);color:#fcd34d;border:1px solid var(--amber)}
+.b-toss{background:rgba(249,115,22,.15);color:#fdba74;border:1px solid #f97316}
+.b-unv{background:var(--redbg);color:#fca5a5;border:1px solid var(--red)}
+.b-research{background:var(--purplebg);color:#d8b4fe;border:1px solid var(--purple)}
+.srcs{display:flex;flex-wrap:wrap;gap:4px;margin-top:5px}
+.sp{display:inline-block;padding:2px 7px;border-radius:5px;background:#0d1322;border:1px solid var(--line);font-size:10.8px;color:var(--accent2);white-space:nowrap}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:11.5px}
+.mut{color:var(--muted);font-size:11.8px}
+.cards{display:grid;grid-template-columns:1fr;gap:10px}
+@media(min-width:900px){.cards{grid-template-columns:1fr 1fr}}
+.fc{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:8px}
+.fc .head{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.fc .mm{font-size:15px;font-weight:750}
+.fc .meta{font-size:11.8px;color:var(--muted)}
+.bar{display:flex;height:10px;border-radius:6px;overflow:hidden;background:#22304c;margin:2px 0}
+.bar .fa{background:var(--accent2)}.bar .fb{background:#5b6b85}
+.pct{display:flex;justify-content:space-between;font-size:13px;font-weight:700}
+.pct .na{color:#7dd3fc}.pct .nb{color:#cbd5e1}
+.pickbox{background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--green);border-radius:9px;padding:9px 10px}
+.pickbox.research{border-left-color:var(--purple)}
+.pickbox .pk{font-size:15.5px;font-weight:800}
+.pickbox .bb{font-size:11.5px;color:var(--muted);margin-top:2px}
+.flaglink{font-size:11.5px}
+footer{margin-top:26px;padding:14px;border-top:1px solid var(--line);color:var(--muted);font-size:11.8px;text-align:center}
+ul.plain{padding-left:18px;margin:6px 0}ul.plain li{margin:4px 0;color:var(--muted);font-size:12.8px}
+details{margin:10px 0}summary{cursor:pointer;font-weight:600;color:var(--muted);font-size:13px}
+</style></head><body>
+<header class="topbar"><div class="in">
+<div class="brand"><b>Full picks</b> · Hotspawn CS2 Pick'em</div>
+<nav class="nav"><a href="index.html">All picks (28)</a><a href="s-tier.html">S-Tier (4)</a><a href="b-tier.html">B-Tier (9)</a><a href="c-tier.html">C-Tier (15)</a><a href="tournaments.html">Tournaments</a><a href="market-lines.html" class=act>Market lines</a><a href="own-lines.html">Own lines</a><a href="sources.html">Sources</a><a href="methodology.html">Method</a><a href="flagged.html">Flagged</a></nav></div></header>
+<main class="wrap">
+      <div class="hero"><h1>Outside betting lines, line by line</h1>
+      <p>Primary line: EGamersWorld (bc.game feed), read 2026-10-14T02:48:00Z (values identical to the independent 2026-10-14T01:48:00Z read by session 8944bb84).
+      Cross-checks: Pinnacle direct API (2026-10-14T01:48:00Z) and Polymarket (2026-10-14T02:46:00Z, view-only). De-vig: p = (1/d) / (1/d_A + 1/d_B).
+      1.80/1.80 placeholders rejected (PF-01).</p></div>
+      <section class="card"><div class="tw"><table><thead><tr><th>ID</th><th>Start</th><th>Matchup</th>
+      <th>Primary (EGW bc.game)</th><th>De-vigged P(A)/P(B)</th><th>Pinnacle cross-check</th><th>Polymarket cross-check</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td class="mono"><a href="index.html#f-1081111">#1081111</a></td>
+        <td>2026-10-14 08:00 UTC</td>
+        <td><b>Enjoy</b> vs <b>B8 Academy</b> (BO3)</td>
+        <td><a href="https://egamersworld.com/counterstrike/match/1sGIL2gAYu/enjoy-vs-b8-academy-qwO9cEnL7" target="_blank" rel="noopener">bc.game (EGW)</a> <span class="mono">1.52 / 2.30</span><div class="mut">margin 9.27%</div></td>
+        <td><b>60.2% / 39.8%</b></td>
+        <td class="mono">—</td><td class="mono">1.61x/2.44x · 62¢/41¢ · $251.82 vol</td>
+        <td class="mut"></td></tr>
+        <tr><td class="mono"><a href="index.html#f-1079621">#1079621</a></td>
+        <td>2026-10-14 08:00 UTC</td>
+        <td><b>Gothic</b> vs <b>Lavked</b> (BO3)</td>
+        <td><a href="https://egamersworld.com/counterstrike/match/_rW8GEyWK/gothic-vs-lavked-GGmfuJ1n4B" target="_blank" rel="noopener">bc.game (EGW)</a> <span class="mono">2.05 / 1.64</span><div class="mut">margin 9.76%</div></td>
+        <td><b>44.4% / 55.6%</b></td>
+        <td class="mono">—</td><td class="mono">1.96x/1.96x · 51¢/51¢ · $266 vol</td>
+        <td class="mut">market near coin-flip</td></tr>
+        <tr><td class="mono"><a href="index.html#f-1080176">#1080176</a></td>
+        <td>2026-10-14 08:30 UTC</td>
+        <td><b>9z</b> vs <b>Aurora</b> (BO3)</td>
+        <td><a href="https://egamersworld.com/counterstrike/match/5X5sFiL7H/9z-vs-aurora-Es9rrnIhb" target="_blank" rel="noopener">bc.game (EGW)</a> <span class="mono">3.87 / 1.20</span><div class="mut">margin 9.17%</div></td>
+        <td><b>23.7% / 76.3%</b></td>
+        <td class="mono">3.550 / 1.307 (de-vig 26.9%/73.1%)</td><td class="mono">—</td>
+        <td class="mut"></td></tr>
+        <tr><td class="mono"><a href="index.html#f-1079438">#1079438</a></td>
+        <td>2026-10-14 10:00 UTC</td>
+        <td><b>Astralis</b> vs <b>Sashi</b> (BO3)</td>
+        <td><a href="https://egamersworld.com/counterstrike/match/EJZmJpBjeNx/astralis-vs-sashi-esport-aGet1AP-0Z" target="_blank" rel="noopener">bc.game (EGW)</a> <span class="mono">1.09 / 6.33</span><div class="mut">margin 7.54%</div></td>
+        <td><b>85.3% / 14.7%</b></td>
+        <td class="mono">—</td><td class="mono">—</td>
+        <td class="mut"></td></tr>
+        <tr><td class="mono"><a href="index.html#f-1079439">#1079439</a></td>
+        <td>2026-10-14 10:00 UTC</td>
+        <td><b>HOTU</b> vs <b>Fnatic</b> (BO3)</td>
+        <td><a href="https://egamersworld.com/counterstrike/match/EJZmJpBjeNx/hotu-vs-fnatic-KjM3caFTC" target="_blank" rel="noopener">bc.game (EGW)</a> <span class="mono">1.89 / 1.81</span><div class="mut">margin 8.16%</div></td>
+        <td><b>48.9% / 51.1%</b></td>
+        <td class="mono">1.990 / 1.800 (de-vig 47.5%/52.5%)</td><td class="mono">—</td>
+        <td class="mut"></td></tr>
+        <tr><td class="mono"><a href="index.html#f-1081112">#1081112</a></td>
+        <td>2026-10-14 11:00 UTC</td>
+        <td><b>Banda chuya</b> vs <b>6666</b> (BO3)</td>
+        <td><a href="flagged.html#pf-01" class="flaglink">PF-01</a> <span class="mono">— (1.80/1.80 rejected)</span></td>
+        <td><b>—</b></td>
+        <td class="mono">—</td><td class="mono">—</td>
+        <td class="mut">EGW displays 1.80/1.80 placeholder — rejected, line left blank (PF-01)</td></tr>
+        <tr><td class="mono"><a href="index.html#f-1079622">#1079622</a></td>
+        <td>2026-10-14 11:00 UTC</td>
+        <td><b>ex-RUSTEC</b> vs <b>mellren</b> (BO3)</td>
+        <td><a href="https://egamersworld.com/counterstrike/match/_rW8GEyWK/ex-rustec-vs-mellren-ZGVCwI7MK" target="_blank" rel="noopener">bc.game (EGW)</a> <span class="mono">1.40 / 2.68</span><div class="mut">margin 8.74%</div></td>
+        <td><b>65.7% / 34.3%</b></td>
+        <td class="mono">—</td><td class="mono">1.52x/2.78x · 66¢/36¢ · $9600 vol</td>
+        <td class="mut"></td></tr>
+        <tr><td class="mono"><a href="index.html#f-1080177">#1080177</a></td>
+        <td>2026-10-14 11:00 UTC</td>
+        <td><b>Falcons</b> vs <b>Ninjas in Pyjamas</b> (BO3)</td>
+        <td><a href="https://egamersworld.com/counterstrike/match/5X5sFiL7H/falcons-vs-nip-QSa-aeOIR" target="_blank" rel="noopener">bc.game (EGW)</a> <span class="mono">1.19 / 3.95</span><div class="mut">margin 9.35%</div></td>
+        <td><b>76.8% / 23.2%</b></td>
+        <td class="mono">1.254 / 4.010 (de-vig 76.2%/23.8%)</td><td class="mono">—</td>
+        <td class="mut"></td></tr>
+        <tr><td class="mono"><a href="index.html#f-1080178">#1080178</a></td>
+        <td>2026-10-14 13:30 UTC</td>
+        <td><b>Legacy</b> vs <b>PARIVISION</b> (BO3)</td>
+        <td><a href="https://egamersworld.com/counterstrike/match/5X5sFiL7H/legacy-vs-parivision--TTc59QUDJ" target="_blank" rel="noopener">bc.game (EGW)</a> <span class="mono">1.66 / 2.07</span><div class="mut">margin 8.55%</div></td>
+        <td><b>55.5% / 44.5%</b></td>
+        <td class="mono">1.654 / 2.260 (de-vig 57.7%/42.3%)</td><td class="mono">—</td>
+        <td class="mut"></td></tr>
+        <tr><td class="mono"><a href="index.html#f-1081113">#1081113</a></td>
+        <td>2026-10-14 14:00 UTC</td>
+        <td><b>Ryvex</b> vs <b>PCIFIC</b> (BO3)</td>
+        <td><a href="flagged.html#pf-01" class="flaglink">PF-01</a> <span class="mono">— (1.80/1.80 rejected)</span></td>
+        <td><b>—</b></td>
+        <td class="mono">—</td><td class="mono">1.16x/5.56x · 86¢/18¢ · $38.66 vol</td>
+        <td class="mut">EGW displays 1.80/1.80 placeholder (two rows: &#x27;PCIFIC Espor&#x27; and &#x27;WRAITH PCIFIC&#x27; vs Ryvex) — rejected, line left blank (PF-01, PF-03)</td></tr>
+        <tr><td class="mono"><a href="index.html#f-1079623">#1079623</a></td>
+        <td>2026-10-14 14:00 UTC</td>
+        <td><b>G2 Ares</b> vs <b>The Last Resort</b> (BO3)</td>
+        <td><a href="https://egamersworld.com/counterstrike/match/_rW8GEyWK/g2-ares-vs-the-last-resort-7GWb9EDd9L" target="_blank" rel="noopener">bc.game (EGW)</a> <span class="mono">1.465 / 2.436</span><div class="mut">margin 9.31%</div></td>
+        <td><b>62.4% / 37.6%</b></td>
+        <td class="mono">—</td><td class="mono">1.49x/2.78x · 67¢/36¢ · $140.98 vol</td>
+        <td class="mut"></td></tr>
+        <tr><td class="mono"><a href="index.html#f-1080179">#1080179</a></td>
+        <td>2026-10-14 16:00 UTC</td>
+        <td><b>FURIA</b> vs <b>BetBoom</b> (BO3)</td>
+        <td><a href="https://egamersworld.com/counterstrike/match/5X5sFiL7H/furia-vs-betboom-team-ZeSbzy91oH" target="_blank" rel="noopener">bc.game (EGW)</a> <span class="mono">1.40 / 2.86</span><div class="mut">margin 6.39%</div></td>
+        <td><b>67.1% / 32.9%</b></td>
+        <td class="mono">1.364 / 3.180 (de-vig 70.0%/30.0%)</td><td class="mono">—</td>
+        <td class="mut"></td></tr>
+        <tr><td class="mono"><a href="index.html#f-1079624">#1079624</a></td>
+        <td>2026-10-14 17:00 UTC</td>
+        <td><b>FORZE Reload</b> vs <b>LFO 10</b> (BO3)</td>
+        <td><a href="flagged.html#pf-01" class="flaglink">PF-01</a> <span class="mono">— (1.80/1.80 rejected)</span></td>
+        <td><b>—</b></td>
+        <td class="mono">—</td><td class="mono">1.11x/6.25x · 90¢/16¢ · $313.86 vol</td>
+        <td class="mut">EGW displays 1.80/1.80 placeholder, opponent name blank on EGW — rejected, line left blank (PF-01, PF-04)</td></tr>
+        <tr><td class="mono"><a href="index.html#f-1080279">#1080279</a></td>
+        <td>2026-10-15 08:00 UTC</td>
+        <td><b>WROTBERRY</b> vs <b>EAC</b> (BO1)</td>
+        <td><a href="https://egamersworld.com/counterstrike/match/4yn491uUVl/wbt-vs-ea-copenhagen-hSC7a2mtP" target="_blank" rel="noopener">bc.game (EGW)</a> <span class="mono">2.01 / 1.69</span><div class="mut">margin 8.92%</div></td>
+        <td><b>45.7% / 54.3%</b></td>
+        <td class="mono">—</td><td class="mono">—</td>
+        <td class="mut"></td></tr>
+        <tr><td class="mono"><a href="index.html#f-1079440">#1079440</a></td>
+        <td>2026-10-15 10:00 UTC</td>
+        <td><b>MIBR</b> vs <b>BC.Game</b> (BO3)</td>
+        <td><a href="https://egamersworld.com/counterstrike/match/EJZmJpBjeNx/mibr-vs-bcgame-esports-X8nMpUjAX" target="_blank" rel="noopener">bc.game (EGW)</a> <span class="mono">1.62 / 2.09</span><div class="mut">margin 9.58%</div></td>
+        <td><b>56.3% / 43.7%</b></td>
+        <td class="mono">1.637 / 2.230 (de-vig 57.7%/42.3%)</td><td class="mono">—</td>
+        <td class="mut"></td></tr>
+        <tr><td class="mono"><a href="index.html#f-1079442">#1079442</a></td>
+        <td>2026-10-15 10:00 UTC</td>
+        <td><b>Heroic</b> vs <b>Envy</b> (BO3)</td>
+        <td><a href="https://egamersworld.com/counterstrike/match/EJZmJpBjeNx/heroic-vs-team-envy-NcCqzpPZdC" target="_blank" rel="noopener">bc.game (EGW)</a> <span class="mono">1.45 / 2.47</span><div class="mut">margin 9.45%</div></td>
+        <td><b>63.0% / 37.0%</b></td>
+        <td class="mono">1.469 / 2.620 (de-vig 64.1%/35.9%)</td><td class="mono">—</td>
+        <td class="mut"></td></tr>
+        <tr><td class="mono"><a href="index.html#f-1080280">#1080280</a></td>
+        <td>2026-10-15 10:00 UTC</td>
+        <td><b>ENCE</b> vs <b>BOJONG</b> (BO1)</td>
+        <td><a href="https://egamersworld.com/counterstrike/match/4yn491uUVl/ence-vs-bojong-qV78OzvXFg" target="_blank" rel="noopener">bc.game (EGW)</a> <span class="mono">1.30 / 3.17</span><div class="mut">margin 8.47%</div></td>
+        <td><b>70.9% / 29.1%</b></td>
+        <td class="mono">—</td><td class="mono">—</td>
+        <td class="mut"></td></tr>
+        <tr><td class="mono"><a href="index.html#f-1080281">#1080281</a></td>
+        <td>2026-10-15 12:00 UTC</td>
+        <td><b>WROTBERRY</b> vs <b>ENCE</b> (BO1)</td>
+        <td><a href="https://egamersworld.com/counterstrike/match/4yn491uUVl/wbt-vs-ence-GQ0xieRgQS" target="_blank" rel="noopener">bc.game (EGW)</a> <span class="mono">1.62 / 2.107</span><div class="mut">margin 9.19%</div></td>
+        <td><b>56.5% / 43.5%</b></td>
+        <td class="mono">—</td><td class="mono">—</td>
+        <td class="mut"></td></tr>
+        <tr><td class="mono"><a href="index.html#f-1080282">#1080282</a></td>
+        <td>2026-10-15 14:00 UTC</td>
+        <td><b>EAC</b> vs <b>BOJONG</b> (BO1)</td>
+        <td><a href="https://egamersworld.com/counterstrike/match/4yn491uUVl/ea-copenhagen-vs-bojong-vBsvfnHU5" target="_blank" rel="noopener">bc.game (EGW)</a> <span class="mono">1.19 / 4.02</span><div class="mut">margin 8.91%</div></td>
+        <td><b>77.2% / 22.8%</b></td>
+        <td class="mono">—</td><td class="mono">—</td>
+        <td class="mut"></td></tr>
+        <tr><td class="mono"><a href="index.html#f-1080283">#1080283</a></td>
+        <td>2026-10-15 16:00 UTC</td>
+        <td><b>WROTBERRY</b> vs <b>BOJONG</b> (BO1)</td>
+        <td><a href="https://egamersworld.com/counterstrike/match/4yn491uUVl/wbt-vs-bojong-r7kNL0-LX6" target="_blank" rel="noopener">bc.game (EGW)</a> <span class="mono">1.21 / 3.99</span><div class="mut">margin 7.71%</div></td>
+        <td><b>76.7% / 23.3%</b></td>
+        <td class="mono">—</td><td class="mono">—</td>
+        <td class="mut"></td></tr>
+        <tr><td class="mono"><a href="index.html#f-1080284">#1080284</a></td>
+        <td>2026-10-15 18:00 UTC</td>
+        <td><b>EAC</b> vs <b>ENCE</b> (BO1)</td>
+        <td><a href="https://egamersworld.com/counterstrike/match/4yn491uUVl/ea-copenhagen-vs-ence-kTR_sMK3PT" target="_blank" rel="noopener">bc.game (EGW)</a> <span class="mono">1.51 / 2.35</span><div class="mut">margin 8.78%</div></td>
+        <td><b>60.9% / 39.1%</b></td>
+        <td class="mono">—</td><td class="mono">—</td>
+        <td class="mut"></td></tr>
+        <tr><td class="mono"><a href="index.html#f-1080285">#1080285</a></td>
+        <td>2026-10-16 08:00 UTC</td>
+        <td><b>Voca</b> vs <b>Phantom</b> (BO1)</td>
+        <td><a href="https://egamersworld.com/counterstrike/match/4yn491uUVl/voca-vs-phantom-esports-zby52fbAja" target="_blank" rel="noopener">bc.game (EGW)</a> <span class="mono">1.87 / 1.77</span><div class="mut">margin 9.97%</div></td>
+        <td><b>48.6% / 51.4%</b></td>
+        <td class="mono">—</td><td class="mono">—</td>
+        <td class="mut"></td></tr>
+        <tr><td class="mono"><a href="index.html#f-1080286">#1080286</a></td>
+        <td>2026-10-16 10:00 UTC</td>
+        <td><b>HAVU</b> vs <b>RoundsGG</b> (BO1)</td>
+        <td><a href="https://egamersworld.com/counterstrike/match/4yn491uUVl/havu-vs-rounds-rg48QwsiJ9" target="_blank" rel="noopener">bc.game (EGW)</a> <span class="mono">1.19 / 4.02</span><div class="mut">margin 8.91%</div></td>
+        <td><b>77.2% / 22.8%</b></td>
+        <td class="mono">—</td><td class="mono">—</td>
+        <td class="mut"></td></tr>
+        <tr><td class="mono"><a href="index.html#f-1080287">#1080287</a></td>
+        <td>2026-10-16 12:00 UTC</td>
+        <td><b>Voca</b> vs <b>HAVU</b> (BO1)</td>
+        <td><a href="https://egamersworld.com/counterstrike/match/4yn491uUVl/voca-vs-havu-nQn6IrZXP" target="_blank" rel="noopener">bc.game (EGW)</a> <span class="mono">1.38 / 2.70</span><div class="mut">margin 9.50%</div></td>
+        <td><b>66.2% / 33.8%</b></td>
+        <td class="mono">—</td><td class="mono">—</td>
+        <td class="mut"></td></tr>
+        <tr><td class="mono"><a href="index.html#f-1081120">#1081120</a></td>
+        <td>2026-10-16 14:00 UTC</td>
+        <td><b>mellren</b> vs <b>Privateer</b> (BO3)</td>
+        <td><a href="flagged.html#pf-01" class="flaglink">PF-01</a> <span class="mono">— (1.80/1.80 rejected)</span></td>
+        <td><b>—</b></td>
+        <td class="mono">—</td><td class="mono">1.06x/1.06x · 94¢/94¢ · $0 vol</td>
+        <td class="mut">EGW displays 1.80/1.80 placeholder — rejected, line left blank (PF-01)</td></tr>
+        <tr><td class="mono"><a href="index.html#f-1080288">#1080288</a></td>
+        <td>2026-10-16 14:00 UTC</td>
+        <td><b>Phantom</b> vs <b>RoundsGG</b> (BO1)</td>
+        <td><a href="https://egamersworld.com/counterstrike/match/4yn491uUVl/phantom-esports-vs-rounds-m6Cnk4tOxU" target="_blank" rel="noopener">bc.game (EGW)</a> <span class="mono">1.08 / 6.94</span><div class="mut">margin 7.00%</div></td>
+        <td><b>86.5% / 13.5%</b></td>
+        <td class="mono">—</td><td class="mono">—</td>
+        <td class="mut"></td></tr>
+        <tr><td class="mono"><a href="index.html#f-1080289">#1080289</a></td>
+        <td>2026-10-16 16:00 UTC</td>
+        <td><b>RoundsGG</b> vs <b>Voca</b> (BO1)</td>
+        <td><a href="https://egamersworld.com/counterstrike/match/4yn491uUVl/voca-vs-rounds-_dTpdE0K7U" target="_blank" rel="noopener">bc.game (EGW)</a> <span class="mono">6.40 / 1.063</span><div class="mut">margin 9.70%</div></td>
+        <td><b>14.2% / 85.8%</b></td>
+        <td class="mono">—</td><td class="mono">—</td>
+        <td class="mut">EGW lists the fixture Voca vs ROUNDS (1.063/6.400); odds oriented here to Hotspawn order (RoundsGG first)</td></tr>
+        <tr><td class="mono"><a href="index.html#f-1080290">#1080290</a></td>
+        <td>2026-10-16 18:00 UTC</td>
+        <td><b>Phantom</b> vs <b>HAVU</b> (BO1)</td>
+        <td><a href="https://egamersworld.com/counterstrike/match/4yn491uUVl/phantom-esports-vs-havu-H8whr4r586" target="_blank" rel="noopener">bc.game (EGW)</a> <span class="mono">1.36 / 2.87</span><div class="mut">margin 8.37%</div></td>
+        <td><b>67.8% / 32.2%</b></td>
+        <td class="mono">—</td><td class="mono">—</td>
+        <td class="mut"></td></tr></tbody></table></div>
+      <p class="desc" style="margin-top:10px">Polymarket CCT Europe tab also lists markets with no open Hotspawn fixture (context only):
+      Saint Sinners vs maybe (1.09x / 2.04x) · Lilmix vs Revise (1.06x / 1.10x) · MORROW vs ILLYRIANS (1.06x / 1.06x).</p>
+      </section>
+<footer>Session arena/63ee81ba · snapshot 2026-10-14T02:48:00Z ·
+<a href="../index.html">repo home</a> ·
+data: <a href="../data/63ee81ba/picks.csv">picks.csv</a> ·
+<a href="../data/63ee81ba/market_lines.csv">market_lines.csv</a> ·
+<a href="../data/63ee81ba/own_lines.csv">own_lines.csv</a> ·
+<a href="../data/63ee81ba/flags.csv">flags.csv</a> ·
+Independent research — not betting advice.</footer>
+</main></body></html>

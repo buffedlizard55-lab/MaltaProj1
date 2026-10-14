@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Flagged for review — Hotspawn CS2 Full Picks</title>
+<style>
+:root{--bg:#0b0f17;--panel:#121826;--panel2:#18202f;--line:#26314a;--fg:#e9eef7;--muted:#9aa9c2;--accent:#4ea8de;--accent2:#38bdf8;--green:#22c55e;--greenbg:rgba(34,197,94,.13);--amber:#f59e0b;--amberbg:rgba(245,158,11,.14);--red:#ef4444;--redbg:rgba(239,68,68,.15);--purple:#a855f7;--purplebg:rgba(168,85,247,.15)}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+a{color:var(--accent2);text-decoration:none}a:hover{text-decoration:underline}
+.topbar{background:#070b13;border-bottom:1px solid var(--line);padding:10px 12px;position:sticky;top:0;z-index:40}
+.topbar .in{max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between}
+.brand{font-weight:700;font-size:14.5px}.brand b{color:var(--accent2)}
+.nav{display:flex;flex-wrap:wrap;gap:5px}
+.nav a{padding:5px 9px;border-radius:7px;background:var(--panel);border:1px solid var(--line);font-size:12px;color:var(--fg);white-space:nowrap}
+.nav a.act,.nav a:hover{background:var(--accent);color:#04101c;border-color:var(--accent);text-decoration:none;font-weight:700}
+.wrap{max-width:1100px;margin:0 auto;padding:14px 12px 48px}
+.hero{background:linear-gradient(135deg,#111827,#16213c);border:1px solid var(--line);border-radius:14px;padding:18px 16px;margin:12px 0}
+.hero h1{margin:0 0 6px;font-size:clamp(20px,4.5vw,28px);line-height:1.2}
+.hero p{margin:0;color:var(--muted);font-size:13.5px}
+.banner{background:rgba(56,189,248,.08);border-left:4px solid var(--accent2);padding:10px 12px;border-radius:8px;font-size:12.8px;margin-top:12px;color:#cfe3f7}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:14px 0}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px}
+.kpi b{display:block;font-size:24px;margin:2px 0}.kpi span{color:var(--muted);font-size:11.5px;text-transform:uppercase;letter-spacing:.04em}
+.kpi i{font-style:normal;color:var(--muted);font-size:11.5px;display:block}
+section.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;margin:16px 0}
+section.card h2{margin:0 0 4px;font-size:17px}
+section.card .desc{margin:0 0 10px;color:var(--muted);font-size:12.8px}
+table{width:100%;border-collapse:collapse;font-size:12.8px}
+.tw{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:10px}
+th{background:#0d1322;color:var(--muted);text-transform:uppercase;font-size:10.8px;letter-spacing:.03em;text-align:left;padding:8px 9px;position:sticky;top:0}
+td{padding:9px;border-bottom:1px solid var(--line);vertical-align:top}
+tbody tr:nth-child(even){background:var(--panel2)}
+tbody tr:hover{background:rgba(78,168,222,.08)}
+.badge{display:inline-block;padding:2px 7px;border-radius:6px;font-size:10.8px;font-weight:700;white-space:nowrap}
+.b-s{background:var(--purplebg);color:#d8b4fe;border:1px solid var(--purple)}
+.b-b{background:rgba(56,189,248,.15);color:#7dd3fc;border:1px solid var(--accent2)}
+.b-c{background:rgba(148,163,184,.15);color:#cbd5e1;border:1px solid #64748b}
+.b-lock{background:var(--greenbg);color:#86efac;border:1px solid var(--green)}
+.b-strong{background:rgba(56,189,248,.15);color:#7dd3fc;border:1px solid var(--accent2)}
+.b-lean{background:var(--amberbg);color:#fcd34d;border:1px solid var(--amber)}
+.b-toss{background:rgba(249,115,22,.15);color:#fdba74;border:1px solid #f97316}
+.b-unv{background:var(--redbg);color:#fca5a5;border:1px solid var(--red)}
+.b-research{background:var(--purplebg);color:#d8b4fe;border:1px solid var(--purple)}
+.srcs{display:flex;flex-wrap:wrap;gap:4px;margin-top:5px}
+.sp{display:inline-block;padding:2px 7px;border-radius:5px;background:#0d1322;border:1px solid var(--line);font-size:10.8px;color:var(--accent2);white-space:nowrap}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:11.5px}
+.mut{color:var(--muted);font-size:11.8px}
+.cards{display:grid;grid-template-columns:1fr;gap:10px}
+@media(min-width:900px){.cards{grid-template-columns:1fr 1fr}}
+.fc{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:8px}
+.fc .head{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.fc .mm{font-size:15px;font-weight:750}
+.fc .meta{font-size:11.8px;color:var(--muted)}
+.bar{display:flex;height:10px;border-radius:6px;overflow:hidden;background:#22304c;margin:2px 0}
+.bar .fa{background:var(--accent2)}.bar .fb{background:#5b6b85}
+.pct{display:flex;justify-content:space-between;font-size:13px;font-weight:700}
+.pct .na{color:#7dd3fc}.pct .nb{color:#cbd5e1}
+.pickbox{background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--green);border-radius:9px;padding:9px 10px}
+.pickbox.research{border-left-color:var(--purple)}
+.pickbox .pk{font-size:15.5px;font-weight:800}
+.pickbox .bb{font-size:11.5px;color:var(--muted);margin-top:2px}
+.flaglink{font-size:11.5px}
+footer{margin-top:26px;padding:14px;border-top:1px solid var(--line);color:var(--muted);font-size:11.8px;text-align:center}
+ul.plain{padding-left:18px;margin:6px 0}ul.plain li{margin:4px 0;color:var(--muted);font-size:12.8px}
+details{margin:10px 0}summary{cursor:pointer;font-weight:600;color:var(--muted);font-size:13px}
+</style></head><body>
+<header class="topbar"><div class="in">
+<div class="brand"><b>Full picks</b> · Hotspawn CS2 Pick'em</div>
+<nav class="nav"><a href="index.html">All picks (28)</a><a href="s-tier.html">S-Tier (4)</a><a href="b-tier.html">B-Tier (9)</a><a href="c-tier.html">C-Tier (15)</a><a href="tournaments.html">Tournaments</a><a href="market-lines.html">Market lines</a><a href="own-lines.html">Own lines</a><a href="sources.html">Sources</a><a href="methodology.html">Method</a><a href="flagged.html" class=act>Flagged</a></nav></div></header>
+<main class="wrap">
+      <div class="hero"><h1>Flagged for Review</h1>
+      <p>Every unconfirmed, conflicting or rejected input on this board, with sources. Flagged items are published,
+      labelled and never inferred away. 10 flags.</p></div>
+      <div class="cards">
+        <div class="fc" id="pf-01">
+          <div class="head"><span class="mono">PF-01</span> <span class="badge b-lean">MEDIUM</span></div>
+          <div class="mm">EGW 1.80/1.80 placeholders rejected as lines (4 fixtures)</div>
+          <div class="mut" style="color:var(--fg);font-size:13px">EGamersWorld (bc.game feed) displays the unpriced placeholder 1.80/1.80 for #1081112 Banda chuya vs 6666, #1081113 Ryvex vs PCIFIC (two rows), #1079624 FORZE Reload vs LFO 10 (opponent name also blank on EGW) and #1081120 mellren vs Privateer Gaming. An equal placeholder carries no market information: it is NOT treated as 50/50. These rows instead carry our originated line (all four teams/ rosters verified) or, for LFO 10, the labelled research line.</div>
+          <div class="srcs"><a class="sp" href="https://egamersworld.com/counterstrike/matches" target="_blank" rel="noopener">source</a></div>
+        </div>
+        <div class="fc" id="pf-02">
+          <div class="head"><span class="mono">PF-02</span> <span class="badge b-unv">HIGH</span></div>
+          <div class="mm">LFO 10 unverified in the 2026-10-05 VRS file — research line only (#1079624)</div>
+          <div class="mut" style="color:var(--fg);font-size:13px">LFO 10 (HLTV team 14084, roster Jackinho, Sapec, flaw, dottie, tvs) is absent by name from Valve&#x27;s standings_global_2026_10_05.md, so its official line is left BLANK (zero-inference rule). Research anchor: HLTV match 2399301 lists LFO 10 at live VRS #169 with the 4-man core (dottie, flaw, Sapec, tevsii) of VRS #156 Entropy (813 pts); Valve&#x27;s own model/team.js treats rosters sharing &gt;= 3 players as one team entity. The published row therefore shows a FORZE Reload vs &#x27;Entropy-mapped 813 pts&#x27; line clearly labelled RESEARCH (roster-mapped) and flagged for review. FORZE Reload (VRS #84, 1100 pts) is verified.</div>
+          <div class="srcs"><a class="sp" href="https://www.hltv.org/matches/2399301/forze-reload-vs-lfo-10-cct-2026-europe-series-11" target="_blank" rel="noopener">source</a><a class="sp" href="https://www.hltv.org/team/14084/lfo-10" target="_blank" rel="noopener">source</a><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L161" target="_blank" rel="noopener">source</a><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/model/team.js" target="_blank" rel="noopener">source</a></div>
+        </div>
+        <div class="fc" id="pf-03">
+          <div class="head"><span class="mono">PF-03</span> <span class="badge b-lean">MEDIUM</span></div>
+          <div class="mm">PCIFIC identity: Hotspawn &#x27;PCIFIC&#x27; vs EGW/Polymarket &#x27;WRAITH PCIFIC&#x27; (#1081113)</div>
+          <div class="mut" style="color:var(--fg);font-size:13px">Hotspawn lists &#x27;PCIFIC&#x27;; EGW shows two placeholder rows (&#x27;PCIFIC Espor&#x27; and &#x27;WRAITH PCIFIC&#x27; vs Ryvex, same 14:00Z slot); Polymarket prices &#x27;WRAITH PCIFIC vs Ryvex&#x27; at 1.16x/5.56x (86¢/18¢, $38.66 vol). HLTV match 2399463 (the official fixture page for this exact Hotspawn slot, CCT Europe #12 Closed Qualifier) lists PCIFIC vs Ryvex, and the VRS #139 PCIFIC row (870 pts) matches its HLTV roster (4 shared players) — the most likely reading is a rename/sponsor variant, but this is NOT confirmed, so the row&#x27;s pick follows our originated line (PCIFIC 870 vs Ryvex 714 -&gt; 65.0%) and the Polymarket quote is shown as a cross-check only. Cross-check gap: own line PCIFIC 65.0% vs PM 82.7% (17.7 pp) — same direction, flagged FL-CROSS-GAP.</div>
+          <div class="srcs"><a class="sp" href="https://www.hltv.org/matches/2399463/pcific-vs-ryvex-cct-2026-europe-series-12-closed-qualifier" target="_blank" rel="noopener">source</a><a class="sp" href="https://polymarket.com/esports/cs2/cct-europe/cs2-wraith-ryvex-2026-10-14" target="_blank" rel="noopener">source</a><a class="sp" href="https://www.hltv.org/team/13054/pcific" target="_blank" rel="noopener">source</a></div>
+        </div>
+        <div class="fc" id="pf-04">
+          <div class="head"><span class="mono">PF-04</span> <span class="badge b-unv">HIGH</span></div>
+          <div class="mm">Opponent mismatch on FORZE Reload&#x27;s only outside market (#1079624)</div>
+          <div class="mut" style="color:var(--fg);font-size:13px">Polymarket&#x27;s only market for this slot is &#x27;FORZE Reload vs Sökerorg&#x27; (1.11x/6.25x, 90¢/16¢, $313.86 vol) while Hotspawn lists &#x27;LFO 10&#x27; and EGW leaves the opponent name blank. Because the opponent identity conflicts, the Polymarket quote is NOT used as the line for this fixture; it is published as context only. The pick follows the labelled research line (FORZE Reload).</div>
+          <div class="srcs"><a class="sp" href="https://polymarket.com/esports/cs2/cct-europe/cs2-forzer-skr2-2026-10-14" target="_blank" rel="noopener">source</a><a class="sp" href="https://egamersworld.com/counterstrike/match/_rW8GEyWK/forze-reload-vs-Gr_YhyKi3" target="_blank" rel="noopener">source</a></div>
+        </div>
+        <div class="fc" id="pf-05">
+          <div class="head"><span class="mono">PF-05</span> <span class="badge b-c">LOW</span></div>
+          <div class="mm">Polymarket mellren vs Privateer Gaming market is degenerate (#1081120)</div>
+          <div class="mut" style="color:var(--fg);font-size:13px">The PM market shows both outcomes at 94¢ (1.06x/1.06x) with $0.00 volume — a non-functional quote. Not used; the row follows our originated line (mellren 932 vs Privateer 608).</div>
+          <div class="srcs"><a class="sp" href="https://polymarket.com/esports/cs2/cct-europe/cs2-mellre-pg5-2026-10-16" target="_blank" rel="noopener">source</a></div>
+        </div>
+        <div class="fc" id="pf-06">
+          <div class="head"><span class="mono">PF-06</span> <span class="badge b-c">INFO</span></div>
+          <div class="mm">Hotspawn countdown display runs UTC-4 — payload epochs are the truth</div>
+          <div class="mut" style="color:var(--fg);font-size:13px">The /cs2-pickems cards display start times in a UTC-4 frame: the 08:00:00Z Enjoy vs B8 Academy card showed &#x27;Oct 14, 04:00&#x27; with a lock countdown of 05:21:21 while the server clock read ~02:38:39Z — i.e. displayed 04:00 = lock 07:54Z − 05:21:21, confirming display = UTC-4. All start/lock times on this board are the payload epochs (cross-checked by the scheduled CI capture at 02:18:56Z and the independent 8944bb84 verification). Readers comparing against the rendered cards should add 4 hours.</div>
+          <div class="srcs"><a class="sp" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">source</a></div>
+        </div>
+        <div class="fc" id="pf-07">
+          <div class="head"><span class="mono">PF-07</span> <span class="badge b-c">INFO</span></div>
+          <div class="mm">Polymarket read is view-only (US geo block)</div>
+          <div class="mut" style="color:var(--fg);font-size:13px">polymarket.com serves a &#x27;trading blocked in the United States&#x27; banner to this reader; the market page content (prices, volumes) remains fully readable in view-only mode. Quotes were read from the CCT Europe tab (10 markets) and cross-referenced, not traded.</div>
+          <div class="srcs"><a class="sp" href="https://polymarket.com/esports/cs2/cct-europe" target="_blank" rel="noopener">source</a></div>
+        </div>
+        <div class="fc" id="pf-08">
+          <div class="head"><span class="mono">PF-08</span> <span class="badge b-c">INFO</span></div>
+          <div class="mm">Lock rule: picks lock at start − 360s (verified)</div>
+          <div class="mut" style="color:var(--fg);font-size:13px">Every one of the 28 open fixtures carries lock_utc = start_utc − 360s in the Hotspawn payload (slate/data/fixtures.csv, CI capture 2026-10-14T02:18:56Z) and the live countdown cross-check on /cs2-pickems (02:38Z) is consistent with it. The pick you submit on Hotspawn must be in before the row&#x27;s Lock (UTC).</div>
+          <div class="srcs"><a class="sp" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">source</a></div>
+        </div>
+        <div class="fc" id="pf-09">
+          <div class="head"><span class="mono">PF-09</span> <span class="badge b-c">LOW</span></div>
+          <div class="mm">Team-order note on #1080289 (RoundsGG vs Voca)</div>
+          <div class="mut" style="color:var(--fg);font-size:13px">EGW lists this fixture as &#x27;Voca vs ROUNDS&#x27; (1.063 / 6.400). Odds on this board are oriented to Hotspawn&#x27;s order (team_a = RoundsGG): RoundsGG 6.40 / Voca 1.063 -&gt; 14.2% / 85.8% de-vigged. HLTV match 2399428 (Voca vs Rounds) confirms the fixture; the pick (Voca) is unaffected.</div>
+          <div class="srcs"><a class="sp" href="https://egamersworld.com/counterstrike/match/4yn491uUVl/voca-vs-rounds-_dTpdE0K7U" target="_blank" rel="noopener">source</a><a class="sp" href="https://www.hltv.org/matches/2399428/voca-vs-rounds-elisa-breakout-series-2" target="_blank" rel="noopener">source</a></div>
+        </div>
+        <div class="fc" id="pf-10">
+          <div class="head"><span class="mono">PF-10</span> <span class="badge b-c">INFO</span></div>
+          <div class="mm">Coverage context: 4 locked + 59 stale fixtures</div>
+          <div class="mut" style="color:var(--fg);font-size:13px">The current Hotspawn CS2 week also contains 4 locked/started fixtures (Black Phoenix vs 6666, ex-Keyd Stars vs Galorys, SUKEBAN vs your end [forfeit], Zomblers vs Overtake Sector [live at snapshot]) and Hotspawn&#x27;s payload retains 59 stale June–July 2026 records. None are pickable; they are listed for completeness on the board&#x27;s &#x27;This week&#x27; section, and the 59 stale rows are retained (with sources) on the 8944bb84 full-coverage page.</div>
+          <div class="srcs"><a class="sp" href="https://buffedlizard55-lab.github.io/MaltaProj1/oct14/coverage-all-91.html" target="_blank" rel="noopener">source</a></div>
+        </div></div>
+<footer>Session arena/63ee81ba · snapshot 2026-10-14T02:48:00Z ·
+<a href="../index.html">repo home</a> ·
+data: <a href="../data/63ee81ba/picks.csv">picks.csv</a> ·
+<a href="../data/63ee81ba/market_lines.csv">market_lines.csv</a> ·
+<a href="../data/63ee81ba/own_lines.csv">own_lines.csv</a> ·
+<a href="../data/63ee81ba/flags.csv">flags.csv</a> ·
+Independent research — not betting advice.</footer>
+</main></body></html>

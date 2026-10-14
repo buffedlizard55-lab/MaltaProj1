@@ -31,8 +31,20 @@ h1{font-size:clamp(28px,6vw,46px);line-height:1.15;max-width:700px;margin:12px 0
 <div class="eyebrow">Hotspawn / independent research</div>
 <section class="hero"><h1>The match board.<br>The outside view.</h1>
 <p class="lead">Counter-Strike 2 fixtures from Hotspawn. Win estimates from outside markets and our own provisional model — <strong>never crowd pick percentages.</strong></p>
-<div class="hero-actions"><a class="cta" href="slate/cs2.html">Open CS2 matches &amp; picks →</a><a href="slate/flagged.html">Flagged for Review</a></div>
+<div class="hero-actions"><a class="cta" href="picks-full/index.html">All 28 open CS2 picks — one per match →</a><a href="picks-full/flagged.html">Flagged for Review</a></div>
 </section>
+<div class="note" id="exec-summary" role="region" aria-label="Executive summary" style="margin-top:22px">
+<b>Executive summary — where to find the updated picks:</b>
+<a href="picks-full/index.html"><b>Full picks board: all 28 open CS2 matches</b></a> (Oct 14–16, UTC) — every match shows both teams' win probability, an explicit pick, and its basis.
+24/28 rows use up-to-date outside betting lines (EGW bc.game, de-vigged; Pinnacle &amp; Polymarket cross-checks);
+the 4 rows no betting site prices carry our own Valve VRS + HLTV research lines instead (1 labelled RESEARCH, all flagged).
+Crowd pick percentages are never used. Subpages:
+<a href="picks-full/s-tier.html">S-Tier</a> · <a href="picks-full/b-tier.html">B-Tier</a> · <a href="picks-full/c-tier.html">C-Tier</a> ·
+<a href="picks-full/tournaments.html">Tournaments</a> · <a href="picks-full/market-lines.html">Market lines</a> ·
+<a href="picks-full/own-lines.html">Own lines</a> · <a href="picks-full/methodology.html">Method</a> ·
+<a href="picks-full/sources.html">Sources</a> · <a href="picks-full/flagged.html">Flagged for Review</a>.
+Mobile-friendly card layout; checked hourly by GitHub Actions (fail-closed). Snapshot 2026-10-14T02:48Z.
+</div>
 <div id="freshness" class="note" role="status">Checking published snapshot… Coverage and freshness are unverified until loaded.</div>
 <section class="stats" aria-label="Published CS2 coverage"><div class="stat"><b id="cs-count">—</b><span>CS2 rows captured</span></div><div class="stat"><b id="open-count">—</b><span>Lock time still ahead</span></div><div class="stat"><b id="market-count">—</b><span>Primary market quotes</span></div><div class="stat"><b id="pick-count">—</b><span>Supported picks</span></div></section>
 <p class="scope">Counts describe the published payload, not guaranteed live coverage. Missing odds or series formats stay blank. Model estimates are uncalibrated and explicitly provisional. Sources may refuse automated access.</p>
@@ -46,8 +58,9 @@ h1{font-size:clamp(28px,6vw,46px);line-height:1.15;max-width:700px;margin:12px 0
 <a class="card" href="everypick/methodology.html"><h3>How every-match picks are made</h3><p>The A–D fallback hierarchy. Fallback sources are used only where the featured route cannot resolve a match; tiers are never averaged.</p></a>
 </div></section>
 <h2>Explore the current board</h2><div class="grid">
+<a class="card primary" href="picks-full/index.html"><h3>Full picks — every open CS2 match<span class="tag new">28/28 picks · hourly check</span></h3><p>Every open Pick'em fixture with both teams' win %, the pick, its basis (outside market line or our own VRS+HLTV research line), lock time and source links on every row. Tier / tournament / market / own-line subpages.</p></a>
 <a class="card" href="cs2/index.html"><h3>Line-analysis board (session <code>a174d77f</code>)</h3><p>Every open CS2 fixture, refreshed hourly in CI: the outside price where a reachable book publishes one (de-vigged two-way probability, overround and read time), our own re-calibrated Valve-rating line everywhere else, an explicit pick, and a link to the exact source line on every row. 28 open, 7 externally priced, 26 with our own line, 27 with a pick; anything unverifiable is blank, flagged and listed. Pages are published only when the board&#8217;s 17 invariants pass, two of which prove that no crowd percentage and no un-archived price is ever printed. Its 16-check verification log is on <a href="cs2/verification.html">the verification page</a>; machine-readable tables are <a href="cs2/data/analysis.csv">analysis.csv</a> and <a href="cs2/data/market_rows.csv">market_rows.csv</a>.</p></a>
-<a class="card primary" href="slate/cs2.html"><h3>CS2 matches &amp; picks</h3><p>Both teams' market win estimates, a separate provisional model, and the explicit pick. All locked and stale fixtures retained.</p></a>
+<a class="card" href="slate/cs2.html"><h3>CS2 matches &amp; picks (working board)</h3><p>Both teams' market win estimates, a separate provisional model, and the explicit pick. All locked and stale fixtures retained.</p></a>
 <a class="card" href="slate/tournaments.html"><h3>By tournament</h3><p>Simple source-linked tables grouped by competition. Filter by team or tournament.</p></a>
 <a class="card" href="slate/lines.html"><h3>Outside betting lines</h3><p>Primary bookmaker quotes, odds, margin and read time. Secondary aggregator reports are labelled unverified.</p></a>
 <a class="card" href="slate/own-lines.html"><h3>Our own research lines</h3><p>Sourced HLTV / Valve inputs and reproducible arithmetic. Unknown format means no series estimate.</p></a>
