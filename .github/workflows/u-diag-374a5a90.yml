@@ -8,6 +8,11 @@ name: U-01 model pipeline diagnostic (374a5a90)
 
 on:
   workflow_dispatch: {}
+  push:
+    branches: ["arena/374a5a90-maltaproj1"]
+    paths:
+      - ".github/workflows/u-diag-374a5a90.yml"
+      - "model/**"
 
 permissions:
   contents: write
