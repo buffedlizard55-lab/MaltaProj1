@@ -9,6 +9,7 @@ DATA = HERE / "data"
 sys.path.insert(0, str(HERE))
 
 import collect  # noqa: E402
+import guards
 
 
 class SeriesMath(unittest.TestCase):
@@ -96,23 +97,11 @@ class DataInvariants(unittest.TestCase):
             self.assertLess(lock, start, row["fixture_id"])
 
     def test_crowd_percentages_are_audit_only(self):
-        """No probability column may equal a Hotspawn crowd percentage."""
-        fixtures = {}
-        with (DATA / "fixtures.csv").open(encoding="utf-8") as fh:
-            for row in csv.DictReader(fh):
-                fixtures[row["fixture_id"]] = row
-        for row in self.rows():
-            fx = fixtures.get(row["fixture_id"])
-            if not fx:
-                continue
-            for pct_key in ("crowd_pct_a_audit_only", "crowd_pct_b_audit_only"):
-                if not fx.get(pct_key):
-                    continue
-                pct = float(fx[pct_key])
-                for col in ("market_p_a_pct", "own_p_a_pct", "consensus_p_a_pct"):
-                    if row.get(col):
-                        self.assertNotEqual(round(float(row[col]), 6), round(pct, 6),
-                                            f"{row['fixture_id']} {col} equals crowd {pct_key}")
+        # Coincidental equality (e.g. 50/50) is valid. Check dependency separation instead.
+        source = (HERE / "collect.py").read_text()
+        own_block = source.split("    def own_line(fx: dict)")[1].split("    own_lines =")[0]
+        self.assertNotIn("crowd", own_block)
+        self.assertNotIn("crowd", (HERE / "guards.py").read_text().split('from datetime')[1])
 
     def test_provenance_exists_for_every_downloaded_source(self):
         prov = json.loads((DATA / "provenance.json").read_text(encoding="utf-8"))
@@ -120,6 +109,55 @@ class DataInvariants(unittest.TestCase):
         for entry in prov["fetches"]:
             self.assertTrue(entry.get("url"))
             self.assertIn(entry.get("path"), ("http", "browser"))
+
+
+class StrictGuards(unittest.TestCase):
+    def test_exact_orientation(self):
+        self.assertIs(guards.aligned_pair('NAVI', 'Vitality', 'Vitality', 'NAVI', collect.norm), True)
+        self.assertIsNone(guards.aligned_pair('NAVI', 'Vitality', 'NAVI Junior', 'Vitality', collect.norm))
+        self.assertIsNone(guards.aligned_pair('', 'Vitality', '', 'Vitality', collect.norm))
+
+    def test_missing_kickoff_is_not_match(self):
+        self.assertFalse(guards.kickoff_agrees('', '2026-10-14T10:00:00Z'))
+        self.assertFalse(guards.kickoff_agrees('2026-10-14T10:00:00Z', '2026-10-14T16:00:00Z'))
+        self.assertTrue(guards.kickoff_agrees('2026-10-14T10:00:00Z', '2026-10-14T10:05:00Z'))
+
+    def test_primary_quote_age(self):
+        now = datetime(2026, 10, 14, 10, tzinfo=timezone.utc)
+        row = dict(rank=0, book='Pinnacle', odds_a=1.5, odds_b=2.6, captured_utc='2026-10-14T09:00:00Z')
+        self.assertTrue(guards.eligible_market(row, now))
+        for bad in ('2026-10-13T09:00:00Z', '2026-10-14T11:00:00Z', '', '2026-10-14T09:00:00'):
+            self.assertFalse(guards.eligible_market(dict(row, captured_utc=bad), now))
+        self.assertFalse(guards.eligible_market(dict(row, rank=3), now))
+        self.assertFalse(guards.eligible_market(dict(row, odds_a=float('nan')), now))
+        self.assertFalse(guards.eligible_market(dict(row, book='EGamersWorld'), now))
+
+    def test_market_preferred_without_arbitrary_blend(self):
+        self.assertEqual(guards.pick_probability(60, 20, 3)[0], 60)
+        self.assertIsNone(guards.pick_probability(None, 80, None)[0])
+        self.assertEqual(guards.pick_probability(None, 80, 3)[0], 80)
+        self.assertIsNone(collect.series_from_map(.7, None))
+
+    def test_unknown_format_never_published_as_series(self):
+        for row in DataInvariants().rows():
+            if row.get('best_of') not in ('1', '3', '5'):
+                self.assertFalse(row.get('own_series_p_a_pct'), row['fixture_id'])
+                self.assertFalse(row.get('own_series_p_b_pct'), row['fixture_id'])
+                self.assertFalse(row.get('pick') and not row.get('market_p_a_pct'), row['fixture_id'])
+
+    def test_primary_market_provenance_and_math(self):
+        lines = list(csv.DictReader((DATA / 'lines.csv').open()))
+        for row in DataInvariants().rows():
+            if not row.get('market_p_a_pct'):
+                continue
+            self.assertEqual(row['market_book'], 'Pinnacle')
+            candidates = [q for q in lines if q['fixture_id'] == row['fixture_id'] and q['captured_utc'] == row['market_captured_utc'] and q['book'] == 'Pinnacle']
+            self.assertTrue(candidates, row['fixture_id'])
+            quote = candidates[0]
+            a, b, _ = collect.devig(float(row['market_odds_a']), float(row['market_odds_b']))
+            self.assertAlmostEqual(a * 100, float(row['market_p_a_pct']), delta=.06)
+            self.assertAlmostEqual(b * 100, float(row['market_p_b_pct']), delta=.06)
+            self.assertTrue(row['market_url'].startswith('https://www.pinnacle.com/'))
 
 
 if __name__ == "__main__":

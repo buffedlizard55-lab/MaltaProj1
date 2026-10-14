@@ -31,6 +31,7 @@ them.
 from __future__ import annotations
 
 import csv
+import guards
 import hashlib
 import json
 import re
@@ -112,6 +113,14 @@ def variants(name: str) -> list[str]:
     return [v for v in out if v]
 
 
+def canonical(name: str) -> str:
+    for key, entry in _ALIASES.items():
+        target = (entry or {}).get("official_name")
+        if target and norm(key) == norm(name):
+            return norm(target)
+    return norm(name)
+
+
 def sim_pair(a: str, b: str, x, y) -> float:
     """Best team-name similarity over the allowed alias spellings."""
     best = 0.0
@@ -163,7 +172,7 @@ def series_from_map(p: float, best_of: int | None) -> float:
         return p * p * (3.0 - 2.0 * p)
     if best_of == 5:
         return p ** 3 * (10.0 - 15.0 * p + 6.0 * p * p)
-    return p
+    return None
 
 
 # --------------------------------------------------------------------------------------- Hotspawn
@@ -267,7 +276,7 @@ def hltv_pages() -> dict:
     if not HAVE_UPSTREAM:
         out["error"] = f"upstream collector unavailable: {UPSTREAM_ERROR}"
         return out
-    for label, url in (("ranking-dated", HLTV_RANKING_DATED), ("matches", HLTV_MATCHES_URL)):
+    for label, url in (("ranking-current", HLTV_RANKING_URL), ("matches", HLTV_MATCHES_URL)):
         got = up.fetch_html(url)
         html = got.get("html") or ""
         # The upcoming-matches page is behind a bot check far more often than the ranking page; wait
@@ -416,16 +425,11 @@ def pinnacle_guest(candidates: list[dict]) -> tuple[list[dict], dict]:
         for q in quotes:
             if q["game"] != fx.get("sport"):
                 continue
-            same = sim_pair(fx["team_a"], fx["team_b"], q["team_a"], q["team_b"])
-            swapped = sim_pair(fx["team_a"], fx["team_b"], q["team_b"], q["team_a"])
-            score = max(same, swapped)
-            if score < 0.62:
+            flipped = guards.aligned_pair(fx["team_a"], fx["team_b"], q["team_a"], q["team_b"], canonical)
+            if flipped is None or not guards.kickoff_agrees(q["start_utc"], fx.get("scheduled_start_utc")):
                 continue
-            q_start, f_start = parse_iso(q["start_utc"]), parse_iso(fx.get("scheduled_start_utc"))
-            if q_start and f_start and abs((q_start - f_start).total_seconds()) > 6 * 3600:
-                continue
-            if best is None or score > best[0]:
-                best = (score, q, swapped > same)
+            if best is None or q["observed_utc"] > best[1]["observed_utc"]:
+                best = (1.0, q, flipped)
         if not best:
             continue
         score, q, flipped = best
@@ -441,7 +445,7 @@ def pinnacle_guest(candidates: list[dict]) -> tuple[list[dict], dict]:
             "note": (f"Pinnacle event {q['event_id']} in {q.get('league')}; American prices "
                      f"{q.get('native_odds_a')}/{q.get('native_odds_b')} converted to decimal; matched "
                      f"to Hotspawn fixture {fx['match_id']} by team name (similarity {score:.2f}) and "
-                     "kickoff within 6 h"),
+                     "exact/evidence-linked team names and kickoff within 15 minutes"),
         })
     meta["matched"] = len(rows)
     return rows, meta
@@ -677,7 +681,7 @@ def resolve_team(name: str, hltv: dict, valve: dict, aliases: dict) -> dict:
     alias entry that carries an evidence link, and such a row is marked for review.
     """
     row = {"name": name, "hltv_name": None, "hltv_rank": None, "hltv_points": None,
-           "hltv_source_url": f"{HLTV_RANKING_URL}/", "vrs_name": None, "vrs_points": None,
+           "hltv_source_url": HLTV_RANKING_URL, "vrs_name": None, "vrs_points": None,
            "vrs_source_url": valve.get("blob_url"), "method": "unresolved", "flag": None}
     key = norm(name)
     for team, data in (hltv.get("ranking") or {}).items():
@@ -761,6 +765,13 @@ def main() -> int:
 
     hs = hotspawn_capture()
     fixtures_raw = hs.get("fixtures") or []
+    required = {"lobby", "cs2-pickems", "thp-pickems", "lol-pickems"}
+    healthy = {p["page"] for p in hs.get("pages", [])
+               if p.get("status") == 200 and not p.get("error") and p.get("state_rows", 0) > 0}
+    if not fixtures_raw or not required <= healthy:
+        print(f"FATAL: incomplete Hotspawn capture; missing {sorted(required - healthy)}. Previous snapshot retained.", file=sys.stderr)
+        return 1
+
     hltv = hltv_pages()
     valve = valve_standings()
     aliases = load_alias_hints()
@@ -779,8 +790,10 @@ def main() -> int:
 
     pin_rows, pin_meta = pinnacle_guest(candidates)
     egw_rows, egw_meta = egw_readings(candidates)
-    sess_rows, sess_meta = session_readings(candidates)
-    carried_rows, carried_meta = carried_readings()
+    # Historical session readings are not independently verified in this run. Never carry them
+    # into current probabilities or invent a read timestamp. Original CSV retained as evidence.
+    sess_rows, sess_meta = [], {"disabled": "historical readings excluded from current analysis"}
+    carried_rows, carried_meta = [], {"disabled": "historical readings excluded from current analysis"}
     print(f"[slate] pinnacle matched={len(pin_rows)} egw(ci) matched={len(egw_rows)} "
           f"session matched={len(sess_rows)} carried={len(carried_rows)}", flush=True)
 
@@ -820,7 +833,7 @@ def main() -> int:
     for name in all_teams:
         row = resolve_team(name, hltv, valve, aliases)
         row["on_open_slate"] = "yes" if name in open_teams else "no"
-        row["hltv_ranking_url"] = f"{HLTV_RANKING_URL}/2026/october/12"
+        row["hltv_ranking_url"] = HLTV_RANKING_URL
         ratings.append(row)
         if row["flag"] and row["on_open_slate"] == "yes":
             add_flag(row["flag"].split(":")[0], "unverified", f"Team rating: {name}",
@@ -833,16 +846,11 @@ def main() -> int:
     for fx in fixtures_raw:
         best = None
         for row in hltv.get("matches") or []:
-            same = (similarity(fx.get("team_a"), row.get("team_a"))
-                    + similarity(fx.get("team_b"), row.get("team_b"))) / 2
-            swapped = (similarity(fx.get("team_a"), row.get("team_b"))
-                       + similarity(fx.get("team_b"), row.get("team_a"))) / 2
-            score = max(same, swapped)
-            if score < 0.62:
+            flipped = guards.aligned_pair(fx.get("team_a"), fx.get("team_b"),
+                                           row.get("team_a"), row.get("team_b"), canonical)
+            if flipped is None or not guards.kickoff_agrees(row.get("kickoff_utc"), fx.get("scheduled_start_utc")):
                 continue
-            kickoff_ok = row.get("kickoff_utc") == fx.get("scheduled_start_utc")
-            if best is None or (kickoff_ok, score) > (best[0], best[1]):
-                best = (kickoff_ok, score, row, swapped > same)
+            best = (row.get("kickoff_utc") == fx.get("scheduled_start_utc"), 1.0, row, flipped)
         if best:
             _, score, row, flipped = best
             hltv_by_fixture[fx["match_id"]] = {
@@ -861,9 +869,16 @@ def main() -> int:
         hltv_best = None
         if ref.get("hltv_format") in ("bo1", "bo3", "bo5"):
             hltv_best = int(ref["hltv_format"][2:])
-        fx["best_of_resolved"] = payload_best or hltv_best
+        pin_best = next((r.get("best_of") for r in pin_rows if r["fixture_id"] == fx["match_id"]), None)
+        if pin_best not in (1, 3, 5):
+            pin_best = None
+        fx["best_of_resolved"] = payload_best or hltv_best or pin_best
         fx["best_of_source"] = ("Hotspawn payload" if payload_best else
-                               ("HLTV match listing" if hltv_best else None))
+                               "HLTV match listing" if hltv_best else
+                               "Pinnacle matched event" if pin_best else None)
+    for row in fixtures:
+        fx = next(f for f in fixtures_raw if f["match_id"] == row["fixture_id"])
+        row["best_of_resolved"], row["best_of_source"] = fx.get("best_of_resolved"), fx.get("best_of_source")
 
     # ------------------------------------------------------------------ own originated lines (S-03)
     def own_line(fx: dict) -> dict:
@@ -880,14 +895,14 @@ def main() -> int:
         if a.get("hltv_points") and b.get("hltv_points"):
             p = elo_p(float(a["hltv_points"]), float(b["hltv_points"]))
             out["hltv_map_p_a"], out["hltv_map_p_b"] = round(p * 100, 2), round((1 - p) * 100, 2)
-            out["hltv_series_p_a"] = round(series_from_map(p, best_of) * 100, 2)
+            out["hltv_series_p_a"] = (round(series_from_map(p, best_of) * 100, 2) if best_of in (1, 3, 5) else None)
             notes.append("HLTV ranking points")
             series_notes.append(f"HLTV points -> Elo({ELO_SCALE:.0f}) -> "
                                 f"{'BO' + str(best_of) if best_of else 'map'} series")
         if a.get("vrs_points") and b.get("vrs_points"):
             p = elo_p(float(a["vrs_points"]), float(b["vrs_points"]))
             out["vrs_map_p_a"], out["vrs_map_p_b"] = round(p * 100, 2), round((1 - p) * 100, 2)
-            out["vrs_series_p_a"] = round(series_from_map(p, best_of) * 100, 2)
+            out["vrs_series_p_a"] = (round(series_from_map(p, best_of) * 100, 2) if best_of in (1, 3, 5) else None)
             notes.append("Valve Regional Standings points")
             series_notes.append(f"VRS points -> Elo({ELO_SCALE:.0f}) -> "
                                 f"{'BO' + str(best_of) if best_of else 'map'} series")
@@ -901,10 +916,8 @@ def main() -> int:
             out["own_series_p_a"] = round(sum(series_parts) / len(series_parts), 2)
             out["own_series_p_b"] = round(100 - out["own_series_p_a"], 2)
             out["series_basis"] = " + ".join(series_notes)
-            if best_of is None:
-                row_flags.append("S-F-08: no source states the series format for this fixture; the "
-                                 "series column assumes a best-of-3 and is shown for reference only")
-                out["series_basis"] += " [best-of-3 assumed]"
+        if best_of not in (1, 3, 5):
+            row_flags.append("S-F-08: series format unverified; series probability and model-only match pick blank")
         if out["own_map_p_a"] is None:
             row_flags.append("S-F-04: no originated line — at least one team has no official rating")
         if out["own_map_p_a"] is not None:
@@ -967,24 +980,18 @@ def main() -> int:
         market_rows = lines_by_fixture.get(fx["match_id"], [])
         # Headline price order: this run's Pinnacle quote, then this run's own EGamersWorld read,
         # then this session's page reading, then a source-linked reading another session published.
-        primary = (sorted(market_rows, key=lambda r: (r.get("rank", 9), r.get("captured_utc") or ""))[0]
-                   if market_rows else None)
+        eligible = [r for r in market_rows if guards.eligible_market(r, datetime.now(timezone.utc))]
+        primary = max(eligible, key=lambda r: r["captured_utc"]) if eligible else None
         market_p_a = primary["p_a"] if primary else None
-        own_p_a = own.get("own_series_p_a") if own.get("own_series_p_a") is not None else own.get("own_map_p_a")
-        own_kind = "series" if own.get("own_series_p_a") is not None else ("map" if own.get("own_map_p_a") else None)
-        consensus = None
-        if market_p_a is not None and own_p_a is not None:
-            consensus = round((market_p_a + own_p_a) / 2, 2)
-        elif market_p_a is not None:
-            consensus = market_p_a
-        elif own_p_a is not None:
-            consensus = own_p_a
+        own_p_a = own.get("own_series_p_a")
+        own_kind = "series" if own_p_a is not None else None
+        consensus, selected_basis = guards.pick_probability(market_p_a, own_p_a, fx.get("best_of_resolved"))
         pick, pick_p, basis, flag_row = "", None, "", []
-        if consensus is not None:
+        if consensus is not None and consensus != 50:
             pick = fx["team_a"] if consensus >= 50 else fx["team_b"]
             pick_p = consensus if consensus >= 50 else round(100 - consensus, 2)
             if market_p_a is not None and own_p_a is not None:
-                basis = ("market line and our own rating line agree"
+                basis = ("primary market pick; provisional model agrees"
                          if (market_p_a >= 50) == (own_p_a >= 50) else
                          "market line and our own rating line DISAGREE — market line preferred, "
                          "divergence flagged")
@@ -993,7 +1000,7 @@ def main() -> int:
             elif market_p_a is not None:
                 basis = "external bookmaker line only (no official rating for both teams)"
             else:
-                basis = f"our own rating line only ({own_kind}-level)"
+                basis = selected_basis
                 flag_row.append("S-F-10")
         else:
             basis = "no probability available — market unavailable and no official rating for both teams"
@@ -1138,6 +1145,31 @@ def main() -> int:
              "bookmaker price, from our own official-rating model, or is blank.",
              ["https://play.hotspawn.com/cs2-pickems"])
 
+    add_flag("H-F-01", "needs review", "Rating model is provisional, not an official probability",
+             "Scale 400 and equal-weight rating blend are project assumptions, not calibrated forecasts or "
+             "Valve/HLTV published win probabilities. Unknown series format means no series probability or "
+             "model-only match pick. Map estimates remain in Own lines for research only.",
+             [HLTV_RANKING_URL, valve.get("blob_url") or VRS_LISTING_API])
+    add_flag("H-F-02", "unverified", "Secondary aggregator and historical prices cannot drive current picks",
+             "Only fresh primary Pinnacle quotes, exact/evidence-linked names and kickoff within 15 minutes, "
+             "drive market picks. EGamersWorld observations are secondary reports, not verified against the "
+             "named bookmaker; see Market lines. Historical session readings are excluded, not refreshed by relabelling.",
+             ["https://www.pinnacle.com/en/esports/games/cs2/matchups/", "https://egamersworld.com/counterstrike/matches"])
+    for label, meta in (hltv.get("pages") or {}).items():
+        if meta.get("status") != 200:
+            add_flag("H-F-03", "unverified", f"HLTV {label} unavailable",
+                     f"HTTP {meta.get('status')}; identity/format checks requiring this source stay blank.", [meta["url"]])
+    add_flag("H-F-04", "needs review", "Separate legacy model refresh failed at 2026-10-14 00:20 UTC",
+             "Official GitHub Actions API reports the model tests failed in run 38489574648. That separate "
+             "dashboard may be stale. This board does not use its outputs. Check the run for subsequent status.",
+             ["https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38489574648"])
+    for a in analysis:
+        if a["market_p_a_pct"] is None or not a["pick"] or "S-F-08" in a["flags"]:
+            add_flag("H-F-ROW", "unverified", f"{a['fixture_id']}: {a['team_a']} vs {a['team_b']}",
+                     f"Market: {'primary quote' if a['market_p_a_pct'] is not None else 'unverified/unavailable'}. "
+                     f"Series format: {a['best_of'] or 'unverified'}. Pick: {a['pick'] or 'blank'}. "
+                     f"{a['flags']}", [a["hotspawn_url"], HLTV_RANKING_URL])
+
     # ------------------------------------------------------------------ write data
     def write_csv(path: Path, rows: list[dict]) -> None:
         if not rows:
@@ -1187,7 +1219,7 @@ def main() -> int:
         "hltv": {"listing_url": HLTV_MATCHES_URL, "error": hltv.get("error"),
                  "matches_read": len(hltv.get("matches") or []),
                  "matches_block_split": hltv.get("matches_from_block_split"),
-                 "ranking_url": HLTV_RANKING_DATED,
+                 "ranking_url": HLTV_RANKING_URL,
                  "ranking_teams": len(hltv.get("ranking") or {}),
                  "ranking_date_text": hltv.get("ranking_date_text"),
                  "pages": hltv.get("pages")},

@@ -17,18 +17,22 @@ name: Slate capture (180a42a0)
 on:
   workflow_dispatch: {}
   push:
-    branches: ["arena/180a42a0-maltaproj1", "main"]
+    branches: ["arena/a9a0c2f1-maltaproj1", "main"]
     paths:
       - "slate/collect.py"
       - "slate/build.py"
       - "slate/aliases.json"
+      - "slate/guards.py"
+      - "slate/tests.py"
+      - "slate/dashboard.js"
       - ".github/workflows/slate-180a42a0.yml"
   schedule:
-    # Every three hours, staggered against the other refreshers in this repository.
-    - cron: "41 */3 * * *"
+    # Hourly; GitHub schedules are best-effort and can be delayed.
+    - cron: "41 * * * *"
 
 permissions:
   contents: write
+  pages: write
 
 concurrency:
   group: slate-180a42a0-${{ github.ref }}
@@ -41,12 +45,12 @@ jobs:
     env:
       PYTHONDONTWRITEBYTECODE: "1"
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
         with:
           ref: ${{ github.ref_name }}
           fetch-depth: 0
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
         with:
           python-version: "3.12"
 
@@ -56,9 +60,8 @@ jobs:
           python -m pip install -r requirements.txt
           python -m playwright install --with-deps chromium
 
-      # Every step tees its output into slate/data/last_run.log, which the commit step below
-      # publishes on the branch: a failure is then readable from the repository itself, not only
-      # from the job log.
+      # Failed captures are artifacts only, never committed over the last good snapshot.
+      # Commit step runs ONLY after collection, build and tests succeed.
       - name: Capture slate, ratings and external lines
         run: |
           set -o pipefail
@@ -74,8 +77,10 @@ jobs:
           set -o pipefail
           python slate/tests.py 2>&1 | tee -a slate/data/last_run.log
 
-      - name: Commit data and pages back to this branch
-        if: always()
+      - name: Check browser code
+        run: node --check slate/dashboard.js
+
+      - name: Commit validated data and pages back to this branch
         run: |
           git config user.name "arena-180a42a0"
           git config user.email "arena-180a42a0@users.noreply.github.com"
@@ -84,13 +89,20 @@ jobs:
             echo "no change to commit"
           else
             git commit -m "slate(180a42a0): capture + rebuild from run ${GITHUB_RUN_ID}"
-            git pull --rebase --autostash origin "${GITHUB_REF_NAME}" || true
+            # Never suppress a failed rebase, discard another session's edits, or publish partial data.
+            git pull --rebase origin "${GITHUB_REF_NAME}"
             git push origin "HEAD:${GITHUB_REF_NAME}"
           fi
 
+      - name: Request Pages build for successful main refresh
+        if: success() && github.ref_name == 'main'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --method POST "repos/${GITHUB_REPOSITORY}/pages/builds"
+
       - name: Upload the capture log as an artifact
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v4
         with:
           name: slate-capture-${{ github.run_id }}
           path: |

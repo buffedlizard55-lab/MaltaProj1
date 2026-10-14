@@ -93,6 +93,7 @@ border-radius:8px;padding:10px 12px;margin:14px 0;font-size:13px;color:var(--mut
 code{background:#0a0d12;border:1px solid var(--line);border-radius:4px;padding:1px 5px;font-size:12.5px}
 .scroll{overflow-x:auto}
 footer{color:var(--muted);font-size:12px;padding:22px 14px 40px;max-width:1080px;margin:0 auto}
+.table-search{display:block;margin:16px 0 8px}.table-search input{max-width:100%;margin-left:10px;padding:10px;background:var(--panel);color:var(--fg);border:1px solid var(--line);border-radius:8px}small.mut{display:block}
 @media(max-width:760px){
   body{font-size:14px}
   table,thead,tbody,th,td,tr{display:block}
@@ -192,17 +193,19 @@ def page(title: str, body: str, active: str, subtitle: str) -> str:
 <header>
   <p class="brand">Hotspawn Pick'em — line board</p>
   <p class="sub">{esc(subtitle)}</p>
-  <nav>{nav}</nav>
+  <nav><a href="../">Home</a>{nav}</nav>
 </header>
 <main>
+<div id="freshness" class="note" role="status">Snapshot freshness has not been checked by your browser. See capture times below; picks may be stale.</div>
 {body}
 </main>
 <footer>
-Built by Arena session <code>arena/180a42a0</code> from committed data in <code>slate/data/</code>
+Collected automatically, maintained by sessions <code>180a42a0 / a9a0c2f1</code> from committed data in <code>slate/data/</code>
 (<code>slate/build.py</code>). Analysis only — not betting advice. Hotspawn's own crowd percentages are
 never used as a probability. Values that could not be read from a source stay blank and are listed on
 the <a href="flagged.html">Flagged for review</a> page.
 </footer>
+<script src="dashboard.js" defer></script>
 </body>
 </html>
 """
@@ -352,7 +355,7 @@ def board_table(rows: list[dict], *, show_status=False, caption="") -> str:
     body = []
     for row in rows:
         market_a, market_b = row.get("market_p_a_pct"), row.get("market_p_b_pct")
-        own_a, own_b = row.get("own_p_a_pct"), row.get("own_p_b_pct")
+        own_a, own_b = row.get("own_series_p_a_pct"), row.get("own_series_p_b_pct")
         pick = row.get("pick") or ""
         pick_html = (f'<span class="pick">{esc(pick)} {num(row.get("pick_pct"))}</span>' if pick
                      else '<span class="pick none">no pick — see flag</span>')
@@ -365,25 +368,26 @@ def board_table(rows: list[dict], *, show_status=False, caption="") -> str:
                        if market_a else '<span class="mut">— no readable price</span>')
         own_html = (f'<span class="pct">{esc(row.get("team_a"))} {num(own_a)}</span>' + bar(own_a) +
                     f'<span class="pct mut">{esc(row.get("team_b"))} {num(own_b)}</span>'
-                    if own_a else '<span class="mut">— no official rating pair</span>')
+                    if own_a else '<span class="mut">— ratings or series format unverified</span>')
         status = status_tag(row.get("live_status")) if show_status else ""
         fmt = row.get("best_of") or ""
         fmt_src = row.get("best_of_source") or "format not stated by any source read"
         body.append(
-            "<tr>"
+            f'<tr class="fixture-row" data-lock="{esc(row.get("lock_utc"))}" data-quote="{esc(row.get("market_captured_utc"))}">'
             f'<td data-label="Match"><b>{esc(row.get("team_a"))}</b> vs <b>{esc(row.get("team_b"))}</b>{status}'
-            f'<div class="mut" style="font-size:12px">{"BO" + fmt + " · from " + esc(fmt_src) if fmt else esc(fmt_src)}</div>'
+            f'<div class="mut" style="font-size:12px">{"BO" + str(fmt) + " · from " + esc(fmt_src) if fmt else esc(fmt_src)}</div>'
             f'<div class="mut" style="font-size:12px">{esc(row.get("pick_basis"))}</div></td>'
             f'<td data-label="Starts (UTC)">{esc(row.get("start_utc"))}</td>'
             f'<td data-label="Tournament">{esc(row.get("competition"))}'
             f'<div class="mut" style="font-size:12px">tier {esc(row.get("tier"))} · {esc(row.get("points"))} pts</div></td>'
             f'<td class="num" data-label="Market">{market_html}</td>'
-            f'<td class="num" data-label="Our model">{own_html}</td>'
-            f'<td data-label="Pick">{pick_html}</td>'
+            f'<td class="num" data-label="Our model">{own_html}<small class="mut">Provisional estimate, not calibrated</small></td>'
+            f'<td class="pick-cell" data-label="Pick">{pick_html}</td>'
             f'<td data-label="Sources">{sources_cell(row)}</td>'
             "</tr>")
+    controls = '<label class="table-search">Filter matches <input type="search" placeholder="Team or tournament" aria-label="Filter matches"></label>'
     cap = f"<caption>{esc(caption)}</caption>" if caption else ""
-    return f'<div class="scroll"><table>{cap}{head}{"".join(body)}</table></div>'
+    return controls + f'<div class="scroll"><table>{cap}{head}{"".join(body)}</table></div>'
 
 
 def summary_cards(analysis: list[dict], fixtures: list[dict], flags: list[dict]) -> str:
@@ -451,14 +455,14 @@ from, and the counts below are the board's own numbers next to what this project
 def page_cs2(data: dict) -> str:
     analysis = [r for r in data["analysis"] if r.get("sport") == "cs2"]
     all_cs2 = [r for r in data["fixtures"] if r.get("sport") == "cs2"]
-    stale = [r for r in all_cs2 if (r.get("live_status") or "").startswith("stale")]
-    body = ["<h1>Counter-Strike 2</h1>",
+    stale = [r for r in all_cs2 if r["fixture_id"] not in {a["fixture_id"] for a in analysis}]
+    body = ["<h1>Counter-Strike 2</h1>", '<div class="note">Coverage means all rows parsed from the captured public payload, not a promise of authenticated live-site completeness. Markets can be missing. Model estimates are provisional, never verified win probabilities.</div>',
             f'<p class="lead">{len(all_cs2)} CS2 rows in the board\'s payload '
             f'({len(analysis)} open at capture time). Rows Hotspawn still lists with a start date in the past '
-            'are kept in the last table — they are not pickable and no bookmaker still prices them.</p>',
+            'and recently locked rows are kept in the last table; no active pick is offered for those rows.</p>',
             board_table(analysis, caption="Open CS2 fixtures")]
     if stale:
-        body.append("<h2>Stale rows Hotspawn still lists</h2>")
+        body.append("<h2>Locked / started / stale CS2 fixtures (all retained)</h2>")
         rows = []
         for row in stale:
             rows.append(f'<tr><td data-label="Match">{esc(row.get("team_a"))} vs {esc(row.get("team_b"))}</td>'
@@ -604,13 +608,13 @@ def page_own(data: dict) -> str:
     valve = coverage.get("valve") or {}
     body = ["<h1>Our own lines</h1>",
             '<p class="lead">This project originates its own probability for every fixture whose two teams both '
-            'have a published official rating. Two independent official inputs are used and the arithmetic is '
+            'have a published official rating. Two sourced rating inputs are used in a provisional, uncalibrated project model. These are not official win probabilities. The arithmetic is '
             'published next to the number, so any row can be recomputed by hand.</p>',
             f'<div class="note"><b>Official inputs.</b> Valve Regional Standings file '
             f'{link(valve.get("blob_url"), esc(valve.get("file")))} read from Valve\'s own repository '
             f'({esc(valve.get("teams"))} team rows). HLTV world ranking points from '
-            f'{link("https://www.hltv.org/ranking/teams/2026/october/12", "hltv.org/ranking/teams/2026/october/12")}. '
-            'Elo scale 400, series transform '
+            f'{link("https://www.hltv.org/ranking/teams", "hltv.org/ranking/teams")}. '
+            'Project-assumed Elo scale 400 (not an official Valve forecast), series transform '
             '<code>BO3 p²(3−2p)</code>. No bookmaker price enters this computation.</div>']
     body.append("<h2>Open fixtures</h2>")
     rows = []
@@ -623,9 +627,9 @@ def page_own(data: dict) -> str:
             f'<td class="num" data-label="Our map line">{num(row.get("own_map_p_a"))} / {num(row.get("own_map_p_b"))}</td>'
             f'<td class="num" data-label="Our series line">{num(row.get("own_series_p_a"))} / {num(row.get("own_series_p_b"))}'
             + (f'<div class="mut" style="font-size:12px">BO{esc(row.get("best_of"))}</div>' if row.get("best_of") else
-               '<div class="mut" style="font-size:12px">format unstated → BO3 assumed, flagged</div>') + '</td>'
+               '<div class="mut" style="font-size:12px">format unverified → series probability blank</div>') + '</td>'
             f'<td class="num" data-label="Fair odds">{esc(row.get("fair_odds_a"))} / {esc(row.get("fair_odds_b"))}</td>'
-            f'<td data-label="Arithmetic">{esc(row.get("basis") or "—")}</td></tr>')
+            f'<td data-label="Arithmetic">{esc(row.get("basis") or "—")}<br>{sources_cell(fixture)}</td></tr>')
     body.append('<div class="scroll"><table><tr><th>Match</th><th>HLTV points</th><th>VRS points</th>'
                 '<th>Our map line</th><th>Our series line</th><th>Fair odds</th><th>Arithmetic</th></tr>'
                 + "".join(rows) + "</table></div>")
@@ -651,7 +655,7 @@ def page_own(data: dict) -> str:
                 'alias is used only when an entry with an evidence link exists, and every such row is flagged on '
                 '<a href="flagged.html">Flagged for review</a>.</div>')
     return page("Own lines — Hotspawn Pick'em line board", "".join(body), "own-lines.html",
-                "Probability originated from official rating data only")
+                "Provisional probability model from sourced rating data — not calibrated")
 
 
 def page_verified(data: dict, audit: list[dict]) -> str:
@@ -776,8 +780,15 @@ Regional Standings points. Each becomes a per-map probability with the standard 
 <code>p = 1 / (1 + 10^((r_b − r_a)/400))</code>, then a series probability with
 <code>BO3: p²(3−2p)</code> (BO1 identity, BO5 <code>p³(10−15p+6p²)</code>). Both official values are
 published per row, so the arithmetic can be redone by hand. No bookmaker price is an input to this line.</p>
-<p><b>Pick.</b> The side with the higher combined probability. Where the market line and our own line disagree on
-the favourite, the row says so, follows the market, and is listed on the Flagged page.</p>
+<p><b>Pick.</b> The primary market favourite is preferred without blending in the model. Only Pinnacle quotes
+read in this run, with exact/evidence-linked names, a known kickoff within 15 minutes and an age below six hours,
+can drive a market pick. Secondary EGamersWorld reports are listed for research, <b>unverified against the named
+bookmaker</b>, not used for the headline probability. If no eligible quote exists, a provisional model-only pick
+is possible only with a sourced BO1/BO3/BO5 format. Ties produce no pick. Missing data stays blank.</p>
+<p><b>Model limitations.</b> The 400-point logistic scale and equal-weight HLTV/VRS blend are this project's
+uncalibrated assumptions, not an official Valve prediction formula. Ranking points are not established per-map
+Elo ratings. Model percentages are research estimates, not verified probabilities; independent maps are assumed
+only when the series format is confirmed. Unknown format leaves series probability blank. No crowd input.</p>
 
 <h2>3. What is left blank</h2>
 <p>If a price cannot be read, the price column is blank and the fixture is listed on the Flagged page. If a team
