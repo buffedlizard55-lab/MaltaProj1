@@ -3828,3 +3828,74 @@ review`) — logged here for the owners, untouched by this session.
 **Handoff note for the next session:** the 6 DraculaN S7 picks can be filled **only after** the event
 plays (first round 2026-10-19) and results are verifiable on HLTV event 9312 — re-check then and
 rebuild (`python3 scripts/c13ca42a_build_fullpicks.py`). Nothing else is pending.
+
+---
+
+---
+
+## Session `arena/6f9eab3b` — claim (2026-10-14 UTC)
+
+Branch: `arena/6f9eab3b-maltaproj1` (fixed by Arena; no other branch will be created or used).
+Board read before work. Prior product tasks are recorded complete; this session claims an independent
+post-refresh acceptance review rather than duplicating their implementation.
+
+| ID | Task | Status | Owner | Exclusive file scope | Notes |
+|----|------|--------|-------|----------------------|-------|
+| E-07 | Independently verify the live Hotspawn CS2 open slate against the published pick rows; review external-source provenance and unresolved-pick limitations; validate 4–8 h automation, mobile/accessibility behavior, local links, and tests; record evidence and any irregularity without filling unverified values | in progress | arena/6f9eab3b | `reviews/6f9eab3b-acceptance.md`, `COORDINATION.md` (append-only) | If code/data remediation is required, request or record a separate scope before touching another board's files. |
+
+### Claim log — arena/6f9eab3b
+- 2026-10-14 UTC: read the existing board and claimed E-07. The current session branch is the fixed Arena branch; the requested `session-<id>/<task>` branch naming cannot be used here without violating the session's branch constraint.
+
+### Scope addendum — arena/6f9eab3b final-integration role
+
+All implementation tasks recorded above are complete and the prior boards are merged on `main`.
+This session therefore takes the final-integration-only shared landing scope permitted by the brief:
+`index.html` will be the single mobile-first executive-summary entry point, with the newest verified
+all-match board (`livelines/`) as the one primary destination and older/parallel boards retained only
+under a clearly labeled archive disclosure. The snapshot time and coverage will come from the
+published `livelines/data/` artifacts; no new odds or probabilities will be invented. Acceptance
+record remains `reviews/6f9eab3b-acceptance.md`; `COORDINATION.md` remains append-only. No other board's
+source data, pick rows, or workflow will be modified.
+
+| ID | Task | Status | Owner | Exclusive file scope | Notes |
+|----|------|--------|-------|----------------------|-------|
+| E-08 | Final integration of a single mobile-accessible executive landing page, current-board links, honest snapshot freshness/counts and archive navigation; run link/data/viewport checks and record results | in progress | arena/6f9eab3b | `index.html`, `tests/test_6f9eab3b.py`, `reviews/6f9eab3b-acceptance.md`, `COORDINATION.md` (append-only) | `livelines/` remains the source of truth for the landing snapshot; no changes to its data or generator. |
+
+- 2026-10-14 UTC: E-08 scope amendment committed and pushed before landing-page work.
+
+- E-08 scope refinement before implementation: the existing regression test asserts obsolete root-page sections, so it is included for contract update; the README start-here pointers are included to avoid sending repository visitors to competing/stale front doors. Added `tests/test_landing_43c32386.py` and `README.md` to the exclusive scope. No other files are added.
+
+### E-08 verification addendum — source-link integrity and primary-board decision
+
+Before integrating the landing, live source checks found two issues in the newer `livelines/` snapshot:
+(1) its Valve VRS row links use `blob/2aa2805394fbc68f36a5752a5b16026f2ab2fed5/…`; GitHub API confirms this is the file blob SHA, not a commit (`/commits/<sha>` returns 422), and the published URL returns GitHub 404. The verified file URL at the actual Valve commit is
+`https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md`.
+(2) its Hotspawn payload snapshot says 89 fixtures (read 02:06:30Z), while a later saved lobby reread and a fresh `/cs2-pickems` read show 88 (B 24 / C 60 / S 4). The stored 89-row inventory includes fixture `1079546`, which the prior capture note identifies as retired after its lock.
+
+Per the no-unverified-values rule, this final integration will use the `executive/` board as the primary landing destination: its row-level Valve links are pinned to the valid commit above, its live Hotspawn capture contains 88 fixtures, and it publishes the full research-ladder unresolved section. `livelines/` is preserved but clearly marked for review; this session will not edit any `livelines/**` owner files. The separate acceptance review (`reviews/6f9eab3b-acceptance.md` + `.html`) will include the exact broken and corrected source URLs, the count discrepancy, and the checks performed.
+
+E-08 final scope now includes `reviews/6f9eab3b-acceptance.html` in addition to the existing files in the claim. This is an additive final-integration disclosure; no other board data or pipeline is in scope.
+
+### E-08 implementation and pre-merge acceptance — arena/6f9eab3b (2026-10-14 UTC)
+
+The source-link audit changed the final integration decision: this supersedes the preliminary E-08 scope line above that named `livelines/` as the landing snapshot. The root now leads with the verified `executive/` board. The `livelines/` dashboard remains intact but is described as flagged/archive-only until its owner repairs and verifies the source link and slate inventory.
+
+**Files changed in this integration:** root `index.html`, `README.md`, `tests/test_landing_43c32386.py`, new `tests/test_6f9eab3b.py`, new `reviews/6f9eab3b-acceptance.md` and `.html`, plus this append-only log. No `livelines/**` files or other board/source files were edited.
+
+**Acceptance decision and evidence:**
+- Executive capture `2026-10-14T05:11:44Z`, generated `05:13:38Z`: 88 fixtures, 28 open at capture, 28 picks, 26 outside-market basis, 2 model basis, 0 without a pick. The root reads `executive/data/summary.json`; it computes age from `capture_utc` in the browser and warns >4h / marks stale >8h, rather than copying the executive cadence page's previously observed stale “0.0 h old” label. The root's “open” counts are explicitly capture-time counts, not a statement that a match remains actionable now.
+- `livelines/data/picks.json` was generated at `2026-10-14T08:04:51Z`, but its saved slate payload timestamp is `2026-10-14T02:06:30Z` and says 89 fixtures. Its stored rereads show `/lobby` at `04:31:25Z` and `/cs2-pickems` at `04:32:30Z` each counted 88 (B 24 / C 60 / S 4; 17 tournaments). The extra row is 1079546 (Zomblers vs Overtake Sector), locked at `00:54Z`, present in the older payload but absent from the later tournament filter.
+- 88 of 89 `livelines` rows carry VRS link ref `2aa2805394fbc68f36a5752a5b16026f2ab2fed5`. `gh api repos/ValveSoftware/counter-strike_regional_standings/commits/2aa2805394fbc68f36a5752a5b16026f2ab2fed5` returned HTTP 422, “No commit found for SHA.” The contents API at verified commit `eec4853d7bcf0f1f7efe7f0d901234bef7e98b75` returns `live/2026/standings_global_2026_10_05.md`, size 77,872, blob SHA `2aa280…`; the correct commit URL was fetched successfully. The exact broken/corrected URLs and count evidence are in `reviews/6f9eab3b-acceptance.md` and `.html`.
+- **Request to `arena/457629c4`, owner of `livelines/**`:** use the verified commit ref (not file blob SHA) in generated VRS URLs and re-fetch every link; re-read both Hotspawn surfaces in one build; reconcile the saved 89-row payload with the later 88-row reads, including locked fixture 1079546; keep the issue on its Flagged for Review page until reverified. No owner files were edited here.
+
+**Pre-merge checks:**
+- `python3 -m unittest tests.test_6f9eab3b tests.test_landing_43c32386 -v`: **6 passed**.
+- `python3 executive/tests.py`: **15 passed, 0 failed** (source links, market/model arithmetic, coverage, freshness, and crowd-field checks).
+- `node --check js/landing.js`, `node --check tests/landing_43c32386.cjs`, and `node --check` on the extracted root inline script: passed.
+- `git diff --check`: passed.
+- Local-link/ID parser (final root revision): root `index.html` — 19 IDs, 0 duplicates, 128 links, 0 missing local targets; acceptance HTML — 6 IDs, 0 duplicates, 22 links, 0 missing local targets. The root retains all 104 distinct local paths from the current upstream landing, including the 82-target previous-root archive and PR #127's `fullpicks/` pages/data/review; 48 local Markdown links in `README.md` also resolve. This is scoped HTML validation, not a claim that every external link in every historical dashboard was crawled.
+- The root regression checks assert the executive board is the only picks destination before the archive disclosure, live age/count data are dynamic, and no Hotspawn crowd percentage is used.
+
+**Concurrent integration kept intact:** PR [#127](https://github.com/buffedlizard55-lab/MaltaProj1/pull/127) (`arena/c13ca42a`) passed `audit`, `refresh`, and both `verify` checks and was merged as `1d775daf348e291f851a7d5f34bceb0edd21013e` at `2026-10-14T08:53:48Z`. This branch was rebased onto that main commit. Its full-captured-slate board (`fullpicks/`, 28 open picks + 54 verified results + 6 blank/flagged unresolved rows) is retained as a secondary board in the landing archive and README; `executive/picks.html` remains the primary open-match destination under E-08's source-link decision.
+
+The release PR, merge SHA, GitHub Pages build, and cache-busted HTTPS confirmations for this E-08 integration will be appended after the deployment is observed; they are not claimed at this pre-merge stage.

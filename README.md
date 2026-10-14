@@ -1,28 +1,30 @@
-# Hotspawn · independent CS2 lines
+# MaltaProj1 — Hotspawn CS2 picks & research
 
-**Site:** https://buffedlizard55-lab.github.io/MaltaProj1/  
-**Consolidated picks board (start here):** https://buffedlizard55-lab.github.io/MaltaProj1/console/  
-**Executive summary + unresolved (no-book) picks & limitations:** https://buffedlizard55-lab.github.io/MaltaProj1/gap-resolution/  
-**Flagged for Review:** https://buffedlizard55-lab.github.io/MaltaProj1/console/flagged.html
+- **Published site:** [buffedlizard55-lab.github.io/MaltaProj1](https://buffedlizard55-lab.github.io/MaltaProj1/)
+- **Root mobile executive summary:** [landing page](https://buffedlizard55-lab.github.io/MaltaProj1/)
+- **Primary all-match picks:** [executive picks and probabilities](https://buffedlizard55-lab.github.io/MaltaProj1/executive/picks.html)
+- **Unresolved research & limitations:** [HLTV → esportsbooks → betting-line fallback](https://buffedlizard55-lab.github.io/MaltaProj1/executive/unresolved.html)
+- **Full captured-slate board (parallel):** [88 fixtures, including verified historical results and flagged gaps](https://buffedlizard55-lab.github.io/MaltaProj1/fullpicks/index.html)
+- **Acceptance/source-link audit:** [review](https://buffedlizard55-lab.github.io/MaltaProj1/reviews/6f9eab3b-acceptance.html)
+
+The root landing page leads with the `executive/` snapshot. The separate newer `livelines/` board is preserved in the archive but is not authoritative until its malformed Valve source links (used by 88 of 89 fixture rows) and 89-versus-88 fixture discrepancy are repaired and rechecked. See the [acceptance review](reviews/6f9eab3b-acceptance.md) for exact URLs, capture times, and the request to its owner.
 
 A mobile-first source-linked dashboard for the public [Hotspawn Pick'em lobby](https://play.hotspawn.com/lobby).
 Hotspawn supplies **fixture identity and UTC lock/start epochs only**, never a probability input.
 
-## The consolidated board (session `228bb5bc`, 2026-10-14)
+## Parallel consolidated-board audit (session `228bb5bc`, 2026-10-14)
 
-[`console/`](console/index.html) holds **one row for every open CS2 Pick'em match** on the Hotspawn board:
-both teams' win probability, the explicit pick, the basis rung (primary book → relayed book → prediction
-market → own originated line → research, flagged), the read time and the source URL behind every number.
-It is assembled from the committed captures of the boards below — `scripts/228bb5bc_build.py`, rebuilt
-hourly by `.github/workflows/console-228bb5bc.yml`, fail-closed on stale inputs, missing sources or a
-Hotspawn-sourced probability. Machine-readable: `console/data/picks.csv`, `picks.json`, `coverage.json`,
-`sources.csv`, `flags.csv`.
+[`console/`](console/index.html) remains a separate **cross-board audit** with one row for each open CS2 Pick'em
+fixture, both team probabilities, the explicit pick, evidence rung, read time, and source URL behind each number.
+It is assembled from committed captures by `scripts/228bb5bc_build.py`, rebuilt hourly by
+`.github/workflows/console-228bb5bc.yml`, and fails closed on stale inputs, missing sources, or a Hotspawn-sourced
+probability. It is retained for comparison and is **not** the primary picks destination. Machine-readable:
+`console/data/picks.csv`, `picks.json`, `coverage.json`, `sources.csv`, `flags.csv`.
 
-The root [`index.html`](index.html) is the merged landing page (session `43c32386`): one executive summary,
-live freshness, categories. This integration added the consolidated-board entry points to it ("All open
-matches — one pick per row", the flagged page, capture times), and **every link the page carried before the
-restructures still resolves** — `console/data/landing_links.csv` is the registry and
-`tests/test_228bb5bc.py` enforces it.
+The root [`index.html`](index.html) is the single mobile-first landing page. This integration leads with the
+verified `executive/` board and preserves the prior landing's local destinations in its collapsed archive;
+`console/` remains linked as a distinct audit. `console/data/landing_links.csv` and
+`tests/test_228bb5bc.py` continue to enforce the earlier console-board link contract.
 
 The line-by-line record for this board is
 [`reviews/228bb5bc-verification.md`](reviews/228bb5bc-verification.md): the 28-row table with the source
@@ -31,11 +33,37 @@ and verification status of every row, the official-standings anchor audit for th
 the five curated manual-review findings (R-228-04..08) that also appear on
 [`console/flagged.html`](console/flagged.html). Curated findings live in
 `console/data/review_findings.csv` so the generated page cannot drop them.
-## Start here — the picks board
+## Start here — primary executive picks board
 
-**All picks, every open CS2 match:** [`briefing/`](briefing/index.html) — the board this
-repository now maintains. A pick and a win probability for **all 28** open Hotspawn CS2
-Pick'em fixtures, refreshed automatically **every 4 hours** with no manual input.
+**All picks, every open fixture in the selected capture:** [`executive/picks.html`](executive/picks.html) —
+one mobile-friendly page with each pick, both team probabilities, evidence basis, row-level source links, and UTC
+lock/read times. Its `2026-10-14T05:11:44Z` capture contains 88 fixtures and 28 open-at-capture picks (26
+outside-market basis, 2 model basis). “Open” is capture-time status, not a promise that a row is still actionable;
+the root page computes current snapshot age, warns after four hours, and marks the capture stale after eight hours.
+
+| Page | What it is |
+|---|---|
+| [`executive/picks.html`](executive/picks.html) | Primary all-match picks and probabilities, phone-first |
+| [`executive/unresolved.html`](executive/unresolved.html) | Research ladder, non-featured routes, rejected prices, and limitations |
+| [`executive/own-lines.html`](executive/own-lines.html) | Own-line estimates for matches with no usable outside market |
+| [`executive/lines.html`](executive/lines.html) | Outside betting-market observations and read times |
+| [`executive/coverage.html`](executive/coverage.html) | Captured Hotspawn fixture inventory and coverage distinctions |
+| [`executive/sources.html`](executive/sources.html) | Source trail, refusals, and read times |
+| [`executive/methodology.html`](executive/methodology.html) | Probability calculations and source hierarchy |
+| [`executive/flagged.html`](executive/flagged.html) | Missing inputs, conflicts, aliases, and model caveats |
+| [`executive/data/analysis.csv`](executive/data/analysis.csv) / [`summary.json`](executive/data/summary.json) | Machine-readable rows and timestamped coverage |
+| [Line-by-line verification](reviews/e13aca8a-verification.md) / [landing acceptance audit](reviews/6f9eab3b-acceptance.html) | Per-row and integration evidence |
+
+Hotspawn supplies fixture identity and lock times only — crowd-pick percentages are never probability inputs.
+Outside market prices take precedence; primary bookmaker prices are de-vigged, and secondary/relayed or prediction-
+market prices are labelled as such. Where no usable outside price exists, independently sourced ratings may support
+an explicitly labelled own line. Anything unconfirmable stays blank and flagged. See the
+[`executive/` methodology](executive/methodology.html) and the two verification records above.
+
+### Parallel four-hour briefing board (separate snapshot)
+
+The [`briefing/`](briefing/index.html) board remains available for comparison; its counts, sources, and capture are
+separate from the selected executive snapshot and must not be substituted for it.
 
 | Page | What it is |
 |---|---|
@@ -43,51 +71,34 @@ Pick'em fixtures, refreshed automatically **every 4 hours** with no manual input
 | [`briefing/picks.html`](briefing/picks.html) | The same picks as a table, with the source per row |
 | [`briefing/lines.html`](briefing/lines.html) | Outside market lines as read, with the bookmaker's overround |
 | [`briefing/own-lines.html`](briefing/own-lines.html) | Our own lines for matches no market prices |
-| [`briefing/coverage.html`](briefing/coverage.html) | All 88 Hotspawn CS2 fixtures, open / locked / stale |
+| [`briefing/coverage.html`](briefing/coverage.html) | Fixture inventory with open / locked / stale categories |
 | [`briefing/sources.html`](briefing/sources.html) | Every source, what it returned, and when |
 | [`briefing/methodology.html`](briefing/methodology.html) | How a pick is chosen |
 | [`briefing/flagged.html`](briefing/flagged.html) | Flagged for Review |
 | [`briefing/data/picks.csv`](briefing/data/picks.csv) | Machine-readable picks |
 
-Rules: Hotspawn supplies fixture identity and lock times only — its crowd pick percentages are
-dropped at parse time and never used. Outside market prices come first (Pinnacle, then a named
-bookmaker relayed by bo3.gg, then Polymarket as a labelled prediction market); only matches no
-market prices get our own line, originated from the official Valve Regional Standings with the
-fitted scale and its error published. Anything unconfirmable stays blank and is flagged.
-Verification: [`reviews/198cf31e-verification.md`](reviews/198cf31e-verification.md).
+### Full-captured-slate board (parallel; not the root open-match source)
 
-The boards below are earlier work by parallel sessions, kept exactly as published. Their
-snapshots, counts and model assumptions are not interchangeable with `briefing/`.
+[`fullpicks/`](fullpicks/index.html) covers all 88 captured fixtures: 28 open rows with picks and probabilities joined
+from the executive capture, 54 played matches with source-verified results beside the original picks, and 6
+DraculaN rows left blank and flagged because their pairings could not be verified. It has a separate
+[unresolved picks & limitations page](fullpicks/unresolved.html) and an
+[88-row machine-readable board](fullpicks/data/fullpicks_board.csv). The 60 stale-result rows are in
+[`stale_results.csv`](fullpicks/data/stale_results.csv); the line-by-line review is
+[`reviews/c13ca42a-verification.md`](reviews/c13ca42a-verification.md). Its fail-closed workflow
+[`.github/workflows/fullpicks-c13ca42a.yml`](.github/workflows/fullpicks-c13ca42a.yml) runs every four hours and
+when executive fixture data changes. This board is useful for the complete captured slate, but it is a separate
+snapshot and does not replace `executive/picks.html` as the primary open-picks page.
 
-## Full-coverage board — all 88 matches (session `arena/c13ca42a`, 2026-10-14)
+The boards below are parallel or historical work, kept available for review. Their snapshots, counts and model
+assumptions are not interchangeable with `executive/`.
 
-**Board:** [`fullpicks/`](fullpicks/index.html) — the only board covering **every** captured Hotspawn
-CS2 fixture, not just the open week: 28 open matches with a live pick + win probability (outside
-markets first; own originated line where unpriced), 54 already-played matches with the **officially
-verified result** (HLTV match pages; Liquipedia for DACH CS Masters S5) next to the original pick,
-and 6 unresolved matches (DraculaN Season 7 cards whose data contradicts the official HLTV event)
-left **blank and flagged** — never inferred.
+## Additional parallel dashboards and data sets
 
-| Page | What it is |
-|---|---|
-| [`fullpicks/index.html`](fullpicks/index.html) | Full-coverage board — all 88 fixtures, source link on every row, mobile friendly |
-| [`fullpicks/unresolved.html`](fullpicks/unresolved.html) | Unresolved picks & limitations (DraculaN evidence, caveats, own-line limits) |
-| [`fullpicks/data/fullpicks_board.csv`](fullpicks/data/fullpicks_board.csv) | Machine-readable board (88 rows) |
-| [`fullpicks/data/stale_results.csv`](fullpicks/data/stale_results.csv) | The 60 stale results (54 verified + 6 unresolved) with official source per row |
-| [`data/c13ca42a/research_stale_results.md`](data/c13ca42a/research_stale_results.md) | C-02 research trail (event mapping + per-tournament pairings) |
-| [`reviews/c13ca42a-verification.md`](reviews/c13ca42a-verification.md) | Line-by-line verification record + irregularities |
-
-Rebuild: `python3 scripts/c13ca42a_build_fullpicks.py` (fail-closed invariants;
-`tests/test_c13ca42a.py`); refreshed by `.github/workflows/fullpicks-c13ca42a.yml` every 4 hours
-and whenever the executive fixture data changes.
-
-## Current board
-
-**Start here on a phone:** [`exec/`](exec/index.html) — the executive summary and cross-board coverage
-audit (session `3b5e3fea`): every open match with its pick, which boards publish a price / own line / pick
-for it, every row where two boards name different winners, the source ladder used where no bookmaker prices
-a match, and the flags. [`everypick/`](everypick/index.html) gives the A–D fallback tier for all 28 open
-matches; [`cs2/`](cs2/index.html) is the hourly line-analysis board.
+These pages preserve earlier work and independent audit perspectives; none replaces the `executive/` primary
+picks link at the top of this README. For example, [`exec/`](exec/index.html) provides a cross-board coverage
+audit, [`everypick/`](everypick/index.html) lays out the A–D fallback tier, and [`cs2/`](cs2/index.html) is a
+separate line-analysis board. Check each page's own capture time, source links, and flags before comparing it.
 
 | Category | Page | Data / verification |
 |---|---|---|
@@ -101,12 +112,13 @@ matches; [`cs2/`](cs2/index.html) is the hourly line-analysis board.
 | Flagged for Review | `slate/flagged.html` | Missing sources/quotes/formats, count disagreements, aliases, model caveats and automation failures |
 | Methodology | `slate/methodology.html` | Exact selection rules and limitations |
 
-## Full picks board (every open match)
+## Additional full picks board (parallel capture)
 
 **Board:** https://buffedlizard55-lab.github.io/MaltaProj1/picks-full/index.html
 
-A pick — with both teams' win % and an explicit basis — for **every** open Hotspawn CS2 Pick'em fixture
-(snapshot 2026-10-14: 28 open, Oct 14–16), including low-tier matches no betting site prices.
+This independently built board preserves its own 2026-10-14 capture: picks, two-side win percentages, and an
+explicit basis for the open fixtures it saw, including low-tier matches no betting site prices. Its counts and
+method are not the root page's selected executive snapshot; compare the source timestamps before using it.
 
 | Category | Page | Data / verification |
 |---|---|---|
@@ -137,7 +149,11 @@ the single unrated team (LFO 10, PF-02) publishes a roster-mapped line labelled 
   Secondary EGamersWorld reports are not independently verified against the named bookmaker and do not drive
   current headline probabilities. Historical session prices are not carried into current picks.
 
-## Automatic collection & publication
+## Collection workflows and publication
+
+The selected executive board is built by [`.github/workflows/executive-5545dbb8.yml`](.github/workflows/executive-5545dbb8.yml), scheduled every four hours (inside the requested 4–8 hour window). GitHub Actions schedules are best-effort; the root page computes elapsed time from the saved capture timestamp and reads coverage/source timestamps from `executive/data/summary.json`. Each match also carries its own quote time. The generated [`executive/cadence.html`](executive/cadence.html) page has previously displayed stale elapsed-age and lock-countdown text, so compare its absolute timestamps with the root's computed age rather than relying on those labels.
+
+The separate hourly slate collector below supports other boards; it is not the selected executive snapshot source.
 
 `.github/workflows/slate-180a42a0.yml` runs **hourly** (GitHub's schedule is best-effort), on collector changes,
 plus workflow dispatch. It reads `/lobby`, `/cs2-pickems`, `/thp-pickems`, `/lol-pickems`, Pinnacle public guest
@@ -147,7 +163,7 @@ is required. Collection runs on GitHub Actions because this workspace cannot dir
 A missing required Hotspawn page fails the capture and retains the last published snapshot. Collection,
 rendering, regression tests and browser syntax must all pass before committing new data. Failed-run logs are
 uploaded as artifacts, not committed over good data. A successful `main` refresh requests a GitHub Pages build.
-The browser shows snapshot age and suppresses active picks after lock or six-hour staleness.
+Those separate slate pages show their own snapshot age and suppress active picks after lock or six-hour staleness; this behavior does not replace the root landing's executive snapshot age check.
 
 Full live coverage and a probability for every match **cannot be guaranteed** when public sources withhold
 fixtures, odds or ratings. Payload, rendered-card and header counts can disagree; the site publishes all
@@ -163,15 +179,14 @@ python slate/collect.py                # requires public-source network access
 python slate/build.py                  # offline render from committed evidence
 python slate/tests.py                  # math, matching, freshness, data/provenance tests
 node --check slate/dashboard.js
+python3 executive/tests.py
+python3 -m unittest tests/test_6f9eab3b.py tests/test_landing_43c32386.py -v
 python -m unittest discover -s tests -v
 python scripts/audit_91e444dd.py --output /tmp/release-audit.json
 python scripts/63ee81ba_build.py          # full picks board (offline, deterministic)
 python -m unittest tests/test_63ee81ba.py -v
 ```
 
-GitHub Pages uses `main:/`. This session works only on `arena/a9a0c2f1-maltaproj1`.
-See [COORDINATION.md](COORDINATION.md) for maintenance claims, release records and prior sessions.
-Previous dashboards are preserved in the root landing page's **Previous research & parallel boards** section;
-their snapshot counts and model assumptions are not interchangeable with the current board.
+GitHub Pages publishes from `main:/`. See [COORDINATION.md](COORDINATION.md) for maintenance claims, release records, owner handoffs and prior sessions. Previous dashboards and all prior root-link targets are retained in the landing page's collapsed archive; their snapshot counts and model assumptions are not interchangeable with the primary executive board.
 
 Analysis only, not betting advice. Data access/refusals and model limitations are published, not hidden.
