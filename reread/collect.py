@@ -313,6 +313,15 @@ def vrs_raw_url(url: str) -> str:
     return url
 
 
+def parse_utc(text: str) -> datetime | None:
+    """Parse the run stamps this tool writes; return None for anything else (never guess)."""
+    try:
+        stamp = datetime.strptime((text or "").strip(), "%Y-%m-%dT%H:%M:%SZ")
+    except (TypeError, ValueError):
+        return None
+    return stamp.replace(tzinfo=timezone.utc)
+
+
 def anchor_line(url: str) -> int | None:
     m = re.search(r"#L(\d+)", url)
     return int(m.group(1)) if m else None
@@ -631,11 +640,9 @@ def run(only: str | None, limit: int | None, offline: bool) -> dict:
         reused = False
         if (not offline and prev and prev.get("verdict") == "match"
                 and prev.get("checked_utc")):
-            try:
-                age = (datetime.now(timezone.utc) -
-                       datetime.strptime(prev["checked_utc"], "%Y-%m-%dT%H:%M:%SZ")).total_seconds()
-            except ValueError:
-                age = reuse_hours * 3601
+            stamp = parse_utc(prev.get("checked_utc", ""))
+            age = ((datetime.now(timezone.utc) - stamp).total_seconds() if stamp
+                   else reuse_hours * 3601)
             if age < reuse_hours * 3600:
                 reused = True
                 res = {"verdict": "match", "http_status": prev.get("http_status"),

@@ -80,14 +80,8 @@ jobs:
           print(json.dumps({k: s[k] for k in ("claims", "verdicts", "fetches", "fetch_errors")}, indent=1))
           PY
 
-      - name: Fail the job if the re-read raised (after the evidence is committed)
-        if: always() && steps.reread.outcome == 'failure'
-        run: |
-          echo "collect.py failed — see reread/data/error.json in the commit above"
-          exit 1
-
       - name: Commit the rebuilt verification (main and this session's branch)
-        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/arena/bdc98a9a-maltaproj1'
+        if: always() && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/arena/bdc98a9a-maltaproj1')
         run: |
           git config user.name "arena-bdc98a9a"
           git config user.email "arena-bdc98a9a@users.noreply.github.com"
@@ -100,8 +94,14 @@ jobs:
             git push origin "HEAD:${GITHUB_REF_NAME}"
           fi
 
+      - name: Fail the job when the re-read raised (the evidence is committed first)
+        if: always() && steps.reread.outcome == 'failure'
+        run: |
+          echo "collect.py raised — see reread/data/error.json in the commit above"
+          exit 1
+
       - name: Request a Pages build when main changed
-        if: github.ref == 'refs/heads/main' && success()
+        if: always() && github.ref == 'refs/heads/main' && steps.reread.outcome == 'success'
         env:
           GH_TOKEN: ${{ github.token }}
         run: gh api --method POST "repos/${GITHUB_REPOSITORY}/pages/builds"

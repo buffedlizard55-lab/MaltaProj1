@@ -147,6 +147,15 @@ class VerdictTests(unittest.TestCase):
         bad = dict(claim, extra={"rank": "75"})
         self.assertEqual(collect.verify_vrs(bad)["verdict"], "mismatch")
 
+    def test_utc_parser_returns_aware_time_and_null_for_junk(self):
+        stamp = collect.parse_utc("2026-10-14T03:29:46Z")
+        self.assertIsNotNone(stamp)
+        self.assertIsNotNone(stamp.tzinfo)
+        age = (__import__("datetime").datetime.now(collect.timezone.utc) - stamp).total_seconds()
+        self.assertGreaterEqual(age, 0)
+        self.assertIsNone(collect.parse_utc(""))
+        self.assertIsNone(collect.parse_utc("not a date"))
+
     def test_every_verdict_name_is_known(self):
         for name in collect.VERDICT_NAMES:
             self.assertIn(name, build.CHIPS)
