@@ -1,0 +1,43 @@
+{
+  "_about": "Evidence-backed team-name renames only. A name is listed when a source we read spells the same confirmed roster differently from the Hotspawn board, and the identity was verified by hand against the linked official page (same event, same opponent, same kickoff slot). Anything not confirmed stays out of this file, which means the affected fixture is left blank and flagged instead of guessed.",
+  "_rule": "model.py applies these before the strict name join and publishes flag A-ALIAS with the original name and the alias on every affected row, so a reader can re-check the evidence independently.",
+  "_entries_require": [
+    "confirmed_by",
+    "evidence_url",
+    "checked_utc"
+  ],
+  "PVISION": {
+    "alias_of": "PARIVISION",
+    "why": "Pinnacle's participant name for the Legacy v PARIVISION match at the Thunderpick World Championship 2026 (Group B, 2026-10-14) is 'PVISION'; the board and HLTV call the same roster PARIVISION.",
+    "confirmed_by": "arena/a174d77f",
+    "checked_utc": "2026-10-14T02:06:00Z",
+    "evidence_url": "https://www.hltv.org/matches/2399386/legacy-vs-parivision-thunderpick-world-championship-2026",
+    "evidence_2": "https://www.hltv.org/events/8932/thunderpick-world-championship-2026 (Group B bracket lists Legacy vs PARIVISION)"
+  },
+  "BB Team": {
+    "alias_of": "BetBoom",
+    "why": "Pinnacle's participant name for the FURIA v BetBoom match at the Thunderpick World Championship 2026 (Group B, 2026-10-14) is 'BB Team'; HLTV and the board call the same roster BetBoom/BETBOOM.",
+    "confirmed_by": "arena/a174d77f",
+    "checked_utc": "2026-10-14T02:06:00Z",
+    "evidence_url": "https://www.hltv.org/matches/2399387/furia-vs-betboom-thunderpick-world-championship-2026",
+    "evidence_2": "https://www.pinnacle.com/en/esports/games/cs2/matchups/ (same kickoff slot, same opponent FURIA)"
+  },
+  "WROTBERRY": {
+    "alias_of": "WBT",
+    "why": "The Hotspawn board (fed by the Thunderpick registry) writes 'WROTBERRY' for the roster the organiser and HLTV call 'WBT'. Same event, same opponent, same kickoff to the minute: HLTV match 2399418 'WBT vs. EAC', Elisa BreakOut Series 2, Group A, Best of 1 (LAN), 04:00 15 Oct in the page's UTC-4 rendering = 2026-10-15T08:00:00Z, and the board's WROTBERRY v EAC row carries exactly 2026-10-15T08:00:00Z.",
+    "confirmed_by": "arena/a174d77f",
+    "checked_utc": "2026-10-14T02:24:00Z",
+    "evidence_url": "https://www.hltv.org/matches/2399418/wbt-vs-eac-elisa-breakout-series-2",
+    "evidence_2": "https://www.hltv.org/team/13683/wbt (VRS #64 on the same page header)",
+    "use": "rating lookup only - the board still shows the name Hotspawn publishes"
+  },
+  "RoundsGG": {
+    "alias_of": "ROUNDS",
+    "why": "The board writes 'RoundsGG' where HLTV, VRS and the organiser write 'ROUNDS'. HLTV match 2399427 'Phantom vs. ROUNDS', Elisa BreakOut Series 2, Group B, Best of 1 (LAN), 10:00 16 Oct in the page's UTC-4 rendering = 2026-10-16T14:00:00Z, and the board's Phantom v RoundsGG row carries exactly 2026-10-16T14:00:00Z.",
+    "confirmed_by": "arena/a174d77f",
+    "checked_utc": "2026-10-14T02:24:00Z",
+    "evidence_url": "https://www.hltv.org/matches/2399427/phantom-vs-rounds-elisa-breakout-series-2",
+    "evidence_2": "https://www.hltv.org/team/12457/rounds",
+    "use": "rating lookup only - the board still shows the name Hotspawn publishes"
+  }
+}

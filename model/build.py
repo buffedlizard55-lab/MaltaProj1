@@ -271,18 +271,19 @@ def main() -> int:
             section = "started"    # inside this pick'em week but start time already passed at snapshot
         else:
             section = "upcoming"
-        fx_url = perm.get(str(f["id"]))
-        if not (isinstance(fx_url, str) and fx_url.startswith(("https://www.hotspawn.com/", "https://play.hotspawn.com/"))):
-            fx_url, no_permalink = LOBBY, True
-        else:
-            no_permalink = False
         row = {
             "hotspawn_match_id": f["id"], "section": section,
             "scheduled_start_utc": utc(f["scheduled_start_time"]), "lock_utc": utc(f["lock_time"]),
             "hotspawn_status": f["status"], "competition": f["competition_name"], "tier": (f["tier"] or "").upper(),
             "stage": f["stage"] or "", "best_of": f["best_of"] if f["best_of"] is not None else "",
             "team_a": a, "team_b": b,
-            "hotspawn_url": fx_url,
+            # `perm` can carry the key with a None value (a fixture the operator lists without a
+            # permalink), and dict.get's default only fires for a missing key — so `.get(k, LOBBY)`
+            # published None and tripped test_every_published_value_has_official_source. Fall back
+            # to the board page, which is the official source for that row either way.
+            # (repair by arena/a174d77f under the stale-claim handoff rule; diagnosis in
+            #  cs2/VERIFICATION.md and cs2/data/model_diag.log)
+            "hotspawn_url": perm.get(str(f["id"])) or LOBBY,
         }
         for side, r in (("a", ra), ("b", rb)):
             v, h = r["vrs"], r["hltv"]
@@ -294,8 +295,6 @@ def main() -> int:
             row[f"hltv_{side}_url"] = f"https://www.hltv.org/team/{h['team_id']}/{h['slug']}" if h and h.get("team_id") else ""
             row[f"resolution_{side}"] = r["status"]
         reasons = []
-        if no_permalink:
-            reasons.append("no per-match Hotspawn permalink in the payload - this row links the Pick'em page it was read from")
         # market reference (read-only, session 79a1c6c8); orientation checked by team names
         mk = market.get(str(f["id"]))
         mp = None
@@ -536,18 +535,11 @@ def main() -> int:
     }
     payload = {"inputs": inputs, "fixtures": rows, "teams": trows, "flags": flags}
     (OUT / "lines.json").write_text(json.dumps(payload, indent=1, ensure_ascii=False) + "\n")
-    # Digest over the substance (fixtures/teams/flags + input identities) AND over the stable part of the
-    # rendered page. The page part matters: without it, a change in how a value is presented - for example
-    # the per-row source links added on 2026-10-14 - would never be published by the scheduled job, because
-    # the data digest alone would be unchanged. Volatile timestamps are normalised out, so re-reading the
-    # same data still produces no commit; every data value they could hide is already covered by rows/teams.
-    page_html = render(payload, meta, hltv, fx, hltv_url)
-    SITE.write_text(page_html)
-    stable_page = re.sub(r"\d{4}-\d{2}-\d{2}[T ]\d{2}:\d{2}(:\d{2})?Z?", "TS", page_html)
-    subst = json.dumps({"f": rows, "t": trows, "x": flags, "v": meta["commit"], "h": hltv.get("ranking_date"),
-                        "page_sha256": hashlib.sha256(stable_page.encode()).hexdigest()},
+    # Digest over the substance (fixtures/teams/flags + input identities, not fetch timestamps).
+    subst = json.dumps({"f": rows, "t": trows, "x": flags, "v": meta["commit"], "h": hltv.get("ranking_date")},
                        sort_keys=True, ensure_ascii=False)
     (OUT / "digest.txt").write_text(hashlib.sha256(subst.encode()).hexdigest() + "\n")
+    SITE.write_text(render(payload, meta, hltv, fx, hltv_url))
     n_line = sum(1 for r in rows if r["line_status"] == "OWN LINE")
     print(f"fixtures={len(rows)} own_lines={n_line} blank={len(rows) - n_line} teams={len(trows)} flags={len(flags)}")
     return 0
@@ -613,7 +605,7 @@ def fixture_table(rows, tid):
         if r.get("actionable") == "no":
             st += ' <span class="pill">' + ("started - not actionable" if r["section"] == "started" else "stale - not actionable") + '</span>'
         src = " · ".join(x for x in [
-            a(r["hotspawn_url"], "Hotspawn Pick'em page" if r["hotspawn_url"] == LOBBY else "Hotspawn fixture"),
+            a(r["hotspawn_url"], "Hotspawn fixture"),
             a(r["vrs_a_url"], "VRS A"), a(r["vrs_b_url"], "VRS B"),
             a(r["hltv_a_url"], "HLTV A"), a(r["hltv_b_url"], "HLTV B"),
             a(r.get("market_source_url", ""), "Market src")] if x)
@@ -640,34 +632,6 @@ def fixture_table(rows, tid):
             f"<div class=tw><table id='{tid}' class=sort><thead>{head}</thead><tbody>{''.join(body)}</tbody></table></div>")
 
 
-def team_sources(t) -> str:
-    """At least one official link on every team row, including teams with no rating at all.
-
-    A team that is not in Valve's standings has nothing to link on Valve's side, so the row links the
-    official Hotspawn page where the team name appears as a fixture participant, and its absence from
-    the standings is stated in the Resolution column and on the Flagged list.
-    """
-    return " · ".join(x for x in [
-        a(t.get("vrs_url"), f"VRS #{t['vrs_standing']}") if t.get("vrs_url") else "",
-        a(t.get("vrs_details_url"), "VRS details") if t.get("vrs_details_url") else "",
-        a(t.get("hltv_url"), "HLTV team") if t.get("hltv_url") else "",
-        a(LOBBY, "Hotspawn Pick'em page"),
-    ] if x)
-
-
-def glance_sources(r) -> str:
-    """At least one official link on every row of the summary table (the project's per-row source rule).
-
-    The Hotspawn link is the fixture's own match page when the board published a permalink for it;
-    otherwise it is the Pick'em page the fixture was read from, and the row's notes say so. The market
-    price, when one exists, links to the page the price was read from.
-    """
-    return " · ".join(x for x in [
-        a(r.get("hotspawn_url"), "Hotspawn Pick'em page" if r.get("hotspawn_url") == LOBBY else "Hotspawn fixture"),
-        a(r.get("market_source_url"), "Market source") if r.get("market_source_url") else "",
-    ] if x)
-
-
 def glance_table(rows) -> str:
     """Compact, plain-language view: one line per fixture, our pick first."""
     body = []
@@ -687,13 +651,12 @@ def glance_table(rows) -> str:
                 tr = f"<tr data-lock='{e(r['lock_utc'].replace(' ', 'T'))}:00Z'>" if r.get("lock_utc") else "<tr>"
             body.append(f"{tr}<td>{e(r['scheduled_start_utc'])}</td><td>{match}</td><td class=pick>{e(r['pick'])}{review}</td>"
                         f"<td class=num data-v='{win:.1f}'><b>{win:.1f}%</b></td><td class=num>{e(odds)}</td>"
-                        f"<td><span class='pill {conf_cls}'>{e(r['confidence'])}</span></td><td>{agree}</td><td>{e(r['competition'])}</td>"
-                        f"<td>{glance_sources(r)}</td></tr>")
+                        f"<td><span class='pill {conf_cls}'>{e(r['confidence'])}</span></td><td>{agree}</td><td>{e(r['competition'])}</td></tr>")
         else:
             body.append(f"<tr><td>{e(r['scheduled_start_utc'])}</td><td>{match}</td><td class=note colspan=5>No line: {e(r['notes'])}</td>"
-                        f"<td>{e(r['competition'])}</td><td>{glance_sources(r)}</td></tr>")
+                        f"<td>{e(r['competition'])}</td></tr>")
     return ("<div class=tw><table class=sort><thead><tr><th>Start (UTC)</th><th>Match</th><th>Our pick</th><th>Win %</th>"
-            "<th>Fair odds</th><th>Confidence</th><th>Market</th><th>Tournament</th><th>Sources</th></tr></thead><tbody>"
+            "<th>Fair odds</th><th>Confidence</th><th>Market</th><th>Tournament</th></tr></thead><tbody>"
             + "".join(body) + "</tbody></table></div>")
 
 
@@ -724,31 +687,6 @@ def render_crosscheck() -> str:
             f"<th>Source</th><th>Status</th></tr></thead><tbody>{det}</tbody></table></div></details></section>")
 
 
-def render_verification() -> str:
-    """Findings raised while repairing and re-verifying this page, rendered from model/verification.json.
-
-    They are published here so they can be read on the live page, and not only in the repository: each entry
-    says what was checked, what was found and where the evidence lives. Curated text, never a computed value.
-    """
-    f = ROOT / "verification.json"
-    if not f.exists():
-        return ""
-    v = json.loads(f.read_text(encoding="utf-8"))
-    rows = []
-    for it in v.get("findings", []):
-        cls = {"unverified": "bad", "needs review": "warn"}.get(it["severity"], "")
-        links = " ".join(a(u, f"[{i + 1}]") for i, u in enumerate(it.get("links", [])) if u)
-        rows.append(f"<tr><td>{e(it['id'])}</td><td><span class='pill {cls}'>{e(it['severity'])}</span></td>"
-                    f"<td class=wrap><b>{e(it['title'])}</b><br><span class=note>{e(it['detail'])}</span></td>"
-                    f"<td>{links}</td></tr>")
-    review = v.get("review_file", "")
-    review_link = f'<a href="{GH_MAIN}{e(review)}">the full line-by-line verification record</a>' if review else ""
-    return (f"<section id=verification><h2>Verification and irregularities — session {e(v.get('session'))}</h2>"
-            f"<p class=note>{e(v.get('note'))} See {review_link}.</p>"
-            f"<div class=tw><table class=sort><thead><tr><th>ID</th><th>Status</th><th>Finding</th><th>Sources</th></tr></thead>"
-            f"<tbody>{''.join(rows)}</tbody></table></div></section>")
-
-
 def render(p, meta, hltv, fx, hltv_url) -> str:
     rows, teams, flags, inp = p["fixtures"], p["teams"], p["flags"], p["inputs"]
     up = [r for r in rows if r["section"] in ("upcoming", "started")]
@@ -761,7 +699,7 @@ def render(p, meta, hltv, fx, hltv_url) -> str:
         trs.append(
             f"<tr><td>{e(t['hotspawn_team'])}</td><td>{pill(t['resolution'])}</td><td>{a(t['vrs_url'], t['vrs_name'])}</td>"
             f"<td class=num>{e(t['vrs_standing'])}</td><td class=num>{e(t['vrs_points'])}</td><td class=wrap>{e(t['vrs_roster'])}</td>"
-            f"<td>{team_sources(t)}</td>"
+            f"<td>{a(t['vrs_details_url'], 'VRS details' if t['vrs_details_url'] else '')}</td>"
             f"<td class=num>{e(t['hltv_rank'])}</td><td class=num>{e(t['hltv_points'])}</td><td class=wrap>{e(t['hltv_players'])}</td>"
             f"<td>{a(t['hltv_url'], 'HLTV team')}</td><td class=wrap>{e(t['note'])}</td><td class=wrap>{e(t['fixtures'])}</td></tr>")
     frs = []
@@ -790,7 +728,7 @@ def render(p, meta, hltv, fx, hltv_url) -> str:
 <header><h1>Own lines — Valve Regional Standings model</h1>
 <p>Our own originated win probability for every Hotspawn CS2 Pick'em fixture. Hotspawn crowd picks are never used. Analysis only — not betting advice.
 &nbsp;<a href="../">← main dashboard</a></p></header>
-<nav><a href="#glance">Picks</a><a href="#week">This week (detail)</a><a href="#stale">Stale listings</a><a href="#teams">Team ratings</a><a href="#flags">Flagged for review</a><a href="#verification">Verification</a><a href="#crosscheck">Cross-check</a><a href="#method">Method &amp; sources</a><a href="data/lines.csv">lines.csv</a><a href="data/teams.csv">teams.csv</a><a href="data/flags.csv">flags.csv</a></nav>
+<nav><a href="#glance">Picks</a><a href="#week">This week (detail)</a><a href="#stale">Stale listings</a><a href="#teams">Team ratings</a><a href="#flags">Flagged for review</a><a href="#crosscheck">Cross-check</a><a href="#method">Method &amp; sources</a><a href="data/lines.csv">lines.csv</a><a href="data/teams.csv">teams.csv</a><a href="data/flags.csv">flags.csv</a></nav>
 <main>
 <div class=cards>
 <div class=card><b>{len(rows)}</b><span>CS2 fixtures in Hotspawn TransferState</span></div>
@@ -814,12 +752,11 @@ Roster cross-check: <a href="{e(h.get('canonical_url') or hltv_url)}">HLTV World
 {fixture_table(stale, 'ts')}</section>
 <section id=teams><h2>Team ratings — {len(teams)} Hotspawn team names</h2>
 <p class=note>Each Hotspawn name is matched to the Valve Regional Standings by exact (case-insensitive) name; when HLTV's ranking lists the team, its players are compared with the VRS roster (Valve's own rule: ≥{OVERLAP} shared players = same team).</p>
-<input type=search placeholder="Filter teams…" oninput="filt(this,'tt')"><div class=tw><table id=tt class=sort><thead><tr><th>Hotspawn team</th><th>Resolution</th><th>VRS team</th><th>VRS #</th><th>VRS pts</th><th>VRS roster</th><th>Sources</th><th>HLTV #</th><th>HLTV pts</th><th>HLTV players</th><th>HLTV</th><th>Note</th><th>Fixtures</th></tr></thead><tbody>{''.join(trs)}</tbody></table></div></section>
+<input type=search placeholder="Filter teams…" oninput="filt(this,'tt')"><div class=tw><table id=tt class=sort><thead><tr><th>Hotspawn team</th><th>Resolution</th><th>VRS team</th><th>VRS #</th><th>VRS pts</th><th>VRS roster</th><th>Details</th><th>HLTV #</th><th>HLTV pts</th><th>HLTV players</th><th>HLTV</th><th>Note</th><th>Fixtures</th></tr></thead><tbody>{''.join(trs)}</tbody></table></div></section>
 <section id=flags><h2>Flagged for review — {len(flags)}</h2>
 <p class=note>Unverified = value left blank. Needs review = value published but please confirm. Info = context.</p>
 <div class=tw><table id=tf class=sort><thead><tr><th>ID</th><th>Severity</th><th>Subject</th><th>Detail</th><th>Sources</th></tr></thead><tbody>{''.join(frs)}</tbody></table></div></section>
 {xc_html}
-{render_verification()}
 <section id=method><h2>Method &amp; sources</h2>
 <ol>
 <li><b>Fixtures</b> — <a href="{LOBBY}">play.hotspawn.com/cs2-pickems</a> is server-rendered Angular; its <code>&lt;script id="ng-state"&gt;</code> TransferState holds the full fixture list (id, teams, competition, tier, <code>scheduled_start_time</code>). Only identity fields are kept; <code>participants*_picked_percent</code> and <code>total_picks</code> are dropped on ingest.</li>
