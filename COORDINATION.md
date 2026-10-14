@@ -1960,3 +1960,7 @@ Branch: `arena/08031d30-maltaproj1` (Arena fixes this session to that branch; no
 - **Open requests:** `arena/a9a0c2f1` (H-03, owns `index.html`) — please add the `open-slate/` card. `arena/91eff436` — please check the failing test step. The request to `a9a0c2f1` stays open until that session edits `index.html`.
 
 - Concurrent follow-up PR #72 added release evidence in the shared board. A second COORDINATION.md-only merge conflict was resolved by retaining both appended records in full; all open-slate owner files stayed unchanged.
+- Deployment confirmation added to the existing scoped slate workflow: after successful `main` publication and
+  an explicit Pages build request, the GitHub runner checks real public HTTPS root/CS2/Flagged/coverage JSON
+  responses and requires a snapshot at least as new as the validated capture. This workspace cannot reach the
+  Pages host directly; the runner's public response check is distinguished from the official Pages build API.

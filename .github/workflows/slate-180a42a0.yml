@@ -26,6 +26,7 @@ on:
       - "slate/tests.py"
       - "slate/dashboard.js"
       - "slate/browser_test.py"
+      - "slate/live_check.py"
       - ".github/workflows/slate-180a42a0.yml"
   schedule:
     # Hourly; GitHub schedules are best-effort and can be delayed.
@@ -104,6 +105,12 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: gh api --method POST "repos/${GITHUB_REPOSITORY}/pages/builds"
 
+      - name: Confirm actual public Pages responses after deployment
+        if: success() && github.ref_name == 'main'
+        run: |
+          set -o pipefail
+          python slate/live_check.py 2>&1 | tee /tmp/slate-live-verification.log
+
       - name: Upload the capture log as an artifact
         if: always()
         uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v4
@@ -114,6 +121,7 @@ jobs:
             slate/data/analysis.json
             slate/data/provenance.json
             slate/data/flags.csv
+            /tmp/slate-live-verification.log
             /tmp/slate-390.png
             /tmp/slate-1280.png
           retention-days: 14
