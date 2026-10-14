@@ -2699,3 +2699,53 @@ links to the updated picks list and must be phone-friendly.
 | **Irregularities (non-blocking, published on `every/flagged.html`)** | IRREG-02 carried (Valve duplicate names affect slate rows `1079622`/`1081112`) · FL-EXT-PLACEHOLDER (4 rejected 1.80/1.80 pages) · E-01 identity/snapshot notes for LFO 10 (Entropy core, #168/#169 drift, mixed snapshot dates) · E-02-DIVERGENCE ×4 (market vs model: `1079439`, `1079623`, `1080279`, `1080285`) · IRREG-26 cross-board pick disagreements remain open for the final integration owner. |
 
 - Tasks E-01..E-07 all **done**. Session closed after this record; automation (hourly `every-75fd29ee.yml` + hourly slate capture) keeps the picks list current with no manual input.
+
+## Session `arena/496e53ff` — independent published-slate acceptance audit (2026-10-14 UTC)
+
+- **Claimed at:** 2026-10-14T02:33:00Z (UTC).
+- **Branch:** `arena/496e53ff-maltaproj1` (Arena-fixed; no other branch will be used).
+- **Task A-496-01 (in progress):** Independently check the already-published CS2 landing/coverage pipeline after PR #83: local unit/HTML/link checks, match-row completeness and probability arithmetic, freshness/automation status from the official GitHub Actions API, and the documented no-pick/unknown cases. Record results and source links in `reviews/496e53ff-acceptance.md`.
+- **Exclusive scope:** `reviews/496e53ff-acceptance.md` (new review artifact) and this append-only section of `COORDINATION.md` only. Do not edit `index.html`, `slate/**`, `oct14/**`, their data, or any other claimed source/site files. If findings require changes in another session's scope, record an integration request here and leave their files untouched.
+- **Initial coordination check:** PR #83 is merged (2026-10-14T02:31:00Z; merge commit `6eef3524d653089b362df0dde561cde0b8ab136b`) and GitHub Pages API reports `built`, source `main:/`. At claim time B84-06 had a fresh, open PR #84 owned by `arena/8944bb84`; PR #84 later merged. No files in that scope were edited here.
+
+### Completion record — A-496-01 (2026-10-14 ~02:59 UTC)
+
+- **Status:** done. Deliverable: [`reviews/496e53ff-acceptance.md`](reviews/496e53ff-acceptance.md). This review and this append-only section are the only files changed by this session.
+- **Audit state:** `main` `6007c1760d3dbaae718539d8aedd9c0b37ad9e41`, including PR #90 (`picks-full/`). Compared `everypick/`, `cs2/`, the pre-PR-#90 `exec/` snapshot, and the newly merged `picks-full/`. All 28 open IDs align; probability arithmetic and direction checks pass. Three cross-board pick-direction conflicts remain (`1079623`, `1080279`, `1080285`). `exec/` still omits `picks-full/`; `1079624`'s RESEARCH estimate/roster caveat is recorded with source links.
+- **Checks:** `python3 -m unittest discover -s tests -v` — 160 pass; focused every-pick 5, full-picks 22, and CS2 23 pass; slate tests and JS syntax check pass. Repo-wide HTML audit: 183 pages, 0 internal-link errors (53 separate review findings).
+- **Automation:** hourly cron is configured, but no scheduled-event run for slate was present by 02:59Z after the expected 02:41 slot. `everypick` and `cs2` next slots were not yet due; `exec`'s 02:51 slot also had no scheduled event by 02:59; `picks-full`'s first post-merge slot is 03:47. Details and run IDs are in the review.
+- **Deployment:** Pages API `built`; latest checked build run [38503815605](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38503815605) succeeded for `6007c17`. Public root, `picks-full/`, `everypick/`, `cs2/`, and `exec/` were fetched successfully. The exec view is live but not yet a complete audit of post-PR-#90 boards.
+- **Integration requests (no cross-owner edits):** add `picks-full/` to the exec inventory; correct PF-02's 4-vs-3 roster wording, source-pill label and confidence badge; reconcile the CS2 format flag against HLTV BO3; monitor the missing slate scheduled run. Full details are in the review.
+- **Scope preserved:** no `index.html`, `exec/**`, `picks-full/**`, `cs2/**`, `everypick/**`, source data, workflow, or other owner's file was edited.
+
+### Post-audit follow-up — 2026-10-14 03:06 UTC
+
+- Main advanced after the 02:59Z comparison: PR #92 merged at 03:02:09Z and added `feeds/` as a secondary-market data source plus one root card. It does not alter the four pick-board snapshots. `picks-full/` remains the primary CTA; `exec/` still publishes 27/28 picks and does not inventory `picks-full/`.
+- The new feed snapshot (`03:02:29Z`) also rejects both bo3.gg and Polymarket for #1079624: each listing says FORZE Reload vs Sökerorg, not LFO 10. For the three disputed directions it independently supports G2 Ares (68.5% Polymarket), EAC (53.8% Thunderpick via bo3.gg), and Phantom (mean 53.7% from Thunderpick via bo3.gg + Polymarket); these remain source-specific secondary prices, not reconciled board probabilities. Details were appended to the report.
+- Re-fetched the public root, `/feeds/`, `/picks-full/`, and `/exec/` after PR #92. Pages build run [38504189993](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38504189993) succeeded for `dd6f075`, and the pages served current content; however, the Pages API endpoint simultaneously returned `status: errored`. Recorded as a status mismatch, not an outage; please reconcile with the Pages owner.
+- This post-audit update does not broaden file scope: only the acceptance report and this session's coordination section remain edited.
+
+### Second post-audit follow-up — 2026-10-14 03:11 UTC
+
+- PR #94 merged at 03:09:55Z and published the separate `/every/` 28/28 picks board (distinct from `everypick/` and `picks-full/`). It gives #1079624 a 95.31% FORZE model line from HLTV Oct. 10 LFO 10 (771) vs official Oct. 5 FORZE (1100), BO3, default Elo-400; this is a model estimate, not a market. The board correctly says the roster core is three (Entropy points are not used) but flags mixed snapshots, ranking drift and research provenance. Its 95.31% is not interchangeable with the earlier `picks-full/` 75.9% line (`k=0.4568`, Entropy 813); see the report's current sensitivity notes.
+- The root still makes `picks-full/` primary and now links `/every/`; latest `exec/` public page remains at 27/28 and omits both new pick boards. Updated the integration request to add both boards separately and identify `/feeds/` as a source tier, not a picks board.
+- Main Pages run [38504826038](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38504826038) succeeded for `1c65c97`; Pages API now reports `built`, and root, `/every/`, legacy `/everypick/`, and `/exec/` were fetched successfully. This clears the transient error status seen at 03:06Z.
+- Post-rebase local verification was pending here; see the final check record below. No other-owner files changed.
+
+### Third post-audit follow-up — 2026-10-14 03:15 UTC
+
+- PR #93 merged at 03:13:56Z. The subsequent feed refresh at 03:14:16Z remains 25/28 priced (20 book quotes relayed by bo3.gg, 14 Polymarket, 9 overlapping; 26 formats); #1079624 still has no match-identity-accepted outside quote because both candidates say Sökerorg, not LFO 10.
+- Current secondary corroboration for direction conflicts: #1079623 G2 Ares 67.5% Polymarket; #1080279 EAC 53.8% Thunderpick via bo3.gg; #1080285 Phantom 51.4% Thunderpick via bo3.gg and 56.5% Polymarket (mean 53.9%). The latest report records these as distinct inputs, not substitutes for the earlier picks-board price snapshots.
+- Main is now `6839a99`; Pages run [38505206311](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38505206311) succeeded and the API reports `built`. Public `/feeds/`, `/every/`, `/everypick/`, `/exec/`, and root were fetched; `exec/` remains 27/28 and omits both new pick boards. Local rebase and test rerun on this newer main were pending at 03:15; see the final check below.
+
+### Final local verification — 2026-10-14 03:13 UTC
+
+- Rebased this fixed branch onto `origin/main` `1c65c97` after PR #94; preserved the appended claims and records from the `75fd29ee` session. The previous PR head conflicted only because main advanced; the refreshed PR head is to be pushed after this append.
+- Full repository suite on `1c65c97`: 177 pass; feed tests: 15; focused pick-board suites: everypick 5, picks-full 22, `/every/` 17; CS2 23; slate 17; JS syntax passes. Repo HTML audit: 190 pages, 0 internal-link errors, 53 review findings. Legacy unclosed-file `ResourceWarning`s are non-fatal.
+- Independently confirmed `/every/` matches the same 28 open IDs as `everypick/`, `cs2/`, `exec/`, and `picks-full/`. Public root/`every/`/`everypick/`/`exec/` loads; Pages build run [38504826038](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38504826038) succeeded and the Pages API reports `built`.
+
+### Latest rebase verification — 2026-10-14 03:16 UTC
+
+- Rebased this fixed branch onto `origin/main` `6839a99`, preserving the PR #93/#96 release records and all session append-only text. `COORDINATION.md` was the only rebase conflict.
+- Latest checks on `6839a99`: 177 repository tests pass; feed tests 15; focused everypick/picks-full/`every/` 44; CS2 23; slate 17; JS syntax check passes. HTML audit: 190 pages, 0 link errors, 53 review findings. All five pick boards still have identical 28 open IDs.
+- Current Pages run [38505206311](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38505206311) succeeds and API is `built`. PR #95's remote head is still pre-rebase; refresh/push and checks remain before merge. No product/data files changed.
