@@ -2730,4 +2730,10 @@ links to the updated picks list and must be phone-friendly.
 - PR #94 merged at 03:09:55Z and published the separate `/every/` 28/28 picks board (distinct from `everypick/` and `picks-full/`). It gives #1079624 a 95.31% FORZE model line from HLTV Oct. 10 LFO 10 (771) vs official Oct. 5 FORZE (1100), BO3, default Elo-400; this is a model estimate, not a market. The board correctly says the roster core is three (Entropy points are not used) but flags mixed snapshots, ranking drift and research provenance. Its 95.31% is not interchangeable with the earlier `picks-full/` 75.9% line (`k=0.4568`, Entropy 813); see the report's current sensitivity notes.
 - The root still makes `picks-full/` primary and now links `/every/`; latest `exec/` public page remains at 27/28 and omits both new pick boards. Updated the integration request to add both boards separately and identify `/feeds/` as a source tier, not a picks board.
 - Main Pages run [38504826038](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38504826038) succeeded for `1c65c97`; Pages API now reports `built`, and root, `/every/`, legacy `/everypick/`, and `/exec/` were fetched successfully. This clears the transient error status seen at 03:06Z.
-- Post-rebase local verification will be recorded before PR merge; no other-owner files changed.
+- Post-rebase local verification was pending here; see the final check record below. No other-owner files changed.
+
+### Final local verification — 2026-10-14 03:13 UTC
+
+- Rebased this fixed branch onto `origin/main` `1c65c97` after PR #94; preserved the appended claims and records from the `75fd29ee` session. The previous PR head conflicted only because main advanced; the refreshed PR head is to be pushed after this append.
+- Full repository suite on `1c65c97`: 177 pass; feed tests: 15; focused pick-board suites: everypick 5, picks-full 22, `/every/` 17; CS2 23; slate 17; JS syntax passes. Repo HTML audit: 190 pages, 0 internal-link errors, 53 review findings. Legacy unclosed-file `ResourceWarning`s are non-fatal.
+- Independently confirmed `/every/` matches the same 28 open IDs as `everypick/`, `cs2/`, `exec/`, and `picks-full/`. Public root/`every/`/`everypick/`/`exec/` loads; Pages build run [38504826038](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38504826038) succeeded and the Pages API reports `built`.
