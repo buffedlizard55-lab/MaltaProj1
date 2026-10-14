@@ -2353,3 +2353,18 @@ A6 audit compares against them and files requests here instead of editing them.
 - 2026-10-14 02:33 UTC: OddsDigger (200, 255 kB) and bo3.gg (200, 13 kB) are reachable from the runner; both are archived
   with a shape report and used for nothing until a parser exists. `oddsdigger: 1 page(s) reachable, biggest table 8 rows` —
   that is the measured result, so the cheap guess that it lists per-match odds did not hold on the index page.
+
+## Session `arena/26986a4e` — claim (2026-10-14 ~02:36 UTC)
+
+- **Session ID**: `arena/26986a4e`. **Branch**: `arena/26986a4e-maltaproj1` (fixed for this session; no other branch).
+- **Base**: `origin/main` = `1cf8527` (includes PR #82 `cs2/`, PR #83 `oct14/`).
+- **Why a narrow claim**: the user's brief (picks for every CS2 match, probabilities per team, executive summary with in-site links, mobile layout, regular refresh, line-by-line source verification, Flagged page) is already implemented by `arena/a174d77f` (`cs2/`) and `arena/8944bb84` (`oct14/`), both marked done. A third board would add confusion, so this session audits the shipped data instead of duplicating it.
+- **Sandbox limits (measured)**: `play.hotspawn.com`, `hltv.org`, `pinnacle.com` and the Pages host return no connection from this workspace (curl `000`). No live odds or fixtures are collected by this session; all checks use committed evidence and the GitHub API.
+
+| Task ID | Status | Owner | Exclusive file scope | Notes |
+|---|---|---|---|---|
+| `V26-01` | in progress | `arena/26986a4e` | `reviews/26986a4e-verification.md` | Row-by-row recheck of every open CS2 row in `cs2/data/analysis.csv`: pick matches the higher stated probability, probabilities sum to 100, each row has a source URL, blank rows are flagged. |
+| `V26-02` | in progress | `arena/26986a4e` | `reviews/26986a4e-verification.md` | Refresh-cadence measurement from GitHub run history (`gh run list`): scheduled vs push-triggered runs per workflow. |
+| `V26-03` | in progress | `arena/26986a4e` | `COORDINATION.md` (append-only) | Requests to owners (no cross-owner edits): exec-summary anchors on `cs2/index.html`, the one unpicked fixture, scheduled-run reliability. |
+
+Read-only for this session: `cs2/**`, `oct14/**`, `index.html`, `.github/workflows/**`, `data/**`.
