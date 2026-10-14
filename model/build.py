@@ -536,11 +536,18 @@ def main() -> int:
     }
     payload = {"inputs": inputs, "fixtures": rows, "teams": trows, "flags": flags}
     (OUT / "lines.json").write_text(json.dumps(payload, indent=1, ensure_ascii=False) + "\n")
-    # Digest over the substance (fixtures/teams/flags + input identities, not fetch timestamps).
-    subst = json.dumps({"f": rows, "t": trows, "x": flags, "v": meta["commit"], "h": hltv.get("ranking_date")},
+    # Digest over the substance (fixtures/teams/flags + input identities) AND over the stable part of the
+    # rendered page. The page part matters: without it, a change in how a value is presented - for example
+    # the per-row source links added on 2026-10-14 - would never be published by the scheduled job, because
+    # the data digest alone would be unchanged. Volatile timestamps are normalised out, so re-reading the
+    # same data still produces no commit; every data value they could hide is already covered by rows/teams.
+    page_html = render(payload, meta, hltv, fx, hltv_url)
+    SITE.write_text(page_html)
+    stable_page = re.sub(r"\d{4}-\d{2}-\d{2}[T ]\d{2}:\d{2}(:\d{2})?Z?", "TS", page_html)
+    subst = json.dumps({"f": rows, "t": trows, "x": flags, "v": meta["commit"], "h": hltv.get("ranking_date"),
+                        "page_sha256": hashlib.sha256(stable_page.encode()).hexdigest()},
                        sort_keys=True, ensure_ascii=False)
     (OUT / "digest.txt").write_text(hashlib.sha256(subst.encode()).hexdigest() + "\n")
-    SITE.write_text(render(payload, meta, hltv, fx, hltv_url))
     n_line = sum(1 for r in rows if r["line_status"] == "OWN LINE")
     print(f"fixtures={len(rows)} own_lines={n_line} blank={len(rows) - n_line} teams={len(trows)} flags={len(flags)}")
     return 0
