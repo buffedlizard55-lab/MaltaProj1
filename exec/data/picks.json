@@ -1,23 +1,23 @@
 {
- "generated_utc": "2026-10-14T02:48:19Z",
+ "generated_utc": "2026-10-14T08:03:41Z",
  "fixture_spine": "slate/data/fixtures.csv",
  "totals": {
-  "open_fixtures": 28,
-  "with_pick": 27,
-  "with_market": 24,
+  "open_fixtures": 26,
+  "with_pick": 25,
+  "with_market": 22,
   "with_market_direct": 7,
-  "with_market_secondary": 17,
+  "with_market_secondary": 15,
   "model_only": 3,
   "no_basis": 1,
-  "flagged_rows": 21,
-  "disagreement_rows": 23,
-  "locked_or_started": 60,
+  "flagged_rows": 19,
+  "disagreement_rows": 21,
+  "locked_or_started": 62,
   "inventory": {
    "payload_rows": 88,
-   "open": 28,
-   "locked_or_started": 60,
+   "open": 26,
+   "locked_or_started": 62,
    "stale_over_a_day": 59,
-   "started_within_a_day": 1
+   "started_within_a_day": 3
   }
  },
  "boards": [
@@ -35,7 +35,7 @@
    "rows": 28,
    "captured_utc": "2026-10-14T02:23:08Z",
    "open_rows_with_pick": 5,
-   "open_rows_covered": 28
+   "open_rows_covered": 26
   },
   {
    "id": "oct14",
@@ -50,8 +50,8 @@
    "present": true,
    "rows": 32,
    "captured_utc": "2026-10-14T01:58:00Z",
-   "open_rows_with_pick": 27,
-   "open_rows_covered": 28
+   "open_rows_with_pick": 25,
+   "open_rows_covered": 26
   },
   {
    "id": "openslate",
@@ -66,8 +66,8 @@
    "present": true,
    "rows": 28,
    "captured_utc": "2026-10-14T01:41Z-01:58Z",
-   "open_rows_with_pick": 27,
-   "open_rows_covered": 28
+   "open_rows_with_pick": 25,
+   "open_rows_covered": 26
   },
   {
    "id": "everypick",
@@ -82,8 +82,8 @@
    "present": true,
    "rows": 28,
    "captured_utc": "2026-10-14T02:23:08Z",
-   "open_rows_with_pick": 28,
-   "open_rows_covered": 28
+   "open_rows_with_pick": 26,
+   "open_rows_covered": 26
   },
   {
    "id": "cs2",
@@ -98,185 +98,11 @@
    "present": true,
    "rows": 88,
    "captured_utc": "2026-10-14T02:47:24Z",
-   "open_rows_with_pick": 27,
-   "open_rows_covered": 28
+   "open_rows_with_pick": 25,
+   "open_rows_covered": 26
   }
  ],
  "open": [
-  {
-   "poly_reference": {
-    "p_a": 50.0,
-    "p_b": 50.0,
-    "url": "https://polymarket.com/event/cs2-gothic-lavked-2026-10-14",
-    "board": "exec/collect_polymarket.py",
-    "source": "Polymarket",
-    "updated_utc": "2026-10-14T02:41:30.895878Z",
-    "liquidity_usd": 6660.8163
-   },
-   "fixture_id": "1079621",
-   "kickoff_utc": "2026-10-14T08:00:00Z",
-   "lock_utc": "2026-10-14T07:54:00Z",
-   "competition": "CCT Europe 2026 Series #11",
-   "tier": "B",
-   "team_a": "Gothic",
-   "team_b": "Lavked",
-   "hotspawn_match_url": "",
-   "hotspawn_fixture_url": "https://play.hotspawn.com/cs2-pickems",
-   "best_of": "BO3",
-   "best_of_source": "https://www.hltv.org/matches/2399298/gothic-vs-lavked-cct-2026-europe-series-11",
-   "market_book": "bc.game (EGamersWorld)",
-   "market_class": "secondary",
-   "market_odds_a": 2.05,
-   "market_odds_b": 1.64,
-   "market_p_a": 44.4,
-   "market_p_b": 55.6,
-   "market_url": "https://egamersworld.com/counterstrike/match/_rW8GEyWK/gothic-vs-lavked-GGmfuJ1n4B",
-   "market_captured_utc": "2026-10-14T01:48:00Z",
-   "market_board": "everypick",
-   "market_page": "everypick/index.html",
-   "market_note": "External market \u2014 EGamersWorld bc.game report (secondary, not re-read vs bookmaker), de-vigged",
-   "own_p_a": 27.5,
-   "own_p_b": 72.5,
-   "own_basis": "100% Valve VRS Glicko (1 team outside HLTV Top-245; BO3)",
-   "own_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L216",
-   "own_board": "everypick",
-   "own_page": "everypick/index.html",
-   "line_source": "market-secondary",
-   "p_a": 44.4,
-   "p_b": 55.6,
-   "pick": "Lavked",
-   "pick_pct": 55.6,
-   "pick_basis": "external bookmaker price, de-vigged (aggregator-mediated)",
-   "pick_source_url": "https://egamersworld.com/counterstrike/match/_rW8GEyWK/gothic-vs-lavked-GGmfuJ1n4B",
-   "pick_board": "everypick",
-   "pick_page": "everypick/index.html",
-   "boards_publishing": {
-    "slate": {
-     "market": false,
-     "model": true,
-     "pick": false
-    },
-    "oct14": {
-     "market": true,
-     "model": true,
-     "pick": true
-    },
-    "openslate": {
-     "market": false,
-     "model": true,
-     "pick": true
-    },
-    "everypick": {
-     "market": true,
-     "model": true,
-     "pick": true
-    },
-    "cs2": {
-     "market": false,
-     "model": true,
-     "pick": true
-    }
-   },
-   "disagreements": [
-    "market 44% vs our model 28% for Gothic (17 pp)",
-    "our own lines differ between boards: 28%\u201340% for Gothic"
-   ],
-   "flags": [
-    {
-     "code": "X-SECONDARY-PRICE",
-     "severity": "caveat",
-     "text": "Price comes from a bookmaker listing served by an aggregator, not from the bookmaker's own response."
-    }
-   ],
-   "state": "open"
-  },
-  {
-   "poly_reference": {
-    "p_a": 60.5,
-    "p_b": 39.5,
-    "url": "https://polymarket.com/event/cs2-enjoy-b8acad-2026-10-14",
-    "board": "exec/collect_polymarket.py",
-    "source": "Polymarket",
-    "updated_utc": "2026-10-14T02:41:30.895878Z",
-    "liquidity_usd": 5188.2759
-   },
-   "fixture_id": "1081111",
-   "kickoff_utc": "2026-10-14T08:00:00Z",
-   "lock_utc": "2026-10-14T07:54:00Z",
-   "competition": "CCT Europe 2026 Series #12 Play-In",
-   "tier": "C",
-   "team_a": "Enjoy",
-   "team_b": "B8 Academy",
-   "hotspawn_match_url": "",
-   "hotspawn_fixture_url": "https://play.hotspawn.com/cs2-pickems",
-   "best_of": "BO3",
-   "best_of_source": "https://www.hltv.org/matches/2399461/enjoy-vs-b8-academy-cct-2026-europe-series-12-closed-qualifier",
-   "market_book": "bc.game (EGamersWorld)",
-   "market_class": "secondary",
-   "market_odds_a": 1.52,
-   "market_odds_b": 2.3,
-   "market_p_a": 60.2,
-   "market_p_b": 39.8,
-   "market_url": "https://egamersworld.com/counterstrike/match/1sGIL2gAYu/enjoy-vs-b8-academy-qwO9cEnL7",
-   "market_captured_utc": "2026-10-14T01:51:00Z",
-   "market_board": "everypick",
-   "market_page": "everypick/index.html",
-   "market_note": "External market \u2014 EGamersWorld bc.game report (secondary, not re-read vs bookmaker), de-vigged",
-   "own_p_a": 76.8,
-   "own_p_b": 23.2,
-   "own_basis": "80% Valve VRS Glicko + 20% HLTV Ranking (BO3)",
-   "own_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L143",
-   "own_board": "everypick",
-   "own_page": "everypick/index.html",
-   "line_source": "market-secondary",
-   "p_a": 60.2,
-   "p_b": 39.8,
-   "pick": "Enjoy",
-   "pick_pct": 60.2,
-   "pick_basis": "external bookmaker price, de-vigged (aggregator-mediated)",
-   "pick_source_url": "https://egamersworld.com/counterstrike/match/1sGIL2gAYu/enjoy-vs-b8-academy-qwO9cEnL7",
-   "pick_board": "everypick",
-   "pick_page": "everypick/index.html",
-   "boards_publishing": {
-    "slate": {
-     "market": false,
-     "model": true,
-     "pick": false
-    },
-    "oct14": {
-     "market": true,
-     "model": true,
-     "pick": true
-    },
-    "openslate": {
-     "market": false,
-     "model": true,
-     "pick": true
-    },
-    "everypick": {
-     "market": true,
-     "model": true,
-     "pick": true
-    },
-    "cs2": {
-     "market": false,
-     "model": true,
-     "pick": true
-    }
-   },
-   "disagreements": [
-    "market 60% vs our model 77% for Enjoy (17 pp)",
-    "our own lines differ between boards: 65%\u201377% for Enjoy"
-   ],
-   "flags": [
-    {
-     "code": "X-SECONDARY-PRICE",
-     "severity": "caveat",
-     "text": "Price comes from a bookmaker listing served by an aggregator, not from the bookmaker's own response."
-    }
-   ],
-   "state": "open"
-  },
   {
    "poly_reference": {
     "p_a": 26.5,
@@ -436,13 +262,13 @@
   },
   {
    "poly_reference": {
-    "p_a": 46.5,
-    "p_b": 53.5,
+    "p_a": 45.5,
+    "p_b": 54.5,
     "url": "https://polymarket.com/event/cs2-hotu-fnc-2026-10-14",
     "board": "exec/collect_polymarket.py",
     "source": "Polymarket",
-    "updated_utc": "2026-10-14T02:41:30.895878Z",
-    "liquidity_usd": 52609.9533
+    "updated_utc": "2026-10-14T08:02:55.182018Z",
+    "liquidity_usd": 69762.0908
    },
    "fixture_id": "1079439",
    "kickoff_utc": "2026-10-14T10:00:00Z",
@@ -514,13 +340,13 @@
   },
   {
    "poly_reference": {
-    "p_a": 65.0,
-    "p_b": 35.0,
+    "p_a": 63.5,
+    "p_b": 36.5,
     "url": "https://polymarket.com/event/cs2-rustec-mellre-2026-10-14",
     "board": "exec/collect_polymarket.py",
     "source": "Polymarket",
-    "updated_utc": "2026-10-14T02:41:30.895878Z",
-    "liquidity_usd": 11612.0746
+    "updated_utc": "2026-10-14T08:02:55.182018Z",
+    "liquidity_usd": 15619.215
    },
    "fixture_id": "1079622",
    "kickoff_utc": "2026-10-14T11:00:00Z",
@@ -755,8 +581,8 @@
     "url": "https://polymarket.com/event/cs2-lgc-prv-2026-10-14",
     "board": "exec/collect_polymarket.py",
     "source": "Polymarket",
-    "updated_utc": "2026-10-14T02:43:31.250927Z",
-    "liquidity_usd": 61135.8648
+    "updated_utc": "2026-10-14T08:02:55.182018Z",
+    "liquidity_usd": 244782.6336
    },
    "fixture_id": "1080178",
    "kickoff_utc": "2026-10-14T13:30:00Z",
@@ -830,13 +656,13 @@
   },
   {
    "poly_reference": {
-    "p_a": 66.0,
-    "p_b": 34.0,
+    "p_a": 67.5,
+    "p_b": 32.5,
     "url": "https://polymarket.com/event/cs2-g2a-tlr-2026-10-14",
     "board": "exec/collect_polymarket.py",
     "source": "Polymarket",
-    "updated_utc": "2026-10-14T02:43:31.250927Z",
-    "liquidity_usd": 4472.1762
+    "updated_utc": "2026-10-14T08:02:55.182018Z",
+    "liquidity_usd": 7347.7978
    },
    "fixture_id": "1079623",
    "kickoff_utc": "2026-10-14T14:00:00Z",
@@ -1302,8 +1128,8 @@
     "url": "https://polymarket.com/event/cs2-hero-envy-2026-10-15",
     "board": "exec/collect_polymarket.py",
     "source": "Polymarket",
-    "updated_utc": "2026-10-14T02:43:31.250927Z",
-    "liquidity_usd": 16573.3265
+    "updated_utc": "2026-10-14T07:52:56.761886Z",
+    "liquidity_usd": 19244.6032
    },
    "fixture_id": "1079442",
    "kickoff_utc": "2026-10-15T10:00:00Z",
@@ -1375,13 +1201,13 @@
   },
   {
    "poly_reference": {
-    "p_a": 65.5,
-    "p_b": 34.5,
+    "p_a": 63.5,
+    "p_b": 36.5,
     "url": "https://polymarket.com/event/cs2-ence-bojong-2026-10-15",
     "board": "exec/collect_polymarket.py",
     "source": "Polymarket",
-    "updated_utc": "2026-10-14T02:43:31.250927Z",
-    "liquidity_usd": 4504.4722
+    "updated_utc": "2026-10-14T08:02:55.182018Z",
+    "liquidity_usd": 7155.8598
    },
    "fixture_id": "1080280",
    "kickoff_utc": "2026-10-15T10:00:00Z",
@@ -1779,8 +1605,8 @@
     "url": "https://polymarket.com/event/cs2-voc-pha-2026-10-16",
     "board": "exec/collect_polymarket.py",
     "source": "Polymarket",
-    "updated_utc": "2026-10-14T02:43:31.250927Z",
-    "liquidity_usd": 1770.4809
+    "updated_utc": "2026-10-14T08:00:55.86268Z",
+    "liquidity_usd": 5628.2301
    },
    "fixture_id": "1080285",
    "kickoff_utc": "2026-10-16T08:00:00Z",
@@ -1939,13 +1765,13 @@
   },
   {
    "poly_reference": {
-    "p_a": 61.5,
-    "p_b": 38.5,
+    "p_a": 62.5,
+    "p_b": 37.5,
     "url": "https://polymarket.com/event/cs2-voc-havu-2026-10-16",
     "board": "exec/collect_polymarket.py",
     "source": "Polymarket",
-    "updated_utc": "2026-10-14T02:43:31.250927Z",
-    "liquidity_usd": 3836.1996
+    "updated_utc": "2026-10-14T08:02:55.182018Z",
+    "liquidity_usd": 6764.8123
    },
    "fixture_id": "1080287",
    "kickoff_utc": "2026-10-16T12:00:00Z",
@@ -2260,13 +2086,13 @@
   },
   {
    "poly_reference": {
-    "p_a": 63.5,
-    "p_b": 36.5,
+    "p_a": 64.5,
+    "p_b": 35.5,
     "url": "https://polymarket.com/event/cs2-pha-havu-2026-10-16",
     "board": "exec/collect_polymarket.py",
     "source": "Polymarket",
-    "updated_utc": "2026-10-14T02:43:31.250927Z",
-    "liquidity_usd": 5352.6384
+    "updated_utc": "2026-10-14T08:02:55.182018Z",
+    "liquidity_usd": 6299.0055
    },
    "fixture_id": "1080290",
    "kickoff_utc": "2026-10-16T18:00:00Z",
@@ -2346,6 +2172,110 @@
   }
  ],
  "locked_or_started": [
+  {
+   "poly_reference": null,
+   "fixture_id": "1079621",
+   "kickoff_utc": "2026-10-14T08:00:00Z",
+   "lock_utc": "2026-10-14T07:54:00Z",
+   "competition": "CCT Europe 2026 Series #11",
+   "tier": "B",
+   "team_a": "Gothic",
+   "team_b": "Lavked",
+   "hotspawn_match_url": "",
+   "hotspawn_fixture_url": "https://play.hotspawn.com/cs2-pickems",
+   "best_of": "BO3",
+   "best_of_source": "https://www.hltv.org/matches/2399298/gothic-vs-lavked-cct-2026-europe-series-11",
+   "market_book": "bc.game (EGamersWorld)",
+   "market_class": "secondary",
+   "market_odds_a": 2.05,
+   "market_odds_b": 1.64,
+   "market_p_a": 44.4,
+   "market_p_b": 55.6,
+   "market_url": "https://egamersworld.com/counterstrike/match/_rW8GEyWK/gothic-vs-lavked-GGmfuJ1n4B",
+   "market_captured_utc": "2026-10-14T01:48:00Z",
+   "market_board": "everypick",
+   "market_page": "everypick/index.html",
+   "market_note": "External market \u2014 EGamersWorld bc.game report (secondary, not re-read vs bookmaker), de-vigged",
+   "own_p_a": 27.5,
+   "own_p_b": 72.5,
+   "own_basis": "100% Valve VRS Glicko (1 team outside HLTV Top-245; BO3)",
+   "own_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L216",
+   "own_board": "everypick",
+   "own_page": "everypick/index.html",
+   "line_source": "market-secondary",
+   "p_a": 44.4,
+   "p_b": 55.6,
+   "pick": "Lavked",
+   "pick_pct": 55.6,
+   "pick_basis": "external bookmaker price, de-vigged (aggregator-mediated)",
+   "pick_source_url": "https://egamersworld.com/counterstrike/match/_rW8GEyWK/gothic-vs-lavked-GGmfuJ1n4B",
+   "pick_board": "everypick",
+   "pick_page": "everypick/index.html",
+   "disagreements": [
+    "market 44% vs our model 28% for Gothic (17 pp)",
+    "our own lines differ between boards: 28%\u201340% for Gothic"
+   ],
+   "flags": [
+    {
+     "code": "X-SECONDARY-PRICE",
+     "severity": "caveat",
+     "text": "Price comes from a bookmaker listing served by an aggregator, not from the bookmaker's own response."
+    }
+   ],
+   "state": "locked_or_started"
+  },
+  {
+   "poly_reference": null,
+   "fixture_id": "1081111",
+   "kickoff_utc": "2026-10-14T08:00:00Z",
+   "lock_utc": "2026-10-14T07:54:00Z",
+   "competition": "CCT Europe 2026 Series #12 Play-In",
+   "tier": "C",
+   "team_a": "Enjoy",
+   "team_b": "B8 Academy",
+   "hotspawn_match_url": "",
+   "hotspawn_fixture_url": "https://play.hotspawn.com/cs2-pickems",
+   "best_of": "BO3",
+   "best_of_source": "https://www.hltv.org/matches/2399461/enjoy-vs-b8-academy-cct-2026-europe-series-12-closed-qualifier",
+   "market_book": "bc.game (EGamersWorld)",
+   "market_class": "secondary",
+   "market_odds_a": 1.52,
+   "market_odds_b": 2.3,
+   "market_p_a": 60.2,
+   "market_p_b": 39.8,
+   "market_url": "https://egamersworld.com/counterstrike/match/1sGIL2gAYu/enjoy-vs-b8-academy-qwO9cEnL7",
+   "market_captured_utc": "2026-10-14T01:51:00Z",
+   "market_board": "everypick",
+   "market_page": "everypick/index.html",
+   "market_note": "External market \u2014 EGamersWorld bc.game report (secondary, not re-read vs bookmaker), de-vigged",
+   "own_p_a": 76.8,
+   "own_p_b": 23.2,
+   "own_basis": "80% Valve VRS Glicko + 20% HLTV Ranking (BO3)",
+   "own_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L143",
+   "own_board": "everypick",
+   "own_page": "everypick/index.html",
+   "line_source": "market-secondary",
+   "p_a": 60.2,
+   "p_b": 39.8,
+   "pick": "Enjoy",
+   "pick_pct": 60.2,
+   "pick_basis": "external bookmaker price, de-vigged (aggregator-mediated)",
+   "pick_source_url": "https://egamersworld.com/counterstrike/match/1sGIL2gAYu/enjoy-vs-b8-academy-qwO9cEnL7",
+   "pick_board": "everypick",
+   "pick_page": "everypick/index.html",
+   "disagreements": [
+    "market 60% vs our model 77% for Enjoy (17 pp)",
+    "our own lines differ between boards: 65%\u201377% for Enjoy"
+   ],
+   "flags": [
+    {
+     "code": "X-SECONDARY-PRICE",
+     "severity": "caveat",
+     "text": "Price comes from a bookmaker listing served by an aggregator, not from the bookmaker's own response."
+    }
+   ],
+   "state": "locked_or_started"
+  },
   {
    "poly_reference": null,
    "fixture_id": "1081105",

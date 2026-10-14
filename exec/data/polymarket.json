@@ -1,50 +1,10 @@
 {
  "status": "ok",
  "endpoint": "https://gamma-api.polymarket.com/public-search?q=<team_a> <team_b>&limit_per_type=4 (one lookup per open fixture)",
- "captured_utc": "2026-10-14T02:48:17Z",
- "fixtures_considered": 28,
+ "captured_utc": "2026-10-14T08:03:31Z",
+ "fixtures_considered": 26,
  "note": "Polymarket lists some of the low-tier cups that big bookmakers skip. Only whole-match (series) markets are republished as a series reference; per-map markets are recorded separately and are never used as a series probability. A fixture with no matching event is recorded as unmatched, not filled in.",
  "matches": [
-  {
-   "fixture_id": "1079621",
-   "team_a": "Gothic",
-   "team_b": "Lavked",
-   "title": "Counter-Strike: Gothic vs Lavked (BO3) - CCT Europe Series #11 Group Stage",
-   "market_kind": "series",
-   "question": "Counter-Strike: Gothic vs Lavked (BO3) - CCT Europe Series #11 Group Stage",
-   "outcomes": [
-    "Gothic",
-    "Lavked"
-   ],
-   "p_a": 50.0,
-   "p_b": 50.0,
-   "best_bid": 0.49,
-   "best_ask": 0.51,
-   "liquidity_usd": 6660.8163,
-   "volume_usd": 266.47609,
-   "updated_utc": "2026-10-14T02:41:30.895878Z",
-   "url": "https://polymarket.com/event/cs2-gothic-lavked-2026-10-14"
-  },
-  {
-   "fixture_id": "1081111",
-   "team_a": "Enjoy",
-   "team_b": "B8 Academy",
-   "title": "Counter-Strike: ENJOY vs B8 Academy (BO3) - CCT Europe Closed Qualifier: Series #12 Group A",
-   "market_kind": "series",
-   "question": "Counter-Strike: ENJOY vs B8 Academy (BO3) - CCT Europe Closed Qualifier: Series #12 Group A",
-   "outcomes": [
-    "ENJOY",
-    "B8 Academy"
-   ],
-   "p_a": 60.5,
-   "p_b": 39.5,
-   "best_bid": 0.59,
-   "best_ask": 0.62,
-   "liquidity_usd": 5188.2759,
-   "volume_usd": 251.821622,
-   "updated_utc": "2026-10-14T02:41:30.895878Z",
-   "url": "https://polymarket.com/event/cs2-enjoy-b8acad-2026-10-14"
-  },
   {
    "fixture_id": "1079439",
    "team_a": "HOTU",
@@ -56,13 +16,13 @@
     "HOTU",
     "fnatic"
    ],
-   "p_a": 46.5,
-   "p_b": 53.5,
-   "best_bid": 0.46,
-   "best_ask": 0.47,
-   "liquidity_usd": 52609.9533,
-   "volume_usd": 25494.004301,
-   "updated_utc": "2026-10-14T02:41:30.895878Z",
+   "p_a": 45.5,
+   "p_b": 54.5,
+   "best_bid": 0.45,
+   "best_ask": 0.46,
+   "liquidity_usd": 69762.0908,
+   "volume_usd": 72750.89933900001,
+   "updated_utc": "2026-10-14T08:02:55.182018Z",
    "url": "https://polymarket.com/event/cs2-hotu-fnc-2026-10-14"
   },
   {
@@ -76,13 +36,13 @@
     "ex-RUSTEC",
     "mellren"
    ],
-   "p_a": 65.0,
-   "p_b": 35.0,
-   "best_bid": 0.64,
-   "best_ask": 0.66,
-   "liquidity_usd": 11612.0746,
-   "volume_usd": 9598.444144000001,
-   "updated_utc": "2026-10-14T02:41:30.895878Z",
+   "p_a": 63.5,
+   "p_b": 36.5,
+   "best_bid": 0.63,
+   "best_ask": 0.64,
+   "liquidity_usd": 15619.215,
+   "volume_usd": 10886.788390000002,
+   "updated_utc": "2026-10-14T08:02:55.182018Z",
    "url": "https://polymarket.com/event/cs2-rustec-mellre-2026-10-14"
   },
   {
@@ -100,9 +60,9 @@
    "p_b": 42.5,
    "best_bid": 0.57,
    "best_ask": 0.58,
-   "liquidity_usd": 61135.8648,
-   "volume_usd": 82690.92409900003,
-   "updated_utc": "2026-10-14T02:43:31.250927Z",
+   "liquidity_usd": 244782.6336,
+   "volume_usd": 163585.52963999994,
+   "updated_utc": "2026-10-14T08:02:55.182018Z",
    "url": "https://polymarket.com/event/cs2-lgc-prv-2026-10-14"
   },
   {
@@ -116,13 +76,13 @@
     "G2 Ares",
     "The Last Resort"
    ],
-   "p_a": 66.0,
-   "p_b": 34.0,
-   "best_bid": 0.65,
-   "best_ask": 0.67,
-   "liquidity_usd": 4472.1762,
-   "volume_usd": 561.7550739999999,
-   "updated_utc": "2026-10-14T02:43:31.250927Z",
+   "p_a": 67.5,
+   "p_b": 32.5,
+   "best_bid": 0.67,
+   "best_ask": 0.68,
+   "liquidity_usd": 7347.7978,
+   "volume_usd": 2350.3635489999997,
+   "updated_utc": "2026-10-14T08:02:55.182018Z",
    "url": "https://polymarket.com/event/cs2-g2a-tlr-2026-10-14"
   },
   {
@@ -140,9 +100,9 @@
    "p_b": 33.5,
    "best_bid": 0.66,
    "best_ask": 0.67,
-   "liquidity_usd": 16573.3265,
-   "volume_usd": 3905.0534340000004,
-   "updated_utc": "2026-10-14T02:43:31.250927Z",
+   "liquidity_usd": 19244.6032,
+   "volume_usd": 3982.9834339999998,
+   "updated_utc": "2026-10-14T07:52:56.761886Z",
    "url": "https://polymarket.com/event/cs2-hero-envy-2026-10-15"
   },
   {
@@ -156,13 +116,13 @@
     "ENCE",
     "BOJONG"
    ],
-   "p_a": 65.5,
-   "p_b": 34.5,
-   "best_bid": 0.56,
+   "p_a": 63.5,
+   "p_b": 36.5,
+   "best_bid": 0.52,
    "best_ask": 0.75,
-   "liquidity_usd": 4504.4722,
+   "liquidity_usd": 7155.8598,
    "volume_usd": null,
-   "updated_utc": "2026-10-14T02:43:31.250927Z",
+   "updated_utc": "2026-10-14T08:02:55.182018Z",
    "url": "https://polymarket.com/event/cs2-ence-bojong-2026-10-15"
   },
   {
@@ -180,9 +140,9 @@
    "p_b": 56.0,
    "best_bid": 0.43,
    "best_ask": 0.45,
-   "liquidity_usd": 1770.4809,
+   "liquidity_usd": 5628.2301,
    "volume_usd": 90.17777899999999,
-   "updated_utc": "2026-10-14T02:43:31.250927Z",
+   "updated_utc": "2026-10-14T08:00:55.86268Z",
    "url": "https://polymarket.com/event/cs2-voc-pha-2026-10-16"
   },
   {
@@ -196,13 +156,13 @@
     "Voca",
     "HAVU"
    ],
-   "p_a": 61.5,
-   "p_b": 38.5,
-   "best_bid": 0.53,
-   "best_ask": 0.7,
-   "liquidity_usd": 3836.1996,
+   "p_a": 62.5,
+   "p_b": 37.5,
+   "best_bid": 0.52,
+   "best_ask": 0.73,
+   "liquidity_usd": 6764.8123,
    "volume_usd": 25,
-   "updated_utc": "2026-10-14T02:43:31.250927Z",
+   "updated_utc": "2026-10-14T08:02:55.182018Z",
    "url": "https://polymarket.com/event/cs2-voc-havu-2026-10-16"
   },
   {
@@ -216,70 +176,26 @@
     "Phantom",
     "HAVU"
    ],
-   "p_a": 63.5,
-   "p_b": 36.5,
-   "best_bid": 0.53,
-   "best_ask": 0.74,
-   "liquidity_usd": 5352.6384,
+   "p_a": 64.5,
+   "p_b": 35.5,
+   "best_bid": 0.52,
+   "best_ask": 0.77,
+   "liquidity_usd": 6299.0055,
    "volume_usd": null,
-   "updated_utc": "2026-10-14T02:43:31.250927Z",
+   "updated_utc": "2026-10-14T08:02:55.182018Z",
    "url": "https://polymarket.com/event/cs2-pha-havu-2026-10-16"
   }
  ],
  "map_markets": [
   {
-   "fixture_id": "1079621",
-   "title": "Counter-Strike: Gothic vs Lavked (BO3) - CCT Europe Series #11 Group Stage",
-   "market_kind": "map",
-   "question": "Counter-Strike: Gothic vs Lavked - Map 1 Winner",
-   "p_a": 48.5,
-   "p_b": 51.5,
-   "liquidity_usd": 2528.1022,
-   "updated_utc": "2026-10-14T02:41:30.895878Z",
-   "url": "https://polymarket.com/event/cs2-gothic-lavked-2026-10-14"
-  },
-  {
-   "fixture_id": "1079621",
-   "title": "Counter-Strike: Gothic vs Lavked (BO3) - CCT Europe Series #11 Group Stage",
-   "market_kind": "map",
-   "question": "Counter-Strike: Gothic vs Lavked - Map 2 Winner",
-   "p_a": 48.5,
-   "p_b": 51.5,
-   "liquidity_usd": 2836.5552,
-   "updated_utc": "2026-10-14T02:43:31.250927Z",
-   "url": "https://polymarket.com/event/cs2-gothic-lavked-2026-10-14"
-  },
-  {
-   "fixture_id": "1081111",
-   "title": "Counter-Strike: ENJOY vs B8 Academy (BO3) - CCT Europe Closed Qualifier: Series #12 Group A",
-   "market_kind": "map",
-   "question": "Counter-Strike: ENJOY vs B8 Academy - Map 1 Winner",
-   "p_a": 60.0,
-   "p_b": 40.0,
-   "liquidity_usd": 2038.8689,
-   "updated_utc": "2026-10-14T02:43:31.250927Z",
-   "url": "https://polymarket.com/event/cs2-enjoy-b8acad-2026-10-14"
-  },
-  {
-   "fixture_id": "1081111",
-   "title": "Counter-Strike: ENJOY vs B8 Academy (BO3) - CCT Europe Closed Qualifier: Series #12 Group A",
-   "market_kind": "map",
-   "question": "Counter-Strike: ENJOY vs B8 Academy - Map 2 Winner",
-   "p_a": 60.0,
-   "p_b": 40.0,
-   "liquidity_usd": 1980.085,
-   "updated_utc": "2026-10-14T02:43:31.250927Z",
-   "url": "https://polymarket.com/event/cs2-enjoy-b8acad-2026-10-14"
-  },
-  {
    "fixture_id": "1079439",
    "title": "Counter-Strike: HOTU vs fnatic (BO3) - Stake Pulse Beat III Group C",
    "market_kind": "map",
    "question": "Counter-Strike: HOTU vs fnatic - Map 1 Winner",
-   "p_a": 48.5,
-   "p_b": 51.5,
-   "liquidity_usd": 8586.3628,
-   "updated_utc": "2026-10-14T02:41:30.895878Z",
+   "p_a": 46.5,
+   "p_b": 53.5,
+   "liquidity_usd": 12648.8397,
+   "updated_utc": "2026-10-14T08:00:55.86268Z",
    "url": "https://polymarket.com/event/cs2-hotu-fnc-2026-10-14"
   },
   {
@@ -287,10 +203,10 @@
    "title": "Counter-Strike: HOTU vs fnatic (BO3) - Stake Pulse Beat III Group C",
    "market_kind": "map",
    "question": "Counter-Strike: HOTU vs fnatic - Map 2 Winner",
-   "p_a": 51.5,
-   "p_b": 48.5,
-   "liquidity_usd": 6813.2098,
-   "updated_utc": "2026-10-14T02:41:30.895878Z",
+   "p_a": 49.5,
+   "p_b": 50.5,
+   "liquidity_usd": 9470.448,
+   "updated_utc": "2026-10-14T08:00:55.86268Z",
    "url": "https://polymarket.com/event/cs2-hotu-fnc-2026-10-14"
   },
   {
@@ -298,10 +214,10 @@
    "title": "Counter-Strike: ex-RUSTEC vs mellren (BO3) - CCT Europe Series #11 Group Stage",
    "market_kind": "map",
    "question": "Counter-Strike: ex-RUSTEC vs mellren - Map 1 Winner",
-   "p_a": 49.5,
-   "p_b": 50.5,
-   "liquidity_usd": 106.9982,
-   "updated_utc": "2026-10-14T02:19:32.489905Z",
+   "p_a": 59.0,
+   "p_b": 41.0,
+   "liquidity_usd": 543.5054,
+   "updated_utc": "2026-10-14T08:02:55.182018Z",
    "url": "https://polymarket.com/event/cs2-rustec-mellre-2026-10-14"
   },
   {
@@ -309,10 +225,10 @@
    "title": "Counter-Strike: ex-RUSTEC vs mellren (BO3) - CCT Europe Series #11 Group Stage",
    "market_kind": "map",
    "question": "Counter-Strike: ex-RUSTEC vs mellren - Map 2 Winner",
-   "p_a": 32.5,
-   "p_b": 67.5,
-   "liquidity_usd": 116.2288,
-   "updated_utc": "2026-10-14T02:41:30.895878Z",
+   "p_a": 60.0,
+   "p_b": 40.0,
+   "liquidity_usd": 1109.9411,
+   "updated_utc": "2026-10-14T08:00:55.86268Z",
    "url": "https://polymarket.com/event/cs2-rustec-mellre-2026-10-14"
   },
   {
@@ -322,8 +238,8 @@
    "question": "Counter-Strike: Legacy vs PARIVISION - Map 1 Winner",
    "p_a": 50.5,
    "p_b": 49.5,
-   "liquidity_usd": 10437.86,
-   "updated_utc": "2026-10-14T02:43:31.250927Z",
+   "liquidity_usd": 51525.7374,
+   "updated_utc": "2026-10-14T08:02:55.182018Z",
    "url": "https://polymarket.com/event/cs2-lgc-prv-2026-10-14"
   },
   {
@@ -333,8 +249,8 @@
    "question": "Counter-Strike: Legacy vs PARIVISION - Map 2 Winner",
    "p_a": 56.5,
    "p_b": 43.5,
-   "liquidity_usd": 10477.2914,
-   "updated_utc": "2026-10-14T02:43:31.250927Z",
+   "liquidity_usd": 15069.2976,
+   "updated_utc": "2026-10-14T08:02:55.182018Z",
    "url": "https://polymarket.com/event/cs2-lgc-prv-2026-10-14"
   },
   {
@@ -342,10 +258,10 @@
    "title": "Counter-Strike: G2 Ares vs The Last Resort (BO3) - CCT Europe Series #11 Group Stage",
    "market_kind": "map",
    "question": "Counter-Strike: G2 Ares vs The Last Resort - Map 1 Winner",
-   "p_a": 49.0,
-   "p_b": 51.0,
-   "liquidity_usd": 116.9426,
-   "updated_utc": "2026-10-14T02:41:30.895878Z",
+   "p_a": 58.5,
+   "p_b": 41.5,
+   "liquidity_usd": 126.814,
+   "updated_utc": "2026-10-14T08:02:55.182018Z",
    "url": "https://polymarket.com/event/cs2-g2a-tlr-2026-10-14"
   },
   {
@@ -353,10 +269,10 @@
    "title": "Counter-Strike: G2 Ares vs The Last Resort (BO3) - CCT Europe Series #11 Group Stage",
    "market_kind": "map",
    "question": "Counter-Strike: G2 Ares vs The Last Resort - Map 2 Winner",
-   "p_a": 50.0,
-   "p_b": 50.0,
-   "liquidity_usd": 112.5199,
-   "updated_utc": "2026-10-14T02:41:30.895878Z",
+   "p_a": 59.5,
+   "p_b": 40.5,
+   "liquidity_usd": 90.5733,
+   "updated_utc": "2026-10-14T08:02:55.182018Z",
    "url": "https://polymarket.com/event/cs2-g2a-tlr-2026-10-14"
   },
   {
@@ -364,10 +280,10 @@
    "title": "Counter-Strike: Heroic vs Envy (BO3) - Stake Pulse Beat III Group D",
    "market_kind": "map",
    "question": "Counter-Strike: Heroic vs Envy - Map 1 Winner",
-   "p_a": 56.5,
-   "p_b": 43.5,
-   "liquidity_usd": 1311.8611,
-   "updated_utc": "2026-10-14T02:43:31.250927Z",
+   "p_a": 55.0,
+   "p_b": 45.0,
+   "liquidity_usd": 3411.983,
+   "updated_utc": "2026-10-14T07:54:55.37076Z",
    "url": "https://polymarket.com/event/cs2-hero-envy-2026-10-15"
   },
   {
@@ -377,8 +293,8 @@
    "question": "Counter-Strike: Heroic vs Envy - Map 2 Winner",
    "p_a": 65.5,
    "p_b": 34.5,
-   "liquidity_usd": 1531.3346,
-   "updated_utc": "2026-10-14T02:41:30.895878Z",
+   "liquidity_usd": 3090.4902,
+   "updated_utc": "2026-10-14T08:02:55.182018Z",
    "url": "https://polymarket.com/event/cs2-hero-envy-2026-10-15"
   }
  ],
@@ -426,18 +342,6 @@
  ],
  "errors": [],
  "search_log": [
-  {
-   "fixture_id": "1079621",
-   "events": 1,
-   "matched": "cs2-gothic-lavked-2026-10-14",
-   "how": "names+kickoff"
-  },
-  {
-   "fixture_id": "1081111",
-   "events": 1,
-   "matched": "cs2-enjoy-b8acad-2026-10-14",
-   "how": "names+kickoff"
-  },
   {
    "fixture_id": "1080176",
    "events": 4,
@@ -595,5 +499,5 @@
    "how": "names+kickoff"
   }
  ],
- "matched_fixtures": 11
+ "matched_fixtures": 9
 }
