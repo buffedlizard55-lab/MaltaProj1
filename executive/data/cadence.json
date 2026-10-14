@@ -1,0 +1,15 @@
+{
+ "generated_utc": "2026-10-14T04:20:13Z",
+ "event": "local",
+ "run_id": "",
+ "run_attempt": "",
+ "sha": "",
+ "workflow": ".github/workflows/executive-5545dbb8.yml",
+ "schedule_cron": "33 */4 * * *",
+ "cadence_hours": 4,
+ "cadence_window_hours": [
+  4,
+  8
+ ],
+ "note": "Refreshed on the cron above; GitHub treats scheduled runs as best-effort under load, so the workflow also runs on every push to main that touches the collector, the builder or the data. If this file is older than 8 h the site says so rather than presenting stale numbers as live."
+}

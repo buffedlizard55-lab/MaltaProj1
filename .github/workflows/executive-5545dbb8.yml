@@ -16,8 +16,10 @@ name: Executive board refresh (5545dbb8)
 
 on:
   schedule:
-    # Hourly. GitHub schedules are best-effort and can be delayed or skipped under load.
-    - cron: "17 * * * *"
+    # Every 4 hours (the brief asks for a 4-8 h refresh). GitHub treats schedule events as best-effort
+    # and can delay them under load — which is why the page publishes its own read times and the age of
+    # the snapshot instead of claiming currency, and why the push trigger below also refreshes.
+    - cron: "33 */4 * * *"
   workflow_dispatch: {}
   push:
     branches: ["arena/5545dbb8-maltaproj1", "main"]
@@ -29,7 +31,12 @@ on:
       - "executive/style.css"
       - "executive/board.js"
       - "executive/aliases.json"
+      - "executive/feedline.py"
+      - "executive/ownlines.py"
       - "executive/README.md"
+      - "feeds/data/market_feed.csv"
+      - "feeds/data/capture.json"
+      - "tests/test_1b6ae823.py"
       - "scripts/5545dbb8_build.py"
       - "tests/test_5545dbb8.py"
       - ".github/workflows/executive-5545dbb8.yml"
@@ -77,6 +84,11 @@ jobs:
 
       - name: Run the repository test discovery for this session
         run: python -m unittest tests/test_5545dbb8.py -v
+
+      # Session arena/1b6ae823: the research tier, the originated line for every fixture, the secondary
+      # feed's provenance, the cadence page and the mobile landing contract. Fail-closed like the rest.
+      - name: Run the own-line / research-tier / cadence invariants
+        run: python -m unittest tests/test_1b6ae823.py -v
 
       - name: Summarise the run
         if: always()

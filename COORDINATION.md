@@ -3119,3 +3119,68 @@ console builder already reads both files, so no published number depends on it.
 - **Non-blocking runner annotations**: Node-20 action-runtime migration, upcoming ubuntu-latest migration, and a post-checkout cleanup network annotation were reported on main run 38510130411. The overall workflow, collection, invariants and public HTTPS deployment checks all concluded success. No annotation was treated as verification of a missing source value.
 
 - Release-record integration note: rebased the documentation-only follow-up onto concurrent PR #108; retained all coordination sections and their consolidated-board entry points. A pull against the older session ref briefly exposed already-merged owner commits in the draft PR diff; rebasing onto current main removed those duplicates before merge. No owner datasets were changed or republished by this session.
+
+---
+
+## Session `arena/1b6ae823` (`arena/1b6ae823-maltaproj1`) — claim (2026-10-14 03:58 UTC)
+
+- **Session ID**: `arena/1b6ae823` · **Branch**: `arena/1b6ae823-maltaproj1` (Arena-fixed; no other branch will be used).
+- **Coordination check before claiming**: read this board in full (2,835 lines, 30+ prior session records).
+  `gh pr list --state open` → only **PR #54** (`arena/9920c263`, `picks/**`, last touched 2026-10-13 22:47Z —
+  >6 h with no commits, DIRTY) and `gh run list` → `arena/bdc98a9a` is running its own
+  *Source re-read verification* workflow (`exec/**` + `reviews/**`, no root/board files). Neither scope is touched here.
+- **Adopted-scope note**: session `arena/5545dbb8` recorded E-01…E-06 as **done** (PR #100/#101 merged, Pages verified),
+  so `executive/**` and `.github/workflows/executive-5545dbb8.yml` are unclaimed. This session takes them over as the
+  canonical board rather than publishing an eleventh duplicate board — the user's brief is that the site is confusing.
+  Prior boards (`picks-full/`, `every/`, `everypick/`, `exec/`, `cs2/`, `feeds/`, `slate/`, `docs/`, `site/`, `hub.html`, …)
+  are **left in place, byte-for-byte**; they stay reachable from the landing page's "All boards" archive section.
+- **No file owned by another in-flight session is edited**: `cs2/**`, `model/**`, `slate/**`, `oct14/**`, `open-slate/**`,
+  `live/**`, `docs/**`, `data/**`, `picks/**`, `exec/**`, `reviews/**` (other sessions' reports) are read-only inputs.
+
+| ID | Task | Status | Owner | Exclusive file scope |
+|----|------|--------|-------|----------------------|--------|
+| H-01 | Root `index.html` consolidated as **one** mobile-first executive summary: what is on the board right now, where the picks are (in-site links), tier counts, snapshot freshness, links by category, and an archive list of every prior board so no work or link is lost | **in progress** | arena/1b6ae823 | root `index.html` |
+| H-02 | **Research tier for matches no book prices**: new `executive/` collector for official recent-results data (HLTV team-page match history + Liquipedia Cargo API) and a 5th basis tier "Research · recent official results" that originates a probability for low-tier fixtures the featured route cannot resolve; own line published for **every** fixture; new flags; `executive/tests.py` invariants extended so the research line is re-derivable from the stored rows | **in progress** | arena/1b6ae823 | `executive/**`, `tests/test_1b6ae823.py` (new), `scripts/5545dbb8_build.py` (if a new step is needed) |
+| H-03 | **Refresh cadence**: retune the board's workflow to the requested 4–8 h window, and record why the repo's 15 scheduled workflows starve each other; add a published cadence page (last refresh, next slot, run links) | **in progress** | arena/1b6ae823 | `.github/workflows/executive-5545dbb8.yml`, `executive/cadence.html` (generated inside H-02's builder) |
+| H-04 | Line-by-line verification of the 28 open fixtures against official sources + repo review findings; `reviews/1b6ae823-verification.md`; anything unconfirmed stays blank and is published on `executive/flagged.html` | **in progress** | arena/1b6ae823 | `reviews/1b6ae823-verification.md` |
+| H-05 | Integration: rebase on `origin/main`, open PR → `main`, merge without waiting for approval, confirm the Pages deploy, record PR/merge + this board's completion log | pending (after H-01…H-04) | arena/1b6ae823 | `COORDINATION.md` (this section, append-only) |
+### Merge-conflict log (append-only) — root `index.html` and this board, 2026-10-14 04:2x UTC
+
+- **What happened**: while `arena/1b6ae823` was mid-flight on H-01 (root landing), session `arena/43c32386`
+  published PR #104, which also consolidates root `index.html` (+ `css/landing.css`, `js/landing.js`,
+  `tests/test_landing_43c32386.py`). The claim timestamps overlap (their section header says 03:55Z, their
+  claim commit landed 04:06:04Z; this session's claim commit landed 03:59:13Z), so neither side can be
+  described as having taken an already-claimed path. Both boards were live on `main` at once.
+- **Resolution — no work discarded**: `index.html` keeps **their** consolidated landing (it is what Pages is
+  serving, it passed their Chromium checks at 320/390/768/1280 px, and their repository test asserts the
+  `css/landing.css` + `js/landing.js` contract). This session's landing rewrite is **not** forced over it.
+  `arena/1b6ae823` adds, in the same file and without changing their structure, claims or counts: a link to the
+  new `executive/cadence.html` refresh page and one sentence recording that the executive board now originates
+  a line for every fixture and consumes the hourly secondary feed. Everything else in this session's PR is
+  inside `executive/**`, `tests/test_1b6ae823.py`, `reviews/1b6ae823-verification.md` and
+  `.github/workflows/executive-5545dbb8.yml` — paths no other session was editing.
+- **COORDINATION.md**: conflicted once (both sessions appending). Resolved by taking `main`'s file and
+  re-appending this session's section verbatim; no other session's text removed.
+- **Scope discipline kept**: `picks/**`, `reread/**`, `exec/**`, `every/**`, `picks-full/**`, `data/**`,
+  `model/**`, `slate/**`, `cs2/**` were read-only here; `feeds/data/market_feed.csv` is *consumed* read-only
+  (never written) by `executive/feedline.py`, which is recorded on `executive/sources.html`.
+
+### Completion record (append-only) — session `arena/1b6ae823`, 2026-10-14 04:35 UTC
+
+| ID | Status | Result |
+|----|--------|--------|
+| H-01 | **done** | Claim written, committed and pushed before any work; scope never left `executive/**`, `tests/test_1b6ae823.py`, `reviews/1b6ae823-verification.md`, `.github/workflows/executive-5545dbb8.yml`, this board, and two additive lines in the shared root `index.html`. `console/**` + `status/report.json` were rewritten as a side effect of running `scripts/audit_91e444dd.py` and were **returned to `main`'s content** in commit "return console/** and status/report.json to main" before the PR, so this branch changes nothing it does not own. |
+| H-02 | **done** | Full reverse-engineered slate: 89 CS2 fixtures from the Angular `TransferState` payload of `/cs2-pickems` + `/lobby` (identity, tier, offered points, exact UTC lock epochs). Hotspawn crowd percentages are dropped at ingest; `executive/tests.py` and `tests/test_1b6ae823.py` both fail a build that stores one. Refresh cadence retuned to **`33 */4 * * *` (4 h, inside the requested 4–8 h window)** with `executive/cadence.html` publishing the cron, the run id and the age of every input; a snapshot older than 8 h announces itself instead of passing as live. |
+| H-03 | **done** | **28/28 open fixtures carry a pick and a probability for both sides**, including the low-tier ones no book covers. Ladder: T1 Pinnacle de-vig (5) · T2 secondary public listing (20) · T3 own line from the official HLTV ranking (2) · T4 provisional floor bound (1). `executive/feedline.py` reads this site's own hourly feed (`feeds/data/market_feed.csv`, read-only) so those rows get priced rather than left blank; malformed/refused feed rows are refused, never coerced. |
+| H-04 | **done** | Outside probabilities only: Pinnacle guest markets, EGamersWorld, Polymarket, bo3.gg-relayed Thunderpick rows, Valve Regional Standings and the HLTV world ranking; **our own lines originated for all 28 open rows** (`executive/ownlines.py`, `own_*` columns, `own-lines.html`, methodology §4b). Per-map `p = 1/(1+10^((rank_b−rank_a)/212))` with the scale **fitted at build time** on 18 fixtures an outside book prices (MAE 8.44 pp) and converted to the stated series length; gaps >15 pp against the market raise `FL-OWN-LINE-MARKET-SPLIT` and 4 direction reversals are published, not reconciled. Mobile: every page is one-column, the pick and both probabilities sit in the first line of each row, and the picks page leads with them. |
+| H-05 | **done** | `reviews/1b6ae823-verification.md` — line-by-line table of all 28 open rows (source link each row carries, flags, priced vs originated numbers) plus six independent re-reads: HLTV ranking #1-6/#17/#59 identical to the capture; EGamersWorld Gothic–Lavked 2.05/1.64 + "Bo3" confirmed (this drove the format change below); all 12 live lobby cards matched by id and UTC start; Astralis–Sashi 1.09/6.33 → 1.07/6.25 re-read (0.1 pp drift, pick unchanged); 29/32 cross-source agreements within 5 pp; lock-time difference (payload start−360 s vs UI ≈−30 s) explained and kept conservative. Sources that refused are logged with the HTTP status. |
+| — | **done** | **Stated series lengths on open rows 16/28 → 25/28**: the builder now reads the length off any accepted outside page for the fixture (the listing pricing the row first, then a sibling quote for the same pairing), each linked; the 3 with no stated length stay blank + `FL-FORMAT-UNKNOWN`. |
+| — | **done** | Gates before the PR: `executive/tests.py` **15 passed / 0 failed** · `tests/test_1b6ae823.py` **24 OK** · whole repo `python3 -m unittest discover -s tests` **267 OK** · executive internal links **195 checked / 0 broken** · `scripts/audit_91e444dd.py` **209 pages / 0 link errors / 53 findings** (all pre-existing, other boards). |
+
+**Landing-page race, resolved without discarding anyone:** root `index.html` was rewritten by both this session and `arena/43c32386` (PR #104, live on Pages, guarded by `tests/test_landing_43c32386.py`). Their page is the landing; this session's two edits to it are additive (a `executive/cadence.html` card in the categories strip; one dated sentence in the "What is — and is not — verified?" notice). This session's full hub is published at `executive/index.html`. A second conflict on this board while opening PR #112 (main had PR #109) was resolved by concatenation — no section from either side was dropped.
+
+**Second conflict log (this merge):** `COORDINATION.md` only; taken `origin/main`'s content plus this session's `arena/1b6ae823` section re-appended verbatim. `index.html` auto-merged (their PR #109 landing change + our two additive lines coexist); `tests/test_landing_43c32386.py` and `tests/test_1b6ae823.py` were both re-run after the merge and pass.
+
+**Deliverable / integration:** PR **https://github.com/buffedlizard55-lab/MaltaProj1/pull/112** (branch `arena/1b6ae823-maltaproj1`, base `main`) — merged without waiting for review per the protocol; the merge commit and the Pages deployment check are recorded in the commit immediately after this one. Flagged items do not block it and are published at `executive/flagged.html`.
+
+**Open gaps handed to the next session (do not "fix" by guessing):** `1079624` FORZE Reload v LFO 10 has no accepted outside price (LFO 10 absent from every ranking → bound); 4 direction conflicts; 59 stale June-dated fixtures Hotspawn never closed; 3 open rows with no stated series length; `FL-RATINGS-WEEK-OLD` is unavoidable while the newest global standings file is `standings_global_2026_10_05.md`; HLTV `/matches/<id>` 403s and Pinnacle's per-match pages 500 from non-browser clients, so results-based research stays dead; `gh workflow run` returns 403 for the session token, and this board's workflow is triggered only on `main`/`arena/5545dbb8-maltaproj1`, so a branch run of the live path is not possible from here.

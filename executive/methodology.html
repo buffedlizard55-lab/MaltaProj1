@@ -14,14 +14,14 @@
   <div class="topbar__inner">
     <a class="brand" href="index.html"><span class="brand__mark">◎</span><span class="brand__text">Hotspawn CS2 · independent lines</span></a>
     <div class="topbar__meta">
-      <strong>Snapshot is 0.0 h old</strong>
-      <span class="muted">2026-10-14T03:26Z (live)</span>
+      <strong>Snapshot is 8.7 h old</strong>
+      <span class="muted">2026-10-14T02:06Z (repo_capture)</span>
     </div>
   </div>
-  <nav class="nav" aria-label="Sections"><a class="nav__link" href="index.html">Summary</a><a class="nav__link" href="picks.html">All picks</a><a class="nav__link" href="lines.html">Betting lines</a><a class="nav__link" href="own-lines.html">Our lines</a><a class="nav__link" href="tournaments.html">Tournaments</a><a class="nav__link" href="coverage.html">Coverage</a><a class="nav__link" href="verification.html">Verification</a><a class="nav__link" href="sources.html">Sources</a><a class="nav__link nav__link--active" href="methodology.html">Method</a><a class="nav__link" href="flagged.html">Flagged</a></nav>
+  <nav class="nav" aria-label="Sections"><a class="nav__link" href="index.html">Summary</a><a class="nav__link" href="picks.html">All picks</a><a class="nav__link" href="lines.html">Betting lines</a><a class="nav__link" href="own-lines.html">Our lines</a><a class="nav__link" href="tournaments.html">Tournaments</a><a class="nav__link" href="coverage.html">Coverage</a><a class="nav__link" href="cadence.html">Refresh</a><a class="nav__link" href="verification.html">Verification</a><a class="nav__link" href="sources.html">Sources</a><a class="nav__link nav__link--active" href="methodology.html">Method</a><a class="nav__link" href="flagged.html">Flagged</a></nav>
 </header>
 <main id="main" class="wrap">
-
+<div class="banner" role="status"><strong>Snapshot is 8.7 h old.</strong> Prices shown are the last readable capture — each row prints its own read time. The scheduled refresh replaces this snapshot with a live read; nothing here is presented as a current price until it is.</div>
 
 <section class="hero hero--tight">
   <p class="eyebrow">Method</p>
@@ -66,6 +66,35 @@ Elisa BreakOut, Svenska CS-Ligan). For those:</p>
   no pick and carries the flag for review. Nothing is filled in.</li>
 </ul>
 
+<h2>4b. The ranking line for matches nothing else resolves (session <code>1b6ae823</code>)</h2>
+<p>Most fixtures on the lower tiers are not priced by any book, and the standings file in §3 only reaches the
+teams Valve ranks. The research tier therefore uses the <strong>official HLTV world ranking</strong> — the same
+list every outlet quotes — and only its <em>rank numbers</em>:</p>
+<ul>
+  <li>per-map probability <code>p = 1/(1+10^((rank_b−rank_a)/S))</code> with a higher-is-better strength of
+  <code>{rank places − team rank}</code>, so the scale stays in ranking places;</li>
+  <li><code>S</code> = 212.0 places for a
+  90% per-map favourite, <strong>fitted</strong> on the 18
+  fixtures on this board that an outside market prices (lowest mean absolute error over a whole-number grid
+  5–400; mean absolute error
+  8.441 pp against those prices). Where there
+  are too few priced fixtures to fit, the documented default 100 is used and the page says so;</li>
+  <li>a per-map line is then converted to the stated series length with the exact closed form
+  <code>BO1 = p</code>, <code>BO3 = 3p²−2p³</code>, <code>BO5 = 10p³−15p⁴+6p⁵</code>. Series length is used only
+  when a source states it (Hotspawn never does); where the listing that prices the fixture prints a length, the
+  row links to that listing and carries <code>FL-FORMAT-FROM-LISTING</code>;</li>
+  <li>a team absent from the ranking is bounded <strong>one place below the last ranked team in that same
+  official list</strong> (245) and the row is flagged
+  <code>FL-RANK-FLOOR-BOUND</code> — a bound, never an invented rating;</li>
+  <li>this line only becomes the headline where tiers 1–3 are unavailable, and it is always badged
+  T5 research line / <code>FL-RESEARCH-BASIS</code>. Where a price <em>does</em> exist, the line is published
+  beside it as a cross-check, and a gap over 15 points is flagged
+  <code>FL-OWN-LINE-MARKET-SPLIT</code> rather than averaged away.</li>
+</ul>
+<p class="muted small">Every one of these numbers is re-derived by <code>executive/tests.py</code> and
+<code>tests/test_1b6ae823.py</code> from the stored ranking and price files before a snapshot is published, so a
+page can never print a value its own inputs do not produce.</p>
+
 <h2>5. What this board does not claim</h2>
 <ul>
   <li>It is not betting advice, and no number here is an offer you can take.</li>
@@ -87,7 +116,7 @@ Elisa BreakOut, Svenska CS-Ligan). For those:</p>
   probability input. Values that no source confirms stay blank and are listed on
   <a href="flagged.html">Flagged for review</a>.</p>
   <p class="muted">Built by the executive-board session from <a href="sources.html">these sources</a>.
-  Snapshot 2026-10-14T03:28:20Z · capture 2026-10-14T03:26:31Z ·
+  Snapshot 2026-10-14T04:23:08Z · capture 2026-10-13T19:42:13Z ·
   <a href="../index.html">all boards on this site</a></p>
 </footer>
 <script src="board.js" defer></script>
