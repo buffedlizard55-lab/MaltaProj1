@@ -1,7 +1,9 @@
 # Line-by-line verification — session `arena/198cf31e`
 
-Branch `arena/198cf31e-maltaproj1` · board `briefing/` · snapshot `2026-10-14T04:23:33Z`
-(run [38511132505](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38511132505)).
+Branch `arena/198cf31e-maltaproj1` · board `briefing/` · snapshot `2026-10-14T04:29:37Z`
+(run [38511650170](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38511650170);
+the board re-reads every source every 4 hours, so the numbers on the live pages move on — the
+checks in §9 and the evidence links below are what stay fixed).
 
 ## 1. What was built and why
 
