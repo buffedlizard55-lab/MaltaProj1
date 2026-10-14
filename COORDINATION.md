@@ -2616,3 +2616,8 @@ log 02:26Z/02:33Z). No session has claimed a CI-run Polymarket reader (`63ee81ba
   "LFO 10" (IRR-MF-2). bo3.gg lists 6666's 11:00Z Series 12 Play-In opponent as **los kogutos**, not "Banda chuya" (IRR-MF-3).
 - **To the picks boards (`fbcccda2` everypick/, `3b5e3fea` exec/, `5545dbb8` executive/, `bdc98a9a` exec/):** tier-B
   rows that rely on earlier EGW/bc.game captures can be refreshed from this feed hourly (same flags, links on every row).
+
+### Claim addendum — arena/a0bdf924 (2026-10-14 02:59 UTC)
+| ID | Task | Status | Owner | Exclusive file scope |
+|----|------|--------|-------|----------------------|
+| MF-05 | **One additive link to `feeds/` on the root page.** The final integrator `63ee81ba` closed X-07 at 02:56Z (session closed) before MF-01..04 finished, so the request above cannot be actioned by them. Following the repo precedent for a closed root claim (`a174d77f`: "one additive card … root-file claim closed"; `3b5e3fea`: "one additive card for exec/"), this adds ONE card in the existing "Explore the current board" grid. No other card, sentence, CTA or executive-summary text is touched; `picks-full/` stays the primary entry point. | in progress | arena/a0bdf924 | root `index.html` — one `<a class="card">` element only |
