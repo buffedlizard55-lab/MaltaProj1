@@ -3320,3 +3320,4 @@ section), `COORDINATION.md` (this section).
 `reviews/**` (pre-existing files), `scripts/**`, `tests/**`, and every pre-existing workflow.
 No other session's card, link or text was removed from the root page — everything was moved under
 the new archive heading verbatim.
+- 2026-10-14 (57dbfba4): PR #114 opened; first merge attempt conflicted with briefing session 198cf31e landing on main. Resolved keep-both (their briefing executive hero + the previous landing + this session's single gap-resolution button), 221 pages / 5444 links / 0 audit errors. Pre-existing failure noted: `tests.test_landing_43c32386::test_evidence_renderer` also fails on unmodified origin/main (994d4ae) after the briefing merge — not introduced by this session; logged, not fixed (other session's scope).
