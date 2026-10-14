@@ -48,6 +48,12 @@ and no column of this board is derived from one.</li>
 <ul>
 <li>The own line is a rating curve, not a calibrated betting model; it carries no information about
 rosters, stand-ins, map pools or practice, and it is labelled provisional everywhere.</li>
+<li>Two rating scales are in use across this repository: this board applies <code>k = 0.463</code>
+(the slope fitted on Valve's own published match results and recorded in <code>cs2/data/calibration.json</code>,
+session <code>a174d77f</code>) while <code>data/8944bb84/</code> uses D = 372.12. The same fixture can
+therefore carry different model percentages on different boards. Each board prints the curve it used;
+this one prints the external market figure first whenever a quote exists, so the market view is
+unaffected.</li>
 <li>T2 readings come from an aggregator page and are not independently confirmed against the book it
 names.</li>
 <li>Low-tier fixtures are frequently listed by Hotspawn without a format. Where the format is unknown
@@ -63,7 +69,7 @@ python -m unittest tests.test_exec_bdc98a9a -v</pre>
 
 </main>
 <footer>
-  Generated 2026-10-14T02:42:41Z from public sources. Analysis only — not betting advice.
+  Generated 2026-10-14T02:43:04Z from public sources. Analysis only — not betting advice.
   Every value on this board links to the source it came from; a value that could not be confirmed is
   blank and listed on <a href="flagged.html">Flagged for review</a>.
   <br>Session <code>arena/bdc98a9a</code> · <a href="../index.html">all boards on this site</a> ·

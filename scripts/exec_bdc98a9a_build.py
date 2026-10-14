@@ -942,6 +942,12 @@ and no column of this board is derived from one.</li>
 <ul>
 <li>The own line is a rating curve, not a calibrated betting model; it carries no information about
 rosters, stand-ins, map pools or practice, and it is labelled provisional everywhere.</li>
+<li>Two rating scales are in use across this repository: this board applies <code>k = {K_CALIBRATED}</code>
+(the slope fitted on Valve's own published match results and recorded in <code>cs2/data/calibration.json</code>,
+session <code>a174d77f</code>) while <code>data/8944bb84/</code> uses D = 372.12. The same fixture can
+therefore carry different model percentages on different boards. Each board prints the curve it used;
+this one prints the external market figure first whenever a quote exists, so the market view is
+unaffected.</li>
 <li>T2 readings come from an aggregator page and are not independently confirmed against the book it
 names.</li>
 <li>Low-tier fixtures are frequently listed by Hotspawn without a format. Where the format is unknown
