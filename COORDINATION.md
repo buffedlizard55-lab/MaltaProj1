@@ -1873,7 +1873,7 @@ Root/README edits are final-integration-only; all prior dashboard links will rem
 |---|---|---|---|---|
 | H-01 | Audit current board line by line, harden strict source matching/freshness and independent model labelling; record source-access limits | done | arena/a9a0c2f1 | `slate/**`, `reviews/current-board-a9a0c2f1.md` (new) |
 | H-02 | Fail-closed transactional refresh publication, fresh Actions capture and regression tests | done | arena/a9a0c2f1 | `.github/workflows/slate-180a42a0.yml`, `slate/**` |
-| H-03 | Simplify root landing/current documentation; complete tests/link audit, PR merge, Pages confirmation | in progress | arena/a9a0c2f1 | `index.html`, `README.md`, this board section |
+| H-03 | Simplify root landing/current documentation; complete tests/link audit, PR merge, Pages confirmation | done | arena/a9a0c2f1 | `index.html`, `README.md`, this board section |
 
 Observed before work: Pages official API reports main:/ built; current slate generated 2026-10-13T23:54:05Z.
 Official Actions API reports model run 38489574648 failing in its test step (not a slate job).
@@ -2214,3 +2214,39 @@ the slate auto-refresh commit). No other session has pushed in >2 hours, so all 
   (created 2026-10-14T02:12:17Z); Pages API reports `main:/` **built**. Sandbox still cannot fetch `*.github.io`
   pages directly (network allowlist), so the live-page evidence is the Pages build record plus the byte-identical
   page in `main`'s tree.
+
+## Release record — arena/a9a0c2f1 (2026-10-14 UTC)
+
+| Task | Status | Evidence |
+|---|---|---|
+| H-01 current-board line-by-line review and hardening | done | `reviews/current-board-a9a0c2f1.md`, `slate/flagged.html`, per-row official sources and fetch provenance |
+| H-02 gated hourly automatic refresh | done | Branch run 38499658766 and post-merge **main run 38500324242 both succeeded** |
+| H-03 final integration, PR merge, Pages and public response confirmation | done | PR #73 merged; Pages and actual public HTTPS verified below |
+
+- **PR #73:** https://github.com/buffedlizard55-lab/MaltaProj1/pull/73 — **MERGED 2026-10-14T02:18:14Z**,
+  merge commit `127caf4524409706ae2ca57f0b79a35fba151399`. Explicit `gh pr merge 73 --merge`, exit 0,
+  no `--auto`, no approval wait. Both PR checks (`audit`, `verify`) passed; mergeable/clean beforehand.
+- **Initial Pages deployment:** run **38500323181** — success, exactly the PR merge SHA. Official Pages API
+  reports `built`, `main:/`, public HTTPS site https://buffedlizard55-lab.github.io/MaltaProj1/ .
+- **Post-merge automatic refresh:** https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38500324242
+  — **success**, including all collection/build/test/browser gates, data commit to main, explicit Pages build
+  request and **Confirm actual public Pages responses after deployment**. The GitHub runner fetched real public
+  root, `slate/cs2.html`, `slate/flagged.html`, and `slate/data/coverage.json` with HTTP 200, checked the expected
+  new landing/model-warning/Flagged content, and required a snapshot at least as new as the validated capture.
+  This is a real public-response check, not an inference from a green build; this workspace cannot directly
+  reach the Pages host. Run logs/artifacts preserve that evidence.
+- **Published capture `2026-10-14T02:23:08Z`:** 381 union payload rows;
+  88 game-associated CS2 rows, 28 open;
+  5 qualifying primary quotes/picks,
+  20 provisional map estimates and
+  4 sourced-format series estimates. Lobby-only
+  unclassified rows remain visible in inventory/CS2 review/Flagged instead of being inferred or omitted.
+- **No manual input needed:** main's hourly cron and code-change trigger collect and publish after validation;
+  GitHub scheduling is best-effort. Required-source failure preserves last good data, optional-source errors
+  leave blanks/flags, and browser checks suppress stale/locked picks. Hotspawn crowd percentages never drive
+  forecasts. Source refusals, missing inputs, provisional calibration and header/payload discrepancies remain
+  published review items, not fake verified data or merge blockers.
+- Concurrent PRs #71/#72/#75/#76/#77/#78/#80 integrated without modifying owner files; append conflicts
+  preserved both boards, generated comparisons rebuilt. Fixed branch only; no other branch created or pushed.
+- Final release-log changes are documentation only; source code and public site already validated above.
+  Session has no further planned code changes after recording this release.
