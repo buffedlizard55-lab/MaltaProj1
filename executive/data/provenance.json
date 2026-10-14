@@ -1,82 +1,100 @@
 {
- "generated_utc": "2026-10-14T03:04:30Z",
- "offline": true,
+ "generated_utc": "2026-10-14T03:06:44Z",
+ "offline": false,
  "fetches": [
   {
-   "url": "/home/user/MaltaProj1/model/input/hotspawn_cs2_fixtures.json",
-   "fetched_utc": "2026-10-14T03:03:53Z",
+   "url": "https://play.hotspawn.com/cs2-pickems",
+   "fetched_utc": "2026-10-14T03:04:48Z",
    "status": 200,
-   "bytes": 70766,
-   "sha256": null,
-   "mode": "repo_capture",
-   "note": "offline/repo fallback snapshot captured 2026-10-14T02:06:30Z"
+   "bytes": 406883,
+   "sha256": "6ef14a6a2a3fbfb37468382734dbef5f05b022822cbb61c378918e63f67c33c1",
+   "mode": "live",
+   "note": null
+  },
+  {
+   "url": "https://play.hotspawn.com/lobby",
+   "fetched_utc": "2026-10-14T03:04:49Z",
+   "status": 200,
+   "bytes": 408057,
+   "sha256": "2ecdeec301126c0bcb297f2a0be0333ca18c1490936979460f6445a4b6756f59",
+   "mode": "live",
+   "note": null
+  },
+  {
+   "url": "https://play.hotspawn.com/thp-pickems",
+   "fetched_utc": "2026-10-14T03:04:50Z",
+   "status": 200,
+   "bytes": 209373,
+   "sha256": "9cf95e5f512456a2b74429a15f6ca54d5a91a507b6c1eab88eea7f20b14aa3cd",
+   "mode": "live",
+   "note": null
+  },
+  {
+   "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
+   "fetched_utc": "2026-10-14T03:04:55Z",
+   "status": 200,
+   "bytes": 77861,
+   "sha256": "df96e7fc3cd91a2687ec08cac0128e50cc4e4e55346581679572e881d79ae61b",
+   "mode": "live",
+   "note": "official Valve standings, commit eec4853d7b"
   },
   {
    "url": "https://www.hltv.org/ranking/teams",
-   "fetched_utc": "2026-10-14T03:03:59Z",
-   "status": 0,
-   "bytes": null,
-   "sha256": null,
+   "fetched_utc": "2026-10-14T03:04:56Z",
+   "status": 200,
+   "bytes": 1030515,
+   "sha256": "b4f5797c0409c71bcfa66796c86c70f98ce4840d256cc516442ccfd6e0efbc59",
    "mode": "live",
-   "note": "HLTV ranking read failed"
-  },
-  {
-   "url": "https://www.hltv.org/ranking/teams/2026/october/12",
-   "fetched_utc": "2026-10-14T03:04:05Z",
-   "status": 0,
-   "bytes": null,
-   "sha256": null,
-   "mode": "live",
-   "note": "HLTV ranking read failed"
-  },
-  {
-   "url": "https://www.hltv.org/ranking/teams/2026/october/5",
-   "fetched_utc": "2026-10-14T03:04:11Z",
-   "status": 0,
-   "bytes": null,
-   "sha256": null,
-   "mode": "live",
-   "note": "HLTV ranking read failed"
-  },
-  {
-   "url": "https://www.hltv.org/ranking/teams/2026/september/28",
-   "fetched_utc": "2026-10-14T03:04:17Z",
-   "status": 0,
-   "bytes": null,
-   "sha256": null,
-   "mode": "live",
-   "note": "HLTV ranking read failed"
+   "note": null
   },
   {
    "url": "https://www.hltv.org/matches",
-   "fetched_utc": "2026-10-14T03:04:23Z",
-   "status": 0,
-   "bytes": 69,
-   "sha256": "6e2ececaded4630b7a8888c18c8e58543dee0da33800091aeb5cbea496e69426",
+   "fetched_utc": "2026-10-14T03:04:59Z",
+   "status": 403,
+   "bytes": null,
+   "sha256": null,
    "mode": "live",
    "note": null
   },
   {
    "url": "https://www.hltv.org/results",
-   "fetched_utc": "2026-10-14T03:04:29Z",
-   "status": 0,
-   "bytes": 69,
-   "sha256": "6e2ececaded4630b7a8888c18c8e58543dee0da33800091aeb5cbea496e69426",
+   "fetched_utc": "2026-10-14T03:05:00Z",
+   "status": 200,
+   "bytes": 270897,
+   "sha256": "6e0da02cae0623a0b52e24cadccc9ad501c917c1ce20e537998a9bbecd145e0a",
    "mode": "live",
    "note": null
   },
   {
-   "url": "/home/user/MaltaProj1/data/snapshot/latest.json",
-   "fetched_utc": "2026-10-14T03:04:29Z",
+   "url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/matchups",
+   "fetched_utc": "2026-10-14T03:05:00Z",
    "status": 200,
-   "bytes": 958210,
-   "sha256": null,
-   "mode": "repo_capture",
-   "note": "repo Pinnacle capture generated 2026-10-13T19:42:13.725774Z"
+   "bytes": 718205,
+   "sha256": "73c82c089f4beca74a40057a7c4ad2e2830c8f9f845da89bc3328d492af2f973",
+   "mode": "live",
+   "note": "Pinnacle public guest response (same endpoint pinnacle.com's own page loads)"
   },
   {
-   "url": "/home/user/MaltaProj1/data/8944bb84/external_lines.csv",
-   "fetched_utc": "2026-10-14T03:04:29Z",
+   "url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
+   "fetched_utc": "2026-10-14T03:05:00Z",
+   "status": 200,
+   "bytes": 561231,
+   "sha256": "9bb3816fc905e2e922fa47b1ce395afbeff6fd7ad51883c7c5d632625560eae7",
+   "mode": "live",
+   "note": "Pinnacle public guest response (same endpoint pinnacle.com's own page loads)"
+  },
+  {
+   "url": "https://egamersworld.com/counterstrike/matches",
+   "fetched_utc": "2026-10-14T03:05:03Z",
+   "status": 403,
+   "bytes": null,
+   "sha256": null,
+   "mode": "live",
+   "note": null
+  },
+  {
+   "url": "/home/runner/work/MaltaProj1/MaltaProj1/data/8944bb84/external_lines.csv",
+   "fetched_utc": "2026-10-14T03:05:03Z",
    "status": 200,
    "bytes": 18150,
    "sha256": null,
@@ -84,13 +102,526 @@
    "note": "repo secondary-bookmaker capture (EGamersWorld listing of bc.game prices)"
   },
   {
-   "url": "/home/user/MaltaProj1/data/8944bb84/ratings.csv",
-   "fetched_utc": "2026-10-14T03:04:29Z",
+   "url": "/home/runner/work/MaltaProj1/MaltaProj1/data/8944bb84/ratings.csv",
+   "fetched_utc": "2026-10-14T03:05:03Z",
    "status": 200,
    "bytes": 63343,
    "sha256": null,
    "mode": "repo_capture",
    "note": "repo HLTV team rosters capture (read-only)"
+  },
+  {
+   "url": "https://www.hltv.org/ranking/teams/2026/october/12",
+   "fetched_utc": "2026-10-14T03:05:04Z",
+   "status": 200,
+   "bytes": 1031321,
+   "sha256": "efdccd4a82d9841d9accb8b12fb786372d3c140ea78b1d7e6daa364b8cb94b84",
+   "mode": "live",
+   "note": null
+  },
+  {
+   "url": "https://www.hltv.org/ranking/teams/2026/october/12",
+   "fetched_utc": "2026-10-14T03:05:06Z",
+   "status": 200,
+   "bytes": 1030515,
+   "sha256": "2be2007b39de787beef04d03e630aab101c13feb44cc6726a1882b97c8e5ca11",
+   "mode": "live",
+   "note": "HLTV team page: honest-UA read used for upcoming-match links and data-unix stamps"
+  },
+  {
+   "url": "https://www.hltv.org/team/10254/big-academy",
+   "fetched_utc": "2026-10-14T03:05:07Z",
+   "status": 200,
+   "bytes": 1956378,
+   "sha256": "c5512b597c7c05f1a76c0be10693e3e9b7e798dac7f0a909ba2b1588ade7b0d8",
+   "mode": "live",
+   "note": "HLTV team page: honest-UA read used for upcoming-match links and data-unix stamps"
+  },
+  {
+   "url": "https://www.hltv.org/team/10567/saw",
+   "fetched_utc": "2026-10-14T03:05:09Z",
+   "status": 200,
+   "bytes": 3816758,
+   "sha256": "fc5cad597a711d098d063f917fa49ee244ba37e57a5058de06270527bc4ea6aa",
+   "mode": "live",
+   "note": "HLTV team page: honest-UA read used for upcoming-match links and data-unix stamps"
+  },
+  {
+   "url": "https://www.hltv.org/team/10823/infinite",
+   "fetched_utc": "2026-10-14T03:05:11Z",
+   "status": 200,
+   "bytes": 1563129,
+   "sha256": "de92e3af19f4dae052f5bf07149801e10a88717570990ff4e773081e35918978",
+   "mode": "live",
+   "note": "HLTV team page: honest-UA read used for upcoming-match links and data-unix stamps"
+  },
+  {
+   "url": "https://www.hltv.org/team/10975/mibr-fe",
+   "fetched_utc": "2026-10-14T03:05:13Z",
+   "status": 200,
+   "bytes": 2514072,
+   "sha256": "fc2b7b64f2c6dd2dcb6b12001675732b70c676e1295d141ce97204e0de89153f",
+   "mode": "live",
+   "note": "HLTV team page: honest-UA read used for upcoming-match links and data-unix stamps"
+  },
+  {
+   "url": "https://www.hltv.org/team/10997/procyon",
+   "fetched_utc": "2026-10-14T03:05:14Z",
+   "status": 200,
+   "bytes": 1102845,
+   "sha256": "a3f904b092dd7215fbb74358d2b0d946328df1b239f67f163ee85d6e93af2557",
+   "mode": "live",
+   "note": "HLTV team page: honest-UA read used for upcoming-match links and data-unix stamps"
+  },
+  {
+   "url": "https://www.hltv.org/team/11018/megoshort",
+   "fetched_utc": "2026-10-14T03:05:16Z",
+   "status": 200,
+   "bytes": 760593,
+   "sha256": "462f31b29a484a6a3fd8b2420f89687c117fc3822ebb2d4a7a2c6e34c6db3cb3",
+   "mode": "live",
+   "note": "HLTV team page: honest-UA read used for upcoming-match links and data-unix stamps"
+  },
+  {
+   "url": "https://www.hltv.org/team/11110/honvd",
+   "fetched_utc": "2026-10-14T03:05:18Z",
+   "status": 200,
+   "bytes": 731668,
+   "sha256": "65ccbca2032e40274737a072e1e034e368708870d1a2df9425679075bea3c3da",
+   "mode": "live",
+   "note": "HLTV team page: honest-UA read used for upcoming-match links and data-unix stamps"
+  },
+  {
+   "url": "https://www.hltv.org/team/11283/falcons",
+   "fetched_utc": "2026-10-14T03:05:19Z",
+   "status": 200,
+   "bytes": 3100035,
+   "sha256": "feda55664f9670b03007fb43e7261b9bed6791ef6eaca714cba837352521bd2c",
+   "mode": "live",
+   "note": "HLTV team page: honest-UA read used for upcoming-match links and data-unix stamps"
+  },
+  {
+   "url": "https://www.hltv.org/team/11446/leo",
+   "fetched_utc": "2026-10-14T03:05:21Z",
+   "status": 200,
+   "bytes": 1312410,
+   "sha256": "71d67ead0a37872b2f6b0fae1effe01fc3b72b6acd940bf289c67293860fcc85",
+   "mode": "live",
+   "note": "HLTV team page: honest-UA read used for upcoming-match links and data-unix stamps"
+  },
+  {
+   "url": "https://www.hltv.org/team/11581/hotu",
+   "fetched_utc": "2026-10-14T03:05:23Z",
+   "status": 200,
+   "bytes": 2197600,
+   "sha256": "97125c3b0b018f7e97a4cec62ef9b293bcd50059df65f551839c4270866cced4",
+   "mode": "live",
+   "note": "HLTV team page: honest-UA read used for upcoming-match links and data-unix stamps"
+  },
+  {
+   "url": "https://www.hltv.org/team/11712/sashi",
+   "fetched_utc": "2026-10-14T03:05:25Z",
+   "status": 200,
+   "bytes": 2058067,
+   "sha256": "9f99a943587506db4d44ba2c9bbe8880f3fd0802bf51a30103244a9d4aaf2817",
+   "mode": "live",
+   "note": "HLTV team page: honest-UA read used for upcoming-match links and data-unix stamps"
+  },
+  {
+   "url": "https://www.hltv.org/team/11837/fluxo",
+   "fetched_utc": "2026-10-14T03:05:27Z",
+   "status": 200,
+   "bytes": 2417935,
+   "sha256": "05aa6d882551c131645b511b9839fed86f2b092c062bb8cb112c51d093c5573a",
+   "mode": "live",
+   "note": "HLTV team page: honest-UA read used for upcoming-match links and data-unix stamps"
+  },
+  {
+   "url": "https://www.hltv.org/team/11861/aurora",
+   "fetched_utc": "2026-10-14T03:05:29Z",
+   "status": 200,
+   "bytes": 3554920,
+   "sha256": "d2223a840fe66fb14867c9b170d34591870895262ad6b44557b28d70bf1e8f9c",
+   "mode": "live",
+   "note": "HLTV team page: honest-UA read used for upcoming-match links and data-unix stamps"
+  },
+  {
+   "url": "https://www.hltv.org/team/11933/yawara",
+   "fetched_utc": "2026-10-14T03:05:31Z",
+   "status": 200,
+   "bytes": 1900566,
+   "sha256": "e8bd004a7dc06a77796e2fd8e802499628a3e91f48ed54173992fe486de78f93",
+   "mode": "live",
+   "note": "HLTV team page: honest-UA read used for upcoming-match links and data-unix stamps"
+  },
+  {
+   "url": "https://www.hltv.org/team/12190/shimmer",
+   "fetched_utc": "2026-10-14T03:05:33Z",
+   "status": 200,
+   "bytes": 1339394,
+   "sha256": "ddc67f210d31dc3549f4c07051ce794553c3b522e91f8add982b7e0f5d617f68",
+   "mode": "live",
+   "note": "HLTV team page: honest-UA read used for upcoming-match links and data-unix stamps"
+  },
+  {
+   "url": "https://www.hltv.org/team/12394/betboom",
+   "fetched_utc": "2026-10-14T03:05:35Z",
+   "status": 200,
+   "bytes": 2991921,
+   "sha256": "7e276165071f6c0b6631a554e979f5089ca52285ed6268b5072b808855cbf1b5",
+   "mode": "live",
+   "note": "HLTV team page: honest-UA read used for upcoming-match links and data-unix stamps"
+  },
+  {
+   "url": "https://www.hltv.org/team/12457/rounds",
+   "fetched_utc": "2026-10-14T03:05:38Z",
+   "status": 200,
+   "bytes": 978192,
+   "sha256": "ce6125710bc5250e26706f2ef3c5389b8b985bd9c1551eb17179576d4255cba5",
+   "mode": "live",
+   "note": "HLTV team page: honest-UA read used for upcoming-match links and data-unix stamps"
+  },
+  {
+   "url": "https://www.hltv.org/team/12467/parivision",
+   "fetched_utc": "2026-10-14T03:05:40Z",
+   "status": 200,
+   "bytes": 2216710,
+   "sha256": "c1f4cb809e574fd74398196be7713945357e8e99a0e13f5d78532ad5e59a6cae",
+   "mode": "live",
+   "note": "HLTV team page: honest-UA read used for upcoming-match links and data-unix stamps"
+  },
+  {
+   "url": "https://www.hltv.org/team/12468/legacy",
+   "fetched_utc": "2026-10-14T03:05:41Z",
+   "status": 200,
+   "bytes": 2711777,
+   "sha256": "6d09f7e7e43c838d34b87214f9426200b5bdca6c553e40b19c4235240495745e",
+   "mode": "live",
+   "note": "HLTV team page: honest-UA read used for upcoming-match links and data-unix stamps"
+  },
+  {
+   "url": "https://www.hltv.org/team/12604/johnny-speeds",
+   "fetched_utc": "2026-10-14T03:05:43Z",
+   "status": 200,
+   "bytes": 1578318,
+   "sha256": "d5651c7700173e923c0e5ea747ea6e79b6134bd4c2bcc4c8bacba120f98a5884",
+   "mode": "live",
+   "note": "HLTV team page: honest-UA read used for upcoming-match links and data-unix stamps"
+  },
+  {
+   "url": "https://www.hltv.org/team/12609/lavked",
+   "fetched_utc": "2026-10-14T03:05:45Z",
+   "status": 200,
+   "bytes": 726371,
+   "sha256": "77b2355d828670cced5224faf9db8f501248a65063d36f3a4776858d82214cdd",
+   "mode": "live",
+   "note": "HLTV team page: honest-UA read used for upcoming-match links and data-unix stamps"
+  },
+  {
+   "url": "https://www.hltv.org/team/12776/bounty-hunters",
+   "fetched_utc": "2026-10-14T03:05:48Z",
+   "status": 200,
+   "bytes": 1760154,
+   "sha256": "0950d53d5e4a1ddb24a87dfb76daca15a5857488b4466c6f0e4793673d0942b2",
+   "mode": "live",
+   "note": "HLTV team page: honest-UA read used for upcoming-match links and data-unix stamps"
+  },
+  {
+   "url": "https://www.hltv.org/team/12857/forze-reload",
+   "fetched_utc": "2026-10-14T03:05:49Z",
+   "status": 200,
+   "bytes": 1190746,
+   "sha256": "da2a829019ee7f80666ab1b19ff1d3d14d284eb4391d59df482324589878f280",
+   "mode": "live",
+   "note": "HLTV team page: honest-UA read used for upcoming-match links and data-unix stamps"
+  },
+  {
+   "url": "https://www.hltv.org/team/12878/bcgame",
+   "fetched_utc": "2026-10-14T03:05:51Z",
+   "status": 200,
+   "bytes": 1640102,
+   "sha256": "c6571c0d719b12527627949f43b2969b94f1dc223264c8bb20c0abc6e19bd5ed",
+   "mode": "live",
+   "note": "HLTV team page: honest-UA read used for upcoming-match links and data-unix stamps"
+  },
+  {
+   "url": "https://www.hltv.org/team/12889/g2-ares",
+   "fetched_utc": "2026-10-14T03:05:53Z",
+   "status": 200,
+   "bytes": 1380118,
+   "sha256": "b8fd6a529453b8b793cbcf84d4eb17ab8608787659a0efe3ce4329784b8d9440",
+   "mode": "live",
+   "note": "HLTV team page: honest-UA read used for upcoming-match links and data-unix stamps"
+  },
+  {
+   "url": "https://www.hltv.org/team/12959/shinden",
+   "fetched_utc": "2026-10-14T03:05:54Z",
+   "status": 200,
+   "bytes": 1739125,
+   "sha256": "f7e411421402265cba0821cb9748ef158b02b09772db65a8118d183f1621638c",
+   "mode": "live",
+   "note": "HLTV team page: honest-UA read used for upcoming-match links and data-unix stamps"
+  },
+  {
+   "url": "https://www.hltv.org/team/13026/bestia-academy",
+   "fetched_utc": "2026-10-14T03:05:57Z",
+   "status": 200,
+   "bytes": 1039658,
+   "sha256": "44dfcd37a06068b0ffa4e6410bb7dc696296e0757be04d23e834ede336f3805f",
+   "mode": "live",
+   "note": "HLTV team page: honest-UA read used for upcoming-match links and data-unix stamps"
+  },
+  {
+   "url": "https://www.hltv.org/team/13054/pcific",
+   "fetched_utc": "2026-10-14T03:05:58Z",
+   "status": 200,
+   "bytes": 869776,
+   "sha256": "48e428028ab70d8718aa95167523ac3c14f6c0b6333d5d0d3ca583fb6baf1b33",
+   "mode": "live",
+   "note": "HLTV team page: honest-UA read used for upcoming-match links and data-unix stamps"
+  },
+  {
+   "url": "https://www.hltv.org/team/13117/inner-circle",
+   "fetched_utc": "2026-10-14T03:06:00Z",
+   "status": 200,
+   "bytes": 1368805,
+   "sha256": "3658aaacf760a12ec2f0f1a9b16a28bbd6e3268f76cc417789717ed40f44dd57",
+   "mode": "live",
+   "note": "HLTV team page: honest-UA read used for upcoming-match links and data-unix stamps"
+  },
+  {
+   "url": "https://www.hltv.org/team/13161/eternal-premium",
+   "fetched_utc": "2026-10-14T03:06:02Z",
+   "status": 200,
+   "bytes": 649716,
+   "sha256": "6c0cefc620d36247dcd99c30b9560d7617881f953e11af012b75c41061277b04",
+   "mode": "live",
+   "note": "HLTV team page: honest-UA read used for upcoming-match links and data-unix stamps"
+  },
+  {
+   "url": "https://www.hltv.org/team/13173/phantom",
+   "fetched_utc": "2026-10-14T03:06:03Z",
+   "status": 200,
+   "bytes": 1351568,
+   "sha256": "9d5c8cc74043c8e79ba2ed4243c83da17af43d396f48797708be92be116b559f",
+   "mode": "live",
+   "note": "HLTV team page: honest-UA read used for upcoming-match links and data-unix stamps"
+  },
+  {
+   "url": "https://www.hltv.org/team/13304/lp",
+   "fetched_utc": "2026-10-14T03:06:05Z",
+   "status": 200,
+   "bytes": 1363598,
+   "sha256": "41ff03b1bcfa297272fc18e039285643031aa37d10511143f3f10c67c293a5a4",
+   "mode": "live",
+   "note": "HLTV team page: honest-UA read used for upcoming-match links and data-unix stamps"
+  },
+  {
+   "url": "https://www.hltv.org/team/13333/astral",
+   "fetched_utc": "2026-10-14T03:06:07Z",
+   "status": 200,
+   "bytes": 1150438,
+   "sha256": "e8b657bbb0d590e13f3a54c1a10b6655bde4f1d69c44f31736314e7b06a372aa",
+   "mode": "live",
+   "note": "HLTV team page: honest-UA read used for upcoming-match links and data-unix stamps"
+  },
+  {
+   "url": "https://www.hltv.org/team/13499/voca",
+   "fetched_utc": "2026-10-14T03:06:08Z",
+   "status": 200,
+   "bytes": 1405744,
+   "sha256": "33048a49ada89a18832866757d743881e97208d09604298fbb98cbd4932f3364",
+   "mode": "live",
+   "note": "HLTV team page: honest-UA read used for upcoming-match links and data-unix stamps"
+  },
+  {
+   "url": "https://www.hltv.org/team/13518/acend",
+   "fetched_utc": "2026-10-14T03:06:10Z",
+   "status": 200,
+   "bytes": 917470,
+   "sha256": "279bae1804ab33411a26a96f7a7fe0849dbd83c4f9728f42200e08fd4e04de0e",
+   "mode": "live",
+   "note": "HLTV team page: honest-UA read used for upcoming-match links and data-unix stamps"
+  },
+  {
+   "url": "https://www.hltv.org/team/13528/misa",
+   "fetched_utc": "2026-10-14T03:06:12Z",
+   "status": 200,
+   "bytes": 773914,
+   "sha256": "0844948fc3149107a1f2336c8fa58b5d888670e5704e264e5738d23e1e331a5e",
+   "mode": "live",
+   "note": "HLTV team page: honest-UA read used for upcoming-match links and data-unix stamps"
+  },
+  {
+   "url": "https://www.hltv.org/team/13646/fortress",
+   "fetched_utc": "2026-10-14T03:06:14Z",
+   "status": 200,
+   "bytes": 561071,
+   "sha256": "b9cd6baa95fbaed3f59235a94eeb535962f216dec942d58239f2bf9885f0f9cc",
+   "mode": "live",
+   "note": "HLTV team page: honest-UA read used for upcoming-match links and data-unix stamps"
+  },
+  {
+   "url": "https://www.hltv.org/team/13681/inner-circle-academy",
+   "fetched_utc": "2026-10-14T03:06:15Z",
+   "status": 200,
+   "bytes": 857040,
+   "sha256": "75cc3a5122f7c28fb8f5d19b4b896882249905912afba0ef6ecd8d6316874ed7",
+   "mode": "live",
+   "note": "HLTV team page: honest-UA read used for upcoming-match links and data-unix stamps"
+  },
+  {
+   "url": "https://www.hltv.org/team/13683/wbt",
+   "fetched_utc": "2026-10-14T03:06:17Z",
+   "status": 200,
+   "bytes": 611992,
+   "sha256": "5899965b3f72b3a0bca862f945572dfdb1af021c49e42c742a4831ff3d0ecb82",
+   "mode": "live",
+   "note": "HLTV team page: honest-UA read used for upcoming-match links and data-unix stamps"
+  },
+  {
+   "url": "https://www.hltv.org/team/13714/donstu",
+   "fetched_utc": "2026-10-14T03:06:18Z",
+   "status": 200,
+   "bytes": 841735,
+   "sha256": "d81b21a7aadbb54e118c0a0aca9adafb9114ad374a6083f51d8692cf37f1e755",
+   "mode": "live",
+   "note": "HLTV team page: honest-UA read used for upcoming-match links and data-unix stamps"
+  },
+  {
+   "url": "https://www.hltv.org/team/13732/b8-academy",
+   "fetched_utc": "2026-10-14T03:06:20Z",
+   "status": 200,
+   "bytes": 555946,
+   "sha256": "589f884e8175afcdcdc2cbc71391fd2f22be28b9e12043dc53d535fa9e0763ba",
+   "mode": "live",
+   "note": "HLTV team page: honest-UA read used for upcoming-match links and data-unix stamps"
+  },
+  {
+   "url": "https://www.hltv.org/team/13747/berg",
+   "fetched_utc": "2026-10-14T03:06:22Z",
+   "status": 200,
+   "bytes": 589225,
+   "sha256": "93c71e15954804e67fd9f042f1fc0c4fa37f327dbd8588121174eeec76035ba4",
+   "mode": "live",
+   "note": "HLTV team page: honest-UA read used for upcoming-match links and data-unix stamps"
+  },
+  {
+   "url": "https://www.hltv.org/team/13756/alka",
+   "fetched_utc": "2026-10-14T03:06:23Z",
+   "status": 200,
+   "bytes": 769534,
+   "sha256": "aae7eff79d1d0dda1594484317d671b35ca04b9a354ac2e38910d13ff46c6ab2",
+   "mode": "live",
+   "note": "HLTV team page: honest-UA read used for upcoming-match links and data-unix stamps"
+  },
+  {
+   "url": "https://www.hltv.org/team/13759/mellren",
+   "fetched_utc": "2026-10-14T03:06:25Z",
+   "status": 200,
+   "bytes": 467790,
+   "sha256": "b1bec58914b9d2a72fa505c1d5c73b9ea1ddfcc27e77c4909d30b682f8d3abbe",
+   "mode": "live",
+   "note": "HLTV team page: honest-UA read used for upcoming-match links and data-unix stamps"
+  },
+  {
+   "url": "https://www.hltv.org/team/13776/just-players",
+   "fetched_utc": "2026-10-14T03:06:27Z",
+   "status": 200,
+   "bytes": 633550,
+   "sha256": "782a3a08b61d8e03e29c3fde75002adc3f083baa03fff86223afb3f3371eabbf",
+   "mode": "live",
+   "note": "HLTV team page: honest-UA read used for upcoming-match links and data-unix stamps"
+  },
+  {
+   "url": "https://www.hltv.org/team/13795/bojong",
+   "fetched_utc": "2026-10-14T03:06:28Z",
+   "status": 200,
+   "bytes": 295266,
+   "sha256": "43bdf96dfb4fb6ad785229e5f2727bf6ffe407702680b7bb127ca07768ea4e55",
+   "mode": "live",
+   "note": "HLTV team page: honest-UA read used for upcoming-match links and data-unix stamps"
+  },
+  {
+   "url": "https://www.hltv.org/team/13808/walczaki",
+   "fetched_utc": "2026-10-14T03:06:30Z",
+   "status": 200,
+   "bytes": 1117963,
+   "sha256": "87fdcaaa668284eb4952f2a150e9a4b5ddfee7b4d7eb54656f4ae65262ecc259",
+   "mode": "live",
+   "note": "HLTV team page: honest-UA read used for upcoming-match links and data-unix stamps"
+  },
+  {
+   "url": "https://www.hltv.org/team/13838/eac",
+   "fetched_utc": "2026-10-14T03:06:32Z",
+   "status": 200,
+   "bytes": 775056,
+   "sha256": "5ab233e8085ecaafa9cb9d0653bf37273c28b1df123620916650ba23f00cc710",
+   "mode": "live",
+   "note": "HLTV team page: honest-UA read used for upcoming-match links and data-unix stamps"
+  },
+  {
+   "url": "https://www.hltv.org/team/13882/6666",
+   "fetched_utc": "2026-10-14T03:06:34Z",
+   "status": 200,
+   "bytes": 433557,
+   "sha256": "bb8050987c7f2c875082c970bb7147826346a4f8c0046b8d91c97ee9365907ce",
+   "mode": "live",
+   "note": "HLTV team page: honest-UA read used for upcoming-match links and data-unix stamps"
+  },
+  {
+   "url": "https://www.hltv.org/team/13900/banda-chuya",
+   "fetched_utc": "2026-10-14T03:06:35Z",
+   "status": 200,
+   "bytes": 204794,
+   "sha256": "367692cca0450bcbc6a6725fb01e2ff87c6880624de1008179fc88d213f8d073",
+   "mode": "live",
+   "note": "HLTV team page: honest-UA read used for upcoming-match links and data-unix stamps"
+  },
+  {
+   "url": "https://www.hltv.org/team/13901/ex-rustec",
+   "fetched_utc": "2026-10-14T03:06:37Z",
+   "status": 200,
+   "bytes": 432923,
+   "sha256": "b85291dc9ca7d09849b97c9b37a26a98d9bf147aa6c4efaf3017ad7ea38f317a",
+   "mode": "live",
+   "note": "HLTV team page: honest-UA read used for upcoming-match links and data-unix stamps"
+  },
+  {
+   "url": "https://www.hltv.org/team/13914/privateer",
+   "fetched_utc": "2026-10-14T03:06:38Z",
+   "status": 200,
+   "bytes": 484208,
+   "sha256": "196b65c70d1bd0aad512e2174fd1edbd9149aaf30a6cc9a75b4e6271e4c977bb",
+   "mode": "live",
+   "note": "HLTV team page: honest-UA read used for upcoming-match links and data-unix stamps"
+  },
+  {
+   "url": "https://www.hltv.org/team/13974/ryvex",
+   "fetched_utc": "2026-10-14T03:06:40Z",
+   "status": 200,
+   "bytes": 525924,
+   "sha256": "5bbfdff3882b2d15dc09898c6d9b0bed5dc1bfe9a36e94c3c47a5446a76266bd",
+   "mode": "live",
+   "note": "HLTV team page: honest-UA read used for upcoming-match links and data-unix stamps"
+  },
+  {
+   "url": "https://www.hltv.org/team/14008/your-end",
+   "fetched_utc": "2026-10-14T03:06:41Z",
+   "status": 200,
+   "bytes": 462554,
+   "sha256": "8fa0a70e8fd594b014cf048d38786182937a19b3a616fba419c9e138eea8ac41",
+   "mode": "live",
+   "note": "HLTV team page: honest-UA read used for upcoming-match links and data-unix stamps"
+  },
+  {
+   "url": "https://www.hltv.org/team/14014/gothic",
+   "fetched_utc": "2026-10-14T03:06:43Z",
+   "status": 200,
+   "bytes": 193048,
+   "sha256": "8fccb5c32ac92076b611bf657066cc744327f9de2b18063ed71251ed2dab5043",
+   "mode": "live",
+   "note": "HLTV team page: honest-UA read used for upcoming-match links and data-unix stamps"
   }
  ],
  "note": "Every fetch attempt: URL, UTC minute, HTTP status, byte count, SHA-256, mode."
