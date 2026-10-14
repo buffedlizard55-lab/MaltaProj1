@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sources — the ladder used for matches no book prices</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <p class="eyebrow"><a href="index.html">← executive summary</a></p>
+  <h1>Where our numbers come from</h1>
+  <p class="lede">The featured matches on the Pick'em board are priced by big bookmakers. Most of the board is
+  not: low-tier online cups often have no listed market at all. For those rows this project walks down a
+  documented ladder and stops at the first rung that answers, leaving the row blank if none does.</p>
+</header>
+<main>
+  <h2>The ladder</h2>
+  <ol class="ladder">
+    <li><strong>Direct bookmaker response</strong> — Pinnacle's public guest endpoint
+      (<code>guest.api.arcadia.pinnacle.com</code>) that its own CS2 page loads. Read on 2026-10-14 02:34 UTC
+      for this session's own verification: <em>verified reachable</em>. Whole-match moneyline only; prices are
+      American, converted to decimal, then de-vigged.</li>
+    <li><strong>Bookmaker price served through an aggregator</strong> (bc.game prices listed on EGamersWorld).
+      Used, but labelled <em>aggregator-mediated</em> on every row, and rejected outright when the listing
+      shows a placeholder pair — see the flagged page.</li>
+    <li><strong>Prediction market</strong> (Polymarket public API) — an outside market that does list some of
+      these low-tier cups. It is a market, not a bookmaker, its low-tier liquidity is thin, and its CS2 events
+      are frequently <em>per-map</em> markets, which are not a series probability. This board therefore only
+      republishes what the market itself states, with the map/series distinction kept explicit.</li>
+    <li><strong>Our own line from official ratings</strong> — Valve Regional Standings (Valve's own published
+      standings file) cross-read with the HLTV world ranking. This is the rung that covers the matches no
+      bookmaker lists; a team with neither rating leaves the row blank and flagged.</li>
+    <li><strong>Nothing</strong> — no price, no rating: the row stays blank, the reason is printed, and it is
+      listed on the flagged page. No default 50/50, ever.</li>
+  </ol>
+  <h2>Official sources this board links to</h2>
+  <ul>
+    <li>Hotspawn Pick'em board (fixture identity, kickoff and lock epochs only):
+      <a href="https://play.hotspawn.com/cs2-pickems">play.hotspawn.com/cs2-pickems</a> and
+      <a href="https://play.hotspawn.com/lobby">/lobby</a>.</li>
+    <li>Valve Regional Standings (official Valve file):
+      <a href="https://github.com/ValveSoftware/counter-strike_regional_standings">github.com/ValveSoftware/counter-strike_regional_standings</a>.</li>
+    <li>HLTV world ranking: <a href="https://www.hltv.org/ranking/teams">hltv.org/ranking/teams</a>;
+      HLTV match pages for series format and results: <a href="https://www.hltv.org/matches">hltv.org/matches</a>.</li>
+    <li>Pinnacle public guest matchups:
+      <a href="https://www.pinnacle.com/en/esports/games/cs2/matchups/">pinnacle.com/en/esports/games/cs2/matchups/</a>.</li>
+  </ul>
+  
+  <h3>Prediction market (Polymarket) — access status: not collected yet</h3>
+  <p>Endpoint read by this board's collector: <code>https://gamma-api.polymarket.com/events?tag_slug=cs2</code> at
+  . The collector runs in GitHub Actions; it cannot run in every environment.</p>
+  
+  <h2>What this board refuses to do</h2>
+  <ul>
+    <li>It never reads Hotspawn's crowd pick percentage; that is not a probability.</li>
+    <li>It never averages a market price with a model and calls the result a market price.</li>
+    <li>It never fills a missing price, rating or series format with an assumption.</li>
+    <li>It never publishes a number without the link it came from.</li>
+  </ul>
+</main>
+<footer><p><a href="index.html">Executive summary</a> · <a href="methodology.html">Method</a> ·
+<a href="flagged.html">Flagged for review</a></p></footer>
+</body>
+</html>

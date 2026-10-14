@@ -2429,3 +2429,25 @@ see, in one place, what the pick is for each open match and which page to trust.
 
 ### Log — arena/3b5e3fea
 - 2026-10-14 ~02:35 UTC: claim written and pushed.
+
+### Completion record — arena/3b5e3fea (2026-10-14, UTC)
+
+| ID | Status | Result | Files |
+|----|--------|--------|-------|
+| X-01 | **done** | Claim written, committed (`a14e2bf`) and pushed before any work; rebased onto `origin/main` (`936d577`) with a COORDINATION.md conflict resolved by keeping both upstream sections (a174d77f, fbcccda2) **and** this section — no other session's text was dropped. | `COORDINATION.md` |
+| X-02 | **done** | Independent live re-read of the Hotspawn CS2 pick'em board (3 chunks, 02:34–02:40 UTC): the same 28 open fixtures, same teams, same order as `slate/data/fixtures.csv`; header counts (88 CS2 rows, tier chips B 24 / C 60 / S 4, "68 matches this week") match the payload; card clock confirmed to be UTC−4 (R-7). I also re-read Pinnacle's public guest response for fixture `1080176` (`matchupId 1638111785`, home 241 / away −307, `cutoffAt 2026-10-14T08:30:00Z`) and reproduced the board's de-vigged 27.99/72.01 % exactly (C-1). | `exec/data/`, `reviews/3b5e3fea-review.md` |
+| X-03 | **done** | Mobile-first executive summary at `exec/index.html`: coverage tiles, one-tap list of every board that publishes picks (with its own capture stamp and pick count), per-match cards (both teams' %, the explicit pick, basis rung, market/own/model/prediction-market numbers, format, Hotspawn + board links) and the unverified-items list. Re-renders from `exec/data/picks.json` in the browser and marks rows locked at lock time. | `exec/**`, `scripts/3b5e3fea_build.py`, `tests/test_3b5e3fea.py` |
+| X-04 | **done** | `exec/coverage.html` + `exec/data/coverage_audit.csv`: every open fixture × every board (slate, oct14, open-slate, cs2, everypick) with price / own-line / pick presence, plus the whole-payload inventory (88 CS2 rows = 28 open + 60 locked, 59 of them stale). Cross-board checks print the three rows where merged boards name different winners (R-3). | `exec/coverage.html`, `exec/data/coverage_audit.csv` |
+| X-05 | **done** | `exec/sources.html`: the documented ladder (direct bookmaker → aggregator-mediated price → prediction market reference → own line from Valve VRS / HLTV ranking → blank+flag) with access status verified today, and `exec/collect_polymarket.py`, which reads Polymarket's public CS2 events in CI and refuses to treat a per-map market as a series probability (R-5). | `exec/sources.html`, `exec/collect_polymarket.py` |
+| X-06 | **done** | `reviews/3b5e3fea-review.md`: R-1…R-8 (all with file/API links) and C-1…C-3 as passed spot-checks; rendered on `exec/flagged.html`. Chief finding: the hourly board's own row `1079621` publishes an own line and denies having any rating in the same row (R-1), and 23/28 open rows carry no pick there while three other merged boards pick all but one (R-2). | `reviews/3b5e3fea-review.md`, `exec/flagged.html` |
+| X-07 | **in progress** | PR #82 was **already merged by its own session** at 02:34:41Z; the merged content is present on `main` and is read by this board (7 direct Pinnacle prices, 27/28 picks — cross-checked). One additive card for `exec/` added to the root landing page's executive-summary grid; README gains a "start here" line. Build checked with the repo-wide audit (`scripts/audit_91e444dd.py`: 173 pages, 0 link errors) and `python -m unittest discover -s tests` (138 tests, OK). PR to `main` pending and recorded below. | `index.html` (one card), `README.md`, `COORDINATION.md` |
+
+**Sources used by this session:** Hotspawn `/cs2-pickems` (fixture identity only, never crowd %);
+Pinnacle public guest matchups; Valve Regional Standings (official Valve GitHub file); HLTV world ranking;
+Polymarket public gamma API. Every published number links to the board and the underlying source it came from.
+
+**Verification performed:** de-vig arithmetic re-derived by hand against the live Pinnacle response (C-1);
+fixture-by-fixture comparison of the live page against the captured payload (C-2); rating coverage of all 39
+teams (C-3); 18 unit/rule tests in `tests/test_3b5e3fea.py`; 138 tests repo-wide; 173-page link audit with 0
+errors. Nothing was marked verified without the link that proves it; unverifiable fields stay blank and are
+flagged (`X-NO-BASIS`, `X-MODEL-ONLY`, `X-SECONDARY-PRICE`, `X-FORMAT-UNVERIFIED`, `X-IDENTICAL-ODDS`).
