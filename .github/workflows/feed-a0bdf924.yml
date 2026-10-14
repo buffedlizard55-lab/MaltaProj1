@@ -67,23 +67,41 @@ jobs:
         run: python3 feeds/tests.py
 
       - name: Commit refreshed feed back to this branch
+        # Generated files are a snapshot, not something to merge: a rebase of one run's feeds/data onto
+        # another run's feeds/data always conflicts (run 38504490705 failed exactly that way). So reset
+        # to the branch tip, skip if the tip already carries a capture at least as new as ours, otherwise
+        # overwrite the generated files and push. Code on the tip is never touched.
         run: |
           set -euo pipefail
           BR="${GITHUB_REF_NAME}"
+          OUT="$RUNNER_TEMP/feed-out"
+          rm -rf "$OUT"; mkdir -p "$OUT"
+          cp -r feeds/data "$OUT/data"
+          cp feeds/index.html feeds/flagged.html feeds/method.html "$OUT/"
+          OURS=$(python3 -c "import json;print(json.load(open('$OUT/data/capture.json'))['generated_utc'])")
           git config user.name "feed-a0bdf924[bot]"
           git config user.email "feed-a0bdf924@users.noreply.github.com"
-          git add -A feeds/data feeds/index.html feeds/flagged.html feeds/method.html
-          if git diff --cached --quiet; then
-            echo "no change to publish"
-            exit 0
-          fi
-          git commit -q -m "feeds(a0bdf924): secondary-market refresh [skip ci] [run ${GITHUB_RUN_ID}]"
           for i in 1 2 3 4 5; do
-            if git pull -q --rebase origin "$BR" && git push -q origin "HEAD:$BR"; then
-              echo "pushed on attempt $i"
+            git fetch -q origin "$BR"
+            git reset -q --hard "origin/$BR"
+            TIP=$(python3 -c "import json;print(json.load(open('feeds/data/capture.json')).get('generated_utc',''))" 2>/dev/null || true)
+            if [ -n "$TIP" ] && [ ! "$TIP" \< "$OURS" ]; then
+              echo "branch tip already publishes capture $TIP (ours: $OURS) - nothing to do"
               exit 0
             fi
-            git rebase --abort 2>/dev/null || true
+            rm -rf feeds/data
+            cp -r "$OUT/data" feeds/data
+            cp "$OUT"/index.html "$OUT"/flagged.html "$OUT"/method.html feeds/
+            git add -A feeds/data feeds/index.html feeds/flagged.html feeds/method.html
+            if git diff --cached --quiet; then
+              echo "no change to publish"
+              exit 0
+            fi
+            git commit -q -m "feeds(a0bdf924): secondary-market refresh [skip ci] [run ${GITHUB_RUN_ID}]"
+            if git push -q origin "HEAD:$BR"; then
+              echo "pushed capture $OURS on attempt $i"
+              exit 0
+            fi
             sleep $((i * 7))
           done
           echo "could not push after 5 attempts"

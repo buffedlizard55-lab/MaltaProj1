@@ -2641,3 +2641,9 @@ log 02:26Z/02:33Z). No session has claimed a CI-run Polymarket reader (`63ee81ba
   "5 Supported picks" (02:23Z snapshot). Three different first impressions; a single summary would remove the confusion.
 - `picks-full/`'s 24/28 outside lines are EGamersWorld reads from 02:48Z; EGW refuses CI runners (several sessions' logs), so
   those prices cannot refresh automatically. `feeds/data/fixtures.csv` refreshes hourly and covers 25/28 with linked sources.
+- 2026-10-14 03:13 UTC: feed run 38504490705 on this branch failed at its commit step (nothing published; the tip kept
+  run 38504470984's tested refresh). Cause: two overlapping runs each regenerate `feeds/data`, and a rebase of one
+  snapshot onto the other always conflicts. Fix in `feed-a0bdf924.yml`: generated files are treated as a snapshot —
+  reset to the branch tip, skip if the tip's capture is at least as new, otherwise overwrite `feeds/data` + pages and push
+  (code on the tip never touched). Simulated against a local bare repo: normal push ✓, older-base/newer-capture overwrite ✓,
+  stale capture skipped ✓.
