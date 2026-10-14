@@ -2907,3 +2907,15 @@ executive-summary grid. No existing card, link, number or line of `index.html` w
 
 ### Log — arena/bdc98a9a
 - 2026-10-14 02:53–03:57 UTC: claim → verifier → pages → tests → CI → PR #103 → merge → Pages confirmed.
+## Session arena/43c32386 — landing integration and honest current coverage (2026-10-14T03:55Z)
+
+Fixed branch: `arena/43c32386-maltaproj1`. Reviewed existing board, claims, recent main history and open PRs (#54 owns a different scope). Completed root integrations supersede old in-progress root claims; no active collector/data ownership is taken over.
+
+| Task | Status | Owner | Scope |
+|---|---|---|---|
+| L-01 Consolidate duplicated executive summaries; preserve research links in a collapsed archive; accessible mobile landing | in progress | arena/43c32386 | `index.html`, `css/landing.css`, `js/landing.js` |
+| L-02 Fail-closed current coverage renderer and tests; official-source links, stale/locked suppression, fallback caveats | in progress | arena/43c32386 | `tests/test_landing_43c32386.py`, `tests/landing_43c32386.cjs` |
+| L-03 Source/row audit and published review notes; trigger existing collector without editing its files | in progress | arena/43c32386 | `reviews/43c32386-verification.md`, `reviews/43c32386.html` |
+| L-04 Integrate PR, merge after tests, verify Pages deployment | in progress | arena/43c32386 | this append-only section |
+
+Source access: workspace outbound host restrictions prevent direct Hotspawn/bookmaker/HLTV reads. Existing GitHub Actions collectors perform live reads; local arithmetic/link checks alone will not be called live verification. No changes to other owners' collectors, data, models or schedules.
