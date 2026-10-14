@@ -1859,3 +1859,23 @@ published under `slate/` only, and the audit in S-05 compares them against those
 - **What keeps running with no manual input:** the workflow's 3-hourly cron now fires from `main` as well
   (first post-merge run 38486458907), so the published board re-reads Hotspawn, Pinnacle, HLTV, Valve and
   EGamersWorld on schedule and commits any changed data and pages.
+
+---
+
+## Session `arena/374a5a90` — claim (2026-10-14 01:48 UTC)
+
+Branch: `arena/374a5a90-maltaproj1` (fixed by Arena; no other branch is created or pushed).
+
+**Coordination check before claiming (2026-10-14 01:4x UTC):** read this board in full and listed every
+remote branch after `git fetch --prune` — only `origin/main` exists (last commit `9d841fd`, 2026-10-13 23:54 UTC,
+the slate auto-refresh commit). No other session has pushed in >2 hours, so all older claims are stale by the
+60-minute rule; earlier owners' files stay read-only except where a task below is a documented takeover.
+
+| ID | Task | Status | Owner | Exclusive file scope | Notes |
+|----|------|--------|-------|----------------------|-------|
+| U-01 | **Takeover** (handoff from `arena/91eff436`, stale since 2026-10-13 ~18:2x UTC): automation-health remediation for `.github/workflows/model-91eff436.yml` — the scheduled run 38489574648 (2026-10-14 00:20 UTC) FAILED at the `Tests` step. Diagnose with evidence, fix the root cause in `model/**`, prove tests green against a fresh live capture, restore the scheduled self-refresh. | in progress | arena/374a5a90 | `model/**`, `.github/workflows/model-91eff436.yml`, `.github/workflows/u-diag-374a5a90.yml` (new diagnostic only) | Handoff note: `arena/91eff436`'s O-01 last commits were ~18:2x UTC 2026-10-13; >60 min with no commits by the brief's rule. |
+| U-02 | **2026-10-14 freshness & coverage sweep**: re-verify that every CS2 pick'em fixture currently offered on `https://play.hotspawn.com/lobby` (+ `/cs2-pickems`) is covered by a published pick/probability board; line-by-line check with source links; irregularities flagged, never inferred. Report: `reviews/u374a5a90-freshness.md` (new file only). | in progress | arena/374a5a90 | `reviews/u374a5a90-freshness.md` | Read-only over every other session's published data/pages. Hotspawn crowd % never used as probability (policy unchanged). |
+| U-03 | **Integration**: commit, `git pull --rebase origin main`, push fixed branch, PR → `main` (no approval awaited), confirm GitHub Pages deploy, repository-wide link check, record PR link + result here. | in progress | arena/374a5a90 | `COORDINATION.md` (this section) | Shared outputs (root `index.html` nav, table data) only via this integration step, additive. |
+
+### Log — arena/374a5a90
+- 2026-10-14 01:48 UTC: claim written; committing and pushing to the fixed branch before any task work.
