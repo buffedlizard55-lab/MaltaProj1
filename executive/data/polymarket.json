@@ -1,12 +1,31 @@
 {
- "quotes": [],
+ "quotes": [
+  {
+   "source_id": "polymarket",
+   "source_name": "Polymarket",
+   "source_role": "prediction_market",
+   "event_id": "1189300",
+   "market_id": "5693036",
+   "league": "Counter-Strike: Nuclear TigeRES vs Butterfly (BO3) - PGL Bucharest Open Qualifier #2 Playoffs",
+   "team_a": "Nuclear TigeRES",
+   "team_b": "Butterfly",
+   "start_time": "2026-10-14T17:15:00Z",
+   "best_of": null,
+   "native_format": "implied_probability",
+   "native_a": 0.5,
+   "native_b": 0.5,
+   "odds_a": 2.0,
+   "odds_b": 2.0,
+   "market_type": "match_winner",
+   "status": "open",
+   "source_url": "https://polymarket.com/event/cs2-ntr-btf-2026-10-14",
+   "api_url": "https://gamma-api.polymarket.com/events?closed=false&limit=100&order=startDate&ascending=false",
+   "captured_utc": "2026-10-14T17:29:45Z"
+  }
+ ],
  "mode": "live",
- "http_status": 200,
+ "read": "newest events feed (paged)",
  "events_scanned": 500,
- "second_attempt": {
-  "url": "https://gamma-api.polymarket.com/events?closed=false&limit=200&tag_slug=counter-strike",
-  "http_status": 200
- },
  "source_url": "https://gamma-api.polymarket.com/events?closed=false&limit=100&order=startDate&ascending=false",
- "fetched_utc": "2026-10-14T09:40:26Z"
+ "fetched_utc": "2026-10-14T17:29:46Z"
 }
