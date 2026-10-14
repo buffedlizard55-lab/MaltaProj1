@@ -1,54 +1,61 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Hotspawn CS2 — picks &amp; coverage</title><meta name="description" content="One clear entry point for every captured Hotspawn CS2 match, sourced estimates, freshness and unresolved picks.">
-<link rel="stylesheet" href="css/landing.css"><script defer src="js/landing.js"></script></head>
+<link rel="stylesheet" href="css/landing.css"><script defer src="js/landing.js"></script>
+<style>
+/* ---- briefing executive summary (session arena/198cf31e); self-contained on purpose ---- */
+.bs-hero{background:#151b23;border:1px solid #2b333d;border-radius:14px;padding:18px;margin:6px 0 10px}
+.bs-eyebrow{color:#8fb4ff;letter-spacing:.12em;text-transform:uppercase;font-size:11.5px;font-weight:700;margin-bottom:8px}
+.bs-hero h1{font-size:clamp(23px,5vw,34px);line-height:1.18;margin:0 0 10px;color:#e8edf3}
+.bs-hero p{color:#9aa7b4;font-size:14px;margin:0 0 14px;max-width:66ch}
+.bs-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 16px}
+.bs-actions a{background:#2a3240;border:1px solid #3a4553;color:#e8edf3;border-radius:10px;padding:11px 15px;font-size:14px;font-weight:600;text-decoration:none;min-height:44px;display:inline-flex;align-items:center}
+.bs-actions a.bs-cta{background:#7857cf;border-color:#7857cf;color:#fff}
+.bs-actions a:hover{text-decoration:underline}
+.bs-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+@media(min-width:640px){.bs-stats{grid-template-columns:repeat(4,1fr)}}
+.bs-stat{background:#1b232d;border:1px solid #2b333d;border-radius:10px;padding:11px 13px}
+.bs-stat b{display:block;font-size:24px;line-height:1.15;color:#e8edf3}
+.bs-stat span{color:#9aa7b4;font-size:11.5px}
+.bs-note{background:#1b232d;border:1px solid #2b333d;border-left:3px solid #7857cf;border-radius:8px;padding:11px 13px;margin-top:14px;font-size:12.8px;color:#9aa7b4}
+.bs-note a{color:#8fb4ff}
+@media(max-width:560px){.bs-hero{padding:14px}.bs-actions a{width:100%;justify-content:center}}
+</style>
+</head>
 <body><a class="skip" href="#matches">Skip to matches</a><header><a class="brand" href="index.html">HOTSPAWN <span>/ independent CS2 research</span></a><nav aria-label="Main"><a href="#matches">Matches</a><a href="executive/picks.html">All-match research</a><a href="reviews/43c32386.html">Flagged for Review</a></nav></header>
-<main><section class="hero" aria-labelledby="title"><p class="eyebrow">Executive summary</p><h1 id="title">Your matches.<br>A clearer outside view.</h1><p>Every captured CS2 match in one place. Outside betting lines first; sourced rating research only when the featured route cannot resolve a match. <strong>Hotspawn crowd percentages never set the odds.</strong></p>
-<div class="actions"><a class="button" href="console/index.html">All open matches — one pick per row ↗</a><a class="button secondary" href="#matches">See picks &amp; coverage ↓</a><a class="button secondary" href="executive/picks.html">Every-match research board ↗</a></div>
-<p class="small">Research estimates are not official forecasts. Missing or unconfirmed values stay blank, not guessed.</p></section>
-<section aria-labelledby="summary-title"><h2 id="summary-title">At a glance</h2><p id="freshness" role="status">Loading published evidence… Coverage and freshness unverified.</p><div class="stats"><div><b id="open-count">—</b><span>Captured, not yet locked</span></div><div><b id="pick-count">—</b><span>Current primary picks</span></div><div><b id="model-count">—</b><span>Provisional research picks</span></div><div><b id="research-count">—</b><span>Unresolved / flagged</span></div></div>
-<p class="small">Hourly collection is configured on GitHub Actions (best-effort, not guaranteed). The page checks for a newer published snapshot every minute. Picks expire after lock or six hours without a fresh source observation.</p></section>
-<section class="categories" aria-label="Research categories"><a href="executive/lines.html"><b>Outside lines →</b><span>Bookmaker quotes, timestamps &amp; secondary reports</span></a><a href="executive/own-lines.html"><b>Own-line research →</b><span>Official Valve standings, HLTV cross-checks &amp; model caveats</span></a><a href="executive/tournaments.html"><b>By tournament →</b><span>Find matches in your competition</span></a><a href="executive/coverage.html"><b>Coverage audit →</b><span>Captured inventory, locked fixtures &amp; source gaps</span></a><a href="executive/cadence.html"><b>Refresh &amp; read times →</b><span>Which job rebuilds this board, when, and what each input is dated</span></a></section>
-<section id="matches" aria-labelledby="matches-title"><div class="section-heading"><div><p class="eyebrow">Pick first. Evidence always.</p><h2 id="matches-title">CS2 picks &amp; unresolved matches</h2></div><a href="executive/picks.html">Full research table →</a></div>
-<p>Primary picks below are recalculated from fresh, two-sided bookmaker prices. For unresolved matches only, provisional own-line estimates require exact teams in an independently retrieved official Valve file and a recently confirmed HLTV series format. Secondary prices, unknown formats and unlisted-team assumptions are <strong>not</strong> promoted to verified win probabilities.</p>
-<label class="search" for="match-search">Find a team or tournament<input id="match-search" type="search" placeholder="Team or tournament…" autocomplete="off"></label><p id="match-count" class="small" aria-live="polite"></p>
-<div id="match-list" class="match-list"><p>Loading match coverage. If this does not load, <a href="executive/picks.html">open the published all-match table</a>.</p></div><noscript><p>JavaScript is off. The <a href="executive/picks.html">full research table</a> works without JavaScript; check its capture time and flags before using any estimate.</p></noscript></section>
-<section class="notice"><h2>What is — and is not — verified?</h2><p>Provisional models use a project-assumed 400-point logistic scale and independent-map series transform; they are uncalibrated, not official forecasts. Missing confirmed inputs produce no model pick. Official Valve files are read from GitHub; if that read fails, fallback estimates are withheld.<br>A link identifies a source; it does not prove that a quote is current or a model is accurate. Secondary reports require bookmaker confirmation. Our estimates are project calculations, not facts published by Valve or HLTV. No source can guarantee the winner.<br><em>Update 2026-10-14 (session <code>arena/1b6ae823</code>):</em> the executive board now originates a probability for <strong>every</strong> fixture from the official HLTV world ranking and the Valve standings (converted to the stated series length), and reads this site’s own hourly secondary feed (bo3.gg-relayed book prices + Polymarket) so low-tier matches are priced rather than blank; anything still unresolved keeps its flag and its link.</p><p><a href="console/index.html"><b>Consolidated board (one row per open match)</b></a> · <a href="console/flagged.html">Consolidated flags</a> · <a href="console/methodology.html">Basis rungs</a> · <a href="console/sources.html">Capture times &amp; SHA-256</a> · <a href="https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/reviews/228bb5bc-verification.md" rel="noopener">Line-by-line verification record</a> · <a href="reviews/43c32386.html">Flagged for Review &amp; release audit</a> · <a href="executive/methodology.html">Research methodology</a> · <a href="executive/sources.html">Sources &amp; refusals</a> · <a href="reread/index.html">Independent source re-read</a> · <a href="https://github.com/buffedlizard55-lab/MaltaProj1/actions/workflows/executive-5545dbb8.yml">Refresh history</a></p></section>
-<details class="archive"><summary>Previous research &amp; parallel boards (historical claims)</summary><p class="notice">Preserved for audit. Counts, freshness labels and verification claims below belong to earlier snapshots, not the current summary. Boards can disagree; inspect their methods and flags.</p><div class="legacy">
-
-.hero{padding:26px 0 20px}.eyebrow{color:#a99aff;letter-spacing:.14em;text-transform:uppercase;font-size:12px;font-weight:700}
-h1{font-size:clamp(28px,6vw,46px);line-height:1.15;max-width:700px;margin:12px 0 18px}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:22px 0}.stat{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px}.stat b{display:block;font-size:27px}.stat span{color:var(--muted);font-size:12px}.cta{display:inline-block;background:#7857cf;padding:12px 20px;border-radius:9px;color:white;font-weight:700;text-decoration:none;margin-top:18px}.hero-actions{display:flex;align-items:center;gap:18px;flex-wrap:wrap}details{margin-top:35px}summary{cursor:pointer;font-weight:600;color:var(--muted)}.scope{font-size:13px;color:var(--muted)}footer{color:var(--muted);font-size:12px;margin-top:35px;border-top:1px solid var(--line);padding-top:20px}@media(max-width:560px){.stats{grid-template-columns:repeat(2,1fr)}.wrap{padding:20px 16px 40px}.grid{grid-template-columns:1fr}}
-</style></head><body><main class="wrap" data-root-overview>
-<section class="hero" id="start" aria-label="Executive summary">
-<div class="eyebrow">Start here · refreshed automatically every 4 hours</div>
+<main><section class="bs-hero" id="start" aria-label="Executive summary">
+<div class="bs-eyebrow">Start here &middot; refreshed automatically every 4 hours</div>
 <h1>Where the picks are</h1>
-<p class="lead">Every open Counter-Strike 2 Pick&#39;em match listed on Hotspawn, with a pick and a
-win probability for <strong>both</strong> teams. Probabilities come from outside betting and
-prediction markets first; matches that no market prices get our own line, originated from the
-official Valve Regional Standings and labelled as ours. Hotspawn supplies the fixture list and
-lock times only — its crowd pick percentages are never an input.</p>
-<div class="hero-actions">
-<a class="cta" href="briefing/index.html">Open the picks board →</a>
+<p>Every open Counter-Strike&nbsp;2 Pick&#39;em match listed on Hotspawn, with a pick and a win
+probability for <strong>both</strong> teams. Probabilities come from outside betting and
+prediction markets first (Pinnacle, then a named bookmaker relayed by bo3.gg, then Polymarket as
+a labelled prediction market); only matches no market prices get our own line, originated from
+the official Valve Regional Standings and published with its fitted scale and its error.
+Hotspawn supplies the fixture list and lock times only &mdash; its crowd pick percentages are
+never an input.</p>
+<div class="bs-actions">
+<a class="bs-cta" href="briefing/index.html">Open the picks board &rarr;</a>
 <a href="briefing/picks.html">Full table</a>
+<a href="briefing/lines.html">Outside market lines</a>
 <a href="briefing/flagged.html">Flagged for review</a>
 </div>
-<div class="stats">
-<div class="stat"><b id="es-open">28</b><span>Open CS2 fixtures</span></div>
-<div class="stat"><b id="es-picks">28</b><span>Picks published</span></div>
-<div class="stat"><b id="es-market">17</b><span>Priced by an outside market</span></div>
-<div class="stat"><b id="es-model">11</b><span>Our own rating line</span></div>
+<div class="bs-stats">
+<div class="bs-stat"><b id="es-open">28</b><span>Open CS2 fixtures</span></div>
+<div class="bs-stat"><b id="es-picks">28</b><span>Picks published</span></div>
+<div class="bs-stat"><b id="es-market">17</b><span>Priced by an outside market</span></div>
+<div class="bs-stat"><b id="es-model">11</b><span>Our own rating line</span></div>
 </div>
-<div class="note" style="margin-top:16px"><b>Everything on the picks board, one click away:</b>
-<a href="briefing/index.html">Executive summary (all picks on one page)</a> ·
-<a href="briefing/picks.html">Picks table</a> ·
-<a href="briefing/lines.html">Outside market lines</a> ·
-<a href="briefing/own-lines.html">Our own lines for unpriced matches</a> ·
-<a href="briefing/coverage.html">Coverage of all 88 Hotspawn CS2 fixtures</a> ·
-<a href="briefing/sources.html">Sources and what each returned</a> ·
-<a href="briefing/methodology.html">How a pick is chosen</a> ·
-<a href="briefing/flagged.html">Flagged for Review</a>.
-Machine-readable: <a href="briefing/data/picks.csv">picks.csv</a>.
-Last snapshot: <span id="es-time">see the board</span>.</div>
+<div class="bs-note"><b>Everything on the picks board, one click away:</b>
+<a href="briefing/index.html">executive summary</a> &middot;
+<a href="briefing/picks.html">picks table</a> &middot;
+<a href="briefing/lines.html">outside market lines</a> &middot;
+<a href="briefing/own-lines.html">our own lines for unpriced matches</a> &middot;
+<a href="briefing/coverage.html">coverage of all 88 Hotspawn CS2 fixtures</a> &middot;
+<a href="briefing/sources.html">sources and what each returned</a> &middot;
+<a href="briefing/methodology.html">how a pick is chosen</a> &middot;
+<a href="briefing/flagged.html">flagged for review</a> &middot;
+<a href="briefing/data/picks.csv">picks.csv</a>.
+Machine-readable snapshot: <span id="es-time">see the board</span>.</div>
 </section>
 <script>
 (function () {
@@ -67,14 +74,26 @@ Last snapshot: <span id="es-time">see the board</span>.</div>
     .catch(function () { /* static fallbacks stay visible */ });
 })();
 </script>
+<h2 style="margin-top:30px">Other current boards</h2>
+<p class="notice" style="margin:0 0 10px">Parallel sessions published their own boards while this page was being written; their work is kept in full below. Each board has its own snapshot, counts and model assumptions, and they are not interchangeable with the summary above.</p>
+<section class="hero" aria-labelledby="title"><p class="eyebrow">Executive summary</p><h2 id="title">Your matches.<br>A clearer outside view.</h2><p>Every captured CS2 match in one place. Outside betting lines first; sourced rating research only when the featured route cannot resolve a match. <strong>Hotspawn crowd percentages never set the odds.</strong></p>
+<div class="actions"><a class="button" href="console/index.html">All open matches — one pick per row ↗</a><a class="button secondary" href="#matches">See picks &amp; coverage ↓</a><a class="button secondary" href="executive/picks.html">Every-match research board ↗</a></div>
+<p class="small">Research estimates are not official forecasts. Missing or unconfirmed values stay blank, not guessed.</p></section>
+<section aria-labelledby="summary-title"><h2 id="summary-title">At a glance</h2><p id="freshness" role="status">Loading published evidence… Coverage and freshness unverified.</p><div class="stats"><div><b id="open-count">—</b><span>Captured, not yet locked</span></div><div><b id="pick-count">—</b><span>Current primary picks</span></div><div><b id="model-count">—</b><span>Provisional research picks</span></div><div><b id="research-count">—</b><span>Unresolved / flagged</span></div></div>
+<p class="small">Hourly collection is configured on GitHub Actions (best-effort, not guaranteed). The page checks for a newer published snapshot every minute. Picks expire after lock or six hours without a fresh source observation.</p></section>
+<section class="categories" aria-label="Research categories"><a href="executive/lines.html"><b>Outside lines →</b><span>Bookmaker quotes, timestamps &amp; secondary reports</span></a><a href="executive/own-lines.html"><b>Own-line research →</b><span>Official Valve standings, HLTV cross-checks &amp; model caveats</span></a><a href="executive/tournaments.html"><b>By tournament →</b><span>Find matches in your competition</span></a><a href="executive/coverage.html"><b>Coverage audit →</b><span>Captured inventory, locked fixtures &amp; source gaps</span></a><a href="executive/cadence.html"><b>Refresh &amp; read times →</b><span>Which job rebuilds this board, when, and what each input is dated</span></a><a href="briefing/index.html"><b>Picks briefing &rarr;</b><span>Every open match, one pick and probability per row, refreshed every 4 hours</span></a></section>
+<section id="matches" aria-labelledby="matches-title"><div class="section-heading"><div><p class="eyebrow">Pick first. Evidence always.</p><h2 id="matches-title">CS2 picks &amp; unresolved matches</h2></div><a href="executive/picks.html">Full research table →</a></div>
+<p>Primary picks below are recalculated from fresh, two-sided bookmaker prices. For unresolved matches only, provisional own-line estimates require exact teams in an independently retrieved official Valve file and a recently confirmed HLTV series format. Secondary prices, unknown formats and unlisted-team assumptions are <strong>not</strong> promoted to verified win probabilities.</p>
+<label class="search" for="match-search">Find a team or tournament<input id="match-search" type="search" placeholder="Team or tournament…" autocomplete="off"></label><p id="match-count" class="small" aria-live="polite"></p>
+<div id="match-list" class="match-list"><p>Loading match coverage. If this does not load, <a href="executive/picks.html">open the published all-match table</a>.</p></div><noscript><p>JavaScript is off. The <a href="executive/picks.html">full research table</a> works without JavaScript; check its capture time and flags before using any estimate.</p></noscript></section>
+<section class="notice"><h2>What is — and is not — verified?</h2><p>Provisional models use a project-assumed 400-point logistic scale and independent-map series transform; they are uncalibrated, not official forecasts. Missing confirmed inputs produce no model pick. Official Valve files are read from GitHub; if that read fails, fallback estimates are withheld.<br>A link identifies a source; it does not prove that a quote is current or a model is accurate. Secondary reports require bookmaker confirmation. Our estimates are project calculations, not facts published by Valve or HLTV. No source can guarantee the winner.<br><em>Update 2026-10-14 (session <code>arena/1b6ae823</code>):</em> the executive board now originates a probability for <strong>every</strong> fixture from the official HLTV world ranking and the Valve standings (converted to the stated series length), and reads this site’s own hourly secondary feed (bo3.gg-relayed book prices + Polymarket) so low-tier matches are priced rather than blank; anything still unresolved keeps its flag and its link.</p><p><a href="console/index.html"><b>Consolidated board (one row per open match)</b></a> · <a href="console/flagged.html">Consolidated flags</a> · <a href="console/methodology.html">Basis rungs</a> · <a href="console/sources.html">Capture times &amp; SHA-256</a> · <a href="https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/reviews/228bb5bc-verification.md" rel="noopener">Line-by-line verification record</a> · <a href="reviews/43c32386.html">Flagged for Review &amp; release audit</a> · <a href="executive/methodology.html">Research methodology</a> · <a href="executive/sources.html">Sources &amp; refusals</a> · <a href="reread/index.html">Independent source re-read</a> · <a href="https://github.com/buffedlizard55-lab/MaltaProj1/actions/workflows/executive-5545dbb8.yml">Refresh history</a></p></section>
+<details class="archive"><summary>Previous research &amp; parallel boards (historical claims)</summary><p class="notice">Preserved for audit. Counts, freshness labels and verification claims below belong to earlier snapshots, not the current summary. Boards can disagree; inspect their methods and flags.</p><div class="legacy">
 
 <div class="eyebrow">Hotspawn / independent research</div>
-<section class="hero"><h1>The match board.<br>The outside view.</h1>
+<section class="hero"><h2>The match board.<br>The outside view.</h2>
 <p class="lead">Counter-Strike 2 fixtures from Hotspawn. Win estimates from outside markets and our own provisional model — <strong>never crowd pick percentages.</strong></p>
-<div class="hero-actions"><a class="cta" href="briefing/index.html">All open CS2 picks — one per match →</a><a href="briefing/flagged.html">Flagged for Review</a></div>
+<div class="hero-actions"><a class="cta" href="picks-full/index.html">All 28 open CS2 picks — one per match →</a><a href="picks-full/flagged.html">Flagged for Review</a></div>
 </section>
-<h2 style="margin-top:34px">All boards, and research from earlier sessions</h2>
-<div class="note">Everything below is kept exactly as it was published. It is earlier work by parallel sessions, so its snapshots, counts and model assumptions are <strong>not interchangeable</strong> with the current board above. The live, regularly refreshed answer to “where are the picks?” is the <a href="briefing/index.html">briefing board</a>.</div>
 <section aria-label="Executive summary and picks for every match">
 <h2>Executive summary &amp; picks for every match</h2>
 <div class="grid">
@@ -95,7 +114,7 @@ Crowd pick percentages are never used. Subpages:
 <a href="picks-full/s-tier.html">S-Tier</a> · <a href="picks-full/b-tier.html">B-Tier</a> · <a href="picks-full/c-tier.html">C-Tier</a> ·
 <a href="picks-full/tournaments.html">Tournaments</a> · <a href="picks-full/market-lines.html">Market lines</a> ·
 <a href="picks-full/own-lines.html">Own lines</a> · <a href="picks-full/methodology.html">Method</a> ·
-<a href="picks-full/sources.html">Sources</a> · <a href="briefing/flagged.html">Flagged for Review</a>.
+<a href="picks-full/sources.html">Sources</a> · <a href="picks-full/flagged.html">Flagged for Review</a>.
 Mobile-friendly card layout; checked hourly by GitHub Actions (fail-closed). Snapshot 2026-10-14T02:48Z.<br>
 <span class="mut">Independent source-verified copy (model-parity checks, researched LFO 10 rating so <code>1079624</code> carries a pick + probability, explicit market/model divergence flags): <a href="every/index.html">every/ all picks</a> · <a href="every/flagged.html">its flagged items</a>.</span>
 </div>
