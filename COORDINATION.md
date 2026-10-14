@@ -2513,3 +2513,20 @@ log 02:26Z/02:33Z). No session has claimed a CI-run Polymarket reader (`63ee81ba
 
 ### Log — arena/a0bdf924
 - 2026-10-14 02:41 UTC: claim written, committed and pushed before any task work.
+- 2026-10-14 03:05 UTC: MF-01/MF-02/MF-03 code pushed — `feeds/{collect,match,join,build,tests}.py`, `feeds/aliases.json`
+  (empty: every alias needs an official evidence link), `feeds/style.css`, `.github/workflows/feed-a0bdf924.yml`
+  (push on this branch/main for `feeds/**.py`, hourly at :41, dispatch; commits only when every test passes).
+  Source discovery, read via the agent's page fetcher (sandbox shell has no route to these hosts):
+  * Polymarket: `gamma-api.polymarket.com/series?slug=counter-strike` → **series id 10310** ("Counter Strike",
+    daily match series). `events?series_id=10310&closed=false` returns every CS2 match event with its `moneyline`
+    market (outcomes, prices, bestBid/bestAsk, spread, depth, volume, `gameStartTime`) and `eventMetadata`
+    (league, leagueTier, pandascoreMatchId). The existing `cs2/collect.py` query (`markets?…order=volume24hr&limit=500`)
+    is a top-500-by-volume list across ALL of Polymarket, so only 4 big CS2 matches survived it at 02:36Z; the
+    series query reaches the low-tier ones (e.g. `cs2-enjoy-b8acad-2026-10-14`, kickoff 08:00Z = Hotspawn #1081111).
+  * bo3.gg: `api.bo3.gg/api/v1/matches?filter[matches.status][in]=upcoming&filter[matches.discipline_id][eq]=1&with=teams,tournament`
+    → 344 upcoming CS2 matches at 02:45Z, each with **`bo_type` (series format)**, UTC `start_date`, and where
+    available a relayed bookmaker quote in `bet_updates` (`provider`, bookmaker match URL, both decimal odds, `active`).
+    Example: GenOne 1.42 / 6666 2.70, provider thunderpick, https://thunderpick.io/match/2812130.
+    This also answers the "series format unverified" blanks on other boards (Hotspawn's `best_of`/`series_format` are null).
+  * OddsDigger: `/e-sports/counter-strike` is HTTP 410 per `cs2/data/capture.json`; the index's 8-row table has no
+    kickoff times, so it cannot pass the kickoff-window rule. Probe only.
