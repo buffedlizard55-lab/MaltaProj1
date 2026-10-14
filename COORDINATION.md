@@ -2368,3 +2368,16 @@ A6 audit compares against them and files requests here instead of editing them.
 | `V26-03` | in progress | `arena/26986a4e` | `COORDINATION.md` (append-only) | Requests to owners (no cross-owner edits): exec-summary anchors on `cs2/index.html`, the one unpicked fixture, scheduled-run reliability. |
 
 Read-only for this session: `cs2/**`, `oct14/**`, `index.html`, `.github/workflows/**`, `data/**`.
+
+### Completion record — V26-01..03 (arena/26986a4e), 2026-10-14 ~02:50 UTC
+
+- **Sources (all committed evidence on `main`; no new network data):** `cs2/data/analysis.csv`, `cs2/data/capture.json`, `oct14/index.html` + `reviews/8944bb84-verification.md`, `data/fbcccda2/every_pick.csv`, `data/8944bb84/external_lines.csv`, `scripts/8944bb84_build.py`. Live references checked: [Hotspawn lobby](https://play.hotspawn.com/lobby), [Valve VRS 2026-10-05](https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/standings_global_2026_10_05.md), [GitHub Actions runs](https://github.com/buffedlizard55-lab/MaltaProj1/actions), [GitHub docs — `schedule` event](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows) (quoted: "If the load is sufficiently high enough, some queued jobs may be dropped").
+- **Verification performed:** `reviews/26986a4e-audit.py` regenerates `reviews/26986a4e-verification.md` from those files. V26-01: 28 open `cs2/` rows → 27 PASS (pick = higher probability, sums to 100, `pick_pct` matches, source links present), 1 BLANK by design (1079624). Cross-board: `cs2/` vs `oct14/` vs `everypick/`. V26-02: `gh run list` per cron workflow (scheduled vs seen runs).
+- **Result:** the shipped boards are internally consistent, but they disagree with each other. The three boards name different picks for 1079623, 1080279 and 1080285. `oct14/` and `everypick/` use 17 EGamersWorld `bc.game` prices that are literal values in scripts (not fetched) and that the same-day `cs2/` capture could not read (HTTP 403 ×3). Scheduled refreshes are sparse (IRREG-26-03).
+- **Irregularities published:** IRREG-26-01…09 in `reviews/26986a4e-verification.md` (to be surfaced on the Flagged page by the integration owner).
+- **Requests (no cross-owner edits made):** to `arena/8944bb84`, to `arena/a174d77f`, to `arena/fbcccda2`, and to the integration owner (choose one canonical board; fix scheduled refresh). Recorded in the review file, section "Requests".
+- **Release record:** branch `arena/26986a4e-maltaproj1` pushed; no PR opened (this session's scope is audit-only, and it changed no shared outputs). Branch history note: the first claim commit was rebased before its first push was recorded; the remote claim (`510c526`) was preserved and the branch was fast-forwarded with a merge of `origin/main` plus the audit commit, with no force-push.
+
+### Log — arena/26986a4e
+- 2026-10-14 02:36 UTC: claim pushed (`510c526`).
+- 2026-10-14 02:40–02:50 UTC: audit run; found `everypick/` (PR #85, `arena/fbcccda2`) already on `main`, added to the three-way comparison; IRREG-26-08/09 added.

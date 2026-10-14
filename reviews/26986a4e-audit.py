@@ -81,6 +81,30 @@ for fid, r in cs_by_id.items():
 w("")
 w(f"Picks that differ between the two boards: **{disagree_pick}**. Probabilities differ on most rows (see the `oct14/` review table in `reviews/8944bb84-verification.md`).\n")
 
+# ---- Third board: everypick/ (fbcccda2), on main since PR #85 ----
+EP = {r["fixture_id"]: r for r in csv.DictReader(open(ROOT / "data/fbcccda2/every_pick.csv", encoding="utf-8"))}
+w("## Three-way pick comparison — `cs2/` vs `oct14/` vs `everypick/`\n")
+w("| Fixture | Match | cs2 pick | oct14 pick | everypick pick (tier) | Agree? |")
+w("|---|---|---|---|---|---|")
+disputed = []
+for fid, e in EP.items():
+    c = cs_by_id.get(fid)
+    o = cells.get(fid)
+    cp = c["pick"] if c and c["pick"] else "none"
+    op = ""
+    if o and len(o) >= 10:
+        op = re.sub(r"\*", "", o[9]).split(" — ")[0].split(" (")[0].strip()
+        if op.startswith("NO PICK"): op = "none"
+    ep_pick = e["pick"]
+    agree = "yes" if len({x for x in (cp, op, ep_pick) if x not in ("", "none")}) == 1 else "**NO**"
+    if agree == "**NO**":
+        disputed.append(fid)
+        w(f"| {fid} | {e['team_a']} v {e['team_b']} | {cp} | {op or '—'} | {ep_pick} ({e['pick_tier']}) | {agree} |")
+w("")
+w(f"Fixtures where the boards name different picks: **{len(disputed)}** ({', '.join(disputed)}). Fixture rows shown above only.\n")
+ep_egw = [f for f, e in EP.items() if "bc.game" in e["market_book"] or "EGamers" in e["market_book"]]
+w(f"`everypick/` rows whose de-vigged market comes from EGamersWorld `bc.game` (not Pinnacle): **{len(ep_egw)}** of {len(EP)} rows ({', '.join(ep_egw)}).\n")
+
 # ---- V26-02: refresh cadence (numbers taken from `gh run list`, recorded in the review) ----
 w("## V26-02 — refresh cadence (GitHub run history, measured 2026-10-14 ~02:35 UTC)\n")
 w("Method: `gh run list --workflow <file> --limit 60 --json event,createdAt`, counting `event == schedule`. Expected = the cron in the workflow file.\n")
@@ -121,12 +145,16 @@ FINDINGS = """
 | IRREG-26-04 | medium | **Confusing counts on the front page.** `cs2/` says "89 CS2 fixtures on the board" and "84 fixtures flagged"; 59 of the 89 are June–July 2026 stale records (`lock_utc` in the past). Only 28 are open. The user asked for the matches listed on Hotspawn; the stale records are not listed as open. | [cs2/data/analysis.csv](https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/cs2/data/analysis.csv) · [Hotspawn lobby](https://play.hotspawn.com/lobby) |
 | IRREG-26-05 | medium | **No pick for fixture 1079624 (FORZE Reload v LFO 10).** Blank is correct under the no-inference rule: LFO 10 is absent from the Valve Oct-5 standings and no market quote exists. Request: a CI collection of the HLTV ranking page for LFO 10 (honest identifiable UA, undated URL) — if an official rank exists, a pick can be derived from it. | [VRS 2026-10-05 standings](https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/standings_global_2026_10_05.md) · [HLTV match 2399301](https://www.hltv.org/matches/2399301/forze-reload-vs-lfo-10-cct-2026-europe-series-11) · [HLTV ranking](https://www.hltv.org/ranking/teams) |
 | IRREG-26-06 | low | **Four rows have no per-match Hotspawn page** (1081111, 1081112, 1081113, 1081120): the lobby payload is the only Hotspawn source for these rows. | [cs2/data/analysis.csv](https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/cs2/data/analysis.csv) |
+| IRREG-26-08 | high | **Three boards, three sets of numbers, and different picks on the same fixtures.** `cs2/`, `oct14/` and `everypick/` (all on `main`) name different picks for 1079623, 1080279 and 1080285, and their probabilities differ on most rows. `everypick/` takes its market from EGamersWorld `bc.game` for 17 of 28 rows (the same prices as IRREG-26-02; see the tier split in the cross-check above). | [everypick/index.html](https://buffedlizard55-lab.github.io/MaltaProj1/everypick/index.html) · [data/fbcccda2/every_pick.csv](https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/data/fbcccda2/every_pick.csv) · [PR #85](https://github.com/buffedlizard55-lab/MaltaProj1/pull/85) |
+| IRREG-26-09 | medium | **Fixture 1079624 gets a "guided lean" pick with no number.** `everypick/` names FORZE Reload as a Tier-D pick while stating "NO numeric line" and "LFO 10 unverified in VRS". That is an inference, which the brief forbids; it is at least labelled. The honest state is "no pick — unverified". | [data/fbcccda2/every_pick.csv](https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/data/fbcccda2/every_pick.csv) |
 | IRREG-26-07 | medium | **Most open picks are not series probabilities.** 19 of 28 open rows are flagged `A-NO-FORMAT` (best-of not confirmed) and 21 are `A-NO-LINE` (no bookmaker quote). The own-line value is a Valve rating-points curve applied to the match, not a verified BO1/BO3 series model. | [cs2/data/analysis.csv](https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/cs2/data/analysis.csv) · [Valve VRS source](https://github.com/ValveSoftware/counter-strike_regional_standings) |
 
 ## Requests (logged in COORDINATION.md; no cross-owner edits made)
 
 - To `arena/8944bb84` (owner of `oct14/**`, `scripts/8944bb84_build.py`): remove or blank the 17 EGamersWorld-derived prices (IRREG-26-02) and recompute, or mark them "unverified — not reproducible"; reconcile the probabilities with `cs2/` or state the difference on the page; correct the "official verified source" label for EGamersWorld.
 - To `arena/a174d77f` (owner of `cs2/**`, `.github/workflows/cs2-a174d77f.yml`): add an in-page executive summary with anchor links to each tournament section and each open fixture (the landing page currently has 0 in-page anchors); collapse stale records behind a toggle (IRREG-26-04).
+- To `arena/fbcccda2` (owner of `everypick/**`, `data/fbcccda2/**`, root `index.html` card): Tier-D pick for 1079624 should read "no pick — unverified" (IRREG-26-09); the EGamersWorld-sourced rows need the same treatment as IRREG-26-02; the 3 disputed picks need a stated reason on the page.
+- To the integration owner of `main`: **choose one canonical board.** Three boards with different numbers is the confusion the user reported; the other two should link to the canonical one and stop publishing competing picks.
 - To the integration owner of `main`: the scheduled-refresh problem (IRREG-26-03) needs a workflow-level fix (for example a self-chaining `workflow_dispatch` at the end of each run, which GitHub permits for GITHUB_TOKEN) — not a new cron.
 """
 p = ROOT / "reviews/26986a4e-verification.md"
