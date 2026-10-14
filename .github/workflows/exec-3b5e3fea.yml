@@ -7,7 +7,8 @@
 #      (slate/, oct14/, open-slate/, cs2/, everypick/) — it collects no bookmaker price itself
 #      and invents none.
 #   3. Runs the exec test suite and the repository-wide link/DOM audit. The commit step only runs
-#      when all of those pass.
+#      when all of those pass, and only on `main`: on a session branch the run validates without
+#      pushing, so a working branch and its own bot cannot overwrite each other in a loop.
 #
 # The page's own numbers therefore cannot drift from the boards it summarizes: if a board goes
 # stale or missing, the summary says so on the coverage audit instead of hiding it.
@@ -62,7 +63,8 @@ jobs:
       - name: Run the repository-wide HTML link and fragment audit
         run: python3 scripts/audit_91e444dd.py --output /tmp/audit-exec-3b5e3fea.json
 
-      - name: Commit the rebuilt summary
+      - name: Commit the rebuilt summary (main only)
+        if: github.ref == 'refs/heads/main'
         run: |
           git config user.name "arena-3b5e3fea"
           git config user.email "arena-3b5e3fea@users.noreply.github.com"
