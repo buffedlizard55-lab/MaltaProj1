@@ -734,9 +734,31 @@ def load_candidates():
     return cands, per_board
 
 
+def load_collected_poly():
+    """Series-level prediction-market prices collected by exec/collect_polymarket.py (CI has network).
+
+    Only whole-match markets appear here: the collector drops handicaps, totals and per-map markets
+    before this file is written, so nothing here can be mistaken for a series probability."""
+    path = os.path.join(DATA, "polymarket.json")
+    if not os.path.exists(path):
+        return {}
+    try:
+        with open(path, encoding="utf-8") as fh:
+            data = json.load(fh)
+    except Exception:
+        return {}
+    out = {}
+    for m in data.get("matches", []) or []:
+        fid = m.get("fixture_id")
+        if fid and fid not in out:
+            out[fid] = m
+    return out
+
+
 def build():
     spine, spine_source = load_fixtures()
     cands, per_board = load_candidates()
+    collected_poly = load_collected_poly()
     now = utcnow()
 
     open_rows, locked_rows = [], []
@@ -745,6 +767,13 @@ def build():
         if not lock:
             continue
         row = select_line(fx, cands.get(fid, []))
+        poly = collected_poly.get(fid)
+        if poly:
+            row["poly_reference"] = {
+                "p_a": poly.get("p_a"), "p_b": poly.get("p_b"), "url": poly.get("url") or "",
+                "board": "exec/collect_polymarket.py", "source": "Polymarket",
+                "updated_utc": poly.get("updated_utc") or "", "liquidity_usd": poly.get("liquidity_usd"),
+            }
         row["state"] = "open" if lock > now else "locked_or_started"
         (open_rows if row["state"] == "open" else locked_rows).append(row)
 
@@ -917,7 +946,10 @@ def row_card(r):
     poly = r.get("poly_reference")
     poly_detail = "—"
     if poly:
-        poly_detail = (f'{fmt_pct(poly["p_a"])} / {fmt_pct(poly["p_b"])} (prediction market, not a bookmaker)'
+        source = poly.get("source") or "prediction market"
+        stamp = poly.get("updated_utc") or ""
+        poly_detail = (f'{fmt_pct(poly["p_a"])} / {fmt_pct(poly["p_b"])} ({esc(source)}, not a bookmaker'
+                       + (f', updated {esc(stamp)}' if stamp else "") + ')'
                        + ((' · ' + link(poly["url"], "market")) if poly.get("url") else ""))
     pick_html = (f'<span class="pick">{esc(r["pick"])} {fmt_pct(r["pick_pct"])}</span>'
                  if r["pick"] else '<span class="pick none">no pick</span>')

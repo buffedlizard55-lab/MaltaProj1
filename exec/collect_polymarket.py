@@ -36,6 +36,9 @@ UA = "MaltaProj1-exec-board/1.0 (+https://github.com/buffedlizard55-lab/MaltaPro
 MAX_SKEW = timedelta(minutes=15)
 SERIES_RE = re.compile(r"\b(bo[135])\b", re.I)
 MAP_RE = re.compile(r"map\s*\d", re.I)
+# A market whose question is not about "who wins" is never a winner probability, whatever its outcomes are.
+NOT_WINNER_RE = re.compile(r"handicap|spread|total|over\s*/?\s*under|rounds|correct score|odd/even|both teams",
+                           re.I)
 
 
 def fetch(url: str, timeout: int = 45):
@@ -102,8 +105,13 @@ def norm(name: str) -> str:
     return re.sub(r"[^a-z0-9]+", "", (name or "").lower())
 
 
-def market_rows(event):
-    """Return (series_rows, map_rows) extracted from one Polymarket event."""
+def market_rows(event, fixture):
+    """Return (series_rows, map_rows) for one fixture.
+
+    A market is only accepted when its two outcomes are exactly the two team names of the fixture and
+    its question asks who wins (handicaps, totals, rounds and similar are dropped). Per-map winners are
+    returned separately and are never treated as a series probability."""
+    a, b = norm(fixture["team_a"]), norm(fixture["team_b"])
     series, maps = [], []
     for m in event.get("markets", []) or []:
         question = m.get("question") or ""
@@ -117,6 +125,10 @@ def market_rows(event):
             prices = []
         if len(outcomes) != 2 or len(prices) != 2:
             continue
+        if {norm(o) for o in outcomes} != {a, b}:
+            continue  # e.g. Yes/No, Over/Under, or another pairing
+        if NOT_WINNER_RE.search(question):
+            continue  # a handicap or total is not a winner probability
         rec = {
             "question": question,
             "outcomes": outcomes,
@@ -222,7 +234,7 @@ def main() -> int:
             result["unmatched"].append({"fixture_id": fx["fixture_id"],
                                         "team_a": fx["team_a"], "team_b": fx["team_b"]})
             continue
-        series, maps = market_rows(chosen)
+        series, maps = market_rows(chosen, fx)
         slug = chosen.get("slug") or ""
         page = f"https://polymarket.com/event/{slug}" if slug else "https://polymarket.com/esports/cs2"
         for rec in series:
