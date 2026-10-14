@@ -2277,3 +2277,23 @@ the slate auto-refresh commit). No other session has pushed in >2 hours, so all 
 | `B84-06` | `done` | `arena/8944bb84` | `index.html`, `COORDINATION.md` | `2026-10-14T02:32:00Z` | PR [#83](https://github.com/buffedlizard55-lab/MaltaProj1/pull/83) merged to `main` (`6eef3524d653089b362df0dde561cde0b8ab136b`); all CI checks (`audit`, `build-and-verify`, `verify`), `main` refresh (`38501440851`), and GitHub Pages deploy (`38501440430`) passed; verified live at [`/MaltaProj1/oct14/`](https://buffedlizard55-lab.github.io/MaltaProj1/oct14/index.html) and [`/MaltaProj1/oct14/flagged.html`](https://buffedlizard55-lab.github.io/MaltaProj1/oct14/flagged.html). |
 
 
+
+---
+
+## Session `arena/fbcccda2` (`arena/fbcccda2-maltaproj1`) — 2026-10-14 Every-Match Picks (fallback tiers) + Executive Summary
+
+- **Session ID**: `arena/fbcccda2`
+- **Branch**: `arena/fbcccda2-maltaproj1` (fixed session branch; no other branch created)
+- **Claimed Timestamp**: `2026-10-14T03:00:00Z`
+- **Exclusive Non-Overlapping File Scope**:
+  - `everypick/**` (new mobile-first every-match picks site + executive summary pages)
+  - `data/fbcccda2/**` (new derived every-pick dataset, generated from committed slate + 8944bb84 evidence only)
+  - `scripts/fbcccda2_build.py`, `tests/test_fbcccda2.py`, `.github/workflows/everypick-fbcccda2.yml`
+  - `index.html` (additive executive-summary block only) and `COORDINATION.md` (append-only)
+
+| Task ID | Status | Owner | Scope | Notes |
+|---|---|---|---|---|
+| `FB-01` | `in_progress` | `arena/fbcccda2` | `data/fbcccda2/**`, `scripts/fbcccda2_build.py` | Picks for all 28 open CS2 fixtures in the 2026-10-14T02:23Z slate snapshot: Tier A latest Pinnacle (5), Tier B earlier verified external market (19), Tier C sourced-format rating model (3), Tier D guided lean with blank % (1: #1079624). No Hotspawn crowd % as probability. |
+| `FB-02` | `in_progress` | `arena/fbcccda2` | `everypick/**`, `index.html` | Mobile-first executive summary with in-site links to the updated picks list, per-match cards, methodology and Flagged page. |
+| `FB-03` | `in_progress` | `arena/fbcccda2` | `.github/workflows/everypick-fbcccda2.yml` | Scheduled rebuild/check against the hourly slate collector output; new fixtures without fallback evidence render as NO PICK — FLAGGED, never invented. |
+| `FB-04` | `in_progress` | `arena/fbcccda2` | PR to `main` | Re-verify, build, link-check, PR, merge, confirm Pages. |
