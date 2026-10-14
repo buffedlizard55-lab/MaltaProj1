@@ -1,0 +1,78 @@
+# Mobile executive summary refresh — session arena/20d753a2.
+#
+# 1. Re-reads the public Hotspawn Pick'em pages (/lobby, /cs2-pickems) for the open CS2 cards
+#    (scripts/summary_lobby.py). Crowd percentages are never read or stored.
+# 2. Rebuilds summary/*.html from every/data/picks.csv (sourced, refreshed hourly by every-75fd29ee)
+#    and fails if any lobby card is missing a pick row or any pick row is off the lobby.
+# 3. Runs tests/test_20d753a2.py (link, anchor, probability and no-crowd-% invariants).
+# 4. Commits only after all three succeed, so a failed refresh never replaces the last good summary.
+name: Mobile executive summary (20d753a2)
+
+on:
+  schedule:
+    # every 4 hours (the brief asks for 4-8 h). Schedules are best-effort.
+    - cron: "19 */4 * * *"
+  workflow_dispatch: {}
+  push:
+    branches: ["arena/20d753a2-maltaproj1"]
+    paths:
+      - "scripts/summary_lobby.py"
+      - "scripts/summary_build.py"
+      - "src/pickem_inventory.py"
+      - "tests/test_20d753a2.py"
+      - "summary/**"
+      - ".github/workflows/summary-20d753a2.yml"
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: summary-20d753a2-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Re-read the open Hotspawn CS2 lobby (fail-closed)
+        run: python3 scripts/summary_lobby.py
+
+      - name: Build summary pages (fails on any coverage or consistency break)
+        run: python3 scripts/summary_build.py
+
+      - name: Run summary tests
+        run: python3 -m unittest tests.test_20d753a2 -v
+
+      - name: Commit validated summary to this branch
+        if: github.event_name != 'pull_request'
+        run: |
+          git config user.name "arena-20d753a2"
+          git config user.email "arena-20d753a2@users.noreply.github.com"
+          git add summary
+          if git diff --cached --quiet; then
+            echo "No change in summary/."
+            exit 0
+          fi
+          git commit -m "summary: refresh mobile executive summary ($(date -u +%Y-%m-%dT%H:%MZ))"
+          git pull --rebase -q origin "${GITHUB_REF_NAME}"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
+
+      - name: Request a GitHub Pages build
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --method POST "repos/${GITHUB_REPOSITORY}/pages/builds" || true

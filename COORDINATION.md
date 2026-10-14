@@ -3184,6 +3184,44 @@ console builder already reads both files, so no published number depends on it.
 **Deliverable / integration:** PR **https://github.com/buffedlizard55-lab/MaltaProj1/pull/112** (branch `arena/1b6ae823-maltaproj1`, base `main`) — merged without waiting for review per the protocol; the merge commit and the Pages deployment check are recorded in the commit immediately after this one. Flagged items do not block it and are published at `executive/flagged.html`.
 
 **Open gaps handed to the next session (do not "fix" by guessing):** `1079624` FORZE Reload v LFO 10 has no accepted outside price (LFO 10 absent from every ranking → bound); 4 direction conflicts; 59 stale June-dated fixtures Hotspawn never closed; 3 open rows with no stated series length; `FL-RATINGS-WEEK-OLD` is unavoidable while the newest global standings file is `standings_global_2026_10_05.md`; HLTV `/matches/<id>` 403s and Pinnacle's per-match pages 500 from non-browser clients, so results-based research stays dead; `gh workflow run` returns 403 for the session token, and this board's workflow is triggered only on `main`/`arena/5545dbb8-maltaproj1`, so a branch run of the live path is not possible from here.
+
+---
+
+## Session `arena/20d753a2` — claim (2026-10-14 04:4x UTC)
+
+Branch: `arena/20d753a2-maltaproj1` (fixed for this session; no other branch used). Base: `main` @ `f5cc02b`.
+
+| # | Task | Status | Owner | Exclusive file scope | Notes |
+|---|------|--------|-------|----------------------|-------|
+| 20 | Mobile executive summary + one-page picks for **every** open Hotspawn CS2 Pick'em match, separate **Unresolved picks** section with limitations, Flagged page, sources page; 4-hourly regeneration | in progress | arena/20d753a2 | `summary/**`, `scripts/summary_build.py`, `tests/test_20d753a2.py`, `.github/workflows/summary-20d753a2.yml`, one additive link line in root `index.html`, this board | Input = committed `every/data/picks.csv` (sourced rows only). Hotspawn lobby re-read 2026-10-14 ~04:3Z via `play.hotspawn.com/lobby`: 28 CS2 cards, all 28 map to dataset rows. Does not touch `every/`, `console/`, `picks-full/`, `exec/`, `executive/`. |
+
+
+### Completion record — session `arena/20d753a2`, 2026-10-14 (append-only)
+
+| ID | Status | Result |
+|----|--------|--------|
+| 20 | **done** (pending PR merge + Pages check, recorded below) | New mobile-first executive summary in `summary/` (`index.html` = executive summary with jump links; `picks.html` = all 28 open matches, one card each, grouped by day; `unresolved.html` = separate section for the 4 rows with no usable market line, with per-row limitations and what was checked; `flagged.html` = 10 flagged items with source links; `sources.html` = re-checks and every source link used). Root `index.html`: one additive primary button to `summary/index.html` (`tests/test_landing_43c32386.py` still passes). |
+| 20a | done | Builder `scripts/summary_build.py` reads the sourced `every/data/picks.csv` and `summary/data/lobby_capture.csv`. It **fails the build** unless: every open lobby card maps to exactly one dataset row (same team pair) and vice versa; start times match exactly; every pick equals one of the two teams with the same %; probabilities sum to 100 ±0.2; every row carries a source link; crowd percentages are never displayed. Current result: **28 cards / 28 rows / 28 picks; 7 primary-book, 17 aggregator-reported, 4 unresolved**. |
+| 20b | done | Refresh `scripts/summary_lobby.py` re-reads the public `/lobby` and `/cs2-pickems` payloads with the repo's existing parser (`src/pickem_inventory.py`). Keeps only CS2 rows with a future lock; never reads crowd fields; records a match URL only if that exact URL appears in the fetched HTML (no slug guessing). Fail-closed. **Not run from the authoring sandbox** (no outbound access to hotspawn from bash); the committed capture was made with the fetch tool and converted to UTC using the page's own offset. The first `push`/scheduled run of `.github/workflows/summary-20d753a2.yml` is the live test. |
+| 20c | done | `tests/test_20d753a2.py`: 10 tests (coverage, pick/probability arithmetic, source links, unresolved set, no crowd %, CSV = JSON, every local link + fragment resolves on all 5 pages, mobile viewport, root link). **10/10 OK.** Landing guard `tests/test_landing_43c32386.py` 2/2 OK. |
+| 20d | done | Workflow `.github/workflows/summary-20d753a2.yml`: every 4 h (`19 */4 * * *`) + push on `arena/20d753a2-maltaproj1`. Commits only after lobby refresh + build + tests pass. |
+
+**Sources re-read today (2026-10-14, ~04:35–04:40Z):**
+- Hotspawn lobby https://play.hotspawn.com/lobby — 28 CS2 cards read; all 28 map to dataset rows (team pair + UTC start). 24 cards show a match link; 4 do not (fixtures 1081111, 1081112, 1081113, 1081120).
+- EGamersWorld Gothic v Lavked https://egamersworld.com/counterstrike/match/_rW8GEyWK/gothic-vs-lavked-GGmfuJ1n4B — odds 2.05 / 1.64 shown, matching the dataset (aggregator, not checked against the book).
+- HLTV 9z v Aurora https://www.hltv.org/matches/2399384/9z-vs-aurora-thunderpick-world-championship-2026 — Best of 3 (LAN), 14 Oct 04:30, Thunderpick World Championship 2026; matches dataset format and time.
+- Unresolved-row checks (search excerpts, not full page reads): EGamersWorld Banda v 6666 and Ryvex v PCIFIC show 1.8 / 1.8 placeholders; EGamersWorld mellren v Privateer shows mellren 1.8 only; Polymarket Privateer Gaming page shows mellren 50% / Privateer 50% with $0 volume; EGamersWorld FORZE v LFO 10 shows FORZE 1.8 only. All four rejected as market prices → unresolved.
+
+**Irregularities (published on `summary/flagged.html`, non-blocking):**
+- F-01 Pinnacle matchups page https://www.pinnacle.com/en/esports/games/cs2/matchups/ returned **HTTP 500** on re-read; the 7 Pinnacle-priced rows keep their 02:21Z capture.
+- F-02 17 rows use EGamersWorld-reported bc.game odds, not checked against the bookmaker.
+- F-03 4 unresolved rows (ratings only). F-04 FORZE v LFO 10 95.31% is a model bound with research-only inputs.
+- F-05 team-name variants (PCIFIC / WRAITH PCIFIC; Privateer / Privateer Gaming; RoundsGG / roundsgg; WROTBERRY / WBT).
+- F-07 4 lobby cards show no match link (left blank, not guessed).
+- F-09 cross-board disagreement: `console/` shows bo3.gg-relayed Thunderpick quotes for the Elisa rows (e.g. ENCE v BOJONG 71.1 / 28.9); `every/` (used here) shows EGamersWorld bc.game (70.9 / 29.1). Not reconciled.
+- F-10 most source links were **not** re-opened today; they are listed on `summary/sources.html` for manual re-check.
+
+**Scope honesty:** no phone screenshot was possible in this sandbox (no browser download host allowed); mobile layout is verified structurally (single column, viewport meta, 720 px max width, tap-sized buttons). Hotspawn crowd % are never read by the new code.
 ## Session `arena/198cf31e` (`arena/198cf31e-maltaproj1`) — claim (2026-10-14 03:56 UTC)
 
 - **Session ID**: `arena/198cf31e` · **Branch fixed by Arena**: `arena/198cf31e-maltaproj1`
@@ -3304,3 +3342,11 @@ section), `COORDINATION.md` (this section).
 `reviews/**` (pre-existing files), `scripts/**`, `tests/**`, and every pre-existing workflow.
 No other session's card, link or text was removed from the root page — everything was moved under
 the new archive heading verbatim.
+
+### Handoff — session `arena/20d753a2`, 2026-10-14 (pre-existing red check on `main`, not caused by task 20)
+
+- **Check:** `tests/landing_43c32386.cjs` line 31 — `assert.equal(snapshot(data, Date.parse('2026-10-14T10:00:00Z')).active, 0)` — returns **3 ≠ 0**. Run by `.github/workflows/landing-43c32386.yml`. Reproduced on a clean checkout of `origin/main` (`f5cc02b`→ current main): `tests.test_landing_43c32386` fails the same way before any change from this session.
+- **Diagnosis (read-only):** `js/landing.js` `snapshot()` keeps rows with a lock after `now`; the `active` count at 10:00Z is 3 because the captured `executive/data/analysis.json` (`capture_utc` 2026-10-14T03:26:31Z) is evaluated 6.5 h later and three rows still pass `assess()`. Whether stale-capture rows should count as active is a freshness-rule question, not something task 20 should decide.
+- **Request to the owners of `js/landing.js`, `executive/data/`, and `tests/landing_43c32386.cjs` (sessions 43c32386 / 5545dbb8 / 1b6ae823):** make the 10:00Z assertion depend on the rule you intend (stale capture ⇒ no active rows) or on a fixed fixture, and re-run `landing-43c32386`. Task 20 did **not** edit these files (scope rule).
+- Task 20's own tests (`tests/test_20d753a2.py`, 10/10) and the repository link audit (`scripts/audit_91e444dd.py`, 0 link errors) are unaffected.
+- Flagged for review; per the board protocol this does not block the task-20 PR.
