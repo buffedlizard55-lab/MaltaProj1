@@ -454,6 +454,19 @@ def build() -> dict:
             fx["basis"] = q["basis"]
             fx["p_a"], fx["p_b"] = q["p_a"], q["p_b"]
             fx["quote"] = q
+            if q["basis"] == "BOOK":
+                prov = q.get("book") or "the named bookmaker"
+                flags.append((
+                    "FL-BOOK-RELAYED", fx["fixture_id"],
+                    f'This is the price this row publishes, and it was read from bo3.gg\'s '
+                    f'public API, not from {prov} directly. bo3.gg names the provider and '
+                    f'links the bookmaker\'s own match page, and that page is the link on this '
+                    f'row, but the quote has not been confirmed against the bookmaker itself. '
+                    f'Other boards on this site treat relayed prices as unverified and publish '
+                    f'them blank; this one publishes them because the provider and the source '
+                    f'URL are both named, and flags them so the difference is visible. '
+                    f'Pinnacle and Polymarket rows carry no such caveat.',
+                    q.get("url") or "https://bo3.gg/matches"))
         elif fx.get("model_p_a") is not None:
             fx["basis"] = "MODEL"
             fx["p_a"] = fx["model_p_a"]
