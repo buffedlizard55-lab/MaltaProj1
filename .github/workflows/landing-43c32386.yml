@@ -43,6 +43,20 @@ jobs:
           python executive/collect.py
           python executive/build.py
           python executive/tests.py
+      - name: Publish inspectable source receipt
+        if: always()
+        run: |
+          python - <<'PY'
+          import json, pathlib
+          summary = pathlib.Path('executive/data/summary.json')
+          provenance = pathlib.Path('executive/data/provenance.json')
+          if summary.exists() and provenance.exists():
+              s, p = json.loads(summary.read_text()), json.loads(provenance.read_text())
+              report = {'meta': s.get('meta'), 'coverage': s.get('coverage'), 'fetches': [
+                  {k: f.get(k) for k in ('url', 'fetched_utc', 'status', 'mode')}
+                  for f in p.get('fetches', []) if 'play.hotspawn.com' in f.get('url', '') or 'pinnacle' in f.get('url', '') or 'ValveSoftware' in f.get('url', '')]}
+              print('::notice title=Live source receipt::' + json.dumps(report))
+          PY
       - name: Preserve live evidence for manual review (no data commits)
         if: always()
         uses: actions/upload-artifact@v4
