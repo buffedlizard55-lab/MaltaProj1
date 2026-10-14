@@ -1,31 +1,28 @@
 # Endpoint probe (temporary file, deleted before the pull request)
 
 ```
-=== PINNACLE ===
-sport matchups (key+origin): 200 bytes=400 head=b'[\n  {\n    "ageLimit": 0,\n    "altTeaser": false,\n    "bestOfX": 3,\n    "featureOrder": -1,\n    "hasAltSpread": true,\n   '
-sport matchups (key only): 200 bytes=400 head=b'[\n  {\n    "ageLimit": 0,\n    "altTeaser": false,\n    "bestOfX": 3,\n    "featureOrder": -1,\n    "hasAltSpread": true,\n   '
-sport matchups (no key): 200 bytes=400 head=b'[\n  {\n    "ageLimit": 0,\n    "altTeaser": false,\n    "bestOfX": 3,\n    "featureOrder": -1,\n    "hasAltSpread": true,\n   '
-sport matchups (browser UA): 200 bytes=400 head=b'[\n  {\n    "ageLimit": 0,\n    "altTeaser": false,\n    "bestOfX": 3,\n    "featureOrder": -1,\n    "hasAltSpread": true,\n   '
-sport straight markets: 200 bytes=400 head=b'[\n  {\n    "cutoffAt": "2026-10-14T16:00:00+00:00",\n    "isAlternate": false,\n    "key": "s;1;m",\n    "limits": [\n      {'
-leagues: 200 bytes=400 head=b'[\n  {\n    "ageLimit": 0,\n    "featureOrder": 0,\n    "group": "World",\n    "id": 212178,\n    "isFeatured": true,\n    "isH'
-league 230488 matchups plain: 200 bytes=400 head=b'[\n  {\n    "ageLimit": 0,\n    "altTeaser": false,\n    "featureOrder": -1,\n    "hasAltSpread": false,\n    "hasAltTotal": f'
-league 230488 matchups query: HTTPError 403 body=b'{\n  "detail": "Access from United States is prohibited",\n  "reason": "location",\n  "status": 403,\n  "title": "BAD_LOCATION",\n  "type": "about:blank"\n}\n'
-league 293370 matchups plain: 200 bytes=400 head=b'[\n  {\n    "ageLimit": 0,\n    "altTeaser": false,\n    "featureOrder": -1,\n    "hasAltSpread": false,\n    "hasAltTotal": f'
-league 293370 matchups query: HTTPError 403 body=b'{\n  "detail": "Access from United States is prohibited",\n  "reason": "location",\n  "status": 403,\n  "title": "BAD_LOCATION",\n  "type": "about:blank"\n}\n'
-league 230242 matchups plain: 200 bytes=400 head=b'[\n  {\n    "ageLimit": 0,\n    "altTeaser": false,\n    "featureOrder": -1,\n    "hasAltSpread": false,\n    "hasAltTotal": f'
-league 230242 matchups query: HTTPError 403 body=b'{\n  "detail": "Access from United States is prohibited",\n  "reason": "location",\n  "status": 403,\n  "title": "BAD_LOCATION",\n  "type": "about:blank"\n}\n'
-=== HLTV ===
-honest /matches: HTTPError 403 body=b'<!DOCTYPE html><html lang="en-US"><head><title>Just a moment...</title><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta http-equiv="X-UA'
-browser /matches: HTTPError 403 body=b'<!DOCTYPE html><html lang="en-US"><head><title>Just a moment...</title><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta http-equiv="X-UA'
-honest /matches?offset=0: HTTPError 403 body=b'<!DOCTYPE html><html lang="en-US"><head><title>Just a moment...</title><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta http-equiv="X-UA'
-browser /matches?offset=0: HTTPError 403 body=b'<!DOCTYPE html><html lang="en-US"><head><title>Just a moment...</title><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta http-equiv="X-UA'
-honest /events/matches: HTTPError 403 body=b'<!DOCTYPE html><html lang="en-US"><head><title>Just a moment...</title><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta http-equiv="X-UA'
-browser /events/matches: HTTPError 403 body=b'<!DOCTYPE html><html lang="en-US"><head><title>Just a moment...</title><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta http-equiv="X-UA'
-honest /results?offset=0: 200 bytes=400 head=b'<!DOCTYPE html>\n<html lang="en" data-client-country-iso="US-AZ" data-impression-tracking-endpoint="https://ncuxt.hltv.or'
-browser /results?offset=0: HTTPError 403 body=b'<!DOCTYPE html><html lang="en-US"><head><title>Just a moment...</title><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta http-equiv="X-UA'
-team page (browser UA): HTTPError 403 body=b'<!DOCTYPE html><html lang="en-US"><head><title>Just a moment...</title><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta http-equiv="X-UA'
-team page (honest UA): 200 bytes=400 head=b'<!DOCTYPE html>\n<html lang="en" data-client-country-iso="US-AZ" data-impression-tracking-endpoint="https://ncuxt.hltv.or'
-=== EGAMERSWORLD ===
-egw browser UA: HTTPError 403 body=b'<!DOCTYPE html>\n<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en-US"> <![endif]-->\n<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en-US"> <![endi'
-egw honest UA: HTTPError 403 body=b'<!DOCTYPE html><html lang="en-US"><head><title>Just a moment...</title><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta http-equiv="X-UA'
+=== PINNACLE per-matchup markets ===
+CS2 matchups in sport list: 129
+markets plain 1638273836: 403 bytes=151
+markets query 1638273836: 204 bytes=0
+markets plain 1638130723: 403 bytes=151
+markets query 1638130723: 204 bytes=0
+markets plain 1638130693: 403 bytes=151
+markets query 1638130693: 204 bytes=0
+sport straight markets size: 200 bytes=533483
+=== HLTV team page: upcoming-match links ===
+team page: 200 bytes=2819934 match_links=30 sample=[('/matches/2340903/furia-vs-envy-esl-one-road-to-rio-north-america', '2340903', 'furia-vs-envy-esl-one-road-to-rio-north-america'), ('/matches/2340921/envy-vs-yeah-esl-one-road-to-rio-north-america', '2340921', 'envy-vs-yeah-esl-one-road-to-rio-north-america'), ('/matches/2340932/liquid-vs-envy-esl-one-road-to-rio-north-america', '2340932', 'liquid-vs-envy-esl-one-road-to-rio-north-america')]
+   data-unix stamps: 1358
+hltv results page: 200 bytes=279567 matches=113 sample=['2399232', '2399204', '2399459']
+=== other esports market sources (US runner) ===
+oddspedia cs: 410 bytes=300
+oddsdigger esports: 404 bytes=300
+oddsdigger cs2: 404 bytes=300
+tips.gg cs: 403 bytes=300
+bo3.gg matches: 200 bytes=12750
+bo3.gg api: 200 bytes=17739
+escharts api: 404 bytes=300
+cyber.sports.ru: 302 bytes=300
+egamersworld cs (browser): 403 bytes=300
+hltv events: 403 bytes=300
 ```
