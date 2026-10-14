@@ -746,6 +746,92 @@ def collect_secondary_lines_from_repo() -> dict:
             "captured_utc": None}
 
 
+POLY_EVENTS = "https://gamma-api.polymarket.com/events?closed=false&limit=500&order=startDate&ascending=true"
+POLY_KEYWORDS = ("counter-strike", "counter strike", "cs2", "csgo", "cs:go")
+
+
+def collect_polymarket() -> dict:
+    """Polymarket's public read-only API, attempted every run because the brief names it.
+
+    Polymarket is a prediction market, not a bookmaker: a share price *is* an implied probability, so
+    it is stored as ``native_format: implied_probability`` and the build only ever uses it as a
+    secondary listing (a bookmaker line always outranks it). Two-outcome markets whose outcomes are
+    not both priced strictly between 0 and 1 are skipped, and the market's own page is the source
+    link on every row. If the endpoint refuses or changes shape the mode is recorded as failed and
+    no number is invented.
+    """
+    status, body, _ = http_get(POLY_EVENTS, tries=2)
+    from common import sha256_bytes
+    prov(POLY_EVENTS, status=status, bytes=len(body) or None,
+         sha256=sha256_bytes(body) if status == 200 and body else None, mode="live",
+         note="Polymarket public gamma API (prediction market) — secondary listing only")
+    if status != 200:
+        return {"quotes": [], "mode": "failed", "http_status": status, "source_url": POLY_EVENTS,
+                "fetched_utc": now_iso()}
+    try:
+        events = json.loads(body.decode("utf-8"))
+    except json.JSONDecodeError:
+        return {"quotes": [], "mode": "unparsed", "source_url": POLY_EVENTS, "fetched_utc": now_iso()}
+    if isinstance(events, dict):
+        events = events.get("events") or events.get("data") or []
+    if not isinstance(events, list):
+        return {"quotes": [], "mode": "unparsed", "source_url": POLY_EVENTS, "fetched_utc": now_iso()}
+
+    def as_list(value):
+        if isinstance(value, list):
+            return value
+        if isinstance(value, str):
+            try:
+                parsed = json.loads(value)
+                return parsed if isinstance(parsed, list) else []
+            except json.JSONDecodeError:
+                return []
+        return []
+
+    quotes, seen_events = [], 0
+    for event in events:
+        if not isinstance(event, dict):
+            continue
+        title = str(event.get("title") or "")
+        slug = str(event.get("slug") or "")
+        if not any(word in f"{title} {slug}".lower() for word in POLY_KEYWORDS):
+            continue
+        seen_events += 1
+        for market in event.get("markets") or []:
+            if not isinstance(market, dict) or market.get("closed"):
+                continue
+            outcomes = [str(o) for o in as_list(market.get("outcomes"))]
+            prices = as_list(market.get("outcomePrices"))
+            if len(outcomes) != 2 or len(prices) != 2:
+                continue
+            try:
+                pa, pb = float(prices[0]), float(prices[1])
+            except (TypeError, ValueError):
+                continue
+            if not (0.0 < pa < 1.0 and 0.0 < pb < 1.0):
+                continue
+            questions = str(market.get("question") or market.get("groupItemTitle") or "")
+            if questions and any(word in questions.lower() for word in ("map ", "map 1", "map 2", "total")):
+                continue  # map and total markets are not match winners
+            start = str(market.get("gameStartTime") or market.get("startDate") or "")
+            quotes.append({
+                "source_id": "polymarket", "source_name": "Polymarket",
+                "source_role": "prediction_market",
+                "event_id": str(event.get("id") or ""), "market_id": str(market.get("id") or ""),
+                "league": title,
+                "team_a": outcomes[0], "team_b": outcomes[1],
+                "start_time": start.replace("+00:00", "").replace(" ", "T")[:19] + ("Z" if start else ""),
+                "best_of": None, "native_format": "implied_probability",
+                "native_a": pa, "native_b": pb,
+                "odds_a": round(1.0 / pa, 6), "odds_b": round(1.0 / pb, 6),
+                "market_type": "match_winner", "status": "open",
+                "source_url": f"https://polymarket.com/event/{slug}" if slug else POLY_EVENTS,
+                "api_url": POLY_EVENTS, "captured_utc": now_iso(),
+            })
+    return {"quotes": quotes, "mode": "live" if quotes else "empty", "events_scanned": seen_events,
+            "source_url": POLY_EVENTS, "fetched_utc": now_iso()}
+
+
 def collect_egw() -> dict:
     """EGamersWorld public CS2 match list. Frequently refuses automated reads (documented, not hidden)."""
     status, body, _ = http_get(EGW_MATCHES, tries=2)
@@ -998,6 +1084,12 @@ def main() -> int:
         pass
     elif secondary_repo.get("quotes"):
         secondary = secondary_repo
+    # The prediction market the brief names is read every run and merged in as a secondary listing.
+    polymarket = {"quotes": [], "mode": "skipped"} if args.offline else collect_polymarket()
+    if polymarket.get("quotes"):
+        secondary = dict(secondary)
+        secondary["quotes"] = list(secondary.get("quotes") or []) + list(polymarket["quotes"])
+        secondary["mode"] = f"{secondary.get('mode', 'unknown')}+polymarket"
 
     hltv_teams = collect_hltv_teams(hotspawn, vrs, hltv_ranking, hltv_matches, offline=args.offline)
 
@@ -1021,6 +1113,7 @@ def main() -> int:
     write_json(DATA / "hltv_matches.json", hltv_matches)
     write_json(DATA / "pinnacle.json", pinnacle)
     write_json(DATA / "secondary_lines.json", secondary)
+    write_json(DATA / "polymarket.json", polymarket)
     write_json(DATA / "provenance.json", {
         "generated_utc": now_iso(), "offline": args.offline,
         "fetches": PROV,
@@ -1041,6 +1134,8 @@ def main() -> int:
                                            for p in (hltv_schedule.get("teams") or {}).values())},
         "pinnacle": {"mode": pinnacle.get("mode"), "quotes": len(pinnacle.get("quotes", []))},
         "secondary": {"mode": secondary.get("mode"), "quotes": len(secondary.get("quotes", []))},
+        "polymarket": {"mode": polymarket.get("mode"), "quotes": len(polymarket.get("quotes", [])),
+                       "events_scanned": polymarket.get("events_scanned")},
     }, indent=1))
     return 0
 
