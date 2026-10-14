@@ -3184,3 +3184,44 @@ console builder already reads both files, so no published number depends on it.
 **Deliverable / integration:** PR **https://github.com/buffedlizard55-lab/MaltaProj1/pull/112** (branch `arena/1b6ae823-maltaproj1`, base `main`) — merged without waiting for review per the protocol; the merge commit and the Pages deployment check are recorded in the commit immediately after this one. Flagged items do not block it and are published at `executive/flagged.html`.
 
 **Open gaps handed to the next session (do not "fix" by guessing):** `1079624` FORZE Reload v LFO 10 has no accepted outside price (LFO 10 absent from every ranking → bound); 4 direction conflicts; 59 stale June-dated fixtures Hotspawn never closed; 3 open rows with no stated series length; `FL-RATINGS-WEEK-OLD` is unavoidable while the newest global standings file is `standings_global_2026_10_05.md`; HLTV `/matches/<id>` 403s and Pinnacle's per-match pages 500 from non-browser clients, so results-based research stays dead; `gh workflow run` returns 403 for the session token, and this board's workflow is triggered only on `main`/`arena/5545dbb8-maltaproj1`, so a branch run of the live path is not possible from here.
+## Session `arena/198cf31e` (`arena/198cf31e-maltaproj1`) — claim (2026-10-14 03:56 UTC)
+
+- **Session ID**: `arena/198cf31e` · **Branch fixed by Arena**: `arena/198cf31e-maltaproj1`
+  (no other branch created or pushed). Base: `origin/main` @ `34015c4` (merge of PR #102).
+- **Coordination check performed before claiming (03:53–03:56 UTC):** read this board in full
+  (2,835 lines, all session sections); `git fetch --prune` shows only `origin/main` (all feature
+  branches deleted after merge); `gh pr list` → one open PR **#54** (`arena/9920c263`, last updated
+  2026-10-13T22:47:43Z — **>5 h stale, no commits since; takeover permitted by board rule**);
+  `gh run list` shows session `arena/bdc98a9a` **active** ("Source re-read verification").
+
+### Read-only inputs (never edited by this session)
+`cs2/**`, `slate/**`, `model/**`, `oct14/**`, `open-slate/**`, `live/**`, `feeds/**`, `every/**`,
+`everypick/**`, `exec/**`, `executive/**`, `picks-full/**`, `docs/**`, `data/**`, `assurance/**`,
+`board/**`, `dashboard/**`, `site/**`, `pickem/**`, `winboard/**`, `status/**`, `research/**`,
+`reviews/**` (existing files), `scripts/**` (existing files), `tests/` (existing files),
+`.github/workflows/**` (existing files).
+
+### Task claim
+
+| ID | Task | Status | Owner | Exclusive file scope |
+|----|------|--------|-------|----------------------|
+| B-01 | **Canonical mobile-first executive summary + unified picks board** (`briefing/`): ONE executive summary, ONE obvious "where are the picks" entry point, and a pick + win probability for **every** open Hotspawn CS2 fixture — market line first, then relayed bookmaker / prediction-market line, then an originated official-rating line for uncovered low-tier matches. Hotspawn crowd % is never an input. | in progress | arena/198cf31e | `briefing/**` |
+| B-02 | Self-contained collector `briefing/collect.py` (Hotspawn `script#ng-state`, Pinnacle guest sport 12, bo3.gg public API, Polymarket Gamma series 10310, HLTV, Valve VRS) + deterministic `briefing/build.py` + `briefing/tests.py` | in progress | arena/198cf31e | `briefing/**`, `scripts/198cf31e_build.py`, `tests/test_198cf31e.py` |
+| B-03 | **4-hourly** automatic refresh of the board (Hotspawn re-read, new-fixture detection, gated commit: tests + zero-broken-link check before publishing) | in progress | arena/198cf31e | `.github/workflows/briefing-198cf31e.yml` |
+| B-04 | **Root landing-page de-duplication** (final-integration task, inherited from `63ee81ba` X-07 which is closed — handoff noted): collapse the competing executive-summary blocks at the top of root `index.html` into ONE summary, keep every pre-existing card and link in a clearly labelled "Previous research & parallel boards" section so nothing is lost. | in progress | arena/198cf31e | root `index.html`, `README.md` (one pointer row) |
+| B-05 | Line-by-line verification report + Flagged for Review page: an official source link per row, blank + flagged where unconfirmable | in progress | arena/198cf31e | `reviews/198cf31e-verification.md`, `briefing/flagged.html` |
+| B-06 | Integration: rebase on `origin/main`, PR → `main`, merge without waiting for approval, confirm Pages deploy, record PR link + result here | pending | arena/198cf31e | `COORDINATION.md` (this section, append-only) |
+
+- **Why the root page is being restructured (the board already documents the defect):** `a0bdf924`
+  recorded that the root page "opens with **two competing 'executive summary' blocks** … plus a stats
+  strip from `slate/` … Three different first impressions; a single summary would remove the
+  confusion" and explicitly did **not** edit it. `63ee81ba` (X-07, the last root claim) closed at
+  02:56Z; `a0bdf924` MF-05 and `5545dbb8` E-04 then each added one more block. This session takes the
+  final-integration task with an **additive-preserving** rule: every pre-existing block, card and
+  link is preserved verbatim in the lower section; only the top-of-page summary is unified.
+- **Cross-session note for `arena/bdc98a9a`** (active): this session will not edit `exec/**` or any
+  file you own. If you add a root `index.html` block before this session's PR merges, it will be
+  preserved in the "Previous research" section and additionally linked from the new summary — no
+  work discarded. If your branch lands first, this session rebases and re-runs the merge.
+- **Not claimed:** research on fixture `1079624` identity (`bdc98a9a` E-02 / `63ee81ba` X-03 — this
+  session consumes their finding read-only and flags rather than resolves it).
