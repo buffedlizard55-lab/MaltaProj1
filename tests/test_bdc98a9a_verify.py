@@ -156,6 +156,14 @@ class VerdictTests(unittest.TestCase):
         self.assertIsNone(collect.parse_utc(""))
         self.assertIsNone(collect.parse_utc("not a date"))
 
+    def test_reuse_note_is_collapsed_to_one_stamp(self):
+        note = ("anchor L216; team-name found · reused from the 2026-10-14T03:42:31Z run (<6 h) "
+                "· reused from the 2026-10-14T03:42:31Z run (<6 h)")
+        cleaned = collect.strip_reuse_notes(note)
+        self.assertEqual(cleaned.count("reused from"), 0)
+        self.assertIn("anchor L216", cleaned)
+        self.assertEqual(collect.strip_reuse_notes("plain note"), "plain note")
+
     def test_every_verdict_name_is_known(self):
         for name in collect.VERDICT_NAMES:
             self.assertIn(name, build.CHIPS)
