@@ -14,7 +14,7 @@
     <b>Hotspawn CS2 briefing</b>
     <span class="sub">picks for every match · outside lines only</span>
     <span class="spacer"></span>
-    <span class="sub">snapshot 2026-10-14T04:19:29Z</span>
+    <span class="sub">snapshot 2026-10-14T04:21:35Z</span>
   </div>
   <nav class="tabs" aria-label="Sections"><a href="index.html">Executive summary</a><a href="picks.html">All picks</a><a href="lines.html">Outside market lines</a><a href="own-lines.html">Our own lines</a><a href="coverage.html">Coverage</a><a href="sources.html">Sources</a><a href="flagged.html">Flagged for Review</a><a href="methodology.html" aria-current="page">Methodology</a></nav>
   <main id="main">
@@ -59,8 +59,8 @@
     <li>map win probability <code>p = 1 / (1 + 10^(-(ratingA - ratingB) / scale))</code></li>
     <li>series probability from the sourced best-of: BO3 <code>p²(3-2p)</code>,
         BO5 <code>p³(10-15p+6p²)</code></li>
-    <li><code>scale</code> = 400.0 rating points per 10:1 map-odds ratio,
-        not fitted this run — only 0 market-priced fixture(s) with two officially rated teams, so the scale could not be fitted this run; the board falls back to the default 400-point logistic scale and labels every model line as uncalibrated</li>
+    <li><code>scale</code> = 1408.5 rating points per 10:1 map-odds ratio,
+        fitted by least squares against the de-vigged market prices read in this same run (n=17, RMSE 10.37 pp, worst 23.51 pp)</li>
   </ul>
   <div class="note warnbox"><b>This is our model, not Valve's official forecast formula.</b>
   It is fitted in-sample on a single day's market prices, so it is a description of how those
@@ -97,7 +97,7 @@
     source it came from; anything unconfirmable is left blank and listed on
     <a href="flagged.html">Flagged for Review</a>.
     Fixture list: <a href="https://play.hotspawn.com/lobby">play.hotspawn.com/lobby</a>.
-    Snapshot 2026-10-14T04:19:29Z.
+    Snapshot 2026-10-14T04:21:35Z.
   </footer>
 </div>
 </body>
