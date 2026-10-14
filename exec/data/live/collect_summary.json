@@ -1,6 +1,6 @@
 {
- "started_utc": "2026-10-14T02:40:18Z",
- "finished_utc": "2026-10-14T02:40:26Z",
+ "started_utc": "2026-10-14T02:42:20Z",
+ "finished_utc": "2026-10-14T02:42:41Z",
  "only": "all",
  "fetches": [
   {
@@ -10,7 +10,7 @@
    "sha256": "33ac1feb893198b65580ad64357ea2a902593b52dd72191dc0e13200cf42c1d8",
    "path": "http",
    "error": null,
-   "fetched_utc": "2026-10-14T02:40:19Z"
+   "fetched_utc": "2026-10-14T02:42:21Z"
   },
   {
    "url": "https://play.hotspawn.com/lobby",
@@ -19,7 +19,7 @@
    "sha256": "a260788ef6d7c079b07b31f2f465e3f2ddd4192604698dd83058a7c61c5188af",
    "path": "http",
    "error": null,
-   "fetched_utc": "2026-10-14T02:40:20Z"
+   "fetched_utc": "2026-10-14T02:42:22Z"
   },
   {
    "url": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md",
@@ -28,20 +28,60 @@
    "sha256": "df96e7fc3cd91a2687ec08cac0128e50cc4e4e55346581679572e881d79ae61b",
    "path": "http",
    "error": null,
-   "fetched_utc": "2026-10-14T02:40:20Z"
+   "fetched_utc": "2026-10-14T02:42:23Z"
   },
   {
    "url": "https://www.hltv.org/ranking/teams",
    "status": 200,
-   "bytes": 1217165,
-   "sha256": "bd250627a06a167ad5b8ad10dced04913b5b806b27c8fbe8a89465c7ee216f6a",
+   "bytes": 1210301,
+   "sha256": "6f9f0ef794d00f30514f4b331240b9832ca577335733838194351298dcce899a",
    "path": "browser",
    "error": null,
-   "fetched_utc": "2026-10-14T02:40:26Z"
+   "fetched_utc": "2026-10-14T02:42:28Z"
+  },
+  {
+   "url": "https://www.hltv.org/matches?date=2026-10-13",
+   "status": 403,
+   "bytes": 28894,
+   "sha256": "ef1761c37d3af3a80232cf1321e21b22476b808f45ac41875d6017a6db574925",
+   "path": "browser",
+   "error": " marker 'href=\"/matches/' absent",
+   "fetched_utc": "2026-10-14T02:42:31Z"
+  },
+  {
+   "url": "https://www.hltv.org/matches?date=2026-10-14",
+   "status": 403,
+   "bytes": 28894,
+   "sha256": "240a17d8d2c8c6305c28ec6037a9544585f2502b7dc45976cbea73791edf29b0",
+   "path": "browser",
+   "error": " marker 'href=\"/matches/' absent",
+   "fetched_utc": "2026-10-14T02:42:34Z"
+  },
+  {
+   "url": "https://www.hltv.org/matches?date=2026-10-15",
+   "status": 200,
+   "bytes": 1027385,
+   "sha256": "3968beb3903613396b7f1aa1feb2f9f9a3852e75f02c26e9ac2bad6a4c801d02",
+   "path": "browser",
+   "error": null,
+   "fetched_utc": "2026-10-14T02:42:38Z"
+  },
+  {
+   "url": "https://www.hltv.org/matches?date=2026-10-16",
+   "status": 403,
+   "bytes": 28894,
+   "sha256": "8e756ba73e2ef5841b2e7b3cf47079777560b6d8754fc19cde38fae9e0e69205",
+   "path": "browser",
+   "error": " marker 'href=\"/matches/' absent",
+   "fetched_utc": "2026-10-14T02:42:41Z"
   }
  ],
- "hotspawn_fixtures": 0,
+ "hotspawn_fixtures": 88,
  "valve_teams": 349,
  "hltv_ranked_teams": 245,
- "errors": []
+ "errors": [
+  "https://www.hltv.org/matches?date=2026-10-13",
+  "https://www.hltv.org/matches?date=2026-10-14",
+  "https://www.hltv.org/matches?date=2026-10-16"
+ ]
 }
