@@ -59,6 +59,28 @@ Verification: [`reviews/198cf31e-verification.md`](reviews/198cf31e-verification
 The boards below are earlier work by parallel sessions, kept exactly as published. Their
 snapshots, counts and model assumptions are not interchangeable with `briefing/`.
 
+## Full-coverage board — all 88 matches (session `arena/c13ca42a`, 2026-10-14)
+
+**Board:** [`fullpicks/`](fullpicks/index.html) — the only board covering **every** captured Hotspawn
+CS2 fixture, not just the open week: 28 open matches with a live pick + win probability (outside
+markets first; own originated line where unpriced), 54 already-played matches with the **officially
+verified result** (HLTV match pages; Liquipedia for DACH CS Masters S5) next to the original pick,
+and 6 unresolved matches (DraculaN Season 7 cards whose data contradicts the official HLTV event)
+left **blank and flagged** — never inferred.
+
+| Page | What it is |
+|---|---|
+| [`fullpicks/index.html`](fullpicks/index.html) | Full-coverage board — all 88 fixtures, source link on every row, mobile friendly |
+| [`fullpicks/unresolved.html`](fullpicks/unresolved.html) | Unresolved picks & limitations (DraculaN evidence, caveats, own-line limits) |
+| [`fullpicks/data/fullpicks_board.csv`](fullpicks/data/fullpicks_board.csv) | Machine-readable board (88 rows) |
+| [`fullpicks/data/stale_results.csv`](fullpicks/data/stale_results.csv) | The 60 stale results (54 verified + 6 unresolved) with official source per row |
+| [`data/c13ca42a/research_stale_results.md`](data/c13ca42a/research_stale_results.md) | C-02 research trail (event mapping + per-tournament pairings) |
+| [`reviews/c13ca42a-verification.md`](reviews/c13ca42a-verification.md) | Line-by-line verification record + irregularities |
+
+Rebuild: `python3 scripts/c13ca42a_build_fullpicks.py` (fail-closed invariants;
+`tests/test_c13ca42a.py`); refreshed by `.github/workflows/fullpicks-c13ca42a.yml` every 4 hours
+and whenever the executive fixture data changes.
+
 ## Current board
 
 **Start here on a phone:** [`exec/`](exec/index.html) — the executive summary and cross-board coverage

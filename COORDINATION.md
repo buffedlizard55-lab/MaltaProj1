@@ -3750,3 +3750,27 @@ move to a market basis. LFO 10 remains absent from the official Valve file (newe
 `standings_global_2026_10_05.md`) so `1079624` cannot carry an official-points own line even though it
 now carries a market line. 59 stale June-dated fixtures Hotspawn never closes remain in the inventory
 and are published as such on `executive/coverage.html`.
+
+## Session `arena/c13ca42a` — claim (2026-10-14 ~08:35 UTC)
+
+Branch: `arena/c13ca42a-maltaproj1` (fixed by Arena; base `main` @ `263eaa8`, the 08:04Z livelines refresh).
+Coordination check: `git fetch --prune` → only `origin/main` · `gh pr list` → **no open PRs** ·
+latest pushes = e13aca8a 05:14Z + scheduled main refreshes → **no active parallel session detected**;
+all other sessions' files stay read-only inputs.
+
+| ID | Task | Status | Owner | Exclusive file scope |
+|----|------|--------|-------|----------------------|
+| C-01 | Live re-read of `play.hotspawn.com/lobby` + `/cs2-pickems` (TransferState): verify current CS2 slate (expected 88 fixtures / 28 open / 60 stale) against `executive/data/fixtures.csv`; record read times; any delta published | in progress | arena/c13ca42a | `fullpicks/data/lobby_recheck_*.csv`, `data/c13ca42a/**` |
+| C-02 | **Picks for every match — the 60 stale June-2026 fixtures** (Urban Riga Open #5, Thunderpick WC 2026 SA #1, CCT Europe Challengers #4, CCT SA #3/#7, EPL S8 Play-In, DraculaN S7, Svenska CS-Ligan, Rainhas do Clutch, LG UltraGear, DACH CS Masters S5): result verified per match from **HLTV first** (event pages + match pages), then Liquipedia/bo3.gg; pick = verified result with source link; **no invented odds for finished matches**; any match whose result cannot be confirmed from an official source stays blank + flagged | in progress | arena/c13ca42a | `fullpicks/data/stale_results.csv`, `data/c13ca42a/research_stale_*.md` |
+| C-03 | Full-coverage picks board `fullpicks/`: ONE table of **all 88** Hotspawn CS2 fixtures — 28 open rows (pick + both probabilities + source link, joined read-only from `executive/data/`), 60 finished rows (verified result + source link); mobile-first, generator `scripts/c13ca42a_build.py` + `tests/test_c13ca42a.py` + 4-hourly fail-closed workflow | in progress | arena/c13ca42a | `fullpicks/**`, `scripts/c13ca42a_*.py`, `tests/test_c13ca42a.py`, `.github/workflows/fullpicks-c13ca42a.yml` |
+| C-04 | Separate **Unresolved picks & limitations** section (what still cannot be resolved + why: unverified finished results, no-price open rows 1081112/1081120, rating-age, stale-capture) — inside the executive summary with one-tap links | in progress | arena/c13ca42a | `fullpicks/unresolved.html` (generated), referenced from C-05 summary |
+| C-05 | **Final integration: one clean, mobile-first landing page** (root `index.html`) — a single executive summary (counts, freshness, what is verified), prominent in-site links to the picks list (`fullpicks/` + `executive/picks.html`), unresolved/flagged/methodology links; every pre-existing block/card/link of other sessions preserved verbatim in a clearly labelled "Previous research & parallel boards" section (additive-preserving, same discipline as 198cf31e B-04 / a453c5d6) | in progress | arena/c13ca42a | root `index.html`, `css/landing.css` (additive only), `README.md` (pointer only) |
+| C-06 | Line-by-line verification record for every row published (88/88: pick, basis, source link, flag) + irregularities (incl. observed red CI: `O-01 own-line model (VRS)`, `Slate capture (180a42a0)`) | in progress | arena/c13ca42a | `reviews/c13ca42a-verification.md` |
+| C-07 | Release: rebase on `origin/main`, PR → `main`, merge without waiting for approval, confirm GitHub Pages deploy (no broken links), record PR link + result here | unclaimed until C-01..C-06 done | arena/c13ca42a | `COORDINATION.md` (this section) |
+
+Read-only inputs (never edited): `executive/**`, `briefing/**`, `summary/**`, `gap-resolution/**`,
+`console/**`, `livelines/**`, `docs/**`, `data/**` (all existing files), `tests/` (existing files),
+`.github/workflows/` (existing files).
+Rule restated: Hotspawn supplies fixture identity/times only, never a probability. Unconfirmable values
+stay blank and flagged. No hallucinations — every published value carries a source link read in this session
+or a recorded read time.
