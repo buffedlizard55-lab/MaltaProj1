@@ -78,7 +78,7 @@ Cron configuration is not proof of a successful scheduled refresh. At 02:59Z, no
 
 A separate O-01 own-line model workflow run [38501763317](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38501763317) failed at its test step; failed-log retrieval returned EOF, so the cause is unknown. It is not the successful CS2 board-refresh run and should not be conflated with it.
 
-## Post-audit updates — 03:02–03:15Z
+## Post-audit updates — 03:02–03:19Z
 
 After the 02:59Z snapshot above, PR #92 merged at 03:02:09Z. It adds [`feeds/`](../feeds/index.html) as a **secondary-market data source**, not another picks board, and one root-page card; `picks-full/` remains the primary picks CTA. The new feed capture was generated at 03:02:29Z and covers 25/28 open matches (20 bookmaker quotes relayed by bo3.gg, 15 Polymarket markets, 10 on both); it leaves three rows blank, lists 26 formats, and marks questionable joins/quotes for review.
 
@@ -114,3 +114,11 @@ The refresh moved secondary market values without changing the three directions:
 4. **Slate automation owner:** investigate the absent `:41` schedule event and monitor the first post-merge cron runs for `exec/` and `picks-full/`; keep the visible snapshot age/current-run status honest if GitHub delays or drops scheduled jobs.
 
 These are integration requests only. No owner data, HTML, workflows or generated pages were edited for this audit.
+
+## Integration outcome and final deployment — 03:18–03:20Z
+
+PR [#95](https://github.com/buffedlizard55-lab/MaltaProj1/pull/95) merged at 03:18:03Z as `84ca4e6a76fa1117872862e50eee4d495fda777f`; its `audit` and `verify` checks both passed on head `6d43072`. Pages run [38505533395](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38505533395) succeeded for the merge commit, the Pages API reported `built`, and the public root loaded after deployment.
+
+The following `feeds/` refresh captured 03:19:00Z (run [38505592762](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38505592762), main commit `6894dbb`). Coverage is still 25/28 (20 bookmaker reports relayed by bo3.gg, 14 Polymarket, 9 overlaps; 26 formats known). [#1079624 remains unpriced](https://buffedlizard55-lab.github.io/MaltaProj1/feeds/index.html#f1079624): no identity-matched quote is published. Latest secondary values are #1079623 G2 Ares 70.0% [Polymarket](https://polymarket.com/event/cs2-g2a-tlr-2026-10-14); #1080279 EAC 53.76% [Thunderpick via bo3.gg](https://bo3.gg/matches/wbt-vs-esport-academy-copenhagen-15-10-2026); #1080285 Phantom 51.35% [Thunderpick via bo3.gg](https://bo3.gg/matches/voca-vs-phantom-esports-16-10-2026) and 56.5% [Polymarket](https://polymarket.com/event/cs2-voc-pha-2026-10-16) (mean 53.93%). Thunderpick's direct probe ([sample listing](https://thunderpick.io/match/2812130)) returned HTTP 403, so its quotes remain aggregator-reported. The current public `/feeds/` page showed this capture; `/every/` still shows its 03:08:10Z generation and `/exec/` still reports 27/28 while omitting both newer picks boards.
+
+Latest main Pages run [38505616185](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38505616185) succeeded for `6894dbb`; the Pages API reports `built`. Public `/every/` and `/exec/` routes also loaded. On this latest main, the full repository suite passed **177**, `feeds/tests.py` passed **15**, and the HTML audit remained **190 pages, 0 link errors, 53 review findings**. The five pick boards still share the same 28 open fixture IDs; legacy tests continue to emit non-fatal unclosed-file `ResourceWarning`s.
