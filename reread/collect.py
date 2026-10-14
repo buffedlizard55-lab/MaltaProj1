@@ -33,6 +33,7 @@ import json
 import re
 import sys
 import time
+import traceback
 import urllib.error
 import urllib.request
 from datetime import datetime, timezone
@@ -715,7 +716,16 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--limit", type=int, default=None)
     ap.add_argument("--offline", action="store_true")
     args = ap.parse_args(argv)
-    run(args.only, args.limit, args.offline)
+    OUT.mkdir(parents=True, exist_ok=True)
+    try:
+        run(args.only, args.limit, args.offline)
+    except Exception:  # noqa: BLE001 - publish what happened instead of an empty log
+        (OUT / "error.json").write_text(json.dumps(
+            {"error": "collect run raised", "when": now_iso(),
+             "traceback": traceback.format_exc()[-4000:]}, indent=1) + "\n", encoding="utf-8")
+        print(traceback.format_exc(), file=sys.stderr)
+        return 1
+    (OUT / "error.json").unlink(missing_ok=True)
     return 0
 
 

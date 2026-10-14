@@ -59,6 +59,8 @@ jobs:
           python3 -m playwright install --with-deps chromium
 
       - name: Re-read every cited source
+        id: reread
+        continue-on-error: true
         run: python3 reread/collect.py
 
       - name: Rebuild the verification pages
@@ -77,6 +79,12 @@ jobs:
           s = json.loads(pathlib.Path("reread/data/summary.json").read_text())
           print(json.dumps({k: s[k] for k in ("claims", "verdicts", "fetches", "fetch_errors")}, indent=1))
           PY
+
+      - name: Fail the job if the re-read raised (after the evidence is committed)
+        if: always() && steps.reread.outcome == 'failure'
+        run: |
+          echo "collect.py failed — see reread/data/error.json in the commit above"
+          exit 1
 
       - name: Commit the rebuilt verification (main and this session's branch)
         if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/arena/bdc98a9a-maltaproj1'
