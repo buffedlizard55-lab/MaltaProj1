@@ -541,17 +541,31 @@ def analyse(fixture: dict, ratings: dict, market: list[dict], secondary: list[di
     # Hotspawn publishes no series length.  Where the outside listing that prices this fixture states
     # one, that stated length is used (and linked) instead of leaving the row blank: the format changes
     # what a per-map rating line means for the series.  Nothing is guessed where no listing states it.
-    if not series_format and used:
-        listing_bo = ownlines.format_to_best_of(used.get("best_of"))
-        listing_url = used.get("source_url") or used.get("book_url") or ""
-        if listing_bo and listing_url:
+    if not series_format:
+        # Read the length off the outside page(s) for this fixture.  The listing whose price the row is
+        # based on is asked first; if that one prints no length, any other accepted quote for the same
+        # pairing is asked, and its page is linked as the format source.  Nothing is assumed: when no
+        # outside page states a length the row stays blank and flagged.
+        for candidate in [used] + primary + secondary_ok:
+            if not candidate:
+                continue
+            listing_bo = ownlines.format_to_best_of(candidate.get("best_of"))
+            listing_url = candidate.get("source_url") or candidate.get("book_url") or ""
+            if not (listing_bo and listing_url):
+                continue
             series_format = f"BO{listing_bo}"
             series_format_source = listing_url
             flags = [f for f in flags if f != "FL-FORMAT-UNKNOWN"]
             flags.append("FL-FORMAT-FROM-LISTING")
+            stated_by = (f"the pricing listing ({candidate.get('source_name', 'listing')})"
+                         if candidate is used else
+                         f"{candidate.get('source_name', 'listing')}, whose page for this fixture states "
+                         "the length (the listing the price is taken from prints none)")
             basis_detail = (basis_detail + " " if basis_detail else "") + (
-                f"Series length {series_format} as stated by the pricing listing "
-                f"({used.get('source_name', 'listing')}); Hotspawn states none.")
+                f"Series length {series_format} as stated by {stated_by}; Hotspawn states none.")
+            if candidate is not used:
+                basis_sources = basis_sources + [(listing_url, f"{candidate.get('source_name', 'listing')} (series length)")]
+            break
         else:
             flags.append("FL-FORMAT-UNKNOWN")
 
