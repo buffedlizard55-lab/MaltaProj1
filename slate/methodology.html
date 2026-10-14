@@ -52,6 +52,7 @@ border-radius:8px;padding:10px 12px;margin:14px 0;font-size:13px;color:var(--mut
 code{background:#0a0d12;border:1px solid var(--line);border-radius:4px;padding:1px 5px;font-size:12.5px}
 .scroll{overflow-x:auto}
 footer{color:var(--muted);font-size:12px;padding:22px 14px 40px;max-width:1080px;margin:0 auto}
+.table-search{display:block;margin:16px 0 8px}.table-search input{max-width:100%;margin-left:10px;padding:10px;background:var(--panel);color:var(--fg);border:1px solid var(--line);border-radius:8px}small.mut{display:block}
 @media(max-width:760px){
   body{font-size:14px}
   table,thead,tbody,th,td,tr{display:block}
@@ -71,9 +72,10 @@ footer{color:var(--muted);font-size:12px;padding:22px 14px 40px;max-width:1080px
 <header>
   <p class="brand">Hotspawn Pick'em — line board</p>
   <p class="sub">Every rule behind the numbers, in one page</p>
-  <nav><a href="index.html">Board</a><a href="cs2.html">CS2</a><a href="lol.html">LoL / other</a><a href="tournaments.html">Tournaments</a><a href="tiers.html">Tiers</a><a href="fixtures.html">All fixtures</a><a href="lines.html">Market lines</a><a href="own-lines.html">Own lines</a><a href="verified.html">Verification</a><a href="sources.html">Sources</a><a href="methodology.html" class="active">Method</a><a href="flagged.html">Flagged for review</a></nav>
+  <nav><a href="../">Home</a><a href="index.html">Board</a><a href="cs2.html">CS2</a><a href="lol.html">LoL / other</a><a href="tournaments.html">Tournaments</a><a href="tiers.html">Tiers</a><a href="fixtures.html">All fixtures</a><a href="lines.html">Market lines</a><a href="own-lines.html">Own lines</a><a href="verified.html">Verification</a><a href="sources.html">Sources</a><a href="methodology.html" class="active">Method</a><a href="flagged.html">Flagged for review</a></nav>
 </header>
 <main>
+<div id="freshness" class="note" role="status">Snapshot freshness has not been checked by your browser. See capture times below; picks may be stale.</div>
 <h1>Method</h1>
 <p class="lead">The rules this board follows, stated so that any number on it can be reproduced or refuted.</p>
 
@@ -98,8 +100,15 @@ Regional Standings points. Each becomes a per-map probability with the standard 
 <code>p = 1 / (1 + 10^((r_b − r_a)/400))</code>, then a series probability with
 <code>BO3: p²(3−2p)</code> (BO1 identity, BO5 <code>p³(10−15p+6p²)</code>). Both official values are
 published per row, so the arithmetic can be redone by hand. No bookmaker price is an input to this line.</p>
-<p><b>Pick.</b> The side with the higher combined probability. Where the market line and our own line disagree on
-the favourite, the row says so, follows the market, and is listed on the Flagged page.</p>
+<p><b>Pick.</b> The primary market favourite is preferred without blending in the model. Only Pinnacle quotes
+read in this run, with exact/evidence-linked names, a known kickoff within 15 minutes and an age below six hours,
+can drive a market pick. Secondary EGamersWorld reports are listed for research, <b>unverified against the named
+bookmaker</b>, not used for the headline probability. If no eligible quote exists, a provisional model-only pick
+is possible only with a sourced BO1/BO3/BO5 format. Ties produce no pick. Missing data stays blank.</p>
+<p><b>Model limitations.</b> The 400-point logistic scale and equal-weight HLTV/VRS blend are this project's
+uncalibrated assumptions, not an official Valve prediction formula. Ranking points are not established per-map
+Elo ratings. Model percentages are research estimates, not verified probabilities; independent maps are assumed
+only when the series format is confirmed. Unknown format leaves series probability blank. No crowd input.</p>
 
 <h2>3. What is left blank</h2>
 <p>If a price cannot be read, the price column is blank and the fixture is listed on the Flagged page. If a team
@@ -121,10 +130,11 @@ This board is analysis, not betting advice, and it places no wagers.</p>
 
 </main>
 <footer>
-Built by Arena session <code>arena/180a42a0</code> from committed data in <code>slate/data/</code>
+Collected automatically, maintained by sessions <code>180a42a0 / a9a0c2f1</code> from committed data in <code>slate/data/</code>
 (<code>slate/build.py</code>). Analysis only — not betting advice. Hotspawn's own crowd percentages are
 never used as a probability. Values that could not be read from a source stay blank and are listed on
 the <a href="flagged.html">Flagged for review</a> page.
 </footer>
+<script src="dashboard.js" defer></script>
 </body>
 </html>
