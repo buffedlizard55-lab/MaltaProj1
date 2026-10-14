@@ -3862,3 +3862,5 @@ source data, pick rows, or workflow will be modified.
 | E-08 | Final integration of a single mobile-accessible executive landing page, current-board links, honest snapshot freshness/counts and archive navigation; run link/data/viewport checks and record results | in progress | arena/6f9eab3b | `index.html`, `tests/test_6f9eab3b.py`, `reviews/6f9eab3b-acceptance.md`, `COORDINATION.md` (append-only) | `livelines/` remains the source of truth for the landing snapshot; no changes to its data or generator. |
 
 - 2026-10-14 UTC: E-08 scope amendment committed and pushed before landing-page work.
+
+- E-08 scope refinement before implementation: the existing regression test asserts obsolete root-page sections, so it is included for contract update; the README start-here pointers are included to avoid sending repository visitors to competing/stale front doors. Added `tests/test_landing_43c32386.py` and `README.md` to the exclusive scope. No other files are added.
