@@ -2803,5 +2803,9 @@ links to the updated picks list and must be phone-friendly.
 - **Live board**: <https://buffedlizard55-lab.github.io/MaltaProj1/executive/>
 - **Verified snapshot** (run `38505602376`): 88 fixtures / 28 open / 28 picks / 24 market / 3 model / 1 provisional / 0 blank; 110 teams, 104 resolved; 166 links checked, 0 broken; 27 of 28 open fixtures carry an HLTV match-page link; Polymarket read live (6 CS2 markets, none matched); EGamersWorld 403 → committed capture used with its own timestamp.
 - **Flagged, not hidden** (published on `executive/flagged.html` with source links, none of them merge-blocking): `FL-FORMAT-UNKNOWN` ×88 (Hotspawn states no format; HLTV match pages 403), `FL-RATINGS-WEEK-OLD` ×59 (standings 2026-10-05), `FL-AMBIGUOUS-NAME` ×5 (`ex-RUSTEC` #92/#152), `FL-UNLISTED-OPPONENT` ×2 (provisional bound), `FL-HLTV-IDENTITY-AMBIGUOUS` ×1, `FL-COINFLIP` ×1, `FL-MODEL-MARKET-SPLIT` ×10.
+- **`index.html` collision resolved without discarding work**: this session's rebase hit a conflict in the first
+  block of root `index.html` — another session's `#exec-summary` note had landed in the same region while this
+  session added its executive-summary section of six cards. Both are published: this session's section first,
+  then the pre-existing note, then `#freshness` and the stats/card sections beneath, unchanged.
 - **Other sessions untouched**: only `executive/**`, `reviews/5545dbb8-verification.md`, `scripts/5545dbb8_build.py`, `tests/test_5545dbb8.py`, `.github/workflows/executive-5545dbb8.yml`, the additive block in root `index.html` and this section were edited; `cs2/**`/`model/**`/`slate/**`/`oct14/**`/`data/**` are read-only inputs here. PR **#82** (`arena/a174d77f`) remains open and unmerged — no work of theirs was touched.
 - **Temporary files removed before the PR**: `.github/workflows/diag-5545dbb8.yml`, `diag-5545dbb8.md`.
