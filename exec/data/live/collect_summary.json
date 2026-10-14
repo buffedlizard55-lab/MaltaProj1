@@ -1,25 +1,25 @@
 {
- "started_utc": "2026-10-14T02:42:20Z",
- "finished_utc": "2026-10-14T02:42:41Z",
+ "started_utc": "2026-10-14T02:44:20Z",
+ "finished_utc": "2026-10-14T02:45:22Z",
  "only": "all",
  "fetches": [
   {
    "url": "https://play.hotspawn.com/cs2-pickems",
    "status": 200,
-   "bytes": 406898,
-   "sha256": "33ac1feb893198b65580ad64357ea2a902593b52dd72191dc0e13200cf42c1d8",
+   "bytes": 406883,
+   "sha256": "6ef14a6a2a3fbfb37468382734dbef5f05b022822cbb61c378918e63f67c33c1",
    "path": "http",
    "error": null,
-   "fetched_utc": "2026-10-14T02:42:21Z"
+   "fetched_utc": "2026-10-14T02:44:22Z"
   },
   {
    "url": "https://play.hotspawn.com/lobby",
    "status": 200,
-   "bytes": 417524,
-   "sha256": "a260788ef6d7c079b07b31f2f465e3f2ddd4192604698dd83058a7c61c5188af",
+   "bytes": 408057,
+   "sha256": "2ecdeec301126c0bcb297f2a0be0333ca18c1490936979460f6445a4b6756f59",
    "path": "http",
    "error": null,
-   "fetched_utc": "2026-10-14T02:42:22Z"
+   "fetched_utc": "2026-10-14T02:44:22Z"
   },
   {
    "url": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md",
@@ -28,52 +28,304 @@
    "sha256": "df96e7fc3cd91a2687ec08cac0128e50cc4e4e55346581679572e881d79ae61b",
    "path": "http",
    "error": null,
-   "fetched_utc": "2026-10-14T02:42:23Z"
+   "fetched_utc": "2026-10-14T02:44:22Z"
   },
   {
    "url": "https://www.hltv.org/ranking/teams",
    "status": 200,
-   "bytes": 1210301,
-   "sha256": "6f9f0ef794d00f30514f4b331240b9832ca577335733838194351298dcce899a",
+   "bytes": 1216951,
+   "sha256": "e5bfa27f36efb9e7d596e584262402f087122f8b6cf5049cc538063c0397342d",
    "path": "browser",
    "error": null,
-   "fetched_utc": "2026-10-14T02:42:28Z"
+   "fetched_utc": "2026-10-14T02:44:29Z"
   },
   {
    "url": "https://www.hltv.org/matches?date=2026-10-13",
    "status": 403,
    "bytes": 28894,
-   "sha256": "ef1761c37d3af3a80232cf1321e21b22476b808f45ac41875d6017a6db574925",
+   "sha256": "79050f418afdb52bf7ce5c2fde137d7f0f7304908bb11f741e555c46006ec057",
    "path": "browser",
    "error": " marker 'href=\"/matches/' absent",
-   "fetched_utc": "2026-10-14T02:42:31Z"
+   "fetched_utc": "2026-10-14T02:44:31Z"
   },
   {
    "url": "https://www.hltv.org/matches?date=2026-10-14",
    "status": 403,
    "bytes": 28894,
-   "sha256": "240a17d8d2c8c6305c28ec6037a9544585f2502b7dc45976cbea73791edf29b0",
+   "sha256": "8c82fde7bb0cc9a7cba3e50f40236f63b281796573791dae43f5c2d7eb67a3a8",
    "path": "browser",
    "error": " marker 'href=\"/matches/' absent",
-   "fetched_utc": "2026-10-14T02:42:34Z"
+   "fetched_utc": "2026-10-14T02:44:34Z"
   },
   {
    "url": "https://www.hltv.org/matches?date=2026-10-15",
-   "status": 200,
-   "bytes": 1027385,
-   "sha256": "3968beb3903613396b7f1aa1feb2f9f9a3852e75f02c26e9ac2bad6a4c801d02",
+   "status": 403,
+   "bytes": 28894,
+   "sha256": "1ca9a83b117a3b3c24e18c1eff69dcf8347976e47a032df86cd799981ec4f462",
    "path": "browser",
-   "error": null,
-   "fetched_utc": "2026-10-14T02:42:38Z"
+   "error": " marker 'href=\"/matches/' absent",
+   "fetched_utc": "2026-10-14T02:44:37Z"
   },
   {
    "url": "https://www.hltv.org/matches?date=2026-10-16",
    "status": 403,
-   "bytes": 28894,
-   "sha256": "8e756ba73e2ef5841b2e7b3cf47079777560b6d8754fc19cde38fae9e0e69205",
+   "bytes": 28916,
+   "sha256": "beb0b4f704d088c6a4331464468c2657b490c53a667a482f33cb40c5b9ab1611",
    "path": "browser",
    "error": " marker 'href=\"/matches/' absent",
-   "fetched_utc": "2026-10-14T02:42:41Z"
+   "fetched_utc": "2026-10-14T02:44:39Z"
+  },
+  {
+   "url": "https://www.hltv.org/matches/2399461/enjoy-vs-b8-academy-cct-2026-europe-series-12-closed-qualifier",
+   "status": 403,
+   "bytes": 29108,
+   "sha256": "bc3e9c623da522214e33ee20c95f9408d76c3dd4db66e2caac29e16cb0ae272a",
+   "path": "browser",
+   "error": " marker 'Best of ' absent",
+   "fetched_utc": "2026-10-14T02:44:42Z"
+  },
+  {
+   "url": "https://www.hltv.org/matches/2399298/gothic-vs-lavked-cct-2026-europe-series-11",
+   "status": 403,
+   "bytes": 29027,
+   "sha256": "0c0c3f5071dd23141dbb73e5d1d1ea674f29fe006b6662916f762596fa3b2e8a",
+   "path": "browser",
+   "error": " marker 'Best of ' absent",
+   "fetched_utc": "2026-10-14T02:44:46Z"
+  },
+  {
+   "url": "https://www.hltv.org/matches/2399384/9z-vs-aurora-thunderpick-world-championship-2026",
+   "status": 403,
+   "bytes": 29045,
+   "sha256": "e50ecd39073dcecae5b96d50cb3c0e40830876fe7526d3451500a2709473d849",
+   "path": "browser",
+   "error": " marker 'Best of ' absent",
+   "fetched_utc": "2026-10-14T02:44:49Z"
+  },
+  {
+   "url": "https://www.hltv.org/matches/2399134/astralis-vs-sashi-stake-pulse-beat-iii",
+   "status": 403,
+   "bytes": 29015,
+   "sha256": "f40e0d696b28b2350cfb8ad26c0412049fa9ce24fc32f4f9c45461d499786300",
+   "path": "browser",
+   "error": " marker 'Best of ' absent",
+   "fetched_utc": "2026-10-14T02:44:53Z"
+  },
+  {
+   "url": "https://www.hltv.org/matches/2399135/hotu-vs-fnatic-stake-pulse-beat-iii",
+   "status": 403,
+   "bytes": 28984,
+   "sha256": "542b461fb21c4e6bd8da34254bb0d172c9f1a986d68676df70636a8ac54f4729",
+   "path": "browser",
+   "error": " marker 'Best of ' absent",
+   "fetched_utc": "2026-10-14T02:44:57Z"
+  },
+  {
+   "url": "https://www.hltv.org/matches/2399462/banda-chuya-vs-6666-cct-2026-europe-series-12-closed-qualifier",
+   "status": 403,
+   "bytes": 0,
+   "sha256": null,
+   "path": "http",
+   "error": "HTTP 403 browser-fallback budget exhausted for this run",
+   "fetched_utc": "2026-10-14T02:44:58Z"
+  },
+  {
+   "url": "https://www.hltv.org/matches/2399385/falcons-vs-ninjas-in-pyjamas-thunderpick-world-championship-2026",
+   "status": 403,
+   "bytes": 0,
+   "sha256": null,
+   "path": "http",
+   "error": "HTTP 403 browser-fallback budget exhausted for this run",
+   "fetched_utc": "2026-10-14T02:44:59Z"
+  },
+  {
+   "url": "https://www.hltv.org/matches/2399299/ex-rustec-vs-mellren-cct-2026-europe-series-11",
+   "status": 403,
+   "bytes": 0,
+   "sha256": null,
+   "path": "http",
+   "error": "HTTP 403 browser-fallback budget exhausted for this run",
+   "fetched_utc": "2026-10-14T02:45:00Z"
+  },
+  {
+   "url": "https://www.hltv.org/matches/2399386/legacy-vs-parivision-thunderpick-world-championship-2026",
+   "status": 403,
+   "bytes": 0,
+   "sha256": null,
+   "path": "http",
+   "error": "HTTP 403 browser-fallback budget exhausted for this run",
+   "fetched_utc": "2026-10-14T02:45:01Z"
+  },
+  {
+   "url": "https://www.hltv.org/matches/2399300/g2-ares-vs-the-last-resort-cct-2026-europe-series-11",
+   "status": 403,
+   "bytes": 0,
+   "sha256": null,
+   "path": "http",
+   "error": "HTTP 403 browser-fallback budget exhausted for this run",
+   "fetched_utc": "2026-10-14T02:45:02Z"
+  },
+  {
+   "url": "https://www.hltv.org/matches/2399463/pcific-vs-ryvex-cct-2026-europe-series-12-closed-qualifier",
+   "status": 403,
+   "bytes": 0,
+   "sha256": null,
+   "path": "http",
+   "error": "HTTP 403 browser-fallback budget exhausted for this run",
+   "fetched_utc": "2026-10-14T02:45:03Z"
+  },
+  {
+   "url": "https://www.hltv.org/matches/2399387/furia-vs-betboom-thunderpick-world-championship-2026",
+   "status": 403,
+   "bytes": 0,
+   "sha256": null,
+   "path": "http",
+   "error": "HTTP 403 browser-fallback budget exhausted for this run",
+   "fetched_utc": "2026-10-14T02:45:04Z"
+  },
+  {
+   "url": "https://www.hltv.org/matches/2399301/forze-reload-vs-lfo-10-cct-2026-europe-series-11",
+   "status": 403,
+   "bytes": 0,
+   "sha256": null,
+   "path": "http",
+   "error": "HTTP 403 browser-fallback budget exhausted for this run",
+   "fetched_utc": "2026-10-14T02:45:05Z"
+  },
+  {
+   "url": "https://www.hltv.org/matches/2399418/wbt-vs-eac-elisa-breakout-series-2",
+   "status": 403,
+   "bytes": 0,
+   "sha256": null,
+   "path": "http",
+   "error": "HTTP 403 browser-fallback budget exhausted for this run",
+   "fetched_utc": "2026-10-14T02:45:06Z"
+  },
+  {
+   "url": "https://www.hltv.org/matches/2399419/ence-vs-bojong-elisa-breakout-series-2",
+   "status": 403,
+   "bytes": 0,
+   "sha256": null,
+   "path": "http",
+   "error": "HTTP 403 browser-fallback budget exhausted for this run",
+   "fetched_utc": "2026-10-14T02:45:07Z"
+  },
+  {
+   "url": "https://www.hltv.org/matches/2399137/heroic-vs-envy-stake-pulse-beat-iii",
+   "status": 403,
+   "bytes": 0,
+   "sha256": null,
+   "path": "http",
+   "error": "HTTP 403 browser-fallback budget exhausted for this run",
+   "fetched_utc": "2026-10-14T02:45:08Z"
+  },
+  {
+   "url": "https://www.hltv.org/matches/2399136/mibr-vs-bcgame-stake-pulse-beat-iii",
+   "status": 403,
+   "bytes": 0,
+   "sha256": null,
+   "path": "http",
+   "error": "HTTP 403 browser-fallback budget exhausted for this run",
+   "fetched_utc": "2026-10-14T02:45:09Z"
+  },
+  {
+   "url": "https://www.hltv.org/matches/2399420/wbt-vs-ence-elisa-breakout-series-2",
+   "status": 403,
+   "bytes": 0,
+   "sha256": null,
+   "path": "http",
+   "error": "HTTP 403 browser-fallback budget exhausted for this run",
+   "fetched_utc": "2026-10-14T02:45:10Z"
+  },
+  {
+   "url": "https://www.hltv.org/matches/2399421/eac-vs-bojong-elisa-breakout-series-2",
+   "status": 403,
+   "bytes": 0,
+   "sha256": null,
+   "path": "http",
+   "error": "HTTP 403 browser-fallback budget exhausted for this run",
+   "fetched_utc": "2026-10-14T02:45:12Z"
+  },
+  {
+   "url": "https://www.hltv.org/matches/2399422/wbt-vs-bojong-elisa-breakout-series-2",
+   "status": 403,
+   "bytes": 0,
+   "sha256": null,
+   "path": "http",
+   "error": "HTTP 403 browser-fallback budget exhausted for this run",
+   "fetched_utc": "2026-10-14T02:45:13Z"
+  },
+  {
+   "url": "https://www.hltv.org/matches/2399423/eac-vs-ence-elisa-breakout-series-2",
+   "status": 403,
+   "bytes": 0,
+   "sha256": null,
+   "path": "http",
+   "error": "HTTP 403 browser-fallback budget exhausted for this run",
+   "fetched_utc": "2026-10-14T02:45:14Z"
+  },
+  {
+   "url": "https://www.hltv.org/matches/2399424/voca-vs-phantom-elisa-breakout-series-2",
+   "status": 403,
+   "bytes": 0,
+   "sha256": null,
+   "path": "http",
+   "error": "HTTP 403 browser-fallback budget exhausted for this run",
+   "fetched_utc": "2026-10-14T02:45:15Z"
+  },
+  {
+   "url": "https://www.hltv.org/matches/2399425/havu-vs-rounds-elisa-breakout-series-2",
+   "status": 403,
+   "bytes": 0,
+   "sha256": null,
+   "path": "http",
+   "error": "HTTP 403 browser-fallback budget exhausted for this run",
+   "fetched_utc": "2026-10-14T02:45:16Z"
+  },
+  {
+   "url": "https://www.hltv.org/matches/2399426/voca-vs-havu-elisa-breakout-series-2",
+   "status": 403,
+   "bytes": 0,
+   "sha256": null,
+   "path": "http",
+   "error": "HTTP 403 browser-fallback budget exhausted for this run",
+   "fetched_utc": "2026-10-14T02:45:17Z"
+  },
+  {
+   "url": "https://www.hltv.org/matches/2399427/phantom-vs-rounds-elisa-breakout-series-2",
+   "status": 403,
+   "bytes": 0,
+   "sha256": null,
+   "path": "http",
+   "error": "HTTP 403 browser-fallback budget exhausted for this run",
+   "fetched_utc": "2026-10-14T02:45:18Z"
+  },
+  {
+   "url": "https://www.hltv.org/matches/2399471/mellren-vs-privateer-cct-2026-europe-series-12-closed-qualifier",
+   "status": 403,
+   "bytes": 0,
+   "sha256": null,
+   "path": "http",
+   "error": "HTTP 403 browser-fallback budget exhausted for this run",
+   "fetched_utc": "2026-10-14T02:45:19Z"
+  },
+  {
+   "url": "https://www.hltv.org/matches/2399428/voca-vs-rounds-elisa-breakout-series-2",
+   "status": 403,
+   "bytes": 0,
+   "sha256": null,
+   "path": "http",
+   "error": "HTTP 403 browser-fallback budget exhausted for this run",
+   "fetched_utc": "2026-10-14T02:45:20Z"
+  },
+  {
+   "url": "https://www.hltv.org/matches/2399429/phantom-vs-havu-elisa-breakout-series-2",
+   "status": 403,
+   "bytes": 0,
+   "sha256": null,
+   "path": "http",
+   "error": "HTTP 403 browser-fallback budget exhausted for this run",
+   "fetched_utc": "2026-10-14T02:45:21Z"
   }
  ],
  "hotspawn_fixtures": 88,
@@ -82,6 +334,35 @@
  "errors": [
   "https://www.hltv.org/matches?date=2026-10-13",
   "https://www.hltv.org/matches?date=2026-10-14",
-  "https://www.hltv.org/matches?date=2026-10-16"
+  "https://www.hltv.org/matches?date=2026-10-15",
+  "https://www.hltv.org/matches?date=2026-10-16",
+  "https://www.hltv.org/matches/2399461/enjoy-vs-b8-academy-cct-2026-europe-series-12-closed-qualifier",
+  "https://www.hltv.org/matches/2399298/gothic-vs-lavked-cct-2026-europe-series-11",
+  "https://www.hltv.org/matches/2399384/9z-vs-aurora-thunderpick-world-championship-2026",
+  "https://www.hltv.org/matches/2399134/astralis-vs-sashi-stake-pulse-beat-iii",
+  "https://www.hltv.org/matches/2399135/hotu-vs-fnatic-stake-pulse-beat-iii",
+  "https://www.hltv.org/matches/2399462/banda-chuya-vs-6666-cct-2026-europe-series-12-closed-qualifier",
+  "https://www.hltv.org/matches/2399385/falcons-vs-ninjas-in-pyjamas-thunderpick-world-championship-2026",
+  "https://www.hltv.org/matches/2399299/ex-rustec-vs-mellren-cct-2026-europe-series-11",
+  "https://www.hltv.org/matches/2399386/legacy-vs-parivision-thunderpick-world-championship-2026",
+  "https://www.hltv.org/matches/2399300/g2-ares-vs-the-last-resort-cct-2026-europe-series-11",
+  "https://www.hltv.org/matches/2399463/pcific-vs-ryvex-cct-2026-europe-series-12-closed-qualifier",
+  "https://www.hltv.org/matches/2399387/furia-vs-betboom-thunderpick-world-championship-2026",
+  "https://www.hltv.org/matches/2399301/forze-reload-vs-lfo-10-cct-2026-europe-series-11",
+  "https://www.hltv.org/matches/2399418/wbt-vs-eac-elisa-breakout-series-2",
+  "https://www.hltv.org/matches/2399419/ence-vs-bojong-elisa-breakout-series-2",
+  "https://www.hltv.org/matches/2399137/heroic-vs-envy-stake-pulse-beat-iii",
+  "https://www.hltv.org/matches/2399136/mibr-vs-bcgame-stake-pulse-beat-iii",
+  "https://www.hltv.org/matches/2399420/wbt-vs-ence-elisa-breakout-series-2",
+  "https://www.hltv.org/matches/2399421/eac-vs-bojong-elisa-breakout-series-2",
+  "https://www.hltv.org/matches/2399422/wbt-vs-bojong-elisa-breakout-series-2",
+  "https://www.hltv.org/matches/2399423/eac-vs-ence-elisa-breakout-series-2",
+  "https://www.hltv.org/matches/2399424/voca-vs-phantom-elisa-breakout-series-2",
+  "https://www.hltv.org/matches/2399425/havu-vs-rounds-elisa-breakout-series-2",
+  "https://www.hltv.org/matches/2399426/voca-vs-havu-elisa-breakout-series-2",
+  "https://www.hltv.org/matches/2399427/phantom-vs-rounds-elisa-breakout-series-2",
+  "https://www.hltv.org/matches/2399471/mellren-vs-privateer-cct-2026-europe-series-12-closed-qualifier",
+  "https://www.hltv.org/matches/2399428/voca-vs-rounds-elisa-breakout-series-2",
+  "https://www.hltv.org/matches/2399429/phantom-vs-havu-elisa-breakout-series-2"
  ]
 }
