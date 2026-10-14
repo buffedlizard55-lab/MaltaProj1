@@ -17,92 +17,84 @@ jobs:
           ref: ${{ github.ref_name }}
           fetch-depth: 0
 
-      - name: Probe round 3
+      - name: Probe round 4
         run: |
           python3 - > /tmp/probe.txt 2>&1 <<'PY'
           import json, re, urllib.request, urllib.error
-
           HONEST = "Mozilla/5.0 (compatible; MaltaProj1-executive/1.0; +https://github.com/buffedlizard55-lab/MaltaProj1)"
           BROWSER = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
-          KEY = "CmX2KcMrXuFmNg6YFbmTxE0y9CIrOi0R"
-          base = "https://guest.api.arcadia.pinnacle.com/0.1"
-          pin = {"X-API-Key": KEY, "Accept": "application/json", "Origin": "https://www.pinnacle.com",
-                 "Referer": "https://www.pinnacle.com/", "User-Agent": BROWSER}
 
           def fetch(url, headers=None):
-              hdrs = {"User-Agent": HONEST, "Accept": "*/*"}
+              hdrs = {"User-Agent": BROWSER, "Accept": "*/*", "Accept-Language": "en-US,en;q=0.9"}
               if headers:
                   hdrs.update(headers)
               try:
-                  with urllib.request.urlopen(urllib.request.Request(url, headers=hdrs), timeout=60) as r:
-                      return r.status, r.read(20_000_000)
+                  with urllib.request.urlopen(urllib.request.Request(url, headers=hdrs), timeout=45) as r:
+                      return r.status, r.read(6_000_000)
               except urllib.error.HTTPError as e:
-                  return e.code, e.read(300)
+                  return e.code, e.read(200)
               except Exception as e:
                   return 0, f"{type(e).__name__}: {e}".encode()
 
-          print("=== PINNACLE join: sport matchups + sport straight markets ===")
-          st1, matchups_raw = fetch(f"{base}/sports/12/matchups", pin)
-          st2, markets_raw = fetch(f"{base}/sports/12/markets/straight?primaryOnly=false&withSpecials=false", pin)
-          print(f"matchups {st1} bytes={len(matchups_raw)}  markets {st2} bytes={len(markets_raw)}")
-          matchups = json.loads(matchups_raw) if st1 == 200 else []
-          markets = json.loads(markets_raw) if st2 == 200 else []
-          cs2 = {m["id"]: m for m in matchups if str((m.get("league") or {}).get("name", "")).startswith("CS2 - ")}
-          print(f"CS2 matchups: {len(cs2)}  markets total: {len(markets)}")
-          picked = 0
-          for market in markets:
-              if market.get("type") != "moneyline" or market.get("period") != 0 or market.get("isAlternate") is not False:
-                  continue
-              if market.get("status") != "open" or market.get("matchupId") not in cs2:
-                  continue
-              picks = {p.get("designation"): p.get("price") for p in market.get("prices") or []}
-              if set(picks) != {"home", "away"}:
-                  continue
-              m = cs2[market["matchupId"]]
-              names = {p.get("alignment"): p.get("name") for p in m.get("participants") or []}
-              picked += 1
-              if picked <= 6:
-                  print(f"   {names.get('home')} vs {names.get('away')} | start {m.get('startTime')} | "
-                        f"{picks['home']}/{picks['away']} | bestOfX={m.get('bestOfX')} | status={m.get('status')}")
-          print(f"CS2 moneyline quotes joined: {picked}")
+          def show(label, url, headers=None, pattern=None):
+              st, data = fetch(url, headers)
+              note = ""
+              if st == 200 and pattern:
+                  found = re.findall(pattern, data.decode("utf-8", "replace"))
+                  note = f" hits={len(found)} sample={found[:3]}"
+              print(f"{label}: {st} bytes={len(data)}{note}")
+              return data
 
-          print("=== BO3.GG API shape ===")
-          st, raw = fetch("https://api.bo3.gg/api/v1/matches?page[limit]=5&sort=start_date&filter[game]=cs2",
-                          {"Accept": "application/json", "User-Agent": BROWSER})
-          print(f"matches: {st} bytes={len(raw)}")
-          if st == 200:
+          print("=== other odds sources ===")
+          for label, url in [
+              ("oddspedia api", "https://oddspedia.com/api/v1/getMatchList?sport=counter-strike&limit=20"),
+              ("oddsdigger cs", "https://www.oddsdigger.com/esports/counter-strike"),
+              ("gg.bet cs2", "https://gg.bet/en/counter-strike"),
+              ("loot.bet cs", "https://loot.bet/esports/csgo"),
+              ("thunderpick cs", "https://thunderpick.io/esports/cs2"),
+              ("betway esports", "https://sports.betway.com/api/events/csgo"),
+              ("csgopositive", "https://csgopositive.com/"),
+              ("egb cs", "https://egamersworld.com/counterstrike/matches"),
+          ]:
+              show(label, url)
+
+          print("=== bo3.gg odds endpoints ===")
+          raw = show("bo3 upcoming", "https://api.bo3.gg/api/v1/matches?page[limit]=10&sort=-start_date&filter[game]=cs2&filter[status]=upcoming",
+                     {"Accept": "application/json"})
+          try:
               data = json.loads(raw)
-              items = data.get("results") or data.get("data") or data
-              first = items[0] if isinstance(items, list) and items else {}
-              print("   top-level keys:", list(data.keys())[:8])
-              print("   match keys:", sorted(first.keys())[:40])
-              print("   sample:", json.dumps({k: first.get(k) for k in ("id", "name", "slug", "start_date", "status", "tournament", "teams")}, default=str)[:900])
-              for key in ("betting", "odds", "bookmakers", "markets"):
-                  if key in first:
-                      print(f"   {key}:", json.dumps(first[key], default=str)[:600])
+              items = data.get("results", [])
+              print("   upcoming count:", len(items), "total:", data.get("total"))
+              if items:
+                  mid = items[0]["id"]
+                  print("   sample:", json.dumps({k: items[0].get(k) for k in ("id", "slug", "start_date", "status", "bet_updates")}, default=str)[:400])
+                  for suffix in (f"/api/v1/matches/{mid}?with=odds", f"/api/v1/matches/{mid}", f"/api/v1/matches/{mid}/odds",
+                                 f"/api/v1/matches/{mid}?include=bookmakers"):
+                      st, body = fetch("https://api.bo3.gg" + suffix, {"Accept": "application/json"})
+                      keys = ""
+                      if st == 200:
+                          try:
+                              obj = json.loads(body)
+                              keys = ",".join(sorted((obj.get("results") or obj).keys())[:25]) if isinstance(obj, dict) else "list"
+                          except Exception:
+                              keys = "unparsed"
+                      print(f"   {suffix}: {st} bytes={len(body)} keys={keys[:200]}")
 
-          print("=== HLTV individual match page ===")
-          st, raw = fetch("https://www.hltv.org/matches/2399384/9z-vs-aurora-thunderpick-world-championship-2026",
-                          {"Accept-Language": "en-US,en;q=0.9"})
-          html = raw.decode("utf-8", "replace")
-          print(f"match page: {st} bytes={len(html)} title={'Just a moment' in html}")
-          if st == 200:
-              print("   team links:", sorted(set(re.findall(r'href="/team/(\d+)/([^"]+)"', html)))[:6])
-              print("   vrs badge text:", re.findall(r"VRS[^<]{0,40}", html)[:4])
-              plain = re.sub(r"<[^>]+>", " ", html)
-              print("   best-of text:", re.findall(r"Best of \d", plain)[:2])
-
-          print("=== HLTV team page: locate one fixture by kickoff ===")
-          for team_id, slug in ((9996, "9z"), (11861, "aurora")):
-              st, raw = fetch(f"https://www.hltv.org/team/{team_id}/{slug}", {"Accept-Language": "en-US,en;q=0.9"})
-              html = raw.decode("utf-8", "replace")
-              found = []
-              for m in re.finditer(r'href="(/matches/(\d+)/([a-z0-9\-]+))"', html):
-                  window = html[max(0, m.start() - 1200): m.end() + 1200]
-                  stamps = re.findall(r'data-unix="(\d{13})"', window)
-                  if any(1789_000_000_000 <= int(s) <= 1792_000_000_000 for s in stamps):
-                      found.append((m.group(1), stamps[:2]))
-              print(f"   team {team_id}: status={st} future-ish match links={found[:5]}")
+          print("=== pinnacle: which CS2 matchups carry an open moneyline ===")
+          KEY = "CmX2KcMrXuFmNg6YFbmTxE0y9CIrOi0R"
+          pin = {"X-API-Key": KEY, "Accept": "application/json", "Origin": "https://www.pinnacle.com",
+                 "Referer": "https://www.pinnacle.com/", "User-Agent": BROWSER}
+          base = "https://guest.api.arcadia.pinnacle.com/0.1"
+          st, mraw = fetch(f"{base}/sports/12/matchups", pin)
+          st2, kraw = fetch(f"{base}/sports/12/markets/straight?primaryOnly=false&withSpecials=false", pin)
+          cs2 = {m["id"]: m for m in json.loads(mraw) if str((m.get("league") or {}).get("name", "")).startswith("CS2 - ")}
+          print("   CS2 matchups:", len(cs2), "leagues:", sorted({(m.get("league") or {}).get("name") for m in cs2.values()}))
+          quotes = 0
+          for market in json.loads(kraw):
+              if market.get("matchupId") in cs2 and market.get("type") == "moneyline" and market.get("period") == 0 \
+                 and market.get("isAlternate") is False and market.get("status") == "open":
+                  quotes += 1
+          print("   open CS2 moneylines in the sport-wide market list:", quotes)
           PY
           cat /tmp/probe.txt
 
