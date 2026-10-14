@@ -1,87 +1,75 @@
 {
  "calibration": {
   "fitted": true,
-  "n": 23,
+  "n": 22,
   "scale": 827.75,
-  "mae_pp": 8.56,
-  "logloss": 0.433,
+  "mae_pp": 8.73,
+  "logloss": 0.4309,
   "grid": "20.0-2000.0 points per 90% favourite, step 0.25; mean absolute error against the outside market's de-vigged probability",
   "default_scale": 400.0,
   "logloss_alternative": {
-   "scale": 199.0,
-   "mae_pp": 21.34,
-   "logloss": 0.2841
+   "scale": 210.0,
+   "mae_pp": 21.13,
+   "logloss": 0.291
   },
   "objective": "mae",
   "candidate_transforms": {
    "vrs_points": {
     "fitted": true,
-    "n": 23,
+    "n": 22,
     "scale": 827.75,
-    "mae_pp": 8.56,
-    "logloss": 0.433,
+    "mae_pp": 8.73,
+    "logloss": 0.4309,
     "grid": "20.0-2000.0 points per 90% favourite, step 0.25; mean absolute error against the outside market's de-vigged probability",
     "default_scale": 400.0,
     "logloss_alternative": {
-     "scale": 199.0,
-     "mae_pp": 21.34,
-     "logloss": 0.2841
+     "scale": 210.0,
+     "mae_pp": 21.13,
+     "logloss": 0.291
     },
     "objective": "mae"
    },
    "hltv_points": {
     "fitted": true,
-    "n": 21,
-    "scale": 859.75,
-    "mae_pp": 14.95,
-    "logloss": 0.6151,
+    "n": 20,
+    "scale": 1001.75,
+    "mae_pp": 15.69,
+    "logloss": 0.6361,
     "grid": "20.0-2000.0 points per 90% favourite, step 0.25; mean absolute error against the outside market's de-vigged probability",
     "default_scale": 400.0,
     "logloss_alternative": {
      "scale": 20.0,
-     "mae_pp": 16.52,
-     "logloss": 0.4089
+     "mae_pp": 16.27,
+     "logloss": 0.4293
     },
     "objective": "mae"
    },
    "vrs_rank": {
     "fitted": true,
-    "n": 23,
+    "n": 22,
     "scale": 2000.0,
-    "mae_pp": 21.14,
-    "logloss": 0.7424,
+    "mae_pp": 21.3,
+    "logloss": 0.7444,
     "grid": "20.0-2000.0 points per 90% favourite, step 0.25; mean absolute error against the outside market's de-vigged probability",
     "default_scale": 400.0,
     "logloss_alternative": {
      "scale": 2000.0,
-     "mae_pp": 21.14,
-     "logloss": 0.7424
+     "mae_pp": 21.3,
+     "logloss": 0.7444
     },
     "objective": "mae"
    },
    "vrs_log_rank": {
     "fitted": true,
-    "n": 23,
+    "n": 22,
     "scale": 0.05,
-    "logloss": 0.7139,
-    "mae_pp": 19.84
+    "logloss": 0.7141,
+    "mae_pp": 19.93
    }
   },
   "chosen": "official Valve Regional Standings points (vrs_points) at the calibration (MAE) optimum, because that is the transform whose published percentage is closest to the outside market on the same rows and it has the widest team coverage; the log-loss optimum is disclosed next to it and the disagreement is flagged on every row that depends on the scale"
  },
  "fit_rows": [
-  {
-   "match_id": "1080176",
-   "teams": "9z v Aurora",
-   "vrs_a": 1543,
-   "vrs_b": 1716,
-   "hltv_a": 17,
-   "hltv_b": 6,
-   "market_p_a_pct": 27.45,
-   "source": "Pinnacle",
-   "captured_utc": "2026-10-14T05:11:55Z",
-   "url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/"
-  },
   {
    "match_id": "1079438",
    "teams": "Astralis v Sashi",
@@ -91,7 +79,7 @@
    "hltv_b": null,
    "market_p_a_pct": 83.5,
    "source": "Polymarket",
-   "captured_utc": "2026-10-14T03:18:57Z",
+   "captured_utc": "2026-10-14T09:00:16Z",
    "url": "https://polymarket.com/event/cs2-ast10-sashi-2026-10-14"
   },
   {
@@ -101,10 +89,10 @@
    "vrs_b": 1417,
    "hltv_a": 41,
    "hltv_b": 36,
-   "market_p_a_pct": 46.08,
-   "source": "Pinnacle",
-   "captured_utc": "2026-10-14T05:11:55Z",
-   "url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/"
+   "market_p_a_pct": 45.5,
+   "source": "Polymarket",
+   "captured_utc": "2026-10-14T09:00:16Z",
+   "url": "https://polymarket.com/event/cs2-hotu-fnc-2026-10-14"
   },
   {
    "match_id": "1079622",
@@ -113,10 +101,10 @@
    "vrs_b": 932,
    "hltv_a": 79,
    "hltv_b": 94,
-   "market_p_a_pct": 64.36,
-   "source": "Polymarket (research read 2026-10-14)",
-   "captured_utc": "2026-10-14T04:50:00Z",
-   "url": "https://polymarket.com/esports/cs2/cct-europe/cs2-rustec-mellre-2026-10-14"
+   "market_p_a_pct": 61.0,
+   "source": "Polymarket",
+   "captured_utc": "2026-10-14T09:00:16Z",
+   "url": "https://polymarket.com/event/cs2-rustec-mellre-2026-10-14"
   },
   {
    "match_id": "1080177",
@@ -125,10 +113,10 @@
    "vrs_b": 1534,
    "hltv_a": 5,
    "hltv_b": 26,
-   "market_p_a_pct": 75.19,
-   "source": "Pinnacle",
-   "captured_utc": "2026-10-14T05:11:55Z",
-   "url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/"
+   "market_p_a_pct": 73.5,
+   "source": "Polymarket",
+   "captured_utc": "2026-10-14T09:00:16Z",
+   "url": "https://polymarket.com/event/cs2-fal2-nip-2026-10-14"
   },
   {
    "match_id": "1080178",
@@ -137,9 +125,9 @@
    "vrs_b": 1411,
    "hltv_a": 7,
    "hltv_b": 11,
-   "market_p_a_pct": 56.5,
+   "market_p_a_pct": 57.5,
    "source": "Polymarket",
-   "captured_utc": "2026-10-14T03:18:57Z",
+   "captured_utc": "2026-10-14T09:00:16Z",
    "url": "https://polymarket.com/event/cs2-lgc-prv-2026-10-14"
   },
   {
@@ -149,10 +137,10 @@
    "vrs_b": 926,
    "hltv_a": 103,
    "hltv_b": 159,
-   "market_p_a_pct": 69.31,
-   "source": "Polymarket (research read 2026-10-14)",
-   "captured_utc": "2026-10-14T04:50:00Z",
-   "url": "https://polymarket.com/esports/cs2/cct-europe/cs2-g2a-tlr-2026-10-14"
+   "market_p_a_pct": 69.5,
+   "source": "Polymarket",
+   "captured_utc": "2026-10-14T09:00:16Z",
+   "url": "https://polymarket.com/event/cs2-g2a-tlr-2026-10-14"
   },
   {
    "match_id": "1081113",
@@ -161,10 +149,10 @@
    "vrs_b": 870,
    "hltv_a": 181,
    "hltv_b": 135,
-   "market_p_a_pct": 20.39,
-   "source": "Polymarket (research read 2026-10-14)",
-   "captured_utc": "2026-10-14T04:50:00Z",
-   "url": "https://polymarket.com/esports/cs2/cct-europe/cs2-wraith-ryvex-2026-10-14"
+   "market_p_a_pct": 16.5,
+   "source": "Polymarket",
+   "captured_utc": "2026-10-14T09:00:16Z",
+   "url": "https://polymarket.com/event/cs2-wraith-ryvex-2026-10-14"
   },
   {
    "match_id": "1080179",
@@ -175,7 +163,7 @@
    "hltv_b": 14,
    "market_p_a_pct": 70.5,
    "source": "Polymarket",
-   "captured_utc": "2026-10-14T03:18:57Z",
+   "captured_utc": "2026-10-14T09:00:16Z",
    "url": "https://polymarket.com/event/cs2-furia-bb3-2026-10-14"
   },
   {
@@ -187,7 +175,7 @@
    "hltv_b": 110,
    "market_p_a_pct": 46.24,
    "source": "bo3.gg",
-   "captured_utc": "2026-10-14T03:18:57Z",
+   "captured_utc": "2026-10-14T09:00:16Z",
    "url": "https://bo3.gg/matches/wbt-vs-esport-academy-copenhagen-15-10-2026"
   },
   {
@@ -197,10 +185,10 @@
    "vrs_b": 1318,
    "hltv_a": 12,
    "hltv_b": 70,
-   "market_p_a_pct": 56.85,
-   "source": "Pinnacle",
-   "captured_utc": "2026-10-14T05:11:55Z",
-   "url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/"
+   "market_p_a_pct": 55.5,
+   "source": "Polymarket",
+   "captured_utc": "2026-10-14T09:00:16Z",
+   "url": "https://polymarket.com/event/cs2-mibr-bcg-2026-10-15"
   },
   {
    "match_id": "1079442",
@@ -209,10 +197,10 @@
    "vrs_b": 1500,
    "hltv_a": 30,
    "hltv_b": null,
-   "market_p_a_pct": 64.07,
-   "source": "Pinnacle",
-   "captured_utc": "2026-10-14T05:11:55Z",
-   "url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/"
+   "market_p_a_pct": 66.5,
+   "source": "Polymarket",
+   "captured_utc": "2026-10-14T09:00:16Z",
+   "url": "https://polymarket.com/event/cs2-hero-envy-2026-10-15"
   },
   {
    "match_id": "1080280",
@@ -223,7 +211,7 @@
    "hltv_b": 220,
    "market_p_a_pct": 71.11,
    "source": "bo3.gg",
-   "captured_utc": "2026-10-14T03:18:57Z",
+   "captured_utc": "2026-10-14T09:00:16Z",
    "url": "https://bo3.gg/matches/ence-vs-bojong-15-10-2026"
   },
   {
@@ -235,7 +223,7 @@
    "hltv_b": 114,
    "market_p_a_pct": 57.03,
    "source": "bo3.gg",
-   "captured_utc": "2026-10-14T03:18:57Z",
+   "captured_utc": "2026-10-14T09:00:16Z",
    "url": "https://bo3.gg/matches/wbt-vs-ence-15-10-2026"
   },
   {
@@ -247,7 +235,7 @@
    "hltv_b": 220,
    "market_p_a_pct": 76.92,
    "source": "bo3.gg",
-   "captured_utc": "2026-10-14T03:18:57Z",
+   "captured_utc": "2026-10-14T09:00:16Z",
    "url": "https://bo3.gg/matches/esport-academy-copenhagen-vs-bojong-15-10-2026"
   },
   {
@@ -259,7 +247,7 @@
    "hltv_b": 220,
    "market_p_a_pct": 76.92,
    "source": "bo3.gg",
-   "captured_utc": "2026-10-14T03:18:57Z",
+   "captured_utc": "2026-10-14T09:00:16Z",
    "url": "https://bo3.gg/matches/wbt-vs-bojong-15-10-2026"
   },
   {
@@ -271,7 +259,7 @@
    "hltv_b": 114,
    "market_p_a_pct": 61.54,
    "source": "bo3.gg",
-   "captured_utc": "2026-10-14T03:18:57Z",
+   "captured_utc": "2026-10-14T09:00:16Z",
    "url": "https://bo3.gg/matches/esport-academy-copenhagen-vs-ence-15-10-2026"
   },
   {
@@ -281,9 +269,9 @@
    "vrs_b": 1147,
    "hltv_a": 59,
    "hltv_b": 88,
-   "market_p_a_pct": 43.5,
+   "market_p_a_pct": 44.5,
    "source": "Polymarket",
-   "captured_utc": "2026-10-14T03:18:57Z",
+   "captured_utc": "2026-10-14T09:00:16Z",
    "url": "https://polymarket.com/event/cs2-voc-pha-2026-10-16"
   },
   {
@@ -295,7 +283,7 @@
    "hltv_b": 237,
    "market_p_a_pct": 76.92,
    "source": "bo3.gg",
-   "captured_utc": "2026-10-14T03:18:57Z",
+   "captured_utc": "2026-10-14T09:00:16Z",
    "url": "https://bo3.gg/matches/havu-vs-roundsgg-16-10-2026"
   },
   {
@@ -307,7 +295,7 @@
    "hltv_b": 118,
    "market_p_a_pct": 65.53,
    "source": "bo3.gg",
-   "captured_utc": "2026-10-14T03:18:57Z",
+   "captured_utc": "2026-10-14T09:00:16Z",
    "url": "https://bo3.gg/matches/voca-vs-havu-16-10-2026"
   },
   {
@@ -317,10 +305,10 @@
    "vrs_b": 548,
    "hltv_a": 88,
    "hltv_b": 237,
-   "market_p_a_pct": 86.85,
-   "source": "bo3.gg",
-   "captured_utc": "2026-10-14T03:18:57Z",
-   "url": "https://bo3.gg/matches/phantom-esports-vs-roundsgg-16-10-2026"
+   "market_p_a_pct": 91.5,
+   "source": "Polymarket",
+   "captured_utc": "2026-10-14T09:00:16Z",
+   "url": "https://polymarket.com/event/cs2-pha-rgg-2026-10-16"
   },
   {
    "match_id": "1080289",
@@ -331,7 +319,7 @@
    "hltv_b": 59,
    "market_p_a_pct": 14.63,
    "source": "bo3.gg",
-   "captured_utc": "2026-10-14T03:18:57Z",
+   "captured_utc": "2026-10-14T09:00:16Z",
    "url": "https://bo3.gg/matches/voca-vs-roundsgg-16-10-2026"
   },
   {
@@ -343,7 +331,7 @@
    "hltv_b": 118,
    "market_p_a_pct": 68.24,
    "source": "bo3.gg",
-   "captured_utc": "2026-10-14T03:18:57Z",
+   "captured_utc": "2026-10-14T09:00:16Z",
    "url": "https://bo3.gg/matches/phantom-esports-vs-havu-16-10-2026"
   }
  ],
