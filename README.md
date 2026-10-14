@@ -17,9 +17,11 @@ hourly by `.github/workflows/console-228bb5bc.yml`, fail-closed on stale inputs,
 Hotspawn-sourced probability. Machine-readable: `console/data/picks.csv`, `picks.json`, `coverage.json`,
 `sources.csv`, `flags.csv`.
 
-The root [`index.html`](index.html) is now a single executive summary — live counts, one-tap links to the
-picks, and categories — with **every link that page had before the restructure still resolving**
-(`console/data/landing_links.csv` is the registry and `tests/test_228bb5bc.py` enforces it).
+The root [`index.html`](index.html) is the merged landing page (session `43c32386`): one executive summary,
+live freshness, categories. This integration added the consolidated-board entry points to it ("All open
+matches — one pick per row", the flagged page, capture times), and **every link the page carried before the
+restructures still resolves** — `console/data/landing_links.csv` is the registry and
+`tests/test_228bb5bc.py` enforces it.
 
 The line-by-line record for this board is
 [`reviews/228bb5bc-verification.md`](reviews/228bb5bc-verification.md): the 28-row table with the source

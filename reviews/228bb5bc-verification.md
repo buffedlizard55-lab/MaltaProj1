@@ -2,8 +2,10 @@
 
 **Deliverables:** consolidated board <https://buffedlizard55-lab.github.io/MaltaProj1/console/index.html>
 (mobile-first, one row per open match) · Flagged for Review
-<https://buffedlizard55-lab.github.io/MaltaProj1/console/flagged.html> · single executive-summary landing
-page <https://buffedlizard55-lab.github.io/MaltaProj1/>.
+<https://buffedlizard55-lab.github.io/MaltaProj1/console/flagged.html> · landing page
+<https://buffedlizard55-lab.github.io/MaltaProj1/> (merged landing by session `43c32386`; this session added
+the consolidated-board entry points to it and verified that every link the page previously carried still
+resolves — registry `console/data/landing_links.csv`, enforced by `tests/test_228bb5bc.py`).
 
 **Question answered:** does every row of the consolidated board carry a pick, both teams' win
 probability from an outside betting line or an own originated line, a read time, and a link to the exact
@@ -14,9 +16,9 @@ not be confirmed stays blank and is flagged.
 
 | ID | Irregularity (found on `main` @ `34015c4`) | Evidence | Resolution |
 |---|---|---|---|
-| IR-228-01 | Root `index.html` rendered an internal merge-conflict note as visible page text ("# Conflict resolved 2026-10-14 …"), above the first card | old `index.html` line 60 | the restructure removes it; the new page is checked to contain no conflict marker |
-| IR-228-02 | The landing page published **three competing executive summaries** (`executive/`, `picks-full/`, `everypick/`) with different counts, plus a stats strip reading `slate/`'s 02:23Z snapshot ("5 Supported picks") while the boards published 28/28 | `slate/data/summary.json` vs `data/63ee81ba/coverage.json` | the landing page now loads its counts from the consolidated board's `coverage.json`; the old boards keep their own pages but no longer head the site |
-| IR-228-03 | No single "last refreshed" line on the landing page | old page had per-script stamps only | the live-status line prints `data_as_of_utc` from `console/data/coverage.json` and turns amber if `stale` |
+| IR-228-01 | Root `index.html` rendered an internal merge-conflict note as visible page text ("# Conflict resolved 2026-10-14 …"), above the first card | old `index.html` line 60 | gone from the page now on `main` (landing integration `43c32386`, PR #104); the checked page contains no conflict marker |
+| IR-228-02 | The landing page published **three competing executive summaries** (`executive/`, `picks-full/`, `everypick/`) with different counts, plus a stats strip reading `slate/`'s 02:23Z snapshot ("5 Supported picks") while the boards published 28/28 | `slate/data/summary.json` vs `data/63ee81ba/coverage.json` | the merged landing page (`43c32386`) now heads the site with one summary and files the earlier summaries under a labelled archive; this session added the consolidated-board entry points and keeps the page |
+| IR-228-03 | No single "last refreshed" line on the landing page | old page had per-script stamps only | the merged landing page carries a `role="status"` freshness line, and the consolidated board prints its own `data as of` stamp on every page plus `coverage.json` |
 
 ## 1. Coverage result — a pick for every open fixture
 
