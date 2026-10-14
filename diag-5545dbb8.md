@@ -1,28 +1,24 @@
 # Endpoint probe (temporary file, deleted before the pull request)
 
 ```
-=== PINNACLE per-matchup markets ===
-CS2 matchups in sport list: 129
-markets plain 1638273836: 403 bytes=151
-markets query 1638273836: 204 bytes=0
-markets plain 1638130723: 403 bytes=151
-markets query 1638130723: 204 bytes=0
-markets plain 1638130693: 403 bytes=151
-markets query 1638130693: 204 bytes=0
-sport straight markets size: 200 bytes=533483
-=== HLTV team page: upcoming-match links ===
-team page: 200 bytes=2819934 match_links=30 sample=[('/matches/2340903/furia-vs-envy-esl-one-road-to-rio-north-america', '2340903', 'furia-vs-envy-esl-one-road-to-rio-north-america'), ('/matches/2340921/envy-vs-yeah-esl-one-road-to-rio-north-america', '2340921', 'envy-vs-yeah-esl-one-road-to-rio-north-america'), ('/matches/2340932/liquid-vs-envy-esl-one-road-to-rio-north-america', '2340932', 'liquid-vs-envy-esl-one-road-to-rio-north-america')]
-   data-unix stamps: 1358
-hltv results page: 200 bytes=279567 matches=113 sample=['2399232', '2399204', '2399459']
-=== other esports market sources (US runner) ===
-oddspedia cs: 410 bytes=300
-oddsdigger esports: 404 bytes=300
-oddsdigger cs2: 404 bytes=300
-tips.gg cs: 403 bytes=300
-bo3.gg matches: 200 bytes=12750
-bo3.gg api: 200 bytes=17739
-escharts api: 404 bytes=300
-cyber.sports.ru: 302 bytes=300
-egamersworld cs (browser): 403 bytes=300
-hltv events: 403 bytes=300
+=== PINNACLE join: sport matchups + sport straight markets ===
+matchups 200 bytes=712866  markets 200 bytes=533483
+CS2 matchups: 129  markets total: 1020
+   Legacy vs PVISION | start 2026-10-14T13:30:00Z | -130/107 | bestOfX=3 | status=pending
+   HOTU vs fnatic | start 2026-10-14T10:00:00Z | -110/-114 | bestOfX=3 | status=pending
+   Falcons vs Ninjas In Pyjamas | start 2026-10-14T11:00:00Z | -370/285 | bestOfX=3 | status=pending
+   MIBR vs BC.Game | start 2026-10-15T10:00:00Z | -154/122 | bestOfX=3 | status=pending
+   FURIA vs BB Team | start 2026-10-14T16:00:00Z | -275/218 | bestOfX=3 | status=pending
+   HEROIC vs Envy | start 2026-10-15T10:00:00Z | -213/162 | bestOfX=3 | status=pending
+CS2 moneyline quotes joined: 8
+=== BO3.GG API shape ===
+matches: 200 bytes=4766
+   top-level keys: ['total', 'results', 'links']
+   match keys: ['bet_updates', 'bo_type', 'comments', 'comments_count', 'discipline_id', 'end_date', 'game_version', 'id', 'live_coverage', 'live_coverage_advantage', 'live_coverage_source', 'live_updates', 'loser_team_id', 'maps_score', 'parsed_status', 'points', 'position', 'prev_match1_id', 'prev_match1_winner', 'prev_match2_id', 'prev_match2_winner', 'rating', 'round_id', 'slug', 'stage_id', 'stars', 'start_date', 'status', 'team1_id', 'team1_last_game_score', 'team1_new_participant', 'team1_score', 'team2_id', 'team2_last_game_score', 'team2_new_participant', 'team2_score', 'tier', 'tier_rank', 'tournament_id', 'winner_team_id']
+   sample: {"id": 176, "name": null, "slug": "g2-vs-vitality-cs-go-15-06-2020", "start_date": "2020-06-15T14:35:21.000+00:00", "status": "finished", "tournament": null, "teams": null}
+=== HLTV individual match page ===
+match page: 403 bytes=300 title=True
+=== HLTV team page: locate one fixture by kickoff ===
+   team 9996: status=200 future-ish match links=[('/matches/2399384/9z-vs-aurora-thunderpick-world-championship-2026', ['1791872045000', '1791966600000']), ('/matches/2399384/9z-vs-aurora-thunderpick-world-championship-2026', ['1791966600000']), ('/matches/2399384/9z-vs-aurora-thunderpick-world-championship-2026', ['1791966600000']), ('/matches/2399384/9z-vs-aurora-thunderpick-world-championship-2026', ['1791966600000']), ('/matches/2399384/9z-vs-aurora-thunderpick-world-championship-2026', ['1791966600000', '1791374400000'])]
+   team 11861: status=200 future-ish match links=[('/matches/2399384/9z-vs-aurora-thunderpick-world-championship-2026', ['1791966600000']), ('/matches/2399384/9z-vs-aurora-thunderpick-world-championship-2026', ['1791966600000']), ('/matches/2399384/9z-vs-aurora-thunderpick-world-championship-2026', ['1791966600000']), ('/matches/2399384/9z-vs-aurora-thunderpick-world-championship-2026', ['1791966600000']), ('/matches/2399384/9z-vs-aurora-thunderpick-world-championship-2026', ['1791966600000', '1791718200000'])]
 ```
