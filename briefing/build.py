@@ -56,6 +56,22 @@ def load(name):
         return json.loads(fh.read().decode("utf-8"))
 
 
+def require_raw() -> None:
+    """Refuse to overwrite a live board with an empty one.
+
+    The raw captures are produced by collect.py on a runner that can reach the source hosts and
+    are gitignored, so they are not part of the committed tree.  Without them build.py can only
+    render an empty board, and publishing that over a good one is the worst possible failure,
+    so it exits non-zero instead.
+    """
+    if not (RAW / "hotspawn_fixtures.json.gz").exists() or \
+            not (DATA / "capture.json").exists():
+        raise SystemExit(
+            "build.py: no archived Hotspawn capture in %s. Run briefing/collect.py first (it "
+            "needs network access); build.py renders from archived bytes and will not "
+            "overwrite a good board with an empty one." % RAW)
+
+
 def parse_utc(value) -> float | None:
     """Seconds since epoch, or None.  Accepts the shapes each source actually sends."""
     if value is None:
@@ -422,11 +438,13 @@ def build() -> dict:
             key = (q["book"], round(float(q["odds_a"]), 4), round(float(q["odds_b"]), 4))
             if key in seen_quotes and seen_quotes[key] != fx["fixture_id"]:
                 flags.append(("FL-DUPLICATE-QUOTE", fx["fixture_id"],
-                              f'{q["book"]} shows the same price pair '
+                              f'{q["book"]} lists the same price pair '
                               f'({q["odds_a"]}/{q["odds_b"]}) for this fixture and for '
-                              f'{seen_quotes[key]}. One of the two joins is wrong until this '
-                              f'is checked by hand; both rows keep their price and are listed '
-                              f'here rather than silently dropped.', q["url"]))
+                              f'{seen_quotes[key]}. Both joins matched on different source '
+                              f'records and different kickoffs, so this is most likely a '
+                              f'coarse odds ladder rather than a mismatch - but the two rows '
+                              f'cannot be told apart from the price alone, so it is listed '
+                              f'here for a human check. Neither price is dropped.', q["url"]))
             seen_quotes.setdefault(key, fx["fixture_id"])
 
     # --- decide the basis, the pick and the published probability
@@ -503,6 +521,7 @@ def pick_quote(fx: dict):
 
 
 def main() -> int:
+    require_raw()
     r = build()
     import render
     render.render(r)

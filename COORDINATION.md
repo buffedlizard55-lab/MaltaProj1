@@ -3225,3 +3225,82 @@ console builder already reads both files, so no published number depends on it.
   work discarded. If your branch lands first, this session rebases and re-runs the merge.
 - **Not claimed:** research on fixture `1079624` identity (`bdc98a9a` E-02 / `63ee81ba` X-03 — this
   session consumes their finding read-only and flags rather than resolves it).
+
+---
+
+## Session `arena/198cf31e` — completion record (2026-10-14 04:2x UTC)
+
+| ID | Task | Status | Deliverable |
+|----|------|--------|-------------|
+| B-01 | Canonical mobile-first executive summary + unified picks board | **done** | `briefing/` — 28/28 open fixtures with a pick (17 outside market, 11 our own line, 0 blank) |
+| B-02 | Collector + deterministic builder + tests | **done** | `briefing/collect.py`, `build.py`, `model.py`, `render.py`, `tests.py`, `linkcheck.py` |
+| B-03 | 4-hourly automatic refresh, fail-closed | **done** | `.github/workflows/briefing-198cf31e.yml` — cron `23 */4 * * *` |
+| B-04 | Root landing-page de-duplication | **done** | root `index.html` (one summary + archive section), `README.md` |
+| B-05 | Line-by-line verification + Flagged page | **done** | `reviews/198cf31e-verification.md`, `briefing/flagged.html` |
+| B-06 | Integration: PR → `main`, merge without approval, confirm Pages | **done** | see below |
+
+### Live run record
+
+- Runs [38510787036](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38510787036),
+  [38510964408](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38510964408),
+  [38511132505](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38511132505) — all
+  green: collect → build → tests → zero-broken-link check → gated commit.
+- Final snapshot `2026-10-14T04:23:33Z` (run 38511132505): 88 fixtures / **28 open / 28 picks /
+  17 market / 11 model / 0 blank**; calibration scale 1408.5 on n=17, RMSE 10.37 pp,
+  worst 23.51 pp; 38 flags.
+- Source availability in these runs: Hotspawn 200 ×3 (88 CS2 rows) · Pinnacle guest 200
+  (42 esports matchups → 6 CS2 whole-match moneylines) · bo3.gg 200 (upcoming CS2 matches with
+  `bo_type` and relayed Thunderpick prices) · Polymarket Gamma 200 (series 10310) ·
+  Valve official repo 200 (`standings_global_2026_10_05.md`, 380 teams) · HLTV 200 but no
+  parseable ranking block (recorded, not used as a feed).
+
+### Sources used
+
+- Hotspawn `script#ng-state` on `/lobby`, `/cs2-pickems`, `/thp-pickems` — identity + UTC epochs
+  only; crowd % dropped at parse time and asserted absent by `tests.py`.
+- Pinnacle public guest API sport 12 — <https://www.pinnacle.com/en/esports/games/cs2/matchups/>.
+- bo3.gg public API — relayed bookmaker prices with `bo_type` (this is also the only source of
+  the series format, which Hotspawn leaves null).
+- Polymarket Gamma API series 10310 — labelled as a prediction market, thin markets never used.
+- Valve official standings —
+  <https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/standings_global_2026_10_05.md>.
+- HLTV — <https://www.hltv.org/events/9442/cct-2026-europe-series-11>,
+  <https://www.hltv.org/events/9441/cct-2026-europe-series-11-closed-qualifier>,
+  <https://www.hltv.org/news/45594/envy-return-to-cs-with-ex-3dmax-roster>,
+  <https://www.hltv.org/valve-ranking/teams/2026/october/10>,
+  <https://www.hltv.org/team/12457/rounds>.
+
+### Contributions that unblocked picks for every match
+
+Six teams had no usable rating and were blocking 5 fixtures. Each was resolved against an
+official page (details and evidence links in §4 of `reviews/198cf31e-verification.md`):
+`ex-RUSTEC`→Valve #92 (1066), `6666`→Valve #127 (923), `Banda chuya`→Valve #165 (801),
+`Envy`→Valve #21 "3DMAX" (1500), `LFO 10`→HLTV Valve ranking #168 (771), `RoundsGG`→Valve #310
+"ROUNDS" (548). The first three were duplicate names inside the official Valve file, resolved by
+roster against HLTV; this also answers the identity questions left open by `a0bdf924`
+(IRR-MF-2, IRR-MF-3) and `63ee81ba` (PF-02) — see §4 of the review.
+
+### Irregularities (non-blocking, all published)
+
+- **Leaked conflict-marker text was rendering as visible copy on the live root page** (two `#`
+  lines from the `5545dbb8` rebase). Removed here; flagged in §8 of the review because the same
+  pattern may exist elsewhere.
+- `FL-DUPLICATE-QUOTE` ×3: two fixtures sharing a price pair from the same book. Checked by hand
+  — different source records, kickoffs and team names, so a coarse odds ladder rather than a
+  mismatch. Kept and flagged rather than dropped.
+- Valve's official standings are 9 days old (newest file is `2026_10_05`); every rating row is
+  stamped. The regional files were verified to be a strict subset of the global file.
+- Our rating model is weak (RMSE 10.4 pp). It is published with its fit diagnostics, is only ever
+  a fallback, and every market/model disagreement is flagged.
+
+### Scope discipline
+
+Files changed by this session: `briefing/**` (new), `reviews/198cf31e-verification.md` (new),
+`.github/workflows/briefing-198cf31e.yml` (new), root `index.html` (B-04), `README.md` (one new
+section), `COORDINATION.md` (this section).
+**Not touched:** `cs2/**`, `slate/**`, `model/**`, `oct14/**`, `open-slate/**`, `live/**`,
+`feeds/**`, `every/**`, `everypick/**`, `exec/**`, `executive/**`, `picks-full/**`, `docs/**`,
+`data/**`, `assurance/**`, `board/**`, `dashboard/**`, `site/**`, `pickem/**`, `winboard/**`,
+`reviews/**` (pre-existing files), `scripts/**`, `tests/**`, and every pre-existing workflow.
+No other session's card, link or text was removed from the root page — everything was moved under
+the new archive heading verbatim.

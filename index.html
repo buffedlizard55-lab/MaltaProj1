@@ -16,11 +16,65 @@
 <section class="notice"><h2>What is — and is not — verified?</h2><p>Provisional models use a project-assumed 400-point logistic scale and independent-map series transform; they are uncalibrated, not official forecasts. Missing confirmed inputs produce no model pick. Official Valve files are read from GitHub; if that read fails, fallback estimates are withheld.<br>A link identifies a source; it does not prove that a quote is current or a model is accurate. Secondary reports require bookmaker confirmation. Our estimates are project calculations, not facts published by Valve or HLTV. No source can guarantee the winner.<br><em>Update 2026-10-14 (session <code>arena/1b6ae823</code>):</em> the executive board now originates a probability for <strong>every</strong> fixture from the official HLTV world ranking and the Valve standings (converted to the stated series length), and reads this site’s own hourly secondary feed (bo3.gg-relayed book prices + Polymarket) so low-tier matches are priced rather than blank; anything still unresolved keeps its flag and its link.</p><p><a href="console/index.html"><b>Consolidated board (one row per open match)</b></a> · <a href="console/flagged.html">Consolidated flags</a> · <a href="console/methodology.html">Basis rungs</a> · <a href="console/sources.html">Capture times &amp; SHA-256</a> · <a href="https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/reviews/228bb5bc-verification.md" rel="noopener">Line-by-line verification record</a> · <a href="reviews/43c32386.html">Flagged for Review &amp; release audit</a> · <a href="executive/methodology.html">Research methodology</a> · <a href="executive/sources.html">Sources &amp; refusals</a> · <a href="reread/index.html">Independent source re-read</a> · <a href="https://github.com/buffedlizard55-lab/MaltaProj1/actions/workflows/executive-5545dbb8.yml">Refresh history</a></p></section>
 <details class="archive"><summary>Previous research &amp; parallel boards (historical claims)</summary><p class="notice">Preserved for audit. Counts, freshness labels and verification claims below belong to earlier snapshots, not the current summary. Boards can disagree; inspect their methods and flags.</p><div class="legacy">
 
+.hero{padding:26px 0 20px}.eyebrow{color:#a99aff;letter-spacing:.14em;text-transform:uppercase;font-size:12px;font-weight:700}
+h1{font-size:clamp(28px,6vw,46px);line-height:1.15;max-width:700px;margin:12px 0 18px}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:22px 0}.stat{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px}.stat b{display:block;font-size:27px}.stat span{color:var(--muted);font-size:12px}.cta{display:inline-block;background:#7857cf;padding:12px 20px;border-radius:9px;color:white;font-weight:700;text-decoration:none;margin-top:18px}.hero-actions{display:flex;align-items:center;gap:18px;flex-wrap:wrap}details{margin-top:35px}summary{cursor:pointer;font-weight:600;color:var(--muted)}.scope{font-size:13px;color:var(--muted)}footer{color:var(--muted);font-size:12px;margin-top:35px;border-top:1px solid var(--line);padding-top:20px}@media(max-width:560px){.stats{grid-template-columns:repeat(2,1fr)}.wrap{padding:20px 16px 40px}.grid{grid-template-columns:1fr}}
+</style></head><body><main class="wrap" data-root-overview>
+<section class="hero" id="start" aria-label="Executive summary">
+<div class="eyebrow">Start here · refreshed automatically every 4 hours</div>
+<h1>Where the picks are</h1>
+<p class="lead">Every open Counter-Strike 2 Pick&#39;em match listed on Hotspawn, with a pick and a
+win probability for <strong>both</strong> teams. Probabilities come from outside betting and
+prediction markets first; matches that no market prices get our own line, originated from the
+official Valve Regional Standings and labelled as ours. Hotspawn supplies the fixture list and
+lock times only — its crowd pick percentages are never an input.</p>
+<div class="hero-actions">
+<a class="cta" href="briefing/index.html">Open the picks board →</a>
+<a href="briefing/picks.html">Full table</a>
+<a href="briefing/flagged.html">Flagged for review</a>
+</div>
+<div class="stats">
+<div class="stat"><b id="es-open">28</b><span>Open CS2 fixtures</span></div>
+<div class="stat"><b id="es-picks">28</b><span>Picks published</span></div>
+<div class="stat"><b id="es-market">17</b><span>Priced by an outside market</span></div>
+<div class="stat"><b id="es-model">11</b><span>Our own rating line</span></div>
+</div>
+<div class="note" style="margin-top:16px"><b>Everything on the picks board, one click away:</b>
+<a href="briefing/index.html">Executive summary (all picks on one page)</a> ·
+<a href="briefing/picks.html">Picks table</a> ·
+<a href="briefing/lines.html">Outside market lines</a> ·
+<a href="briefing/own-lines.html">Our own lines for unpriced matches</a> ·
+<a href="briefing/coverage.html">Coverage of all 88 Hotspawn CS2 fixtures</a> ·
+<a href="briefing/sources.html">Sources and what each returned</a> ·
+<a href="briefing/methodology.html">How a pick is chosen</a> ·
+<a href="briefing/flagged.html">Flagged for Review</a>.
+Machine-readable: <a href="briefing/data/picks.csv">picks.csv</a>.
+Last snapshot: <span id="es-time">see the board</span>.</div>
+</section>
+<script>
+(function () {
+  fetch("briefing/data/coverage.json?ts=" + Date.now())
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (d) {
+      if (!d || !d.counts) { return; }
+      var c = d.counts;
+      document.getElementById("es-open").textContent = c.open;
+      document.getElementById("es-picks").textContent = c.picks;
+      document.getElementById("es-market").textContent = c.market;
+      document.getElementById("es-model").textContent = c.model;
+      var t = document.getElementById("es-time");
+      if (t && d.generated_utc) { t.textContent = d.generated_utc + " UTC"; }
+    })
+    .catch(function () { /* static fallbacks stay visible */ });
+})();
+</script>
+
 <div class="eyebrow">Hotspawn / independent research</div>
 <section class="hero"><h1>The match board.<br>The outside view.</h1>
 <p class="lead">Counter-Strike 2 fixtures from Hotspawn. Win estimates from outside markets and our own provisional model — <strong>never crowd pick percentages.</strong></p>
-<div class="hero-actions"><a class="cta" href="picks-full/index.html">All 28 open CS2 picks — one per match →</a><a href="picks-full/flagged.html">Flagged for Review</a></div>
+<div class="hero-actions"><a class="cta" href="briefing/index.html">All open CS2 picks — one per match →</a><a href="briefing/flagged.html">Flagged for Review</a></div>
 </section>
+<h2 style="margin-top:34px">All boards, and research from earlier sessions</h2>
+<div class="note">Everything below is kept exactly as it was published. It is earlier work by parallel sessions, so its snapshots, counts and model assumptions are <strong>not interchangeable</strong> with the current board above. The live, regularly refreshed answer to “where are the picks?” is the <a href="briefing/index.html">briefing board</a>.</div>
 <section aria-label="Executive summary and picks for every match">
 <h2>Executive summary &amp; picks for every match</h2>
 <div class="grid">
@@ -41,7 +95,7 @@ Crowd pick percentages are never used. Subpages:
 <a href="picks-full/s-tier.html">S-Tier</a> · <a href="picks-full/b-tier.html">B-Tier</a> · <a href="picks-full/c-tier.html">C-Tier</a> ·
 <a href="picks-full/tournaments.html">Tournaments</a> · <a href="picks-full/market-lines.html">Market lines</a> ·
 <a href="picks-full/own-lines.html">Own lines</a> · <a href="picks-full/methodology.html">Method</a> ·
-<a href="picks-full/sources.html">Sources</a> · <a href="picks-full/flagged.html">Flagged for Review</a>.
+<a href="picks-full/sources.html">Sources</a> · <a href="briefing/flagged.html">Flagged for Review</a>.
 Mobile-friendly card layout; checked hourly by GitHub Actions (fail-closed). Snapshot 2026-10-14T02:48Z.<br>
 <span class="mut">Independent source-verified copy (model-parity checks, researched LFO 10 rating so <code>1079624</code> carries a pick + probability, explicit market/model divergence flags): <a href="every/index.html">every/ all picks</a> · <a href="every/flagged.html">its flagged items</a>.</span>
 </div>
