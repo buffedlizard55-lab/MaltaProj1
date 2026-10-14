@@ -1,0 +1,100 @@
+# Consolidated every-match board (session arena/228bb5bc).
+#
+# This board invents nothing and collects nothing of its own: it is assembled from the committed
+# captures of the boards that do the collecting, so it can run offline and often.
+#
+# Each run:
+#   1. python3 scripts/228bb5bc_build.py   — read feeds/, cs2/, executive/, every/, data/63ee81ba/
+#      and publish console/ (one row per open CS2 Pick'em fixture: both win probabilities, the pick,
+#      the basis rung, the source URL and the read time behind every number). The build fails closed
+#      when the newest input capture is older than 6 h, when a published probability has no source
+#      URL or read time, when a probability is not 100% between the two sides, or when a probability
+#      would be sourced from Hotspawn.
+#   2. tests/test_228bb5bc.py             — 30 invariants, including "no Hotspawn-sourced probability"
+#      and byte-for-byte build determinism.
+#   3. scripts/audit_91e444dd.py          — repository-wide local-link check; a broken link fails the run.
+#   4. commit console/ ONLY when every step passed, and only on main. A failure publishes nothing, so
+#      the last verified copy stays live.
+name: Consolidated picks board (228bb5bc)
+
+on:
+  workflow_dispatch: {}
+  schedule:
+    - cron: "23 * * * *"
+  push:
+    branches: [ "main", "arena/228bb5bc-maltaproj1" ]
+    paths:
+      - "scripts/228bb5bc_build.py"
+      - "tests/test_228bb5bc.py"
+      - "console/**"
+      - "feeds/data/**"
+      - "cs2/data/**"
+      - "executive/data/**"
+      - "every/data/**"
+      - "data/75fd29ee/**"
+      - "data/63ee81ba/**"
+      - ".github/workflows/console-228bb5bc.yml"
+  pull_request:
+    paths:
+      - "scripts/228bb5bc_build.py"
+      - "tests/test_228bb5bc.py"
+      - "console/**"
+      - ".github/workflows/console-228bb5bc.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: console-228bb5bc-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  console:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Rebuild the consolidated board from committed captures (fail-closed)
+        run: python3 -u scripts/228bb5bc_build.py
+
+      - name: Invariants (no invented numbers, no Hotspawn probability, source + read time on every row)
+        run: python3 -m unittest tests/test_228bb5bc.py -v
+
+      - name: Repository-wide local link check
+        run: |
+          python3 scripts/audit_91e444dd.py --output "$RUNNER_TEMP/audit.json"
+          python3 - "$RUNNER_TEMP/audit.json" <<'PY'
+          import json, sys
+          links = json.load(open(sys.argv[1]))["links"]
+          errors = links["errors"]
+          print(f'{links["html_pages"]} pages, {links["local_links"]} local links, {len(errors)} errors')
+          for e in errors:
+              print(f'  {e["page"]} -> {e["link"]} ({e["reason"]})')
+          sys.exit(1 if errors else 0)
+          PY
+
+      - name: Commit the validated build (main only)
+        if: github.ref == 'refs/heads/main' && (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' || github.event_name == 'push')
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add console
+          if git diff --cached --quiet; then
+            echo "no change — the published board already reflects the newest inputs"
+          else
+            git pull --rebase origin "${GITHUB_REF_NAME}"
+            git commit -m "console(228bb5bc): automated rebuild from the source boards' captures [skip ci]"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi

@@ -1,10 +1,35 @@
 # Hotspawn · independent CS2 lines
 
 **Site:** https://buffedlizard55-lab.github.io/MaltaProj1/  
-**Current CS2 board:** https://buffedlizard55-lab.github.io/MaltaProj1/slate/cs2.html
+**Consolidated picks board (start here):** https://buffedlizard55-lab.github.io/MaltaProj1/console/  
+**Flagged for Review:** https://buffedlizard55-lab.github.io/MaltaProj1/console/flagged.html
 
 A mobile-first source-linked dashboard for the public [Hotspawn Pick'em lobby](https://play.hotspawn.com/lobby).
 Hotspawn supplies **fixture identity and UTC lock/start epochs only**, never a probability input.
+
+## The consolidated board (session `228bb5bc`, 2026-10-14)
+
+[`console/`](console/index.html) holds **one row for every open CS2 Pick'em match** on the Hotspawn board:
+both teams' win probability, the explicit pick, the basis rung (primary book → relayed book → prediction
+market → own originated line → research, flagged), the read time and the source URL behind every number.
+It is assembled from the committed captures of the boards below — `scripts/228bb5bc_build.py`, rebuilt
+hourly by `.github/workflows/console-228bb5bc.yml`, fail-closed on stale inputs, missing sources or a
+Hotspawn-sourced probability. Machine-readable: `console/data/picks.csv`, `picks.json`, `coverage.json`,
+`sources.csv`, `flags.csv`.
+
+The root [`index.html`](index.html) is the merged landing page (session `43c32386`): one executive summary,
+live freshness, categories. This integration added the consolidated-board entry points to it ("All open
+matches — one pick per row", the flagged page, capture times), and **every link the page carried before the
+restructures still resolves** — `console/data/landing_links.csv` is the registry and
+`tests/test_228bb5bc.py` enforces it.
+
+The line-by-line record for this board is
+[`reviews/228bb5bc-verification.md`](reviews/228bb5bc-verification.md): the 28-row table with the source
+and verification status of every row, the official-standings anchor audit for the own originated lines
+(56 sides: 48 exact, 7 via documented aliases, 1 research), the live re-reads with their arithmetic, and
+the five curated manual-review findings (R-228-04..08) that also appear on
+[`console/flagged.html`](console/flagged.html). Curated findings live in
+`console/data/review_findings.csv` so the generated page cannot drop them.
 
 ## Current board
 
