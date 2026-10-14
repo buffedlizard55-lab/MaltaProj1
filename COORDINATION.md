@@ -1859,3 +1859,27 @@ published under `slate/` only, and the audit in S-05 compares them against those
 - **What keeps running with no manual input:** the workflow's 3-hourly cron now fires from `main` as well
   (first post-merge run 38486458907), so the published board re-reads Hotspawn, Pinnacle, HLTV, Valve and
   EGamersWorld on schedule and commits any changed data and pages.
+
+---
+
+## Session `arena/08031d30` — claim (2026-10-14 ~01:50 UTC)
+
+Branch: `arena/08031d30-maltaproj1` (Arena fixes this session to that branch; no other branch is created or pushed).
+
+**Read before claiming:** this board in full; `git ls-remote origin` (23 open-looking `arena/*` branches, all tips dated 2026-10-13 or earlier); `gh pr list` (only PR #54 `arena/9920c263` open, DIRTY, last commit 2026-10-13 22:09 UTC); latest workflow runs. Newest published board `slate/` (180a42a0, S-01..S-07 done, PRs #68/#69 merged) was last captured 2026-10-13 23:49 UTC. Its owner's claims are closed, so this session does not edit `slate/**`.
+
+**Live check at claim time:** `https://play.hotspawn.com/cs2-pickems` (fetched 2026-10-14 ~01:40 UTC, 3 chunks): Closing Soon + Upcoming list = **28 open CS2 fixtures** (Oct 14: 13, Oct 15: 8, Oct 16: 7). The same 28 fixture IDs, teams and kickoffs appear as open CS2 rows in `slate/data/fixtures.csv`. Coverage matches for this window; prices and ratings are the stale part.
+
+**Scheduled-refresh health (read-only observation):** `model-91eff436.yml` scheduled run 38489574648 (2026-10-14 00:20Z) failed in the `Tests (incl. check against Valve's own fit.js/glicko.js)` step; the job log could not be fetched (EOF). Logged as irregularity R-08031d30-01 for owner `arena/91eff436`. This session does not edit `model/**` or that workflow. `slate-180a42a0.yml` last ran 2026-10-13 23:54Z; its 3-hourly 00:41Z slot did not appear in `gh run list` at 01:40Z (logged as R-08031d30-02, checked again at the end of this session).
+
+| ID | Task | Status | Owner | Exclusive file scope |
+|----|------|--------|-------|----------------------|
+| T-01 | Re-verify the live Hotspawn CS2 open list (28 fixtures) against the official lobby pages: Hotspawn match URL, team names, kickoff in UTC, tier, points, lock time. Coverage check against the lobby's own counts. Record capture time per row. | in progress | arena/08031d30 | `data/08031d30/hotspawn_open_cs2.csv` |
+| T-02 | Fresh external match-winner prices for the 28 open fixtures from non-Hotspawn sources the sandbox can read (EGamersWorld match pages, other bookmaker listings it serves). Per-row URL + read time. Vig removed. Missing prices stay blank and flagged, never filled in. | in progress | arena/08031d30 | `data/08031d30/market_lines.csv` |
+| T-03 | Originated own lines for each open fixture from official ratings only (HLTV world ranking page + Valve Regional Standings where the team has one). Blank + flagged when a team has no official rating. Hotspawn crowd % is never an input. | in progress | arena/08031d30 | `data/08031d30/own_lines.csv`, `data/08031d30/ratings.csv` |
+| T-04 | Mobile-first page `open-slate/` (one table: every open fixture, both teams' probability, the pick, source links, flags) + `open-slate/flagged.html` (Flagged for Review). | in progress | arena/08031d30 | `open-slate/**`, `scripts/08031d30_build.py`, `tests/test_08031d30.py` |
+| T-05 | Repo review notes (read-only): the repo's refresh and publish irregularities seen during this session, each with its source link, for manual review. | in progress | arena/08031d30 | `reviews/08031d30-repo-review.md` |
+| T-06 | Integration: one additive card for `open-slate/` in root `index.html`, link check over the new pages, `git pull --rebase origin main`, push, PR → `main`, merge without waiting, confirm Pages build, record PR + result here. | unclaimed until T-01..T-05 done | arena/08031d30 | `index.html` (additive card only), this section |
+
+### Log — arena/08031d30
+- 2026-10-14 ~01:50 UTC: claim written; pulled and rebased on `origin/main` (9d841fd). Only this session's section is appended.
