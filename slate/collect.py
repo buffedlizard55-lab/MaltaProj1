@@ -883,6 +883,9 @@ def main() -> int:
     # ------------------------------------------------------------------ own originated lines (S-03)
     def own_line(fx: dict) -> dict:
         a, b = rating_by_team.get(fx.get("team_a")) or {}, rating_by_team.get(fx.get("team_b")) or {}
+        # Roster-based and unconfirmed aliases are not silently used as official inputs.
+        a = a if "alias" not in (a.get("method") or "") else {}
+        b = b if "alias" not in (b.get("method") or "") else {}
         best_of = fx.get("best_of_resolved") if isinstance(fx.get("best_of_resolved"), int) else None
         out = {"fixture_id": fx["match_id"], "best_of": best_of,
                "best_of_source": fx.get("best_of_source"),
@@ -1026,6 +1029,10 @@ def main() -> int:
             "own_p_a_pct": own.get("own_map_p_a"), "own_p_b_pct": own.get("own_map_p_b"),
             "own_series_p_a_pct": own.get("own_series_p_a"), "own_series_p_b_pct": own.get("own_series_p_b"),
             "own_basis": own.get("basis") or "no official rating for both teams",
+            "own_source_url": HLTV_RANKING_URL,
+            "rating_valve_url": valve.get("blob_url") or "",
+            "model_status": "provisional / not calibrated",
+            "alias_evidence_url": " ".join(sorted({aliases[t]["evidence"] for t in (fx["team_a"], fx["team_b"]) if t in aliases})),
             "own_series_basis": own.get("series_basis"),
             "own_fair_odds_a": own.get("fair_odds_a"), "own_fair_odds_b": own.get("fair_odds_b"),
             "consensus_p_a_pct": consensus,

@@ -1881,3 +1881,17 @@ That separate owner's `model/**` remains read-only; publish the failure as a rev
 Sources: https://github.com/buffedlizard55-lab/MaltaProj1/pull/69 ;
 https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38489574648 ;
 https://api.github.com/repos/buffedlizard55-lab/MaltaProj1/pages .
+
+### H-01 / H-02 progress — 2026-10-14 UTC
+- Inspected every line of `slate/collect.py`, builder and workflow; found fuzzy team matching with a six-hour
+  kickoff window, historical fallback timestamps, unknown-format map values shown as series estimates,
+  model/market averaging despite text claiming market preference, and an always-run publication step.
+  Replaced with exact/evidence-linked names + 15-minute known-kickoff window, fresh primary quotes only,
+  blank unconfirmed series estimates, explicit market preference, and publication only after all gates pass.
+- Historical session quotes excluded; secondary aggregator reports labelled unverified against the bookmaker.
+  Model scale 400 is explicitly a project assumption (not Valve's forecast formula), uncalibrated. Alias-derived
+  rating inputs are excluded pending review. Sources and per-fixture gaps are published on slate/flagged.html.
+- Fresh collector run started automatically on the fixed session branch: run 38497270864. Final data verification
+  is pending this run; old stored observations are NOT declared newly source-verified by these code changes.
+- Repository regression tests: 93 pass; independent local-link audit: 124 HTML pages, zero broken local links
+  before integration. Network source values will be checked by Actions, not inferred in this restricted workspace.
