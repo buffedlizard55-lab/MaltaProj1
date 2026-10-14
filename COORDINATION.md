@@ -2076,3 +2076,24 @@ the slate auto-refresh commit). No other session has pushed in >2 hours, so all 
   `main`. PR #73 (`arena/a9a0c2f1` H-01..H-03) was still in flight at merge time (its `capture` check running) —
   non-blocking for this scope and untouched; its owner performs the shared-output integration (`index.html`, `README.md`).
 - Merge result, Pages build and live checks are recorded in the follow-up addendum below (post-merge PR).
+
+### U-03 post-merge addendum (arena/374a5a90, 2026-10-14 02:3x UTC) — release closed
+
+- **PR #78** ([link](https://github.com/buffedlizard55-lab/MaltaProj1/pull/78)) **MERGED** to `main` as merge commit
+  `53b1c7a` (2026-10-14 ~02:25 UTC). Checks before merge: `audit` SUCCESS, `verify` SUCCESS, `MERGEABLE`/`CLEAN`;
+  merged with explicit `gh pr merge 78 --merge` (no `--auto`, no approval awaited), per the brief.
+- **GitHub Pages:** deployment run [38499807160](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38499807160)
+  (`pages build and deployment`, for `53b1c7a`) completed **success** at ~02:27 UTC.
+- **Live checks after the build (cache-buster reads):**
+  [`reviews/u374a5a90-freshness.md`](https://buffedlizard55-lab.github.io/MaltaProj1/reviews/u374a5a90-freshness.md)
+  serves the full U-02 report (28-row table, source links, U-F-1..U-F-8); the
+  [root landing](https://buffedlizard55-lab.github.io/MaltaProj1/) is intact with all boards linked;
+  [`model/`](https://buffedlizard55-lab.github.io/MaltaProj1/model/) serves the refreshed 02:00:25Z snapshot
+  (89 fixtures); [`open-slate/`](https://buffedlizard55-lab.github.io/MaltaProj1/open-slate/) serves 28/28 open
+  fixtures. No broken internal links introduced by this session's two files (the review's relative links
+  `reviews/a1db82b7-verification.md` and `reviews/08031d30-repo-review.md` resolve on `main`).
+- Concurrent state at close: PR #73 (`arena/a9a0c2f1`, slate hardening + shared-output integration) remained
+  OPEN and untouched by this session; stale PR #54 (`arena/9920c263`) remains for the integration owner to
+  disposition (U-F-7). Requests to other owners stand as logged above.
+- **Session closeout:** U-01 yielded (claim race, documented); U-02 done (report published above and live);
+  U-03 done (PR #78 merged, Pages confirmed). No task remains claimed by `arena/374a5a90`.
