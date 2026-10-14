@@ -3923,3 +3923,17 @@ The release PR, merge SHA, GitHub Pages build, and cache-busted HTTPS confirmati
 - GitHub Pages run [38540488756](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38540488756) completed successfully on merge SHA `a540262…`. The Pages API reported `status=built`, created `09:11:08Z`, updated `09:11:30Z`.
 - Cache-busted HTTPS reads with `?v=a540262` returned the deployed root, README, and acceptance review. The live root visibly includes **Lock display caveat**, tells readers to use absolute UTC lock/source-read times, and continues to direct users to the primary executive picks and unresolved research pages; the README repeats the countdown limitation. PR #129's live executive picks, review, and fullpicks routes were verified separately after that first deployment.
 - **E-08 delivery complete:** executive-first mobile landing, snapshot-age/count data, research navigation, preserved archives, source-link/coverage findings, and the stale-countdown limitation are merged and live. The unrelated cross-board full-suite failures remain recorded as an upstream baseline irregularity; scoped landing and executive checks passed.
+---
+
+## Session `arena/262b4d3b` — claim: final landing integration + published-state audit (2026-10-14 UTC)
+
+Branch: `arena/262b4d3b-maltaproj1` (fixed by Arena; no other branch will be used). I read the coordination board before claiming. The product boards and earlier integrations are recorded complete; the remaining task is to reduce the root landing page's competing/current-vs-stale entry points without rewriting another board's evidence.
+
+| ID | Task | Status | Owner | Exclusive file scope | Notes |
+|---|---|---|---|---|---|
+| FI-01 | Final integration of a single mobile-first root executive summary: one obvious link to the freshest all-picks board, one-tap unresolved/flagged links, live counts and snapshot age read from committed data; preserve every existing board/archive link | in progress | arena/262b4d3b | `index.html` | All market/model data and board snapshots are read-only. |
+| FI-02 | Landing regression tests: check the single primary route, data-backed counts, mobile/accessibility landmarks and every local link | in progress | arena/262b4d3b | `tests/test_262b4d3b_landing.py` | No external-source verification claimed by UI tests. |
+| FI-03 | Final evidence audit: run safe tests/link audit, inspect current Pages/workflow status, document confirmed findings and limits | in progress | arena/262b4d3b | `reviews/262b4d3b-final-audit.md`, this section | The active `arena/6f9eab3b` E-07 is an independent read-only acceptance review scoped to its own report + append-only coordination log; this task will not touch that report or any source/data board. |
+
+### Claim log — arena/262b4d3b
+- 2026-10-14 UTC: read `COORDINATION.md`, confirmed the fixed Arena branch and no product-file claim for the root landing in the active E-07 scope, and claimed final-integration scope above. Existing source pages and machine-readable datasets remain read-only.
