@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Methodology · Hotspawn CS2 briefing</title>
+<meta name="description" content="A sourced pick and win probability for every open Counter-Strike 2 Pick'em match on Hotspawn.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skiplink" href="#main">Skip to content</a>
+<div class="wrap">
+  <div class="brand">
+    <b>Hotspawn CS2 briefing</b>
+    <span class="sub">picks for every match · outside lines only</span>
+    <span class="spacer"></span>
+    <span class="sub">snapshot 2026-10-14T04:39:29Z</span>
+  </div>
+  <nav class="tabs" aria-label="Sections"><a href="index.html">Executive summary</a><a href="picks.html">All picks</a><a href="lines.html">Outside market lines</a><a href="own-lines.html">Our own lines</a><a href="coverage.html">Coverage</a><a href="sources.html">Sources</a><a href="flagged.html">Flagged for Review</a><a href="methodology.html" aria-current="page">Methodology</a></nav>
+  <main id="main">
+  <h2>How a pick is chosen</h2>
+
+  <h3>1. The fixture list comes from Hotspawn, nothing else</h3>
+  <p>The board reads the Angular TransferState payload embedded in
+  <a href="https://play.hotspawn.com/lobby">play.hotspawn.com/lobby</a> (and the CS2 and Thunderpick pick'em
+  pages) and keeps the CS2 rows. From it we take only: the two team names, the tournament, the
+  tier, the stage, the UTC kickoff, the UTC lock time and the permalink.
+  <b>Hotspawn's crowd pick percentages are dropped at parse time</b> and are never written to
+  disk, so they cannot reach a probability by accident.</p>
+
+  <h3>2. Probabilities come from outside markets first</h3>
+  <p>For each open fixture we look for a price, in this order, and stop at the first one we
+  find:</p>
+  <ol>
+    <li><b>Pinnacle</b> — its own public guest API (sport 12, esports), whole-match moneyline
+        only.</li>
+    <li><b>Bookmaker</b> — the price bo3.gg's public API relays, with the bookmaker named and
+        a link to the bookmaker's own match page.</li>
+    <li><b>Polymarket</b> — its match-winner market. A prediction market, not a bookmaker; it
+        is always labelled, and a market with a spread above 0.06 or volume below 500 is
+        recorded but never used.</li>
+    <li><b>Our own line</b> — see below, used only when no market prices the match.</li>
+  </ol>
+  <p>A match must be identified by <b>both</b> its two team names and a kickoff inside
+  ±150 minutes. A name that matches only after stripping a corporate suffix (Esports, Gaming,
+  Team, Club, GG) is joined but flagged.</p>
+
+  <h3>3. De-vigging</h3>
+  <p>Two-way proportional: <code>p(A) = (1/oddsA) / (1/oddsA + 1/oddsB)</code>. The
+  bookmaker's overround is published next to every market-derived probability so the reader
+  can see how much margin was removed. Pinnacle publishes American prices; these are converted
+  to decimal exactly and stored as read.</p>
+
+  <h3>4. Our own line for matches no market prices</h3>
+  <p>Where neither a bookmaker nor a prediction market prices a match, we originate a line from
+  the <a href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/standings_global_2026_10_05.md">official Valve Regional
+  Standings</a> (2026_10_05):</p>
+  <ul>
+    <li>map win probability <code>p = 1 / (1 + 10^(-(ratingA - ratingB) / scale))</code></li>
+    <li>series probability from the sourced best-of: BO3 <code>p²(3-2p)</code>,
+        BO5 <code>p³(10-15p+6p²)</code></li>
+    <li><code>scale</code> = 1421.8 rating points per 10:1 map-odds ratio,
+        fitted by least squares against the de-vigged market prices read in this same run (n=17, RMSE 10.24 pp, worst 23.3 pp)</li>
+  </ul>
+  <div class="note warnbox"><b>This is our model, not Valve's official forecast formula.</b>
+  It is fitted in-sample on a single day's market prices, so it is a description of how those
+  markets priced rating gaps that day, not a validated predictor. Where a market line exists
+  the market wins; our line is shown beside it and any disagreement in direction is flagged on
+  the row and listed on <a href="flagged.html">Flagged for Review</a>.</div>
+
+  <h3>5. The pick</h3>
+  <p>The pick is simply the higher-probability side of the highest tier available. We do not
+  average market and model. If the two sides price identically the pick is left blank rather
+  than broken arbitrarily. If neither a market price nor official ratings for both teams can be
+  sourced, the probability stays blank and the row is flagged — we never assume 50/50.</p>
+
+  <h3>6. What is deliberately not done</h3>
+  <ul>
+    <li>Hotspawn crowd percentages are never an input.</li>
+    <li>No series format is assumed from Hotspawn (its payload leaves <code>best_of</code>
+        null); the format comes only from a source that states it, otherwise the model line is
+        published as a single-map estimate and flagged.</li>
+    <li>No historical price is carried into a current pick.</li>
+    <li>Historical or secondary aggregator reports are not used as probabilities.</li>
+  </ul>
+
+  <h3>7. Automation</h3>
+  <p><code>.github/workflows/briefing-198cf31e.yml</code> re-reads every source on a 4-hourly
+  schedule, on push and on demand. It publishes only if collection, the render, the regression
+  tests and a zero-broken-link check all pass — a failed run leaves the previous board live.
+  Raw responses are archived (with HTTP status, byte count, SHA-256 and capture time) so every
+  published number re-derives from bytes that were actually received.</p>
+  </main>
+  <footer>
+    Analysis only, not betting advice. Hotspawn supplies fixture identity and lock times only;
+    its crowd pick percentages are never used. Every published number links to the official
+    source it came from; anything unconfirmable is left blank and listed on
+    <a href="flagged.html">Flagged for Review</a>.
+    Fixture list: <a href="https://play.hotspawn.com/lobby">play.hotspawn.com/lobby</a>.
+    Snapshot 2026-10-14T04:39:29Z.
+  </footer>
+</div>
+</body>
+</html>

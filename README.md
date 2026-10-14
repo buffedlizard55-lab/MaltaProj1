@@ -31,6 +31,33 @@ and verification status of every row, the official-standings anchor audit for th
 the five curated manual-review findings (R-228-04..08) that also appear on
 [`console/flagged.html`](console/flagged.html). Curated findings live in
 `console/data/review_findings.csv` so the generated page cannot drop them.
+## Start here — the picks board
+
+**All picks, every open CS2 match:** [`briefing/`](briefing/index.html) — the board this
+repository now maintains. A pick and a win probability for **all 28** open Hotspawn CS2
+Pick'em fixtures, refreshed automatically **every 4 hours** with no manual input.
+
+| Page | What it is |
+|---|---|
+| [`briefing/index.html`](briefing/index.html) | Executive summary — every pick on one page, phone-first |
+| [`briefing/picks.html`](briefing/picks.html) | The same picks as a table, with the source per row |
+| [`briefing/lines.html`](briefing/lines.html) | Outside market lines as read, with the bookmaker's overround |
+| [`briefing/own-lines.html`](briefing/own-lines.html) | Our own lines for matches no market prices |
+| [`briefing/coverage.html`](briefing/coverage.html) | All 88 Hotspawn CS2 fixtures, open / locked / stale |
+| [`briefing/sources.html`](briefing/sources.html) | Every source, what it returned, and when |
+| [`briefing/methodology.html`](briefing/methodology.html) | How a pick is chosen |
+| [`briefing/flagged.html`](briefing/flagged.html) | Flagged for Review |
+| [`briefing/data/picks.csv`](briefing/data/picks.csv) | Machine-readable picks |
+
+Rules: Hotspawn supplies fixture identity and lock times only — its crowd pick percentages are
+dropped at parse time and never used. Outside market prices come first (Pinnacle, then a named
+bookmaker relayed by bo3.gg, then Polymarket as a labelled prediction market); only matches no
+market prices get our own line, originated from the official Valve Regional Standings with the
+fitted scale and its error published. Anything unconfirmable stays blank and is flagged.
+Verification: [`reviews/198cf31e-verification.md`](reviews/198cf31e-verification.md).
+
+The boards below are earlier work by parallel sessions, kept exactly as published. Their
+snapshots, counts and model assumptions are not interchangeable with `briefing/`.
 
 ## Current board
 

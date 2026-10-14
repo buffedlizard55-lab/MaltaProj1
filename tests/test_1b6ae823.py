@@ -197,9 +197,26 @@ class PublishedOwnLinesTests(unittest.TestCase):
             return
         self.assertTrue(cal.get("fitted"), "enough priced fixtures to fit, yet no fit is published")
         recomputed = ownlines.calibrate_scale(pairs)
-        self.assertAlmostEqual(float(recomputed["scale"]), float(cal["scale"]), places=6,
-                               msg="the published scale is not the argmin over the stored priced rows")
-        self.assertAlmostEqual(float(recomputed["mae_pp"]), float(cal["mae_pp"]), places=2)
+        published = float(cal["scale"])
+
+        def mae_at(scale: float) -> float:
+            """The builder's own objective, recomputed from the published rows."""
+            return 100.0 * sum(abs(ownlines.logit_ratio(dr, 0.0, scale) - p)
+                               for dr, p in pairs) / len(pairs)
+
+        # The fit runs on the unrounded probabilities the collector held; this test can only rebuild
+        # them from the published row, which is rounded to a tenth of a percent.  On a near-tie two
+        # neighbouring grid points then swap places, so the contract is not "the same integer" but
+        # "the published scale is a minimiser within that rounding noise, and not further than one
+        # grid step from the recomputed one".  The printed error must be the error of the fit printed.
+        best = mae_at(float(recomputed["scale"]))
+        self.assertLessEqual(mae_at(published), best + 0.05,
+                             f"published scale {published:g} scores {mae_at(published):.3f} pp while the "
+                             f"grid optimum {float(recomputed['scale']):g} scores {best:.3f} pp")
+        self.assertLessEqual(abs(published - float(recomputed["scale"])), 1.0,
+                             "the published scale drifts more than one grid step from the recomputed argmin")
+        self.assertAlmostEqual(float(cal["mae_pp"]), mae_at(published), delta=0.15,
+                               msg="the MAE printed next to the scale is not that scale's error")
 
     def test_every_open_fixture_carries_an_own_line_or_a_reason(self):
         missing = [r["match_id"] for r in self.open_rows
