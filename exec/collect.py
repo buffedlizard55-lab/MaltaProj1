@@ -559,7 +559,17 @@ def hltv_match_details(fixtures: list[dict], day_cache: dict, limit: int = 40) -
     """Per-match HLTV pages for the fixtures this board publishes: format + rank badges."""
     written = []
     known = repo_hltv_urls()
+    refusals = 0
     for fixture in fixtures[:limit]:
+        # HLTV bot-checks its match pages from datacenter addresses for stretches of time. Rather
+        # than burning the browser budget on a wall, stop after a short run of refusals and record
+        # the refusal: the board then publishes those rows with the evidence it does have, and the
+        # refusal is visible on the sources page instead of being hidden.
+        if refusals >= 5:
+            written.append({"fixture_id": fixture["fixture_id"], "skipped": True,
+                            "error": "HLTV match pages refused this run (bot check); stopped after "
+                                     "5 consecutive refusals"})
+            continue
         url = known.get(str(fixture["fixture_id"]))
         if url:
             match = re.search(r"/matches/(\d+)/", url)
@@ -590,7 +600,21 @@ def hltv_match_details(fixtures: list[dict], day_cache: dict, limit: int = 40) -
         }
         save(f"hltv_match_{row['hltv_match_id']}.json", out)
         written.append(out)
-        time.sleep(1.0)
+        if out.get("status") == 200 and out.get("best_of"):
+            refusals = 0
+        else:
+            refusals += 1
+        time.sleep(0.5)
+    save("hltv_match_pages.json", {
+        "captured_utc": now_iso(),
+        "attempted": len([w for w in written if not w.get("skipped")]),
+        "read_ok": len([w for w in written if w.get("best_of")]),
+        "refused": len([w for w in written if w.get("status") == 403]),
+        "note": "Per-match HLTV pages give the series format and the per-team rank badge. A refusal "
+                "here never blocks the board: the format falls back to the Hotspawn payload and the "
+                "rank question is answered from the HLTV ranking table and Valve's standings file.",
+        "results": [{k: w.get(k) for k in ("fixture_id", "status", "best_of", "error")} for w in written],
+    })
     return written
 
 
