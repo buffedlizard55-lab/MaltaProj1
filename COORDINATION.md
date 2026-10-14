@@ -3864,3 +3864,14 @@ source data, pick rows, or workflow will be modified.
 - 2026-10-14 UTC: E-08 scope amendment committed and pushed before landing-page work.
 
 - E-08 scope refinement before implementation: the existing regression test asserts obsolete root-page sections, so it is included for contract update; the README start-here pointers are included to avoid sending repository visitors to competing/stale front doors. Added `tests/test_landing_43c32386.py` and `README.md` to the exclusive scope. No other files are added.
+
+### E-08 verification addendum — source-link integrity and primary-board decision
+
+Before integrating the landing, live source checks found two issues in the newer `livelines/` snapshot:
+(1) its Valve VRS row links use `blob/2aa2805394fbc68f36a5752a5b16026f2ab2fed5/…`; GitHub API confirms this is the file blob SHA, not a commit (`/commits/<sha>` returns 422), and the published URL returns GitHub 404. The verified file URL at the actual Valve commit is
+`https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md`.
+(2) its Hotspawn payload snapshot says 89 fixtures (read 02:06:30Z), while a later saved lobby reread and a fresh `/cs2-pickems` read show 88 (B 24 / C 60 / S 4). The stored 89-row inventory includes fixture `1079546`, which the prior capture note identifies as retired after its lock.
+
+Per the no-unverified-values rule, this final integration will use the `executive/` board as the primary landing destination: its row-level Valve links are pinned to the valid commit above, its live Hotspawn capture contains 88 fixtures, and it publishes the full research-ladder unresolved section. `livelines/` is preserved but clearly marked for review; this session will not edit any `livelines/**` owner files. The separate acceptance review (`reviews/6f9eab3b-acceptance.md` + `.html`) will include the exact broken and corrected source URLs, the count discrepancy, and the checks performed.
+
+E-08 final scope now includes `reviews/6f9eab3b-acceptance.html` in addition to the existing files in the claim. This is an additive final-integration disclosure; no other board data or pipeline is in scope.
