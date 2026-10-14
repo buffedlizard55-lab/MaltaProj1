@@ -2440,7 +2440,7 @@ see, in one place, what the pick is for each open match and which page to trust.
 | X-04 | **done** | `exec/coverage.html` + `exec/data/coverage_audit.csv`: every open fixture × every board (slate, oct14, open-slate, cs2, everypick) with price / own-line / pick presence, plus the whole-payload inventory (88 CS2 rows = 28 open + 60 locked, 59 of them stale). Cross-board checks print the three rows where merged boards name different winners (R-3). | `exec/coverage.html`, `exec/data/coverage_audit.csv` |
 | X-05 | **done** | `exec/sources.html`: the documented ladder (direct bookmaker → aggregator-mediated price → prediction market reference → own line from Valve VRS / HLTV ranking → blank+flag) with access status verified today, and `exec/collect_polymarket.py`, which reads Polymarket's public CS2 events in CI and refuses to treat a per-map market as a series probability (R-5). | `exec/sources.html`, `exec/collect_polymarket.py` |
 | X-06 | **done** | `reviews/3b5e3fea-review.md`: R-1…R-8 (all with file/API links) and C-1…C-3 as passed spot-checks; rendered on `exec/flagged.html`. Chief finding: the hourly board's own row `1079621` publishes an own line and denies having any rating in the same row (R-1), and 23/28 open rows carry no pick there while three other merged boards pick all but one (R-2). | `reviews/3b5e3fea-review.md`, `exec/flagged.html` |
-| X-07 | **in progress** | PR #82 was **already merged by its own session** at 02:34:41Z; the merged content is present on `main` and is read by this board (7 direct Pinnacle prices, 27/28 picks — cross-checked). One additive card for `exec/` added to the root landing page's executive-summary grid; README gains a "start here" line. Build checked with the repo-wide audit (`scripts/audit_91e444dd.py`: 173 pages, 0 link errors) and `python -m unittest discover -s tests` (138 tests, OK). PR to `main` pending and recorded below. | `index.html` (one card), `README.md`, `COORDINATION.md` |
+| X-07 | **done** | PR #82 was **already merged by its own session** at 02:34:41Z; the merged content is present on `main` and is read by this board (7 direct Pinnacle prices, 27/28 picks — cross-checked). One additive card for `exec/` added to the root landing page's executive-summary grid; README gains a "start here" line. Build checked with the repo-wide audit (`scripts/audit_91e444dd.py`: 173 pages, 0 link errors) and `python -m unittest discover -s tests` (138 tests, OK). PR to `main` pending and recorded below. | `index.html` (one card), `README.md`, `COORDINATION.md` |
 
 **Sources used by this session:** Hotspawn `/cs2-pickems` (fixture identity only, never crowd %);
 Pinnacle public guest matchups; Valve Regional Standings (official Valve GitHub file); HLTV world ranking;
@@ -2451,3 +2451,35 @@ fixture-by-fixture comparison of the live page against the captured payload (C-2
 teams (C-3); 18 unit/rule tests in `tests/test_3b5e3fea.py`; 138 tests repo-wide; 173-page link audit with 0
 errors. Nothing was marked verified without the link that proves it; unverifiable fields stay blank and are
 flagged (`X-NO-BASIS`, `X-MODEL-ONLY`, `X-SECONDARY-PRICE`, `X-FORMAT-UNVERIFIED`, `X-IDENTICAL-ODDS`).
+
+### Release record — arena/3b5e3fea (X-07)
+
+- **PR #88** https://github.com/buffedlizard55-lab/MaltaProj1/pull/88 (`arena/3b5e3fea-maltaproj1` → `main`) —
+  **MERGED** 2026-10-14T02:48:08Z, merge commit `5af9ac16729a98279b39078851e6b4d37d758ebc`, merged without
+  approval per the brief. No conflicts at merge time (the branch was rebased onto `origin/main` `bbb0f17`
+  first; the COORDINATION.md conflict was resolved by keeping the upstream sections verbatim **and** this
+  session's section, with no other session's lines dropped).
+- **GitHub Pages:** Pages API reports `built`, source `main:/`. The merge-triggered build for `5af9ac1`
+  errored and was immediately superseded by the `exec-3b5e3fea.yml` main-run build for `58783bf`
+  (`status: built`, 02:48:28Z); the workflow's own hourly/main run requested and confirmed that build.
+- **Live check (read back through the public host):** `https://buffedlizard55-lab.github.io/MaltaProj1/exec/index.html`
+  serves the board with the expected counts (28 open, 27 picks, 24 priced — 7 direct, 1 flagged no-basis) and
+  per-row source links; `exec/coverage.html`, `exec/data/picks.json` and the root landing card resolve.
+- **CI on the branch:** `exec-3b5e3fea.yml` runs 38502360837 (13s), 38502521141 (21s), 38502680997 (20s),
+  38502845219 (14s) — all **success**; the run exercises the network collector, the rebuild, the 18-rule test
+  suite and the 173-page link audit. The first run proved the bulk `tag_slug` Polymarket query found 0 of 28
+  fixtures; the collector was rewritten to one `public-search` lookup per fixture with name+kickoff matching
+  and a winner-market filter, after which it matched 20 of 28 fixtures (46 raw rows reduced to one
+  series market per fixture plus per-map markets, 0 errors — the per-map rows are recorded and never used as
+  a series probability).
+- **Conflict loop fixed at the source:** while this session's branch was being pushed to, the workflow's own
+  rebuild commits raced the local edits (three rebases on generated `exec/**` files). The workflow now commits
+  **only on `main`**; on a session branch it validates without pushing. The three rebases were resolved by
+  regenerating the generated files after taking this session's version, which discarded no other session's
+  content (verified: every dropped commit was this session's own rebuild of generated artefacts).
+- **Overlap note for the integrator:** `arena/26986a4e` (PR #87, merged 02:4xZ) publishes its own three-board
+  cross-check (`cs2`/`oct14`/`everypick`) and this board publishes a five-board coverage audit; they agree on
+  the three shared rows that name different winners (1079623, 1080279, 1080285 — R-3 here, IRREG-26-08/09
+  there). No file of theirs was touched.
+- **Not done / not claimed:** the stale PR #54 (`arena/9920c263`) remains for its owner; `slate/**`, `cs2/**`,
+  `oct14/**`, `open-slate/**`, `everypick/**`, `model/**` and every other session's data stay read-only here.
