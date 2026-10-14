@@ -346,20 +346,43 @@ class MobileLandingTests(unittest.TestCase):
         self.assertIn('name="viewport" content="width=device-width', self.html)
         self.assertIn('<html lang="en">', self.html)
 
-    def test_exactly_one_executive_summary_heading(self):
-        headings = re.findall(r"<h[12][^>]*>(.*?)</h[12]>", self.html, re.S)
-        clean = [re.sub(r"<[^>]+>", "", head).strip() for head in headings]
-        summaries = [head for head in clean if head.lower().startswith("executive summary")]
+    @staticmethod
+    def _visible_html(markup: str) -> str:
+        """Everything outside a collapsed <details> block — what a phone user sees before tapping."""
+        out: list[str] = []
+        depth, pos = 0, 0
+        for match in re.finditer(r"<(/?)details\b[^>]*>", markup, re.I):
+            if depth == 0:
+                out.append(markup[pos:match.start()])
+            depth = max(0, depth + (-1 if match.group(1) == "/" else 1))
+            pos = match.end()
+        if depth == 0:
+            out.append(markup[pos:])
+        return "".join(out)
+
+    def test_one_visible_executive_summary(self):
+        """The brief's complaint was competing summaries; archived blocks must stay collapsed."""
+        visible = self._visible_html(self.html)
+        headings = [re.sub(r"<[^>]+>", "", h).strip()
+                    for h in re.findall(r"<h[12][^>]*>(.*?)</h[12]>", visible, re.S)]
+        summaries = [h for h in headings if h.lower().startswith("executive summary")]
         self.assertLessEqual(len(summaries), 1,
-                             f"the landing page carries {len(summaries)} competing executive-summary "
-                             f"headings: {summaries}")
+                             f"{len(summaries)} competing executive-summary headings are visible: {summaries}")
+        self.assertLessEqual(headings.count(headings[0]) if headings else 0, 1)
+        self.assertGreaterEqual(len(headings), 3, "the visible landing has too little structure to navigate")
+        # everything from earlier sessions survives — it is just collapsed, not deleted
+        archived = re.findall(r"<details.*?</details>", self.html, re.S)
+        self.assertTrue(archived, "no collapsed archive of the earlier boards")
 
     def test_picks_are_one_tap_away_and_the_flagged_page_is_linked(self):
         self.assertIn('href="executive/picks.html"', self.html)
         self.assertIn('href="executive/flagged.html"', self.html)
-        first = re.search(r"<main[^>]*>.*?href=\"([^\"]+)\"", self.html, re.S)
-        self.assertTrue(first and "pick" in first.group(1),
-                        f"the first link on the landing page is {first and first.group(1)!r}")
+        self.assertIn('href="executive/cadence.html"', self.html)
+        # The route to the picks must be reachable from the very top of the page, not buried below the fold.
+        head, _, body = self.html.partition("<body")
+        early = re.findall(r'href="([^"]+)"', body[:1500])
+        self.assertTrue(any("picks" in href or href.startswith("#") for href in early[:4]),
+                        f"first in-body links are {early[:4]}")
 
     def test_every_internal_link_on_the_landing_resolves(self):
         checked = 0

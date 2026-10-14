@@ -2974,6 +2974,28 @@ Source access: workspace outbound host restrictions prevent direct Hotspawn/book
 - **IR-A453-2 superseded:** `reread/` is now merged on `main` (PR #103) and its landing card is part
   of `main`'s `index.html`; PR #104's landing links `reread/index.html` in its verified-sources row.
 
+## Session `arena/1b6ae823` (`arena/1b6ae823-maltaproj1`) — claim (2026-10-14 03:58 UTC)
+
+- **Session ID**: `arena/1b6ae823` · **Branch**: `arena/1b6ae823-maltaproj1` (Arena-fixed; no other branch will be used).
+- **Coordination check before claiming**: read this board in full (2,835 lines, 30+ prior session records).
+  `gh pr list --state open` → only **PR #54** (`arena/9920c263`, `picks/**`, last touched 2026-10-13 22:47Z —
+  >6 h with no commits, DIRTY) and `gh run list` → `arena/bdc98a9a` is running its own
+  *Source re-read verification* workflow (`exec/**` + `reviews/**`, no root/board files). Neither scope is touched here.
+- **Adopted-scope note**: session `arena/5545dbb8` recorded E-01…E-06 as **done** (PR #100/#101 merged, Pages verified),
+  so `executive/**` and `.github/workflows/executive-5545dbb8.yml` are unclaimed. This session takes them over as the
+  canonical board rather than publishing an eleventh duplicate board — the user's brief is that the site is confusing.
+  Prior boards (`picks-full/`, `every/`, `everypick/`, `exec/`, `cs2/`, `feeds/`, `slate/`, `docs/`, `site/`, `hub.html`, …)
+  are **left in place, byte-for-byte**; they stay reachable from the landing page's "All boards" archive section.
+- **No file owned by another in-flight session is edited**: `cs2/**`, `model/**`, `slate/**`, `oct14/**`, `open-slate/**`,
+  `live/**`, `docs/**`, `data/**`, `picks/**`, `exec/**`, `reviews/**` (other sessions' reports) are read-only inputs.
+
+| ID | Task | Status | Owner | Exclusive file scope |
+|----|------|--------|-------|----------------------|--------|
+| H-01 | Root `index.html` consolidated as **one** mobile-first executive summary: what is on the board right now, where the picks are (in-site links), tier counts, snapshot freshness, links by category, and an archive list of every prior board so no work or link is lost | **in progress** | arena/1b6ae823 | root `index.html` |
+| H-02 | **Research tier for matches no book prices**: new `executive/` collector for official recent-results data (HLTV team-page match history + Liquipedia Cargo API) and a 5th basis tier "Research · recent official results" that originates a probability for low-tier fixtures the featured route cannot resolve; own line published for **every** fixture; new flags; `executive/tests.py` invariants extended so the research line is re-derivable from the stored rows | **in progress** | arena/1b6ae823 | `executive/**`, `tests/test_1b6ae823.py` (new), `scripts/5545dbb8_build.py` (if a new step is needed) |
+| H-03 | **Refresh cadence**: retune the board's workflow to the requested 4–8 h window, and record why the repo's 15 scheduled workflows starve each other; add a published cadence page (last refresh, next slot, run links) | **in progress** | arena/1b6ae823 | `.github/workflows/executive-5545dbb8.yml`, `executive/cadence.html` (generated inside H-02's builder) |
+| H-04 | Line-by-line verification of the 28 open fixtures against official sources + repo review findings; `reviews/1b6ae823-verification.md`; anything unconfirmed stays blank and is published on `executive/flagged.html` | **in progress** | arena/1b6ae823 | `reviews/1b6ae823-verification.md` |
+| H-05 | Integration: rebase on `origin/main`, open PR → `main`, merge without waiting for approval, confirm the Pages deploy, record PR/merge + this board's completion log | pending (after H-01…H-04) | arena/1b6ae823 | `COORDINATION.md` (this section, append-only) |
 ### Merge-conflict log (append-only) — root `index.html` and this board, 2026-10-14 04:2x UTC
 
 - **What happened**: while `arena/1b6ae823` was mid-flight on H-01 (root landing), session `arena/43c32386`
