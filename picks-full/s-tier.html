@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>S-Tier picks (7 pts each) — Hotspawn CS2 Full Picks</title>
+<style>
+:root{--bg:#0b0f17;--panel:#121826;--panel2:#18202f;--line:#26314a;--fg:#e9eef7;--muted:#9aa9c2;--accent:#4ea8de;--accent2:#38bdf8;--green:#22c55e;--greenbg:rgba(34,197,94,.13);--amber:#f59e0b;--amberbg:rgba(245,158,11,.14);--red:#ef4444;--redbg:rgba(239,68,68,.15);--purple:#a855f7;--purplebg:rgba(168,85,247,.15)}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+a{color:var(--accent2);text-decoration:none}a:hover{text-decoration:underline}
+.topbar{background:#070b13;border-bottom:1px solid var(--line);padding:10px 12px;position:sticky;top:0;z-index:40}
+.topbar .in{max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between}
+.brand{font-weight:700;font-size:14.5px}.brand b{color:var(--accent2)}
+.nav{display:flex;flex-wrap:wrap;gap:5px}
+.nav a{padding:5px 9px;border-radius:7px;background:var(--panel);border:1px solid var(--line);font-size:12px;color:var(--fg);white-space:nowrap}
+.nav a.act,.nav a:hover{background:var(--accent);color:#04101c;border-color:var(--accent);text-decoration:none;font-weight:700}
+.wrap{max-width:1100px;margin:0 auto;padding:14px 12px 48px}
+.hero{background:linear-gradient(135deg,#111827,#16213c);border:1px solid var(--line);border-radius:14px;padding:18px 16px;margin:12px 0}
+.hero h1{margin:0 0 6px;font-size:clamp(20px,4.5vw,28px);line-height:1.2}
+.hero p{margin:0;color:var(--muted);font-size:13.5px}
+.banner{background:rgba(56,189,248,.08);border-left:4px solid var(--accent2);padding:10px 12px;border-radius:8px;font-size:12.8px;margin-top:12px;color:#cfe3f7}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:14px 0}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px}
+.kpi b{display:block;font-size:24px;margin:2px 0}.kpi span{color:var(--muted);font-size:11.5px;text-transform:uppercase;letter-spacing:.04em}
+.kpi i{font-style:normal;color:var(--muted);font-size:11.5px;display:block}
+section.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;margin:16px 0}
+section.card h2{margin:0 0 4px;font-size:17px}
+section.card .desc{margin:0 0 10px;color:var(--muted);font-size:12.8px}
+table{width:100%;border-collapse:collapse;font-size:12.8px}
+.tw{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:10px}
+th{background:#0d1322;color:var(--muted);text-transform:uppercase;font-size:10.8px;letter-spacing:.03em;text-align:left;padding:8px 9px;position:sticky;top:0}
+td{padding:9px;border-bottom:1px solid var(--line);vertical-align:top}
+tbody tr:nth-child(even){background:var(--panel2)}
+tbody tr:hover{background:rgba(78,168,222,.08)}
+.badge{display:inline-block;padding:2px 7px;border-radius:6px;font-size:10.8px;font-weight:700;white-space:nowrap}
+.b-s{background:var(--purplebg);color:#d8b4fe;border:1px solid var(--purple)}
+.b-b{background:rgba(56,189,248,.15);color:#7dd3fc;border:1px solid var(--accent2)}
+.b-c{background:rgba(148,163,184,.15);color:#cbd5e1;border:1px solid #64748b}
+.b-lock{background:var(--greenbg);color:#86efac;border:1px solid var(--green)}
+.b-strong{background:rgba(56,189,248,.15);color:#7dd3fc;border:1px solid var(--accent2)}
+.b-lean{background:var(--amberbg);color:#fcd34d;border:1px solid var(--amber)}
+.b-toss{background:rgba(249,115,22,.15);color:#fdba74;border:1px solid #f97316}
+.b-unv{background:var(--redbg);color:#fca5a5;border:1px solid var(--red)}
+.b-research{background:var(--purplebg);color:#d8b4fe;border:1px solid var(--purple)}
+.srcs{display:flex;flex-wrap:wrap;gap:4px;margin-top:5px}
+.sp{display:inline-block;padding:2px 7px;border-radius:5px;background:#0d1322;border:1px solid var(--line);font-size:10.8px;color:var(--accent2);white-space:nowrap}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:11.5px}
+.mut{color:var(--muted);font-size:11.8px}
+.cards{display:grid;grid-template-columns:1fr;gap:10px}
+@media(min-width:900px){.cards{grid-template-columns:1fr 1fr}}
+.fc{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:8px}
+.fc .head{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.fc .mm{font-size:15px;font-weight:750}
+.fc .meta{font-size:11.8px;color:var(--muted)}
+.bar{display:flex;height:10px;border-radius:6px;overflow:hidden;background:#22304c;margin:2px 0}
+.bar .fa{background:var(--accent2)}.bar .fb{background:#5b6b85}
+.pct{display:flex;justify-content:space-between;font-size:13px;font-weight:700}
+.pct .na{color:#7dd3fc}.pct .nb{color:#cbd5e1}
+.pickbox{background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--green);border-radius:9px;padding:9px 10px}
+.pickbox.research{border-left-color:var(--purple)}
+.pickbox .pk{font-size:15.5px;font-weight:800}
+.pickbox .bb{font-size:11.5px;color:var(--muted);margin-top:2px}
+.flaglink{font-size:11.5px}
+footer{margin-top:26px;padding:14px;border-top:1px solid var(--line);color:var(--muted);font-size:11.8px;text-align:center}
+ul.plain{padding-left:18px;margin:6px 0}ul.plain li{margin:4px 0;color:var(--muted);font-size:12.8px}
+details{margin:10px 0}summary{cursor:pointer;font-weight:600;color:var(--muted);font-size:13px}
+</style></head><body>
+<header class="topbar"><div class="in">
+<div class="brand"><b>Full picks</b> · Hotspawn CS2 Pick'em</div>
+<nav class="nav"><a href="index.html">All picks (28)</a><a href="s-tier.html" class=act>S-Tier (4)</a><a href="b-tier.html">B-Tier (9)</a><a href="c-tier.html">C-Tier (15)</a><a href="tournaments.html">Tournaments</a><a href="market-lines.html">Market lines</a><a href="own-lines.html">Own lines</a><a href="sources.html">Sources</a><a href="methodology.html">Method</a><a href="flagged.html">Flagged</a></nav></div></header>
+<main class="wrap">
+        <section class="card"><h2>S-Tier picks (7 pts each) — 4 open matches</h2>
+        <p class="desc">Every card shows both teams' published win %, the pick with its confidence tier and basis,
+        the outside market line where one exists (else the rejected placeholder is shown), our own line, and all source links.</p>
+        <div class="cards">
+    <div class="fc" id="f-1080176">
+      <div class="head"><span class="mono mut">#1080176</span> <span class="badge b-s">S-Tier · 7 pts</span>
+        <span class="badge b-b">BO3</span><span class="mut">Thunderpick World Championship 2026</span></div>
+      <div><span class="mm">9z</span> <span class="mut">vs</span> <span class="mm">Aurora</span></div>
+      <div><div class="pct"><span class="na">9z 23.7%</span><span class="nb">76.3% Aurora</span></div>
+        <div class="bar"><div class="fa" style="width:24%"></div><div class="fb" style="width:76%"></div></div></div>
+      <div class="pickbox"><div class="pk">PICK: Aurora 76.3%</div><div><span class="badge b-lock">OBVIOUS LOCK (≥70%)</span></div><div class="bb">Basis: External market — EGW bc.game 3.87/1.20 de-vigged</div></div>
+      <div class="mut"><b>Market:</b> 3.87 / 1.20 · <a href="https://egamersworld.com/counterstrike/match/5X5sFiL7H/9z-vs-aurora-Es9rrnIhb" target="_blank" rel="noopener">bc.game (EGW)</a>, de-vigged (9.2% margin) · Pinnacle 3.550/1.307 (<a href="https://www.pinnacle.com/en/esports/games/cs2/matchups/" target="_blank" rel="noopener">API 27%/73%</a>)</div>
+      <div class="mut"><b>Own line:</b> 33.5% / 66.5% — <span class="mono">VRS #17 (1543) vs #9 (1716)</span></div>
+      <div class="mut"><b>Start:</b> <span class="mono">2026-10-14T08:30 UTC</span> ·
+        <b>Lock:</b> <span class="mono">2026-10-14T08:24 UTC</span> <a class="flaglink" href="flagged.html#pf-08">(PF-08)</a></div>
+      <div class="srcs"><a class="sp" href="https://www.hotspawn.com/matches/9z-vs-aurora-thunderpick-world-championship-2026-1080176" target="_blank" rel="noopener">Hotspawn match</a><a class="sp" href="https://www.hltv.org/matches/2399384/9z-vs-aurora-thunderpick-world-championship-2026" target="_blank" rel="noopener">HLTV match 2399384</a><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L22" target="_blank" rel="noopener">VRS 9z</a><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L14" target="_blank" rel="noopener">VRS Aurora</a><a class="sp" href="https://egamersworld.com/counterstrike/match/5X5sFiL7H/9z-vs-aurora-Es9rrnIhb" target="_blank" rel="noopener">EGW quote</a><a class="sp" href="https://www.pinnacle.com/en/esports/games/cs2/matchups/" target="_blank" rel="noopener">Pinnacle</a></div>
+      
+    </div>
+    <div class="fc" id="f-1080177">
+      <div class="head"><span class="mono mut">#1080177</span> <span class="badge b-s">S-Tier · 7 pts</span>
+        <span class="badge b-b">BO3</span><span class="mut">Thunderpick World Championship 2026</span></div>
+      <div><span class="mm">Falcons</span> <span class="mut">vs</span> <span class="mm">Ninjas in Pyjamas</span></div>
+      <div><div class="pct"><span class="na">Falcons 76.8%</span><span class="nb">23.2% Ninjas in Pyjamas</span></div>
+        <div class="bar"><div class="fa" style="width:77%"></div><div class="fb" style="width:23%"></div></div></div>
+      <div class="pickbox"><div class="pk">PICK: Falcons 76.8%</div><div><span class="badge b-lock">OBVIOUS LOCK (≥70%)</span></div><div class="bb">Basis: External market — EGW bc.game 1.19/3.95 de-vigged</div></div>
+      <div class="mut"><b>Market:</b> 1.19 / 3.95 · <a href="https://egamersworld.com/counterstrike/match/5X5sFiL7H/falcons-vs-nip-QSa-aeOIR" target="_blank" rel="noopener">bc.game (EGW)</a>, de-vigged (9.4% margin) · Pinnacle 1.254/4.010 (<a href="https://www.pinnacle.com/en/esports/games/cs2/matchups/" target="_blank" rel="noopener">API 76%/24%</a>)</div>
+      <div class="mut"><b>Own line:</b> 77.5% / 22.5% — <span class="mono">VRS #6 (1843) vs #18 (1534)</span></div>
+      <div class="mut"><b>Start:</b> <span class="mono">2026-10-14T11:00 UTC</span> ·
+        <b>Lock:</b> <span class="mono">2026-10-14T10:54 UTC</span> <a class="flaglink" href="flagged.html#pf-08">(PF-08)</a></div>
+      <div class="srcs"><a class="sp" href="https://www.hotspawn.com/matches/falcons-vs-ninjas-in-pyjamas-thunderpick-world-championship-2026-1080177" target="_blank" rel="noopener">Hotspawn match</a><a class="sp" href="https://www.hltv.org/matches/2399385/falcons-vs-ninjas-in-pyjamas-thunderpick-world-championship-2026" target="_blank" rel="noopener">HLTV match 2399385</a><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L11" target="_blank" rel="noopener">VRS Falcons</a><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L23" target="_blank" rel="noopener">VRS Ninjas in Pyjamas</a><a class="sp" href="https://egamersworld.com/counterstrike/match/5X5sFiL7H/falcons-vs-nip-QSa-aeOIR" target="_blank" rel="noopener">EGW quote</a><a class="sp" href="https://www.pinnacle.com/en/esports/games/cs2/matchups/" target="_blank" rel="noopener">Pinnacle</a></div>
+      
+    </div>
+    <div class="fc" id="f-1080178">
+      <div class="head"><span class="mono mut">#1080178</span> <span class="badge b-s">S-Tier · 7 pts</span>
+        <span class="badge b-b">BO3</span><span class="mut">Thunderpick World Championship 2026</span></div>
+      <div><span class="mm">Legacy</span> <span class="mut">vs</span> <span class="mm">PARIVISION</span></div>
+      <div><div class="pct"><span class="na">Legacy 55.5%</span><span class="nb">44.5% PARIVISION</span></div>
+        <div class="bar"><div class="fa" style="width:56%"></div><div class="fb" style="width:44%"></div></div></div>
+      <div class="pickbox"><div class="pk">PICK: Legacy 55.5%</div><div><span class="badge b-lean">SOLID LEAN (55–59%)</span></div><div class="bb">Basis: External market — EGW bc.game 1.66/2.07 de-vigged</div></div>
+      <div class="mut"><b>Market:</b> 1.66 / 2.07 · <a href="https://egamersworld.com/counterstrike/match/5X5sFiL7H/legacy-vs-parivision--TTc59QUDJ" target="_blank" rel="noopener">bc.game (EGW)</a>, de-vigged (8.6% margin) · Pinnacle 1.654/2.260 (<a href="https://www.pinnacle.com/en/esports/games/cs2/matchups/" target="_blank" rel="noopener">API 58%/42%</a>)</div>
+      <div class="mut"><b>Own line:</b> 89.3% / 10.7% — <span class="mono">VRS #2 (1931) vs #36 (1411)</span></div>
+      <div class="mut"><b>Start:</b> <span class="mono">2026-10-14T13:30 UTC</span> ·
+        <b>Lock:</b> <span class="mono">2026-10-14T13:24 UTC</span> <a class="flaglink" href="flagged.html#pf-08">(PF-08)</a></div>
+      <div class="srcs"><a class="sp" href="https://www.hotspawn.com/matches/legacy-vs-parivision-thunderpick-world-championship-2026-1080178" target="_blank" rel="noopener">Hotspawn match</a><a class="sp" href="https://www.hltv.org/matches/2399386/legacy-vs-parivision-thunderpick-world-championship-2026" target="_blank" rel="noopener">HLTV match 2399386</a><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L7" target="_blank" rel="noopener">VRS Legacy</a><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L41" target="_blank" rel="noopener">VRS PARIVISION</a><a class="sp" href="https://egamersworld.com/counterstrike/match/5X5sFiL7H/legacy-vs-parivision--TTc59QUDJ" target="_blank" rel="noopener">EGW quote</a><a class="sp" href="https://www.pinnacle.com/en/esports/games/cs2/matchups/" target="_blank" rel="noopener">Pinnacle</a></div>
+      
+    </div>
+    <div class="fc" id="f-1080179">
+      <div class="head"><span class="mono mut">#1080179</span> <span class="badge b-s">S-Tier · 7 pts</span>
+        <span class="badge b-b">BO3</span><span class="mut">Thunderpick World Championship 2026</span></div>
+      <div><span class="mm">FURIA</span> <span class="mut">vs</span> <span class="mm">BetBoom</span></div>
+      <div><div class="pct"><span class="na">FURIA 67.1%</span><span class="nb">32.9% BetBoom</span></div>
+        <div class="bar"><div class="fa" style="width:67%"></div><div class="fb" style="width:33%"></div></div></div>
+      <div class="pickbox"><div class="pk">PICK: FURIA 67.1%</div><div><span class="badge b-strong">STRONG PICK (60–69%)</span></div><div class="bb">Basis: External market — EGW bc.game 1.40/2.86 de-vigged</div></div>
+      <div class="mut"><b>Market:</b> 1.40 / 2.86 · <a href="https://egamersworld.com/counterstrike/match/5X5sFiL7H/furia-vs-betboom-team-ZeSbzy91oH" target="_blank" rel="noopener">bc.game (EGW)</a>, de-vigged (6.4% margin) · Pinnacle 1.364/3.180 (<a href="https://www.pinnacle.com/en/esports/games/cs2/matchups/" target="_blank" rel="noopener">API 70%/30%</a>)</div>
+      <div class="mut"><b>Own line:</b> 71.6% / 28.4% — <span class="mono">VRS #7 (1829) vs #11 (1596)</span></div>
+      <div class="mut"><b>Start:</b> <span class="mono">2026-10-14T16:00 UTC</span> ·
+        <b>Lock:</b> <span class="mono">2026-10-14T15:54 UTC</span> <a class="flaglink" href="flagged.html#pf-08">(PF-08)</a></div>
+      <div class="srcs"><a class="sp" href="https://www.hotspawn.com/matches/furia-vs-betboom-thunderpick-world-championship-2026-1080179" target="_blank" rel="noopener">Hotspawn match</a><a class="sp" href="https://www.hltv.org/matches/2399387/furia-vs-betboom-thunderpick-world-championship-2026" target="_blank" rel="noopener">HLTV match 2399387</a><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L12" target="_blank" rel="noopener">VRS FURIA</a><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L16" target="_blank" rel="noopener">VRS BetBoom</a><a class="sp" href="https://egamersworld.com/counterstrike/match/5X5sFiL7H/furia-vs-betboom-team-ZeSbzy91oH" target="_blank" rel="noopener">EGW quote</a><a class="sp" href="https://www.pinnacle.com/en/esports/games/cs2/matchups/" target="_blank" rel="noopener">Pinnacle</a></div>
+      
+    </div></div></section>
+<footer>Session arena/63ee81ba · snapshot 2026-10-14T02:48:00Z ·
+<a href="../index.html">repo home</a> ·
+data: <a href="../data/63ee81ba/picks.csv">picks.csv</a> ·
+<a href="../data/63ee81ba/market_lines.csv">market_lines.csv</a> ·
+<a href="../data/63ee81ba/own_lines.csv">own_lines.csv</a> ·
+<a href="../data/63ee81ba/flags.csv">flags.csv</a> ·
+Independent research — not betting advice.</footer>
+</main></body></html>

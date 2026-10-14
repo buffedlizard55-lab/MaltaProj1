@@ -25,6 +25,27 @@ matches; [`cs2/`](cs2/index.html) is the hourly line-analysis board.
 | Flagged for Review | `slate/flagged.html` | Missing sources/quotes/formats, count disagreements, aliases, model caveats and automation failures |
 | Methodology | `slate/methodology.html` | Exact selection rules and limitations |
 
+## Full picks board (every open match)
+
+**Board:** https://buffedlizard55-lab.github.io/MaltaProj1/picks-full/index.html
+
+A pick — with both teams' win % and an explicit basis — for **every** open Hotspawn CS2 Pick'em fixture
+(snapshot 2026-10-14: 28 open, Oct 14–16), including low-tier matches no betting site prices.
+
+| Category | Page | Data / verification |
+|---|---|---|
+| All picks (cards + at-a-glance table) | `picks-full/index.html` | 28/28 picks; market-de-vigged %s where a line exists, else own research line |
+| By tier / tournament | `picks-full/s-tier.html`, `b-tier.html`, `c-tier.html`, `tournaments.html` | Same cards, grouped |
+| Outside market lines | `picks-full/market-lines.html` | EGW bc.game primary (read 2026-10-14T02:48Z) + Pinnacle & Polymarket cross-checks; 1.80/1.80 placeholders rejected |
+| Our own lines | `picks-full/own-lines.html` | Valve VRS 2026-10-05 (calibrated k=0.4568) with BO1/BO3 transform; HLTV 2026-10-12 cross-check; 1 RESEARCH line (PF-02) |
+| Methodology / sources / flags | `picks-full/methodology.html`, `sources.html`, `flagged.html` | Formulas, provenance, and all 10 flags with source links |
+| Machine-readable | `data/63ee81ba/picks.csv`, `market_lines.csv`, `own_lines.csv`, `fixtures.csv`, `teams.csv`, `flags.csv`, `coverage.json` | Per-row source URLs + capture UTC |
+
+Rules: Hotspawn crowd percentages are **never** an input; unconfirmable values stay blank and flagged;
+the single unrated team (LFO 10, PF-02) publishes a roster-mapped line labelled **RESEARCH** only.
+`.github/workflows/picks-full-63ee81ba.yml` checks Hotspawn/VRS/market drift hourly and is fail-closed
+(a failed check never publishes; the last good board stays live).
+
 ### Honest probability labels
 
 - **Market:** `p(A) = (1/odds_A) / (1/odds_A + 1/odds_B)`. This is a calculated market-implied estimate,
@@ -68,6 +89,8 @@ python slate/tests.py                  # math, matching, freshness, data/provena
 node --check slate/dashboard.js
 python -m unittest discover -s tests -v
 python scripts/audit_91e444dd.py --output /tmp/release-audit.json
+python scripts/63ee81ba_build.py          # full picks board (offline, deterministic)
+python -m unittest tests/test_63ee81ba.py -v
 ```
 
 GitHub Pages uses `main:/`. This session works only on `arena/a9a0c2f1-maltaproj1`.
