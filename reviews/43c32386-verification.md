@@ -57,7 +57,7 @@ Official Hotspawn links below identify the fixture source. They do **not** mean 
 
 ## Verification performed
 
-- Repository unit test discovery after integrating concurrent PR #103: **199 tests pass**. Internal HTML audit: **204 pages, zero broken local links**, 53 existing review findings retained.
+- Repository unit test discovery after integrating concurrent PR #103: **201 tests pass**. Internal HTML audit: **204 pages, zero broken local links**, 53 existing review findings retained.
 - Node tests exercise no-vig arithmetic, six-hour expiry, future timestamps, lock expiry, unknown lock times, missing/invalid odds, source-domain spoofing, source link absence, tied lines, secondary/model/bound suppression, malformed JSON, HTTPS-only links, and all 28 current rows.
 - Chromium browser checks passed at 320, 390, 768 and 1280 px: no horizontal overflow, searchable cards, no page errors, stale/fetch-failure suppression, and independent official-source failure withholding fallback models. Official API browser responses in this deterministic browser test were replayed from the official file retrieved in this session; this is not claimed as a second live read.
 - All user strings render with textContent, not HTML interpolation. Search label, skip link, visible keyboard focus, responsive single-column cards, reduced-motion support, and no-JavaScript research links are present.
@@ -74,3 +74,9 @@ At the fixed 04:00 UTC test time, these strict conditions yield 5 primary picks 
 Owner request (L-08): the source re-read owner should extend VRS `verify_vrs` to compare the numeric claimed points, not just an anchored rank/name. This session does not modify their collector.
 
 Live collector check [38508960643](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38508960643) succeeded, including public source collection, board rebuild and invariants. Evidence is attached to that run. Artifact download from this workspace was blocked at the external artifact-storage host, so its uninspected contents are **not** asserted here.
+
+## Release confirmed
+
+PR [#104](https://github.com/buffedlizard55-lab/MaltaProj1/pull/104) merged `2026-10-14T04:11:37Z` as `8b8339d4ea225a9ee095f200c7522c47d9ca1557`. [Pages deployment](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38510130275) succeeded. [Main release/source check](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38510130411) succeeded and confirmed the public landing, JavaScript, stylesheet and Flagged page over HTTPS (200 + expected markers). Its source receipt records Hotspawn/Valve/Pinnacle HTTP 200 at 04:12 UTC. Check evidence does not reset the public board's stored timestamps.
+
+Non-blocking annotations on that run: Node-20 action-runtime migration, upcoming runner OS migration, and a checkout-cleanup network annotation. Overall run, source collection, invariants and public deployment steps all passed; these annotations remain available on the linked official GitHub run for manual review.

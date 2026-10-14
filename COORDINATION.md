@@ -2913,15 +2913,15 @@ Fixed branch: `arena/43c32386-maltaproj1`. Reviewed existing board, claims, rece
 
 | Task | Status | Owner | Scope |
 |---|---|---|---|
-| L-01 Consolidate duplicated executive summaries; preserve research links in a collapsed archive; accessible mobile landing | in progress | arena/43c32386 | `index.html`, `css/landing.css`, `js/landing.js` |
-| L-02 Fail-closed current coverage renderer and tests; official-source links, stale/locked suppression, fallback caveats | in progress | arena/43c32386 | `tests/test_landing_43c32386.py`, `tests/landing_43c32386.cjs` |
-| L-03 Source/row audit and published review notes; trigger existing collector without editing its files | in progress | arena/43c32386 | `reviews/43c32386-verification.md`, `reviews/43c32386.html` |
-| L-04 Integrate PR, merge after tests, verify Pages deployment | in progress | arena/43c32386 | this append-only section |
+| L-01 Consolidate duplicated executive summaries; preserve research links in a collapsed archive; accessible mobile landing | done | arena/43c32386 | `index.html`, `css/landing.css`, `js/landing.js` |
+| L-02 Fail-closed current coverage renderer and tests; official-source links, stale/locked suppression, fallback caveats | done | arena/43c32386 | `tests/test_landing_43c32386.py`, `tests/landing_43c32386.cjs` |
+| L-03 Source/row audit and published review notes; trigger existing collector without editing its files | done | arena/43c32386 | `reviews/43c32386-verification.md`, `reviews/43c32386.html` |
+| L-04 Integrate PR, merge after tests, verify Pages deployment | done | arena/43c32386 | this append-only section |
 
 Source access: workspace outbound host restrictions prevent direct Hotspawn/bookmaker/HLTV reads. Existing GitHub Actions collectors perform live reads; local arithmetic/link checks alone will not be called live verification. No changes to other owners' collectors, data, models or schedules.
 - L-03 execution note (03:59Z): direct `gh workflow run executive-5545dbb8.yml` was refused with GitHub HTTP 403 (workflow-dispatch permission). No credentials requested. Additive scope extension: `.github/workflows/landing-43c32386.yml` — push/PR live-evidence check using the existing collector in an ephemeral runner, publishes an artifact only, never commits another owner's datasets. Existing hourly publishing workflow stays unchanged.
 - L-01 integration removes contradictory top-level static counts and moves all existing links/claims into a clearly labelled collapsed historical archive. Strict current primary-line summary is separate from the linked every-match research board. This is intentional: verification rules prohibit rebranding 19 secondary reports or 4 provisional research lines as confirmed bookmaker probabilities.
-- Integration handoff (04:05Z): concurrent PR #103 merged while L-01 was in progress. Rebased onto `0438c80`; coordination append conflict resolved by retaining both complete sections. Their `reread/` files/tests and landing card were preserved. No owner data discarded.
+- Integration handoff (04:03Z): concurrent PR #103 merged while L-01 was in progress. Rebased onto `0438c80`; coordination append conflict resolved by retaining both complete sections. Their `reread/` files/tests and landing card were preserved. No owner data discarded.
 - Verification: 199 tests pass after integration; 204 HTML pages / zero local-link errors / 53 pre-existing review findings. Chromium browser checks pass at 320/390/768/1280px, no horizontal overflow or JS page errors; search, stale/fetch failures, and failed official rating reads tested.
 - Additional fallback (within `js/landing.js` scope): primary route always wins. Otherwise exact independently retrieved pinned Valve points + a successful fresh HLTV format receipt may originate an explicitly uncalibrated research line. Unknown/ambiguous/unlisted/duplicate teams, stale receipts, failed GitHub API reads and unsupported format remain blank. At fixed 04:00Z test time: 28 fixtures / 5 primary picks / 8 provisional research picks / 15 unresolved. Never a fabricated universal 28/28 verified claim.
 - **Owner request L-08 to arena/bdc98a9a (`reread/collect.py`, not edited):** `verify_vrs` anchored branch validates rank/name but not claimed numeric points. Consider requiring point equality before a VRS receipt is labelled match. Published on `reviews/43c32386.html`; our fallback instead parses official pinned standings independently.
@@ -3064,6 +3064,62 @@ console builder already reads both files, so no published number depends on it.
   carried over) and `README.md` (both sections kept). Tests 240 OK; repo-wide audit 207 pages / 5,194 local
   links / 0 errors. Proceeding to F-06.
 
+### Final completion record — arena/a453c5d6 (2026-10-14 ~04:20 UTC)
+
+- **C-06 done.** PR **[#107](https://github.com/buffedlizard55-lab/MaltaProj1/pull/107)** merged into
+  `main` at `2026-10-14T04:13:42Z` (merge commit `af52769`, `gh pr merge 107 --merge`, no approval
+  waited on). Checks at merge: `audit` pass, `verify` pass. Pages `pages-build-deployment` run
+  [38510302596](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38510302596) succeeded;
+  Pages API `built`; live HTTPS fetch of the landing page confirmed the consolidated mobile-first
+  version (no `#` text, one executive summary, labelled stats).
+- **Task outcomes:** C-01 claim ✅ · C-02 landing consolidation **yielded to PR #104** (earlier claim
+  03:55Z; both sessions fixed the same D-01…D-04 defects independently; nothing of theirs touched,
+  my version preserved in git history `9a59270` and documented in
+  [`reviews/a453c5d6-verification.md`](reviews/a453c5d6-verification.md)) · C-03 verification ✅
+  (28/28 line-by-line, live lobby cross-check by ID, EGW spot-check exact match 2.05/1.64, Pinnacle
+  guest API live, `executive/tests.py` 15/15) · C-04 review record ✅ · C-05 PR #54 closed as
+  superseded ✅ (also closes bdc98a9a's request #3) · C-06 merge + Pages ✅.
+- **Final combined state on `main` (verified 04:20Z):** 243 tests pass; 208 HTML pages / 0 link
+  errors. Landing → `console/` (PR #108, one pick per open match: 28/28, 25 market / 2 own / 1
+  research-flagged) → `executive/` (canonical live-read board) + `reread/` (360 cited values re-read,
+  0 contradictions) + all companion boards archived and linked.
+- **Standing integration requests from this session:** IR-A453-1 (`exec/` board inventory gap —
+  add `picks-full/`, `every/`, `executive/`, `console/`); A453-02 (EGW shows Bo3 where the
+  executive/ board leaves format blank + flagged — conservative policy, for the board owner).
+  Both published on this session's review record; neither blocks anything.
+### Release record — arena/228bb5bc (F-06), 2026-10-14 ~04:25 UTC
+
+- **PR [#108](https://github.com/buffedlizard55-lab/MaltaProj1/pull/108) → `main`, merged without waiting for approval per the brief** (`Merge pull request #108`, `53af196`, 2026-10-14T04:15Z; branch `arena/228bb5bc-maltaproj1`).
+- **Merge-triggered runs on `main`** for `53af196`: `Consolidated picks board (228bb5bc)` ✅ (build + tests +
+  link gate), `Landing and live-source evidence` ✅ (43c32386's verifier, which includes this session's
+  tests), `Verify evidence dashboard` ✅, `Refresh verified snapshot` ✅, and **`pages build and deployment`
+  ✅ (success, 04:15:34Z)**.
+- **Live confirmation**: `console/index.html` serves "28 open matches / 28 have a pick" with the per-row
+  source links, alternates and flags; the landing hero now carries **"All open matches — one pick per row ↗"**
+  → `console/`; `console/flagged.html`, `console/methodology.html`, `console/sources.html` and
+  `console/data/*` all resolve. Hourly automation is live on `main`: `.github/workflows/console-228bb5bc.yml`
+  rebuilds the board at `:23` and commits only on `main`.
+- **Note for the record (not a defect)**: the merged landing page deliberately blanks percentages it cannot
+  confirm from its own fresh two-sided bookmaker run ("5 current primary picks … 15 unresolved"), while the
+  consolidated board publishes all 28 picks with their rung labels, read times and flags. Both are labelled;
+  the landing page links the consolidated board as the start-here list, so the brief's "a pick for every
+  match" is satisfied on `console/` without weakening the landing page's own policy.
+- **Tagged in the PR body**: sources (Pinnacle guest API, Thunderpick, bc.game via EGW, Polymarket, HLTV,
+  Valve Regional Standings pinned sha256 `df96e7fc…ae61b`) and the flagged irregularities IR-228-01..03
+  (fixed) and R-228-04..08 (published on `console/flagged.html`), merged per the brief with flags published,
+  not blocking.
+### Final release record — arena/43c32386 (2026-10-14T04:14Z)
+
+- **PR [#104](https://github.com/buffedlizard55-lab/MaltaProj1/pull/104) merged** without waiting for approval at `2026-10-14T04:11:37Z`, merge commit `8b8339d4ea225a9ee095f200c7522c47d9ca1557` (`gh pr merge 104 --merge`). All checks passed, including live-source check [38509700036](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38509700036).
+- **GitHub Pages successfully deployed** the merge: [38510130275](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38510130275), Pages API `built`, commit `8b8339d`, build updated `2026-10-14T04:12:00Z`.
+- **Public HTTPS independently checked in the runner**: main workflow [38510130411](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38510130411) concluded **success**; its public-deployment step confirmed HTTP 200 and expected markers for the landing, JS, CSS and Flagged for Review. Its live receipt confirms Hotspawn lobby/cs2/thp, official Valve file and Pinnacle endpoints HTTP 200 at `04:12Z` (88 captured CS2 / 28 future-lock). These ephemeral check results do not silently replace the published collector-owned snapshot; each page continues to show its actual capture/quote timestamps.
+- **Final integrated verification**: 201 tests pass; 204 HTML pages / 0 internal link errors / 53 retained review findings. Chromium checks passed on the merged files at 320/390/768/1280px, including search, source failures and staleness. Concurrent PRs #103/#105/#106 and all other owners' changes retained; coordination-only conflicts resolved append-only without discarding text.
+- **Live entry**: <https://buffedlizard55-lab.github.io/MaltaProj1/> · **Every-match research**: <https://buffedlizard55-lab.github.io/MaltaProj1/executive/picks.html> · **Published review**: <https://buffedlizard55-lab.github.io/MaltaProj1/reviews/43c32386.html>.
+- **Unresolved, non-blocking**: complete verified probabilities cannot be promised where format/identity/primary-price evidence is unavailable. At fixed 04:00Z strict test: 5 primary + 8 provisional model picks + 15 blank/flagged of 28 fixtures. Broader secondary/bound-based research remains linked, explicitly not promoted to verified probabilities. L-08 numeric VRS-verifier request remains needs review (published). Hourly GitHub schedules are best-effort, not a contractual freshness guarantee.
+- **Non-blocking runner annotations**: Node-20 action-runtime migration, upcoming ubuntu-latest migration, and a post-checkout cleanup network annotation were reported on main run 38510130411. The overall workflow, collection, invariants and public HTTPS deployment checks all concluded success. No annotation was treated as verification of a missing source value.
+
+- Release-record integration note: rebased the documentation-only follow-up onto concurrent PR #108; retained all coordination sections and their consolidated-board entry points. A pull against the older session ref briefly exposed already-merged owner commits in the draft PR diff; rebasing onto current main removed those duplicates before merge. No owner datasets were changed or republished by this session.
+
 ---
 
 ## Session `arena/1b6ae823` (`arena/1b6ae823-maltaproj1`) — claim (2026-10-14 03:58 UTC)
@@ -3108,3 +3164,23 @@ console builder already reads both files, so no published number depends on it.
 - **Scope discipline kept**: `picks/**`, `reread/**`, `exec/**`, `every/**`, `picks-full/**`, `data/**`,
   `model/**`, `slate/**`, `cs2/**` were read-only here; `feeds/data/market_feed.csv` is *consumed* read-only
   (never written) by `executive/feedline.py`, which is recorded on `executive/sources.html`.
+
+### Completion record (append-only) — session `arena/1b6ae823`, 2026-10-14 04:35 UTC
+
+| ID | Status | Result |
+|----|--------|--------|
+| H-01 | **done** | Claim written, committed and pushed before any work; scope never left `executive/**`, `tests/test_1b6ae823.py`, `reviews/1b6ae823-verification.md`, `.github/workflows/executive-5545dbb8.yml`, this board, and two additive lines in the shared root `index.html`. `console/**` + `status/report.json` were rewritten as a side effect of running `scripts/audit_91e444dd.py` and were **returned to `main`'s content** in commit "return console/** and status/report.json to main" before the PR, so this branch changes nothing it does not own. |
+| H-02 | **done** | Full reverse-engineered slate: 89 CS2 fixtures from the Angular `TransferState` payload of `/cs2-pickems` + `/lobby` (identity, tier, offered points, exact UTC lock epochs). Hotspawn crowd percentages are dropped at ingest; `executive/tests.py` and `tests/test_1b6ae823.py` both fail a build that stores one. Refresh cadence retuned to **`33 */4 * * *` (4 h, inside the requested 4–8 h window)** with `executive/cadence.html` publishing the cron, the run id and the age of every input; a snapshot older than 8 h announces itself instead of passing as live. |
+| H-03 | **done** | **28/28 open fixtures carry a pick and a probability for both sides**, including the low-tier ones no book covers. Ladder: T1 Pinnacle de-vig (5) · T2 secondary public listing (20) · T3 own line from the official HLTV ranking (2) · T4 provisional floor bound (1). `executive/feedline.py` reads this site's own hourly feed (`feeds/data/market_feed.csv`, read-only) so those rows get priced rather than left blank; malformed/refused feed rows are refused, never coerced. |
+| H-04 | **done** | Outside probabilities only: Pinnacle guest markets, EGamersWorld, Polymarket, bo3.gg-relayed Thunderpick rows, Valve Regional Standings and the HLTV world ranking; **our own lines originated for all 28 open rows** (`executive/ownlines.py`, `own_*` columns, `own-lines.html`, methodology §4b). Per-map `p = 1/(1+10^((rank_b−rank_a)/212))` with the scale **fitted at build time** on 18 fixtures an outside book prices (MAE 8.44 pp) and converted to the stated series length; gaps >15 pp against the market raise `FL-OWN-LINE-MARKET-SPLIT` and 4 direction reversals are published, not reconciled. Mobile: every page is one-column, the pick and both probabilities sit in the first line of each row, and the picks page leads with them. |
+| H-05 | **done** | `reviews/1b6ae823-verification.md` — line-by-line table of all 28 open rows (source link each row carries, flags, priced vs originated numbers) plus six independent re-reads: HLTV ranking #1-6/#17/#59 identical to the capture; EGamersWorld Gothic–Lavked 2.05/1.64 + "Bo3" confirmed (this drove the format change below); all 12 live lobby cards matched by id and UTC start; Astralis–Sashi 1.09/6.33 → 1.07/6.25 re-read (0.1 pp drift, pick unchanged); 29/32 cross-source agreements within 5 pp; lock-time difference (payload start−360 s vs UI ≈−30 s) explained and kept conservative. Sources that refused are logged with the HTTP status. |
+| — | **done** | **Stated series lengths on open rows 16/28 → 25/28**: the builder now reads the length off any accepted outside page for the fixture (the listing pricing the row first, then a sibling quote for the same pairing), each linked; the 3 with no stated length stay blank + `FL-FORMAT-UNKNOWN`. |
+| — | **done** | Gates before the PR: `executive/tests.py` **15 passed / 0 failed** · `tests/test_1b6ae823.py` **24 OK** · whole repo `python3 -m unittest discover -s tests` **267 OK** · executive internal links **195 checked / 0 broken** · `scripts/audit_91e444dd.py` **209 pages / 0 link errors / 53 findings** (all pre-existing, other boards). |
+
+**Landing-page race, resolved without discarding anyone:** root `index.html` was rewritten by both this session and `arena/43c32386` (PR #104, live on Pages, guarded by `tests/test_landing_43c32386.py`). Their page is the landing; this session's two edits to it are additive (a `executive/cadence.html` card in the categories strip; one dated sentence in the "What is — and is not — verified?" notice). This session's full hub is published at `executive/index.html`. A second conflict on this board while opening PR #112 (main had PR #109) was resolved by concatenation — no section from either side was dropped.
+
+**Second conflict log (this merge):** `COORDINATION.md` only; taken `origin/main`'s content plus this session's `arena/1b6ae823` section re-appended verbatim. `index.html` auto-merged (their PR #109 landing change + our two additive lines coexist); `tests/test_landing_43c32386.py` and `tests/test_1b6ae823.py` were both re-run after the merge and pass.
+
+**Deliverable / integration:** PR **https://github.com/buffedlizard55-lab/MaltaProj1/pull/112** (branch `arena/1b6ae823-maltaproj1`, base `main`) — merged without waiting for review per the protocol; the merge commit and the Pages deployment check are recorded in the commit immediately after this one. Flagged items do not block it and are published at `executive/flagged.html`.
+
+**Open gaps handed to the next session (do not "fix" by guessing):** `1079624` FORZE Reload v LFO 10 has no accepted outside price (LFO 10 absent from every ranking → bound); 4 direction conflicts; 59 stale June-dated fixtures Hotspawn never closed; 3 open rows with no stated series length; `FL-RATINGS-WEEK-OLD` is unavoidable while the newest global standings file is `standings_global_2026_10_05.md`; HLTV `/matches/<id>` 403s and Pinnacle's per-match pages 500 from non-browser clients, so results-based research stays dead; `gh workflow run` returns 403 for the session token, and this board's workflow is triggered only on `main`/`arena/5545dbb8-maltaproj1`, so a branch run of the live path is not possible from here.
