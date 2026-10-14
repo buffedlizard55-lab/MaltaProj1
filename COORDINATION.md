@@ -2278,6 +2278,30 @@ the slate auto-refresh commit). No other session has pushed in >2 hours, so all 
 
 ## Session `arena/a174d77f` — claim (2026-10-14 01:45 UTC)
 
+
+---
+
+## Session `arena/fbcccda2` (`arena/fbcccda2-maltaproj1`) — 2026-10-14 Every-Match Picks (fallback tiers) + Executive Summary
+
+- **Session ID**: `arena/fbcccda2`
+- **Branch**: `arena/fbcccda2-maltaproj1` (fixed session branch; no other branch created)
+- **Claimed Timestamp**: `2026-10-14T03:00:00Z`
+- **Exclusive Non-Overlapping File Scope**:
+  - `everypick/**` (new mobile-first every-match picks site + executive summary pages)
+  - `data/fbcccda2/**` (new derived every-pick dataset, generated from committed slate + 8944bb84 evidence only)
+  - `scripts/fbcccda2_build.py`, `tests/test_fbcccda2.py`, `.github/workflows/everypick-fbcccda2.yml`
+  - `index.html` (additive executive-summary block only) and `COORDINATION.md` (append-only)
+
+| Task ID | Status | Owner | Scope | Notes |
+|---|---|---|---|---|
+| `FB-01` | `in_progress` | `arena/fbcccda2` | `data/fbcccda2/**`, `scripts/fbcccda2_build.py` | Picks for all 28 open CS2 fixtures in the 2026-10-14T02:23Z slate snapshot: Tier A latest Pinnacle (5), Tier B earlier verified external market (19), Tier C sourced-format rating model (3), Tier D guided lean with blank % (1: #1079624). No Hotspawn crowd % as probability. |
+| `FB-02` | `in_progress` | `arena/fbcccda2` | `everypick/**`, `index.html` | Mobile-first executive summary with in-site links to the updated picks list, per-match cards, methodology and Flagged page. |
+| `FB-03` | `in_progress` | `arena/fbcccda2` | `.github/workflows/everypick-fbcccda2.yml` | Scheduled rebuild/check against the hourly slate collector output; new fixtures without fallback evidence render as NO PICK — FLAGGED, never invented. |
+| `FB-04` | `in_progress` | `arena/fbcccda2` | PR to `main` | Re-verify, build, link-check, PR, merge, confirm Pages. |
+- `FB-01` **done** (fbcccda2): `data/fbcccda2/every_pick.csv` — 28/28 open CS2 picks (A=5 latest Pinnacle, B=19 earlier verified external, C=3 sourced-format VRS/HLTV model, D=1 guided lean #1079624 with % blank). De-vig recomputed in-build (asserted vs both source boards); tiers never averaged. Flags EP-01..EP-03 (8 rows) in `data/fbcccda2/flags.csv` / `everypick/flagged.html`. Disputes flagged incl. WROTBERRY vs EAC and Voca vs Phantom (market direction opposite the 8944bb84 consensus/model).
+- `FB-02` **done** (fbcccda2): mobile-first `everypick/{index,methodology,flagged}.html` + executive-summary block on root `index.html` linking within the site to the every-match list, featured board, flagged and methodology. Browser clock marks cards locked at view time.
+- `FB-03` **done** (fbcccda2): `.github/workflows/everypick-fbcccda2.yml` — 3-hourly + slate-data-triggered rebuild/test/commit-back; new fixtures without tier evidence render NO PICK — FLAGGED. Relies on the hourly slate (180a42a0) Hotspawn collector; this sandbox cannot reach Hotspawn/HLTV/Pinnacle directly, so no new odds are claimed here.
+- Verification: `python -m unittest tests.test_fbcccda2` 5/5 pass; local link check on root + everypick pages: 0 broken. Sources per row: Hotspawn + HLTV match page (+ market quote / VRS where used), linked in CSV and on every card.
 Branch: `arena/a174d77f-maltaproj1` (Arena fixes this session to that branch; no other branch is created or pushed).
 Base: `9d841fde` (= `main` at claim time).
 
