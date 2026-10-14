@@ -2732,6 +2732,12 @@ links to the updated picks list and must be phone-friendly.
 - Main Pages run [38504826038](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38504826038) succeeded for `1c65c97`; Pages API now reports `built`, and root, `/every/`, legacy `/everypick/`, and `/exec/` were fetched successfully. This clears the transient error status seen at 03:06Z.
 - Post-rebase local verification was pending here; see the final check record below. No other-owner files changed.
 
+### Third post-audit follow-up — 2026-10-14 03:15 UTC
+
+- PR #93 merged at 03:13:56Z. The subsequent feed refresh at 03:14:16Z remains 25/28 priced (20 book quotes relayed by bo3.gg, 14 Polymarket, 9 overlapping; 26 formats); #1079624 still has no match-identity-accepted outside quote because both candidates say Sökerorg, not LFO 10.
+- Current secondary corroboration for direction conflicts: #1079623 G2 Ares 67.5% Polymarket; #1080279 EAC 53.8% Thunderpick via bo3.gg; #1080285 Phantom 51.4% Thunderpick via bo3.gg and 56.5% Polymarket (mean 53.9%). The latest report records these as distinct inputs, not substitutes for the earlier picks-board price snapshots.
+- Main is now `6839a99`; Pages run [38505206311](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38505206311) succeeded and the API reports `built`. Public `/feeds/`, `/every/`, `/everypick/`, `/exec/`, and root were fetched; `exec/` remains 27/28 and omits both new pick boards. Local rebase and test rerun on this newer main remain pending.
+
 ### Final local verification — 2026-10-14 03:13 UTC
 
 - Rebased this fixed branch onto `origin/main` `1c65c97` after PR #94; preserved the appended claims and records from the `75fd29ee` session. The previous PR head conflicted only because main advanced; the refreshed PR head is to be pushed after this append.

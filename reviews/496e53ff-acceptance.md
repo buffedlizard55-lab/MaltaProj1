@@ -78,7 +78,7 @@ Cron configuration is not proof of a successful scheduled refresh. At 02:59Z, no
 
 A separate O-01 own-line model workflow run [38501763317](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38501763317) failed at its test step; failed-log retrieval returned EOF, so the cause is unknown. It is not the successful CS2 board-refresh run and should not be conflated with it.
 
-## Post-audit updates — 03:02–03:11Z
+## Post-audit updates — 03:02–03:15Z
 
 After the 02:59Z snapshot above, PR #92 merged at 03:02:09Z. It adds [`feeds/`](../feeds/index.html) as a **secondary-market data source**, not another picks board, and one root-page card; `picks-full/` remains the primary picks CTA. The new feed capture was generated at 03:02:29Z and covers 25/28 open matches (20 bookmaker quotes relayed by bo3.gg, 15 Polymarket markets, 10 on both); it leaves three rows blank, lists 26 formats, and marks questionable joins/quotes for review.
 
@@ -99,6 +99,12 @@ The new 95.31% output comes from the board's uncalibrated standard Elo-400 slope
 After PR #94, I re-fetched the root, `/every/`, legacy `/everypick/`, and `/exec/`; the new page and links load, while `exec/` remains at 27/28 picks and still inventories neither `picks-full/` nor `/every/`. Pages build run [38504826038](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38504826038) succeeded for `1c65c97`, the refreshed main Pages API now reports `built`, and the public routes serve the new content. This clears the transient `status: errored` discrepancy reported in the earlier post-audit check.
 
 Final local verification against `1c65c97`: `python3 -m unittest discover -s tests -q` passed **177**; `feeds/tests.py` passed **15**; focused pick-board suites passed **44** total (everypick 5, picks-full 22, `/every/` 17), `cs2/tests.py` **23**, and `slate/tests.py` **17**; `node --check slate/dashboard.js` passed. The repo HTML audit found **190 pages, 0 internal-link errors, 53 review findings**; all five local Markdown links in this report resolve. Existing non-fatal `ResourceWarning`s for unclosed files remain in legacy tests.
+
+### Latest feed refresh — 03:14–03:15Z
+
+PR #93's cleanup/record was merged at 03:13:56Z; the following main refresh ([run 38505176167](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38505176167)) captured `feeds/` at 03:14:16Z. Coverage remains 25/28 open matches, now 20 bo3.gg-relayed bookmaker quotes + 14 Polymarket matches (9 fixtures priced by both), with 26 formats known. The new read still has **no identity-matched quote for #1079624**; its only exact-kickoff candidates remain the `Sökerorg` opponent mismatches.
+
+The refresh moved secondary market values without changing the three directions: #1079623 Polymarket 67.5% G2 Ares; #1080279 Thunderpick via bo3.gg 53.8% EAC; #1080285 Thunderpick via bo3.gg 51.4% Phantom and Polymarket 56.5% Phantom (mean 53.9%). Keep those source/time-specific values separate from the boards' earlier EGW/Pinnacle lines. The public root, `/feeds/`, `/every/`, `/everypick/` and `/exec/` were re-fetched; `exec/` still reports 27/28 picks and omits `/picks-full/` and `/every/`. Pages run [38505206311](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38505206311) succeeded for `6839a99`, and the Pages API reports `built`.
 
 ## Integration requests (no other-owner files changed)
 
