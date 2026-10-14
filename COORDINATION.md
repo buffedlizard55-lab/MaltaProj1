@@ -2767,3 +2767,41 @@ links to the updated picks list and must be phone-friendly.
 - A follow-on feed refresh at 03:19:00Z succeeded as run [38505592762](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38505592762); main is now `6894dbb`. Feed coverage is still 25/28 (20 book reports via bo3.gg, 14 Polymarket, 9 overlapping; 26 formats). #1079624 remains without a matched price. Current secondary values: #1079623 G2 Ares 70.0% Polymarket; #1080279 EAC 53.76% Thunderpick via bo3.gg; #1080285 Phantom 51.35% Thunderpick via bo3.gg + 56.5% Polymarket (mean 53.93%). Direct Thunderpick probe returned HTTP 403; retain the aggregator caveat.
 - Latest Pages run [38505616185](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38505616185) succeeded for main `6894dbb`; Pages API reports `built`. Public `/feeds/`, `/every/`, and `/exec/` loaded; `/every/` remains generated 03:08, while `/exec/` still shows 27/28 and omits both newer pick boards.
 - Re-ran verification on latest main: 177 repository tests pass, feed tests 15 pass, HTML audit 190 pages / 0 link errors / 53 review findings, and all five boards share the same 28 open IDs. Existing non-fatal legacy `ResourceWarning`s remain. This session changed only its review and coordination files; no other-owner product/data paths were edited.
+## Session `arena/5545dbb8` (`arena/5545dbb8-maltaproj1`) — 2026-10-14 Executive summary + picks-for-every-match
+
+- **Session ID**: `arena/5545dbb8` · **Branch**: `arena/5545dbb8-maltaproj1` (fixed by Arena; no other branch created or pushed)
+- **Claimed**: `2026-10-14T02:36:00Z`
+- **Coordination check before claiming**: read this board in full; `git fetch --prune` shows only `origin/main`;
+  open PR **#82** (`arena/a174d77f`, branch last updated 02:33:59Z) is **active and unmerged** — its scope
+  (`cs2/**`, `.github/workflows/cs2-a174d77f.yml`, `reviews/cs2-a174d77f.md`, `model/build.py`, one additive
+  line in root `index.html`) is **excluded** from this session's edits.
+- **User brief for this session**: (a) a pick for *every* Hotspawn CS2 fixture, including low-tier matches with no
+  bookmaker coverage, using additional sourced information for exactly those matches; (b) an executive summary
+  that links, from inside the site, to where the current picks list lives; (c) mobile-first readability;
+  (d) automatic re-checks for new Hotspawn matches. Hotspawn crowd % is never a probability input.
+
+| ID | Task | Status | Owner | Exclusive file scope |
+|----|------|--------|-------|----------------------|
+| E-01 | `executive/**` — mobile-first **executive summary + picks-per-match board**: one row for every open CS2 fixture, tiered basis (primary market → secondary market → originated official-rating line → official bound), source link per row, blanks+flags where nothing is sourced | **done** (2026-10-14T03:1xZ) | arena/5545dbb8 | `executive/**` |
+| E-02 | Self-contained collector + generator: `executive/collect.py` (Hotspawn ng-state, Pinnacle guest, EGamersWorld, Polymarket, HLTV team pages, Valve VRS), `executive/build.py`, `executive/tests.py` | **done** — live reads: Hotspawn 200, Pinnacle 200 (129 CS2 matchups ⋈ 1,072 straight markets → 8 moneylines), Polymarket 200 (500 events → 6 CS2 markets), HLTV team pages 200 ×56, VRS 200; EGW 403 and HLTV `/matches` 403 documented in the review | arena/5545dbb8 | `executive/**`, `scripts/5545dbb8_build.py` |
+| E-03 | Automatic hourly refresh of new Hotspawn fixtures: `.github/workflows/executive-5545dbb8.yml` (gated commit: tests + zero-broken-link check before publishing) | **done** — runs 38502799917, 38504903054, 38505308547, 38505602376 all green and committed the validated snapshot | arena/5545dbb8 | `.github/workflows/executive-5545dbb8.yml` |
+| E-04 | One **additive** executive-summary block at the top of root `index.html` linking to the picks board (no other card, sentence or link touched) | **done** (`79bf75b`) — block inserted before the live-refresh panel, existing ids untouched | arena/5545dbb8 | root `index.html` (additive block only) |
+| E-05 | Line-by-line verification report + flags: `reviews/5545dbb8-verification.md`, `executive/flagged.html` | **done** — 28 open fixtures line by line with an official link per row, flag table with counts, endpoint probe log, known gaps | arena/5545dbb8 | `reviews/5545dbb8-verification.md`, `executive/flagged.html` |
+| E-06 | Integration: rebase on `origin/main`, PR → `main` (no approval waited on), confirm Pages deploy + live HTTPS, record PR link and result here | **in progress** — PR link recorded in the integration note below; merge + Pages check to follow in this session | arena/5545dbb8 | `COORDINATION.md` (this section, append-only) |
+
+- **Not claimed / not touched**: `cs2/**`, `model/**`, `slate/**`, `oct14/**`, `open-slate/**`, `live/**`,
+  `docs/**`, `data/**` (other sessions' datasets are read-only inputs), `README.md`.
+- **Conflict note for the integration owner**: `arena/a174d77f` (PR #82) also has a single additive line in root
+  `index.html`. This session's E-04 block is placed above the existing "Previous research" section, away from
+  their card, and will be rebased on `origin/main` immediately before opening the PR; if the two edits ever
+  collide the resolution keeps **both** (no work discarded) and is logged here.
+
+### Integration note (append-only, `arena/5545dbb8`)
+
+- **Rebase point**: branch `arena/5545dbb8-maltaproj1` rebased on `origin/main` (`41c8db3`, the merge of PR #99 by session `arena/496e53ff`) immediately before the pull request; `COORDINATION.md` conflicts were resolved by keeping this board append-only (this session's section kept whole, nothing of the other sessions' text removed).
+- **Deliverable**: `executive/` board (`index`, `picks`, `lines`, `own-lines`, `tournaments`, `coverage`, `verification`, `sources`, `methodology`, `flagged`), collector/builder/invariants, hourly workflow, one additive block in root `index.html`, verification report `reviews/5545dbb8-verification.md`.
+- **Live board**: <https://buffedlizard55-lab.github.io/MaltaProj1/executive/>
+- **Verified snapshot** (run `38505602376`): 88 fixtures / 28 open / 28 picks / 24 market / 3 model / 1 provisional / 0 blank; 110 teams, 104 resolved; 166 links checked, 0 broken; 27 of 28 open fixtures carry an HLTV match-page link; Polymarket read live (6 CS2 markets, none matched); EGamersWorld 403 → committed capture used with its own timestamp.
+- **Flagged, not hidden** (published on `executive/flagged.html` with source links, none of them merge-blocking): `FL-FORMAT-UNKNOWN` ×88 (Hotspawn states no format; HLTV match pages 403), `FL-RATINGS-WEEK-OLD` ×59 (standings 2026-10-05), `FL-AMBIGUOUS-NAME` ×5 (`ex-RUSTEC` #92/#152), `FL-UNLISTED-OPPONENT` ×2 (provisional bound), `FL-HLTV-IDENTITY-AMBIGUOUS` ×1, `FL-COINFLIP` ×1, `FL-MODEL-MARKET-SPLIT` ×10.
+- **Other sessions untouched**: only `executive/**`, `reviews/5545dbb8-verification.md`, `scripts/5545dbb8_build.py`, `tests/test_5545dbb8.py`, `.github/workflows/executive-5545dbb8.yml`, the additive block in root `index.html` and this section were edited; `cs2/**`/`model/**`/`slate/**`/`oct14/**`/`data/**` are read-only inputs here. PR **#82** (`arena/a174d77f`) remains open and unmerged — no work of theirs was touched.
+- **Temporary files removed before the PR**: `.github/workflows/diag-5545dbb8.yml`, `diag-5545dbb8.md`.
