@@ -148,17 +148,20 @@ class TestLivelines(unittest.TestCase):
                 self.assertTrue((p.parent / u.split("#")[0]).resolve().exists(), f"{name} -> {u}")
 
     def test_rebuild_is_deterministic_with_a_pinned_clock(self):
+        env = dict(os.environ, LIVELINES_NOW=PINNED)
         with tempfile.TemporaryDirectory() as td:
-            fixed = pathlib.Path(td) / "picks.csv"
-            fixed.write_bytes((DATA / "picks.csv").read_bytes())
-            env = dict(os.environ, LIVELINES_NOW=PINNED)
+            first = pathlib.Path(td) / "picks.csv"
             subprocess.run([sys.executable, str(OUT / "build.py")], cwd=ROOT, env=env,
                            check=True, stdout=subprocess.DEVNULL)
-            same = filecmp.cmp(fixed, DATA / "picks.csv", shallow=False)
+            first.write_bytes((DATA / "picks.csv").read_bytes())
+            # a second build on the same pinned clock must reproduce the same bytes
+            subprocess.run([sys.executable, str(OUT / "build.py")], cwd=ROOT, env=env,
+                           check=True, stdout=subprocess.DEVNULL)
+            same = filecmp.cmp(first, DATA / "picks.csv", shallow=False)
             # restore the real-clock build so the published board is not left on a pinned clock
             subprocess.run([sys.executable, str(OUT / "build.py")], cwd=ROOT, check=True,
                            stdout=subprocess.DEVNULL)
-        self.assertTrue(same, "rebuild with a pinned clock changed picks.csv")
+        self.assertTrue(same, "two builds on the same pinned clock produced different picks.csv")
 
     def test_no_placeholder_prices_in_published_rows(self):
         for r in self.open_rows:
