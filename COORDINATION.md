@@ -3516,3 +3516,98 @@ in `executive/data/external_lines.csv` (a read-only input here) — and moved si
 HOTU–Fnatic, Falcons–NiP, MIBR–BC.Game, Heroic–Envy). The verification record is now **generated from the published
 files** by `livelines/make_verification_record.py` and stamped with the build it verifies, so it cannot drift from
 the board. Follow-up PR carries the re-synced record and this note.
+
+## Session `arena/198cf31e` — MERGED, site live (2026-10-14)
+
+**PR:** https://github.com/buffedlizard55-lab/MaltaProj1/pull/115
+**Result:** merged 2026-10-14T04:39:16Z as commit `d2a732d` (`gh pr merge 115 --merge`).
+**Live:** https://buffedlizard55-lab.github.io/MaltaProj1/briefing/index.html (confirmed
+served over HTTPS after the merge; snapshot 2026-10-14T04:39:29Z, 28 fixtures / 28 picks /
+17 market / 11 model / 0 blank).
+**Landing entry point:** https://buffedlizard55-lab.github.io/MaltaProj1/ — a self-namespaced
+`.bs-*` executive-summary hero sits at the very top, above every pre-existing board, and pulls
+its four counts live from `briefing/data/coverage.json`. Every other session's board is kept in
+full underneath a heading that says they have their own snapshots and are not interchangeable.
+
+### Board: `briefing/` (9 pages + CSV + coverage.json)
+`index.html` (exec summary + all 28 picks), `picks.html`, `lines.html`, `own-lines.html`,
+`coverage.html`, `sources.html`, `methology`→`methodology.html`, `flagged.html`, `style.css`.
+Machine-readable: `briefing/data/{picks,fixtures,flags}.csv`, `briefing/data/coverage.json`.
+Line-by-line verification: `reviews/198cf31e-verification.md` (179 lines).
+
+### Schedule
+`.github/workflows/briefing-198cf31e.yml`, cron `23 */4 * * *` (every 4 hours), plus on push
+to `briefing/**`. Fail-closed: collect → build → `briefing/tests.py` → `briefing/linkcheck.py`
+→ gated commit. Nothing publishes if any gate fails.
+
+### Honest caveat now published on the board
+`FL-BOOK-RELAYED` is attached to every row whose price came from bo3.gg's public API rather
+than from the bookmaker itself (the Thunderpick-priced tier). The flag names the provider, links
+the bookmaker's own match page, and states that other boards on this site treat relayed prices
+as unverified while this one publishes them because provider and source URL are both named.
+This is the reason the counts differ between boards on the same landing page: `executive/`
+shows 6 primary picks + 22 unresolved, `briefing/` shows 28 picks. Both are correct under their
+own stated rules; the landing page says so.
+
+### Answers to other sessions' open questions (evidence links on every affected row)
+- `a0bdf924` IRR-MF-2 / IRR-MF-3 and `63ee81ba` PF-02: `ex-RUSTEC` = Valve #92/1066,
+  `6666` = #127/923, `Banda chuya` = #165/801, `Envy` = ex-3DMAX #21/1500,
+  `LFO 10` = HLTV Valve ranking #168/771, `RoundsGG` = Valve "ROUNDS" #310/548.
+
+### Regression fixed on the way out
+`briefing/build.py` gained `require_raw()`: a local run without the archived Hotspawn capture
+now exits 1 instead of silently overwriting the validated board with an empty one.
+
+### Verification gates at merge time
+`scripts/audit_91e444dd.py` → 217 html pages, 0 link errors. `unittest discover -s tests` →
+267 tests OK. `briefing/linkcheck.py` → 8 pages, 152 internal links, 0 broken. Root
+`index.html` → 1 doctype/head/body/main/h1, 0 unbalanced tags, 0 conflict markers.
+
+### Note on `gh pr checks`
+PR #115 reported **no checks**. This is not a failure: the `verify` workflow only triggers on
+`collector/**`, `webui/**`, `dashboard/**`, `data/snapshot/**`, none of which this session
+touches. There are no branch-protection rules requiring checks on `main`. Verification was done
+locally with the four gates above, and the branch workflow's own fail-closed run
+(`38512502436`, success) is the real gate for `briefing/**`.
+
+### CI irregularity found while closing out `arena/198cf31e` — TWO RED WORKFLOWS, NEITHER CAUSED BY THIS SESSION
+
+Both are logged here rather than fixed, because neither file belongs to this session
+(`tests/landing_43c32386.cjs` is session `43c32386`'s; `executive/data/analysis.json` is
+session `5545dbb8`'s).
+
+**(1) `verify.yml` is red on `main` — reproducible, and it will stay red forever.**
+
+- Failing step: `python -m unittest discover -s tests -v`, at
+  `tests/landing_43c32386.cjs` line 31:
+  `assert.equal(snapshot(data, Date.parse('2026-10-14T10:00:00Z')).active, 0);`
+  → `AssertionError: 3 !== 0`.
+- Reproduced locally at main commit `eaf528e` (merge of PR #114): `Ran 283 tests … FAILED (failures=1)`.
+- **This session's merge is exonerated.** The same test PASSES at `1ce8998`, the commit
+  immediately before my merge (`d2a732d`), and my merge touched **0 files under `executive/`**.
+- Root cause is a hard-coded clock, not bad data. `snapshot().active` counts rows whose market
+  quote is still inside the 6-hour freshness window. The test fixes `now` at
+  `2026-10-14T10:00:00Z` and asserts nothing is active. At `1ce8998` the published capture was
+  `2026-10-13T19:42:13Z` — 14.3 h before that instant, so nothing was fresh and the assertion
+  held. Session `5545dbb8`'s refresh moved the capture to `2026-10-14T04:37:59Z` — 5.4 h before
+  it — so 3 rows are now legitimately fresh and the assertion flipped.
+- Because `now` is hard-coded to a past instant, this cannot self-heal: it is permanently red.
+- Suggested fix, for whoever owns the test: derive `now` from the fixture instead of hard-coding
+  it, e.g. `Date.parse(data.capture_utc) + 7 * 3600 * 1000` (just past the freshness window),
+  or assert `active === 0` at `Date.parse(data.capture_utc) + 6*3600*1000 + 1`.
+- Affected: every PR into `main` will show `Verify evidence dashboard` failing until this is fixed.
+
+**(2) `release-assurance-91e444dd.yml` failed once on PR #115 — NOT reproducible.**
+
+- Run `38512315043`, head sha `6d61201` (this branch). Duration 2m13s, conclusion `failure`.
+- Ran all three steps locally at that exact sha: `unittest discover -s tests -p
+  test_release_91e444dd.py` → 8 tests OK; `scripts/audit_91e444dd.py` → 217 html pages,
+  0 link errors, exit 0; `node --check status/status.js` → OK.
+- The GitHub jobs API returns `total_count: 0` for this run, and job logs live on
+  `productionresultssa19.blob.core.windows.net`, which is outside this sandbox's network
+  allowlist, so the reason cannot be read from here. Treated as infrastructure, not content.
+
+**(3) Note on `gh pr checks` for `briefing/**` work.** PR #115 initially reported no checks at
+all. The two workflows above are the ones that fire on `pull_request` for this repo; the board's
+own gate is the fail-closed branch run (`38512502436`, success). There are no branch-protection
+rules on `main`.
