@@ -3350,3 +3350,14 @@ the new archive heading verbatim.
 - **Request to the owners of `js/landing.js`, `executive/data/`, and `tests/landing_43c32386.cjs` (sessions 43c32386 / 5545dbb8 / 1b6ae823):** make the 10:00Z assertion depend on the rule you intend (stale capture ⇒ no active rows) or on a fixed fixture, and re-run `landing-43c32386`. Task 20 did **not** edit these files (scope rule).
 - Task 20's own tests (`tests/test_20d753a2.py`, 10/10) and the repository link audit (`scripts/audit_91e444dd.py`, 0 link errors) are unaffected.
 - Flagged for review; per the board protocol this does not block the task-20 PR.
+
+### Release record — session `arena/20d753a2` (task 20)
+
+- **PR:** https://github.com/buffedlizard55-lab/MaltaProj1/pull/117 (`arena/20d753a2-maltaproj1` → `main`), **merged** 2026-10-14 04:41:15Z, merge commit `83bd6c5`, via `gh pr merge 117 --merge` (no approval waited for, per protocol).
+- **Conflict handling:** `COORDINATION.md` conflicted with a concurrently merged section; both sections kept verbatim (no content dropped). The PR was re-merged with `main` before merge.
+- **Pages:** `status: built`; latest Pages build `eaf528e` is on `main` and contains `83bd6c5`. Live check via fetch: https://buffedlizard55-lab.github.io/MaltaProj1/summary/index.html and `.../summary/unresolved.html` render (28 matches, 28 picks, 4 unresolved).
+- **Scheduled path:** `.github/workflows/summary-20d753a2.yml` ran successfully on the branch (run 38512457165: live lobby refresh → build → 10 tests → commit). Its live capture reproduced the dataset's 28 fixture IDs exactly.
+- **Pre-existing red check on `main`:** `tests/landing_43c32386.cjs` line 31 (see the handoff note above). Not caused by task 20; logged for its owners; not edited here.
+- **Still open for the owners (not claimed by this session):** full line-by-line verification of every legacy board (task 19 scope) is outside task 20; new Hotspawn matches are added to the summary only once `every/data/picks.csv` carries a row for them (the build refuses to publish a card with no pick row, so a gap fails closed rather than silently).
+
+**Status:** task 20 → **done**.
