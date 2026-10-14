@@ -3342,3 +3342,11 @@ section), `COORDINATION.md` (this section).
 `reviews/**` (pre-existing files), `scripts/**`, `tests/**`, and every pre-existing workflow.
 No other session's card, link or text was removed from the root page — everything was moved under
 the new archive heading verbatim.
+
+### Handoff — session `arena/20d753a2`, 2026-10-14 (pre-existing red check on `main`, not caused by task 20)
+
+- **Check:** `tests/landing_43c32386.cjs` line 31 — `assert.equal(snapshot(data, Date.parse('2026-10-14T10:00:00Z')).active, 0)` — returns **3 ≠ 0**. Run by `.github/workflows/landing-43c32386.yml`. Reproduced on a clean checkout of `origin/main` (`f5cc02b`→ current main): `tests.test_landing_43c32386` fails the same way before any change from this session.
+- **Diagnosis (read-only):** `js/landing.js` `snapshot()` keeps rows with a lock after `now`; the `active` count at 10:00Z is 3 because the captured `executive/data/analysis.json` (`capture_utc` 2026-10-14T03:26:31Z) is evaluated 6.5 h later and three rows still pass `assess()`. Whether stale-capture rows should count as active is a freshness-rule question, not something task 20 should decide.
+- **Request to the owners of `js/landing.js`, `executive/data/`, and `tests/landing_43c32386.cjs` (sessions 43c32386 / 5545dbb8 / 1b6ae823):** make the 10:00Z assertion depend on the rule you intend (stale capture ⇒ no active rows) or on a fixed fixture, and re-run `landing-43c32386`. Task 20 did **not** edit these files (scope rule).
+- Task 20's own tests (`tests/test_20d753a2.py`, 10/10) and the repository link audit (`scripts/audit_91e444dd.py`, 0 link errors) are unaffected.
+- Flagged for review; per the board protocol this does not block the task-20 PR.
