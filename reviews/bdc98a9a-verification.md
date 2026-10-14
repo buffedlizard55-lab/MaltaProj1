@@ -15,30 +15,33 @@ own data files, then re-reads each URL live in CI:
 | `data/fbcccda2/every_pick.csv` (every-match picks) | 192 |
 | `data/63ee81ba/picks.csv` (full-coverage board) | 28 |
 | `cs2/data/analysis.csv` (line-analysis board) | 280 |
-| **deduplicated worklist** | **288** |
+| `every/data/picks.csv` (mobile every-match board) | 164 |
+| **deduplicated worklist** | **360** |
 
-Run: `2026-10-14T03:42:58Z`, CI run `38506905679`, machine-readable result
+Run: `2026-10-14T03:50:04Z`, CI run `38507818310` (188 rows reused from the run 6 minutes earlier,
+which is why the run is cheap), machine-readable result
 `reread/data/source_check.csv` (one row per cited value, source link on every row) plus the fetch log
 with a SHA-256 per body in `reread/data/log.jsonl`.
 
 ## Result
 
-**188 of 288 cited values re-read exactly as published. 0 rows where a live source contradicted a
-published value. 83 refused, 17 not-checkable, 0 dead links, 0 placeholder pairs.**
+**232 of 360 cited values re-read exactly as published. 0 rows where a live source contradicted a
+published value. 111 refused, 17 not-checkable, 0 dead links, 0 placeholder pairs.**
 
 | Kind of citation | Total | Re-read as printed | Needs review |
 |---|---|---|---|
-| Valve Regional Standings line (`github.com`/`raw.githubusercontent.com`) | 131 | **131** | 0 |
+| Valve Regional Standings line (`github.com`/`raw.githubusercontent.com`) | 170 | **170** | 0 |
 | HLTV team page (team exists, name present) | 39 | **39** | 0 |
-| HLTV match page (team names + series format) | 30 | 13 | 17 refused |
-| EGamersWorld match page (market quote) | 44 | 0 | 42 refused, 2 no odds table served |
+| HLTV match page (team names + series format) | 56 | 18 | 38 refused |
+| EGamersWorld match page (market quote) | 49 | 0 | 49 refused |
 | Hotspawn fixture page (identity only) | 26 | 2 | 24 refused |
-| Pinnacle page / guest API | 15 | 0 | 15 not-checkable |
+| Pinnacle page / guest API | 17 | 0 | 17 not-checkable |
 | Polymarket event (reference only) | 3 | 3 | 0 |
 
-By host: `raw.githubusercontent.com` 92, `www.hltv.org` 73, `egamersworld.com` 40, `github.com` 39,
-`www.hotspawn.com` 24, `guest.api.arcadia.pinnacle.com` 10, `www.pinnacle.com` 5, `polymarket.com` 3,
-`play.hotspawn.com` 2.
+Four boards are covered: `data/fbcccda2/every_pick.csv`, `data/63ee81ba/picks.csv`,
+`cs2/data/analysis.csv` and `every/data/picks.csv`. The latest host split is in
+`reread/data/summary.json` (`by_host`) and on the method page; `raw.githubusercontent.com` and
+`www.hltv.org` dominate, followed by `egamersworld.com`, `github.com` and `www.hotspawn.com`.
 
 ## Findings
 
@@ -46,9 +49,10 @@ By host: `raw.githubusercontent.com` 92, `www.hltv.org` 73, `egamersworld.com` 4
   re-read at the cited anchor: the line really does carry that team and that rank. Example:
   `FORZE Reload`, rank 84, `<…/standings_global_2026_10_05.md?plain=1#L89>`. This is the input behind
   the board's own lines, and it is the one input that is fully machine-verifiable today.
-- **SRC-02 — chief finding: the EGamersWorld quotes cannot be re-read from CI.** All 44 EGamersWorld
-  citations were opened again; 42 were refused (HTTP 403 to a plain client *and* to a headless
-  Chromium with a normal user agent), 2 served a page with no parsable named-book table. Those pages
+- **SRC-02 — chief finding: the EGamersWorld quotes cannot be re-read from CI.** All 49 EGamersWorld
+  citations were opened again and **every one was refused** (HTTP 403 to a plain client *and* to a
+  headless Chromium with a normal user agent; in an earlier run two served a page with no parsable
+  named-book table). Those pages
   are the source of **19 of the 28 open-fixture picks** on the every-match board (the board's own
   tier note; this verifier only re-read the links, it did not recount the picks)
   (e.g. `Gothic 2.05 / Lavked 1.64` on
@@ -57,14 +61,14 @@ By host: `raw.githubusercontent.com` 92, `www.hltv.org` 73, `egamersworld.com` 4
   risk the repository audit raised when it found these prices are literals in data files. Anyone
   relying on a Tier-B price should open the link from a normal browser before the match.
 - **SRC-03 — HLTV serves team pages but bot-checks match pages.** 39/39 HLTV team pages re-read
-  (headless Chromium was needed for most of them), but 17 of 30 match pages returned 403 even through
-  a browser. Refusals are recorded as refusals; the affected rows keep their link and the "refused"
+  (headless Chromium was needed for most of them), but 38 of 56 match-page citations returned 403 even
+  through a browser. Refusals are recorded as refusals; the affected rows keep their link and the "refused"
   chip so a human can check the page in one tap.
 - **SRC-04 — Hotspawn per-fixture pages refuse the runner too.** 24 of 26 `www.hotspawn.com/matches/…`
   pages returned 403. Hotspawn is used in this repository for **fixture identity and series format
   only**; its crowd percentages are never parsed, and the test suite asserts that
   (`tests/test_bdc98a9a_verify.py::WorklistTests::test_hotspawn_claims_are_identity_only`).
-- **SRC-05 — Pinnacle citations are not per-match permalinks any more.** 10 guest-API payloads no
+- **SRC-05 — Pinnacle citations are not per-match permalinks any more.** 12 guest-API payloads no
   longer contain the pairing (markets disappear from that response after the match starts), and 5
   citations are the generic matchups listing, which carries no per-match state. `not-checkable`, not
   `mismatch`: nothing contradicts the published prices.
