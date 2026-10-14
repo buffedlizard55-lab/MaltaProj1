@@ -1,0 +1,40 @@
+# Every-match picks rebuild/check — session arena/fbcccda2.
+# No credentials, no manual input. The hourly slate workflow (180a42a0) is the
+# Hotspawn collector; this job rebuilds everypick/ from its latest committed
+# snapshot plus the verified 8944bb84 evidence, on schedule and whenever slate
+# data changes. Fixtures with no tier evidence render NO PICK - FLAGGED.
+name: Every-pick rebuild (fbcccda2)
+on:
+  workflow_dispatch: {}
+  schedule:
+    - cron: "17 */3 * * *"
+  push:
+    branches: ["main", "arena/fbcccda2-maltaproj1"]
+    paths: ["slate/data/**", "scripts/fbcccda2_build.py", "tests/test_fbcccda2.py", ".github/workflows/everypick-fbcccda2.yml"]
+permissions:
+  contents: write
+  pages: write
+concurrency:
+  group: everypick-fbcccda2-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  rebuild:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with: { ref: "${{ github.ref_name }}", fetch-depth: 0 }
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with: { python-version: "3.12" }
+      - run: python scripts/fbcccda2_build.py
+      - run: python -m unittest tests.test_fbcccda2 -v
+      - name: Commit validated rebuild back to this branch
+        run: |
+          git config user.name "arena-fbcccda2"
+          git config user.email "arena-fbcccda2@users.noreply.github.com"
+          git add everypick/ data/fbcccda2/
+          if git diff --cached --quiet; then echo "no change"; else git commit -m "everypick(fbcccda2): rebuild from run ${GITHUB_RUN_ID}"; git pull --rebase origin "${GITHUB_REF_NAME}"; git push origin "HEAD:${GITHUB_REF_NAME}"; fi
+      - name: Request Pages build on main
+        if: success() && github.ref_name == 'main'
+        env: { GH_TOKEN: "${{ github.token }}" }
+        run: gh api --method POST "repos/${GITHUB_REPOSITORY}/pages/builds"

@@ -8,6 +8,12 @@ Hotspawn supplies **fixture identity and UTC lock/start epochs only**, never a p
 
 ## Current board
 
+**Start here on a phone:** [`exec/`](exec/index.html) — the executive summary and cross-board coverage
+audit (session `3b5e3fea`): every open match with its pick, which boards publish a price / own line / pick
+for it, every row where two boards name different winners, the source ladder used where no bookmaker prices
+a match, and the flags. [`everypick/`](everypick/index.html) gives the A–D fallback tier for all 28 open
+matches; [`cs2/`](cs2/index.html) is the hourly line-analysis board.
+
 | Category | Page | Data / verification |
 |---|---|---|
 | CS2 matches & picks | `slate/cs2.html` | All captured CS2 fixtures; open, locked and stale rows kept separately |

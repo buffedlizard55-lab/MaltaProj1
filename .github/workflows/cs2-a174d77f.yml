@@ -1,0 +1,197 @@
+# A5 — automatic refresh of the CS2 board (session arena/a174d77f).
+#
+# What a run does, with no credentials, no secrets and no manual input:
+#   1. reads the public Hotspawn pick'em pages (fixture identity + exact UTC lock epochs) and the
+#      public price sources (Pinnacle guest responses, EGamersWorld match pages, Polymarket),
+#      Valve's official Regional Standings file, and HLTV where it answers the runner;
+#   2. re-fits our own line's slope on Valve's published match results (cs2/calibrate.py);
+#   3. joins them under the strict rules in cs2/model.py, rebuilds every page under cs2/;
+#   4. runs the invariants in cs2/tests.py;
+#   5. commits the refreshed data + logs back to the branch the run started from, and the rebuilt
+#      HTML only when the invariants pass — a source that refuses us freezes the *published* pages
+#      at the last good build instead of publishing a broken board.
+#
+# Triggers: hourly cron (13 * * * *), any push that changes cs2/**, and manual dispatch. Commits
+# carry [skip ci] so a refresh never re-triggers itself into a loop.
+name: CS2 board refresh (a174d77f)
+
+on:
+  workflow_dispatch: {}
+  push:
+    branches: ["arena/a174d77f-maltaproj1", "main"]
+    paths:
+      - "cs2/**"
+      - ".github/workflows/cs2-a174d77f.yml"
+  schedule:
+    - cron: "13 * * * *"
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: cs2-a174d77f-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    env:
+      CS2_BUDGET_SECONDS: "1500"
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install an ordinary browser for the pages that refuse plain clients
+        continue-on-error: true
+        run: |
+          python -m pip install --quiet playwright==1.55.0
+          python -m playwright install --with-deps chromium
+
+      - name: Clone Valve's official standings repository (rating + calibration input)
+        run: |
+          git clone -q --depth 1 https://github.com/ValveSoftware/counter-strike_regional_standings "$RUNNER_TEMP/vrs"
+          echo "VRS_REPO_DIR=$RUNNER_TEMP/vrs" >> "$GITHUB_ENV"
+
+      - name: A1+A2 — capture Hotspawn, Pinnacle, EGamersWorld, VRS, HLTV, Polymarket
+        continue-on-error: true
+        run: python3 -u cs2/collect.py 2>&1 | tee cs2/data/collect.stdout.log
+
+      - name: A3 — calibrate our own curve on Valve's published match results
+        continue-on-error: true
+        run: python3 -u cs2/calibrate.py 2>&1 | tee cs2/data/calibrate.stdout.log
+
+      - name: join prices, originate probabilities, write the tables
+        continue-on-error: true
+        run: python3 -u cs2/model.py 2>&1 | tee cs2/data/model.stdout.log
+
+      - name: build the mobile-first pages
+        continue-on-error: true
+        run: python3 -u cs2/build.py 2>&1 | tee cs2/data/build.stdout.log
+
+      - name: A6 — invariants (probability complements, no crowd leakage, sources on every row, no broken links)
+        id: tests
+        continue-on-error: true
+        run: python3 -u cs2/tests.py 2>&1 | tee cs2/data/tests.stdout.log
+
+      # A7 diagnosis, not an A7 takeover.  model/** belongs to arena/91eff436; their scheduled run
+      # 38489574648 fails at its own test step and the CI log is unreachable from the working
+      # sandbox, so we reproduce their pipeline in a THROWAWAY COPY under $RUNNER_TEMP (their
+      # files in the repo are never written) and commit only the log to cs2/data/.
+      - name: A7 — reproduce the failing O-01 model test in a throwaway copy (model/** untouched)
+        continue-on-error: true
+        run: |
+          set -uo pipefail
+          DIAG="$RUNNER_TEMP/model_diag"
+          rm -rf "$DIAG"; mkdir -p "$DIAG"
+          cp -r model/. "$DIAG/"
+          {
+            echo "== O-01 reproduction (session arena/a174d77f, run ${GITHUB_RUN_ID}) =="
+            echo "-- fetch --";   python3 "$DIAG/fetch.py" 2>&1 | tail -20
+            echo "-- calibrate --"; VRS_REPO_DIR="$RUNNER_TEMP/vrs" python3 "$DIAG/calibrate.py" 2>&1 | tail -8
+            echo "-- build --";   python3 "$DIAG/build.py" 2>&1 | tail -10
+            echo "-- tests --";   VRS_REPO_DIR="$RUNNER_TEMP/vrs" python3 -m unittest discover -s "$DIAG" -p 'test_*.py' -v 2>&1 | tail -80
+          } > cs2/data/model_diag.log 2>&1 || true
+          tail -6 cs2/data/model_diag.log 2>/dev/null || echo "no diagnostic log"
+
+      - name: commit the refreshed board back to this branch
+        run: |
+          set -euo pipefail
+          BR="${GITHUB_REF_NAME}"
+          git config user.name "cs2-a174d77f[bot]"
+          git config user.email "cs2-a174d77f@users.noreply.github.com"
+          mkdir -p cs2/data
+          printf 'tests: %s\nrun: %s\nactor: %s\n' "${{ steps.tests.outcome }}" "${GITHUB_RUN_ID}" "${GITHUB_ACTOR}" > cs2/data/last_run.txt
+          git add -A cs2/data cs2/style.css
+          if [ "${{ steps.tests.outcome }}" = "success" ]; then
+            git add -A cs2/*.html cs2/t
+          else
+            echo "invariants failed - data refreshed for the record, published HTML left at the last good build"
+            git checkout -- cs2/*.html 2>/dev/null || true
+            git clean -fdq cs2/t 2>/dev/null || true
+          fi
+          if git diff --cached --quiet; then
+            echo "no changes to publish"
+            exit 0
+          fi
+          git commit -q -m "cs2(a174d77f): refresh board from live sources [skip ci] [run ${GITHUB_RUN_ID}]"
+          # A second run on this branch can push the same regenerated board between our checkout
+          # and our push.  Conflicts are then inevitable and meaningless: both sides are freshly
+          # generated from the same sources, so the newer run (us) wins for generated paths.  A
+          # conflict anywhere else means a human edited this branch mid-run, and we stop rather
+          # than overwrite their work.
+          is_generated() {
+            case "$1" in
+              cs2/data/*|cs2/*.html|cs2/t/*|cs2/style.css|cs2/*.log) return 0 ;;
+              *) return 1 ;;
+            esac
+          }
+          for i in 1 2 3 4 5; do
+            if git -c pull.rebase=true pull --rebase origin "$BR"; then
+              git push -q origin "HEAD:$BR" && { echo "pushed to $BR"; exit 0; }
+            else
+              conflicts=$(git diff --name-only --diff-filter=U 2>/dev/null || true)
+              foreign=0
+              for f in $conflicts; do is_generated "$f" || foreign=1; done
+              if [ -n "$conflicts" ] && [ "$foreign" = 0 ]; then
+                echo "regenerated board conflicted with a parallel run - keeping this run's copy"
+                # during a rebase "theirs" is the commit being replayed, i.e. ours
+                git checkout --theirs -- $conflicts && git add -A $conflicts
+                GIT_EDITOR=true git rebase --continue || git rebase --skip || true
+                git push -q origin "HEAD:$BR" && { echo "pushed to $BR after taking this run's data"; exit 0; }
+              else
+                echo "::warning::conflict outside the generated board (or nothing to resolve); not forcing it"
+              fi
+              git rebase --abort 2>/dev/null || true
+            fi
+            echo "push attempt $i failed; retrying"; sleep $((i * 12))
+          done
+          # A push that keeps failing means the branch moved underneath us in a way we refuse to
+          # force (a human or another session edited something outside the generated board).  The
+          # refreshed capture is still committed in this run's workspace and the board on the branch
+          # is the last good build, so this is a skip, not a red run: the next scheduled refresh
+          # starts from the newer tip and republishes.
+          echo "::warning::did not push this refresh — the branch moved in a way we will not force; the next scheduled run starts from the newer tip"
+
+      - name: publish the run summary
+        if: always()
+        run: |
+          python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          import json
+          from pathlib import Path
+          p = Path("cs2/data/summary.json")
+          if not p.exists():
+              print("No summary produced by this run; the previously published board is unchanged.")
+              raise SystemExit(0)
+          s = json.loads(p.read_text())
+          print("## Hotspawn CS2 board — refresh summary")
+          print(f"* capture: `{s.get('capture_generated_utc')}` · model run: `{s.get('generated_utc')}`")
+          print(f"* CS2 fixtures on the board: **{s.get('fixtures_cs2')}** · still pickable: **{s.get('open')}**")
+          print(f"* with an external bookmaker line: **{s.get('with_market_line')}** "
+                f"(price rows: {s.get('market_price_rows')})")
+          print(f"* with our own originated line: **{s.get('with_own_line')}** · with a published pick: **{s.get('with_pick')}**")
+          print(f"* fixtures flagged for review: **{s.get('flagged')}**")
+          own = s.get("own_line") or {}
+          print(f"* own line: k=`{own.get('k')}` on ratings as of `{own.get('rating_snapshot_as_of')}` "
+                f"({own.get('rating_snapshot_age_days')} d old), fitted on {own.get('n_calibrated_on')} Valve matches, "
+                f"adopted={own.get('adopted')}")
+          for name, blk in (s.get("sources") or {}).items():
+              print(f"  - `{name}`: {blk.get('status')}"
+                    + (f" — {blk.get('error')}" if blk.get("error") else ""))
+          PY
+
+      - name: ask GitHub Pages to rebuild (main only, best effort)
+        if: github.ref_name == 'main'
+        continue-on-error: true
+        run: |
+          curl -sS -o /dev/null -w "pages build request: HTTP %{http_code}\n" \
+            -X POST -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${{ github.repository }}/pages/builds"

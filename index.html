@@ -28,18 +28,6 @@ ul.plain li{color:var(--muted);font-size:12.8px;margin:3px 0}
 .hero{padding:26px 0 20px}.eyebrow{color:#a99aff;letter-spacing:.14em;text-transform:uppercase;font-size:12px;font-weight:700}
 h1{font-size:clamp(28px,6vw,46px);line-height:1.15;max-width:700px;margin:12px 0 18px}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:22px 0}.stat{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px}.stat b{display:block;font-size:27px}.stat span{color:var(--muted);font-size:12px}.cta{display:inline-block;background:#7857cf;padding:12px 20px;border-radius:9px;color:white;font-weight:700;text-decoration:none;margin-top:18px}.hero-actions{display:flex;align-items:center;gap:18px;flex-wrap:wrap}details{margin-top:35px}summary{cursor:pointer;font-weight:600;color:var(--muted)}.scope{font-size:13px;color:var(--muted)}footer{color:var(--muted);font-size:12px;margin-top:35px;border-top:1px solid var(--line);padding-top:20px}@media(max-width:560px){.stats{grid-template-columns:repeat(2,1fr)}.wrap{padding:20px 16px 40px}.grid{grid-template-columns:1fr}}
 </style></head><body><main class="wrap" data-root-overview>
-<section id="start-here" style="background:linear-gradient(180deg,#241b3f,#171c22);border:1px solid var(--accent);border-radius:12px;padding:18px 18px 20px;margin:0 0 26px">
-<div class="eyebrow">Start here — executive summary</div>
-<h2 style="text-transform:none;letter-spacing:0;font-size:clamp(20px,4.6vw,30px);color:#e8edf3;margin:10px 0 8px">Every Counter-Strike 2 match Hotspawn lists, with a pick and a probability.</h2>
-<p class="lead">One phone-friendly page lists each open match, both teams' win probability from outside bookmaker lines or our own originated line, the explicit pick, and the source link behind every number. It also shows what Hotspawn lists right now, and what could not be confirmed.</p>
-<div class="hero-actions">
-<a class="cta" href="exec/index.html">Executive summary → picks for every match</a>
-<a href="exec/picks.html">Today's picks table</a>
-<a href="exec/coverage.html">Coverage vs Hotspawn</a>
-<a href="exec/flagged.html">Flagged for review</a>
-</div>
-<p class="lead small">Hotspawn supplies the fixture list and the UTC kickoff only — never a probability. Crowd pick percentages are not used anywhere.</p>
-</section>
 <div class="eyebrow">Hotspawn / independent research</div>
 <section class="hero"><h1>The match board.<br>The outside view.</h1>
 <p class="lead">Counter-Strike 2 fixtures from Hotspawn. Win estimates from outside markets and our own provisional model — <strong>never crowd pick percentages.</strong></p>
@@ -48,9 +36,18 @@ h1{font-size:clamp(28px,6vw,46px);line-height:1.15;max-width:700px;margin:12px 0
 <div id="freshness" class="note" role="status">Checking published snapshot… Coverage and freshness are unverified until loaded.</div>
 <section class="stats" aria-label="Published CS2 coverage"><div class="stat"><b id="cs-count">—</b><span>CS2 rows captured</span></div><div class="stat"><b id="open-count">—</b><span>Lock time still ahead</span></div><div class="stat"><b id="market-count">—</b><span>Primary market quotes</span></div><div class="stat"><b id="pick-count">—</b><span>Supported picks</span></div></section>
 <p class="scope">Counts describe the published payload, not guaranteed live coverage. Missing odds or series formats stay blank. Model estimates are uncalibrated and explicitly provisional. Sources may refuse automated access.</p>
+<section aria-label="Executive summary"><h2>Executive summary — start here</h2>
+<div class="note"><b>Want the picks?</b> In the latest published snapshot, the featured board prices only 5 of 28 open CS2 matches. The <a href="everypick/"><b>Every-match picks page</b></a> now gives a pick for <b>all 28</b>: 5 featured primary-market picks, 19 from an earlier verified external market, 3 from our sourced rating model, and 1 guided lean with its probability deliberately blank. Each result shows its tier — low-tier matches are never presented as if they were featured-market picks.</div>
+<div class="grid">
+<a class="card primary" href="everypick/"><h3>⭐ Every CS2 match — pick &amp; probability<span class="tag live">28/28 picks</span></h3><p>Mobile-first cards: pick first, both teams' %, tier badge, market/model cross-check and a source link on every match. Start here on your phone.</p></a>
+<a class="card" href="slate/cs2.html"><h3>Featured picks only</h3><p>The 5 matches with a latest primary Pinnacle line, plus the full featured-board methodology.</p></a>
+<a class="card" href="everypick/flagged.html"><h3>Flagged for Review — every-pick</h3><p>Guided-lean blank %, market-vs-model disagreements and placeholder/format gaps, with source links.</p></a>
+<a class="card" href="exec/index.html"><h3>Coverage audit &amp; cross-board check<span class="tag live">exec/</span></h3><p>One page that shows, per open match, which boards publish a price, an own line or a pick — plus every row where two boards name different winners, the source ladder used for matches no bookmaker prices, and the flags. Session <code>3b5e3fea</code>.</p></a>
+<a class="card" href="everypick/methodology.html"><h3>How every-match picks are made</h3><p>The A–D fallback hierarchy. Fallback sources are used only where the featured route cannot resolve a match; tiers are never averaged.</p></a>
+</div></section>
 <h2>Explore the current board</h2><div class="grid">
-<a class="card primary" href="exec/index.html"><h3>Executive summary — picks for every match<span class="tag new">new</span></h3><p>Mobile-first front door: every open CS2 match with its probability, its pick, the source behind the number, plus the live coverage check against Hotspawn and the flagged items.</p></a>
-<a class="card" href="slate/cs2.html"><h3>CS2 matches &amp; picks</h3><p>Both teams' market win estimates, a separate provisional model, and the explicit pick. All locked and stale fixtures retained.</p></a>
+<a class="card" href="cs2/index.html"><h3>Line-analysis board (session <code>a174d77f</code>)</h3><p>Every open CS2 fixture, refreshed hourly in CI: the outside price where a reachable book publishes one (de-vigged two-way probability, overround and read time), our own re-calibrated Valve-rating line everywhere else, an explicit pick, and a link to the exact source line on every row. 28 open, 7 externally priced, 26 with our own line, 27 with a pick; anything unverifiable is blank, flagged and listed. Pages are published only when the board&#8217;s 17 invariants pass, two of which prove that no crowd percentage and no un-archived price is ever printed. Its 16-check verification log is on <a href="cs2/verification.html">the verification page</a>; machine-readable tables are <a href="cs2/data/analysis.csv">analysis.csv</a> and <a href="cs2/data/market_rows.csv">market_rows.csv</a>.</p></a>
+<a class="card primary" href="slate/cs2.html"><h3>CS2 matches &amp; picks</h3><p>Both teams' market win estimates, a separate provisional model, and the explicit pick. All locked and stale fixtures retained.</p></a>
 <a class="card" href="slate/tournaments.html"><h3>By tournament</h3><p>Simple source-linked tables grouped by competition. Filter by team or tournament.</p></a>
 <a class="card" href="slate/lines.html"><h3>Outside betting lines</h3><p>Primary bookmaker quotes, odds, margin and read time. Secondary aggregator reports are labelled unverified.</p></a>
 <a class="card" href="slate/own-lines.html"><h3>Our own research lines</h3><p>Sourced HLTV / Valve inputs and reproducible arithmetic. Unknown format means no series estimate.</p></a>

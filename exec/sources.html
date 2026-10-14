@@ -1,87 +1,71 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="color-scheme" content="light dark">
-<title>Sources · Hotspawn CS2 picks</title>
+<title>Sources — the ladder used for matches no book prices</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <header class="top">
-  <h1><a href="index.html">Hotspawn CS2 Pick'em — executive summary</a></h1>
-  <nav class="chips"><a href="index.html">Executive summary</a><a href="picks.html">Picks — every match</a><a href="coverage.html">Coverage vs Hotspawn</a><a href="method.html">Method</a><a href="sources.html" class="on">Sources</a><a href="flagged.html">Flagged for review</a></nav>
+  <p class="eyebrow"><a href="index.html">← executive summary</a></p>
+  <h1>Where our numbers come from</h1>
+  <p class="lede">The featured matches on the Pick'em board are priced by big bookmakers. Most of the board is
+  not: low-tier online cups often have no listed market at all. For those rows this project walks down a
+  documented ladder and stops at the first rung that answers, leaving the row blank if none does.</p>
 </header>
 <main>
-
-
-<h2>Sources this board reads</h2>
-<div class="tablewrap"><table>
-<thead><tr><th>What</th><th>Where</th><th>Used for</th></tr></thead>
-<tbody>
-<tr><td>Hotspawn Play — CS2 Pick'em lobby</td>
-    <td><a href="https://play.hotspawn.com/cs2-pickems" rel="noopener nofollow">play.hotspawn.com/cs2-pickems</a>
-    and <a href="https://play.hotspawn.com/lobby" rel="noopener nofollow">/lobby</a></td>
-    <td>fixture identity, competition, tier, exact UTC lock/start epochs — never a probability</td></tr>
-<tr><td>Valve Regional Standings (official Valve repository)</td>
-    <td><a href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/standings_global_2026_10_05.md" rel="noopener nofollow">https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/standings_global_2026_10_05.md</a></td>
-    <td>official rating points for the own line</td></tr>
-<tr><td>HLTV World Ranking</td>
-    <td><a href="https://www.hltv.org/ranking/teams" rel="noopener nofollow">https://www.hltv.org/ranking/teams</a></td>
-    <td>rating points, and the yes/no of whether a team is ranked at all</td></tr>
-<tr><td>HLTV match pages and per-day listings</td>
-    <td><a href="https://www.hltv.org/matches" rel="noopener nofollow">hltv.org/matches</a></td>
-    <td>series format (BO1/BO3/BO5), kickoff cross-check, per-team rank badge</td></tr>
-<tr><td>External bookmaker lines — primary</td>
-    <td><a href="https://www.pinnacle.com/en/esports/games/cs2/matchups/" rel="noopener nofollow">pinnacle.com</a>
-    (public guest matchups/markets responses)</td>
-    <td>the T1 market probability and the market pick</td></tr>
-<tr><td>External bookmaker lines — secondary</td>
-    <td><a href="https://egamersworld.com/counterstrike/matches" rel="noopener nofollow">egamersworld.com</a>
-    public odds tables (book named on the row)</td>
-    <td>the T2 market probability where no primary quote exists; a <code>1.80/1.80</code> reading is
-    rejected as a placeholder</td></tr>
-</tbody></table></div>
-<h2>This run's fetches</h2>
-<p class="muted">36 HTTP reads recorded in <code>exec/data/live/collect_summary.json</code>
-with status, size and SHA-256. The last 40 are shown.</p>
-<div class="tablewrap"><table>
-<thead><tr><th>Host</th><th>URL</th><th>Status</th><th>Bytes</th><th>Read at (UTC)</th><th>Result</th></tr></thead>
-<tbody><tr><td>play.hotspawn.com</td><td style='word-break:break-all'><a href="https://play.hotspawn.com/cs2-pickems" rel="noopener nofollow">https://play.hotspawn.com/cs2-pickems</a></td><td>200</td><td>406883</td><td>2026-10-14T02:44:22Z</td><td>ok</td></tr><tr><td>play.hotspawn.com</td><td style='word-break:break-all'><a href="https://play.hotspawn.com/lobby" rel="noopener nofollow">https://play.hotspawn.com/lobby</a></td><td>200</td><td>408057</td><td>2026-10-14T02:44:22Z</td><td>ok</td></tr><tr><td>raw.githubusercontent.com</td><td style='word-break:break-all'><a href="https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md" rel="noopener nofollow">https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md</a></td><td>200</td><td>77872</td><td>2026-10-14T02:44:22Z</td><td>ok</td></tr><tr><td>www.hltv.org</td><td style='word-break:break-all'><a href="https://www.hltv.org/ranking/teams" rel="noopener nofollow">https://www.hltv.org/ranking/teams</a></td><td>200</td><td>1216951</td><td>2026-10-14T02:44:29Z</td><td>ok</td></tr><tr><td>www.hltv.org</td><td style='word-break:break-all'><a href="https://www.hltv.org/matches?date=2026-10-13" rel="noopener nofollow">https://www.hltv.org/matches?date=2026-10-13</a></td><td>403</td><td>28894</td><td>2026-10-14T02:44:31Z</td><td> marker 'href=&quot;/matches/' absent</td></tr><tr><td>www.hltv.org</td><td style='word-break:break-all'><a href="https://www.hltv.org/matches?date=2026-10-14" rel="noopener nofollow">https://www.hltv.org/matches?date=2026-10-14</a></td><td>403</td><td>28894</td><td>2026-10-14T02:44:34Z</td><td> marker 'href=&quot;/matches/' absent</td></tr><tr><td>www.hltv.org</td><td style='word-break:break-all'><a href="https://www.hltv.org/matches?date=2026-10-15" rel="noopener nofollow">https://www.hltv.org/matches?date=2026-10-15</a></td><td>403</td><td>28894</td><td>2026-10-14T02:44:37Z</td><td> marker 'href=&quot;/matches/' absent</td></tr><tr><td>www.hltv.org</td><td style='word-break:break-all'><a href="https://www.hltv.org/matches?date=2026-10-16" rel="noopener nofollow">https://www.hltv.org/matches?date=2026-10-16</a></td><td>403</td><td>28916</td><td>2026-10-14T02:44:39Z</td><td> marker 'href=&quot;/matches/' absent</td></tr><tr><td>www.hltv.org</td><td style='word-break:break-all'><a href="https://www.hltv.org/matches/2399461/enjoy-vs-b8-academy-cct-2026-europe-series-12-closed-qualifier" rel="noopener nofollow">https://www.hltv.org/matches/2399461/enjoy-vs-b8-academy-cct-2026-europe-series-12-closed-qualifier</a></td><td>403</td><td>29108</td><td>2026-10-14T02:44:42Z</td><td> marker 'Best of ' absent</td></tr><tr><td>www.hltv.org</td><td style='word-break:break-all'><a href="https://www.hltv.org/matches/2399298/gothic-vs-lavked-cct-2026-europe-series-11" rel="noopener nofollow">https://www.hltv.org/matches/2399298/gothic-vs-lavked-cct-2026-europe-series-11</a></td><td>403</td><td>29027</td><td>2026-10-14T02:44:46Z</td><td> marker 'Best of ' absent</td></tr><tr><td>www.hltv.org</td><td style='word-break:break-all'><a href="https://www.hltv.org/matches/2399384/9z-vs-aurora-thunderpick-world-championship-2026" rel="noopener nofollow">https://www.hltv.org/matches/2399384/9z-vs-aurora-thunderpick-world-championship-2026</a></td><td>403</td><td>29045</td><td>2026-10-14T02:44:49Z</td><td> marker 'Best of ' absent</td></tr><tr><td>www.hltv.org</td><td style='word-break:break-all'><a href="https://www.hltv.org/matches/2399134/astralis-vs-sashi-stake-pulse-beat-iii" rel="noopener nofollow">https://www.hltv.org/matches/2399134/astralis-vs-sashi-stake-pulse-beat-iii</a></td><td>403</td><td>29015</td><td>2026-10-14T02:44:53Z</td><td> marker 'Best of ' absent</td></tr><tr><td>www.hltv.org</td><td style='word-break:break-all'><a href="https://www.hltv.org/matches/2399135/hotu-vs-fnatic-stake-pulse-beat-iii" rel="noopener nofollow">https://www.hltv.org/matches/2399135/hotu-vs-fnatic-stake-pulse-beat-iii</a></td><td>403</td><td>28984</td><td>2026-10-14T02:44:57Z</td><td> marker 'Best of ' absent</td></tr><tr><td>www.hltv.org</td><td style='word-break:break-all'><a href="https://www.hltv.org/matches/2399462/banda-chuya-vs-6666-cct-2026-europe-series-12-closed-qualifier" rel="noopener nofollow">https://www.hltv.org/matches/2399462/banda-chuya-vs-6666-cct-2026-europe-series-12-closed-qualifier</a></td><td>403</td><td>0</td><td>2026-10-14T02:44:58Z</td><td>HTTP 403 browser-fallback budget exhausted for this run</td></tr><tr><td>www.hltv.org</td><td style='word-break:break-all'><a href="https://www.hltv.org/matches/2399385/falcons-vs-ninjas-in-pyjamas-thunderpick-world-championship-2026" rel="noopener nofollow">https://www.hltv.org/matches/2399385/falcons-vs-ninjas-in-pyjamas-thunderpick-world-championship-2026</a></td><td>403</td><td>0</td><td>2026-10-14T02:44:59Z</td><td>HTTP 403 browser-fallback budget exhausted for this run</td></tr><tr><td>www.hltv.org</td><td style='word-break:break-all'><a href="https://www.hltv.org/matches/2399299/ex-rustec-vs-mellren-cct-2026-europe-series-11" rel="noopener nofollow">https://www.hltv.org/matches/2399299/ex-rustec-vs-mellren-cct-2026-europe-series-11</a></td><td>403</td><td>0</td><td>2026-10-14T02:45:00Z</td><td>HTTP 403 browser-fallback budget exhausted for this run</td></tr><tr><td>www.hltv.org</td><td style='word-break:break-all'><a href="https://www.hltv.org/matches/2399386/legacy-vs-parivision-thunderpick-world-championship-2026" rel="noopener nofollow">https://www.hltv.org/matches/2399386/legacy-vs-parivision-thunderpick-world-championship-2026</a></td><td>403</td><td>0</td><td>2026-10-14T02:45:01Z</td><td>HTTP 403 browser-fallback budget exhausted for this run</td></tr><tr><td>www.hltv.org</td><td style='word-break:break-all'><a href="https://www.hltv.org/matches/2399300/g2-ares-vs-the-last-resort-cct-2026-europe-series-11" rel="noopener nofollow">https://www.hltv.org/matches/2399300/g2-ares-vs-the-last-resort-cct-2026-europe-series-11</a></td><td>403</td><td>0</td><td>2026-10-14T02:45:02Z</td><td>HTTP 403 browser-fallback budget exhausted for this run</td></tr><tr><td>www.hltv.org</td><td style='word-break:break-all'><a href="https://www.hltv.org/matches/2399463/pcific-vs-ryvex-cct-2026-europe-series-12-closed-qualifier" rel="noopener nofollow">https://www.hltv.org/matches/2399463/pcific-vs-ryvex-cct-2026-europe-series-12-closed-qualifier</a></td><td>403</td><td>0</td><td>2026-10-14T02:45:03Z</td><td>HTTP 403 browser-fallback budget exhausted for this run</td></tr><tr><td>www.hltv.org</td><td style='word-break:break-all'><a href="https://www.hltv.org/matches/2399387/furia-vs-betboom-thunderpick-world-championship-2026" rel="noopener nofollow">https://www.hltv.org/matches/2399387/furia-vs-betboom-thunderpick-world-championship-2026</a></td><td>403</td><td>0</td><td>2026-10-14T02:45:04Z</td><td>HTTP 403 browser-fallback budget exhausted for this run</td></tr><tr><td>www.hltv.org</td><td style='word-break:break-all'><a href="https://www.hltv.org/matches/2399301/forze-reload-vs-lfo-10-cct-2026-europe-series-11" rel="noopener nofollow">https://www.hltv.org/matches/2399301/forze-reload-vs-lfo-10-cct-2026-europe-series-11</a></td><td>403</td><td>0</td><td>2026-10-14T02:45:05Z</td><td>HTTP 403 browser-fallback budget exhausted for this run</td></tr><tr><td>www.hltv.org</td><td style='word-break:break-all'><a href="https://www.hltv.org/matches/2399418/wbt-vs-eac-elisa-breakout-series-2" rel="noopener nofollow">https://www.hltv.org/matches/2399418/wbt-vs-eac-elisa-breakout-series-2</a></td><td>403</td><td>0</td><td>2026-10-14T02:45:06Z</td><td>HTTP 403 browser-fallback budget exhausted for this run</td></tr><tr><td>www.hltv.org</td><td style='word-break:break-all'><a href="https://www.hltv.org/matches/2399419/ence-vs-bojong-elisa-breakout-series-2" rel="noopener nofollow">https://www.hltv.org/matches/2399419/ence-vs-bojong-elisa-breakout-series-2</a></td><td>403</td><td>0</td><td>2026-10-14T02:45:07Z</td><td>HTTP 403 browser-fallback budget exhausted for this run</td></tr><tr><td>www.hltv.org</td><td style='word-break:break-all'><a href="https://www.hltv.org/matches/2399137/heroic-vs-envy-stake-pulse-beat-iii" rel="noopener nofollow">https://www.hltv.org/matches/2399137/heroic-vs-envy-stake-pulse-beat-iii</a></td><td>403</td><td>0</td><td>2026-10-14T02:45:08Z</td><td>HTTP 403 browser-fallback budget exhausted for this run</td></tr><tr><td>www.hltv.org</td><td style='word-break:break-all'><a href="https://www.hltv.org/matches/2399136/mibr-vs-bcgame-stake-pulse-beat-iii" rel="noopener nofollow">https://www.hltv.org/matches/2399136/mibr-vs-bcgame-stake-pulse-beat-iii</a></td><td>403</td><td>0</td><td>2026-10-14T02:45:09Z</td><td>HTTP 403 browser-fallback budget exhausted for this run</td></tr><tr><td>www.hltv.org</td><td style='word-break:break-all'><a href="https://www.hltv.org/matches/2399420/wbt-vs-ence-elisa-breakout-series-2" rel="noopener nofollow">https://www.hltv.org/matches/2399420/wbt-vs-ence-elisa-breakout-series-2</a></td><td>403</td><td>0</td><td>2026-10-14T02:45:10Z</td><td>HTTP 403 browser-fallback budget exhausted for this run</td></tr><tr><td>www.hltv.org</td><td style='word-break:break-all'><a href="https://www.hltv.org/matches/2399421/eac-vs-bojong-elisa-breakout-series-2" rel="noopener nofollow">https://www.hltv.org/matches/2399421/eac-vs-bojong-elisa-breakout-series-2</a></td><td>403</td><td>0</td><td>2026-10-14T02:45:12Z</td><td>HTTP 403 browser-fallback budget exhausted for this run</td></tr><tr><td>www.hltv.org</td><td style='word-break:break-all'><a href="https://www.hltv.org/matches/2399422/wbt-vs-bojong-elisa-breakout-series-2" rel="noopener nofollow">https://www.hltv.org/matches/2399422/wbt-vs-bojong-elisa-breakout-series-2</a></td><td>403</td><td>0</td><td>2026-10-14T02:45:13Z</td><td>HTTP 403 browser-fallback budget exhausted for this run</td></tr><tr><td>www.hltv.org</td><td style='word-break:break-all'><a href="https://www.hltv.org/matches/2399423/eac-vs-ence-elisa-breakout-series-2" rel="noopener nofollow">https://www.hltv.org/matches/2399423/eac-vs-ence-elisa-breakout-series-2</a></td><td>403</td><td>0</td><td>2026-10-14T02:45:14Z</td><td>HTTP 403 browser-fallback budget exhausted for this run</td></tr><tr><td>www.hltv.org</td><td style='word-break:break-all'><a href="https://www.hltv.org/matches/2399424/voca-vs-phantom-elisa-breakout-series-2" rel="noopener nofollow">https://www.hltv.org/matches/2399424/voca-vs-phantom-elisa-breakout-series-2</a></td><td>403</td><td>0</td><td>2026-10-14T02:45:15Z</td><td>HTTP 403 browser-fallback budget exhausted for this run</td></tr><tr><td>www.hltv.org</td><td style='word-break:break-all'><a href="https://www.hltv.org/matches/2399425/havu-vs-rounds-elisa-breakout-series-2" rel="noopener nofollow">https://www.hltv.org/matches/2399425/havu-vs-rounds-elisa-breakout-series-2</a></td><td>403</td><td>0</td><td>2026-10-14T02:45:16Z</td><td>HTTP 403 browser-fallback budget exhausted for this run</td></tr><tr><td>www.hltv.org</td><td style='word-break:break-all'><a href="https://www.hltv.org/matches/2399426/voca-vs-havu-elisa-breakout-series-2" rel="noopener nofollow">https://www.hltv.org/matches/2399426/voca-vs-havu-elisa-breakout-series-2</a></td><td>403</td><td>0</td><td>2026-10-14T02:45:17Z</td><td>HTTP 403 browser-fallback budget exhausted for this run</td></tr><tr><td>www.hltv.org</td><td style='word-break:break-all'><a href="https://www.hltv.org/matches/2399427/phantom-vs-rounds-elisa-breakout-series-2" rel="noopener nofollow">https://www.hltv.org/matches/2399427/phantom-vs-rounds-elisa-breakout-series-2</a></td><td>403</td><td>0</td><td>2026-10-14T02:45:18Z</td><td>HTTP 403 browser-fallback budget exhausted for this run</td></tr><tr><td>www.hltv.org</td><td style='word-break:break-all'><a href="https://www.hltv.org/matches/2399471/mellren-vs-privateer-cct-2026-europe-series-12-closed-qualifier" rel="noopener nofollow">https://www.hltv.org/matches/2399471/mellren-vs-privateer-cct-2026-europe-series-12-closed-qualifier</a></td><td>403</td><td>0</td><td>2026-10-14T02:45:19Z</td><td>HTTP 403 browser-fallback budget exhausted for this run</td></tr><tr><td>www.hltv.org</td><td style='word-break:break-all'><a href="https://www.hltv.org/matches/2399428/voca-vs-rounds-elisa-breakout-series-2" rel="noopener nofollow">https://www.hltv.org/matches/2399428/voca-vs-rounds-elisa-breakout-series-2</a></td><td>403</td><td>0</td><td>2026-10-14T02:45:20Z</td><td>HTTP 403 browser-fallback budget exhausted for this run</td></tr><tr><td>www.hltv.org</td><td style='word-break:break-all'><a href="https://www.hltv.org/matches/2399429/phantom-vs-havu-elisa-breakout-series-2" rel="noopener nofollow">https://www.hltv.org/matches/2399429/phantom-vs-havu-elisa-breakout-series-2</a></td><td>403</td><td>0</td><td>2026-10-14T02:45:21Z</td><td>HTTP 403 browser-fallback budget exhausted for this run</td></tr></tbody>
-</table></div>
-
+  <h2>The ladder</h2>
+  <ol class="ladder">
+    <li><strong>Direct bookmaker response</strong> — Pinnacle's public guest endpoint
+      (<code>guest.api.arcadia.pinnacle.com</code>) that its own CS2 page loads. Read on 2026-10-14 02:34 UTC
+      for this session's own verification: <em>verified reachable</em>. Whole-match moneyline only; prices are
+      American, converted to decimal, then de-vigged.</li>
+    <li><strong>Bookmaker price served through an aggregator</strong> (bc.game prices listed on EGamersWorld).
+      Used, but labelled <em>aggregator-mediated</em> on every row, and rejected outright when the listing
+      shows a placeholder pair — see the flagged page.</li>
+    <li><strong>Prediction market</strong> (Polymarket public API) — an outside market that does list some of
+      these low-tier cups. It is a market, not a bookmaker, its low-tier liquidity is thin, and its CS2 events
+      are frequently <em>per-map</em> markets, which are not a series probability. This board therefore only
+      republishes what the market itself states, with the map/series distinction kept explicit.</li>
+    <li><strong>Our own line from official ratings</strong> — Valve Regional Standings (Valve's own published
+      standings file) cross-read with the HLTV world ranking. This is the rung that covers the matches no
+      bookmaker lists; a team with neither rating leaves the row blank and flagged.</li>
+    <li><strong>Nothing</strong> — no price, no rating: the row stays blank, the reason is printed, and it is
+      listed on the flagged page. No default 50/50, ever.</li>
+  </ol>
+  <h2>Official sources this board links to</h2>
+  <ul>
+    <li>Hotspawn Pick'em board (fixture identity, kickoff and lock epochs only):
+      <a href="https://play.hotspawn.com/cs2-pickems">play.hotspawn.com/cs2-pickems</a> and
+      <a href="https://play.hotspawn.com/lobby">/lobby</a>.</li>
+    <li>Valve Regional Standings (official Valve file):
+      <a href="https://github.com/ValveSoftware/counter-strike_regional_standings">github.com/ValveSoftware/counter-strike_regional_standings</a>.</li>
+    <li>HLTV world ranking: <a href="https://www.hltv.org/ranking/teams">hltv.org/ranking/teams</a>;
+      HLTV match pages for series format and results: <a href="https://www.hltv.org/matches">hltv.org/matches</a>.</li>
+    <li>Pinnacle public guest matchups:
+      <a href="https://www.pinnacle.com/en/esports/games/cs2/matchups/">pinnacle.com/en/esports/games/cs2/matchups/</a>.</li>
+  </ul>
+  
+  <h3>Prediction market (Polymarket) — access status: ok</h3>
+  <p>Endpoint read by this board's collector: <code>https://gamma-api.polymarket.com/public-search?q=&lt;team_a&gt; &lt;team_b&gt;&amp;limit_per_type=4 (one lookup per open fixture)</code> at
+  2026-10-14T02:48:17Z. Polymarket lists some of the low-tier cups that big bookmakers skip. Only whole-match (series) markets are republished as a series reference; per-map markets are recorded separately and are never used as a series probability. A fixture with no matching event is recorded as unmatched, not filled in.</p>
+  <p class="note">Fixtures considered: 28 ·
+  series markets found: 11 ·
+  per-map markets found: 14 (never used as a series probability) ·
+  fixtures with no market: 8 ·
+  errors: 0.</p>
+  <table class="audit"><thead><tr><th>Market</th><th>Kind</th><th>Implied</th><th>Updated</th><th>Link</th></tr></thead><tbody><tr><td>Counter-Strike: Gothic vs Lavked (BO3) - CCT Europe Series #11 Group Stage</td><td>series</td><td>50.0% / 50.0%</td><td>2026-10-14T02:41:30.895878Z</td><td><a href="https://polymarket.com/event/cs2-gothic-lavked-2026-10-14" rel="noopener">market</a></td></tr><tr><td>Counter-Strike: ENJOY vs B8 Academy (BO3) - CCT Europe Closed Qualifier: Series #12 Group A</td><td>series</td><td>60.5% / 39.5%</td><td>2026-10-14T02:41:30.895878Z</td><td><a href="https://polymarket.com/event/cs2-enjoy-b8acad-2026-10-14" rel="noopener">market</a></td></tr><tr><td>Counter-Strike: HOTU vs fnatic (BO3) - Stake Pulse Beat III Group C</td><td>series</td><td>46.5% / 53.5%</td><td>2026-10-14T02:41:30.895878Z</td><td><a href="https://polymarket.com/event/cs2-hotu-fnc-2026-10-14" rel="noopener">market</a></td></tr><tr><td>Counter-Strike: ex-RUSTEC vs mellren (BO3) - CCT Europe Series #11 Group Stage</td><td>series</td><td>65.0% / 35.0%</td><td>2026-10-14T02:41:30.895878Z</td><td><a href="https://polymarket.com/event/cs2-rustec-mellre-2026-10-14" rel="noopener">market</a></td></tr><tr><td>Counter-Strike: Legacy vs PARIVISION (BO3) - Thunderpick World Championship Group B</td><td>series</td><td>57.5% / 42.5%</td><td>2026-10-14T02:43:31.250927Z</td><td><a href="https://polymarket.com/event/cs2-lgc-prv-2026-10-14" rel="noopener">market</a></td></tr><tr><td>Counter-Strike: G2 Ares vs The Last Resort (BO3) - CCT Europe Series #11 Group Stage</td><td>series</td><td>66.0% / 34.0%</td><td>2026-10-14T02:43:31.250927Z</td><td><a href="https://polymarket.com/event/cs2-g2a-tlr-2026-10-14" rel="noopener">market</a></td></tr><tr><td>Counter-Strike: Heroic vs Envy (BO3) - Stake Pulse Beat III Group D</td><td>series</td><td>66.5% / 33.5%</td><td>2026-10-14T02:43:31.250927Z</td><td><a href="https://polymarket.com/event/cs2-hero-envy-2026-10-15" rel="noopener">market</a></td></tr><tr><td>Counter-Strike: ENCE vs BOJONG (BO1) - Elisa BreakOut Series #2 Group A</td><td>series</td><td>65.5% / 34.5%</td><td>2026-10-14T02:43:31.250927Z</td><td><a href="https://polymarket.com/event/cs2-ence-bojong-2026-10-15" rel="noopener">market</a></td></tr><tr><td>Counter-Strike: Voca vs Phantom (BO1) - Elisa BreakOut Series #2 Group B</td><td>series</td><td>44.0% / 56.0%</td><td>2026-10-14T02:43:31.250927Z</td><td><a href="https://polymarket.com/event/cs2-voc-pha-2026-10-16" rel="noopener">market</a></td></tr><tr><td>Counter-Strike: Voca vs HAVU (BO1) - Elisa BreakOut Series #2 Group B</td><td>series</td><td>61.5% / 38.5%</td><td>2026-10-14T02:43:31.250927Z</td><td><a href="https://polymarket.com/event/cs2-voc-havu-2026-10-16" rel="noopener">market</a></td></tr><tr><td>Counter-Strike: Phantom vs HAVU (BO1) - Elisa BreakOut Series #2 Group B</td><td>series</td><td>63.5% / 36.5%</td><td>2026-10-14T02:43:31.250927Z</td><td><a href="https://polymarket.com/event/cs2-pha-havu-2026-10-16" rel="noopener">market</a></td></tr></tbody></table>
+  <p class="note">Per-map markets seen (shown only so their existence is not mistaken for a series line): Counter-Strike: ENJOY vs B8 Academy - Map 1 Winner; Counter-Strike: ENJOY vs B8 Academy - Map 2 Winner; Counter-Strike: G2 Ares vs The Last Resort - Map 1 Winner; Counter-Strike: G2 Ares vs The Last Resort - Map 2 Winner; Counter-Strike: Gothic vs Lavked - Map 1 Winner; Counter-Strike: Gothic vs Lavked - Map 2 Winner; Counter-Strike: HOTU vs fnatic - Map 1 Winner; Counter-Strike: HOTU vs fnatic - </p>
+  <h2>What this board refuses to do</h2>
+  <ul>
+    <li>It never reads Hotspawn's crowd pick percentage; that is not a probability.</li>
+    <li>It never averages a market price with a model and calls the result a market price.</li>
+    <li>It never fills a missing price, rating or series format with an assumption.</li>
+    <li>It never publishes a number without the link it came from.</li>
+  </ul>
 </main>
-<footer>
-  Generated 2026-10-14T02:52:57Z from public sources. Analysis only — not betting advice.
-  Every value on this board links to the source it came from; a value that could not be confirmed is
-  blank and listed on <a href="flagged.html">Flagged for review</a>.
-  <br>Session <code>arena/bdc98a9a</code> · <a href="../index.html">all boards on this site</a> ·
-  <a href="https://play.hotspawn.com/lobby">official Hotspawn lobby</a>
-</footer>
-<script>
-(function () {
-  var box = document.getElementById('pickfilter');
-  if (!box) return;
-  var cards = Array.prototype.slice.call(document.querySelectorAll('[data-teams]'));
-  var chips = Array.prototype.slice.call(document.querySelectorAll('[data-tier]'));
-  function apply() {
-    var q = box.value.toLowerCase().trim();
-    var tier = document.querySelector('[data-tier].on') ? document.querySelector('[data-tier].on').dataset.tier : 'all';
-    cards.forEach(function (card) {
-      var okText = !q || card.dataset.teams.indexOf(q) >= 0;
-      var okTier = tier === 'all' || card.dataset.tier === tier;
-      card.style.display = okText && okTier ? '' : 'none';
-    });
-  }
-  box.addEventListener('input', apply);
-  chips.forEach(function (chip) {
-    chip.addEventListener('click', function () {
-      chips.forEach(function (other) { other.classList.remove('on'); });
-      chip.classList.add('on');
-      apply();
-    });
-  });
-})();
-</script>
+<footer><p><a href="index.html">Executive summary</a> · <a href="methodology.html">Method</a> ·
+<a href="flagged.html">Flagged for review</a></p></footer>
 </body>
 </html>

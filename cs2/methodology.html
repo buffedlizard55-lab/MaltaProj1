@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0d1117">
+<meta name="description" content="Hotspawn Pick'em CS2 board: win probability per team for every listed match, built from external bookmaker lines and our own VRS line. Mobile first.">
+<title>Method · Hotspawn CS2 board</title>
+<link rel="stylesheet" href="style.css">
+</head><body>
+<header class="top">
+  <div class="brand"><span class="mark">CS2</span>
+    <div><strong>Hotspawn Pick&#8217;em board</strong><small>independent lines · mobile first · not betting advice</small></div>
+  </div>
+  <p class="asof">captured <b>2026-10-14T02:45:17Z</b> UTC</p>
+  <nav class="scrollnav"><a class="" href="index.html">Board</a><a class="" href="lines.html">Market lines</a><a class="" href="own-lines.html">Our own lines</a><a class="" href="tournaments.html">Tournaments</a><a class="" href="fixtures.html">Full slate</a><a class="" href="coverage.html">Coverage</a><a class="on" href="methodology.html">Method</a><a class="" href="sources.html">Sources</a><a class="" href="flagged.html">Flagged for review</a></nav>
+</header>
+<main><section class="hero"><h1>How every number here is produced</h1></section><ol class="method">
+<li><b>Fixtures.</b> The 4 public pick&#8217;em pages we crawl are Angular SSR; the
+<code>&lt;script id="ng-state"&gt;</code> TransferState carries the whole fixture list, not only the rendered
+cards, so nothing depends on how many cards the page chose to paint. Each row gives
+<code>scheduled_start_time</code> and <code>lock_time</code> as epoch milliseconds — converted to UTC and
+published in full. A fixture is pickable while its lock time is in the future.</li>
+<li><b>External line.</b> Pinnacle&#8217;s public guest responses (the payload its own CS2 matchups page loads)
+give the whole-match moneyline; EGamersWorld match pages give named books&#8217; aggregate prices. Both are
+converted to decimal, de-vigged multiplicatively, and averaged across the books when more than one quotes the
+fixture. Pinnacle, when it lists the fixture, is the headline because it sets the market other books follow.</li>
+<li><b>Joining a price to a fixture.</b> Only exact normalised team-pair equality plus a start time within
+6 h, and the pairing must be unique. Group stages where the same two
+teams play twice are resolved by kickoff time; anything ambiguous is refused and flagged.</li>
+<li><b>Our own line.</b> Valve Regional Standings points through
+<code>P(A) = 1/(1+10^(−k·Δ/400))</code>. <code>k</code> is re-fitted by maximum likelihood on the match results
+Valve publishes in the same repository (14188 matches over
+44 snapshot windows), because Valve&#8217;s README states the raw curve
+over-confidently separates strong and weak teams. Out-of-sample it beats the raw curve: log loss
+0.6915 →
+0.6509, Brier
+0.241 →
+0.2296. The curve is
+fitted on match results, so it is a match-level probability; no series transform is layered on top of it
+(format mixtures are already inside the data the slope was fitted on).</li>
+<li><b>The pick.</b> The market favourite when a verified line exists, otherwise our own line&#8217;s favourite,
+labelled as such on the row. When the two disagree on direction the row carries flag
+<code>A-DIVERGE</code> and both numbers stay visible.</li>
+<li><b>Blanks.</b> No price and no official rating for both teams → no probability, no pick, and a flag saying
+what was missing. Nothing is filled in from a neighbouring round, an "average team", or Hotspawn&#8217;s own
+crowd percentage.</li>
+<li><b>Reproduce.</b> <code>python3 cs2/collect.py</code> (needs internet, run by the workflow) →
+<code>VRS_REPO_DIR=&lt;clone&gt; python3 cs2/calibrate.py</code> → <code>python3 cs2/model.py</code> →
+<code>python3 cs2/build.py</code> → <code>python3 cs2/tests.py</code>.</li>
+</ol></main>
+<footer class="foot">
+  <p>Session <code>arena/a174d77f</code> · generated 2026-10-14T02:47:24Z by <code>cs2/build.py</code> from
+  <code>cs2/data</code> · refreshed automatically by <code>.github/workflows/cs2-a174d77f.yml</code>.</p>
+  <p>Probabilities come from external bookmaker prices (de-vigged) and our own rating line.
+  Hotspawn&#8217;s crowd pick percentages are excluded from every number on this site; they appear only on the
+  <a href="coverage.html">coverage page</a> as evidence that they were seen and dropped.
+  Analysis only — not betting advice.</p>
+</footer>
+</body></html>

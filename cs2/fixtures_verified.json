@@ -1,0 +1,25 @@
+{
+  "_about": "Facts about an individual fixture that no reachable machine source gave us and that were instead read by hand off the organiser's or HLTV's own match page. model.py uses these only to fill a field it could not otherwise read (series length), never to invent a price. Every entry names the page and the UTC moment it was read, so the value can be re-checked or deleted without touching the code.",
+  "_entries_require": [
+    "series_len",
+    "source_url",
+    "verified_utc",
+    "read_by"
+  ],
+  "1080279": {
+    "series_len": 1,
+    "format_text": "Best of 1 (LAN) - Group A",
+    "source_url": "https://www.hltv.org/matches/2399418/wbt-vs-eac-elisa-breakout-series-2",
+    "verified_utc": "2026-10-14T02:24:00Z",
+    "read_by": "arena/a174d77f",
+    "also_confirms": "kickoff 2026-10-15T08:00:00Z (page shows 04:00 15 Oct in UTC-4) and that the opponent listed as WROTBERRY on the board is WBT"
+  },
+  "1080288": {
+    "series_len": 1,
+    "format_text": "Best of 1 (LAN) - Group B",
+    "source_url": "https://www.hltv.org/matches/2399427/phantom-vs-rounds-elisa-breakout-series-2",
+    "verified_utc": "2026-10-14T02:24:00Z",
+    "read_by": "arena/a174d77f",
+    "also_confirms": "kickoff 2026-10-16T14:00:00Z (page shows 10:00 16 Oct in UTC-4) and that RoundsGG on the board is ROUNDS"
+  }
+}

@@ -1,0 +1,67 @@
+{
+ "generated_utc": "2026-10-14T02:47:24Z",
+ "capture_generated_utc": "2026-10-14T02:45:17Z",
+ "fixtures_cs2": 88,
+ "open": 28,
+ "with_market_line": 7,
+ "with_own_line": 26,
+ "with_pick": 27,
+ "flagged": 182,
+ "market_price_rows": 7,
+ "own_line": {
+  "k": 0.463,
+  "basis": "slope re-fit by cs2/calibrate.py on Valve's own match results",
+  "calibration": "ok",
+  "n_calibrated_on": 14188,
+  "adopted": true,
+  "out_of_sample_log_loss": {
+   "raw_valve_k": {
+    "log_loss": 0.6914643475227401,
+    "brier": 0.24096294105376803
+   },
+   "calibrated_train_k": {
+    "log_loss": 0.6508628336715915,
+    "brier": 0.2296341750669837
+   }
+  },
+  "rating_snapshot_as_of": "2026-10-05",
+  "rating_snapshot_age_days": 9,
+  "valve_commit": "eec4853d7bcf0f1f7efe7f0d901234bef7e98b75",
+  "vrs_file": "live/2026/standings_global_2026_10_05.md"
+ },
+ "sources": {
+  "hotspawn": {
+   "status": "no status reported"
+  },
+  "pinnacle": {
+   "status": "observed",
+   "cs2_events": 8
+  },
+  "egamersworld": {
+   "status": "unavailable",
+   "pages_read": 0,
+   "plain_error": "HTTP 403 HTTPError 403",
+   "browser_error": "challenge/403 persisted across attempts",
+   "error": "HTTP 403 HTTPError 403"
+  },
+  "vrs": {
+   "status": "observed",
+   "as_of": "2026-10-05",
+   "file": "live/2026/standings_global_2026_10_05.md",
+   "url": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md"
+  },
+  "hltv": {
+   "status": "observed"
+  },
+  "polymarket": {
+   "status": "observed"
+  },
+  "oddsdigger": {
+   "status": "reachable, unparsed"
+  },
+  "attempts": {
+   "status": "non-dict payload (list)",
+   "rows": 9
+  }
+ }
+}
