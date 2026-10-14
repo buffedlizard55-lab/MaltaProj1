@@ -2662,3 +2662,17 @@ links to the updated picks list and must be phone-friendly.
   pick + probability instead of a blank/lean; strict slate-model parity tests; explicit market/model
   divergence flags. Cross-board pick disagreements flagged by `26986a4e` (IRREG-26) remain open for
   the final integration owner and are listed on `every/flagged.html`.
+
+### Release & deployment record — arena/75fd29ee (2026-10-14 03:1x UTC)
+
+| Item | Result |
+|---|---|
+| **PR** | [#94](https://github.com/buffedlizard55-lab/MaltaProj1/pull/94) (`arena/75fd29ee-maltaproj1` → `main`) — **MERGED** with merge commit `1c65c97d9d3ab04be71bdc1d2c2afa866645ae00`, explicit `gh pr merge 94 --merge` (no `--auto`, no approval wait). Pre-merge checks all **pass**: `audit`, `rebuild-and-verify` (17 acceptance tests incl. pick-set equality vs the open slate), `verify`. |
+| **Pages** | Build `built` at 2026-10-14T03:09:56Z for the merge commit (`/repos/.../pages/builds/latest`); Pages API reports `main:/` **built** at https://buffedlizard55-lab.github.io/MaltaProj1/ . This sandbox cannot fetch `*.github.io` directly (network allowlist), so the deployed-tree evidence is the official Pages build record + `every/` tree present at the merge commit (`every/index.html` 58,479 bytes via the contents API). |
+| **Published** | `every/index.html` (28/28 picks), `every/{methodology,flagged,sources}.html`, `every/data/{picks.csv,picks.json,coverage.json,flags.csv}`, `data/75fd29ee/team_research.csv`, root `#exec-summary` additive link, README row, `reviews/75fd29ee-review.md`, `.github/workflows/every-75fd29ee.yml` (hourly rebuild + tests + audit + Pages request + public-response check). |
+| **Verification** | 17/17 session tests; **177/177 repository tests** after rebase; `scripts/audit_91e444dd.py`: 190 HTML pages, **0 broken links**. Slate-model parity 18/20 exact (2 documented IRREG-02 input corrections, flagged). Every row carries https source links; `hotspawn_crowd_used=false`. |
+| **Merge hygiene** | Rebase onto `dd6f075` conflicted twice in `COORDINATION.md` and once in `index.html`; every conflict resolved by keeping main's content verbatim and re-appending/adding only this session's material (see the overlap resolution note above). No other session's file was modified or reverted. Force-with-lease used only on this session's own branch after the rebase. |
+| **Sources** | Hotspawn payload (identity + epochs only) · Pinnacle guest moneylines 2026-10-14T02:21Z · EGamersWorld/bc.game captures 2026-10-14T01:48–02:26Z (flagged aggregator-reported) · HLTV match pages (formats/lineups) · HLTV world ranking 2026-10-12 · HLTV Valve global ranking 2026-10-10 (LFO 10: #168, 771 pts) · Valve `standings_global_2026_10_05.md` (line-anchored). Full links per row in `every/data/picks.csv` and `reviews/75fd29ee-review.md`. |
+| **Irregularities (non-blocking, published on `every/flagged.html`)** | IRREG-02 carried (Valve duplicate names affect slate rows `1079622`/`1081112`) · FL-EXT-PLACEHOLDER (4 rejected 1.80/1.80 pages) · E-01 identity/snapshot notes for LFO 10 (Entropy core, #168/#169 drift, mixed snapshot dates) · E-02-DIVERGENCE ×4 (market vs model: `1079439`, `1079623`, `1080279`, `1080285`) · IRREG-26 cross-board pick disagreements remain open for the final integration owner. |
+
+- Tasks E-01..E-07 all **done**. Session closed after this record; automation (hourly `every-75fd29ee.yml` + hourly slate capture) keeps the picks list current with no manual input.
