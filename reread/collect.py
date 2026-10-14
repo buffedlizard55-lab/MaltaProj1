@@ -53,7 +53,7 @@ BOARDS = {
 
 LOG: list[dict] = []
 CACHE: dict[str, dict] = {}
-BROWSER_BUDGET = {"left": 90}
+BROWSER_BUDGET = {"left": 150}
 # Hosts that consistently refuse a plain HTTP client from a CI runner. The browser is the fallback
 # for these only, so the budget is spent where a plain read is known to fail.
 BROWSER_HOSTS = ("www.hltv.org", "hltv.org", "egamersworld.com", "www.hotspawn.com",
@@ -598,6 +598,11 @@ def run(only: str | None, limit: int | None, offline: bool) -> dict:
         print(f"{board}: {len(found)} cited values", flush=True)
         claims += found
     claims = dedupe(claims)
+    # Spend the browser budget on the hosts that refuse a plain client first (Hotspawn, HLTV,
+    # EGamersWorld), then the plain-HTTP sources (Valve's raw file, Polymarket, Pinnacle).
+    order = {"hotspawn": 0, "hltv_match": 1, "hltv_team": 2, "egw_market": 3, "pinnacle": 4,
+             "polymarket": 5, "vrs": 6}
+    claims.sort(key=lambda c: (order.get(c["kind"], 9), c["board"], c["fixture_id"]))
     print(f"worklist: {len(claims)} unique claims", flush=True)
     if limit:
         claims = claims[:limit]
@@ -610,7 +615,7 @@ def run(only: str | None, limit: int | None, offline: bool) -> dict:
                    row.get("claimed", ""))
             previous[key] = row
     started = time.time()
-    budget_seconds = 20 * 60
+    budget_seconds = 22 * 60
     reuse_hours = 6
     results = []
     for i, c in enumerate(claims, 1):
