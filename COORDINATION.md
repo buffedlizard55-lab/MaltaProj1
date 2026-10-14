@@ -2973,3 +2973,48 @@ Source access: workspace outbound host restrictions prevent direct Hotspawn/book
   progress (this PR + post-merge verification).
 - **IR-A453-2 superseded:** `reread/` is now merged on `main` (PR #103) and its landing card is part
   of `main`'s `index.html`; PR #104's landing links `reread/index.html` in its verified-sources row.
+## Session `arena/228bb5bc` (`arena/228bb5bc-maltaproj1`) — final integration: one executive summary, one consolidated every-match picks board, mobile landing page (2026-10-14 ~03:55 UTC)
+
+- **Session ID**: `arena/228bb5bc` · **Branch**: `arena/228bb5bc-maltaproj1` (fixed by Arena; no other branch is created or pushed).
+- **Base**: `origin/main` @ `34015c4` (merge of PR #102 by `5545dbb8`).
+- **Coordination check before claiming (03:40–03:55 UTC)**: this board read in full; `gh run list` / `gh pr list`;
+  `git ls-remote origin`. **Active session observed: `arena/bdc98a9a`** (branch tip `c5f14a7`, pushed 03:50:35Z,
+  workflow run [38508332436](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38508332436) in progress),
+  whose claimed scope is `reread/**`, `reviews/bdc98a9a-verification.md`, `scripts/bdc98a9a_verify_build.py`,
+  `tests/test_bdc98a9a_verify.py`, `.github/workflows/reread-bdc98a9a.yml`, plus **one additive card in root
+  `index.html` linking `reread/`**. That scope is **excluded** here and the card is preserved verbatim in this
+  session's landing-page restructure (see F-04). No other `arena/*` branch has a commit after 03:30Z.
+- **User brief for this session**: (a) a pick for *every* Hotspawn CS2 match, with outside information sources used
+  only for matches the featured route cannot resolve; (b) probabilities from known betting lines / own originated
+  lines, never Hotspawn crowd percentages; (c) **one** executive summary that links, from inside the site, to where
+  the updated picks list lives, readable and usable on a phone; (d) automatic re-checks for new Hotspawn matches.
+
+| ID | Task | Status | Owner | Exclusive file scope |
+|----|------|--------|-------|----------------------|
+| F-01 | Claim + push (this section) | in progress | arena/228bb5bc | `COORDINATION.md` (append-only) |
+| F-02 | **Consolidated every-match board `console/**`**: one mobile-first page (and machine-readable data) with a row for every open CS2 Pick'em fixture — both teams' win probability, the explicit pick, the basis rung (primary market → secondary market → own originated line → research, flagged), the capture time and the source URL that produced each number. Numbers are read from the merged boards' committed data; nothing is re-typed by hand | in progress | arena/228bb5bc | `console/**` |
+| F-03 | Reproducible generator + invariants + automatic refresh: `scripts/228bb5bc_build.py`, `tests/test_228bb5bc.py`, `.github/workflows/console-228bb5bc.yml` (scheduled, fail-closed, commits generated files on `main` only) | in progress | arena/228bb5bc | `scripts/228bb5bc_build.py`, `tests/test_228bb5bc.py`, `.github/workflows/console-228bb5bc.yml` |
+| F-04 | Root `index.html` landing restructure as the **final integration session** for the shared navigation: one executive summary with the live status and one-tap links, category sections, every pre-existing card/link preserved (including `bdc98a9a`'s `reread/` card and the whole archive list), mobile-first | in progress | arena/228bb5bc | root `index.html` (landing + nav), `README.md` (pointer note only) |
+| F-05 | Line-by-line verification of the consolidated rows against the sources they cite (live re-reads where this sandbox can reach the host, CI re-read evidence otherwise), every row source-linked; anything unconfirmable left blank and flagged | in progress | arena/228bb5bc | `reviews/228bb5bc-verification.md`, `console/flagged.html` |
+| F-06 | Release: `git pull --rebase origin main`, push, PR → `main`, merge without waiting, confirm the GitHub Pages build/deploy, record the PR link and result here | unclaimed until F-02..F-05 done | arena/228bb5bc | `COORDINATION.md` (this section) |
+
+- **Deliberately not touched (other owners' files)**: `reread/**` + `bdc98a9a` paths (active session), `exec/**`,
+  `feeds/**`, `picks-full/**`, `executive/**`, `every/**`, `everypick/**`, `cs2/**`, `slate/**`, `model/**`,
+  `oct14/**`, `open-slate/**`, `live/**`, `today/**`, `picks/**`, `winboard/**`, `docs/**`, `assurance/**`,
+  `data/**` (all read-only inputs), and every other session's review file.
+- **Integration request to `bdc98a9a` (logged, no file touched)**: this session restructures root `index.html`;
+  their `reread/` card is carried over unchanged. If their branch lands first, the rebase keeps both.
+
+### Irregularities observed before claiming (for the Flagged page / the record)
+- IR-228-01: root `index.html` currently **renders a merge-conflict note as visible page text** — the literal
+  lines `# Conflict resolved 2026-10-14 (arena/5545dbb8): both blocks kept …` sit inside `<main>` (line 60 of the
+  file on `main` @ `34015c4`), not inside an HTML comment. A phone visitor sees it above the first card.
+- IR-228-02: the root page publishes **three competing executive summaries** (`executive/`, `picks-full/` and
+  `everypick/`) with three different headline counts, plus a stats strip reading `slate/`'s 02:23Z snapshot
+  ("5 Supported picks") while `picks-full/` and `executive/` both publish 28/28 picks. Recorded by `a0bdf924` as an
+  observation; this session fixes it in F-04 by making the landing page read the consolidated board's numbers.
+- IR-228-03: root page hero says "All 28 open CS2 picks" but the same page's freshness script labels rows from a
+  02:23Z snapshot; the page has no single "last refreshed" line. Addressed in F-02/F-04.
+
+### Log — arena/228bb5bc
+- 2026-10-14 03:55 UTC: claim written, committed and pushed before any task work.
