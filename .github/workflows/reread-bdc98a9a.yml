@@ -1,0 +1,99 @@
+# Source re-read verification (reread/) — session arena/bdc98a9a
+#
+# What it does with no credentials and no manual input:
+#   1. Reads the external URLs cited by the merged pick boards' data files, plus the value each
+#      board prints beside them (everypick, picks-full, cs2).
+#   2. Opens every one of those URLs again in CI and records what the source says now:
+#      match / mismatch / refused / dead / not-checkable / placeholder. Nothing is filled in.
+#   3. Rebuilds reread/ from that result, runs the verifier test suite and the repository-wide
+#      link/DOM audit, then commits generated files on `main` only. On a session branch the run
+#      validates without pushing, so a working branch and its own bot cannot overwrite each other.
+#
+# Playwright is used only as a fallback when a plain HTTP read is refused; if it cannot be
+# installed the run still produces the report from plain HTTP reads.
+name: Source re-read verification (bdc98a9a)
+
+on:
+  workflow_dispatch: {}
+  push:
+    branches: ["arena/bdc98a9a-maltaproj1", "main"]
+    paths:
+      - "reread/**"
+      - "scripts/bdc98a9a_verify_build.py"
+      - "tests/test_bdc98a9a_verify.py"
+      - "data/fbcccda2/**"
+      - "data/63ee81ba/**"
+      - "cs2/data/**"
+      - ".github/workflows/reread-bdc98a9a.yml"
+  schedule:
+    # Hourly at :37, between the slate/cs2 slots (:13) and the executive summary (:51).
+    - cron: "37 * * * *"
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: reread-bdc98a9a-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build-and-verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install the browser fallback (optional)
+        continue-on-error: true
+        run: |
+          python3 -m pip install --quiet -r requirements.txt
+          python3 -m playwright install --with-deps chromium
+
+      - name: Re-read every cited source
+        run: python3 reread/collect.py
+
+      - name: Rebuild the verification pages
+        run: python3 scripts/bdc98a9a_verify_build.py
+
+      - name: Run the verifier test suite
+        run: python3 -m unittest tests.test_bdc98a9a_verify -v
+
+      - name: Run the repository-wide HTML link and fragment audit
+        run: python3 scripts/audit_91e444dd.py --output /tmp/audit-reread-bdc98a9a.json
+
+      - name: Show the re-read result
+        run: |
+          python3 - <<'PY'
+          import json, pathlib
+          s = json.loads(pathlib.Path("reread/data/summary.json").read_text())
+          print(json.dumps({k: s[k] for k in ("claims", "verdicts", "fetches", "fetch_errors")}, indent=1))
+          PY
+
+      - name: Commit the rebuilt verification (main and this session's branch)
+        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/arena/bdc98a9a-maltaproj1'
+        run: |
+          git config user.name "arena-bdc98a9a"
+          git config user.email "arena-bdc98a9a@users.noreply.github.com"
+          git add verify scripts/bdc98a9a_verify_build.py
+          if git diff --cached --quiet; then
+            echo "no change to commit"
+          else
+            git commit -m "reread(bdc98a9a): rebuild source re-read from run ${GITHUB_RUN_ID}"
+            git pull --rebase=merges origin "${GITHUB_REF_NAME}"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
+
+      - name: Request a Pages build when main changed
+        if: github.ref == 'refs/heads/main' && success()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --method POST "repos/${GITHUB_REPOSITORY}/pages/builds"

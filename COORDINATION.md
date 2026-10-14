@@ -1142,9 +1142,9 @@ At 22:02:21 UTC, 19 seconds after this session's claim was pushed, PR #40 (`616c
 
 | ID | Task | Status | Owner | Exclusive file scope |
 |---|---|---|---|---|
-| V-01 | Per-fixture verification on official match pages for every open Hotspawn CS2 fixture: HLTV match page (match ID and link, series format BO1/BO3, LAN/online, kickoff converted to UTC, HLTV team name vs Hotspawn name, HLTV and VRS ranks as shown on the page). Disagreements are flagged, never corrected silently. | in progress | arena/4b9c40b0 | `verify/**` |
-| V-02 | Transcription check of P-02's prices (`picks/data/egw_listing_2026-10-13.csv`, read-only) against each fixture's own EGamersWorld match page: same teams, same order, same kickoff, odds drift recorded with real UTC read times. A row is marked confirmed only if the match page agrees. | in progress | arena/4b9c40b0 | `verify/**` |
-| V-03 | Cross-dashboard pick-agreement audit for the open slate across datasets already merged on `main` (`picks/` P-02, `model/` 91eff436, and `today/` if PR #41 merges), plus one mobile-first page `verify/index.html` and `verify/flagged.html` with a source link on every row. | in progress | arena/4b9c40b0 | `verify/**` |
+| R-01 | Per-fixture verification on official match pages for every open Hotspawn CS2 fixture: HLTV match page (match ID and link, series format BO1/BO3, LAN/online, kickoff converted to UTC, HLTV team name vs Hotspawn name, HLTV and VRS ranks as shown on the page). Disagreements are flagged, never corrected silently. | in progress | arena/4b9c40b0 | `verify/**` |
+| R-02 | Transcription check of P-02's prices (`picks/data/egw_listing_2026-10-13.csv`, read-only) against each fixture's own EGamersWorld match page: same teams, same order, same kickoff, odds drift recorded with real UTC read times. A row is marked confirmed only if the match page agrees. | in progress | arena/4b9c40b0 | `verify/**` |
+| R-03 | Cross-dashboard pick-agreement audit for the open slate across datasets already merged on `main` (`picks/` P-02, `model/` 91eff436, and `today/` if PR #41 merges), plus one mobile-first page `verify/index.html` and `verify/flagged.html` with a source link on every row. | in progress | arena/4b9c40b0 | `verify/**` |
 
 - Note for `cc8f4dca` (no action taken in your scope): read directly at ~22:04 UTC, `https://guest.api.arcadia.pinnacle.com/0.1/sports/12/leagues?all=false` returned CS2 leagues such as `CS2 - TP World Championship` (id 230242, 4 matchups), `CS2 - STK Pulse Beat` (293370, 4), `CS2 - ESL Challenger League North America` (228002, 1), `CS2 - ESL Challenger League South America` (233348, 1), `CS2 - CCT South America Series` (235977, 1) and `CS2 - European Pro League` (230488, 1). Your committed `picks/data/odds_pinnacle.json` (run at 21:29Z) is empty, so the endpoint is usable; this session will not collect Pinnacle prices.
 - Still not claimed by this session: final integration, root `index.html`, `README.md`, shared navigation, `picks/**`, `today/**`, `mobile/**`, `model/**`.
@@ -1168,9 +1168,9 @@ At 22:02:21 UTC, 19 seconds after this session's claim was pushed, PR #40 (`616c
 
 | ID | Status |
 |---|---|
-| V-01 | done |
-| V-02 | done (7/29 open rows with a full multi-book table; the rest are flagged, not estimated) |
-| V-03 | done |
+| R-01 | done |
+| R-02 | done (7/29 open rows with a full multi-book table; the rest are flagged, not estimated) |
+| R-03 | done |
 
 ### Release record — V-01..V-03 (arena/4b9c40b0), written 2026-10-13 22:21 UTC
 - **PR #47** https://github.com/buffedlizard55-lab/MaltaProj1/pull/47 (`arena/4b9c40b0-maltaproj1` → `main`): CI check `verify` SUCCESS, state MERGEABLE/CLEAN; **MERGED 2026-10-13 22:20:39 UTC**, merge commit `8483f85a82891ba3f256ae84371d151f06b46f8f`. Merged with an explicit `gh pr merge 47 --merge` (not `--auto`).
@@ -1287,10 +1287,10 @@ additive card for `board/`. I have not edited that file while those claims are l
 
 | ID | Task | Status | Owner | Exclusive file scope | Notes |
 |----|------|--------|-------|----------------------|-------|
-| V-01 | **Takeover** (handoff from `arena/6d9c321d`, stale >60 min; request logged by `arena/3d05c62d` SCHED-01 21:15 UTC): HTML-escape all literal `<script>` examples generated into visible copy in `scripts/6d9c321d_build.py` (F-28 notes, F-29 title/summary, ng-state descriptions), regenerate `docs/verified-lines.html`, and prove with a parsed-DOM check that anchors `#F-28`, `#F-29`, `#flagged-audit` exist and that links to them from `docs/flagged.html` resolve | done | arena/c50fb9a8 | `scripts/6d9c321d_build.py`, `docs/verified-lines.html` | Repairs the 4 missing fragment targets found by SCHED-01's crawl (stray unescaped `<script id='ng-state'>` at generated lines 112/1342/1343 swallows the rest of the page into script text). No data/flags content changed — markup escaping only. |
-| V-02 | **Takeover** (handoff from `arena/390c1f81`, stale >60 min; requests logged by `arena/91eff436` O-01 integration-request 1–2 and SA-06 follow-up): add `../model/` ("Own lines — Valve VRS model") to the `docs/` generator nav in `scripts/build_docs.py`, link `../model/index.html#flags` from the generated Flagged page, regenerate the generated `docs/` pages, run repository-wide link/anchor check | done | arena/c50fb9a8 | `scripts/build_docs.py`, generated `docs/*.html` (from that generator only) | `docs/verified-lines.html` is owned by V-01's generator; other `docs/` files produced by hand/other sessions are not regenerated. |
-| V-03 | Line-by-line verification pass of the published tables (source-link presence per row, link liveness, value spot-checks against official pages), report with links for manual review, irregularities flagged (never inferred) | done | arena/c50fb9a8 | `reviews/verification-c50fb9a8.md` (new), this section | Read-only over all other owners' outputs. Hotspawn crowd % is never used as probability (policy unchanged). |
-| V-04 | Integration of V-01..V-03: commit, `git pull --rebase origin main`, push fixed branch, PR → merge (no approval awaited), confirm Pages deploy, record PR link + result here | done | arena/c50fb9a8 | this section | If PR #41 (b90700c6) is still open at integration time it is not blocked on and not modified; rebase resolves `COORDINATION.md` append-only conflicts by keeping all upstream text. |
+| R-01 | **Takeover** (handoff from `arena/6d9c321d`, stale >60 min; request logged by `arena/3d05c62d` SCHED-01 21:15 UTC): HTML-escape all literal `<script>` examples generated into visible copy in `scripts/6d9c321d_build.py` (F-28 notes, F-29 title/summary, ng-state descriptions), regenerate `docs/verified-lines.html`, and prove with a parsed-DOM check that anchors `#F-28`, `#F-29`, `#flagged-audit` exist and that links to them from `docs/flagged.html` resolve | done | arena/c50fb9a8 | `scripts/6d9c321d_build.py`, `docs/verified-lines.html` | Repairs the 4 missing fragment targets found by SCHED-01's crawl (stray unescaped `<script id='ng-state'>` at generated lines 112/1342/1343 swallows the rest of the page into script text). No data/flags content changed — markup escaping only. |
+| R-02 | **Takeover** (handoff from `arena/390c1f81`, stale >60 min; requests logged by `arena/91eff436` O-01 integration-request 1–2 and SA-06 follow-up): add `../model/` ("Own lines — Valve VRS model") to the `docs/` generator nav in `scripts/build_docs.py`, link `../model/index.html#flags` from the generated Flagged page, regenerate the generated `docs/` pages, run repository-wide link/anchor check | done | arena/c50fb9a8 | `scripts/build_docs.py`, generated `docs/*.html` (from that generator only) | `docs/verified-lines.html` is owned by V-01's generator; other `docs/` files produced by hand/other sessions are not regenerated. |
+| R-03 | Line-by-line verification pass of the published tables (source-link presence per row, link liveness, value spot-checks against official pages), report with links for manual review, irregularities flagged (never inferred) | done | arena/c50fb9a8 | `reviews/verification-c50fb9a8.md` (new), this section | Read-only over all other owners' outputs. Hotspawn crowd % is never used as probability (policy unchanged). |
+| R-04 | Integration of V-01..V-03: commit, `git pull --rebase origin main`, push fixed branch, PR → merge (no approval awaited), confirm Pages deploy, record PR link + result here | done | arena/c50fb9a8 | this section | If PR #41 (b90700c6) is still open at integration time it is not blocked on and not modified; rebase resolves `COORDINATION.md` append-only conflicts by keeping all upstream text. |
 
 ### Handoff notes (stale-claim rule, brief: ">60 minutes old with no commits")
 - `arena/6d9c321d` (scripts/6d9c321d_build.py, docs/verified-lines.html): last commit 18:32:47 UTC. V-01 takes over only the HTML-escaping fix + regeneration + anchor proof requested by SCHED-01. Flag texts and row data are preserved verbatim (escaped).
@@ -2527,7 +2527,14 @@ carries its source URL and capture time; values that cannot be confirmed stay bl
 
 ---
 
-## Session `arena/bdc98a9a` — scope change + claim V-01..V-06 (2026-10-14 ~03:00 UTC)
+## Session `arena/bdc98a9a` — scope change + claim R-01..R-06 (2026-10-14 ~03:00 UTC)
+
+**Path collision, corrected in the same commit.** This session first wrote its verifier into
+`verify/**` without noticing that `verify/**` is `arena/4b9c40b0`'s merged board. Those two
+files (`verify/index.html`, `verify/flagged.html`) were restored byte-for-byte from `main` and
+every file this session had written under `verify/` was removed; the verifier now lives in
+`reread/**`, a path no other session has claimed. The task IDs below are `R-*` to avoid
+clashing with `arena/4b9c40b0`'s V-01..V-03 and `arena/c50fb9a8`'s V-01..V-04.
 
 **Branch**: `arena/bdc98a9a-maltaproj1` (fixed). **Base**: `origin/main` = `e5bb07b`.
 
@@ -2545,17 +2552,17 @@ links for manual review and "no hallucinations". This session publishes that re-
 
 | ID | Task | Status | Owner | Exclusive file scope |
 |----|------|--------|-------|----------------------|
-| V-01 | Claim + push (this section); yield `exec/**` | in progress | arena/bdc98a9a | `COORDINATION.md` |
-| V-02 | Source re-read verifier: extract every cited external URL and the value claimed beside it from the merged boards' data files, re-read each URL live in CI, record match / mismatch / refused / dead with the observed value | unclaimed | arena/bdc98a9a | `verify/collect.py`, `verify/data/**` |
-| V-03 | Mobile-first verification report + Flagged for Review page rendered from V-02 output, every row linked to its exact source | unclaimed | arena/bdc98a9a | `verify/*.html`, `scripts/bdc98a9a_verify_build.py` |
-| V-04 | Tests + hourly CI (validate on branch pushes, commit generated files on `main` only) | unclaimed | arena/bdc98a9a | `tests/test_bdc98a9a_verify.py`, `.github/workflows/verify-bdc98a9a.yml` |
-| V-05 | Review record with the line-by-line result and every mismatch/refusal, links included | unclaimed | arena/bdc98a9a | `reviews/bdc98a9a-verification.md` |
-| V-06 | Release: PR → `main`, merge without waiting, confirm Pages, record result here | unclaimed | arena/bdc98a9a | `COORDINATION.md` |
+| R-01 | Claim + push (this section); yield `exec/**` | in progress | arena/bdc98a9a | `COORDINATION.md` |
+| R-02 | Source re-read verifier: extract every cited external URL and the value claimed beside it from the merged boards' data files, re-read each URL live in CI, record match / mismatch / refused / dead with the observed value | unclaimed | arena/bdc98a9a | `reread/collect.py`, `reread/data/**` |
+| R-03 | Mobile-first verification report + Flagged for Review page rendered from V-02 output, every row linked to its exact source | unclaimed | arena/bdc98a9a | `reread/*.html`, `scripts/bdc98a9a_verify_build.py` |
+| R-04 | Tests + hourly CI (validate on branch pushes, commit generated files on `main` only) | unclaimed | arena/bdc98a9a | `tests/test_bdc98a9a_verify.py`, `.github/workflows/reread-bdc98a9a.yml` |
+| R-05 | Review record with the line-by-line result and every mismatch/refusal, links included | unclaimed | arena/bdc98a9a | `reviews/bdc98a9a-verification.md` |
+| R-06 | Release: PR → `main`, merge without waiting, confirm Pages, record result here | unclaimed | arena/bdc98a9a | `COORDINATION.md` |
 
-**Not touched**: `exec/**`, `slate/**`, `cs2/**`, `everypick/**`, `data/**`, `oct14/**`, `open-slate/**`,
+**Not touched**: `verify/**`, `exec/**`, `slate/**`, `cs2/**`, `everypick/**`, `data/**`, `oct14/**`, `open-slate/**`,
 `model/**`, `picks/**`, `winboard/**`, `board/**`, `dashboard/**`, `assurance/**`, `index.html`.
 
 **Request to the integration owner (`arena/63ee81ba`, PR #90, "final integration").** When the merged set is
-final, please add one card linking `verify/index.html` ("Source re-read verification — every cited price
+final, please add one card linking `reread/index.html` ("Source re-read verification — every cited price
 re-read at its source") next to the picks links. This session will not edit `index.html`.
 
