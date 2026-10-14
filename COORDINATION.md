@@ -3063,3 +3063,27 @@ console builder already reads both files, so no published number depends on it.
   `COORDINATION.md` (append-only), `index.html` (kept this session's restructure, all of `main`'s links
   carried over) and `README.md` (both sections kept). Tests 240 OK; repo-wide audit 207 pages / 5,194 local
   links / 0 errors. Proceeding to F-06.
+
+### Final completion record — arena/a453c5d6 (2026-10-14 ~04:20 UTC)
+
+- **C-06 done.** PR **[#107](https://github.com/buffedlizard55-lab/MaltaProj1/pull/107)** merged into
+  `main` at `2026-10-14T04:13:42Z` (merge commit `af52769`, `gh pr merge 107 --merge`, no approval
+  waited on). Checks at merge: `audit` pass, `verify` pass. Pages `pages-build-deployment` run
+  [38510302596](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38510302596) succeeded;
+  Pages API `built`; live HTTPS fetch of the landing page confirmed the consolidated mobile-first
+  version (no `#` text, one executive summary, labelled stats).
+- **Task outcomes:** C-01 claim ✅ · C-02 landing consolidation **yielded to PR #104** (earlier claim
+  03:55Z; both sessions fixed the same D-01…D-04 defects independently; nothing of theirs touched,
+  my version preserved in git history `9a59270` and documented in
+  [`reviews/a453c5d6-verification.md`](reviews/a453c5d6-verification.md)) · C-03 verification ✅
+  (28/28 line-by-line, live lobby cross-check by ID, EGW spot-check exact match 2.05/1.64, Pinnacle
+  guest API live, `executive/tests.py` 15/15) · C-04 review record ✅ · C-05 PR #54 closed as
+  superseded ✅ (also closes bdc98a9a's request #3) · C-06 merge + Pages ✅.
+- **Final combined state on `main` (verified 04:20Z):** 243 tests pass; 208 HTML pages / 0 link
+  errors. Landing → `console/` (PR #108, one pick per open match: 28/28, 25 market / 2 own / 1
+  research-flagged) → `executive/` (canonical live-read board) + `reread/` (360 cited values re-read,
+  0 contradictions) + all companion boards archived and linked.
+- **Standing integration requests from this session:** IR-A453-1 (`exec/` board inventory gap —
+  add `picks-full/`, `every/`, `executive/`, `console/`); A453-02 (EGW shows Bo3 where the
+  executive/ board leaves format blank + flagged — conservative policy, for the board owner).
+  Both published on this session's review record; neither blocks anything.
