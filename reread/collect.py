@@ -50,6 +50,7 @@ BOARDS = {
     "everypick": ROOT / "data" / "fbcccda2" / "every_pick.csv",
     "picks-full": ROOT / "data" / "63ee81ba" / "picks.csv",
     "cs2": ROOT / "cs2" / "data" / "analysis.csv",
+    "every": ROOT / "every" / "data" / "picks.csv",
 }
 
 LOG: list[dict] = []
@@ -584,7 +585,42 @@ def claims_cs2() -> list[dict]:
     return out
 
 
-CLAIMERS = {"everypick": claims_everypick, "picks-full": claims_picks_full, "cs2": claims_cs2}
+def claims_every() -> list[dict]:
+    """Board published by another session (every/data/picks.csv), read read-only."""
+    out = []
+    for r in read_rows(BOARDS["every"]):
+        fid, a, b = r.get("fixture_id", ""), r.get("team_a", ""), r.get("team_b", "")
+        if r.get("market_url"):
+            kind = "pinnacle" if "pinnacle" in r["market_url"] else "egw_market"
+            out.append(claim_entry("every", fid, a, b, kind, r["market_url"],
+                                   claimed=f"{r.get('market_odds_a','')}/{r.get('market_odds_b','')}",
+                                   odds_a=r.get("market_odds_a", ""), odds_b=r.get("market_odds_b", ""),
+                                   book=r.get("market_book", "")))
+        for side, team in (("a", a), ("b", b)):
+            url = r.get(f"rating_{side}_source_url", "")
+            points = str(r.get(f"rating_{side}_vrs_points", "") or "")
+            if url:
+                value = points.split(".")[0] if points else ""
+                out.append(claim_entry("every", fid, team, "", "vrs", url,
+                                       claimed=f"{points} pts".strip(), rank=value))
+        bo, src = str(r.get("best_of", "") or ""), r.get("best_of_source_url", "")
+        if bo and src.startswith("http"):
+            kind = "hltv_match" if "hltv.org" in src else "pinnacle"
+            out.append(claim_entry("every", fid, a, b, kind, src, claimed=f"Best of {bo}",
+                                   series_format=f"BO{bo}"))
+        if r.get("hltv_match_url"):
+            out.append(claim_entry("every", fid, a, b, "hltv_match", r["hltv_match_url"],
+                                   claimed=f"BO{r.get('best_of','')}",
+                                   series_format=f"BO{r.get('best_of','')}"))
+        for key in ("hotspawn_lobby_url", "hotspawn_match_url"):
+            if r.get(key):
+                out.append(claim_entry("every", fid, a, b, "hotspawn", r[key],
+                                       claimed="fixture identity"))
+    return out
+
+
+CLAIMERS = {"everypick": claims_everypick, "picks-full": claims_picks_full, "cs2": claims_cs2,
+            "every": claims_every}
 
 
 def dedupe(claims: list[dict]) -> list[dict]:
