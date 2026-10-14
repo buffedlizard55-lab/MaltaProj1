@@ -65,12 +65,13 @@ Manual review links are embedded in the current page and row card: [Hotspawn fix
 
 ## Verification results
 
-- Dynamic evaluation at `2026-10-14T09:11:55Z` against the committed live CSV/metadata and optional exact-join format evidence: 88 captured fixtures, 25 still active, 8 market prices, 10 VRS estimates, 7 unresolved, 0 unknown lock times, and 63 locked/past. The unresolved IDs remain `1079624`, `1080279`, `1080281`, `1080283`, `1080286`, `1080288`, and `1080289`.
-- `node --check js/262b4d3b-picks.js && node tests/262b4d3b-picks.cjs`: passed; fresh inventory, strict lock filtering, scoped prices, exact format/rating joins, VRS math, unresolved blanks and fail-closed freshness were checked.
+- Dynamic evaluation at `2026-10-14T09:21:45Z` against the committed live CSV/metadata and optional exact-join format evidence: 88 captured fixtures, 25 still active, 8 market prices, 10 VRS estimates, 7 unresolved, 0 unknown lock times, and 63 locked/past. The unresolved IDs remain `1079624`, `1080279`, `1080281`, `1080283`, `1080286`, `1080288`, and `1080289`.
+- Reconciled the PR branch against the then-current `origin/main` (`47dbdc4`) after GitHub reported a root-page conflict. The current-picks page is now the single root primary CTA; the executive board survives only as a collapsed comparison snapshot. The root preserves the full 137-destination union of the latest main landing (120 unique hrefs) and the pre-rebase session landing (119 unique hrefs).
+- `node --check js/262b4d3b-picks.js`, `node tests/262b4d3b-picks.cjs`, and `node --check js/landing.js`: passed; the Node suite checks fresh inventory, strict lock filtering, scoped prices, exact format/rating joins, VRS math, unresolved blanks and fail-closed freshness.
 - `python -m unittest discover -s tests -p 'test_262b4d3b_landing.py' -v`: 4 tests passed.
-- `python -m unittest discover -s tests -p 'test_landing_43c32386.py' -v` and `node --check js/landing.js`: 2 existing root-landing tests passed and the legacy script parsed. Existing test expectations and root archive destinations were preserved.
-- `python scripts/audit_91e444dd.py --output /tmp/landing-links-release.json`: 237 HTML pages, 5,669 local links, and 0 local-link errors. Its unrelated structural audit of `today/data/current.json` reports 49 review-only findings (29 rows without an external market and 20 model-use caveats); no finding is a link error, and those stored-board findings were not modified by this integration.
-- `git diff --check`: passed after the final documentation updates; a staged-diff whitespace check will be repeated before commit.
+- `python -m unittest discover -s tests -p 'test_landing_43c32386.py' -v`: 4 root-landing acceptance tests passed. `python -m unittest discover -s tests -p 'test_6f9eab3b.py' -v`: 2 additional landing checks passed.
+- `python scripts/audit_91e444dd.py --output /tmp/landing-links-rebased.json`: 240 HTML pages, 5,720 local links, and 0 local-link errors. Its unrelated structural audit of `today/data/current.json` reports 49 review-only findings (29 rows without an external market and 20 model-use caveats); no finding is a link error, and those stored-board findings were not modified by this integration.
+- `git diff origin/main...HEAD --check`: passed for the rebased PR diff. The staged-diff check also passed after resolving the root-page conflict.
 - Full `unittest discover -s tests` was not run locally because other board suites may regenerate tracked collector-owned data; the PR workflow runs the repository suite in its disposable checkout. PR Actions checks: **pending**.
 - Public Pages release verification: **pending**.
 

@@ -3979,3 +3979,10 @@ The proposed `current-picks.html` fixture spine is corrected before implementati
 
 - Re-ran the final post-note HTML/link audit (`python scripts/audit_91e444dd.py --output /tmp/landing-links-release.json`): 237 HTML pages, 5,669 local links, 0 link errors; the separate 49 findings remain review-only for `today/data/current.json`.
 - Re-ran the Node syntax/evidence suite, all four claimed landing integration tests, both existing root-landing regressions, the legacy JS syntax check, and `git diff --check`; all passed. Full repository suite remains the PR workflow gate to avoid side effects from other collectors.
+
+### Mainline reconciliation and post-rebase gate — arena/262b4d3b (2026-10-14 ~09:21Z)
+
+- PR #132 initially conflicted with the subsequently merged #131 root landing. The fixed branch was rebased onto `origin/main` at `47dbdc4`; retained the main landing's research/flag disclosures, made `current-picks.html` the sole root primary action, and moved the separate executive snapshot into a collapsed comparison section. Preserved all 137 distinct root href destinations in the union of the latest main landing (120) and this session's pre-rebase landing (119).
+- After resolving the root conflict, all four `test_262b4d3b_landing.py` tests, all four `test_landing_43c32386.py` tests, both `test_6f9eab3b.py` tests, Node evidence checks, and both JavaScript syntax checks passed. The 240-page/5,720-link repository audit reported zero local-link errors; `git diff origin/main...HEAD --check` passed.
+- The live view was re-evaluated at `2026-10-14T09:21:45Z`: 88 captured, 25 active, 8 market, 10 model, 7 unresolved, 0 unknown lock times, 63 locked/past. The seven unresolved rows remain `1079624`, `1080279`, `1080281`, `1080283`, `1080286`, `1080288`, `1080289`.
+- PR #132 remains open. The rebased head still needs to be pushed to the same fixed branch before checks can run; no merge or deployment is claimed. Other session source/data files remain untouched.
