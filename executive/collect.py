@@ -746,49 +746,32 @@ def collect_secondary_lines_from_repo() -> dict:
             "captured_utc": None}
 
 
-POLY_EVENTS = "https://gamma-api.polymarket.com/events?closed=false&limit=500&order=startDate&ascending=true"
+POLY_EVENTS = "https://gamma-api.polymarket.com/events?closed=false&limit=500&order=startDate&ascending=false"
+POLY_TAG_EVENTS = "https://gamma-api.polymarket.com/events?closed=false&limit=200&tag_slug=counter-strike"
 POLY_KEYWORDS = ("counter-strike", "counter strike", "cs2", "csgo", "cs:go")
 
 
-def collect_polymarket() -> dict:
-    """Polymarket's public read-only API, attempted every run because the brief names it.
+def _poly_as_list(value):
+    if isinstance(value, list):
+        return value
+    if isinstance(value, str):
+        try:
+            parsed = json.loads(value)
+            return parsed if isinstance(parsed, list) else []
+        except json.JSONDecodeError:
+            return []
+    return []
 
-    Polymarket is a prediction market, not a bookmaker: a share price *is* an implied probability, so
-    it is stored as ``native_format: implied_probability`` and the build only ever uses it as a
-    secondary listing (a bookmaker line always outranks it). Two-outcome markets whose outcomes are
-    not both priced strictly between 0 and 1 are skipped, and the market's own page is the source
-    link on every row. If the endpoint refuses or changes shape the mode is recorded as failed and
-    no number is invented.
+
+def _polymarket_quotes_from_events(events: list) -> list[dict]:
+    """Turn Polymarket events into two-outcome match-winner quotes.
+
+    A share price *is* an implied probability, so it is stored as
+    ``native_format: implied_probability``; the decimal equivalent (1/price) is what the common
+    de-vig helper consumes.  Anything that is not a clean two-way head-to-head is skipped: multi
+    outcome tournament markets, map/total markets, unpriced or closed markets.
     """
-    status, body, _ = http_get(POLY_EVENTS, tries=2)
-    from common import sha256_bytes
-    prov(POLY_EVENTS, status=status, bytes=len(body) or None,
-         sha256=sha256_bytes(body) if status == 200 and body else None, mode="live",
-         note="Polymarket public gamma API (prediction market) — secondary listing only")
-    if status != 200:
-        return {"quotes": [], "mode": "failed", "http_status": status, "source_url": POLY_EVENTS,
-                "fetched_utc": now_iso()}
-    try:
-        events = json.loads(body.decode("utf-8"))
-    except json.JSONDecodeError:
-        return {"quotes": [], "mode": "unparsed", "source_url": POLY_EVENTS, "fetched_utc": now_iso()}
-    if isinstance(events, dict):
-        events = events.get("events") or events.get("data") or []
-    if not isinstance(events, list):
-        return {"quotes": [], "mode": "unparsed", "source_url": POLY_EVENTS, "fetched_utc": now_iso()}
-
-    def as_list(value):
-        if isinstance(value, list):
-            return value
-        if isinstance(value, str):
-            try:
-                parsed = json.loads(value)
-                return parsed if isinstance(parsed, list) else []
-            except json.JSONDecodeError:
-                return []
-        return []
-
-    quotes, seen_events = [], 0
+    quotes = []
     for event in events:
         if not isinstance(event, dict):
             continue
@@ -796,12 +779,11 @@ def collect_polymarket() -> dict:
         slug = str(event.get("slug") or "")
         if not any(word in f"{title} {slug}".lower() for word in POLY_KEYWORDS):
             continue
-        seen_events += 1
         for market in event.get("markets") or []:
             if not isinstance(market, dict) or market.get("closed"):
                 continue
-            outcomes = [str(o) for o in as_list(market.get("outcomes"))]
-            prices = as_list(market.get("outcomePrices"))
+            outcomes = [str(o) for o in _poly_as_list(market.get("outcomes"))]
+            prices = _poly_as_list(market.get("outcomePrices"))
             if len(outcomes) != 2 or len(prices) != 2:
                 continue
             try:
@@ -810,8 +792,8 @@ def collect_polymarket() -> dict:
                 continue
             if not (0.0 < pa < 1.0 and 0.0 < pb < 1.0):
                 continue
-            questions = str(market.get("question") or market.get("groupItemTitle") or "")
-            if questions and any(word in questions.lower() for word in ("map ", "map 1", "map 2", "total")):
+            question = str(market.get("question") or market.get("groupItemTitle") or "")
+            if question and any(word in question.lower() for word in ("map ", "map 1", "map 2", "total")):
                 continue  # map and total markets are not match winners
             start = str(market.get("gameStartTime") or market.get("startDate") or "")
             quotes.append({
@@ -828,7 +810,58 @@ def collect_polymarket() -> dict:
                 "source_url": f"https://polymarket.com/event/{slug}" if slug else POLY_EVENTS,
                 "api_url": POLY_EVENTS, "captured_utc": now_iso(),
             })
-    return {"quotes": quotes, "mode": "live" if quotes else "empty", "events_scanned": seen_events,
+    return quotes
+
+
+def collect_polymarket() -> dict:
+    """Polymarket's public read-only API, attempted every run because the brief names it.
+
+    Two reads are tried — the newest-events feed (ordered by start date, newest first) and then the
+    counter-strike tag feed — and the mode records which one answered.  Polymarket is a prediction
+    market, not a bookmaker, so the build only ever uses these quotes as a secondary listing and
+    flags the rows where no bookmaker line exists (FL-PREDICTION-MARKET-BASIS).  If both reads come
+    back empty or refuse, that is recorded and no number is invented.
+    """
+    from common import sha256_bytes
+    status, body, _ = http_get(POLY_EVENTS, tries=2)
+    prov(POLY_EVENTS, status=status, bytes=len(body) or None,
+         sha256=sha256_bytes(body) if status == 200 and body else None, mode="live",
+         note="Polymarket public gamma API (prediction market) — secondary listing only")
+    quotes, events_scanned = [], 0
+    if status == 200:
+        try:
+            events = json.loads(body.decode("utf-8"))
+        except json.JSONDecodeError:
+            events = None
+        if isinstance(events, dict):
+            events = events.get("events") or events.get("data") or []
+        if isinstance(events, list):
+            events_scanned = len(events)
+            quotes = _polymarket_quotes_from_events(events)
+    if quotes:
+        return {"quotes": quotes, "mode": "live", "read": "newest events feed",
+                "events_scanned": events_scanned, "source_url": POLY_EVENTS, "fetched_utc": now_iso()}
+
+    status2, body2, _ = http_get(POLY_TAG_EVENTS, tries=2)
+    prov(POLY_TAG_EVENTS, status=status2, bytes=len(body2) or None,
+         sha256=sha256_bytes(body2) if status2 == 200 and body2 else None, mode="live",
+         note="Polymarket public gamma API, counter-strike tag feed — second attempt")
+    if status2 == 200:
+        try:
+            events2 = json.loads(body2.decode("utf-8"))
+        except json.JSONDecodeError:
+            events2 = None
+        if isinstance(events2, dict):
+            events2 = events2.get("events") or events2.get("data") or []
+        if isinstance(events2, list):
+            quotes2 = _polymarket_quotes_from_events(events2)
+            if quotes2:
+                return {"quotes": quotes2, "mode": "live", "read": "counter-strike tag feed",
+                        "events_scanned": len(events2), "source_url": POLY_TAG_EVENTS,
+                        "fetched_utc": now_iso()}
+    return {"quotes": [], "mode": "live" if status == 200 else "failed",
+            "http_status": status, "events_scanned": events_scanned,
+            "second_attempt": {"url": POLY_TAG_EVENTS, "http_status": status2},
             "source_url": POLY_EVENTS, "fetched_utc": now_iso()}
 
 
@@ -1100,6 +1133,15 @@ def main() -> int:
         for field in ("participants0_name", "participants1_name"):
             if fixture.get(field):
                 board_teams.add(norm(fixture[field]))
+    # Team pages are also read for spellings this board resolves through the evidence-linked alias
+    # file (e.g. Hotspawn's "Envy" is HLTV's 3DMAX), otherwise those fixtures would have no HLTV link.
+    try:
+        alias_file = json.loads((Path(__file__).resolve().parent / "aliases.json").read_text())
+        alias_map = {norm(name): norm((entry or {}).get("official_name") or "")
+                     for name, entry in (alias_file.get("renames") or {}).items()}
+    except (OSError, json.JSONDecodeError):
+        alias_map = {}
+    board_teams |= {target for key, target in alias_map.items() if key in board_teams and target}
     schedule_urls = [entry["url"] for key, entry in (hltv_teams.get("teams") or {}).items()
                      if key in board_teams and entry.get("url")]
     hltv_schedule = collect_hltv_team_schedule(schedule_urls, offline=args.offline)

@@ -163,8 +163,12 @@ def build_rating_indexes(inputs: dict) -> dict:
     for team in inputs["hltv_ranking"].get("teams", []):
         ranking_by_name[norm(team["name"])] = team
     hltv_teams = {norm(k): v for k, v in (inputs["hltv_teams"].get("teams") or {}).items()}
+    aliases = {}
+    for name, entry in ((inputs.get("aliases") or {}).get("renames") or {}).items():
+        if isinstance(entry, dict) and entry.get("official_name"):
+            aliases[norm(name)] = norm(entry["official_name"])
     return {"by_name": by_name, "ranking_by_name": ranking_by_name, "vrs_rows": vrs_rows,
-            "hltv_teams": hltv_teams}
+            "hltv_teams": hltv_teams, "aliases": aliases}
 
 
 def team_record(name: str, inputs: dict, indexes: dict, needed: bool = True) -> dict:
@@ -393,7 +397,10 @@ def hltv_schedule_match(fixture: dict, indexes: dict, schedule: dict | None) -> 
     by_team_id = {str(page.get("team_id")): page for page in pages.values() if page.get("team_id")}
     ids, slugs = {}, {}
     for field in ("team_a", "team_b"):
-        record = indexes["hltv_teams"].get(norm(fixture[field])) or {}
+        key = norm(fixture[field])
+        record = (indexes["hltv_teams"].get(key)
+                  or indexes["hltv_teams"].get((indexes.get("aliases") or {}).get(key, ""))
+                  or {})
         found = re.search(r"/team/(\d+)/([^/?#]+)", record.get("url") or "")
         if found:
             ids[field] = found.group(1)
@@ -412,8 +419,14 @@ def hltv_schedule_match(fixture: dict, indexes: dict, schedule: dict | None) -> 
             event_part, tokens = slug_event_tokens(str(row.get("slug") or ""), slug_a, slug_b)
             if not event_part:
                 continue
-            if len(wanted) >= 2 and not set(wanted).issubset(set(tokens)):
-                continue
+            if wanted:
+                shared = set(wanted) & set(tokens)
+                # Two independent agreements are still required (the team pair above, plus the event
+                # here), but organizers reword their stages between sources: Hotspawn's
+                # "CCT Europe 2026 Series #12 Play-In" is HLTV's "...-series-12-closed-qualifier".
+                # So the event must keep most of its significant words and at least three of them.
+                if len(shared) < 3 or len(shared) / len(wanted) < 0.6:
+                    continue
             key = str(row.get("hltv_match_id") or row.get("hltv_url"))
             entry = hits.setdefault(key, {"hltv_url": row.get("hltv_url") or "", "hltv_match_id": key,
                                           "event_from_slug": event_part,
@@ -1288,12 +1301,12 @@ def main() -> int:
         hltv = hltv_link_for(fixture, ratings, inputs, indexes)
         # A second, independent way to reach the HLTV match page: the team pages the collector read.
         scheduled = hltv_schedule_match(fixture, indexes, inputs.get("hltv_schedule"))
+        if scheduled.get("hltv_match_url") and not hltv.get("hltv_match_url"):
+            hltv = {"hltv_match_url": scheduled["hltv_match_url"],
+                    "hltv_match_id": scheduled.get("hltv_match_id") or "",
+                    "hltv_format": "", "hltv_event": scheduled.get("hltv_event_from_slug") or "",
+                    "hltv_kickoff": ""}
         if scheduled:
-            if not hltv.get("hltv_match_url"):
-                hltv = {"hltv_match_url": scheduled["hltv_match_url"],
-                        "hltv_match_id": scheduled["hltv_match_id"],
-                        "hltv_format": "", "hltv_event": scheduled.get("hltv_event_from_slug") or "",
-                        "hltv_kickoff": ""}
             hltv["hltv_schedule"] = scheduled
         row = analyse(fixture, ratings, market, secondary, now, inputs["vrs"], hltv)
         row["_market"] = market
@@ -1328,8 +1341,10 @@ def main() -> int:
                               else "Snapshot age unknown"),
         "hotspawn_read_text": (f"{(inputs['hotspawn'].get('fetched_utc') or '')[:16]}Z "
                                f"({inputs['hotspawn'].get('mode')})"),
-        "market_read_text": (f"{(inputs['pinnacle'].get('captured_utc') or 'not read')[:16]}"
-                             f" ({len(market_quotes)} CS2 quotes)"),
+        "market_read_text": (
+            f"{inputs['pinnacle'].get('mode') or 'not read'} read "
+            f"{(inputs['pinnacle'].get('captured_utc') or inputs['pinnacle'].get('fetched_utc') or 'time unknown')[:16]}"
+            f" ({len(market_quotes)} CS2 quotes)"),
         "vrs_read_text": (f"official standings {inputs['vrs'].get('standings_date') or 'not read'}"),
         "stale": bool(fresh_hours is not None and fresh_hours > STALE_HOURS),
     }
