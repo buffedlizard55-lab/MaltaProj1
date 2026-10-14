@@ -19,10 +19,18 @@ official source without guessing is left blank and flagged.
 
 Reproduce: `python3 model/fetch.py && VRS_REPO_DIR=<clone of ValveSoftware/counter-strike_regional_standings> python3 model/calibrate.py && python3 model/build.py && VRS_REPO_DIR=… python3 model/test_model.py -v`
 
-Automation: `.github/workflows/model-91eff436.yml` runs every 3 hours from `main` (cron `17 */3 * * *`), on any push to
-`main` or this session's branch that changes the model code or the workflow, and by manual dispatch. It commits
-`model/**` only, and only when the content digest changes; timestamp-only refreshes are discarded. After a data commit
-to `main` it also asks GitHub Pages to rebuild (best effort). To stop it, disable the workflow in the Actions tab.
+Automation: `.github/workflows/model-91eff436.yml` runs (a) on any push to `main` or a session branch that changes the
+model code or the workflow, (b) **whenever the board's capture job `Slate capture (180a42a0)` finishes**, so the own lines
+follow the board instead of waiting for a cron, (c) every 3 hours (cron `17 */3 * * *`) and (d) by manual dispatch. After
+each run it also checks whether that capture job has been idle for more than six hours and, if so, asks it to run now
+(best effort, never fails the job), so one firing job re-arms the refresh chain. It commits `model/**` only, and only when
+the content digest changes; timestamp-only refreshes are discarded, and a failing test blocks the commit. After a data
+commit to `main` it also asks GitHub Pages to rebuild (best effort). Each run prints the snapshot dates, the Valve commit
+and file hash, the calibrated slope and the published counts into the job summary (`model/run_report.py`). To stop it,
+disable the workflow in the Actions tab.
+
+Why the chain matters: GitHub's own API shows this repository had **3 scheduled runs in total** on 2026-10-14 against 142
+push runs, i.e. most cron firings are dropped. See `reviews/a1db82b7-verification.md` §2.
 
 ## Sources (all official; each row links its exact source)
 

@@ -1,0 +1,187 @@
+--- Valve repo HEAD ---
+eec4853d7bcf0f1f7efe7f0d901234bef7e98b75
+2026-10-05 09:36:11 -0700 Updating Regional Standings for 10/5/2026
+standings_global_2026_05_04.md
+standings_global_2026_06_01.md
+standings_global_2026_07_06.md
+standings_global_2026_08_03.md
+standings_global_2026_09_07.md
+standings_global_2026_10_05.md
+--- calibrate.py ---
+{
+ "method": "MLE slope k for P=1/(1+10^(-k*delta/400)); delta = previous-snapshot VRS points difference; both sides identified by roster (>=3 shared players, unique) in the previous snapshot.",
+ "valve_repo": "https://github.com/ValveSoftware/counter-strike_regional_standings",
+ "valve_commit": "eec4853d7bcf0f1f7efe7f0d901234bef7e98b75",
+ "raw_k_valve": 0.972821,
+ "train_windows": "2025-12-01..2026-08-03",
+ "test_windows": "2026-08-03..2026-10-05",
+ "k_fit_on_train": 0.4302,
+ "out_of_sample": {
+  "raw": {
+   "n": 1709,
+   "log_loss": 0.66185,
+   "brier": 0.22936,
+   "favourite_bins": [
+    {
+     "bin": "50-60%",
+     "n": 492,
+     "mean_expected": 0.5525,
+     "observed": 0.561
+    },
+    {
+     "bin": "60-70%",
+     "n": 429,
+     "mean_expected": 0.6496,
+     "observed": 0.5897
+    },
+    {
+     "bin": "70-80%",
+     "n": 384,
+     "mean_expected": 0.7507,
+     "observed": 0.6328
+    },
+    {
+     "bin": "80-90%",
+     "n": 275,
+     "mean_expected": 0.8456,
+     "observed": 0.7709
+    },
+    {
+     "bin": "90-100%",
+     "n": 129,
+     "mean_expected": 0.9376,
+     "observed": 0.814
+    }
+   ]
+  },
+  "calibrated_train_k": {
+   "n": 1709,
+   "log_loss": 0.64351,
+   "brier": 0.22575,
+   "favourite_bins": [
+    {
+     "bin": "50-60%",
+     "n": 965,
+     "mean_expected": 0.5465,
+     "observed": 0.5699
+    },
+    {
+     "bin": "60-70%",
+     "n": 550,
+     "mean_expected": 0.6414,
+     "observed": 0.6927
+    },
+    {
+     "bin": "70-80%",
+     "n": 159,
+     "mean_expected": 0.7366,
+     "observed": 0.8491
+    },
+    {
+     "bin": "80-90%",
+     "n": 33,
+     "mean_expected": 0.8326,
+     "observed": 0.6364
+    },
+    {
+     "bin": "90-100%",
+     "n": 2,
+     "mean_expected": 0.9098,
+     "observed": 1.0
+    }
+   ]
+  }
+ },
+ "in_sample_all": {
+  "raw": {
+   "n": 6765,
+   "log_loss": 0.68888,
+   "brier": 0.23996,
+   "favourite_bins": [
+    {
+     "bin": "50-60%",
+     "n": 1799,
+     "mean_expected": 0.5499,
+     "observed": 0.5264
+    },
+    {
+     "bin": "60-70%",
+     "n": 1616,
+     "mean_expected": 0.6506,
+     "observed": 0.5724
+    },
+    {
+     "bin": "70-80%",
+     "n": 1471,
+     "mean_expected": 0.7485,
+     "observed": 0.6377
+    },
+    {
+     "bin": "80-90%",
+     "n": 1152,
+     "mean_expected": 0.8473,
+     "observed": 0.6953
+    },
+    {
+     "bin": "90-100%",
+     "n": 727,
+     "mean_expected": 0.9405,
+     "observed": 0.7827
+    }
+   ]
+  },
+  "calibrated": {
+   "n": 6765,
+   "log_loss": 0.64949,
+   "brier": 0.22903,
+   "favourite_bins": [
+    {
+     "bin": "50-60%",
+     "n": 3466,
+     "mean_expected": 0.5476,
+     "observed": 0.549
+    },
+    {
+     "bin": "60-70%",
+     "n": 2152,
+     "mean_expected": 0.6442,
+     "observed": 0.6557
+    },
+    {
+     "bin": "70-80%",
+     "n": 884,
+     "mean_expected": 0.7418,
+     "observed": 0.7319
+    },
+    {
+     "bin": "80-90%",
+     "n": 240,
+     "mean_expected": 0.836,
+     "observed": 0.825
+    },
+    {
+     "bin": "90-100%",
+     "n": 23,
+     "mean_expected": 0.918,
+     "observed": 0.913
+    }
+   ]
+  }
+ },
+ "k_published": 0.4568,
+ "n_total": 6765,
+ "adopted": true
+}
+CALIBRATE_EXIT=0
+--- model/input/vrs/meta.json ---
+{
+ "repo": "https://github.com/ValveSoftware/counter-strike_regional_standings",
+ "commit": "eec4853d7bcf0f1f7efe7f0d901234bef7e98b75",
+ "commit_date": "2026-10-05T09:36:11-07:00",
+ "commit_message": "Updating Regional Standings for 10/5/2026",
+ "path": "live/2026/standings_global_2026_10_05.md",
+ "standings_date": "2026-10-05",
+ "sha256": "df96e7fc3cd91a2687ec08cac0128e50cc4e4e55346581679572e881d79ae61b",
+ "fetched_utc": "2026-10-14T01:45:19Z",
+ "blob_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+}
