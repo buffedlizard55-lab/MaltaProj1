@@ -430,20 +430,22 @@ def hltv_match_page(url: str) -> dict:
     # rank at all is printed without a badge, which is recorded as null rather than as a value.
     for block in re.split(r"Lineups", html, maxsplit=1)[-1].split('class="lineup')[0:3]:
         pass
-    lineup_html = html.split("Lineups", 1)[1] if "Lineups" in html else ""
-    for team in re.finditer(r'href="/team/(\d+)/([a-z0-9\-]+)"[^>]*>\s*([^<]{2,40}?)\s*<', lineup_html):
-        name = unescape(team.group(3)).strip()
-        window = lineup_html[team.end(): team.end() + 700]
-        nxt = re.search(r'href="/team/\d+/', window)
-        if nxt:
-            window = window[:nxt.start()]
-        hltv_rank = re.search(r"HLTV:\s*#(\d+)", window)
-        vrs_rank = re.search(r"VRS:\s*#(\d+)", window)
-        if name and name not in out["team_ranks"]:
+    # The lineup block prints `HLTV: #75` / `VRS: #89` only for a team that has a rank, so an
+    # absent badge is evidence of an unranked side. Teams named anywhere else on the page (the
+    # "upcoming matches" sidebar lists dozens) are ignored: a badge is only kept for one of the two
+    # sides of this match, and only when it actually carries a number.
+    for block in re.split(r'class="lineup', html)[1:3]:
+        for side in re.finditer(r'href="/team/(\d+)/([a-z0-9\-]+)"([\s\S]{0,900}?)(?=href="/team/\d+/|$)', block):
+            name = unescape(side.group(2)).replace("-", " ").strip()
+            hltv_rank = re.search(r"HLTV:\s*#(\d+)", side.group(3))
+            vrs_rank = re.search(r"VRS:\s*#(\d+)", side.group(3))
+            if not (hltv_rank or vrs_rank):
+                continue
             out["team_ranks"][name] = {
                 "hltv_rank": int(hltv_rank.group(1)) if hltv_rank else None,
                 "vrs_rank": int(vrs_rank.group(1)) if vrs_rank else None,
-                "hltv_team_url": f"https://www.hltv.org/team/{team.group(1)}/{team.group(2)}",
+                "hltv_team_url": f"https://www.hltv.org/team/{side.group(1)}/{side.group(2)}",
+                "source": "HLTV match page lineup block",
             }
     out["maps_note"] = "Best of %d (Online)" % out["best_of"] if out["best_of"] else None
     return out
@@ -565,10 +567,10 @@ def hltv_match_details(fixtures: list[dict], day_cache: dict, limit: int = 40) -
         # than burning the browser budget on a wall, stop after a short run of refusals and record
         # the refusal: the board then publishes those rows with the evidence it does have, and the
         # refusal is visible on the sources page instead of being hidden.
-        if refusals >= 5:
+        if refusals >= 10:
             written.append({"fixture_id": fixture["fixture_id"], "skipped": True,
                             "error": "HLTV match pages refused this run (bot check); stopped after "
-                                     "5 consecutive refusals"})
+                                     "10 consecutive refusals"})
             continue
         url = known.get(str(fixture["fixture_id"]))
         if url:
@@ -583,6 +585,9 @@ def hltv_match_details(fixtures: list[dict], day_cache: dict, limit: int = 40) -
                 continue
             row = {**found, "url_source": "HLTV per-day listing read by this run"}
         page = hltv_match_page(row["hltv_url"])
+        sides = {norm(fixture["team_a"]), norm(fixture["team_b"])}
+        badges = {name: info for name, info in (page.get("team_ranks") or {}).items()
+                  if norm(name) in sides}
         out = {
             "fixture_id": fixture["fixture_id"],
             "team_a": fixture["team_a"], "team_b": fixture["team_b"],
@@ -593,7 +598,9 @@ def hltv_match_details(fixtures: list[dict], day_cache: dict, limit: int = 40) -
             "best_of_source": ("HLTV match page" if page.get("best_of")
                                else "HLTV listing" if row.get("format") else None),
             "url_source": row.get("url_source"),
-            "team_ranks": page.get("team_ranks") or {},
+            "team_ranks": badges,
+            "lineup_badges_note": ("no rank badge printed for either side"
+                                   if not badges else "rank badges read from the lineup block"),
             "event_url": page.get("event_url"), "event_name": page.get("event_name"),
             "status": page.get("status"), "sha256": page.get("sha256"), "error": page.get("error"),
             "captured_utc": page.get("captured_utc"),
@@ -602,9 +609,10 @@ def hltv_match_details(fixtures: list[dict], day_cache: dict, limit: int = 40) -
         written.append(out)
         if out.get("status") == 200 and out.get("best_of"):
             refusals = 0
+            time.sleep(1.0)
         else:
             refusals += 1
-        time.sleep(0.5)
+            time.sleep(min(1.5 * refusals, 8.0))
     save("hltv_match_pages.json", {
         "captured_utc": now_iso(),
         "attempted": len([w for w in written if not w.get("skipped")]),
