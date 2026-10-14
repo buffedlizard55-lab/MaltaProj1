@@ -3774,3 +3774,57 @@ Read-only inputs (never edited): `executive/**`, `briefing/**`, `summary/**`, `g
 Rule restated: Hotspawn supplies fixture identity/times only, never a probability. Unconfirmable values
 stay blank and flagged. No hallucinations — every published value carries a source link read in this session
 or a recorded read time.
+## Session `arena/c13ca42a` — completion record (2026-10-14 ~08:55 UTC)
+
+**C-01..C-07: DONE.** All claims complete; release merged and live.
+
+### C-01..C-06 completion — full-coverage picks (all 88 CS2 fixtures)
+
+- **Board**: [`fullpicks/index.html`](https://buffedlizard55-lab.github.io/MaltaProj1/fullpicks/index.html) —
+  one mobile-friendly table of **all 88** fixtures: **28 open** (live pick + both-team probabilities,
+  outside markets first, own originated line where unpriced), **54 played** (officially verified result
+  next to the originally published pick), **6 unresolved** (blank + flagged, no pick). Stats line:
+  28/54 original picks hit.
+- **C-02 verified stale results** (all read 2026-10-14T08:35Z, official sources): **54/60 verified**
+  (Urban Riga 12, TWC SA1 8, CCT Chall Europe S4 8, CCT SA S3 8, EPL S8 CQ 6, EPL S8 1, Svenska 6,
+  Rainhas 2, LG UltraGear 1, DACH S5 1, CCT SA7 1) against HLTV match pages
+  (events 9219/9239/9236/9233/9245/9246/9235/9179/9232/9452) and Liquipedia (DACH CS Masters S5).
+  Data: `fullpicks/data/stale_results.csv`; trail: `data/c13ca42a/research_stale_results.md`.
+- **C-04 unresolved page**: [`fullpicks/unresolved.html`](https://buffedlizard55-lab.github.io/MaltaProj1/fullpicks/unresolved.html) —
+  6 DraculaN S7 cards **withheld** (HLTV event 9312 still *upcoming* Oct 19–23, no results, pairings
+  absent from the official schedule, card dates contradict official dates — evidence linked), verified-with-caveat
+  rows, and own-line limitations. Included in the executive summary (root + board).
+- **C-05 landing**: root `index.html` now opens with a **single** canonical executive summary (88/28/54/6,
+  in-site links to `fullpicks/`); every pre-existing block of other sessions preserved **verbatim** in a
+  labelled collapsed archive (diff-verified: 0 lost hrefs, 0 lost text tokens; all pre-existing landing
+  regression tests pass, incl. the "one visible executive summary" and unique-id gates).
+- **C-06 verification**: `reviews/c13ca42a-verification.md` — 88/88 rows line-by-line with official
+  source links + 8 logged irregularities (IRREG-DRACULAN, IRREG-DOUBLE-PLAY 1052185, IRREG-DATE-OFF
+  1055478, 11 alias rows, event-naming notes, own-line limits 1081112/1081120/1079624, observed red CI
+  of other sessions' workflows, Hotspawn card-date pattern).
+
+### C-07 completion — release record
+
+- **PR**: [https://github.com/buffedlizard55-lab/MaltaProj1/pull/127](https://github.com/buffedlizard55-lab/MaltaProj1/pull/127)
+  (`arena/c13ca42a-maltaproj1` → `main`) — **MERGED** without waiting for review, per the brief,
+  after all PR checks passed (audit pass · refresh pass · verify pass · verify pass).
+  Merge commit `1d775daf348e291f851a7d5f34bceb0edd21013e`, merged at `2026-10-14T08:53:48Z`.
+- **GitHub Pages**: build **`built`**, no error (created 2026-10-14T08:53:49Z). Live HTTPS confirmed on:
+  - [index.html](https://buffedlizard55-lab.github.io/MaltaProj1/) — single top summary + archived earlier boards;
+  - [fullpicks/index.html](https://buffedlizard55-lab.github.io/MaltaProj1/fullpicks/index.html) — all 88 rows render with source links;
+  - [fullpicks/unresolved.html](https://buffedlizard55-lab.github.io/MaltaProj1/fullpicks/unresolved.html) — DraculaN evidence + caveats render.
+- **Gates**: whole-repo `python3 -m unittest discover -s tests` **315 OK** (303 pre-existing + 12 new) ·
+  build invariants 88 = 28 + 54 + 6 · 0 non-https links · 0 broken local links on the landing (test-gated).
+- **Automation**: `.github/workflows/fullpicks-c13ca42a.yml` — refresh every 4 h (offset slot `7 */4`)
+  + on `executive/data/analysis.csv` change; fail-closed (validate → build → test → commit only on change).
+
+**Irregularities published (non-blocking, on the Flagged pages):** DraculaN S7 card-data error (6 cards,
+picks withheld) · sAw–Entropy double-play (1052185, card date selects 2026-06-28 match) · illwill–Lavked
+one-day card/HLTV date offset (1055478) · 11 name-alias rows · EPL "Play-In" = HLTV "Closed Qualifier" ·
+Svenska cards under HLTV event 9235 (Finals) · observed failing runs of other sessions' workflows
+(`O-01 own-line model (VRS)`, `Slate capture (180a42a0)`, `coordination: claim independent acceptance
+review`) — logged here for the owners, untouched by this session.
+
+**Handoff note for the next session:** the 6 DraculaN S7 picks can be filled **only after** the event
+plays (first round 2026-10-19) and results are verifiable on HLTV event 9312 — re-check then and
+rebuild (`python3 scripts/c13ca42a_build_fullpicks.py`). Nothing else is pending.
