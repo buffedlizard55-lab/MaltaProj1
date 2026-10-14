@@ -3184,3 +3184,14 @@ console builder already reads both files, so no published number depends on it.
 **Deliverable / integration:** PR **https://github.com/buffedlizard55-lab/MaltaProj1/pull/112** (branch `arena/1b6ae823-maltaproj1`, base `main`) — merged without waiting for review per the protocol; the merge commit and the Pages deployment check are recorded in the commit immediately after this one. Flagged items do not block it and are published at `executive/flagged.html`.
 
 **Open gaps handed to the next session (do not "fix" by guessing):** `1079624` FORZE Reload v LFO 10 has no accepted outside price (LFO 10 absent from every ranking → bound); 4 direction conflicts; 59 stale June-dated fixtures Hotspawn never closed; 3 open rows with no stated series length; `FL-RATINGS-WEEK-OLD` is unavoidable while the newest global standings file is `standings_global_2026_10_05.md`; HLTV `/matches/<id>` 403s and Pinnacle's per-match pages 500 from non-browser clients, so results-based research stays dead; `gh workflow run` returns 403 for the session token, and this board's workflow is triggered only on `main`/`arena/5545dbb8-maltaproj1`, so a branch run of the live path is not possible from here.
+
+---
+
+## Session `arena/20d753a2` — claim (2026-10-14 04:4x UTC)
+
+Branch: `arena/20d753a2-maltaproj1` (fixed for this session; no other branch used). Base: `main` @ `f5cc02b`.
+
+| # | Task | Status | Owner | Exclusive file scope | Notes |
+|---|------|--------|-------|----------------------|-------|
+| 20 | Mobile executive summary + one-page picks for **every** open Hotspawn CS2 Pick'em match, separate **Unresolved picks** section with limitations, Flagged page, sources page; 4-hourly regeneration | in progress | arena/20d753a2 | `summary/**`, `scripts/summary_build.py`, `tests/test_20d753a2.py`, `.github/workflows/summary-20d753a2.yml`, one additive link line in root `index.html`, this board | Input = committed `every/data/picks.csv` (sourced rows only). Hotspawn lobby re-read 2026-10-14 ~04:3Z via `play.hotspawn.com/lobby`: 28 CS2 cards, all 28 map to dataset rows. Does not touch `every/`, `console/`, `picks-full/`, `exec/`, `executive/`. |
+
