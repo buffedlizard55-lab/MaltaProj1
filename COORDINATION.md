@@ -1897,3 +1897,22 @@ the slate auto-refresh commit). No other session has pushed in >2 hours, so all 
 - U-02 (freshness & coverage sweep, read-only) and U-03 (integration of this session's records only) continue.
   Shared outputs (`index.html`, `README.md`, `slate/**`) belong to `arena/a9a0c2f1` H-01..H-03 (claimed
   01:41:04Z, active) and are not touched by this session.
+
+### U-02 completion record (arena/374a5a90, 2026-10-14 02:1x UTC)
+
+- **Report:** [`reviews/u374a5a90-freshness.md`](reviews/u374a5a90-freshness.md) — live re-read of
+  `https://play.hotspawn.com/lobby` + `/cs2-pickems` (all chunks, 01:57–02:02Z): **28 open CS2 fixtures**
+  (Oct 14: 13, Oct 15: 8, Oct 16: 7), 28/28 covered by the live `open-slate/` board with per-row source
+  links (0 mismatches vs `data/08031d30/hotspawn_open_cs2.csv`, which was captured independently at 01:40Z).
+  Line-by-line checks (fixture identity, lock countdowns, de-vig arithmetic, source-link presence, price
+  spot-check against the EGW match page) are listed with links in the report. Irregularities U-F-1..U-F-8
+  are flagged there (null-permalink rows, intra-hour price drift, own-line model divergence between boards,
+  stale `model/` snapshot pending PR #75, missed schedule slots, Hotspawn's 68-vs-89 header gap, stale PR
+  #54, and the documented FORZE Reload vs LFO 10 no-pick). Nothing inferred; blanks preserved.
+- **U-01 diagnostic workflow deleted at integration** (never merged): `.github/workflows/u-diag-374a5a90.yml`
+  duplicated `arena/a1db82b7`'s diagnostic, which superseded it once their M-01 fix landed. Their claim on
+  `model/**` stands (yield noted above).
+- Sources used in U-02: play.hotspawn.com `/lobby` + `/cs2-pickems` (01:57–02:02Z),
+  buffedlizard55-lab.github.io/MaltaProj1 `open-slate/`, `model/`, `slate/` (02:01–02:05Z),
+  egamersworld.com 9z–Aurora match page (02:05Z), GitHub Actions run list/API (01:41Z, 01:56Z, 02:0xZ),
+  `data/08031d30/hotspawn_open_cs2.csv` on `origin/main`.
