@@ -95,6 +95,15 @@ FLAG_DEFS = {
     "FL-RANK-FLOOR-BOUND": "A team is absent from the official HLTV world ranking, so one place below the last ranked team is used as a conservative bound.",
     "FL-NO-HLTV-RANKING": "The official HLTV world ranking could not be read this run, so no ranking line was originated.",
     "FL-OWN-LINE-MARKET-SPLIT": "Our originated ranking line and the outside price disagree by more than 15 points on this row; both are published.",
+    # added by session arena/e13aca8a (research ladder for matches the featured route cannot resolve)
+    "FL-LISTING-ALIAS": ("The outside market prices this fixture under a different listing name; the identity "
+                         "is roster-verified against official pages and the evidence links are on the row."),
+    "FL-RESEARCH-CROSSCHECK-CONFLICT": ("A research cross-check (rating, form or listing) points the other way "
+                                        "from the published line. Both are shown; nothing is reconciled silently."),
+    "FL-MARKET-NO-LIQUIDITY": ("A prediction market exists for this fixture but its book is uninitialised "
+                               "(no volume, both sides quoted above 90¢). The prices are refused, not de-vigged."),
+    "FL-FORMAT-FROM-RESEARCH": ("Hotspawn states no series format; the length shown was stated by the research "
+                                "source linked on the row (HLTV / EGW / market title), not assumed."),
 }
 
 
@@ -135,6 +144,10 @@ def load_inputs() -> dict:
         "previous": read_json(DATA / "analysis.json", {}) or {},
         "provenance": read_json(DATA / "provenance.json", {}) or {},
         "cadence": read_json(DATA / "cadence.json", {}) or {},
+        # session arena/e13aca8a: live research reads (HLTV → esportsbooks → betting lines) for the
+        # matches the featured primary-market route cannot resolve. Additive input; collect.py never
+        # rewrites it, so the research survives scheduled refreshes with its own read times.
+        "research": read_json(DATA / "research_lines.json", {}) or {},
     }
 
 
@@ -457,8 +470,12 @@ def hltv_schedule_match(fixture: dict, indexes: dict, schedule: dict | None) -> 
 
 # ------------------------------------------------------------------ analysis
 def analyse(fixture: dict, ratings: dict, market: list[dict], secondary: list[dict],
-            now: datetime, vrs_meta: dict, hltv: dict | None = None) -> dict:
+            now: datetime, vrs_meta: dict, hltv: dict | None = None,
+            research: dict | None = None) -> dict:
     hltv = hltv or {}
+    research = research or {}
+    research_formats = research.get("formats") or {}
+    research_notes = research.get("row_notes") or {}
     flags: list[str] = []
     a, b = ratings[fixture["team_a"]], ratings[fixture["team_b"]]
     start, lock = parse_iso(fixture["start_utc"]), parse_iso(fixture["lock_utc"])
@@ -567,7 +584,32 @@ def analyse(fixture: dict, ratings: dict, market: list[dict], secondary: list[di
                 basis_sources = basis_sources + [(listing_url, f"{candidate.get('source_name', 'listing')} (series length)")]
             break
         else:
-            flags.append("FL-FORMAT-UNKNOWN")
+            # Research ladder (session arena/e13aca8a): the research trail for this fixture (HLTV match
+            # page, EGW match page, or the market's own title) states a length even when no price exists.
+            fmt = research_formats.get(str(fixture["match_id"])) or {}
+            fmt_bo = ownlines.format_to_best_of(fmt.get("best_of"))
+            fmt_url = fmt.get("source_url") or ""
+            if fmt_bo and fmt_url:
+                series_format = f"BO{fmt_bo}"
+                series_format_source = fmt_url
+                flags = [f for f in flags if f != "FL-FORMAT-UNKNOWN"]
+                flags.append("FL-FORMAT-FROM-RESEARCH")
+                basis_detail = (basis_detail + " " if basis_detail else "") + (
+                    f"Series length {series_format} as stated by the research source named on this row "
+                    f"({fmt.get('source_name', 'research read')}); Hotspawn states none.")
+                basis_sources = basis_sources + [(fmt_url, f"{fmt.get('source_name', 'research source')} (series length)")]
+                if fmt.get("secondary_source_url"):
+                    basis_sources = basis_sources + [(fmt["secondary_source_url"], "series length (cross-check)")]
+            else:
+                flags.append("FL-FORMAT-UNKNOWN")
+
+    # Research-ladder notes (session arena/e13aca8a): identity evidence, refused markets and published
+    # counter-signals for the rows the featured route cannot resolve. Notes never replace a number.
+    note = research_notes.get(str(fixture["match_id"])) or {}
+    if note:
+        flags.extend(note.get("flags") or [])
+        basis_detail = (basis_detail + " " if basis_detail else "") + (note.get("note") or "")
+        basis_sources = basis_sources + [(u, "research read (arena/e13aca8a)") for u in (note.get("links") or [])]
 
     have_vrs_a = bool(a["vrs_points"])
     have_vrs_b = bool(b["vrs_points"])
@@ -688,7 +730,8 @@ def analyse(fixture: dict, ratings: dict, market: list[dict], secondary: list[di
 # ------------------------------------------------------------------ page shell
 def page(title: str, body: str, meta: dict, active: str = "") -> str:
     nav = [
-        ("index.html", "Summary"), ("picks.html", "All picks"), ("lines.html", "Betting lines"),
+        ("index.html", "Summary"), ("picks.html", "All picks"), ("unresolved.html", "Unresolved"),
+        ("lines.html", "Betting lines"),
         ("own-lines.html", "Our lines"), ("tournaments.html", "Tournaments"),
         ("coverage.html", "Coverage"), ("cadence.html", "Refresh"),
         ("verification.html", "Verification"),
@@ -824,6 +867,11 @@ def render_index(rows: list[dict], meta: dict, coverage: dict) -> str:
     no_pick = [r for r in open_rows if not r["pick"] or r["pick"] == "(no side — 50/50)"]
     market_rows = [r for r in open_rows if r["basis_tier"] in (1, 2)]
     model_rows = [r for r in open_rows if r["basis_tier"] in (3, 4)]
+    groups = unresolved_groups(open_rows)
+    unresolved_total = sum(len(items) for key, _l, items, _x in groups if key != "featured")
+    featured_total = sum(len(items) for key, _l, items, _x in groups if key == "featured")
+    pred_only = sum(len(items) for key, _l, items, _x in groups if key == "prediction")
+    own_total = sum(len(items) for key, _l, items, _x in groups if key in ("own", "bound", "research"))
     next_rows = sorted(open_rows, key=lambda r: r["lock_utc"] or "9999")[:8]
     tournaments = {}
     for row in open_rows:
@@ -840,6 +888,8 @@ def render_index(rows: list[dict], meta: dict, coverage: dict) -> str:
         ("lines.html", "Betting lines from outside books", f"{len(market_rows)} fixtures priced"),
         ("own-lines.html", "Our own line for every fixture",
          f"{coverage.get('open_own_line', 0)} of {len(open_rows)} open fixtures carry it"),
+        ("unresolved.html", "Unresolved picks & limitations",
+         f"{unresolved_total} rows without a primary-book line"),
         ("cadence.html", "How current is this?", f"refreshed every {4} h · read times per input"),
         ("coverage.html", "Hotspawn coverage check", f"{coverage['total_fixtures']} fixtures in the payload"),
         ("flagged.html", "Flagged for review", f"{coverage['flagged_rows']} rows to check"),
@@ -871,6 +921,21 @@ def render_index(rows: list[dict], meta: dict, coverage: dict) -> str:
   <p class="muted small">Bookmark <code>…/executive/</code> — this page and the picks table are rebuilt
   automatically every four hours from the Hotspawn board and the outside sources, and every published
   number keeps the minute it was read. <a href="cadence.html">Refresh &amp; read times</a>.</p>
+</section>
+
+<section class="panel">
+  <h2>Unresolved picks &amp; limitations</h2>
+  <p>Every open match carries a pick, but <strong>{unresolved_total} of {len(open_rows)}</strong> cannot be
+  resolved the same way as the featured picks (a primary esportsbook moneyline):
+  <strong>{pred_only}</strong> rest on a prediction market only, and <strong>{own_total}</strong> rest on
+  our own originated line from the official standings (or a conservative bound) because no bookmaker and
+  no usable market prices them. Those rows are listed separately, with the research trail
+  (HLTV &rarr; esportsbooks &rarr; betting lines) and the concrete limitations of each substitute route.</p>
+  <p><a class="button" href="unresolved.html"><strong>Open the unresolved section</strong>
+  <span>per-row basis, refused prices, and what still limits these picks</span></a></p>
+  <p class="muted small">Featured-route picks right now: {featured_total} of {len(open_rows)}. Research
+  never fills a gap with Hotspawn's crowd percentages and never turns an uninitialised market into a
+  price &mdash; refusals are published on the unresolved page.</p>
 </section>
 
 <section>
@@ -1007,6 +1072,190 @@ def render_picks(rows: list[dict], meta: dict) -> str:
          body_rows, classes="grid--picks", row_attrs=row_attrs)}
   <p class="muted small">Percentages add to 100 per row. “A” is the left-hand team Hotspawn shows.
   Differences under 1 point from 50/50 are flagged as coin flips.</p>
+</section>
+"""
+
+
+def unresolved_groups(open_rows: list[dict]) -> list[tuple[str, str, list[dict], str]]:
+    """Open fixtures that cannot be resolved the same way as the featured picks.
+
+    “Featured” here means a primary esportsbook moneyline (Pinnacle's own feed).  Everything
+    else is listed below with the route that *was* used and the concrete limitation of that route.
+    """
+    def has_flag(row: dict, code: str) -> bool:
+        return code in (row.get("flags") or [])
+
+    featured = [r for r in open_rows if r["basis_tier"] == 1]
+    secondary_books = [r for r in open_rows if r["basis_tier"] == 2
+                       and not has_flag(r, "FL-PREDICTION-MARKET-BASIS")]
+    prediction_only = [r for r in open_rows if r["basis_tier"] == 2
+                       and has_flag(r, "FL-PREDICTION-MARKET-BASIS")]
+    own_line = [r for r in open_rows if r["basis_tier"] == 3]
+    bound = [r for r in open_rows if r["basis_tier"] == 4]
+    research_line = [r for r in open_rows if r["basis_tier"] == 5]
+    return [
+        ("featured", "Resolved like the featured picks · primary esportsbook moneyline", featured,
+         "Pinnacle's own public price feed, de-vigged. This is the featured route; rows here are not "
+         "listed as unresolved."),
+        ("secondary", "Unresolved by the featured route · secondary esportsbook listing", secondary_books,
+         "No primary-book market was readable, so the pick rests on a bookmaker price quoted through a "
+         "public aggregator or this site's own hourly relay. Aggregator pages move with the book and can "
+         "lag it; the capture minute is on every row. A link identifies the listing — it does not prove "
+         "the quote is still current."),
+        ("prediction", "Unresolved by any bookmaker · prediction market only", prediction_only,
+         "No esportsbook prices the fixture at all. The probability is a prediction market's implied "
+         "price (Polymarket), normalised the same way and flagged "
+         "FL-PREDICTION-MARKET-BASIS so it is never read as a bookmaker's line. Liquidity is thin on "
+         "low-tier cards; a single trade can move the print."),
+        ("own", "Unresolved by any market · our own originated line", own_line,
+         "No bookmaker and no usable prediction market prices the fixture. The probability is originated "
+         "by this project from Valve's official Regional Standings points (published relation, 400-point "
+         "logistic), cross-checked on HLTV. Uncalibrated — low confidence by construction."),
+        ("bound", "Unresolved and partly unrateable · provisional official bound", bound,
+         "A team is absent from the official standings file, so only a conservative bound can be "
+         "published (the favourite's probability is at least the printed number). Never a market view."),
+        ("research", "Unresolved by markets or ratings · research ranking line", research_line,
+         "Neither a price nor an official point pair exists. The line is this board's own HLTV-ranking "
+         "logistic (scale fitted on priced fixtures), flagged FL-RESEARCH-BASIS, always low confidence."),
+    ]
+
+
+def render_unresolved(rows: list[dict], meta: dict, research: dict | None = None) -> str:
+    research = research or {}
+    now = meta["now"]
+    open_rows = [r for r in rows if r["status"] == "open"]
+    groups = unresolved_groups(open_rows)
+    counts = {key: len(items) for key, _label, items, _lim in groups}
+    unresolved_total = sum(v for k, v in counts.items() if k != "featured")
+
+    def cards_for(items: list[dict]) -> str:
+        return ('<div class="cards">' +
+                "".join(pick_card(r, now) for r in sorted(items, key=lambda r: r["lock_utc"] or "9999")) +
+                "</div>") if items else '<p class="muted">None in this group.</p>'
+
+    group_sections = []
+    for key, label, items, limit in groups:
+        if key == "featured":
+            continue
+        if not items:
+            continue
+        group_sections.append(f"""
+<section>
+  <h2>{esc(label)} <span class="muted small">({len(items)} of {len(open_rows)} open fixtures)</span></h2>
+  <p class="muted">Limitation of this route: {esc(limit)}</p>
+  {cards_for(items)}
+</section>""")
+
+    refusals = research.get("refusals") or []
+    refusal_rows = [[
+        esc(r.get("teams", "")), link(r.get("market"), "market page"), esc(r.get("printed", "")),
+        esc(r.get("reason", "")),
+    ] for r in refusals]
+
+    research_rows = []
+    for mid, note in sorted((research.get("row_notes") or {}).items()):
+        fixture = next((r for r in rows if str(r["match_id"]) == str(mid)), None)
+        if not fixture:
+            continue
+        research_rows.append([
+            esc(f'{fixture["team_a"]} vs {fixture["team_b"]}'),
+            esc(fixture.get("tournament", "")),
+            " ".join(link(u, f"src{i + 1}") for i, u in enumerate(note.get("links") or [])),
+            esc(note.get("note", "")),
+        ])
+
+    slate = research.get("slate_recheck") or {}
+    return f"""
+<section class="hero">
+  <p class="eyebrow">Unresolved picks &amp; limitations</p>
+  <h1>Every open match has a pick. {unresolved_total} of them cannot rest on the featured route — here is
+  exactly what they rest on instead, and what that costs.</h1>
+  <p class="lede">A <strong>featured pick</strong> is resolved from a primary esportsbook moneyline
+  (Pinnacle's own price feed, de-vigged). Matches no such book covers — the low-tier CCT / qualifier /
+  academy cards — are resolved with the research ladder <strong>HLTV → esportsbooks → betting lines</strong>,
+  and only where that trail finds a real two-sided market or an official rating. Nothing on this page is
+  a Hotspawn crowd percentage; those are dropped at ingest.</p>
+  <p class="meta-line">{counts['featured']} featured-route picks · {counts['secondary']} secondary-book
+  listings · {counts['prediction']} prediction-market-only · {counts['own']} own originated lines ·
+  {counts['bound']} provisional bounds · generated {esc(meta.get('generated_utc', ''))}</p>
+</section>
+
+<section class="panel panel--primary">
+  <h2>Where the updated picks list lives</h2>
+  <div class="buttons">
+    <a class="button" href="picks.html"><strong>All picks &amp; probabilities</strong><span>one row per open fixture</span></a>
+    <a class="button" href="index.html"><strong>Executive summary</strong><span>start here</span></a>
+    <a class="button" href="own-lines.html"><strong>Our own lines</strong><span>originated for every fixture</span></a>
+    <a class="button" href="flagged.html"><strong>Flagged for review</strong><span>every open question, with links</span></a>
+  </div>
+</section>
+
+<section>
+  <h2>The research ladder, in order</h2>
+  <ol class="ladder">
+    <li><strong>HLTV</strong> — fixture identity, BO3/BO1 series length, world-rank badges, event pages and
+      recent official results for teams no ranking lists (for example LFO 10's HLTV team page and its
+      match page 2399301, and Banda Chuya's match page 2399462).</li>
+    <li><strong>Esportsbooks</strong> — EGamersWorld match pages (bc.game listings), bo3.gg relayed
+      bookmaker prices, Pinnacle's guest markets where they exist. Equal-pair 1.8/1.8 prints and
+      single-side prints are the known “no market posted” placeholders and are rejected, never de-vigged.</li>
+    <li><strong>Betting lines / prediction markets</strong> — Polymarket's own match markets (series
+      moneyline share prices) where no bookmaker publishes a line. Where a market exists but is
+      uninitialised (both sides above 90¢, zero volume) the prices are refused outright rather than
+      turned into a fake 50/50.</li>
+  </ol>
+  <p class="muted small">Where the ladder finds nothing at all, the board still publishes a pick from the
+  official Valve standings (or a conservative bound), clearly labelled and flagged — a pick is never left
+  blank on an open fixture, and never guessed.</p>
+</section>
+{''.join(group_sections)}
+
+<section>
+  <h2>Prices this research trail refused</h2>
+  <p class="muted">Printed by a source, deliberately <em>not</em> used. Each refusal is recorded with the
+  reason so the decision can be reviewed.</p>
+  {table(["Fixture", "Market", "What the page printed", "Why it is not used"], refusal_rows) if refusal_rows else '<p class="muted">None recorded.</p>'}
+</section>
+
+<section>
+  <h2>Research trail for the weak rows</h2>
+  <p class="muted">Every source link opened in the research pass (2026-10-14, session arena/e13aca8a), and
+  what it was used for. The machine-readable record is
+  <a href="../data/e13aca8a/live_research_2026-10-14.md">data/e13aca8a/live_research_2026-10-14.md</a>
+  with the exact read window; the input file the builder consumes is
+  <a href="data/research_lines.json">data/research_lines.json</a>.</p>
+  {table(["Fixture", "Tournament", "Sources", "What the research established"], research_rows) if research_rows else '<p class="muted">No research rows recorded.</p>'}
+</section>
+
+<section>
+  <h2>Limitations that remain, in plain words</h2>
+  <ul class="ladder">
+    <li><strong>Coverage.</strong> Pinnacle and most sportsbooks simply do not list low-tier CCT / Elisa /
+      qualifier cards. Where they abstain, no amount of research can produce a bookmaker's probability —
+      only a substitute (aggregator quote, prediction market, or our own line), each labelled.</li>
+    <li><strong>Aggregator quotes drift.</strong> EGamersWorld / bo3.gg pages quote a book; the quote can
+      lag or differ from the book's own feed. Every row prints the minute it was read.</li>
+    <li><strong>Prediction-market liquidity.</strong> Polymarket volumes on low-tier cards run from a few
+      hundred dollars to zero. Thin books can print prices no one would trade at scale.</li>
+    <li><strong>Own lines are uncalibrated.</strong> The originated line is a documented formula on official
+      Valve points; it is not a market and not a forecast product. Where the fitted ranking line and a
+      market disagree by more than 15 points, both are published (FL-MODEL-MARKET-SPLIT /
+      FL-OWN-LINE-MARKET-SPLIT) and the disagreement is not reconciled.</li>
+    <li><strong>Official files lag.</strong> Valve publish Regional Standings weekly; the newest official
+      global file is still <code>standings_global_2026_10_05.md</code>. A team can be active and priced by
+      Polymarket while missing from that file (LFO 10 is exactly this case) — the board says so instead of
+      inventing official points. HLTV's “Valve ranking (beta)” page is HLTV's own projection including
+      unfinished events; it is labelled evidence, never an official-file entry.</li>
+    <li><strong>Series lengths are stated by outside pages.</strong> Hotspawn does not publish them; where
+      no outside page states one the field stays blank and flagged.</li>
+    <li><strong>Identities are verified, never assumed.</strong> Where a market lists a different name
+      (Sökerorg for LFO 10, WRAITH PCIFIC for PCIFIC), the row keeps Hotspawn's name and the identity is
+      roster-matched across at least two independent pages before any price is used (FL-LISTING-ALIAS).</li>
+  </ul>
+  <p class="muted small">Slate cross-check {esc(slate.get('checked_utc', ''))}: the live Hotspawn board was
+  re-read ({esc(', '.join(slate.get('pages') or []))}); all
+  {esc(str(len(open_rows)))} open fixtures on this board appear there with identical pairings.
+  Nothing on this page uses Hotspawn's crowd percentages.</p>
 </section>
 """
 
@@ -1276,6 +1525,12 @@ def render_cadence(rows: list[dict], inputs: dict, coverage: dict, meta: dict) -
         ("HLTV team pages (identity, formats, links)",
          (inputs.get("hltv_schedule") or {}).get("generated_utc"), (inputs.get("hltv_schedule") or {}).get("mode"),
          f'{len((inputs.get("hltv_schedule") or {}).get("teams") or [])} pages read', HLTV_MATCHES),
+        ("Research ladder reads (session arena/e13aca8a: HLTV → esportsbooks → betting lines)",
+         (inputs.get("research") or {}).get("generated_utc"), "live research read",
+         f'{len((inputs.get("research") or {}).get("quotes") or [])} quotes · '
+         f'{len((inputs.get("research") or {}).get("refusals") or [])} refused prices · '
+         f'{len((inputs.get("research") or {}).get("row_notes") or [])} row notes',
+         "../data/e13aca8a/live_research_2026-10-14.md"),
     ]
     fresh_rows = [[esc(label), f'<code>{esc(stamp or "—")}</code>' if stamp else '<span class="muted">—</span>',
                    age_of(stamp), esc(mode or "unknown"), esc(detail),
@@ -1591,7 +1846,12 @@ def main() -> int:
                 ratings[name] = team_record(name, inputs, indexes)
 
     market_quotes = inputs["pinnacle"].get("quotes", [])
-    secondary_quotes = inputs["secondary"].get("quotes", [])
+    secondary_quotes = list(inputs["secondary"].get("quotes", []) or [])
+    research = inputs.get("research") or {}
+    # Session arena/e13aca8a: live research reads join the quote pool with their own read times and
+    # source URLs, exactly like the hourly feed rows. They are never re-stamped as the feed's capture.
+    research_quotes = list(research.get("quotes") or [])
+    secondary_quotes = secondary_quotes + research_quotes
 
     rows = []
     for fixture in fixtures:
@@ -1607,7 +1867,8 @@ def main() -> int:
                     "hltv_kickoff": ""}
         if scheduled:
             hltv["hltv_schedule"] = scheduled
-        row = analyse(fixture, ratings, market, secondary, now, inputs["vrs"], hltv)
+        row = analyse(fixture, ratings, market, secondary, now, inputs["vrs"], hltv,
+                      research=research)
         row["_market"] = market
         row["_secondary"] = secondary
         rows.append(row)
@@ -1826,6 +2087,7 @@ def main() -> int:
     pages = {
         "index.html": ("Executive summary", render_index(rows, meta, coverage)),
         "picks.html": ("All picks", render_picks(rows, meta)),
+        "unresolved.html": ("Unresolved picks & limitations", render_unresolved(rows, meta, research)),
         "lines.html": ("Betting lines", render_lines(rows, inputs, meta)),
         "own-lines.html": ("Our own lines", render_own_lines(rows, meta, own_meta)),
         "tournaments.html": ("Tournaments", render_tournaments(rows, meta)),
