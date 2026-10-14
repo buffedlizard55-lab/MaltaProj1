@@ -1,6 +1,6 @@
 {
- "generated_utc": "2026-10-14T02:50:49Z",
- "as_of_utc": "2026-10-14T02:50:49Z",
+ "generated_utc": "2026-10-14T02:54:23Z",
+ "as_of_utc": "2026-10-14T02:54:23Z",
  "hotspawn_cs2_fixtures": 88,
  "open_cs2_fixtures": 28,
  "priced_any": 25,
@@ -10,36 +10,33 @@
  "format_known": 26,
  "feed_rows": 35,
  "review_rows": 14,
- "flags": 22,
+ "flags": 21,
  "polymarket_events": 96,
  "bo3_matches": 344,
  "polymarket_status": "observed",
  "bo3_status": "observed",
- "hotspawn_fallback": {
-  "path": "cs2/data/capture.json",
-  "generated_utc": "2026-10-14T02:45:17Z"
- },
+ "hotspawn_fallback": null,
  "hotspawn_pages": [
   {
    "page": "cs2-pickems",
    "url": "https://play.hotspawn.com/cs2-pickems",
-   "status": 403,
-   "cs2_rows": 0,
-   "fetched_utc": "2026-10-14T02:50:42Z"
+   "status": 200,
+   "cs2_rows": 88,
+   "fetched_utc": "2026-10-14T02:54:14Z"
   },
   {
    "page": "lobby",
    "url": "https://play.hotspawn.com/lobby",
-   "status": 403,
-   "cs2_rows": 0,
-   "fetched_utc": "2026-10-14T02:50:43Z"
+   "status": 200,
+   "cs2_rows": 88,
+   "fetched_utc": "2026-10-14T02:54:16Z"
   },
   {
    "page": "thp-pickems",
    "url": "https://play.hotspawn.com/thp-pickems",
-   "status": 403,
-   "cs2_rows": 0,
-   "fetched_utc": "2026-10-14T02:50:43Z"
+   "status": 200,
+   "cs2_rows": 12,
+   "fetched_utc": "2026-10-14T02:54:17Z"
   }
  ],
  "probes": [
@@ -49,15 +46,15 @@
    "status": 200,
    "bytes": 255603,
    "error": null,
-   "fetched_utc": "2026-10-14T02:50:48Z"
+   "fetched_utc": "2026-10-14T02:54:22Z"
   },
   {
    "source": "bookmaker page relayed by bo3.gg (thunderpick)",
    "url": "https://thunderpick.io/match/2812130",
    "status": 403,
    "bytes": 0,
-   "error": "HTTPError 403",
-   "fetched_utc": "2026-10-14T02:50:48Z"
+   "error": "HTTPError 403 server=cloudflare title='Just a moment...'",
+   "fetched_utc": "2026-10-14T02:54:23Z"
   }
  ]
 }
