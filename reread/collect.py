@@ -683,7 +683,8 @@ def run(only: str | None, limit: int | None, offline: bool) -> dict:
                 reused = True
                 res = {"verdict": "match", "http_status": prev.get("http_status"),
                        "observed": prev.get("observed", ""),
-                       "note": (prev.get("note", "") +
+                       "note": (re.sub(r"(\s*· reused from the [^·]+? run \(<\d+ h\))+$", "",
+                                       prev.get("note", "")) +
                                 f" · reused from the {prev['checked_utc']} run (<{reuse_hours} h)"),
                        "sha256": prev.get("sha256"), "bytes": prev.get("bytes") or 0,
                        "fetched_utc": prev["checked_utc"]}
