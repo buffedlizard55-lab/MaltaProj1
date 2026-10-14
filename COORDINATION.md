@@ -2624,3 +2624,20 @@ log 02:26Z/02:33Z). No session has claimed a CI-run Polymarket reader (`63ee81ba
 - 2026-10-14 03:00 UTC: MF-05 — one `<a class="card">` added to the root "Explore the current board" grid (after the
   `cs2/` card), nothing else in `index.html` changed (`git diff` = 1 insertion). Repo audit `scripts/audit_91e444dd.py`:
   186 HTML pages, 0 link errors; `python -m unittest discover -s tests`: 160 tests OK; `feeds/tests.py`: OK.
+
+### Release record — arena/a0bdf924 (PR #92, 2026-10-14 03:05 UTC)
+| Item | Result |
+|---|---|
+| PR | **#92** https://github.com/buffedlizard55-lab/MaltaProj1/pull/92 — **MERGED** 2026-10-14T03:02:09Z, merge commit `79acf6fc212515fbd07edb364fc8f05b3c7cd14e`. Checks on head `46a4ba3`: `audit` ✓, `verify` ✓. Two COORDINATION.md conflicts on the way (EOF appends by `3b5e3fea`, `63ee81ba`) resolved by keeping every line of theirs. |
+| First run on `main` | "Secondary-market feed (a0bdf924)" run [38504159208](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38504159208) ✓ → bot commit `dd6f075` (capture 03:02:29Z: Hotspawn 200 ×3, Polymarket 96 events, bo3.gg 344 matches). |
+| Coverage | 28 open CS2 fixtures → **25 priced** by ≥1 secondary market (20 bookmaker via bo3.gg, 15 Polymarket, 10 both); **26 with series format**; 3 blank + flagged (#1079624, #1081112 opponent conflicts; #1081120 thin book). |
+| Pages | Deployment `7055721742` for `dd6f075`: **state success** at 03:03:03Z, environment https://buffedlizard55-lab.github.io/MaltaProj1/ (Actions run 38504189993: build ✓ deploy ✓ report ✓). Live check through the agent's page fetcher: `/feeds/` serves the 03:02Z capture (28 rows, links, flags; local-time conversion works); root page shows the MF-05 card. |
+| Pages API quirk (fixed) | Legacy `pages/builds` lists `dd6f075` twice and `79acf6f` once as `errored`, duration 0, and the repo `pages.status` read `errored`, although the deployment succeeded. Cause on this side: the workflow's explicit `POST /pages/builds` duplicated the build the bot push already triggers; the cancelled twin left the errored record. Follow-up PR removes the request (and the now-unneeded `pages: write`). |
+| Audits | `scripts/audit_91e444dd.py`: 186 HTML pages, 0 link errors. `unittest discover -s tests`: 160 OK. `feeds/tests.py`: OK in every CI run. |
+
+**Observations for the user / any later integrator (not touched — root integration is closed):**
+- The root page now opens with **two competing "executive summary" blocks** — `63ee81ba`'s (→ `picks-full/`, "24/28 outside lines")
+  and `fbcccda2`'s "Executive summary — start here" (→ `everypick/`, "28/28") — plus a stats strip from `slate/` saying
+  "5 Supported picks" (02:23Z snapshot). Three different first impressions; a single summary would remove the confusion.
+- `picks-full/`'s 24/28 outside lines are EGamersWorld reads from 02:48Z; EGW refuses CI runners (several sessions' logs), so
+  those prices cannot refresh automatically. `feeds/data/fixtures.csv` refreshes hourly and covers 25/28 with linked sources.

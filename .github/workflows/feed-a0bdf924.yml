@@ -8,7 +8,7 @@
 #   3. feeds/join.py — strict team + kickoff matching, de-vig, flags;  4. feeds/build.py — pages;
 #   5. feeds/tests.py again — re-derivation from archived bytes, arithmetic, no crowd data, links;
 #   6. commit feeds/data + pages ONLY if every step passed (a failed step publishes nothing, so the
-#      last good build stays live), then on main request a Pages build.
+#      last good build stays live); the push itself triggers the Pages build.
 # Commits carry [skip ci] and are made with GITHUB_TOKEN, so a refresh never re-triggers itself.
 name: Secondary-market feed (a0bdf924)
 
@@ -26,7 +26,6 @@ on:
 
 permissions:
   contents: write
-  pages: write
 
 concurrency:
   group: feed-a0bdf924-${{ github.ref }}
@@ -90,11 +89,11 @@ jobs:
           echo "could not push after 5 attempts"
           exit 1
 
-      - name: Request a Pages build (main only)
-        if: success() && github.ref_name == 'main'
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: gh api --method POST "repos/${GITHUB_REPOSITORY}/pages/builds" || echo "Pages build request not accepted (the push itself also triggers a build)"
+      # No explicit Pages build request: the push above already triggers "pages build and deployment".
+      # Evidence (2026-10-14): commit dd6f075 pushed by this workflow got TWO Pages runs (38504189309
+      # cancelled, 38504189993 success) because an explicit POST /pages/builds was also sent; the
+      # cancelled twin left an "errored" record in the legacy Pages builds API and flipped the repo's
+      # Pages status to "errored" although deployment 7055721742 succeeded. One trigger, one build.
 
       - name: Upload the collection log and capture metadata
         if: always()
