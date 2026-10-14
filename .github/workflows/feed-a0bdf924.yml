@@ -1,0 +1,108 @@
+# MF-02 — automatic refresh of the secondary-market feed (session arena/a0bdf924).
+#
+# No credentials, no secrets, no manual input. Each run:
+#   1. offline unit tests (feeds/tests.py) — the logic must be sound before anything is fetched;
+#   2. feeds/collect.py — Hotspawn pick'em pages (fixture identity + lock epochs), Polymarket Gamma
+#      API series 10310 (CS2 match-winner markets), bo3.gg public API (series format + relayed
+#      bookmaker quote), reachability probes; trimmed raw responses archived under feeds/data/raw;
+#   3. feeds/join.py — strict team + kickoff matching, de-vig, flags;  4. feeds/build.py — pages;
+#   5. feeds/tests.py again — re-derivation from archived bytes, arithmetic, no crowd data, links;
+#   6. commit feeds/data + pages ONLY if every step passed (a failed step publishes nothing, so the
+#      last good build stays live), then on main request a Pages build.
+# Commits carry [skip ci] and are made with GITHUB_TOKEN, so a refresh never re-triggers itself.
+name: Secondary-market feed (a0bdf924)
+
+on:
+  workflow_dispatch: {}
+  push:
+    branches: ["arena/a0bdf924-maltaproj1", "main"]
+    paths:
+      - "feeds/**.py"
+      - "feeds/aliases.json"
+      - "feeds/style.css"
+      - ".github/workflows/feed-a0bdf924.yml"
+  schedule:
+    - cron: "41 * * * *"
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: feed-a0bdf924-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  feed:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Offline unit tests (logic before data)
+        run: python3 feeds/tests.py Names Prices Matching
+
+      - name: Collect Hotspawn + Polymarket + bo3.gg (+ probes)
+        run: |
+          set -o pipefail
+          python3 -u feeds/collect.py 2>&1 | tee "$RUNNER_TEMP/feed-collect.log"
+
+      - name: Join fixtures to source quotes (strict identity + kickoff, de-vig, flags)
+        run: python3 -u feeds/join.py
+
+      - name: Build pages
+        run: python3 -u feeds/build.py
+
+      - name: Publication invariants (re-derivation, arithmetic, no crowd data, links)
+        run: python3 feeds/tests.py
+
+      - name: Commit refreshed feed back to this branch
+        run: |
+          set -euo pipefail
+          BR="${GITHUB_REF_NAME}"
+          git config user.name "feed-a0bdf924[bot]"
+          git config user.email "feed-a0bdf924@users.noreply.github.com"
+          git add -A feeds/data feeds/index.html feeds/flagged.html feeds/method.html
+          if git diff --cached --quiet; then
+            echo "no change to publish"
+            exit 0
+          fi
+          git commit -q -m "feeds(a0bdf924): secondary-market refresh [skip ci] [run ${GITHUB_RUN_ID}]"
+          for i in 1 2 3 4 5; do
+            if git pull -q --rebase origin "$BR" && git push -q origin "HEAD:$BR"; then
+              echo "pushed on attempt $i"
+              exit 0
+            fi
+            git rebase --abort 2>/dev/null || true
+            sleep $((i * 7))
+          done
+          echo "could not push after 5 attempts"
+          exit 1
+
+      - name: Request a Pages build (main only)
+        if: success() && github.ref_name == 'main'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --method POST "repos/${GITHUB_REPOSITORY}/pages/builds" || echo "Pages build request not accepted (the push itself also triggers a build)"
+
+      - name: Upload the collection log and capture metadata
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: feed-a0bdf924-${{ github.run_id }}
+          path: |
+            ${{ runner.temp }}/feed-collect.log
+            feeds/data/capture.json
+          retention-days: 14
+          if-no-files-found: ignore

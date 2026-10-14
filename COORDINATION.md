@@ -2544,3 +2544,83 @@ carries its source URL and capture time; values that cannot be confirmed stay bl
 
 ### Log — arena/63ee81ba (continued)
 - 2026-10-14 02:56 UTC: PR #90 merged (`eb97b40`); Pages build `built` for that commit; session closed.
+
+---
+
+## Session `arena/a0bdf924` — claim (2026-10-14 02:38 UTC)
+
+Branch: `arena/a0bdf924-maltaproj1` (Arena fixes this session to that branch, so the brief's `session-<id>/<task>`
+name can't be used; no other branch is created or pushed). Base: `origin/main` @ `936d577` (includes PR #82 `cs2/`, PR #85 `everypick/`).
+
+**Read before claiming (02:34–02:38 UTC):** this board in full; `gh pr list`; every remote `arena/*` branch tip and the
+claim section on each branch pushed after 02:30Z. These are **already claimed and NOT touched by this session**: executive summary / every-match
+picks (`fbcccda2` done, `3b5e3fea` `exec/**`, `bdc98a9a` `exec/**`, `5545dbb8` `executive/**`, `63ee81ba` `picks-full/**`),
+**final integration + root `index.html`/`README.md`** (`63ee81ba` X-07), research for #1079624 (`bdc98a9a` E-02, `63ee81ba` X-03),
+audits (`496e53ff`, `5ecaadce`, `26986a4e`), `cs2/**` (`a174d77f`), `slate/**`, `model/**`, `oct14/**`, `everypick/**`.
+
+**Gap this session takes:** the automated pipelines read **only Pinnacle** for prices (7 of 28 open CS2 fixtures at 02:23Z;
+Pinnacle lists 4 CS2 leagues). Low-tier matches therefore get no market line even when a public market exists.
+`arena/a174d77f` explicitly handed off the bo3.gg / OddsDigger parsers ("this note is the hand-off for anyone who wants it",
+log 02:26Z/02:33Z). No session has claimed a CI-run Polymarket reader (`63ee81ba` X-02 reads Polymarket by hand for its own board only).
+
+| ID | Task | Status | Owner | Exclusive file scope |
+|----|------|--------|-------|----------------------|
+| MF-01 | **Automated secondary-market feed (CI-run, no manual input).** Collector that reads Polymarket (public Gamma API), bo3.gg (public API its site uses) and OddsDigger, plus reachability probes for other public esports books; strict identity + kickoff matching to the live Hotspawn CS2 fixture list (ng-state payload); de-vig; raw responses archived so every number re-derives; per-row source URL + capture time; thin/degenerate markets flagged, never used silently. Hotspawn crowd % never read. | in progress | arena/a0bdf924 | `feeds/collect.py`, `feeds/match.py`, `feeds/data/**` |
+| MF-02 | Hourly + push + dispatch workflow, gated commit (tests must pass; source failure keeps last good data + flag). | in progress | arena/a0bdf924 | `.github/workflows/feed-a0bdf924.yml` |
+| MF-03 | Mobile table page documenting the feed (one row per matched market, both sides' de-vigged %, source link, capture time) + Flagged for Review page. Labelled as a **data-source page, not another picks board**; links to the canonical picks pages. | in progress | arena/a0bdf924 | `feeds/build.py`, `feeds/*.html`, `feeds/style.css`, `feeds/tests.py` |
+| MF-04 | Verification record + integration requests (no cross-owner edits): board owners / final integrator consume `feeds/data/market_feed.csv` as a secondary-market tier. PR → `main` for this scope only, merge, confirm Pages, record here. | in progress | arena/a0bdf924 | `reviews/a0bdf924-market-feed.md`, this section of `COORDINATION.md` |
+
+- Not touched: root `index.html`, `README.md`, and every path listed above as claimed. A root/nav link to `feeds/` is **requested** from the final integrator (`63ee81ba`), not edited.
+
+### Log — arena/a0bdf924
+- 2026-10-14 02:38 UTC: claim written, committed (c9bb36c, 02:38:40Z) and pushed before any task work.
+- 2026-10-14 02:50 UTC: MF-01/MF-02/MF-03 code pushed — `feeds/{collect,match,join,build,tests}.py`, `feeds/aliases.json`
+  (empty: every alias needs an official evidence link), `feeds/style.css`, `.github/workflows/feed-a0bdf924.yml`
+  (push on this branch/main for `feeds/**.py`, hourly at :41, dispatch; commits only when every test passes).
+  Source discovery, read via the agent's page fetcher (sandbox shell has no route to these hosts):
+  * Polymarket: `gamma-api.polymarket.com/series?slug=counter-strike` → **series id 10310** ("Counter Strike",
+    daily match series). `events?series_id=10310&closed=false` returns every CS2 match event with its `moneyline`
+    market (outcomes, prices, bestBid/bestAsk, spread, depth, volume, `gameStartTime`) and `eventMetadata`
+    (league, leagueTier, pandascoreMatchId). The existing `cs2/collect.py` query (`markets?…order=volume24hr&limit=500`)
+    is a top-500-by-volume list across ALL of Polymarket, so only 4 big CS2 matches survived it at 02:36Z; the
+    series query reaches the low-tier ones (e.g. `cs2-enjoy-b8acad-2026-10-14`, kickoff 08:00Z = Hotspawn #1081111).
+  * bo3.gg: `api.bo3.gg/api/v1/matches?filter[matches.status][in]=upcoming&filter[matches.discipline_id][eq]=1&with=teams,tournament`
+    → 344 upcoming CS2 matches at 02:45Z, each with **`bo_type` (series format)**, UTC `start_date`, and where
+    available a relayed bookmaker quote in `bet_updates` (`provider`, bookmaker match URL, both decimal odds, `active`).
+    Example: GenOne 1.42 / 6666 2.70, provider thunderpick, https://thunderpick.io/match/2812130.
+    This also answers the "series format unverified" blanks on other boards (Hotspawn's `best_of`/`series_format` are null).
+  * OddsDigger: `/e-sports/counter-strike` is HTTP 410 per `cs2/data/capture.json`; the index's 8-row table has no
+    kickoff times, so it cannot pass the kickoff-window rule. Probe only.
+- 2026-10-14 02:54 UTC: CI run [38503145599](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38503145599) green;
+  Hotspawn answered 403 to a JSON-first `Accept` → labelled fallback to `cs2/data/capture.json` (MF-12) worked.
+  Run [38503458961](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38503458961) green with an HTML-first `Accept`
+  (as `cs2/common.py`): Hotspawn **200** ×3 (88 CS2 rows), Polymarket 96 open CS2 match events, bo3.gg 344 upcoming matches.
+  **Coverage of the 28 open CS2 fixtures: 25 priced by ≥1 secondary source (20 bookmaker via bo3.gg, 15 Polymarket,
+  10 both); series format for 26 (14 BO3, 12 BO1).** Cross-check vs Pinnacle (`cs2/data/analysis.csv`, read-only) on
+  the 7 shared fixtures: max gap 3.1 pp, mean 1.63 pp, same favourite 14/14. Aliases WROTBERRY=WBT and RoundsGG=ROUNDS
+  re-verified on HLTV (2399418, 2399427). Full record: `reviews/a0bdf924-market-feed.md`.
+- 2026-10-14 02:55 UTC: resolved a rebase conflict in this file (two appends at the end: `26986a4e`/`3b5e3fea`
+  sections and this one) by keeping both, theirs first; nothing discarded.
+
+### Integration requests from arena/a0bdf924 (no cross-owner edits were made)
+- **To `arena/63ee81ba` (final integrator, X-07):** please link `feeds/` from the root page/nav as a data source
+  (suggested label: "Secondary betting lines — 25/28 matches"), and consider reading `feeds/data/fixtures.csv`
+  (or `.json`) as a **secondary-market tier** for fixtures without a Pinnacle price: `bookmaker_p_a_pct`,
+  `polymarket_p_a_pct`, `secondary_p_a_pct`, `format_bo`, `flags`, links per row. Refreshes hourly (:41) once on `main`.
+- **To `arena/a174d77f` (`cs2/`):** IRR-MF-1 — `cs2/collect.py`'s Polymarket query (`markets?…order=volume24hr&limit=500`)
+  is the top 500 of all Polymarket, so only 4 CS2 matches survive; `events?series_id=10310&closed=false` returns all CS2
+  match events (96 at 02:54Z). bo3.gg's `bo_type` also answers your blank series-format column. Either switch, or read
+  `feeds/data/market_feed.csv`.
+- **To `arena/bdc98a9a` / `arena/63ee81ba` (research on #1079624):** bo3.gg match 131436 and Polymarket
+  `cs2-forzer-skr2-2026-10-14` both list FORZE Reload's 17:00Z CCT Europe Series #11 opponent as **Sökerorg**, not
+  "LFO 10" (IRR-MF-2). bo3.gg lists 6666's 11:00Z Series 12 Play-In opponent as **los kogutos**, not "Banda chuya" (IRR-MF-3).
+- **To the picks boards (`fbcccda2` everypick/, `3b5e3fea` exec/, `5545dbb8` executive/, `bdc98a9a` exec/):** tier-B
+  rows that rely on earlier EGW/bc.game captures can be refreshed from this feed hourly (same flags, links on every row).
+
+### Claim addendum — arena/a0bdf924 (2026-10-14 02:59 UTC)
+| ID | Task | Status | Owner | Exclusive file scope |
+|----|------|--------|-------|----------------------|
+| MF-05 | **One additive link to `feeds/` on the root page.** The final integrator `63ee81ba` closed X-07 at 02:56Z (session closed) before MF-01..04 finished, so the request above cannot be actioned by them. Following the repo precedent for a closed root claim (`a174d77f`: "one additive card … root-file claim closed"; `3b5e3fea`: "one additive card for exec/"), this adds ONE card in the existing "Explore the current board" grid. No other card, sentence, CTA or executive-summary text is touched; `picks-full/` stays the primary entry point. | in progress | arena/a0bdf924 | root `index.html` — one `<a class="card">` element only |
+- 2026-10-14 03:00 UTC: MF-05 — one `<a class="card">` added to the root "Explore the current board" grid (after the
+  `cs2/` card), nothing else in `index.html` changed (`git diff` = 1 insertion). Repo audit `scripts/audit_91e444dd.py`:
+  186 HTML pages, 0 link errors; `python -m unittest discover -s tests`: 160 tests OK; `feeds/tests.py`: OK.
