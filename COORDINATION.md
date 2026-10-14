@@ -3498,5 +3498,21 @@ prints the age of every input; its own workflow fails closed.
 window) plus `workflow_run` on `Slate capture (180a42a0)` and `Secondary-market feed (a0bdf924)` plus
 `workflow_dispatch`; it rebuilds, runs both test modules and commits `livelines/` only when they pass.
 
-**Merge record.** PR #121 raised from `arena/457629c4-maltaproj1` → `main` at 2026-10-14 ~05:20 UTC and merged
-without waiting for review; merge result and Pages check appended below after the merge.
+**Merge record.** PR **#121** (`arena/457629c4-maltaproj1` → `main`) **merged without waiting for review** at
+**2026-10-14T04:52:31Z**, merge commit **`53f6e62`** (raised ~04:48Z, mergeable after a rebase onto `75cb255`).
+
+**Pages.** The Pages build for the merge commit was superseded by the board's own refresh commit **`12614bf`**
+(`livelines: refresh board (2026-10-14T04:52Z)`, produced by the new workflow's `workflow_run` trigger firing on
+the merge); the Pages build for `12614bf` **succeeded** (`status: built`). Live checks over HTTPS:
+`https://buffedlizard55-lab.github.io/MaltaProj1/livelines/index.html` serves the executive summary — 28 open,
+27 picks, 25 market-priced, 2 own line, 1 bound-only — with in-site links to `picks.html`,
+`unresolved.html`, `flagged.html`, `methodology.html`, `sources.html`, `cadence.html` and the machine-readable
+`data/picks.csv`; the live cards show the pick, both probabilities, the basis, the read minute and the per-row
+source links, exactly as generated.
+
+**Post-merge note (recorded for the next session).** The board's own refresh consumed a **fresher primary-bookmaker
+capture than this session's reads** — Pinnacle guest markets captured 2026-10-14T04:38:10Z, stored by the pipeline
+in `executive/data/external_lines.csv` (a read-only input here) — and moved six rows to `T1` (Enjoy–B8, 9z–Aurora,
+HOTU–Fnatic, Falcons–NiP, MIBR–BC.Game, Heroic–Envy). The verification record is now **generated from the published
+files** by `livelines/make_verification_record.py` and stamped with the build it verifies, so it cannot drift from
+the board. Follow-up PR carries the re-synced record and this note.
