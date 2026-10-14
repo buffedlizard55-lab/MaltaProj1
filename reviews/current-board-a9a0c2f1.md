@@ -63,3 +63,7 @@ All current unresolved per-fixture gaps and standing caveats are published on [F
 ## Final validated capture
 
 [Run 38499658766](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38499658766) succeeded, including mobile/desktop rendering and publication. Snapshot **2026-10-14T02:15:27Z**: 381 union payload rows; 88 game-associated CS2 rows / 28 open; 5 primary quotes/picks; 20 provisional map estimates, 4 sourced-format series estimates. Unclassified lobby-only rows remain in the inventory, CS2 review section and Flagged page without an inferred sport. Final tests: 108 repository + 23 slate; 126 HTML pages, zero broken local links.
+
+## Publication confirmed
+
+[PR #73](https://github.com/buffedlizard55-lab/MaltaProj1/pull/73) merged 2026-10-14T02:18:14Z. [Pages run 38500323181](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38500323181) succeeded. [Post-merge refresh 38500324242](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38500324242) succeeded, including real public HTTP-200 root/CS2/Flagged/JSON checks against the newly validated snapshot. Main's hourly automation is active. Exact latest published counts and timestamps appear in the release record in COORDINATION.md. No further code changes planned by this session.
