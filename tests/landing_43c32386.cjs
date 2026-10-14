@@ -28,7 +28,11 @@ for(const {row:r,status:s} of view.rows) {
  else {assert.equal(s.a,null);assert.equal(s.b,null);}
 }
 assert.equal(snapshot(data,Date.parse('2026-10-20T00:00:00Z')).rows.length,0);
-assert.equal(snapshot(data,Date.parse('2026-10-14T10:00:00Z')).active,0);
+// Data-driven (arena/e13aca8a): the original frozen clock (2026-10-14T10:00Z) assumed every stored
+// capture would be older than the 6h freshness window by then; later live captures legitimately
+// broke that. Intent preserved: once every capture is past its freshness window nothing is active.
+const newestCapture = Math.max(...Object.values(data.fixtures).map(r => Date.parse(r.market_captured_utc || 0) || 0), Date.parse(data.capture_utc || 0) || 0);
+assert.equal(snapshot(data,newestCapture + 7*3600*1000).active,0);
 console.log('Landing evidence checks passed: freshness, lock, source, odds, fallback, URL safety, every current row.');
 
 const officialURL='https://github.com/ValveSoftware/counter-strike_regional_standings/blob/'+'a'.repeat(40)+'/live/2026/standings_global_2026_10_05.md';
