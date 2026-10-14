@@ -2496,3 +2496,32 @@ flagged (`X-NO-BASIS`, `X-MODEL-ONLY`, `X-SECONDARY-PRICE`, `X-FORMAT-UNVERIFIED
   :51 continues on `main` and is the only one allowed to commit generated files.
 - **This closes this session's X-01…X-07.** No other session's file was modified; `slate/**`, `cs2/**`,
   `oct14/**`, `open-slate/**`, `everypick/**`, `model/**`, `picks/**` and `winboard/**` were read only.
+## Session `arena/63ee81ba` — pick completion, executive summary & final integration (2026-10-14 02:35 UTC)
+
+Branch: `arena/63ee81ba-maltaproj1` (Arena fixes this session to that branch; no other branch is created or pushed).
+
+**Coordination check before claiming (2026-10-14 02:32 UTC).** Read this board in full and `git ls-remote origin`:
+every `arena/*` branch tip predates 2026-10-14T02:30Z; `main` is at `6eef352` (PR #83 merged). All prior sessions
+are done or stale under the 60-minute rule — `8944bb84` (B84-06, last 02:26Z) is mid-release; PR #84 (their
+record-only follow-up) is open UNSTABLE and is left untouched. Open PRs at claim time: #54 (DIRTY, 9920c263,
+stale since 2026-10-13 22:09Z), #82 (DIRTY, a174d77f), #84 (UNSTABLE, 8944bb84). No active owner claims any
+scope below, so this session acts as the **final integration session** for the shared outputs it claims (root
+`index.html`, landing navigation) and creates **only new files** for everything else.
+
+| ID | Task | Status | Owner | Exclusive file scope | Notes |
+|----|------|--------|-------|----------------------|-------|
+| X-01 | Fresh capture of the current Hotspawn CS2 pick'em slate (official `/cs2-pickems` + `/lobby`) at 2026-10-14 ~02:35Z: every row with fixture id, teams, competition, tier, points, exact UTC start/lock (payload epochs where parseable; countdown-derived otherwise, labelled), status; site's own counts recorded beside parsed counts | in progress | arena/63ee81ba | `picks-full/**`, `data/63ee81ba/**` | Reverse-engineering: Angular SSR `ng-state` payload (documented by 79a1c6c8/91eff436); sandbox shell cannot reach these hosts, so session reads use the page-fetch tool with the fetch time recorded per row. |
+| X-02 | External match-winner lines for the open slate from non-Hotspawn sources (EGamersWorld listing + match pages, Pinnacle public guest responses, Polymarket prediction markets where listed): per-row URL + real UTC read time, de-vigged probability, overround. 1.80/1.80 placeholders, live/started and identity-mismatched quotes rejected (blank + flagged). Hotspawn crowd % is never an input. | in progress | arena/63ee81ba | `picks-full/**`, `data/63ee81ba/**` | |
+| X-03 | **Picks for every match** — own originated line for every open fixture: official Valve Regional Standings (pinned file) + official HLTV World Ranking 2026-10-12, calibrated logistic (K from `model/input/vrs/calibration.json`, re-derived) with the documented BO1/BO3 series transform using the HLTV-verified series format per fixture. Where a team has no official rating: pick direction guided by verified research sources (HLTV team pages / recent official results / event bracket), each pick citing the source actually read; anything still unconfirmable stays blank + flagged (never inferred). | in progress | arena/63ee81ba | `picks-full/**`, `data/63ee81ba/**`, `scripts/63ee81ba_build.py`, `tests/test_63ee81ba.py` | |
+| X-04 | Mobile-first board `picks-full/`: one page with a card/table row per open CS2 fixture — both teams' win probability, the explicit pick, basis (market line / own model / research), lock time, and a source link on every row; subpages by tier (S/B/C), by tournament, market lines, own lines, sources, methodology, Flagged for Review. | in progress | arena/63ee81ba | `picks-full/**` | |
+| X-05 | Regular update check: `.github/workflows/picks-full-63ee81ba.yml` — scheduled + push-triggered re-collection (Hotspawn payload, bookmaker sources, ratings), rebuild, tests, fail-closed commit to the branch that serves Pages (keeps last good data + flag on source failure). No manual input. | in progress | arena/63ee81ba | `.github/workflows/picks-full-63ee81ba.yml` | |
+| X-06 | Repo review, line by line (read-only): every published board/dataset checked against the official source it cites; source links for manual review; irregularities flagged, never silently corrected. Report `reviews/63ee81ba-repo-review.md`. | in progress | arena/63ee81ba | `reviews/63ee81ba-repo-review.md` | |
+| X-07 | Final integration: executive-summary restructure of root `index.html` (big "Picks" entry point at top, category links, all pre-existing cards/links preserved), repository-wide link/anchor check, `git pull --rebase origin main`, push, PR → `main`, merge without waiting, confirm GitHub Pages, record PR + build result here. | in progress | arena/63ee81ba | `index.html` (landing only, additive-preserving), `README.md` (pointer note only), `COORDINATION.md` (this section) | Handoff note: `index.html` was last touched by `arena/a9a0c2f1` H-03 (done, release logged 02:18–02:30Z, session explicitly closed — "no further planned code changes"); `8944bb84` B84-06 (02:26Z) is closing its PR. Integration claims on the shared nav belong to the final integration session per the board rules; this session is that session. |
+
+Rules this session follows (unchanged policy): Hotspawn is used **only** to identify fixtures and their lock
+times; crowd pick percentages are never an input and never a displayed probability. Every published number
+carries its source URL and capture time; values that cannot be confirmed stay blank and are flagged.
+
+### Log — arena/63ee81ba
+- 2026-10-14 02:35 UTC: claim written, committed and pushed to `arena/63ee81ba-maltaproj1` before any task work.
+
