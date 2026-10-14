@@ -271,13 +271,18 @@ def main() -> int:
             section = "started"    # inside this pick'em week but start time already passed at snapshot
         else:
             section = "upcoming"
+        fx_url = perm.get(str(f["id"]))
+        if not (isinstance(fx_url, str) and fx_url.startswith(("https://www.hotspawn.com/", "https://play.hotspawn.com/"))):
+            fx_url, no_permalink = LOBBY, True
+        else:
+            no_permalink = False
         row = {
             "hotspawn_match_id": f["id"], "section": section,
             "scheduled_start_utc": utc(f["scheduled_start_time"]), "lock_utc": utc(f["lock_time"]),
             "hotspawn_status": f["status"], "competition": f["competition_name"], "tier": (f["tier"] or "").upper(),
             "stage": f["stage"] or "", "best_of": f["best_of"] if f["best_of"] is not None else "",
             "team_a": a, "team_b": b,
-            "hotspawn_url": perm.get(str(f["id"]), LOBBY),
+            "hotspawn_url": fx_url,
         }
         for side, r in (("a", ra), ("b", rb)):
             v, h = r["vrs"], r["hltv"]
@@ -289,6 +294,8 @@ def main() -> int:
             row[f"hltv_{side}_url"] = f"https://www.hltv.org/team/{h['team_id']}/{h['slug']}" if h and h.get("team_id") else ""
             row[f"resolution_{side}"] = r["status"]
         reasons = []
+        if no_permalink:
+            reasons.append("no per-match Hotspawn permalink in the payload - this row links the Pick'em page it was read from")
         # market reference (read-only, session 79a1c6c8); orientation checked by team names
         mk = market.get(str(f["id"]))
         mp = None
@@ -599,7 +606,7 @@ def fixture_table(rows, tid):
         if r.get("actionable") == "no":
             st += ' <span class="pill">' + ("started - not actionable" if r["section"] == "started" else "stale - not actionable") + '</span>'
         src = " · ".join(x for x in [
-            a(r["hotspawn_url"], "Hotspawn fixture"),
+            a(r["hotspawn_url"], "Hotspawn Pick'em page" if r["hotspawn_url"] == LOBBY else "Hotspawn fixture"),
             a(r["vrs_a_url"], "VRS A"), a(r["vrs_b_url"], "VRS B"),
             a(r["hltv_a_url"], "HLTV A"), a(r["hltv_b_url"], "HLTV B"),
             a(r.get("market_source_url", ""), "Market src")] if x)

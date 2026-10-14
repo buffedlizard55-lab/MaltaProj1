@@ -1,19 +1,37 @@
-# O-01 own-line model (session arena/91eff436). Exclusive scope: model/** and this file.
-# Fetches official inputs (Hotspawn fixture identity, Valve Regional Standings, HLTV ranking),
-# recomputes our own lines, runs the tests, and commits ONLY model/** back to the same branch.
-# A scheduled refresh only fires from the default branch, i.e. after this is merged to main.
+# O-01 own-line model (session arena/91eff436; repaired in session arena/a1db82b7, task M-01).
+# Exclusive scope: model/** and this file.
+#
+# What it does: fetches the official inputs (Hotspawn fixture identity, Valve Regional Standings, HLTV
+# ranking), recomputes our own lines, runs the tests, and commits ONLY model/** back to the same branch.
+# A failing test blocks the commit on purpose: a value that cannot be reproduced is never published.
+#
+# Trigger set (2026-10-14, session a1db82b7):
+#   * push to main / the session branch when model code or this file changes
+#   * schedule: every 3 hours
+#   * workflow_run: whenever the slate capture job finishes, so the own lines follow the board's own
+#     refresh instead of depending on a cron that may be dropped (see the reliability finding in
+#     reviews/a1db82b7-verification.md: this repository has had 2 scheduled runs in total against 131 pushes)
+#   * manual dispatch
+# Repair note (M-01): scheduled run 38489574648 failed on 2026-10-14T00:20:08Z because the board returned a
+# fixture with a null permalink and str(None) reached the page as the literal string "None". fetch.py now
+# drops such values at ingest and build.py validates the URL before publishing it; two regression tests
+# cover it (test_every_row_links_an_official_hotspawn_url, test_permalinks_ingested_are_real_urls).
 name: O-01 own-line model (VRS)
 
 on:
   push:
-    branches: ["arena/91eff436-maltaproj1", "main"]
+    branches: ["arena/91eff436-maltaproj1", "arena/a1db82b7-maltaproj1", "main"]
     paths: ["model/*.py", ".github/workflows/model-91eff436.yml"]
+  workflow_run:
+    workflows: ["Slate capture (180a42a0)"]
+    types: [completed]
   workflow_dispatch: {}
   schedule:
     - cron: "17 */3 * * *"
 
 permissions:
   contents: write
+  actions: write
   pages: write
 
 concurrency:
@@ -23,13 +41,14 @@ concurrency:
 jobs:
   refresh:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     env:
       PYTHONDONTWRITEBYTECODE: "1"
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          ref: ${{ github.event_name == 'workflow_run' && github.event.workflow_run.head_branch || github.ref_name }}
       - name: Fetch official inputs
         run: python3 model/fetch.py
       - name: Calibrate slope on Valve's published history (no look-ahead)
@@ -42,7 +61,58 @@ jobs:
         run: python3 model/build.py
       - name: Tests (incl. check against Valve's own fit.js/glicko.js)
         run: VRS_REPO_DIR=/tmp/vrs python3 model/test_model.py -v
-      - name: Commit refreshed model/** (only if changed)
+      - name: Freshness report (published in the job summary)
+        if: always()
+        run: |
+          {
+            echo "### Own-line model run"
+            echo ""
+            python3 - <<'PY'
+            import json, pathlib
+            log = json.loads(pathlib.Path("model/input/fetch_log.json").read_text())
+            fx = json.loads(pathlib.Path("model/input/hotspawn_cs2_fixtures.json").read_text())
+            print(f"- Hotspawn fixture snapshot fetched: {fx.get('fetched_utc')} "
+                  f"({fx.get('fixture_count')} CS2 fixtures; board header says "
+                  f"{fx.get('lobby_header_matches_this_week')} this week, filter {fx.get('lobby_filter_all_tiers')})")
+            print(f"- Valve standings: {log['vrs'].get('result')}")
+            print(f"- HLTV ranking: {log['hltv'].get('result')}")
+            import csv
+            rows = list(csv.DictReader(open("model/data/lines.csv", encoding="utf-8")))
+            own = [r for r in rows if r["line_status"] == "OWN LINE"]
+            blank = [r for r in rows if r["line_status"] != "OWN LINE"]
+            upcoming = [r for r in rows if r["section"] == "upcoming"]
+            print(f"- Published rows: {len(rows)} ({len(upcoming)} upcoming, "
+                  f"{len(rows) - len(upcoming)} started/stale)")
+            print(f"- Own line published: {len(own)} rows; blank and flagged: {len(blank)} rows")
+            print(f"- Rows linking the Pick'em page (no per-match permalink): "
+                  f"{sum(1 for r in rows if r['hotspawn_url'].endswith('/cs2-pickems'))}")
+            PY
+          } >> "$GITHUB_STEP_SUMMARY"
+      - name: Ask the slate capture to catch up if it has not run for hours (best effort)
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          # Scheduled triggers are being dropped for this repository (2 scheduled runs in total). If the
+          # board's capture has not run for more than six hours, ask it to run now, so that a single firing
+          # job re-arms the whole refresh chain. Never fails this run.
+          last=$(curl -s -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/workflows/slate-180a42a0.yml/runs?per_page=1" \
+            | python3 -c "import sys,json; r=json.load(sys.stdin).get('workflow_runs') or []; print(r[0]['created_at'] if r else '')")
+          echo "newest slate capture run: ${last:-none}"
+          if [ -z "$last" ]; then exit 0; fi
+          age=$(( ( $(date -u +%s) - $(date -u -d "$last" +%s) ) / 60 ))
+          echo "slate capture age: ${age} min"
+          if [ "$age" -gt 360 ]; then
+            echo "dispatching the slate capture (stale by ${age} min)"
+            curl -s -o /dev/null -w "dispatch http %{http_code}\n" -X POST \
+              -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" \
+              "https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/workflows/slate-180a42a0.yml/dispatches" \
+              -d '{"ref":"main"}'
+          fi
+      - name: Commit refreshed model/** (only if changed; a failing test above blocks this)
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           git config user.name "model-91eff436[bot]"
           git config user.email "model-91eff436@users.noreply.github.com"
@@ -54,17 +124,18 @@ jobs:
             exit 0
           fi
           git add model/
-          git commit -m "model(91eff436): refresh inputs + own lines [run ${GITHUB_RUN_ID}]"
+          git commit -m "model(91eff436): refresh inputs + own lines [run ${GITHUB_RUN_ID}] [skip ci]"
           for i in 1 2 3; do
             if git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}"; then
               # Best effort: ask legacy Pages to rebuild, in case a GITHUB_TOKEN push does not trigger it.
               if [ "${GITHUB_REF_NAME}" = "main" ]; then
                 curl -s -o /dev/null -w "pages build request: %{http_code}\n" -X POST \
-                  -H "Authorization: Bearer ${{ github.token }}" -H "Accept: application/vnd.github+json" \
+                  -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" \
                   "https://api.github.com/repos/${GITHUB_REPOSITORY}/pages/builds" || true
               fi
               exit 0
             fi
+            git rebase --abort 2>/dev/null || true
             sleep 5
           done
           exit 1

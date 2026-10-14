@@ -105,7 +105,14 @@ def parse_hotspawn_page(url: str) -> tuple[dict, list, dict, dict | None]:
         if isinstance(b, dict) and "weekStartUtc" in b:
             week = {kk: b.get(kk) for kk in ("weekId", "sportAlias", "status", "weekStartUtc", "weekEndUtc", "cutoffUtc")}
         if isinstance(b, dict) and isinstance(b.get("permalinks"), dict):
-            permalinks.update({str(kk): str(u) for kk, u in b["permalinks"].items()})
+            # Keep only real URLs. The board returns a null permalink for a fixture it has just added
+            # (seen on 2026-10-14: 89 fixtures, one of them without a match URL). str(None) would be the
+            # literal string "None", which then shipped as a source URL and failed the model's own
+            # source test on the scheduled run of 2026-10-14T00:20:08Z. A fixture without a permalink is
+            # simply absent from this map, and the build links the Pick'em page it was read from instead.
+            for kk, u in b["permalinks"].items():
+                if isinstance(u, str) and u.startswith(("https://www.hotspawn.com/", "https://play.hotspawn.com/")):
+                    permalinks[str(kk)] = u
     plain = htmllib.unescape(re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", text)))
     hdr = re.search(r"(\d+)\s*matches this week", plain)
     tot = re.search(r"All tiers \((\d+)\)", plain)
