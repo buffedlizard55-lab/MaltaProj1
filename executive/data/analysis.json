@@ -1,42 +1,42 @@
 {
- "generated_utc": "2026-10-14T17:31:32Z",
- "capture_utc": "2026-10-14T17:29:29Z",
+ "generated_utc": "2026-10-14T23:23:56Z",
+ "capture_utc": "2026-10-14T23:22:17Z",
  "coverage": {
-  "total_fixtures": 79,
+  "total_fixtures": 76,
   "open_fixtures": 15,
-  "locked_fixtures": 64,
+  "locked_fixtures": 61,
   "stale_fixtures": 59,
   "open_with_pick": 15,
   "open_market_basis": 14,
   "open_model_basis": 1,
   "open_provisional": 0,
   "open_no_pick": 0,
-  "flagged_rows": 79,
-  "unique_teams": 95,
-  "teams_resolved_official": 90,
+  "flagged_rows": 76,
+  "unique_teams": 89,
+  "teams_resolved_official": 85,
   "open_research_basis": 0,
   "open_own_line": 15,
   "fixtures_with_stated_format": 15,
-  "own_line_scale": 222.0,
+  "own_line_scale": 265.0,
   "own_line_scale_fitted": true,
-  "own_line_calibration_n": 10,
-  "own_line_calibration_mae_pp": 8.239,
+  "own_line_calibration_n": 8,
+  "own_line_calibration_mae_pp": 7.657,
   "hltv_ranking_teams": 245,
   "hltv_ranking_date": "2026-10-12"
  },
  "meta": {
-  "generated_utc": "2026-10-14T17:31:32Z",
-  "capture_utc": "2026-10-14T17:29:29Z",
+  "generated_utc": "2026-10-14T23:23:56Z",
+  "capture_utc": "2026-10-14T23:22:17Z",
   "snapshot_age_text": "Snapshot is 0.0 h old",
-  "hotspawn_read_text": "2026-10-14T17:29Z (live)",
-  "market_read_text": "live read 2026-10-14T17:29 (12 CS2 quotes)",
+  "hotspawn_read_text": "2026-10-14T23:22Z (live)",
+  "market_read_text": "live read 2026-10-14T23:22 (12 CS2 quotes)",
   "vrs_read_text": "official standings 2026-10-05 · HLTV ranking 2026-10-12",
   "own_line": {
    "calibration": {
-    "scale": 222.0,
+    "scale": 265.0,
     "fitted": true,
-    "n": 10,
-    "mae_pp": 8.239,
+    "n": 8,
+    "mae_pp": 7.657,
     "default_scale": 100.0,
     "reason": "grid search 5-400 rank positions per 90% favourite, minimum mean absolute error"
    },
@@ -156,10 +156,10 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
+   "last_verified_utc": "2026-10-14T23:23:56Z",
    "own": {
     "best_of": 1,
-    "scale": 222.0,
+    "scale": 265.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -167,8 +167,8 @@
     "rank_b": "",
     "bound_a": false,
     "bound_b": true,
-    "p_map": 0.5413930658639144,
-    "p_series": 0.5413930658639144,
+    "p_map": 0.5347001299985107,
+    "p_series": 0.5347001299985107,
     "method": "HLTV world-rank logistic",
     "sources": [
      [
@@ -184,7 +184,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks 230 vs — (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 54.1%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
+    "detail": "ranks 230 vs — (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 53.5%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
     "vrs_p_series": 0.4555054269169921,
     "vrs_p_map": 0.4555054269169921
    }
@@ -293,10 +293,10 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
+   "last_verified_utc": "2026-10-14T23:23:56Z",
    "own": {
     "best_of": 1,
-    "scale": 222.0,
+    "scale": 265.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -304,8 +304,8 @@
     "rank_b": 86,
     "bound_a": false,
     "bound_b": false,
-    "p_map": 0.3829342623690918,
-    "p_series": 0.3829342623690918,
+    "p_map": 0.40138585801680976,
+    "p_series": 0.40138585801680976,
     "method": "HLTV world-rank logistic",
     "sources": [
      [
@@ -321,7 +321,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks 132 vs 86 (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 38.3%",
+    "detail": "ranks 132 vs 86 (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 40.1%",
     "vrs_p_series": 0.41171002813683716,
     "vrs_p_map": 0.41171002813683716
    }
@@ -434,10 +434,10 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
+   "last_verified_utc": "2026-10-14T23:23:56Z",
    "own": {
     "best_of": 1,
-    "scale": 222.0,
+    "scale": 265.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -445,8 +445,8 @@
     "rank_b": 135,
     "bound_a": true,
     "bound_b": false,
-    "p_map": 0.2402530733520421,
-    "p_series": 0.2402530733520421,
+    "p_map": 0.27598231347210855,
+    "p_series": 0.27598231347210855,
     "method": "HLTV world-rank logistic",
     "sources": [
      [
@@ -462,7 +462,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks — vs 135 (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 24.0%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
+    "detail": "ranks — vs 135 (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 27.6%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
     "vrs_p_series": 0.9988531631234163,
     "vrs_p_map": 0.9988531631234163
    }
@@ -578,10 +578,10 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
+   "last_verified_utc": "2026-10-14T23:23:56Z",
    "own": {
     "best_of": 1,
-    "scale": 222.0,
+    "scale": 265.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -589,8 +589,8 @@
     "rank_b": "",
     "bound_a": false,
     "bound_b": true,
-    "p_map": 0.857460609045048,
-    "p_series": 0.857460609045048,
+    "p_map": 0.8180508224131153,
+    "p_series": 0.8180508224131153,
     "method": "HLTV world-rank logistic",
     "sources": [
      [
@@ -606,7 +606,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks 73 vs — (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 85.7%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
+    "detail": "ranks 73 vs — (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 81.8%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
     "vrs_p_series": 0.003207044308496745,
     "vrs_p_map": 0.003207044308496745
    }
@@ -716,10 +716,10 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
+   "last_verified_utc": "2026-10-14T23:23:56Z",
    "own": {
     "best_of": 1,
-    "scale": 222.0,
+    "scale": 265.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -727,8 +727,8 @@
     "rank_b": 208,
     "bound_a": true,
     "bound_b": false,
-    "p_map": 0.40272199565927524,
-    "p_series": 0.40272199565927524,
+    "p_map": 0.4181963371691269,
+    "p_series": 0.4181963371691269,
     "method": "HLTV world-rank logistic",
     "sources": [
      [
@@ -744,7 +744,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks — vs 208 (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 40.3%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
+    "detail": "ranks — vs 208 (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 41.8%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
     "vrs_p_series": 0.48992755307256153,
     "vrs_p_map": 0.48992755307256153
    }
@@ -857,10 +857,10 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
+   "last_verified_utc": "2026-10-14T23:23:56Z",
    "own": {
     "best_of": 1,
-    "scale": 222.0,
+    "scale": 265.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -885,7 +885,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks — vs — (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 50.0%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
+    "detail": "ranks — vs — (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 50.0%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
     "vrs_p_series": 0.9998776942486216,
     "vrs_p_map": 0.9998776942486216
    }
@@ -994,10 +994,10 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
+   "last_verified_utc": "2026-10-14T23:23:56Z",
    "own": {
     "best_of": 1,
-    "scale": 222.0,
+    "scale": 265.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -1005,8 +1005,8 @@
     "rank_b": 29,
     "bound_a": false,
     "bound_b": false,
-    "p_map": 0.22362925680919046,
-    "p_series": 0.22362925680919046,
+    "p_map": 0.26063320910038007,
+    "p_series": 0.26063320910038007,
     "method": "HLTV world-rank logistic",
     "sources": [
      [
@@ -1022,7 +1022,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks 149 vs 29 (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 22.4%",
+    "detail": "ranks 149 vs 29 (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 26.1%",
     "vrs_p_series": 0.039578722571651126,
     "vrs_p_map": 0.039578722571651126
    }
@@ -1132,10 +1132,10 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
+   "last_verified_utc": "2026-10-14T23:23:56Z",
    "own": {
     "best_of": 1,
-    "scale": 222.0,
+    "scale": 265.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -1160,7 +1160,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks — vs — (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 50.0%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
+    "detail": "ranks — vs — (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 50.0%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
     "vrs_p_series": 0.6240017586176672,
     "vrs_p_map": 0.6240017586176672
    }
@@ -1269,10 +1269,10 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
+   "last_verified_utc": "2026-10-14T23:23:56Z",
    "own": {
     "best_of": 1,
-    "scale": 222.0,
+    "scale": 265.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -1280,8 +1280,8 @@
     "rank_b": 205,
     "bound_a": false,
     "bound_b": false,
-    "p_map": 0.41274039502943555,
-    "p_series": 0.41274039502943555,
+    "p_map": 0.4266760114971879,
+    "p_series": 0.4266760114971879,
     "method": "HLTV world-rank logistic",
     "sources": [
      [
@@ -1297,7 +1297,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks 239 vs 205 (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 41.3%",
+    "detail": "ranks 239 vs 205 (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 42.7%",
     "vrs_p_series": 0.3679299878999264,
     "vrs_p_map": 0.3679299878999264
    }
@@ -1407,10 +1407,10 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
+   "last_verified_utc": "2026-10-14T23:23:56Z",
    "own": {
     "best_of": 1,
-    "scale": 222.0,
+    "scale": 265.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -1418,8 +1418,8 @@
     "rank_b": 204,
     "bound_a": true,
     "bound_b": false,
-    "p_map": 0.39278412568236226,
-    "p_series": 0.39278412568236226,
+    "p_map": 0.40976473959236115,
+    "p_series": 0.40976473959236115,
     "method": "HLTV world-rank logistic",
     "sources": [
      [
@@ -1435,7 +1435,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks — vs 204 (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 39.3%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
+    "detail": "ranks — vs 204 (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 41.0%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
     "vrs_p_series": 0.29064536940123664,
     "vrs_p_map": 0.29064536940123664
    }
@@ -1548,10 +1548,10 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
+   "last_verified_utc": "2026-10-14T23:23:56Z",
    "own": {
     "best_of": 1,
-    "scale": 222.0,
+    "scale": 265.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -1576,7 +1576,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks — vs — (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 50.0%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
+    "detail": "ranks — vs — (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 50.0%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
     "vrs_p_series": 0.9997032634043972,
     "vrs_p_map": 0.9997032634043972
    }
@@ -1689,10 +1689,10 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
+   "last_verified_utc": "2026-10-14T23:23:56Z",
    "own": {
     "best_of": 1,
-    "scale": 222.0,
+    "scale": 265.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -1700,8 +1700,8 @@
     "rank_b": 153,
     "bound_a": true,
     "bound_b": false,
-    "p_map": 0.2759588519006782,
-    "p_series": 0.2759588519006782,
+    "p_map": 0.3083004196951445,
+    "p_series": 0.3083004196951445,
     "method": "HLTV world-rank logistic",
     "sources": [
      [
@@ -1717,7 +1717,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks — vs 153 (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 27.6%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
+    "detail": "ranks — vs 153 (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 30.8%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
     "vrs_p_series": 0.9990067274972391,
     "vrs_p_map": 0.9990067274972391
    }
@@ -1826,10 +1826,10 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
+   "last_verified_utc": "2026-10-14T23:23:56Z",
    "own": {
     "best_of": 1,
-    "scale": 222.0,
+    "scale": 265.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -1837,8 +1837,8 @@
     "rank_b": 63,
     "bound_a": false,
     "bound_b": false,
-    "p_map": 0.4432002135265367,
-    "p_series": 0.4432002135265367,
+    "p_map": 0.4523554928069025,
+    "p_series": 0.4523554928069025,
     "method": "HLTV world-rank logistic",
     "sources": [
      [
@@ -1854,7 +1854,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks 85 vs 63 (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 44.3%",
+    "detail": "ranks 85 vs 63 (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 45.2%",
     "vrs_p_series": 0.16474716768603853,
     "vrs_p_map": 0.16474716768603853
    }
@@ -1967,10 +1967,10 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
+   "last_verified_utc": "2026-10-14T23:23:56Z",
    "own": {
     "best_of": 1,
-    "scale": 222.0,
+    "scale": 265.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -1978,8 +1978,8 @@
     "rank_b": "",
     "bound_a": false,
     "bound_b": true,
-    "p_map": 0.857460609045048,
-    "p_series": 0.857460609045048,
+    "p_map": 0.8180508224131153,
+    "p_series": 0.8180508224131153,
     "method": "HLTV world-rank logistic",
     "sources": [
      [
@@ -1995,7 +1995,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks 73 vs — (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 85.7%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
+    "detail": "ranks 73 vs — (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 81.8%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
     "vrs_p_series": 0.8672208959675437,
     "vrs_p_map": 0.8672208959675437
    }
@@ -2111,10 +2111,10 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
+   "last_verified_utc": "2026-10-14T23:23:56Z",
    "own": {
     "best_of": 1,
-    "scale": 222.0,
+    "scale": 265.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -2122,8 +2122,8 @@
     "rank_b": "",
     "bound_a": false,
     "bound_b": true,
-    "p_map": 0.7763707431908096,
-    "p_series": 0.7763707431908096,
+    "p_map": 0.7393667908996199,
+    "p_series": 0.7393667908996199,
     "method": "HLTV world-rank logistic",
     "sources": [
      [
@@ -2139,7 +2139,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks 126 vs — (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 77.6%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
+    "detail": "ranks 126 vs — (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 73.9%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
     "vrs_p_series": 0.13817215242008227,
     "vrs_p_map": 0.13817215242008227
    }
@@ -2249,10 +2249,10 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
+   "last_verified_utc": "2026-10-14T23:23:56Z",
    "own": {
     "best_of": 1,
-    "scale": 222.0,
+    "scale": 265.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -2277,7 +2277,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks — vs — (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 50.0%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
+    "detail": "ranks — vs — (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 50.0%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
     "vrs_p_series": 0.8127376816365348,
     "vrs_p_map": 0.8127376816365348
    }
@@ -2390,10 +2390,10 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
+   "last_verified_utc": "2026-10-14T23:23:56Z",
    "own": {
     "best_of": 1,
-    "scale": 222.0,
+    "scale": 265.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -2401,8 +2401,8 @@
     "rank_b": "",
     "bound_a": false,
     "bound_b": true,
-    "p_map": 0.7938614836736007,
-    "p_series": 0.7938614836736007,
+    "p_map": 0.7557595438091557,
+    "p_series": 0.7557595438091557,
     "method": "HLTV world-rank logistic",
     "sources": [
      [
@@ -2418,7 +2418,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks 116 vs — (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 79.4%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
+    "detail": "ranks 116 vs — (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 75.6%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
     "vrs_p_series": 0.944691725284387,
     "vrs_p_map": 0.944691725284387
    }
@@ -2528,10 +2528,10 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
+   "last_verified_utc": "2026-10-14T23:23:56Z",
    "own": {
     "best_of": 1,
-    "scale": 222.0,
+    "scale": 265.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -2539,8 +2539,8 @@
     "rank_b": "",
     "bound_a": false,
     "bound_b": true,
-    "p_map": 0.8842096498122184,
-    "p_series": 0.8842096498122184,
+    "p_map": 0.8459318897467173,
+    "p_series": 0.8459318897467173,
     "method": "HLTV world-rank logistic",
     "sources": [
      [
@@ -2556,7 +2556,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks 50 vs — (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 88.4%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
+    "detail": "ranks 50 vs — (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 84.6%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
     "vrs_p_series": 0.944691725284387,
     "vrs_p_map": 0.944691725284387
    }
@@ -2669,10 +2669,10 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
+   "last_verified_utc": "2026-10-14T23:23:56Z",
    "own": {
     "best_of": 1,
-    "scale": 222.0,
+    "scale": 265.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -2697,7 +2697,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks — vs — (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 50.0%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
+    "detail": "ranks — vs — (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 50.0%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
     "vrs_p_series": 0.0001840433219674821,
     "vrs_p_map": 0.0001840433219674821
    }
@@ -2813,10 +2813,10 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
+   "last_verified_utc": "2026-10-14T23:23:56Z",
    "own": {
     "best_of": 1,
-    "scale": 222.0,
+    "scale": 265.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -2824,8 +2824,8 @@
     "rank_b": "",
     "bound_a": false,
     "bound_b": true,
-    "p_map": 0.7763707431908096,
-    "p_series": 0.7763707431908096,
+    "p_map": 0.7393667908996199,
+    "p_series": 0.7393667908996199,
     "method": "HLTV world-rank logistic",
     "sources": [
      [
@@ -2841,7 +2841,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks 126 vs — (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 77.6%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
+    "detail": "ranks 126 vs — (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 73.9%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
     "vrs_p_series": 0.0012358419946558526,
     "vrs_p_map": 0.0012358419946558526
    }
@@ -2954,10 +2954,10 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
+   "last_verified_utc": "2026-10-14T23:23:56Z",
    "own": {
     "best_of": 1,
-    "scale": 222.0,
+    "scale": 265.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -2965,8 +2965,8 @@
     "rank_b": 29,
     "bound_a": true,
     "bound_b": false,
-    "p_map": 0.09528694033872566,
-    "p_series": 0.09528694033872566,
+    "p_map": 0.13175691263586942,
+    "p_series": 0.13175691263586942,
     "method": "HLTV world-rank logistic",
     "sources": [
      [
@@ -2982,7 +2982,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks — vs 29 (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 9.5%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
+    "detail": "ranks — vs 29 (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 13.2%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
     "vrs_p_series": 0.9548224553181525,
     "vrs_p_map": 0.9548224553181525
    }
@@ -3007,7 +3007,7 @@
    "hotspawn_match_url": "",
    "basis_tier": 5,
    "basis_label": "Research · official ranking line",
-   "basis_detail": "ranks — vs 179 (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 33.3%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
+   "basis_detail": "ranks — vs 179 (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 35.8%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
    "basis_sources": [
     [
      "https://www.hltv.org/ranking/teams/2026/october/12",
@@ -3029,14 +3029,14 @@
    "market_captured_utc": "",
    "market_prob_a_pct": "",
    "market_prob_b_pct": "",
-   "model_prob_a_pct": "33.3",
-   "model_prob_b_pct": "66.7",
-   "prob_a_pct": "33.3",
-   "prob_b_pct": "66.7",
+   "model_prob_a_pct": "35.8",
+   "model_prob_b_pct": "64.2",
+   "prob_a_pct": "35.8",
+   "prob_b_pct": "64.2",
    "fair_odds_a": "",
    "fair_odds_b": "",
    "pick": "Megoshort",
-   "pick_prob_pct": "66.7",
+   "pick_prob_pct": "64.2",
    "confidence": "Low (our line, uncalibrated)",
    "rating_a": {
     "team": "Mai Tai",
@@ -3087,10 +3087,10 @@
     "FL-RESEARCH-BASIS"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
+   "last_verified_utc": "2026-10-14T23:23:56Z",
    "own": {
     "best_of": 1,
-    "scale": 222.0,
+    "scale": 265.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -3098,8 +3098,8 @@
     "rank_b": 179,
     "bound_a": true,
     "bound_b": false,
-    "p_map": 0.33293852830679305,
-    "p_series": 0.33293852830679305,
+    "p_map": 0.3584350339989681,
+    "p_series": 0.3584350339989681,
     "method": "HLTV world-rank logistic",
     "sources": [
      [
@@ -3115,7 +3115,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks — vs 179 (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 33.3%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
+    "detail": "ranks — vs 179 (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 35.8%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
     "vrs_p_series": null,
     "vrs_p_map": null
    }
@@ -3225,10 +3225,10 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
+   "last_verified_utc": "2026-10-14T23:23:56Z",
    "own": {
     "best_of": 1,
-    "scale": 222.0,
+    "scale": 265.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -3253,7 +3253,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks — vs — (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 50.0%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
+    "detail": "ranks — vs — (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 50.0%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
     "vrs_p_series": 0.37599824138233284,
     "vrs_p_map": 0.37599824138233284
    }
@@ -3365,10 +3365,10 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
+   "last_verified_utc": "2026-10-14T23:23:56Z",
    "own": {
     "best_of": 1,
-    "scale": 222.0,
+    "scale": 265.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -3376,8 +3376,8 @@
     "rank_b": 171,
     "bound_a": false,
     "bound_b": false,
-    "p_map": 0.3659302411248928,
-    "p_series": 0.3659302411248928,
+    "p_map": 0.3868631798468569,
+    "p_series": 0.3868631798468569,
     "method": "HLTV world-rank logistic",
     "sources": [
      [
@@ -3393,7 +3393,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks 224 vs 171 (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 36.6%",
+    "detail": "ranks 224 vs 171 (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 38.7%",
     "vrs_p_series": 0.2942186402879975,
     "vrs_p_map": 0.2942186402879975
    }
@@ -3418,7 +3418,7 @@
    "hotspawn_match_url": "",
    "basis_tier": 5,
    "basis_label": "Research · official ranking line",
-   "basis_detail": "ranks 74 vs — (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 85.6%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
+   "basis_detail": "ranks 74 vs — (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 81.7%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
    "basis_sources": [
     [
      "https://www.hltv.org/team/12776/bounty-hunters",
@@ -3440,14 +3440,14 @@
    "market_captured_utc": "",
    "market_prob_a_pct": "",
    "market_prob_b_pct": "",
-   "model_prob_a_pct": "85.6",
-   "model_prob_b_pct": "14.4",
-   "prob_a_pct": "85.6",
-   "prob_b_pct": "14.4",
+   "model_prob_a_pct": "81.7",
+   "model_prob_b_pct": "18.3",
+   "prob_a_pct": "81.7",
+   "prob_b_pct": "18.3",
    "fair_odds_a": "",
    "fair_odds_b": "",
    "pick": "Bounty Hunters",
-   "pick_prob_pct": "85.6",
+   "pick_prob_pct": "81.7",
    "confidence": "Low (our line, uncalibrated)",
    "rating_a": {
     "team": "Bounty Hunters",
@@ -3498,10 +3498,10 @@
     "FL-RESEARCH-BASIS"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
+   "last_verified_utc": "2026-10-14T23:23:56Z",
    "own": {
     "best_of": 1,
-    "scale": 222.0,
+    "scale": 265.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -3509,8 +3509,8 @@
     "rank_b": "",
     "bound_a": false,
     "bound_b": true,
-    "p_map": 0.8561882166680804,
-    "p_series": 0.8561882166680804,
+    "p_map": 0.8167539438531445,
+    "p_series": 0.8167539438531445,
     "method": "HLTV world-rank logistic",
     "sources": [
      [
@@ -3526,7 +3526,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks 74 vs — (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 85.6%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
+    "detail": "ranks 74 vs — (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 81.7%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
     "vrs_p_series": null,
     "vrs_p_map": null
    }
@@ -3636,10 +3636,10 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
+   "last_verified_utc": "2026-10-14T23:23:56Z",
    "own": {
     "best_of": 1,
-    "scale": 222.0,
+    "scale": 265.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -3664,7 +3664,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks — vs — (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 50.0%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
+    "detail": "ranks — vs — (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 50.0%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
     "vrs_p_series": 0.3937121762145718,
     "vrs_p_map": 0.3937121762145718
    }
@@ -3777,10 +3777,10 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
+   "last_verified_utc": "2026-10-14T23:23:56Z",
    "own": {
     "best_of": 1,
-    "scale": 222.0,
+    "scale": 265.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -3788,8 +3788,8 @@
     "rank_b": 132,
     "bound_a": true,
     "bound_b": false,
-    "p_map": 0.23461940690124866,
-    "p_series": 0.23461940690124866,
+    "p_map": 0.27080423801821185,
+    "p_series": 0.27080423801821185,
     "method": "HLTV world-rank logistic",
     "sources": [
      [
@@ -3805,7 +3805,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks — vs 132 (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 23.5%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
+    "detail": "ranks — vs 132 (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 27.1%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
     "vrs_p_series": 0.9925142255041326,
     "vrs_p_map": 0.9925142255041326
    }
@@ -3918,10 +3918,10 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
+   "last_verified_utc": "2026-10-14T23:23:56Z",
    "own": {
     "best_of": 1,
-    "scale": 222.0,
+    "scale": 265.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -3946,7 +3946,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks — vs — (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 50.0%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
+    "detail": "ranks — vs — (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 50.0%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
     "vrs_p_series": 0.000492363801817566,
     "vrs_p_map": 0.000492363801817566
    }
@@ -4056,10 +4056,10 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
+   "last_verified_utc": "2026-10-14T23:23:56Z",
    "own": {
     "best_of": 1,
-    "scale": 222.0,
+    "scale": 265.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -4067,8 +4067,8 @@
     "rank_b": 147,
     "bound_a": true,
     "bound_b": false,
-    "p_map": 0.2636994298620267,
-    "p_series": 0.2636994298620267,
+    "p_map": 0.29729525633555,
+    "p_series": 0.29729525633555,
     "method": "HLTV world-rank logistic",
     "sources": [
      [
@@ -4084,7 +4084,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks — vs 147 (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 26.4%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
+    "detail": "ranks — vs 147 (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 29.7%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
     "vrs_p_series": 0.23503873644731077,
     "vrs_p_map": 0.23503873644731077
    }
@@ -4194,10 +4194,10 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
+   "last_verified_utc": "2026-10-14T23:23:56Z",
    "own": {
     "best_of": 1,
-    "scale": 222.0,
+    "scale": 265.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -4205,8 +4205,8 @@
     "rank_b": 107,
     "bound_a": true,
     "bound_b": false,
-    "p_map": 0.1912808884506637,
-    "p_series": 0.1912808884506637,
+    "p_map": 0.23009567578191184,
+    "p_series": 0.23009567578191184,
     "method": "HLTV world-rank logistic",
     "sources": [
      [
@@ -4222,7 +4222,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks — vs 107 (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 19.1%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
+    "detail": "ranks — vs 107 (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 23.0%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
     "vrs_p_series": 0.10787608605677308,
     "vrs_p_map": 0.10787608605677308
    }
@@ -4335,10 +4335,10 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
+   "last_verified_utc": "2026-10-14T23:23:56Z",
    "own": {
     "best_of": 1,
-    "scale": 222.0,
+    "scale": 265.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -4346,8 +4346,8 @@
     "rank_b": "",
     "bound_a": false,
     "bound_b": true,
-    "p_map": 0.8731600609483455,
-    "p_series": 0.8731600609483455,
+    "p_map": 0.8342640452389204,
+    "p_series": 0.8342640452389204,
     "method": "HLTV world-rank logistic",
     "sources": [
      [
@@ -4363,7 +4363,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks 60 vs — (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 87.3%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
+    "detail": "ranks 60 vs — (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 83.4%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
     "vrs_p_series": 0.011812433732405628,
     "vrs_p_map": 0.011812433732405628
    }
@@ -4473,10 +4473,10 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
+   "last_verified_utc": "2026-10-14T23:23:56Z",
    "own": {
     "best_of": 1,
-    "scale": 222.0,
+    "scale": 265.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -4484,8 +4484,8 @@
     "rank_b": 180,
     "bound_a": false,
     "bound_b": false,
-    "p_map": 0.6530996822250341,
-    "p_series": 0.6530996822250341,
+    "p_map": 0.6294898807241975,
+    "p_series": 0.6294898807241975,
     "method": "HLTV world-rank logistic",
     "sources": [
      [
@@ -4501,7 +4501,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks 119 vs 180 (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 65.3%",
+    "detail": "ranks 119 vs 180 (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 62.9%",
     "vrs_p_series": 0.6961287704295998,
     "vrs_p_map": 0.6961287704295998
    }
@@ -4614,10 +4614,10 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
+   "last_verified_utc": "2026-10-14T23:23:56Z",
    "own": {
     "best_of": 1,
-    "scale": 222.0,
+    "scale": 265.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -4625,8 +4625,8 @@
     "rank_b": "",
     "bound_a": false,
     "bound_b": true,
-    "p_map": 0.717780858159379,
-    "p_series": 0.717780858159379,
+    "p_map": 0.6861131599961139,
+    "p_series": 0.6861131599961139,
     "method": "HLTV world-rank logistic",
     "sources": [
      [
@@ -4642,7 +4642,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks 156 vs — (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 71.8%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
+    "detail": "ranks 156 vs — (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 68.6%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
     "vrs_p_series": 0.8541133619456244,
     "vrs_p_map": 0.8541133619456244
    }
@@ -4755,10 +4755,10 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
+   "last_verified_utc": "2026-10-14T23:23:56Z",
    "own": {
     "best_of": 1,
-    "scale": 222.0,
+    "scale": 265.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -4783,7 +4783,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks — vs — (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 50.0%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
+    "detail": "ranks — vs — (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 50.0%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
     "vrs_p_series": 0.9998755640250618,
     "vrs_p_map": 0.9998755640250618
    }
@@ -4893,10 +4893,10 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
+   "last_verified_utc": "2026-10-14T23:23:56Z",
    "own": {
     "best_of": 1,
-    "scale": 222.0,
+    "scale": 265.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -4904,8 +4904,8 @@
     "rank_b": "",
     "bound_a": false,
     "bound_b": true,
-    "p_map": 0.8696737139208817,
-    "p_series": 0.8696737139208817,
+    "p_map": 0.8306283520388243,
+    "p_series": 0.8306283520388243,
     "method": "HLTV world-rank logistic",
     "sources": [
      [
@@ -4921,7 +4921,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks 63 vs — (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 87.0%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
+    "detail": "ranks 63 vs — (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 83.1%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
     "vrs_p_series": 0.9555615730980401,
     "vrs_p_map": 0.9555615730980401
    }
@@ -5034,10 +5034,10 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
+   "last_verified_utc": "2026-10-14T23:23:56Z",
    "own": {
     "best_of": 1,
-    "scale": 222.0,
+    "scale": 265.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -5062,7 +5062,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks — vs — (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 50.0%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
+    "detail": "ranks — vs — (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 50.0%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
     "vrs_p_series": 0.9998916190563001,
     "vrs_p_map": 0.9998916190563001
    }
@@ -5175,10 +5175,10 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
+   "last_verified_utc": "2026-10-14T23:23:56Z",
    "own": {
     "best_of": 1,
-    "scale": 222.0,
+    "scale": 265.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -5186,8 +5186,8 @@
     "rank_b": "",
     "bound_a": false,
     "bound_b": true,
-    "p_map": 0.8443078872453535,
-    "p_series": 0.8443078872453535,
+    "p_map": 0.8047588265991215,
+    "p_series": 0.8047588265991215,
     "method": "HLTV world-rank logistic",
     "sources": [
      [
@@ -5203,7 +5203,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks 83 vs — (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 84.4%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
+    "detail": "ranks 83 vs — (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 80.5%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
     "vrs_p_series": 0.9657344487151751,
     "vrs_p_map": 0.9657344487151751
    }
@@ -5316,10 +5316,10 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
+   "last_verified_utc": "2026-10-14T23:23:56Z",
    "own": {
     "best_of": 1,
-    "scale": 222.0,
+    "scale": 265.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -5344,7 +5344,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks — vs — (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 50.0%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
+    "detail": "ranks — vs — (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 50.0%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
     "vrs_p_series": 0.9999134110659568,
     "vrs_p_map": 0.9999134110659568
    }
@@ -5457,10 +5457,10 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
+   "last_verified_utc": "2026-10-14T23:23:56Z",
    "own": {
     "best_of": 1,
-    "scale": 222.0,
+    "scale": 265.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -5468,8 +5468,8 @@
     "rank_b": "",
     "bound_a": false,
     "bound_b": true,
-    "p_map": 0.8443078872453535,
-    "p_series": 0.8443078872453535,
+    "p_map": 0.8047588265991215,
+    "p_series": 0.8047588265991215,
     "method": "HLTV world-rank logistic",
     "sources": [
      [
@@ -5485,7 +5485,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks 83 vs — (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 84.4%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
+    "detail": "ranks 83 vs — (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 80.5%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
     "vrs_p_series": 0.9574765824439511,
     "vrs_p_map": 0.9574765824439511
    }
@@ -5598,10 +5598,10 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
+   "last_verified_utc": "2026-10-14T23:23:56Z",
    "own": {
     "best_of": 1,
-    "scale": 222.0,
+    "scale": 265.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -5626,7 +5626,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks — vs — (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 50.0%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
+    "detail": "ranks — vs — (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 50.0%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
     "vrs_p_series": 0.00011090518020296375,
     "vrs_p_map": 0.00011090518020296375
    }
@@ -5742,10 +5742,10 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
+   "last_verified_utc": "2026-10-14T23:23:56Z",
    "own": {
     "best_of": 1,
-    "scale": 222.0,
+    "scale": 265.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -5753,8 +5753,8 @@
     "rank_b": 83,
     "bound_a": true,
     "bound_b": false,
-    "p_map": 0.1556921127546465,
-    "p_series": 0.1556921127546465,
+    "p_map": 0.19524117340087854,
+    "p_series": 0.19524117340087854,
     "method": "HLTV world-rank logistic",
     "sources": [
      [
@@ -5770,7 +5770,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks — vs 83 (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 15.6%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
+    "detail": "ranks — vs 83 (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 19.5%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
     "vrs_p_series": 0.9975653230509445,
     "vrs_p_map": 0.9975653230509445
    }
@@ -5880,10 +5880,10 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
+   "last_verified_utc": "2026-10-14T23:23:56Z",
    "own": {
     "best_of": 1,
-    "scale": 222.0,
+    "scale": 265.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -5908,7 +5908,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks — vs — (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 50.0%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
+    "detail": "ranks — vs — (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 50.0%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
     "vrs_p_series": 0.4441090388831469,
     "vrs_p_map": 0.4441090388831469
    }
@@ -6024,10 +6024,10 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
+   "last_verified_utc": "2026-10-14T23:23:56Z",
    "own": {
     "best_of": 1,
-    "scale": 222.0,
+    "scale": 265.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -6052,7 +6052,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks — vs — (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 50.0%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
+    "detail": "ranks — vs — (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 50.0%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
     "vrs_p_series": 0.5,
     "vrs_p_map": 0.5
    }
@@ -6165,10 +6165,10 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
+   "last_verified_utc": "2026-10-14T23:23:56Z",
    "own": {
     "best_of": 1,
-    "scale": 222.0,
+    "scale": 265.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -6176,8 +6176,8 @@
     "rank_b": "",
     "bound_a": false,
     "bound_b": true,
-    "p_map": 0.5771684147375166,
-    "p_series": 0.5771684147375166,
+    "p_map": 0.5648009880926445,
+    "p_series": 0.5648009880926445,
     "method": "HLTV world-rank logistic",
     "sources": [
      [
@@ -6193,7 +6193,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks 216 vs — (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 57.7%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
+    "detail": "ranks 216 vs — (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 56.5%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
     "vrs_p_series": 0.8562520600981506,
     "vrs_p_map": 0.8562520600981506
    }
@@ -6306,10 +6306,10 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
+   "last_verified_utc": "2026-10-14T23:23:56Z",
    "own": {
     "best_of": 1,
-    "scale": 222.0,
+    "scale": 265.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -6317,8 +6317,8 @@
     "rank_b": "",
     "bound_a": false,
     "bound_b": true,
-    "p_map": 0.5567997864734634,
-    "p_series": 0.5567997864734634,
+    "p_map": 0.5476445071930974,
+    "p_series": 0.5476445071930974,
     "method": "HLTV world-rank logistic",
     "sources": [
      [
@@ -6334,7 +6334,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks 224 vs — (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 55.7%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
+    "detail": "ranks 224 vs — (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 54.8%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
     "vrs_p_series": 0.3787032768775454,
     "vrs_p_map": 0.3787032768775454
    }
@@ -6447,10 +6447,10 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
+   "last_verified_utc": "2026-10-14T23:23:56Z",
    "own": {
     "best_of": 1,
-    "scale": 222.0,
+    "scale": 265.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -6458,8 +6458,8 @@
     "rank_b": 206,
     "bound_a": true,
     "bound_b": false,
-    "p_map": 0.39774252079403216,
-    "p_series": 0.39774252079403216,
+    "p_map": 0.41397423610655937,
+    "p_series": 0.41397423610655937,
     "method": "HLTV world-rank logistic",
     "sources": [
      [
@@ -6475,7 +6475,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks — vs 206 (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 39.8%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
+    "detail": "ranks — vs 206 (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 41.4%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
     "vrs_p_series": 0.999481468974987,
     "vrs_p_map": 0.999481468974987
    }
@@ -6588,10 +6588,10 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
+   "last_verified_utc": "2026-10-14T23:23:56Z",
    "own": {
     "best_of": 1,
-    "scale": 222.0,
+    "scale": 265.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -6599,8 +6599,8 @@
     "rank_b": "",
     "bound_a": false,
     "bound_b": true,
-    "p_map": 0.7240411480993217,
-    "p_series": 0.7240411480993217,
+    "p_map": 0.6916995803048555,
+    "p_series": 0.6916995803048555,
     "method": "HLTV world-rank logistic",
     "sources": [
      [
@@ -6616,7 +6616,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks 153 vs — (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 72.4%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
+    "detail": "ranks 153 vs — (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 69.2%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
     "vrs_p_series": 0.0009932725027609062,
     "vrs_p_map": 0.0009932725027609062
    }
@@ -6728,10 +6728,10 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
+   "last_verified_utc": "2026-10-14T23:23:56Z",
    "own": {
     "best_of": 1,
-    "scale": 222.0,
+    "scale": 265.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -6739,8 +6739,8 @@
     "rank_b": 108,
     "bound_a": false,
     "bound_b": false,
-    "p_map": 0.5720980073147185,
-    "p_series": 0.5720980073147185,
+    "p_map": 0.5605247531610308,
+    "p_series": 0.5605247531610308,
     "method": "HLTV world-rank logistic",
     "sources": [
      [
@@ -6756,7 +6756,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks 80 vs 108 (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 57.2%",
+    "detail": "ranks 80 vs 108 (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 56.1%",
     "vrs_p_series": 0.29781739790947936,
     "vrs_p_map": 0.29781739790947936
    }
@@ -6869,10 +6869,10 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
+   "last_verified_utc": "2026-10-14T23:23:56Z",
    "own": {
     "best_of": 1,
-    "scale": 222.0,
+    "scale": 265.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -6880,8 +6880,8 @@
     "rank_b": "",
     "bound_a": false,
     "bound_b": true,
-    "p_map": 0.6852274191198526,
-    "p_series": 0.6852274191198526,
+    "p_map": 0.6573878266927075,
+    "p_series": 0.6573878266927075,
     "method": "HLTV world-rank logistic",
     "sources": [
      [
@@ -6897,7 +6897,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks 171 vs — (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 68.5%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
+    "detail": "ranks 171 vs — (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 65.7%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
     "vrs_p_series": 0.0005884971225587753,
     "vrs_p_map": 0.0005884971225587753
    }
@@ -7006,10 +7006,10 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
+   "last_verified_utc": "2026-10-14T23:23:56Z",
    "own": {
     "best_of": 1,
-    "scale": 222.0,
+    "scale": 265.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -7017,8 +7017,8 @@
     "rank_b": 171,
     "bound_a": false,
     "bound_b": false,
-    "p_map": 0.6577844089839237,
-    "p_series": 0.6577844089839237,
+    "p_map": 0.633533791346019,
+    "p_series": 0.633533791346019,
     "method": "HLTV world-rank logistic",
     "sources": [
      [
@@ -7034,7 +7034,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks 108 vs 171 (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 65.8%",
+    "detail": "ranks 108 vs 171 (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 63.4%",
     "vrs_p_series": 0.8618278475799177,
     "vrs_p_map": 0.8618278475799177
    }
@@ -7150,10 +7150,10 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
+   "last_verified_utc": "2026-10-14T23:23:56Z",
    "own": {
     "best_of": 1,
-    "scale": 222.0,
+    "scale": 265.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -7161,8 +7161,8 @@
     "rank_b": "",
     "bound_a": false,
     "bound_b": true,
-    "p_map": 0.84835447253319,
-    "p_series": 0.84835447253319,
+    "p_map": 0.808822018765898,
+    "p_series": 0.808822018765898,
     "method": "HLTV world-rank logistic",
     "sources": [
      [
@@ -7178,7 +7178,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks 80 vs — (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 84.8%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
+    "detail": "ranks 80 vs — (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 80.9%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
     "vrs_p_series": 0.0015553351989286144,
     "vrs_p_map": 0.0015553351989286144
    }
@@ -7287,10 +7287,10 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
+   "last_verified_utc": "2026-10-14T23:23:56Z",
    "own": {
     "best_of": 1,
-    "scale": 222.0,
+    "scale": 265.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -7298,8 +7298,8 @@
     "rank_b": 132,
     "bound_a": false,
     "bound_b": false,
-    "p_map": 0.7442766302197664,
-    "p_series": 0.7442766302197664,
+    "p_map": 0.70991412993504,
+    "p_series": 0.70991412993504,
     "method": "HLTV world-rank logistic",
     "sources": [
      [
@@ -7315,7 +7315,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks 29 vs 132 (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 74.4%",
+    "detail": "ranks 29 vs 132 (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 71.0%",
     "vrs_p_series": 0.8625119039913111,
     "vrs_p_map": 0.8625119039913111
    }
@@ -7340,7 +7340,7 @@
    "hotspawn_match_url": "",
    "basis_tier": 5,
    "basis_label": "Research · official ranking line",
-   "basis_detail": "ranks 60 vs — (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 87.3%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
+   "basis_detail": "ranks 60 vs — (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 83.4%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
    "basis_sources": [
     [
      "https://www.hltv.org/team/11837/fluxo",
@@ -7362,14 +7362,14 @@
    "market_captured_utc": "",
    "market_prob_a_pct": "",
    "market_prob_b_pct": "",
-   "model_prob_a_pct": "87.3",
-   "model_prob_b_pct": "12.7",
-   "prob_a_pct": "87.3",
-   "prob_b_pct": "12.7",
+   "model_prob_a_pct": "83.4",
+   "model_prob_b_pct": "16.6",
+   "prob_a_pct": "83.4",
+   "prob_b_pct": "16.6",
    "fair_odds_a": "",
    "fair_odds_b": "",
    "pick": "Fluxo",
-   "pick_prob_pct": "87.3",
+   "pick_prob_pct": "83.4",
    "confidence": "Low (our line, uncalibrated)",
    "rating_a": {
     "team": "Fluxo",
@@ -7420,10 +7420,10 @@
     "FL-RESEARCH-BASIS"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
+   "last_verified_utc": "2026-10-14T23:23:56Z",
    "own": {
     "best_of": 1,
-    "scale": 222.0,
+    "scale": 265.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -7431,8 +7431,8 @@
     "rank_b": "",
     "bound_a": false,
     "bound_b": true,
-    "p_map": 0.8731600609483455,
-    "p_series": 0.8731600609483455,
+    "p_map": 0.8342640452389204,
+    "p_series": 0.8342640452389204,
     "method": "HLTV world-rank logistic",
     "sources": [
      [
@@ -7448,7 +7448,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks 60 vs — (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 87.3%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
+    "detail": "ranks 60 vs — (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 83.4%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
     "vrs_p_series": null,
     "vrs_p_map": null
    }
@@ -7560,10 +7560,10 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
+   "last_verified_utc": "2026-10-14T23:23:56Z",
    "own": {
     "best_of": 1,
-    "scale": 222.0,
+    "scale": 265.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -7571,8 +7571,8 @@
     "rank_b": 171,
     "bound_a": false,
     "bound_b": false,
-    "p_map": 0.7198771767239392,
-    "p_series": 0.7198771767239392,
+    "p_map": 0.6879814065830274,
+    "p_series": 0.6879814065830274,
     "method": "HLTV world-rank logistic",
     "sources": [
      [
@@ -7588,7 +7588,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks 80 vs 171 (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 72.0%",
+    "detail": "ranks 80 vs 171 (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 68.8%",
     "vrs_p_series": 0.7256856462717871,
     "vrs_p_map": 0.7256856462717871
    }
@@ -7701,10 +7701,10 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
+   "last_verified_utc": "2026-10-14T23:23:56Z",
    "own": {
     "best_of": 1,
-    "scale": 222.0,
+    "scale": 265.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -7712,8 +7712,8 @@
     "rank_b": "",
     "bound_a": false,
     "bound_b": true,
-    "p_map": 0.8071095004693779,
-    "p_series": 0.8071095004693779,
+    "p_map": 0.7683614447670704,
+    "p_series": 0.7683614447670704,
     "method": "HLTV world-rank logistic",
     "sources": [
      [
@@ -7729,7 +7729,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks 108 vs — (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 80.7%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
+    "detail": "ranks 108 vs — (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 76.8%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
     "vrs_p_series": 0.0036593827398698226,
     "vrs_p_map": 0.0036593827398698226
    }
@@ -7754,7 +7754,7 @@
    "hotspawn_match_url": "",
    "basis_tier": 5,
    "basis_label": "Research · official ranking line",
-   "basis_detail": "ranks — vs — (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 50.0%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
+   "basis_detail": "ranks — vs — (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 50.0%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
    "basis_sources": [
     [
      "https://www.hltv.org/ranking/teams/2026/october/12",
@@ -7834,10 +7834,10 @@
     "FL-RESEARCH-BASIS"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
+   "last_verified_utc": "2026-10-14T23:23:56Z",
    "own": {
     "best_of": 1,
-    "scale": 222.0,
+    "scale": 265.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -7862,7 +7862,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks — vs — (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 50.0%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
+    "detail": "ranks — vs — (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 50.0%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
     "vrs_p_series": null,
     "vrs_p_map": null
    }
@@ -7971,10 +7971,10 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
+   "last_verified_utc": "2026-10-14T23:23:56Z",
    "own": {
     "best_of": 1,
-    "scale": 222.0,
+    "scale": 265.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -7982,8 +7982,8 @@
     "rank_b": 107,
     "bound_a": false,
     "bound_b": false,
-    "p_map": 0.6436414158605724,
-    "p_series": 0.6436414158605724,
+    "p_map": 0.6213478320190406,
+    "p_series": 0.6213478320190406,
     "method": "HLTV world-rank logistic",
     "sources": [
      [
@@ -7999,7 +7999,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks 50 vs 107 (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 64.4%",
+    "detail": "ranks 50 vs 107 (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 62.1%",
     "vrs_p_series": 0.5700528235839882,
     "vrs_p_map": 0.5700528235839882
    }
@@ -8112,10 +8112,10 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
+   "last_verified_utc": "2026-10-14T23:23:56Z",
    "own": {
     "best_of": 1,
-    "scale": 222.0,
+    "scale": 265.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -8140,7 +8140,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks — vs — (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 50.0%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
+    "detail": "ranks — vs — (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 50.0%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
     "vrs_p_series": 0.00028502056686611604,
     "vrs_p_map": 0.00028502056686611604
    }
@@ -8250,10 +8250,10 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
+   "last_verified_utc": "2026-10-14T23:23:56Z",
    "own": {
     "best_of": 1,
-    "scale": 222.0,
+    "scale": 265.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -8261,8 +8261,8 @@
     "rank_b": 140,
     "bound_a": true,
     "bound_b": false,
-    "p_map": 0.2498462378115972,
-    "p_series": 0.2498462378115972,
+    "p_map": 0.2847472489508014,
+    "p_series": 0.2847472489508014,
     "method": "HLTV world-rank logistic",
     "sources": [
      [
@@ -8278,7 +8278,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks — vs 140 (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 25.0%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
+    "detail": "ranks — vs 140 (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 28.5%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
     "vrs_p_series": 0.21594631611218493,
     "vrs_p_map": 0.21594631611218493
    }
@@ -8303,7 +8303,7 @@
    "hotspawn_match_url": "",
    "basis_tier": 2,
    "basis_label": "Market · secondary listing",
-   "basis_detail": "EGamersWorld (bc.game) listing 2.33 / 1.51 (decimal), overround 9.14%, proportional de-vig. Secondary listing: the aggregator's own page is the source, not the book itself. Provisional bound: SUKEBAN is absent from the official standings file, so the lowest published value in that same file (381 points) is used as its ceiling; your end keeps its published 582 points. Because the unlisted team's value can only be lower, the favourite's true win probability is at least this estimate (23.9% for your end), which is what is published. Our own line for the same fixture, from the official ranking only: 42.0% for SUKEBAN (2.7 pp from the price this row is based on).",
+   "basis_detail": "EGamersWorld (bc.game) listing 2.33 / 1.51 (decimal), overround 9.14%, proportional de-vig. Secondary listing: the aggregator's own page is the source, not the book itself. Provisional bound: SUKEBAN is absent from the official standings file, so the lowest published value in that same file (381 points) is used as its ceiling; your end keeps its published 582 points. Because the unlisted team's value can only be lower, the favourite's true win probability is at least this estimate (23.9% for your end), which is what is published. Our own line for the same fixture, from the official ranking only: 43.3% for SUKEBAN (4.0 pp from the price this row is based on).",
    "basis_sources": [
     [
      "https://egamersworld.com/counterstrike/match/0U32SId-H/your-end-vs-sukeban-uZgmpQMyd7",
@@ -8394,10 +8394,10 @@
     "FL-UNLISTED-OPPONENT"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
+   "last_verified_utc": "2026-10-14T23:23:56Z",
    "own": {
     "best_of": 1,
-    "scale": 222.0,
+    "scale": 265.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -8405,8 +8405,8 @@
     "rank_b": 215,
     "bound_a": true,
     "bound_b": false,
-    "p_map": 0.42030239596460156,
-    "p_series": 0.42030239596460156,
+    "p_map": 0.4330644636917464,
+    "p_series": 0.4330644636917464,
     "method": "HLTV world-rank logistic",
     "sources": [
      [
@@ -8422,7 +8422,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks — vs 215 (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 42.0%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
+    "detail": "ranks — vs 215 (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 43.3%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
     "vrs_p_series": null,
     "vrs_p_map": null
    }
@@ -8447,7 +8447,7 @@
    "hotspawn_match_url": "",
    "basis_tier": 2,
    "basis_label": "Market · secondary listing",
-   "basis_detail": "EGamersWorld (bc.game) listing 2.05 / 1.64 (decimal), overround 9.76%, proportional de-vig. Secondary listing: the aggregator's own page is the source, not the book itself. Series length BO3 as stated by Polymarket (research read 2026-10-14), whose page for this fixture states the length (the listing the price is taken from prints none); Hotspawn states none. Originated rating line: Gothic 705 vs Lavked 862 official points, p = 1/(1+10^((Rb-Ra)/400)) = 28.8%. Our own line for the same fixture, from the official ranking only: 15.6% for Gothic (28.8 pp from the price this row is based on).",
+   "basis_detail": "EGamersWorld (bc.game) listing 2.05 / 1.64 (decimal), overround 9.76%, proportional de-vig. Secondary listing: the aggregator's own page is the source, not the book itself. Series length BO3 as stated by Polymarket (research read 2026-10-14), whose page for this fixture states the length (the listing the price is taken from prints none); Hotspawn states none. Originated rating line: Gothic 705 vs Lavked 862 official points, p = 1/(1+10^((Rb-Ra)/400)) = 28.8%. Our own line for the same fixture, from the official ranking only: 19.7% for Gothic (24.7 pp from the price this row is based on).",
    "basis_sources": [
     [
      "https://egamersworld.com/counterstrike/match/_rW8GEyWK/gothic-vs-lavked-GGmfuJ1n4B",
@@ -8542,10 +8542,10 @@
     "FL-STALE-CAPTURE"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
+   "last_verified_utc": "2026-10-14T23:23:56Z",
    "own": {
     "best_of": 3,
-    "scale": 222.0,
+    "scale": 265.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -8553,8 +8553,8 @@
     "rank_b": 140,
     "bound_a": true,
     "bound_b": false,
-    "p_map": 0.2498462378115972,
-    "p_series": 0.15607705300953348,
+    "p_map": 0.2847472489508014,
+    "p_series": 0.19706780637118015,
     "method": "HLTV world-rank logistic",
     "sources": [
      [
@@ -8570,461 +8570,9 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks — vs 140 (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 25.0%; converted to BO3: p = 15.6%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
+    "detail": "ranks — vs 140 (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 28.5%; converted to BO3: p = 19.7%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
     "vrs_p_series": 0.20139774218227036,
     "vrs_p_map": 0.2882774756572447
-   }
-  },
-  "1080178": {
-   "match_id": "1080178",
-   "tournament": "Thunderpick World Championship 2026",
-   "tier": "S",
-   "offered_points": 7,
-   "stage": "group stage and playoffs",
-   "series_format": "",
-   "series_format_source": "",
-   "hltv_match_url": "https://www.hltv.org/matches/2399386/legacy-vs-parivision-thunderpick-world-championship-2026",
-   "hltv_match_id": "2399386",
-   "hltv_schedule_note": "HLTV files this fixture under “thunderpick-world-championship-2026” (team pair and event name both match; seen on 2 team page(s)).",
-   "start_utc": "2026-10-14T13:30:00Z",
-   "lock_utc": "2026-10-14T13:24:00Z",
-   "status": "locked",
-   "team_a": "Legacy",
-   "team_b": "PARIVISION",
-   "hotspawn_pickem_url": "https://play.hotspawn.com/cs2-pickems",
-   "hotspawn_match_url": "",
-   "basis_tier": 2,
-   "basis_label": "Market · secondary listing",
-   "basis_detail": "EGamersWorld (bc.game) listing 1.66 / 2.07 (decimal), overround 8.55%, proportional de-vig. Secondary listing: the aggregator's own page is the source, not the book itself. Originated rating line: Legacy 1931 vs PARIVISION 1411 official points, p = 1/(1+10^((Rb-Ra)/400)) = 95.2%. Our own line for the same fixture, from the official ranking only: 51.0% for Legacy (4.5 pp from the price this row is based on).",
-   "basis_sources": [
-    [
-     "https://egamersworld.com/counterstrike/match/5X5sFiL7H/legacy-vs-parivision--TTc59QUDJ",
-     "EGamersWorld (bc.game)"
-    ],
-    [
-     "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
-     "Legacy standings"
-    ],
-    [
-     "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
-     "PARIVISION standings"
-    ],
-    [
-     "https://www.hltv.org/team/12468/legacy",
-     "Legacy (HLTV rank)"
-    ],
-    [
-     "https://www.hltv.org/team/12467/parivision",
-     "PARIVISION (HLTV rank)"
-    ],
-    [
-     "https://www.hltv.org/ranking/teams/2026/october/12",
-     "official HLTV world ranking"
-    ]
-   ],
-   "market_source": "EGamersWorld (bc.game)",
-   "market_odds_a": "1.66",
-   "market_odds_b": "2.07",
-   "market_overround_pct": "8.55",
-   "market_captured_utc": "2026-10-14T01:48:00Z",
-   "market_prob_a_pct": "55.5",
-   "market_prob_b_pct": "44.5",
-   "model_prob_a_pct": "95.2",
-   "model_prob_b_pct": "4.8",
-   "prob_a_pct": "55.5",
-   "prob_b_pct": "44.5",
-   "fair_odds_a": "1.80",
-   "fair_odds_b": "2.25",
-   "pick": "Legacy",
-   "pick_prob_pct": "55.5",
-   "confidence": "Medium (secondary listing)",
-   "rating_a": {
-    "team": "Legacy",
-    "vrs_name": "Legacy",
-    "vrs_rank": 2,
-    "vrs_points": 1931,
-    "vrs_roster": "arT, dumau, latto, n1ssim, try",
-    "vrs_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
-    "vrs_details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0002--legacy--art-dumau-latto-n1ssim-try.md",
-    "match_method": "exact",
-    "match_evidence_url": "",
-    "alias_note": "",
-    "hltv_name": "Legacy",
-    "hltv_team_id": "12468",
-    "hltv_rank": 7,
-    "hltv_points": 379,
-    "hltv_url": "https://www.hltv.org/team/12468/legacy",
-    "hltv_roster": "arT, dumau, latto, n1ssim, try",
-    "flags": []
-   },
-   "rating_b": {
-    "team": "PARIVISION",
-    "vrs_name": "PARIVISION",
-    "vrs_rank": 36,
-    "vrs_points": 1411,
-    "vrs_roster": "FL1T, Jame, slaxejezzz, xiELO, zweih",
-    "vrs_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
-    "vrs_details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0036--parivision--fl1t-jame-slaxejezzz-xielo-zweih.md",
-    "match_method": "exact",
-    "match_evidence_url": "",
-    "alias_note": "",
-    "hltv_name": "PARIVISION",
-    "hltv_team_id": "12467",
-    "hltv_rank": 11,
-    "hltv_points": 178,
-    "hltv_url": "https://www.hltv.org/team/12467/parivision",
-    "hltv_roster": "HObbit, FL1T, Jame, xiELO, zweih",
-    "flags": []
-   },
-   "flags": [
-    "FL-FORMAT-UNKNOWN",
-    "FL-LOCKED",
-    "FL-MARKET-STALE",
-    "FL-MODEL-MARKET-SPLIT",
-    "FL-STALE-CAPTURE"
-   ],
-   "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
-   "own": {
-    "best_of": 1,
-    "scale": 222.0,
-    "fitted": true,
-    "rank_floor": 245,
-    "rank_count": 245,
-    "rank_a": 7,
-    "rank_b": 11,
-    "bound_a": false,
-    "bound_b": false,
-    "p_map": 0.5103705174399796,
-    "p_series": 0.5103705174399796,
-    "method": "HLTV world-rank logistic",
-    "sources": [
-     [
-      "https://www.hltv.org/team/12468/legacy",
-      "Legacy (HLTV rank)"
-     ],
-     [
-      "https://www.hltv.org/team/12467/parivision",
-      "PARIVISION (HLTV rank)"
-     ],
-     [
-      "https://www.hltv.org/ranking/teams/2026/october/12",
-      "official HLTV world ranking"
-     ]
-    ],
-    "detail": "ranks 7 vs 11 (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 51.0%",
-    "vrs_p_series": 0.9522732789657962,
-    "vrs_p_map": 0.9522732789657962
-   }
-  },
-  "1080179": {
-   "match_id": "1080179",
-   "tournament": "Thunderpick World Championship 2026",
-   "tier": "S",
-   "offered_points": 7,
-   "stage": "group stage and playoffs",
-   "series_format": "BO3",
-   "series_format_source": "https://bo3.gg/matches/furia-vs-betboom-team-14-10-2026",
-   "hltv_match_url": "https://www.hltv.org/matches/2399387/furia-vs-betboom-thunderpick-world-championship-2026",
-   "hltv_match_id": "2399387",
-   "hltv_schedule_note": "HLTV files this fixture under “thunderpick-world-championship-2026” (team pair and event name both match; seen on 2 team page(s)).",
-   "start_utc": "2026-10-14T16:00:00Z",
-   "lock_utc": "2026-10-14T15:54:00Z",
-   "status": "locked",
-   "team_a": "FURIA",
-   "team_b": "BetBoom",
-   "hotspawn_pickem_url": "https://play.hotspawn.com/cs2-pickems",
-   "hotspawn_match_url": "https://www.hotspawn.com/matches/furia-vs-betboom-thunderpick-world-championship-2026-1080179",
-   "basis_tier": 2,
-   "basis_label": "Market · secondary listing",
-   "basis_detail": "EGamersWorld (bc.game) listing 1.40 / 2.86 (decimal), overround 6.39%, proportional de-vig. Secondary listing: the aggregator's own page is the source, not the book itself. Series length BO3 as stated by Thunderpick, whose page for this fixture states the length (the listing the price is taken from prints none); Hotspawn states none. Originated rating line: FURIA 1829 vs BETBOOM 1596 official points, p = 1/(1+10^((Rb-Ra)/400)) = 79.3%. Our own line for the same fixture, from the official ranking only: 53.9% for FURIA (13.2 pp from the price this row is based on).",
-   "basis_sources": [
-    [
-     "https://egamersworld.com/counterstrike/match/5X5sFiL7H/furia-vs-betboom-team-ZeSbzy91oH",
-     "EGamersWorld (bc.game)"
-    ],
-    [
-     "https://bo3.gg/matches/furia-vs-betboom-team-14-10-2026",
-     "Thunderpick (series length)"
-    ],
-    [
-     "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
-     "FURIA standings"
-    ],
-    [
-     "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
-     "BETBOOM standings"
-    ],
-    [
-     "https://www.hltv.org/team/8297/furia",
-     "FURIA (HLTV rank)"
-    ],
-    [
-     "https://www.hltv.org/team/12394/betboom",
-     "BetBoom (HLTV rank)"
-    ],
-    [
-     "https://www.hltv.org/ranking/teams/2026/october/12",
-     "official HLTV world ranking"
-    ]
-   ],
-   "market_source": "EGamersWorld (bc.game)",
-   "market_odds_a": "1.40",
-   "market_odds_b": "2.86",
-   "market_overround_pct": "6.39",
-   "market_captured_utc": "2026-10-14T01:48:00Z",
-   "market_prob_a_pct": "67.1",
-   "market_prob_b_pct": "32.9",
-   "model_prob_a_pct": "79.3",
-   "model_prob_b_pct": "20.7",
-   "prob_a_pct": "67.1",
-   "prob_b_pct": "32.9",
-   "fair_odds_a": "1.49",
-   "fair_odds_b": "3.04",
-   "pick": "FURIA",
-   "pick_prob_pct": "67.1",
-   "confidence": "Medium (secondary listing)",
-   "rating_a": {
-    "team": "FURIA",
-    "vrs_name": "FURIA",
-    "vrs_rank": 7,
-    "vrs_points": 1829,
-    "vrs_roster": "FalleN, KSCERATO, molodoy, YEKINDAR, yuurih",
-    "vrs_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
-    "vrs_details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0007--furia--fallen-kscerato-molodoy-yekindar-yuurih.md",
-    "match_method": "exact",
-    "match_evidence_url": "",
-    "alias_note": "",
-    "hltv_name": "FURIA",
-    "hltv_team_id": "8297",
-    "hltv_rank": 4,
-    "hltv_points": 527,
-    "hltv_url": "https://www.hltv.org/team/8297/furia",
-    "hltv_roster": "FalleN, yuurih, YEKINDAR, KSCERATO, molodoy",
-    "flags": []
-   },
-   "rating_b": {
-    "team": "BetBoom",
-    "vrs_name": "BETBOOM",
-    "vrs_rank": 11,
-    "vrs_points": 1596,
-    "vrs_roster": "Boombl4, d1Ledez, Magnojez, S1ren, zorte",
-    "vrs_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
-    "vrs_details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0011--betboom--boombl4-d1ledez-magnojez-s1ren-zorte.md",
-    "match_method": "exact",
-    "match_evidence_url": "",
-    "alias_note": "",
-    "hltv_name": "BETBOOM",
-    "hltv_team_id": "12394",
-    "hltv_rank": 14,
-    "hltv_points": 148,
-    "hltv_url": "https://www.hltv.org/team/12394/betboom",
-    "hltv_roster": "Boombl4, zorte, S1ren, d1Ledez, Magnojez",
-    "flags": []
-   },
-   "flags": [
-    "FL-FORMAT-FROM-LISTING",
-    "FL-LOCKED",
-    "FL-MARKET-STALE",
-    "FL-STALE-CAPTURE"
-   ],
-   "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
-   "own": {
-    "best_of": 3,
-    "scale": 222.0,
-    "fitted": true,
-    "rank_floor": 245,
-    "rank_count": 245,
-    "rank_a": 4,
-    "rank_b": 14,
-    "bound_a": false,
-    "bound_b": false,
-    "p_map": 0.525906791360004,
-    "p_series": 0.5388254117405646,
-    "method": "HLTV world-rank logistic",
-    "sources": [
-     [
-      "https://www.hltv.org/team/8297/furia",
-      "FURIA (HLTV rank)"
-     ],
-     [
-      "https://www.hltv.org/team/12394/betboom",
-      "BetBoom (HLTV rank)"
-     ],
-     [
-      "https://www.hltv.org/ranking/teams/2026/october/12",
-      "official HLTV world ranking"
-     ]
-    ],
-    "detail": "ranks 4 vs 14 (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 52.6%; converted to BO3: p = 53.9%",
-    "vrs_p_series": 0.8888932909520398,
-    "vrs_p_map": 0.7926963841757685
-   }
-  },
-  "1079624": {
-   "match_id": "1079624",
-   "tournament": "CCT Europe 2026 Series #11",
-   "tier": "B",
-   "offered_points": 3,
-   "stage": "waiting for information",
-   "series_format": "BO3",
-   "series_format_source": "https://polymarket.com/esports/cs2/cct-europe/cs2-forzer-skr2-2026-10-14",
-   "hltv_match_url": "https://www.hltv.org/matches/2399301/forze-reload-vs-lfo-10-cct-2026-europe-series-11",
-   "hltv_match_id": "2399301",
-   "hltv_schedule_note": "HLTV files this fixture under “cct-2026-europe-series-11” (team pair and event name both match; seen on 2 team page(s)).",
-   "start_utc": "2026-10-14T17:00:00Z",
-   "lock_utc": "2026-10-14T16:54:00Z",
-   "status": "locked",
-   "team_a": "FORZE Reload",
-   "team_b": "LFO 10",
-   "hotspawn_pickem_url": "https://play.hotspawn.com/cs2-pickems",
-   "hotspawn_match_url": "https://www.hotspawn.com/matches/forze-reload-vs-lfo-10-cct-europe-2026-series-11-1079624",
-   "basis_tier": 2,
-   "basis_label": "Market · secondary listing",
-   "basis_detail": "Polymarket (research read 2026-10-14) implied probabilities 88.0% / 16.0% (native implied probability), normalised to 100% by proportional de-vig. Prediction market, not a bookmaker; only used where no bookmaker line exists for this fixture. Series length BO3 as stated by the pricing listing (Polymarket (research read 2026-10-14)); Hotspawn states none. Research ladder (HLTV → esportsbooks → betting lines) applied because no esportsbook posted a real two-sided price for this low-tier card: HLTV files it as bo3 (match 2399301) with FORZE Reload #90 vs LFO 10 on the event page; EGW's match page prints only the 1.8/1.8 no-market placeholder (rejected) but states Bo3 and the LFO 10 lineup (Jackinho, Sapec, dottie, flaw, tvs); Polymarket prices the same slot under the lineup's org-seeking tag \"Sökerorg\" at 88¢/16¢ (FORZE Reload 1.14x / Sökerorg 6.25x, $373.86 volume), roster-verified identical to LFO 10. LFO 10 is absent from the official Valve standings file of 2026-10-05 (checked against ValveSoftware/counter-strike_regional_standings on GitHub, newest file is still standings_global_2026_10_05.md) and unranked on HLTV's live team page (peak #170); HLTV's Valve-ranking (beta) page of 2026-10-12 lists LFO 10 at #170 with 765 Valve points — that page is HLTV's beta projection (includes unfinished events), not the official weekly file, so it is evidence, never an official-file entry. Provisional bound: LFO 10 is absent from the official standings file, so the lowest published value in that same file (381 points) is used as its ceiling; FORZE Reload keeps its published 1100 points. Because the unlisted team's value can only be lower, the favourite's true win probability is at least this estimate (98.4% for FORZE Reload), which is what is published. Our own line for the same fixture, from the official ranking only: 94.3% for FORZE Reload (9.7 pp from the price this row is based on).",
-   "basis_sources": [
-    [
-     "https://polymarket.com/esports/cs2/cct-europe/cs2-forzer-skr2-2026-10-14",
-     "Polymarket (research read 2026-10-14)"
-    ],
-    [
-     "https://www.hltv.org/matches/2399301/forze-reload-vs-lfo-10-cct-2026-europe-series-11",
-     "research read (arena/e13aca8a)"
-    ],
-    [
-     "https://www.hltv.org/team/14084/lfo-10",
-     "research read (arena/e13aca8a)"
-    ],
-    [
-     "https://www.hltv.org/valve-ranking/teams/2026/october/12",
-     "research read (arena/e13aca8a)"
-    ],
-    [
-     "https://egamersworld.com/counterstrike/match/_rW8GEyWK/forze-reload-vs-Gr_YhyKi3",
-     "research read (arena/e13aca8a)"
-    ],
-    [
-     "https://polymarket.com/esports/cs2/cct-europe/cs2-forzer-skr2-2026-10-14",
-     "research read (arena/e13aca8a)"
-    ],
-    [
-     "https://bo3.gg/teams/sokerorg",
-     "research read (arena/e13aca8a)"
-    ],
-    [
-     "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
-     "FORZE Reload standings"
-    ],
-    [
-     "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
-     "official standings file (bound)"
-    ],
-    [
-     "https://www.hltv.org/team/12857/forze-reload",
-     "FORZE Reload (HLTV rank)"
-    ],
-    [
-     "https://www.hltv.org/ranking/teams/2026/october/12",
-     "official HLTV world ranking"
-    ]
-   ],
-   "market_source": "Polymarket (research read 2026-10-14)",
-   "market_odds_a": "1.14",
-   "market_odds_b": "6.25",
-   "market_overround_pct": "4.00",
-   "market_captured_utc": "2026-10-14T04:50:00Z",
-   "market_prob_a_pct": "84.6",
-   "market_prob_b_pct": "15.4",
-   "model_prob_a_pct": "98.4",
-   "model_prob_b_pct": "1.6",
-   "prob_a_pct": "84.6",
-   "prob_b_pct": "15.4",
-   "fair_odds_a": "1.18",
-   "fair_odds_b": "6.50",
-   "pick": "FORZE Reload",
-   "pick_prob_pct": "84.6",
-   "confidence": "Medium (secondary listing)",
-   "rating_a": {
-    "team": "FORZE Reload",
-    "vrs_name": "FORZE Reload",
-    "vrs_rank": 84,
-    "vrs_points": 1100,
-    "vrs_roster": "HeCkBNk, Kaide, KusMe, Lack1, YumsaN",
-    "vrs_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
-    "vrs_details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0084--forze_reload--heckbnk-kaide-kusme-lack1-yumsan.md",
-    "match_method": "exact",
-    "match_evidence_url": "",
-    "alias_note": "",
-    "hltv_name": "FORZE Reload",
-    "hltv_team_id": "12857",
-    "hltv_rank": 75,
-    "hltv_points": 11,
-    "hltv_url": "https://www.hltv.org/team/12857/forze-reload",
-    "hltv_roster": "Lack1, YumsaN, Kaide, KusMe, HeCkBNk",
-    "flags": []
-   },
-   "rating_b": {
-    "team": "LFO 10",
-    "vrs_name": "",
-    "vrs_rank": "",
-    "vrs_points": "",
-    "vrs_roster": "",
-    "vrs_url": "",
-    "vrs_details_url": "",
-    "match_method": "none",
-    "match_evidence_url": "",
-    "alias_note": "",
-    "hltv_name": "LFO 10",
-    "hltv_team_id": "",
-    "hltv_rank": "",
-    "hltv_points": "",
-    "hltv_url": "https://www.hltv.org/team/14084/lfo-10",
-    "hltv_roster": "Jackinho, Sapec, flaw, dottie, tvs",
-    "flags": []
-   },
-   "flags": [
-    "FL-FORMAT-FROM-LISTING",
-    "FL-LISTING-ALIAS",
-    "FL-LOCKED",
-    "FL-MARKET-STALE",
-    "FL-PREDICTION-MARKET-BASIS",
-    "FL-RANK-FLOOR-BOUND",
-    "FL-STALE-CAPTURE",
-    "FL-UNLISTED-OPPONENT"
-   ],
-   "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
-   "own": {
-    "best_of": 3,
-    "scale": 222.0,
-    "fitted": true,
-    "rank_floor": 245,
-    "rank_count": 245,
-    "rank_a": 75,
-    "rank_b": "",
-    "bound_a": false,
-    "bound_b": true,
-    "p_map": 0.8549063880977598,
-    "p_series": 0.9429525981225684,
-    "method": "HLTV world-rank logistic",
-    "sources": [
-     [
-      "https://www.hltv.org/team/12857/forze-reload",
-      "FORZE Reload (HLTV rank)"
-     ],
-     [
-      "https://www.hltv.org/team/14084/lfo-10",
-      "LFO 10 (HLTV rank)"
-     ],
-     [
-      "https://www.hltv.org/ranking/teams/2026/october/12",
-      "official HLTV world ranking"
-     ]
-    ],
-    "detail": "ranks 75 vs — (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 85.5%; converted to BO3: p = 94.3%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
-    "vrs_p_series": null,
-    "vrs_p_map": null
    }
   },
   "1080279": {
@@ -9047,7 +8595,7 @@
    "hotspawn_match_url": "https://www.hotspawn.com/matches/wrotberry-vs-eac-elisa-breakout-series-2-1080279",
    "basis_tier": 2,
    "basis_label": "Market · secondary listing",
-   "basis_detail": "Thunderpick listing 2.00 / 1.72 (decimal), overround 8.14%, proportional de-vig. Secondary listing: the aggregator's own page is the source, not the book itself. Series length BO1 as stated by the pricing listing (Thunderpick); Hotspawn states none. Originated rating line: WBT 1201 vs EAC 1035 official points, p = 1/(1+10^((Rb-Ra)/400)) = 72.2%. Our own line for the same fixture, from the official ranking only: 19.6% for WROTBERRY (26.6 pp from the price this row is based on).",
+   "basis_detail": "Thunderpick listing 1.88 / 1.82 (decimal), overround 8.14%, proportional de-vig. Secondary listing: the aggregator's own page is the source, not the book itself. Series length BO1 as stated by the pricing listing (Thunderpick); Hotspawn states none. Originated rating line: WBT 1201 vs EAC 1035 official points, p = 1/(1+10^((Rb-Ra)/400)) = 72.2%. Our own line for the same fixture, from the official ranking only: 23.5% for WROTBERRY (25.7 pp from the price this row is based on).",
    "basis_sources": [
     [
      "https://bo3.gg/matches/wbt-vs-esport-academy-copenhagen-15-10-2026",
@@ -9075,20 +8623,20 @@
     ]
    ],
    "market_source": "Thunderpick",
-   "market_odds_a": "2.00",
-   "market_odds_b": "1.72",
+   "market_odds_a": "1.88",
+   "market_odds_b": "1.82",
    "market_overround_pct": "8.14",
-   "market_captured_utc": "2026-10-14T14:39:28Z",
-   "market_prob_a_pct": "46.2",
-   "market_prob_b_pct": "53.8",
+   "market_captured_utc": "2026-10-14T22:35:43Z",
+   "market_prob_a_pct": "49.2",
+   "market_prob_b_pct": "50.8",
    "model_prob_a_pct": "72.2",
    "model_prob_b_pct": "27.8",
-   "prob_a_pct": "46.2",
-   "prob_b_pct": "53.8",
-   "fair_odds_a": "2.16",
-   "fair_odds_b": "1.86",
+   "prob_a_pct": "49.2",
+   "prob_b_pct": "50.8",
+   "fair_odds_a": "2.03",
+   "fair_odds_b": "1.97",
    "pick": "EAC",
-   "pick_prob_pct": "53.8",
+   "pick_prob_pct": "50.8",
    "confidence": "Medium (secondary listing)",
    "rating_a": {
     "team": "WROTBERRY",
@@ -9132,16 +8680,17 @@
    },
    "flags": [
     "FL-ALIAS-NAME",
+    "FL-COINFLIP",
     "FL-FORMAT-FROM-LISTING",
     "FL-MODEL-MARKET-SPLIT",
     "FL-OWN-LINE-MARKET-SPLIT",
     "FL-RANK-FLOOR-BOUND"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
+   "last_verified_utc": "2026-10-14T23:23:56Z",
    "own": {
     "best_of": 1,
-    "scale": 222.0,
+    "scale": 265.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -9149,8 +8698,8 @@
     "rank_b": 110,
     "bound_a": true,
     "bound_b": false,
-    "p_map": 0.19614059364334377,
-    "p_series": 0.19614059364334377,
+    "p_map": 0.23474594226307208,
+    "p_series": 0.23474594226307208,
     "method": "HLTV world-rank logistic",
     "sources": [
      [
@@ -9166,7 +8715,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks — vs 110 (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 19.6%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
+    "detail": "ranks — vs 110 (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 23.5%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
     "vrs_p_series": 0.7222345336491706,
     "vrs_p_map": 0.7222345336491706
    }
@@ -9191,7 +8740,7 @@
    "hotspawn_match_url": "https://www.hotspawn.com/matches/mibr-vs-bc-game-stake-pulse-beat-iii-1079440",
    "basis_tier": 1,
    "basis_label": "Market · primary book",
-   "basis_detail": "Pinnacle whole-match moneyline 1.65 / 2.21 (native american), overround 5.72%, proportional de-vig. Series length BO3 as stated by the pricing listing (Pinnacle); Hotspawn states none. Originated rating line: MIBR 1585 vs BC.Game 1318 official points, p = 1/(1+10^((Rb-Ra)/400)) = 82.3%. Our own line for the same fixture, from the official ranking only: 71.3% for MIBR (14.1 pp from the price this row is based on).",
+   "basis_detail": "Pinnacle whole-match moneyline 1.71 / 2.11 (native american), overround 5.73%, proportional de-vig. Series length BO3 as stated by the pricing listing (Pinnacle); Hotspawn states none. Originated rating line: MIBR 1585 vs BC.Game 1318 official points, p = 1/(1+10^((Rb-Ra)/400)) = 82.3%. Our own line for the same fixture, from the official ranking only: 68.1% for MIBR (12.9 pp from the price this row is based on).",
    "basis_sources": [
     [
      "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
@@ -9223,20 +8772,20 @@
     ]
    ],
    "market_source": "Pinnacle",
-   "market_odds_a": "1.65",
-   "market_odds_b": "2.21",
-   "market_overround_pct": "5.72",
-   "market_captured_utc": "2026-10-14T17:29:42Z",
-   "market_prob_a_pct": "57.2",
-   "market_prob_b_pct": "42.8",
+   "market_odds_a": "1.71",
+   "market_odds_b": "2.11",
+   "market_overround_pct": "5.73",
+   "market_captured_utc": "2026-10-14T23:22:27Z",
+   "market_prob_a_pct": "55.2",
+   "market_prob_b_pct": "44.8",
    "model_prob_a_pct": "82.3",
    "model_prob_b_pct": "17.7",
-   "prob_a_pct": "57.2",
-   "prob_b_pct": "42.8",
-   "fair_odds_a": "1.75",
-   "fair_odds_b": "2.34",
+   "prob_a_pct": "55.2",
+   "prob_b_pct": "44.8",
+   "fair_odds_a": "1.81",
+   "fair_odds_b": "2.23",
    "pick": "MIBR",
-   "pick_prob_pct": "57.2",
+   "pick_prob_pct": "55.2",
    "confidence": "High (market line)",
    "rating_a": {
     "team": "MIBR",
@@ -9281,10 +8830,10 @@
     "FL-MODEL-MARKET-SPLIT"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
+   "last_verified_utc": "2026-10-14T23:23:56Z",
    "own": {
     "best_of": 3,
-    "scale": 222.0,
+    "scale": 265.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -9292,8 +8841,8 @@
     "rank_b": 70,
     "bound_a": false,
     "bound_b": false,
-    "p_map": 0.646016852665048,
-    "p_series": 0.7127988513603187,
+    "p_map": 0.6233899679430726,
+    "p_series": 0.6813277066145882,
     "method": "HLTV world-rank logistic",
     "sources": [
      [
@@ -9309,7 +8858,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks 12 vs 70 (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 64.6%; converted to BO3: p = 71.3%",
+    "detail": "ranks 12 vs 70 (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 62.3%; converted to BO3: p = 68.1%",
     "vrs_p_series": 0.9171249911423566,
     "vrs_p_map": 0.8230246289217321
    }
@@ -9334,7 +8883,7 @@
    "hotspawn_match_url": "https://www.hotspawn.com/matches/heroic-vs-envy-stake-pulse-beat-iii-1079442",
    "basis_tier": 1,
    "basis_label": "Market · primary book",
-   "basis_detail": "Pinnacle whole-match moneyline 1.47 / 2.62 (native american), overround 6.22%, proportional de-vig. Series length BO3 as stated by the pricing listing (Pinnacle); Hotspawn states none. Originated rating line: HEROIC 1550 vs 3DMAX 1500 official points, p = 1/(1+10^((Rb-Ra)/400)) = 57.1%. Our own line for the same fixture, from the official ranking only: 46.1% for Heroic (18.0 pp from the price this row is based on).",
+   "basis_detail": "Pinnacle whole-match moneyline 1.47 / 2.60 (native american), overround 6.31%, proportional de-vig. Series length BO3 as stated by the pricing listing (Pinnacle); Hotspawn states none. Originated rating line: HEROIC 1550 vs 3DMAX 1500 official points, p = 1/(1+10^((Rb-Ra)/400)) = 57.1%. Our own line for the same fixture, from the official ranking only: 46.7% for Heroic (17.1 pp from the price this row is based on).",
    "basis_sources": [
     [
      "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
@@ -9367,19 +8916,19 @@
    ],
    "market_source": "Pinnacle",
    "market_odds_a": "1.47",
-   "market_odds_b": "2.62",
-   "market_overround_pct": "6.22",
-   "market_captured_utc": "2026-10-14T17:29:42Z",
-   "market_prob_a_pct": "64.1",
-   "market_prob_b_pct": "35.9",
+   "market_odds_b": "2.60",
+   "market_overround_pct": "6.31",
+   "market_captured_utc": "2026-10-14T23:22:27Z",
+   "market_prob_a_pct": "63.8",
+   "market_prob_b_pct": "36.2",
    "model_prob_a_pct": "57.1",
    "model_prob_b_pct": "42.9",
-   "prob_a_pct": "64.1",
-   "prob_b_pct": "35.9",
-   "fair_odds_a": "1.56",
-   "fair_odds_b": "2.78",
+   "prob_a_pct": "63.8",
+   "prob_b_pct": "36.2",
+   "fair_odds_a": "1.57",
+   "fair_odds_b": "2.76",
    "pick": "Heroic",
-   "pick_prob_pct": "64.1",
+   "pick_prob_pct": "63.8",
    "confidence": "High (market line)",
    "rating_a": {
     "team": "Heroic",
@@ -9427,10 +8976,10 @@
     "FL-OWN-LINE-MARKET-SPLIT"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
+   "last_verified_utc": "2026-10-14T23:23:56Z",
    "own": {
     "best_of": 3,
-    "scale": 222.0,
+    "scale": 265.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -9438,8 +8987,8 @@
     "rank_b": 20,
     "bound_a": false,
     "bound_b": false,
-    "p_map": 0.47409320863999616,
-    "p_series": 0.4611745882594355,
+    "p_map": 0.478291155655329,
+    "p_series": 0.4674571951074602,
     "method": "HLTV world-rank logistic",
     "sources": [
      [
@@ -9455,7 +9004,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks 30 vs 20 (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 47.4%; converted to BO3: p = 46.1%",
+    "detail": "ranks 30 vs 20 (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 47.8%; converted to BO3: p = 46.7%",
     "vrs_p_series": 0.6064647550972668,
     "vrs_p_map": 0.5714631174083814
    }
@@ -9480,7 +9029,7 @@
    "hotspawn_match_url": "https://www.hotspawn.com/matches/ence-vs-bojong-elisa-breakout-series-2-1080280",
    "basis_tier": 1,
    "basis_label": "Market · primary book",
-   "basis_detail": "Pinnacle whole-match moneyline 1.31 / 3.25 (native american), overround 6.85%, proportional de-vig. Series length BO1 as stated by the pricing listing (Pinnacle); Hotspawn states none. Originated rating line: ENCE 1025 vs BOJONG 463 official points, p = 1/(1+10^((Rb-Ra)/400)) = 96.2%. Our own line for the same fixture, from the official ranking only: 75.0% for ENCE (3.8 pp from the price this row is based on).",
+   "basis_detail": "Pinnacle whole-match moneyline 1.31 / 3.28 (native american), overround 6.85%, proportional de-vig. Series length BO1 as stated by the pricing listing (Pinnacle); Hotspawn states none. Originated rating line: ENCE 1025 vs BOJONG 463 official points, p = 1/(1+10^((Rb-Ra)/400)) = 96.2%. Our own line for the same fixture, from the official ranking only: 71.5% for ENCE (0.0 pp from the price this row is based on).",
    "basis_sources": [
     [
      "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
@@ -9513,19 +9062,19 @@
    ],
    "market_source": "Pinnacle",
    "market_odds_a": "1.31",
-   "market_odds_b": "3.25",
+   "market_odds_b": "3.28",
    "market_overround_pct": "6.85",
-   "market_captured_utc": "2026-10-14T17:29:42Z",
-   "market_prob_a_pct": "71.2",
-   "market_prob_b_pct": "28.8",
+   "market_captured_utc": "2026-10-14T23:22:27Z",
+   "market_prob_a_pct": "71.5",
+   "market_prob_b_pct": "28.5",
    "model_prob_a_pct": "96.2",
    "model_prob_b_pct": "3.8",
-   "prob_a_pct": "71.2",
-   "prob_b_pct": "28.8",
+   "prob_a_pct": "71.5",
+   "prob_b_pct": "28.5",
    "fair_odds_a": "1.40",
-   "fair_odds_b": "3.47",
+   "fair_odds_b": "3.50",
    "pick": "ENCE",
-   "pick_prob_pct": "71.2",
+   "pick_prob_pct": "71.5",
    "confidence": "High (market line)",
    "rating_a": {
     "team": "ENCE",
@@ -9570,10 +9119,10 @@
     "FL-MODEL-MARKET-SPLIT"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
+   "last_verified_utc": "2026-10-14T23:23:56Z",
    "own": {
     "best_of": 1,
-    "scale": 222.0,
+    "scale": 265.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -9581,8 +9130,8 @@
     "rank_b": 220,
     "bound_a": false,
     "bound_b": false,
-    "p_map": 0.7501537621884028,
-    "p_series": 0.7501537621884028,
+    "p_map": 0.7152527510491987,
+    "p_series": 0.7152527510491987,
     "method": "HLTV world-rank logistic",
     "sources": [
      [
@@ -9598,7 +9147,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks 114 vs 220 (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 75.0%",
+    "detail": "ranks 114 vs 220 (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 71.5%",
     "vrs_p_series": 0.9621351633851132,
     "vrs_p_map": 0.9621351633851132
    }
@@ -9623,7 +9172,7 @@
    "hotspawn_match_url": "https://www.hotspawn.com/matches/wrotberry-vs-ence-elisa-breakout-series-2-1080281",
    "basis_tier": 2,
    "basis_label": "Market · secondary listing",
-   "basis_detail": "Thunderpick listing 1.62 / 2.15 (decimal), overround 8.24%, proportional de-vig. Secondary listing: the aggregator's own page is the source, not the book itself. Series length BO1 as stated by the pricing listing (Thunderpick); Hotspawn states none. Originated rating line: WBT 1201 vs ENCE 1025 official points, p = 1/(1+10^((Rb-Ra)/400)) = 73.4%. Our own line for the same fixture, from the official ranking only: 20.3% for WROTBERRY (36.7 pp from the price this row is based on).",
+   "basis_detail": "Thunderpick listing 1.50 / 2.40 (decimal), overround 8.33%, proportional de-vig. Secondary listing: the aggregator's own page is the source, not the book itself. Series length BO1 as stated by the pricing listing (Thunderpick); Hotspawn states none. Originated rating line: WBT 1201 vs ENCE 1025 official points, p = 1/(1+10^((Rb-Ra)/400)) = 73.4%. Our own line for the same fixture, from the official ranking only: 24.1% for WROTBERRY (37.4 pp from the price this row is based on).",
    "basis_sources": [
     [
      "https://bo3.gg/matches/wbt-vs-ence-15-10-2026",
@@ -9651,20 +9200,20 @@
     ]
    ],
    "market_source": "Thunderpick",
-   "market_odds_a": "1.62",
-   "market_odds_b": "2.15",
-   "market_overround_pct": "8.24",
-   "market_captured_utc": "2026-10-14T14:39:28Z",
-   "market_prob_a_pct": "57.0",
-   "market_prob_b_pct": "43.0",
+   "market_odds_a": "1.50",
+   "market_odds_b": "2.40",
+   "market_overround_pct": "8.33",
+   "market_captured_utc": "2026-10-14T22:35:43Z",
+   "market_prob_a_pct": "61.5",
+   "market_prob_b_pct": "38.5",
    "model_prob_a_pct": "73.4",
    "model_prob_b_pct": "26.6",
-   "prob_a_pct": "57.0",
-   "prob_b_pct": "43.0",
-   "fair_odds_a": "1.75",
-   "fair_odds_b": "2.33",
+   "prob_a_pct": "61.5",
+   "prob_b_pct": "38.5",
+   "fair_odds_a": "1.62",
+   "fair_odds_b": "2.60",
    "pick": "WROTBERRY",
-   "pick_prob_pct": "57.0",
+   "pick_prob_pct": "61.5",
    "confidence": "Medium (secondary listing)",
    "rating_a": {
     "team": "WROTBERRY",
@@ -9709,15 +9258,14 @@
    "flags": [
     "FL-ALIAS-NAME",
     "FL-FORMAT-FROM-LISTING",
-    "FL-MODEL-MARKET-SPLIT",
     "FL-OWN-LINE-MARKET-SPLIT",
     "FL-RANK-FLOOR-BOUND"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
+   "last_verified_utc": "2026-10-14T23:23:56Z",
    "own": {
     "best_of": 1,
-    "scale": 222.0,
+    "scale": 265.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -9725,8 +9273,8 @@
     "rank_b": 114,
     "bound_a": true,
     "bound_b": false,
-    "p_map": 0.2027645422284933,
-    "p_series": 0.2027645422284933,
+    "p_map": 0.24104697628132155,
+    "p_series": 0.24104697628132155,
     "method": "HLTV world-rank logistic",
     "sources": [
      [
@@ -9742,7 +9290,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks — vs 114 (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 20.3%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
+    "detail": "ranks — vs 114 (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 24.1%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
     "vrs_p_series": 0.7336337024138074,
     "vrs_p_map": 0.7336337024138074
    }
@@ -9767,7 +9315,7 @@
    "hotspawn_match_url": "https://www.hotspawn.com/matches/eac-vs-bojong-elisa-breakout-series-2-1080282",
    "basis_tier": 1,
    "basis_label": "Market · primary book",
-   "basis_detail": "Pinnacle whole-match moneyline 1.23 / 3.85 (native american), overround 7.28%, proportional de-vig. Series length BO1 as stated by the pricing listing (Pinnacle); Hotspawn states none. Originated rating line: EAC 1035 vs BOJONG 463 official points, p = 1/(1+10^((Rb-Ra)/400)) = 96.4%. Our own line for the same fixture, from the official ranking only: 75.8% for EAC (0.0 pp from the price this row is based on).",
+   "basis_detail": "Pinnacle whole-match moneyline 1.23 / 3.85 (native american), overround 7.28%, proportional de-vig. Series length BO1 as stated by the pricing listing (Pinnacle); Hotspawn states none. Originated rating line: EAC 1035 vs BOJONG 463 official points, p = 1/(1+10^((Rb-Ra)/400)) = 96.4%. Our own line for the same fixture, from the official ranking only: 72.2% for EAC (3.6 pp from the price this row is based on).",
    "basis_sources": [
     [
      "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
@@ -9802,7 +9350,7 @@
    "market_odds_a": "1.23",
    "market_odds_b": "3.85",
    "market_overround_pct": "7.28",
-   "market_captured_utc": "2026-10-14T17:29:42Z",
+   "market_captured_utc": "2026-10-14T23:22:27Z",
    "market_prob_a_pct": "75.8",
    "market_prob_b_pct": "24.2",
    "model_prob_a_pct": "96.4",
@@ -9857,10 +9405,10 @@
     "FL-MODEL-MARKET-SPLIT"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
+   "last_verified_utc": "2026-10-14T23:23:56Z",
    "own": {
     "best_of": 1,
-    "scale": 222.0,
+    "scale": 265.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -9868,8 +9416,8 @@
     "rank_b": 220,
     "bound_a": false,
     "bound_b": false,
-    "p_map": 0.7578486114516145,
-    "p_series": 0.7578486114516145,
+    "p_map": 0.7222781094480154,
+    "p_series": 0.7222781094480154,
     "method": "HLTV world-rank logistic",
     "sources": [
      [
@@ -9885,7 +9433,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks 110 vs 220 (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 75.8%",
+    "detail": "ranks 110 vs 220 (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 72.2%",
     "vrs_p_series": 0.9641774124186709,
     "vrs_p_map": 0.9641774124186709
    }
@@ -9910,7 +9458,7 @@
    "hotspawn_match_url": "https://www.hotspawn.com/matches/wrotberry-vs-bojong-elisa-breakout-series-2-1080283",
    "basis_tier": 2,
    "basis_label": "Market · secondary listing",
-   "basis_detail": "EGamersWorld (bc.game) listing 1.21 / 3.99 (decimal), overround 7.71%, proportional de-vig. Secondary listing: the aggregator's own page is the source, not the book itself. Series length BO1 as stated by Thunderpick, whose page for this fixture states the length (the listing the price is taken from prints none); Hotspawn states none. Originated rating line: WBT 1201 vs BOJONG 463 official points, p = 1/(1+10^((Rb-Ra)/400)) = 98.6%. Our own line for the same fixture, from the official ranking only: 43.3% for WROTBERRY (33.4 pp from the price this row is based on).",
+   "basis_detail": "EGamersWorld (bc.game) listing 1.21 / 3.99 (decimal), overround 7.71%, proportional de-vig. Secondary listing: the aggregator's own page is the source, not the book itself. Series length BO1 as stated by Thunderpick, whose page for this fixture states the length (the listing the price is taken from prints none); Hotspawn states none. Originated rating line: WBT 1201 vs BOJONG 463 official points, p = 1/(1+10^((Rb-Ra)/400)) = 98.6%. Our own line for the same fixture, from the official ranking only: 44.4% for WROTBERRY (32.3 pp from the price this row is based on).",
    "basis_sources": [
     [
      "https://egamersworld.com/counterstrike/match/4yn491uUVl/wbt-vs-bojong-r7kNL0-LX6",
@@ -10007,10 +9555,10 @@
     "FL-STALE-CAPTURE"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
+   "last_verified_utc": "2026-10-14T23:23:56Z",
    "own": {
     "best_of": 1,
-    "scale": 222.0,
+    "scale": 265.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -10018,8 +9566,8 @@
     "rank_b": 220,
     "bound_a": true,
     "bound_b": false,
-    "p_map": 0.4329875889004753,
-    "p_series": 0.4329875889004753,
+    "p_map": 0.44376048649611727,
+    "p_series": 0.44376048649611727,
     "method": "HLTV world-rank logistic",
     "sources": [
      [
@@ -10035,7 +9583,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks — vs 220 (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 43.3%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
+    "detail": "ranks — vs 220 (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 44.4%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
     "vrs_p_series": 0.9859123578820095,
     "vrs_p_map": 0.9859123578820095
    }
@@ -10060,7 +9608,7 @@
    "hotspawn_match_url": "https://www.hotspawn.com/matches/eac-vs-ence-elisa-breakout-series-2-1080284",
    "basis_tier": 1,
    "basis_label": "Market · primary book",
-   "basis_detail": "Pinnacle whole-match moneyline 1.40 / 2.84 (native american), overround 6.39%, proportional de-vig. Series length BO1 as stated by the pricing listing (Pinnacle); Hotspawn states none. Originated rating line: EAC 1035 vs ENCE 1025 official points, p = 1/(1+10^((Rb-Ra)/400)) = 51.4%. Our own line for the same fixture, from the official ranking only: 51.0% for EAC (15.9 pp from the price this row is based on).",
+   "basis_detail": "Pinnacle whole-match moneyline 1.49 / 2.57 (native american), overround 6.23%, proportional de-vig. Series length BO1 as stated by the pricing listing (Pinnacle); Hotspawn states none. Originated rating line: EAC 1035 vs ENCE 1025 official points, p = 1/(1+10^((Rb-Ra)/400)) = 51.4%. Our own line for the same fixture, from the official ranking only: 50.9% for EAC (12.5 pp from the price this row is based on).",
    "basis_sources": [
     [
      "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
@@ -10092,20 +9640,20 @@
     ]
    ],
    "market_source": "Pinnacle",
-   "market_odds_a": "1.40",
-   "market_odds_b": "2.84",
-   "market_overround_pct": "6.39",
-   "market_captured_utc": "2026-10-14T17:29:42Z",
-   "market_prob_a_pct": "66.9",
-   "market_prob_b_pct": "33.1",
+   "market_odds_a": "1.49",
+   "market_odds_b": "2.57",
+   "market_overround_pct": "6.23",
+   "market_captured_utc": "2026-10-14T23:22:27Z",
+   "market_prob_a_pct": "63.4",
+   "market_prob_b_pct": "36.6",
    "model_prob_a_pct": "51.4",
    "model_prob_b_pct": "48.6",
-   "prob_a_pct": "66.9",
-   "prob_b_pct": "33.1",
-   "fair_odds_a": "1.49",
-   "fair_odds_b": "3.02",
+   "prob_a_pct": "63.4",
+   "prob_b_pct": "36.6",
+   "fair_odds_a": "1.58",
+   "fair_odds_b": "2.73",
    "pick": "EAC",
-   "pick_prob_pct": "66.9",
+   "pick_prob_pct": "63.4",
    "confidence": "High (market line)",
    "rating_a": {
     "team": "EAC",
@@ -10146,15 +9694,13 @@
     "flags": []
    },
    "flags": [
-    "FL-FORMAT-FROM-LISTING",
-    "FL-MODEL-MARKET-SPLIT",
-    "FL-OWN-LINE-MARKET-SPLIT"
+    "FL-FORMAT-FROM-LISTING"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
+   "last_verified_utc": "2026-10-14T23:23:56Z",
    "own": {
     "best_of": 1,
-    "scale": 222.0,
+    "scale": 265.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -10162,8 +9708,8 @@
     "rank_b": 114,
     "bound_a": false,
     "bound_b": false,
-    "p_map": 0.5103705174399796,
-    "p_series": 0.5103705174399796,
+    "p_map": 0.5086881257786123,
+    "p_series": 0.5086881257786123,
     "method": "HLTV world-rank logistic",
     "sources": [
      [
@@ -10179,7 +9725,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks 110 vs 114 (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 51.0%",
+    "detail": "ranks 110 vs 114 (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 50.9%",
     "vrs_p_series": 0.5143871841659987,
     "vrs_p_map": 0.5143871841659987
    }
@@ -10204,7 +9750,7 @@
    "hotspawn_match_url": "https://www.hotspawn.com/matches/voca-vs-phantom-elisa-breakout-series-2-1080285",
    "basis_tier": 2,
    "basis_label": "Market · secondary listing",
-   "basis_detail": "Thunderpick listing 1.90 / 1.80 (decimal), overround 8.19%, proportional de-vig. Secondary listing: the aggregator's own page is the source, not the book itself. Series length BO1 as stated by the pricing listing (Thunderpick); Hotspawn states none. Originated rating line: Voca 1182 vs Phantom 1147 official points, p = 1/(1+10^((Rb-Ra)/400)) = 55.0%. Our own line for the same fixture, from the official ranking only: 57.5% for Voca (8.9 pp from the price this row is based on).",
+   "basis_detail": "Thunderpick listing 1.90 / 1.80 (decimal), overround 8.19%, proportional de-vig. Secondary listing: the aggregator's own page is the source, not the book itself. Series length BO1 as stated by the pricing listing (Thunderpick); Hotspawn states none. Originated rating line: Voca 1182 vs Phantom 1147 official points, p = 1/(1+10^((Rb-Ra)/400)) = 55.0%. Our own line for the same fixture, from the official ranking only: 56.3% for Voca (7.7 pp from the price this row is based on).",
    "basis_sources": [
     [
      "https://bo3.gg/matches/voca-vs-phantom-esports-16-10-2026",
@@ -10235,7 +9781,7 @@
    "market_odds_a": "1.90",
    "market_odds_b": "1.80",
    "market_overround_pct": "8.19",
-   "market_captured_utc": "2026-10-14T14:39:28Z",
+   "market_captured_utc": "2026-10-14T22:35:43Z",
    "market_prob_a_pct": "48.6",
    "market_prob_b_pct": "51.4",
    "model_prob_a_pct": "55.0",
@@ -10289,10 +9835,10 @@
     "FL-FORMAT-FROM-LISTING"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
+   "last_verified_utc": "2026-10-14T23:23:56Z",
    "own": {
     "best_of": 1,
-    "scale": 222.0,
+    "scale": 265.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -10300,8 +9846,8 @@
     "rank_b": 88,
     "bound_a": false,
     "bound_b": false,
-    "p_map": 0.5746351735512624,
-    "p_series": 0.5746351735512624,
+    "p_map": 0.5626640347984317,
+    "p_series": 0.5626640347984317,
     "method": "HLTV world-rank logistic",
     "sources": [
      [
@@ -10317,7 +9863,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks 59 vs 88 (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 57.5%",
+    "detail": "ranks 59 vs 88 (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 56.3%",
     "vrs_p_series": 0.550199353253537,
     "vrs_p_map": 0.550199353253537
    }
@@ -10342,7 +9888,7 @@
    "hotspawn_match_url": "https://www.hotspawn.com/matches/havu-vs-roundsgg-elisa-breakout-series-2-1080286",
    "basis_tier": 2,
    "basis_label": "Market · secondary listing",
-   "basis_detail": "Thunderpick listing 1.20 / 4.00 (decimal), overround 8.33%, proportional de-vig. Secondary listing: the aggregator's own page is the source, not the book itself. Series length BO1 as stated by the pricing listing (Thunderpick); Hotspawn states none. Originated rating line: HAVU 937 vs ROUNDS 548 official points, p = 1/(1+10^((Rb-Ra)/400)) = 90.4%. Our own line for the same fixture, from the official ranking only: 79.0% for HAVU (2.1 pp from the price this row is based on).",
+   "basis_detail": "Thunderpick listing 1.20 / 4.00 (decimal), overround 8.33%, proportional de-vig. Secondary listing: the aggregator's own page is the source, not the book itself. Series length BO1 as stated by the pricing listing (Thunderpick); Hotspawn states none. Originated rating line: HAVU 937 vs ROUNDS 548 official points, p = 1/(1+10^((Rb-Ra)/400)) = 90.4%. Our own line for the same fixture, from the official ranking only: 75.3% for HAVU (1.6 pp from the price this row is based on).",
    "basis_sources": [
     [
      "https://bo3.gg/matches/havu-vs-roundsgg-16-10-2026",
@@ -10373,7 +9919,7 @@
    "market_odds_a": "1.20",
    "market_odds_b": "4.00",
    "market_overround_pct": "8.33",
-   "market_captured_utc": "2026-10-14T14:39:28Z",
+   "market_captured_utc": "2026-10-14T22:35:43Z",
    "market_prob_a_pct": "76.9",
    "market_prob_b_pct": "23.1",
    "model_prob_a_pct": "90.4",
@@ -10431,10 +9977,10 @@
     "FL-RANK-FLOOR-BOUND"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
+   "last_verified_utc": "2026-10-14T23:23:56Z",
    "own": {
     "best_of": 1,
-    "scale": 222.0,
+    "scale": 265.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -10442,8 +9988,8 @@
     "rank_b": "",
     "bound_a": false,
     "bound_b": true,
-    "p_map": 0.7904461241953539,
-    "p_series": 0.7904461241953539,
+    "p_map": 0.752537550471971,
+    "p_series": 0.752537550471971,
     "method": "HLTV world-rank logistic",
     "sources": [
      [
@@ -10459,7 +10005,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks 118 vs — (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 79.0%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
+    "detail": "ranks 118 vs — (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 75.3%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
     "vrs_p_series": 0.9037204383519798,
     "vrs_p_map": 0.9037204383519798
    }
@@ -10484,7 +10030,7 @@
    "hotspawn_match_url": "https://www.hotspawn.com/matches/voca-vs-havu-elisa-breakout-series-2-1080287",
    "basis_tier": 2,
    "basis_label": "Market · secondary listing",
-   "basis_detail": "Thunderpick listing 1.42 / 2.70 (decimal), overround 7.46%, proportional de-vig. Secondary listing: the aggregator's own page is the source, not the book itself. Series length BO1 as stated by the pricing listing (Thunderpick); Hotspawn states none. Originated rating line: Voca 1182 vs HAVU 937 official points, p = 1/(1+10^((Rb-Ra)/400)) = 80.4%. Our own line for the same fixture, from the official ranking only: 64.8% for Voca (0.7 pp from the price this row is based on).",
+   "basis_detail": "Thunderpick listing 1.42 / 2.70 (decimal), overround 7.46%, proportional de-vig. Secondary listing: the aggregator's own page is the source, not the book itself. Series length BO1 as stated by the pricing listing (Thunderpick); Hotspawn states none. Originated rating line: Voca 1182 vs HAVU 937 official points, p = 1/(1+10^((Rb-Ra)/400)) = 80.4%. Our own line for the same fixture, from the official ranking only: 62.5% for Voca (3.0 pp from the price this row is based on).",
    "basis_sources": [
     [
      "https://bo3.gg/matches/voca-vs-havu-16-10-2026",
@@ -10515,7 +10061,7 @@
    "market_odds_a": "1.42",
    "market_odds_b": "2.70",
    "market_overround_pct": "7.46",
-   "market_captured_utc": "2026-10-14T14:39:28Z",
+   "market_captured_utc": "2026-10-14T22:35:43Z",
    "market_prob_a_pct": "65.5",
    "market_prob_b_pct": "34.5",
    "model_prob_a_pct": "80.4",
@@ -10569,10 +10115,10 @@
     "FL-FORMAT-FROM-LISTING"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
+   "last_verified_utc": "2026-10-14T23:23:56Z",
    "own": {
     "best_of": 1,
-    "scale": 222.0,
+    "scale": 265.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -10580,8 +10126,8 @@
     "rank_b": 118,
     "bound_a": false,
     "bound_b": false,
-    "p_map": 0.6483851052755361,
-    "p_series": 0.6483851052755361,
+    "p_map": 0.6254277296915968,
+    "p_series": 0.6254277296915968,
     "method": "HLTV world-rank logistic",
     "sources": [
      [
@@ -10597,7 +10143,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks 59 vs 118 (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 64.8%",
+    "detail": "ranks 59 vs 118 (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 62.5%",
     "vrs_p_series": 0.8038185194246843,
     "vrs_p_map": 0.8038185194246843
    }
@@ -10622,7 +10168,7 @@
    "hotspawn_match_url": "https://www.hotspawn.com/matches/phantom-vs-roundsgg-elisa-breakout-series-2-1080288",
    "basis_tier": 2,
    "basis_label": "Market · secondary listing",
-   "basis_detail": "EGamersWorld (bc.game) listing 1.08 / 6.94 (decimal), overround 7.00%, proportional de-vig. Secondary listing: the aggregator's own page is the source, not the book itself. Series length BO1 as stated by Thunderpick, whose page for this fixture states the length (the listing the price is taken from prints none); Hotspawn states none. Originated rating line: Phantom 1147 vs ROUNDS 548 official points, p = 1/(1+10^((Rb-Ra)/400)) = 96.9%. Our own line for the same fixture, from the official ranking only: 83.7% for Phantom (2.8 pp from the price this row is based on).",
+   "basis_detail": "EGamersWorld (bc.game) listing 1.08 / 6.94 (decimal), overround 7.00%, proportional de-vig. Secondary listing: the aggregator's own page is the source, not the book itself. Series length BO1 as stated by Thunderpick, whose page for this fixture states the length (the listing the price is taken from prints none); Hotspawn states none. Originated rating line: Phantom 1147 vs ROUNDS 548 official points, p = 1/(1+10^((Rb-Ra)/400)) = 96.9%. Our own line for the same fixture, from the official ranking only: 79.8% for Phantom (6.7 pp from the price this row is based on).",
    "basis_sources": [
     [
      "https://egamersworld.com/counterstrike/match/4yn491uUVl/phantom-esports-vs-rounds-m6Cnk4tOxU",
@@ -10717,10 +10263,10 @@
     "FL-STALE-CAPTURE"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
+   "last_verified_utc": "2026-10-14T23:23:56Z",
    "own": {
     "best_of": 1,
-    "scale": 222.0,
+    "scale": 265.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -10728,8 +10274,8 @@
     "rank_b": "",
     "bound_a": false,
     "bound_b": true,
-    "p_map": 0.8373684246555617,
-    "p_series": 0.8373684246555617,
+    "p_map": 0.7978421681390874,
+    "p_series": 0.7978421681390874,
     "method": "HLTV world-rank logistic",
     "sources": [
      [
@@ -10745,7 +10291,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks 88 vs — (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 83.7%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
+    "detail": "ranks 88 vs — (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 79.8%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
     "vrs_p_series": 0.9691750606956857,
     "vrs_p_map": 0.9691750606956857
    }
@@ -10874,10 +10420,10 @@
     "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
+   "last_verified_utc": "2026-10-14T23:23:56Z",
    "own": {
     "best_of": 3,
-    "scale": 222.0,
+    "scale": 265.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -10885,8 +10431,8 @@
     "rank_b": 226,
     "bound_a": false,
     "bound_b": false,
-    "p_map": 0.7972354577715066,
-    "p_series": 0.8933323248690259,
+    "p_map": 0.7589530237186785,
+    "p_series": 0.8537004814444669,
     "method": "HLTV world-rank logistic",
     "sources": [
      [
@@ -10902,7 +10448,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks 94 vs 226 (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 79.7%; converted to BO3: p = 89.3%",
+    "detail": "ranks 94 vs 226 (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 75.9%; converted to BO3: p = 85.4%",
     "vrs_p_series": 0.9508673014674639,
     "vrs_p_map": 0.8658895824550439
    }
@@ -10927,7 +10473,7 @@
    "hotspawn_match_url": "https://www.hotspawn.com/matches/roundsgg-vs-voca-elisa-breakout-series-2-1080289",
    "basis_tier": 2,
    "basis_label": "Market · secondary listing",
-   "basis_detail": "Thunderpick listing 6.30 / 1.08 (decimal), overround 8.47%, proportional de-vig. Secondary listing: the aggregator's own page is the source, not the book itself. Series length BO1 as stated by the pricing listing (Thunderpick); Hotspawn states none. Originated rating line: ROUNDS 548 vs Voca 1182 official points, p = 1/(1+10^((Rb-Ra)/400)) = 2.5%. Our own line for the same fixture, from the official ranking only: 12.6% for RoundsGG (2.0 pp from the price this row is based on).",
+   "basis_detail": "Thunderpick listing 5.80 / 1.10 (decimal), overround 8.15%, proportional de-vig. Secondary listing: the aggregator's own page is the source, not the book itself. Series length BO1 as stated by the pricing listing (Thunderpick); Hotspawn states none. Originated rating line: ROUNDS 548 vs Voca 1182 official points, p = 1/(1+10^((Rb-Ra)/400)) = 2.5%. Our own line for the same fixture, from the official ranking only: 16.5% for RoundsGG (0.6 pp from the price this row is based on).",
    "basis_sources": [
     [
      "https://bo3.gg/matches/voca-vs-roundsgg-16-10-2026",
@@ -10955,20 +10501,20 @@
     ]
    ],
    "market_source": "Thunderpick",
-   "market_odds_a": "6.30",
-   "market_odds_b": "1.08",
-   "market_overround_pct": "8.47",
-   "market_captured_utc": "2026-10-14T14:39:28Z",
-   "market_prob_a_pct": "14.6",
-   "market_prob_b_pct": "85.4",
+   "market_odds_a": "5.80",
+   "market_odds_b": "1.10",
+   "market_overround_pct": "8.15",
+   "market_captured_utc": "2026-10-14T22:35:43Z",
+   "market_prob_a_pct": "15.9",
+   "market_prob_b_pct": "84.1",
    "model_prob_a_pct": "2.5",
    "model_prob_b_pct": "97.5",
-   "prob_a_pct": "14.6",
-   "prob_b_pct": "85.4",
-   "fair_odds_a": "6.83",
-   "fair_odds_b": "1.17",
+   "prob_a_pct": "15.9",
+   "prob_b_pct": "84.1",
+   "fair_odds_a": "6.27",
+   "fair_odds_b": "1.19",
    "pick": "Voca",
-   "pick_prob_pct": "85.4",
+   "pick_prob_pct": "84.1",
    "confidence": "Medium (secondary listing)",
    "rating_a": {
     "team": "RoundsGG",
@@ -11016,10 +10562,10 @@
     "FL-RANK-FLOOR-BOUND"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
+   "last_verified_utc": "2026-10-14T23:23:56Z",
    "own": {
     "best_of": 1,
-    "scale": 222.0,
+    "scale": 265.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -11027,8 +10573,8 @@
     "rank_b": 59,
     "bound_a": true,
     "bound_b": false,
-    "p_map": 0.1256956623211354,
-    "p_series": 0.1256956623211354,
+    "p_map": 0.16453803478745396,
+    "p_series": 0.16453803478745396,
     "method": "HLTV world-rank logistic",
     "sources": [
      [
@@ -11044,7 +10590,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks — vs 59 (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 12.6%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
+    "detail": "ranks — vs 59 (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 16.5%; one side is absent from that ranking, so 246 (one place below the last ranked team) is used as a conservative bound",
     "vrs_p_series": 0.02534264638803507,
     "vrs_p_map": 0.02534264638803507
    }
@@ -11069,7 +10615,7 @@
    "hotspawn_match_url": "https://www.hotspawn.com/matches/phantom-vs-havu-elisa-breakout-series-2-1080290",
    "basis_tier": 2,
    "basis_label": "Market · secondary listing",
-   "basis_detail": "EGamersWorld (bc.game) listing 1.36 / 2.87 (decimal), overround 8.37%, proportional de-vig. Secondary listing: the aggregator's own page is the source, not the book itself. Series length BO1 as stated by Thunderpick, whose page for this fixture states the length (the listing the price is taken from prints none); Hotspawn states none. Originated rating line: Phantom 1147 vs HAVU 937 official points, p = 1/(1+10^((Rb-Ra)/400)) = 77.0%. Our own line for the same fixture, from the official ranking only: 57.7% for Phantom (10.1 pp from the price this row is based on).",
+   "basis_detail": "EGamersWorld (bc.game) listing 1.36 / 2.87 (decimal), overround 8.37%, proportional de-vig. Secondary listing: the aggregator's own page is the source, not the book itself. Series length BO1 as stated by Thunderpick, whose page for this fixture states the length (the listing the price is taken from prints none); Hotspawn states none. Originated rating line: Phantom 1147 vs HAVU 937 official points, p = 1/(1+10^((Rb-Ra)/400)) = 77.0%. Our own line for the same fixture, from the official ranking only: 56.5% for Phantom (11.3 pp from the price this row is based on).",
    "basis_sources": [
     [
      "https://egamersworld.com/counterstrike/match/4yn491uUVl/phantom-esports-vs-havu-H8whr4r586",
@@ -11160,10 +10706,10 @@
     "FL-STALE-CAPTURE"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T17:31:32Z",
+   "last_verified_utc": "2026-10-14T23:23:56Z",
    "own": {
     "best_of": 1,
-    "scale": 222.0,
+    "scale": 265.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -11171,8 +10717,8 @@
     "rank_b": 118,
     "bound_a": false,
     "bound_b": false,
-    "p_map": 0.5771684147375166,
-    "p_series": 0.5771684147375166,
+    "p_map": 0.5648009880926445,
+    "p_series": 0.5648009880926445,
     "method": "HLTV world-rank logistic",
     "sources": [
      [
@@ -11188,7 +10734,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks 88 vs 118 (official HLTV ranking, 2026-10-12), 222 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/222)) = 57.7%",
+    "detail": "ranks 88 vs 118 (official HLTV ranking, 2026-10-12), 265 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/265)) = 56.5%",
     "vrs_p_series": 0.770096676660982,
     "vrs_p_map": 0.770096676660982
    }
