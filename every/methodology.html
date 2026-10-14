@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Methodology — CS2 Picks</title>
+<meta name="description" content="Exact selection rules, formulas, sources and limitations behind every pick.">
+<link rel="stylesheet" href="style.css">
+</head><body>
+<header class="top"><div class="wrap">
+<a class="brand" href="index.html">CS2 Picks</a>
+<nav class="chips">
+<a href="index.html">All picks</a>
+<a href="methodology.html" class="on">Methodology</a>
+<a href="flagged.html">Flagged</a>
+<a href="sources.html">Sources</a>
+<a href="../index.html">Site home</a>
+</nav>
+</div></header>
+<div class="wrap">
+
+<h1>Methodology</h1>
+<p class="lead">How every pick on this site is produced. Generated 2026-10-14T03:01:33Z.</p>
+
+<h2>What Hotspawn is used for</h2>
+<ul class="plain">
+<li>Fixture identity: team names, competition, tier/points, and the open CS2 Pick'em match set.</li>
+<li>UTC start and lock epochs (payload <code>scheduled_start_time</code>/<code>lock_time</code>).</li>
+<li><strong>Never</strong> a probability input: Hotspawn crowd pick percentages are excluded everywhere.</li>
+</ul>
+
+<h2>Where probabilities come from</h2>
+<ul class="plain">
+<li><strong>Market lines.</strong> Two-way de-vig of decimal odds:
+<code>p(A) = (1/o_A) / (1/o_A + 1/o_B)</code>. Primary tier = direct bookmaker guest quote
+(Pinnacle, captured by the hourly slate pipeline). Aggregator tier = bookmaker odds as listed on
+EGamersWorld (bc.game), capture-stamped 2026-10-14 and flagged because we cannot re-verify them
+against the book ourselves. Placeholder prices (1.80/1.80) are rejected.</li>
+<li><strong>Our originated line.</strong> Every team gets rating points from official sources:
+HLTV world-ranking points and Valve Regional Standings (VRS) points. Each side becomes a per-map
+probability with the standard Elo logistic
+<code>p = 1 / (1 + 10^((r_A − r_B)/400))</code>, then a series probability
+<code>BO3: p²(3−2p)</code> · <code>BO5: p³(10−15p+6p²)</code> · <code>BO1: p</code>.
+When both sides exist the map/series probability is the equal-weight mean of the HLTV-based and
+VRS-based values (identical arithmetic to <code>slate/collect.py</code>). The 400 scale and
+equal weighting are project assumptions — not calibrated forecasts, and not Valve/HLTV formulas.</li>
+<li><strong>Series formats</strong> come from HLTV match pages (BO1/BO3/BO5 labels), linked per row.</li>
+</ul>
+
+<h2>Pick hierarchy</h2>
+<ol class="plain">
+<li>Primary bookmaker line → market favourite.</li>
+<li>Aggregator-reported line (flagged) → market favourite.</li>
+<li>Originated rating line with a sourced BO format → series-probability favourite
+(labeled provisional — the model is not calibrated).</li>
+<li>Format unverified but ratings exist → map-level favourite as a provisional guide.</li>
+<li>One team has no verified rating anywhere → pick the rateable team, probability left blank.</li>
+<li>Neither team rateable and no market → no pick, flagged. (Currently 0 such matches.)</li>
+</ol>
+
+<h2>Rating inputs and name resolution</h2>
+<ul class="plain">
+<li>Valve VRS rows are taken from Valve's official
+<a href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/standings_global_2026_10_05.md" target="_blank" rel="noopener">standings_global_2026_10_05.md</a>.
+Where that file lists duplicate names, the disambiguated roster-verified row is used
+(see <a href="flagged.html">IRREG-02</a>).</li>
+<li>HLTV world-ranking points come from
+<a href="https://www.hltv.org/ranking/teams" target="_blank" rel="noopener">hltv.org/ranking/teams</a>.</li>
+<li>Teams absent from both (e.g. LFO 10) are researched separately; each researched value records its
+own source URL and is flagged. Mixed snapshot dates across teams are flagged per row.</li>
+<li>Evidence-linked name aliases (WROTBERRY→WBT, RoundsGG→ROUNDS, Envy→3DMAX, EAC→EA Copenhagen)
+carry their evidence URLs; alias-derived inputs are flagged on the row.</li>
+</ul>
+
+<h2>Limitations</h2>
+<ul class="plain">
+<li>Model probabilities are provisional and uncalibrated; do not treat them as official forecasts.</li>
+<li>Aggregator-reported odds may drift or differ from the book&rsquo;s own feed.</li>
+<li>Market/model divergences are published as flags; the market favourite drives the pick when a line exists.</li>
+<li>Analysis only — not betting advice.</li>
+</ul>
+
+<footer>
+<p>Analysis only — not betting advice. Hotspawn supplies fixture identity and UTC times only;
+its crowd pick percentages are never used as probability inputs. Unknown values stay blank and flagged.</p>
+<p>Generated from committed evidence by <code>scripts/75fd29ee_build.py</code> ·
+<a href="data/picks.csv">picks.csv</a> · <a href="data/coverage.json">coverage.json</a></p>
+</footer>
+</div>
+</body></html>

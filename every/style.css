@@ -1,0 +1,65 @@
+:root{--bg:#0f1216;--panel:#171c22;--panel2:#1e242c;--line:#2b333d;--fg:#e8edf3;--muted:#9aa7b4;
+--accent:#6d4bbd;--good:#3fb950;--warn:#d29922;--bad:#f85149;--pick:#3fb950}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--fg);
+font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+.wrap{max-width:1020px;margin:0 auto;padding:16px 14px 60px}
+header.top{position:sticky;top:0;z-index:20;background:rgba(15,18,22,.97);
+border-bottom:1px solid var(--line);padding:10px 0}
+header.top .wrap{padding-top:0;padding-bottom:0;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.brand{font-weight:800;font-size:16px;color:#fff;text-decoration:none}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips a{font-size:12px;text-decoration:none;background:var(--panel2);border:1px solid var(--line);
+border-radius:999px;padding:4px 10px;color:var(--fg);white-space:nowrap}
+.chips a.on{border-color:var(--accent);color:#d9c9ff}
+h1{font-size:21px;margin:14px 0 4px;line-height:1.25}
+h2{font-size:15px;margin:26px 0 10px;color:#cfd8e3;text-transform:uppercase;letter-spacing:.06em}
+p.lead{color:var(--muted);margin:2px 0}
+.summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin:14px 0}
+.scard{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.scard .n{font-size:22px;font-weight:800;color:#fff}
+.scard .l{font-size:11.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.finder{background:linear-gradient(180deg,#1d2430,#171c22);border:1px solid var(--accent);
+border-radius:12px;padding:14px;margin:12px 0}
+.finder a.big{display:block;text-align:center;text-decoration:none;font-weight:800;font-size:16px;
+background:var(--accent);color:#fff;border-radius:10px;padding:12px;margin:10px 0 8px}
+.finder .mini{display:flex;flex-wrap:wrap;gap:6px}
+.finder .mini a{flex:1 1 130px;text-align:center;text-decoration:none;background:var(--panel2);
+border:1px solid var(--line);border-radius:8px;padding:8px;font-size:12.5px;color:var(--fg)}
+table{width:100%;border-collapse:collapse;margin:8px 0;font-size:13px}
+th{text-align:left;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.05em;
+padding:8px 8px;border-bottom:1px solid var(--line)}
+td{padding:10px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+.mut{color:var(--muted);font-size:12px}
+.pickbadge{display:inline-block;background:rgba(63,185,80,.12);border:1px solid var(--good);
+color:#7ee787;border-radius:8px;padding:2px 8px;font-weight:800;font-size:12.5px}
+.pickbadge.model{background:rgba(109,75,189,.15);border-color:var(--accent);color:#c9b6ff}
+.pickbadge.agg{background:rgba(210,153,34,.12);border-color:var(--warn);color:#e3b341}
+.prob{display:flex;height:8px;border-radius:999px;overflow:hidden;background:#222a33;margin:6px 0}
+.prob i{display:block;height:100%}
+.prob .a{background:#4c8dff}.prob .b{background:#c26bd4}
+.teams{font-weight:650}
+.teams .win{color:#7ee787}
+.flag{display:inline-block;font-size:10.5px;font-weight:700;border-radius:999px;padding:1px 7px;
+margin:2px 3px 0 0;border:1px solid var(--line);color:var(--muted)}
+.flag.warn{border-color:var(--warn);color:#e3b341}
+.flag.bad{border-color:var(--bad);color:#ff7b72}
+.note{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--accent);
+border-radius:8px;padding:11px 13px;margin:12px 0;font-size:12.8px;color:var(--muted)}
+a{color:#8fb4ff}
+ul.plain{padding-left:18px;margin:8px 0}ul.plain li{color:var(--muted);font-size:12.8px;margin:4px 0}
+code{background:#0b0e12;border:1px solid var(--line);border-radius:4px;padding:1px 5px;font-size:12.5px}
+footer{margin-top:36px;padding-top:14px;border-top:1px solid var(--line);color:var(--muted);font-size:12px}
+/* mobile: turn the picks table into stacked cards */
+@media (max-width:640px){
+  table.resp,table.resp tbody,table.resp tr,table.resp td{display:block;width:100%}
+  table.resp thead{display:none}
+  table.resp tr{background:var(--panel);border:1px solid var(--line);border-radius:12px;
+    margin:10px 0;padding:10px 12px}
+  table.resp td{border:0;padding:3px 0}
+  table.resp td[data-label]::before{content:attr(data-label);display:block;font-size:10.5px;
+    color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-top:6px}
+  h1{font-size:19px}
+  .wrap{padding:12px 10px 50px}
+}
