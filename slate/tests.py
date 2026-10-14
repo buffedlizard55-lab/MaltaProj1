@@ -122,6 +122,12 @@ class StrictGuards(unittest.TestCase):
         self.assertFalse(guards.kickoff_agrees('2026-10-14T10:00:00Z', '2026-10-14T16:00:00Z'))
         self.assertTrue(guards.kickoff_agrees('2026-10-14T10:00:00Z', '2026-10-14T10:05:00Z'))
 
+    def test_hltv_parser_does_not_borrow_next_match_fields(self):
+        html = '<a href="/matches/123/a-vs-b-event">first</a><a href="/matches/124/c-vs-d-event">' + '<div data-unix="1791972000000"><span class="team-name">C</span><span class="team-name">D</span>bo3</div>'
+        rows = collect.parse_hltv_matches(html)
+        self.assertNotIn('123', [r['hltv_match_id'] for r in rows])
+        self.assertEqual([r['hltv_match_id'] for r in rows], ['124'])
+
     def test_primary_quote_age(self):
         now = datetime(2026, 10, 14, 10, tzinfo=timezone.utc)
         row = dict(rank=0, book='Pinnacle', odds_a=1.5, odds_b=2.6, captured_utc='2026-10-14T09:00:00Z')

@@ -48,6 +48,7 @@ CSS = """\
 :root{--bg:#0e1116;--panel:#161b22;--panel2:#1c232c;--line:#2a323d;--fg:#e9eef5;--muted:#9aa7b4;
 --accent:#7c5cd6;--good:#3fb950;--warn:#d29922;--bad:#f85149}
 *{box-sizing:border-box}
+[hidden]{display:none!important}
 html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.55 -apple-system,BlinkMacSystemFont,
 "Segoe UI",Roboto,Helvetica,Arial,sans-serif}
@@ -98,12 +99,12 @@ footer{color:var(--muted);font-size:12px;padding:22px 14px 40px;max-width:1080px
   body{font-size:14px}
   table,thead,tbody,th,td,tr{display:block}
   table{border:0;background:transparent}
-  thead{display:none}
+  thead,tr:has(th){display:none}
   tr{background:var(--panel);border:1px solid var(--line);border-radius:10px;margin:0 0 10px;padding:6px 2px}
-  td{border:0;padding:4px 10px;display:flex;justify-content:space-between;gap:10px}
-  td:before{content:attr(data-label);color:var(--muted);font-size:11.5px;text-transform:uppercase;
+  td{border:0;padding:8px 12px;display:block;overflow-wrap:anywhere}
+  td:before{display:block;margin-bottom:4px;content:attr(data-label);color:var(--muted);font-size:11.5px;text-transform:uppercase;
   letter-spacing:.04em;flex:0 0 42%}
-  td.num{text-align:right}
+  td.num{text-align:left}
   .bar{min-width:0;width:100%}
   td:before{flex-basis:38%}
 }
@@ -632,10 +633,10 @@ def page_own(data: dict) -> str:
             f'<td class="num" data-label="Our series line">{num(row.get("own_series_p_a"))} / {num(row.get("own_series_p_b"))}'
             + (f'<div class="mut" style="font-size:12px">BO{esc(row.get("best_of"))}</div>' if row.get("best_of") else
                '<div class="mut" style="font-size:12px">format unverified → series probability blank</div>') + '</td>'
-            f'<td class="num" data-label="Fair odds">{esc(row.get("fair_odds_a"))} / {esc(row.get("fair_odds_b"))}</td>'
+            f'<td class="num" data-label="Map-model fair odds">{esc(row.get("fair_odds_a"))} / {esc(row.get("fair_odds_b"))}</td>'
             f'<td data-label="Arithmetic">{esc(row.get("basis") or "—")}<br>{sources_cell(fixture)}</td></tr>')
     body.append('<div class="scroll"><table><tr><th>Match</th><th>HLTV points</th><th>VRS points</th>'
-                '<th>Our map line</th><th>Our series line</th><th>Fair odds</th><th>Arithmetic</th></tr>'
+                '<th>Our map line</th><th>Our series line</th><th>Map-model fair odds</th><th>Arithmetic</th></tr>'
                 + "".join(rows) + "</table></div>")
     body.append("<h2>Team ratings used (every row sourced)</h2>")
     rows = []

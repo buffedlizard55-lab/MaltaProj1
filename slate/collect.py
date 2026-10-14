@@ -240,7 +240,11 @@ def parse_hltv_matches(html: str) -> list[dict]:
         path, match_id, slug = match.group(1), match.group(2), match.group(3)
         if match_id in seen:
             continue
-        window = (html or "")[match.start(): match.start() + 2600]
+        window = (html or "")[match.end(): match.end() + 2600]
+        # Never borrow another fixture's kickoff/format/team markup.
+        next_match = re.search(r'href="/matches/\d+/', window)
+        if next_match:
+            window = window[:next_match.start()]
         unix = re.search(r"data-unix=\"(\d{13})\"", window)
         event = re.search(r'class="event-name"[^>]*>\s*([^<]{2,60})\s*<', window)
         fmt = re.search(r"\b(bo[135])\b", window, re.I)
@@ -250,10 +254,9 @@ def parse_hltv_matches(html: str) -> list[dict]:
         if not slug_pair:
             continue
         teams_live = re.findall(r'class="team[^"]*"[^>]*>\s*([^<]{2,40})\s*<', window)
-        team_a = (unescape(teams_live[0]).strip() if len(teams_live) >= 2
-                  else slug_pair.group(1).replace("-", " ").strip())
-        team_b = (unescape(teams_live[1]).strip() if len(teams_live) >= 2
-                  else slug_pair.group(2).replace("-", " ").strip())
+        if len(teams_live) < 2:
+            continue  # URL slug contains tournament text; never infer a team identity from it.
+        team_a, team_b = unescape(teams_live[0]).strip(), unescape(teams_live[1]).strip()
         seen.add(match_id)
         rows.append({
             "hltv_match_id": match_id,
