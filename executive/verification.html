@@ -14,14 +14,14 @@
   <div class="topbar__inner">
     <a class="brand" href="index.html"><span class="brand__mark">◎</span><span class="brand__text">Hotspawn CS2 · independent lines</span></a>
     <div class="topbar__meta">
-      <strong>Snapshot is 7.1 h old</strong>
-      <span class="muted">2026-10-14T02:46Z (live)</span>
+      <strong>Snapshot is 7.8 h old</strong>
+      <span class="muted">2026-10-14T02:06Z (repo_capture)</span>
     </div>
   </div>
   <nav class="nav" aria-label="Sections"><a class="nav__link" href="index.html">Summary</a><a class="nav__link" href="picks.html">All picks</a><a class="nav__link" href="lines.html">Betting lines</a><a class="nav__link" href="own-lines.html">Our lines</a><a class="nav__link" href="tournaments.html">Tournaments</a><a class="nav__link" href="coverage.html">Coverage</a><a class="nav__link nav__link--active" href="verification.html">Verification</a><a class="nav__link" href="sources.html">Sources</a><a class="nav__link" href="methodology.html">Method</a><a class="nav__link" href="flagged.html">Flagged</a></nav>
 </header>
 <main id="main" class="wrap">
-<div class="banner" role="status"><strong>Snapshot is 7.1 h old.</strong> Prices shown are the last readable capture — each row prints its own read time. The hourly refresh replaces this snapshot with a live read; nothing here is presented as a current price until it is.</div>
+<div class="banner" role="status"><strong>Snapshot is 7.8 h old.</strong> Prices shown are the last readable capture — each row prints its own read time. The hourly refresh replaces this snapshot with a live read; nothing here is presented as a current price until it is.</div>
 
 <section class="hero hero--tight">
   <p class="eyebrow">Verification</p>
@@ -31,7 +31,7 @@
 </section>
 <section>
   <h2>Checks run on this snapshot</h2>
-  <div class="tablewrap"><table class="grid "><thead><tr><th scope="col">Check</th><th scope="col">Result</th><th scope="col">Detail</th></tr></thead><tbody><tr><td data-label="Check">Hotspawn payload read</td><td data-label="Result"><span class="badge badge--ok">pass</span></td><td data-label="Detail">88 CS2 fixtures from 3 pages, mode live.</td></tr><tr><td data-label="Check">Official standings read</td><td data-label="Result"><span class="badge badge--ok">pass</span></td><td data-label="Detail">380 teams, standings 2026-10-05, mode live.</td></tr><tr><td data-label="Check">Outside prices read</td><td data-label="Result"><span class="badge badge--ok">pass</span></td><td data-label="Detail">Pinnacle 10 quotes (repo_capture); secondary 26 (repo_capture).</td></tr><tr><td data-label="Check">Pick coverage on open fixtures</td><td data-label="Result"><span class="badge badge--ok">pass</span></td><td data-label="Detail">28/28 open fixtures have a pick; 0 flagged without one.</td></tr><tr><td data-label="Check">No Hotspawn crowd value stored</td><td data-label="Result"><span class="badge badge--ok">pass</span></td><td data-label="Detail">No stored fixture object contains a crowd pick percentage, pick count or crowd field.</td></tr><tr><td data-label="Check">Every analysed row has a source link</td><td data-label="Result"><span class="badge badge--ok">pass</span></td><td data-label="Detail">Rows without a basis carry a flag; every published number names its input.</td></tr><tr><td data-label="Check">Snapshot age</td><td data-label="Result"><span class="badge badge--bad">failed</span></td><td data-label="Detail">Oldest capture behind this board: 2026-10-13T19:42:13Z (Snapshot is 7.1 h old).</td></tr></tbody></table></div>
+  <div class="tablewrap"><table class="grid "><thead><tr><th scope="col">Check</th><th scope="col">Result</th><th scope="col">Detail</th></tr></thead><tbody><tr><td data-label="Check">Hotspawn payload read</td><td data-label="Result"><span class="badge badge--ok">pass</span></td><td data-label="Detail">89 CS2 fixtures from 2 pages, mode repo_capture.</td></tr><tr><td data-label="Check">Official standings read</td><td data-label="Result"><span class="badge badge--ok">pass</span></td><td data-label="Detail">380 teams, standings 2026-10-05, mode previous_capture.</td></tr><tr><td data-label="Check">Outside prices read</td><td data-label="Result"><span class="badge badge--ok">pass</span></td><td data-label="Detail">Pinnacle 10 quotes (repo_capture); secondary 26 (repo_capture).</td></tr><tr><td data-label="Check">Pick coverage on open fixtures</td><td data-label="Result"><span class="badge badge--ok">pass</span></td><td data-label="Detail">28/28 open fixtures have a pick; 0 flagged without one.</td></tr><tr><td data-label="Check">No Hotspawn crowd value stored</td><td data-label="Result"><span class="badge badge--ok">pass</span></td><td data-label="Detail">No stored fixture object contains a crowd pick percentage, pick count or crowd field.</td></tr><tr><td data-label="Check">Every analysed row has a source link</td><td data-label="Result"><span class="badge badge--ok">pass</span></td><td data-label="Detail">Rows without a basis carry a flag; every published number names its input.</td></tr><tr><td data-label="Check">Snapshot age</td><td data-label="Result"><span class="badge badge--bad">failed</span></td><td data-label="Detail">Oldest capture behind this board: 2026-10-13T19:42:13Z (Snapshot is 7.8 h old).</td></tr></tbody></table></div>
 </section>
 <section>
   <h2>Reproduce it yourself</h2>
@@ -50,7 +50,7 @@ python executive/tests.py     # invariants: sources present, maths re-derived, n
   probability input. Values that no source confirms stay blank and are listed on
   <a href="flagged.html">Flagged for review</a>.</p>
   <p class="muted">Built by the executive-board session from <a href="sources.html">these sources</a>.
-  Snapshot 2026-10-14T02:47:12Z · capture 2026-10-13T19:42:13Z ·
+  Snapshot 2026-10-14T03:30:00Z · capture 2026-10-13T19:42:13Z ·
   <a href="../index.html">all boards on this site</a></p>
 </footer>
 <script src="board.js" defer></script>

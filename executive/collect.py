@@ -26,6 +26,7 @@ import subprocess
 import sys
 import tempfile
 import time
+from collections import Counter
 import urllib.error
 import urllib.request
 from datetime import datetime, timezone
@@ -423,6 +424,90 @@ def collect_hltv_match_page(url: str) -> dict | None:
     }
 
 
+def parse_hltv_team_schedule(html: str, page_url: str) -> dict:
+    """Upcoming matches listed on one hltv.org team page.
+
+    hltv.org/matches and hltv.org/matches/<id>/<slug> answer Cloudflare 403 to automated reads, but
+    hltv.org/team/<id>/<slug> answers 200 to the honest UA and carries that team's fixtures as
+    /matches/<id>/<slug> links beside 13-digit data-unix stamps.  For every link the stamps seen in
+    the surrounding markup are counted; the stamp that repeats the most wins.  When no stamp repeats
+    (or the runner-up ties the leader) the row is recorded as ambiguous and no kickoff is claimed.
+    """
+    team = re.search(r"/team/(\d+)/([^/?#]+)", page_url)
+    links = re.findall(r'href="(/matches/(\d+)/([^"#?]+))"', html)
+    stamps: dict[str, list[str]] = {}
+    for raw_url, match_id, slug in links:
+        for match in re.finditer(re.escape(raw_url), html):
+            window = html[match.start(): match.start() + 1500]
+            found = re.findall(r'data-unix="(\d{13})"', window) or \
+                re.findall(r'data-unix="(\d{13})"', html[max(0, match.start() - 900): match.start()])
+            if found:
+                stamps.setdefault(raw_url, []).extend(found)
+    rows = []
+    for raw_url, match_id, slug in sorted({(u, i, sl) for u, i, sl in links}):
+        votes = Counter(stamps.get(raw_url) or [])
+        ordered = votes.most_common()
+        top, top_votes = (ordered[0] if ordered else (None, 0))
+        runner_up = ordered[1][1] if len(ordered) > 1 else 0
+        confident = bool(top) and top_votes >= 2 and top_votes > runner_up
+        rows.append({
+            "hltv_url": f"https://www.hltv.org{raw_url}",
+            "hltv_match_id": match_id,
+            "slug": slug,
+            "kickoff_utc": epoch_ms_to_iso(int(top)) if confident else "",
+            "kickoff_votes": top_votes,
+            "kickoff_runner_up_votes": runner_up,
+            "kickoff_candidates": sorted((f"{epoch_ms_to_iso(int(v))}x{c}" for v, c in votes.items())),
+            "kickoff_ambiguous": not confident,
+        })
+    return {
+        "team_id": team.group(1) if team else "",
+        "team_slug": team.group(2) if team else "",
+        "hltv_url": page_url,
+        "matches": rows,
+        "observed_utc": now_iso(),
+    }
+
+
+def collect_hltv_team_schedule(team_urls: list[str], offline: bool = False,
+                               max_pages: int = 56) -> dict:
+    """Read the team pages of the teams on the board so each fixture can carry an HLTV match link."""
+    repo = None
+    if offline:
+        local = DATA / "hltv_schedule.json"
+        if local.exists():
+            payload = json.loads(local.read_text())
+            payload["mode"] = "previous_capture"
+            return payload
+        return {"teams": {}, "mode": "skipped", "generated_utc": now_iso()}
+    pages: dict[str, dict] = {}
+    deadline = time.time() + 6 * 60
+    fetched = 0
+    for url in sorted(set(team_urls))[:max_pages]:
+        if time.time() > deadline:
+            break
+        status, body, _ = http_get(url, tries=2)
+        from common import sha256_bytes
+        prov(url, status=status, bytes=len(body) or None,
+             sha256=sha256_bytes(body) if status == 200 and body else None, mode="live",
+             note="HLTV team page: honest-UA read used for upcoming-match links and data-unix stamps")
+        if status != 200:
+            continue
+        fetched += 1
+        pages[url] = parse_hltv_team_schedule(body.decode("utf-8", "replace"), url)
+        time.sleep(1.2)
+    if not pages:
+        local = DATA / "hltv_schedule.json"
+        if local.exists():
+            payload = json.loads(local.read_text())
+            payload["mode"] = "previous_capture"
+            return payload
+    return {"teams": pages, "mode": "live" if pages else "failed",
+            "pages_fetched": fetched, "generated_utc": now_iso(),
+            "note": "Upcoming-match links and kickoff stamps read from HLTV team pages; a link whose "
+                    "stamp never repeats is published as ambiguous rather than given a kickoff."}
+
+
 def collect_hltv_team_roster(url: str) -> dict | None:
     status, body, _ = http_get(url, tries=2)
     from common import sha256_bytes
@@ -459,9 +544,101 @@ def pin_get(path: str, timeout: int = 30):
         return None
 
 
+def _pinnacle_moneyline_quote(matchup: dict, league_name: str, market: dict, api_url: str) -> dict | None:
+    """One two-way match-winner quote, or None when the market is not a plain open moneyline pair."""
+    from common import american_to_decimal
+    if (market.get("type") != "moneyline" or market.get("period") != 0
+            or market.get("isAlternate") is not False or market.get("status") != "open"):
+        return None
+    participants = matchup.get("participants") or []
+    if not isinstance(participants, list) or len(participants) != 2:
+        return None
+    names = {p.get("alignment"): p.get("name") for p in participants}
+    if set(names) != {"home", "away"}:
+        return None
+    prices = {p.get("designation"): p.get("price") for p in market.get("prices") or []}
+    if set(prices) != {"home", "away"}:
+        return None
+    try:
+        odds_a = american_to_decimal(prices["home"])
+        odds_b = american_to_decimal(prices["away"])
+    except ValueError:
+        return None
+    return {
+        "source_id": "pinnacle", "source_name": "Pinnacle",
+        "source_role": "primary_bookmaker",
+        "event_id": str(matchup.get("id")), "market_id": str(market.get("id") or ""),
+        "league": unescape(str(league_name)),
+        "team_a": unescape(str(names["home"])), "team_b": unescape(str(names["away"])),
+        "start_time": str(matchup.get("startTime") or "").replace("+00:00", "")[:19] + "Z",
+        "best_of": matchup.get("bestOfX"),
+        "native_format": "american",
+        "native_a": prices["home"], "native_b": prices["away"],
+        "odds_a": round(odds_a, 6), "odds_b": round(odds_b, 6),
+        "market_type": "match_winner", "status": "open",
+        "source_url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
+        "api_url": api_url,
+        "captured_utc": now_iso(),
+    }
+
+
 def collect_pinnacle() -> dict:
+    """Live Pinnacle guest read.
+
+    Only one shape answers a United States runner (probed 2026-10-14, transcript kept in
+    reviews/5545dbb8-verification.md):
+
+      /sports/12/matchups                                                  -> every matchup, league "CS2 - ..."
+      /sports/12/markets/straight?primaryOnly=false&withSpecials=false     -> every straight market
+
+    The two are joined on matchupId (the market list carries no team names of its own).  Query
+    strings on /leagues/{id}/matchups and the per-matchup /matchups/{id}/markets/related/straight
+    path answer 403 BAD_LOCATION / 204 from the United States, so the per-league scan below is only a
+    second attempt for runners outside that block.  No quote is ever invented: if both reads come
+    back empty the caller falls back to this repository's own committed capture and says so.
+    """
+    from common import PIN_SPORT_ESPORTS
+    quotes: list[dict] = []
+    scanned = {"cs2_matchups": 0, "sport_markets": 0, "quotes": 0}
+    leagues: list[str] = []
+    matchups = pin_get(f"/sports/{PIN_SPORT_ESPORTS}/matchups", timeout=60)
+    markets = pin_get(f"/sports/{PIN_SPORT_ESPORTS}/markets/straight?primaryOnly=false&withSpecials=false",
+                      timeout=60)
+    if isinstance(matchups, list) and isinstance(markets, list):
+        cs2: dict[str, tuple[dict, str]] = {}
+        for matchup in matchups:
+            league_name = unescape(str((matchup.get("league") or {}).get("name") or ""))
+            if league_name.startswith("CS2 - ") and matchup.get("id") is not None:
+                cs2[str(matchup["id"])] = (matchup, league_name)
+        scanned["cs2_matchups"] = len(cs2)
+        scanned["sport_markets"] = len(markets)
+        leagues = sorted({name for _, name in cs2.values()})
+        api_url = f"{PIN_BASE}/sports/{PIN_SPORT_ESPORTS}/markets/straight"
+        seen_matchups: set[str] = set()
+        for market in markets:
+            matchup_id = str(market.get("matchupId"))
+            hit = cs2.get(matchup_id)
+            if not hit or matchup_id in seen_matchups:
+                continue
+            matchup, league_name = hit
+            quote = _pinnacle_moneyline_quote(matchup, league_name, market, api_url)
+            if quote:
+                quotes.append(quote)
+                seen_matchups.add(matchup_id)
+        scanned["quotes"] = len(quotes)
+    if quotes:
+        return {"quotes": quotes, "mode": "live", "read": "sport matchups joined with sport markets",
+                "leagues": leagues, "scanned": scanned, "fetched_utc": now_iso()}
+    fallback = collect_pinnacle_league_scan()
+    fallback["read"] = "per-league matchup scan (sport-level join returned nothing)"
+    fallback["scanned"] = scanned
+    return fallback
+
+
+def collect_pinnacle_league_scan() -> dict:
+    """Second attempt: walk each CS2 league and ask for that league's matchups and markets."""
     from common import PIN_SPORT_ESPORTS, american_to_decimal
-    leagues = pin_get(f"/sports/{PIN_SPORT_ESPORTS}/leagues?all=false")
+    leagues = pin_get(f"/sports/{PIN_SPORT_ESPORTS}/leagues")
     if not isinstance(leagues, list):
         return {"quotes": [], "mode": "failed", "leagues": [], "fetched_utc": now_iso()}
     cs2_leagues = [(lg.get("id"), lg.get("name")) for lg in leagues
@@ -471,56 +648,32 @@ def collect_pinnacle() -> dict:
     for league_id, league_name in cs2_leagues:
         if time.time() > deadline:
             break
-        matchups = pin_get(f"/leagues/{league_id}/matchups?withSpecials=false")
+        matchups = pin_get(f"/leagues/{league_id}/matchups")
         if not isinstance(matchups, list):
             continue
         for matchup in matchups:
             if time.time() > deadline:
                 break
             event_id = matchup.get("id")
-            participants = matchup.get("participants") or []
-            if not isinstance(participants, list) or len(participants) != 2 or event_id is None:
-                continue
-            names = {p.get("alignment"): p.get("name") for p in participants}
-            if set(names) != {"home", "away"}:
+            if event_id is None:
                 continue
             markets = pin_get(f"/matchups/{event_id}/markets/related/straight")
             if not isinstance(markets, list):
                 continue
             for market in markets:
-                if (market.get("type") != "moneyline" or market.get("period") != 0
-                        or market.get("isAlternate") is not False or market.get("status") != "open"):
+                quote = _pinnacle_moneyline_quote(
+                    matchup, str(league_name), market,
+                    f"{PIN_BASE}/matchups/{event_id}/markets/related/straight")
+                if not quote:
                     continue
-                prices = {p.get("designation"): p.get("price") for p in market.get("prices") or []}
-                if set(prices) != {"home", "away"}:
-                    continue
-                try:
-                    odds_a = american_to_decimal(prices["home"])
-                    odds_b = american_to_decimal(prices["away"])
-                except ValueError:
-                    continue
-                key = (str(matchup.get("id")), league_id)
+                key = (str(event_id), league_id)
                 if key in seen_events:
                     continue
                 seen_events.add(key)
-                quotes.append({
-                    "source_id": "pinnacle", "source_name": "Pinnacle",
-                    "source_role": "primary_bookmaker",
-                    "event_id": str(event_id), "league": unescape(str(league_name)),
-                    "team_a": unescape(str(names["home"])), "team_b": unescape(str(names["away"])),
-                    "start_time": str(matchup.get("startTime") or "")[:19] + "Z",
-                    "best_of": matchup.get("bestOfX"),
-                    "native_format": "american",
-                    "native_a": prices["home"], "native_b": prices["away"],
-                    "odds_a": round(odds_a, 6), "odds_b": round(odds_b, 6),
-                    "market_type": "match_winner", "status": "open",
-                    "source_url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
-                    "api_url": f"{PIN_BASE}/matchups/{event_id}/markets/related/straight",
-                    "captured_utc": now_iso(),
-                })
+                quotes.append(quote)
                 break
     return {"quotes": quotes, "mode": "live" if quotes else "empty",
-            "leagues": [name for _, name in cs2_leagues], "fetched_utc": now_iso()}
+            "leagues": [str(name) for _, name in cs2_leagues], "fetched_utc": now_iso()}
 
 
 def collect_pinnacle_from_repo() -> dict:
@@ -848,8 +1001,20 @@ def main() -> int:
 
     hltv_teams = collect_hltv_teams(hotspawn, vrs, hltv_ranking, hltv_matches, offline=args.offline)
 
+    # HLTV match links for the fixtures on the board.  Only the teams that actually play are read,
+    # and only their team pages (hltv.org/matches itself refuses automated reads).
+    board_teams = set()
+    for fixture in hotspawn.get("fixtures", []):
+        for field in ("participants0_name", "participants1_name"):
+            if fixture.get(field):
+                board_teams.add(norm(fixture[field]))
+    schedule_urls = [entry["url"] for key, entry in (hltv_teams.get("teams") or {}).items()
+                     if key in board_teams and entry.get("url")]
+    hltv_schedule = collect_hltv_team_schedule(schedule_urls, offline=args.offline)
+
     from common import write_json
     write_json(DATA / "hltv_teams.json", hltv_teams)
+    write_json(DATA / "hltv_schedule.json", hltv_schedule)
     write_json(DATA / "hotspawn_pages.json", hotspawn)
     write_json(DATA / "vrs.json", vrs)
     write_json(DATA / "hltv_ranking.json", hltv_ranking)
@@ -870,6 +1035,10 @@ def main() -> int:
                          "date": hltv_ranking.get("ranking_date")},
         "hltv_matches": {"mode": hltv_matches.get("mode"), "rows": len(hltv_matches.get("rows", []))},
         "hltv_teams": {"mode": hltv_teams.get("mode"), "teams": len(hltv_teams.get("teams", {}))},
+        "hltv_schedule": {"mode": hltv_schedule.get("mode"),
+                          "pages": len(hltv_schedule.get("teams", {})),
+                          "link_rows": sum(len(p.get("matches") or [])
+                                           for p in (hltv_schedule.get("teams") or {}).values())},
         "pinnacle": {"mode": pinnacle.get("mode"), "quotes": len(pinnacle.get("quotes", []))},
         "secondary": {"mode": secondary.get("mode"), "quotes": len(secondary.get("quotes", []))},
     }, indent=1))

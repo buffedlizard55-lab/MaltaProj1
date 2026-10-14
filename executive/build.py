@@ -82,6 +82,9 @@ FLAG_DEFS = {
     "FL-RATINGS-WEEK-OLD": "The official standings snapshot used is more than a week old (Valve publish weekly).",
     "FL-AMBIGUOUS-NAME": "Two rosters share this name in the official standings and the roster evidence does not separate them, so no rating is attached.",
     "FL-DUPLICATE-VRS-NAME": "Several standings entries share this name; the roster evidence selects one, and that evidence is linked on the row.",
+    "FL-KICKOFF-FROM-HLTV": "Hotspawn's own page carries no kickoff for this fixture; the time shown is HLTV's, linked on the row.",
+    "FL-KICKOFF-CONFLICT": "Hotspawn's kickoff and the HLTV kickoff disagree by more than 30 minutes; both are shown and neither is overwritten.",
+    "FL-SCHEDULE-AMBIGUOUS": "The HLTV team page lists this fixture with more than one kickoff stamp and no majority, so no HLTV kickoff is claimed.",
 }
 
 
@@ -115,6 +118,7 @@ def load_inputs() -> dict:
         "hltv_ranking": read_json(DATA / "hltv_ranking.json", {}) or {},
         "hltv_matches": read_json(DATA / "hltv_matches.json", {}) or {},
         "hltv_teams": read_json(DATA / "hltv_teams.json", {}) or {},
+        "hltv_schedule": read_json(DATA / "hltv_schedule.json", {}) or {},
         "pinnacle": read_json(DATA / "pinnacle.json", {}) or {},
         "secondary": read_json(DATA / "secondary_lines.json", {}) or {},
         "aliases": read_json(EXEC / "aliases.json", {}) or {},
@@ -358,6 +362,52 @@ def hltv_link_for(fixture: dict, ratings: dict, inputs: dict, indexes: dict) -> 
     return {}
 
 
+def hltv_schedule_match(fixture: dict, indexes: dict, schedule: dict | None) -> dict:
+    """Find this fixture on the HLTV team pages the collector read.
+
+    hltv.org/matches refuses automated reads, but a team page lists that team's fixtures as
+    /matches/<id>/<slug> links, and HLTV writes the two team slugs into the match slug itself
+    (``<team>-vs-<team>-<event>-<year>``).  The team pair in the slug is the identity here; the
+    data-unix stamp collected beside the link is then an *independent* cross-check, so a disagreement
+    is reported rather than quietly accepted.
+    """
+    pages = (schedule or {}).get("teams") or {}
+    if not pages:
+        return {}
+    by_team_id = {str(page.get("team_id")): page for page in pages.values() if page.get("team_id")}
+    ids, slugs = {}, {}
+    for field in ("team_a", "team_b"):
+        record = indexes["hltv_teams"].get(norm(fixture[field])) or {}
+        found = re.search(r"/team/(\d+)/([^/?#]+)", record.get("url") or "")
+        if found:
+            ids[field] = found.group(1)
+            slugs[field] = found.group(2).lower()
+    if len(ids) != 2 or not all(slugs.values()):
+        return {}
+    slug_a, slug_b = slugs["team_a"], slugs["team_b"]
+    for field in ("team_a", "team_b"):
+        page = by_team_id.get(ids[field])
+        if not page:
+            continue
+        for row in page.get("matches") or []:
+            slug = str(row.get("slug") or "").lower()
+            if not (slug.startswith(f"{slug_a}-vs-{slug_b}-") or slug.startswith(f"{slug_b}-vs-{slug_a}-")):
+                continue
+            kickoff, start = parse_iso(row.get("kickoff_utc")), parse_iso(fixture["start_utc"])
+            delta = None
+            if kickoff and start:
+                delta = round((kickoff - start).total_seconds() / 60)
+            return {
+                "hltv_match_url": row.get("hltv_url") or "",
+                "hltv_match_id": str(row.get("hltv_match_id") or ""),
+                "hltv_kickoff": row.get("kickoff_utc") or "",
+                "hltv_kickoff_ambiguous": bool(row.get("kickoff_ambiguous")),
+                "hltv_kickoff_delta_min": delta,
+                "hltv_listed_on": page.get("hltv_url") or "",
+            }
+    return {}
+
+
 # ------------------------------------------------------------------ analysis
 def analyse(fixture: dict, ratings: dict, market: list[dict], secondary: list[dict],
             now: datetime, vrs_meta: dict, hltv: dict | None = None) -> dict:
@@ -380,6 +430,26 @@ def analyse(fixture: dict, ratings: dict, market: list[dict], secondary: list[di
         flags.append("FL-FORMAT-UNKNOWN")
     for record in (a, b):
         flags.extend(record.get("flags") or [])
+
+    # HLTV team-page cross-check on the kickoff: identity came from the team pair in the match slug,
+    # the time comes from the page's own data-unix stamp, so a disagreement is real information.
+    schedule = hltv.get("hltv_schedule") or {}
+    kickoff_note = ""
+    if schedule:
+        if schedule.get("hltv_kickoff_ambiguous"):
+            flags.append("FL-SCHEDULE-AMBIGUOUS")
+        elif schedule.get("hltv_kickoff"):
+            delta = schedule.get("hltv_kickoff_delta_min")
+            if delta is None:
+                flags.append("FL-KICKOFF-FROM-HLTV")
+                kickoff_note = f"HLTV lists this fixture at {schedule['hltv_kickoff']}."
+            elif abs(delta) > 30:
+                flags.append("FL-KICKOFF-CONFLICT")
+                kickoff_note = (f"HLTV's team page lists this fixture at {schedule['hltv_kickoff']} "
+                                f"({abs(delta)} min from the Hotspawn time shown on this row).")
+            else:
+                kickoff_note = (f"Kickoff agrees with HLTV's team-page stamp ({schedule['hltv_kickoff']}"
+                                f", {abs(delta)} min apart).")
 
     primary = [q for q in market if not q.get("placeholder")]
     secondary_ok = [q for q in secondary if not q.get("placeholder")]
@@ -510,6 +580,8 @@ def analyse(fixture: dict, ratings: dict, market: list[dict], secondary: list[di
         "offered_points": fixture["offered_points"], "stage": fixture["stage"],
         "series_format": series_format, "series_format_source": series_format_source,
         "hltv_match_url": hltv.get("hltv_match_url", ""), "hltv_match_id": hltv.get("hltv_match_id", ""),
+        "hltv_schedule_note": kickoff_note,
+        "hltv_kickoff": (schedule.get("hltv_kickoff") or "") if schedule else "",
         "start_utc": fixture["start_utc"], "lock_utc": fixture["lock_utc"],
         "status": "open" if live else "locked",
         "team_a": fixture["team_a"], "team_b": fixture["team_b"],
@@ -1184,6 +1256,15 @@ def main() -> int:
         market = assigned_quotes(fixture, market_quotes)
         secondary = assigned_quotes(fixture, secondary_quotes)
         hltv = hltv_link_for(fixture, ratings, inputs, indexes)
+        # A second, independent way to reach the HLTV match page: the team pages the collector read.
+        scheduled = hltv_schedule_match(fixture, indexes, inputs.get("hltv_schedule"))
+        if scheduled:
+            if not hltv.get("hltv_match_url"):
+                hltv = {"hltv_match_url": scheduled["hltv_match_url"],
+                        "hltv_match_id": scheduled["hltv_match_id"],
+                        "hltv_format": "", "hltv_event": scheduled.get("hltv_listed_on") or "",
+                        "hltv_kickoff": scheduled.get("hltv_kickoff") or ""}
+            hltv["hltv_schedule"] = scheduled
         row = analyse(fixture, ratings, market, secondary, now, inputs["vrs"], hltv)
         row["_market"] = market
         row["_secondary"] = secondary

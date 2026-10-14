@@ -1,37 +1,37 @@
 {
  "meta": {
-  "generated_utc": "2026-10-14T02:47:12Z",
+  "generated_utc": "2026-10-14T03:30:00Z",
   "capture_utc": "2026-10-13T19:42:13Z",
-  "snapshot_age_text": "Snapshot is 7.1 h old",
-  "hotspawn_read_text": "2026-10-14T02:46Z (live)",
+  "snapshot_age_text": "Snapshot is 7.8 h old",
+  "hotspawn_read_text": "2026-10-14T02:06Z (repo_capture)",
   "market_read_text": "2026-10-13T19:42 (10 CS2 quotes)",
   "vrs_read_text": "official standings 2026-10-05",
   "stale": true
  },
  "coverage": {
-  "total_fixtures": 88,
+  "total_fixtures": 89,
   "open_fixtures": 28,
-  "locked_fixtures": 60,
+  "locked_fixtures": 61,
   "stale_fixtures": 59,
   "open_with_pick": 28,
   "open_market_basis": 24,
   "open_model_basis": 4,
   "open_provisional": 1,
   "open_no_pick": 0,
-  "flagged_rows": 88,
-  "unique_teams": 110,
-  "teams_resolved_official": 104
+  "flagged_rows": 89,
+  "unique_teams": 112,
+  "teams_resolved_official": 90
  },
  "checks": [
   {
    "name": "Hotspawn payload read",
    "passed": true,
-   "detail": "88 CS2 fixtures from 3 pages, mode live."
+   "detail": "89 CS2 fixtures from 2 pages, mode repo_capture."
   },
   {
    "name": "Official standings read",
    "passed": true,
-   "detail": "380 teams, standings 2026-10-05, mode live."
+   "detail": "380 teams, standings 2026-10-05, mode previous_capture."
   },
   {
    "name": "Outside prices read",
@@ -56,7 +56,7 @@
   {
    "name": "Snapshot age",
    "passed": false,
-   "detail": "Oldest capture behind this board: 2026-10-13T19:42:13Z (Snapshot is 7.1 h old)."
+   "detail": "Oldest capture behind this board: 2026-10-13T19:42:13Z (Snapshot is 7.8 h old)."
   }
  ]
 }
