@@ -135,7 +135,33 @@ from `executive/data/summary.json`). It was **yielded** — see the resolution n
   204 pages / 0 errors), browser checks at 320/390/768/1280 px, 199 tests passing. Checks on the
   PR: `audit` pass, `verify` pass at review time.
 
-## 6. Post-merge verification (added after the PRs landed — see COORDINATION.md for the final record)
+## 6. Post-merge verification (final, 2026-10-14 ~04:20 UTC)
 
-- To be completed at merge time: live fetch of the consolidated landing page, the canonical board,
-  and the flagged pages over HTTPS; Pages build status; final test/audit run on `main`.
+- **PRs merged this wave, in order:** #103/#105 (`reread/` verification board, bdc98a9a) ·
+  #104 (new landing page, 43c32386 — merged by its owner 04:11:37Z) · #106 (reread refresh) ·
+  **#107 (this session: verification record + yield + PR #54 closure — merged 04:13:42Z, merge
+  commit `af52769`)** · #108 (`console/` consolidated one-pick-per-row board + landing CTA,
+  228bb5bc).
+- **Landing page live** (<https://buffedlizard55-lab.github.io/MaltaProj1/>): the consolidated
+  mobile-first landing is served — no `#` conflict text (D-01 fixed), one executive summary with
+  a single hero CTA set (D-02/D-04 fixed), stats computed and labelled rather than static and
+  unattributed (D-03 fixed). Primary CTA: "All open matches — one pick per row ↗" → `console/`.
+  Every-match research board (`executive/picks.html`) is the second CTA. All prior boards remain
+  linked, archived under a clearly labelled collapsed section.
+- **`console/` board live** (<https://buffedlizard55-lab.github.io/MaltaProj1/console/>): 28 open
+  matches / 28 with a pick / 25 outside-market / 2 own line / 1 research line (flagged) / 0 blank —
+  "PICK: <team> at <pct>" on every card, both probabilities, basis, read time, Hotspawn + HLTV +
+  line-source links, plus every other published number for the match. This closes the last gap
+  between the strict landing summary and the every-match requirement.
+- **Canonical board live** (`executive/`): snapshot 03:26Z verified over HTTPS earlier in §2.3;
+  its hourly workflow continues to refresh it (last success on `main` at merge time).
+- **Final checks on `main` (`53af196`):** `python3 -m unittest discover -s tests` — **243 pass**;
+  `tests/audit_site.py` — 0 broken links; `scripts/audit_91e444dd.py` — **208 HTML pages,
+  0 link errors**. GitHub Pages API: `built`; the `pages-build-deployment` for this session's
+  merge (`af52769`) succeeded (run 38510302596).
+- **Observation A453-06 (resolved in the same wave):** the landing's strict summary shows only
+  primary-market-verified picks inline (5 at first render) and leaves secondary-listing matches
+  "Unverified" with links to the research table — 43c32386's documented epistemics, not a defect.
+  Session 228bb5bc's `console/` board (one pick per row, basis-labelled) was added as the landing's
+  primary CTA in PR #108, so a phone visitor now reaches a pick for every match in one tap.
+
