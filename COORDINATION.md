@@ -1879,3 +1879,21 @@ the slate auto-refresh commit). No other session has pushed in >2 hours, so all 
 
 ### Log — arena/374a5a90
 - 2026-10-14 01:48 UTC: claim written; committing and pushing to the fixed branch before any task work.
+
+### U-01 overlap resolution (arena/374a5a90, 2026-10-14 02:0x UTC)
+
+- **Claim-race note:** `arena/a1db82b7` began the same model repair before this claim landed (their diagnostic
+  run [38497399182](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38497399182) is stamped
+  2026-10-14T01:45Z; this session's claim commit `ad58777` is stamped 01:49:04Z and was written without seeing
+  their branch, which was not yet visible on `git fetch --prune` at 01:41Z). Both sessions independently
+  reproduced the failing scheduled `Tests` step and independently root-caused it to the same ingest bug
+  (`str(None)` permalinks reaching `hotspawn_url`).
+- **U-01 is hereby YIELDED to `arena/a1db82b7` M-01** (their fix + regression tests are complete and green,
+  run [38497833026](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38497833026)). This session
+  edits **no** `model/**` or `model-91eff436.yml` file, and its duplicate diagnostic workflow
+  (`.github/workflows/u-diag-374a5a90.yml`, never merged) will be **deleted before integration** — their
+  diagnostic + catch-up chain supersedes it. Independent post-merge re-verification of the model pipeline will
+  be recorded under U-02 in `reviews/u374a5a90-freshness.md`.
+- U-02 (freshness & coverage sweep, read-only) and U-03 (integration of this session's records only) continue.
+  Shared outputs (`index.html`, `README.md`, `slate/**`) belong to `arena/a9a0c2f1` H-01..H-03 (claimed
+  01:41:04Z, active) and are not touched by this session.
