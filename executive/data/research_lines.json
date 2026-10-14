@@ -1,0 +1,284 @@
+{
+  "schema": "executive-research/1",
+  "collector": "arena/e13aca8a",
+  "generated_utc": "2026-10-14T05:20:00Z",
+  "collection_note": "Live research reads performed in session arena/e13aca8a via the platform web-fetch tools on 2026-10-14 between 04:34Z and 05:20Z (the sandbox itself has no general egress). Every quote and evidence row names the exact page that was read and what that page printed. Nothing is inferred: values are transcribed from the pages named below. Hotspawn crowd percentages are never stored. Quote rows follow the same shape build.assigned_quotes expects, so this file merges into the quote pool exactly like feeds/data/market_feed.csv does. Rows a market prints but this project refuses are recorded under \"refusals\" with the reason and are never ingested as prices.",
+  "read_window_utc": ["2026-10-14T04:34:00Z", "2026-10-14T05:20:00Z"],
+  "quotes": [
+    {
+      "source_id": "research-polymarket",
+      "source_name": "Polymarket (research read 2026-10-14)",
+      "source_role": "prediction_market",
+      "relay": "Polymarket",
+      "event_id": "",
+      "market_id": "cs2-forzer-skr2-2026-10-14",
+      "league": "CCT Europe 2026 Series #11",
+      "team_a": "FORZE Reload",
+      "team_b": "LFO 10",
+      "start_time": "2026-10-14T17:00:00Z",
+      "best_of": 3.0,
+      "native_format": "implied_probability",
+      "native_a": 0.88,
+      "native_b": 0.16,
+      "odds_a": 1.136364,
+      "odds_b": 6.25,
+      "market_type": "match_winner",
+      "status": "open",
+      "source_url": "https://polymarket.com/esports/cs2/cct-europe/cs2-forzer-skr2-2026-10-14",
+      "book_url": "",
+      "source_event": "Counter-Strike: FORZE Reload vs Sökerorg (BO3) - CCT Europe Series #11 Group Stage",
+      "hotspawn_url": "https://play.hotspawn.com/cs2-pickems",
+      "captured_utc": "2026-10-14T04:50:00Z",
+      "match_quality": "alias",
+      "listing_names": "FORZE Reload vs Sökerorg",
+      "identity_note": "Polymarket lists the opponent as \"Sökerorg\". Identity = LFO 10 is roster-verified, not inferred: bo3.gg/teams/sokerorg roster is Jackinho, Sapec, tvs, flaw, dottie (Sweden) — the exact LFO 10 roster on HLTV team 14084 and on the Hotspawn card; the EGW match page for this slot prints the same five players as the opponent lineup. Same event (CCT Europe Series #11), same date, same 17:00 UTC slot, same BO3.",
+      "identity_sources": [
+        "https://bo3.gg/teams/sokerorg",
+        "https://www.hltv.org/team/14084/lfo-10",
+        "https://egamersworld.com/counterstrike/match/_rW8GEyWK/forze-reload-vs-Gr_YhyKi3",
+        "https://liquipedia.net/counterstrike/European_Pro_League/Regular/Season_7"
+      ],
+      "liquidity_usd": 373.86
+    },
+    {
+      "source_id": "research-polymarket",
+      "source_name": "Polymarket (research read 2026-10-14)",
+      "source_role": "prediction_market",
+      "relay": "Polymarket",
+      "event_id": "",
+      "market_id": "cs2-wraith-ryvex-2026-10-14",
+      "league": "CCT Europe 2026 Series #12 Play-In",
+      "team_a": "Ryvex",
+      "team_b": "PCIFIC",
+      "start_time": "2026-10-14T14:00:00Z",
+      "best_of": 3.0,
+      "native_format": "implied_probability",
+      "native_a": 0.21,
+      "native_b": 0.82,
+      "odds_a": 4.761905,
+      "odds_b": 1.219512,
+      "market_type": "match_winner",
+      "status": "open",
+      "source_url": "https://polymarket.com/esports/cs2/cct-europe/cs2-wraith-ryvex-2026-10-14",
+      "book_url": "",
+      "source_event": "Counter-Strike: WRAITH PCIFIC vs Ryvex (BO3) - CCT Europe Closed Qualifier: Series #12 Group B",
+      "hotspawn_url": "https://play.hotspawn.com/cs2-pickems",
+      "captured_utc": "2026-10-14T04:50:00Z",
+      "match_quality": "alias",
+      "listing_names": "WRAITH PCIFIC vs Ryvex",
+      "identity_note": "Polymarket lists PCIFIC as \"WRAITH PCIFIC\" (same alias already documented in console/data and reviews/228bb5bc-verification.md R-228-04: HLTV team 13054; EGW dual-lists WRAITH PCIFIC / PCIFIC Espor).",
+      "liquidity_usd": 666.84
+    },
+    {
+      "source_id": "research-polymarket",
+      "source_name": "Polymarket (research read 2026-10-14)",
+      "source_role": "prediction_market",
+      "relay": "Polymarket",
+      "event_id": "",
+      "market_id": "cs2-enjoy-b8acad-2026-10-14",
+      "league": "CCT Europe 2026 Series #12 Play-In",
+      "team_a": "Enjoy",
+      "team_b": "B8 Academy",
+      "start_time": "2026-10-14T08:00:00Z",
+      "best_of": 3.0,
+      "native_format": "implied_probability",
+      "native_a": 0.62,
+      "native_b": 0.39,
+      "odds_a": 1.612903,
+      "odds_b": 2.564103,
+      "market_type": "match_winner",
+      "status": "open",
+      "source_url": "https://polymarket.com/esports/cs2/cct-europe/cs2-enjoy-b8acad-2026-10-14",
+      "book_url": "",
+      "source_event": "Counter-Strike: ENJOY vs B8 Academy (BO3) - CCT Europe Closed Qualifier: Series #12 Group A",
+      "hotspawn_url": "https://play.hotspawn.com/cs2-pickems",
+      "captured_utc": "2026-10-14T04:50:00Z",
+      "match_quality": "exact",
+      "liquidity_usd": 1160.0
+    },
+    {
+      "source_id": "research-polymarket",
+      "source_name": "Polymarket (research read 2026-10-14)",
+      "source_role": "prediction_market",
+      "relay": "Polymarket",
+      "event_id": "",
+      "market_id": "cs2-gothic-lavked-2026-10-14",
+      "league": "CCT Europe 2026 Series #11",
+      "team_a": "Gothic",
+      "team_b": "Lavked",
+      "start_time": "2026-10-14T08:00:00Z",
+      "best_of": 3.0,
+      "native_format": "implied_probability",
+      "native_a": 0.50,
+      "native_b": 0.51,
+      "odds_a": 2.0,
+      "odds_b": 1.960784,
+      "market_type": "match_winner",
+      "status": "open",
+      "source_url": "https://polymarket.com/esports/cs2/cct-europe/cs2-gothic-lavked-2026-10-14",
+      "book_url": "",
+      "source_event": "Counter-Strike: Gothic vs Lavked (BO3) - CCT Europe Series #11 Group Stage",
+      "hotspawn_url": "https://www.hotspawn.com/matches/gothic-vs-lavked-cct-europe-2026-series-11-1079621",
+      "captured_utc": "2026-10-14T04:50:00Z",
+      "match_quality": "exact",
+      "liquidity_usd": 303.73
+    },
+    {
+      "source_id": "research-polymarket",
+      "source_name": "Polymarket (research read 2026-10-14)",
+      "source_role": "prediction_market",
+      "relay": "Polymarket",
+      "event_id": "",
+      "market_id": "cs2-rustec-mellre-2026-10-14",
+      "league": "CCT Europe 2026 Series #11",
+      "team_a": "ex-RUSTEC",
+      "team_b": "mellren",
+      "start_time": "2026-10-14T11:00:00Z",
+      "best_of": 3.0,
+      "native_format": "implied_probability",
+      "native_a": 0.65,
+      "native_b": 0.36,
+      "odds_a": 1.538462,
+      "odds_b": 2.777778,
+      "market_type": "match_winner",
+      "status": "open",
+      "source_url": "https://polymarket.com/esports/cs2/cct-europe/cs2-rustec-mellre-2026-10-14",
+      "book_url": "",
+      "source_event": "Counter-Strike: ex-RUSTEC vs mellren (BO3) - CCT Europe Series #11 Group Stage",
+      "hotspawn_url": "https://www.hotspawn.com/matches/ex-rustec-vs-mellren-cct-europe-2026-series-11-1079622",
+      "captured_utc": "2026-10-14T04:50:00Z",
+      "match_quality": "exact",
+      "liquidity_usd": 9670.0
+    },
+    {
+      "source_id": "research-polymarket",
+      "source_name": "Polymarket (research read 2026-10-14)",
+      "source_role": "prediction_market",
+      "relay": "Polymarket",
+      "event_id": "",
+      "market_id": "cs2-g2a-tlr-2026-10-14",
+      "league": "CCT Europe 2026 Series #11",
+      "team_a": "G2 Ares",
+      "team_b": "The Last Resort",
+      "start_time": "2026-10-14T14:00:00Z",
+      "best_of": 3.0,
+      "native_format": "implied_probability",
+      "native_a": 0.70,
+      "native_b": 0.31,
+      "odds_a": 1.428571,
+      "odds_b": 3.225806,
+      "market_type": "match_winner",
+      "status": "open",
+      "source_url": "https://polymarket.com/esports/cs2/cct-europe/cs2-g2a-tlr-2026-10-14",
+      "book_url": "",
+      "source_event": "Counter-Strike: G2 Ares vs The Last Resort (BO3) - CCT Europe Series #11 Group Stage",
+      "hotspawn_url": "https://www.hotspawn.com/matches/g2-ares-vs-the-last-resort-cct-europe-2026-series-11-1079623",
+      "captured_utc": "2026-10-14T04:50:00Z",
+      "match_quality": "exact",
+      "liquidity_usd": 1330.0
+    }
+  ],
+  "formats": {
+    "1079624": {
+      "best_of": 3,
+      "source_url": "https://www.hltv.org/matches/2399301/forze-reload-vs-lfo-10-cct-2026-europe-series-11",
+      "source_name": "HLTV match page (event 9442 lists the fixture as bo3)",
+      "secondary_source_url": "https://egamersworld.com/counterstrike/match/_rW8GEyWK/forze-reload-vs-Gr_YhyKi3",
+      "secondary_note": "EGW match page prints \"Bo3\" beside the 14.10.26 19:00 kickoff (CEST)."
+    },
+    "1081112": {
+      "best_of": 3,
+      "source_url": "https://egamersworld.com/counterstrike/match/4kY9VAmiEg/banda-chuya-vs-6666-JdPgKgp5y",
+      "source_name": "EGamersWorld match page (prints \"14.10.26 07:00 Bo3\")",
+      "secondary_source_url": "https://www.hltv.org/matches/2399462/banda-chuya-vs-6666-cct-2026-europe-series-12-closed-qualifier",
+      "secondary_note": "HLTV files the fixture under CCT 2026 Europe Series 12 Closed Qualifier (event 9456)."
+    },
+    "1081120": {
+      "best_of": 3,
+      "source_url": "https://polymarket.com/esports/cs2/cct-europe/cs2-mellre-pg5-2026-10-16",
+      "source_name": "Polymarket market title (\"mellren vs Privateer Gaming (BO3) - CCT Europe Closed Qualifier: Series #12 Group D\") — title only; the market's prices are refused, see refusals",
+      "secondary_source_url": "https://egamersworld.com/counterstrike/match/1sGIL2gAYu/wraith-pcific-vs-ryvex-bBH6HvaalZ",
+      "secondary_note": "EGW's CCT Europe 2026 Series #12 Play-In sidebar lists \"mellren - Privateer Gaming\" on 16.10 (10:00)."
+    }
+  },
+  "row_notes": {
+    "1079624": {
+      "flags": ["FL-LISTING-ALIAS"],
+      "note": "Research ladder (HLTV → esportsbooks → betting lines) applied because no esportsbook posted a real two-sided price for this low-tier card: HLTV files it as bo3 (match 2399301) with FORZE Reload #90 vs LFO 10 on the event page; EGW's match page prints only the 1.8/1.8 no-market placeholder (rejected) but states Bo3 and the LFO 10 lineup (Jackinho, Sapec, dottie, flaw, tvs); Polymarket prices the same slot under the lineup's org-seeking tag \"Sökerorg\" at 88¢/16¢ (FORZE Reload 1.14x / Sökerorg 6.25x, $373.86 volume), roster-verified identical to LFO 10. LFO 10 is absent from the official Valve standings file of 2026-10-05 (checked against ValveSoftware/counter-strike_regional_standings on GitHub, newest file is still standings_global_2026_10_05.md) and unranked on HLTV's live team page (peak #170); HLTV's Valve-ranking (beta) page of 2026-10-12 lists LFO 10 at #170 with 765 Valve points — that page is HLTV's beta projection (includes unfinished events), not the official weekly file, so it is evidence, never an official-file entry.",
+      "links": [
+        "https://www.hltv.org/matches/2399301/forze-reload-vs-lfo-10-cct-2026-europe-series-11",
+        "https://www.hltv.org/team/14084/lfo-10",
+        "https://www.hltv.org/valve-ranking/teams/2026/october/12",
+        "https://egamersworld.com/counterstrike/match/_rW8GEyWK/forze-reload-vs-Gr_YhyKi3",
+        "https://polymarket.com/esports/cs2/cct-europe/cs2-forzer-skr2-2026-10-14",
+        "https://bo3.gg/teams/sokerorg"
+      ]
+    },
+    "1081112": {
+      "flags": ["FL-RESEARCH-CROSSCHECK-CONFLICT"],
+      "note": "No esportsbook or prediction market prices this card anywhere on the research trail (Polymarket's CCT Europe board carries 10 markets — none for this pairing; EGW's match page prints only a single 1.8 placeholder, no second side). The published probability therefore stays this board's own originated line from the official Valve points (Banda Chuya 801 vs 6666 923, standings_global_2026_10_05.md). Research cross-checks point the same way as the line — HLTV: 6666 is #80 on the world ranking while Banda Chuya is currently unranked (peak #162); recent official results: 6666 on a 5-match win streak (EGW form table) while Banda Chuya lost 3:13 to GenOne on 11/10 and 1:2 to HYPERSPIRIT on 08/10 (HLTV team pages). One counter-signal is published, not reconciled: EGW's proprietary team rating favours Banda Chuya 902 vs 515. EGW's rating is not a price and not an official ranking; the flag records the disagreement.",
+      "links": [
+        "https://egamersworld.com/counterstrike/match/4kY9VAmiEg/banda-chuya-vs-6666-JdPgKgp5y",
+        "https://www.hltv.org/team/13900/banda-chuya",
+        "https://www.hltv.org/team/13882/6666",
+        "https://www.hltv.org/matches/2399462/banda-chuya-vs-6666-cct-2026-europe-series-12-closed-qualifier",
+        "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+      ]
+    },
+    "1081120": {
+      "flags": ["FL-MARKET-NO-LIQUIDITY"],
+      "note": "Polymarket opened a market for this card (cs2-mellre-pg5-2026-10-16, title states BO3) but the book is uninitialised: it prints 94¢ for mellren and 93¢ for Privateer Gaming (both sides above 90¢, sum $1.87 for a $1 pair) with $0.00 volume. Ingesting those numbers would invent a ~50/50 that no trader believes, so the prices are refused (see refusals). The row keeps its originated line from the official Valve points (mellren 932 vs Privateer 608) cross-checked on HLTV (#94 vs #226), and the series length is taken from the market title only.",
+      "links": [
+        "https://polymarket.com/esports/cs2/cct-europe/cs2-mellre-pg5-2026-10-16",
+        "https://egamersworld.com/counterstrike/match/1sGIL2gAYu/wraith-pcific-vs-ryvex-bBH6HvaalZ",
+        "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+      ]
+    }
+  },
+  "refusals": [
+    {
+      "match_id": "1081120",
+      "teams": "mellren vs Privateer Gaming",
+      "market": "https://polymarket.com/esports/cs2/cct-europe/cs2-mellre-pg5-2026-10-16",
+      "printed": "mellren 94¢ (1.06x) / Privateer Gaming 93¢ (1.08x), $0.00 volume",
+      "reason": "Uninitialised market: both sides quoted above 90¢ (a $1 pair sums to $1.87) and zero volume. De-vigging uninitialised quotes would fabricate a probability. Not used as a price; the market title is still used as the series-length source."
+    },
+    {
+      "match_id": "1079624",
+      "teams": "FORZE Reload vs LFO 10",
+      "market": "https://egamersworld.com/counterstrike/match/_rW8GEyWK/forze-reload-vs-Gr_YhyKi3",
+      "printed": "1.8 / 1.8",
+      "reason": "Equal-pair placeholder (the usual \"no market posted\" pattern this board already rejects everywhere, FL-PLACEHOLDER-REJECTED). The page is still used as format + lineup evidence."
+    },
+    {
+      "match_id": "1081112",
+      "teams": "banda chuya vs 6666",
+      "market": "https://egamersworld.com/counterstrike/match/4kY9VAmiEg/banda-chuya-vs-6666-JdPgKgp5y",
+      "printed": "banda chuya 1.8 (single side only)",
+      "reason": "No second side printed — there is no two-sided market to de-vig. Not used as a price. The page is used as format evidence and for the EGW rating cross-check (902 vs 515), which is labelled a rating, not a price."
+    },
+    {
+      "match_id": "1081113",
+      "teams": "Ryvex vs PCIFIC",
+      "market": "https://egamersworld.com/counterstrike/match/1sGIL2gAYu/wraith-pcific-vs-ryvex-bBH6HvaalZ",
+      "printed": "WRAITH PCIFIC 1.8 (single side only)",
+      "reason": "Same single-side placeholder pattern; not used as a price. The page is used as format evidence (\"14.10.26 10:00 Bo3\")."
+    }
+  ],
+  "slate_recheck": {
+    "checked_utc": "2026-10-14T04:35:00Z",
+    "read_window_utc": ["2026-10-14T04:34:00Z", "2026-10-14T04:52:00Z"],
+    "pages": [
+      "https://play.hotspawn.com/lobby",
+      "https://play.hotspawn.com/cs2-pickems"
+    ],
+    "live_totals": {"cs2_fixtures": 88, "tier_b": 24, "tier_c": 60, "tier_s": 4, "this_week": 28},
+    "inventory_totals": {"cs2_fixtures": 89, "open": 28},
+    "open_fixtures_confirmed": "28 of 28 open fixtures in executive/data/fixtures.csv appear on the live board with identical pairings; the on-page lock countdowns are consistent with lock = start − 360 s (payload convention).",
+    "tournament_count_deltas": {
+      "ESL Challenger League Season 52: North America - Cup #3": {"inventory": 1, "live": 0, "note": "fixture 1079546 (Zomblers vs Overtake Sector) started 2026-10-14T01:00Z and is no longer listed in the live pool; kept in the inventory for the record, already locked before this session."}
+    },
+    "all_other_tournaments": "16 of 17 tournament counts match the inventory exactly (CCT Europe Challengers #4 8, CCT Europe Series #11 4, CCT Europe Series #12 Play-In 4, CCT SA Series #3 8, CCT SA Series #7 1, DACH CS Masters S5 1, DraculaN S7 6, Elisa BreakOut #2 12, EPL Series 8 1, EPL Series 8 Play-In 6, LG UltraGear 1, Rainhas do Clutch 2, Stake Pulse Beat III 4, Svenska CS-Ligan 6, Thunderpick WC 4, Thunderpick WC SA Series #1 8, Urban Riga Open #5 12).",
+    "crowd_note": "Hotspawn prints crowd pick percentages on every card. They are never stored and never used; this file contains none."
+  }
+}
