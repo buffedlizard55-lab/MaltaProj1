@@ -1907,7 +1907,6 @@ Branch: `arena/08031d30-maltaproj1` (Arena fixes this session to that branch; no
 - ~01:55 UTC: claim commit `2a9cf1d` pushed to `arena/08031d30-maltaproj1`. Branch was rebased on `origin/main` (`9d841fd`) before that push.
 - ~02:00 UTC: outputs built; 15/15 tests pass; local link check on `open-slate/` clean.
 
-<<<<<<< HEAD
 ### Release record — arena/08031d30
 - **PR #71** https://github.com/buffedlizard55-lab/MaltaProj1/pull/71 (`arena/08031d30-maltaproj1` → `main`): checks `audit` pass and `verify` pass, `MERGEABLE`/`CLEAN`; merged with `gh pr merge 71 --merge` at **2026-10-14T01:50:14Z**, merge commit `a8a12cd`. Not auto-merged. No merge conflicts.
 - **Pages:** `pages-build-deployment` for `a8a12cd` → status **built** (created 01:50:15Z).
@@ -1915,7 +1914,7 @@ Branch: `arena/08031d30-maltaproj1` (Arena fixes this session to that branch; no
 - **Follow-up PR #72** https://github.com/buffedlizard55-lab/MaltaProj1/pull/72 (flagged-page wording for the excluded row; review note that own lines assume best-of-3 at the Elo→series step): checks `audit` and `verify` pass, `CLEAN`/`MERGEABLE`, merged with `gh pr merge 72 --merge` at **2026-10-14T01:52:18Z**, merge commit `7399269`. Pages build for `7399269`: **built** (01:52:19Z). Live check of the corrected flagged text used a cache-busted URL (`?v=7399269`), since the un-busted URL served an older cached copy.
 - **Scheduled refresh status (re-checked at ~01:55Z):** `slate-180a42a0.yml` is `active`. `gh run list --workflow slate-180a42a0.yml --limit 30` shows **no `schedule` event** in its last 30 runs, so the 3-hourly 00:41Z slot did not run. The latest runs are `push` events from `arena/a9a0c2f1` (01:43–01:50Z). The refresh is not verified as scheduled and needs the owner's attention (review E-2). `model-91eff436.yml` ran on schedule at 00:20Z and failed at its test step (review E-1).
 - **Open requests:** `arena/a9a0c2f1` (H-03, owns `index.html`) — please add the `open-slate/` card. `arena/91eff436` — please check the failing test step. The request to `a9a0c2f1` stays open until that session edits `index.html`.
-=======
+
 ## Session `arena/a1db82b7` — own-line model repair + automation reliability (2026-10-14 01:50 UTC)
 
 Branch fixed by Arena: `arena/a1db82b7-maltaproj1` (no other branch is created, pushed or merged from this session).
@@ -1970,4 +1969,14 @@ proves one wrong.
   77 Pages runs (read 2026-10-14T01:52Z). Between 23:00Z and 01:55Z the crons were due to fire ~18 times across the seven
   scheduled workflows; 3 fired. Per-workflow table in `reviews/a1db82b7-verification.md` §2. Details and the mitigation built into `model-91eff436.yml` are in
   `reviews/a1db82b7-verification.md`.
->>>>>>> 944b012 (coord(a1db82b7): claim model repair + automation reliability (M-01..M-04))
+
+### Log — arena/a1db82b7 (M-04)
+- 02:0x UTC: two more defects found and fixed while verifying the published page, both in `model/**`:
+  (1) the summary and team tables had rows with **no link at all** (30 + 21 rows) — every row of all seven
+  tables now carries an official link; (2) the commit gate hashed only the data, never the page, so the fix
+  above would never have been published by the scheduled job — the digest now covers the rendered page with
+  timestamps normalised, verified to cause no commit churn. Published page after the fix: 380 data rows,
+  0 without a link, 89 fixtures / 57 own lines / 32 blank+flagged. Recorded as A-7 and A-8 in
+  `reviews/a1db82b7-verification.md`.
+- Model runs on this branch: [38497833026](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38497833026) (first green),
+  [38498367227](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38498367227) (publishes the page fix).

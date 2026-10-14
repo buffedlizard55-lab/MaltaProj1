@@ -175,6 +175,8 @@ and Aurora **1716**
 | **A-4** | info | 64 of 89 rows have **no per-match Hotspawn permalink** in the board's own payload (the board publishes permalinks for the current week's fixtures only). Each such row now links the Pick'em page it was read from and says so in its notes. | `model/input/hotspawn_cs2_fixtures.json` (`permalinks`: 25 of 89) |
 | **A-5** | info | The board's header count and its payload disagree: header "68 matches this week" while the CS2 payload holds 89 records and the filter says 89. Pre-existing (flagged earlier as FL-20); unchanged. | `diag/01_fetch.log`, `model/input/fetch_log.json` |
 | **A-6** | info | `model/README.md` described only the 3-hourly cron; corrected in this session to the real trigger set. | this branch's diff |
+| **A-7** | fixed | Two tables had rows with **no link at all** — the "Picks at a glance" summary (30 rows) and 21 team rows for teams absent from Valve's standings and HLTV's ranking. Every row of all seven tables now carries at least one official link (fixture's own match page when the board publishes a permalink, otherwise the Pick'em page it was read from). Verified on the rebuilt page: 380 data rows, 0 without a link. | `model/index.html` on this branch |
+| **A-8** | fixed | The commit gate hashed only the **data**, never the page, so any change in how a value is presented was silently discarded by the scheduled job (A-7 would never have shipped). The digest now also covers the rendered page with timestamps normalised, verified not to reintroduce commit churn. | `model/build.py`, `model/data/digest.txt` |
 
 ---
 
