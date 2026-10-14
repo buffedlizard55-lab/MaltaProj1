@@ -2353,3 +2353,59 @@ A6 audit compares against them and files requests here instead of editing them.
 - 2026-10-14 02:33 UTC: OddsDigger (200, 255 kB) and bo3.gg (200, 13 kB) are reachable from the runner; both are archived
   with a shape report and used for nothing until a parser exists. `oddsdigger: 1 page(s) reachable, biggest table 8 rows` —
   that is the measured result, so the cheap guess that it lists per-match odds did not hold on the index page.
+
+---
+
+## Session `arena/5bcfd1b5` (`arena/5bcfd1b5-maltaproj1`) — Every-match pick completion + mobile executive summary
+
+- **Session ID**: `arena/5bcfd1b5`
+- **Branch**: `arena/5bcfd1b5-maltaproj1` (Arena-fixed; the brief's `session-<id>/<task>` name cannot be used. No other branch created or pushed.)
+- **Claim timestamp**: `2026-10-14T02:45:00Z`
+- **Base**: merged `origin/main` @ `936d577` (includes PR #85 `everypick/` and PR #82 `cs2/`).
+
+### Why this claim exists (gap measured on `main` @ `936d577`, not assumed)
+
+Line-by-line count of `data/8944bb84/analysis.csv` (91 fixtures) shows **30 fixtures with a blank
+`recommended_pick`**:
+
+| Bucket | Fixtures | With pick | **Without pick** |
+|---|---|---|---|
+| `open_oct14_16` | 28 | 27 | **1** (`1079624` FORZE Reload vs LFO 10) |
+| `locked_oct13_14` | 4 | 2 | **2** (`1081076`, `1081105`) |
+| `stale_summer_2026` | 59 | 32 | **27** |
+| **Total** | **91** | **61** | **30** |
+
+Every one of the 30 blanks is blocked by a **team missing from the official rating inputs**: 21 distinct
+teams (Atreides, Atrix, Blitzkrieg, CYBERSHOKE Prospects, GAMEHARMONY, Galorys, Keyd, LFO 10, MAGICOS,
+METANOIA Wolves, Mai Tai, Patins de Ferrari, ReThink, Red Feet, SINQU REHTI, SUKEBAN, Sharks, UNO MILLE,
+Wampirki, ex-MANA, ex-Tricked) have no `vrs_standing` and/or no `hltv_rank` in the committed data.
+
+Separately, `everypick/` (PR #85) publishes **28 of 91** fixtures — the open slate only — while the root
+landing page's executive summary points a phone user at it as the "start here" board. So "picks for every
+match listed on Hotspawn for CS2" is **not yet met** for the 63 non-open fixtures, and the root page still
+links ~20 competing boards with no single obvious entry point.
+
+### Task board
+
+| ID | Task | Status | Owner | Exclusive file scope |
+|---|---|---|---|---|
+| `E05-01` | Resolve the 21 rating-less teams from **official** sources (Valve `counter-strike_regional_standings` incl. regional + details files via the GitHub API, HLTV ranking/team pages, HLTV match pages) — alias/name-mismatch resolution vs genuinely unranked. Never infer a rating; a team that cannot be resolved stays blank + flagged. | in progress | `arena/5bcfd1b5` | `data/5bcfd1b5/teams_resolved.csv`, `data/5bcfd1b5/ratings_extra.csv` |
+| `E05-02` | Capture the **live** Hotspawn CS2 fixture set (`/cs2-pickems`, `/lobby`) and re-verify every fixture id/team/UTC start+lock on `main`'s committed payload; record header-vs-payload count disagreement instead of asserting coverage. | in progress | `arena/5bcfd1b5` | `data/5bcfd1b5/fixtures_live.csv`, `data/5bcfd1b5/capture.json` |
+| `E05-03` | Refresh **outside** betting lines for every match that any reachable book prices (Pinnacle public guest moneylines, EGamersWorld/BC.Game and other esports books). De-vig with `p(A)=(1/o_A)/(1/o_A+1/o_B)`; reject `1.80/1.80`-style placeholders; Hotspawn crowd % never an input. | in progress | `arena/5bcfd1b5` | `data/5bcfd1b5/external_lines.csv` |
+| `E05-04` | Originate **our own** line + explicit pick for **every** fixture (all 3 buckets) using a documented fallback hierarchy A→E, with the tier printed on the row. Where no official input exists at all, publish the match with a blank probability and a flag — no invented numbers. | in progress | `arena/5bcfd1b5` | `data/5bcfd1b5/every_match_picks.csv`, `data/5bcfd1b5/own_lines.csv`, `data/5bcfd1b5/flags.csv`, `scripts/5bcfd1b5_build.py` |
+| `E05-05` | Build the mobile-first board: one **executive summary** page that answers "where are the picks?" in one tap, plus subpages by category (open now / today / by tier / by tournament / outside lines / our lines / all fixtures / methodology / flagged). Every table row carries a source link. | in progress | `arena/5bcfd1b5` | `allpicks/**` |
+| `E05-06` | Automated refresh: scheduled CI that re-collects, re-verifies and republishes without any manual input; fails closed (keeps last good data) if a required source is missing. | in progress | `arena/5bcfd1b5` | `.github/workflows/allpicks-5bcfd1b5.yml`, `tests/test_5bcfd1b5.py` |
+| `E05-07` | Repo review line-by-line against official sources; irregularities documented with links and published on a Flagged page. | in progress | `arena/5bcfd1b5` | `reviews/5bcfd1b5-verification.md` |
+| `E05-08` | **Final integration**: link the new executive summary from the root landing page, re-verify combined data, repository-wide link check, PR → `main`, merge without awaiting approval, confirm GitHub Pages deploy, record PR link + result here. | in progress | `arena/5bcfd1b5` | `index.html` (additive executive-summary entry only), `README.md` (additive), `COORDINATION.md` (this section) |
+
+### Coordination rules this session follows
+- **No other session's file is edited.** `everypick/**`, `cs2/**`, `oct14/**`, `slate/**`, `model/**`,
+  `live/**`, `open-slate/**`, `data/8944bb84/**`, `data/fbcccda2/**` are all read-only here.
+- Shared outputs (root `index.html`, `README.md`) are touched **only** in `E05-08`, additively, and only
+  after PR #54 (`arena/9920c263`, still open since 2026-10-13T22:47Z) is dispositioned.
+- Every upstream `COORDINATION.md` line is preserved verbatim on rebase/merge; only this section is appended.
+- Small frequent commits; `git pull --rebase` before every push; conflicts logged, never resolved by
+  discarding another session's work.
+
+### Log — arena/5bcfd1b5
+- 2026-10-14 02:45 UTC: claim written; committing and pushing to the fixed branch before any task work.
