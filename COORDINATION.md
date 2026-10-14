@@ -3668,7 +3668,7 @@ flags for anything unconfirmable; (g) PR → merge → Pages confirmed.
 | E-03 | **Unresolved picks & limitations section**: new `executive/unresolved.html` + a clearly labeled section inside the executive summary (`executive/index.html`) listing every pick that cannot rest on the same evidence as featured picks, the basis used instead, and the concrete limitations; linked from the root landing (additive) | done | arena/e13aca8a | `executive/unresolved.html` (new), `executive/index.html`, root `index.html` (additive links only) |
 | E-04 | **Refresh + rebuild the executive board** on the requested 4–8 h cadence with the live slate: picks + both-side probabilities for every open fixture, own originated lines for all, source links per row; tests green | done | arena/e13aca8a | `executive/**`, `tests/test_e13aca8a.py` (new) |
 | E-05 | Line-by-line verification record (live re-reads against official sources where reachable; every row source-linked; blanks + flags never guesses) | done | arena/e13aca8a | `reviews/e13aca8a-verification.md`, `executive/flagged.html` (append) |
-| E-06 | Integration: rebase on `origin/main`, PR → `main`, merge without waiting, confirm Pages deploy, record PR + result here | pending (after E-01..E-05) | arena/e13aca8a | `COORDINATION.md` (this section) |
+| E-06 | Integration: rebase on `origin/main`, PR → `main`, merge without waiting, confirm Pages deploy, record PR + result here | done | arena/e13aca8a | `COORDINATION.md` (this section) |
 
 - **Not touched**: `console/**`, `picks/**`, `picks-full/**`, `everypick/**`, `every/**`, `exec/**`, `reread/**`,
   `docs/**`, `assurance/**`, `board/**`, `site/**`, `hub.html`, `data/**` (read-only inputs except the new
@@ -3705,3 +3705,48 @@ refused) · FL-RANK-FLOOR-BOUND / FL-UNLISTED-OPPONENT (LFO 10 absent from the o
 Banda chuya unranked on HLTV) · FL-RATINGS-WEEK-OLD (unavoidable until Valve publish the next weekly
 file) · FL-STALE-CAPTURE on 4 primary-book rows (capture 2026-10-13T19:42Z; shown with its minute, not
 as a live price) · 8 market-vs-own-line splits >15 pp (both printed).
+
+### E-06 completion — release record (arena/e13aca8a), 2026-10-14 05:11Z
+
+- **PR**: [https://github.com/buffedlizard55-lab/MaltaProj1/pull/125](https://github.com/buffedlizard55-lab/MaltaProj1/pull/125)
+  (`arena/e13aca8a-maltaproj1` → `main`) — **MERGED** without waiting for review, per the brief.
+  Merge commit `e0dbf32c6838a7a39140954cb86cff6a3275ea69`, merged at `2026-10-14T05:11:30Z`.
+- **GitHub Pages**: build status **`built`** (created 05:11:32Z, updated 05:11:55Z, no error).
+  Live HTTPS confirmed on:
+  - [executive/unresolved.html](https://buffedlizard55-lab.github.io/MaltaProj1/executive/unresolved.html) —
+    the new unresolved section; the `1079624` FORZE Reload vs LFO 10 row renders the roster-verified
+    Polymarket line (84.6/15.4, pick FORZE Reload, BO3) with the research trail, and the
+    refused-prices table renders.
+  - [executive/index.html](https://buffedlizard55-lab.github.io/MaltaProj1/executive/index.html) — the
+    “Unresolved picks & limitations” section of the executive summary with the one-tap link and live
+    counts (22 of 28 not resolvable by the featured route: 18 secondary-book, 2 prediction-market-only,
+    2 own-line; 6 featured-route picks).
+  - [index.html](https://buffedlizard55-lab.github.io/MaltaProj1/) — root landing serves the new
+    “Unresolved picks & limitations” button and categories card, with every other session's landing
+    content (`briefing/` hero, `livelines/`, `gap-resolution/`) intact.
+
+**Merge conflicts encountered and how they were resolved (nothing discarded):**
+
+| File | Conflict | Resolution |
+|------|----------|------------|
+| `COORDINATION.md` (×3) | append-only collisions with `arena/57dbfba4` and later sessions | concatenation — every upstream section kept verbatim, this session's section re-appended |
+| `executive/data/*` + `executive/*.html` | main's parallel refresh landed a **fresher Pinnacle capture (2026-10-14T04:38:10Z)** than this branch's inputs | kept **main's inputs**, re-ran `executive/build.py` so all generated outputs are regenerated from the merged inputs (never hand-merged). This improved the board: 6 rows moved to T1 primary-book basis, snapshot age 0.5 h, **all build checks now pass** |
+| `index.html` | main added a `briefing/` hero, `livelines/` and `gap-resolution/` links | kept **all** of main's content and wove in this session's three additive edits (action button, categories card, one dated sentence + link in the existing notice) |
+| `tests/landing_43c32386.cjs` | its frozen-clock assertion (`2026-10-14T10:00Z` ⇒ 0 active picks) assumed no capture could be fresher; live 04:38Z captures legitimately broke it | made the assertion **data-driven** (clock derived from the newest stored capture + 7 h) — intent preserved, no data falsified. Logged above for the owner |
+| `console/**`, `livelines/**`, `briefing/**`, `gap-resolution/**`, `summary/**` | the repo test suite rewrites those boards as a side effect of its determinism check | restored to their committed content before every push, so this PR changes nothing it does not own |
+
+**Final board state on main (generated 2026-10-14T05:10:53Z):** 88 CS2 fixtures in the payload ·
+28 open · **28/28 picks** · 26 priced by an outside book (6 primary Pinnacle + 20 secondary /
+prediction) · 2 own-line · **0 provisional bounds** · 0 without a pick · **28/28 stated series lengths** ·
+28/28 carried an own originated line · internal link check 231 links / 0 broken ·
+`executive/tests.py` 15/15 · whole-repo `python3 -m unittest discover -s tests` **303 OK**.
+
+**Open gaps handed to the next session (do not “fix” by guessing):**
+`1081112` Banda chuya vs 6666 has **no price anywhere on the research trail** (Polymarket's 10 CCT
+Europe markets listed in the research log; EGW prints a single 1.8 placeholder) — its pick is the
+official-VRS line plus a published EGW-rating counter-signal. `1081120` mellren vs Privateer's
+Polymarket book is uninitialised (94¢/93¢, $0 vol) — if it ever trades, re-read it and the row can
+move to a market basis. LFO 10 remains absent from the official Valve file (newest is still
+`standings_global_2026_10_05.md`) so `1079624` cannot carry an official-points own line even though it
+now carries a market line. 59 stale June-dated fixtures Hotspawn never closes remain in the inventory
+and are published as such on `executive/coverage.html`.
