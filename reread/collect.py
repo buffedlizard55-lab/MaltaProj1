@@ -314,6 +314,14 @@ def vrs_raw_url(url: str) -> str:
     return url
 
 
+REUSE_NOTE = re.compile(r"\s*· reused from the [^·]+? run \(<\d+ h\)")
+
+
+def strip_reuse_notes(note: str) -> str:
+    """Drop any earlier reuse stamp so a carried-forward note keeps exactly one stamp per run."""
+    return REUSE_NOTE.sub("", note or "").strip(" ·")
+
+
 def parse_utc(text: str) -> datetime | None:
     """Parse the run stamps this tool writes; return None for anything else (never guess)."""
     try:
@@ -683,8 +691,7 @@ def run(only: str | None, limit: int | None, offline: bool) -> dict:
                 reused = True
                 res = {"verdict": "match", "http_status": prev.get("http_status"),
                        "observed": prev.get("observed", ""),
-                       "note": (re.sub(r"(\s*· reused from the [^·]+? run \(<\d+ h\))+$", "",
-                                       prev.get("note", "")) +
+                       "note": (strip_reuse_notes(prev.get("note", "")) +
                                 f" · reused from the {prev['checked_utc']} run (<{reuse_hours} h)"),
                        "sha256": prev.get("sha256"), "bytes": prev.get("bytes") or 0,
                        "fetched_utc": prev["checked_utc"]}
