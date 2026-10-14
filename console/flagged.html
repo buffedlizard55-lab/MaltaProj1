@@ -9,7 +9,7 @@
 <p class="lead">Every condition that makes a row on this board less than fully verified, with the fixtures it
 affects and the source link to check by hand. Flags never block publication of the underlying figures —
 they mark them.</p>
-<div class="note">Data as of 2026-10-14T03:28:20Z. 14 flag codes across
+<div class="note">Data as of 2026-10-14T03:28:20Z. 15 flag codes across
 28 rows. Registered at row level on
 <a href="index.html">the board</a> and reproduced here with counts.
 <code>R-228-*</code> entries are curated manual-review findings maintained in
@@ -44,7 +44,9 @@ integration are fixed and documented in
  <span class="muted">1 row(s)</span></div>
  <p class="basis">Rung-1 rows cite Pinnacle&#x27;s guest endpoint, which has no per-match deep link</p><ul><li><a href="../console/index.html#m-1080176">1080176</a> — <a href="https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&amp;withSpecials=false" rel="noopener">source</a> <span class="muted">(Pinnacle is read directly from its public guest API, which does not publish a per-match URL. The row&#x27;s odds and read time identify the market; a manual check opens the same endpoint (or Pinnacle&#x27;s CS2 matchups page). Affects every rung-1 fixture (7 of the open 28 at this snapshot).)</span></li></ul></section><section class="m"><div class="head"><b><code>R-228-07</code></b>
  <span class="muted">1 row(s)</span></div>
- <p class="basis">Relayed aggregator prices (bc.game via EGamersWorld) cannot be re-read from CI</p><ul><li><a href="../console/index.html#m-1079621">1079621</a> — <a href="https://egamersworld.com/counterstrike/match/_rW8GEyWK/gothic-vs-lavked-GGmfuJ1n4B" rel="noopener">source</a> <span class="muted">(EGamersWorld answers 403 to the CI runner (&#x27;refused&#x27; in the re-read report), so the rung-3 rows cannot be auto-verified. Hand-checked 2026-10-14: Gothic-Lavked 2.05/1.64 re-read exactly to 44.4/55.6 and Enjoy-B8 Academy 1.52/2.30 exactly to 60.2/39.8. Re-check by hand on the linked match page.)</span></li></ul></section>
+ <p class="basis">Relayed aggregator prices (bc.game via EGamersWorld) cannot be re-read from CI</p><ul><li><a href="../console/index.html#m-1079621">1079621</a> — <a href="https://egamersworld.com/counterstrike/match/_rW8GEyWK/gothic-vs-lavked-GGmfuJ1n4B" rel="noopener">source</a> <span class="muted">(EGamersWorld answers 403 to the CI runner (&#x27;refused&#x27; in the re-read report), so the rung-3 rows cannot be auto-verified. Hand-checked 2026-10-14: Gothic-Lavked 2.05/1.64 re-read exactly to 44.4/55.6 and Enjoy-B8 Academy 1.52/2.30 exactly to 60.2/39.8. Re-check by hand on the linked match page.)</span></li></ul></section><section class="m"><div class="head"><b><code>R-228-08</code></b>
+ <span class="muted">1 row(s)</span></div>
+ <p class="basis">Relayed Thunderpick prices are outside the CI re-read worklist</p><ul><li><a href="../console/index.html#m-1080279">1080279</a> — <a href="https://thunderpick.io/match/2807510" rel="noopener">source</a> <span class="muted">(Thunderpick&#x27;s match pages (the book behind the 13 rung-2 rows) do not appear in the CI source re-read; three rows were re-checked by hand on 2026-10-14 and reproduced exactly (WBT - EA Copenhagen +100/-139 -&gt; 46.2/53.8; Voca - Phantom -111/-125 -&gt; 48.6/51.4; WBT - ENCE -161/+115 -&gt; 57.0/43.0). The remaining rows link the exact match page for a manual check.)</span></li></ul></section>
 <footer><p class="small">These flags are informative, not blockers: the brief requires unverified values to be
 published blank and flagged rather than guessed or silently dropped.</p></footer>
 </main></body></html>
