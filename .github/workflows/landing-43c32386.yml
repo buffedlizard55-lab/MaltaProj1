@@ -69,6 +69,32 @@ jobs:
             executive/data/summary.json
             executive/data/flags.csv
           retention-days: 14
+      - name: Confirm public deployment on main
+        if: success() && github.ref_name == 'main'
+        env:
+          RUN_ID: ${{ github.run_id }}
+        run: |
+          python - <<'PY'
+          import os, time, urllib.request
+          base = 'https://buffedlizard55-lab.github.io/MaltaProj1/'
+          checks = {'': 'Your matches.', 'js/landing.js': 'function parseStandings',
+                    'css/landing.css': 'color-scheme:dark', 'reviews/43c32386.html': 'Flagged for Review'}
+          for attempt in range(12):
+              try:
+                  for path, marker in checks.items():
+                      request = urllib.request.Request(base + path + '?release=' + os.environ['RUN_ID'], headers={'User-Agent': 'MaltaProj1-release-verification'})
+                      with urllib.request.urlopen(request, timeout=20) as response:
+                          body = response.read().decode('utf-8')
+                          if response.status != 200 or marker not in body:
+                              raise RuntimeError(f'{path}: deployment marker missing')
+                  print('::notice title=Public deployment verified::Landing, JavaScript, stylesheet and Flagged for Review returned HTTP 200 with expected release markers.')
+                  break
+              except Exception as error:
+                  if attempt == 11:
+                      raise
+                  print(f'Pages not ready yet: {error}')
+                  time.sleep(15)
+          PY
       - name: Explain verification boundary
         if: always()
         run: echo 'Source refusals are recorded in provenance. A successful test is not proof that every quote is available or every forecast is calibrated. This workflow never writes collector-owned datasets to Git.' >> "$GITHUB_STEP_SUMMARY"
