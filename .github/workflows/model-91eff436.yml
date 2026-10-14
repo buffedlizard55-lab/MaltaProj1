@@ -63,31 +63,9 @@ jobs:
         run: VRS_REPO_DIR=/tmp/vrs python3 model/test_model.py -v
       - name: Freshness report (published in the job summary)
         if: always()
-        run: |
-          {
-            echo "### Own-line model run"
-            echo ""
-            python3 - <<'PY'
-            import json, pathlib
-            log = json.loads(pathlib.Path("model/input/fetch_log.json").read_text())
-            fx = json.loads(pathlib.Path("model/input/hotspawn_cs2_fixtures.json").read_text())
-            print(f"- Hotspawn fixture snapshot fetched: {fx.get('fetched_utc')} "
-                  f"({fx.get('fixture_count')} CS2 fixtures; board header says "
-                  f"{fx.get('lobby_header_matches_this_week')} this week, filter {fx.get('lobby_filter_all_tiers')})")
-            print(f"- Valve standings: {log['vrs'].get('result')}")
-            print(f"- HLTV ranking: {log['hltv'].get('result')}")
-            import csv
-            rows = list(csv.DictReader(open("model/data/lines.csv", encoding="utf-8")))
-            own = [r for r in rows if r["line_status"] == "OWN LINE"]
-            blank = [r for r in rows if r["line_status"] != "OWN LINE"]
-            upcoming = [r for r in rows if r["section"] == "upcoming"]
-            print(f"- Published rows: {len(rows)} ({len(upcoming)} upcoming, "
-                  f"{len(rows) - len(upcoming)} started/stale)")
-            print(f"- Own line published: {len(own)} rows; blank and flagged: {len(blank)} rows")
-            print(f"- Rows linking the Pick'em page (no per-match permalink): "
-                  f"{sum(1 for r in rows if r['hotspawn_url'].endswith('/cs2-pickems'))}")
-            PY
-          } >> "$GITHUB_STEP_SUMMARY"
+        # A reporting problem must never block a verified data commit, and must never fake a value.
+        continue-on-error: true
+        run: python3 model/run_report.py >> "$GITHUB_STEP_SUMMARY"
       - name: Ask the slate capture to catch up if it has not run for hours (best effort)
         continue-on-error: true
         env:
