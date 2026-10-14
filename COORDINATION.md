@@ -3637,3 +3637,45 @@ to restart the branch from `origin/main` and re-apply only the source changes
 conflicts in output. Two side effects of force-pushing are expected and harmless: other sessions'
 `push`-triggered workflows fire on the large push diff, and `gh pr checks` may show
 `action_required` (first-run approval) rather than a conclusion.
+---
+
+---
+
+
+---
+
+## Session arena/e13aca8a — claim (2026-10-14 04:36 UTC)
+
+Branch: `arena/e13aca8a-maltaproj1` (Arena fixes this session to that branch; no other branch created or pushed).
+Board read first: this file end-to-end plus `git ls-remote` (2026-10-14 04:34 UTC). All prior integration claims are
+complete (PRs #112/#113 merged). `arena/1b6ae823`'s completion record hands the open gaps to the next session;
+this session takes them. `executive/**` is unclaimed since 1b6ae823 finished, so it is in scope below.
+
+User brief for this session (verbatim goals): (a) a pick for **every** Hotspawn CS2 match — low-tier matches that no
+betting site (Polymarket etc.) prices must still get picks, resolved via HLTV then esportsbooks/esports betting
+lines, used only where the featured route cannot resolve the match; (b) a **separate section for unresolved picks
+and the limitations for generating picks for them**, included in the executive summary; (c) one executive summary
+with in-site links to the updated picks list, easy to find and read on a phone; (d) full live coverage of
+play.hotspawn.com CS2 fixtures with a 4–8 h refresh; (e) probabilities from outside betting lines + our own
+originated lines — never Hotspawn crowd %; (f) line-by-line verification, source link on every row, blanks +
+flags for anything unconfirmable; (g) PR → merge → Pages confirmed.
+
+| ID | Task | Status | Owner | Exclusive file scope |
+|----|------|--------|-------|----------------------|
+| E-00 | Claim + push (this section) | done | arena/e13aca8a | `COORDINATION.md` (append-only) |
+| E-01 | **Live slate re-read**: fetch play.hotspawn.com `/lobby` + `/cs2-pickems` live at 2026-10-14 ~04:35 UTC; full CS2 fixture inventory (88 listed per tier filter) diffed against the committed 89-row slate; fixtures that changed/locked/new recorded with exact UTC times from the live pages | in progress | arena/e13aca8a | `executive/data/**` (via builder), `data/e13aca8a/**` (new capture evidence) |
+| E-02 | **Research ladder for unpriced matches**: HLTV first, then esportsbooks / esports betting lines (EGamersWorld, bo3.gg, Thunderpick, Pinnacle, Polymarket listings) for every fixture the featured market route cannot resolve — incl. `1079624` FORZE Reload vs LFO 10 and the unpriced CCT Europe Series #12 Play-In cards; every researched pick documented with its source link; nothing inferred without a source | in progress | arena/e13aca8a | `data/e13aca8a/**`, `executive/**` (research tier rows) |
+| E-03 | **Unresolved picks & limitations section**: new `executive/unresolved.html` + a clearly labeled section inside the executive summary (`executive/index.html`) listing every pick that cannot rest on the same evidence as featured picks, the basis used instead, and the concrete limitations; linked from the root landing (additive) | in progress | arena/e13aca8a | `executive/unresolved.html` (new), `executive/index.html`, root `index.html` (additive links only) |
+| E-04 | **Refresh + rebuild the executive board** on the requested 4–8 h cadence with the live slate: picks + both-side probabilities for every open fixture, own originated lines for all, source links per row; tests green | in progress | arena/e13aca8a | `executive/**`, `tests/test_e13aca8a.py` (new) |
+| E-05 | Line-by-line verification record (live re-reads against official sources where reachable; every row source-linked; blanks + flags never guesses) | pending | arena/e13aca8a | `reviews/e13aca8a-verification.md`, `executive/flagged.html` (append) |
+| E-06 | Integration: rebase on `origin/main`, PR → `main`, merge without waiting, confirm Pages deploy, record PR + result here | pending (after E-01..E-05) | arena/e13aca8a | `COORDINATION.md` (this section) |
+
+- **Not touched**: `console/**`, `picks/**`, `picks-full/**`, `everypick/**`, `every/**`, `exec/**`, `reread/**`,
+  `docs/**`, `assurance/**`, `board/**`, `site/**`, `hub.html`, `data/**` (read-only inputs except the new
+  `data/e13aca8a/**` capture directory), other sessions' `reviews/*`, `scripts/*` (a new `scripts/e13aca8a_build.py`
+  only if the executive builder cannot ingest a live capture).
+- Root `index.html`: **additive only** (links to the new unresolved section), same discipline as 1b6ae823 —
+  no restructuring of another session's landing page.
+
+### Log — arena/e13aca8a
+- 2026-10-14 04:36 UTC: claim written, committed and pushed before any task work.
