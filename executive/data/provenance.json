@@ -1,0 +1,115 @@
+{
+ "generated_utc": "2026-10-14T02:43:17Z",
+ "offline": true,
+ "fetches": [
+  {
+   "url": "/home/user/MaltaProj1/model/input/hotspawn_cs2_fixtures.json",
+   "fetched_utc": "2026-10-14T02:42:36Z",
+   "status": 200,
+   "bytes": 70766,
+   "sha256": null,
+   "mode": "repo_capture",
+   "note": "offline/repo fallback snapshot captured 2026-10-14T02:06:30Z"
+  },
+  {
+   "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
+   "fetched_utc": "2026-10-14T02:42:40Z",
+   "status": 200,
+   "bytes": 77861,
+   "sha256": "df96e7fc3cd91a2687ec08cac0128e50cc4e4e55346581679572e881d79ae61b",
+   "mode": "live",
+   "note": "official Valve standings, commit eec4853d7b"
+  },
+  {
+   "url": "https://www.hltv.org/ranking/teams",
+   "fetched_utc": "2026-10-14T02:42:47Z",
+   "status": 0,
+   "bytes": null,
+   "sha256": null,
+   "mode": "live",
+   "note": "HLTV ranking read failed"
+  },
+  {
+   "url": "https://www.hltv.org/ranking/teams/2026/october/12",
+   "fetched_utc": "2026-10-14T02:42:53Z",
+   "status": 0,
+   "bytes": null,
+   "sha256": null,
+   "mode": "live",
+   "note": "HLTV ranking read failed"
+  },
+  {
+   "url": "https://www.hltv.org/ranking/teams/2026/october/5",
+   "fetched_utc": "2026-10-14T02:42:59Z",
+   "status": 0,
+   "bytes": null,
+   "sha256": null,
+   "mode": "live",
+   "note": "HLTV ranking read failed"
+  },
+  {
+   "url": "https://www.hltv.org/ranking/teams/2026/september/28",
+   "fetched_utc": "2026-10-14T02:43:05Z",
+   "status": 0,
+   "bytes": null,
+   "sha256": null,
+   "mode": "live",
+   "note": "HLTV ranking read failed"
+  },
+  {
+   "url": "/home/user/MaltaProj1/model/input/hltv_ranking.json",
+   "fetched_utc": "2026-10-14T02:43:05Z",
+   "status": 200,
+   "bytes": 48241,
+   "sha256": null,
+   "mode": "repo_capture",
+   "note": "repo HLTV ranking capture (World ranking on October 12th, 2026)"
+  },
+  {
+   "url": "https://www.hltv.org/matches",
+   "fetched_utc": "2026-10-14T02:43:11Z",
+   "status": 0,
+   "bytes": 69,
+   "sha256": "6e2ececaded4630b7a8888c18c8e58543dee0da33800091aeb5cbea496e69426",
+   "mode": "live",
+   "note": null
+  },
+  {
+   "url": "https://www.hltv.org/results",
+   "fetched_utc": "2026-10-14T02:43:17Z",
+   "status": 0,
+   "bytes": 69,
+   "sha256": "6e2ececaded4630b7a8888c18c8e58543dee0da33800091aeb5cbea496e69426",
+   "mode": "live",
+   "note": null
+  },
+  {
+   "url": "/home/user/MaltaProj1/data/snapshot/latest.json",
+   "fetched_utc": "2026-10-14T02:43:17Z",
+   "status": 200,
+   "bytes": 958210,
+   "sha256": null,
+   "mode": "repo_capture",
+   "note": "repo Pinnacle capture generated 2026-10-13T19:42:13.725774Z"
+  },
+  {
+   "url": "/home/user/MaltaProj1/data/8944bb84/external_lines.csv",
+   "fetched_utc": "2026-10-14T02:43:17Z",
+   "status": 200,
+   "bytes": 18150,
+   "sha256": null,
+   "mode": "repo_capture",
+   "note": "repo secondary-bookmaker capture (EGamersWorld listing of bc.game prices)"
+  },
+  {
+   "url": "/home/user/MaltaProj1/data/8944bb84/ratings.csv",
+   "fetched_utc": "2026-10-14T02:43:17Z",
+   "status": 200,
+   "bytes": 63343,
+   "sha256": null,
+   "mode": "repo_capture",
+   "note": "repo HLTV team rosters capture (read-only)"
+  }
+ ],
+ "note": "Every fetch attempt: URL, UTC minute, HTTP status, byte count, SHA-256, mode."
+}
