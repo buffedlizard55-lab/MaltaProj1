@@ -25,6 +25,7 @@ on:
       - "slate/guards.py"
       - "slate/tests.py"
       - "slate/dashboard.js"
+      - "slate/browser_test.py"
       - ".github/workflows/slate-180a42a0.yml"
   schedule:
     # Hourly; GitHub schedules are best-effort and can be delayed.
@@ -80,6 +81,9 @@ jobs:
       - name: Check browser code
         run: node --check slate/dashboard.js
 
+      - name: Mobile and desktop browser checks
+        run: python slate/browser_test.py
+
       - name: Commit validated data and pages back to this branch
         run: |
           git config user.name "arena-180a42a0"
@@ -110,4 +114,6 @@ jobs:
             slate/data/analysis.json
             slate/data/provenance.json
             slate/data/flags.csv
+            /tmp/slate-390.png
+            /tmp/slate-1280.png
           retention-days: 14

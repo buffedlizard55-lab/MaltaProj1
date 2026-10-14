@@ -123,7 +123,7 @@ class StrictGuards(unittest.TestCase):
         self.assertTrue(guards.kickoff_agrees('2026-10-14T10:00:00Z', '2026-10-14T10:05:00Z'))
 
     def test_hltv_parser_does_not_borrow_next_match_fields(self):
-        html = '<a href="/matches/123/a-vs-b-event">first</a><a href="/matches/124/c-vs-d-event">' + '<div data-unix="1791972000000"><span class="team-name">C</span><span class="team-name">D</span>bo3</div>'
+        html = '<a href="/matches/123/a-vs-b-event">first</a><a href="/matches/124/c-vs-d-event">' + '<div data-unix="1791972000000"><span class="team-name">CC</span><span class="team-name">DD</span>bo3</div>'
         rows = collect.parse_hltv_matches(html)
         self.assertNotIn('123', [r['hltv_match_id'] for r in rows])
         self.assertEqual([r['hltv_match_id'] for r in rows], ['124'])
@@ -152,7 +152,8 @@ class StrictGuards(unittest.TestCase):
                 self.assertFalse(row.get('pick') and not row.get('market_p_a_pct'), row['fixture_id'])
 
     def test_primary_market_provenance_and_math(self):
-        lines = list(csv.DictReader((DATA / 'lines.csv').open()))
+        with (DATA / 'lines.csv').open(encoding='utf-8') as fh:
+            lines = list(csv.DictReader(fh))
         for row in DataInvariants().rows():
             if not row.get('market_p_a_pct'):
                 continue
