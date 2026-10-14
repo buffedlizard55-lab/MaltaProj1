@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Method · Hotspawn CS2 picks</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <h1><a href="index.html">Hotspawn CS2 Pick'em — executive summary</a></h1>
+  <nav class="chips"><a href="index.html">Executive summary</a><a href="picks.html">Picks — every match</a><a href="coverage.html">Coverage vs Hotspawn</a><a href="method.html" class="on">Method</a><a href="sources.html">Sources</a><a href="flagged.html">Flagged for review</a></nav>
+</header>
+<main>
+
+
+<h2>The rule, in order</h2>
+<ol>
+<li><b>T1 — external market, primary book.</b> The project's best available primary quote
+(Pinnacle public guest matchups/markets). Both sides de-vigged:
+<code>p(A) = (1/odds_A) / (1/odds_A + 1/odds_B)</code>. Pick = the higher side.</li>
+<li><b>T2 — external market, secondary book or aggregator</b> (EGamersWorld's public odds table, other
+listed books). Same arithmetic, labelled as secondary.</li>
+<li><b>T3 — our own line from official ratings.</b> Valve Regional Standings points and HLTV World
+Ranking points, each mapped by
+<code>p(A) = 1 / (1 + 10^(−k · (points_A − points_B) / 400))</code> with
+<code>k = 0.463</code> (the value <code>cs2/calibrate.py</code> fits on Valve's own published
+match results). The single-map figure is shown as the headline and the series figure
+(<code>BO(n)</code>) only when the payload or HLTV states the format.</li>
+<li><b>T4 — ranked vs unranked.</b> When one team is in an official list and the other is in neither
+Valve's nor HLTV's, no symmetric rating difference exists. The pick is the ranked team, published as
+<em>qualitative</em>, with the two list checks linked. No number is invented for it.</li>
+<li><b>T5 — nothing usable.</b> No pick, row flagged. (Currently zero rows.)</li>
+</ol>
+<p>When a primary market exists, the market side is the published pick even if the model disagrees; the
+disagreement itself is a flag, and the VRS/HW numbers are printed next to it.</p>
+<h2>What is never used</h2>
+<ul>
+<li>Hotspawn's community pick percentage, its points, its prize pool and its leaderboard. Hotspawn is
+the fixture list and the UTC kickoff — nothing else. The collector does not read a crowd field at all,
+and no column of this board is derived from one.</li>
+<li>Any price that is a cut-off placeholder. A <code>1.80 / 1.80</code> reading is rejected and flagged
+(<code>EXT-PLACEHOLDER-180</code>), because it is the aggregator's default, not a market.</li>
+<li>Any rating a team does not have. Absent stays absent, and the row says which list was checked.</li>
+</ul>
+<h2>Known limits</h2>
+<ul>
+<li>The own line is a rating curve, not a calibrated betting model; it carries no information about
+rosters, stand-ins, map pools or practice, and it is labelled provisional everywhere.</li>
+<li>T2 readings come from an aggregator page and are not independently confirmed against the book it
+names.</li>
+<li>Low-tier fixtures are frequently listed by Hotspawn without a format. Where the format is unknown
+the headline figure is the single-map probability; the <em>pick</em> is unchanged by that, because any
+monotone rating curve orders BO1 and BO3 the same way — only the number moves.</li>
+<li>Real-world availability of a market changes by the minute; each row prints the time its price was
+read, and a price is never carried forward silently.</li>
+</ul>
+<h2>Reproduce</h2>
+<pre>python exec/collect.py                # reads Hotspawn, Valve, HLTV, EGamersWorld
+python scripts/exec_bdc98a9a_build.py # merges with the repo's captured evidence, renders exec/
+python -m unittest tests.test_exec_bdc98a9a -v</pre>
+
+</main>
+<footer>
+  Generated 2026-10-14T02:39:20Z from public sources. Analysis only — not betting advice.
+  Every value on this board links to the source it came from; a value that could not be confirmed is
+  blank and listed on <a href="flagged.html">Flagged for review</a>.
+  <br>Session <code>arena/bdc98a9a</code> · <a href="../index.html">all boards on this site</a> ·
+  <a href="https://play.hotspawn.com/lobby">official Hotspawn lobby</a>
+</footer>
+<script>
+(function () {
+  var box = document.getElementById('pickfilter');
+  if (!box) return;
+  var cards = Array.prototype.slice.call(document.querySelectorAll('[data-teams]'));
+  var chips = Array.prototype.slice.call(document.querySelectorAll('[data-tier]'));
+  function apply() {
+    var q = box.value.toLowerCase().trim();
+    var tier = document.querySelector('[data-tier].on') ? document.querySelector('[data-tier].on').dataset.tier : 'all';
+    cards.forEach(function (card) {
+      var okText = !q || card.dataset.teams.indexOf(q) >= 0;
+      var okTier = tier === 'all' || card.dataset.tier === tier;
+      card.style.display = okText && okTier ? '' : 'none';
+    });
+  }
+  box.addEventListener('input', apply);
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      chips.forEach(function (other) { other.classList.remove('on'); });
+      chip.classList.add('on');
+      apply();
+    });
+  });
+})();
+</script>
+</body>
+</html>

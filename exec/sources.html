@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Sources · Hotspawn CS2 picks</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <h1><a href="index.html">Hotspawn CS2 Pick'em — executive summary</a></h1>
+  <nav class="chips"><a href="index.html">Executive summary</a><a href="picks.html">Picks — every match</a><a href="coverage.html">Coverage vs Hotspawn</a><a href="method.html">Method</a><a href="sources.html" class="on">Sources</a><a href="flagged.html">Flagged for review</a></nav>
+</header>
+<main>
+
+
+<h2>Sources this board reads</h2>
+<div class="tablewrap"><table>
+<thead><tr><th>What</th><th>Where</th><th>Used for</th></tr></thead>
+<tbody>
+<tr><td>Hotspawn Play — CS2 Pick'em lobby</td>
+    <td><a href="https://play.hotspawn.com/cs2-pickems" rel="noopener nofollow">play.hotspawn.com/cs2-pickems</a>
+    and <a href="https://play.hotspawn.com/lobby" rel="noopener nofollow">/lobby</a></td>
+    <td>fixture identity, competition, tier, exact UTC lock/start epochs — never a probability</td></tr>
+<tr><td>Valve Regional Standings (official Valve repository)</td>
+    <td><a href="https://github.com/ValveSoftware/counter-strike_regional_standings" rel="noopener nofollow">https://github.com/ValveSoftware/counter-strike_regional_standings</a></td>
+    <td>official rating points for the own line</td></tr>
+<tr><td>HLTV World Ranking</td>
+    <td><a href="https://www.hltv.org/ranking/teams" rel="noopener nofollow">https://www.hltv.org/ranking/teams</a></td>
+    <td>rating points, and the yes/no of whether a team is ranked at all</td></tr>
+<tr><td>HLTV match pages and per-day listings</td>
+    <td><a href="https://www.hltv.org/matches" rel="noopener nofollow">hltv.org/matches</a></td>
+    <td>series format (BO1/BO3/BO5), kickoff cross-check, per-team rank badge</td></tr>
+<tr><td>External bookmaker lines — primary</td>
+    <td><a href="https://www.pinnacle.com/en/esports/games/cs2/matchups/" rel="noopener nofollow">pinnacle.com</a>
+    (public guest matchups/markets responses)</td>
+    <td>the T1 market probability and the market pick</td></tr>
+<tr><td>External bookmaker lines — secondary</td>
+    <td><a href="https://egamersworld.com/counterstrike/matches" rel="noopener nofollow">egamersworld.com</a>
+    public odds tables (book named on the row)</td>
+    <td>the T2 market probability where no primary quote exists; a <code>1.80/1.80</code> reading is
+    rejected as a placeholder</td></tr>
+</tbody></table></div>
+<h2>This run's fetches</h2>
+<p class="muted">0 HTTP reads recorded in <code>exec/data/live/collect_summary.json</code>
+with status, size and SHA-256. The last 40 are shown.</p>
+<div class="tablewrap"><table>
+<thead><tr><th>Host</th><th>URL</th><th>Status</th><th>Bytes</th><th>Read at (UTC)</th><th>Result</th></tr></thead>
+<tbody><tr><td colspan="6">No live capture in this build — the board is rendered from the last committed evidence.</td></tr></tbody>
+</table></div>
+
+</main>
+<footer>
+  Generated 2026-10-14T02:39:20Z from public sources. Analysis only — not betting advice.
+  Every value on this board links to the source it came from; a value that could not be confirmed is
+  blank and listed on <a href="flagged.html">Flagged for review</a>.
+  <br>Session <code>arena/bdc98a9a</code> · <a href="../index.html">all boards on this site</a> ·
+  <a href="https://play.hotspawn.com/lobby">official Hotspawn lobby</a>
+</footer>
+<script>
+(function () {
+  var box = document.getElementById('pickfilter');
+  if (!box) return;
+  var cards = Array.prototype.slice.call(document.querySelectorAll('[data-teams]'));
+  var chips = Array.prototype.slice.call(document.querySelectorAll('[data-tier]'));
+  function apply() {
+    var q = box.value.toLowerCase().trim();
+    var tier = document.querySelector('[data-tier].on') ? document.querySelector('[data-tier].on').dataset.tier : 'all';
+    cards.forEach(function (card) {
+      var okText = !q || card.dataset.teams.indexOf(q) >= 0;
+      var okTier = tier === 'all' || card.dataset.tier === tier;
+      card.style.display = okText && okTier ? '' : 'none';
+    });
+  }
+  box.addEventListener('input', apply);
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      chips.forEach(function (other) { other.classList.remove('on'); });
+      chip.classList.add('on');
+      apply();
+    });
+  });
+})();
+</script>
+</body>
+</html>
