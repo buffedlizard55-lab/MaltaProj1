@@ -33,6 +33,7 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import csv
 import gzip
 import hashlib
 import json
@@ -365,7 +366,7 @@ def hltv_ranking() -> dict:
     out.update({"status": got["status"], "sha256": got["sha256"], "teams_total": len(out["teams"]),
                 "blocks_seen": len(got["body"].split('<div class="ranked-team')) - 1,
                 "names_sample": list(out["teams"])[:5],
-                "forze_like": [n for n in out["teams"] if "orze" in n or "LFO" in n][:5]})
+                "forze_like": [n for n in out["teams"] if "forze" in n.lower() or "lfo" in n.lower()][:6]})
     return out
 
 
@@ -530,14 +531,47 @@ def match_day_row(fixture: dict, rows: list[dict]) -> dict | None:
     return best[1] if best else None
 
 
-def hltv_match_details(fixtures: list[dict], day_cache: dict, limit: int = 34) -> list[dict]:
+def repo_hltv_urls() -> dict[str, str]:
+    """Per-fixture HLTV match URLs already captured by the sessions that own HLTV collection.
+
+    Read-only: this run verifies them live rather than re-deriving them from a listing page, which
+    HLTV serves to a bot check far more often than the match pages themselves.
+    """
+    out: dict[str, str] = {}
+    for rel, id_key, url_key in (
+        ("data/8944bb84/external_lines.csv", "match_id", "hltv_match_url"),
+        ("slate/data/analysis.csv", "fixture_id", "hltv_url"),
+        ("cs2/data/analysis.csv", "fixture_id", "hltv_match_url"),
+        ("live/data/slate.csv", "match_id", "hltv_url"),
+    ):
+        path = ROOT / rel
+        if not path.exists():
+            continue
+        with path.open(newline="", encoding="utf-8") as fh:
+            for row in csv.DictReader(fh):
+                url = (row.get(url_key) or "").strip()
+                if url.startswith("https://www.hltv.org/matches/") and row.get(id_key):
+                    out.setdefault(str(row[id_key]), url)
+    return out
+
+
+def hltv_match_details(fixtures: list[dict], day_cache: dict, limit: int = 40) -> list[dict]:
     """Per-match HLTV pages for the fixtures this board publishes: format + rank badges."""
     written = []
+    known = repo_hltv_urls()
     for fixture in fixtures[:limit]:
-        rows = hltv_day(fixture["start_utc"][:10], day_cache)
-        row = match_day_row(fixture, rows)
-        if not row:
-            continue
+        url = known.get(str(fixture["fixture_id"]))
+        if url:
+            match = re.search(r"/matches/(\d+)/", url)
+            row = {"hltv_url": url, "hltv_match_id": match.group(1) if match else None,
+                   "format": None, "event": None, "start_utc": fixture["start_utc"],
+                   "url_source": "captured by an owner session; re-read live here"}
+        else:
+            rows = hltv_day(fixture["start_utc"][:10], day_cache)
+            found = match_day_row(fixture, rows)
+            if not found:
+                continue
+            row = {**found, "url_source": "HLTV per-day listing read by this run"}
         page = hltv_match_page(row["hltv_url"])
         out = {
             "fixture_id": fixture["fixture_id"],
@@ -548,6 +582,7 @@ def hltv_match_details(fixtures: list[dict], day_cache: dict, limit: int = 34) -
             "best_of": page.get("best_of") or (int(row["format"][-1]) if row.get("format") else None),
             "best_of_source": ("HLTV match page" if page.get("best_of")
                                else "HLTV listing" if row.get("format") else None),
+            "url_source": row.get("url_source"),
             "team_ranks": page.get("team_ranks") or {},
             "event_url": page.get("event_url"), "event_name": page.get("event_name"),
             "status": page.get("status"), "sha256": page.get("sha256"), "error": page.get("error"),
