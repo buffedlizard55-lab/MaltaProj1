@@ -1,0 +1,52 @@
+{
+  "session": "arena/63ee81ba",
+  "branch": "arena/63ee81ba-maltaproj1",
+  "snapshot_utc": "2026-10-14T02:48:00Z",
+  "generated_by": "scripts/63ee81ba_build.py",
+  "hotspawn_crowd_data_used": false,
+  "model": {
+    "k": 0.4568,
+    "source": "model/input/vrs/calibration.json (adopted=true, k_published)",
+    "map_formula": "1/(1+10^(-k*(A-B)/400))",
+    "series_transform": {
+      "BO1": "p",
+      "BO3": "p^2(3-2p)"
+    }
+  },
+  "counts": {
+    "open_fixtures": 28,
+    "with_external_market_line": 24,
+    "with_placeholders_rejected": 4,
+    "with_own_originated_line": 28,
+    "with_research_line": 1,
+    "with_pick": 28,
+    "obvious_locks": 11,
+    "strong_picks": 10,
+    "solid_leans": 4,
+    "close_tossups": 3,
+    "locked_week_listed": 4,
+    "s_tier": 4,
+    "b_tier": 8,
+    "c_tier": 16,
+    "unique_teams": 40
+  },
+  "sources": {
+    "hotspawn_cs2_lobby": "https://play.hotspawn.com/cs2-pickems",
+    "hotspawn_payload_read_utc": "2026-10-14T02:38:00Z",
+    "hotspawn_ci_capture_utc": "2026-10-14T02:18:56Z",
+    "valve_vrs_file": "live/2026/standings_global_2026_10_05.md",
+    "valve_vrs_commit": "eec4853d7bcf0f1f7efe7f0d901234bef7e98b75",
+    "valve_vrs_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
+    "vrs_local_sha256": "df96e7fc3cd91a2687ec08cac0128e50cc4e4e55346581679572e881d79ae61b",
+    "vrs_local_fetched_utc": "2026-10-14T02:35:00Z",
+    "hltv_ranking_url": "https://www.hltv.org/ranking/teams/2026/october/12",
+    "hltv_ranking_snapshot": "2026-10-12 (snapshot verified 2026-10-14T02:26:00Z via data/8944bb84/ratings.csv)",
+    "egamersworld": "https://egamersworld.com/counterstrike/matches",
+    "egw_read_utc": "2026-10-14T02:48:00Z",
+    "pinnacle": "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
+    "pinnacle_read_utc": "2026-10-14T01:48:00Z",
+    "polymarket": "https://polymarket.com/esports/cs2/cct-europe",
+    "polymarket_read_utc": "2026-10-14T02:46:00Z"
+  },
+  "flags": 10
+}

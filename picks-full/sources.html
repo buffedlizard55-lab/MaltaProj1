@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Official sources — Hotspawn CS2 Full Picks</title>
+<style>
+:root{--bg:#0b0f17;--panel:#121826;--panel2:#18202f;--line:#26314a;--fg:#e9eef7;--muted:#9aa9c2;--accent:#4ea8de;--accent2:#38bdf8;--green:#22c55e;--greenbg:rgba(34,197,94,.13);--amber:#f59e0b;--amberbg:rgba(245,158,11,.14);--red:#ef4444;--redbg:rgba(239,68,68,.15);--purple:#a855f7;--purplebg:rgba(168,85,247,.15)}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+a{color:var(--accent2);text-decoration:none}a:hover{text-decoration:underline}
+.topbar{background:#070b13;border-bottom:1px solid var(--line);padding:10px 12px;position:sticky;top:0;z-index:40}
+.topbar .in{max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between}
+.brand{font-weight:700;font-size:14.5px}.brand b{color:var(--accent2)}
+.nav{display:flex;flex-wrap:wrap;gap:5px}
+.nav a{padding:5px 9px;border-radius:7px;background:var(--panel);border:1px solid var(--line);font-size:12px;color:var(--fg);white-space:nowrap}
+.nav a.act,.nav a:hover{background:var(--accent);color:#04101c;border-color:var(--accent);text-decoration:none;font-weight:700}
+.wrap{max-width:1100px;margin:0 auto;padding:14px 12px 48px}
+.hero{background:linear-gradient(135deg,#111827,#16213c);border:1px solid var(--line);border-radius:14px;padding:18px 16px;margin:12px 0}
+.hero h1{margin:0 0 6px;font-size:clamp(20px,4.5vw,28px);line-height:1.2}
+.hero p{margin:0;color:var(--muted);font-size:13.5px}
+.banner{background:rgba(56,189,248,.08);border-left:4px solid var(--accent2);padding:10px 12px;border-radius:8px;font-size:12.8px;margin-top:12px;color:#cfe3f7}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:14px 0}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px}
+.kpi b{display:block;font-size:24px;margin:2px 0}.kpi span{color:var(--muted);font-size:11.5px;text-transform:uppercase;letter-spacing:.04em}
+.kpi i{font-style:normal;color:var(--muted);font-size:11.5px;display:block}
+section.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;margin:16px 0}
+section.card h2{margin:0 0 4px;font-size:17px}
+section.card .desc{margin:0 0 10px;color:var(--muted);font-size:12.8px}
+table{width:100%;border-collapse:collapse;font-size:12.8px}
+.tw{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:10px}
+th{background:#0d1322;color:var(--muted);text-transform:uppercase;font-size:10.8px;letter-spacing:.03em;text-align:left;padding:8px 9px;position:sticky;top:0}
+td{padding:9px;border-bottom:1px solid var(--line);vertical-align:top}
+tbody tr:nth-child(even){background:var(--panel2)}
+tbody tr:hover{background:rgba(78,168,222,.08)}
+.badge{display:inline-block;padding:2px 7px;border-radius:6px;font-size:10.8px;font-weight:700;white-space:nowrap}
+.b-s{background:var(--purplebg);color:#d8b4fe;border:1px solid var(--purple)}
+.b-b{background:rgba(56,189,248,.15);color:#7dd3fc;border:1px solid var(--accent2)}
+.b-c{background:rgba(148,163,184,.15);color:#cbd5e1;border:1px solid #64748b}
+.b-lock{background:var(--greenbg);color:#86efac;border:1px solid var(--green)}
+.b-strong{background:rgba(56,189,248,.15);color:#7dd3fc;border:1px solid var(--accent2)}
+.b-lean{background:var(--amberbg);color:#fcd34d;border:1px solid var(--amber)}
+.b-toss{background:rgba(249,115,22,.15);color:#fdba74;border:1px solid #f97316}
+.b-unv{background:var(--redbg);color:#fca5a5;border:1px solid var(--red)}
+.b-research{background:var(--purplebg);color:#d8b4fe;border:1px solid var(--purple)}
+.srcs{display:flex;flex-wrap:wrap;gap:4px;margin-top:5px}
+.sp{display:inline-block;padding:2px 7px;border-radius:5px;background:#0d1322;border:1px solid var(--line);font-size:10.8px;color:var(--accent2);white-space:nowrap}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:11.5px}
+.mut{color:var(--muted);font-size:11.8px}
+.cards{display:grid;grid-template-columns:1fr;gap:10px}
+@media(min-width:900px){.cards{grid-template-columns:1fr 1fr}}
+.fc{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:8px}
+.fc .head{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.fc .mm{font-size:15px;font-weight:750}
+.fc .meta{font-size:11.8px;color:var(--muted)}
+.bar{display:flex;height:10px;border-radius:6px;overflow:hidden;background:#22304c;margin:2px 0}
+.bar .fa{background:var(--accent2)}.bar .fb{background:#5b6b85}
+.pct{display:flex;justify-content:space-between;font-size:13px;font-weight:700}
+.pct .na{color:#7dd3fc}.pct .nb{color:#cbd5e1}
+.pickbox{background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--green);border-radius:9px;padding:9px 10px}
+.pickbox.research{border-left-color:var(--purple)}
+.pickbox .pk{font-size:15.5px;font-weight:800}
+.pickbox .bb{font-size:11.5px;color:var(--muted);margin-top:2px}
+.flaglink{font-size:11.5px}
+footer{margin-top:26px;padding:14px;border-top:1px solid var(--line);color:var(--muted);font-size:11.8px;text-align:center}
+ul.plain{padding-left:18px;margin:6px 0}ul.plain li{margin:4px 0;color:var(--muted);font-size:12.8px}
+details{margin:10px 0}summary{cursor:pointer;font-weight:600;color:var(--muted);font-size:13px}
+</style></head><body>
+<header class="topbar"><div class="in">
+<div class="brand"><b>Full picks</b> · Hotspawn CS2 Pick'em</div>
+<nav class="nav"><a href="index.html">All picks (28)</a><a href="s-tier.html">S-Tier (4)</a><a href="b-tier.html">B-Tier (9)</a><a href="c-tier.html">C-Tier (15)</a><a href="tournaments.html">Tournaments</a><a href="market-lines.html">Market lines</a><a href="own-lines.html">Own lines</a><a href="sources.html" class=act>Sources</a><a href="methodology.html">Method</a><a href="flagged.html">Flagged</a></nav></div></header>
+<main class="wrap">
+      <div class="hero"><h1>Official sources & provenance</h1>
+      <p>Every row on this board links to its source. Local evidence: <code>data/63ee81ba/</code> (CSVs + VRS file with sha256) and <code>data/8944bb84/</code> (team ratings).</p></div>
+      <section class="card"><div class="tw"><table><thead><tr><th>Source</th><th>Role</th><th>Snapshot / timestamp</th><th>Link</th></tr></thead>
+      <tbody><tr><td><b>Hotspawn CS2 Pick&#x27;em lobby</b></td><td>Fixture list, team order, tiers/points, start/lock epochs (crowd % never used)</td><td class="mut">read 2026-10-14T02:38:00Z (live) · CI capture 2026-10-14T02:18:56Z</td><td><a class="sp" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">open</a></td></tr><tr><td><b>Valve Regional Standings (VRS) 2026-10-05</b></td><td>Official team ratings + rosters — primary input for own lines</td><td class="mut">commit eec4853d7bcf · local sha256 df96e7fc3cd91a26… · fetched 2026-10-14T02:35:00Z</td><td><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md" target="_blank" rel="noopener">open</a></td></tr><tr><td><b>Valve VRS model code</b></td><td>Calibration basis (k) + roster-identity rule (PF-02)</td><td class="mut">commit eec4853d7bcf</td><td><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/tree/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/model" target="_blank" rel="noopener">open</a></td></tr><tr><td><b>HLTV World Ranking 2026-10-12</b></td><td>Secondary official ranking + roster cross-checks</td><td class="mut">snapshot 2026-10-12 (snapshot verified 2026-10-14T02:26:00Z via data/8944bb84/ratings.csv)</td><td><a class="sp" href="https://www.hltv.org/ranking/teams/2026/october/12" target="_blank" rel="noopener">open</a></td></tr><tr><td><b>HLTV official match pages (28)</b></td><td>Series format (BO1/BO3), lineups, results</td><td class="mut">matches 2399134–2399471, verified 2026-10-14</td><td><a class="sp" href="https://www.hltv.org/matches" target="_blank" rel="noopener">open</a></td></tr><tr><td><b>EGamersWorld (bc.game feed)</b></td><td>Primary outside moneylines (24/28 priced; 4 placeholders rejected)</td><td class="mut">read 2026-10-14T02:48:00Z (listing chunks 0–9, 02:40–02:48Z); cross-ref 2026-10-14T01:48:00Z</td><td><a class="sp" href="https://egamersworld.com/counterstrike/matches" target="_blank" rel="noopener">open</a></td></tr><tr><td><b>Pinnacle (direct guest API)</b></td><td>Cross-check sharp lines (7 fixtures)</td><td class="mut">read 2026-10-14T01:48:00Z (session 8944bb84, re-used with citation)</td><td><a class="sp" href="https://www.pinnacle.com/en/esports/games/cs2/matchups/" target="_blank" rel="noopener">open</a></td></tr><tr><td><b>Polymarket CCT Europe</b></td><td>Cross-check prediction-market prices (7 fixtures; 2 unusable, flagged)</td><td class="mut">read 2026-10-14T02:46:00Z, view-only (PF-07)</td><td><a class="sp" href="https://polymarket.com/esports/cs2/cct-europe" target="_blank" rel="noopener">open</a></td></tr></tbody></table></div></section>
+<footer>Session arena/63ee81ba · snapshot 2026-10-14T02:48:00Z ·
+<a href="../index.html">repo home</a> ·
+data: <a href="../data/63ee81ba/picks.csv">picks.csv</a> ·
+<a href="../data/63ee81ba/market_lines.csv">market_lines.csv</a> ·
+<a href="../data/63ee81ba/own_lines.csv">own_lines.csv</a> ·
+<a href="../data/63ee81ba/flags.csv">flags.csv</a> ·
+Independent research — not betting advice.</footer>
+</main></body></html>

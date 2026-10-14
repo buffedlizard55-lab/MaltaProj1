@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Our own originated lines — Hotspawn CS2 Full Picks</title>
+<style>
+:root{--bg:#0b0f17;--panel:#121826;--panel2:#18202f;--line:#26314a;--fg:#e9eef7;--muted:#9aa9c2;--accent:#4ea8de;--accent2:#38bdf8;--green:#22c55e;--greenbg:rgba(34,197,94,.13);--amber:#f59e0b;--amberbg:rgba(245,158,11,.14);--red:#ef4444;--redbg:rgba(239,68,68,.15);--purple:#a855f7;--purplebg:rgba(168,85,247,.15)}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+a{color:var(--accent2);text-decoration:none}a:hover{text-decoration:underline}
+.topbar{background:#070b13;border-bottom:1px solid var(--line);padding:10px 12px;position:sticky;top:0;z-index:40}
+.topbar .in{max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between}
+.brand{font-weight:700;font-size:14.5px}.brand b{color:var(--accent2)}
+.nav{display:flex;flex-wrap:wrap;gap:5px}
+.nav a{padding:5px 9px;border-radius:7px;background:var(--panel);border:1px solid var(--line);font-size:12px;color:var(--fg);white-space:nowrap}
+.nav a.act,.nav a:hover{background:var(--accent);color:#04101c;border-color:var(--accent);text-decoration:none;font-weight:700}
+.wrap{max-width:1100px;margin:0 auto;padding:14px 12px 48px}
+.hero{background:linear-gradient(135deg,#111827,#16213c);border:1px solid var(--line);border-radius:14px;padding:18px 16px;margin:12px 0}
+.hero h1{margin:0 0 6px;font-size:clamp(20px,4.5vw,28px);line-height:1.2}
+.hero p{margin:0;color:var(--muted);font-size:13.5px}
+.banner{background:rgba(56,189,248,.08);border-left:4px solid var(--accent2);padding:10px 12px;border-radius:8px;font-size:12.8px;margin-top:12px;color:#cfe3f7}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:14px 0}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px}
+.kpi b{display:block;font-size:24px;margin:2px 0}.kpi span{color:var(--muted);font-size:11.5px;text-transform:uppercase;letter-spacing:.04em}
+.kpi i{font-style:normal;color:var(--muted);font-size:11.5px;display:block}
+section.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;margin:16px 0}
+section.card h2{margin:0 0 4px;font-size:17px}
+section.card .desc{margin:0 0 10px;color:var(--muted);font-size:12.8px}
+table{width:100%;border-collapse:collapse;font-size:12.8px}
+.tw{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:10px}
+th{background:#0d1322;color:var(--muted);text-transform:uppercase;font-size:10.8px;letter-spacing:.03em;text-align:left;padding:8px 9px;position:sticky;top:0}
+td{padding:9px;border-bottom:1px solid var(--line);vertical-align:top}
+tbody tr:nth-child(even){background:var(--panel2)}
+tbody tr:hover{background:rgba(78,168,222,.08)}
+.badge{display:inline-block;padding:2px 7px;border-radius:6px;font-size:10.8px;font-weight:700;white-space:nowrap}
+.b-s{background:var(--purplebg);color:#d8b4fe;border:1px solid var(--purple)}
+.b-b{background:rgba(56,189,248,.15);color:#7dd3fc;border:1px solid var(--accent2)}
+.b-c{background:rgba(148,163,184,.15);color:#cbd5e1;border:1px solid #64748b}
+.b-lock{background:var(--greenbg);color:#86efac;border:1px solid var(--green)}
+.b-strong{background:rgba(56,189,248,.15);color:#7dd3fc;border:1px solid var(--accent2)}
+.b-lean{background:var(--amberbg);color:#fcd34d;border:1px solid var(--amber)}
+.b-toss{background:rgba(249,115,22,.15);color:#fdba74;border:1px solid #f97316}
+.b-unv{background:var(--redbg);color:#fca5a5;border:1px solid var(--red)}
+.b-research{background:var(--purplebg);color:#d8b4fe;border:1px solid var(--purple)}
+.srcs{display:flex;flex-wrap:wrap;gap:4px;margin-top:5px}
+.sp{display:inline-block;padding:2px 7px;border-radius:5px;background:#0d1322;border:1px solid var(--line);font-size:10.8px;color:var(--accent2);white-space:nowrap}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:11.5px}
+.mut{color:var(--muted);font-size:11.8px}
+.cards{display:grid;grid-template-columns:1fr;gap:10px}
+@media(min-width:900px){.cards{grid-template-columns:1fr 1fr}}
+.fc{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:8px}
+.fc .head{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.fc .mm{font-size:15px;font-weight:750}
+.fc .meta{font-size:11.8px;color:var(--muted)}
+.bar{display:flex;height:10px;border-radius:6px;overflow:hidden;background:#22304c;margin:2px 0}
+.bar .fa{background:var(--accent2)}.bar .fb{background:#5b6b85}
+.pct{display:flex;justify-content:space-between;font-size:13px;font-weight:700}
+.pct .na{color:#7dd3fc}.pct .nb{color:#cbd5e1}
+.pickbox{background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--green);border-radius:9px;padding:9px 10px}
+.pickbox.research{border-left-color:var(--purple)}
+.pickbox .pk{font-size:15.5px;font-weight:800}
+.pickbox .bb{font-size:11.5px;color:var(--muted);margin-top:2px}
+.flaglink{font-size:11.5px}
+footer{margin-top:26px;padding:14px;border-top:1px solid var(--line);color:var(--muted);font-size:11.8px;text-align:center}
+ul.plain{padding-left:18px;margin:6px 0}ul.plain li{margin:4px 0;color:var(--muted);font-size:12.8px}
+details{margin:10px 0}summary{cursor:pointer;font-weight:600;color:var(--muted);font-size:13px}
+</style></head><body>
+<header class="topbar"><div class="in">
+<div class="brand"><b>Full picks</b> · Hotspawn CS2 Pick'em</div>
+<nav class="nav"><a href="index.html">All picks (28)</a><a href="s-tier.html">S-Tier (4)</a><a href="b-tier.html">B-Tier (9)</a><a href="c-tier.html">C-Tier (15)</a><a href="tournaments.html">Tournaments</a><a href="market-lines.html">Market lines</a><a href="own-lines.html" class=act>Own lines</a><a href="sources.html">Sources</a><a href="methodology.html">Method</a><a href="flagged.html">Flagged</a></nav></div></header>
+<main class="wrap">
+      <div class="hero"><h1>Own lines — official VRS + HLTV research</h1>
+      <p>Map probability from Valve VRS points with the repo-adopted calibrated slope k = 0.4568
+      (<a href="../model/input/vrs/calibration.json">model/input/vrs/calibration.json</a>), series transform
+      BO1: p, BO3: p²(3−2p) — format verified on each HLTV match page. HLTV ranks shown as cross-check only.
+      Team ratings source of record: <a href="../data/8944bb84/ratings.csv">data/8944bb84/ratings.csv</a> (verified 2026-10-14T02:26:00Z).</p></div>
+      <section class="card"><div class="tw"><table><thead><tr><th>ID</th><th>Matchup</th><th>VRS (line anchors)</th>
+      <th>HLTV cross-check</th><th>Own series P(A)/P(B)</th><th>Method</th><th>Flags</th></tr></thead>
+      <tbody>
+        <tr><td class="mono"><a href="index.html#f-1081111">#1081111</a></td>
+        <td><b>Enjoy</b> vs <b>B8 Academy</b> (BO3)</td>
+        <td><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L143" target="_blank" rel="noopener">#138 (871)</a> vs
+            <a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L266" target="_blank" rel="noopener">#261 (631)</a></td>
+        <td class="mut">HLTV #199 / #229</td>
+        <td><b>72.2% / 27.8%</b> <span class="mono">(fair 1.39/3.60)</span></td>
+        <td class="mut">Own VRS model, calibrated k=0.4568, BO3 transform</td>
+        <td class="mut"></td></tr>
+        <tr><td class="mono"><a href="index.html#f-1079621">#1079621</a></td>
+        <td><b>Gothic</b> vs <b>Lavked</b> (BO3)</td>
+        <td><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L216" target="_blank" rel="noopener">#211 (705)</a> vs
+            <a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L148" target="_blank" rel="noopener">#143 (862)</a></td>
+        <td class="mut">HLTV #NR / #140</td>
+        <td><b>34.9% / 65.1%</b> <span class="mono">(fair 2.87/1.54)</span></td>
+        <td class="mut">Own VRS model, calibrated k=0.4568, BO3 transform</td>
+        <td class="mut"></td></tr>
+        <tr><td class="mono"><a href="index.html#f-1080176">#1080176</a></td>
+        <td><b>9z</b> vs <b>Aurora</b> (BO3)</td>
+        <td><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L22" target="_blank" rel="noopener">#17 (1543)</a> vs
+            <a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L14" target="_blank" rel="noopener">#9 (1716)</a></td>
+        <td class="mut">HLTV #17 / #6</td>
+        <td><b>33.5% / 66.5%</b> <span class="mono">(fair 2.99/1.50)</span></td>
+        <td class="mut">Own VRS model, calibrated k=0.4568, BO3 transform</td>
+        <td class="mut"></td></tr>
+        <tr><td class="mono"><a href="index.html#f-1079438">#1079438</a></td>
+        <td><b>Astralis</b> vs <b>Sashi</b> (BO3)</td>
+        <td><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L15" target="_blank" rel="noopener">#10 (1674)</a> vs
+            <a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L78" target="_blank" rel="noopener">#73 (1131)</a></td>
+        <td class="mut">HLTV #15 / #NR</td>
+        <td><b>90.2% / 9.8%</b> <span class="mono">(fair 1.11/10.20)</span></td>
+        <td class="mut">Own VRS model, calibrated k=0.4568, BO3 transform</td>
+        <td class="mut"></td></tr>
+        <tr><td class="mono"><a href="index.html#f-1079439">#1079439</a></td>
+        <td><b>HOTU</b> vs <b>Fnatic</b> (BO3)</td>
+        <td><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L36" target="_blank" rel="noopener">#31 (1437)</a> vs
+            <a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L40" target="_blank" rel="noopener">#35 (1417)</a></td>
+        <td class="mut">HLTV #41 / #36</td>
+        <td><b>52.0% / 48.0%</b> <span class="mono">(fair 1.92/2.08)</span></td>
+        <td class="mut">Own VRS model, calibrated k=0.4568, BO3 transform</td>
+        <td class="mut"></td></tr>
+        <tr><td class="mono"><a href="index.html#f-1081112">#1081112</a></td>
+        <td><b>Banda chuya</b> vs <b>6666</b> (BO3)</td>
+        <td><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L170" target="_blank" rel="noopener">#165 (801)</a> vs
+            <a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L132" target="_blank" rel="noopener">#127 (923)</a></td>
+        <td class="mut">HLTV #NR / #80</td>
+        <td><b>38.2% / 61.8%</b> <span class="mono">(fair 2.62/1.62)</span></td>
+        <td class="mut">Own VRS model, calibrated k=0.4568, BO3 transform</td>
+        <td class="mut">PF-01</td></tr>
+        <tr><td class="mono"><a href="index.html#f-1079622">#1079622</a></td>
+        <td><b>ex-RUSTEC</b> vs <b>mellren</b> (BO3)</td>
+        <td><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L97" target="_blank" rel="noopener">#92 (1066)</a> vs
+            <a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L130" target="_blank" rel="noopener">#125 (932)</a></td>
+        <td class="mut">HLTV #79 / #94</td>
+        <td><b>62.9% / 37.1%</b> <span class="mono">(fair 1.59/2.70)</span></td>
+        <td class="mut">Own VRS model, calibrated k=0.4568, BO3 transform</td>
+        <td class="mut"></td></tr>
+        <tr><td class="mono"><a href="index.html#f-1080177">#1080177</a></td>
+        <td><b>Falcons</b> vs <b>Ninjas in Pyjamas</b> (BO3)</td>
+        <td><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L11" target="_blank" rel="noopener">#6 (1843)</a> vs
+            <a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L23" target="_blank" rel="noopener">#18 (1534)</a></td>
+        <td class="mut">HLTV #5 / #26</td>
+        <td><b>77.5% / 22.5%</b> <span class="mono">(fair 1.29/4.44)</span></td>
+        <td class="mut">Own VRS model, calibrated k=0.4568, BO3 transform</td>
+        <td class="mut"></td></tr>
+        <tr><td class="mono"><a href="index.html#f-1080178">#1080178</a></td>
+        <td><b>Legacy</b> vs <b>PARIVISION</b> (BO3)</td>
+        <td><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L7" target="_blank" rel="noopener">#2 (1931)</a> vs
+            <a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L41" target="_blank" rel="noopener">#36 (1411)</a></td>
+        <td class="mut">HLTV #7 / #11</td>
+        <td><b>89.3% / 10.7%</b> <span class="mono">(fair 1.12/9.35)</span></td>
+        <td class="mut">Own VRS model, calibrated k=0.4568, BO3 transform</td>
+        <td class="mut"></td></tr>
+        <tr><td class="mono"><a href="index.html#f-1081113">#1081113</a></td>
+        <td><b>Ryvex</b> vs <b>PCIFIC</b> (BO3)</td>
+        <td><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L212" target="_blank" rel="noopener">#207 (714)</a> vs
+            <a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L144" target="_blank" rel="noopener">#139 (870)</a></td>
+        <td class="mut">HLTV #181 / #135</td>
+        <td><b>35.0% / 65.0%</b> <span class="mono">(fair 2.86/1.54)</span></td>
+        <td class="mut">Own VRS model, calibrated k=0.4568, BO3 transform</td>
+        <td class="mut">FL-IDENTITY-PCIFIC;PF-01</td></tr>
+        <tr><td class="mono"><a href="index.html#f-1079623">#1079623</a></td>
+        <td><b>G2 Ares</b> vs <b>The Last Resort</b> (BO3)</td>
+        <td><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L134" target="_blank" rel="noopener">#129 (913)</a> vs
+            <a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L131" target="_blank" rel="noopener">#126 (926)</a></td>
+        <td class="mut">HLTV #103 / #159</td>
+        <td><b>48.7% / 51.3%</b> <span class="mono">(fair 2.05/1.95)</span></td>
+        <td class="mut">Own VRS model, calibrated k=0.4568, BO3 transform</td>
+        <td class="mut"></td></tr>
+        <tr><td class="mono"><a href="index.html#f-1080179">#1080179</a></td>
+        <td><b>FURIA</b> vs <b>BetBoom</b> (BO3)</td>
+        <td><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L12" target="_blank" rel="noopener">#7 (1829)</a> vs
+            <a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L16" target="_blank" rel="noopener">#11 (1596)</a></td>
+        <td class="mut">HLTV #4 / #14</td>
+        <td><b>71.6% / 28.4%</b> <span class="mono">(fair 1.40/3.52)</span></td>
+        <td class="mut">Own VRS model, calibrated k=0.4568, BO3 transform</td>
+        <td class="mut"></td></tr>
+        <tr><td class="mono"><a href="index.html#f-1079624">#1079624</a></td>
+        <td><b>FORZE Reload</b> vs <b>LFO 10</b> (BO3)</td>
+        <td><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L89" target="_blank" rel="noopener">#84 (1100)</a> vs
+            <a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L161" target="_blank" rel="noopener">#156 (813) <span class="badge b-research">research-mapped</span></a></td>
+        <td class="mut">HLTV #75 / #NR</td>
+        <td><b>75.9% / 24.1%</b> <span class="mono">(fair 1.32/4.15)</span></td>
+        <td class="mut">RESEARCH (roster-mapped) — Own VRS model, calibrated k=0.4568, BO3 transform</td>
+        <td class="mut">FL-UNVERIFIED-TEAM;PF-01;PF-02;PF-04</td></tr>
+        <tr><td class="mono"><a href="index.html#f-1080279">#1080279</a></td>
+        <td><b>WROTBERRY</b> vs <b>EAC</b> (BO1)</td>
+        <td><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L65" target="_blank" rel="noopener">#60 (1201)</a> vs
+            <a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L108" target="_blank" rel="noopener">#103 (1035)</a></td>
+        <td class="mut">HLTV #109 / #110</td>
+        <td><b>60.7% / 39.3%</b> <span class="mono">(fair 1.65/2.54)</span></td>
+        <td class="mut">Own VRS model, calibrated k=0.4568, BO1 transform</td>
+        <td class="mut"></td></tr>
+        <tr><td class="mono"><a href="index.html#f-1079440">#1079440</a></td>
+        <td><b>MIBR</b> vs <b>BC.Game</b> (BO3)</td>
+        <td><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L17" target="_blank" rel="noopener">#12 (1585)</a> vs
+            <a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L55" target="_blank" rel="noopener">#50 (1318)</a></td>
+        <td class="mut">HLTV #12 / #70</td>
+        <td><b>74.3% / 25.7%</b> <span class="mono">(fair 1.35/3.89)</span></td>
+        <td class="mut">Own VRS model, calibrated k=0.4568, BO3 transform</td>
+        <td class="mut"></td></tr>
+        <tr><td class="mono"><a href="index.html#f-1079442">#1079442</a></td>
+        <td><b>Heroic</b> vs <b>Envy</b> (BO3)</td>
+        <td><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L20" target="_blank" rel="noopener">#15 (1550)</a> vs
+            <a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L26" target="_blank" rel="noopener">#21 (1500)</a></td>
+        <td class="mut">HLTV #30 / #20</td>
+        <td><b>54.9% / 45.1%</b> <span class="mono">(fair 1.82/2.22)</span></td>
+        <td class="mut">Own VRS model, calibrated k=0.4568, BO3 transform</td>
+        <td class="mut"></td></tr>
+        <tr><td class="mono"><a href="index.html#f-1080280">#1080280</a></td>
+        <td><b>ENCE</b> vs <b>BOJONG</b> (BO1)</td>
+        <td><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L110" target="_blank" rel="noopener">#105 (1025)</a> vs
+            <a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L368" target="_blank" rel="noopener">#363 (463)</a></td>
+        <td class="mut">HLTV #114 / #220</td>
+        <td><b>81.4% / 18.6%</b> <span class="mono">(fair 1.23/5.38)</span></td>
+        <td class="mut">Own VRS model, calibrated k=0.4568, BO1 transform</td>
+        <td class="mut"></td></tr>
+        <tr><td class="mono"><a href="index.html#f-1080281">#1080281</a></td>
+        <td><b>WROTBERRY</b> vs <b>ENCE</b> (BO1)</td>
+        <td><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L65" target="_blank" rel="noopener">#60 (1201)</a> vs
+            <a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L110" target="_blank" rel="noopener">#105 (1025)</a></td>
+        <td class="mut">HLTV #109 / #114</td>
+        <td><b>61.4% / 38.6%</b> <span class="mono">(fair 1.63/2.59)</span></td>
+        <td class="mut">Own VRS model, calibrated k=0.4568, BO1 transform</td>
+        <td class="mut"></td></tr>
+        <tr><td class="mono"><a href="index.html#f-1080282">#1080282</a></td>
+        <td><b>EAC</b> vs <b>BOJONG</b> (BO1)</td>
+        <td><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L108" target="_blank" rel="noopener">#103 (1035)</a> vs
+            <a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L368" target="_blank" rel="noopener">#363 (463)</a></td>
+        <td class="mut">HLTV #110 / #220</td>
+        <td><b>81.8% / 18.2%</b> <span class="mono">(fair 1.22/5.49)</span></td>
+        <td class="mut">Own VRS model, calibrated k=0.4568, BO1 transform</td>
+        <td class="mut"></td></tr>
+        <tr><td class="mono"><a href="index.html#f-1080283">#1080283</a></td>
+        <td><b>WROTBERRY</b> vs <b>BOJONG</b> (BO1)</td>
+        <td><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L65" target="_blank" rel="noopener">#60 (1201)</a> vs
+            <a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L368" target="_blank" rel="noopener">#363 (463)</a></td>
+        <td class="mut">HLTV #109 / #220</td>
+        <td><b>87.4% / 12.6%</b> <span class="mono">(fair 1.14/7.94)</span></td>
+        <td class="mut">Own VRS model, calibrated k=0.4568, BO1 transform</td>
+        <td class="mut"></td></tr>
+        <tr><td class="mono"><a href="index.html#f-1080284">#1080284</a></td>
+        <td><b>EAC</b> vs <b>ENCE</b> (BO1)</td>
+        <td><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L108" target="_blank" rel="noopener">#103 (1035)</a> vs
+            <a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L110" target="_blank" rel="noopener">#105 (1025)</a></td>
+        <td class="mut">HLTV #110 / #114</td>
+        <td><b>50.7% / 49.3%</b> <span class="mono">(fair 1.97/2.03)</span></td>
+        <td class="mut">Own VRS model, calibrated k=0.4568, BO1 transform</td>
+        <td class="mut"></td></tr>
+        <tr><td class="mono"><a href="index.html#f-1080285">#1080285</a></td>
+        <td><b>Voca</b> vs <b>Phantom</b> (BO1)</td>
+        <td><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L73" target="_blank" rel="noopener">#68 (1182)</a> vs
+            <a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L77" target="_blank" rel="noopener">#72 (1147)</a></td>
+        <td class="mut">HLTV #59 / #88</td>
+        <td><b>52.3% / 47.7%</b> <span class="mono">(fair 1.91/2.10)</span></td>
+        <td class="mut">Own VRS model, calibrated k=0.4568, BO1 transform</td>
+        <td class="mut"></td></tr>
+        <tr><td class="mono"><a href="index.html#f-1080286">#1080286</a></td>
+        <td><b>HAVU</b> vs <b>RoundsGG</b> (BO1)</td>
+        <td><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L129" target="_blank" rel="noopener">#124 (937)</a> vs
+            <a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L315" target="_blank" rel="noopener">#310 (548)</a></td>
+        <td class="mut">HLTV #118 / #237</td>
+        <td><b>73.6% / 26.4%</b> <span class="mono">(fair 1.36/3.79)</span></td>
+        <td class="mut">Own VRS model, calibrated k=0.4568, BO1 transform</td>
+        <td class="mut"></td></tr>
+        <tr><td class="mono"><a href="index.html#f-1080287">#1080287</a></td>
+        <td><b>Voca</b> vs <b>HAVU</b> (BO1)</td>
+        <td><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L73" target="_blank" rel="noopener">#68 (1182)</a> vs
+            <a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L129" target="_blank" rel="noopener">#124 (937)</a></td>
+        <td class="mut">HLTV #59 / #118</td>
+        <td><b>65.6% / 34.4%</b> <span class="mono">(fair 1.52/2.91)</span></td>
+        <td class="mut">Own VRS model, calibrated k=0.4568, BO1 transform</td>
+        <td class="mut"></td></tr>
+        <tr><td class="mono"><a href="index.html#f-1081120">#1081120</a></td>
+        <td><b>mellren</b> vs <b>Privateer</b> (BO3)</td>
+        <td><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L130" target="_blank" rel="noopener">#125 (932)</a> vs
+            <a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L276" target="_blank" rel="noopener">#271 (608)</a></td>
+        <td class="mut">HLTV #94 / #226</td>
+        <td><b>78.5% / 21.5%</b> <span class="mono">(fair 1.27/4.65)</span></td>
+        <td class="mut">Own VRS model, calibrated k=0.4568, BO3 transform</td>
+        <td class="mut">PF-01;PF-05</td></tr>
+        <tr><td class="mono"><a href="index.html#f-1080288">#1080288</a></td>
+        <td><b>Phantom</b> vs <b>RoundsGG</b> (BO1)</td>
+        <td><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L77" target="_blank" rel="noopener">#72 (1147)</a> vs
+            <a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L315" target="_blank" rel="noopener">#310 (548)</a></td>
+        <td class="mut">HLTV #88 / #237</td>
+        <td><b>82.9% / 17.1%</b> <span class="mono">(fair 1.21/5.85)</span></td>
+        <td class="mut">Own VRS model, calibrated k=0.4568, BO1 transform</td>
+        <td class="mut"></td></tr>
+        <tr><td class="mono"><a href="index.html#f-1080289">#1080289</a></td>
+        <td><b>RoundsGG</b> vs <b>Voca</b> (BO1)</td>
+        <td><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L315" target="_blank" rel="noopener">#310 (548)</a> vs
+            <a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L73" target="_blank" rel="noopener">#68 (1182)</a></td>
+        <td class="mut">HLTV #237 / #59</td>
+        <td><b>15.9% / 84.1%</b> <span class="mono">(fair 6.29/1.19)</span></td>
+        <td class="mut">Own VRS model, calibrated k=0.4568, BO1 transform</td>
+        <td class="mut">PF-09</td></tr>
+        <tr><td class="mono"><a href="index.html#f-1080290">#1080290</a></td>
+        <td><b>Phantom</b> vs <b>HAVU</b> (BO1)</td>
+        <td><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L77" target="_blank" rel="noopener">#72 (1147)</a> vs
+            <a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L129" target="_blank" rel="noopener">#124 (937)</a></td>
+        <td class="mut">HLTV #88 / #118</td>
+        <td><b>63.5% / 36.5%</b> <span class="mono">(fair 1.57/2.74)</span></td>
+        <td class="mut">Own VRS model, calibrated k=0.4568, BO1 transform</td>
+        <td class="mut"></td></tr></tbody></table></div></section>
+      <section class="card"><h2>Team rating registry (40 teams)</h2>
+      <p class="desc">Every team on the open slate with its verified VRS standing (line anchor into the 2026-10-05 file) and HLTV rank.</p>
+      <div class="tw"><table><thead><tr><th>Team</th><th>VRS (2026-10-05)</th><th>HLTV (2026-10-12)</th><th>Verification</th><th>Links</th></tr></thead><tbody>
+      <tr><td><b>6666</b></td><td><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L132" target="_blank" rel="noopener">#127 (923)</a></td><td>#80 (10 pts) <a class='sp' href='https://www.hltv.org/team/13882/6666' target='_blank' rel='noopener'>HLTV</a></td><td class='mut'>VERIFIED: VRS name + HLTV roster (5 shared players; disambiguates #127 from #368)</td><td class='mut'>FL-DUPLICATE-VRS-DISAMBIGUATED</td></tr><tr><td><b>9z</b></td><td><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L22" target="_blank" rel="noopener">#17 (1543)</a></td><td>#17 (124 pts) <a class='sp' href='https://www.hltv.org/ranking/teams/2026/october/12' target='_blank' rel='noopener'>HLTV</a></td><td class='mut'>VERIFIED: VRS name + HLTV roster (5 shared players)</td><td class='mut'></td></tr><tr><td><b>Astralis</b></td><td><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L15" target="_blank" rel="noopener">#10 (1674)</a></td><td>#15 (133 pts) <a class='sp' href='https://www.hltv.org/ranking/teams/2026/october/12' target='_blank' rel='noopener'>HLTV</a></td><td class='mut'>VERIFIED: VRS name + HLTV roster (3 shared players)</td><td class='mut'></td></tr><tr><td><b>Aurora</b></td><td><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L14" target="_blank" rel="noopener">#9 (1716)</a></td><td>#6 (461 pts) <a class='sp' href='https://www.hltv.org/ranking/teams/2026/october/12' target='_blank' rel='noopener'>HLTV</a></td><td class='mut'>VERIFIED: VRS name + HLTV roster (5 shared players)</td><td class='mut'></td></tr><tr><td><b>B8 Academy</b></td><td><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L266" target="_blank" rel="noopener">#261 (631)</a></td><td>#229 (1 pts) <a class='sp' href='https://www.hltv.org/team/13732/b8-academy' target='_blank' rel='noopener'>HLTV</a></td><td class='mut'>VERIFIED: VRS name + HLTV roster (4/4 core on HLTV match 2399461)</td><td class='mut'></td></tr><tr><td><b>BC.Game</b></td><td><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L55" target="_blank" rel="noopener">#50 (1318)</a></td><td>#70 (12 pts) <a class='sp' href='https://www.hltv.org/ranking/teams/2026/october/12' target='_blank' rel='noopener'>HLTV</a></td><td class='mut'>VERIFIED: VRS name + HLTV roster (5 shared players)</td><td class='mut'></td></tr><tr><td><b>BOJONG</b></td><td><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L368" target="_blank" rel="noopener">#363 (463)</a></td><td>#220 (2 pts) <a class='sp' href='https://www.hltv.org/ranking/teams/2026/october/12' target='_blank' rel='noopener'>HLTV</a></td><td class='mut'>VERIFIED: VRS name + HLTV roster (5 shared players)</td><td class='mut'></td></tr><tr><td><b>Banda chuya</b></td><td><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L170" target="_blank" rel="noopener">#165 (801)</a></td><td>outside top-245 <a class='sp' href='https://www.hltv.org/team/13900/banda-chuya' target='_blank' rel='noopener'>HLTV</a></td><td class='mut'>VERIFIED: VRS name + HLTV match 2399462 lineup (5/5 exact match; disambiguates #165 from #373)</td><td class='mut'>FL-DUPLICATE-VRS-DISAMBIGUATED</td></tr><tr><td><b>BetBoom</b></td><td><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L16" target="_blank" rel="noopener">#11 (1596)</a></td><td>#14 (148 pts) <a class='sp' href='https://www.hltv.org/ranking/teams/2026/october/12' target='_blank' rel='noopener'>HLTV</a></td><td class='mut'>VERIFIED: VRS name + HLTV roster (5 shared players)</td><td class='mut'></td></tr><tr><td><b>EAC</b></td><td><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L108" target="_blank" rel="noopener">#103 (1035)</a></td><td>#110 (7 pts) <a class='sp' href='https://www.hltv.org/ranking/teams/2026/october/12' target='_blank' rel='noopener'>HLTV</a></td><td class='mut'>VERIFIED: VRS name + HLTV roster (5 shared players; HLTV slug &#x27;ea-copenhagen&#x27;)</td><td class='mut'></td></tr><tr><td><b>ENCE</b></td><td><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L110" target="_blank" rel="noopener">#105 (1025)</a></td><td>#114 (7 pts) <a class='sp' href='https://www.hltv.org/ranking/teams/2026/october/12' target='_blank' rel='noopener'>HLTV</a></td><td class='mut'>VERIFIED: VRS name + HLTV roster (5 shared players)</td><td class='mut'></td></tr><tr><td><b>Enjoy</b></td><td><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L143" target="_blank" rel="noopener">#138 (871)</a></td><td>#199 (3 pts) <a class='sp' href='https://www.hltv.org/team/4246/enjoy' target='_blank' rel='noopener'>HLTV</a></td><td class='mut'>VERIFIED: VRS name + HLTV roster (3/5 core kurosa, nbl, sh1geo on HLTV match 2399461)</td><td class='mut'></td></tr><tr><td><b>Envy</b></td><td><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L26" target="_blank" rel="noopener">#21 (1500)</a></td><td>#20 (96 pts) <a class='sp' href='https://www.hltv.org/ranking/teams/2026/october/12' target='_blank' rel='noopener'>HLTV</a></td><td class='mut'>VERIFIED: HLTV roster -&gt; VRS (name change confirmed on HLTV match 2399137)</td><td class='mut'></td></tr><tr><td><b>FORZE Reload</b></td><td><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L89" target="_blank" rel="noopener">#84 (1100)</a></td><td>#75 (11 pts) <a class='sp' href='https://www.hltv.org/team/12857/forze-reload' target='_blank' rel='noopener'>HLTV</a></td><td class='mut'>VERIFIED: VRS name + HLTV roster (5 shared players)</td><td class='mut'></td></tr><tr><td><b>FURIA</b></td><td><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L12" target="_blank" rel="noopener">#7 (1829)</a></td><td>#4 (527 pts) <a class='sp' href='https://www.hltv.org/ranking/teams/2026/october/12' target='_blank' rel='noopener'>HLTV</a></td><td class='mut'>VERIFIED: VRS name + HLTV roster (5 shared players)</td><td class='mut'></td></tr><tr><td><b>Falcons</b></td><td><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L11" target="_blank" rel="noopener">#6 (1843)</a></td><td>#5 (488 pts) <a class='sp' href='https://www.hltv.org/ranking/teams/2026/october/12' target='_blank' rel='noopener'>HLTV</a></td><td class='mut'>VERIFIED: VRS name + HLTV roster (5 shared players)</td><td class='mut'></td></tr><tr><td><b>Fnatic</b></td><td><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L40" target="_blank" rel="noopener">#35 (1417)</a></td><td>#36 (43 pts) <a class='sp' href='https://www.hltv.org/ranking/teams/2026/october/12' target='_blank' rel='noopener'>HLTV</a></td><td class='mut'>VERIFIED: VRS name + HLTV roster (5 shared players)</td><td class='mut'></td></tr><tr><td><b>G2 Ares</b></td><td><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L134" target="_blank" rel="noopener">#129 (913)</a></td><td>#103 (8 pts) <a class='sp' href='https://www.hltv.org/ranking/teams/2026/october/12' target='_blank' rel='noopener'>HLTV</a></td><td class='mut'>VERIFIED: VRS name + HLTV roster (5 shared players)</td><td class='mut'></td></tr><tr><td><b>Gothic</b></td><td><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L216" target="_blank" rel="noopener">#211 (705)</a></td><td>outside top-245 <a class='sp' href='https://www.hltv.org/team/14014/gothic' target='_blank' rel='noopener'>HLTV</a></td><td class='mut'>VERIFIED: VRS name + HLTV match 2399298 lineup (3/5 core Get_Jeka, Ryujin, shg)</td><td class='mut'></td></tr><tr><td><b>HAVU</b></td><td><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L129" target="_blank" rel="noopener">#124 (937)</a></td><td>#118 (7 pts) <a class='sp' href='https://www.hltv.org/ranking/teams/2026/october/12' target='_blank' rel='noopener'>HLTV</a></td><td class='mut'>VERIFIED: VRS name + HLTV roster (5 shared players)</td><td class='mut'></td></tr><tr><td><b>HOTU</b></td><td><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L36" target="_blank" rel="noopener">#31 (1437)</a></td><td>#41 (39 pts) <a class='sp' href='https://www.hltv.org/ranking/teams/2026/october/12' target='_blank' rel='noopener'>HLTV</a></td><td class='mut'>VERIFIED: VRS name + HLTV roster (5 shared players)</td><td class='mut'></td></tr><tr><td><b>Heroic</b></td><td><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L20" target="_blank" rel="noopener">#15 (1550)</a></td><td>#30 (60 pts) <a class='sp' href='https://www.hltv.org/ranking/teams/2026/october/12' target='_blank' rel='noopener'>HLTV</a></td><td class='mut'>VERIFIED: VRS name + HLTV roster (5 shared players)</td><td class='mut'></td></tr><tr><td><b>LFO 10</b></td><td><span class="badge b-unv">not in VRS file</span></td><td>outside top-245 <a class='sp' href='https://www.hltv.org/team/14084/lfo-10' target='_blank' rel='noopener'>HLTV</a></td><td class='mut'>UNVERIFIED in 2026-10-05 VRS by name (HLTV match 2399301 lists LFO 10 at live VRS #169 with 4-man core dottie, flaw, Sapec, tevsii shared with VRS #156 Entropy, 813 pts). Official line left BLANK; research line only, see PF-02.</td><td class='mut'>FL-UNVERIFIED-TEAM</td></tr><tr><td><b>Lavked</b></td><td><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L148" target="_blank" rel="noopener">#143 (862)</a></td><td>#140 (5 pts) <a class='sp' href='https://www.hltv.org/ranking/teams/2026/october/12' target='_blank' rel='noopener'>HLTV</a></td><td class='mut'>VERIFIED: VRS name + HLTV roster (4 shared players)</td><td class='mut'></td></tr><tr><td><b>Legacy</b></td><td><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L7" target="_blank" rel="noopener">#2 (1931)</a></td><td>#7 (379 pts) <a class='sp' href='https://www.hltv.org/ranking/teams/2026/october/12' target='_blank' rel='noopener'>HLTV</a></td><td class='mut'>VERIFIED: VRS name + HLTV roster (5 shared players)</td><td class='mut'></td></tr><tr><td><b>MIBR</b></td><td><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L17" target="_blank" rel="noopener">#12 (1585)</a></td><td>#12 (163 pts) <a class='sp' href='https://www.hltv.org/ranking/teams/2026/october/12' target='_blank' rel='noopener'>HLTV</a></td><td class='mut'>VERIFIED: VRS name + HLTV roster (5 shared players)</td><td class='mut'></td></tr><tr><td><b>Ninjas in Pyjamas</b></td><td><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L23" target="_blank" rel="noopener">#18 (1534)</a></td><td>#26 (74 pts) <a class='sp' href='https://www.hltv.org/ranking/teams/2026/october/12' target='_blank' rel='noopener'>HLTV</a></td><td class='mut'>VERIFIED: VRS name + HLTV roster (5 shared players)</td><td class='mut'></td></tr><tr><td><b>PARIVISION</b></td><td><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L41" target="_blank" rel="noopener">#36 (1411)</a></td><td>#11 (178 pts) <a class='sp' href='https://www.hltv.org/ranking/teams/2026/october/12' target='_blank' rel='noopener'>HLTV</a></td><td class='mut'>VERIFIED: VRS name + HLTV roster (4 shared players)</td><td class='mut'></td></tr><tr><td><b>PCIFIC</b></td><td><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L144" target="_blank" rel="noopener">#139 (870)</a></td><td>#135 (5 pts) <a class='sp' href='https://www.hltv.org/team/13054/pcific' target='_blank' rel='noopener'>HLTV</a></td><td class='mut'>VERIFIED: VRS name + HLTV roster (4 shared players; identity note PF-03: EGW/Polymarket list &#x27;WRAITH PCIFIC&#x27; for this fixture)</td><td class='mut'>FL-IDENTITY-PCIFIC</td></tr><tr><td><b>Phantom</b></td><td><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L77" target="_blank" rel="noopener">#72 (1147)</a></td><td>#88 (9 pts) <a class='sp' href='https://www.hltv.org/ranking/teams/2026/october/12' target='_blank' rel='noopener'>HLTV</a></td><td class='mut'>VERIFIED: VRS name + HLTV roster (5 shared players)</td><td class='mut'></td></tr><tr><td><b>Privateer</b></td><td><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L276" target="_blank" rel="noopener">#271 (608)</a></td><td>#226 (1 pts) <a class='sp' href='https://www.hltv.org/team/13914/privateer' target='_blank' rel='noopener'>HLTV</a></td><td class='mut'>VERIFIED: VRS name + HLTV roster (4/5 core Ariant0, Frazehh, M1n1maL, Prime on HLTV match 2399471)</td><td class='mut'></td></tr><tr><td><b>RoundsGG</b></td><td><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L315" target="_blank" rel="noopener">#310 (548)</a></td><td>#237 (1 pts) <a class='sp' href='https://www.hltv.org/ranking/teams/2026/october/12' target='_blank' rel='noopener'>HLTV</a></td><td class='mut'>VERIFIED: fixture-matched alias &#x27;ROUNDS&#x27; -&gt; HLTV roster -&gt; VRS (HLTV match slugs list &#x27;rounds&#x27;)</td><td class='mut'>FL-ALIAS-ROUNDS</td></tr><tr><td><b>Ryvex</b></td><td><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L212" target="_blank" rel="noopener">#207 (714)</a></td><td>#181 (3 pts) <a class='sp' href='https://www.hltv.org/team/13974/ryvex' target='_blank' rel='noopener'>HLTV</a></td><td class='mut'>VERIFIED: VRS name + HLTV roster (4/5 core jeyN, N0R1, oskvr, swaggy on HLTV match 2399463)</td><td class='mut'></td></tr><tr><td><b>Sashi</b></td><td><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L78" target="_blank" rel="noopener">#73 (1131)</a></td><td>outside top-245 <a class='sp' href='https://www.hltv.org/team/11712/sashi' target='_blank' rel='noopener'>HLTV</a></td><td class='mut'>VERIFIED: VRS name + HLTV match 2399134 lineup (3/5 core acoR, Anlelele, Zyphon)</td><td class='mut'></td></tr><tr><td><b>The Last Resort</b></td><td><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L131" target="_blank" rel="noopener">#126 (926)</a></td><td>#159 (4 pts) <a class='sp' href='https://www.hltv.org/ranking/teams/2026/october/12' target='_blank' rel='noopener'>HLTV</a></td><td class='mut'>VERIFIED: VRS name + HLTV roster (5 shared players)</td><td class='mut'></td></tr><tr><td><b>Voca</b></td><td><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L73" target="_blank" rel="noopener">#68 (1182)</a></td><td>#59 (16 pts) <a class='sp' href='https://www.hltv.org/ranking/teams/2026/october/12' target='_blank' rel='noopener'>HLTV</a></td><td class='mut'>VERIFIED: VRS name + HLTV roster (5 shared players)</td><td class='mut'></td></tr><tr><td><b>WROTBERRY</b></td><td><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L65" target="_blank" rel="noopener">#60 (1201)</a></td><td>#109 (7 pts) <a class='sp' href='https://www.hltv.org/ranking/teams/2026/october/12' target='_blank' rel='noopener'>HLTV</a></td><td class='mut'>VERIFIED: fixture-matched alias WBT -&gt; HLTV roster -&gt; VRS (HLTV match slugs list &#x27;wbt&#x27;)</td><td class='mut'>FL-ALIAS-WBT</td></tr><tr><td><b>ex-RUSTEC</b></td><td><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L97" target="_blank" rel="noopener">#92 (1066)</a></td><td>#79 (10 pts) <a class='sp' href='https://www.hltv.org/team/13901/ex-rustec' target='_blank' rel='noopener'>HLTV</a></td><td class='mut'>VERIFIED: VRS #92 (1066 pts) + HLTV #79 (3/5 core + live VRS badge #93 on match 2399299; disambiguates #92 from #152)</td><td class='mut'>FL-DUPLICATE-VRS-DISAMBIGUATED</td></tr><tr><td><b>mellren</b></td><td><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L130" target="_blank" rel="noopener">#125 (932)</a></td><td>#94 (9 pts) <a class='sp' href='https://www.hltv.org/team/13759/mellren' target='_blank' rel='noopener'>HLTV</a></td><td class='mut'>VERIFIED: VRS name + HLTV roster (5 shared players)</td><td class='mut'></td></tr>
+      </tbody></table></div></section>
+<footer>Session arena/63ee81ba · snapshot 2026-10-14T02:48:00Z ·
+<a href="../index.html">repo home</a> ·
+data: <a href="../data/63ee81ba/picks.csv">picks.csv</a> ·
+<a href="../data/63ee81ba/market_lines.csv">market_lines.csv</a> ·
+<a href="../data/63ee81ba/own_lines.csv">own_lines.csv</a> ·
+<a href="../data/63ee81ba/flags.csv">flags.csv</a> ·
+Independent research — not betting advice.</footer>
+</main></body></html>

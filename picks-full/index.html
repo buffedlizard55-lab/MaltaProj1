@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>All 28 Open CS2 Picks — Hotspawn CS2 Full Picks</title>
+<style>
+:root{--bg:#0b0f17;--panel:#121826;--panel2:#18202f;--line:#26314a;--fg:#e9eef7;--muted:#9aa9c2;--accent:#4ea8de;--accent2:#38bdf8;--green:#22c55e;--greenbg:rgba(34,197,94,.13);--amber:#f59e0b;--amberbg:rgba(245,158,11,.14);--red:#ef4444;--redbg:rgba(239,68,68,.15);--purple:#a855f7;--purplebg:rgba(168,85,247,.15)}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+a{color:var(--accent2);text-decoration:none}a:hover{text-decoration:underline}
+.topbar{background:#070b13;border-bottom:1px solid var(--line);padding:10px 12px;position:sticky;top:0;z-index:40}
+.topbar .in{max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between}
+.brand{font-weight:700;font-size:14.5px}.brand b{color:var(--accent2)}
+.nav{display:flex;flex-wrap:wrap;gap:5px}
+.nav a{padding:5px 9px;border-radius:7px;background:var(--panel);border:1px solid var(--line);font-size:12px;color:var(--fg);white-space:nowrap}
+.nav a.act,.nav a:hover{background:var(--accent);color:#04101c;border-color:var(--accent);text-decoration:none;font-weight:700}
+.wrap{max-width:1100px;margin:0 auto;padding:14px 12px 48px}
+.hero{background:linear-gradient(135deg,#111827,#16213c);border:1px solid var(--line);border-radius:14px;padding:18px 16px;margin:12px 0}
+.hero h1{margin:0 0 6px;font-size:clamp(20px,4.5vw,28px);line-height:1.2}
+.hero p{margin:0;color:var(--muted);font-size:13.5px}
+.banner{background:rgba(56,189,248,.08);border-left:4px solid var(--accent2);padding:10px 12px;border-radius:8px;font-size:12.8px;margin-top:12px;color:#cfe3f7}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:14px 0}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px}
+.kpi b{display:block;font-size:24px;margin:2px 0}.kpi span{color:var(--muted);font-size:11.5px;text-transform:uppercase;letter-spacing:.04em}
+.kpi i{font-style:normal;color:var(--muted);font-size:11.5px;display:block}
+section.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;margin:16px 0}
+section.card h2{margin:0 0 4px;font-size:17px}
+section.card .desc{margin:0 0 10px;color:var(--muted);font-size:12.8px}
+table{width:100%;border-collapse:collapse;font-size:12.8px}
+.tw{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:10px}
+th{background:#0d1322;color:var(--muted);text-transform:uppercase;font-size:10.8px;letter-spacing:.03em;text-align:left;padding:8px 9px;position:sticky;top:0}
+td{padding:9px;border-bottom:1px solid var(--line);vertical-align:top}
+tbody tr:nth-child(even){background:var(--panel2)}
+tbody tr:hover{background:rgba(78,168,222,.08)}
+.badge{display:inline-block;padding:2px 7px;border-radius:6px;font-size:10.8px;font-weight:700;white-space:nowrap}
+.b-s{background:var(--purplebg);color:#d8b4fe;border:1px solid var(--purple)}
+.b-b{background:rgba(56,189,248,.15);color:#7dd3fc;border:1px solid var(--accent2)}
+.b-c{background:rgba(148,163,184,.15);color:#cbd5e1;border:1px solid #64748b}
+.b-lock{background:var(--greenbg);color:#86efac;border:1px solid var(--green)}
+.b-strong{background:rgba(56,189,248,.15);color:#7dd3fc;border:1px solid var(--accent2)}
+.b-lean{background:var(--amberbg);color:#fcd34d;border:1px solid var(--amber)}
+.b-toss{background:rgba(249,115,22,.15);color:#fdba74;border:1px solid #f97316}
+.b-unv{background:var(--redbg);color:#fca5a5;border:1px solid var(--red)}
+.b-research{background:var(--purplebg);color:#d8b4fe;border:1px solid var(--purple)}
+.srcs{display:flex;flex-wrap:wrap;gap:4px;margin-top:5px}
+.sp{display:inline-block;padding:2px 7px;border-radius:5px;background:#0d1322;border:1px solid var(--line);font-size:10.8px;color:var(--accent2);white-space:nowrap}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:11.5px}
+.mut{color:var(--muted);font-size:11.8px}
+.cards{display:grid;grid-template-columns:1fr;gap:10px}
+@media(min-width:900px){.cards{grid-template-columns:1fr 1fr}}
+.fc{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:8px}
+.fc .head{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.fc .mm{font-size:15px;font-weight:750}
+.fc .meta{font-size:11.8px;color:var(--muted)}
+.bar{display:flex;height:10px;border-radius:6px;overflow:hidden;background:#22304c;margin:2px 0}
+.bar .fa{background:var(--accent2)}.bar .fb{background:#5b6b85}
+.pct{display:flex;justify-content:space-between;font-size:13px;font-weight:700}
+.pct .na{color:#7dd3fc}.pct .nb{color:#cbd5e1}
+.pickbox{background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--green);border-radius:9px;padding:9px 10px}
+.pickbox.research{border-left-color:var(--purple)}
+.pickbox .pk{font-size:15.5px;font-weight:800}
+.pickbox .bb{font-size:11.5px;color:var(--muted);margin-top:2px}
+.flaglink{font-size:11.5px}
+footer{margin-top:26px;padding:14px;border-top:1px solid var(--line);color:var(--muted);font-size:11.8px;text-align:center}
+ul.plain{padding-left:18px;margin:6px 0}ul.plain li{margin:4px 0;color:var(--muted);font-size:12.8px}
+details{margin:10px 0}summary{cursor:pointer;font-weight:600;color:var(--muted);font-size:13px}
+</style></head><body>
+<header class="topbar"><div class="in">
+<div class="brand"><b>Full picks</b> · Hotspawn CS2 Pick'em</div>
+<nav class="nav"><a href="index.html" class=act>All picks (28)</a><a href="s-tier.html">S-Tier (4)</a><a href="b-tier.html">B-Tier (9)</a><a href="c-tier.html">C-Tier (15)</a><a href="tournaments.html">Tournaments</a><a href="market-lines.html">Market lines</a><a href="own-lines.html">Own lines</a><a href="sources.html">Sources</a><a href="methodology.html">Method</a><a href="flagged.html">Flagged</a></nav></div></header>
+<main class="wrap">
+    <div class="hero">
+      <h1>Every open Hotspawn CS2 match — one pick each.</h1>
+      <p>Full coverage of all <b>28</b> open Pick'em fixtures (Oct 14–16, 2026, UTC):
+      24 priced by outside markets and 27 originated from official
+      Valve VRS + HLTV research — so every row carries a pick. Snapshot 2026-10-14T02:48:00Z ·
+      <a href="flagged.html">flagged items (10)</a> · <a href="methodology.html">method</a> ·
+      <a href="sources.html">sources</a></p>
+      <div class="banner"><b>Read first:</b> Hotspawn's cards display times in UTC−4 — use the UTC times on this board
+      (PF-06). Crowds' pick percentages are never used (0.0% weight). Every number links to its official source.
+      Not betting advice.</div>
+    </div>
+    <div class="kpis">
+      <div class="kpi"><span>Open matches</span><b>28</b><i>S 4 · B 8 · C 16</i></div>
+      <div class="kpi"><span>Picks made</span><b>28 / 28</b><i>100% coverage</i></div>
+      <div class="kpi"><span>Obvious locks (≥70%)</span><b>11</b><i>strong 10 · lean 4 · close 3</i></div>
+      <div class="kpi"><span>Outside market lines</span><b>24 / 28</b><i>EGW bc.game + Pinnacle/PM cross-checks</i></div>
+      <div class="kpi"><span>Own research lines</span><b>28</b><i>incl. 1 labelled RESEARCH (PF-02)</i></div>
+    </div>
+    <section class="card"><h2>At a glance — all 28 picks (chronological)</h2>
+      <p class="desc">Tap a row ID to jump to its card below. %s are the published win probabilities (market-de-vigged where a line exists, otherwise our own model).</p>
+      <div class="tw"><table><thead><tr><th>ID</th><th>Start (UTC)</th><th>Matchup (Hotspawn order)</th><th>P(A) / P(B)</th><th>Pick</th><th>Confidence</th><th>Basis</th></tr></thead>
+      <tbody>
+        <tr id="g-1081111">
+          <td class="mono"><a href="#f-1081111">#1081111</a></td>
+          <td>10-14 08:00</td>
+          <td>Enjoy vs B8 Academy</td>
+          <td><b>60.2%</b> / <b>39.8%</b></td>
+          <td><b>Enjoy</b> 60.2%</td>
+          <td><span class="badge b-strong">STRONG PICK (60–69%)</span></td>
+          <td>External market</td>
+        </tr>
+        <tr id="g-1079621">
+          <td class="mono"><a href="#f-1079621">#1079621</a></td>
+          <td>10-14 08:00</td>
+          <td>Gothic vs Lavked</td>
+          <td><b>44.4%</b> / <b>55.6%</b></td>
+          <td><b>Lavked</b> 55.6%</td>
+          <td><span class="badge b-lean">SOLID LEAN (55–59%)</span></td>
+          <td>External market</td>
+        </tr>
+        <tr id="g-1080176">
+          <td class="mono"><a href="#f-1080176">#1080176</a></td>
+          <td>10-14 08:30</td>
+          <td>9z vs Aurora</td>
+          <td><b>23.7%</b> / <b>76.3%</b></td>
+          <td><b>Aurora</b> 76.3%</td>
+          <td><span class="badge b-lock">OBVIOUS LOCK (≥70%)</span></td>
+          <td>External market</td>
+        </tr>
+        <tr id="g-1079438">
+          <td class="mono"><a href="#f-1079438">#1079438</a></td>
+          <td>10-14 10:00</td>
+          <td>Astralis vs Sashi</td>
+          <td><b>85.3%</b> / <b>14.7%</b></td>
+          <td><b>Astralis</b> 85.3%</td>
+          <td><span class="badge b-lock">OBVIOUS LOCK (≥70%)</span></td>
+          <td>External market</td>
+        </tr>
+        <tr id="g-1079439">
+          <td class="mono"><a href="#f-1079439">#1079439</a></td>
+          <td>10-14 10:00</td>
+          <td>HOTU vs Fnatic</td>
+          <td><b>48.9%</b> / <b>51.1%</b></td>
+          <td><b>Fnatic</b> 51.1%</td>
+          <td><span class="badge b-toss">CLOSE TOSS-UP (&lt;55%)</span></td>
+          <td>External market</td>
+        </tr>
+        <tr id="g-1081112">
+          <td class="mono"><a href="#f-1081112">#1081112</a></td>
+          <td>10-14 11:00</td>
+          <td>Banda chuya vs 6666</td>
+          <td><b>38.2%</b> / <b>61.8%</b></td>
+          <td><b>6666</b> 61.8%</td>
+          <td><span class="badge b-strong">STRONG PICK (60–69%)</span></td>
+          <td>Own VRS model k=0.4568, BO3</td>
+        </tr>
+        <tr id="g-1079622">
+          <td class="mono"><a href="#f-1079622">#1079622</a></td>
+          <td>10-14 11:00</td>
+          <td>ex-RUSTEC vs mellren</td>
+          <td><b>65.7%</b> / <b>34.3%</b></td>
+          <td><b>ex-RUSTEC</b> 65.7%</td>
+          <td><span class="badge b-strong">STRONG PICK (60–69%)</span></td>
+          <td>External market</td>
+        </tr>
+        <tr id="g-1080177">
+          <td class="mono"><a href="#f-1080177">#1080177</a></td>
+          <td>10-14 11:00</td>
+          <td>Falcons vs Ninjas in Pyjamas</td>
+          <td><b>76.8%</b> / <b>23.2%</b></td>
+          <td><b>Falcons</b> 76.8%</td>
+          <td><span class="badge b-lock">OBVIOUS LOCK (≥70%)</span></td>
+          <td>External market</td>
+        </tr>
+        <tr id="g-1080178">
+          <td class="mono"><a href="#f-1080178">#1080178</a></td>
+          <td>10-14 13:30</td>
+          <td>Legacy vs PARIVISION</td>
+          <td><b>55.5%</b> / <b>44.5%</b></td>
+          <td><b>Legacy</b> 55.5%</td>
+          <td><span class="badge b-lean">SOLID LEAN (55–59%)</span></td>
+          <td>External market</td>
+        </tr>
+        <tr id="g-1081113">
+          <td class="mono"><a href="#f-1081113">#1081113</a></td>
+          <td>10-14 14:00</td>
+          <td>Ryvex vs PCIFIC</td>
+          <td><b>35.0%</b> / <b>65.0%</b></td>
+          <td><b>PCIFIC</b> 65.0%</td>
+          <td><span class="badge b-strong">STRONG PICK (60–69%)</span></td>
+          <td>Own VRS model k=0.4568, BO3</td>
+        </tr>
+        <tr id="g-1079623">
+          <td class="mono"><a href="#f-1079623">#1079623</a></td>
+          <td>10-14 14:00</td>
+          <td>G2 Ares vs The Last Resort</td>
+          <td><b>62.4%</b> / <b>37.6%</b></td>
+          <td><b>G2 Ares</b> 62.4%</td>
+          <td><span class="badge b-strong">STRONG PICK (60–69%)</span></td>
+          <td>External market</td>
+        </tr>
+        <tr id="g-1080179">
+          <td class="mono"><a href="#f-1080179">#1080179</a></td>
+          <td>10-14 16:00</td>
+          <td>FURIA vs BetBoom</td>
+          <td><b>67.1%</b> / <b>32.9%</b></td>
+          <td><b>FURIA</b> 67.1%</td>
+          <td><span class="badge b-strong">STRONG PICK (60–69%)</span></td>
+          <td>External market</td>
+        </tr>
+        <tr id="g-1079624">
+          <td class="mono"><a href="#f-1079624">#1079624</a></td>
+          <td>10-14 17:00</td>
+          <td>FORZE Reload vs LFO 10</td>
+          <td><b>75.9%</b> / <b>24.1%</b></td>
+          <td><b>FORZE Reload</b> 75.9%</td>
+          <td><span class="badge b-lock">OBVIOUS LOCK (≥70%)</span></td>
+          <td>RESEARCH line (roster-mapped, flagged PF-02)</td>
+        </tr>
+        <tr id="g-1080279">
+          <td class="mono"><a href="#f-1080279">#1080279</a></td>
+          <td>10-15 08:00</td>
+          <td>WROTBERRY vs EAC</td>
+          <td><b>45.7%</b> / <b>54.3%</b></td>
+          <td><b>EAC</b> 54.3%</td>
+          <td><span class="badge b-toss">CLOSE TOSS-UP (&lt;55%)</span></td>
+          <td>External market</td>
+        </tr>
+        <tr id="g-1079440">
+          <td class="mono"><a href="#f-1079440">#1079440</a></td>
+          <td>10-15 10:00</td>
+          <td>MIBR vs BC.Game</td>
+          <td><b>56.3%</b> / <b>43.7%</b></td>
+          <td><b>MIBR</b> 56.3%</td>
+          <td><span class="badge b-lean">SOLID LEAN (55–59%)</span></td>
+          <td>External market</td>
+        </tr>
+        <tr id="g-1079442">
+          <td class="mono"><a href="#f-1079442">#1079442</a></td>
+          <td>10-15 10:00</td>
+          <td>Heroic vs Envy</td>
+          <td><b>63.0%</b> / <b>37.0%</b></td>
+          <td><b>Heroic</b> 63.0%</td>
+          <td><span class="badge b-strong">STRONG PICK (60–69%)</span></td>
+          <td>External market</td>
+        </tr>
+        <tr id="g-1080280">
+          <td class="mono"><a href="#f-1080280">#1080280</a></td>
+          <td>10-15 10:00</td>
+          <td>ENCE vs BOJONG</td>
+          <td><b>70.9%</b> / <b>29.1%</b></td>
+          <td><b>ENCE</b> 70.9%</td>
+          <td><span class="badge b-lock">OBVIOUS LOCK (≥70%)</span></td>
+          <td>External market</td>
+        </tr>
+        <tr id="g-1080281">
+          <td class="mono"><a href="#f-1080281">#1080281</a></td>
+          <td>10-15 12:00</td>
+          <td>WROTBERRY vs ENCE</td>
+          <td><b>56.5%</b> / <b>43.5%</b></td>
+          <td><b>WROTBERRY</b> 56.5%</td>
+          <td><span class="badge b-lean">SOLID LEAN (55–59%)</span></td>
+          <td>External market</td>
+        </tr>
+        <tr id="g-1080282">
+          <td class="mono"><a href="#f-1080282">#1080282</a></td>
+          <td>10-15 14:00</td>
+          <td>EAC vs BOJONG</td>
+          <td><b>77.2%</b> / <b>22.8%</b></td>
+          <td><b>EAC</b> 77.2%</td>
+          <td><span class="badge b-lock">OBVIOUS LOCK (≥70%)</span></td>
+          <td>External market</td>
+        </tr>
+        <tr id="g-1080283">
+          <td class="mono"><a href="#f-1080283">#1080283</a></td>
+          <td>10-15 16:00</td>
+          <td>WROTBERRY vs BOJONG</td>
+          <td><b>76.7%</b> / <b>23.3%</b></td>
+          <td><b>WROTBERRY</b> 76.7%</td>
+          <td><span class="badge b-lock">OBVIOUS LOCK (≥70%)</span></td>
+          <td>External market</td>
+        </tr>
+        <tr id="g-1080284">
+          <td class="mono"><a href="#f-1080284">#1080284</a></td>
+          <td>10-15 18:00</td>
+          <td>EAC vs ENCE</td>
+          <td><b>60.9%</b> / <b>39.1%</b></td>
+          <td><b>EAC</b> 60.9%</td>
+          <td><span class="badge b-strong">STRONG PICK (60–69%)</span></td>
+          <td>External market</td>
+        </tr>
+        <tr id="g-1080285">
+          <td class="mono"><a href="#f-1080285">#1080285</a></td>
+          <td>10-16 08:00</td>
+          <td>Voca vs Phantom</td>
+          <td><b>48.6%</b> / <b>51.4%</b></td>
+          <td><b>Phantom</b> 51.4%</td>
+          <td><span class="badge b-toss">CLOSE TOSS-UP (&lt;55%)</span></td>
+          <td>External market</td>
+        </tr>
+        <tr id="g-1080286">
+          <td class="mono"><a href="#f-1080286">#1080286</a></td>
+          <td>10-16 10:00</td>
+          <td>HAVU vs RoundsGG</td>
+          <td><b>77.2%</b> / <b>22.8%</b></td>
+          <td><b>HAVU</b> 77.2%</td>
+          <td><span class="badge b-lock">OBVIOUS LOCK (≥70%)</span></td>
+          <td>External market</td>
+        </tr>
+        <tr id="g-1080287">
+          <td class="mono"><a href="#f-1080287">#1080287</a></td>
+          <td>10-16 12:00</td>
+          <td>Voca vs HAVU</td>
+          <td><b>66.2%</b> / <b>33.8%</b></td>
+          <td><b>Voca</b> 66.2%</td>
+          <td><span class="badge b-strong">STRONG PICK (60–69%)</span></td>
+          <td>External market</td>
+        </tr>
+        <tr id="g-1081120">
+          <td class="mono"><a href="#f-1081120">#1081120</a></td>
+          <td>10-16 14:00</td>
+          <td>mellren vs Privateer</td>
+          <td><b>78.5%</b> / <b>21.5%</b></td>
+          <td><b>mellren</b> 78.5%</td>
+          <td><span class="badge b-lock">OBVIOUS LOCK (≥70%)</span></td>
+          <td>Own VRS model k=0.4568, BO3</td>
+        </tr>
+        <tr id="g-1080288">
+          <td class="mono"><a href="#f-1080288">#1080288</a></td>
+          <td>10-16 14:00</td>
+          <td>Phantom vs RoundsGG</td>
+          <td><b>86.5%</b> / <b>13.5%</b></td>
+          <td><b>Phantom</b> 86.5%</td>
+          <td><span class="badge b-lock">OBVIOUS LOCK (≥70%)</span></td>
+          <td>External market</td>
+        </tr>
+        <tr id="g-1080289">
+          <td class="mono"><a href="#f-1080289">#1080289</a></td>
+          <td>10-16 16:00</td>
+          <td>RoundsGG vs Voca</td>
+          <td><b>14.2%</b> / <b>85.8%</b></td>
+          <td><b>Voca</b> 85.8%</td>
+          <td><span class="badge b-lock">OBVIOUS LOCK (≥70%)</span></td>
+          <td>External market</td>
+        </tr>
+        <tr id="g-1080290">
+          <td class="mono"><a href="#f-1080290">#1080290</a></td>
+          <td>10-16 18:00</td>
+          <td>Phantom vs HAVU</td>
+          <td><b>67.8%</b> / <b>32.2%</b></td>
+          <td><b>Phantom</b> 67.8%</td>
+          <td><span class="badge b-strong">STRONG PICK (60–69%)</span></td>
+          <td>External market</td>
+        </tr></tbody></table></div>
+    </section>
+    
+    <section class="card"><h2>Tuesday, Oct 14 — 13 matches</h2>
+      <p class="desc">All times UTC. Lock = start − 6 min (PF-08). Submit your pick on Hotspawn before lock.</p>
+      <div class="cards">
+    <div class="fc" id="f-1081111">
+      <div class="head"><span class="mono mut">#1081111</span> <span class="badge b-c">C-Tier · 2 pts</span>
+        <span class="badge b-b">BO3</span><span class="mut">CCT Europe 2026 Series #12 Closed Qualifier</span></div>
+      <div><span class="mm">Enjoy</span> <span class="mut">vs</span> <span class="mm">B8 Academy</span></div>
+      <div><div class="pct"><span class="na">Enjoy 60.2%</span><span class="nb">39.8% B8 Academy</span></div>
+        <div class="bar"><div class="fa" style="width:60%"></div><div class="fb" style="width:40%"></div></div></div>
+      <div class="pickbox"><div class="pk">PICK: Enjoy 60.2%</div><div><span class="badge b-strong">STRONG PICK (60–69%)</span></div><div class="bb">Basis: External market — EGW bc.game 1.52/2.30 de-vigged</div></div>
+      <div class="mut"><b>Market:</b> 1.52 / 2.30 · <a href="https://egamersworld.com/counterstrike/match/1sGIL2gAYu/enjoy-vs-b8-academy-qwO9cEnL7" target="_blank" rel="noopener">bc.game (EGW)</a>, de-vigged (9.3% margin) · Polymarket 1.61x/2.44x (62¢/41¢, $251.82 vol, cross-check)</div>
+      <div class="mut"><b>Own line:</b> 72.2% / 27.8% — <span class="mono">VRS #138 (871) vs #261 (631)</span></div>
+      <div class="mut"><b>Start:</b> <span class="mono">2026-10-14T08:00 UTC</span> ·
+        <b>Lock:</b> <span class="mono">2026-10-14T07:54 UTC</span> <a class="flaglink" href="flagged.html#pf-08">(PF-08)</a></div>
+      <div class="srcs"><a class="sp" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn lobby</a><a class="sp" href="https://www.hltv.org/matches/2399461/enjoy-vs-b8-academy-cct-2026-europe-series-12-closed-qualifier" target="_blank" rel="noopener">HLTV match 2399461</a><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L143" target="_blank" rel="noopener">VRS Enjoy</a><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L266" target="_blank" rel="noopener">VRS B8 Academy</a><a class="sp" href="https://egamersworld.com/counterstrike/match/1sGIL2gAYu/enjoy-vs-b8-academy-qwO9cEnL7" target="_blank" rel="noopener">EGW quote</a><a class="sp" href="https://polymarket.com/esports/cs2/cct-europe/cs2-enjoy-b8acad-2026-10-14" target="_blank" rel="noopener">Polymarket</a></div>
+      
+    </div>
+    <div class="fc" id="f-1079621">
+      <div class="head"><span class="mono mut">#1079621</span> <span class="badge b-b">B-Tier · 3 pts</span>
+        <span class="badge b-b">BO3</span><span class="mut">CCT Europe 2026 Series #11</span></div>
+      <div><span class="mm">Gothic</span> <span class="mut">vs</span> <span class="mm">Lavked</span></div>
+      <div><div class="pct"><span class="na">Gothic 44.4%</span><span class="nb">55.6% Lavked</span></div>
+        <div class="bar"><div class="fa" style="width:44%"></div><div class="fb" style="width:56%"></div></div></div>
+      <div class="pickbox"><div class="pk">PICK: Lavked 55.6%</div><div><span class="badge b-lean">SOLID LEAN (55–59%)</span></div><div class="bb">Basis: External market — EGW bc.game 2.05/1.64 de-vigged</div></div>
+      <div class="mut"><b>Market:</b> 2.05 / 1.64 · <a href="https://egamersworld.com/counterstrike/match/_rW8GEyWK/gothic-vs-lavked-GGmfuJ1n4B" target="_blank" rel="noopener">bc.game (EGW)</a>, de-vigged (9.8% margin) · Polymarket 1.96x/1.96x (51¢/51¢, $266 vol, cross-check)</div>
+      <div class="mut"><b>Own line:</b> 34.9% / 65.1% — <span class="mono">VRS #211 (705) vs #143 (862)</span></div>
+      <div class="mut"><b>Start:</b> <span class="mono">2026-10-14T08:00 UTC</span> ·
+        <b>Lock:</b> <span class="mono">2026-10-14T07:54 UTC</span> <a class="flaglink" href="flagged.html#pf-08">(PF-08)</a></div>
+      <div class="srcs"><a class="sp" href="https://www.hotspawn.com/matches/gothic-vs-lavked-cct-europe-2026-series-11-1079621" target="_blank" rel="noopener">Hotspawn match</a><a class="sp" href="https://www.hltv.org/matches/2399298/gothic-vs-lavked-cct-2026-europe-series-11" target="_blank" rel="noopener">HLTV match 2399298</a><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L216" target="_blank" rel="noopener">VRS Gothic</a><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L148" target="_blank" rel="noopener">VRS Lavked</a><a class="sp" href="https://egamersworld.com/counterstrike/match/_rW8GEyWK/gothic-vs-lavked-GGmfuJ1n4B" target="_blank" rel="noopener">EGW quote</a><a class="sp" href="https://polymarket.com/esports/cs2/cct-europe/cs2-gothic-lavked-2026-10-14" target="_blank" rel="noopener">Polymarket</a></div>
+      
+    </div>
+    <div class="fc" id="f-1080176">
+      <div class="head"><span class="mono mut">#1080176</span> <span class="badge b-s">S-Tier · 7 pts</span>
+        <span class="badge b-b">BO3</span><span class="mut">Thunderpick World Championship 2026</span></div>
+      <div><span class="mm">9z</span> <span class="mut">vs</span> <span class="mm">Aurora</span></div>
+      <div><div class="pct"><span class="na">9z 23.7%</span><span class="nb">76.3% Aurora</span></div>
+        <div class="bar"><div class="fa" style="width:24%"></div><div class="fb" style="width:76%"></div></div></div>
+      <div class="pickbox"><div class="pk">PICK: Aurora 76.3%</div><div><span class="badge b-lock">OBVIOUS LOCK (≥70%)</span></div><div class="bb">Basis: External market — EGW bc.game 3.87/1.20 de-vigged</div></div>
+      <div class="mut"><b>Market:</b> 3.87 / 1.20 · <a href="https://egamersworld.com/counterstrike/match/5X5sFiL7H/9z-vs-aurora-Es9rrnIhb" target="_blank" rel="noopener">bc.game (EGW)</a>, de-vigged (9.2% margin) · Pinnacle 3.550/1.307 (<a href="https://www.pinnacle.com/en/esports/games/cs2/matchups/" target="_blank" rel="noopener">API 27%/73%</a>)</div>
+      <div class="mut"><b>Own line:</b> 33.5% / 66.5% — <span class="mono">VRS #17 (1543) vs #9 (1716)</span></div>
+      <div class="mut"><b>Start:</b> <span class="mono">2026-10-14T08:30 UTC</span> ·
+        <b>Lock:</b> <span class="mono">2026-10-14T08:24 UTC</span> <a class="flaglink" href="flagged.html#pf-08">(PF-08)</a></div>
+      <div class="srcs"><a class="sp" href="https://www.hotspawn.com/matches/9z-vs-aurora-thunderpick-world-championship-2026-1080176" target="_blank" rel="noopener">Hotspawn match</a><a class="sp" href="https://www.hltv.org/matches/2399384/9z-vs-aurora-thunderpick-world-championship-2026" target="_blank" rel="noopener">HLTV match 2399384</a><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L22" target="_blank" rel="noopener">VRS 9z</a><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L14" target="_blank" rel="noopener">VRS Aurora</a><a class="sp" href="https://egamersworld.com/counterstrike/match/5X5sFiL7H/9z-vs-aurora-Es9rrnIhb" target="_blank" rel="noopener">EGW quote</a><a class="sp" href="https://www.pinnacle.com/en/esports/games/cs2/matchups/" target="_blank" rel="noopener">Pinnacle</a></div>
+      
+    </div>
+    <div class="fc" id="f-1079438">
+      <div class="head"><span class="mono mut">#1079438</span> <span class="badge b-b">B-Tier · 3 pts</span>
+        <span class="badge b-b">BO3</span><span class="mut">Stake Pulse Beat III</span></div>
+      <div><span class="mm">Astralis</span> <span class="mut">vs</span> <span class="mm">Sashi</span></div>
+      <div><div class="pct"><span class="na">Astralis 85.3%</span><span class="nb">14.7% Sashi</span></div>
+        <div class="bar"><div class="fa" style="width:85%"></div><div class="fb" style="width:15%"></div></div></div>
+      <div class="pickbox"><div class="pk">PICK: Astralis 85.3%</div><div><span class="badge b-lock">OBVIOUS LOCK (≥70%)</span></div><div class="bb">Basis: External market — EGW bc.game 1.09/6.33 de-vigged</div></div>
+      <div class="mut"><b>Market:</b> 1.09 / 6.33 · <a href="https://egamersworld.com/counterstrike/match/EJZmJpBjeNx/astralis-vs-sashi-esport-aGet1AP-0Z" target="_blank" rel="noopener">bc.game (EGW)</a>, de-vigged (7.5% margin)</div>
+      <div class="mut"><b>Own line:</b> 90.2% / 9.8% — <span class="mono">VRS #10 (1674) vs #73 (1131)</span></div>
+      <div class="mut"><b>Start:</b> <span class="mono">2026-10-14T10:00 UTC</span> ·
+        <b>Lock:</b> <span class="mono">2026-10-14T09:54 UTC</span> <a class="flaglink" href="flagged.html#pf-08">(PF-08)</a></div>
+      <div class="srcs"><a class="sp" href="https://www.hotspawn.com/matches/astralis-vs-sashi-stake-pulse-beat-iii-1079438" target="_blank" rel="noopener">Hotspawn match</a><a class="sp" href="https://www.hltv.org/matches/2399134/astralis-vs-sashi-stake-pulse-beat-iii" target="_blank" rel="noopener">HLTV match 2399134</a><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L15" target="_blank" rel="noopener">VRS Astralis</a><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L78" target="_blank" rel="noopener">VRS Sashi</a><a class="sp" href="https://egamersworld.com/counterstrike/match/EJZmJpBjeNx/astralis-vs-sashi-esport-aGet1AP-0Z" target="_blank" rel="noopener">EGW quote</a></div>
+      
+    </div>
+    <div class="fc" id="f-1079439">
+      <div class="head"><span class="mono mut">#1079439</span> <span class="badge b-b">B-Tier · 3 pts</span>
+        <span class="badge b-b">BO3</span><span class="mut">Stake Pulse Beat III</span></div>
+      <div><span class="mm">HOTU</span> <span class="mut">vs</span> <span class="mm">Fnatic</span></div>
+      <div><div class="pct"><span class="na">HOTU 48.9%</span><span class="nb">51.1% Fnatic</span></div>
+        <div class="bar"><div class="fa" style="width:49%"></div><div class="fb" style="width:51%"></div></div></div>
+      <div class="pickbox"><div class="pk">PICK: Fnatic 51.1%</div><div><span class="badge b-toss">CLOSE TOSS-UP (&lt;55%)</span></div><div class="bb">Basis: External market — EGW bc.game 1.89/1.81 de-vigged</div></div>
+      <div class="mut"><b>Market:</b> 1.89 / 1.81 · <a href="https://egamersworld.com/counterstrike/match/EJZmJpBjeNx/hotu-vs-fnatic-KjM3caFTC" target="_blank" rel="noopener">bc.game (EGW)</a>, de-vigged (8.2% margin) · Pinnacle 1.990/1.800 (<a href="https://www.pinnacle.com/en/esports/games/cs2/matchups/" target="_blank" rel="noopener">API 47%/53%</a>)</div>
+      <div class="mut"><b>Own line:</b> 52.0% / 48.0% — <span class="mono">VRS #31 (1437) vs #35 (1417)</span></div>
+      <div class="mut"><b>Start:</b> <span class="mono">2026-10-14T10:00 UTC</span> ·
+        <b>Lock:</b> <span class="mono">2026-10-14T09:54 UTC</span> <a class="flaglink" href="flagged.html#pf-08">(PF-08)</a></div>
+      <div class="srcs"><a class="sp" href="https://www.hotspawn.com/matches/hotu-vs-fnatic-stake-pulse-beat-iii-1079439" target="_blank" rel="noopener">Hotspawn match</a><a class="sp" href="https://www.hltv.org/matches/2399135/hotu-vs-fnatic-stake-pulse-beat-iii" target="_blank" rel="noopener">HLTV match 2399135</a><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L36" target="_blank" rel="noopener">VRS HOTU</a><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L40" target="_blank" rel="noopener">VRS Fnatic</a><a class="sp" href="https://egamersworld.com/counterstrike/match/EJZmJpBjeNx/hotu-vs-fnatic-KjM3caFTC" target="_blank" rel="noopener">EGW quote</a><a class="sp" href="https://www.pinnacle.com/en/esports/games/cs2/matchups/" target="_blank" rel="noopener">Pinnacle</a></div>
+      
+    </div>
+    <div class="fc" id="f-1081112">
+      <div class="head"><span class="mono mut">#1081112</span> <span class="badge b-c">C-Tier · 2 pts</span>
+        <span class="badge b-b">BO3</span><span class="mut">CCT Europe 2026 Series #12 Closed Qualifier</span></div>
+      <div><span class="mm">Banda chuya</span> <span class="mut">vs</span> <span class="mm">6666</span></div>
+      <div><div class="pct"><span class="na">Banda chuya 38.2%</span><span class="nb">61.8% 6666</span></div>
+        <div class="bar"><div class="fa" style="width:38%"></div><div class="fb" style="width:62%"></div></div></div>
+      <div class="pickbox"><div class="pk">PICK: 6666 61.8%</div><div><span class="badge b-strong">STRONG PICK (60–69%)</span></div><div class="bb">Basis: Own VRS model k=0.4568, BO3</div></div>
+      <div class="mut"><b>Market:</b> <span class="badge b-unv">No market line — 1.80/1.80 placeholder rejected</span> <a href="flagged.html#pf-01" class="flaglink">PF-01</a></div>
+      <div class="mut"><b>Own line:</b> 38.2% / 61.8% — <span class="mono">VRS #165 (801) vs #127 (923)</span></div>
+      <div class="mut"><b>Start:</b> <span class="mono">2026-10-14T11:00 UTC</span> ·
+        <b>Lock:</b> <span class="mono">2026-10-14T10:54 UTC</span> <a class="flaglink" href="flagged.html#pf-08">(PF-08)</a></div>
+      <div class="srcs"><a class="sp" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn lobby</a><a class="sp" href="https://www.hltv.org/matches/2399462/banda-chuya-vs-6666-cct-2026-europe-series-12-closed-qualifier" target="_blank" rel="noopener">HLTV match 2399462</a><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L170" target="_blank" rel="noopener">VRS Banda chuya</a><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L132" target="_blank" rel="noopener">VRS 6666</a></div>
+      <div class="mut">Flags: <a class="flaglink" href="flagged.html#pf-01">PF-01</a> </div>
+    </div>
+    <div class="fc" id="f-1079622">
+      <div class="head"><span class="mono mut">#1079622</span> <span class="badge b-b">B-Tier · 3 pts</span>
+        <span class="badge b-b">BO3</span><span class="mut">CCT Europe 2026 Series #11</span></div>
+      <div><span class="mm">ex-RUSTEC</span> <span class="mut">vs</span> <span class="mm">mellren</span></div>
+      <div><div class="pct"><span class="na">ex-RUSTEC 65.7%</span><span class="nb">34.3% mellren</span></div>
+        <div class="bar"><div class="fa" style="width:66%"></div><div class="fb" style="width:34%"></div></div></div>
+      <div class="pickbox"><div class="pk">PICK: ex-RUSTEC 65.7%</div><div><span class="badge b-strong">STRONG PICK (60–69%)</span></div><div class="bb">Basis: External market — EGW bc.game 1.40/2.68 de-vigged</div></div>
+      <div class="mut"><b>Market:</b> 1.40 / 2.68 · <a href="https://egamersworld.com/counterstrike/match/_rW8GEyWK/ex-rustec-vs-mellren-ZGVCwI7MK" target="_blank" rel="noopener">bc.game (EGW)</a>, de-vigged (8.7% margin) · Polymarket 1.52x/2.78x (66¢/36¢, $9600 vol, cross-check)</div>
+      <div class="mut"><b>Own line:</b> 62.9% / 37.1% — <span class="mono">VRS #92 (1066) vs #125 (932)</span></div>
+      <div class="mut"><b>Start:</b> <span class="mono">2026-10-14T11:00 UTC</span> ·
+        <b>Lock:</b> <span class="mono">2026-10-14T10:54 UTC</span> <a class="flaglink" href="flagged.html#pf-08">(PF-08)</a></div>
+      <div class="srcs"><a class="sp" href="https://www.hotspawn.com/matches/ex-rustec-vs-mellren-cct-europe-2026-series-11-1079622" target="_blank" rel="noopener">Hotspawn match</a><a class="sp" href="https://www.hltv.org/matches/2399299/ex-rustec-vs-mellren-cct-2026-europe-series-11" target="_blank" rel="noopener">HLTV match 2399299</a><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L97" target="_blank" rel="noopener">VRS ex-RUSTEC</a><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L130" target="_blank" rel="noopener">VRS mellren</a><a class="sp" href="https://egamersworld.com/counterstrike/match/_rW8GEyWK/ex-rustec-vs-mellren-ZGVCwI7MK" target="_blank" rel="noopener">EGW quote</a><a class="sp" href="https://polymarket.com/esports/cs2/cct-europe/cs2-rustec-mellre-2026-10-14" target="_blank" rel="noopener">Polymarket</a></div>
+      
+    </div>
+    <div class="fc" id="f-1080177">
+      <div class="head"><span class="mono mut">#1080177</span> <span class="badge b-s">S-Tier · 7 pts</span>
+        <span class="badge b-b">BO3</span><span class="mut">Thunderpick World Championship 2026</span></div>
+      <div><span class="mm">Falcons</span> <span class="mut">vs</span> <span class="mm">Ninjas in Pyjamas</span></div>
+      <div><div class="pct"><span class="na">Falcons 76.8%</span><span class="nb">23.2% Ninjas in Pyjamas</span></div>
+        <div class="bar"><div class="fa" style="width:77%"></div><div class="fb" style="width:23%"></div></div></div>
+      <div class="pickbox"><div class="pk">PICK: Falcons 76.8%</div><div><span class="badge b-lock">OBVIOUS LOCK (≥70%)</span></div><div class="bb">Basis: External market — EGW bc.game 1.19/3.95 de-vigged</div></div>
+      <div class="mut"><b>Market:</b> 1.19 / 3.95 · <a href="https://egamersworld.com/counterstrike/match/5X5sFiL7H/falcons-vs-nip-QSa-aeOIR" target="_blank" rel="noopener">bc.game (EGW)</a>, de-vigged (9.4% margin) · Pinnacle 1.254/4.010 (<a href="https://www.pinnacle.com/en/esports/games/cs2/matchups/" target="_blank" rel="noopener">API 76%/24%</a>)</div>
+      <div class="mut"><b>Own line:</b> 77.5% / 22.5% — <span class="mono">VRS #6 (1843) vs #18 (1534)</span></div>
+      <div class="mut"><b>Start:</b> <span class="mono">2026-10-14T11:00 UTC</span> ·
+        <b>Lock:</b> <span class="mono">2026-10-14T10:54 UTC</span> <a class="flaglink" href="flagged.html#pf-08">(PF-08)</a></div>
+      <div class="srcs"><a class="sp" href="https://www.hotspawn.com/matches/falcons-vs-ninjas-in-pyjamas-thunderpick-world-championship-2026-1080177" target="_blank" rel="noopener">Hotspawn match</a><a class="sp" href="https://www.hltv.org/matches/2399385/falcons-vs-ninjas-in-pyjamas-thunderpick-world-championship-2026" target="_blank" rel="noopener">HLTV match 2399385</a><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L11" target="_blank" rel="noopener">VRS Falcons</a><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L23" target="_blank" rel="noopener">VRS Ninjas in Pyjamas</a><a class="sp" href="https://egamersworld.com/counterstrike/match/5X5sFiL7H/falcons-vs-nip-QSa-aeOIR" target="_blank" rel="noopener">EGW quote</a><a class="sp" href="https://www.pinnacle.com/en/esports/games/cs2/matchups/" target="_blank" rel="noopener">Pinnacle</a></div>
+      
+    </div>
+    <div class="fc" id="f-1080178">
+      <div class="head"><span class="mono mut">#1080178</span> <span class="badge b-s">S-Tier · 7 pts</span>
+        <span class="badge b-b">BO3</span><span class="mut">Thunderpick World Championship 2026</span></div>
+      <div><span class="mm">Legacy</span> <span class="mut">vs</span> <span class="mm">PARIVISION</span></div>
+      <div><div class="pct"><span class="na">Legacy 55.5%</span><span class="nb">44.5% PARIVISION</span></div>
+        <div class="bar"><div class="fa" style="width:56%"></div><div class="fb" style="width:44%"></div></div></div>
+      <div class="pickbox"><div class="pk">PICK: Legacy 55.5%</div><div><span class="badge b-lean">SOLID LEAN (55–59%)</span></div><div class="bb">Basis: External market — EGW bc.game 1.66/2.07 de-vigged</div></div>
+      <div class="mut"><b>Market:</b> 1.66 / 2.07 · <a href="https://egamersworld.com/counterstrike/match/5X5sFiL7H/legacy-vs-parivision--TTc59QUDJ" target="_blank" rel="noopener">bc.game (EGW)</a>, de-vigged (8.6% margin) · Pinnacle 1.654/2.260 (<a href="https://www.pinnacle.com/en/esports/games/cs2/matchups/" target="_blank" rel="noopener">API 58%/42%</a>)</div>
+      <div class="mut"><b>Own line:</b> 89.3% / 10.7% — <span class="mono">VRS #2 (1931) vs #36 (1411)</span></div>
+      <div class="mut"><b>Start:</b> <span class="mono">2026-10-14T13:30 UTC</span> ·
+        <b>Lock:</b> <span class="mono">2026-10-14T13:24 UTC</span> <a class="flaglink" href="flagged.html#pf-08">(PF-08)</a></div>
+      <div class="srcs"><a class="sp" href="https://www.hotspawn.com/matches/legacy-vs-parivision-thunderpick-world-championship-2026-1080178" target="_blank" rel="noopener">Hotspawn match</a><a class="sp" href="https://www.hltv.org/matches/2399386/legacy-vs-parivision-thunderpick-world-championship-2026" target="_blank" rel="noopener">HLTV match 2399386</a><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L7" target="_blank" rel="noopener">VRS Legacy</a><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L41" target="_blank" rel="noopener">VRS PARIVISION</a><a class="sp" href="https://egamersworld.com/counterstrike/match/5X5sFiL7H/legacy-vs-parivision--TTc59QUDJ" target="_blank" rel="noopener">EGW quote</a><a class="sp" href="https://www.pinnacle.com/en/esports/games/cs2/matchups/" target="_blank" rel="noopener">Pinnacle</a></div>
+      
+    </div>
+    <div class="fc" id="f-1081113">
+      <div class="head"><span class="mono mut">#1081113</span> <span class="badge b-c">C-Tier · 2 pts</span>
+        <span class="badge b-b">BO3</span><span class="mut">CCT Europe 2026 Series #12 Closed Qualifier</span></div>
+      <div><span class="mm">Ryvex</span> <span class="mut">vs</span> <span class="mm">PCIFIC</span></div>
+      <div><div class="pct"><span class="na">Ryvex 35.0%</span><span class="nb">65.0% PCIFIC</span></div>
+        <div class="bar"><div class="fa" style="width:35%"></div><div class="fb" style="width:65%"></div></div></div>
+      <div class="pickbox"><div class="pk">PICK: PCIFIC 65.0%</div><div><span class="badge b-strong">STRONG PICK (60–69%)</span></div><div class="bb">Basis: Own VRS model k=0.4568, BO3</div></div>
+      <div class="mut"><b>Market:</b> <span class="badge b-unv">No market line — 1.80/1.80 placeholder rejected</span> <a href="flagged.html#pf-01" class="flaglink">PF-01</a> · Polymarket 1.16x/5.56x (86¢/18¢, $38.66 vol, cross-check)</div>
+      <div class="mut"><b>Own line:</b> 35.0% / 65.0% — <span class="mono">VRS #207 (714) vs #139 (870)</span></div>
+      <div class="mut"><b>Start:</b> <span class="mono">2026-10-14T14:00 UTC</span> ·
+        <b>Lock:</b> <span class="mono">2026-10-14T13:54 UTC</span> <a class="flaglink" href="flagged.html#pf-08">(PF-08)</a></div>
+      <div class="srcs"><a class="sp" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn lobby</a><a class="sp" href="https://www.hltv.org/matches/2399463/pcific-vs-ryvex-cct-2026-europe-series-12-closed-qualifier" target="_blank" rel="noopener">HLTV match 2399463</a><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L212" target="_blank" rel="noopener">VRS Ryvex</a><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L144" target="_blank" rel="noopener">VRS PCIFIC</a><a class="sp" href="https://polymarket.com/esports/cs2/cct-europe/cs2-wraith-ryvex-2026-10-14" target="_blank" rel="noopener">Polymarket</a></div>
+      <div class="mut">Flags: <a class="flaglink" href="flagged.html#pf-03">FL-IDENTITY-PCIFIC</a> <a class="flaglink" href="flagged.html#pf-01">PF-01</a> </div>
+    </div>
+    <div class="fc" id="f-1079623">
+      <div class="head"><span class="mono mut">#1079623</span> <span class="badge b-b">B-Tier · 3 pts</span>
+        <span class="badge b-b">BO3</span><span class="mut">CCT Europe 2026 Series #11</span></div>
+      <div><span class="mm">G2 Ares</span> <span class="mut">vs</span> <span class="mm">The Last Resort</span></div>
+      <div><div class="pct"><span class="na">G2 Ares 62.4%</span><span class="nb">37.6% The Last Resort</span></div>
+        <div class="bar"><div class="fa" style="width:62%"></div><div class="fb" style="width:38%"></div></div></div>
+      <div class="pickbox"><div class="pk">PICK: G2 Ares 62.4%</div><div><span class="badge b-strong">STRONG PICK (60–69%)</span></div><div class="bb">Basis: External market — EGW bc.game 1.465/2.436 de-vigged</div></div>
+      <div class="mut"><b>Market:</b> 1.465 / 2.436 · <a href="https://egamersworld.com/counterstrike/match/_rW8GEyWK/g2-ares-vs-the-last-resort-7GWb9EDd9L" target="_blank" rel="noopener">bc.game (EGW)</a>, de-vigged (9.3% margin) · Polymarket 1.49x/2.78x (67¢/36¢, $140.98 vol, cross-check)</div>
+      <div class="mut"><b>Own line:</b> 48.7% / 51.3% — <span class="mono">VRS #129 (913) vs #126 (926)</span></div>
+      <div class="mut"><b>Start:</b> <span class="mono">2026-10-14T14:00 UTC</span> ·
+        <b>Lock:</b> <span class="mono">2026-10-14T13:54 UTC</span> <a class="flaglink" href="flagged.html#pf-08">(PF-08)</a></div>
+      <div class="srcs"><a class="sp" href="https://www.hotspawn.com/matches/g2-ares-vs-the-last-resort-cct-europe-2026-series-11-1079623" target="_blank" rel="noopener">Hotspawn match</a><a class="sp" href="https://www.hltv.org/matches/2399300/g2-ares-vs-the-last-resort-cct-2026-europe-series-11" target="_blank" rel="noopener">HLTV match 2399300</a><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L134" target="_blank" rel="noopener">VRS G2 Ares</a><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L131" target="_blank" rel="noopener">VRS The Last Resort</a><a class="sp" href="https://egamersworld.com/counterstrike/match/_rW8GEyWK/g2-ares-vs-the-last-resort-7GWb9EDd9L" target="_blank" rel="noopener">EGW quote</a><a class="sp" href="https://polymarket.com/esports/cs2/cct-europe/cs2-g2a-tlr-2026-10-14" target="_blank" rel="noopener">Polymarket</a></div>
+      
+    </div>
+    <div class="fc" id="f-1080179">
+      <div class="head"><span class="mono mut">#1080179</span> <span class="badge b-s">S-Tier · 7 pts</span>
+        <span class="badge b-b">BO3</span><span class="mut">Thunderpick World Championship 2026</span></div>
+      <div><span class="mm">FURIA</span> <span class="mut">vs</span> <span class="mm">BetBoom</span></div>
+      <div><div class="pct"><span class="na">FURIA 67.1%</span><span class="nb">32.9% BetBoom</span></div>
+        <div class="bar"><div class="fa" style="width:67%"></div><div class="fb" style="width:33%"></div></div></div>
+      <div class="pickbox"><div class="pk">PICK: FURIA 67.1%</div><div><span class="badge b-strong">STRONG PICK (60–69%)</span></div><div class="bb">Basis: External market — EGW bc.game 1.40/2.86 de-vigged</div></div>
+      <div class="mut"><b>Market:</b> 1.40 / 2.86 · <a href="https://egamersworld.com/counterstrike/match/5X5sFiL7H/furia-vs-betboom-team-ZeSbzy91oH" target="_blank" rel="noopener">bc.game (EGW)</a>, de-vigged (6.4% margin) · Pinnacle 1.364/3.180 (<a href="https://www.pinnacle.com/en/esports/games/cs2/matchups/" target="_blank" rel="noopener">API 70%/30%</a>)</div>
+      <div class="mut"><b>Own line:</b> 71.6% / 28.4% — <span class="mono">VRS #7 (1829) vs #11 (1596)</span></div>
+      <div class="mut"><b>Start:</b> <span class="mono">2026-10-14T16:00 UTC</span> ·
+        <b>Lock:</b> <span class="mono">2026-10-14T15:54 UTC</span> <a class="flaglink" href="flagged.html#pf-08">(PF-08)</a></div>
+      <div class="srcs"><a class="sp" href="https://www.hotspawn.com/matches/furia-vs-betboom-thunderpick-world-championship-2026-1080179" target="_blank" rel="noopener">Hotspawn match</a><a class="sp" href="https://www.hltv.org/matches/2399387/furia-vs-betboom-thunderpick-world-championship-2026" target="_blank" rel="noopener">HLTV match 2399387</a><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L12" target="_blank" rel="noopener">VRS FURIA</a><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L16" target="_blank" rel="noopener">VRS BetBoom</a><a class="sp" href="https://egamersworld.com/counterstrike/match/5X5sFiL7H/furia-vs-betboom-team-ZeSbzy91oH" target="_blank" rel="noopener">EGW quote</a><a class="sp" href="https://www.pinnacle.com/en/esports/games/cs2/matchups/" target="_blank" rel="noopener">Pinnacle</a></div>
+      
+    </div>
+    <div class="fc" id="f-1079624">
+      <div class="head"><span class="mono mut">#1079624</span> <span class="badge b-b">B-Tier · 3 pts</span>
+        <span class="badge b-b">BO3</span><span class="mut">CCT Europe 2026 Series #11</span></div>
+      <div><span class="mm">FORZE Reload</span> <span class="mut">vs</span> <span class="mm">LFO 10</span></div>
+      <div><div class="pct"><span class="na">FORZE Reload 75.9%</span><span class="nb">24.1% LFO 10</span></div>
+        <div class="bar"><div class="fa" style="width:76%"></div><div class="fb" style="width:24%"></div></div></div>
+      <div class="pickbox research"><div class="pk">PICK: FORZE Reload 75.9%</div><div><span class="badge b-lock">OBVIOUS LOCK (≥70%)</span></div><div class="bb">Basis: RESEARCH line (roster-mapped, flagged PF-02) — Own VRS model k=0.4568, BO3</div></div>
+      <div class="mut"><b>Market:</b> <span class="badge b-unv">No market line — 1.80/1.80 placeholder rejected</span> <a href="flagged.html#pf-01" class="flaglink">PF-01</a> · Polymarket 1.11x/6.25x (90¢/16¢, $313.86 vol, context only — see flag)</div>
+      <div class="mut"><b>Own line:</b> 75.9% / 24.1% — <span class="mono">VRS #84 (1100) vs #156 (813, research-mapped)</span> <span class="badge b-research">RESEARCH</span> <a href="flagged.html#pf-02" class="flaglink">PF-02</a></div>
+      <div class="mut"><b>Start:</b> <span class="mono">2026-10-14T17:00 UTC</span> ·
+        <b>Lock:</b> <span class="mono">2026-10-14T16:54 UTC</span> <a class="flaglink" href="flagged.html#pf-08">(PF-08)</a></div>
+      <div class="srcs"><a class="sp" href="https://www.hotspawn.com/matches/forze-reload-vs-lfo-10-cct-europe-2026-series-11-1079624" target="_blank" rel="noopener">Hotspawn match</a><a class="sp" href="https://www.hltv.org/matches/2399301/forze-reload-vs-lfo-10-cct-2026-europe-series-11" target="_blank" rel="noopener">HLTV match 2399301</a><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L89" target="_blank" rel="noopener">VRS FORZE Reload</a><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L161" target="_blank" rel="noopener">VRS LFO 10</a><a class="sp" href="https://polymarket.com/esports/cs2/cct-europe/cs2-forzer-skr2-2026-10-14" target="_blank" rel="noopener">Polymarket</a></div>
+      <div class="mut">Flags: <a class="flaglink" href="flagged.html#pf-02">FL-UNVERIFIED-TEAM</a> <a class="flaglink" href="flagged.html#pf-01">PF-01</a> <a class="flaglink" href="flagged.html#pf-02">PF-02</a> <a class="flaglink" href="flagged.html#pf-04">PF-04</a> </div>
+    </div></div></section>
+    <section class="card"><h2>Wednesday, Oct 15 — 8 matches</h2>
+      <p class="desc">All times UTC. Lock = start − 6 min (PF-08). Submit your pick on Hotspawn before lock.</p>
+      <div class="cards">
+    <div class="fc" id="f-1080279">
+      <div class="head"><span class="mono mut">#1080279</span> <span class="badge b-c">C-Tier · 2 pts</span>
+        <span class="badge b-b">BO1</span><span class="mut">Elisa BreakOut Series 2</span></div>
+      <div><span class="mm">WROTBERRY</span> <span class="mut">vs</span> <span class="mm">EAC</span></div>
+      <div><div class="pct"><span class="na">WROTBERRY 45.7%</span><span class="nb">54.3% EAC</span></div>
+        <div class="bar"><div class="fa" style="width:46%"></div><div class="fb" style="width:54%"></div></div></div>
+      <div class="pickbox"><div class="pk">PICK: EAC 54.3%</div><div><span class="badge b-toss">CLOSE TOSS-UP (&lt;55%)</span></div><div class="bb">Basis: External market — EGW bc.game 2.01/1.69 de-vigged</div></div>
+      <div class="mut"><b>Market:</b> 2.01 / 1.69 · <a href="https://egamersworld.com/counterstrike/match/4yn491uUVl/wbt-vs-ea-copenhagen-hSC7a2mtP" target="_blank" rel="noopener">bc.game (EGW)</a>, de-vigged (8.9% margin)</div>
+      <div class="mut"><b>Own line:</b> 60.7% / 39.3% — <span class="mono">VRS #60 (1201) vs #103 (1035)</span></div>
+      <div class="mut"><b>Start:</b> <span class="mono">2026-10-15T08:00 UTC</span> ·
+        <b>Lock:</b> <span class="mono">2026-10-15T07:54 UTC</span> <a class="flaglink" href="flagged.html#pf-08">(PF-08)</a></div>
+      <div class="srcs"><a class="sp" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn lobby</a><a class="sp" href="https://www.hltv.org/matches/2399418/wbt-vs-eac-elisa-breakout-series-2" target="_blank" rel="noopener">HLTV match 2399418</a><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L65" target="_blank" rel="noopener">VRS WROTBERRY</a><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L108" target="_blank" rel="noopener">VRS EAC</a><a class="sp" href="https://egamersworld.com/counterstrike/match/4yn491uUVl/wbt-vs-ea-copenhagen-hSC7a2mtP" target="_blank" rel="noopener">EGW quote</a></div>
+      
+    </div>
+    <div class="fc" id="f-1079440">
+      <div class="head"><span class="mono mut">#1079440</span> <span class="badge b-b">B-Tier · 3 pts</span>
+        <span class="badge b-b">BO3</span><span class="mut">Stake Pulse Beat III</span></div>
+      <div><span class="mm">MIBR</span> <span class="mut">vs</span> <span class="mm">BC.Game</span></div>
+      <div><div class="pct"><span class="na">MIBR 56.3%</span><span class="nb">43.7% BC.Game</span></div>
+        <div class="bar"><div class="fa" style="width:56%"></div><div class="fb" style="width:44%"></div></div></div>
+      <div class="pickbox"><div class="pk">PICK: MIBR 56.3%</div><div><span class="badge b-lean">SOLID LEAN (55–59%)</span></div><div class="bb">Basis: External market — EGW bc.game 1.62/2.09 de-vigged</div></div>
+      <div class="mut"><b>Market:</b> 1.62 / 2.09 · <a href="https://egamersworld.com/counterstrike/match/EJZmJpBjeNx/mibr-vs-bcgame-esports-X8nMpUjAX" target="_blank" rel="noopener">bc.game (EGW)</a>, de-vigged (9.6% margin) · Pinnacle 1.637/2.230 (<a href="https://www.pinnacle.com/en/esports/games/cs2/matchups/" target="_blank" rel="noopener">API 58%/42%</a>)</div>
+      <div class="mut"><b>Own line:</b> 74.3% / 25.7% — <span class="mono">VRS #12 (1585) vs #50 (1318)</span></div>
+      <div class="mut"><b>Start:</b> <span class="mono">2026-10-15T10:00 UTC</span> ·
+        <b>Lock:</b> <span class="mono">2026-10-15T09:54 UTC</span> <a class="flaglink" href="flagged.html#pf-08">(PF-08)</a></div>
+      <div class="srcs"><a class="sp" href="https://www.hotspawn.com/matches/mibr-vs-bcgame-stake-pulse-beat-iii-1079440" target="_blank" rel="noopener">Hotspawn match</a><a class="sp" href="https://www.hltv.org/matches/2399136/mibr-vs-bcgame-stake-pulse-beat-iii" target="_blank" rel="noopener">HLTV match 2399136</a><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L17" target="_blank" rel="noopener">VRS MIBR</a><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L55" target="_blank" rel="noopener">VRS BC.Game</a><a class="sp" href="https://egamersworld.com/counterstrike/match/EJZmJpBjeNx/mibr-vs-bcgame-esports-X8nMpUjAX" target="_blank" rel="noopener">EGW quote</a><a class="sp" href="https://www.pinnacle.com/en/esports/games/cs2/matchups/" target="_blank" rel="noopener">Pinnacle</a></div>
+      
+    </div>
+    <div class="fc" id="f-1079442">
+      <div class="head"><span class="mono mut">#1079442</span> <span class="badge b-b">B-Tier · 3 pts</span>
+        <span class="badge b-b">BO3</span><span class="mut">Stake Pulse Beat III</span></div>
+      <div><span class="mm">Heroic</span> <span class="mut">vs</span> <span class="mm">Envy</span></div>
+      <div><div class="pct"><span class="na">Heroic 63.0%</span><span class="nb">37.0% Envy</span></div>
+        <div class="bar"><div class="fa" style="width:63%"></div><div class="fb" style="width:37%"></div></div></div>
+      <div class="pickbox"><div class="pk">PICK: Heroic 63.0%</div><div><span class="badge b-strong">STRONG PICK (60–69%)</span></div><div class="bb">Basis: External market — EGW bc.game 1.45/2.47 de-vigged</div></div>
+      <div class="mut"><b>Market:</b> 1.45 / 2.47 · <a href="https://egamersworld.com/counterstrike/match/EJZmJpBjeNx/heroic-vs-team-envy-NcCqzpPZdC" target="_blank" rel="noopener">bc.game (EGW)</a>, de-vigged (9.5% margin) · Pinnacle 1.469/2.620 (<a href="https://www.pinnacle.com/en/esports/games/cs2/matchups/" target="_blank" rel="noopener">API 64%/36%</a>)</div>
+      <div class="mut"><b>Own line:</b> 54.9% / 45.1% — <span class="mono">VRS #15 (1550) vs #21 (1500)</span></div>
+      <div class="mut"><b>Start:</b> <span class="mono">2026-10-15T10:00 UTC</span> ·
+        <b>Lock:</b> <span class="mono">2026-10-15T09:54 UTC</span> <a class="flaglink" href="flagged.html#pf-08">(PF-08)</a></div>
+      <div class="srcs"><a class="sp" href="https://www.hotspawn.com/matches/heroic-vs-envy-stake-pulse-beat-iii-1079442" target="_blank" rel="noopener">Hotspawn match</a><a class="sp" href="https://www.hltv.org/matches/2399137/heroic-vs-envy-stake-pulse-beat-iii" target="_blank" rel="noopener">HLTV match 2399137</a><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L20" target="_blank" rel="noopener">VRS Heroic</a><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L26" target="_blank" rel="noopener">VRS Envy</a><a class="sp" href="https://egamersworld.com/counterstrike/match/EJZmJpBjeNx/heroic-vs-team-envy-NcCqzpPZdC" target="_blank" rel="noopener">EGW quote</a><a class="sp" href="https://www.pinnacle.com/en/esports/games/cs2/matchups/" target="_blank" rel="noopener">Pinnacle</a></div>
+      
+    </div>
+    <div class="fc" id="f-1080280">
+      <div class="head"><span class="mono mut">#1080280</span> <span class="badge b-c">C-Tier · 2 pts</span>
+        <span class="badge b-b">BO1</span><span class="mut">Elisa BreakOut Series 2</span></div>
+      <div><span class="mm">ENCE</span> <span class="mut">vs</span> <span class="mm">BOJONG</span></div>
+      <div><div class="pct"><span class="na">ENCE 70.9%</span><span class="nb">29.1% BOJONG</span></div>
+        <div class="bar"><div class="fa" style="width:71%"></div><div class="fb" style="width:29%"></div></div></div>
+      <div class="pickbox"><div class="pk">PICK: ENCE 70.9%</div><div><span class="badge b-lock">OBVIOUS LOCK (≥70%)</span></div><div class="bb">Basis: External market — EGW bc.game 1.30/3.17 de-vigged</div></div>
+      <div class="mut"><b>Market:</b> 1.30 / 3.17 · <a href="https://egamersworld.com/counterstrike/match/4yn491uUVl/ence-vs-bojong-qV78OzvXFg" target="_blank" rel="noopener">bc.game (EGW)</a>, de-vigged (8.5% margin)</div>
+      <div class="mut"><b>Own line:</b> 81.4% / 18.6% — <span class="mono">VRS #105 (1025) vs #363 (463)</span></div>
+      <div class="mut"><b>Start:</b> <span class="mono">2026-10-15T10:00 UTC</span> ·
+        <b>Lock:</b> <span class="mono">2026-10-15T09:54 UTC</span> <a class="flaglink" href="flagged.html#pf-08">(PF-08)</a></div>
+      <div class="srcs"><a class="sp" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn lobby</a><a class="sp" href="https://www.hltv.org/matches/2399419/ence-vs-bojong-elisa-breakout-series-2" target="_blank" rel="noopener">HLTV match 2399419</a><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L110" target="_blank" rel="noopener">VRS ENCE</a><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L368" target="_blank" rel="noopener">VRS BOJONG</a><a class="sp" href="https://egamersworld.com/counterstrike/match/4yn491uUVl/ence-vs-bojong-qV78OzvXFg" target="_blank" rel="noopener">EGW quote</a></div>
+      
+    </div>
+    <div class="fc" id="f-1080281">
+      <div class="head"><span class="mono mut">#1080281</span> <span class="badge b-c">C-Tier · 2 pts</span>
+        <span class="badge b-b">BO1</span><span class="mut">Elisa BreakOut Series 2</span></div>
+      <div><span class="mm">WROTBERRY</span> <span class="mut">vs</span> <span class="mm">ENCE</span></div>
+      <div><div class="pct"><span class="na">WROTBERRY 56.5%</span><span class="nb">43.5% ENCE</span></div>
+        <div class="bar"><div class="fa" style="width:56%"></div><div class="fb" style="width:44%"></div></div></div>
+      <div class="pickbox"><div class="pk">PICK: WROTBERRY 56.5%</div><div><span class="badge b-lean">SOLID LEAN (55–59%)</span></div><div class="bb">Basis: External market — EGW bc.game 1.62/2.107 de-vigged</div></div>
+      <div class="mut"><b>Market:</b> 1.62 / 2.107 · <a href="https://egamersworld.com/counterstrike/match/4yn491uUVl/wbt-vs-ence-GQ0xieRgQS" target="_blank" rel="noopener">bc.game (EGW)</a>, de-vigged (9.2% margin)</div>
+      <div class="mut"><b>Own line:</b> 61.4% / 38.6% — <span class="mono">VRS #60 (1201) vs #105 (1025)</span></div>
+      <div class="mut"><b>Start:</b> <span class="mono">2026-10-15T12:00 UTC</span> ·
+        <b>Lock:</b> <span class="mono">2026-10-15T11:54 UTC</span> <a class="flaglink" href="flagged.html#pf-08">(PF-08)</a></div>
+      <div class="srcs"><a class="sp" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn lobby</a><a class="sp" href="https://www.hltv.org/matches/2399420/wbt-vs-ence-elisa-breakout-series-2" target="_blank" rel="noopener">HLTV match 2399420</a><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L65" target="_blank" rel="noopener">VRS WROTBERRY</a><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L110" target="_blank" rel="noopener">VRS ENCE</a><a class="sp" href="https://egamersworld.com/counterstrike/match/4yn491uUVl/wbt-vs-ence-GQ0xieRgQS" target="_blank" rel="noopener">EGW quote</a></div>
+      
+    </div>
+    <div class="fc" id="f-1080282">
+      <div class="head"><span class="mono mut">#1080282</span> <span class="badge b-c">C-Tier · 2 pts</span>
+        <span class="badge b-b">BO1</span><span class="mut">Elisa BreakOut Series 2</span></div>
+      <div><span class="mm">EAC</span> <span class="mut">vs</span> <span class="mm">BOJONG</span></div>
+      <div><div class="pct"><span class="na">EAC 77.2%</span><span class="nb">22.8% BOJONG</span></div>
+        <div class="bar"><div class="fa" style="width:77%"></div><div class="fb" style="width:23%"></div></div></div>
+      <div class="pickbox"><div class="pk">PICK: EAC 77.2%</div><div><span class="badge b-lock">OBVIOUS LOCK (≥70%)</span></div><div class="bb">Basis: External market — EGW bc.game 1.19/4.02 de-vigged</div></div>
+      <div class="mut"><b>Market:</b> 1.19 / 4.02 · <a href="https://egamersworld.com/counterstrike/match/4yn491uUVl/ea-copenhagen-vs-bojong-vBsvfnHU5" target="_blank" rel="noopener">bc.game (EGW)</a>, de-vigged (8.9% margin)</div>
+      <div class="mut"><b>Own line:</b> 81.8% / 18.2% — <span class="mono">VRS #103 (1035) vs #363 (463)</span></div>
+      <div class="mut"><b>Start:</b> <span class="mono">2026-10-15T14:00 UTC</span> ·
+        <b>Lock:</b> <span class="mono">2026-10-15T13:54 UTC</span> <a class="flaglink" href="flagged.html#pf-08">(PF-08)</a></div>
+      <div class="srcs"><a class="sp" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn lobby</a><a class="sp" href="https://www.hltv.org/matches/2399421/eac-vs-bojong-elisa-breakout-series-2" target="_blank" rel="noopener">HLTV match 2399421</a><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L108" target="_blank" rel="noopener">VRS EAC</a><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L368" target="_blank" rel="noopener">VRS BOJONG</a><a class="sp" href="https://egamersworld.com/counterstrike/match/4yn491uUVl/ea-copenhagen-vs-bojong-vBsvfnHU5" target="_blank" rel="noopener">EGW quote</a></div>
+      
+    </div>
+    <div class="fc" id="f-1080283">
+      <div class="head"><span class="mono mut">#1080283</span> <span class="badge b-c">C-Tier · 2 pts</span>
+        <span class="badge b-b">BO1</span><span class="mut">Elisa BreakOut Series 2</span></div>
+      <div><span class="mm">WROTBERRY</span> <span class="mut">vs</span> <span class="mm">BOJONG</span></div>
+      <div><div class="pct"><span class="na">WROTBERRY 76.7%</span><span class="nb">23.3% BOJONG</span></div>
+        <div class="bar"><div class="fa" style="width:77%"></div><div class="fb" style="width:23%"></div></div></div>
+      <div class="pickbox"><div class="pk">PICK: WROTBERRY 76.7%</div><div><span class="badge b-lock">OBVIOUS LOCK (≥70%)</span></div><div class="bb">Basis: External market — EGW bc.game 1.21/3.99 de-vigged</div></div>
+      <div class="mut"><b>Market:</b> 1.21 / 3.99 · <a href="https://egamersworld.com/counterstrike/match/4yn491uUVl/wbt-vs-bojong-r7kNL0-LX6" target="_blank" rel="noopener">bc.game (EGW)</a>, de-vigged (7.7% margin)</div>
+      <div class="mut"><b>Own line:</b> 87.4% / 12.6% — <span class="mono">VRS #60 (1201) vs #363 (463)</span></div>
+      <div class="mut"><b>Start:</b> <span class="mono">2026-10-15T16:00 UTC</span> ·
+        <b>Lock:</b> <span class="mono">2026-10-15T15:54 UTC</span> <a class="flaglink" href="flagged.html#pf-08">(PF-08)</a></div>
+      <div class="srcs"><a class="sp" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn lobby</a><a class="sp" href="https://www.hltv.org/matches/2399422/wbt-vs-bojong-elisa-breakout-series-2" target="_blank" rel="noopener">HLTV match 2399422</a><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L65" target="_blank" rel="noopener">VRS WROTBERRY</a><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L368" target="_blank" rel="noopener">VRS BOJONG</a><a class="sp" href="https://egamersworld.com/counterstrike/match/4yn491uUVl/wbt-vs-bojong-r7kNL0-LX6" target="_blank" rel="noopener">EGW quote</a></div>
+      
+    </div>
+    <div class="fc" id="f-1080284">
+      <div class="head"><span class="mono mut">#1080284</span> <span class="badge b-c">C-Tier · 2 pts</span>
+        <span class="badge b-b">BO1</span><span class="mut">Elisa BreakOut Series 2</span></div>
+      <div><span class="mm">EAC</span> <span class="mut">vs</span> <span class="mm">ENCE</span></div>
+      <div><div class="pct"><span class="na">EAC 60.9%</span><span class="nb">39.1% ENCE</span></div>
+        <div class="bar"><div class="fa" style="width:61%"></div><div class="fb" style="width:39%"></div></div></div>
+      <div class="pickbox"><div class="pk">PICK: EAC 60.9%</div><div><span class="badge b-strong">STRONG PICK (60–69%)</span></div><div class="bb">Basis: External market — EGW bc.game 1.51/2.35 de-vigged</div></div>
+      <div class="mut"><b>Market:</b> 1.51 / 2.35 · <a href="https://egamersworld.com/counterstrike/match/4yn491uUVl/ea-copenhagen-vs-ence-kTR_sMK3PT" target="_blank" rel="noopener">bc.game (EGW)</a>, de-vigged (8.8% margin)</div>
+      <div class="mut"><b>Own line:</b> 50.7% / 49.3% — <span class="mono">VRS #103 (1035) vs #105 (1025)</span></div>
+      <div class="mut"><b>Start:</b> <span class="mono">2026-10-15T18:00 UTC</span> ·
+        <b>Lock:</b> <span class="mono">2026-10-15T17:54 UTC</span> <a class="flaglink" href="flagged.html#pf-08">(PF-08)</a></div>
+      <div class="srcs"><a class="sp" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn lobby</a><a class="sp" href="https://www.hltv.org/matches/2399423/eac-vs-ence-elisa-breakout-series-2" target="_blank" rel="noopener">HLTV match 2399423</a><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L108" target="_blank" rel="noopener">VRS EAC</a><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L110" target="_blank" rel="noopener">VRS ENCE</a><a class="sp" href="https://egamersworld.com/counterstrike/match/4yn491uUVl/ea-copenhagen-vs-ence-kTR_sMK3PT" target="_blank" rel="noopener">EGW quote</a></div>
+      
+    </div></div></section>
+    <section class="card"><h2>Thursday, Oct 16 — 7 matches</h2>
+      <p class="desc">All times UTC. Lock = start − 6 min (PF-08). Submit your pick on Hotspawn before lock.</p>
+      <div class="cards">
+    <div class="fc" id="f-1080285">
+      <div class="head"><span class="mono mut">#1080285</span> <span class="badge b-c">C-Tier · 2 pts</span>
+        <span class="badge b-b">BO1</span><span class="mut">Elisa BreakOut Series 2</span></div>
+      <div><span class="mm">Voca</span> <span class="mut">vs</span> <span class="mm">Phantom</span></div>
+      <div><div class="pct"><span class="na">Voca 48.6%</span><span class="nb">51.4% Phantom</span></div>
+        <div class="bar"><div class="fa" style="width:49%"></div><div class="fb" style="width:51%"></div></div></div>
+      <div class="pickbox"><div class="pk">PICK: Phantom 51.4%</div><div><span class="badge b-toss">CLOSE TOSS-UP (&lt;55%)</span></div><div class="bb">Basis: External market — EGW bc.game 1.87/1.77 de-vigged</div></div>
+      <div class="mut"><b>Market:</b> 1.87 / 1.77 · <a href="https://egamersworld.com/counterstrike/match/4yn491uUVl/voca-vs-phantom-esports-zby52fbAja" target="_blank" rel="noopener">bc.game (EGW)</a>, de-vigged (10.0% margin)</div>
+      <div class="mut"><b>Own line:</b> 52.3% / 47.7% — <span class="mono">VRS #68 (1182) vs #72 (1147)</span></div>
+      <div class="mut"><b>Start:</b> <span class="mono">2026-10-16T08:00 UTC</span> ·
+        <b>Lock:</b> <span class="mono">2026-10-16T07:54 UTC</span> <a class="flaglink" href="flagged.html#pf-08">(PF-08)</a></div>
+      <div class="srcs"><a class="sp" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn lobby</a><a class="sp" href="https://www.hltv.org/matches/2399424/voca-vs-phantom-elisa-breakout-series-2" target="_blank" rel="noopener">HLTV match 2399424</a><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L73" target="_blank" rel="noopener">VRS Voca</a><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L77" target="_blank" rel="noopener">VRS Phantom</a><a class="sp" href="https://egamersworld.com/counterstrike/match/4yn491uUVl/voca-vs-phantom-esports-zby52fbAja" target="_blank" rel="noopener">EGW quote</a></div>
+      
+    </div>
+    <div class="fc" id="f-1080286">
+      <div class="head"><span class="mono mut">#1080286</span> <span class="badge b-c">C-Tier · 2 pts</span>
+        <span class="badge b-b">BO1</span><span class="mut">Elisa BreakOut Series 2</span></div>
+      <div><span class="mm">HAVU</span> <span class="mut">vs</span> <span class="mm">RoundsGG</span></div>
+      <div><div class="pct"><span class="na">HAVU 77.2%</span><span class="nb">22.8% RoundsGG</span></div>
+        <div class="bar"><div class="fa" style="width:77%"></div><div class="fb" style="width:23%"></div></div></div>
+      <div class="pickbox"><div class="pk">PICK: HAVU 77.2%</div><div><span class="badge b-lock">OBVIOUS LOCK (≥70%)</span></div><div class="bb">Basis: External market — EGW bc.game 1.19/4.02 de-vigged</div></div>
+      <div class="mut"><b>Market:</b> 1.19 / 4.02 · <a href="https://egamersworld.com/counterstrike/match/4yn491uUVl/havu-vs-rounds-rg48QwsiJ9" target="_blank" rel="noopener">bc.game (EGW)</a>, de-vigged (8.9% margin)</div>
+      <div class="mut"><b>Own line:</b> 73.6% / 26.4% — <span class="mono">VRS #124 (937) vs #310 (548)</span></div>
+      <div class="mut"><b>Start:</b> <span class="mono">2026-10-16T10:00 UTC</span> ·
+        <b>Lock:</b> <span class="mono">2026-10-16T09:54 UTC</span> <a class="flaglink" href="flagged.html#pf-08">(PF-08)</a></div>
+      <div class="srcs"><a class="sp" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn lobby</a><a class="sp" href="https://www.hltv.org/matches/2399425/havu-vs-rounds-elisa-breakout-series-2" target="_blank" rel="noopener">HLTV match 2399425</a><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L129" target="_blank" rel="noopener">VRS HAVU</a><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L315" target="_blank" rel="noopener">VRS RoundsGG</a><a class="sp" href="https://egamersworld.com/counterstrike/match/4yn491uUVl/havu-vs-rounds-rg48QwsiJ9" target="_blank" rel="noopener">EGW quote</a></div>
+      
+    </div>
+    <div class="fc" id="f-1080287">
+      <div class="head"><span class="mono mut">#1080287</span> <span class="badge b-c">C-Tier · 2 pts</span>
+        <span class="badge b-b">BO1</span><span class="mut">Elisa BreakOut Series 2</span></div>
+      <div><span class="mm">Voca</span> <span class="mut">vs</span> <span class="mm">HAVU</span></div>
+      <div><div class="pct"><span class="na">Voca 66.2%</span><span class="nb">33.8% HAVU</span></div>
+        <div class="bar"><div class="fa" style="width:66%"></div><div class="fb" style="width:34%"></div></div></div>
+      <div class="pickbox"><div class="pk">PICK: Voca 66.2%</div><div><span class="badge b-strong">STRONG PICK (60–69%)</span></div><div class="bb">Basis: External market — EGW bc.game 1.38/2.70 de-vigged</div></div>
+      <div class="mut"><b>Market:</b> 1.38 / 2.70 · <a href="https://egamersworld.com/counterstrike/match/4yn491uUVl/voca-vs-havu-nQn6IrZXP" target="_blank" rel="noopener">bc.game (EGW)</a>, de-vigged (9.5% margin)</div>
+      <div class="mut"><b>Own line:</b> 65.6% / 34.4% — <span class="mono">VRS #68 (1182) vs #124 (937)</span></div>
+      <div class="mut"><b>Start:</b> <span class="mono">2026-10-16T12:00 UTC</span> ·
+        <b>Lock:</b> <span class="mono">2026-10-16T11:54 UTC</span> <a class="flaglink" href="flagged.html#pf-08">(PF-08)</a></div>
+      <div class="srcs"><a class="sp" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn lobby</a><a class="sp" href="https://www.hltv.org/matches/2399426/voca-vs-havu-elisa-breakout-series-2" target="_blank" rel="noopener">HLTV match 2399426</a><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L73" target="_blank" rel="noopener">VRS Voca</a><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L129" target="_blank" rel="noopener">VRS HAVU</a><a class="sp" href="https://egamersworld.com/counterstrike/match/4yn491uUVl/voca-vs-havu-nQn6IrZXP" target="_blank" rel="noopener">EGW quote</a></div>
+      
+    </div>
+    <div class="fc" id="f-1081120">
+      <div class="head"><span class="mono mut">#1081120</span> <span class="badge b-c">C-Tier · 2 pts</span>
+        <span class="badge b-b">BO3</span><span class="mut">CCT Europe 2026 Series #12 Closed Qualifier</span></div>
+      <div><span class="mm">mellren</span> <span class="mut">vs</span> <span class="mm">Privateer</span></div>
+      <div><div class="pct"><span class="na">mellren 78.5%</span><span class="nb">21.5% Privateer</span></div>
+        <div class="bar"><div class="fa" style="width:78%"></div><div class="fb" style="width:22%"></div></div></div>
+      <div class="pickbox"><div class="pk">PICK: mellren 78.5%</div><div><span class="badge b-lock">OBVIOUS LOCK (≥70%)</span></div><div class="bb">Basis: Own VRS model k=0.4568, BO3</div></div>
+      <div class="mut"><b>Market:</b> <span class="badge b-unv">No market line — 1.80/1.80 placeholder rejected</span> <a href="flagged.html#pf-01" class="flaglink">PF-01</a> · Polymarket 1.06x/1.06x (94¢/94¢, $0 vol, context only — see flag)</div>
+      <div class="mut"><b>Own line:</b> 78.5% / 21.5% — <span class="mono">VRS #125 (932) vs #271 (608)</span></div>
+      <div class="mut"><b>Start:</b> <span class="mono">2026-10-16T14:00 UTC</span> ·
+        <b>Lock:</b> <span class="mono">2026-10-16T13:54 UTC</span> <a class="flaglink" href="flagged.html#pf-08">(PF-08)</a></div>
+      <div class="srcs"><a class="sp" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn lobby</a><a class="sp" href="https://www.hltv.org/matches/2399471/mellren-vs-privateer-cct-2026-europe-series-12-closed-qualifier" target="_blank" rel="noopener">HLTV match 2399471</a><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L130" target="_blank" rel="noopener">VRS mellren</a><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L276" target="_blank" rel="noopener">VRS Privateer</a><a class="sp" href="https://polymarket.com/esports/cs2/cct-europe/cs2-mellre-pg5-2026-10-16" target="_blank" rel="noopener">Polymarket</a></div>
+      <div class="mut">Flags: <a class="flaglink" href="flagged.html#pf-01">PF-01</a> <a class="flaglink" href="flagged.html#pf-05">PF-05</a> </div>
+    </div>
+    <div class="fc" id="f-1080288">
+      <div class="head"><span class="mono mut">#1080288</span> <span class="badge b-c">C-Tier · 2 pts</span>
+        <span class="badge b-b">BO1</span><span class="mut">Elisa BreakOut Series 2</span></div>
+      <div><span class="mm">Phantom</span> <span class="mut">vs</span> <span class="mm">RoundsGG</span></div>
+      <div><div class="pct"><span class="na">Phantom 86.5%</span><span class="nb">13.5% RoundsGG</span></div>
+        <div class="bar"><div class="fa" style="width:86%"></div><div class="fb" style="width:14%"></div></div></div>
+      <div class="pickbox"><div class="pk">PICK: Phantom 86.5%</div><div><span class="badge b-lock">OBVIOUS LOCK (≥70%)</span></div><div class="bb">Basis: External market — EGW bc.game 1.08/6.94 de-vigged</div></div>
+      <div class="mut"><b>Market:</b> 1.08 / 6.94 · <a href="https://egamersworld.com/counterstrike/match/4yn491uUVl/phantom-esports-vs-rounds-m6Cnk4tOxU" target="_blank" rel="noopener">bc.game (EGW)</a>, de-vigged (7.0% margin)</div>
+      <div class="mut"><b>Own line:</b> 82.9% / 17.1% — <span class="mono">VRS #72 (1147) vs #310 (548)</span></div>
+      <div class="mut"><b>Start:</b> <span class="mono">2026-10-16T14:00 UTC</span> ·
+        <b>Lock:</b> <span class="mono">2026-10-16T13:54 UTC</span> <a class="flaglink" href="flagged.html#pf-08">(PF-08)</a></div>
+      <div class="srcs"><a class="sp" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn lobby</a><a class="sp" href="https://www.hltv.org/matches/2399427/phantom-vs-rounds-elisa-breakout-series-2" target="_blank" rel="noopener">HLTV match 2399427</a><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L77" target="_blank" rel="noopener">VRS Phantom</a><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L315" target="_blank" rel="noopener">VRS RoundsGG</a><a class="sp" href="https://egamersworld.com/counterstrike/match/4yn491uUVl/phantom-esports-vs-rounds-m6Cnk4tOxU" target="_blank" rel="noopener">EGW quote</a></div>
+      
+    </div>
+    <div class="fc" id="f-1080289">
+      <div class="head"><span class="mono mut">#1080289</span> <span class="badge b-c">C-Tier · 2 pts</span>
+        <span class="badge b-b">BO1</span><span class="mut">Elisa BreakOut Series 2</span></div>
+      <div><span class="mm">RoundsGG</span> <span class="mut">vs</span> <span class="mm">Voca</span></div>
+      <div><div class="pct"><span class="na">RoundsGG 14.2%</span><span class="nb">85.8% Voca</span></div>
+        <div class="bar"><div class="fa" style="width:14%"></div><div class="fb" style="width:86%"></div></div></div>
+      <div class="pickbox"><div class="pk">PICK: Voca 85.8%</div><div><span class="badge b-lock">OBVIOUS LOCK (≥70%)</span></div><div class="bb">Basis: External market — EGW bc.game 6.40/1.063 de-vigged</div></div>
+      <div class="mut"><b>Market:</b> 6.40 / 1.063 · <a href="https://egamersworld.com/counterstrike/match/4yn491uUVl/voca-vs-rounds-_dTpdE0K7U" target="_blank" rel="noopener">bc.game (EGW)</a>, de-vigged (9.7% margin)</div>
+      <div class="mut"><b>Own line:</b> 15.9% / 84.1% — <span class="mono">VRS #310 (548) vs #68 (1182)</span></div>
+      <div class="mut"><b>Start:</b> <span class="mono">2026-10-16T16:00 UTC</span> ·
+        <b>Lock:</b> <span class="mono">2026-10-16T15:54 UTC</span> <a class="flaglink" href="flagged.html#pf-08">(PF-08)</a></div>
+      <div class="srcs"><a class="sp" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn lobby</a><a class="sp" href="https://www.hltv.org/matches/2399428/voca-vs-rounds-elisa-breakout-series-2" target="_blank" rel="noopener">HLTV match 2399428</a><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L315" target="_blank" rel="noopener">VRS RoundsGG</a><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L73" target="_blank" rel="noopener">VRS Voca</a><a class="sp" href="https://egamersworld.com/counterstrike/match/4yn491uUVl/voca-vs-rounds-_dTpdE0K7U" target="_blank" rel="noopener">EGW quote</a></div>
+      <div class="mut">Flags: <a class="flaglink" href="flagged.html#pf-09">PF-09</a> </div>
+    </div>
+    <div class="fc" id="f-1080290">
+      <div class="head"><span class="mono mut">#1080290</span> <span class="badge b-c">C-Tier · 2 pts</span>
+        <span class="badge b-b">BO1</span><span class="mut">Elisa BreakOut Series 2</span></div>
+      <div><span class="mm">Phantom</span> <span class="mut">vs</span> <span class="mm">HAVU</span></div>
+      <div><div class="pct"><span class="na">Phantom 67.8%</span><span class="nb">32.2% HAVU</span></div>
+        <div class="bar"><div class="fa" style="width:68%"></div><div class="fb" style="width:32%"></div></div></div>
+      <div class="pickbox"><div class="pk">PICK: Phantom 67.8%</div><div><span class="badge b-strong">STRONG PICK (60–69%)</span></div><div class="bb">Basis: External market — EGW bc.game 1.36/2.87 de-vigged</div></div>
+      <div class="mut"><b>Market:</b> 1.36 / 2.87 · <a href="https://egamersworld.com/counterstrike/match/4yn491uUVl/phantom-esports-vs-havu-H8whr4r586" target="_blank" rel="noopener">bc.game (EGW)</a>, de-vigged (8.4% margin)</div>
+      <div class="mut"><b>Own line:</b> 63.5% / 36.5% — <span class="mono">VRS #72 (1147) vs #124 (937)</span></div>
+      <div class="mut"><b>Start:</b> <span class="mono">2026-10-16T18:00 UTC</span> ·
+        <b>Lock:</b> <span class="mono">2026-10-16T17:54 UTC</span> <a class="flaglink" href="flagged.html#pf-08">(PF-08)</a></div>
+      <div class="srcs"><a class="sp" href="https://play.hotspawn.com/cs2-pickems" target="_blank" rel="noopener">Hotspawn lobby</a><a class="sp" href="https://www.hltv.org/matches/2399429/phantom-vs-havu-elisa-breakout-series-2" target="_blank" rel="noopener">HLTV match 2399429</a><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L77" target="_blank" rel="noopener">VRS Phantom</a><a class="sp" href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L129" target="_blank" rel="noopener">VRS HAVU</a><a class="sp" href="https://egamersworld.com/counterstrike/match/4yn491uUVl/phantom-esports-vs-havu-H8whr4r586" target="_blank" rel="noopener">EGW quote</a></div>
+      
+    </div></div></section>
+    <section class="card"><h2>This week, already locked or started (no pick offered)</h2>
+      <p class="desc">Current-week fixtures whose lock time has passed at the snapshot. Results verified on HLTV.</p>
+      <div class="tw"><table><thead><tr><th>ID</th><th>Start (UTC)</th><th>Tournament</th><th>Matchup</th><th>Format</th><th>Status / verified result</th></tr></thead>
+      <tbody>
+        <tr><td class="mono">#1079620</td><td>2026-10-13T17:00 UTC</td>
+        <td>CCT Europe 2026 Series #11</td><td><b>Black Phoenix</b> vs <b>6666</b></td>
+        <td>BO3</td><td>Black Phoenix 2 – 0 6666 (Final)
+        <a class="sp" href="https://www.hltv.org/matches/2399297/black-phoenix-vs-6666-cct-2026-europe-series-11" target="_blank" rel="noopener">HLTV result</a></td></tr>
+        <tr><td class="mono">#1081076</td><td>2026-10-13T21:00 UTC</td>
+        <td>ESL Challenger League Season 52: South America - Cup #3</td><td><b>ex-Keyd Stars</b> vs <b>Galorys</b></td>
+        <td>BO3</td><td>ex-Keyd Stars 0 – 2 Galorys (Final)
+        <a class="sp" href="https://www.hltv.org/matches/2399204/ex-keyd-stars-vs-galorys-esl-challenger-league-season-52-south-america-cup-3" target="_blank" rel="noopener">HLTV result</a></td></tr>
+        <tr><td class="mono">#1081105</td><td>2026-10-13T22:00 UTC</td>
+        <td>CCT South America 2026 Series #7</td><td><b>SUKEBAN</b> vs <b>your end</b></td>
+        <td>BO3</td><td>your end 1 – 0 SUKEBAN (default/forfeit)
+        <a class="sp" href="https://www.hltv.org/matches/2399460/your-end-vs-sukeban-cct-2026-south-america-series-7" target="_blank" rel="noopener">HLTV result</a></td></tr>
+        <tr><td class="mono">#1079546</td><td>2026-10-14T01:00 UTC</td>
+        <td>ESL Challenger League Season 52: North America - Cup #3</td><td><b>Zomblers</b> vs <b>Overtake Sector</b></td>
+        <td>BO3</td><td>LIVE at snapshot: Overtake Sector 1 – 0 Zomblers after Map 1 (13–8)
+        <a class="sp" href="https://www.hltv.org/matches/2399232/zomblers-vs-overtake-sector-esl-challenger-league-season-52-north-america-cup-3" target="_blank" rel="noopener">HLTV result</a></td></tr></tbody></table></div>
+      <p class="desc">Hotspawn's payload also retains 59 stale Jun–Jul 2026 records (not pickable) — retained with sources on
+      the <a href="../oct14/coverage-all-91.html">8944bb84 full-coverage page</a> (PF-10).</p>
+    </section>
+<footer>Session arena/63ee81ba · snapshot 2026-10-14T02:48:00Z ·
+<a href="../index.html">repo home</a> ·
+data: <a href="../data/63ee81ba/picks.csv">picks.csv</a> ·
+<a href="../data/63ee81ba/market_lines.csv">market_lines.csv</a> ·
+<a href="../data/63ee81ba/own_lines.csv">own_lines.csv</a> ·
+<a href="../data/63ee81ba/flags.csv">flags.csv</a> ·
+Independent research — not betting advice.</footer>
+</main></body></html>

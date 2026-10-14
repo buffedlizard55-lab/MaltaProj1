@@ -1,0 +1,66 @@
+name: Picks-Full Board Check & Refresh (63ee81ba)
+
+on:
+  schedule:
+    - cron: '47 * * * *'
+  workflow_dispatch:
+  push:
+    branches: [ main, 'arena/63ee81ba-maltaproj1' ]
+    paths:
+      - 'scripts/63ee81ba_build.py'
+      - 'tests/test_63ee81ba.py'
+      - 'data/63ee81ba/**'
+      - 'picks-full/**'
+      - '.github/workflows/picks-full-63ee81ba.yml'
+  pull_request:
+    paths:
+      - 'scripts/63ee81ba_build.py'
+      - 'tests/test_63ee81ba.py'
+      - 'data/63ee81ba/**'
+      - 'picks-full/**'
+      - '.github/workflows/picks-full-63ee81ba.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: picks-full-63ee81ba-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  check-and-verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Re-capture live sources (Hotspawn payload, latest VRS, Pinnacle, EGW, Polymarket, HLTV)
+        run: python3 live/collect.py
+
+      - name: Rebuild board and run live verification pass (fail-closed)
+        run: python3 scripts/63ee81ba_build.py --live
+
+      - name: Run 63ee81ba verification suite
+        run: python3 -m unittest tests/test_63ee81ba.py -v
+
+      - name: Commit and push board changes on scheduled/manual runs
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/63ee81ba picks-full
+          if git diff --cached --quiet; then
+            echo "no board changes — last good board stays published"
+          else
+            git pull --rebase origin "${GITHUB_REF_NAME}"
+            git commit -m "picks-full(63ee81ba): automated verification refresh"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
