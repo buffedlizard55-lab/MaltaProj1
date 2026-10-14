@@ -198,7 +198,9 @@ def join_pinnacle(fx: dict, quotes: list, flags: list) -> None:
                "url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
                "api_url": q.get("market_url", ""),
                "matched_names": f'{q.get("team_a")} / {q.get("team_b")}',
-               "start_utc": q.get("start_utc"), "exact": exact}
+               "start_utc": q.get("start_utc"), "exact": exact,
+               "source_id": str(q.get("event_id") or ""), "source_slug": "",
+               "source_page": "https://www.pinnacle.com/en/esports/games/cs2/matchups/"}
         if best is None or rec["p_a"] > 0:
             best = rec
         if not exact:
@@ -257,6 +259,8 @@ def join_bo3(fx: dict, matches: list, flags: list) -> None:
             "url": bu.get("path") or (f"https://bo3.gg/matches/{slug}" if slug
                                       else "https://bo3.gg/matches"),
             "matched_names": f"{t1} / {t2}", "start_utc": m.get("start_date"),
+            "source_id": str(m.get("id") or ""), "source_slug": slug,
+            "source_page": f"https://bo3.gg/matches/{slug}" if slug else "https://bo3.gg/matches",
             "exact": exact})
         if not exact:
             flags.append(("FL-NAME-FUZZY", fx["fixture_id"],
@@ -314,6 +318,8 @@ def join_polymarket(fx: dict, events: list, flags: list) -> None:
                 "odds_b": round(1 / pb_raw, 4), "p_a": pa_raw / total, "p_b": pb_raw / total,
                 "overround": total - 1.0, "url": url, "matched_names": f"{ta} / {tb}",
                 "start_utc": ev.get("startTime"), "exact": exact, "thin": thin,
+                "source_id": str(ev.get("id") or ""), "source_slug": str(ev.get("slug") or ""),
+                "source_page": f"https://polymarket.com/event/{ev.get('slug')}",
                 "raw": f"{pa_raw:.3f}/{pb_raw:.3f}", "spread": spread, "volume": volume})
             flags.append(("FL-PREDICTION-MARKET", fx["fixture_id"],
                           f"Probability backed by Polymarket, a prediction market, not a "
@@ -408,6 +414,20 @@ def build() -> dict:
                           "Hotspawn publishes no series format and no outside source in this "
                           "run states one, so the model line is a single-map estimate and its "
                           "series probability is not published.", fx.get("permalink") or ""))
+
+    # --- integrity: two different fixtures must not be given an identical price pair
+    seen_quotes: dict[tuple, str] = {}
+    for fx in open_fx:
+        for q in fx["quotes"]:
+            key = (q["book"], round(float(q["odds_a"]), 4), round(float(q["odds_b"]), 4))
+            if key in seen_quotes and seen_quotes[key] != fx["fixture_id"]:
+                flags.append(("FL-DUPLICATE-QUOTE", fx["fixture_id"],
+                              f'{q["book"]} shows the same price pair '
+                              f'({q["odds_a"]}/{q["odds_b"]}) for this fixture and for '
+                              f'{seen_quotes[key]}. One of the two joins is wrong until this '
+                              f'is checked by hand; both rows keep their price and are listed '
+                              f'here rather than silently dropped.', q["url"]))
+            seen_quotes.setdefault(key, fx["fixture_id"])
 
     # --- decide the basis, the pick and the published probability
     for fx in open_fx:

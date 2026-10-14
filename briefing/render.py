@@ -239,8 +239,9 @@ def render(result: dict) -> None:
             'p = (1/odds) / (1/oddsA + 1/oddsB). Pinnacle is its own public guest feed; the '
             'book rows are prices that bo3.gg relays with the bookmaker named; Polymarket is a '
             'prediction market, not a bookmaker, and is always labelled as such.</p>\n'
-            + (table(["Fixture", "Match", "Tier", "Book", "Odds A", "Odds B", "A %", "B %",
-                      "Overround", "Source"], rows, nums={4, 5, 6, 7, 8})
+            + (table(["Fixture", "Match", "Matched as", "Source kickoff", "Tier", "Book",
+                      "Odds A", "Odds B", "A %", "B %", "Overround", "Source"], rows,
+                     nums={6, 7, 8, 9, 10})
                if rows else '  <div class="note">No outside price was read for any open '
                             'fixture in this snapshot.</div>'))
     (HERE / "lines.html").write_text(page("Outside market lines", "lines.html", body, gen))
@@ -443,7 +444,8 @@ def write_data(result: dict) -> None:
                     "team_b", "p_a_pct", "p_b_pct", "pick", "pick_pct", "basis",
                     "basis_detail", "book", "odds_a", "odds_b", "overround_pct", "best_of",
                     "rating_a", "rating_b", "rating_source_a", "rating_source_b",
-                    "model_p_a_pct", "primary_source_url", "hotspawn_permalink"])
+                    "model_p_a_pct", "primary_source_url", "hotspawn_permalink",
+                    "source_matched_names", "source_start_utc", "source_id", "source_page"])
         for f in result["open"]:
             q = f.get("quote") or {}
             w.writerow([
@@ -459,7 +461,9 @@ def write_data(result: dict) -> None:
                 f["rating_a"]["url"], f["rating_b"]["url"],
                 "" if f.get("model_p_a") is None else f'{f["model_p_a"] * 100:.2f}',
                 q.get("url") or f.get("permalink") or HOTSPAWN_LOBBY,
-                f.get("permalink") or HOTSPAWN_LOBBY])
+                f.get("permalink") or HOTSPAWN_LOBBY,
+                q.get("matched_names", ""), q.get("start_utc", ""),
+                q.get("source_id", ""), q.get("source_page", "")])
 
     with (data / "flags.csv").open("w", newline="") as fh:
         w = csv.writer(fh)
