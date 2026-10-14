@@ -1,18 +1,17 @@
-[slate] payload rows=388 open=262 hltv_matches=0 hltv_ranking=245 vrs_teams=349
-[slate] pinnacle matched=12 egw(ci) matched=0 session matched=13 carried=50
+[slate] payload rows=381 open=261 hltv_matches=0 hltv_ranking=245 vrs_teams=349
+[slate] pinnacle matched=5 egw(ci) matched=0 session matched=0 carried=0
 {
- "open_fixtures": 262,
- "with_market_line": 29,
- "with_own_line": 28,
- "with_pick": 32,
+ "open_fixtures": 261,
+ "with_market_line": 5,
+ "with_own_line": 20,
+ "with_pick": 5,
  "kickoff_agrees_with_hltv": 0,
  "kickoff_differs_from_hltv": 0,
- "no_hltv_row": 262
+ "no_hltv_row": 261
 }
-[slate] flags=151 provenance_rows=267
+[slate] flags=275 provenance_rows=30
 [slate] wrote 12 pages: cs2.html, fixtures.html, flagged.html, index.html, lines.html, lol.html, methodology.html, own-lines.html, sources.html, tiers.html, tournaments.html, verified.html
-test_crowd_percentages_are_audit_only (__main__.DataInvariants.test_crowd_percentages_are_audit_only)
-No probability column may equal a Hotspawn crowd percentage. ... ok
+test_crowd_percentages_are_audit_only (__main__.DataInvariants.test_crowd_percentages_are_audit_only) ... ok
 test_every_row_carries_a_hotspawn_source (__main__.DataInvariants.test_every_row_carries_a_hotspawn_source) ... ok
 test_never_more_than_100_percent (__main__.DataInvariants.test_never_more_than_100_percent) ... ok
 test_pick_matches_consensus_side (__main__.DataInvariants.test_pick_matches_consensus_side) ... ok
@@ -26,8 +25,17 @@ test_elo_symmetry (__main__.SeriesMath.test_elo_symmetry) ... ok
 test_series_bo3_identity_at_half (__main__.SeriesMath.test_series_bo3_identity_at_half) ... ok
 test_series_bo3_monotone (__main__.SeriesMath.test_series_bo3_monotone) ... ok
 test_series_bo5_bounds (__main__.SeriesMath.test_series_bo5_bounds) ... ok
+test_exact_orientation (__main__.StrictGuards.test_exact_orientation) ... ok
+test_hltv_parser_does_not_borrow_next_match_fields (__main__.StrictGuards.test_hltv_parser_does_not_borrow_next_match_fields) ... ok
+test_market_preferred_without_arbitrary_blend (__main__.StrictGuards.test_market_preferred_without_arbitrary_blend) ... ok
+test_missing_kickoff_is_not_match (__main__.StrictGuards.test_missing_kickoff_is_not_match) ... ok
+test_no_rating_leakage_between_sports (__main__.StrictGuards.test_no_rating_leakage_between_sports) ... ok
+test_primary_market_provenance_and_math (__main__.StrictGuards.test_primary_market_provenance_and_math) ... ok
+test_primary_quote_age (__main__.StrictGuards.test_primary_quote_age) ... ok
+test_unknown_format_never_published_as_series (__main__.StrictGuards.test_unknown_format_never_published_as_series) ... ok
+test_unknown_schedule_not_open (__main__.StrictGuards.test_unknown_schedule_not_open) ... ok
 
 ----------------------------------------------------------------------
-Ran 14 tests in 0.024s
+Ran 23 tests in 0.023s
 
 OK

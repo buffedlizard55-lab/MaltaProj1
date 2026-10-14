@@ -1,6 +1,6 @@
 {
- "generated_utc": "2026-10-13T23:54:05Z",
- "run_seconds": 295.3,
+ "generated_utc": "2026-10-14T02:15:27Z",
+ "run_seconds": 258.8,
  "upstream_collector": {
   "reused": "refresh/collect.py (session arena/b90700c6, read-only)",
   "available": true,
@@ -11,47 +11,47 @@
    "lobby": {
     "url": "https://play.hotspawn.com/lobby",
     "status": 200,
-    "state_rows": 90,
-    "cards_rendered": 31,
+    "state_rows": 89,
+    "cards_rendered": 29,
     "week_total_text": 68,
     "error": null
    },
    "cs2-pickems": {
     "url": "https://play.hotspawn.com/cs2-pickems",
     "status": 200,
-    "state_rows": 89,
-    "cards_rendered": 30,
+    "state_rows": 88,
+    "cards_rendered": 28,
     "week_total_text": 68,
     "error": null
    },
    "thp-pickems": {
     "url": "https://play.hotspawn.com/thp-pickems",
     "status": 200,
-    "state_rows": 13,
-    "cards_rendered": 13,
+    "state_rows": 12,
+    "cards_rendered": 12,
     "week_total_text": 68,
     "error": null
    },
    "lol-pickems": {
     "url": "https://play.hotspawn.com/lol-pickems",
     "status": 200,
-    "state_rows": 298,
+    "state_rows": 292,
     "cards_rendered": 233,
     "week_total_text": 131,
     "error": null
    }
   },
   "week_total_text": 131,
-  "week_total_context": " Tournaments How To Play League of Legends Pick'em Lobby Play other game titles This week 131 matches this week Resets in 5d 01h 59m 46s Sign in to tra",
-  "reset_utc": "2026-10-19T01:49:02Z",
-  "fixtures_total": 388,
-  "fixtures_cs2": 89,
-  "fixtures_open": 262,
-  "fixtures_open_cs2": 29,
+  "week_total_context": " Tournaments How To Play League of Legends Pick'em Lobby Play other game titles This week 131 matches this week Resets in 4d 21h 59m 09s Sign in to tra",
+  "reset_utc": "2026-10-19T00:10:22Z",
+  "fixtures_total": 381,
+  "fixtures_cs2": 88,
+  "fixtures_open": 261,
+  "fixtures_open_cs2": 28,
   "fixtures_stale": 114,
   "sports": {
-   "cs2": 89,
-   "lol": 298,
+   "cs2": 88,
+   "lol": 292,
    "other": 1
   },
   "source_url": "https://play.hotspawn.com/cs2-pickems"
@@ -61,20 +61,20 @@
   "error": null,
   "matches_read": 0,
   "matches_block_split": 0,
-  "ranking_url": "https://www.hltv.org/ranking/teams/2026/october/12",
+  "ranking_url": "https://www.hltv.org/ranking/teams",
   "ranking_teams": 245,
   "ranking_date_text": "October 12th, 2026",
   "pages": {
-   "ranking-dated": {
-    "url": "https://www.hltv.org/ranking/teams/2026/october/12",
+   "ranking-current": {
+    "url": "https://www.hltv.org/ranking/teams",
     "status": 200,
-    "bytes": 1074242,
+    "bytes": 1068944,
     "error": null,
     "path": "browser",
     "title": "Counter-Strike Ranking | World Ranking | HLTV.org",
     "attempts": 1,
     "marker_ranked_team": 245,
-    "marker_match_href": 9,
+    "marker_match_href": 13,
     "marker_data_unix": 0
    },
    "matches": {
@@ -101,491 +101,28 @@
  "pinnacle": {
   "leagues_read": 14,
   "cs2_leagues": [
-   "CS2 - TP World Championship",
-   "CS2 - ESL Challenger League North America",
    "CS2 - European Pro League",
-   "CS2 - STK Pulse Beat"
+   "CS2 - STK Pulse Beat",
+   "CS2 - TP World Championship",
+   "CS2 - ESL Challenger League North America"
   ],
-  "lol_leagues": [
-   "League of Legends - World Championship Play-In",
-   "League of Legends - World Championship",
-   "League of Legends - EMEA Masters",
-   "League of Legends - Demacia Cup"
-  ],
-  "matchups_seen": 142,
-  "markets_read": 2294,
-  "quotes": 49,
-  "matched": 12,
+  "lol_leagues": [],
+  "matchups_seen": 101,
+  "markets_read": 314,
+  "quotes": 5,
+  "matched": 5,
   "errors": [],
-  "rejected": 2245,
-  "leagues_wanted": 8,
+  "rejected": 309,
+  "leagues_wanted": 4,
   "matchup_endpoint_tries": {
    "league-matchups": 403,
-   "league-matchups-plain": 200,
-   "sport-matchups": 200
+   "league-matchups-plain": 200
   },
-  "matchup_endpoint_used": "league-matchups-plain",
-  "market_endpoint_status": [
-   [
-    1638130720,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638217095,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638130775,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638209206,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638209356,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638217098,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638130723,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638130781,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638209109,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638209221,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638130784,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638217127,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638130747,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638130738,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638130717,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638209118,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638209129,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638220614,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638214205,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638130744,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638130778,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638214240,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638217060,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638130741,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638130726,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638220622,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638130729,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638130735,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638130714,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638217054,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638217057,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638214202,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638214199,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638214272,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638220600,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638220680,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638220781,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638220674,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638130732,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638214243,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638329678,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638329653,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638329670,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638329497,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638329664,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638329456,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638329494,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638329503,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638329491,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638329632,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638329459,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638329500,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638329462,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638329619,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638327606,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638327678,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638327477,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638212260,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638212254,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638253421,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638253313,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638253543,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638253310,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638253243,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638329369,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638253479,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638253345,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638253409,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638253275,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638273830,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638273827,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638329384,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638212299,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638253342,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638253415,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638273824,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638329390,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638253246,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638273839,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638212188,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638329366,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638212096,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638273836,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638253281,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638253278,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638253485,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638212205,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638212195,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638253351,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638212105,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ],
-   [
-    1638273833,
-    204,
-    "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-   ]
-  ]
+  "matchup_endpoint_used": "league-matchups-plain"
  },
  "egw": {
   "matched": 0,
-  "refused": 262,
+  "refused": 28,
   "lists": {
    "cs2": {
     "match_links": 0,
@@ -608,31 +145,21 @@
   "error": "HTTPError 403"
  },
  "session_readings": {
-  "file": "slate/data/market_readings_session.csv",
-  "rows": 15,
-  "matched": 13,
-  "unmatched": [
-   "ex-Keyd Stars vs Galorys",
-   "your end vs SUKEBAN"
-  ]
+  "disabled": "historical readings excluded from current analysis"
  },
  "carried_readings": {
-  "sources": [
-   "picks/data/fixtures.csv",
-   "board/data/analysis.csv"
-  ],
-  "rows": 50,
-  "matched": 48,
-  "used_for_headline": 9
+  "disabled": "historical readings excluded from current analysis",
+  "matched": 0,
+  "used_for_headline": 0
  },
  "counts": {
-  "open_fixtures": 262,
-  "with_market_line": 29,
-  "with_own_line": 28,
-  "with_pick": 32,
+  "open_fixtures": 261,
+  "with_market_line": 5,
+  "with_own_line": 20,
+  "with_pick": 5,
   "kickoff_agrees_with_hltv": 0,
   "kickoff_differs_from_hltv": 0,
-  "no_hltv_row": 262
+  "no_hltv_row": 261
  },
  "constants": {
   "elo_scale": 400.0,
