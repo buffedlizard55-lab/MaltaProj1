@@ -1,99 +1,75 @@
 {
  "calibration": {
   "fitted": true,
-  "n": 25,
-  "scale": 877.75,
-  "mae_pp": 8.38,
-  "logloss": 0.4444,
+  "n": 23,
+  "scale": 827.75,
+  "mae_pp": 8.56,
+  "logloss": 0.433,
   "grid": "20.0-2000.0 points per 90% favourite, step 0.25; mean absolute error against the outside market's de-vigged probability",
   "default_scale": 400.0,
   "logloss_alternative": {
-   "scale": 184.0,
-   "mae_pp": 22.89,
-   "logloss": 0.2692
+   "scale": 199.0,
+   "mae_pp": 21.34,
+   "logloss": 0.2841
   },
   "objective": "mae",
   "candidate_transforms": {
    "vrs_points": {
     "fitted": true,
-    "n": 25,
-    "scale": 877.75,
-    "mae_pp": 8.38,
-    "logloss": 0.4444,
+    "n": 23,
+    "scale": 827.75,
+    "mae_pp": 8.56,
+    "logloss": 0.433,
     "grid": "20.0-2000.0 points per 90% favourite, step 0.25; mean absolute error against the outside market's de-vigged probability",
     "default_scale": 400.0,
     "logloss_alternative": {
-     "scale": 184.0,
-     "mae_pp": 22.89,
-     "logloss": 0.2692
+     "scale": 199.0,
+     "mae_pp": 21.34,
+     "logloss": 0.2841
     },
     "objective": "mae"
    },
    "hltv_points": {
     "fitted": true,
-    "n": 22,
+    "n": 21,
     "scale": 859.75,
-    "mae_pp": 14.39,
-    "logloss": 0.6186,
+    "mae_pp": 14.95,
+    "logloss": 0.6151,
     "grid": "20.0-2000.0 points per 90% favourite, step 0.25; mean absolute error against the outside market's de-vigged probability",
     "default_scale": 400.0,
     "logloss_alternative": {
      "scale": 20.0,
-     "mae_pp": 15.65,
-     "logloss": 0.4169
+     "mae_pp": 16.52,
+     "logloss": 0.4089
     },
     "objective": "mae"
    },
    "vrs_rank": {
     "fitted": true,
-    "n": 25,
+    "n": 23,
     "scale": 2000.0,
-    "mae_pp": 19.84,
-    "logloss": 0.743,
+    "mae_pp": 21.14,
+    "logloss": 0.7424,
     "grid": "20.0-2000.0 points per 90% favourite, step 0.25; mean absolute error against the outside market's de-vigged probability",
     "default_scale": 400.0,
     "logloss_alternative": {
      "scale": 2000.0,
-     "mae_pp": 19.84,
-     "logloss": 0.743
+     "mae_pp": 21.14,
+     "logloss": 0.7424
     },
     "objective": "mae"
    },
    "vrs_log_rank": {
     "fitted": true,
-    "n": 25,
+    "n": 23,
     "scale": 0.05,
-    "logloss": 0.7133,
-    "mae_pp": 18.48
+    "logloss": 0.7139,
+    "mae_pp": 19.84
    }
   },
   "chosen": "official Valve Regional Standings points (vrs_points) at the calibration (MAE) optimum, because that is the transform whose published percentage is closest to the outside market on the same rows and it has the widest team coverage; the log-loss optimum is disclosed next to it and the disagreement is flagged on every row that depends on the scale"
  },
  "fit_rows": [
-  {
-   "match_id": "1079621",
-   "teams": "Gothic v Lavked",
-   "vrs_a": 705,
-   "vrs_b": 862,
-   "hltv_a": null,
-   "hltv_b": 140,
-   "market_p_a_pct": 49.5,
-   "source": "Polymarket",
-   "captured_utc": "2026-10-14T04:38:05Z",
-   "url": "https://polymarket.com/event/cs2-gothic-lavked-2026-10-14"
-  },
-  {
-   "match_id": "1081111",
-   "teams": "Enjoy v B8 Academy",
-   "vrs_a": 871,
-   "vrs_b": 631,
-   "hltv_a": 199,
-   "hltv_b": 229,
-   "market_p_a_pct": 58.13,
-   "source": "Pinnacle",
-   "captured_utc": "2026-10-14T04:38:10Z",
-   "url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/"
-  },
   {
    "match_id": "1080176",
    "teams": "9z v Aurora",
@@ -101,9 +77,9 @@
    "vrs_b": 1716,
    "hltv_a": 17,
    "hltv_b": 6,
-   "market_p_a_pct": 27.36,
+   "market_p_a_pct": 27.45,
    "source": "Pinnacle",
-   "captured_utc": "2026-10-14T04:38:10Z",
+   "captured_utc": "2026-10-14T05:11:55Z",
    "url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/"
   },
   {
@@ -125,9 +101,9 @@
    "vrs_b": 1417,
    "hltv_a": 41,
    "hltv_b": 36,
-   "market_p_a_pct": 46.36,
+   "market_p_a_pct": 46.08,
    "source": "Pinnacle",
-   "captured_utc": "2026-10-14T04:38:10Z",
+   "captured_utc": "2026-10-14T05:11:55Z",
    "url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/"
   },
   {
@@ -137,10 +113,10 @@
    "vrs_b": 932,
    "hltv_a": 79,
    "hltv_b": 94,
-   "market_p_a_pct": 65.5,
-   "source": "Polymarket",
-   "captured_utc": "2026-10-14T03:18:57Z",
-   "url": "https://polymarket.com/event/cs2-rustec-mellre-2026-10-14"
+   "market_p_a_pct": 64.36,
+   "source": "Polymarket (research read 2026-10-14)",
+   "captured_utc": "2026-10-14T04:50:00Z",
+   "url": "https://polymarket.com/esports/cs2/cct-europe/cs2-rustec-mellre-2026-10-14"
   },
   {
    "match_id": "1080177",
@@ -151,7 +127,7 @@
    "hltv_b": 26,
    "market_p_a_pct": 75.19,
    "source": "Pinnacle",
-   "captured_utc": "2026-10-14T04:38:10Z",
+   "captured_utc": "2026-10-14T05:11:55Z",
    "url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/"
   },
   {
@@ -173,10 +149,10 @@
    "vrs_b": 926,
    "hltv_a": 103,
    "hltv_b": 159,
-   "market_p_a_pct": 62.66,
-   "source": "EGamersWorld",
-   "captured_utc": "2026-10-14T04:37:30Z",
-   "url": "https://egamersworld.com/counterstrike/match/_rW8GEyWK/g2-ares-vs-the-last-resort-7GWb9EDd9L"
+   "market_p_a_pct": 69.31,
+   "source": "Polymarket (research read 2026-10-14)",
+   "captured_utc": "2026-10-14T04:50:00Z",
+   "url": "https://polymarket.com/esports/cs2/cct-europe/cs2-g2a-tlr-2026-10-14"
   },
   {
    "match_id": "1081113",
@@ -185,10 +161,10 @@
    "vrs_b": 870,
    "hltv_a": 181,
    "hltv_b": 135,
-   "market_p_a_pct": 19.5,
-   "source": "Polymarket",
-   "captured_utc": "2026-10-14T03:18:57Z",
-   "url": "https://polymarket.com/event/cs2-wraith-ryvex-2026-10-14"
+   "market_p_a_pct": 20.39,
+   "source": "Polymarket (research read 2026-10-14)",
+   "captured_utc": "2026-10-14T04:50:00Z",
+   "url": "https://polymarket.com/esports/cs2/cct-europe/cs2-wraith-ryvex-2026-10-14"
   },
   {
    "match_id": "1080179",
@@ -221,9 +197,9 @@
    "vrs_b": 1318,
    "hltv_a": 12,
    "hltv_b": 70,
-   "market_p_a_pct": 57.37,
+   "market_p_a_pct": 56.85,
    "source": "Pinnacle",
-   "captured_utc": "2026-10-14T04:38:10Z",
+   "captured_utc": "2026-10-14T05:11:55Z",
    "url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/"
   },
   {
@@ -235,7 +211,7 @@
    "hltv_b": null,
    "market_p_a_pct": 64.07,
    "source": "Pinnacle",
-   "captured_utc": "2026-10-14T04:38:10Z",
+   "captured_utc": "2026-10-14T05:11:55Z",
    "url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/"
   },
   {
