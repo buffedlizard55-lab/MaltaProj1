@@ -3018,3 +3018,42 @@ Source access: workspace outbound host restrictions prevent direct Hotspawn/book
 
 ### Log — arena/228bb5bc
 - 2026-10-14 03:55 UTC: claim written, committed and pushed before any task work.
+
+### Completion record — arena/228bb5bc (F-01..F-05), 2026-10-14 04:1x UTC
+
+| ID | Status | Result | Files |
+|----|--------|--------|-------|
+| F-01 | **done** | Claim written, committed and pushed before work (`f98a445`, rebased onto `main` as `56f40be`). | `COORDINATION.md` |
+| F-02 | **done** | `console/` — one mobile-first row for every open CS2 Pick'em fixture: both win probabilities, the explicit pick, the basis rung, read time and source URL on every row; join of six committed captures; 28 rows / 28 open / 28 picks / 0 blank on the reviewed snapshot; 14 flag codes; machine-readable `picks.csv`/`picks.json`/`coverage.json`/`sources.csv`/`flags.csv`; `console/data/review_findings.csv` carries the curated manual-review findings. | `console/**` |
+| F-03 | **done** | `scripts/228bb5bc_build.py` (fail-closed invariants, 6 h staleness gate, anchor re-verification of every own line against the pinned official standings file), `tests/test_228bb5bc.py` (42 tests incl. the committed anchor re-check and the landing registry), `.github/workflows/console-228bb5bc.yml` (hourly `:23`, validates on branches, commits generated files on `main` only, link gate). | `scripts/`, `tests/`, `.github/workflows/` |
+| F-04 | **done** | Root `index.html` restructured as the final-integration landing page: one executive summary whose counts load from `console/data/coverage.json`, one-tap CTAs, category sections, policy footer. Mechanically verified: every href the page carried before (80 on `main` incl. `bdc98a9a`'s `reread/` card and the four review/workflow URLs) still resolves; registry `console/data/landing_links.csv`; three tests enforce it. | `index.html`, `console/data/landing_links.csv`, `README.md` |
+| F-05 | **done** | `reviews/228bb5bc-verification.md` — 28-row line-by-line table with per-row verification status; official-standings anchor audit (56 sides: 48 exact, 7 documented aliases, 1 research row without an anchor); hand re-reads of 8 cited sources with the exact de-vig arithmetic; CI-side evidence from `bdc98a9a`'s re-read; limits stated. Findings published on `console/flagged.html` as R-228-04..08. | `reviews/228bb5bc-verification.md`, `console/flagged.html` |
+| F-06 | in progress | Rebase → PR → merge → Pages confirmation, then the result is recorded here. | `COORDINATION.md` |
+
+**Interaction with `arena/bdc98a9a` (recorded, nothing of theirs modified).** Their PR #103 merged `main` while
+this session was working (`0438c80`, then CI rebuilds `8e0209a`/`c173708`/PR #105). The rebase kept their
+`reread/` card **and** their `reread/method.html` + `reread/flagged.html` links on the new landing page
+(the card text is preserved), and `reviews/bdc98a9a-verification.md` is linked from it. Their re-read
+report is cited as §5 of this session's verification record; its refusals (EGW 403, Hotspawn 403, Pinnacle
+not-checkable) are the CI-side counterpart of this session's hand re-reads.
+
+**Irregularities.** IR-228-01..03 (leaked conflict note, three competing executive summaries incl. the
+stale "5 Supported picks" strip, missing single refresh line) are **fixed** — see §0 of
+`reviews/228bb5bc-verification.md` for evidence and resolution. Five further findings are published on the
+Flagged page with source links: R-228-04 (`1081113` PCIFIC = WRAITH PCIFIC on the cited market; identity
+confirmed via HLTV team 13054 and EGW's dual listing), R-228-05 (`1079442` Envy = ex-3DMAX core; alias
+documented only in `executive/aliases.json`, component flags disagree), R-228-06 (rung-1 rows cite
+Pinnacle's guest endpoint — no per-match deep link exists), R-228-07 (EGamersWorld refuses CI re-reads; two
+of four rows hand-checked exact), R-228-08 (Thunderpick outside the CI re-read worklist; three of thirteen
+rows hand-checked exact). Nothing of the sort blocks publication, per the brief.
+
+**Cross-owner request (logged, not executed).** `cs2/aliases.json` could gain the `Envy -> 3DMAX` entry
+(evidence: the Valve details page already cited in `executive/aliases.json`) so both alias files agree; the
+console builder already reads both files, so no published number depends on it.
+
+### Log — arena/228bb5bc
+- 2026-10-14 03:55 UTC: claim written, committed and pushed before any task work.
+- 2026-10-14 04:1x UTC: F-02..F-05 complete; rebased onto `origin/main` (`c173708`) resolving
+  `COORDINATION.md` (append-only), `index.html` (kept this session's restructure, all of `main`'s links
+  carried over) and `README.md` (both sections kept). Tests 240 OK; repo-wide audit 207 pages / 5,194 local
+  links / 0 errors. Proceeding to F-06.

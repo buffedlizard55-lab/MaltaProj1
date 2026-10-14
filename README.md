@@ -21,6 +21,14 @@ The root [`index.html`](index.html) is now a single executive summary — live c
 picks, and categories — with **every link that page had before the restructure still resolving**
 (`console/data/landing_links.csv` is the registry and `tests/test_228bb5bc.py` enforces it).
 
+The line-by-line record for this board is
+[`reviews/228bb5bc-verification.md`](reviews/228bb5bc-verification.md): the 28-row table with the source
+and verification status of every row, the official-standings anchor audit for the own originated lines
+(56 sides: 48 exact, 7 via documented aliases, 1 research), the live re-reads with their arithmetic, and
+the five curated manual-review findings (R-228-04..08) that also appear on
+[`console/flagged.html`](console/flagged.html). Curated findings live in
+`console/data/review_findings.csv` so the generated page cannot drop them.
+
 ## Current board
 
 **Start here on a phone:** [`exec/`](exec/index.html) — the executive summary and cross-board coverage
