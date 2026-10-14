@@ -44,6 +44,10 @@ UA = ("Mozilla/5.0 (compatible; MaltaProj1-feeds/1.0; "
       "+https://github.com/buffedlizard55-lab/MaltaProj1/tree/main/feeds)")
 HEADERS = {"User-Agent": UA, "Accept": "application/json,text/html;q=0.9,*/*;q=0.8",
            "Accept-Language": "en-US,en;q=0.9"}
+# Pages (not APIs) are asked for as HTML first, exactly like the neighbour collector that the
+# Hotspawn edge answers with 200 (cs2/common.py BASE_HEADERS). Run 38503145599 got 403 on all three
+# Hotspawn pages while sending the JSON-first Accept above.
+HTML_HEADERS = {**HEADERS, "Accept": "text/html,application/xhtml+xml,application/json;q=0.9,*/*;q=0.8"}
 
 HOTSPAWN_PAGES = [("cs2-pickems", "https://play.hotspawn.com/cs2-pickems"),
                   ("lobby", "https://play.hotspawn.com/lobby"),
@@ -68,14 +72,14 @@ def log(msg: str) -> None:
     print(f"[{iso(now())}] {msg}", flush=True)
 
 
-def http_get(url: str, timeout: int = 40, retries: int = 2) -> dict:
+def http_get(url: str, timeout: int = 40, retries: int = 2, html: bool = False) -> dict:
     """GET with an honest UA. Retries only on network errors / 5xx / 429, never disguised."""
     rec = {"url": url, "status": None, "bytes": 0, "sha256": "", "error": None,
            "fetched_utc": None, "body": b""}
     for attempt in range(retries + 1):
         rec["fetched_utc"] = iso(now())
         try:
-            req = urllib.request.Request(url, headers=HEADERS)
+            req = urllib.request.Request(url, headers=HTML_HEADERS if html else HEADERS)
             with urllib.request.urlopen(req, timeout=timeout) as resp:
                 body = resp.read()
                 if resp.headers.get("Content-Encoding") == "gzip":
@@ -84,7 +88,15 @@ def http_get(url: str, timeout: int = 40, retries: int = 2) -> dict:
                            sha256=hashlib.sha256(body).hexdigest(), error=None)
                 return rec
         except urllib.error.HTTPError as exc:
-            rec.update(status=exc.code, error=f"HTTPError {exc.code}")
+            try:
+                head = exc.read(400).decode("utf-8", errors="replace")
+            except Exception:  # noqa: BLE001
+                head = ""
+            title = re.search(r"<title[^>]*>(.*?)</title>", head, re.S | re.I)
+            server = exc.headers.get("Server", "") if exc.headers else ""
+            rec.update(status=exc.code, error=f"HTTPError {exc.code}"
+                       + (f" server={server}" if server else "")
+                       + (f" title={title.group(1).strip()[:80]!r}" if title else ""))
             if exc.code not in (429, 500, 502, 503, 504):
                 return rec
         except Exception as exc:  # noqa: BLE001 - recorded, never hidden
@@ -165,7 +177,7 @@ def collect_hotspawn() -> dict:
     links: dict[str, str] = {}
     pages = []
     for name, url in HOTSPAWN_PAGES:
-        rec = http_get(url, timeout=45)
+        rec = http_get(url, timeout=45, html=True)
         page = meta(rec)
         page["page"] = name
         page["cs2_rows"] = 0
@@ -348,7 +360,7 @@ def collect_probes(bo3: dict) -> list[dict]:
             targets.append((f"bookmaker page relayed by bo3.gg ({bu.get('provider')})", bu["path"]))
             break
     for label, url in targets:
-        rec = http_get(url, timeout=25, retries=0)
+        rec = http_get(url, timeout=25, retries=0, html=True)
         head = rec["body"][:160].decode("utf-8", errors="replace") if rec["body"] else ""
         rows.append({"source": label, **meta(rec), "head": head})
     return rows

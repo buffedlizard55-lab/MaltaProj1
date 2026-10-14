@@ -69,6 +69,8 @@ FLAG_TEXT = {
              "site did not answer this run.",
     "MF-13": "Hotspawn's payload does not state the series format (best_of/series_format null); "
              "format comes from the external source named in the row.",
+    "MF-14": "Even market: the source prices both teams at exactly 50%, so it names no favourite "
+             "(it may be an opening quote nobody has traded against yet).",
 }
 
 
@@ -219,6 +221,13 @@ def main() -> int:
                               "message": f"{q['source']}: {rel['note']}",
                               "source_url": q.get("source_url"), "hotspawn_url": fx["hotspawn_url"]})
             f_codes.append("MF-09" if q["source"] == "bo3.gg" else "MF-10")
+            if abs(p_a - 0.5) < 1e-9:
+                f_codes.append("MF-14")
+                if "MF-14" not in row_flags:
+                    row_flags.append("MF-14")
+                flags.append({"code": "MF-14", "fixture_id": fx["fixture_id"], "match": label,
+                              "message": f"{q['source']}: {src_a} {pr_a} / {src_b} {pr_b} — no favourite",
+                              "source_url": q.get("source_url"), "hotspawn_url": fx["hotspawn_url"]})
             row = {
                 "fixture_id": fx["fixture_id"], "start_utc": fx["start_utc"],
                 "lock_utc": fx["lock_utc"], "competition": fx["competition"], "tier": fx["tier"],
