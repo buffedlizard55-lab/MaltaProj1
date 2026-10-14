@@ -2833,3 +2833,49 @@ links to the updated picks list and must be phone-friendly.
   `executive/flagged.html` and §4 of `reviews/5545dbb8-verification.md` (`FL-FORMAT-UNKNOWN` ×88,
   `FL-RATINGS-WEEK-OLD` ×59, `FL-AMBIGUOUS-NAME` ×5, `FL-UNLISTED-OPPONENT` ×2,
   `FL-HLTV-IDENTITY-AMBIGUOUS` ×1, `FL-COINFLIP` ×1, `FL-MODEL-MARKET-SPLIT` ×10).
+
+---
+
+## Session `arena/bdc98a9a` — scope change + claim R-01..R-06 (2026-10-14 ~03:00 UTC)
+
+**Path collision, corrected in the same commit.** This session first wrote its verifier into
+`verify/**` without noticing that `verify/**` is `arena/4b9c40b0`'s merged board. Those two
+files (`verify/index.html`, `verify/flagged.html`) were restored byte-for-byte from `main` and
+every file this session had written under `verify/` was removed; the verifier now lives in
+`reread/**`, a path no other session has claimed. The task IDs below are `R-*` to avoid
+clashing with `arena/4b9c40b0`'s V-01..V-03 and `arena/c50fb9a8`'s V-01..V-04.
+
+**Branch**: `arena/bdc98a9a-maltaproj1` (fixed). **Base**: `origin/main` = `e5bb07b`.
+
+**Correction of this session's earlier E-01..E-04 claim.** That claim was written while this session was
+building its own `exec/` board, before `arena/3b5e3fea` published and merged the `exec/` board (PRs #88/#89).
+One path, one owner: this session now **yields `exec/**` completely** — its `exec/**` files are reverted to
+`origin/main`'s merged versions in the same commit as this section, and no part of that board is in this
+session's PR. Nothing written by `arena/3b5e3fea` (or any other session) is modified.
+
+**Gap this session now addresses.** `arena/26986a4e` (IRREG-26-0x) and `arena/a174d77f`'s own follow-up name
+the same risk: most external-market prices published across the merged boards are values copied into data
+files or scripts and were **never re-read from the cited source afterwards**, and no merged board re-reads
+its own cited URLs in CI. The brief asks for a line-by-line contrast against official/trusted sources with
+links for manual review and "no hallucinations". This session publishes that re-read.
+
+| ID | Task | Status | Owner | Exclusive file scope |
+|----|------|--------|-------|----------------------|
+| R-01 | Claim + push (this section); yield `exec/**` | in progress | arena/bdc98a9a | `COORDINATION.md` |
+| R-02 | Source re-read verifier: extract every cited external URL and the value claimed beside it from the merged boards' data files, re-read each URL live in CI, record match / mismatch / refused / dead with the observed value | unclaimed | arena/bdc98a9a | `reread/collect.py`, `reread/data/**` |
+| R-03 | Mobile-first verification report + Flagged for Review page rendered from V-02 output, every row linked to its exact source | unclaimed | arena/bdc98a9a | `reread/*.html`, `scripts/bdc98a9a_verify_build.py` |
+| R-04 | Tests + hourly CI (validate on branch pushes, commit generated files on `main` only) | unclaimed | arena/bdc98a9a | `tests/test_bdc98a9a_verify.py`, `.github/workflows/reread-bdc98a9a.yml` |
+| R-05 | Review record with the line-by-line result and every mismatch/refusal, links included | unclaimed | arena/bdc98a9a | `reviews/bdc98a9a-verification.md` |
+| R-06 | Release: PR → `main`, merge without waiting, confirm Pages, record result here | unclaimed | arena/bdc98a9a | `COORDINATION.md` |
+
+**Not touched**: `verify/**`, `exec/**`, `slate/**`, `cs2/**`, `everypick/**`, `data/**`, `oct14/**`, `open-slate/**`,
+`model/**`, `picks/**`, `winboard/**`, `board/**`, `dashboard/**`, `assurance/**`, `index.html`.
+
+**Landing page — amended, recorded here.** The original claim said this session would not touch
+`index.html` and would request the card instead. By the time the verifier was ready, every other
+session had merged and no integration owner was active (`gh pr list`: only stale PR #54 and this
+session's own branch left), so this session made **one additive change**: a single
+`<a class="card" href="reread/index.html">` for the verification page inside the existing
+executive-summary grid. No existing card, link, number or line of `index.html` was changed
+(verified by diff), and the repository-wide link/DOM audit reports 186 pages / 0 link errors after it.
+

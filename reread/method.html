@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Method — source re-read verification</title><link rel="stylesheet" href="style.css"></head><body>
+<h1>Method — source re-read verification</h1>
+<ul class="nav"><li><a href="index.html">Verification</a></li><li><a href="flagged.html">Flagged for Review</a></li><li><a href="method.html" style="border-color:#7cc4ff">Method &amp; policy</a></li><li><a href="../exec/index.html">Executive summary</a></li><li><a href="../everypick/">Every-match picks</a></li></ul>
+
+<div class="note"><b>Why this page exists.</b> The repository's boards publish prices and ratings
+that were copied into data files by earlier sessions. An audit flagged that most of those values
+were never re-read from the source afterwards. This tool re-reads them, on a schedule, and records
+what the source says now.</div>
+<h2>What is checked</h2>
+<table><thead><tr><th>Kind</th><th>Cited</th><th>Re-read as printed</th><th>Needs review</th></tr>
+</thead><tbody><tr><td>EGamersWorld match page (market quote)</td><td>49</td><td>0</td><td>2</td></tr><tr><td>HLTV match page</td><td>56</td><td>25</td><td>1</td></tr><tr><td>HLTV team page</td><td>39</td><td>39</td><td>0</td></tr><tr><td>Hotspawn fixture page (identity only)</td><td>26</td><td>2</td><td>1</td></tr><tr><td>Pinnacle page/API</td><td>17</td><td>0</td><td>1</td></tr><tr><td>Polymarket reference</td><td>3</td><td>3</td><td>0</td></tr><tr><td>Valve Regional Standings line</td><td>170</td><td>170</td><td>0</td></tr></tbody></table>
+<h2>Hosts touched</h2>
+<table><thead><tr><th>Host</th><th>Cited values</th></tr></thead><tbody>
+<tr><td>www.hltv.org</td><td>100</td></tr><tr><td>raw.githubusercontent.com</td><td>92</td></tr><tr><td>github.com</td><td>77</td></tr><tr><td>egamersworld.com</td><td>45</td></tr><tr><td>www.hotspawn.com</td><td>24</td></tr><tr><td>guest.api.arcadia.pinnacle.com</td><td>12</td></tr><tr><td>www.pinnacle.com</td><td>5</td></tr><tr><td>polymarket.com</td><td>3</td></tr><tr><td>play.hotspawn.com</td><td>2</td></tr></tbody></table>
+<h2>Policy</h2>
+<ul>
+<li>Hotspawn is read for <b>fixture identity and series format only</b>. Its crowd percentages are
+never parsed and never used as a probability.</li>
+<li>A refusal (HTTP 403/429), a dead link (404) or an unparsable page is recorded as such. It is
+never filled in with an assumed value.</li>
+<li>This tool never edits another board's data. A disagreement is published on
+<a href="flagged.html">Flagged for Review</a> with the source link.</li>
+<li>The 1.80/1.80 EGamersWorld pair is recognised as a placeholder, not a market.</li>
+<li>A row whose source is re-read less often than every 6 hours is marked "reused"; the row keeps
+the timestamp of the run that actually read it.</li>
+<li>Team names are compared against the evidence-backed rename map published by the
+line-analysis board (<code>cs2/aliases.json</code>); a name that only matches through such an alias
+is reported as <code>alias:</code>, never as a silent pass and never invented here.</li>
+</ul>
+<h2>Reproduce</h2>
+<pre><code>python3 reread/collect.py            # re-read every cited URL (needs network)
+python3 scripts/bdc98a9a_verify_build.py
+python3 -m unittest tests.test_bdc98a9a_verify -v</code></pre>
+<p class="meta">CI: <code>.github/workflows/verify-bdc98a9a.yml</code> — hourly, plus a run whenever
+a board's data file changes. Validation runs on every branch; generated files are committed on
+<code>main</code> only.</p>
+
+<p class="meta">Generated 2026-10-14T03:55:27Z by session <code>arena/bdc98a9a</code>. This page never changes
+another board's data; a re-read that disagrees is listed for manual review, not silently fixed.</p>
+</body></html>
