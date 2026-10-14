@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Flagged for review · Hotspawn CS2 picks</title>
+<meta name="description" content="Flagged irregularities and unverified items, with source links.">
+<link rel="stylesheet" href="style.css">
+</head><body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="index.html">CS2 picks</a>
+  <nav class="chips" aria-label="Sections">
+    <a href="index.html" class="">Summary</a>
+    <a href="picks.html" class="">All picks</a>
+    <a href="unresolved.html" class="">Unresolved</a>
+    <a href="flagged.html" class="on">Flagged</a>
+    <a href="sources.html" class="">Sources</a>
+    <a href="../index.html">Site home</a>
+  </nav>
+</div></header>
+<main class="wrap">
+
+<h1>Flagged for review</h1>
+<p class="lead">Irregularities and unverified items, published for manual review. They do not block the site. Each item links to its source.</p>
+<article class="card"><p class="fid">F-01</p><h3>Pinnacle (primary book) re-read failed</h3><p>The 7 primary-book rows (Thunderpick World Championship and Stake Pulse Beat III matches) keep the 2026-10-14 02:21Z Pinnacle capture. The live page returned HTTP 500 on this re-read, so today&#x27;s prices could not be confirmed.</p><p class="links"><a href="https://www.pinnacle.com/en/esports/games/cs2/matchups/" target="_blank" rel="noopener">Source</a></p></article><article class="card"><p class="fid">F-02</p><h3>Aggregator-reported bookmaker odds</h3><p>17 rows use odds EGamersWorld reports for bc.game. These are not checked against the bookmaker and are labelled &#x27;Aggregator line&#x27; on each card.</p><p class="links"><a href="https://egamersworld.com/counterstrike/match/_rW8GEyWK/gothic-vs-lavked-GGmfuJ1n4B" target="_blank" rel="noopener">Source</a></p></article><article class="card"><p class="fid">F-03</p><h3>Unresolved matches (ratings only)</h3><p>4 rows have no usable market line; see unresolved.html for the limits and checks.</p><p class="links"><a href="https://play.hotspawn.com/lobby" target="_blank" rel="noopener">Source</a></p></article><article class="card"><p class="fid">F-04</p><h3>FORZE Reload vs LFO 10 — 95.31% pick is a model bound</h3><p>LFO 10 is not in the ranking sources the dataset uses. The figure is a bound from research-only inputs. Low confidence.</p><p class="links"><a href="https://www.hltv.org/matches/2399301/forze-reload-vs-lfo-10-cct-2026-europe-series-11" target="_blank" rel="noopener">Source</a></p></article><article class="card"><p class="fid">F-05</p><h3>Team name variants</h3><p>PCIFIC (Hotspawn, HLTV) vs WRAITH PCIFIC (EGamersWorld); Privateer (Hotspawn) vs Privateer Gaming (Polymarket, EGamersWorld); RoundsGG vs roundsgg; WROTBERRY vs WBT (HLTV). Mapping is by team pair, not by name alone.</p><p class="links"><a href="https://play.hotspawn.com/lobby" target="_blank" rel="noopener">Source</a></p></article><article class="card"><p class="fid">F-06</p><h3>Lobby time display</h3><p>The Hotspawn lobby card times are shown in UTC−4 on the page we read. All 28 cards were checked against the dataset UTC start time. Every time on this site is UTC.</p><p class="links"><a href="https://play.hotspawn.com/lobby" target="_blank" rel="noopener">Source</a></p></article><article class="card"><p class="fid">F-07</p><h3>Hotspawn match links missing on 4 cards</h3><p>The lobby cards for Enjoy v B8 Academy, Banda chuya v 6666, Ryvex v PCIFIC and mellren v Privateer show no &#x27;View Match&#x27; link. The site leaves those links blank rather than guessing them.</p><p class="links"><a href="https://play.hotspawn.com/lobby" target="_blank" rel="noopener">Source</a></p></article><article class="card"><p class="fid">F-09</p><h3>Two boards disagree on the same Elisa BreakOut prices</h3><p>The site&#x27;s own console/ board shows Thunderpick quotes relayed by bo3.gg for the Elisa matches (e.g. ENCE v BOJONG 71.1 / 28.9). This summary uses the every/ dataset (EGamersWorld bc.game, e.g. 70.9 / 29.1). Both are unverified aggregator-level figures; the difference is listed for review and not reconciled here.</p><p class="links"><a href="https://www.hltv.org/matches/2399419/ence-vs-bojong-elisa-breakout-series-2" target="_blank" rel="noopener">Source</a></p></article><article class="card"><p class="fid">F-10</p><h3>Most source links were not re-opened today</h3><p>This build re-read the Hotspawn lobby, one EGamersWorld page (Gothic v Lavked) and one HLTV page (9z v Aurora). All other source links are carried from the hourly captures and are listed on sources.html for manual re-check.</p><p class="links"><a href="https://play.hotspawn.com/lobby" target="_blank" rel="noopener">Source</a></p></article><article class="card"><p class="fid">F-08</p><h3>Stale market timestamps</h3><p>Market quotes were captured between 01:48Z and 02:22Z on 2026-10-14. The newest capture is about two hours old at build time; the hourly pipeline refreshes them.</p><p class="links"><a href="https://play.hotspawn.com/lobby" target="_blank" rel="noopener">Source</a></p></article>
+
+</main>
+<footer class="wrap foot">
+  Built 2026-10-14 04:38Z from <code>every/data/picks.csv</code> + the Hotspawn lobby capture of 2026-10-14T04:35:00Z.
+  Hotspawn crowd percentages are never used as an input. Times are UTC.
+</footer>
+</body></html>
