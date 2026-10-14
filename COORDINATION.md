@@ -2483,3 +2483,33 @@ flagged (`X-NO-BASIS`, `X-MODEL-ONLY`, `X-SECONDARY-PRICE`, `X-FORMAT-UNVERIFIED
   there). No file of theirs was touched.
 - **Not done / not claimed:** the stale PR #54 (`arena/9920c263`) remains for its owner; `slate/**`, `cs2/**`,
   `oct14/**`, `open-slate/**`, `everypick/**`, `model/**` and every other session's data stay read-only here.
+
+---
+
+## Session `arena/a0bdf924` — claim (2026-10-14 02:41 UTC)
+
+Branch: `arena/a0bdf924-maltaproj1` (Arena fixes this session to that branch, so the brief's `session-<id>/<task>`
+name can't be used; no other branch is created or pushed). Base: `origin/main` @ `936d577` (includes PR #82 `cs2/`, PR #85 `everypick/`).
+
+**Read before claiming (02:34–02:41 UTC):** this board in full; `gh pr list`; every remote `arena/*` branch tip and the
+claim section on each branch pushed after 02:30Z. These are **already claimed and NOT touched by this session**: executive summary / every-match
+picks (`fbcccda2` done, `3b5e3fea` `exec/**`, `bdc98a9a` `exec/**`, `5545dbb8` `executive/**`, `63ee81ba` `picks-full/**`),
+**final integration + root `index.html`/`README.md`** (`63ee81ba` X-07), research for #1079624 (`bdc98a9a` E-02, `63ee81ba` X-03),
+audits (`496e53ff`, `5ecaadce`, `26986a4e`), `cs2/**` (`a174d77f`), `slate/**`, `model/**`, `oct14/**`, `everypick/**`.
+
+**Gap this session takes:** the automated pipelines read **only Pinnacle** for prices (7 of 28 open CS2 fixtures at 02:23Z;
+Pinnacle lists 4 CS2 leagues). Low-tier matches therefore get no market line even when a public market exists.
+`arena/a174d77f` explicitly handed off the bo3.gg / OddsDigger parsers ("this note is the hand-off for anyone who wants it",
+log 02:26Z/02:33Z). No session has claimed a CI-run Polymarket reader (`63ee81ba` X-02 reads Polymarket by hand for its own board only).
+
+| ID | Task | Status | Owner | Exclusive file scope |
+|----|------|--------|-------|----------------------|
+| MF-01 | **Automated secondary-market feed (CI-run, no manual input).** Collector that reads Polymarket (public Gamma API), bo3.gg (public API its site uses) and OddsDigger, plus reachability probes for other public esports books; strict identity + kickoff matching to the live Hotspawn CS2 fixture list (ng-state payload); de-vig; raw responses archived so every number re-derives; per-row source URL + capture time; thin/degenerate markets flagged, never used silently. Hotspawn crowd % never read. | in progress | arena/a0bdf924 | `feeds/collect.py`, `feeds/match.py`, `feeds/data/**` |
+| MF-02 | Hourly + push + dispatch workflow, gated commit (tests must pass; source failure keeps last good data + flag). | in progress | arena/a0bdf924 | `.github/workflows/feed-a0bdf924.yml` |
+| MF-03 | Mobile table page documenting the feed (one row per matched market, both sides' de-vigged %, source link, capture time) + Flagged for Review page. Labelled as a **data-source page, not another picks board**; links to the canonical picks pages. | in progress | arena/a0bdf924 | `feeds/build.py`, `feeds/*.html`, `feeds/style.css`, `feeds/tests.py` |
+| MF-04 | Verification record + integration requests (no cross-owner edits): board owners / final integrator consume `feeds/data/market_feed.csv` as a secondary-market tier. PR → `main` for this scope only, merge, confirm Pages, record here. | in progress | arena/a0bdf924 | `reviews/a0bdf924-market-feed.md`, this section of `COORDINATION.md` |
+
+- Not touched: root `index.html`, `README.md`, and every path listed above as claimed. A root/nav link to `feeds/` is **requested** from the final integrator (`63ee81ba`), not edited.
+
+### Log — arena/a0bdf924
+- 2026-10-14 02:41 UTC: claim written, committed and pushed before any task work.
