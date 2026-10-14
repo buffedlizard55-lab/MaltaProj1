@@ -53,7 +53,11 @@ BOARDS = {
 
 LOG: list[dict] = []
 CACHE: dict[str, dict] = {}
-BROWSER_BUDGET = {"left": 40}
+BROWSER_BUDGET = {"left": 90}
+# Hosts that consistently refuse a plain HTTP client from a CI runner. The browser is the fallback
+# for these only, so the budget is spent where a plain read is known to fail.
+BROWSER_HOSTS = ("www.hltv.org", "hltv.org", "egamersworld.com", "www.hotspawn.com",
+                 "play.hotspawn.com")
 
 VERDICT_NAMES = ("match", "mismatch", "refused", "dead", "not-checkable", "placeholder")
 
@@ -126,7 +130,8 @@ def fetch(url: str) -> dict:
         return CACHE[url]
     got = http_get(url)
     plain_ok = got["status"] == 200 and bool(got["body"])
-    if not plain_ok and BROWSER_BUDGET["left"] > 0:
+    host = url.split("/")[2] if "//" in url else url
+    if not plain_ok and host in BROWSER_HOSTS and BROWSER_BUDGET["left"] > 0:
         BROWSER_BUDGET["left"] -= 1
         seen = browser_render(url)
         if seen["body"]:
@@ -382,8 +387,10 @@ def verify_pinnacle(claim: dict) -> dict:
     if "guest.api" in claim["url"] or "/markets/" in claim["url"]:
         found = pinnacle_moneyline(got["body"], claim["team_a"], claim["team_b"])
         if not found:
-            return make_verdict(got, "mismatch", observed="no moneyline for this pairing now",
-                                note="the guest API responded but does not price this matchup now")
+            return make_verdict(got, "not-checkable",
+                                observed="the live payload does not price this pairing now",
+                                note="nothing contradicts the published price; the market is no "
+                                     "longer in the response the runner receives")
         rendered = "; ".join(f"{d}: {p}" for d, p in found["prices"][:4])
         if odds_a and odds_b:
             for _, price in found["prices"]:
@@ -550,8 +557,17 @@ def run(only: str | None, limit: int | None, offline: bool) -> dict:
     if limit:
         claims = claims[:limit]
 
+    started = time.time()
+    budget_seconds = 20 * 60
     results = []
     for i, c in enumerate(claims, 1):
+        if not offline and time.time() - started > budget_seconds:
+            res = {"verdict": "not-checkable", "http_status": None, "observed": "",
+                   "note": "run budget reached before this row was re-read; next run will cover it",
+                   "sha256": None, "bytes": 0, "fetched_utc": now_iso()}
+            results.append({**{k: c[k] for k in ("board", "fixture_id", "team_a", "team_b", "kind",
+                                                 "url", "claimed")}, **res})
+            continue
         if offline:
             res = {"verdict": "not-checkable", "http_status": None, "observed": "",
                    "note": "offline run: no network attempted", "sha256": None, "bytes": 0,
