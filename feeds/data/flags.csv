@@ -19,4 +19,6 @@ MF-05,1080288,Phantom vs RoundsGG,Polymarket: spread 0.41 above 0.1 (displayed p
 MF-05,1080289,RoundsGG vs Voca,Polymarket: spread 0.42 above 0.1 (displayed price = last trade),https://polymarket.com/event/cs2-voc-rgg-2026-10-16,https://www.hotspawn.com/matches/roundsgg-vs-voca-elisa-breakout-series-2-1080289
 MF-05,1080290,Phantom vs HAVU,Polymarket: spread 0.25 above 0.1 (displayed price = last trade),https://polymarket.com/event/cs2-pha-havu-2026-10-16,https://www.hotspawn.com/matches/phantom-vs-havu-elisa-breakout-series-2-1080290
 MF-05,1081120,mellren vs Privateer,Polymarket: spread 0.87 above 0.1 (displayed price = last trade),https://polymarket.com/event/cs2-mellre-pg5-2026-10-16,https://play.hotspawn.com/cs2-pickems
+MF-09,,,"Bookmaker price read through bo3.gg's public API relay, not from the bookmaker's own site; the bookmaker match URL is linked for manual checking. Applies to all 20 bo3.gg rows in market_feed.csv.",,
+MF-10,,,"Polymarket is a prediction market (traded probabilities, no bookmaker margin); thin books move quickly. Applies to all 14 Polymarket rows in market_feed.csv.",,
 MF-13,,,Hotspawn's payload does not state the series format (best_of/series_format null); format comes from the external source named in the row. Applies to all 28 open fixtures in this capture.,,https://play.hotspawn.com/cs2-pickems

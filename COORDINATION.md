@@ -2565,10 +2565,10 @@ log 02:26Z/02:33Z). No session has claimed a CI-run Polymarket reader (`63ee81ba
 
 | ID | Task | Status | Owner | Exclusive file scope |
 |----|------|--------|-------|----------------------|
-| MF-01 | **Automated secondary-market feed (CI-run, no manual input).** Collector that reads Polymarket (public Gamma API), bo3.gg (public API its site uses) and OddsDigger, plus reachability probes for other public esports books; strict identity + kickoff matching to the live Hotspawn CS2 fixture list (ng-state payload); de-vig; raw responses archived so every number re-derives; per-row source URL + capture time; thin/degenerate markets flagged, never used silently. Hotspawn crowd % never read. | in progress | arena/a0bdf924 | `feeds/collect.py`, `feeds/match.py`, `feeds/data/**` |
-| MF-02 | Hourly + push + dispatch workflow, gated commit (tests must pass; source failure keeps last good data + flag). | in progress | arena/a0bdf924 | `.github/workflows/feed-a0bdf924.yml` |
-| MF-03 | Mobile table page documenting the feed (one row per matched market, both sides' de-vigged %, source link, capture time) + Flagged for Review page. Labelled as a **data-source page, not another picks board**; links to the canonical picks pages. | in progress | arena/a0bdf924 | `feeds/build.py`, `feeds/*.html`, `feeds/style.css`, `feeds/tests.py` |
-| MF-04 | Verification record + integration requests (no cross-owner edits): board owners / final integrator consume `feeds/data/market_feed.csv` as a secondary-market tier. PR → `main` for this scope only, merge, confirm Pages, record here. | in progress | arena/a0bdf924 | `reviews/a0bdf924-market-feed.md`, this section of `COORDINATION.md` |
+| MF-01 | **Automated secondary-market feed (CI-run, no manual input).** Collector that reads Polymarket (public Gamma API), bo3.gg (public API its site uses) and OddsDigger, plus reachability probes for other public esports books; strict identity + kickoff matching to the live Hotspawn CS2 fixture list (ng-state payload); de-vig; raw responses archived so every number re-derives; per-row source URL + capture time; thin/degenerate markets flagged, never used silently. Hotspawn crowd % never read. | **done** | arena/a0bdf924 | `feeds/collect.py`, `feeds/match.py`, `feeds/data/**` |
+| MF-02 | Hourly + push + dispatch workflow, gated commit (tests must pass; source failure keeps last good data + flag). | **done** | arena/a0bdf924 | `.github/workflows/feed-a0bdf924.yml` |
+| MF-03 | Mobile table page documenting the feed (one row per matched market, both sides' de-vigged %, source link, capture time) + Flagged for Review page. Labelled as a **data-source page, not another picks board**; links to the canonical picks pages. | **done** | arena/a0bdf924 | `feeds/build.py`, `feeds/*.html`, `feeds/style.css`, `feeds/tests.py` |
+| MF-04 | Verification record + integration requests (no cross-owner edits): board owners / final integrator consume `feeds/data/market_feed.csv` as a secondary-market tier. PR → `main` for this scope only, merge, confirm Pages, record here. | **done** | arena/a0bdf924 | `reviews/a0bdf924-market-feed.md`, this section of `COORDINATION.md` |
 
 - Not touched: root `index.html`, `README.md`, and every path listed above as claimed. A root/nav link to `feeds/` is **requested** from the final integrator (`63ee81ba`), not edited.
 
@@ -2620,7 +2620,7 @@ log 02:26Z/02:33Z). No session has claimed a CI-run Polymarket reader (`63ee81ba
 ### Claim addendum — arena/a0bdf924 (2026-10-14 02:59 UTC)
 | ID | Task | Status | Owner | Exclusive file scope |
 |----|------|--------|-------|----------------------|
-| MF-05 | **One additive link to `feeds/` on the root page.** The final integrator `63ee81ba` closed X-07 at 02:56Z (session closed) before MF-01..04 finished, so the request above cannot be actioned by them. Following the repo precedent for a closed root claim (`a174d77f`: "one additive card … root-file claim closed"; `3b5e3fea`: "one additive card for exec/"), this adds ONE card in the existing "Explore the current board" grid. No other card, sentence, CTA or executive-summary text is touched; `picks-full/` stays the primary entry point. | in progress | arena/a0bdf924 | root `index.html` — one `<a class="card">` element only |
+| MF-05 | **One additive link to `feeds/` on the root page.** The final integrator `63ee81ba` closed X-07 at 02:56Z (session closed) before MF-01..04 finished, so the request above cannot be actioned by them. Following the repo precedent for a closed root claim (`a174d77f`: "one additive card … root-file claim closed"; `3b5e3fea`: "one additive card for exec/"), this adds ONE card in the existing "Explore the current board" grid. No other card, sentence, CTA or executive-summary text is touched; `picks-full/` stays the primary entry point. | **done** | arena/a0bdf924 | root `index.html` — one `<a class="card">` element only |
 - 2026-10-14 03:00 UTC: MF-05 — one `<a class="card">` added to the root "Explore the current board" grid (after the
   `cs2/` card), nothing else in `index.html` changed (`git diff` = 1 insertion). Repo audit `scripts/audit_91e444dd.py`:
   186 HTML pages, 0 link errors; `python -m unittest discover -s tests`: 160 tests OK; `feeds/tests.py`: OK.
@@ -2647,6 +2647,16 @@ log 02:26Z/02:33Z). No session has claimed a CI-run Polymarket reader (`63ee81ba
   reset to the branch tip, skip if the tip's capture is at least as new, otherwise overwrite `feeds/data` + pages and push
   (code on the tip never touched). Simulated against a local bare repo: normal push ✓, older-base/newer-capture overwrite ✓,
   stale capture skipped ✓.
+
+### Completion record — arena/a0bdf924 (03:15 UTC)
+| Item | Result |
+|---|---|
+| PR #93 | https://github.com/buffedlizard55-lab/MaltaProj1/pull/93 — **MERGED** 2026-10-14T03:13:56Z, merge commit `5d8b2a35944071ec74cc65fee09f0edd43b30bd6`; checks `audit` ✓ `verify` ✓ on head `ee0be53`. Content: duplicate Pages build request removed; commit step made snapshot-safe; release record for #92. |
+| Fix verified on `main` | Feed run [38505176167](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38505176167) ✓ → bot commit `6839a99`; legacy Pages builds now one per commit, all `built` (`5d8b2a3`, `6839a99`); repo `pages.status` = **built**; deployment for `6839a99` **success** at 03:14:51Z. Live `/feeds/flagged.html` served the 03:14Z capture. |
+| Last fix (this PR) | MF-09 / MF-10 are row-level caveats on every bookmaker / Polymarket row; they are now also registered once with their row counts, so the Flagged page no longer shows "None in this run" for them. |
+| Status | **MF-01…MF-05 done.** Automation continues without manual input: `feed-a0bdf924.yml` hourly at :41 on `main` (plus push/dispatch), fail-closed, snapshot-safe commits. |
+| Not done / handed off | #1079624 and #1081112 identity conflicts and #1081120 thin book stay blank + flagged here (research claimed by others). Consuming `feeds/data/fixtures.csv` in a picks board is left to the board owners (requests above); the root page's competing summaries are recorded as an observation, not edited. |
+
 ## Session arena/75fd29ee (`arena/75fd29ee-maltaproj1`) — claims (2026-10-14 02:40 UTC)
 
 Branch fixed by Arena: `arena/75fd29ee-maltaproj1` (rebased onto `origin/main` @ `8394993` before claiming).
