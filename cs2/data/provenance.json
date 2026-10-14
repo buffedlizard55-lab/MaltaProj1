@@ -1,0 +1,329 @@
+[
+ {
+  "url": "https://play.hotspawn.com/lobby",
+  "fetched_utc": "2026-10-14T02:30:10Z",
+  "via": "urllib",
+  "status": 200,
+  "bytes": 417524,
+  "sha256": "a260788ef6d7c079b07b31f2f465e3f2ddd4192604698dd83058a7c61c5188af",
+  "error": null,
+  "attempts": 1
+ },
+ {
+  "url": "https://play.hotspawn.com/cs2-pickems",
+  "fetched_utc": "2026-10-14T02:30:11Z",
+  "via": "urllib",
+  "status": 200,
+  "bytes": 406898,
+  "sha256": "33ac1feb893198b65580ad64357ea2a902593b52dd72191dc0e13200cf42c1d8",
+  "error": null,
+  "attempts": 1
+ },
+ {
+  "url": "https://play.hotspawn.com/thp-pickems",
+  "fetched_utc": "2026-10-14T02:30:13Z",
+  "via": "urllib",
+  "status": 200,
+  "bytes": 209379,
+  "sha256": "a65538141e14eac8026d79f836eea5cf864629838154dd23dc240a162c85bcb3",
+  "error": null,
+  "attempts": 1
+ },
+ {
+  "url": "https://play.hotspawn.com/lol-pickems",
+  "fetched_utc": "2026-10-14T02:30:14Z",
+  "via": "urllib",
+  "status": 200,
+  "bytes": 2313981,
+  "sha256": "5bcbeb92cdea0dc4ba57e775ab694e67cee3bbbf5b2d36093b8e22f2612458f5",
+  "error": null,
+  "attempts": 1
+ },
+ {
+  "url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/leagues",
+  "fetched_utc": "2026-10-14T02:30:17Z",
+  "via": "urllib",
+  "status": 200,
+  "bytes": 7891,
+  "sha256": "795f127d2c77ca845a33b404163f07a55ffd056097ca4aa6a467d0ac3e5da734",
+  "error": null,
+  "attempts": 1
+ },
+ {
+  "url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/matchups?withSpecials=false",
+  "fetched_utc": "2026-10-14T02:30:17Z",
+  "via": "urllib",
+  "status": 200,
+  "bytes": 119286,
+  "sha256": "9f1a01d73884a38510f5c7b2a795bda3e0f9eac3b2ec8ec3a6fe720b54d9c920",
+  "error": null,
+  "attempts": 1
+ },
+ {
+  "url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
+  "fetched_utc": "2026-10-14T02:30:17Z",
+  "via": "urllib",
+  "status": 200,
+  "bytes": 534475,
+  "sha256": "a8f27d8d227c1977be27f64061bc2bc9a47e80e3c994b4c141680e8fa13ea623",
+  "error": null,
+  "attempts": 1
+ },
+ {
+  "url": "https://egamersworld.com/counterstrike/matches",
+  "fetched_utc": "2026-10-14T02:30:17Z",
+  "via": "urllib",
+  "status": 403,
+  "bytes": null,
+  "sha256": null,
+  "error": "HTTPError 403",
+  "attempts": 1
+ },
+ {
+  "url": "https://egamersworld.com/counterstrike/matches",
+  "fetched_utc": "2026-10-14T02:30:17Z",
+  "via": "chromium",
+  "status": null,
+  "bytes": null,
+  "sha256": null,
+  "error": "challenge/403 persisted across attempts",
+  "attempts": [
+   {
+    "attempt": 1,
+    "status": 403,
+    "bytes": 28939,
+    "title": "just a moment...",
+    "challenged": true
+   },
+   {
+    "attempt": 2,
+    "status": 403,
+    "bytes": 28917,
+    "title": "just a moment...",
+    "challenged": true
+   },
+   {
+    "attempt": 3,
+    "status": 403,
+    "bytes": 28939,
+    "title": "just a moment...",
+    "challenged": true
+   }
+  ]
+ },
+ {
+  "url": "https://api.github.com/repos/ValveSoftware/counter-strike_regional_standings/contents/live",
+  "fetched_utc": "2026-10-14T02:31:21Z",
+  "via": "urllib",
+  "status": 200,
+  "bytes": 2509,
+  "sha256": "473ae11e4809b5b8f12cb43f742e1438c6502ec6e765f9b0461c2f07d420efab",
+  "error": null,
+  "attempts": 1
+ },
+ {
+  "url": "https://api.github.com/repos/ValveSoftware/counter-strike_regional_standings/contents/live/2024?ref=main",
+  "fetched_utc": "2026-10-14T02:31:21Z",
+  "via": "urllib",
+  "status": 200,
+  "bytes": 88033,
+  "sha256": "7998d2aa4214a38411f00cf9746e833907ad64eafae2d9a75a36e24ffd70d3f4",
+  "error": null,
+  "attempts": 1
+ },
+ {
+  "url": "https://api.github.com/repos/ValveSoftware/counter-strike_regional_standings/contents/live/2025?ref=main",
+  "fetched_utc": "2026-10-14T02:31:21Z",
+  "via": "urllib",
+  "status": 200,
+  "bytes": 83446,
+  "sha256": "ee14ca24ce14b1a34e8a7d33bded40a92adb280a9399e2c03795b1b4f409f197",
+  "error": null,
+  "attempts": 1
+ },
+ {
+  "url": "https://api.github.com/repos/ValveSoftware/counter-strike_regional_standings/contents/live/2026?ref=main",
+  "fetched_utc": "2026-10-14T02:31:21Z",
+  "via": "urllib",
+  "status": 200,
+  "bytes": 46751,
+  "sha256": "a0c70433d2727db5d568fa6267b7000a2c15e92a4aa8820cabf07ae84338ee23",
+  "error": null,
+  "attempts": 1
+ },
+ {
+  "url": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md",
+  "fetched_utc": "2026-10-14T02:31:21Z",
+  "via": "urllib",
+  "status": 200,
+  "bytes": 77872,
+  "sha256": "df96e7fc3cd91a2687ec08cac0128e50cc4e4e55346581679572e881d79ae61b",
+  "error": null,
+  "attempts": 1
+ },
+ {
+  "url": "https://www.hltv.org/ranking/teams",
+  "fetched_utc": "2026-10-14T02:31:21Z",
+  "via": "urllib",
+  "status": 200,
+  "bytes": 1034912,
+  "sha256": "6d6fb5b3af6779fc1e597cc0fa177027af8f620cf7a0a87942b746d7aa72b355",
+  "error": null,
+  "attempts": 1
+ },
+ {
+  "url": "https://www.hltv.org/matches",
+  "fetched_utc": "2026-10-14T02:31:22Z",
+  "via": "urllib",
+  "status": 403,
+  "bytes": null,
+  "sha256": null,
+  "error": "HTTPError 403",
+  "attempts": 1
+ },
+ {
+  "url": "https://www.hltv.org/matches",
+  "fetched_utc": "2026-10-14T02:31:22Z",
+  "via": "chromium",
+  "status": 200,
+  "bytes": 997156,
+  "sha256": "13db0d227085ce6bb39aa40f7597de56f0e4c948b98188727a800b6410089958",
+  "error": null,
+  "attempts": [
+   {
+    "attempt": 1,
+    "status": 403,
+    "bytes": 28839,
+    "title": "just a moment...",
+    "challenged": true
+   },
+   {
+    "attempt": 2,
+    "status": 200,
+    "bytes": 997142,
+    "title": "counter-strike matches & livescore | hltv.org",
+    "challenged": false
+   }
+  ]
+ },
+ {
+  "url": "https://gamma-api.polymarket.com/markets?closed=false&limit=500&order=volume24hr&ascending=false",
+  "fetched_utc": "2026-10-14T02:31:31Z",
+  "via": "urllib",
+  "status": 200,
+  "bytes": 772867,
+  "sha256": "871f2e19eb8245efca24e13d14b7899df49e21e0303382af98edc3bc0fa7f539",
+  "error": null,
+  "attempts": 1
+ },
+ {
+  "url": "https://oddsdigger.com/e-sports",
+  "fetched_utc": "2026-10-14T02:31:31Z",
+  "via": "urllib",
+  "status": 200,
+  "bytes": 255531,
+  "sha256": "54f7760a15ba017fcba50a219377fea61463692a332d68c70cddde9388559f50",
+  "error": null,
+  "attempts": 1
+ },
+ {
+  "url": "https://oddsdigger.com/e-sports/counter-strike",
+  "fetched_utc": "2026-10-14T02:31:31Z",
+  "via": "urllib",
+  "status": 410,
+  "bytes": null,
+  "sha256": null,
+  "error": "HTTPError 410",
+  "attempts": 1
+ },
+ {
+  "url": "https://www.bovada.lv/services/sports/event/coupon/events/A/description/esports/type/none/lang/en",
+  "fetched_utc": "2026-10-14T02:31:32Z",
+  "via": "urllib",
+  "status": 404,
+  "bytes": null,
+  "sha256": null,
+  "error": "HTTPError 404",
+  "attempts": 1
+ },
+ {
+  "url": "https://1xbet.com/LineFeed/Get1x2_VZip?sports=16&count=40&mode=4&getEmpty=true",
+  "fetched_utc": "2026-10-14T02:31:33Z",
+  "via": "urllib",
+  "status": 203,
+  "bytes": 2631,
+  "sha256": "10ff3cca61e0c8a17fa65ef7fde1fd36a3a8f3a3484bd8d9d6822a44f219666b",
+  "error": null,
+  "attempts": 1
+ },
+ {
+  "url": "https://www.marathonbet.com/su/eventfeed/?id=1337&age=2",
+  "fetched_utc": "2026-10-14T02:31:33Z",
+  "via": "urllib",
+  "status": 403,
+  "bytes": null,
+  "sha256": null,
+  "error": "HTTPError 403",
+  "attempts": 1
+ },
+ {
+  "url": "https://www.betexplorer.com/counter-strike/",
+  "fetched_utc": "2026-10-14T02:31:33Z",
+  "via": "urllib",
+  "status": 404,
+  "bytes": null,
+  "sha256": null,
+  "error": "HTTPError 404",
+  "attempts": 1
+ },
+ {
+  "url": "https://bo3.gg/counter-strike",
+  "fetched_utc": "2026-10-14T02:31:34Z",
+  "via": "urllib",
+  "status": 200,
+  "bytes": 13111,
+  "sha256": "d01d6f77fb1f0a80d1704824756a5b99f1ea9940cad28f1722a69859b306d0bb",
+  "error": null,
+  "attempts": 1
+ },
+ {
+  "url": "https://oddsdigger.com/e-sports",
+  "fetched_utc": "2026-10-14T02:31:35Z",
+  "via": "urllib",
+  "status": 200,
+  "bytes": 255531,
+  "sha256": "4a2fd1fd6d6ec8d81cb50fc375429e6d341bd191bfb0910530b85b5339122332",
+  "error": null,
+  "attempts": 1
+ },
+ {
+  "url": "https://www.freetips.com/counter-strike/",
+  "fetched_utc": "2026-10-14T02:31:35Z",
+  "via": "urllib",
+  "status": 404,
+  "bytes": null,
+  "sha256": null,
+  "error": "HTTPError 404",
+  "attempts": 1
+ },
+ {
+  "url": "https://vprognoze.com/counter-strike/",
+  "fetched_utc": "2026-10-14T02:31:36Z",
+  "via": "urllib",
+  "status": null,
+  "bytes": null,
+  "sha256": null,
+  "error": "URLError: <urlopen error timed out>",
+  "attempts": 1
+ },
+ {
+  "url": "https://www.bwin.com/en/sports/cs2-105",
+  "fetched_utc": "2026-10-14T02:32:16Z",
+  "via": "urllib",
+  "status": 403,
+  "bytes": null,
+  "sha256": null,
+  "error": "HTTPError 403",
+  "attempts": 1
+ }
+]

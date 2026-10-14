@@ -1,0 +1,26 @@
+test_blanks_are_flagged (__main__.TestAnalysis.test_blanks_are_flagged) ... ok
+test_dataset_exists (__main__.TestAnalysis.test_dataset_exists) ... ok
+test_devig_is_reproducible_from_the_published_prices (__main__.TestAnalysis.test_devig_is_reproducible_from_the_published_prices) ... ok
+test_every_row_has_a_source (__main__.TestAnalysis.test_every_row_has_a_source) ... ok
+test_manually_verified_facts_are_attributed_and_not_stale (__main__.TestAnalysis.test_manually_verified_facts_are_attributed_and_not_stale)
+Anything that came from a human reading a page must stay tied to its evidence. ... ok
+test_no_crowd_percentages_are_published (__main__.TestAnalysis.test_no_crowd_percentages_are_published)
+Hotspawn crowd fields stay in capture.json; nothing in analysis.csv may equal them. ... ok
+test_no_duplicate_fixture (__main__.TestAnalysis.test_no_duplicate_fixture) ... ok
+test_odds_are_sane (__main__.TestAnalysis.test_odds_are_sane) ... ok
+test_own_line_reproducible (__main__.TestAnalysis.test_own_line_reproducible) ... ok
+test_pick_is_the_consensus_side (__main__.TestAnalysis.test_pick_is_the_consensus_side) ... ok
+test_probabilities_complement (__main__.TestAnalysis.test_probabilities_complement) ... ok
+test_published_prices_exist_in_the_archived_bytes (__main__.TestAnalysis.test_published_prices_exist_in_the_archived_bytes)
+No published book price may be anything other than a number inside the archived payload. ... ok
+test_times_are_utc_and_ordered (__main__.TestAnalysis.test_times_are_utc_and_ordered) ... ok
+test_vrs_links_point_at_the_exact_row_they_claim (__main__.TestAnalysis.test_vrs_links_point_at_the_exact_row_they_claim)
+Every published rating must be re-findable on the linked line of Valve's own file. ... ok
+test_anchors_resolve_on_flagged_page (__main__.TestSite.test_anchors_resolve_on_flagged_page) ... ok
+test_internal_links_resolve (__main__.TestSite.test_internal_links_resolve) ... ok
+test_pages_declare_viewport_and_are_self_contained (__main__.TestSite.test_pages_declare_viewport_and_are_self_contained) ... ok
+
+----------------------------------------------------------------------
+Ran 17 tests in 0.091s
+
+OK
