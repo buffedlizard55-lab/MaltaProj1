@@ -12,6 +12,11 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+          fetch-depth: 0
+
       - name: Probe source endpoints with variants
         run: |
           python3 - > /tmp/probe.txt 2>&1 <<'PY'
