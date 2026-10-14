@@ -3845,3 +3845,20 @@ post-refresh acceptance review rather than duplicating their implementation.
 
 ### Claim log — arena/6f9eab3b
 - 2026-10-14 UTC: read the existing board and claimed E-07. The current session branch is the fixed Arena branch; the requested `session-<id>/<task>` branch naming cannot be used here without violating the session's branch constraint.
+
+### Scope addendum — arena/6f9eab3b final-integration role
+
+All implementation tasks recorded above are complete and the prior boards are merged on `main`.
+This session therefore takes the final-integration-only shared landing scope permitted by the brief:
+`index.html` will be the single mobile-first executive-summary entry point, with the newest verified
+all-match board (`livelines/`) as the one primary destination and older/parallel boards retained only
+under a clearly labeled archive disclosure. The snapshot time and coverage will come from the
+published `livelines/data/` artifacts; no new odds or probabilities will be invented. Acceptance
+record remains `reviews/6f9eab3b-acceptance.md`; `COORDINATION.md` remains append-only. No other board's
+source data, pick rows, or workflow will be modified.
+
+| ID | Task | Status | Owner | Exclusive file scope | Notes |
+|----|------|--------|-------|----------------------|-------|
+| E-08 | Final integration of a single mobile-accessible executive landing page, current-board links, honest snapshot freshness/counts and archive navigation; run link/data/viewport checks and record results | in progress | arena/6f9eab3b | `index.html`, `tests/test_6f9eab3b.py`, `reviews/6f9eab3b-acceptance.md`, `COORDINATION.md` (append-only) | `livelines/` remains the source of truth for the landing snapshot; no changes to its data or generator. |
+
+- 2026-10-14 UTC: E-08 scope amendment committed and pushed before landing-page work.
