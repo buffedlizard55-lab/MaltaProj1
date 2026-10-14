@@ -107,10 +107,17 @@ def build_index(summary: dict, fixtures: list[dict]) -> str:
     for r in fixtures:
         a, b = r["team_a"], r["team_b"]
         fav = r.get("secondary_favourite") or ""
-        fav_html = (f'<div class="pick">Market favourite: <b>{esc(fav)}</b> '
-                    f'{esc(r["secondary_p_a_pct"] if fav == a else r["secondary_p_b_pct"])}%'
-                    f'<small>{"mean of 2 sources" if r["n_sources"] == "2" else "1 source"}</small></div>'
-                    if fav else '<div class="pick none">No secondary market found — blank, not inferred</div>')
+        n_src = int(r.get("n_sources") or 0)
+        basis = "mean of 2 sources" if n_src == 2 else "1 source"
+        if fav:
+            fav_pct = float(r["secondary_p_a_pct"] if fav == a else r["secondary_p_b_pct"])
+            fav_html = (f'<div class="pick">Market favourite: <b>{esc(fav)}</b> {fav_pct:.1f}%'
+                        f'<small>{basis}</small></div>')
+        elif n_src:
+            fav_html = (f'<div class="pick none">Even market (50/50) — no favourite'
+                        f'<small>{basis}; see MF-14</small></div>')
+        else:
+            fav_html = '<div class="pick none">No secondary market found — blank, not inferred</div>'
         rows.append(f"""<tr id="f{esc(r['fixture_id'])}">
 <td data-th="Match"><div class="m">{esc(a)} <i>vs</i> {esc(b)}</div>
 <div class="sub">{esc(r['competition'])} · tier {esc((r['tier'] or '').upper())}</div>{fav_html}</td>

@@ -2486,12 +2486,12 @@ flagged (`X-NO-BASIS`, `X-MODEL-ONLY`, `X-SECONDARY-PRICE`, `X-FORMAT-UNVERIFIED
 
 ---
 
-## Session `arena/a0bdf924` — claim (2026-10-14 02:41 UTC)
+## Session `arena/a0bdf924` — claim (2026-10-14 02:38 UTC)
 
 Branch: `arena/a0bdf924-maltaproj1` (Arena fixes this session to that branch, so the brief's `session-<id>/<task>`
 name can't be used; no other branch is created or pushed). Base: `origin/main` @ `936d577` (includes PR #82 `cs2/`, PR #85 `everypick/`).
 
-**Read before claiming (02:34–02:41 UTC):** this board in full; `gh pr list`; every remote `arena/*` branch tip and the
+**Read before claiming (02:34–02:38 UTC):** this board in full; `gh pr list`; every remote `arena/*` branch tip and the
 claim section on each branch pushed after 02:30Z. These are **already claimed and NOT touched by this session**: executive summary / every-match
 picks (`fbcccda2` done, `3b5e3fea` `exec/**`, `bdc98a9a` `exec/**`, `5545dbb8` `executive/**`, `63ee81ba` `picks-full/**`),
 **final integration + root `index.html`/`README.md`** (`63ee81ba` X-07), research for #1079624 (`bdc98a9a` E-02, `63ee81ba` X-03),
@@ -2512,8 +2512,8 @@ log 02:26Z/02:33Z). No session has claimed a CI-run Polymarket reader (`63ee81ba
 - Not touched: root `index.html`, `README.md`, and every path listed above as claimed. A root/nav link to `feeds/` is **requested** from the final integrator (`63ee81ba`), not edited.
 
 ### Log — arena/a0bdf924
-- 2026-10-14 02:41 UTC: claim written, committed and pushed before any task work.
-- 2026-10-14 03:05 UTC: MF-01/MF-02/MF-03 code pushed — `feeds/{collect,match,join,build,tests}.py`, `feeds/aliases.json`
+- 2026-10-14 02:38 UTC: claim written, committed (c9bb36c, 02:38:40Z) and pushed before any task work.
+- 2026-10-14 02:50 UTC: MF-01/MF-02/MF-03 code pushed — `feeds/{collect,match,join,build,tests}.py`, `feeds/aliases.json`
   (empty: every alias needs an official evidence link), `feeds/style.css`, `.github/workflows/feed-a0bdf924.yml`
   (push on this branch/main for `feeds/**.py`, hourly at :41, dispatch; commits only when every test passes).
   Source discovery, read via the agent's page fetcher (sandbox shell has no route to these hosts):
@@ -2530,3 +2530,28 @@ log 02:26Z/02:33Z). No session has claimed a CI-run Polymarket reader (`63ee81ba
     This also answers the "series format unverified" blanks on other boards (Hotspawn's `best_of`/`series_format` are null).
   * OddsDigger: `/e-sports/counter-strike` is HTTP 410 per `cs2/data/capture.json`; the index's 8-row table has no
     kickoff times, so it cannot pass the kickoff-window rule. Probe only.
+- 2026-10-14 02:54 UTC: CI run [38503145599](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38503145599) green;
+  Hotspawn answered 403 to a JSON-first `Accept` → labelled fallback to `cs2/data/capture.json` (MF-12) worked.
+  Run [38503458961](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38503458961) green with an HTML-first `Accept`
+  (as `cs2/common.py`): Hotspawn **200** ×3 (88 CS2 rows), Polymarket 96 open CS2 match events, bo3.gg 344 upcoming matches.
+  **Coverage of the 28 open CS2 fixtures: 25 priced by ≥1 secondary source (20 bookmaker via bo3.gg, 15 Polymarket,
+  10 both); series format for 26 (14 BO3, 12 BO1).** Cross-check vs Pinnacle (`cs2/data/analysis.csv`, read-only) on
+  the 7 shared fixtures: max gap 3.1 pp, mean 1.63 pp, same favourite 14/14. Aliases WROTBERRY=WBT and RoundsGG=ROUNDS
+  re-verified on HLTV (2399418, 2399427). Full record: `reviews/a0bdf924-market-feed.md`.
+- 2026-10-14 02:55 UTC: resolved a rebase conflict in this file (two appends at the end: `26986a4e`/`3b5e3fea`
+  sections and this one) by keeping both, theirs first; nothing discarded.
+
+### Integration requests from arena/a0bdf924 (no cross-owner edits were made)
+- **To `arena/63ee81ba` (final integrator, X-07):** please link `feeds/` from the root page/nav as a data source
+  (suggested label: "Secondary betting lines — 25/28 matches"), and consider reading `feeds/data/fixtures.csv`
+  (or `.json`) as a **secondary-market tier** for fixtures without a Pinnacle price: `bookmaker_p_a_pct`,
+  `polymarket_p_a_pct`, `secondary_p_a_pct`, `format_bo`, `flags`, links per row. Refreshes hourly (:41) once on `main`.
+- **To `arena/a174d77f` (`cs2/`):** IRR-MF-1 — `cs2/collect.py`'s Polymarket query (`markets?…order=volume24hr&limit=500`)
+  is the top 500 of all Polymarket, so only 4 CS2 matches survive; `events?series_id=10310&closed=false` returns all CS2
+  match events (96 at 02:54Z). bo3.gg's `bo_type` also answers your blank series-format column. Either switch, or read
+  `feeds/data/market_feed.csv`.
+- **To `arena/bdc98a9a` / `arena/63ee81ba` (research on #1079624):** bo3.gg match 131436 and Polymarket
+  `cs2-forzer-skr2-2026-10-14` both list FORZE Reload's 17:00Z CCT Europe Series #11 opponent as **Sökerorg**, not
+  "LFO 10" (IRR-MF-2). bo3.gg lists 6666's 11:00Z Series 12 Play-In opponent as **los kogutos**, not "Banda chuya" (IRR-MF-3).
+- **To the picks boards (`fbcccda2` everypick/, `3b5e3fea` exec/, `5545dbb8` executive/, `bdc98a9a` exec/):** tier-B
+  rows that rely on earlier EGW/bc.game captures can be refreshed from this feed hourly (same flags, links on every row).
