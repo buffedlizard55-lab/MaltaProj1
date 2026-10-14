@@ -1,0 +1,92 @@
+name: Briefing board refresh (198cf31e)
+
+# Canonical CS2 picks board. Re-reads Hotspawn plus every outside source, re-derives the
+# board from the archived bytes, and commits ONLY if the regression tests and the
+# zero-broken-link check pass (fail-closed: a failed run never publishes, the last good
+# board stays live).
+
+on:
+  schedule:
+    # Every 4 hours, offset from the other boards' slots so the runners do not collide.
+    - cron: "23 */4 * * *"
+  workflow_dispatch:
+  push:
+    branches: [main, "arena/198cf31e-maltaproj1"]
+    paths:
+      - "briefing/**"
+      - ".github/workflows/briefing-198cf31e.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: briefing-198cf31e
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Collect (Hotspawn + outside sources)
+        id: collect
+        continue-on-error: true
+        run: python briefing/collect.py 2>&1 | tee collect.log
+
+      - name: Upload collection log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: briefing-collect-log
+          path: collect.log
+          retention-days: 5
+          if-no-files-found: ignore
+
+      - name: Upload raw captures
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: briefing-raw
+          path: briefing/data
+          retention-days: 5
+          if-no-files-found: warn
+
+      - name: Stop if collection produced no Hotspawn fixtures
+        if: steps.collect.outcome == 'failure'
+        run: |
+          echo "::error::Collection failed (Hotspawn unreadable). Publishing nothing."
+          exit 1
+
+      - name: Build board from archived bytes
+        run: python briefing/build.py
+
+      - name: Regression + invariant tests
+        run: python briefing/tests.py
+
+      - name: Zero broken internal links
+        run: python briefing/linkcheck.py
+
+      - name: Commit validated snapshot
+        if: github.event_name != 'pull_request'
+        run: |
+          git config user.name "arena-198cf31e"
+          git config user.email "arena-198cf31e@users.noreply.github.com"
+          if [ -z "$(git status --porcelain briefing)" ]; then
+            echo "no change in briefing/"
+            exit 0
+          fi
+          git add briefing
+          git commit -m "briefing(198cf31e): validated refresh from run ${{ github.run_id }}"
+          for i in 1 2 3; do
+            git pull --rebase --autostash origin "${GITHUB_REF_NAME}" \
+              -X theirs --strategy-option=theirs && break
+            echo "rebase attempt $i failed, retrying"
+            sleep 5
+          done
+          git push origin "HEAD:${GITHUB_REF_NAME}"
