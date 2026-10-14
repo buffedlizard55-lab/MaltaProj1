@@ -38,8 +38,10 @@ the five curated manual-review findings (R-228-04..08) that also appear on
 **All picks, every open fixture in the selected capture:** [`executive/picks.html`](executive/picks.html) —
 one mobile-friendly page with each pick, both team probabilities, evidence basis, row-level source links, and UTC
 lock/read times. Its `2026-10-14T05:11:44Z` capture contains 88 fixtures and 28 open-at-capture picks (26
-outside-market basis, 2 model basis). “Open” is capture-time status, not a promise that a row is still actionable;
-the root page computes current snapshot age, warns after four hours, and marks the capture stale after eight hours.
+outside-market basis, 2 model basis). “Open” is capture-time status, not a promise that a row is still actionable.
+The root page computes current snapshot age, warns after four hours, and marks the capture stale after eight hours.
+The picks page can also retain generated relative “in X h” countdowns after those UTC lock times have passed;
+treat those labels as stale and use each row’s absolute UTC lock time and source-read time instead.
 
 | Page | What it is |
 |---|---|
