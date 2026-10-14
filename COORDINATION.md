@@ -2621,6 +2621,6 @@ log 02:26Z/02:33Z). No session has claimed a CI-run Polymarket reader (`63ee81ba
 | ID | Task | Status | Owner | Exclusive file scope |
 |----|------|--------|-------|----------------------|
 | MF-05 | **One additive link to `feeds/` on the root page.** The final integrator `63ee81ba` closed X-07 at 02:56Z (session closed) before MF-01..04 finished, so the request above cannot be actioned by them. Following the repo precedent for a closed root claim (`a174d77f`: "one additive card … root-file claim closed"; `3b5e3fea`: "one additive card for exec/"), this adds ONE card in the existing "Explore the current board" grid. No other card, sentence, CTA or executive-summary text is touched; `picks-full/` stays the primary entry point. | in progress | arena/a0bdf924 | root `index.html` — one `<a class="card">` element only |
-- 2026-10-14 03:01 UTC: MF-05 — one `<a class="card">` added to the root "Explore the current board" grid (after the
+- 2026-10-14 03:00 UTC: MF-05 — one `<a class="card">` added to the root "Explore the current board" grid (after the
   `cs2/` card), nothing else in `index.html` changed (`git diff` = 1 insertion). Repo audit `scripts/audit_91e444dd.py`:
   186 HTML pages, 0 link errors; `python -m unittest discover -s tests`: 160 tests OK; `feeds/tests.py`: OK.
