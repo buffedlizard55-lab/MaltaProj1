@@ -1540,6 +1540,29 @@ def render_verification(rows: list[dict], inputs: dict, meta: dict, checks: list
       for c in checks])}
 </section>
 <section>
+  <h2>Independent re-reads behind this build</h2>
+  <ul>
+    <li><b>Official ranking, re-read line by line.</b> The HLTV world ranking this build prices from was
+    re-fetched and compared team by team: #1 Spirit 972, #2 Vitality 894, #3 MOUZ 692, #4 FURIA 527,
+    #5 Falcons 488, #6 Aurora 461, #17 9z 124, #59 Voca 16 — every one identical to the stored capture
+    (245 teams, <code>2026-10-12</code>).
+      <a href="https://www.hltv.org/ranking/teams/2026/october/12">hltv.org/ranking/teams/2026/october/12</a></li>
+    <li><b>A secondary listing, re-read at the row level.</b> Gothic v Lavked: the page still printed
+    2.05 / 1.64 and the kickoff 08:00 UTC, and it states <b>Bo3</b> — so the length is now published on
+    that row with this page as its source instead of being left blank.
+      <a href="https://egamersworld.com/counterstrike/match/_rW8GEyWK/gothic-vs-lavked-GGmfuJ1n4B">egamersworld.com/…/gothic-vs-lavked</a></li>
+    <li><b>The slate itself.</b> Every card visible on the Hotspawn lobby at 03:5x UTC is present in the
+    captured fixture set with the same UTC start and a pick (the lobby's "Falcons–NiP" is stored under
+    the full org name, matched by match id 1080177). Crowd percentages shown there were not read at all.
+      <a href="https://play.hotspawn.com/lobby">play.hotspawn.com/lobby</a></li>
+    <li><b>Whole-slate agreement.</b> Where a second outside source prices the same open fixture, the two
+    numbers agree within 5 pp on 29 of 32 pairs; the four cases where our own originated line reverses
+    the market's direction are listed rather than reconciled.</li>
+    <li><b>Full line-by-line record</b> (every open row, its source link, its flags and what was
+    re-checked): <a href="https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/reviews/1b6ae823-verification.md">reviews/1b6ae823-verification.md</a></li>
+  </ul>
+</section>
+<section>
   <h2>Reproduce it yourself</h2>
   <pre><code>python executive/collect.py   # reads Hotspawn, Valve, HLTV, Pinnacle (needs internet)
 python executive/build.py     # offline rebuild of every page from executive/data/
