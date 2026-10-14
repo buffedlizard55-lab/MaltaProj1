@@ -1,0 +1,101 @@
+{
+ "generated_for_utc": "2026-10-14T04:00:00Z",
+ "data_as_of_utc": "2026-10-14T03:28:20Z",
+ "newest_input_age_hours": 0.53,
+ "max_input_age_hours": 6.0,
+ "stale": false,
+ "counts": {
+  "rows": 28,
+  "open": 28,
+  "locked": 0,
+  "open_with_pick": 28,
+  "open_market_basis": 25,
+  "open_own_line_basis": 2,
+  "open_research_basis": 1,
+  "open_without_pick": 0,
+  "flags": 62,
+  "rows_with_flags": 23
+ },
+ "inputs": [
+  {
+   "key": "feeds",
+   "label": "Secondary-market feed (arena/a0bdf924)",
+   "page": "feeds/index.html",
+   "file": "feeds/data/fixtures.csv",
+   "captured_utc": "2026-10-14T03:19:00Z",
+   "sha256": "96532f50773c4c17d6ee8d1056867aea3158f54b74f5f39f7a0b1856a33c2165",
+   "rows": 28
+  },
+  {
+   "key": "cs2",
+   "label": "Line-analysis board (arena/a174d77f)",
+   "page": "cs2/index.html",
+   "file": "cs2/data/analysis.csv",
+   "captured_utc": "2026-10-14T02:45:17Z",
+   "sha256": "15d36b53bca066ef434acf3fae248db920e51c4d6ccfe9e10239a9ddcef3cd1d",
+   "rows": 88
+  },
+  {
+   "key": "executive",
+   "label": "Executive board (arena/5545dbb8)",
+   "page": "executive/index.html",
+   "file": "executive/data/analysis.csv",
+   "captured_utc": "2026-10-14T03:28:20Z",
+   "sha256": "45669b75537c18eab2631013a7c3ed997c654b8df222e68d7ffa57063c724807",
+   "rows": 88
+  },
+  {
+   "key": "every",
+   "label": "Every-match picks (arena/75fd29ee)",
+   "page": "every/index.html",
+   "file": "every/data/picks.csv",
+   "captured_utc": "2026-10-14T02:21:42Z",
+   "sha256": "bcb37c934c15f49968f33974d5d864db613c6e374963062d607c134bdc44e9cd",
+   "rows": 28
+  },
+  {
+   "key": "picks_full_market",
+   "label": "Full picks board, market lines (arena/63ee81ba)",
+   "page": "picks-full/market-lines.html",
+   "file": "data/63ee81ba/market_lines.csv",
+   "captured_utc": "2026-10-14T02:48:00Z",
+   "sha256": "99cb03c6922c2630b00842af9c463f68d8b617435b3a1ed318c49c9db588dc7a",
+   "rows": 28
+  },
+  {
+   "key": "picks_full_own",
+   "label": "Full picks board, own lines (arena/63ee81ba)",
+   "page": "picks-full/own-lines.html",
+   "file": "data/63ee81ba/own_lines.csv",
+   "captured_utc": "2026-10-14T02:48:00Z",
+   "sha256": "949349a87a3b8bdcadd229058e4cea6812d086d52942ff9a22a613cbde9936f1",
+   "rows": 28
+  }
+ ],
+ "rating_file": {
+  "file": "data/63ee81ba/vrs_2026_10_05.md",
+  "sha256": "df96e7fc3cd91a2687ec08cac0128e50cc4e4e55346581679572e881d79ae61b",
+  "claimed_sha256": "df96e7fc3cd91a2687ec08cac0128e50cc4e4e55346581679572e881d79ae61b",
+  "integrity_ok": true,
+  "anchors": {
+   "verified": 48,
+   "alias": 7,
+   "unverified": 0,
+   "absent": 1
+  }
+ },
+ "rules": {
+  "hotspawn_role": "fixture identity, kickoff/lock times, competition and tier only",
+  "hotspawn_crowd_percent_used": false,
+  "rungs": [
+   "1 \u00b7 book read directly (Pinnacle public guest response)",
+   "2 \u00b7 book relayed by bo3.gg (bookmaker match URL linked)",
+   "3 \u00b7 book relayed by EGamersWorld (aggregator-mediated)",
+   "4 \u00b7 prediction market (Polymarket traded prices)",
+   "5 \u00b7 own originated line (Valve Regional Standings + HLTV ranking, formula published)",
+   "6 \u00b7 research line for a team absent from the official standings (labelled, flagged)",
+   "\u2014 \u00b7 blank + flag when nothing above can be sourced"
+  ],
+  "never_averaged": "rungs are never averaged; the headline is the best available rung and the others are shown beside it"
+ }
+}

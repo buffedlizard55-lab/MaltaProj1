@@ -1,0 +1,11 @@
+code,rows,meaning,fixtures
+C-RELAYED-BOOK-PRICE,17,The headline price is relayed by an aggregator rather than read from the bookmaker's own site; the bookmaker match URL is linked on the row so the price can be checked by hand.,1079438;1079621;1079622;1079623;1080279;1080280;1080281;1080282;1080283;1080284;1080285;1080286;1080287;1080288;1080289;1080290;1081111
+C-QUOTE-REJECTED,12,"A prediction-market listing existed for this fixture but its quote failed the feed's quality gate (spread, depth, degenerate or suspended price) and was not used.",1080279;1080280;1080281;1080282;1080283;1080284;1080286;1080287;1080288;1080289;1080290;1081120
+C-NAME-VARIANT,9,The same team appears under more than one name or with a duplicate rating entry across sources; the alias the board matched on is recorded on the row.,1079442;1079622;1080279;1080281;1080283;1080286;1080288;1080289;1081112
+C-ALIAS-RATING-ROW,7,The official standings row used for this team names a different spelling; the equivalence is documented with an evidence link and was re-checked against the committed standings line (name and points).,1079442;1080279;1080281;1080283;1080286;1080288;1080289
+C-MARKET-MODEL-SPLIT,4,The outside market's favourite and this board's own originated line name different winners; both are published and the pick follows the market.,1079439;1079623;1080279;1080285
+C-NO-SECONDARY-MARKET,3,Neither the bookmaker relay nor Polymarket listed a usable price for this fixture in the current capture; if a price appears here it comes from another capture or from this board's own line.,1079624;1081112;1081120
+C-OPPONENT-CONFLICT,2,An outside source lists one of the teams at the same kickoff against a different opponent; that listing was not used for either team's probability.,1079624;1081112
+C-RESEARCH-RANGE,2,More than one research estimate exists for a fixture whose team is absent from the official standings; the board publishes a range and labels it unverified.,1079624
+C-PREDICTION-MARKET-PRICE,1,"The headline probability comes from a prediction market (traded prices, no bookmaker margin); thin books move quickly.",1081113
+C-THIN-MARKET,1,The two published probabilities are within 2 points of each other; the pick is a coin-flip and is labelled as one.,1079439

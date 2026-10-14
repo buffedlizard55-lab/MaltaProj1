@@ -1,0 +1,54 @@
+:root{--bg:#0f1216;--panel:#171c22;--panel2:#1e242c;--line:#2b333d;--fg:#e8edf3;--muted:#9aa7b4;
+--accent:#6d4bbd;--good:#3fb950;--warn:#d29922;--bad:#f85149}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+.wrap{max-width:1040px;margin:0 auto;padding:20px 14px 64px}
+a{color:#8fb4ff}
+h1{font-size:clamp(22px,5.4vw,32px);margin:0 0 6px;line-height:1.2}
+h2{font-size:13.5px;letter-spacing:.07em;text-transform:uppercase;color:#cfd8e3;margin:26px 0 10px}
+p{margin:8px 0}.lead{color:var(--muted)}.small{font-size:13px}.muted{color:var(--muted)}
+.toplink{display:inline-block;margin:0 10px 8px 0;font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px}
+.card h3{margin:0 0 4px;font-size:15px}.card p{margin:0;font-size:12.5px;color:var(--muted)}
+.stat{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px}
+.stat b{display:block;font-size:24px;line-height:1.2}.stat span{color:var(--muted);font-size:12px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px}
+.note{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--accent);
+border-radius:8px;padding:10px 12px;font-size:13px;color:var(--muted);margin:12px 0}
+.note.warn{border-left-color:var(--warn)}
+.tag{display:inline-block;font-size:10.5px;font-weight:700;border:1px solid var(--line);border-radius:999px;
+padding:1px 7px;color:var(--muted);margin-right:4px;white-space:nowrap}
+.tag.t1{border-color:var(--good);color:#7ee787}.tag.t2{border-color:#58a6ff;color:#a5d0ff}
+.tag.t3{border-color:var(--warn);color:#e3b341}.tag.t4{border-color:var(--accent);color:#c9b6ff}
+.tag.flag{border-color:var(--warn);color:#e3b341}
+.filters{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 4px}
+.filters button,.filters a{font:inherit;font-size:12.5px;background:var(--panel2);color:var(--fg);
+border:1px solid var(--line);border-radius:999px;padding:5px 11px;text-decoration:none;cursor:pointer}
+.filters button[aria-pressed="true"]{border-color:var(--accent);color:#c9b6ff}
+.m{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px;margin:10px 0}
+.m.locked{opacity:.62}
+.m .head{display:flex;justify-content:space-between;gap:8px;align-items:baseline;flex-wrap:wrap}
+.m .comp{font-size:12.5px;color:var(--muted)}
+.m .when{font-size:12.5px;color:var(--muted);white-space:nowrap}
+.m .teams{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0 6px}
+.team{background:var(--panel2);border-radius:9px;padding:8px 10px;border:1px solid transparent}
+.team.win{border-color:var(--good)}
+.team .n{display:block;font-weight:650;font-size:14.5px;overflow-wrap:anywhere}
+.team .p{display:block;font-size:20px;font-weight:700;margin-top:2px}
+.bar{height:6px;background:#0b0e12;border-radius:999px;overflow:hidden;margin-top:5px}
+.bar i{display:block;height:100%;background:var(--accent)}
+.team.win .bar i{background:var(--good)}
+.pick{margin:8px 0 4px;font-size:15px}
+.pick b{color:#7ee787;font-size:16.5px}
+.basis{font-size:12.5px;color:var(--muted);overflow-wrap:anywhere}
+.basis a{overflow-wrap:anywhere}
+details{margin-top:8px}summary{cursor:pointer;font-size:12.5px;color:#a9b7c6}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{text-align:left;padding:7px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--muted);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.04em}
+.tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+footer{color:var(--muted);font-size:12.5px;margin-top:34px;border-top:1px solid var(--line);padding-top:16px}
+code{background:#0b0e12;border:1px solid var(--line);border-radius:4px;padding:1px 5px;font-size:12.5px}
+ul{padding-left:20px}li{margin:3px 0;font-size:13.5px;color:#cfd8e3}
+@media(min-width:760px){.wrap{padding:26px 20px 70px}}

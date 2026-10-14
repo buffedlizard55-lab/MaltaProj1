@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Method | Consolidated CS2 picks board</title>
+<link rel="stylesheet" href="style.css"></head><body><main class="wrap">
+<p class="small"><a href="index.html">← All picks</a> · <a href="flagged.html">Flagged for Review</a> ·
+<a href="sources.html">Sources</a> · <a href="../index.html">Site home</a></p>
+<h1>How every number on this board is chosen</h1>
+<h2>What Hotspawn is used for</h2>
+<p class="lead">fixture identity, kickoff/lock times, competition and tier only. Hotspawn's crowd pick percentage is
+<b>never</b> read as an input and is never displayed as a probability
+(<code>hotspawn_crowd_percent_used = false</code> in <a href="data/coverage.json">coverage.json</a>).</p>
+<h2>The rungs</h2>
+<ol><li>1 · book read directly (Pinnacle public guest response)</li><li>2 · book relayed by bo3.gg (bookmaker match URL linked)</li><li>3 · book relayed by EGamersWorld (aggregator-mediated)</li><li>4 · prediction market (Polymarket traded prices)</li><li>5 · own originated line (Valve Regional Standings + HLTV ranking, formula published)</li><li>6 · research line for a team absent from the official standings (labelled, flagged)</li><li>— · blank + flag when nothing above can be sourced</li></ol>
+<p>rungs are never averaged; the headline is the best available rung and the others are shown beside it. A lower rung is shown as a cross-check, never blended in.</p>
+<h2>What the probability labels mean</h2>
+<ul>
+ <li><b>Market</b> — the de-vigged two-way price of an outside market. Rungs 1–4 above, in order:
+  a book read directly, then a book relayed by an aggregator, then a prediction market.</li>
+ <li><b>Own line</b> — our originated line from the official Valve Regional Standings plus the HLTV world
+  ranking, pushed through a published logistic formula and the sourced series-format transform
+  (BO1 <code>p</code>, BO3 <code>p²(3−2p)</code>, BO5 <code>p³(10−15p+6p²)</code>, k = 0.4568).
+  This is a provisional, uncalibrated model, published as such, with the arithmetic on
+  <a href="../picks-full/own-lines.html">picks-full/own-lines.html</a>.</li>
+ <li><b>Research</b> — a labelled estimate for a team absent from the official standings
+  (roster-mapped); published only with flag <code>C-RESEARCH-LINE</code>, with every research estimate for
+  the fixture shown as a range.</li>
+ <li><b>Blank + flag</b> — nothing above could be sourced. No value is invented, inferred or copied from
+  another fixture.</li>
+</ul>
+<h2>Confidence labels</h2>
+<ul>
+ <li><b>heavy favourite</b> — pick probability ≥ 70%</li>
+ <li><b>strong favourite</b> — 60–69.9% · <b>slight favourite</b> — 55–59.9% · <b>narrow favourite</b> — 50–54.9%</li>
+ <li><b>coin-flip</b> — the two sides are within 2 points (<code>C-THIN-MARKET</code>)</li>
+</ul>
+<h2>Freshness and failure behaviour</h2>
+<p>This page is assembled from the committed captures of the source boards listed on
+<a href="sources.html">Sources</a>. It is rebuilt on every schedule run and on every change to those files.
+If the newest input is more than 6.0 hours old the build fails closed: nothing is
+republished and the last verified copy stays live. Data as of 2026-10-14T03:28:20Z.</p>
+<h2>What this board does not claim</h2>
+<ul>
+ <li>It does not guarantee live coverage: a source can refuse automated access or a match can be listed
+  without any market.</li>
+ <li>It does not treat an aggregator-reported price as verified at the book itself; the bookmaker's own
+  match URL is linked on the row so it can be checked by hand.</li>
+ <li>It publishes probabilities, not certainties. Analysis only, not betting advice.</li>
+</ul>
+</main></body></html>
