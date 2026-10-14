@@ -44,7 +44,7 @@ of 59 only). Source-access limits are listed at the end.
 
 | # | Finding | Source link | Status |
 |---|---------|-------------|--------|
-| D-1 | Own-line probabilities on the page are **carried from the published board** (`slate/data/own_lines.csv`, session 180a42a0: HLTV ranking + Valve VRS). They were **not re-derived** this session. | https://www.hltv.org/ranking/teams/2026/october/12 | Carried, flagged. |
+| D-1 | Own-line probabilities on the page are **carried from the published board** (`slate/data/own_lines.csv`, session 180a42a0: HLTV ranking + Valve VRS). They were **not re-derived** this session. The board's own basis text says the Elo-to-series step is **"best-of-3 assumed"** for these rows, so an own line is not a verified series format. | https://www.hltv.org/ranking/teams/2026/october/12 | Carried, flagged. The format assumption is visible on each card's basis text. |
 | D-2 | HLTV ranking 2026/october/12 was read at chunk 0 only (page 1 of 59). The team ranks behind the own lines were **not independently re-verified** this session. | https://www.hltv.org/ranking/teams/2026/october/12 | **Unverified** for the 28 teams. |
 | D-3 | External and own line **disagree on the favourite** in 5 fixtures (each flagged on the page): HOTU v Fnatic (external Fnatic 51.1%, own HOTU 51.1%); ex-RUSTEC v mellren (external ex-RUSTEC 65.7%, own mellren 57.5%); G2 Ares v The Last Resort (external G2 Ares 62.4%, own TLR 50.6%); WROTBERRY v EAC (carried; external EAC 53.8%, own WROTBERRY 61.1%); Voca v Phantom (carried; external Phantom 51.4%, own Voca 53.0%). Near coin-flips (under 5 points from 50%) are also flagged: Gothic v Lavked, HOTU v Fnatic, Banda chuya v 6666, WROTBERRY v EAC, Voca v Phantom. | `open-slate/flagged.html` | Flagged. |
 
