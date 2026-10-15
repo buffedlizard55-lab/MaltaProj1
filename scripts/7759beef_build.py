@@ -135,7 +135,10 @@ def build_board(rows: list[dict], sources: dict) -> tuple[list[dict], list[dict]
             coverage.append(record)
             continue
 
-        resolution = resolutions.get(match_id)
+        # A hand-written resolution is only used while the executive capture still leaves the row
+        # unpicked. Once the executive pipeline prices the fixture itself, its fresher row wins and
+        # the resolution drops to background evidence (the test suite enforces this).
+        resolution = resolutions.get(match_id) if not (row["pick"] or "").strip() else None
         if resolution:
             market = resolution["market"]
             own = resolution["own"]
@@ -166,7 +169,7 @@ def build_board(rows: list[dict], sources: dict) -> tuple[list[dict], list[dict]
                 series_format_source=facts[resolution["format_facts"][0]]["url"],
                 sources=source_list,
                 limitations=resolution["limitations"],
-                resolution=True,
+                resolution_used=True,
             )
         else:
             prob_a, prob_b = pct(row["prob_a_pct"]), pct(row["prob_b_pct"])
@@ -192,6 +195,10 @@ def build_board(rows: list[dict], sources: dict) -> tuple[list[dict], list[dict]
                 limitations=tier_limitations(row["basis_label"]),
                 resolution=False,
             )
+            if not (row["pick"] or "").strip():
+                flags.append("VP-F01 no sourced basis in this capture: no outside quote, no rating pair "
+                             "and no sourced pick - the row is listed with its limitation, not picked")
+                record["no_sourced_basis"] = True
             if row["market_odds_a"] and row["market_odds_b"]:
                 record["sources"].append({
                     "id": "exec-market",
@@ -223,7 +230,7 @@ def build_board(rows: list[dict], sources: dict) -> tuple[list[dict], list[dict]
             flags.append("VP-F03 project line and market line disagree by 15pp or more")
         if not record["market_odds_a"]:
             flags.append("VP-F05 no direct bookmaker quote is stored for this fixture")
-        if record.get("resolution"):
+        if record.get("resolution_used"):
             flags.append("VP-F06 row was resolved by this session's ladder from a stored/relayed quote; see valuepicks/unresolved.html")
         if "FL-RATINGS-WEEK-OLD" in exec_flags:
             flags.append("VP-F07 rating inputs are a week old")
@@ -242,6 +249,7 @@ TIER_LIMITATION = {
     "Market · secondary listing": "Headline number is a relayed/secondary listing price, not a direct bookmaker page read; it can lag the book it copies.",
     "Market · prediction market": "Headline number is a prediction-market price (Polymarket). It is not a bookmaker line and carries its own fee/liquidity caveats.",
     "Model · official ratings": "No outside market priced this fixture, so the number is the project's own line from official ratings: an uncalibrated estimate, not a book price.",
+    "No sourced basis": "The capture holds no outside quote, no official rating pair and no sourced pick for this fixture, so no probability is published - the row is listed here so the gap is visible.",
 }
 
 
@@ -250,8 +258,9 @@ def tier_limitations(label: str) -> list[str]:
 
 
 def limited_evidence_rows(board: list[dict]) -> list[dict]:
-    """Picked rows whose headline number does not come from a direct bookmaker price."""
-    return [row for row in board if row["pick"] and not row["basis_tier"].startswith("A")]
+    """Rows whose headline number is not a direct bookmaker price, plus rows with no basis at all."""
+    return [row for row in board
+            if (row["pick"] and not row["basis_tier"].startswith("A")) or row.get("no_sourced_basis")]
 
 
 # ---------------------------------------------------------------------------- rendering
@@ -382,7 +391,7 @@ def render_index(board: list[dict], sources: dict, meta: dict) -> str:
     day = "".join(
         f'<li><strong>{esc(facts[fid]["claim"])}</strong><br><a href="{esc(facts[fid]["url"])}">{esc(facts[fid]["source_name"])}</a> '
         f'<span class="meta">· read {esc(facts[fid]["read_utc"][:16].replace("T", " "))}Z</span></li>'
-        for fid in ["F-01", "F-02", "F-06", "F-07", "F-09"]
+        for fid in ["F-01", "F-02", "F-06", "F-07", "F-09", "F-26", "F-27"]
     )
     roster = "".join(
         f'<li><strong>{esc(facts[fid]["claim"])}</strong><br><a href="{esc(facts[fid]["url"])}">{esc(facts[fid]["source_name"])}</a> '
@@ -397,7 +406,8 @@ def render_index(board: list[dict], sources: dict, meta: dict) -> str:
   <p class="lede">This page is the phone-first summary. One card per open fixture: the pick, both
   teams' win probabilities, the tier that produced the number and the source links. Rows that cannot
   reach the top tier are still picked, but they are listed with their limits on
-  <a href="unresolved.html">Unresolved &amp; limits</a> instead of being hidden.</p>
+  <a href="unresolved.html">Unresolved &amp; limits</a> instead of being hidden; a row with no
+  sourced basis at all is listed there too, marked as not picked rather than guessed.</p>
   <div class="buttons">
     <a class="btn primary" href="#slate">Today's picks ({len(open_rows)})</a>
     <a class="btn" href="value.html">Value watches ({len(contradictions)})</a>
@@ -422,11 +432,13 @@ def render_index(board: list[dict], sources: dict, meta: dict) -> str:
 <section>
   <h2>Day 1 review (14 October) - what the 9z upset actually showed</h2>
   <ul class="facts">{day}</ul>
-  <p>Aurora - the July-rebuilt international roster - lost the opener to a 9z side that had lost four
-  straight group stages and had been beaten 2-0 by Aurora on 3 October. Aurora were priced as the
-  clear favourite and lost both maps, the second 13-1 on their own pick. The lesson applied on the
-  value page: when a rebuilt roster has a short, mixed record and a compressed schedule, the market
-  can price the badge rather than the current five.</p>
+  <p>Aurora - the July-rebuilt international roster (F-11, F-12) - lost the opener to a 9z side that
+  had exited at the group stage of its previous four events and had been beaten 2-0 by Aurora on
+  3 October (F-26, F-27). Aurora were priced as the clear favourite and lost both maps, the second
+  13-1 on their own pick (F-01, F-02). The lesson applied on the value page: when a rebuilt roster has
+  a short, mixed record and a compressed schedule (F-13, F-15), the market can price the badge rather
+  than the current five - so the contrarian side is worth publishing where the market and the official
+  ratings disagree, and never worth promoting on a hunch.</p>
 </section>
 
 <section>
@@ -527,9 +539,9 @@ def render_unresolved(board: list[dict], sources: dict) -> str:
     <article class="card" id="u{esc(row['match_id'])}">
       <h3>{esc(row['team_a'])} vs {esc(row['team_b'])}</h3>
       <p class="meta">{esc(row['tournament'])} · lock {esc(row['lock_utc'][:16].replace('T', ' '))}Z · {esc(row['basis_label'])}</p>
-      <p>Pick: <strong>{esc(row['pick'])}</strong> ({fmt_pct(row['prob_a_pct'])} / {fmt_pct(row['prob_b_pct'])})</p>
+      <p>Pick: <strong>{esc(row['pick'] or 'not picked in this capture')}</strong> ({fmt_pct(row['prob_a_pct'])} / {fmt_pct(row['prob_b_pct'])})</p>
       <h4>Why this row is not tier A</h4><ul>{limits}</ul>
-      <p class="meta">Published number: {fmt_pct(row['prob_a_pct'])} / {fmt_pct(row['prob_b_pct'])} from {esc(row['basis_label'])}</p>
+      <p class="meta">{('Published number: ' + fmt_pct(row['prob_a_pct']) + ' / ' + fmt_pct(row['prob_b_pct']) + ' from ' + esc(row['basis_label'])) if row['prob_a_pct'] is not None else 'No number is published for this row: ' + esc(row['basis_label'])}</p>
       <h4>Flags</h4><ul class="flags">{flags or '<li>none</li>'}</ul>
       {source_links(row['sources'])}
     </article>"""
@@ -845,6 +857,7 @@ def main() -> int:
         "capture_utc": summary["meta"]["capture_utc"],
         "session": SESSION,
         "open_fixtures": sum(1 for row in board if row["pick"]),
+        "open_unpicked": sum(1 for row in board if not row["pick"]),
         "tier_a": sum(1 for row in board if row["pick"] and row["basis_tier"].startswith("A")),
         "fallback_basis": sum(1 for row in board if row["pick"] and not row["basis_tier"].startswith("A")),
         "value_watches": sum(1 for row in board if row.get("divergence") and row["divergence"]["value_pp"] >= 5),
@@ -890,7 +903,8 @@ def main() -> int:
 
     print(f"valuepicks built: {meta['open_fixtures']} open fixtures picked, "
           f"{meta['tier_a']} tier A, {meta['fallback_basis']} fallback, "
-          f"{meta['value_watches']} value watches, {meta['total_fixtures']} fixtures total")
+          f"{meta['value_watches']} value watches, {meta['total_fixtures']} fixtures total, "
+          f"{meta['open_unpicked']} open rows unpublished")
     return 0
 
 

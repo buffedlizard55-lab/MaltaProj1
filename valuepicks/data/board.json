@@ -1,15 +1,16 @@
 {
  "meta": {
-  "generated_utc": "2026-10-15T10:07:55Z",
+  "generated_utc": "2026-10-15T10:12:54Z",
   "capture_utc": "2026-10-15T08:51:05Z",
   "session": "arena/7759beef",
   "open_fixtures": 17,
+  "open_unpicked": 0,
   "tier_a": 7,
   "fallback_basis": 10,
   "value_watches": 12,
   "unresolved_top_tier": 10,
   "total_fixtures": 80,
-  "source_facts": 25
+  "source_facts": 27
  },
  "rows": [
   {
@@ -168,7 +169,7 @@
     "The direct bookmaker quote is a stored 08:51:15Z capture, not a fresh read at publication time.",
     "The earlier 'kickoff differs by 30 min' rejection is resolved by the official match page (11:00Z start against a 10:54Z Hotspawn lock), but the price itself was never re-read after 08:51:15Z."
    ],
-   "resolution": true,
+   "resolution_used": true,
    "divergence": {
     "side_a_pp": -18.0,
     "side_b_pp": 18.0,
@@ -215,7 +216,7 @@
     "Hotspawn's team name 'WROTBERRY' differs from HLTV/Valve 'WBT'; the identity rests on roster and fixture correspondence (F-19).",
     "The published market number is a relayed listing price older than four hours at publication; the older EGamersWorld capture (1.62/2.107) points the same way."
    ],
-   "resolution": true,
+   "resolution_used": true,
    "divergence": {
     "side_a_pp": 11.9,
     "side_b_pp": -11.9,
@@ -263,7 +264,7 @@
     "No direct bookmaker page was read for this fixture; the headline is a third-party report of a bookmaker line, published the same day.",
     "The project's own VRS line disagrees violently with the market (BetBoom 83.7% vs 48.7%); the market number is published as the pick and the split is flagged."
    ],
-   "resolution": true,
+   "resolution_used": true,
    "divergence": {
     "side_a_pp": -35.0,
     "side_b_pp": 35.0,
@@ -394,7 +395,7 @@
     "Format is taken from the same event's group-stage match pages (BO1) rather than this fixture's own page, which had not started at read time.",
     "A 98.6% project estimate for a BO1 is a rating-gap artefact and is flagged, not used as the pick."
    ],
-   "resolution": true,
+   "resolution_used": true,
    "divergence": {
     "side_a_pp": 21.7,
     "side_b_pp": -21.7,
@@ -525,7 +526,7 @@
     "Fixture starts 16 Oct; the quote is stored from 06:23:29Z and will age before the match.",
     "Identity rests on four identical starters plus fixture correspondence (F-20); the fifth player differs in the official standings entry."
    ],
-   "resolution": true,
+   "resolution_used": true,
    "divergence": {
     "side_a_pp": 13.5,
     "side_b_pp": -13.5,

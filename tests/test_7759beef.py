@@ -51,6 +51,13 @@ class ValuePicksBoardTests(unittest.TestCase):
         picked = {row["match_id"]: row for row in self.rows if row["status"] == "open"}
         self.assertEqual(set(open_exec), set(picked), "board must cover exactly the open fixtures")
         for match_id, row in picked.items():
+            if row.get("no_sourced_basis"):
+                # Allowed only as an explicit, published gap: the row must say why and be listed on
+                # the unresolved page instead of inventing a side.
+                with self.subTest(match_id=match_id):
+                    self.assertTrue(row["flags"], "an unpicked row must carry its reason")
+                    self.assertIn(f'id="u{match_id}"', self.pages["unresolved.html"])
+                continue
             with self.subTest(match_id=match_id):
                 self.assertTrue(row["pick"].strip(), f"{match_id} has no pick")
                 self.assertIn(row["pick"], (row["team_a"], row["team_b"]))
@@ -75,16 +82,23 @@ class ValuePicksBoardTests(unittest.TestCase):
     def test_market_probabilities_recompute_from_stored_odds(self):
         checked = 0
         for row in self.rows:
-            for res in self.sources["resolutions"]:
-                if res["match_id"] != row["match_id"]:
-                    continue
-                market = res["market"]
+            if not row.get("resolution_used"):
+                continue
+            res = next(r for r in self.sources["resolutions"] if r["match_id"] == row["match_id"])
+            market = res["market"]
+            with self.subTest(match_id=row["match_id"]):
                 self.assertEqual((market["prob_a_pct"], market["prob_b_pct"]),
                                  BUILD.devig(market["odds_a"], market["odds_b"]))
                 self.assertEqual((row["prob_a_pct"], row["prob_b_pct"]),
                                  (market["prob_a_pct"], market["prob_b_pct"]))
-                checked += 1
-        self.assertGreaterEqual(checked, 5, "expected at least the five ladder-resolved rows")
+            checked += 1
+        # A hand-written resolution must either be published (checked above) or superseded by a
+        # priced executive row - never silently dropped while the row stays unpicked.
+        for res in self.sources["resolutions"]:
+            row = next(r for r in self.rows if r["match_id"] == res["match_id"])
+            if not row.get("resolution_used"):
+                self.assertTrue(row["pick"], f"{res['match_id']}: resolution skipped without a pick")
+        self.assertGreaterEqual(checked, 1, "expected at least one ladder-resolved row")
 
     def test_own_lines_recompute_from_official_rating_inputs(self):
         checked = 0
