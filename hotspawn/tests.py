@@ -200,6 +200,18 @@ class Parsers(unittest.TestCase):
         t = collect.parse_hltv_ranking(html)["teams"][0]
         self.assertEqual((t["rank"], t["name"], t["points"], t["players"]), (1, "Spirit", 972, ["donk"]))
 
+    def test_save_raw_round_trip(self):
+        import gzip as _gz
+        from common import RAW, save_raw
+        rel = save_raw("unit_test_probe", "{\"ok\": true}")
+        path = RAW / "unit_test_probe.json.gz"
+        try:
+            self.assertTrue(rel.endswith("hotspawn/data/raw/unit_test_probe.json.gz"))
+            self.assertEqual(_gz.decompress(path.read_bytes()), b'{"ok": true}')
+            self.assertEqual(path.read_bytes(), save_raw("unit_test_probe", "{\"ok\": true}") and path.read_bytes())
+        finally:
+            path.unlink(missing_ok=True)
+
     def test_valve_standings_parser(self):
         line = "| 17       |   1543 | 9z                   | dgt, HUASOPEEK, luchov, max, meyern                   | [details](details/2026_10_05/0017--9z--dgt-huasopeek-luchov-max-meyern.md) |"
         row = collect.parse_standings(line)[0]

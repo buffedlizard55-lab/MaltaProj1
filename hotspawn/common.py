@@ -150,8 +150,7 @@ def save_raw(name: str, payload: bytes | str) -> str:
     RAW.mkdir(parents=True, exist_ok=True)
     data = payload.encode("utf-8") if isinstance(payload, str) else (payload or b"")
     path = RAW / f"{name}.json.gz"
-    with gzip.open(path, "wb", compresslevel=9, mtime=0) as fh:
-        fh.write(data)
+    path.write_bytes(gzip.compress(data, compresslevel=9, mtime=0))   # mtime=0: identical bytes -> no git churn
     return str(path.relative_to(ROOT.parent))
 
 
