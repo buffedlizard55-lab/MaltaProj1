@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-10-15T17:24:56Z",
+ "generated_utc": "2026-10-15T19:59:58Z",
  "rows": [
   {
    "match_id": "1052746",
@@ -3243,7 +3243,7 @@
   },
   {
    "match_id": "1080284",
-   "state": "open",
+   "state": "locked",
    "lock_utc": "2026-10-15T17:54:00Z",
    "start_utc": "2026-10-15T18:00:00Z",
    "tournament": "Elisa BreakOut Series #2",
@@ -3277,7 +3277,7 @@
    "rating_b_hltv": "#114 (7)",
    "source_links": "https://www.hotspawn.com/matches/eac-vs-ence-elisa-breakout-series-2-1080284 | https://polymarket.com/event/cs2-eac-ence-2026-10-15 | https://github.com/ValveSoftware/counter-strike_regional_standings/blob/2aa2805394fbc68f36a5752a5b16026f2ab2fed5/live/2026/standings_global_2026_10_05.md | https://www.hltv.org/team/13838/eac | https://www.hltv.org/team/4869/ence",
    "drift": "secondary listing 1.51/2.35 (60.9%) read 2026-10-14T01:49:00Z -> Polymarket 0.56/0.44 (56.0%) read 2026-10-15T17:19:36Z",
-   "flags": "FL-PRICE-DRIFT",
+   "flags": "FL-LOCKED;FL-PRICE-DRIFT",
    "notes": "",
    "alias_notes": ""
   },
@@ -3563,16 +3563,16 @@
   }
  ],
  "coverage": {
-  "generated_utc": "2026-10-15T17:24:56Z",
+  "generated_utc": "2026-10-15T19:59:58Z",
   "slate_fixtures": 89,
-  "open_fixtures": 8,
-  "locked_fixtures": 81,
-  "open_with_pick": 8,
+  "open_fixtures": 7,
+  "locked_fixtures": 82,
+  "open_with_pick": 7,
   "open_without_pick": 0,
-  "open_market_basis": 7,
+  "open_market_basis": 6,
   "open_own_line_basis": 1,
   "open_bound_only": 0,
-  "open_with_stated_format": 8,
+  "open_with_stated_format": 7,
   "unresolved_rows": 0,
   "unique_teams": 112,
   "teams_in_official_standings": 95,
@@ -3583,77 +3583,77 @@
   "vrs_floor_points": 381,
   "own_line_scale_points": 617.75,
   "own_line_scale_fitted": true,
-  "own_line_calibration_n": 7,
-  "own_line_calibration_mae_pp": 3.52,
+  "own_line_calibration_n": 6,
+  "own_line_calibration_mae_pp": 3.26,
   "hltv_ranking_date": "2026-10-12",
   "vrs_standings_date": "2026-10-05"
  },
  "calibration": {
   "fitted": true,
-  "n": 7,
+  "n": 6,
   "scale": 617.75,
-  "mae_pp": 3.52,
-  "logloss": 0.3645,
+  "mae_pp": 3.26,
+  "logloss": 0.3128,
   "grid": "20.0-2000.0 points per 90% favourite, step 0.25; mean absolute error against the outside market's de-vigged probability",
   "default_scale": 400.0,
   "logloss_alternative": {
-   "scale": 157.0,
-   "mae_pp": 16.57,
-   "logloss": 0.2401
+   "scale": 168.25,
+   "mae_pp": 18.5,
+   "logloss": 0.1759
   },
   "objective": "mae",
   "candidate_transforms": {
    "vrs_points": {
     "fitted": true,
-    "n": 7,
+    "n": 6,
     "scale": 617.75,
-    "mae_pp": 3.52,
-    "logloss": 0.3645,
+    "mae_pp": 3.26,
+    "logloss": 0.3128,
     "grid": "20.0-2000.0 points per 90% favourite, step 0.25; mean absolute error against the outside market's de-vigged probability",
     "default_scale": 400.0,
     "logloss_alternative": {
-     "scale": 157.0,
-     "mae_pp": 16.57,
-     "logloss": 0.2401
+     "scale": 168.25,
+     "mae_pp": 18.5,
+     "logloss": 0.1759
     },
     "objective": "mae"
    },
    "hltv_points": {
     "fitted": true,
-    "n": 7,
+    "n": 6,
     "scale": 20.0,
-    "mae_pp": 12.52,
-    "logloss": 0.5231,
+    "mae_pp": 13.61,
+    "logloss": 0.4948,
     "grid": "20.0-2000.0 points per 90% favourite, step 0.25; mean absolute error against the outside market's de-vigged probability",
     "default_scale": 400.0,
     "logloss_alternative": {
      "scale": 20.0,
-     "mae_pp": 12.52,
-     "logloss": 0.5231
+     "mae_pp": 13.61,
+     "logloss": 0.4948
     },
     "objective": "mae"
    },
    "vrs_rank": {
     "fitted": true,
-    "n": 7,
+    "n": 6,
     "scale": 2000.0,
-    "mae_pp": 25.8,
-    "logloss": 0.7603,
+    "mae_pp": 29.09,
+    "logloss": 0.7713,
     "grid": "20.0-2000.0 points per 90% favourite, step 0.25; mean absolute error against the outside market's de-vigged probability",
     "default_scale": 400.0,
     "logloss_alternative": {
      "scale": 2000.0,
-     "mae_pp": 25.8,
-     "logloss": 0.7603
+     "mae_pp": 29.09,
+     "logloss": 0.7713
     },
     "objective": "mae"
    },
    "vrs_log_rank": {
     "fitted": true,
-    "n": 7,
+    "n": 6,
     "scale": 0.05,
-    "logloss": 0.7113,
-    "mae_pp": 23.54
+    "logloss": 0.7142,
+    "mae_pp": 26.45
    }
   },
   "chosen": "official Valve Regional Standings points (vrs_points) at the calibration (MAE) optimum, because that is the transform whose published percentage is closest to the outside market on the same rows and it has the widest team coverage; the log-loss optimum is disclosed next to it and the disagreement is flagged on every row that depends on the scale"
