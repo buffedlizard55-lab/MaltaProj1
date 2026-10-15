@@ -262,21 +262,29 @@ def strategy_page(board: dict) -> None:
 
 
 def unresolved_section(board: dict, full: bool) -> str:
+    """Everything NOT resolved like a featured pick (a sharp-bookmaker price), plus the limits on it."""
     open_rows = [r for r in board["rows"] if r["status"] == "open"]
     d = [r for r in open_rows if r.get("rung") == "D"]
-    c = [r for r in open_rows if r.get("rung") == "C"]
-    issues = [r for r in open_rows if r.get("rung") in ("A", "B") and set(r.get("flags", [])) & {"KICKOFF_GAP", "MODEL_MARKET_SPLIT", "BOOK_PM_SPLIT", "VRS_ROSTER_OUTDATED", "FORMAT_UNKNOWN", "STALE_PRICE"}]
-    out = [f"<p><strong>{len(d)}</strong> open match(es) have no pick at all; <strong>{len(c)}</strong> rely on our own line only (no outside price yet); "
-           f"<strong>{len(issues)}</strong> priced matches carry a data-quality flag.</p>"]
+    ladder = [r for r in open_rows if r.get("rung") in ("B", "C")]
+    issues = [r for r in open_rows if r.get("rung") == "A" and set(r.get("flags", [])) & {"KICKOFF_GAP", "MODEL_MARKET_SPLIT", "BOOK_PM_SPLIT", "VRS_ROSTER_OUTDATED", "FORMAT_UNKNOWN", "STALE_PRICE"}]
+    nb = sum(1 for r in ladder if r["rung"] == "B")
+    out = [f"<p>Featured picks use a sharp bookmaker (Pinnacle). <strong>{len(ladder)}</strong> open match(es) could not be resolved that way and went down the research ladder "
+           f"(HLTV → esportsbooks → betting lines): <strong>{nb}</strong> priced by Polymarket, <strong>{len(ladder) - nb}</strong> by our own line. "
+           f"<strong>{len(d)}</strong> have no pick at all. <strong>{len(issues)}</strong> featured picks carry a data-quality flag.</p>"]
     if d:
         out.append("<h3>No pick possible</h3><ul>" + "".join(
             f"<li><a href=\"picks.html#m{e(r['match_id'])}\">{e(r['team_a'])} vs {e(r['team_b'])}</a> — {e(utc_label(r.get('lock_utc')))}: no Pinnacle or Polymarket price, and "
             f"{e(', '.join(n for n, v in ((r['team_a'], r.get('vrs_a')), (r['team_b'], r.get('vrs_b'))) if not v))} missing from Valve's standings. Research trail: {link(r.get('hltv_url'), 'HLTV')} · "
             f"<a href=\"https://www.hltv.org/search?query={e(r['team_a'])}\">HLTV search {e(r['team_a'])}</a> · <a href=\"https://www.hltv.org/search?query={e(r['team_b'])}\">HLTV search {e(r['team_b'])}</a></li>" for r in d) + "</ul>")
-    if c:
+    if ladder:
         rows = []
-        for r in c:
-            lim = ["no Pinnacle line at read time", "no Polymarket market"]
+        for r in ladder:
+            lim = ["no Pinnacle line at read time"]
+            if r["rung"] == "B":
+                vol = (r.get("pm") or {}).get("volume")
+                lim.append("prediction-market price (mid), not a bookmaker" + (f"; about ${float(vol):,.0f} traded" if vol not in (None, "") else ""))
+            else:
+                lim.append("no Polymarket market either — estimate from Valve points only")
             if "VRS_ROSTER_OUTDATED" in r.get("flags", []):
                 lim.append("Valve's five differs from the lineup now playing")
             if not r.get("format"):
@@ -284,18 +292,21 @@ def unresolved_section(board: dict, full: bool) -> str:
             elif r.get("format") == "BO1":
                 lim.append("Bo1: more upsets than the rating gap suggests")
             hl = f"HLTV #{r.get('hltv_rank_a') or '–'} vs #{r.get('hltv_rank_b') or '–'}"
+            step3 = (f"3 Betting lines: {link((r.get('pm') or {}).get('url'), 'Polymarket')} {e((r.get('pm') or {}).get('price_a'))} / {e((r.get('pm') or {}).get('price_b'))}"
+                     if r["rung"] == "B" else "3 Betting lines: Polymarket — not listed → our own line")
             rows.append(f"<tr><td><a href=\"picks.html#m{e(r['match_id'])}\">{e(r['team_a'])} vs {e(r['team_b'])}</a><br><span class=small>{e(utc_label(r.get('lock_utc')))}</span></td>"
-                        f"<td>{e(r.get('pick'))} {pc(r.get('pick_p'))}</td><td>1 HLTV: {link(r.get('hltv_url'), 'page')} ({e(hl)})<br>2 Esportsbook: Pinnacle — not listed<br>3 Betting lines: Polymarket — not listed</td>"
+                        f"<td>{e(r.get('pick'))} {pc(r.get('pick_p'))}<br><span class=small>{e(r['team_a'])} {pc(r.get('p_a'))} / {e(r['team_b'])} {pc(r.get('p_b'))}</span></td>"
+                        f"<td>1 HLTV: {link(r.get('hltv_url'), 'page')} ({e(hl)})<br>2 Esportsbook: Pinnacle — not listed<br>{step3}</td>"
                         f"<td>{e('; '.join(lim))}</td></tr>")
-        out.append("<h3>Picks from our own line only</h3><div class=\"tablewrap\"><table><thead><tr><th>Match</th><th>Pick</th><th>Research ladder (HLTV → esportsbooks → lines)</th><th>Limitations</th></tr></thead><tbody>" + "".join(rows) + "</tbody></table></div>")
-    if full and issues:
-        out.append("<h3>Priced matches with data-quality flags</h3><ul>" + "".join(
+        out.append("<h3>Resolved by the research ladder (no sharp-book price)</h3><div class=\"tablewrap\"><table><thead><tr><th>Match</th><th>Pick</th><th>Research ladder (HLTV → esportsbooks → lines)</th><th>Limitations</th></tr></thead><tbody>" + "".join(rows) + "</tbody></table></div>")
+    if issues:
+        out.append("<h3>Featured picks with data-quality flags</h3><ul>" + "".join(
             f"<li><a href=\"picks.html#m{e(r['match_id'])}\">{e(r['team_a'])} vs {e(r['team_b'])}</a>: " + ", ".join(f'<span class="flag">{e(f)}</span>' for f in r["flags"] if f != "ALIAS") + "</li>" for r in issues) + "</ul>")
     out.append("""<h3>Limitations that apply to every pick</h3><ul>
 <li>Snapshots, not live odds: prices are read every 3 hours; a line can move or be pulled before lock. Every price shows its read time.</li>
-<li>Pinnacle usually posts low-tier lines about a day ahead, so next-day C-tier matches often start on our own line and switch to a market price on a later refresh.</li>
+<li>Pinnacle usually posts low-tier lines about a day ahead and can pull them close to start, so C-tier matches often sit on Polymarket or our own line and switch on a later refresh.</li>
 <li>Our own line uses Valve's official points (published monthly; current file named in the snapshot bar) on a curve fitted to Valve's own results; it knows nothing about stand-ins or brand-new rosters — those are shown as factors.</li>
-<li>HLTV blocks most automated reads, so HLTV facts (formats, rosters, stand-ins) come from this session's manual research with links; new fixtures get HLTV links but no new notes until researched.</li>
+<li>HLTV blocks most automated reads, so HLTV facts (formats, rosters, stand-ins) come from this session's researched notes with links; new fixtures get HLTV links but no new notes until researched.</li>
 <li>Hotspawn's crowd share is shown as ownership only and changes until lock.</li>
 </ul>""")
     return "\n".join(out)
@@ -384,12 +395,12 @@ def index_page(board: dict) -> None:
 <div class="btns">
 <a class="btn primary" href="picks.html"><strong>All picks ({s['open']} open) →</strong><span>One card per match: pick, both probabilities, sources.</span></a>
 <a class="btn" href="strategy.html"><strong>Leaderboard plan</strong><span>{s['leaderboard_classes'].get('VALUE', 0)} value · {s['leaderboard_classes'].get('CONTRARIAN', 0)} contrarian · {s['leaderboard_classes'].get('SITUATIONAL', 0)} situational plays; day-1 review.</span></a>
-<a class="btn" href="unresolved.html"><strong>Unresolved &amp; limitations</strong><span>{s['open_unresolved']} without a pick · {s['open_rung'].get('C', 0)} on our own line only.</span></a>
+<a class="btn" href="unresolved.html"><strong>Unresolved &amp; limitations</strong><span>{s['open_rung'].get('B', 0) + s['open_rung'].get('C', 0)} via the research ladder · {s['open_unresolved']} without a pick.</span></a>
 <a class="btn" href="flagged.html"><strong>Flagged for Review</strong><span>Irregularities and per-match flags with evidence.</span></a>
 </div>
 <div class="stats" aria-label="Coverage">
 <div><b>{s['open']}</b><span>open matches</span></div><div><b>{s['open_with_pick']}</b><span>with a pick</span></div>
-<div><b>{s['open_rung'].get('A', 0) + s['open_rung'].get('B', 0)}</b><span>priced by a market</span></div><div><b>{s['open_rung'].get('C', 0)}</b><span>our own line only</span></div>
+<div><b>{s['open_rung'].get('A', 0)}</b><span>featured (Pinnacle)</span></div><div><b>{s['open_rung'].get('B', 0) + s['open_rung'].get('C', 0)}</b><span>via research ladder</span></div>
 </div>
 <h2>Next to lock</h2><ul class="plain">{''.join(li(r) for r in nxt) or '<li>No open fixtures in this snapshot.</li>'}</ul>
 <h2>Leaderboard plays right now</h2><ul class="plain">{''.join(li(r) for r in plays) or '<li>No value/contrarian/situational plays — take the picks.</li>'}</ul>
@@ -397,7 +408,7 @@ def index_page(board: dict) -> None:
 <h2>Day 1 in one line</h2>
 <p>TWC 2026 day 1: all four series ended 2-0; favourites won three. The upset was <b>9z 2-0 Aurora</b> (market 27%, our line 39%, picked by 5% of players). Market picks went {s['day1_review']['picks_correct']}/{s['day1_review']['matches']}. <a href="strategy.html">Full review →</a></p>
 <h2 id="unresolved">Unresolved picks &amp; limitations</h2>
-{unresolved_section(board, False)}
+{unresolved_section(board, True)}
 <h2>Coverage &amp; freshness</h2>
 <p class="small">{s['fixtures']} fixtures in Hotspawn's payload: {s['open']} open, {s['locked_recent']} recently locked, {s['stale_listings']} stale listings (<a href="all.html">full inventory</a>). Sources: Pinnacle {e(s['sources']['pinnacle'])}, Polymarket {e(s['sources']['polymarket'])}, Valve {e(s['sources']['vrs'])}, HLTV {e(s['sources']['hltv'])}. Generated {e(utc_label(s['generated_utc']))}. <a href="method.html">Method, sources &amp; read times</a>.</p>"""
     page("index.html", "Executive summary", body, board)
