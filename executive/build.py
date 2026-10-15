@@ -1876,6 +1876,18 @@ def main() -> int:
             row["flags"] = sorted(set(row["flags"] + ["FL-SLATE-UNVERIFIED"]))
         if not row["pick"]:
             row["flags"] = sorted(set(row["flags"] + ["FL-NO-SOURCED-PICK"]))
+            reasons = [FLAG_DEFS[flag] for flag in row["flags"] if flag in
+                       ("FL-IDENTITY-UNVERIFIED", "FL-RATING-MISSING", "FL-FORMAT-UNKNOWN", "FL-RATING-EXPIRED")]
+            row["basis_detail"] += " Unresolved: " + " ".join(reasons or ["No fresh exact-fixture outside quote or usable rating pair was confirmed."])
+            trail = next((item for item in (fallback.get("rows") or [])
+                          if str(item.get("match_id")) == row["match_id"]), {})
+            for candidate in trail.get("outside_candidates") or []:
+                if candidate.get("rejection_reason"):
+                    row["basis_detail"] += " " + candidate["rejection_reason"] + "."
+            for attempt in trail.get("attempts") or []:
+                if attempt.get("url"):
+                    row["basis_sources"].append((attempt["url"], "HLTV research attempt (not a confirmed price)"))
+
 
     for row in rows:
         own = row["own"]

@@ -528,7 +528,14 @@ def collect_hltv_team_roster(url: str) -> dict | None:
          sha256=sha256_bytes(body) if body else None, mode="live")
     if status != 200:
         return None
+    if not re.match(r"https://www\.hltv\.org/team/\d+/", url):
+        return None
     html = body.decode("utf-8", "replace")
+    # Never collect page-wide player links, which can belong to sidebar teams.
+    roster = re.search(r'<div[^>]*class="[^"]*bodyshot-team[^"]*"[^>]*>(.*?)</div>\s*</div>', html, re.S)
+    if not roster:
+        return None
+    html = roster.group(1)
     nicks, seen = [], set()
     for _, nick in re.findall(r'href="/player/(\d+)/([^"]+)"', html):
         name = unescape(nick.replace("-", " "))

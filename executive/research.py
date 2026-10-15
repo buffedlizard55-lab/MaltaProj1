@@ -10,7 +10,6 @@ import re
 from datetime import datetime, timezone
 from common import DATA, norm, parse_iso, write_json
 from evidence import quote_rejection
-from playwright.sync_api import sync_playwright
 
 
 def format_evidence(text, teams, kickoff, row):
@@ -30,6 +29,7 @@ def format_evidence(text, teams, kickoff, row):
 
 
 def main():
+    from playwright.sync_api import sync_playwright
     analysis = json.loads((DATA / 'analysis.json').read_text())
     missing = [r for r in analysis['fixtures'].values() if r['status'] == 'open' and not r['pick']]
     now = datetime.now(timezone.utc)

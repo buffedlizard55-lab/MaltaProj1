@@ -121,6 +121,20 @@ class StrictOwnLines(unittest.TestCase):
         self.assertLess(result['mae_pp'], .001)
 
 
+class ResearchIdentity(unittest.TestCase):
+    def test_format_requires_exact_teams_and_epoch(self):
+        import research
+        row = {'team_a': 'Alpha', 'team_b': 'Beta', 'start_utc': '2026-10-15T12:00:00Z'}
+        epoch = str(int(datetime(2026, 10, 15, 12, tzinfo=timezone.utc).timestamp() * 1000))
+        self.assertEqual(research.format_evidence('Best of 3 (Online)', ['Alpha', 'Beta'], epoch, row), (3, ''))
+        for teams, kick, text in ((['Alpha', 'Other'], epoch, 'Best of 3'),
+                                  (['Alpha', 'Beta'], None, 'Best of 3'),
+                                  (['Alpha', 'Beta'], epoch, 'Format unknown')):
+            fmt, reason = research.format_evidence(text, teams, kick, row)
+            self.assertIsNone(fmt)
+            self.assertTrue(reason)
+
+
 class PublishedContract(unittest.TestCase):
     def test_row_audit_matches_full_captured_inventory(self):
         report = json.loads((ROOT / 'executive/data/row_verification.json').read_text())
