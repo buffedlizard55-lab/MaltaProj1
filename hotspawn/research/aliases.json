@@ -2,44 +2,122 @@
  "about": "Verified team-name equivalences used to join Hotspawn fixtures to outside prices, Valve standings and HLTV. Only names proven to denote the same team in the same fixture slot are listed. Generic words (Team, Esports, Gaming, GG) and case/punctuation are normalised in code, so 'Team Falcons' = 'Falcons' needs no entry. Session arena/22be6967, read 2026-10-15 10:05-10:25 UTC.",
  "teams": [
   {
-   "key": "wbt", "display": "WBT", "variants": ["WROTBERRY", "WBT"],
+   "key": "wbt",
+   "display": "WBT",
+   "variants": [
+    "WROTBERRY",
+    "WBT"
+   ],
    "evidence": "HLTV's Elisa BreakOut Series 2 schedule lists 'WBT vs ENCE' (match 2399420) and 'WBT vs BOJONG' (2399422) in exactly the slots Hotspawn lists as WROTBERRY vs ENCE (1080281, 12:00 UTC) and WROTBERRY vs BOJONG (1080283, 16:00 UTC); Pinnacle's 'CS2 - Elisa BreakOut' league prices 'WBT vs ENCE' 12:00 UTC and 'WBT vs BOJONG' 16:00 UTC; Valve's standings list WBT (#60).",
-   "source_urls": ["https://www.hltv.org/events/9332/matches", "https://www.hltv.org/matches/2399420/wbt-vs-ence-elisa-breakout-series-2"]
+   "source_urls": [
+    "https://www.hltv.org/events/9332/matches",
+    "https://www.hltv.org/matches/2399420/wbt-vs-ence-elisa-breakout-series-2"
+   ]
   },
   {
-   "key": "rounds", "display": "ROUNDS", "variants": ["RoundsGG", "ROUNDS", "Rounds"],
+   "key": "rounds",
+   "display": "ROUNDS",
+   "variants": [
+    "RoundsGG",
+    "ROUNDS",
+    "Rounds"
+   ],
    "evidence": "HLTV's Elisa BreakOut Series 2 schedule lists 'HAVU vs ROUNDS' (2399425), 'Phantom vs ROUNDS' (2399427) and 'Voca vs ROUNDS' (2399428) in the slots Hotspawn lists with RoundsGG (1080286, 1080288, 1080289); Valve's standings list ROUNDS (#310).",
-   "source_urls": ["https://www.hltv.org/events/9332/matches", "https://www.hltv.org/matches/2399425/havu-vs-rounds-elisa-breakout-series-2"]
+   "source_urls": [
+    "https://www.hltv.org/events/9332/matches",
+    "https://www.hltv.org/matches/2399425/havu-vs-rounds-elisa-breakout-series-2"
+   ]
   },
   {
-   "key": "parivision", "display": "PARIVISION", "variants": ["PVISION", "PARIVISION"],
+   "key": "parivision",
+   "display": "PARIVISION",
+   "variants": [
+    "PVISION",
+    "PARIVISION"
+   ],
    "evidence": "Pinnacle's 'CS2 - TP World Championship' league lists 'PVISION vs BB Team' at 13:30 UTC on 2026-10-15, the slot of HLTV match 2399410 PARIVISION vs BETBOOM and Hotspawn 1080203 PARIVISION vs BetBoom; Polymarket names the same market 'PARIVISION vs BetBoom Team'.",
-   "source_urls": ["https://www.hltv.org/matches/2399410/parivision-vs-betboom-thunderpick-world-championship-2026", "https://polymarket.com/event/cs2-prv-bb3-2026-10-15"]
+   "source_urls": [
+    "https://www.hltv.org/matches/2399410/parivision-vs-betboom-thunderpick-world-championship-2026",
+    "https://polymarket.com/event/cs2-prv-bb3-2026-10-15"
+   ]
   },
   {
-   "key": "betboom", "display": "BETBOOM", "variants": ["BetBoom", "BB Team", "BetBoom Team", "BETBOOM"],
+   "key": "betboom",
+   "display": "BETBOOM",
+   "variants": [
+    "BetBoom",
+    "BB Team",
+    "BetBoom Team",
+    "BETBOOM"
+   ],
    "evidence": "Same fixture slot as above (HLTV writes BETBOOM, Hotspawn BetBoom, Pinnacle 'BB Team', Polymarket 'BetBoom Team'); Valve's standings list BETBOOM (#11).",
-   "source_urls": ["https://www.hltv.org/team/12394/betboom", "https://www.hltv.org/matches/2399410/parivision-vs-betboom-thunderpick-world-championship-2026"]
+   "source_urls": [
+    "https://www.hltv.org/team/12394/betboom",
+    "https://www.hltv.org/matches/2399410/parivision-vs-betboom-thunderpick-world-championship-2026"
+   ]
   },
   {
-   "key": "nip", "display": "Ninjas in Pyjamas", "variants": ["NIP", "NiP", "Ninjas in Pyjamas"],
+   "key": "nip",
+   "display": "Ninjas in Pyjamas",
+   "variants": [
+    "NIP",
+    "NiP",
+    "Ninjas in Pyjamas"
+   ],
    "evidence": "Polymarket market cs2-aur1-nip-2026-10-15 'Aurora Gaming vs NIP - Thunderpick World Championship Group A' is HLTV match 2399408 Aurora vs Ninjas in Pyjamas (Hotspawn 1080201).",
-   "source_urls": ["https://www.hltv.org/matches/2399408/aurora-vs-ninjas-in-pyjamas-thunderpick-world-championship-2026", "https://polymarket.com/event/cs2-aur1-nip-2026-10-15"]
+   "source_urls": [
+    "https://www.hltv.org/matches/2399408/aurora-vs-ninjas-in-pyjamas-thunderpick-world-championship-2026",
+    "https://polymarket.com/event/cs2-aur1-nip-2026-10-15"
+   ]
   },
   {
-   "key": "aurora", "display": "Aurora", "variants": ["Aurora Gaming"],
+   "key": "aurora",
+   "display": "Aurora",
+   "variants": [
+    "Aurora Gaming"
+   ],
    "evidence": "Same Polymarket market as above ('Aurora Gaming'); HLTV team page names the team Aurora.",
-   "source_urls": ["https://www.hltv.org/team/11861/aurora"]
+   "source_urls": [
+    "https://www.hltv.org/team/11861/aurora"
+   ]
   },
   {
-   "key": "falcons", "display": "Falcons", "variants": ["Team Falcons"],
+   "key": "falcons",
+   "display": "Falcons",
+   "variants": [
+    "Team Falcons"
+   ],
    "evidence": "Polymarket market cs2-9z-fal2-2026-10-15 '9z vs Team Falcons' (gameStartTime 2026-10-15 11:00 UTC) is HLTV match 2399409 9z vs Falcons (Hotspawn 1080202).",
-   "source_urls": ["https://www.hltv.org/matches/2399409/9z-vs-falcons-thunderpick-world-championship-2026", "https://polymarket.com/event/cs2-9z-fal2-2026-10-15"]
+   "source_urls": [
+    "https://www.hltv.org/matches/2399409/9z-vs-falcons-thunderpick-world-championship-2026",
+    "https://polymarket.com/event/cs2-9z-fal2-2026-10-15"
+   ]
   },
   {
-   "key": "bcgame", "display": "BC.Game", "variants": ["BC.Game Esports", "BC.Game"],
+   "key": "bcgame",
+   "display": "BC.Game",
+   "variants": [
+    "BC.Game Esports",
+    "BC.Game"
+   ],
    "evidence": "Polymarket 'MIBR vs BC.Game Esports - Stake Pulse Beat III Group D' and Pinnacle 'MIBR vs BC.Game' (10:00 UTC) are the Hotspawn Stake Pulse Beat III MIBR vs BC.Game fixture.",
-   "source_urls": ["https://polymarket.com/event/cs2-mibr-bcg-2026-10-15"]
+   "source_urls": [
+    "https://polymarket.com/event/cs2-mibr-bcg-2026-10-15"
+   ]
+  },
+  {
+   "key": "eac",
+   "display": "EAC",
+   "variants": [
+    "Esport Academy Copenhagen",
+    "EAC"
+   ],
+   "evidence": "Polymarket's Elisa BreakOut Series #2 Group A markets 'Esport Academy Copenhagen vs BOJONG' (slug cs2-eac-bojong-2026-10-15, 14:00 UTC) and 'Esport Academy Copenhagen vs ENCE' (cs2-eac-ence-2026-10-15, 18:00 UTC) sit in exactly the slots of HLTV matches 2399421 'EAC vs BOJONG' and 2399423 'EAC vs ENCE' (Hotspawn 1080282/1080284); Valve's standings list EAC (#103). NOT the same team as 'EAC Extra' (European Pro League), which stays separate.",
+   "source_urls": [
+    "https://www.hltv.org/matches/2399421/eac-vs-bojong-elisa-breakout-series-2",
+    "https://polymarket.com/event/cs2-eac-bojong-2026-10-15",
+    "https://polymarket.com/event/cs2-eac-ence-2026-10-15"
+   ]
   }
  ]
 }

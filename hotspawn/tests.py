@@ -187,6 +187,7 @@ class Parsers(unittest.TestCase):
         self.assertEqual(al.key("BB Team"), al.key("BetBoom"))
         self.assertEqual(al.key("Team Falcons"), al.key("Falcons"))
         self.assertNotEqual(al.key("EAC Extra"), al.key("EAC"))
+        self.assertEqual(al.key("Esport Academy Copenhagen"), al.key("EAC"))
         self.assertEqual(norm_name("BC.Game Esports"), norm_name("BC.Game"))
 
     def test_polymarket_question(self):
