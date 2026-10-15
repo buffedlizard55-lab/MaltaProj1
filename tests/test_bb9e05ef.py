@@ -149,7 +149,9 @@ class PublishedContract(unittest.TestCase):
         self.assertIn('data-lock=', html)
         self.assertIn('name="viewport"', html)
         unresolved = (ROOT / 'executive/unresolved.html').read_text()
-        self.assertIn('No supported pick', unresolved)
+        summary = json.loads((ROOT / 'executive/data/summary.json').read_text())
+        if summary['coverage']['open_no_pick']:
+            self.assertIn('No supported pick', unresolved)
         self.assertNotIn('Every open match has a pick.', unresolved)
         self.assertIn('min-height: 44px', (ROOT / 'executive/style.css').read_text())
 

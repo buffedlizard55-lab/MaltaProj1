@@ -4004,3 +4004,5 @@ Rebased the session branch onto current main `2a33e5f37d26c63e0af466d4f04f04840d
 | BB-1 | done | arena/bb9e05ef | Strict source gates, automated fallback research, per-row audit, rejected quotes, full captured inventory, phone/tablet checks passed |
 | BB-2 | in progress | arena/bb9e05ef | PR #134 final checks/merge and Pages confirmation next |
 | BB-unresolved | needs review | arena/bb9e05ef | Five blank picks and source limitations published on executive/unresolved.html, executive/flagged.html and reviews/bb9e05ef-reliability.html; non-blocking |
+
+BB cadence edge-case regression fix: the legacy calibration test assumed that *any* nonzero number of market pairs was sufficient to fit, although the documented minimum is four. It now requires the default/unfitted disclosure for 0–3 pairs, and accepts zero originated lines only when all withheld lines have explicit flags. The unresolved-page test requires a missing-pick group only when missing picks actually exist. These are source-availability cases expected during unattended refreshes, not reasons to fabricate a number. Formula and source-equality assertions remain intact.
