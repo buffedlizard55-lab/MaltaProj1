@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-10-15T18:43:32Z",
+ "generated_utc": "2026-10-15T22:47:08Z",
  "session": "arena/bdc98a9a",
  "what": "live re-read of every external URL cited by the merged boards' data files",
  "offline": false,
@@ -10,65 +10,64 @@
   "every"
  ],
  "boards_missing": [],
- "claims": 323,
+ "claims": 345,
  "verdicts": {
-  "match": 195,
-  "mismatch": 0,
-  "refused": 117,
+  "match": 220,
+  "mismatch": 1,
+  "refused": 111,
   "dead": 0,
-  "not-checkable": 11,
+  "not-checkable": 13,
   "placeholder": 0
  },
  "by_kind": {
   "hotspawn": {
-   "total": 12,
+   "total": 18,
    "match": 2,
-   "refused": 10
+   "refused": 15,
+   "mismatch": 1
   },
   "hltv_match": {
    "total": 56,
-   "refused": 38,
-   "match": 18
+   "refused": 42,
+   "match": 14
   },
   "hltv_team": {
    "total": 39,
-   "match": 23,
-   "refused": 16
+   "match": 39
   },
   "egw_market": {
    "total": 49,
-   "refused": 48,
-   "not-checkable": 1
+   "refused": 49
   },
   "pinnacle": {
-   "total": 14,
-   "not-checkable": 10,
+   "total": 17,
+   "not-checkable": 13,
    "refused": 4
   },
   "polymarket": {
-   "total": 2,
-   "match": 2
+   "total": 1,
+   "match": 1
   },
   "vrs": {
-   "total": 151,
-   "match": 150,
+   "total": 165,
+   "match": 164,
    "refused": 1
   }
  },
  "by_host": {
   "www.hltv.org": 100,
+  "raw.githubusercontent.com": 87,
   "github.com": 77,
-  "raw.githubusercontent.com": 73,
   "egamersworld.com": 45,
-  "www.hotspawn.com": 10,
-  "guest.api.arcadia.pinnacle.com": 9,
+  "www.hotspawn.com": 15,
+  "guest.api.arcadia.pinnacle.com": 12,
   "www.pinnacle.com": 5,
-  "play.hotspawn.com": 2,
-  "polymarket.com": 2
+  "play.hotspawn.com": 3,
+  "polymarket.com": 1
  },
- "fetches": 90,
+ "fetches": 102,
  "fetch_errors": 2,
  "reused_within_hours": 6,
- "reused_rows": 173,
+ "reused_rows": 22,
  "policy": "Hotspawn is read for fixture identity and series format only, never for a probability. A refusal or a mismatch is recorded and flagged; this tool never edits another board's data and never fills a value in."
 }
