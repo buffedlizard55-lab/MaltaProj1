@@ -4339,3 +4339,42 @@ integration pass link **both** every-match boards rather than dropping one.
   `06c2bdf`, and every other check — the valuepicks build/tests/link audit, `audit`, `build`, Pages —
   passes. Fixing it means editing `console/**`, which belongs to another session; this note is the logged
   request rather than a silent cross-scope edit.
+
+---
+
+## Session `arena/2e2b2e5e` — claim (2026-10-15 10:08 UTC)
+
+Branch: `arena/2e2b2e5e-maltaproj1` (fixed by Arena; the brief's `session-<id>/<task>` naming cannot be used, no other branch is created or pushed).
+Board read before claiming: root `COORDINATION.md` (all 4,129 lines' section index + the last three sessions in full), `git ls-remote --heads` (65 heads), `gh pr list`, `gh run list`.
+
+**Activity check at 10:02Z:** newest human-session commits are `bb9e05ef` 09:00:01Z (BB-1/BB-2 recorded **done**, PR #137 merged 09:04:30Z) and `b44b5d5e` 08:52:18Z (MP-1..MP-5 done, MP-6 in progress, PR #136 open). Both are >60 min without commits. Bot commits on `main` (cs2-a174d77f 09:59Z, 4f599d7c snapshot 09:29Z) are automated refreshes, not sessions. Open PRs #136 (b44b5d5e) and #132 (262b4d3b, stale since 2026-10-14) are **not** touched, merged or closed by this session.
+
+User brief for this session (new requirements): review Thunderpick WC day 1 (9z beat Aurora), contrarian-but-not-stupid leaderboard strategy (roster changes / onboarding / rest), a pick **for every** Hotspawn CS2 match (low-tier and non-Polymarket rows included) via HLTV → esportsbooks → betting lines, a separate unresolved-picks & limitations section linked from the executive summary, a simpler phone-first executive summary, 4–8 h unattended refresh.
+
+| ID | Task | Status | Owner | Exclusive file scope |
+|----|------|--------|-------|----------------------|
+| HS-1 | Hotspawn reverse-engineering + live collector: `ng-state` TransferState of `/lobby`, `/cs2-pickems`, `/thp-pickems` (every CS2 fixture, tier, points, lock/start epochs, week window; crowd share kept **only** as a labelled ownership/leverage field, never a probability input) + Pinnacle guest CS2 moneylines + Polymarket gamma (series 10310) + bo3.gg public API (series format, relayed bookmaker odds) + Valve VRS (GitHub) | in progress | arena/2e2b2e5e | `hotspawn/collect.py`, `hotspawn/data/**` |
+| HS-2 | In-session official-source research (HLTV match/event/team pages, read via normal page fetch; Actions runners get HTTP 403 from HLTV): TWC 2026 day-1 results, event format, roster changes (Aurora etc.), identity proofs for book aliases (`WBT`/`PVISION`/`BB Team`), formats. Every fact stored with URL + read time + excerpt | in progress | arena/2e2b2e5e | `hotspawn/research/**` |
+| HS-3 | Pick engine: research ladder (Pinnacle exact or alias-proven fixture → other book / prediction market → own line from official Valve VRS points with format transform, calibrated on Pinnacle → research pick) so **every open fixture gets a pick + both probabilities**, each labelled with basis and confidence; contrarian/leverage analysis | in progress | arena/2e2b2e5e | `hotspawn/build.py`, `hotspawn/model.py` |
+| HS-4 | Phone-first pages: picks for every match, leaderboard/contrarian plan, day-1 review, unresolved picks & limitations, Flagged for Review, methodology & sources, full fixture inventory | in progress | arena/2e2b2e5e | `hotspawn/*.html`, `hotspawn/style.css`, `hotspawn/app.js` |
+| HS-5 | Unattended 4-hourly refresh (collect → build → tests → commit with rebase/retry, fail-closed) | in progress | arena/2e2b2e5e | `.github/workflows/hotspawn-2e2b2e5e.yml`, `hotspawn/tests.py` |
+| HS-6 | Line-by-line verification record with official links | in progress | arena/2e2b2e5e | `reviews/2e2b2e5e-verification.md` |
+| HS-7 | Final integration: simpler root executive summary leading to `hotspawn/` (all prior root links preserved in a collapsed archive), README pointer, landing contract tests updated to the new primary route, PR → main, merge, Pages verification, release record | unclaimed until HS-1..HS-6 done | arena/2e2b2e5e | root `index.html`, `README.md`, `tests/test_landing_43c32386.py`, `tests/test_6f9eab3b.py`, `tests/test_228bb5bc.py` (`LandingPage` class only), `.github/workflows/landing-43c32386.yml` (release markers only), `COORDINATION.md` (append-only) |
+
+Handoff note (HS-7): root `index.html`/`README.md` were claimed by `arena/bb9e05ef` (BB-2, recorded **done**; last commit 09:00:01Z, >60 min). Taking them over under the 60-minute rule once HS-1..HS-6 are done; every existing root link stays reachable. `executive/**`, `matchpicks/**` and all other boards remain read-only for this session.
+
+### Log — arena/2e2b2e5e: three-way overlap found and resolved (2026-10-15 10:27 UTC)
+
+While rebasing onto `main` (10:25Z) this session found two parallel sessions working the **same brief**. Claim times (git author dates): `7759beef` **10:03:53Z** (`b3f08d2`, branch-only until PR #139 merged 10:14:32Z) · `2e2b2e5e` **10:08:29Z** (`3da78c4`, branch-only) · `22be6967` **10:09:02Z** (`30ed6f4`, on `main` via PR #138 at 10:09:22Z). None of the three claims was visible to the others when written.
+
+Resolution chosen to avoid a third duplicate board (the user's main complaint is that the site is confusing) and any file collision — **this session releases** HS-1, HS-2 (every-match parts), HS-4 (every-match pages), HS-6/HS-7 (landing integration) and the `hotspawn/` directory name:
+- every-open-fixture picks + day-review + additive landing links → delivered first by `7759beef` (`valuepicks/`);
+- `hotspawn/` directory and the final landing integration → `22be6967` (its claim was the first visible on `main`; this session never pushed a file under `hotspawn/`).
+
+**This session keeps one task, where its claim is the earliest (10:08:29Z, 33 s before `22be6967`'s HS-1):**
+
+| ID | Task | Status | Owner | Exclusive file scope |
+|----|------|--------|-------|----------------------|
+| LB-1 | **Contrarian-but-not-stupid leaderboard plan**: live Hotspawn crowd ownership (ownership only, never probability) vs. outside-market probability for every open fixture → leverage, expected-points cost, a "safe pick" and a "leaderboard pick" per match; roster / onboarding / rest / late-replacement factors from official pages; day-1 evidence (all 13 Hotspawn CS2 fixtures of 2026-10-14 with pre-lock line, crowd split and HLTV result); own 4-hourly live refresh | in progress | arena/2e2b2e5e | `leaderboard/**`, `.github/workflows/leaderboard-2e2b2e5e.yml`, `tests/test_2e2b2e5e.py`, `reviews/2e2b2e5e-verification.md` |
+
+Requests (not edits): **to `22be6967`** — as landing integration owner, please link `leaderboard/index.html` ("Leaderboard plan — contrarian picks") from the root summary instead of building a second contrarian page; if `hotspawn/strategy.html` already exists, keep whichever you prefer and archive the other — this session will not touch `hotspawn/**`, root `index.html` or `README.md`. **To `7759beef`** — `valuepicks/` stays the "pick for every match" board; `leaderboard/` links to it for the full slate. Verified research this session gathered (HLTV/Liquipedia/Valve URLs + read times: all 13 day-1 results, PARIVISION's 2026-09-17 HObbit signing absent from Valve's 2026-10-05 VRS roster, Legacy's arT return, FURIA schedule load, NiP late replacement, Privateer's 4-man HLTV lineup, WROTBERRY = WBT fixture-level proof) is in `leaderboard/research/research.json` for anyone to reuse.

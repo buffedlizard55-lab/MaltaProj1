@@ -1,0 +1,97 @@
+# Contrarian leaderboard plan refresh — session arena/2e2b2e5e.
+#
+# Unattended, no credentials, no manual input:
+#   1. leaderboard/collect.py reads the public Hotspawn Pick'em pages (Angular TransferState), Pinnacle's
+#      public guest prices, bo3.gg's public match API (formats + relayed bookmaker prices), Polymarket's
+#      gamma API, Valve's official VRS repository and (when it answers) HLTV's world ranking.
+#   2. leaderboard/build.py gives every open Hotspawn CS2 fixture a pick with both teams' probabilities via
+#      the research ladder (Pinnacle -> other books / prediction markets -> our own VRS line), and writes
+#      the phone-first pages and CSV/JSON tables.
+#   3. leaderboard/tests.py must pass; only then is anything committed. A failed run leaves the last good
+#      board in place (fail-closed), and the page shows its own capture age.
+name: Contrarian leaderboard plan (2e2b2e5e)
+
+on:
+  schedule:
+    # Every 4 hours (brief: refresh every 4-8 h). GitHub runs schedules best-effort, so the pages show
+    # their own capture time and warn when it is older than 8 hours.
+    - cron: "17 */4 * * *"
+  workflow_dispatch: {}
+  push:
+    branches: ["arena/2e2b2e5e-maltaproj1", "main"]
+    paths:
+      - "leaderboard/collect.py"
+      - "leaderboard/build.py"
+      - "leaderboard/model.py"
+      - "leaderboard/tests.py"
+      - "leaderboard/research/**"
+      - "leaderboard/style.css"
+      - ".github/workflows/leaderboard-2e2b2e5e.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: leaderboard-2e2b2e5e-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Collect live sources
+        run: python leaderboard/collect.py
+
+      - name: Keep the raw capture as a run artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: leaderboard-capture-${{ github.run_id }}
+          path: leaderboard/data/capture.json
+          retention-days: 7
+          if-no-files-found: ignore
+
+      - name: Build pages and tables
+        if: hashFiles('leaderboard/build.py') != ''
+        run: python leaderboard/build.py
+
+      - name: Tests (fail closed)
+        if: hashFiles('leaderboard/tests.py') != ''
+        run: python -m unittest discover -s leaderboard -p "tests.py" -v
+
+      - name: Commit and push
+        env:
+          BRANCH: ${{ github.ref_name }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add leaderboard/
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git commit -q -m "leaderboard(2e2b2e5e): refresh contrarian leaderboard plan [skip ci] [run ${{ github.run_id }}]"
+          for attempt in 1 2 3 4 5 6; do
+            if git pull --rebase -q origin "$BRANCH" && git push -q origin "HEAD:$BRANCH"; then
+              echo "Pushed on attempt $attempt."
+              exit 0
+            fi
+            git rebase --abort 2>/dev/null || true
+            sleep $((attempt * 7))
+          done
+          echo "Could not push after retries." >&2
+          exit 1
