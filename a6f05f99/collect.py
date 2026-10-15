@@ -71,7 +71,7 @@ PM_SERIES_CS2 = 10310
 
 # --------------------------------------------------------------------------------- 5. Valve VRS
 VRS_REPO = "ValveSoftware/counter-strike_regional_standings"
-VRS_LISTING = f"https://api.github.com/repos/{VRS_REPO}/contents/live"
+VRS_CONTENTS = f"https://api.github.com/repos/{VRS_REPO}/contents/live"  # year dirs live under this
 VRS_ROW = re.compile(r"^\|\s*(\d+)\s*\|\s*(\d+)\s*\|\s*([^|]+?)\s*\|\s*([^|]*?)\s*\|")
 
 # --------------------------------------------------------------------------------- 6. HLTV rank
@@ -388,31 +388,42 @@ def parse_vrs(md: str) -> list[dict]:
 
 
 def collect_vrs(previous: dict | None) -> dict:
-    listing, rec = get_json(VRS_LISTING, headers={**JSON_HEADERS,
-                                                  "Accept": "application/vnd.github+json"})
-    if isinstance(listing, list):
-        files = sorted(e["name"] for e in listing if isinstance(e, dict)
-                       and re.fullmatch(r"standings_global_\d{4}_\d{2}_\d{2}\.md", str(e.get("name"))))
-        if files:
-            name = files[-1]
-            year = name.split("_")[2]
-            commits, _ = get_json(
-                f"https://api.github.com/repos/{VRS_REPO}/commits?path=live/{year}/{name}&per_page=1",
-                headers={**JSON_HEADERS, "Accept": "application/vnd.github+json"})
-            sha = commits[0]["sha"] if isinstance(commits, list) and commits else "main"
-            raw = http_get(
-                f"https://api.github.com/repos/{VRS_REPO}/contents/live/{year}/{name}?ref={sha}",
-                headers={**JSON_HEADERS, "Accept": "application/vnd.github.raw"}, timeout=60)
-            if raw["status"] == 200 and raw["body"]:
-                teams = parse_vrs(raw["body"].decode("utf-8", "replace"))
-                if len(teams) > 50:
-                    date = re.search(r"(\d{4})_(\d{2})_(\d{2})", name)
-                    log(f"vrs: {name} @ {sha[:10]} - {len(teams)} teams")
-                    return {"mode": "live", "file": name, "commit": sha,
-                            "standings_date": f"{date.group(1)}-{date.group(2)}-{date.group(3)}",
-                            "blob_url": f"https://github.com/{VRS_REPO}/blob/{sha}/live/{year}/{name}",
-                            "teams": teams, "read_utc": raw["fetched_utc"]}
-    log(f"vrs: live read failed (HTTP {rec['status']})")
+    """Read the newest ``live/<year>/standings_global_*.md`` from Valve's official repository.
+
+    ``/contents/live`` lists *directories* (2024, 2025, 2026), not files, so each year directory has
+    to be listed separately. The current year is tried first, then the previous one, so a capture
+    still works across a New Year boundary before Valve has published the first file of the year.
+    """
+    this_year = now_utc().year
+    for year in (this_year, this_year - 1):
+        listing, rec = get_json(f"https://api.github.com/repos/{VRS_REPO}/contents/live/{year}",
+                                headers={**JSON_HEADERS,
+                                         "Accept": "application/vnd.github+json"})
+        files = []
+        if isinstance(listing, list):
+            files = sorted(e["name"] for e in listing if isinstance(e, dict)
+                           and re.fullmatch(r"standings_global_\d{4}_\d{2}_\d{2}\.md",
+                                            str(e.get("name"))))
+        if not files:
+            continue
+        name = files[-1]
+        commits, _ = get_json(
+            f"https://api.github.com/repos/{VRS_REPO}/commits?path=live/{year}/{name}&per_page=1",
+            headers={**JSON_HEADERS, "Accept": "application/vnd.github+json"})
+        sha = commits[0]["sha"] if isinstance(commits, list) and commits else "main"
+        raw = http_get(
+            f"https://api.github.com/repos/{VRS_REPO}/contents/live/{year}/{name}?ref={sha}",
+            headers={**JSON_HEADERS, "Accept": "application/vnd.github.raw"}, timeout=60)
+        if raw["status"] == 200 and raw["body"]:
+            teams = parse_vrs(raw["body"].decode("utf-8", "replace"))
+            if len(teams) > 50:
+                date = re.search(r"(\d{4})_(\d{2})_(\d{2})", name)
+                log(f"vrs: {name} @ {sha[:10]} - {len(teams)} teams")
+                return {"mode": "live", "file": name, "commit": sha,
+                        "standings_date": f"{date.group(1)}-{date.group(2)}-{date.group(3)}",
+                        "blob_url": f"https://github.com/{VRS_REPO}/blob/{sha}/live/{year}/{name}",
+                        "teams": teams, "read_utc": raw["fetched_utc"]}
+    log("vrs: live read failed - no readable standings_global_*.md in live/<year>")
     if previous and previous.get("teams"):
         kept = dict(previous)
         kept["mode"] = "previous_capture"

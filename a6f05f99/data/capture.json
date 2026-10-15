@@ -1,16 +1,9 @@
 {
  "schema": "a6f05f99-board/1",
  "session": "arena/a6f05f99",
- "started_utc": "2026-10-15T21:34:12Z",
- "finished_utc": "2026-10-15T21:34:19Z",
- "seeded_from": {
-  "path": "hotspawn/data/capture.json",
-  "session": "arena/22be6967",
-  "read_utc": "2026-10-15T21:34:19Z",
-  "why": "No general internet access from the agent sandbox; the scheduled workflow replaces this file with a fresh live capture on its first run (and adds bo3.gg)."
- },
+ "started_utc": "2026-10-15T23:21:50Z",
  "hotspawn": {
-  "mode": "seeded",
+  "mode": "previous_capture",
   "pages": [
    {
     "page": "lobby",
@@ -2539,10 +2532,39 @@
     "read_utc": "2026-10-15T21:34:12Z"
    }
   ],
-  "read_utc": null
+  "read_utc": null,
+  "latest_attempt": [
+   {
+    "page": "lobby",
+    "url": "https://play.hotspawn.com/lobby",
+    "status": null,
+    "bytes": 0,
+    "sha256": null,
+    "fetched_utc": "2026-10-15T23:21:54Z",
+    "error": "URLError: <urlopen error TLS/SSL connection has been closed (EOF) (_ssl.c:992)>"
+   },
+   {
+    "page": "cs2-pickems",
+    "url": "https://play.hotspawn.com/cs2-pickems",
+    "status": null,
+    "bytes": 0,
+    "sha256": null,
+    "fetched_utc": "2026-10-15T23:22:03Z",
+    "error": "URLError: <urlopen error TLS/SSL connection has been closed (EOF) (_ssl.c:992)>"
+   },
+   {
+    "page": "thp-pickems",
+    "url": "https://play.hotspawn.com/thp-pickems",
+    "status": null,
+    "bytes": 0,
+    "sha256": null,
+    "fetched_utc": "2026-10-15T23:22:12Z",
+    "error": "URLError: <urlopen error TLS/SSL connection has been closed (EOF) (_ssl.c:992)>"
+   }
+  ]
  },
  "pinnacle": {
-  "mode": "seeded",
+  "mode": "previous_capture",
   "quotes": [
    {
     "team_a": "Ninjas In Pyjamas",
@@ -2685,13 +2707,16 @@
   "read_utc": "2026-10-15T21:34:15Z"
  },
  "bo3": {
-  "mode": "not_collected_yet",
+  "mode": "empty",
   "matches": [],
   "page_url": "https://bo3.gg/matches/current",
-  "read_utc": null
+  "status": [
+   null
+  ],
+  "read_utc": "2026-10-15T23:22:44Z"
  },
  "polymarket": {
-  "mode": "seeded",
+  "mode": "previous_capture",
   "quotes": [
    {
     "source": "Polymarket",
@@ -4024,7 +4049,11 @@
   "read_utc": "2026-10-15T21:34:15Z"
  },
  "vrs": {
-  "status": "observed",
+  "mode": "live",
+  "file": "standings_global_2026_10_05.md",
+  "commit": "eec4853d7bcf0f1f7efe7f0d901234bef7e98b75",
+  "standings_date": "2026-10-05",
+  "blob_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
   "teams": [
    {
     "rank": 1,
@@ -4037,10 +4066,7 @@
      "tN1R",
      "zont1x"
     ],
-    "details": "details/2026_10_05/0001--spirit--donk-magixx-sh1ro-tn1r-zont1x.md",
-    "matches_with_current_five": 38,
-    "first_rated_match_current_five": "2026-04-13",
-    "last_rated_match_current_five": "2026-09-06"
+    "line": 6
    },
    {
     "rank": 2,
@@ -4053,10 +4079,7 @@
      "n1ssim",
      "try"
     ],
-    "details": "details/2026_10_05/0002--legacy--art-dumau-latto-n1ssim-try.md",
-    "matches_with_current_five": 15,
-    "first_rated_match_current_five": "2026-08-12",
-    "last_rated_match_current_five": "2026-09-13"
+    "line": 7
    },
    {
     "rank": 3,
@@ -4069,10 +4092,7 @@
      "ropz",
      "ZywOo"
     ],
-    "details": "details/2026_10_05/0003--vitality--apex-flamez-mezii-ropz-zywoo.md",
-    "matches_with_current_five": 31,
-    "first_rated_match_current_five": "2026-04-13",
-    "last_rated_match_current_five": "2026-09-20"
+    "line": 8
    },
    {
     "rank": 4,
@@ -4085,10 +4105,7 @@
      "xelex",
      "xertioN"
     ],
-    "details": "details/2026_10_05/0004--mouz--pr-spinx-torzsi-xelex-xertion.md",
-    "matches_with_current_five": 18,
-    "first_rated_match_current_five": "2026-07-21",
-    "last_rated_match_current_five": "2026-09-19"
+    "line": 9
    },
    {
     "rank": 5,
@@ -4101,10 +4118,7 @@
      "NertZ",
      "r1nkle"
     ],
-    "details": "details/2026_10_05/0005--g2--heavygod-hunter--matys-nertz-r1nkle.md",
-    "matches_with_current_five": 18,
-    "first_rated_match_current_five": "2026-07-22",
-    "last_rated_match_current_five": "2026-09-13"
+    "line": 10
    },
    {
     "rank": 6,
@@ -4117,10 +4131,7 @@
      "NiKo",
      "TeSeS"
     ],
-    "details": "details/2026_10_05/0006--falcons--karrigan-kyousuke-m0nesy-niko-teses.md",
-    "matches_with_current_five": 29,
-    "first_rated_match_current_five": "2026-05-09",
-    "last_rated_match_current_five": "2026-09-05"
+    "line": 11
    },
    {
     "rank": 7,
@@ -4133,10 +4144,7 @@
      "YEKINDAR",
      "yuurih"
     ],
-    "details": "details/2026_10_05/0007--furia--fallen-kscerato-molodoy-yekindar-yuurih.md",
-    "matches_with_current_five": 38,
-    "first_rated_match_current_five": "2026-04-13",
-    "last_rated_match_current_five": "2026-09-20"
+    "line": 12
    },
    {
     "rank": 8,
@@ -4149,10 +4157,7 @@
      "Krabeni",
      "xfl0ud"
     ],
-    "details": "details/2026_10_05/0008--fut--cmtry-dem0n-dziugss-krabeni-xfl0ud.md",
-    "matches_with_current_five": 12,
-    "first_rated_match_current_five": "2026-07-23",
-    "last_rated_match_current_five": "2026-08-31"
+    "line": 13
    },
    {
     "rank": 9,
@@ -4165,10 +4170,7 @@
      "woxic",
      "XANTARES"
     ],
-    "details": "details/2026_10_05/0009--aurora--jimpphat-kyxsan-wicadia-woxic-xantares.md",
-    "matches_with_current_five": 17,
-    "first_rated_match_current_five": "2026-07-22",
-    "last_rated_match_current_five": "2026-09-20"
+    "line": 14
    },
    {
     "rank": 10,
@@ -4181,10 +4183,7 @@
      "ryu",
      "Staehr"
     ],
-    "details": "details/2026_10_05/0010--astralis--hooxi-jabbi-phzy-ryu-staehr.md",
-    "matches_with_current_five": 38,
-    "first_rated_match_current_five": "2026-04-09",
-    "last_rated_match_current_five": "2026-10-04"
+    "line": 15
    },
    {
     "rank": 11,
@@ -4197,10 +4196,7 @@
      "S1ren",
      "zorte"
     ],
-    "details": "details/2026_10_05/0011--betboom--boombl4-d1ledez-magnojez-s1ren-zorte.md",
-    "matches_with_current_five": 11,
-    "first_rated_match_current_five": "2026-04-24",
-    "last_rated_match_current_five": "2026-09-12"
+    "line": 16
    },
    {
     "rank": 12,
@@ -4213,10 +4209,7 @@
      "tomaszin",
      "venomzera"
     ],
-    "details": "details/2026_10_05/0012--mibr--insani-lnz-nqz-tomaszin-venomzera.md",
-    "matches_with_current_five": 13,
-    "first_rated_match_current_five": "2026-09-02",
-    "last_rated_match_current_five": "2026-09-19"
+    "line": 17
    },
    {
     "rank": 13,
@@ -4229,10 +4222,7 @@
      "npl",
      "s1zzi"
     ],
-    "details": "details/2026_10_05/0013--b8--alex666-esenthial-kensizor-npl-s1zzi.md",
-    "matches_with_current_five": 51,
-    "first_rated_match_current_five": "2026-04-09",
-    "last_rated_match_current_five": "2026-10-02"
+    "line": 18
    },
    {
     "rank": 14,
@@ -4245,10 +4235,7 @@
      "syph0",
      "Xant3r"
     ],
-    "details": "details/2026_10_05/0014--nemiga--kair0n--khan-robo-syph0-xant3r.md",
-    "matches_with_current_five": 43,
-    "first_rated_match_current_five": "2026-08-22",
-    "last_rated_match_current_five": "2026-10-04"
+    "line": 19
    },
    {
     "rank": 15,
@@ -4261,10 +4248,7 @@
      "nilo",
      "susp"
     ],
-    "details": "details/2026_10_05/0015--heroic--brollan-chr1zn-martinezsa-nilo-susp.md",
-    "matches_with_current_five": 32,
-    "first_rated_match_current_five": "2026-07-15",
-    "last_rated_match_current_five": "2026-09-26"
+    "line": 20
    },
    {
     "rank": 16,
@@ -4277,10 +4261,7 @@
      "Rainwaker",
      "yxngstxr"
     ],
-    "details": "details/2026_10_05/0016--luminosity--afro-azuwu-lux-rainwaker-yxngstxr.md",
-    "matches_with_current_five": 16,
-    "first_rated_match_current_five": "2026-09-11",
-    "last_rated_match_current_five": "2026-10-04"
+    "line": 21
    },
    {
     "rank": 17,
@@ -4293,10 +4274,7 @@
      "max",
      "meyern"
     ],
-    "details": "details/2026_10_05/0017--9z--dgt-huasopeek-luchov-max-meyern.md",
-    "matches_with_current_five": 38,
-    "first_rated_match_current_five": "2026-04-22",
-    "last_rated_match_current_five": "2026-09-09"
+    "line": 22
    },
    {
     "rank": 18,
@@ -4309,10 +4287,7 @@
      "stavn",
      "xKacpersky"
     ],
-    "details": "details/2026_10_05/0018--ninjas_in_pyjamas--adamb-krimbo-sjuush-stavn-xkacpersky.md",
-    "matches_with_current_five": 18,
-    "first_rated_match_current_five": "2026-09-17",
-    "last_rated_match_current_five": "2026-10-03"
+    "line": 23
    },
    {
     "rank": 19,
@@ -4325,10 +4300,7 @@
      "malbsMd",
      "NAF"
     ],
-    "details": "details/2026_10_05/0019--liquid--elige-jorko-jt-malbsmd-naf.md",
-    "matches_with_current_five": 20,
-    "first_rated_match_current_five": "2026-07-24",
-    "last_rated_match_current_five": "2026-09-27"
+    "line": 24
    },
    {
     "rank": 20,
@@ -4341,10 +4313,7 @@
      "onic",
      "zeRRoFIX"
     ],
-    "details": "details/2026_10_05/0020--inner_circle--cptkurtka023-dawy-headtr1ck-onic-zerrofix.md",
-    "matches_with_current_five": 39,
-    "first_rated_match_current_five": "2026-05-21",
-    "last_rated_match_current_five": "2026-09-22"
+    "line": 25
    },
    {
     "rank": 21,
@@ -4357,10 +4326,7 @@
      "Maka",
      "misutaaa"
     ],
-    "details": "details/2026_10_05/0021--3dmax--graviti-kursy-lucky-maka-misutaaa.md",
-    "matches_with_current_five": 34,
-    "first_rated_match_current_five": "2026-07-01",
-    "last_rated_match_current_five": "2026-09-27"
+    "line": 26
    },
    {
     "rank": 22,
@@ -4373,10 +4339,7 @@
      "slaxz-",
      "Swisher"
     ],
-    "details": "details/2026_10_05/0022--m80--jba-lake-s1n-slaxz--swisher.md",
-    "matches_with_current_five": 46,
-    "first_rated_match_current_five": "2026-04-25",
-    "last_rated_match_current_five": "2026-09-27"
+    "line": 27
    },
    {
     "rank": 23,
@@ -4389,10 +4352,7 @@
      "sFade8",
      "tenzy"
     ],
-    "details": "details/2026_10_05/0023--magic--aw-masval-mo0n-sfade8-tenzy.md",
-    "matches_with_current_five": 39,
-    "first_rated_match_current_five": "2026-04-25",
-    "last_rated_match_current_five": "2026-09-28"
+    "line": 28
    },
    {
     "rank": 24,
@@ -4405,10 +4365,7 @@
      "twist",
      "upE"
     ],
-    "details": "details/2026_10_05/0024--alliance--avid-bobeksde-eraa-twist-upe.md",
-    "matches_with_current_five": 25,
-    "first_rated_match_current_five": "2026-06-13",
-    "last_rated_match_current_five": "2026-10-03"
+    "line": 29
    },
    {
     "rank": 25,
@@ -4421,10 +4378,7 @@
      "JDC",
      "tabseN"
     ],
-    "details": "details/2026_10_05/0025--big--blamef-faven-gr1ks-jdc-tabsen.md",
-    "matches_with_current_five": 42,
-    "first_rated_match_current_five": "2026-04-08",
-    "last_rated_match_current_five": "2026-10-03"
+    "line": 30
    },
    {
     "rank": 26,
@@ -4437,10 +4391,7 @@
      "Neityu",
      "Twistzz"
     ],
-    "details": "details/2026_10_05/0026--faze--frozen-jboen-jcobbb-neityu-twistzz.md",
-    "matches_with_current_five": 18,
-    "first_rated_match_current_five": "2026-07-01",
-    "last_rated_match_current_five": "2026-10-02"
+    "line": 31
    },
    {
     "rank": 27,
@@ -4453,10 +4404,7 @@
      "Snax",
      "Tauson"
     ],
-    "details": "details/2026_10_05/0027--gamerlegion--fl4mus-hypex-rez-snax-tauson.md",
-    "matches_with_current_five": 10,
-    "first_rated_match_current_five": "2026-07-22",
-    "last_rated_match_current_five": "2026-09-28"
+    "line": 32
    },
    {
     "rank": 28,
@@ -4469,10 +4417,7 @@
      "rain",
      "sirah"
     ],
-    "details": "details/2026_10_05/0028--100_thieves--device-gizmy-poiii-rain-sirah.md",
-    "matches_with_current_five": 29,
-    "first_rated_match_current_five": "2026-07-22",
-    "last_rated_match_current_five": "2026-10-03"
+    "line": 33
    },
    {
     "rank": 29,
@@ -4485,10 +4430,7 @@
      "SELLTER",
      "tex1y"
     ],
-    "details": "details/2026_10_05/0029--nemesis--mag1k3y-r3salt-sdaim-sellter-tex1y.md",
-    "matches_with_current_five": 59,
-    "first_rated_match_current_five": "2026-04-08",
-    "last_rated_match_current_five": "2026-10-02"
+    "line": 34
    },
    {
     "rank": 30,
@@ -4501,10 +4443,7 @@
      "m1N1",
      "sinnopsyy"
     ],
-    "details": "details/2026_10_05/0030--jijiehao--0samas-bibu-cacanito-m1n1-sinnopsyy.md",
-    "matches_with_current_five": 39,
-    "first_rated_match_current_five": "2026-04-23",
-    "last_rated_match_current_five": "2026-10-03"
+    "line": 35
    },
    {
     "rank": 31,
@@ -4517,10 +4456,7 @@
      "mizu",
      "n0rb3r7"
     ],
-    "details": "details/2026_10_05/0031--hotu--dwushka-frontales-kade0-mizu-n0rb3r7.md",
-    "matches_with_current_five": 53,
-    "first_rated_match_current_five": "2026-05-29",
-    "last_rated_match_current_five": "2026-10-01"
+    "line": 36
    },
    {
     "rank": 32,
@@ -4533,10 +4469,7 @@
      "X5G7V",
      "xeedo"
     ],
-    "details": "details/2026_10_05/0032--k27--clax-kashl1d-qw1nk1-x5g7v-xeedo.md",
-    "matches_with_current_five": 39,
-    "first_rated_match_current_five": "2026-07-22",
-    "last_rated_match_current_five": "2026-10-02"
+    "line": 37
    },
    {
     "rank": 33,
@@ -4549,10 +4482,7 @@
      "regali",
      "soulfly"
     ],
-    "details": "details/2026_10_05/0033--eternal_fire--jottaaa-kvem-mistem-regali-soulfly.md",
-    "matches_with_current_five": 33,
-    "first_rated_match_current_five": "2026-08-24",
-    "last_rated_match_current_five": "2026-10-03"
+    "line": 38
    },
    {
     "rank": 34,
@@ -4565,10 +4495,7 @@
      "makazze",
      "w0nderful"
     ],
-    "details": "details/2026_10_05/0034--natus_vincere--aleksib-b1t-im-makazze-w0nderful.md",
-    "matches_with_current_five": 28,
-    "first_rated_match_current_five": "2026-04-13",
-    "last_rated_match_current_five": "2026-09-18"
+    "line": 39
    },
    {
     "rank": 35,
@@ -4581,10 +4508,7 @@
      "jambo",
      "mazay"
     ],
-    "details": "details/2026_10_05/0035--fnatic--cairne-fear-jackasmo-jambo-mazay.md",
-    "matches_with_current_five": 31,
-    "first_rated_match_current_five": "2026-07-12",
-    "last_rated_match_current_five": "2026-10-03"
+    "line": 40
    },
    {
     "rank": 36,
@@ -4597,10 +4521,7 @@
      "xiELO",
      "zweih"
     ],
-    "details": "details/2026_10_05/0036--parivision--fl1t-jame-slaxejezzz-xielo-zweih.md",
-    "matches_with_current_five": 6,
-    "first_rated_match_current_five": "2026-08-12",
-    "last_rated_match_current_five": "2026-09-10"
+    "line": 41
    },
    {
     "rank": 37,
@@ -4613,10 +4534,7 @@
      "NickyB",
      "salazar"
     ],
-    "details": "details/2026_10_05/0037--bbl--boye-iceberg-leakz-nickyb-salazar.md",
-    "matches_with_current_five": 63,
-    "first_rated_match_current_five": "2026-04-09",
-    "last_rated_match_current_five": "2026-10-03"
+    "line": 42
    },
    {
     "rank": 38,
@@ -4629,10 +4547,7 @@
      "fame",
      "nafany"
     ],
-    "details": "details/2026_10_05/0038--1win--artfr0st-ax1le-belchonokk-fame-nafany.md",
-    "matches_with_current_five": 34,
-    "first_rated_match_current_five": "2026-07-28",
-    "last_rated_match_current_five": "2026-09-12"
+    "line": 43
    },
    {
     "rank": 39,
@@ -4645,10 +4560,7 @@
      "maxxkor",
      "rdnzao"
     ],
-    "details": "details/2026_10_05/0039--dendele--doc-gafolo-koala-maxxkor-rdnzao.md",
-    "matches_with_current_five": 42,
-    "first_rated_match_current_five": "2026-04-23",
-    "last_rated_match_current_five": "2026-09-27"
+    "line": 44
    },
    {
     "rank": 40,
@@ -4661,10 +4573,7 @@
      "puuha",
      "R4DYX"
     ],
-    "details": "details/2026_10_05/0040--sangal--adams-bnox-joey-puuha-r4dyx.md",
-    "matches_with_current_five": 22,
-    "first_rated_match_current_five": "2026-08-07",
-    "last_rated_match_current_five": "2026-10-03"
+    "line": 45
    },
    {
     "rank": 41,
@@ -4677,10 +4586,7 @@
      "SHOCK",
      "stressarN"
     ],
-    "details": "details/2026_10_05/0041--sinners--beastik-kisserek-modo-shock-stressarn.md",
-    "matches_with_current_five": 56,
-    "first_rated_match_current_five": "2026-04-13",
-    "last_rated_match_current_five": "2026-10-03"
+    "line": 46
    },
    {
     "rank": 42,
@@ -4693,10 +4599,7 @@
      "NOPEEj",
      "story"
     ],
-    "details": "details/2026_10_05/0042--saw--ewjerkz-krazy-mutiris-nopeej-story.md",
-    "matches_with_current_five": 23,
-    "first_rated_match_current_five": "2026-08-07",
-    "last_rated_match_current_five": "2026-10-04"
+    "line": 47
    },
    {
     "rank": 43,
@@ -4709,10 +4612,7 @@
      "maxster",
      "Ro1f"
     ],
-    "details": "details/2026_10_05/0043--eyeballers--dex-jw-krimz-maxster-ro1f.md",
-    "matches_with_current_five": 21,
-    "first_rated_match_current_five": "2026-07-01",
-    "last_rated_match_current_five": "2026-09-26"
+    "line": 48
    },
    {
     "rank": 44,
@@ -4725,10 +4625,7 @@
      "Moseyuh",
      "Zero"
     ],
-    "details": "details/2026_10_05/0044--tyloo--jamyoung-jee-mercury-moseyuh-zero.md",
-    "matches_with_current_five": 47,
-    "first_rated_match_current_five": "2026-04-26",
-    "last_rated_match_current_five": "2026-09-13"
+    "line": 49
    },
    {
     "rank": 45,
@@ -4741,10 +4638,7 @@
      "Qlocuu",
      "ultimate"
     ],
-    "details": "details/2026_10_05/0045--betclic--demho-ex1st-prism-qlocuu-ultimate.md",
-    "matches_with_current_five": 7,
-    "first_rated_match_current_five": "2026-07-19",
-    "last_rated_match_current_five": "2026-09-25"
+    "line": 50
    },
    {
     "rank": 46,
@@ -4757,10 +4651,7 @@
      "senka",
      "tronic"
     ],
-    "details": "details/2026_10_05/0046--nuclear_tigeres--ayuki-djon8-flouzer-senka-tronic.md",
-    "matches_with_current_five": 6,
-    "first_rated_match_current_five": "2026-09-25",
-    "last_rated_match_current_five": "2026-10-02"
+    "line": 51
    },
    {
     "rank": 47,
@@ -4773,10 +4664,7 @@
      "nitr0",
      "Sonic"
     ],
-    "details": "details/2026_10_05/0047--nrg--grim-hallzerk-jeorge-nitr0-sonic.md",
-    "matches_with_current_five": 18,
-    "first_rated_match_current_five": "2026-07-28",
-    "last_rated_match_current_five": "2026-09-26"
+    "line": 52
    },
    {
     "rank": 48,
@@ -4789,10 +4677,7 @@
      "podi",
      "ztr"
     ],
-    "details": "details/2026_10_05/0048--fokus--banjo-jocab-matheos-podi-ztr.md",
-    "matches_with_current_five": 32,
-    "first_rated_match_current_five": "2026-07-21",
-    "last_rated_match_current_five": "2026-10-02"
+    "line": 53
    },
    {
     "rank": 49,
@@ -4805,10 +4690,7 @@
      "Techno",
      "tikuak"
     ],
-    "details": "details/2026_10_05/0049--the_mongolz--910-blitz-darkmeister-techno-tikuak.md",
-    "matches_with_current_five": 7,
-    "first_rated_match_current_five": "2026-07-24",
-    "last_rated_match_current_five": "2026-08-20"
+    "line": 54
    },
    {
     "rank": 50,
@@ -4821,10 +4703,7 @@
      "s1mple",
      "Senzu"
     ],
-    "details": "details/2026_10_05/0050--bc_game--asap-magisk-mzinho-s1mple-senzu.md",
-    "matches_with_current_five": 6,
-    "first_rated_match_current_five": "2026-10-02",
-    "last_rated_match_current_five": "2026-10-03"
+    "line": 55
    },
    {
     "rank": 51,
@@ -4837,10 +4716,7 @@
      "mir",
      "tO0RO"
     ],
-    "details": "details/2026_10_05/0051--virtus_pro--aquars-b1st-f0r3ver-mir-to0ro.md",
-    "matches_with_current_five": 42,
-    "first_rated_match_current_five": "2026-05-26",
-    "last_rated_match_current_five": "2026-09-22"
+    "line": 56
    },
    {
     "rank": 52,
@@ -4853,10 +4729,7 @@
      "saadzin",
      "VINI"
     ],
-    "details": "details/2026_10_05/0052--imperial--chelo-decenty-noway-saadzin-vini.md",
-    "matches_with_current_five": 43,
-    "first_rated_match_current_five": "2026-07-06",
-    "last_rated_match_current_five": "2026-09-27"
+    "line": 57
    },
    {
     "rank": 53,
@@ -4869,10 +4742,7 @@
      "Plopski",
      "stanislaw"
     ],
-    "details": "details/2026_10_05/0053--metizport--f1ku-forsyy-mail09-plopski-stanislaw.md",
-    "matches_with_current_five": 30,
-    "first_rated_match_current_five": "2026-08-03",
-    "last_rated_match_current_five": "2026-09-27"
+    "line": 58
    },
    {
     "rank": 54,
@@ -4885,10 +4755,7 @@
      "snow",
      "Tatu"
     ],
-    "details": "details/2026_10_05/0054--pain--biguzera-rkzinho-saffee-snow-tatu.md",
-    "matches_with_current_five": 6,
-    "first_rated_match_current_five": "2026-09-16",
-    "last_rated_match_current_five": "2026-09-27"
+    "line": 59
    },
    {
     "rank": 55,
@@ -4901,10 +4768,7 @@
      "Ltz",
      "zevy"
     ],
-    "details": "details/2026_10_05/0055--fluxo--dav1deus-exit-kye-ltz-zevy.md",
-    "matches_with_current_five": 44,
-    "first_rated_match_current_five": "2026-06-27",
-    "last_rated_match_current_five": "2026-09-27"
+    "line": 60
    },
    {
     "rank": 56,
@@ -4917,10 +4781,7 @@
      "sl3nd",
      "volt"
     ],
-    "details": "details/2026_10_05/0056--infinite--blytz-kreaz-kyuubii-sl3nd-volt.md",
-    "matches_with_current_five": 9,
-    "first_rated_match_current_five": "2026-09-25",
-    "last_rated_match_current_five": "2026-10-04"
+    "line": 61
    },
    {
     "rank": 57,
@@ -4933,10 +4794,7 @@
      "Patsi",
      "reyoz"
     ],
-    "details": "details/2026_10_05/0057--color--cronuss-lattykk-oz1k-patsi-reyoz.md",
-    "matches_with_current_five": 5,
-    "first_rated_match_current_five": "2026-09-16",
-    "last_rated_match_current_five": "2026-09-27"
+    "line": 62
    },
    {
     "rank": 58,
@@ -4949,10 +4807,7 @@
      "nEMANHA",
      "reck"
     ],
-    "details": "details/2026_10_05/0058--wildcard--cxzi-fr3nd-hext-nemanha-reck.md",
-    "matches_with_current_five": 8,
-    "first_rated_match_current_five": "2026-09-25",
-    "last_rated_match_current_five": "2026-10-03"
+    "line": 63
    },
    {
     "rank": 59,
@@ -4965,10 +4820,7 @@
      "mopoz",
      "sausol"
     ],
-    "details": "details/2026_10_05/0059--iberian_soul--ag1l-alex-dav1g-mopoz-sausol.md",
-    "matches_with_current_five": 7,
-    "first_rated_match_current_five": "2026-09-24",
-    "last_rated_match_current_five": "2026-09-27"
+    "line": 64
    },
    {
     "rank": 60,
@@ -4981,10 +4833,7 @@
      "Smash",
      "tyr1k"
     ],
-    "details": "details/2026_10_05/0060--wbt--demqq-psycho-s4ltovsk1yy-smash-tyr1k.md",
-    "matches_with_current_five": 8,
-    "first_rated_match_current_five": "2026-09-11",
-    "last_rated_match_current_five": "2026-09-25"
+    "line": 65
    },
    {
     "rank": 61,
@@ -4997,10 +4846,7 @@
      "nota",
      "yiksrezo"
     ],
-    "details": "details/2026_10_05/0061--cybershoke--alkaren-alpha-mokuj1n-nota-yiksrezo.md",
-    "matches_with_current_five": 5,
-    "first_rated_match_current_five": "2026-09-24",
-    "last_rated_match_current_five": "2026-10-01"
+    "line": 66
    },
    {
     "rank": 62,
@@ -5013,10 +4859,7 @@
      "Peeping",
      "shane"
     ],
-    "details": "details/2026_10_05/0062--sportsbetexpert--consti-infinite-motm-peeping-shane.md",
-    "matches_with_current_five": 29,
-    "first_rated_match_current_five": "2026-07-29",
-    "last_rated_match_current_five": "2026-10-02"
+    "line": 67
    },
    {
     "rank": 63,
@@ -5029,10 +4872,7 @@
      "Skrimo",
      "SPELLAN"
     ],
-    "details": "details/2026_10_05/0063--acend--h4rn-redstar-shipz-skrimo-spellan.md",
-    "matches_with_current_five": 2,
-    "first_rated_match_current_five": "2026-09-25",
-    "last_rated_match_current_five": "2026-09-27"
+    "line": 68
    },
    {
     "rank": 64,
@@ -5045,10 +4885,7 @@
      "Westmelon",
      "z4KR"
     ],
-    "details": "details/2026_10_05/0064--lynn_vision--c4llm3su3-emiliaqaq-starry-westmelon-z4kr.md",
-    "matches_with_current_five": 33,
-    "first_rated_match_current_five": "2026-05-11",
-    "last_rated_match_current_five": "2026-09-29"
+    "line": 69
    },
    {
     "rank": 65,
@@ -5061,10 +4898,7 @@
      "kauez",
      "timo"
     ],
-    "details": "details/2026_10_05/0065--bestia--buda-cass1n-drop-kauez-timo.md",
-    "matches_with_current_five": 10,
-    "first_rated_match_current_five": "2026-09-09",
-    "last_rated_match_current_five": "2026-09-25"
+    "line": 70
    },
    {
     "rank": 66,
@@ -5077,10 +4911,7 @@
      "Djoko",
      "Keoz"
     ],
-    "details": "details/2026_10_05/0066--genone--bl4sez-brooxsy-chucky-djoko-keoz.md",
-    "matches_with_current_five": 104,
-    "first_rated_match_current_five": "2026-04-10",
-    "last_rated_match_current_five": "2026-09-26"
+    "line": 71
    },
    {
     "rank": 67,
@@ -5093,10 +4924,7 @@
      "SquEzxc",
      "tw1sterzaza"
     ],
-    "details": "details/2026_10_05/0067--upgrade--dan9armatura-dezl3bio-pleynnn-squezxc-tw1sterzaza.md",
-    "matches_with_current_five": 62,
-    "first_rated_match_current_five": "2026-04-09",
-    "last_rated_match_current_five": "2026-10-02"
+    "line": 72
    },
    {
     "rank": 68,
@@ -5109,10 +4937,7 @@
      "nosraC",
      "snav"
     ],
-    "details": "details/2026_10_05/0068--voca--dare-junior-marke-nosrac-snav.md",
-    "matches_with_current_five": 23,
-    "first_rated_match_current_five": "2026-07-28",
-    "last_rated_match_current_five": "2026-10-02"
+    "line": 73
    },
    {
     "rank": 69,
@@ -5125,10 +4950,7 @@
      "M1key",
      "Sn0w"
     ],
-    "details": "details/2026_10_05/0069--unity--2high-dytor-kwertzz-m1key-sn0w.md",
-    "matches_with_current_five": 6,
-    "first_rated_match_current_five": "2026-09-21",
-    "last_rated_match_current_five": "2026-10-04"
+    "line": 74
    },
    {
     "rank": 70,
@@ -5141,10 +4963,7 @@
      "ta9z",
      "Woro2k"
     ],
-    "details": "details/2026_10_05/0070--nt--fakerealityy-m4d4ra-ryuzak1-ta9z-woro2k.md",
-    "matches_with_current_five": 17,
-    "first_rated_match_current_five": "2026-09-17",
-    "last_rated_match_current_five": "2026-10-04"
+    "line": 75
    },
    {
     "rank": 71,
@@ -5157,10 +4976,7 @@
      "synyx",
      "z1Nny"
     ],
-    "details": "details/2026_10_05/0071--bet-m--bluewh1te-executor-raijin-synyx-z1nny.md",
-    "matches_with_current_five": 24,
-    "first_rated_match_current_five": "2026-08-21",
-    "last_rated_match_current_five": "2026-09-28"
+    "line": 76
    },
    {
     "rank": 72,
@@ -5173,10 +4989,7 @@
      "nicoodoz",
      "TMB"
     ],
-    "details": "details/2026_10_05/0072--phantom--kei-kunai-kylar-nicoodoz-tmb.md",
-    "matches_with_current_five": 8,
-    "first_rated_match_current_five": "2026-07-15",
-    "last_rated_match_current_five": "2026-09-24"
+    "line": 77
    },
    {
     "rank": 73,
@@ -5189,10 +5002,7 @@
      "MistR",
      "Zyphon"
     ],
-    "details": "details/2026_10_05/0073--sashi--acor-anlelele-cabbi-mistr-zyphon.md",
-    "matches_with_current_five": 29,
-    "first_rated_match_current_five": "2026-07-30",
-    "last_rated_match_current_five": "2026-10-02"
+    "line": 78
    },
    {
     "rank": 74,
@@ -5205,10 +5015,7 @@
      "naz",
      "tom1jed"
     ],
-    "details": "details/2026_10_05/0074--shinden--abizz-guty-ivz-naz-tom1jed.md",
-    "matches_with_current_five": 35,
-    "first_rated_match_current_five": "2026-04-08",
-    "last_rated_match_current_five": "2026-09-20"
+    "line": 79
    },
    {
     "rank": 75,
@@ -5221,10 +5028,7 @@
      "tAk",
      "ZEDKO"
     ],
-    "details": "details/2026_10_05/0075--brute--aidkit-hfah-nbqq-tak-zedko.md",
-    "matches_with_current_five": 13,
-    "first_rated_match_current_five": "2026-09-01",
-    "last_rated_match_current_five": "2026-09-26"
+    "line": 80
    },
    {
     "rank": 76,
@@ -5237,10 +5041,7 @@
      "Salazar",
      "topo"
     ],
-    "details": "details/2026_10_05/0076--black_phoenix--4x1s-karnez-mrcreed-salazar-topo.md",
-    "matches_with_current_five": 27,
-    "first_rated_match_current_five": "2026-09-04",
-    "last_rated_match_current_five": "2026-09-29"
+    "line": 81
    },
    {
     "rank": 77,
@@ -5253,10 +5054,7 @@
      "waZz",
      "zewts"
     ],
-    "details": "details/2026_10_05/0077--aimclub--ersin-mhn1-ragga-wazz-zewts.md",
-    "matches_with_current_five": 16,
-    "first_rated_match_current_five": "2026-09-04",
-    "last_rated_match_current_five": "2026-10-03"
+    "line": 82
    },
    {
     "rank": 78,
@@ -5269,10 +5067,7 @@
      "nikitea",
      "tripex17"
     ],
-    "details": "details/2026_10_05/0078--lazer_cats--kiy0o-magic-n0rths-nikitea-tripex17.md",
-    "matches_with_current_five": 8,
-    "first_rated_match_current_five": "2026-10-01",
-    "last_rated_match_current_five": "2026-10-03"
+    "line": 83
    },
    {
     "rank": 79,
@@ -5285,10 +5080,7 @@
      "raalz",
      "rigoN"
     ],
-    "details": "details/2026_10_05/0079--9ine--b1elany-flayy-kraghen-raalz-rigon.md",
-    "matches_with_current_five": 5,
-    "first_rated_match_current_five": "2026-10-02",
-    "last_rated_match_current_five": "2026-10-02"
+    "line": 84
    },
    {
     "rank": 80,
@@ -5301,10 +5093,7 @@
      "NEUZ",
      "rate"
     ],
-    "details": "details/2026_10_05/0080--5star--ariucle-clouden-hoolig4n-neuz-rate.md",
-    "matches_with_current_five": 36,
-    "first_rated_match_current_five": "2026-04-30",
-    "last_rated_match_current_five": "2026-10-04"
+    "line": 85
    },
    {
     "rank": 81,
@@ -5317,10 +5106,7 @@
      "her1tage",
      "noni"
     ],
-    "details": "details/2026_10_05/0081--rune_eaters--demente-dukefissura-forkyz-her1tage-noni.md",
-    "matches_with_current_five": 17,
-    "first_rated_match_current_five": "2026-08-23",
-    "last_rated_match_current_five": "2026-09-30"
+    "line": 86
    },
    {
     "rank": 82,
@@ -5333,10 +5119,7 @@
      "k0s",
      "k1slll"
     ],
-    "details": "details/2026_10_05/0082--inox_division--fenomen-finw-gooddeph-k0s-k1slll.md",
-    "matches_with_current_five": 83,
-    "first_rated_match_current_five": "2026-04-19",
-    "last_rated_match_current_five": "2026-10-04"
+    "line": 87
    },
    {
     "rank": 83,
@@ -5349,10 +5132,7 @@
      "dan4o",
      "def1zer"
     ],
-    "details": "details/2026_10_05/0083--omega--adai-aldikon-botpa1-dan4o-def1zer.md",
-    "matches_with_current_five": 32,
-    "first_rated_match_current_five": "2026-04-26",
-    "last_rated_match_current_five": "2026-09-29"
+    "line": 88
    },
    {
     "rank": 84,
@@ -5365,10 +5145,7 @@
      "Lack1",
      "YumsaN"
     ],
-    "details": "details/2026_10_05/0084--forze_reload--heckbnk-kaide-kusme-lack1-yumsan.md",
-    "matches_with_current_five": 26,
-    "first_rated_match_current_five": "2026-08-12",
-    "last_rated_match_current_five": "2026-10-04"
+    "line": 89
    },
    {
     "rank": 85,
@@ -5381,10 +5158,7 @@
      "PKL",
      "tomate"
     ],
-    "details": "details/2026_10_05/0085--galorys--destiny-detr0ittj-gbb-pkl-tomate.md",
-    "matches_with_current_five": 36,
-    "first_rated_match_current_five": "2026-07-29",
-    "last_rated_match_current_five": "2026-10-04"
+    "line": 90
    },
    {
     "rank": 86,
@@ -5397,10 +5171,7 @@
      "nettik",
      "Vexite"
     ],
-    "details": "details/2026_10_05/0086--flyquest--alistair-ins-jks-nettik-vexite.md",
-    "matches_with_current_five": 14,
-    "first_rated_match_current_five": "2026-09-02",
-    "last_rated_match_current_five": "2026-09-29"
+    "line": 91
    },
    {
     "rank": 87,
@@ -5413,10 +5184,7 @@
      "sk0R",
      "yAmi"
     ],
-    "details": "details/2026_10_05/0087--chinggis_warriors--cool4st-fury5k-roux-sk0r-yami.md",
-    "matches_with_current_five": 6,
-    "first_rated_match_current_five": "2026-08-31",
-    "last_rated_match_current_five": "2026-09-03"
+    "line": 92
    },
    {
     "rank": 88,
@@ -5429,10 +5197,7 @@
      "Kurama",
      "nitzie"
     ],
-    "details": "details/2026_10_05/0088--butterfly--ayano-forester-k1ssly-kurama-nitzie.md",
-    "matches_with_current_five": 29,
-    "first_rated_match_current_five": "2026-07-22",
-    "last_rated_match_current_five": "2026-09-26"
+    "line": 93
    },
    {
     "rank": 89,
@@ -5445,10 +5210,7 @@
      "newt",
      "Porya"
     ],
-    "details": "details/2026_10_05/0089--quazar--gehji-kaiori-ne1xxx-newt-porya.md",
-    "matches_with_current_five": 36,
-    "first_rated_match_current_five": "2026-06-01",
-    "last_rated_match_current_five": "2026-09-26"
+    "line": 94
    },
    {
     "rank": 90,
@@ -5461,10 +5223,7 @@
      "Leomonster",
      "zmb"
     ],
-    "details": "details/2026_10_05/0090--lp--alisson-divine-happ-leomonster-zmb.md",
-    "matches_with_current_five": 51,
-    "first_rated_match_current_five": "2026-05-01",
-    "last_rated_match_current_five": "2026-09-26"
+    "line": 95
    },
    {
     "rank": 91,
@@ -5477,10 +5236,7 @@
      "RaY5ive",
      "swiz"
     ],
-    "details": "details/2026_10_05/0091--astral--gxx--meowpop-neqy-ray5ive-swiz.md",
-    "matches_with_current_five": 66,
-    "first_rated_match_current_five": "2026-04-09",
-    "last_rated_match_current_five": "2026-09-24"
+    "line": 96
    },
    {
     "rank": 92,
@@ -5493,10 +5249,7 @@
      "yiksrezo",
      "youka"
     ],
-    "details": "details/2026_10_05/0092--ex-rustec--brilliance-glowiing-shalfey-yiksrezo-youka.md",
-    "matches_with_current_five": 5,
-    "first_rated_match_current_five": "2026-09-24",
-    "last_rated_match_current_five": "2026-09-27"
+    "line": 97
    },
    {
     "rank": 93,
@@ -5509,10 +5262,7 @@
      "Kind0",
      "VLDN"
     ],
-    "details": "details/2026_10_05/0093--ex-zero_tenacity--brutmonster-cjoffo-dragon-kind0-vldn.md",
-    "matches_with_current_five": 47,
-    "first_rated_match_current_five": "2026-08-16",
-    "last_rated_match_current_five": "2026-09-27"
+    "line": 98
    },
    {
     "rank": 94,
@@ -5525,10 +5275,7 @@
      "NaYz",
      "Tamefear"
     ],
-    "details": "details/2026_10_05/0094--inner_circle_academy--3ippoch-flierax-l1seyoung-nayz-tamefear.md",
-    "matches_with_current_five": 16,
-    "first_rated_match_current_five": "2026-09-05",
-    "last_rated_match_current_five": "2026-09-30"
+    "line": 99
    },
    {
     "rank": 95,
@@ -5541,10 +5288,7 @@
      "sowalio",
      "z1k4"
     ],
-    "details": "details/2026_10_05/0095--private--1eer-h4san4tor-sh1nejezzz-sowalio-z1k4.md",
-    "matches_with_current_five": 6,
-    "first_rated_match_current_five": "2026-09-25",
-    "last_rated_match_current_five": "2026-10-01"
+    "line": 100
    },
    {
     "rank": 96,
@@ -5557,10 +5301,7 @@
      "urban0",
      "zock"
     ],
-    "details": "details/2026_10_05/0096--bounty_hunters--kaiser-pepe-ponter-urban0-zock.md",
-    "matches_with_current_five": 28,
-    "first_rated_match_current_five": "2026-08-25",
-    "last_rated_match_current_five": "2026-10-04"
+    "line": 101
    },
    {
     "rank": 97,
@@ -5573,10 +5314,7 @@
      "NickelBack",
      "TRAVIS"
     ],
-    "details": "details/2026_10_05/0097--sparta--el1an-glowiing-interz-nickelback-travis.md",
-    "matches_with_current_five": 8,
-    "first_rated_match_current_five": "2026-09-06",
-    "last_rated_match_current_five": "2026-09-26"
+    "line": 102
    },
    {
     "rank": 98,
@@ -5589,10 +5327,7 @@
      "Tuurtle",
      "WOOD7"
     ],
-    "details": "details/2026_10_05/0098--turma_do_pagode--ksloks-matios-naitte-tuurtle-wood7.md",
-    "matches_with_current_five": 11,
-    "first_rated_match_current_five": "2026-09-22",
-    "last_rated_match_current_five": "2026-10-04"
+    "line": 103
    },
    {
     "rank": 99,
@@ -5605,10 +5340,7 @@
      "Rack",
      "Svedjehed"
     ],
-    "details": "details/2026_10_05/0099--johnny_speeds--bsover-draken-hampus-rack-svedjehed.md",
-    "matches_with_current_five": 14,
-    "first_rated_match_current_five": "2026-08-03",
-    "last_rated_match_current_five": "2026-10-02"
+    "line": 104
    },
    {
     "rank": 100,
@@ -5621,10 +5353,7 @@
      "whisper",
      "xdENiSZERA"
     ],
-    "details": "details/2026_10_05/0100--baks--danistzz-norwi-turbo-whisper-xdeniszera.md",
-    "matches_with_current_five": 28,
-    "first_rated_match_current_five": "2026-07-28",
-    "last_rated_match_current_five": "2026-09-30"
+    "line": 105
    },
    {
     "rank": 101,
@@ -5637,10 +5366,7 @@
      "shoxs",
      "wetfy"
     ],
-    "details": "details/2026_10_05/0101--depo--buster-krad-sh1seido-shoxs-wetfy.md",
-    "matches_with_current_five": 21,
-    "first_rated_match_current_five": "2026-07-24",
-    "last_rated_match_current_five": "2026-09-13"
+    "line": 106
    },
    {
     "rank": 102,
@@ -5653,10 +5379,7 @@
      "OWNER",
      "Tr0ublE"
     ],
-    "details": "details/2026_10_05/0102--basement_boys--kalash-kr1vda-maggent-owner-tr0uble.md",
-    "matches_with_current_five": 20,
-    "first_rated_match_current_five": "2026-08-27",
-    "last_rated_match_current_five": "2026-10-02"
+    "line": 107
    },
    {
     "rank": 103,
@@ -5669,10 +5392,7 @@
      "n1Xen",
      "sSen"
     ],
-    "details": "details/2026_10_05/0103--eac--anber-bekker-fessor-n1xen-ssen.md",
-    "matches_with_current_five": 37,
-    "first_rated_match_current_five": "2026-07-21",
-    "last_rated_match_current_five": "2026-10-03"
+    "line": 108
    },
    {
     "rank": 104,
@@ -5685,10 +5405,7 @@
      "FaNg",
      "Stewie2K"
     ],
-    "details": "details/2026_10_05/0104--without_a_roof--autimatic-brehze-cerq-fang-stewie2k.md",
-    "matches_with_current_five": 23,
-    "first_rated_match_current_five": "2026-08-29",
-    "last_rated_match_current_five": "2026-09-27"
+    "line": 109
    },
    {
     "rank": 105,
@@ -5701,10 +5418,7 @@
      "Schwarz",
      "teme"
     ],
-    "details": "details/2026_10_05/0105--ence--henu-joeski-millert-schwarz-teme.md",
-    "matches_with_current_five": 30,
-    "first_rated_match_current_five": "2026-08-13",
-    "last_rated_match_current_five": "2026-09-30"
+    "line": 110
    },
    {
     "rank": 106,
@@ -5717,10 +5431,7 @@
      "Shr",
      "stadodo"
     ],
-    "details": "details/2026_10_05/0106--rbls--aragornn-arrozdoce-icarus-shr-stadodo.md",
-    "matches_with_current_five": 9,
-    "first_rated_match_current_five": "2026-09-17",
-    "last_rated_match_current_five": "2026-09-27"
+    "line": 111
    },
    {
     "rank": 107,
@@ -5733,10 +5444,7 @@
      "pr1metapz",
      "spooke"
     ],
-    "details": "details/2026_10_05/0107--og--adamb-bodyy-cadian-pr1metapz-spooke.md",
-    "matches_with_current_five": 27,
-    "first_rated_match_current_five": "2026-05-21",
-    "last_rated_match_current_five": "2026-08-30"
+    "line": 112
    },
    {
     "rank": 108,
@@ -5749,10 +5457,7 @@
      "StRoGo",
      "tried"
     ],
-    "details": "details/2026_10_05/0108--ww--kelien-m3wsu-ryujin-strogo-tried.md",
-    "matches_with_current_five": 5,
-    "first_rated_match_current_five": "2026-09-21",
-    "last_rated_match_current_five": "2026-09-26"
+    "line": 113
    },
    {
     "rank": 109,
@@ -5765,10 +5470,7 @@
      "Sandman",
      "SLIGHT"
     ],
-    "details": "details/2026_10_05/0109--lag--bwills-cryptic-djay-sandman-slight.md",
-    "matches_with_current_five": 27,
-    "first_rated_match_current_five": "2026-07-09",
-    "last_rated_match_current_five": "2026-09-29"
+    "line": 114
    },
    {
     "rank": 110,
@@ -5781,10 +5483,7 @@
      "Pump",
      "tasman"
     ],
-    "details": "details/2026_10_05/0110--6yubojlbl--adren-nealan-nyx-pump-tasman.md",
-    "matches_with_current_five": 6,
-    "first_rated_match_current_five": "2026-07-24",
-    "last_rated_match_current_five": "2026-09-08"
+    "line": 115
    },
    {
     "rank": 111,
@@ -5797,10 +5496,7 @@
      "s0und",
      "shield"
     ],
-    "details": "details/2026_10_05/0111--nexus--fnk-holy-nexius-s0und-shield.md",
-    "matches_with_current_five": 9,
-    "first_rated_match_current_five": "2026-09-15",
-    "last_rated_match_current_five": "2026-10-02"
+    "line": 116
    },
    {
     "rank": 112,
@@ -5813,10 +5509,7 @@
      "next1me",
      "Tarkky"
     ],
-    "details": "details/2026_10_05/0112--leo--aimy-drac-leen-next1me-tarkky.md",
-    "matches_with_current_five": 41,
-    "first_rated_match_current_five": "2026-08-02",
-    "last_rated_match_current_five": "2026-09-30"
+    "line": 117
    },
    {
     "rank": 113,
@@ -5829,10 +5522,7 @@
      "xerolte",
      "Zesta"
     ],
-    "details": "details/2026_10_05/0113--nexvoid--accuracytg-erkast-miq-xerolte-zesta.md",
-    "matches_with_current_five": 28,
-    "first_rated_match_current_five": "2026-07-23",
-    "last_rated_match_current_five": "2026-10-03"
+    "line": 118
    },
    {
     "rank": 114,
@@ -5845,10 +5535,7 @@
      "Muk0s",
      "Vej"
     ],
-    "details": "details/2026_10_05/0114--bushido_wildcats--cacan-cadnyx-darendeli-muk0s-vej.md",
-    "matches_with_current_five": 82,
-    "first_rated_match_current_five": "2026-05-22",
-    "last_rated_match_current_five": "2026-09-30"
+    "line": 119
    },
    {
     "rank": 115,
@@ -5861,10 +5548,7 @@
      "s1nside",
      "VILBy"
     ],
-    "details": "details/2026_10_05/0115--spirit_academy--k0gass-kiryasoo-netrix-s1nside-vilby.md",
-    "matches_with_current_five": 34,
-    "first_rated_match_current_five": "2026-07-17",
-    "last_rated_match_current_five": "2026-10-04"
+    "line": 120
    },
    {
     "rank": 116,
@@ -5877,10 +5561,7 @@
      "ogwizard",
      "WUMBO"
     ],
-    "details": "details/2026_10_05/0116--marsborne--freshie-grizz-nicx-ogwizard-wumbo.md",
-    "matches_with_current_five": 33,
-    "first_rated_match_current_five": "2026-07-09",
-    "last_rated_match_current_five": "2026-09-29"
+    "line": 121
    },
    {
     "rank": 117,
@@ -5893,10 +5574,7 @@
      "Muciek",
      "myltsi"
     ],
-    "details": "details/2026_10_05/0117--nordic_partners--k1to-marix-maze-muciek-myltsi.md",
-    "matches_with_current_five": 19,
-    "first_rated_match_current_five": "2026-07-30",
-    "last_rated_match_current_five": "2026-10-02"
+    "line": 122
    },
    {
     "rank": 118,
@@ -5909,10 +5587,7 @@
      "sstiNiX",
      "Temny Prince"
     ],
-    "details": "details/2026_10_05/0118--just_players--bl1x1-h1te-sm3t-sstinix-temny_prince.md",
-    "matches_with_current_five": 13,
-    "first_rated_match_current_five": "2026-09-15",
-    "last_rated_match_current_five": "2026-09-24"
+    "line": 123
    },
    {
     "rank": 119,
@@ -5925,10 +5600,7 @@
      "TjP",
      "viridian"
     ],
-    "details": "details/2026_10_05/0119--thunder_downunder--dexter-gratisfaction-liazz-tjp-viridian.md",
-    "matches_with_current_five": 5,
-    "first_rated_match_current_five": "2026-09-23",
-    "last_rated_match_current_five": "2026-09-29"
+    "line": 124
    },
    {
     "rank": 120,
@@ -5941,10 +5613,7 @@
      "SaMey",
      "sNx"
     ],
-    "details": "details/2026_10_05/0120--walczaki--bajmi-olimp-reiko-samey-snx.md",
-    "matches_with_current_five": 9,
-    "first_rated_match_current_five": "2026-08-28",
-    "last_rated_match_current_five": "2026-09-26"
+    "line": 125
    },
    {
     "rank": 121,
@@ -5957,10 +5626,7 @@
      "sh1nejezzz",
      "YumsaN"
     ],
-    "details": "details/2026_10_05/0121--ex-ruby--h4san4tor-relaxxie-robo-sh1nejezzz-yumsan.md",
-    "matches_with_current_five": 39,
-    "first_rated_match_current_five": "2026-05-08",
-    "last_rated_match_current_five": "2026-06-21"
+    "line": 126
    },
    {
     "rank": 122,
@@ -5973,10 +5639,7 @@
      "controlez",
      "Cozen"
     ],
-    "details": "details/2026_10_05/0122--the_huns--annihilation-bart4k-bexyz-controlez-cozen.md",
-    "matches_with_current_five": 6,
-    "first_rated_match_current_five": "2026-09-30",
-    "last_rated_match_current_five": "2026-10-04"
+    "line": 127
    },
    {
     "rank": 123,
@@ -5989,10 +5652,7 @@
      "sL1m3",
      "Zanto"
     ],
-    "details": "details/2026_10_05/0123--state--altekz-kwezz-queenix-sl1m3-zanto.md",
-    "matches_with_current_five": 5,
-    "first_rated_match_current_five": "2026-09-23",
-    "last_rated_match_current_five": "2026-09-26"
+    "line": 128
    },
    {
     "rank": 124,
@@ -6005,10 +5665,7 @@
      "p3kko",
      "uli"
     ],
-    "details": "details/2026_10_05/0124--havu--8juho8-alxc-ottob-p3kko-uli.md",
-    "matches_with_current_five": 22,
-    "first_rated_match_current_five": "2026-07-31",
-    "last_rated_match_current_five": "2026-10-02"
+    "line": 129
    },
    {
     "rank": 125,
@@ -6021,10 +5678,7 @@
      "menddel",
      "shootic"
     ],
-    "details": "details/2026_10_05/0125--mellren--lollipop21k-maksilvl-mdl-menddel-shootic.md",
-    "matches_with_current_five": 33,
-    "first_rated_match_current_five": "2026-07-09",
-    "last_rated_match_current_five": "2026-10-04"
+    "line": 130
    },
    {
     "rank": 126,
@@ -6037,10 +5691,7 @@
      "Girafffe",
      "Vacancy"
     ],
-    "details": "details/2026_10_05/0126--the_last_resort--artist-bevve-extinct-girafffe-vacancy.md",
-    "matches_with_current_five": 52,
-    "first_rated_match_current_five": "2026-04-18",
-    "last_rated_match_current_five": "2026-09-26"
+    "line": 131
    },
    {
     "rank": 127,
@@ -6053,10 +5704,7 @@
      "rendysky",
      "skcH"
     ],
-    "details": "details/2026_10_05/0127--6666--amster-denzy-kl1o-rendysky-skch.md",
-    "matches_with_current_five": 13,
-    "first_rated_match_current_five": "2026-08-02",
-    "last_rated_match_current_five": "2026-09-23"
+    "line": 132
    },
    {
     "rank": 128,
@@ -6069,10 +5717,7 @@
      "skizzyee",
      "yoki"
     ],
-    "details": "details/2026_10_05/0128--navi_junior--fazery-kodak-mahar-skizzyee-yoki.md",
-    "matches_with_current_five": 40,
-    "first_rated_match_current_five": "2026-06-19",
-    "last_rated_match_current_five": "2026-10-02"
+    "line": 133
    },
    {
     "rank": 129,
@@ -6085,10 +5730,7 @@
      "TMKj",
      "yksjupe"
     ],
-    "details": "details/2026_10_05/0129--g2_ares--hitori-junyme-shine-tmkj-yksjupe.md",
-    "matches_with_current_five": 30,
-    "first_rated_match_current_five": "2026-08-20",
-    "last_rated_match_current_five": "2026-09-27"
+    "line": 134
    },
    {
     "rank": 130,
@@ -6101,10 +5743,7 @@
      "svemyy",
      "tired73"
     ],
-    "details": "details/2026_10_05/0130--wbt_academy--fl1per-marat2k-nxstep-svemyy-tired73.md",
-    "matches_with_current_five": 39,
-    "first_rated_match_current_five": "2026-07-01",
-    "last_rated_match_current_five": "2026-09-24"
+    "line": 135
    },
    {
     "rank": 131,
@@ -6117,10 +5756,7 @@
      "zemix",
      "zer0UKY"
     ],
-    "details": "details/2026_10_05/0131--fire_flux--cizzx-quality-xeternalxx-zemix-zer0uky.md",
-    "matches_with_current_five": 38,
-    "first_rated_match_current_five": "2026-06-02",
-    "last_rated_match_current_five": "2026-10-03"
+    "line": 136
    },
    {
     "rank": 132,
@@ -6133,10 +5769,7 @@
      "innocent",
      "Qlocuu"
     ],
-    "details": "details/2026_10_05/0132--kolesie--b1elany-ex1st-fr3nd-innocent-qlocuu.md",
-    "matches_with_current_five": 42,
-    "first_rated_match_current_five": "2026-04-08",
-    "last_rated_match_current_five": "2026-06-22"
+    "line": 137
    },
    {
     "rank": 133,
@@ -6149,10 +5782,7 @@
      "L1haNg",
      "Summer"
     ],
-    "details": "details/2026_10_05/0133--rare_atom--3gl-childking-kaze-l1hang-summer.md",
-    "matches_with_current_five": 9,
-    "first_rated_match_current_five": "2026-09-22",
-    "last_rated_match_current_five": "2026-09-27"
+    "line": 138
    },
    {
     "rank": 134,
@@ -6165,10 +5795,7 @@
      "souv",
      "Zuedsta"
     ],
-    "details": "details/2026_10_05/0134--misa--cyber-emstar-h0kz-souv-zuedsta.md",
-    "matches_with_current_five": 19,
-    "first_rated_match_current_five": "2026-08-30",
-    "last_rated_match_current_five": "2026-09-26"
+    "line": 139
    },
    {
     "rank": 135,
@@ -6181,10 +5808,7 @@
      "KEEMBO",
      "obsward"
     ],
-    "details": "details/2026_10_05/0135--vexar--adntz-bottega666-datet-keembo-obsward.md",
-    "matches_with_current_five": 21,
-    "first_rated_match_current_five": "2026-08-02",
-    "last_rated_match_current_five": "2026-09-26"
+    "line": 140
    },
    {
     "rank": 136,
@@ -6197,10 +5821,7 @@
      "sliimey",
      "vision"
     ],
-    "details": "details/2026_10_05/0136--ground_zero--apocdud-hazr-omichella-sliimey-vision.md",
-    "matches_with_current_five": 13,
-    "first_rated_match_current_five": "2026-06-11",
-    "last_rated_match_current_five": "2026-09-28"
+    "line": 141
    },
    {
     "rank": 137,
@@ -6213,10 +5834,7 @@
      "mixer",
      "Nikodeon"
     ],
-    "details": "details/2026_10_05/0137--mouz_nxt--ay0k-deen-esx-mixer-nikodeon.md",
-    "matches_with_current_five": 11,
-    "first_rated_match_current_five": "2026-08-30",
-    "last_rated_match_current_five": "2026-09-26"
+    "line": 142
    },
    {
     "rank": 138,
@@ -6229,10 +5847,7 @@
      "sh1geo",
      "zazzer"
     ],
-    "details": "details/2026_10_05/0138--enjoy--kurosa-nbl-roxesz-sh1geo-zazzer.md",
-    "matches_with_current_five": 31,
-    "first_rated_match_current_five": "2026-04-09",
-    "last_rated_match_current_five": "2026-08-19"
+    "line": 143
    },
    {
     "rank": 139,
@@ -6245,10 +5860,7 @@
      "oyesil",
      "scolleN"
     ],
-    "details": "details/2026_10_05/0139--pcific--jresy-l0gicman-lugsen-oyesil-scollen.md",
-    "matches_with_current_five": 10,
-    "first_rated_match_current_five": "2026-09-12",
-    "last_rated_match_current_five": "2026-09-27"
+    "line": 144
    },
    {
     "rank": 140,
@@ -6261,10 +5873,7 @@
      "Uzman",
      "yakuza"
     ],
-    "details": "details/2026_10_05/0140--azuolas--magila-maty-streakn-uzman-yakuza.md",
-    "matches_with_current_five": 12,
-    "first_rated_match_current_five": "2026-08-30",
-    "last_rated_match_current_five": "2026-09-20"
+    "line": 145
    },
    {
     "rank": 141,
@@ -6277,10 +5886,7 @@
      "vAloN",
      "xonn1k"
     ],
-    "details": "details/2026_10_05/0141--illyrians--ammar-bledard-cerber-valon-xonn1k.md",
-    "matches_with_current_five": 43,
-    "first_rated_match_current_five": "2026-06-24",
-    "last_rated_match_current_five": "2026-09-27"
+    "line": 146
    },
    {
     "rank": 142,
@@ -6292,10 +5898,7 @@
      "TIKI1769",
      "wEAVER"
     ],
-    "details": "details/2026_10_05/0142--paqt--rainyyy-stratefly-tiki1769-weaver.md",
-    "matches_with_current_five": 0,
-    "first_rated_match_current_five": null,
-    "last_rated_match_current_five": null
+    "line": 147
    },
    {
     "rank": 143,
@@ -6308,10 +5911,7 @@
      "sol",
      "xm1nd"
     ],
-    "details": "details/2026_10_05/0143--lavked--1nvisiblee-azukay-k4nfuz-sol-xm1nd.md",
-    "matches_with_current_five": 29,
-    "first_rated_match_current_five": "2026-08-14",
-    "last_rated_match_current_five": "2026-10-04"
+    "line": 148
    },
    {
     "rank": 144,
@@ -6324,10 +5924,7 @@
      "xureba",
      "zede"
     ],
-    "details": "details/2026_10_05/0144--ex-keyd_stars--ckzao-drg-lash-xureba-zede.md",
-    "matches_with_current_five": 8,
-    "first_rated_match_current_five": "2026-09-22",
-    "last_rated_match_current_five": "2026-10-03"
+    "line": 149
    },
    {
     "rank": 145,
@@ -6340,10 +5937,7 @@
      "lojzo",
      "N1KOLAJ"
     ],
-    "details": "details/2026_10_05/0145--lph--d0mz1k-fajr-kad1m-lojzo-n1kolaj.md",
-    "matches_with_current_five": 20,
-    "first_rated_match_current_five": "2026-07-01",
-    "last_rated_match_current_five": "2026-09-24"
+    "line": 150
    },
    {
     "rank": 146,
@@ -6356,10 +5950,7 @@
      "Shooter",
      "Taqi"
     ],
-    "details": "details/2026_10_05/0146--desi_boyz--mason-momo-pluto-shooter-taqi.md",
-    "matches_with_current_five": 9,
-    "first_rated_match_current_five": "2026-09-03",
-    "last_rated_match_current_five": "2026-09-25"
+    "line": 151
    },
    {
     "rank": 147,
@@ -6372,10 +5963,7 @@
      "pancc",
      "tele"
     ],
-    "details": "details/2026_10_05/0147--yawara--brn_-deemo-j0w-pancc-tele.md",
-    "matches_with_current_five": 18,
-    "first_rated_match_current_five": "2026-08-25",
-    "last_rated_match_current_five": "2026-10-03"
+    "line": 152
    },
    {
     "rank": 148,
@@ -6388,10 +5976,7 @@
      "DEPRESHN",
      "Goody"
     ],
-    "details": "details/2026_10_05/0148--drama--andr1x-chill-choiv7-depreshn-goody.md",
-    "matches_with_current_five": 15,
-    "first_rated_match_current_five": "2026-08-30",
-    "last_rated_match_current_five": "2026-09-23"
+    "line": 153
    },
    {
     "rank": 149,
@@ -6404,10 +5989,7 @@
      "next",
      "pavv"
     ],
-    "details": "details/2026_10_05/0149--procyon--laser-lenci-maxoff-next-pavv.md",
-    "matches_with_current_five": 27,
-    "first_rated_match_current_five": "2026-07-15",
-    "last_rated_match_current_five": "2026-10-04"
+    "line": 154
    },
    {
     "rank": 150,
@@ -6420,10 +6002,7 @@
      "snowiee",
      "tuxa"
     ],
-    "details": "details/2026_10_05/0150--saw_youngsters--jayy2s-jerk0z-m1ka-snowiee-tuxa.md",
-    "matches_with_current_five": 40,
-    "first_rated_match_current_five": "2026-06-27",
-    "last_rated_match_current_five": "2026-09-20"
+    "line": 155
    },
    {
     "rank": 151,
@@ -6436,10 +6015,7 @@
      "wh1temink",
      "xeNji"
     ],
-    "details": "details/2026_10_05/0151--noir_verse--kirxttu-naginat-santuriano-wh1temink-xenji.md",
-    "matches_with_current_five": 15,
-    "first_rated_match_current_five": "2026-09-06",
-    "last_rated_match_current_five": "2026-09-27"
+    "line": 156
    },
    {
     "rank": 152,
@@ -6451,10 +6027,7 @@
      "Patsi",
      "youka"
     ],
-    "details": "details/2026_10_05/0152--ex-rustec--brilliance-jakekes-patsi-youka.md",
-    "matches_with_current_five": 0,
-    "first_rated_match_current_five": null,
-    "last_rated_match_current_five": null
+    "line": 157
    },
    {
     "rank": 153,
@@ -6467,10 +6040,7 @@
      "lov1kus",
      "PsychoDoctor"
     ],
-    "details": "details/2026_10_05/0153--psychoface--abiraju-eightz999-facecrack-lov1kus-psychodoctor.md",
-    "matches_with_current_five": 0,
-    "first_rated_match_current_five": null,
-    "last_rated_match_current_five": null
+    "line": 158
    },
    {
     "rank": 154,
@@ -6483,10 +6053,7 @@
      "oopee",
      "qx"
     ],
-    "details": "details/2026_10_05/0154--prestige--fejtz-jelo-n4xx1s-oopee-qx.md",
-    "matches_with_current_five": 9,
-    "first_rated_match_current_five": "2026-08-07",
-    "last_rated_match_current_five": "2026-10-02"
+    "line": 159
    },
    {
     "rank": 155,
@@ -6499,10 +6066,7 @@
      "laxiee",
      "PokemoN"
     ],
-    "details": "details/2026_10_05/0155--alter_ego--adex-bntet-gratisfaction-laxiee-pokemon.md",
-    "matches_with_current_five": 6,
-    "first_rated_match_current_five": "2026-07-10",
-    "last_rated_match_current_five": "2026-08-29"
+    "line": 160
    },
    {
     "rank": 156,
@@ -6515,10 +6079,7 @@
      "tevsii",
      "Toshas"
     ],
-    "details": "details/2026_10_05/0156--entropy--dottie-flaw-sapec-tevsii-toshas.md",
-    "matches_with_current_five": 3,
-    "first_rated_match_current_five": "2026-09-15",
-    "last_rated_match_current_five": "2026-09-25"
+    "line": 161
    },
    {
     "rank": 157,
@@ -6531,10 +6092,7 @@
      "Wign",
      "yoyoS2"
     ],
-    "details": "details/2026_10_05/0157--benched_gods--facer-k014nz-norescue-wign-yoyos2.md",
-    "matches_with_current_five": 17,
-    "first_rated_match_current_five": "2026-08-14",
-    "last_rated_match_current_five": "2026-10-02"
+    "line": 162
    },
    {
     "rank": 158,
@@ -6547,10 +6105,7 @@
      "pavlysha666",
      "ves111"
     ],
-    "details": "details/2026_10_05/0158--saint_sinners--caleyy-deb0-irv1ng-pavlysha666-ves111.md",
-    "matches_with_current_five": 5,
-    "first_rated_match_current_five": "2026-09-22",
-    "last_rated_match_current_five": "2026-09-27"
+    "line": 163
    },
    {
     "rank": 159,
@@ -6563,10 +6118,7 @@
      "z0mb1e",
      "Zucar"
     ],
-    "details": "details/2026_10_05/0159--regain--fuzenko-grape-sasha-z0mb1e-zucar.md",
-    "matches_with_current_five": 3,
-    "first_rated_match_current_five": "2026-09-23",
-    "last_rated_match_current_five": "2026-09-28"
+    "line": 164
    },
    {
     "rank": 160,
@@ -6579,10 +6131,7 @@
      "Twinkey",
      "zen"
     ],
-    "details": "details/2026_10_05/0160--megoshort--jayzar-robiin-siz-twinkey-zen.md",
-    "matches_with_current_five": 10,
-    "first_rated_match_current_five": "2026-09-06",
-    "last_rated_match_current_five": "2026-09-30"
+    "line": 165
    },
    {
     "rank": 161,
@@ -6595,10 +6144,7 @@
      "Tapewaare",
      "VENO"
     ],
-    "details": "details/2026_10_05/0161--falcons_force--clockzi-grecu-nucleonz-tapewaare-veno.md",
-    "matches_with_current_five": 25,
-    "first_rated_match_current_five": "2026-04-29",
-    "last_rated_match_current_five": "2026-10-01"
+    "line": 166
    },
    {
     "rank": 162,
@@ -6611,10 +6157,7 @@
      "Scr0b",
      "starplajerz"
     ],
-    "details": "details/2026_10_05/0162--hyperspirit--ciocardau-d1maje-q-q-scr0b-starplajerz.md",
-    "matches_with_current_five": 15,
-    "first_rated_match_current_five": "2026-08-19",
-    "last_rated_match_current_five": "2026-10-01"
+    "line": 167
    },
    {
     "rank": 163,
@@ -6627,10 +6170,7 @@
      "puni",
      "vinaabEAST"
     ],
-    "details": "details/2026_10_05/0163--alka--bnc-cerolzin-proshow-puni-vinaabeast.md",
-    "matches_with_current_five": 45,
-    "first_rated_match_current_five": "2026-05-12",
-    "last_rated_match_current_five": "2026-10-01"
+    "line": 168
    },
    {
     "rank": 164,
@@ -6643,10 +6183,7 @@
      "nawwk",
      "titulus"
     ],
-    "details": "details/2026_10_05/0164--johnny_speeds--heap-jocab-lekr0-nawwk-titulus.md",
-    "matches_with_current_five": 12,
-    "first_rated_match_current_five": "2026-05-27",
-    "last_rated_match_current_five": "2026-06-27"
+    "line": 169
    },
    {
     "rank": 165,
@@ -6659,10 +6196,7 @@
      "Showk",
      "tomiko"
     ],
-    "details": "details/2026_10_05/0165--banda_chuya--adrien-ezox-maaryy-showk-tomiko.md",
-    "matches_with_current_five": 18,
-    "first_rated_match_current_five": "2026-09-06",
-    "last_rated_match_current_five": "2026-10-04"
+    "line": 170
    },
    {
     "rank": 166,
@@ -6675,10 +6209,7 @@
      "Ryujin",
      "synyx"
     ],
-    "details": "details/2026_10_05/0166--arcred--dssj-get_jeka-raijin-ryujin-synyx.md",
-    "matches_with_current_five": 12,
-    "first_rated_match_current_five": "2026-04-12",
-    "last_rated_match_current_five": "2026-06-10"
+    "line": 171
    },
    {
     "rank": 167,
@@ -6691,10 +6222,7 @@
      "Tqezo",
      "Wonder"
     ],
-    "details": "details/2026_10_05/0167--lilmix--chucker-macke-p1ke-tqezo-wonder.md",
-    "matches_with_current_five": 10,
-    "first_rated_match_current_five": "2026-09-10",
-    "last_rated_match_current_five": "2026-10-02"
+    "line": 172
    },
    {
     "rank": 168,
@@ -6707,10 +6235,7 @@
      "NEKIZ",
      "righi"
     ],
-    "details": "details/2026_10_05/0168--ex-oddik--ceruttera-diozera-nardes-nekiz-righi.md",
-    "matches_with_current_five": 13,
-    "first_rated_match_current_five": "2026-08-25",
-    "last_rated_match_current_five": "2026-09-30"
+    "line": 173
    },
    {
     "rank": 169,
@@ -6723,10 +6248,7 @@
      "iBALLY",
      "noleN"
     ],
-    "details": "details/2026_10_05/0169--honv_d--1nsert2-esor-fleav-ibally-nolen.md",
-    "matches_with_current_five": 11,
-    "first_rated_match_current_five": "2026-07-14",
-    "last_rated_match_current_five": "2026-09-10"
+    "line": 174
    },
    {
     "rank": 170,
@@ -6739,10 +6261,7 @@
      "TyRa",
      "Valter0k"
     ],
-    "details": "details/2026_10_05/0170--iowa_stormboar--aelor-h0nest-scorchyy-tyra-valter0k.md",
-    "matches_with_current_five": 8,
-    "first_rated_match_current_five": "2026-09-03",
-    "last_rated_match_current_five": "2026-09-23"
+    "line": 175
    },
    {
     "rank": 171,
@@ -6755,10 +6274,7 @@
      "glowiing",
      "Mokuj1n"
     ],
-    "details": "details/2026_10_05/0171--cybershoke--alpha-bl1x1-fluffy-glowiing-mokuj1n.md",
-    "matches_with_current_five": 23,
-    "first_rated_match_current_five": "2026-04-28",
-    "last_rated_match_current_five": "2026-06-20"
+    "line": 176
    },
    {
     "rank": 172,
@@ -6771,10 +6287,7 @@
      "kalyambys",
      "stefienson"
     ],
-    "details": "details/2026_10_05/0172--phantom_academy--ayteel-brain47-dr3nquu-kalyambys-stefienson.md",
-    "matches_with_current_five": 6,
-    "first_rated_match_current_five": "2026-09-24",
-    "last_rated_match_current_five": "2026-10-01"
+    "line": 177
    },
    {
     "rank": 173,
@@ -6787,10 +6300,7 @@
      "Hezz",
      "rzk"
     ],
-    "details": "details/2026_10_05/0173--isurus--atarax1a-deco-dott1-hezz-rzk.md",
-    "matches_with_current_five": 29,
-    "first_rated_match_current_five": "2026-06-24",
-    "last_rated_match_current_five": "2026-10-02"
+    "line": 178
    },
    {
     "rank": 174,
@@ -6803,10 +6313,7 @@
      "POLO",
      "tein"
     ],
-    "details": "details/2026_10_05/0174--pure--andu-keen-polbandana-polo-tein.md",
-    "matches_with_current_five": 6,
-    "first_rated_match_current_five": "2026-10-01",
-    "last_rated_match_current_five": "2026-10-02"
+    "line": 179
    },
    {
     "rank": 175,
@@ -6819,10 +6326,7 @@
      "shyyne",
      "sirius"
     ],
-    "details": "details/2026_10_05/0175--infurity--awayken-chanky-oontoma-shyyne-sirius.md",
-    "matches_with_current_five": 11,
-    "first_rated_match_current_five": "2026-09-23",
-    "last_rated_match_current_five": "2026-09-30"
+    "line": 180
    },
    {
     "rank": 176,
@@ -6835,10 +6339,7 @@
      "shazn",
      "stormzyn"
     ],
-    "details": "details/2026_10_05/0176--low_cortisol_br--lkz-pesadelo-revoltz-shazn-stormzyn.md",
-    "matches_with_current_five": 0,
-    "first_rated_match_current_five": null,
-    "last_rated_match_current_five": null
+    "line": 181
    },
    {
     "rank": 177,
@@ -6851,10 +6352,7 @@
      "LEARSI",
      "Umar"
     ],
-    "details": "details/2026_10_05/0177--overtake_sector--corim-intra-jason-learsi-umar.md",
-    "matches_with_current_five": 16,
-    "first_rated_match_current_five": "2026-08-25",
-    "last_rated_match_current_five": "2026-09-26"
+    "line": 182
    },
    {
     "rank": 178,
@@ -6867,10 +6365,7 @@
      "kralle",
      "Noruyp"
     ],
-    "details": "details/2026_10_05/0178--masonic--b0rup-botman-fr_slev-kralle-noruyp.md",
-    "matches_with_current_five": 16,
-    "first_rated_match_current_five": "2026-05-12",
-    "last_rated_match_current_five": "2026-06-13"
+    "line": 183
    },
    {
     "rank": 179,
@@ -6883,10 +6378,7 @@
      "stadodo",
      "TMKj"
     ],
-    "details": "details/2026_10_05/0179--rbls--icarus-nopeej-snapy-stadodo-tmkj.md",
-    "matches_with_current_five": 25,
-    "first_rated_match_current_five": "2026-04-19",
-    "last_rated_match_current_five": "2026-06-02"
+    "line": 184
    },
    {
     "rank": 180,
@@ -6899,10 +6391,7 @@
      "thirtythird",
      "zogeN"
     ],
-    "details": "details/2026_10_05/0180--maybe--awi4-edixenn-shallthing-thirtythird-zogen.md",
-    "matches_with_current_five": 14,
-    "first_rated_match_current_five": "2026-08-20",
-    "last_rated_match_current_five": "2026-10-02"
+    "line": 185
    },
    {
     "rank": 181,
@@ -6915,10 +6404,7 @@
      "SPine",
      "suki"
     ],
-    "details": "details/2026_10_05/0181--kaleido--chuzhongt-expsasiki-rage-spine-suki.md",
-    "matches_with_current_five": 28,
-    "first_rated_match_current_five": "2026-04-26",
-    "last_rated_match_current_five": "2026-09-27"
+    "line": 186
    },
    {
     "rank": 182,
@@ -6931,10 +6417,7 @@
      "Lucky",
      "suma"
     ],
-    "details": "details/2026_10_05/0182--washed--ansg1-kir-krok-lucky-suma.md",
-    "matches_with_current_five": 5,
-    "first_rated_match_current_five": "2026-06-12",
-    "last_rated_match_current_five": "2026-06-13"
+    "line": 187
    },
    {
     "rank": 183,
@@ -6947,10 +6430,7 @@
      "hades",
      "Prism"
     ],
-    "details": "details/2026_10_05/0183--betclic--demho-dr3nquu-eskyy-hades-prism.md",
-    "matches_with_current_five": 20,
-    "first_rated_match_current_five": "2026-04-23",
-    "last_rated_match_current_five": "2026-06-15"
+    "line": 188
    },
    {
     "rank": 184,
@@ -6963,10 +6443,7 @@
      "imbaemba",
      "MikOne"
     ],
-    "details": "details/2026_10_05/0184--sinqu--doivo-eem3l1-heke-imbaemba-mikone.md",
-    "matches_with_current_five": 10,
-    "first_rated_match_current_five": "2026-07-30",
-    "last_rated_match_current_five": "2026-10-01"
+    "line": 189
    },
    {
     "rank": 185,
@@ -6979,10 +6456,7 @@
      "nopzy",
      "Rezst"
     ],
-    "details": "details/2026_10_05/0185--berg--askan-kdan-kimarr-nopzy-rezst.md",
-    "matches_with_current_five": 20,
-    "first_rated_match_current_five": "2026-08-12",
-    "last_rated_match_current_five": "2026-09-22"
+    "line": 190
    },
    {
     "rank": 186,
@@ -6995,10 +6469,7 @@
      "pancc",
      "remix"
     ],
-    "details": "details/2026_10_05/0186--uno_mille--alle-cld-drg-pancc-remix.md",
-    "matches_with_current_five": 16,
-    "first_rated_match_current_five": "2026-05-30",
-    "last_rated_match_current_five": "2026-08-09"
+    "line": 191
    },
    {
     "rank": 187,
@@ -7011,10 +6482,7 @@
      "osku",
      "rbm"
     ],
-    "details": "details/2026_10_05/0187--kuusamo--epik-keksimage-matz-osku-rbm.md",
-    "matches_with_current_five": 17,
-    "first_rated_match_current_five": "2026-07-30",
-    "last_rated_match_current_five": "2026-09-30"
+    "line": 192
    },
    {
     "rank": 188,
@@ -7027,10 +6495,7 @@
      "mds",
      "REKMEISTER"
     ],
-    "details": "details/2026_10_05/0188--chicken_coop--crisp-drop-jared-mds-rekmeister.md",
-    "matches_with_current_five": 22,
-    "first_rated_match_current_five": "2026-04-25",
-    "last_rated_match_current_five": "2026-09-05"
+    "line": 193
    },
    {
     "rank": 189,
@@ -7043,10 +6508,7 @@
      "Kaname",
      "Scr4pi"
     ],
-    "details": "details/2026_10_05/0189--kamui--262-9amaterasu9-alpina-kaname-scr4pi.md",
-    "matches_with_current_five": 6,
-    "first_rated_match_current_five": "2026-09-11",
-    "last_rated_match_current_five": "2026-09-22"
+    "line": 194
    },
    {
     "rank": 190,
@@ -7059,10 +6521,7 @@
      "Nami",
      "next1me"
     ],
-    "details": "details/2026_10_05/0190--brazylijski_luz--aimy-chudy-elem-nami-next1me.md",
-    "matches_with_current_five": 10,
-    "first_rated_match_current_five": "2026-06-03",
-    "last_rated_match_current_five": "2026-06-15"
+    "line": 195
    },
    {
     "rank": 191,
@@ -7073,10 +6532,7 @@
      "calamity",
      "Signal"
     ],
-    "details": "details/2026_10_05/0191--farmville--beakie-calamity-signal.md",
-    "matches_with_current_five": 0,
-    "first_rated_match_current_five": null,
-    "last_rated_match_current_five": null
+    "line": 196
    },
    {
     "rank": 192,
@@ -7089,10 +6545,7 @@
      "maun",
      "sae"
     ],
-    "details": "details/2026_10_05/0192--spirit_academy_green--d3nks-flytex-hyp3else-maun-sae.md",
-    "matches_with_current_five": 6,
-    "first_rated_match_current_five": "2026-09-05",
-    "last_rated_match_current_five": "2026-09-26"
+    "line": 197
    },
    {
     "rank": 193,
@@ -7105,10 +6558,7 @@
      "statikS",
      "XADE"
     ],
-    "details": "details/2026_10_05/0193--four_magic--gego-rel-sensey-statiks-xade.md",
-    "matches_with_current_five": 6,
-    "first_rated_match_current_five": "2026-09-23",
-    "last_rated_match_current_five": "2026-09-26"
+    "line": 198
    },
    {
     "rank": 194,
@@ -7121,10 +6571,7 @@
      "Sapec",
      "tein"
     ],
-    "details": "details/2026_10_05/0194--drip_too_hard--andu-masked-rud-sapec-tein.md",
-    "matches_with_current_five": 5,
-    "first_rated_match_current_five": "2026-08-19",
-    "last_rated_match_current_five": "2026-08-26"
+    "line": 199
    },
    {
     "rank": 195,
@@ -7137,10 +6584,7 @@
      "gump",
      "vinhy"
     ],
-    "details": "details/2026_10_05/0195--abyssal--blood-danger-foggers-gump-vinhy.md",
-    "matches_with_current_five": 15,
-    "first_rated_match_current_five": "2026-06-08",
-    "last_rated_match_current_five": "2026-09-27"
+    "line": 200
    },
    {
     "rank": 196,
@@ -7153,10 +6597,7 @@
      "przemeklovel",
      "suonko"
     ],
-    "details": "details/2026_10_05/0196--dragonclaw--brylu-fanatyk-peterooo-przemeklovel-suonko.md",
-    "matches_with_current_five": 6,
-    "first_rated_match_current_five": "2026-08-02",
-    "last_rated_match_current_five": "2026-09-19"
+    "line": 201
    },
    {
     "rank": 197,
@@ -7169,10 +6610,7 @@
      "NeoLife",
      "phorate"
     ],
-    "details": "details/2026_10_05/0197--donstu--due1yant-gleb86rus-laksheri-neolife-phorate.md",
-    "matches_with_current_five": 20,
-    "first_rated_match_current_five": "2026-06-28",
-    "last_rated_match_current_five": "2026-08-29"
+    "line": 202
    },
    {
     "rank": 198,
@@ -7185,10 +6623,7 @@
      "poppins",
      "yungher"
     ],
-    "details": "details/2026_10_05/0198--mibr_fe--dani-gabi-olga-poppins-yungher.md",
-    "matches_with_current_five": 12,
-    "first_rated_match_current_five": "2026-05-08",
-    "last_rated_match_current_five": "2026-10-01"
+    "line": 203
    },
    {
     "rank": 199,
@@ -7200,10 +6635,7 @@
      "tronic",
      "z3ndy"
     ],
-    "details": "details/2026_10_05/0199--young_tigeres--gashhhi4-motya-tronic-z3ndy.md",
-    "matches_with_current_five": 0,
-    "first_rated_match_current_five": null,
-    "last_rated_match_current_five": null
+    "line": 204
    },
    {
     "rank": 200,
@@ -7216,10 +6648,7 @@
      "tatm",
      "TH0R"
     ],
-    "details": "details/2026_10_05/0200--detonate--carn-chante-crepow-tatm-th0r.md",
-    "matches_with_current_five": 5,
-    "first_rated_match_current_five": "2026-09-22",
-    "last_rated_match_current_five": "2026-09-26"
+    "line": 205
    },
    {
     "rank": 201,
@@ -7232,10 +6661,7 @@
      "sATOR1",
      "skrr"
     ],
-    "details": "details/2026_10_05/0201--just_swing--gas-purely-qqgod-sator1-skrr.md",
-    "matches_with_current_five": 18,
-    "first_rated_match_current_five": "2026-04-26",
-    "last_rated_match_current_five": "2026-09-01"
+    "line": 206
    },
    {
     "rank": 202,
@@ -7246,10 +6672,7 @@
      "Sn0w",
      "TiiREX"
     ],
-    "details": "details/2026_10_05/0202--roamsfiest--realyummy-sn0w-tiirex.md",
-    "matches_with_current_five": 0,
-    "first_rated_match_current_five": null,
-    "last_rated_match_current_five": null
+    "line": 207
    },
    {
     "rank": 203,
@@ -7262,10 +6685,7 @@
      "n0page",
      "prozinszsz"
     ],
-    "details": "details/2026_10_05/0203--quintess_ncia--cz1k4-edv-luffykcs-n0page-prozinszsz.md",
-    "matches_with_current_five": 5,
-    "first_rated_match_current_five": "2026-09-22",
-    "last_rated_match_current_five": "2026-09-30"
+    "line": 208
    },
    {
     "rank": 204,
@@ -7278,10 +6698,7 @@
      "rain",
      "Roninbaby"
     ],
-    "details": "details/2026_10_05/0204--vitalem_aerem--b1ngo-bza-lan-rain-roninbaby.md",
-    "matches_with_current_five": 13,
-    "first_rated_match_current_five": "2026-08-22",
-    "last_rated_match_current_five": "2026-09-26"
+    "line": 209
    },
    {
     "rank": 205,
@@ -7294,10 +6711,7 @@
      "rekonz",
      "SkulL"
     ],
-    "details": "details/2026_10_05/0205--rooster--adk-chelleos-damyo-rekonz-skull.md",
-    "matches_with_current_five": 8,
-    "first_rated_match_current_five": "2026-08-26",
-    "last_rated_match_current_five": "2026-09-27"
+    "line": 210
    },
    {
     "rank": 206,
@@ -7310,10 +6724,7 @@
      "pesadelo",
      "reNTU"
     ],
-    "details": "details/2026_10_05/0206--mira--bacc-felps-fokiu-pesadelo-rentu.md",
-    "matches_with_current_five": 4,
-    "first_rated_match_current_five": "2026-09-22",
-    "last_rated_match_current_five": "2026-09-30"
+    "line": 211
    },
    {
     "rank": 207,
@@ -7326,10 +6737,7 @@
      "swaggy",
      "tvs"
     ],
-    "details": "details/2026_10_05/0207--ryvex--jeyn-n0r1-oskvr-swaggy-tvs.md",
-    "matches_with_current_five": 4,
-    "first_rated_match_current_five": "2026-09-23",
-    "last_rated_match_current_five": "2026-09-24"
+    "line": 212
    },
    {
     "rank": 208,
@@ -7342,10 +6750,7 @@
      "ReFuZR",
      "TH0R"
     ],
-    "details": "details/2026_10_05/0208--fisher_college--aleks-corn-crepow-refuzr-th0r.md",
-    "matches_with_current_five": 10,
-    "first_rated_match_current_five": "2026-04-25",
-    "last_rated_match_current_five": "2026-04-30"
+    "line": 213
    },
    {
     "rank": 209,
@@ -7358,10 +6763,7 @@
      "trindade",
      "zock9"
     ],
-    "details": "details/2026_10_05/0209--borracheiros--fl4sh-lacerda-neozix-trindade-zock9.md",
-    "matches_with_current_five": 9,
-    "first_rated_match_current_five": "2026-08-25",
-    "last_rated_match_current_five": "2026-10-01"
+    "line": 214
    },
    {
     "rank": 210,
@@ -7374,10 +6776,7 @@
      "pesadelo",
      "PKL"
     ],
-    "details": "details/2026_10_05/0210--fake_do_biru--b4rtin-detr0ittj-hardzao-pesadelo-pkl.md",
-    "matches_with_current_five": 7,
-    "first_rated_match_current_five": "2026-07-06",
-    "last_rated_match_current_five": "2026-07-24"
+    "line": 215
    },
    {
     "rank": 211,
@@ -7390,10 +6789,7 @@
      "shg",
      "synyx"
     ],
-    "details": "details/2026_10_05/0211--gothic--get_jeka-raijin-ryujin-shg-synyx.md",
-    "matches_with_current_five": 6,
-    "first_rated_match_current_five": "2026-07-27",
-    "last_rated_match_current_five": "2026-08-27"
+    "line": 216
    },
    {
     "rank": 212,
@@ -7406,10 +6802,7 @@
      "Pipw",
      "redzed"
     ],
-    "details": "details/2026_10_05/0212--bebop--faydett-idisbalance-kensi-pipw-redzed.md",
-    "matches_with_current_five": 10,
-    "first_rated_match_current_five": "2026-09-10",
-    "last_rated_match_current_five": "2026-09-25"
+    "line": 217
    },
    {
     "rank": 213,
@@ -7422,10 +6815,7 @@
      "sk0R",
      "xerolte"
     ],
-    "details": "details/2026_10_05/0213--the_huns--bart4k-controlez-nin9-sk0r-xerolte.md",
-    "matches_with_current_five": 9,
-    "first_rated_match_current_five": "2026-04-26",
-    "last_rated_match_current_five": "2026-05-12"
+    "line": 218
    },
    {
     "rank": 214,
@@ -7438,10 +6828,7 @@
      "noike",
      "Thom"
     ],
-    "details": "details/2026_10_05/0214--ex-sashi_academy--lethj-mizi-mol011-noike-thom.md",
-    "matches_with_current_five": 4,
-    "first_rated_match_current_five": "2026-08-15",
-    "last_rated_match_current_five": "2026-09-09"
+    "line": 219
    },
    {
     "rank": 215,
@@ -7454,10 +6841,7 @@
      "Lekzi",
      "lezy"
     ],
-    "details": "details/2026_10_05/0215--bestia_academy--agt-f4qq-jotag3-lekzi-lezy.md",
-    "matches_with_current_five": 35,
-    "first_rated_match_current_five": "2026-04-29",
-    "last_rated_match_current_five": "2026-09-27"
+    "line": 220
    },
    {
     "rank": 216,
@@ -7470,10 +6854,7 @@
      "smekk",
      "szejn"
     ],
-    "details": "details/2026_10_05/0216--glitch--brillo-rud-shaik-smekk-szejn.md",
-    "matches_with_current_five": 5,
-    "first_rated_match_current_five": "2026-10-02",
-    "last_rated_match_current_five": "2026-10-02"
+    "line": 221
    },
    {
     "rank": 217,
@@ -7486,10 +6867,7 @@
      "newhope",
      "svn"
     ],
-    "details": "details/2026_10_05/0217--strael_bora--adammmm-levantino-madden-newhope-svn.md",
-    "matches_with_current_five": 6,
-    "first_rated_match_current_five": "2026-08-18",
-    "last_rated_match_current_five": "2026-09-07"
+    "line": 222
    },
    {
     "rank": 218,
@@ -7502,10 +6880,7 @@
      "nbqq",
      "realzen"
     ],
-    "details": "details/2026_10_05/0218--brute--hfah-kad1m-majky-nbqq-realzen.md",
-    "matches_with_current_five": 16,
-    "first_rated_match_current_five": "2026-04-24",
-    "last_rated_match_current_five": "2026-05-25"
+    "line": 223
    },
    {
     "rank": 219,
@@ -7518,10 +6893,7 @@
      "swetsi",
      "Temny Prince"
     ],
-    "details": "details/2026_10_05/0219--endless_journey--aliot-deb0-pavlysha666-swetsi-temny_prince.md",
-    "matches_with_current_five": 5,
-    "first_rated_match_current_five": "2026-05-14",
-    "last_rated_match_current_five": "2026-05-17"
+    "line": 224
    },
    {
     "rank": 220,
@@ -7534,10 +6906,7 @@
      "sk0R",
      "yAmi"
     ],
-    "details": "details/2026_10_05/0220--chinggis_warriors--aceari-hasteka-roux-sk0r-yami.md",
-    "matches_with_current_five": 7,
-    "first_rated_match_current_five": "2026-08-22",
-    "last_rated_match_current_five": "2026-08-29"
+    "line": 225
    },
    {
     "rank": 221,
@@ -7550,10 +6919,7 @@
      "Jolts",
      "Sunk"
     ],
-    "details": "details/2026_10_05/0221--villainous--bright-burglar-dylan-jolts-sunk.md",
-    "matches_with_current_five": 13,
-    "first_rated_match_current_five": "2026-08-25",
-    "last_rated_match_current_five": "2026-09-25"
+    "line": 226
    },
    {
     "rank": 222,
@@ -7566,10 +6932,7 @@
      "Mort1s",
      "p5p"
     ],
-    "details": "details/2026_10_05/0222--nas--biuckmt-corazz-mirorr-mort1s-p5p.md",
-    "matches_with_current_five": 11,
-    "first_rated_match_current_five": "2026-08-24",
-    "last_rated_match_current_five": "2026-09-23"
+    "line": 227
    },
    {
     "rank": 223,
@@ -7582,10 +6945,7 @@
      "sdy",
      "try"
     ],
-    "details": "details/2026_10_05/0223--passion_ua--jt-kvem-nicx-sdy-try.md",
-    "matches_with_current_five": 7,
-    "first_rated_match_current_five": "2026-04-30",
-    "last_rated_match_current_five": "2026-05-21"
+    "line": 228
    },
    {
     "rank": 224,
@@ -7598,10 +6958,7 @@
      "Noktse",
      "t9rnay"
     ],
-    "details": "details/2026_10_05/0224--ehisto_base--history-mlhzin-nicks-noktse-t9rnay.md",
-    "matches_with_current_five": 11,
-    "first_rated_match_current_five": "2026-08-25",
-    "last_rated_match_current_five": "2026-09-27"
+    "line": 229
    },
    {
     "rank": 225,
@@ -7612,10 +6969,7 @@
      "kyrosawa",
      "nesh"
     ],
-    "details": "details/2026_10_05/0225--the_unit--ad0rfin-kyrosawa-nesh.md",
-    "matches_with_current_five": 0,
-    "first_rated_match_current_five": null,
-    "last_rated_match_current_five": null
+    "line": 230
    },
    {
     "rank": 226,
@@ -7628,10 +6982,7 @@
      "nukkye",
      "szejn"
     ],
-    "details": "details/2026_10_05/0226--algo--adex-andu-bambosh-nukkye-szejn.md",
-    "matches_with_current_five": 12,
-    "first_rated_match_current_five": "2026-05-19",
-    "last_rated_match_current_five": "2026-05-30"
+    "line": 231
    },
    {
     "rank": 227,
@@ -7644,10 +6995,7 @@
      "Jerr1",
      "nyezin"
     ],
-    "details": "details/2026_10_05/0227--meia_noite--abr-bsd-cutzmeretz-jerr1-nyezin.md",
-    "matches_with_current_five": 17,
-    "first_rated_match_current_five": "2026-08-25",
-    "last_rated_match_current_five": "2026-09-29"
+    "line": 232
    },
    {
     "rank": 228,
@@ -7660,10 +7008,7 @@
      "modeSavage",
      "ri0dayungog"
     ],
-    "details": "details/2026_10_05/0228--dark_moon--d3j4vy-keiyon-maison-modesavage-ri0dayungog.md",
-    "matches_with_current_five": 9,
-    "first_rated_match_current_five": "2026-05-29",
-    "last_rated_match_current_five": "2026-09-08"
+    "line": 233
    },
    {
     "rank": 229,
@@ -7676,10 +7021,7 @@
      "twigs",
      "Walco"
     ],
-    "details": "details/2026_10_05/0229--empire--ayaneuu-bagel-c0c0-twigs-walco.md",
-    "matches_with_current_five": 5,
-    "first_rated_match_current_five": "2026-08-25",
-    "last_rated_match_current_five": "2026-08-29"
+    "line": 234
    },
    {
     "rank": 230,
@@ -7692,10 +7034,7 @@
      "seabraez",
      "snapy"
     ],
-    "details": "details/2026_10_05/0230--famalic_o--p3r3iira-pr-rafaxf-seabraez-snapy.md",
-    "matches_with_current_five": 13,
-    "first_rated_match_current_five": "2026-09-18",
-    "last_rated_match_current_five": "2026-10-01"
+    "line": 235
    },
    {
     "rank": 231,
@@ -7708,10 +7047,7 @@
      "Ruy2k",
      "ThozoR"
     ],
-    "details": "details/2026_10_05/0231--abt--beiranzz-blaze-hk-ruy2k-thozor.md",
-    "matches_with_current_five": 8,
-    "first_rated_match_current_five": "2026-08-07",
-    "last_rated_match_current_five": "2026-10-01"
+    "line": 236
    },
    {
     "rank": 232,
@@ -7724,10 +7060,7 @@
      "L00m1",
      "myltsi"
     ],
-    "details": "details/2026_10_05/0232--am--altekz-k1to-kyuubii-l00m1-myltsi.md",
-    "matches_with_current_five": 10,
-    "first_rated_match_current_five": "2026-04-29",
-    "last_rated_match_current_five": "2026-05-15"
+    "line": 237
    },
    {
     "rank": 233,
@@ -7739,10 +7072,7 @@
      "Nami",
      "yvro"
     ],
-    "details": "details/2026_10_05/0233--tnc--maaryy-marko_-nami-yvro.md",
-    "matches_with_current_five": 0,
-    "first_rated_match_current_five": null,
-    "last_rated_match_current_five": null
+    "line": 238
    },
    {
     "rank": 234,
@@ -7755,10 +7085,7 @@
      "OXFROG",
      "whiplash1"
     ],
-    "details": "details/2026_10_05/0234--optibet--cgk-chipaan-dod02k-oxfrog-whiplash1.md",
-    "matches_with_current_five": 5,
-    "first_rated_match_current_five": "2026-09-23",
-    "last_rated_match_current_five": "2026-09-26"
+    "line": 239
    },
    {
     "rank": 235,
@@ -7771,10 +7098,7 @@
      "Tineu",
      "vzn"
     ],
-    "details": "details/2026_10_05/0235--metanoia_wolves--alennncar-khowy-spinnie-tineu-vzn.md",
-    "matches_with_current_five": 15,
-    "first_rated_match_current_five": "2026-08-04",
-    "last_rated_match_current_five": "2026-09-27"
+    "line": 240
    },
    {
     "rank": 236,
@@ -7786,10 +7110,7 @@
      "Northwest",
      "nursSSS"
     ],
-    "details": "details/2026_10_05/0236--revenge--aron-imygdx-northwest-nurssss.md",
-    "matches_with_current_five": 0,
-    "first_rated_match_current_five": null,
-    "last_rated_match_current_five": null
+    "line": 241
    },
    {
     "rank": 237,
@@ -7800,10 +7121,7 @@
      "Marro",
      "SecretAgent"
     ],
-    "details": "details/2026_10_05/0237--club_333--kobruh-marro-secretagent.md",
-    "matches_with_current_five": 0,
-    "first_rated_match_current_five": null,
-    "last_rated_match_current_five": null
+    "line": 242
    },
    {
     "rank": 238,
@@ -7816,10 +7134,7 @@
      "JACKZ",
      "Queenix"
     ],
-    "details": "details/2026_10_05/0238--hashiras--birdfromsky-burmylov-c0llins-jackz-queenix.md",
-    "matches_with_current_five": 6,
-    "first_rated_match_current_five": "2026-05-19",
-    "last_rated_match_current_five": "2026-05-28"
+    "line": 243
    },
    {
     "rank": 239,
@@ -7832,10 +7147,7 @@
      "GrEnNiE",
      "K1ngShield"
     ],
-    "details": "details/2026_10_05/0239--fortress--as_k-bqrebedre-brand-grennie-k1ngshield.md",
-    "matches_with_current_five": 22,
-    "first_rated_match_current_five": "2026-06-26",
-    "last_rated_match_current_five": "2026-09-22"
+    "line": 244
    },
    {
     "rank": 240,
@@ -7847,10 +7159,7 @@
      "Melavi",
      "tomiko"
     ],
-    "details": "details/2026_10_05/0240--mai_tai--aimy-chudy-melavi-tomiko.md",
-    "matches_with_current_five": 0,
-    "first_rated_match_current_five": null,
-    "last_rated_match_current_five": null
+    "line": 245
    },
    {
     "rank": 241,
@@ -7863,10 +7172,7 @@
      "wonimo",
      "x1nk1n"
     ],
-    "details": "details/2026_10_05/0241--new_vision--fen2k-hahanz0-w0l33n-wonimo-x1nk1n.md",
-    "matches_with_current_five": 34,
-    "first_rated_match_current_five": "2026-05-03",
-    "last_rated_match_current_five": "2026-08-17"
+    "line": 246
    },
    {
     "rank": 242,
@@ -7879,10 +7185,7 @@
      "souz4h",
      "yeda"
     ],
-    "details": "details/2026_10_05/0242--gr_mio--balencyy-mithputtini-s1lent-souz4h-yeda.md",
-    "matches_with_current_five": 25,
-    "first_rated_match_current_five": "2026-07-15",
-    "last_rated_match_current_five": "2026-10-02"
+    "line": 247
    },
    {
     "rank": 243,
@@ -7895,10 +7198,7 @@
      "kauez",
      "reNTU"
     ],
-    "details": "details/2026_10_05/0243--red_canids--chayjesus-dav1deus-drop-kauez-rentu.md",
-    "matches_with_current_five": 5,
-    "first_rated_match_current_five": "2026-04-13",
-    "last_rated_match_current_five": "2026-04-27"
+    "line": 248
    },
    {
     "rank": 244,
@@ -7911,10 +7211,7 @@
      "quix",
      "Wonder"
     ],
-    "details": "details/2026_10_05/0244--lilmix--b0denmaster-dezt-jackinho-quix-wonder.md",
-    "matches_with_current_five": 6,
-    "first_rated_match_current_five": "2026-06-07",
-    "last_rated_match_current_five": "2026-08-03"
+    "line": 249
    },
    {
     "rank": 245,
@@ -7927,10 +7224,7 @@
      "SuNFiX",
      "WaSdyy"
     ],
-    "details": "details/2026_10_05/0245--revise--kanode-nikson-s1ssi-sunfix-wasdyy.md",
-    "matches_with_current_five": 12,
-    "first_rated_match_current_five": "2026-08-14",
-    "last_rated_match_current_five": "2026-09-23"
+    "line": 250
    },
    {
     "rank": 246,
@@ -7943,10 +7237,7 @@
      "vicu",
      "zAAz"
     ],
-    "details": "details/2026_10_05/0246--clutchain_fe--kat-tory-twenty3-vicu-zaaz.md",
-    "matches_with_current_five": 9,
-    "first_rated_match_current_five": "2026-04-18",
-    "last_rated_match_current_five": "2026-06-26"
+    "line": 251
    },
    {
     "rank": 247,
@@ -7958,10 +7249,7 @@
      "SWANKY",
      "tajne"
     ],
-    "details": "details/2026_10_05/0247--5dads--nope-oath-swanky-tajne.md",
-    "matches_with_current_five": 0,
-    "first_rated_match_current_five": null,
-    "last_rated_match_current_five": null
+    "line": 252
    },
    {
     "rank": 248,
@@ -7973,10 +7261,7 @@
      "kiytsu",
      "Plain7"
     ],
-    "details": "details/2026_10_05/0248--altay--arspower-blackout-kiytsu-plain7.md",
-    "matches_with_current_five": 0,
-    "first_rated_match_current_five": null,
-    "last_rated_match_current_five": null
+    "line": 253
    },
    {
     "rank": 249,
@@ -7989,10 +7274,7 @@
      "w1nt3r",
      "wetfy"
     ],
-    "details": "details/2026_10_05/0249--depo--dako-sh1seido-shoxs-w1nt3r-wetfy.md",
-    "matches_with_current_five": 5,
-    "first_rated_match_current_five": "2026-05-29",
-    "last_rated_match_current_five": "2026-05-30"
+    "line": 254
    },
    {
     "rank": 250,
@@ -8005,10 +7287,7 @@
      "SasukeQO",
      "Schwarzkopf"
     ],
-    "details": "details/2026_10_05/0250--haunted_house--fr0k-icyvl0ne-malinov-sasukeqo-schwarzkopf.md",
-    "matches_with_current_five": 8,
-    "first_rated_match_current_five": "2026-04-26",
-    "last_rated_match_current_five": "2026-09-23"
+    "line": 255
    },
    {
     "rank": 251,
@@ -8021,10 +7300,7 @@
      "s3rum",
      "xaler"
     ],
-    "details": "details/2026_10_05/0251--ex-aether--bezymecc-brett-h0nest-s3rum-xaler.md",
-    "matches_with_current_five": 6,
-    "first_rated_match_current_five": "2026-04-26",
-    "last_rated_match_current_five": "2026-05-03"
+    "line": 256
    },
    {
     "rank": 252,
@@ -8037,10 +7313,7 @@
      "Prime",
      "robiin"
     ],
-    "details": "details/2026_10_05/0252--dripmen--ariant0-dobbo-frazehh-prime-robiin.md",
-    "matches_with_current_five": 12,
-    "first_rated_match_current_five": "2026-04-18",
-    "last_rated_match_current_five": "2026-05-29"
+    "line": 257
    },
    {
     "rank": 253,
@@ -8053,10 +7326,7 @@
      "rec1se",
      "yoom"
     ],
-    "details": "details/2026_10_05/0253--faze_up_next--cher1on-k0rdy-klyro-rec1se-yoom.md",
-    "matches_with_current_five": 6,
-    "first_rated_match_current_five": "2026-09-17",
-    "last_rated_match_current_five": "2026-09-25"
+    "line": 258
    },
    {
     "rank": 254,
@@ -8069,10 +7339,7 @@
      "man327",
      "Pose1doNN"
     ],
-    "details": "details/2026_10_05/0254--zomblers--cajun-coolcoms-fxre-man327-pose1donn.md",
-    "matches_with_current_five": 6,
-    "first_rated_match_current_five": "2026-08-26",
-    "last_rated_match_current_five": "2026-09-14"
+    "line": 259
    },
    {
     "rank": 255,
@@ -8085,10 +7352,7 @@
      "shalfey",
      "VLDN"
     ],
-    "details": "details/2026_10_05/0255--illwill--7kick-hadji-maden-shalfey-vldn.md",
-    "matches_with_current_five": 10,
-    "first_rated_match_current_five": "2026-06-10",
-    "last_rated_match_current_five": "2026-08-25"
+    "line": 260
    },
    {
     "rank": 256,
@@ -8101,10 +7365,7 @@
      "Serendipity",
      "Stx"
     ],
-    "details": "details/2026_10_05/0256--shimmer--alicerawr-ava174-empathy-serendipity-stx.md",
-    "matches_with_current_five": 4,
-    "first_rated_match_current_five": "2026-04-09",
-    "last_rated_match_current_five": "2026-04-30"
+    "line": 261
    },
    {
     "rank": 257,
@@ -8117,10 +7378,7 @@
      "Siz",
      "timothybtw"
     ],
-    "details": "details/2026_10_05/0257--train_launcher--bsover-leon1das-majkn-siz-timothybtw.md",
-    "matches_with_current_five": 5,
-    "first_rated_match_current_five": "2026-06-23",
-    "last_rated_match_current_five": "2026-06-27"
+    "line": 262
    },
    {
     "rank": 258,
@@ -8133,10 +7391,7 @@
      "phoebe",
      "void"
     ],
-    "details": "details/2026_10_05/0258--mindfreak--bay-kairo-lawlkay-phoebe-void.md",
-    "matches_with_current_five": 5,
-    "first_rated_match_current_five": "2026-08-29",
-    "last_rated_match_current_five": "2026-09-23"
+    "line": 263
    },
    {
     "rank": 259,
@@ -8149,10 +7404,7 @@
      "Pose1doNN",
      "Zoker"
     ],
-    "details": "details/2026_10_05/0259--zomblers--cajun-coolcoms-fxre-pose1donn-zoker.md",
-    "matches_with_current_five": 6,
-    "first_rated_match_current_five": "2026-04-26",
-    "last_rated_match_current_five": "2026-05-02"
+    "line": 264
    },
    {
     "rank": 260,
@@ -8165,10 +7417,7 @@
      "ToM223",
      "tudsoN"
     ],
-    "details": "details/2026_10_05/0260--oldboys_pl--goofy-michu-rallen-tom223-tudson.md",
-    "matches_with_current_five": 6,
-    "first_rated_match_current_five": "2026-04-22",
-    "last_rated_match_current_five": "2026-06-14"
+    "line": 265
    },
    {
     "rank": 261,
@@ -8180,10 +7429,7 @@
      "segukawa",
      "sherman"
     ],
-    "details": "details/2026_10_05/0261--b8_academy--k1n-r0se-segukawa-sherman.md",
-    "matches_with_current_five": 0,
-    "first_rated_match_current_five": null,
-    "last_rated_match_current_five": null
+    "line": 266
    },
    {
     "rank": 262,
@@ -8195,10 +7441,7 @@
      "mASKED",
      "Sobol"
     ],
-    "details": "details/2026_10_05/0262--teletubisie--byali-dycha-masked-sobol.md",
-    "matches_with_current_five": 0,
-    "first_rated_match_current_five": null,
-    "last_rated_match_current_five": null
+    "line": 267
    },
    {
     "rank": 263,
@@ -8211,10 +7454,7 @@
      "lkz",
      "stormzyn"
     ],
-    "details": "details/2026_10_05/0263--mibr_academy--brn_-fl4sh-jerr1-lkz-stormzyn.md",
-    "matches_with_current_five": 17,
-    "first_rated_match_current_five": "2026-04-08",
-    "last_rated_match_current_five": "2026-05-20"
+    "line": 268
    },
    {
     "rank": 264,
@@ -8227,10 +7467,7 @@
      "rubeN",
      "Shad0w"
     ],
-    "details": "details/2026_10_05/0264--xdm--darkk-kungao-r1verlake-ruben-shad0w.md",
-    "matches_with_current_five": 7,
-    "first_rated_match_current_five": "2026-08-25",
-    "last_rated_match_current_five": "2026-09-25"
+    "line": 269
    },
    {
     "rank": 265,
@@ -8243,10 +7480,7 @@
      "nexa",
      "yxngstxr"
     ],
-    "details": "details/2026_10_05/0265--raccoons--cypher-ex3rcice-hades-nexa-yxngstxr.md",
-    "matches_with_current_five": 7,
-    "first_rated_match_current_five": "2026-08-12",
-    "last_rated_match_current_five": "2026-08-25"
+    "line": 270
    },
    {
     "rank": 266,
@@ -8259,10 +7493,7 @@
      "Ltz",
      "remix"
     ],
-    "details": "details/2026_10_05/0266--uno_mille--alle-cld-clon7-ltz-remix.md",
-    "matches_with_current_five": 9,
-    "first_rated_match_current_five": "2026-04-16",
-    "last_rated_match_current_five": "2026-05-03"
+    "line": 271
    },
    {
     "rank": 267,
@@ -8275,10 +7506,7 @@
      "killerPandas",
      "Magic"
     ],
-    "details": "details/2026_10_05/0267--wanted_goons--febreeze-hibui-johan-killerpandas-magic.md",
-    "matches_with_current_five": 13,
-    "first_rated_match_current_five": "2026-04-26",
-    "last_rated_match_current_five": "2026-09-14"
+    "line": 272
    },
    {
     "rank": 268,
@@ -8291,10 +7519,7 @@
      "shalfey",
      "yiksrezo"
     ],
-    "details": "details/2026_10_05/0268--shishka--danistzz-krad-norwi-shalfey-yiksrezo.md",
-    "matches_with_current_five": 5,
-    "first_rated_match_current_five": "2026-05-14",
-    "last_rated_match_current_five": "2026-06-19"
+    "line": 273
    },
    {
     "rank": 269,
@@ -8307,10 +7532,7 @@
      "Myggis",
      "oopee"
     ],
-    "details": "details/2026_10_05/0269--cirahvi--8juho8-allu-arvid-myggis-oopee.md",
-    "matches_with_current_five": 10,
-    "first_rated_match_current_five": "2026-04-10",
-    "last_rated_match_current_five": "2026-05-04"
+    "line": 274
    },
    {
     "rank": 270,
@@ -8321,10 +7543,7 @@
      "Griller",
      "SinK"
     ],
-    "details": "details/2026_10_05/0270--invicta--artie-griller-sink.md",
-    "matches_with_current_five": 0,
-    "first_rated_match_current_five": null,
-    "last_rated_match_current_five": null
+    "line": 275
    },
    {
     "rank": 271,
@@ -8337,10 +7556,7 @@
      "M1n1maL",
      "Prime"
     ],
-    "details": "details/2026_10_05/0271--privateer--ariant0-frazehh-jaustere-m1n1mal-prime.md",
-    "matches_with_current_five": 6,
-    "first_rated_match_current_five": "2026-09-05",
-    "last_rated_match_current_five": "2026-09-12"
+    "line": 276
    },
    {
     "rank": 272,
@@ -8352,10 +7568,7 @@
      "motm",
      "WolfY"
     ],
-    "details": "details/2026_10_05/0272--marsborne--chop-grizz-motm-wolfy.md",
-    "matches_with_current_five": 0,
-    "first_rated_match_current_five": null,
-    "last_rated_match_current_five": null
+    "line": 277
    },
    {
     "rank": 273,
@@ -8367,10 +7580,7 @@
      "gamble",
      "Maxuel"
     ],
-    "details": "details/2026_10_05/0273--festina_lente--frizzy-fruitcupx-gamble-maxuel.md",
-    "matches_with_current_five": 0,
-    "first_rated_match_current_five": null,
-    "last_rated_match_current_five": null
+    "line": 278
    },
    {
     "rank": 274,
@@ -8383,10 +7593,7 @@
      "Rip",
      "Viresse"
     ],
-    "details": "details/2026_10_05/0274--banger_gang--duggy-hatex-licany-rip-viresse.md",
-    "matches_with_current_five": 5,
-    "first_rated_match_current_five": "2026-09-08",
-    "last_rated_match_current_five": "2026-09-18"
+    "line": 279
    },
    {
     "rank": 275,
@@ -8398,10 +7605,7 @@
      "kalyambys",
      "xeNji"
     ],
-    "details": "details/2026_10_05/0275--zotix--byr9-esd-kalyambys-xenji.md",
-    "matches_with_current_five": 0,
-    "first_rated_match_current_five": null,
-    "last_rated_match_current_five": null
+    "line": 280
    },
    {
     "rank": 276,
@@ -8414,10 +7618,7 @@
      "Nami",
      "yvro"
     ],
-    "details": "details/2026_10_05/0276--los_kogutos--adrien-maaryy-marko_-nami-yvro.md",
-    "matches_with_current_five": 11,
-    "first_rated_match_current_five": "2026-04-12",
-    "last_rated_match_current_five": "2026-05-14"
+    "line": 281
    },
    {
     "rank": 277,
@@ -8430,10 +7631,7 @@
      "Shark",
      "v4NO"
     ],
-    "details": "details/2026_10_05/0277--esuba--crazyy-frigo-rentlax-shark-v4no.md",
-    "matches_with_current_five": 6,
-    "first_rated_match_current_five": "2026-08-05",
-    "last_rated_match_current_five": "2026-08-08"
+    "line": 282
    },
    {
     "rank": 278,
@@ -8446,10 +7644,7 @@
      "Kermi",
      "neight"
     ],
-    "details": "details/2026_10_05/0278--nutorious--bones-cmrn-fruitcupx-kermi-neight.md",
-    "matches_with_current_five": 15,
-    "first_rated_match_current_five": "2026-08-25",
-    "last_rated_match_current_five": "2026-09-24"
+    "line": 283
    },
    {
     "rank": 279,
@@ -8462,10 +7657,7 @@
      "Supers",
      "Zoot"
     ],
-    "details": "details/2026_10_05/0279--lfo_8--c4put-junn-mingovi-supers-zoot.md",
-    "matches_with_current_five": 14,
-    "first_rated_match_current_five": "2026-08-26",
-    "last_rated_match_current_five": "2026-09-26"
+    "line": 284
    },
    {
     "rank": 280,
@@ -8478,10 +7670,7 @@
      "prosus",
      "w1dow"
     ],
-    "details": "details/2026_10_05/0280--big_academy--aze-doni-hrdina-prosus-w1dow.md",
-    "matches_with_current_five": 6,
-    "first_rated_match_current_five": "2026-07-13",
-    "last_rated_match_current_five": "2026-07-20"
+    "line": 285
    },
    {
     "rank": 281,
@@ -8494,10 +7683,7 @@
      "sml",
      "Wolffe"
     ],
-    "details": "details/2026_10_05/0281--insane_players--freshie-fruitcupx-ogwizard-sml-wolffe.md",
-    "matches_with_current_five": 11,
-    "first_rated_match_current_five": "2026-04-08",
-    "last_rated_match_current_five": "2026-04-28"
+    "line": 286
    },
    {
     "rank": 282,
@@ -8510,10 +7696,7 @@
      "lov1kus",
      "Norwi"
     ],
-    "details": "details/2026_10_05/0282--bebop--danistzz-faydett-idisbalance-lov1kus-norwi.md",
-    "matches_with_current_five": 5,
-    "first_rated_match_current_five": "2026-06-11",
-    "last_rated_match_current_five": "2026-06-18"
+    "line": 287
    },
    {
     "rank": 283,
@@ -8526,10 +7709,7 @@
      "Tatu",
      "tsug"
     ],
-    "details": "details/2026_10_05/0283--pain_academy--misfit-rkzinho-shazn-tatu-tsug.md",
-    "matches_with_current_five": 10,
-    "first_rated_match_current_five": "2026-08-25",
-    "last_rated_match_current_five": "2026-09-25"
+    "line": 288
    },
    {
     "rank": 284,
@@ -8542,10 +7722,7 @@
      "N2o",
      "obi"
     ],
-    "details": "details/2026_10_05/0284--club_333--laxiee-marro-mason-n2o-obi.md",
-    "matches_with_current_five": 7,
-    "first_rated_match_current_five": "2026-04-09",
-    "last_rated_match_current_five": "2026-04-19"
+    "line": 289
    },
    {
     "rank": 285,
@@ -8558,10 +7735,7 @@
      "w1deboy",
      "wast3d"
     ],
-    "details": "details/2026_10_05/0285--lfo_7--neiter-s1an-sunset-w1deboy-wast3d.md",
-    "matches_with_current_five": 5,
-    "first_rated_match_current_five": "2026-05-31",
-    "last_rated_match_current_five": "2026-09-11"
+    "line": 290
    },
    {
     "rank": 286,
@@ -8574,10 +7748,7 @@
      "cJ dA K1nG",
      "Umar"
     ],
-    "details": "details/2026_10_05/0286--farmville--adam-beakie-calamity-cj_da_k1ng-umar.md",
-    "matches_with_current_five": 5,
-    "first_rated_match_current_five": "2026-04-08",
-    "last_rated_match_current_five": "2026-04-26"
+    "line": 291
    },
    {
     "rank": 287,
@@ -8590,10 +7761,7 @@
      "saizius",
      "skept1K"
     ],
-    "details": "details/2026_10_05/0287--eternal_premium--dazzy-innerpeace-p1kan0-saizius-skept1k.md",
-    "matches_with_current_five": 3,
-    "first_rated_match_current_five": "2026-09-29",
-    "last_rated_match_current_five": "2026-10-01"
+    "line": 292
    },
    {
     "rank": 288,
@@ -8606,10 +7774,7 @@
      "RamBLBi",
      "tier0 s"
     ],
-    "details": "details/2026_10_05/0288--dnk--dethera-indoubt-plain7-ramblbi-tier0_s.md",
-    "matches_with_current_five": 5,
-    "first_rated_match_current_five": "2026-04-18",
-    "last_rated_match_current_five": "2026-05-29"
+    "line": 293
    },
    {
     "rank": 289,
@@ -8622,10 +7787,7 @@
      "maxed",
      "Val"
     ],
-    "details": "details/2026_10_05/0289--ding_cuts--biebs-blood-delkud-maxed-val.md",
-    "matches_with_current_five": 8,
-    "first_rated_match_current_five": "2026-04-11",
-    "last_rated_match_current_five": "2026-04-30"
+    "line": 294
    },
    {
     "rank": 290,
@@ -8638,10 +7800,7 @@
      "souv",
      "Zuedsta"
     ],
-    "details": "details/2026_10_05/0290--misa--ckanic-mertowsk1-rim3-souv-zuedsta.md",
-    "matches_with_current_five": 21,
-    "first_rated_match_current_five": "2026-04-22",
-    "last_rated_match_current_five": "2026-07-01"
+    "line": 295
    },
    {
     "rank": 291,
@@ -8654,10 +7813,7 @@
      "sen1ar",
      "yab0ku"
     ],
-    "details": "details/2026_10_05/0291--mtx--egormercedes-frakenzor-md262-sen1ar-yab0ku.md",
-    "matches_with_current_five": 5,
-    "first_rated_match_current_five": "2026-10-02",
-    "last_rated_match_current_five": "2026-10-02"
+    "line": 296
    },
    {
     "rank": 292,
@@ -8670,10 +7826,7 @@
      "Seb",
      "xaler"
     ],
-    "details": "details/2026_10_05/0292--aether--andrew-brett-h0nest-seb-xaler.md",
-    "matches_with_current_five": 7,
-    "first_rated_match_current_five": "2026-04-08",
-    "last_rated_match_current_five": "2026-04-27"
+    "line": 297
    },
    {
     "rank": 293,
@@ -8686,10 +7839,7 @@
      "Mol011",
      "rosen"
     ],
-    "details": "details/2026_10_05/0293--sashi_academy--bl4ze-damsi-mizi-mol011-rosen.md",
-    "matches_with_current_five": 5,
-    "first_rated_match_current_five": "2026-04-11",
-    "last_rated_match_current_five": "2026-04-19"
+    "line": 298
    },
    {
     "rank": 294,
@@ -8701,10 +7851,7 @@
      "Laykinn",
      "m0vski"
     ],
-    "details": "details/2026_10_05/0294--wazabi--bach-bangbang-laykinn-m0vski.md",
-    "matches_with_current_five": 0,
-    "first_rated_match_current_five": null,
-    "last_rated_match_current_five": null
+    "line": 299
    },
    {
     "rank": 295,
@@ -8717,10 +7864,7 @@
      "Lukita",
      "rx"
     ],
-    "details": "details/2026_10_05/0295--your_end--cr1a-ghost1-lcs-lukita-rx.md",
-    "matches_with_current_five": 5,
-    "first_rated_match_current_five": "2026-09-04",
-    "last_rated_match_current_five": "2026-09-23"
+    "line": 300
    },
    {
     "rank": 296,
@@ -8733,10 +7877,7 @@
      "sEIS",
      "yvro"
     ],
-    "details": "details/2026_10_05/0296--mai_tai--chudy-darchevile-nami-seis-yvro.md",
-    "matches_with_current_five": 0,
-    "first_rated_match_current_five": null,
-    "last_rated_match_current_five": null
+    "line": 301
    },
    {
     "rank": 297,
@@ -8749,10 +7890,7 @@
      "MAIROLLS",
      "Niffy"
     ],
-    "details": "details/2026_10_05/0297--lfo_9--aummalody2k-h4sman-kntz-mairolls-niffy.md",
-    "matches_with_current_five": 6,
-    "first_rated_match_current_five": "2026-09-15",
-    "last_rated_match_current_five": "2026-09-20"
+    "line": 302
    },
    {
     "rank": 298,
@@ -8765,10 +7903,7 @@
      "yourwombat",
      "zeph"
     ],
-    "details": "details/2026_10_05/0298--markandlarry--brace-micalis-sav-yourwombat-zeph.md",
-    "matches_with_current_five": 1,
-    "first_rated_match_current_five": "2026-09-22",
-    "last_rated_match_current_five": "2026-09-22"
+    "line": 303
    },
    {
     "rank": 299,
@@ -8781,10 +7916,7 @@
      "Lumanare",
      "Zaha"
     ],
-    "details": "details/2026_10_05/0299--next_up--daciablue3-kickdown-levi_3r-lumanare-zaha.md",
-    "matches_with_current_five": 5,
-    "first_rated_match_current_five": "2026-10-01",
-    "last_rated_match_current_five": "2026-10-01"
+    "line": 304
    },
    {
     "rank": 300,
@@ -8796,10 +7928,7 @@
      "Mechanical",
      "N1ghtraid"
     ],
-    "details": "details/2026_10_05/0300--ex-arcade--74lor-kras-mechanical-n1ghtraid.md",
-    "matches_with_current_five": 0,
-    "first_rated_match_current_five": null,
-    "last_rated_match_current_five": null
+    "line": 305
    },
    {
     "rank": 301,
@@ -8812,10 +7941,7 @@
      "flixxy",
      "Pr0mise"
     ],
-    "details": "details/2026_10_05/0301--beyond_limits--beastman-denz-doltn-flixxy-pr0mise.md",
-    "matches_with_current_five": 6,
-    "first_rated_match_current_five": "2026-06-29",
-    "last_rated_match_current_five": "2026-09-06"
+    "line": 306
    },
    {
     "rank": 302,
@@ -8826,10 +7952,7 @@
      "k6rdon",
      "relan"
     ],
-    "details": "details/2026_10_05/0302--olympus--bizarre666-k6rdon-relan.md",
-    "matches_with_current_five": 0,
-    "first_rated_match_current_five": null,
-    "last_rated_match_current_five": null
+    "line": 307
    },
    {
     "rank": 303,
@@ -8842,10 +7965,7 @@
      "ryuzen",
      "zock9"
     ],
-    "details": "details/2026_10_05/0303--vexa--neozix-nolkz-rainny-ryuzen-zock9.md",
-    "matches_with_current_five": 5,
-    "first_rated_match_current_five": "2026-06-27",
-    "last_rated_match_current_five": "2026-07-06"
+    "line": 308
    },
    {
     "rank": 304,
@@ -8856,10 +7976,7 @@
      "whitezins",
      "ynrii"
     ],
-    "details": "details/2026_10_05/0304--fafo--nibito-whitezins-ynrii.md",
-    "matches_with_current_five": 0,
-    "first_rated_match_current_five": null,
-    "last_rated_match_current_five": null
+    "line": 309
    },
    {
     "rank": 305,
@@ -8872,10 +7989,7 @@
      "flee",
      "shen"
     ],
-    "details": "details/2026_10_05/0305--zotix--byr9-certa1n-esd-flee-shen.md",
-    "matches_with_current_five": 5,
-    "first_rated_match_current_five": "2026-09-05",
-    "last_rated_match_current_five": "2026-09-16"
+    "line": 310
    },
    {
     "rank": 306,
@@ -8888,10 +8002,7 @@
      "whitezins",
      "ynrii"
     ],
-    "details": "details/2026_10_05/0306--a_great_chaos--7emporary-pleb0rs-seilysh-whitezins-ynrii.md",
-    "matches_with_current_five": 7,
-    "first_rated_match_current_five": "2026-05-10",
-    "last_rated_match_current_five": "2026-05-16"
+    "line": 311
    },
    {
     "rank": 307,
@@ -8904,10 +8015,7 @@
      "louie",
      "SeRCEra"
     ],
-    "details": "details/2026_10_05/0307--reign_above--aeroj-cobalt-dave-louie-sercera.md",
-    "matches_with_current_five": 5,
-    "first_rated_match_current_five": "2026-05-30",
-    "last_rated_match_current_five": "2026-05-31"
+    "line": 312
    },
    {
     "rank": 308,
@@ -8920,10 +8028,7 @@
      "ETYYY",
      "Jiace"
     ],
-    "details": "details/2026_10_05/0308--xi--bakorino-egelund-emili0-etyyy-jiace.md",
-    "matches_with_current_five": 11,
-    "first_rated_match_current_five": "2026-04-19",
-    "last_rated_match_current_five": "2026-06-12"
+    "line": 313
    },
    {
     "rank": 309,
@@ -8936,10 +8041,7 @@
      "tatazin",
      "trindade"
     ],
-    "details": "details/2026_10_05/0309--vasco--mawth-n1cks-prt-tatazin-trindade.md",
-    "matches_with_current_five": 0,
-    "first_rated_match_current_five": null,
-    "last_rated_match_current_five": null
+    "line": 314
    },
    {
     "rank": 310,
@@ -8952,10 +8054,7 @@
      "Tumppis",
      "ykis"
     ],
-    "details": "details/2026_10_05/0310--rounds--kollo-lapa-monoxx-tumppis-ykis.md",
-    "matches_with_current_five": 5,
-    "first_rated_match_current_five": "2026-08-12",
-    "last_rated_match_current_five": "2026-09-27"
+    "line": 315
    },
    {
     "rank": 311,
@@ -8968,10 +8067,7 @@
      "tripex17",
      "w1dow"
     ],
-    "details": "details/2026_10_05/0311--big_academy--doni-jboen-prosus-tripex17-w1dow.md",
-    "matches_with_current_five": 6,
-    "first_rated_match_current_five": "2026-04-22",
-    "last_rated_match_current_five": "2026-04-28"
+    "line": 316
    },
    {
     "rank": 312,
@@ -8984,10 +8080,7 @@
      "qu1ck",
      "tuzon"
     ],
-    "details": "details/2026_10_05/0312--xcity--atlas-gag-mda-qu1ck-tuzon.md",
-    "matches_with_current_five": 6,
-    "first_rated_match_current_five": "2026-05-22",
-    "last_rated_match_current_five": "2026-08-29"
+    "line": 317
    },
    {
     "rank": 313,
@@ -9000,10 +8093,7 @@
      "Tusi",
      "wap0"
     ],
-    "details": "details/2026_10_05/0313--gamerslab--lefi-maxx-rayqu4za-tusi-wap0.md",
-    "matches_with_current_five": 6,
-    "first_rated_match_current_five": "2026-08-05",
-    "last_rated_match_current_five": "2026-08-08"
+    "line": 318
    },
    {
     "rank": 314,
@@ -9016,10 +8106,7 @@
      "SLIE9000",
      "Tarkky"
     ],
-    "details": "details/2026_10_05/0314--aaa--asi0k-rain-saax-slie9000-tarkky.md",
-    "matches_with_current_five": 23,
-    "first_rated_match_current_five": "2026-04-23",
-    "last_rated_match_current_five": "2026-06-12"
+    "line": 319
    },
    {
     "rank": 315,
@@ -9032,10 +8119,7 @@
      "xnkka",
      "Z1W0W"
     ],
-    "details": "details/2026_10_05/0315--wingman--la3euka-minor-mowel-xnkka-z1w0w.md",
-    "matches_with_current_five": 8,
-    "first_rated_match_current_five": "2026-06-02",
-    "last_rated_match_current_five": "2026-07-17"
+    "line": 320
    },
    {
     "rank": 316,
@@ -9048,10 +8132,7 @@
      "HZI",
      "SOULM8"
     ],
-    "details": "details/2026_10_05/0316--legion--bloody-bullet-hf-hzi-soulm8.md",
-    "matches_with_current_five": 9,
-    "first_rated_match_current_five": "2026-09-09",
-    "last_rated_match_current_five": "2026-09-26"
+    "line": 321
    },
    {
     "rank": 317,
@@ -9064,10 +8145,7 @@
      "tein",
      "Vster"
     ],
-    "details": "details/2026_10_05/0317--young_ninjas--joeski-n0te-rud-tein-vster.md",
-    "matches_with_current_five": 5,
-    "first_rated_match_current_five": "2026-04-22",
-    "last_rated_match_current_five": "2026-04-29"
+    "line": 322
    },
    {
     "rank": 318,
@@ -9078,10 +8156,7 @@
      "DOGMANtheBOSS",
      "JD"
     ],
-    "details": "details/2026_10_05/0318--madlikewizards--asap-dogmantheboss-jd.md",
-    "matches_with_current_five": 0,
-    "first_rated_match_current_five": null,
-    "last_rated_match_current_five": null
+    "line": 323
    },
    {
     "rank": 319,
@@ -9094,10 +8169,7 @@
      "s4ltovsk1yy",
      "Smash"
     ],
-    "details": "details/2026_10_05/0319--favbet--bondik-j3kie-marix-s4ltovsk1yy-smash.md",
-    "matches_with_current_five": 14,
-    "first_rated_match_current_five": "2026-04-15",
-    "last_rated_match_current_five": "2026-05-14"
+    "line": 324
    },
    {
     "rank": 320,
@@ -9110,10 +8182,7 @@
      "Nikodeon",
      "opdust"
     ],
-    "details": "details/2026_10_05/0320--mouz_nxt--aiyvan-ay0k-flierax-nikodeon-opdust.md",
-    "matches_with_current_five": 8,
-    "first_rated_match_current_five": "2026-05-05",
-    "last_rated_match_current_five": "2026-05-14"
+    "line": 325
    },
    {
     "rank": 321,
@@ -9125,10 +8194,7 @@
      "Kizzzi",
      "patrikinho"
     ],
-    "details": "details/2026_10_05/0321--overtime--adex-arielek-kizzzi-patrikinho.md",
-    "matches_with_current_five": 0,
-    "first_rated_match_current_five": null,
-    "last_rated_match_current_five": null
+    "line": 326
    },
    {
     "rank": 322,
@@ -9140,10 +8206,7 @@
      "Pleb0rs",
      "whitezins"
     ],
-    "details": "details/2026_10_05/0322--havens--brens-faben-pleb0rs-whitezins.md",
-    "matches_with_current_five": 0,
-    "first_rated_match_current_five": null,
-    "last_rated_match_current_five": null
+    "line": 327
    },
    {
     "rank": 323,
@@ -9154,10 +8217,7 @@
      "iRV1NG",
      "Rodos1k"
     ],
-    "details": "details/2026_10_05/0323--tricksters--halfjix-irv1ng-rodos1k.md",
-    "matches_with_current_five": 0,
-    "first_rated_match_current_five": null,
-    "last_rated_match_current_five": null
+    "line": 328
    },
    {
     "rank": 324,
@@ -9170,10 +8230,7 @@
      "St0m4k",
      "Yoghi"
     ],
-    "details": "details/2026_10_05/0324--heroic_academy--holy-hrdina-muciek-st0m4k-yoghi.md",
-    "matches_with_current_five": 21,
-    "first_rated_match_current_five": "2026-04-13",
-    "last_rated_match_current_five": "2026-06-13"
+    "line": 329
    },
    {
     "rank": 325,
@@ -9186,10 +8243,7 @@
      "MoNaTy",
      "Shed0Z"
     ],
-    "details": "details/2026_10_05/0325--younglings--arun-cheerful-ela1z-monaty-shed0z.md",
-    "matches_with_current_five": 5,
-    "first_rated_match_current_five": "2026-08-20",
-    "last_rated_match_current_five": "2026-09-08"
+    "line": 330
    },
    {
     "rank": 326,
@@ -9202,10 +8256,7 @@
      "r1pa4",
      "redzed"
     ],
-    "details": "details/2026_10_05/0326--aurora_young_blud--k1nco-kurosse-meetyoxanaji-r1pa4-redzed.md",
-    "matches_with_current_five": 9,
-    "first_rated_match_current_five": "2026-04-23",
-    "last_rated_match_current_five": "2026-05-26"
+    "line": 331
    },
    {
     "rank": 327,
@@ -9218,10 +8269,7 @@
      "shadiy",
      "sliimey"
     ],
-    "details": "details/2026_10_05/0327--semperfi--hazr-keen-savage-shadiy-sliimey.md",
-    "matches_with_current_five": 5,
-    "first_rated_match_current_five": "2026-05-11",
-    "last_rated_match_current_five": "2026-05-28"
+    "line": 332
    },
    {
     "rank": 328,
@@ -9234,10 +8282,7 @@
      "MaLLiC",
      "web sun"
     ],
-    "details": "details/2026_10_05/0328--arch--dis1-f1r-ka1do-mallic-web_sun.md",
-    "matches_with_current_five": 5,
-    "first_rated_match_current_five": "2026-06-01",
-    "last_rated_match_current_five": "2026-06-19"
+    "line": 333
    },
    {
     "rank": 329,
@@ -9250,10 +8295,7 @@
      "MisterHy",
      "Wign"
     ],
-    "details": "details/2026_10_05/0329--benched_gods--bloodyk-f1chper-k014nz-misterhy-wign.md",
-    "matches_with_current_five": 5,
-    "first_rated_match_current_five": "2026-05-03",
-    "last_rated_match_current_five": "2026-05-08"
+    "line": 334
    },
    {
     "rank": 330,
@@ -9266,10 +8308,7 @@
      "Sange",
      "ZinGY"
     ],
-    "details": "details/2026_10_05/0330--patsanvision--aisu-krc-lame-sange-zingy.md",
-    "matches_with_current_five": 5,
-    "first_rated_match_current_five": "2026-09-11",
-    "last_rated_match_current_five": "2026-09-18"
+    "line": 335
    },
    {
     "rank": 331,
@@ -9279,10 +8318,7 @@
      "esor",
      "marTineZ"
     ],
-    "details": "details/2026_10_05/0331--honv_d--esor-martinez.md",
-    "matches_with_current_five": 0,
-    "first_rated_match_current_five": null,
-    "last_rated_match_current_five": null
+    "line": 336
    },
    {
     "rank": 332,
@@ -9294,10 +8330,7 @@
      "Yuxz",
      "z1ayr"
     ],
-    "details": "details/2026_10_05/0332--the_knockoutx--klroxy-reason-yuxz-z1ayr.md",
-    "matches_with_current_five": 0,
-    "first_rated_match_current_five": null,
-    "last_rated_match_current_five": null
+    "line": 337
    },
    {
     "rank": 333,
@@ -9310,10 +8343,7 @@
      "tutu",
      "zdr"
     ],
-    "details": "details/2026_10_05/0333--boring_players--d1zzyg-jun7-miszary-tutu-zdr.md",
-    "matches_with_current_five": 8,
-    "first_rated_match_current_five": "2026-04-26",
-    "last_rated_match_current_five": "2026-05-03"
+    "line": 338
    },
    {
     "rank": 334,
@@ -9325,10 +8355,7 @@
      "Tender",
      "viz"
     ],
-    "details": "details/2026_10_05/0334--incognito--axed-micro-tender-viz.md",
-    "matches_with_current_five": 0,
-    "first_rated_match_current_five": null,
-    "last_rated_match_current_five": null
+    "line": 339
    },
    {
     "rank": 335,
@@ -9341,10 +8368,7 @@
      "petroWUR",
      "sickaf"
     ],
-    "details": "details/2026_10_05/0335--revenix--decaun-defleep-f0rtuna-petrowur-sickaf.md",
-    "matches_with_current_five": 8,
-    "first_rated_match_current_five": "2026-09-11",
-    "last_rated_match_current_five": "2026-09-24"
+    "line": 340
    },
    {
     "rank": 336,
@@ -9357,10 +8381,7 @@
      "XELLOW",
      "zewts"
     ],
-    "details": "details/2026_10_05/0336--aimclub--ed1m-ersin-roberttmp-xellow-zewts.md",
-    "matches_with_current_five": 10,
-    "first_rated_match_current_five": "2026-04-19",
-    "last_rated_match_current_five": "2026-04-26"
+    "line": 341
    },
    {
     "rank": 337,
@@ -9372,10 +8393,7 @@
      "KENHY",
      "MoWeL"
     ],
-    "details": "details/2026_10_05/0337--trafficpills--f1n3tw-greatest-kenhy-mowel.md",
-    "matches_with_current_five": 0,
-    "first_rated_match_current_five": null,
-    "last_rated_match_current_five": null
+    "line": 342
    },
    {
     "rank": 338,
@@ -9388,10 +8406,7 @@
      "seabraez",
      "Sprayy"
     ],
-    "details": "details/2026_10_05/0338--famalic_o--h0t-m1ka-p3r3iira-seabraez-sprayy.md",
-    "matches_with_current_five": 17,
-    "first_rated_match_current_five": "2026-04-09",
-    "last_rated_match_current_five": "2026-05-16"
+    "line": 343
    },
    {
     "rank": 339,
@@ -9404,10 +8419,7 @@
      "spinnie",
      "vzn"
     ],
-    "details": "details/2026_10_05/0339--metanoia_wolves--alennncar-ntx-sakamoto-spinnie-vzn.md",
-    "matches_with_current_five": 11,
-    "first_rated_match_current_five": "2026-05-11",
-    "last_rated_match_current_five": "2026-06-28"
+    "line": 344
    },
    {
     "rank": 340,
@@ -9420,10 +8432,7 @@
      "Malkiss",
      "OneUn1que"
     ],
-    "details": "details/2026_10_05/0340--leo--amster-kl1o-leen-malkiss-oneun1que.md",
-    "matches_with_current_five": 4,
-    "first_rated_match_current_five": "2026-04-23",
-    "last_rated_match_current_five": "2026-04-28"
+    "line": 345
    },
    {
     "rank": 341,
@@ -9436,10 +8445,7 @@
      "sad",
      "z3ndeR"
     ],
-    "details": "details/2026_10_05/0341--playersclub--azukay-heis999-riskyb0b-sad-z3nder.md",
-    "matches_with_current_five": 11,
-    "first_rated_match_current_five": "2026-04-18",
-    "last_rated_match_current_five": "2026-05-04"
+    "line": 346
    },
    {
     "rank": 342,
@@ -9452,10 +8458,7 @@
      "TheJelly",
      "tmk"
     ],
-    "details": "details/2026_10_05/0342--new_legends--agb-electrician-frog-thejelly-tmk.md",
-    "matches_with_current_five": 5,
-    "first_rated_match_current_five": "2026-08-25",
-    "last_rated_match_current_five": "2026-09-23"
+    "line": 347
    },
    {
     "rank": 343,
@@ -9468,10 +8471,7 @@
      "versa",
      "Winnieeeee"
     ],
-    "details": "details/2026_10_05/0343--fury--cheeseball-cookie-rahley-versa-winnieeeee.md",
-    "matches_with_current_five": 5,
-    "first_rated_match_current_five": "2026-04-26",
-    "last_rated_match_current_five": "2026-05-01"
+    "line": 348
    },
    {
     "rank": 344,
@@ -9484,10 +8484,7 @@
      "Mrd",
      "terran"
     ],
-    "details": "details/2026_10_05/0344--sementes_do_mal--aker-coxa-kaiserzy-mrd-terran.md",
-    "matches_with_current_five": 8,
-    "first_rated_match_current_five": "2026-08-26",
-    "last_rated_match_current_five": "2026-09-30"
+    "line": 349
    },
    {
     "rank": 345,
@@ -9500,10 +8497,7 @@
      "sun",
      "TriBorgg1"
     ],
-    "details": "details/2026_10_05/0345--ex-vp_prodigy--lasfas-rokilan-stoynes-sun-triborgg1.md",
-    "matches_with_current_five": 5,
-    "first_rated_match_current_five": "2026-04-18",
-    "last_rated_match_current_five": "2026-06-05"
+    "line": 350
    },
    {
     "rank": 346,
@@ -9516,10 +8510,7 @@
      "rhittacrit",
      "Wonderzce"
     ],
-    "details": "details/2026_10_05/0346--bmz--fury5k-magnumz-qqlightning-rhittacrit-wonderzce.md",
-    "matches_with_current_five": 6,
-    "first_rated_match_current_five": "2026-04-26",
-    "last_rated_match_current_five": "2026-05-02"
+    "line": 351
    },
    {
     "rank": 347,
@@ -9532,10 +8523,7 @@
      "spirit",
      "sstiNiX"
     ],
-    "details": "details/2026_10_05/0347--just_players--em0k1d-rexxie-something-spirit-sstinix.md",
-    "matches_with_current_five": 8,
-    "first_rated_match_current_five": "2026-04-22",
-    "last_rated_match_current_five": "2026-05-01"
+    "line": 352
    },
    {
     "rank": 348,
@@ -9548,10 +8536,7 @@
      "Supr3me",
      "XiMaa"
     ],
-    "details": "details/2026_10_05/0348--subtop_de_france--razzmo-revol-sanjocrakito-supr3me-ximaa.md",
-    "matches_with_current_five": 11,
-    "first_rated_match_current_five": "2026-06-25",
-    "last_rated_match_current_five": "2026-07-23"
+    "line": 353
    },
    {
     "rank": 349,
@@ -9563,10 +8548,7 @@
      "Lewis",
      "v1w"
     ],
-    "details": "details/2026_10_05/0349--m1x_ks--dementor-gejmzilla-lewis-v1w.md",
-    "matches_with_current_five": 0,
-    "first_rated_match_current_five": null,
-    "last_rated_match_current_five": null
+    "line": 354
    },
    {
     "rank": 350,
@@ -9579,10 +8561,7 @@
      "nut nut",
      "TMB"
     ],
-    "details": "details/2026_10_05/0350--ecstatic--anlelele-buzz-nicoodoz-nut_nut-tmb.md",
-    "matches_with_current_five": 5,
-    "first_rated_match_current_five": "2026-04-12",
-    "last_rated_match_current_five": "2026-04-23"
+    "line": 355
    },
    {
     "rank": 351,
@@ -9595,10 +8574,7 @@
      "f4stzin",
      "nyezin"
     ],
-    "details": "details/2026_10_05/0351--gamehunters--abr-bnc-bsd-f4stzin-nyezin.md",
-    "matches_with_current_five": 10,
-    "first_rated_match_current_five": "2026-04-24",
-    "last_rated_match_current_five": "2026-05-02"
+    "line": 356
    },
    {
     "rank": 352,
@@ -9611,10 +8587,7 @@
      "hexoq",
      "imp"
     ],
-    "details": "details/2026_10_05/0352--olybet--cgk-chipaan-frip-hexoq-imp.md",
-    "matches_with_current_five": 7,
-    "first_rated_match_current_five": "2026-05-12",
-    "last_rated_match_current_five": "2026-06-28"
+    "line": 357
    },
    {
     "rank": 353,
@@ -9627,10 +8600,7 @@
      "ScreaM",
      "SHOGU"
     ],
-    "details": "details/2026_10_05/0353--clutchain--kyojin-nivera-python-scream-shogu.md",
-    "matches_with_current_five": 7,
-    "first_rated_match_current_five": "2026-04-13",
-    "last_rated_match_current_five": "2026-06-08"
+    "line": 358
    },
    {
     "rank": 354,
@@ -9642,10 +8612,7 @@
      "Labreenc",
      "makaroff"
     ],
-    "details": "details/2026_10_05/0354--ec_banga--blazekinho-keni-labreenc-makaroff.md",
-    "matches_with_current_five": 0,
-    "first_rated_match_current_five": null,
-    "last_rated_match_current_five": null
+    "line": 359
    },
    {
     "rank": 355,
@@ -9657,10 +8624,7 @@
      "bright",
      "flacko"
     ],
-    "details": "details/2026_10_05/0355--raisedbypixels--1luke-atyla-bright-flacko.md",
-    "matches_with_current_five": 0,
-    "first_rated_match_current_five": null,
-    "last_rated_match_current_five": null
+    "line": 360
    },
    {
     "rank": 356,
@@ -9673,10 +8637,7 @@
      "maik",
      "R4N"
     ],
-    "details": "details/2026_10_05/0356--damajuana--dunn-kiritox-leo-maik-r4n.md",
-    "matches_with_current_five": 7,
-    "first_rated_match_current_five": "2026-08-30",
-    "last_rated_match_current_five": "2026-09-28"
+    "line": 361
    },
    {
     "rank": 357,
@@ -9689,10 +8650,7 @@
      "Slayerhz",
      "zockie"
     ],
-    "details": "details/2026_10_05/0357--zetta--antuanette-babyrage-notjuanjo-slayerhz-zockie.md",
-    "matches_with_current_five": 10,
-    "first_rated_match_current_five": "2026-04-28",
-    "last_rated_match_current_five": "2026-09-28"
+    "line": 362
    },
    {
     "rank": 358,
@@ -9705,10 +8663,7 @@
      "paqueta",
      "Tineu"
     ],
-    "details": "details/2026_10_05/0358--guara--fnbjesus-longo-neskk-paqueta-tineu.md",
-    "matches_with_current_five": 8,
-    "first_rated_match_current_five": "2026-06-28",
-    "last_rated_match_current_five": "2026-08-28"
+    "line": 363
    },
    {
     "rank": 359,
@@ -9721,10 +8676,7 @@
      "stesso",
      "Viggo"
     ],
-    "details": "details/2026_10_05/0359--eac_extra--etyyy-fallis-ga1de-stesso-viggo.md",
-    "matches_with_current_five": 5,
-    "first_rated_match_current_five": "2026-10-02",
-    "last_rated_match_current_five": "2026-10-02"
+    "line": 364
    },
    {
     "rank": 360,
@@ -9737,10 +8689,7 @@
      "no1nx",
      "twigs"
     ],
-    "details": "details/2026_10_05/0360--empire--bagel-c0c0-kmz-no1nx-twigs.md",
-    "matches_with_current_five": 7,
-    "first_rated_match_current_five": "2026-04-09",
-    "last_rated_match_current_five": "2026-04-26"
+    "line": 365
    },
    {
     "rank": 361,
@@ -9753,10 +8702,7 @@
      "TORITO",
      "vanilla"
     ],
-    "details": "details/2026_10_05/0361--exodia--oteb-points-spamzzy-torito-vanilla.md",
-    "matches_with_current_five": 8,
-    "first_rated_match_current_five": "2026-05-14",
-    "last_rated_match_current_five": "2026-08-29"
+    "line": 366
    },
    {
     "rank": 362,
@@ -9769,10 +8715,7 @@
      "laser",
      "reversive"
     ],
-    "details": "details/2026_10_05/0362--ex-kr_--1962-abm-guidimon-laser-reversive.md",
-    "matches_with_current_five": 6,
-    "first_rated_match_current_five": "2026-06-27",
-    "last_rated_match_current_five": "2026-07-17"
+    "line": 367
    },
    {
     "rank": 363,
@@ -9785,10 +8728,7 @@
      "stunt",
      "Villeboe"
     ],
-    "details": "details/2026_10_05/0363--bojong--artwoo-blngb0ng-jkzin-stunt-villeboe.md",
-    "matches_with_current_five": 10,
-    "first_rated_match_current_five": "2026-04-10",
-    "last_rated_match_current_five": "2026-09-12"
+    "line": 368
    },
    {
     "rank": 364,
@@ -9799,10 +8739,7 @@
      "onder",
      "sen1ar"
     ],
-    "details": "details/2026_10_05/0364--coalesce--flicky-onder-sen1ar.md",
-    "matches_with_current_five": 0,
-    "first_rated_match_current_five": null,
-    "last_rated_match_current_five": null
+    "line": 369
    },
    {
     "rank": 365,
@@ -9814,10 +8751,7 @@
      "LapaSSS",
      "melty"
     ],
-    "details": "details/2026_10_05/0365--trainwrecks--ahma-hattivatti-lapasss-melty.md",
-    "matches_with_current_five": 0,
-    "first_rated_match_current_five": null,
-    "last_rated_match_current_five": null
+    "line": 370
    },
    {
     "rank": 366,
@@ -9828,10 +8762,7 @@
      "grizzly",
      "Kamui"
     ],
-    "details": "details/2026_10_05/0366--1337--felsadia-grizzly-kamui.md",
-    "matches_with_current_five": 0,
-    "first_rated_match_current_five": null,
-    "last_rated_match_current_five": null
+    "line": 371
    },
    {
     "rank": 367,
@@ -9844,10 +8775,7 @@
      "strong3r",
      "texmy"
     ],
-    "details": "details/2026_10_05/0367--spirit_hu--flasi-makszi-nons3ns-strong3r-texmy.md",
-    "matches_with_current_five": 5,
-    "first_rated_match_current_five": "2026-07-01",
-    "last_rated_match_current_five": "2026-08-08"
+    "line": 372
    },
    {
     "rank": 368,
@@ -9859,10 +8787,7 @@
      "rickangel",
      "skcH"
     ],
-    "details": "details/2026_10_05/0368--6666--auth0ri-m4d4ra-rickangel-skch.md",
-    "matches_with_current_five": 0,
-    "first_rated_match_current_five": null,
-    "last_rated_match_current_five": null
+    "line": 373
    },
    {
     "rank": 369,
@@ -9873,10 +8798,7 @@
      "silrak",
      "Yamero"
     ],
-    "details": "details/2026_10_05/0369--aimhaus--flairr-silrak-yamero.md",
-    "matches_with_current_five": 0,
-    "first_rated_match_current_five": null,
-    "last_rated_match_current_five": null
+    "line": 374
    },
    {
     "rank": 370,
@@ -9889,10 +8811,7 @@
      "neskk",
      "shrr"
     ],
-    "details": "details/2026_10_05/0370--mans_o_maromba--extazzy-fraga-guizo-neskk-shrr.md",
-    "matches_with_current_five": 5,
-    "first_rated_match_current_five": "2026-08-25",
-    "last_rated_match_current_five": "2026-09-02"
+    "line": 375
    },
    {
     "rank": 371,
@@ -9903,10 +8822,7 @@
      "ImpressioN",
      "w1nt3r"
     ],
-    "details": "details/2026_10_05/0371--blight_blue--clyd1e-impression-w1nt3r.md",
-    "matches_with_current_five": 0,
-    "first_rated_match_current_five": null,
-    "last_rated_match_current_five": null
+    "line": 376
    },
    {
     "rank": 372,
@@ -9919,10 +8835,7 @@
      "Rivo",
      "tutehen"
     ],
-    "details": "details/2026_10_05/0372--r2--abm-fakzwall-maaxg1-rivo-tutehen.md",
-    "matches_with_current_five": 10,
-    "first_rated_match_current_five": "2026-04-29",
-    "last_rated_match_current_five": "2026-05-20"
+    "line": 377
    },
    {
     "rank": 373,
@@ -9932,10 +8845,7 @@
      "ezox",
      "manio"
     ],
-    "details": "details/2026_10_05/0373--banda_chuya--ezox-manio.md",
-    "matches_with_current_five": 0,
-    "first_rated_match_current_five": null,
-    "last_rated_match_current_five": null
+    "line": 378
    },
    {
     "rank": 374,
@@ -9946,10 +8856,7 @@
      "j3nni",
      "Sharpie"
     ],
-    "details": "details/2026_10_05/0374--unreal_nightmare--brawckzz-j3nni-sharpie.md",
-    "matches_with_current_five": 0,
-    "first_rated_match_current_five": null,
-    "last_rated_match_current_five": null
+    "line": 379
    },
    {
     "rank": 375,
@@ -9962,10 +8869,7 @@
      "KIRADODO",
      "Monkey D Julie"
     ],
-    "details": "details/2026_10_05/0375--julie_cie--amanek-empera-joker-kiradodo-monkey_d_julie.md",
-    "matches_with_current_five": 5,
-    "first_rated_match_current_five": "2026-05-21",
-    "last_rated_match_current_five": "2026-07-01"
+    "line": 380
    },
    {
     "rank": 376,
@@ -9978,10 +8882,7 @@
      "SEMSY",
      "xsepower"
     ],
-    "details": "details/2026_10_05/0376--bankapepsi--huckler-lesswill-lumier-semsy-xsepower.md",
-    "matches_with_current_five": 6,
-    "first_rated_match_current_five": "2026-04-10",
-    "last_rated_match_current_five": "2026-06-06"
+    "line": 381
    },
    {
     "rank": 377,
@@ -9993,10 +8894,7 @@
      "space",
      "xns"
     ],
-    "details": "details/2026_10_05/0377--players--mithputtini-souz4h-space-xns.md",
-    "matches_with_current_five": 0,
-    "first_rated_match_current_five": null,
-    "last_rated_match_current_five": null
+    "line": 382
    },
    {
     "rank": 378,
@@ -10009,10 +8907,7 @@
      "Reix",
      "trindade"
     ],
-    "details": "details/2026_10_05/0378--crashers--machado-mtsgod-nikz-reix-trindade.md",
-    "matches_with_current_five": 7,
-    "first_rated_match_current_five": "2026-04-29",
-    "last_rated_match_current_five": "2026-05-16"
+    "line": 383
    },
    {
     "rank": 379,
@@ -10024,10 +8919,7 @@
      "Paranormal",
      "soloooS"
     ],
-    "details": "details/2026_10_05/0379--quantumx--grizzly-kamui-paranormal-solooos.md",
-    "matches_with_current_five": 0,
-    "first_rated_match_current_five": null,
-    "last_rated_match_current_five": null
+    "line": 384
    },
    {
     "rank": 380,
@@ -10040,18 +8932,10 @@
      "Kezza",
      "lawlkay"
     ],
-    "details": "details/2026_10_05/0380--fruju--camille-elephant-harbor-kezza-lawlkay.md",
-    "matches_with_current_five": 5,
-    "first_rated_match_current_five": "2026-04-11",
-    "last_rated_match_current_five": "2026-04-28"
+    "line": 385
    }
   ],
-  "file": "live/2026/standings_global_2026_10_05.md",
-  "as_of": "2026-10-05",
-  "commit": "eec4853d7bcf0f1f7efe7f0d901234bef7e98b75",
-  "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
-  "standings_date": "2026-10-05",
-  "blob_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+  "read_utc": "2026-10-15T23:23:03Z"
  },
  "hltv": {
   "status": "observed",
@@ -13189,80 +12073,110 @@
   "url": "https://www.hltv.org/ranking/teams/2026/october/12",
   "read_utc": "2026-10-15T21:34:18Z",
   "date_path": "2026/october/12",
-  "ranking_date": "2026/october/12"
+  "ranking_date": "2026/october/12",
+  "mode": "previous_capture",
+  "latest_attempt": {
+   "status": null,
+   "fetched_utc": "2026-10-15T23:23:05Z"
+  }
  },
+ "finished_utc": "2026-10-15T23:23:08Z",
  "provenance": [
   {
    "url": "https://play.hotspawn.com/lobby",
-   "status": 200,
-   "error": null,
-   "fetched_utc": "2026-10-15T21:34:12Z",
-   "bytes": 350357,
-   "sha256": "75b6aae72cd9baa18aa2f6ebd84f99a9929254bb1c83719750ebf8f0c287982d"
+   "status": null,
+   "bytes": 0,
+   "sha256": null,
+   "error": "URLError: <urlopen error TLS/SSL connection has been closed (EOF) (_ssl.c:992)>",
+   "fetched_utc": "2026-10-15T23:21:54Z"
   },
   {
    "url": "https://play.hotspawn.com/cs2-pickems",
-   "status": 200,
-   "error": null,
-   "fetched_utc": "2026-10-15T21:34:13Z",
-   "bytes": 220659,
-   "sha256": "f6552f495c0888d86438450cb4addb3399bf2445c259994d8612dd47b7f8fbca"
+   "status": null,
+   "bytes": 0,
+   "sha256": null,
+   "error": "URLError: <urlopen error TLS/SSL connection has been closed (EOF) (_ssl.c:992)>",
+   "fetched_utc": "2026-10-15T23:22:03Z"
   },
   {
    "url": "https://play.hotspawn.com/thp-pickems",
-   "status": 200,
-   "error": null,
-   "fetched_utc": "2026-10-15T21:34:14Z",
-   "bytes": 168569,
-   "sha256": "9e1f177ff5e31642476be9ffe410f19992391153badc53e59e7c67a0541cd945"
+   "status": null,
+   "bytes": 0,
+   "sha256": null,
+   "error": "URLError: <urlopen error TLS/SSL connection has been closed (EOF) (_ssl.c:992)>",
+   "fetched_utc": "2026-10-15T23:22:12Z"
   },
   {
    "url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/matchups?withSpecials=false",
-   "status": 200,
-   "error": null,
-   "fetched_utc": "2026-10-15T21:34:15Z",
-   "bytes": 156090,
-   "sha256": "63289518b190782503cb095bcd899261794c04416eb68ab8dece923f0c2ad305"
+   "status": null,
+   "bytes": 0,
+   "sha256": null,
+   "error": "URLError: <urlopen error TLS/SSL connection has been closed (EOF) (_ssl.c:992)>",
+   "fetched_utc": "2026-10-15T23:22:22Z"
   },
   {
    "url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
-   "status": 200,
-   "error": null,
-   "fetched_utc": "2026-10-15T21:34:15Z",
-   "bytes": 412614,
-   "sha256": "7c9d064361ac8dd97ef1f035173b4244ec6de1036396f4e81d9e266f004138cf"
+   "status": null,
+   "bytes": 0,
+   "sha256": null,
+   "error": "URLError: <urlopen error TLS/SSL connection has been closed (EOF) (_ssl.c:992)>",
+   "fetched_utc": "2026-10-15T23:22:31Z"
   },
   {
-   "url": "https://gamma-api.polymarket.com/events?series_id=10310&closed=false&end_date_min=2026-10-14T21:34:15Z&limit=200&offset=0",
-   "status": 200,
-   "error": null,
-   "fetched_utc": "2026-10-15T21:34:15Z",
-   "bytes": 2660029,
-   "sha256": "60d46e07d5ad2376eaa014a1c8e6e4907a1969a5ce022a7718549d5800242154"
+   "url": "https://api.bo3.gg/api/v1/matches?page%5Boffset%5D=0&page%5Blimit%5D=100&sort=start_date&filter%5Bmatches.status%5D%5Bin%5D=upcoming&filter%5Bmatches.discipline_id%5D%5Beq%5D=1&with=teams%2Ctournament",
+   "status": null,
+   "bytes": 0,
+   "sha256": null,
+   "error": "URLError: <urlopen error TLS/SSL connection has been closed (EOF) (_ssl.c:992)>",
+   "fetched_utc": "2026-10-15T23:22:40Z"
   },
   {
-   "url": "https://gamma-api.polymarket.com/markets?closed=false&tag_id=100780&end_date_min=2026-10-14T21:34:15Z&limit=500&offset=0",
-   "status": 200,
-   "error": null,
-   "fetched_utc": "2026-10-15T21:34:15Z",
-   "bytes": 641361,
-   "sha256": "b07a8461e18f973a018490dd9c437891c7c1654cfc59109eae55f7dfc48f1062"
+   "url": "https://gamma-api.polymarket.com/events?series_id=10310&closed=false&limit=100&offset=0&end_date_min=2026-10-15T11%3A22%3A44Z",
+   "status": null,
+   "bytes": 0,
+   "sha256": null,
+   "error": "URLError: <urlopen error TLS/SSL connection has been closed (EOF) (_ssl.c:992)>",
+   "fetched_utc": "2026-10-15T23:22:49Z"
   },
   {
-   "url": "https://gamma-api.polymarket.com/events?series_id=10310&closed=true&end_date_min=2026-10-11T21:34:17Z&limit=200&offset=0",
+   "url": "https://gamma-api.polymarket.com/markets?closed=false&tag_id=100780&end_date_min=2026-10-15T11%3A22%3A44Z&limit=500&offset=0",
+   "status": null,
+   "bytes": 0,
+   "sha256": null,
+   "error": "URLError: <urlopen error TLS/SSL connection has been closed (EOF) (_ssl.c:992)>",
+   "fetched_utc": "2026-10-15T23:22:58Z"
+  },
+  {
+   "url": "https://api.github.com/repos/ValveSoftware/counter-strike_regional_standings/contents/live/2026",
    "status": 200,
+   "bytes": 46751,
+   "sha256": "a0c70433d2727db5d568fa6267b7000a2c15e92a4aa8820cabf07ae84338ee23",
    "error": null,
-   "fetched_utc": "2026-10-15T21:34:17Z",
-   "bytes": 6755062,
-   "sha256": "e4d4bdcfd829abb06d85504284e03ea2d446c089da301ef2d17ff43c07338ade"
+   "fetched_utc": "2026-10-15T23:23:03Z"
+  },
+  {
+   "url": "https://api.github.com/repos/ValveSoftware/counter-strike_regional_standings/commits?path=live/2026/standings_global_2026_10_05.md&per_page=1",
+   "status": 200,
+   "bytes": 3621,
+   "sha256": "4c4be0dd3026a2d736efaf8d4fd78c09b4dc8763e73612a502f0f537dab22a6e",
+   "error": null,
+   "fetched_utc": "2026-10-15T23:23:03Z"
+  },
+  {
+   "url": "https://api.github.com/repos/ValveSoftware/counter-strike_regional_standings/contents/live/2026/standings_global_2026_10_05.md?ref=eec4853d7bcf0f1f7efe7f0d901234bef7e98b75",
+   "status": 200,
+   "bytes": 77872,
+   "sha256": "df96e7fc3cd91a2687ec08cac0128e50cc4e4e55346581679572e881d79ae61b",
+   "error": null,
+   "fetched_utc": "2026-10-15T23:23:03Z"
   },
   {
    "url": "https://www.hltv.org/ranking/teams",
-   "status": 200,
-   "error": null,
-   "fetched_utc": "2026-10-15T21:34:18Z",
-   "bytes": 1097257,
-   "sha256": "2c291384ca2815e6bfc3a4d3f7a59aa9f8772686c22208d1359bd39684295cc6"
+   "status": null,
+   "bytes": 0,
+   "sha256": null,
+   "error": "URLError: <urlopen error TLS/SSL connection has been closed (EOF) (_ssl.c:992)>",
+   "fetched_utc": "2026-10-15T23:23:05Z"
   }
  ]
 }

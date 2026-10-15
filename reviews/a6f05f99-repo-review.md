@@ -197,10 +197,18 @@ the average once it is more than eight hours old, like any other price.
 
 ## 9. Known gaps in this session's board
 
-- `a6f05f99/collect.py` has not been executed end to end inside this sandbox — its Pinnacle and
-  bo3.gg request parameters are copied from other sessions' collectors and remain unverified. The
-  first scheduled run exercises them; if a source refuses, that source keeps its previous capture
-  with the original read time and the run is still published.
+- `a6f05f99/collect.py` **has been executed end to end** and does not crash, but this sandbox can
+  only reach `github.com` and `api.github.com`, so Hotspawn, Pinnacle, bo3.gg, Polymarket and HLTV
+  could not be read live here. What that run *did* verify: every one of those five sources fell back
+  to its previous capture **with the original read time** rather than being relabelled as fresh, the
+  run still exited 0, and the board rebuilt unchanged afterwards. What it did **not** verify: the
+  request parameters for Hotspawn, Pinnacle, bo3.gg and Polymarket, which are copied from other
+  sessions' collectors. The first scheduled GitHub Actions run exercises them.
+- One real defect was found and fixed by that exercise: `collect_vrs` listed `/contents/live`, which
+  returns *directories* (`2024`, `2025`, `2026`) rather than files, so the regular expression for
+  `standings_global_*.md` could never match and the live Valve read could never succeed. It now lists
+  `/contents/live/<year>` for the current and previous year. Re-run and confirmed:
+  `standings_global_2026_10_05.md @ eec4853d7b`, 380 teams, mode `live`.
 - The `bo3.gg` rung in today's board therefore comes from a hand-verified price
   (`research/manual_lines.json`) rather than an automated read.
 - No headless-browser check of the phone layout ran in CI. The pages are single-column with a
