@@ -98,3 +98,45 @@ jobs:
       - name: Explain verification boundary
         if: always()
         run: echo 'Source refusals are recorded in provenance. A successful test is not proof that every quote is available or every forecast is calibrated. This workflow never writes collector-owned datasets to Git.' >> "$GITHUB_STEP_SUMMARY"
+
+  public-release:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - name: Verify the deployed executive routes independently of source availability
+        env:
+          RELEASE_ID: ${{ github.run_id }}
+        run: |
+          python3 - <<'PY'
+          import hashlib, json, os, time, urllib.request
+          base = 'https://buffedlizard55-lab.github.io/MaltaProj1/'
+          routes = {
+              '': 'Evidence policy:',
+              'executive/picks.html': 'Source snapshot',
+              'executive/unresolved.html': 'Unresolved picks',
+              'executive/flagged.html': 'Flagged for review',
+              'reviews/bb9e05ef-reliability.html': 'PR #134',
+          }
+          for attempt in range(15):
+              receipt = []
+              try:
+                  for route, marker in routes.items():
+                      req = urllib.request.Request(base + route + '?release=' + os.environ['RELEASE_ID'],
+                                                   headers={'User-Agent': 'MaltaProj1-release-verification'})
+                      with urllib.request.urlopen(req, timeout=20) as response:
+                          body = response.read()
+                          if response.status != 200 or marker not in body.decode('utf-8'):
+                              raise ValueError(f'{route}: deployed marker not present yet')
+                          receipt.append({'route': route or '/', 'http': response.status,
+                                          'sha256': hashlib.sha256(body).hexdigest()})
+                  print('::notice title=Pages executive release verified::' + json.dumps(receipt))
+                  with open(os.environ['GITHUB_STEP_SUMMARY'], 'a') as summary:
+                      summary.write('### Public executive release verified\n\n' + json.dumps(receipt, indent=2) + '\n')
+                  break
+              except Exception as exc:
+                  print(f'Attempt {attempt + 1}: {type(exc).__name__}: {exc}')
+                  if attempt == 14:
+                      raise
+                  time.sleep(15)
+          PY
