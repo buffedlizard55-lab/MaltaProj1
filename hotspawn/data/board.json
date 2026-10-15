@@ -1,0 +1,6976 @@
+{
+ "meta": {
+  "reference_utc": "2026-10-15T10:41:47Z",
+  "k": 0.4598,
+  "k_label": "fitted on Valve's published match results",
+  "vrs": {
+   "as_of": "2026-10-05",
+   "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
+   "file": "live/2026/standings_global_2026_10_05.md",
+   "status": "observed"
+  },
+  "hltv": {
+   "status": "observed",
+   "url": "https://www.hltv.org/ranking/teams/2026/october/12",
+   "read_utc": "2026-10-15T10:41:53Z",
+   "carry_note": null
+  },
+  "pinnacle": {
+   "status": "observed",
+   "read_utc": "2026-10-15T10:41:50Z",
+   "page_url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
+   "markets_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
+   "error": null
+  },
+  "polymarket": {
+   "status": "observed",
+   "read_utc": "2026-10-15T10:41:50Z",
+   "error": null
+  },
+  "hotspawn": {
+   "pages": [
+    {
+     "page": "lobby",
+     "url": "https://play.hotspawn.com/lobby",
+     "status": 200,
+     "error": null,
+     "read_utc": "2026-10-15T10:41:47Z",
+     "bytes": 304901,
+     "sha256": "c1180d7e45f2ec004f02aafe0ffcdfee9d13925f61015d71d18a0e9d16d56825",
+     "week_text": "72 matches this week",
+     "tier_total": 78,
+     "state_rows": 78
+    },
+    {
+     "page": "cs2-pickems",
+     "url": "https://play.hotspawn.com/cs2-pickems",
+     "status": 200,
+     "error": null,
+     "read_utc": "2026-10-15T10:41:48Z",
+     "bytes": 303994,
+     "sha256": "5573b8d995c724954716cfa9562b4d3c9ed74381aa847be3d6d18f1896b5c97b",
+     "week_text": "72 matches this week",
+     "tier_total": 78,
+     "state_rows": 78
+    },
+    {
+     "page": "thp-pickems",
+     "url": "https://play.hotspawn.com/thp-pickems",
+     "status": 200,
+     "error": null,
+     "read_utc": "2026-10-15T10:41:49Z",
+     "bytes": 178779,
+     "sha256": "fa446751003f35c9f623d8e7fa5dfe017661a80b5435a8bd0618c06f52ee08b9",
+     "week_text": "72 matches this week",
+     "tier_total": 9,
+     "state_rows": 9
+    }
+   ],
+   "complete": true,
+   "week": {
+    "weekId": 270,
+    "status": "OPEN",
+    "weekStartUtc": "2026-10-12T00:00:00.000Z",
+    "weekEndUtc": "2026-10-18T23:59:59.999Z",
+    "cutoffUtc": "2026-10-18T23:59:59.999Z",
+    "title": "Top prizes this week",
+    "prizes": [
+     {
+      "rank": "1st",
+      "title": "$400 Steam Voucher",
+      "minRank": 1,
+      "maxRank": 1
+     },
+     {
+      "rank": "2nd",
+      "title": "$200 Steam Voucher",
+      "minRank": 2,
+      "maxRank": 2
+     },
+     {
+      "rank": "3rd",
+      "title": "$100 Steam Voucher",
+      "minRank": 3,
+      "maxRank": 3
+     },
+     {
+      "rank": "4th-10th",
+      "title": "$50 Steam Voucher",
+      "minRank": 4,
+      "maxRank": 10
+     }
+    ]
+   },
+   "stale_carry": null
+  },
+  "calibration": {
+   "status": "ok",
+   "k": 0.4598,
+   "k_source": "fitted on Valve's published match results",
+   "n_train": 13609,
+   "n_test": 901,
+   "holdout": {
+    "log_loss_fitted": 0.6395,
+    "log_loss_valve_raw": 0.6541,
+    "brier_fitted": 0.2234,
+    "brier_valve_raw": 0.2237
+   },
+   "valve_commit": "eec4853d7bcf0f1f7efe7f0d901234bef7e98b75",
+   "last_window": "2026-09-07..2026-10-05"
+  }
+ },
+ "summary": {
+  "generated_utc": "2026-10-15T10:41:56Z",
+  "session": "arena/22be6967",
+  "reference_utc": "2026-10-15T10:41:47Z",
+  "fixtures": 78,
+  "open": 14,
+  "locked_recent": 4,
+  "stale_listings": 60,
+  "open_with_pick": 14,
+  "open_rung": {
+   "A": 5,
+   "B": 0,
+   "C": 9,
+   "D": 0
+  },
+  "open_unresolved": 0,
+  "open_flagged": 12,
+  "leaderboard_classes": {
+   "VALUE": 3,
+   "CONTRARIAN": 2,
+   "SITUATIONAL": 1,
+   "LONG SHOT": 3,
+   "CHALK": 5,
+   "NO CROWD DATA": 0
+  },
+  "next_lock_utc": "2026-10-15T10:54:00Z",
+  "hotspawn_complete": true,
+  "sources": {
+   "pinnacle": "observed",
+   "polymarket": "observed",
+   "vrs": "observed",
+   "hltv": "observed"
+  },
+  "own_line_k": 0.4598,
+  "own_line_k_source": "fitted on Valve's published match results",
+  "graded_since_launch": {
+   "n": 0,
+   "picks_correct": 0,
+   "leaderboard_correct": 0
+  },
+  "day1_review": {
+   "matches": 4,
+   "picks_correct": 3,
+   "leaderboard_correct": 4
+  }
+ },
+ "rows": [
+  {
+   "match_id": "1080202",
+   "competition": "Thunderpick World Championship 2026",
+   "tier": "S",
+   "stage": "group stage and playoffs",
+   "start_utc": "2026-10-15T11:00:00Z",
+   "lock_utc": "2026-10-15T10:54:00Z",
+   "team_a": "9z",
+   "team_b": "Falcons",
+   "hotspawn_match_url": "https://www.hotspawn.com/?fixtures=waiting-for-information-1080202",
+   "pages": [
+    "lobby",
+    "cs2-pickems",
+    "thp-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 7,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "open",
+   "crowd_a": 6,
+   "crowd_b": 94,
+   "total_picks": 18,
+   "hltv_url": "https://www.hltv.org/matches/2399409/9z-vs-falcons-thunderpick-world-championship-2026",
+   "hltv_note": null,
+   "book": {
+    "source": "Pinnacle",
+    "odds_a": 3.92,
+    "odds_b": 1.263158,
+    "p_a": 0.2437,
+    "p_b": 0.7563,
+    "overround_pct": 4.68,
+    "read_utc": "2026-10-15T10:41:50Z",
+    "url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
+    "api_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
+    "league": "CS2 - TP World Championship",
+    "listed_start": "2026-10-15T11:30:00Z",
+    "gap_h": 0.5,
+    "names": "9z vs Falcons"
+   },
+   "format": "BO3",
+   "format_source": "HLTV match page",
+   "vrs_a": {
+    "name": "9z",
+    "rank": 17,
+    "points": 1543,
+    "roster": [
+     "dgt",
+     "HUASOPEEK",
+     "luchov",
+     "max",
+     "meyern"
+    ],
+    "matches_with_current_five": 38,
+    "first_rated_match_current_five": "2026-04-22"
+   },
+   "vrs_b": {
+    "name": "Falcons",
+    "rank": 6,
+    "points": 1843,
+    "roster": [
+     "karrigan",
+     "kyousuke",
+     "m0NESY",
+     "NiKo",
+     "TeSeS"
+    ],
+    "matches_with_current_five": 29,
+    "first_rated_match_current_five": "2026-05-09"
+   },
+   "own_p_a": 0.3113,
+   "own_p_b": 0.6887,
+   "hltv_rank_a": 17,
+   "hltv_rank_b": 5,
+   "hltv_team_a": "https://www.hltv.org/team/9996/9z",
+   "hltv_team_b": "https://www.hltv.org/team/11283/falcons",
+   "p_a": 0.2437,
+   "p_b": 0.7563,
+   "basis": "Pinnacle odds, margin removed",
+   "rung": "A",
+   "pick": "Falcons",
+   "pick_p": 0.7563,
+   "factors": [
+    {
+     "side": "a",
+     "team": "9z",
+     "kind": "form context",
+     "summary": "Before TWC, 9z had group-stage exits at four straight events (EWC, BLAST Porto, FPG 3, EPL 24) per HLTV, then beat Aurora 2-0 (Inferno 13-11, Nuke 13-1; luchov 1.61 rating). HLTV's match list confirms 9z vs Falcons at 11:00 UTC on 15 Oct (Pinnacle lists 11:30).",
+     "argues_against": false,
+     "strength": "weak",
+     "source_urls": [
+      "https://www.hltv.org/news/45718/9z-beat-aurora-2-0-to-kick-off-twc-2026",
+      "https://www.hltv.org/matches/2399409/9z-vs-falcons-thunderpick-world-championship-2026"
+     ],
+     "read_utc": "2026-10-15T10:15:00Z"
+    }
+   ],
+   "flags": [
+    "KICKOFF_GAP"
+   ],
+   "strategy": {
+    "class": "LONG SHOT",
+    "reason": "Big leverage but a low chance: keep the favourite unless you are far behind with few matches left.",
+    "leaderboard_pick": "Falcons",
+    "favourite": "Falcons",
+    "underdog": "9z",
+    "p_fav": 0.7225,
+    "p_dog": 0.2775,
+    "min_src_dog": 0.2437,
+    "estimates": [
+     "market",
+     "own line"
+    ],
+    "crowd_fav": 0.94,
+    "crowd_dog": 0.06,
+    "edge_vs_crowd_pp": 21.8,
+    "leverage": 4.63,
+    "ev_cost_pts": 0.0,
+    "ev_cost_if_faded": 3.11,
+    "field_gain_if_dog_wins_pct": 94,
+    "factors_against_favourite": [],
+    "factors_against_underdog": [],
+    "differs_from_pick": false
+   },
+   "sources": [
+    "https://play.hotspawn.com/lobby",
+    "https://www.hotspawn.com/?fixtures=waiting-for-information-1080202",
+    "https://www.hltv.org/matches/2399409/9z-vs-falcons-thunderpick-world-championship-2026",
+    "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+   ],
+   "result": null
+  },
+  {
+   "match_id": "1080281",
+   "competition": "Elisa BreakOut Series #2",
+   "tier": "C",
+   "stage": "waiting for information",
+   "start_utc": "2026-10-15T12:00:00Z",
+   "lock_utc": "2026-10-15T11:54:00Z",
+   "team_a": "WROTBERRY",
+   "team_b": "ENCE",
+   "hotspawn_match_url": "https://www.hotspawn.com/matches/wrotberry-vs-ence-elisa-breakout-series-2-1080281",
+   "pages": [
+    "lobby",
+    "cs2-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 2,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "open",
+   "crowd_a": 17,
+   "crowd_b": 83,
+   "total_picks": 69,
+   "hltv_url": "https://www.hltv.org/matches/2399420/wbt-vs-ence-elisa-breakout-series-2",
+   "hltv_note": null,
+   "book": {
+    "source": "Pinnacle",
+    "odds_a": 1.558659,
+    "odds_b": 2.39,
+    "p_a": 0.6053,
+    "p_b": 0.3947,
+    "overround_pct": 6.0,
+    "read_utc": "2026-10-15T10:41:50Z",
+    "url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
+    "api_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
+    "league": "CS2 - Elisa BreakOut",
+    "listed_start": "2026-10-15T12:00:00Z",
+    "gap_h": 0.0,
+    "names": "WBT vs ENCE"
+   },
+   "format": "BO1",
+   "format_source": "HLTV match page",
+   "vrs_a": {
+    "name": "WBT",
+    "rank": 60,
+    "points": 1201,
+    "roster": [
+     "DemQQ",
+     "Psycho",
+     "s4ltovsk1yy",
+     "Smash",
+     "tyr1k"
+    ],
+    "matches_with_current_five": 8,
+    "first_rated_match_current_five": "2026-09-11"
+   },
+   "vrs_b": {
+    "name": "ENCE",
+    "rank": 105,
+    "points": 1025,
+    "roster": [
+     "HENU",
+     "joeski",
+     "millert",
+     "Schwarz",
+     "teme"
+    ],
+    "matches_with_current_five": 30,
+    "first_rated_match_current_five": "2026-08-13"
+   },
+   "own_p_a": 0.6144,
+   "own_p_b": 0.3856,
+   "hltv_rank_a": 109,
+   "hltv_rank_b": 114,
+   "hltv_team_a": "https://www.hltv.org/team/13683/wbt",
+   "hltv_team_b": "https://www.hltv.org/team/4869/ence",
+   "p_a": 0.6053,
+   "p_b": 0.3947,
+   "basis": "Pinnacle odds, margin removed",
+   "rung": "A",
+   "pick": "WROTBERRY",
+   "pick_p": 0.6053,
+   "factors": [
+    {
+     "side": "a",
+     "team": "WROTBERRY",
+     "kind": "new five (Valve data)",
+     "summary": "Valve's standings show only 8 rated matches for this exact five, the first on 2026-09-11.",
+     "argues_against": true,
+     "strength": "moderate",
+     "source_urls": [
+      "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+     ],
+     "automated": true
+    }
+   ],
+   "flags": [
+    "ALIAS"
+   ],
+   "strategy": {
+    "class": "VALUE",
+    "reason": "Most players are on the underdog, so the likely winner is also the contrarian pick.",
+    "leaderboard_pick": "WROTBERRY",
+    "favourite": "WROTBERRY",
+    "underdog": "ENCE",
+    "p_fav": 0.6099,
+    "p_dog": 0.3902,
+    "min_src_dog": 0.3856,
+    "estimates": [
+     "market",
+     "own line"
+    ],
+    "crowd_fav": 0.17,
+    "crowd_dog": 0.83,
+    "edge_vs_crowd_pp": -44.0,
+    "leverage": 0.47,
+    "ev_cost_pts": 0.0,
+    "ev_cost_if_faded": 0.44,
+    "field_gain_if_dog_wins_pct": 17,
+    "factors_against_favourite": [
+     "new five (Valve data)"
+    ],
+    "factors_against_underdog": [],
+    "differs_from_pick": false
+   },
+   "sources": [
+    "https://play.hotspawn.com/lobby",
+    "https://www.hotspawn.com/matches/wrotberry-vs-ence-elisa-breakout-series-2-1080281",
+    "https://www.hltv.org/matches/2399420/wbt-vs-ence-elisa-breakout-series-2",
+    "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+   ],
+   "result": null
+  },
+  {
+   "match_id": "1080203",
+   "competition": "Thunderpick World Championship 2026",
+   "tier": "S",
+   "stage": "group stage and playoffs",
+   "start_utc": "2026-10-15T13:30:00Z",
+   "lock_utc": "2026-10-15T13:24:00Z",
+   "team_a": "PARIVISION",
+   "team_b": "BetBoom",
+   "hotspawn_match_url": "https://www.hotspawn.com/?fixtures=waiting-for-information-1080203",
+   "pages": [
+    "lobby",
+    "cs2-pickems",
+    "thp-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 7,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "open",
+   "crowd_a": 69,
+   "crowd_b": 31,
+   "total_picks": 16,
+   "hltv_url": "https://www.hltv.org/matches/2399410/parivision-vs-betboom-thunderpick-world-championship-2026",
+   "hltv_note": null,
+   "book": {
+    "source": "Pinnacle",
+    "odds_a": 1.787402,
+    "odds_b": 2.05,
+    "p_a": 0.5342,
+    "p_b": 0.4658,
+    "overround_pct": 4.73,
+    "read_utc": "2026-10-15T10:41:50Z",
+    "url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
+    "api_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
+    "league": "CS2 - TP World Championship",
+    "listed_start": "2026-10-15T13:30:00Z",
+    "gap_h": 0.0,
+    "names": "PVISION vs BB Team"
+   },
+   "format": "BO3",
+   "format_source": "HLTV match page",
+   "vrs_a": {
+    "name": "PARIVISION",
+    "rank": 36,
+    "points": 1411,
+    "roster": [
+     "FL1T",
+     "Jame",
+     "slaxejezzz",
+     "xiELO",
+     "zweih"
+    ],
+    "matches_with_current_five": 6,
+    "first_rated_match_current_five": "2026-08-12"
+   },
+   "vrs_b": {
+    "name": "BETBOOM",
+    "rank": 11,
+    "points": 1596,
+    "roster": [
+     "Boombl4",
+     "d1Ledez",
+     "Magnojez",
+     "S1ren",
+     "zorte"
+    ],
+    "matches_with_current_five": 11,
+    "first_rated_match_current_five": "2026-04-24"
+   },
+   "own_p_a": 0.38,
+   "own_p_b": 0.62,
+   "hltv_rank_a": 11,
+   "hltv_rank_b": 14,
+   "hltv_team_a": "https://www.hltv.org/team/12467/parivision",
+   "hltv_team_b": "https://www.hltv.org/team/12394/betboom",
+   "p_a": 0.5342,
+   "p_b": 0.4658,
+   "basis": "Pinnacle odds, margin removed",
+   "rung": "A",
+   "pick": "PARIVISION",
+   "pick_p": 0.5342,
+   "factors": [
+    {
+     "side": "a",
+     "team": "PARIVISION",
+     "kind": "roster change (player swap 28 days before TWC)",
+     "summary": "HObbit signed on 17 Sep 2026 and replaced slaxejezzz (benched). HLTV's team page showed HObbit at 27 days / 17 maps / 0.91 rating. Valve's 2026-10-05 standings still list the old five (with slaxejezzz), so Valve points describe a roster that no longer plays. Lost 0-2 to Legacy on day 1 (Dust2 11-13, Mirage 14-16).",
+     "argues_against": true,
+     "strength": "strong",
+     "source_urls": [
+      "https://www.hltv.org/news/45534/parivision-replace-slaxejezzz-with-hobbit",
+      "https://www.hltv.org/team/12467/parivision"
+     ],
+     "read_utc": "2026-10-15T10:20:00Z"
+    },
+    {
+     "side": "a",
+     "team": "PARIVISION",
+     "kind": "new five (Valve data)",
+     "summary": "Valve's standings show only 6 rated matches for this exact five, the first on 2026-08-12.",
+     "argues_against": true,
+     "strength": "moderate",
+     "source_urls": [
+      "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+     ],
+     "automated": true
+    }
+   ],
+   "flags": [
+    "ALIAS",
+    "MODEL_MARKET_SPLIT",
+    "VRS_ROSTER_OUTDATED"
+   ],
+   "strategy": {
+    "class": "CONTRARIAN",
+    "reason": "Close match that the crowd treats as lopsided: every estimate gives the underdog a real chance, far above its crowd share.",
+    "leaderboard_pick": "BetBoom",
+    "favourite": "PARIVISION",
+    "underdog": "BetBoom",
+    "p_fav": 0.5342,
+    "p_dog": 0.4658,
+    "min_src_dog": 0.4658,
+    "estimates": [
+     "market"
+    ],
+    "crowd_fav": 0.69,
+    "crowd_dog": 0.31,
+    "edge_vs_crowd_pp": 15.6,
+    "leverage": 1.5,
+    "ev_cost_pts": 0.48,
+    "ev_cost_if_faded": 0.48,
+    "field_gain_if_dog_wins_pct": 69,
+    "factors_against_favourite": [
+     "roster change (player swap 28 days before TWC)",
+     "new five (Valve data)"
+    ],
+    "factors_against_underdog": [],
+    "differs_from_pick": true
+   },
+   "sources": [
+    "https://play.hotspawn.com/lobby",
+    "https://www.hotspawn.com/?fixtures=waiting-for-information-1080203",
+    "https://www.hltv.org/matches/2399410/parivision-vs-betboom-thunderpick-world-championship-2026",
+    "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+   ],
+   "result": null
+  },
+  {
+   "match_id": "1080282",
+   "competition": "Elisa BreakOut Series #2",
+   "tier": "C",
+   "stage": "waiting for information",
+   "start_utc": "2026-10-15T14:00:00Z",
+   "lock_utc": "2026-10-15T13:54:00Z",
+   "team_a": "EAC",
+   "team_b": "BOJONG",
+   "hotspawn_match_url": "https://www.hotspawn.com/matches/eac-vs-bojong-elisa-breakout-series-2-1080282",
+   "pages": [
+    "lobby",
+    "cs2-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 2,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "open",
+   "crowd_a": 95,
+   "crowd_b": 5,
+   "total_picks": 59,
+   "hltv_url": "https://www.hltv.org/matches/2399421/eac-vs-bojong-elisa-breakout-series-2",
+   "hltv_note": null,
+   "format": "BO1",
+   "format_source": "HLTV match page",
+   "vrs_a": {
+    "name": "EAC",
+    "rank": 103,
+    "points": 1035,
+    "roster": [
+     "anber",
+     "bekker",
+     "Fessor",
+     "n1Xen",
+     "sSen"
+    ],
+    "matches_with_current_five": 37,
+    "first_rated_match_current_five": "2026-07-21"
+   },
+   "vrs_b": {
+    "name": "BOJONG",
+    "rank": 363,
+    "points": 463,
+    "roster": [
+     "ArtwOo",
+     "BlNGB0NG",
+     "jkzin",
+     "stunt",
+     "Villeboe"
+    ],
+    "matches_with_current_five": 10,
+    "first_rated_match_current_five": "2026-04-10"
+   },
+   "own_p_a": 0.8197,
+   "own_p_b": 0.1803,
+   "hltv_rank_a": 110,
+   "hltv_rank_b": 220,
+   "hltv_team_a": "https://www.hltv.org/team/13838/eac",
+   "hltv_team_b": "https://www.hltv.org/team/13795/bojong",
+   "p_a": 0.8197,
+   "p_b": 0.1803,
+   "basis": "Our own line (Valve points)",
+   "rung": "C",
+   "pick": "EAC",
+   "pick_p": 0.8197,
+   "factors": [],
+   "flags": [
+    "NO_MARKET"
+   ],
+   "strategy": {
+    "class": "CHALK",
+    "reason": "The favourite is both likely and popular; fading it costs points without enough upside.",
+    "leaderboard_pick": "EAC",
+    "favourite": "EAC",
+    "underdog": "BOJONG",
+    "p_fav": 0.8197,
+    "p_dog": 0.1803,
+    "min_src_dog": 0.1803,
+    "estimates": [
+     "own line"
+    ],
+    "crowd_fav": 0.95,
+    "crowd_dog": 0.05,
+    "edge_vs_crowd_pp": 13.0,
+    "leverage": 3.61,
+    "ev_cost_pts": 0.0,
+    "ev_cost_if_faded": 1.28,
+    "field_gain_if_dog_wins_pct": 95,
+    "factors_against_favourite": [],
+    "factors_against_underdog": [],
+    "differs_from_pick": false
+   },
+   "sources": [
+    "https://play.hotspawn.com/lobby",
+    "https://www.hotspawn.com/matches/eac-vs-bojong-elisa-breakout-series-2-1080282",
+    "https://www.hltv.org/matches/2399421/eac-vs-bojong-elisa-breakout-series-2",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+   ],
+   "result": null
+  },
+  {
+   "match_id": "1080204",
+   "competition": "Thunderpick World Championship 2026",
+   "tier": "S",
+   "stage": "group stage and playoffs",
+   "start_utc": "2026-10-15T16:00:00Z",
+   "lock_utc": "2026-10-15T15:54:00Z",
+   "team_a": "Legacy",
+   "team_b": "FURIA",
+   "hotspawn_match_url": "https://www.hotspawn.com/?fixtures=waiting-for-information-1080204",
+   "pages": [
+    "lobby",
+    "cs2-pickems",
+    "thp-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 7,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "open",
+   "crowd_a": 27,
+   "crowd_b": 73,
+   "total_picks": 15,
+   "hltv_url": "https://www.hltv.org/matches/2399411/legacy-vs-furia-thunderpick-world-championship-2026",
+   "hltv_note": null,
+   "book": {
+    "source": "Pinnacle",
+    "odds_a": 2.25,
+    "odds_b": 1.657895,
+    "p_a": 0.4242,
+    "p_b": 0.5758,
+    "overround_pct": 4.76,
+    "read_utc": "2026-10-15T10:41:50Z",
+    "url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
+    "api_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
+    "league": "CS2 - TP World Championship",
+    "listed_start": "2026-10-15T16:00:00Z",
+    "gap_h": 0.0,
+    "names": "Legacy vs FURIA"
+   },
+   "format": "BO3",
+   "format_source": "HLTV match page",
+   "vrs_a": {
+    "name": "Legacy",
+    "rank": 2,
+    "points": 1931,
+    "roster": [
+     "arT",
+     "dumau",
+     "latto",
+     "n1ssim",
+     "try"
+    ],
+    "matches_with_current_five": 15,
+    "first_rated_match_current_five": "2026-08-12"
+   },
+   "vrs_b": {
+    "name": "FURIA",
+    "rank": 7,
+    "points": 1829,
+    "roster": [
+     "FalleN",
+     "KSCERATO",
+     "molodoy",
+     "YEKINDAR",
+     "yuurih"
+    ],
+    "matches_with_current_five": 38,
+    "first_rated_match_current_five": "2026-04-13"
+   },
+   "own_p_a": 0.5671,
+   "own_p_b": 0.4329,
+   "hltv_rank_a": 7,
+   "hltv_rank_b": 4,
+   "hltv_team_a": "https://www.hltv.org/team/12468/legacy",
+   "hltv_team_b": "https://www.hltv.org/team/8297/furia",
+   "p_a": 0.4242,
+   "p_b": 0.5758,
+   "basis": "Pinnacle odds, margin removed",
+   "rung": "A",
+   "pick": "FURIA",
+   "pick_p": 0.5758,
+   "factors": [
+    {
+     "side": "a",
+     "team": "Legacy",
+     "kind": "player return after health absence",
+     "summary": "arT is back in Legacy's lineup after missing ESL Pro League for health reasons (HLTV). Legacy won 2-0 on day 1 but needed round 24 on Dust2 and overtime on Mirage.",
+     "argues_against": false,
+     "strength": "weak",
+     "source_urls": [
+      "https://www.hltv.org/news/45688/thunderpick-world-championship-matchups-announced-with-virtuspro-replaced-by-nip",
+      "https://www.hltv.org/news/45723/furia-fend-off-betboom-to-end-day-one-of-twc"
+     ],
+     "read_utc": "2026-10-15T10:22:00Z"
+    },
+    {
+     "side": "b",
+     "team": "FURIA",
+     "kind": "schedule load (HLTV: 'grueling schedule')",
+     "summary": "HLTV's TWC preview says FURIA's 'grueling schedule will also continue' at TWC. Weak, qualitative factor; FURIA beat BETBOOM 2-0 on day 1 (Ancient 13-10, Mirage 13-9; KSCERATO 1.72).",
+     "argues_against": true,
+     "strength": "weak",
+     "source_urls": [
+      "https://www.hltv.org/news/45688/thunderpick-world-championship-matchups-announced-with-virtuspro-replaced-by-nip",
+      "https://www.hltv.org/news/45723/furia-fend-off-betboom-to-end-day-one-of-twc"
+     ],
+     "read_utc": "2026-10-15T10:22:00Z"
+    }
+   ],
+   "flags": [
+    "MODEL_MARKET_SPLIT"
+   ],
+   "strategy": {
+    "class": "CONTRARIAN",
+    "reason": "Close match that the crowd treats as lopsided: every estimate gives the underdog a real chance, far above its crowd share.",
+    "leaderboard_pick": "Legacy",
+    "favourite": "FURIA",
+    "underdog": "Legacy",
+    "p_fav": 0.5043,
+    "p_dog": 0.4957,
+    "min_src_dog": 0.4242,
+    "estimates": [
+     "market",
+     "own line"
+    ],
+    "crowd_fav": 0.73,
+    "crowd_dog": 0.27,
+    "edge_vs_crowd_pp": 22.6,
+    "leverage": 1.84,
+    "ev_cost_pts": 0.06,
+    "ev_cost_if_faded": 0.06,
+    "field_gain_if_dog_wins_pct": 73,
+    "factors_against_favourite": [],
+    "factors_against_underdog": [],
+    "differs_from_pick": true
+   },
+   "sources": [
+    "https://play.hotspawn.com/lobby",
+    "https://www.hotspawn.com/?fixtures=waiting-for-information-1080204",
+    "https://www.hltv.org/matches/2399411/legacy-vs-furia-thunderpick-world-championship-2026",
+    "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+   ],
+   "result": null
+  },
+  {
+   "match_id": "1080283",
+   "competition": "Elisa BreakOut Series #2",
+   "tier": "C",
+   "stage": "waiting for information",
+   "start_utc": "2026-10-15T16:00:00Z",
+   "lock_utc": "2026-10-15T15:54:00Z",
+   "team_a": "WROTBERRY",
+   "team_b": "BOJONG",
+   "hotspawn_match_url": "https://www.hotspawn.com/matches/wrotberry-vs-bojong-elisa-breakout-series-2-1080283",
+   "pages": [
+    "lobby",
+    "cs2-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 2,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "open",
+   "crowd_a": 91,
+   "crowd_b": 9,
+   "total_picks": 58,
+   "hltv_url": "https://www.hltv.org/matches/2399422/wbt-vs-bojong-elisa-breakout-series-2",
+   "hltv_note": null,
+   "format": "BO1",
+   "format_source": "HLTV match page",
+   "vrs_a": {
+    "name": "WBT",
+    "rank": 60,
+    "points": 1201,
+    "roster": [
+     "DemQQ",
+     "Psycho",
+     "s4ltovsk1yy",
+     "Smash",
+     "tyr1k"
+    ],
+    "matches_with_current_five": 8,
+    "first_rated_match_current_five": "2026-09-11"
+   },
+   "vrs_b": {
+    "name": "BOJONG",
+    "rank": 363,
+    "points": 463,
+    "roster": [
+     "ArtwOo",
+     "BlNGB0NG",
+     "jkzin",
+     "stunt",
+     "Villeboe"
+    ],
+    "matches_with_current_five": 10,
+    "first_rated_match_current_five": "2026-04-10"
+   },
+   "own_p_a": 0.8758,
+   "own_p_b": 0.1242,
+   "hltv_rank_a": 109,
+   "hltv_rank_b": 220,
+   "hltv_team_a": "https://www.hltv.org/team/13683/wbt",
+   "hltv_team_b": "https://www.hltv.org/team/13795/bojong",
+   "p_a": 0.8758,
+   "p_b": 0.1242,
+   "basis": "Our own line (Valve points)",
+   "rung": "C",
+   "pick": "WROTBERRY",
+   "pick_p": 0.8758,
+   "factors": [
+    {
+     "side": "a",
+     "team": "WROTBERRY",
+     "kind": "new five (Valve data)",
+     "summary": "Valve's standings show only 8 rated matches for this exact five, the first on 2026-09-11.",
+     "argues_against": true,
+     "strength": "moderate",
+     "source_urls": [
+      "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+     ],
+     "automated": true
+    }
+   ],
+   "flags": [
+    "NO_MARKET"
+   ],
+   "strategy": {
+    "class": "CHALK",
+    "reason": "The favourite is both likely and popular; fading it costs points without enough upside.",
+    "leaderboard_pick": "WROTBERRY",
+    "favourite": "WROTBERRY",
+    "underdog": "BOJONG",
+    "p_fav": 0.8758,
+    "p_dog": 0.1242,
+    "min_src_dog": 0.1242,
+    "estimates": [
+     "own line"
+    ],
+    "crowd_fav": 0.91,
+    "crowd_dog": 0.09,
+    "edge_vs_crowd_pp": 3.4,
+    "leverage": 1.38,
+    "ev_cost_pts": 0.0,
+    "ev_cost_if_faded": 1.5,
+    "field_gain_if_dog_wins_pct": 91,
+    "factors_against_favourite": [
+     "new five (Valve data)"
+    ],
+    "factors_against_underdog": [],
+    "differs_from_pick": false
+   },
+   "sources": [
+    "https://play.hotspawn.com/lobby",
+    "https://www.hotspawn.com/matches/wrotberry-vs-bojong-elisa-breakout-series-2-1080283",
+    "https://www.hltv.org/matches/2399422/wbt-vs-bojong-elisa-breakout-series-2",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+   ],
+   "result": null
+  },
+  {
+   "match_id": "1080284",
+   "competition": "Elisa BreakOut Series #2",
+   "tier": "C",
+   "stage": "waiting for information",
+   "start_utc": "2026-10-15T18:00:00Z",
+   "lock_utc": "2026-10-15T17:54:00Z",
+   "team_a": "EAC",
+   "team_b": "ENCE",
+   "hotspawn_match_url": "https://www.hotspawn.com/matches/eac-vs-ence-elisa-breakout-series-2-1080284",
+   "pages": [
+    "lobby",
+    "cs2-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 2,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "open",
+   "crowd_a": 15,
+   "crowd_b": 85,
+   "total_picks": 59,
+   "hltv_url": "https://www.hltv.org/matches/2399423/eac-vs-ence-elisa-breakout-series-2",
+   "hltv_note": null,
+   "book": {
+    "source": "Pinnacle",
+    "odds_a": 1.613497,
+    "odds_b": 2.28,
+    "p_a": 0.5856,
+    "p_b": 0.4144,
+    "overround_pct": 5.84,
+    "read_utc": "2026-10-15T10:41:50Z",
+    "url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
+    "api_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
+    "league": "CS2 - Elisa BreakOut",
+    "listed_start": "2026-10-15T18:00:00Z",
+    "gap_h": 0.0,
+    "names": "EAC vs ENCE"
+   },
+   "format": "BO1",
+   "format_source": "HLTV match page",
+   "vrs_a": {
+    "name": "EAC",
+    "rank": 103,
+    "points": 1035,
+    "roster": [
+     "anber",
+     "bekker",
+     "Fessor",
+     "n1Xen",
+     "sSen"
+    ],
+    "matches_with_current_five": 37,
+    "first_rated_match_current_five": "2026-07-21"
+   },
+   "vrs_b": {
+    "name": "ENCE",
+    "rank": 105,
+    "points": 1025,
+    "roster": [
+     "HENU",
+     "joeski",
+     "millert",
+     "Schwarz",
+     "teme"
+    ],
+    "matches_with_current_five": 30,
+    "first_rated_match_current_five": "2026-08-13"
+   },
+   "own_p_a": 0.5066,
+   "own_p_b": 0.4934,
+   "hltv_rank_a": 110,
+   "hltv_rank_b": 114,
+   "hltv_team_a": "https://www.hltv.org/team/13838/eac",
+   "hltv_team_b": "https://www.hltv.org/team/4869/ence",
+   "p_a": 0.5856,
+   "p_b": 0.4144,
+   "basis": "Pinnacle odds, margin removed",
+   "rung": "A",
+   "pick": "EAC",
+   "pick_p": 0.5856,
+   "factors": [],
+   "flags": [],
+   "strategy": {
+    "class": "VALUE",
+    "reason": "Most players are on the underdog, so the likely winner is also the contrarian pick.",
+    "leaderboard_pick": "EAC",
+    "favourite": "EAC",
+    "underdog": "ENCE",
+    "p_fav": 0.5461,
+    "p_dog": 0.4539,
+    "min_src_dog": 0.4144,
+    "estimates": [
+     "market",
+     "own line"
+    ],
+    "crowd_fav": 0.15,
+    "crowd_dog": 0.85,
+    "edge_vs_crowd_pp": -39.6,
+    "leverage": 0.53,
+    "ev_cost_pts": 0.0,
+    "ev_cost_if_faded": 0.18,
+    "field_gain_if_dog_wins_pct": 15,
+    "factors_against_favourite": [],
+    "factors_against_underdog": [],
+    "differs_from_pick": false
+   },
+   "sources": [
+    "https://play.hotspawn.com/lobby",
+    "https://www.hotspawn.com/matches/eac-vs-ence-elisa-breakout-series-2-1080284",
+    "https://www.hltv.org/matches/2399423/eac-vs-ence-elisa-breakout-series-2",
+    "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+   ],
+   "result": null
+  },
+  {
+   "match_id": "1080285",
+   "competition": "Elisa BreakOut Series #2",
+   "tier": "C",
+   "stage": "waiting for information",
+   "start_utc": "2026-10-16T08:00:00Z",
+   "lock_utc": "2026-10-16T07:54:00Z",
+   "team_a": "Voca",
+   "team_b": "Phantom",
+   "hotspawn_match_url": "https://www.hotspawn.com/matches/voca-vs-phantom-elisa-breakout-series-2-1080285",
+   "pages": [
+    "lobby",
+    "cs2-pickems",
+    "thp-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 2,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "open",
+   "crowd_a": 17,
+   "crowd_b": 83,
+   "total_picks": 54,
+   "hltv_url": "https://www.hltv.org/matches/2399424/voca-vs-phantom-elisa-breakout-series-2",
+   "hltv_note": null,
+   "format": "BO1",
+   "format_source": "HLTV match page",
+   "vrs_a": {
+    "name": "Voca",
+    "rank": 68,
+    "points": 1182,
+    "roster": [
+     "dare",
+     "junior",
+     "MarKE",
+     "nosraC",
+     "snav"
+    ],
+    "matches_with_current_five": 23,
+    "first_rated_match_current_five": "2026-07-28"
+   },
+   "vrs_b": {
+    "name": "Phantom",
+    "rank": 72,
+    "points": 1147,
+    "roster": [
+     "KEi",
+     "Kunai",
+     "Kylar",
+     "nicoodoz",
+     "TMB"
+    ],
+    "matches_with_current_five": 8,
+    "first_rated_match_current_five": "2026-07-15"
+   },
+   "own_p_a": 0.5231,
+   "own_p_b": 0.4769,
+   "hltv_rank_a": 59,
+   "hltv_rank_b": 88,
+   "hltv_team_a": "https://www.hltv.org/team/13499/voca",
+   "hltv_team_b": "https://www.hltv.org/team/13173/phantom",
+   "p_a": 0.5231,
+   "p_b": 0.4769,
+   "basis": "Our own line (Valve points)",
+   "rung": "C",
+   "pick": "Voca",
+   "pick_p": 0.5231,
+   "factors": [
+    {
+     "side": "b",
+     "team": "Phantom",
+     "kind": "stand-in",
+     "summary": "HLTV's match analytics for Elisa BreakOut Series 2 says Phantom plays with stand-in cej0t instead of Kunai. HLTV ranks Voca #59 and Phantom #88, and says Voca won 3 of its last 5 matches; the same page says Phantom is the bookmakers' favourite against Voca (no price shown in the static page).",
+     "argues_against": true,
+     "strength": "strong",
+     "source_urls": [
+      "https://www.hltv.org/betting/analytics/2399424/voca-vs-phantom-elisa-breakout-series-2"
+     ],
+     "read_utc": "2026-10-15T10:24:00Z"
+    }
+   ],
+   "flags": [
+    "NO_MARKET",
+    "VRS_ROSTER_OUTDATED"
+   ],
+   "strategy": {
+    "class": "VALUE",
+    "reason": "Most players are on the underdog, so the likely winner is also the contrarian pick.",
+    "leaderboard_pick": "Voca",
+    "favourite": "Voca",
+    "underdog": "Phantom",
+    "p_fav": 0.5231,
+    "p_dog": 0.4769,
+    "min_src_dog": 0.4769,
+    "estimates": [
+     "own line"
+    ],
+    "crowd_fav": 0.17,
+    "crowd_dog": 0.83,
+    "edge_vs_crowd_pp": -35.3,
+    "leverage": 0.57,
+    "ev_cost_pts": 0.0,
+    "ev_cost_if_faded": 0.09,
+    "field_gain_if_dog_wins_pct": 17,
+    "factors_against_favourite": [],
+    "factors_against_underdog": [
+     "stand-in"
+    ],
+    "differs_from_pick": false
+   },
+   "sources": [
+    "https://play.hotspawn.com/lobby",
+    "https://www.hotspawn.com/matches/voca-vs-phantom-elisa-breakout-series-2-1080285",
+    "https://www.hltv.org/matches/2399424/voca-vs-phantom-elisa-breakout-series-2",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+   ],
+   "result": null
+  },
+  {
+   "match_id": "1080286",
+   "competition": "Elisa BreakOut Series #2",
+   "tier": "C",
+   "stage": "waiting for information",
+   "start_utc": "2026-10-16T10:00:00Z",
+   "lock_utc": "2026-10-16T09:54:00Z",
+   "team_a": "HAVU",
+   "team_b": "RoundsGG",
+   "hotspawn_match_url": "https://www.hotspawn.com/matches/havu-vs-roundsgg-elisa-breakout-series-2-1080286",
+   "pages": [
+    "lobby",
+    "cs2-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 2,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "open",
+   "crowd_a": 93,
+   "crowd_b": 7,
+   "total_picks": 55,
+   "hltv_url": "https://www.hltv.org/matches/2399425/havu-vs-rounds-elisa-breakout-series-2",
+   "hltv_note": null,
+   "format": "BO1",
+   "format_source": "HLTV match page",
+   "vrs_a": {
+    "name": "HAVU",
+    "rank": 124,
+    "points": 937,
+    "roster": [
+     "8Juho8",
+     "Alxc",
+     "ottob",
+     "p3kko",
+     "uli"
+    ],
+    "matches_with_current_five": 22,
+    "first_rated_match_current_five": "2026-07-31"
+   },
+   "vrs_b": {
+    "name": "ROUNDS",
+    "rank": 310,
+    "points": 548,
+    "roster": [
+     "Kollo",
+     "Lapa",
+     "Monoxx",
+     "Tumppis",
+     "ykis"
+    ],
+    "matches_with_current_five": 5,
+    "first_rated_match_current_five": "2026-08-12"
+   },
+   "own_p_a": 0.7368,
+   "own_p_b": 0.2632,
+   "hltv_rank_a": 118,
+   "hltv_rank_b": 237,
+   "hltv_team_a": "https://www.hltv.org/team/7865/havu",
+   "hltv_team_b": "https://www.hltv.org/team/12457/rounds",
+   "p_a": 0.7368,
+   "p_b": 0.2632,
+   "basis": "Our own line (Valve points)",
+   "rung": "C",
+   "pick": "HAVU",
+   "pick_p": 0.7368,
+   "factors": [
+    {
+     "side": "b",
+     "team": "RoundsGG",
+     "kind": "new five (Valve data)",
+     "summary": "Valve's standings show only 5 rated matches for this exact five, the first on 2026-08-12.",
+     "argues_against": true,
+     "strength": "moderate",
+     "source_urls": [
+      "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+     ],
+     "automated": true
+    }
+   ],
+   "flags": [
+    "NO_MARKET"
+   ],
+   "strategy": {
+    "class": "LONG SHOT",
+    "reason": "Big leverage but a low chance: keep the favourite unless you are far behind with few matches left.",
+    "leaderboard_pick": "HAVU",
+    "favourite": "HAVU",
+    "underdog": "RoundsGG",
+    "p_fav": 0.7368,
+    "p_dog": 0.2632,
+    "min_src_dog": 0.2632,
+    "estimates": [
+     "own line"
+    ],
+    "crowd_fav": 0.93,
+    "crowd_dog": 0.07,
+    "edge_vs_crowd_pp": 19.3,
+    "leverage": 3.76,
+    "ev_cost_pts": 0.0,
+    "ev_cost_if_faded": 0.95,
+    "field_gain_if_dog_wins_pct": 93,
+    "factors_against_favourite": [],
+    "factors_against_underdog": [],
+    "differs_from_pick": false
+   },
+   "sources": [
+    "https://play.hotspawn.com/lobby",
+    "https://www.hotspawn.com/matches/havu-vs-roundsgg-elisa-breakout-series-2-1080286",
+    "https://www.hltv.org/matches/2399425/havu-vs-rounds-elisa-breakout-series-2",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+   ],
+   "result": null
+  },
+  {
+   "match_id": "1080287",
+   "competition": "Elisa BreakOut Series #2",
+   "tier": "C",
+   "stage": "waiting for information",
+   "start_utc": "2026-10-16T12:00:00Z",
+   "lock_utc": "2026-10-16T11:54:00Z",
+   "team_a": "Voca",
+   "team_b": "HAVU",
+   "hotspawn_match_url": "https://www.hotspawn.com/matches/voca-vs-havu-elisa-breakout-series-2-1080287",
+   "pages": [
+    "lobby",
+    "cs2-pickems",
+    "thp-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 2,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "open",
+   "crowd_a": 84,
+   "crowd_b": 16,
+   "total_picks": 51,
+   "hltv_url": "https://www.hltv.org/matches/2399426/voca-vs-havu-elisa-breakout-series-2",
+   "hltv_note": null,
+   "format": "BO1",
+   "format_source": "HLTV match page",
+   "vrs_a": {
+    "name": "Voca",
+    "rank": 68,
+    "points": 1182,
+    "roster": [
+     "dare",
+     "junior",
+     "MarKE",
+     "nosraC",
+     "snav"
+    ],
+    "matches_with_current_five": 23,
+    "first_rated_match_current_five": "2026-07-28"
+   },
+   "vrs_b": {
+    "name": "HAVU",
+    "rank": 124,
+    "points": 937,
+    "roster": [
+     "8Juho8",
+     "Alxc",
+     "ottob",
+     "p3kko",
+     "uli"
+    ],
+    "matches_with_current_five": 22,
+    "first_rated_match_current_five": "2026-07-31"
+   },
+   "own_p_a": 0.6567,
+   "own_p_b": 0.3433,
+   "hltv_rank_a": 59,
+   "hltv_rank_b": 118,
+   "hltv_team_a": "https://www.hltv.org/team/13499/voca",
+   "hltv_team_b": "https://www.hltv.org/team/7865/havu",
+   "p_a": 0.6567,
+   "p_b": 0.3433,
+   "basis": "Our own line (Valve points)",
+   "rung": "C",
+   "pick": "Voca",
+   "pick_p": 0.6567,
+   "factors": [],
+   "flags": [
+    "NO_MARKET"
+   ],
+   "strategy": {
+    "class": "CHALK",
+    "reason": "The favourite is both likely and popular; fading it costs points without enough upside.",
+    "leaderboard_pick": "Voca",
+    "favourite": "Voca",
+    "underdog": "HAVU",
+    "p_fav": 0.6567,
+    "p_dog": 0.3433,
+    "min_src_dog": 0.3433,
+    "estimates": [
+     "own line"
+    ],
+    "crowd_fav": 0.84,
+    "crowd_dog": 0.16,
+    "edge_vs_crowd_pp": 18.3,
+    "leverage": 2.15,
+    "ev_cost_pts": 0.0,
+    "ev_cost_if_faded": 0.63,
+    "field_gain_if_dog_wins_pct": 84,
+    "factors_against_favourite": [],
+    "factors_against_underdog": [],
+    "differs_from_pick": false
+   },
+   "sources": [
+    "https://play.hotspawn.com/lobby",
+    "https://www.hotspawn.com/matches/voca-vs-havu-elisa-breakout-series-2-1080287",
+    "https://www.hltv.org/matches/2399426/voca-vs-havu-elisa-breakout-series-2",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+   ],
+   "result": null
+  },
+  {
+   "match_id": "1080288",
+   "competition": "Elisa BreakOut Series #2",
+   "tier": "C",
+   "stage": "waiting for information",
+   "start_utc": "2026-10-16T14:00:00Z",
+   "lock_utc": "2026-10-16T13:54:00Z",
+   "team_a": "Phantom",
+   "team_b": "RoundsGG",
+   "hotspawn_match_url": "https://www.hotspawn.com/matches/phantom-vs-roundsgg-elisa-breakout-series-2-1080288",
+   "pages": [
+    "lobby",
+    "cs2-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 2,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "open",
+   "crowd_a": 96,
+   "crowd_b": 4,
+   "total_picks": 51,
+   "hltv_url": "https://www.hltv.org/matches/2399427/phantom-vs-rounds-elisa-breakout-series-2",
+   "hltv_note": null,
+   "format": "BO1",
+   "format_source": "HLTV match page",
+   "vrs_a": {
+    "name": "Phantom",
+    "rank": 72,
+    "points": 1147,
+    "roster": [
+     "KEi",
+     "Kunai",
+     "Kylar",
+     "nicoodoz",
+     "TMB"
+    ],
+    "matches_with_current_five": 8,
+    "first_rated_match_current_five": "2026-07-15"
+   },
+   "vrs_b": {
+    "name": "ROUNDS",
+    "rank": 310,
+    "points": 548,
+    "roster": [
+     "Kollo",
+     "Lapa",
+     "Monoxx",
+     "Tumppis",
+     "ykis"
+    ],
+    "matches_with_current_five": 5,
+    "first_rated_match_current_five": "2026-08-12"
+   },
+   "own_p_a": 0.83,
+   "own_p_b": 0.17,
+   "hltv_rank_a": 88,
+   "hltv_rank_b": 237,
+   "hltv_team_a": "https://www.hltv.org/team/13173/phantom",
+   "hltv_team_b": "https://www.hltv.org/team/12457/rounds",
+   "p_a": 0.83,
+   "p_b": 0.17,
+   "basis": "Our own line (Valve points)",
+   "rung": "C",
+   "pick": "Phantom",
+   "pick_p": 0.83,
+   "factors": [
+    {
+     "side": "a",
+     "team": "Phantom",
+     "kind": "stand-in",
+     "summary": "HLTV's match analytics for Elisa BreakOut Series 2 says Phantom plays with stand-in cej0t instead of Kunai. HLTV ranks Voca #59 and Phantom #88, and says Voca won 3 of its last 5 matches; the same page says Phantom is the bookmakers' favourite against Voca (no price shown in the static page).",
+     "argues_against": true,
+     "strength": "strong",
+     "source_urls": [
+      "https://www.hltv.org/betting/analytics/2399424/voca-vs-phantom-elisa-breakout-series-2"
+     ],
+     "read_utc": "2026-10-15T10:24:00Z"
+    },
+    {
+     "side": "b",
+     "team": "RoundsGG",
+     "kind": "new five (Valve data)",
+     "summary": "Valve's standings show only 5 rated matches for this exact five, the first on 2026-08-12.",
+     "argues_against": true,
+     "strength": "moderate",
+     "source_urls": [
+      "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+     ],
+     "automated": true
+    }
+   ],
+   "flags": [
+    "NO_MARKET",
+    "VRS_ROSTER_OUTDATED"
+   ],
+   "strategy": {
+    "class": "CHALK",
+    "reason": "The favourite is both likely and popular; fading it costs points without enough upside.",
+    "leaderboard_pick": "Phantom",
+    "favourite": "Phantom",
+    "underdog": "RoundsGG",
+    "p_fav": 0.83,
+    "p_dog": 0.17,
+    "min_src_dog": 0.17,
+    "estimates": [
+     "own line"
+    ],
+    "crowd_fav": 0.96,
+    "crowd_dog": 0.04,
+    "edge_vs_crowd_pp": 13.0,
+    "leverage": 4.25,
+    "ev_cost_pts": 0.0,
+    "ev_cost_if_faded": 1.32,
+    "field_gain_if_dog_wins_pct": 96,
+    "factors_against_favourite": [
+     "stand-in"
+    ],
+    "factors_against_underdog": [],
+    "differs_from_pick": false
+   },
+   "sources": [
+    "https://play.hotspawn.com/lobby",
+    "https://www.hotspawn.com/matches/phantom-vs-roundsgg-elisa-breakout-series-2-1080288",
+    "https://www.hltv.org/matches/2399427/phantom-vs-rounds-elisa-breakout-series-2",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+   ],
+   "result": null
+  },
+  {
+   "match_id": "1081120",
+   "competition": "CCT Europe 2026 Series #12 Play-In",
+   "tier": "C",
+   "stage": "waiting for information",
+   "start_utc": "2026-10-16T14:00:00Z",
+   "lock_utc": "2026-10-16T13:54:00Z",
+   "team_a": "mellren",
+   "team_b": "Privateer",
+   "hotspawn_match_url": "https://www.hotspawn.com/matches/mellren-vs-privateer-cct-europe-2026-series-12-play-in-1081120",
+   "pages": [
+    "lobby",
+    "cs2-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 2,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "open",
+   "crowd_a": 90,
+   "crowd_b": 10,
+   "total_picks": 39,
+   "hltv_url": "https://www.hltv.org/team/13759/mellren",
+   "hltv_note": "HLTV lists this as 'CCT 2026 Europe Series 12 Closed Qualifier' (16 Oct) on both teams' pages; no match-page id was read. HLTV ranks mellren #94 and Privateer #226 (team pages). Series length not confirmed by HLTV in this read (EGamersWorld says BO3) - left blank.",
+   "format": "",
+   "format_source": "",
+   "vrs_a": {
+    "name": "mellren",
+    "rank": 125,
+    "points": 932,
+    "roster": [
+     "lollipop21k",
+     "Maksilvl",
+     "mdl",
+     "menddel",
+     "shootic"
+    ],
+    "matches_with_current_five": 33,
+    "first_rated_match_current_five": "2026-07-09"
+   },
+   "vrs_b": {
+    "name": "Privateer",
+    "rank": 271,
+    "points": 608,
+    "roster": [
+     "Ariant0",
+     "Frazehh",
+     "JAUSTERE",
+     "M1n1maL",
+     "Prime"
+    ],
+    "matches_with_current_five": 6,
+    "first_rated_match_current_five": "2026-09-05"
+   },
+   "own_p_a": 0.7022,
+   "own_p_b": 0.2978,
+   "hltv_rank_a": 94,
+   "hltv_rank_b": 226,
+   "hltv_team_a": "https://www.hltv.org/team/13759/mellren",
+   "hltv_team_b": "https://www.hltv.org/team/13914/privateer",
+   "p_a": 0.7022,
+   "p_b": 0.2978,
+   "basis": "Our own line (Valve points)",
+   "rung": "C",
+   "pick": "mellren",
+   "pick_p": 0.7022,
+   "factors": [
+    {
+     "side": "b",
+     "team": "Privateer",
+     "kind": "new five (Valve data)",
+     "summary": "Valve's standings show only 6 rated matches for this exact five, the first on 2026-09-05.",
+     "argues_against": true,
+     "strength": "moderate",
+     "source_urls": [
+      "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+     ],
+     "automated": true
+    }
+   ],
+   "flags": [
+    "FORMAT_UNKNOWN",
+    "NO_MARKET"
+   ],
+   "strategy": {
+    "class": "LONG SHOT",
+    "reason": "Big leverage but a low chance: keep the favourite unless you are far behind with few matches left.",
+    "leaderboard_pick": "mellren",
+    "favourite": "mellren",
+    "underdog": "Privateer",
+    "p_fav": 0.7022,
+    "p_dog": 0.2978,
+    "min_src_dog": 0.2978,
+    "estimates": [
+     "own line"
+    ],
+    "crowd_fav": 0.9,
+    "crowd_dog": 0.1,
+    "edge_vs_crowd_pp": 19.8,
+    "leverage": 2.98,
+    "ev_cost_pts": 0.0,
+    "ev_cost_if_faded": 0.81,
+    "field_gain_if_dog_wins_pct": 90,
+    "factors_against_favourite": [],
+    "factors_against_underdog": [],
+    "differs_from_pick": false
+   },
+   "sources": [
+    "https://play.hotspawn.com/lobby",
+    "https://www.hotspawn.com/matches/mellren-vs-privateer-cct-europe-2026-series-12-play-in-1081120",
+    "https://www.hltv.org/team/13759/mellren",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+   ],
+   "result": null
+  },
+  {
+   "match_id": "1080289",
+   "competition": "Elisa BreakOut Series #2",
+   "tier": "C",
+   "stage": "waiting for information",
+   "start_utc": "2026-10-16T16:00:00Z",
+   "lock_utc": "2026-10-16T15:54:00Z",
+   "team_a": "RoundsGG",
+   "team_b": "Voca",
+   "hotspawn_match_url": "https://www.hotspawn.com/matches/roundsgg-vs-voca-elisa-breakout-series-2-1080289",
+   "pages": [
+    "lobby",
+    "cs2-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 2,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "open",
+   "crowd_a": 4,
+   "crowd_b": 96,
+   "total_picks": 52,
+   "hltv_url": "https://www.hltv.org/matches/2399428/voca-vs-rounds-elisa-breakout-series-2",
+   "hltv_note": null,
+   "format": "BO1",
+   "format_source": "HLTV match page",
+   "vrs_a": {
+    "name": "ROUNDS",
+    "rank": 310,
+    "points": 548,
+    "roster": [
+     "Kollo",
+     "Lapa",
+     "Monoxx",
+     "Tumppis",
+     "ykis"
+    ],
+    "matches_with_current_five": 5,
+    "first_rated_match_current_five": "2026-08-12"
+   },
+   "vrs_b": {
+    "name": "Voca",
+    "rank": 68,
+    "points": 1182,
+    "roster": [
+     "dare",
+     "junior",
+     "MarKE",
+     "nosraC",
+     "snav"
+    ],
+    "matches_with_current_five": 23,
+    "first_rated_match_current_five": "2026-07-28"
+   },
+   "own_p_a": 0.1573,
+   "own_p_b": 0.8427,
+   "hltv_rank_a": 237,
+   "hltv_rank_b": 59,
+   "hltv_team_a": "https://www.hltv.org/team/12457/rounds",
+   "hltv_team_b": "https://www.hltv.org/team/13499/voca",
+   "p_a": 0.1573,
+   "p_b": 0.8427,
+   "basis": "Our own line (Valve points)",
+   "rung": "C",
+   "pick": "Voca",
+   "pick_p": 0.8427,
+   "factors": [
+    {
+     "side": "a",
+     "team": "RoundsGG",
+     "kind": "new five (Valve data)",
+     "summary": "Valve's standings show only 5 rated matches for this exact five, the first on 2026-08-12.",
+     "argues_against": true,
+     "strength": "moderate",
+     "source_urls": [
+      "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+     ],
+     "automated": true
+    }
+   ],
+   "flags": [
+    "NO_MARKET"
+   ],
+   "strategy": {
+    "class": "CHALK",
+    "reason": "The favourite is both likely and popular; fading it costs points without enough upside.",
+    "leaderboard_pick": "Voca",
+    "favourite": "Voca",
+    "underdog": "RoundsGG",
+    "p_fav": 0.8427,
+    "p_dog": 0.1573,
+    "min_src_dog": 0.1573,
+    "estimates": [
+     "own line"
+    ],
+    "crowd_fav": 0.96,
+    "crowd_dog": 0.04,
+    "edge_vs_crowd_pp": 11.7,
+    "leverage": 3.93,
+    "ev_cost_pts": 0.0,
+    "ev_cost_if_faded": 1.37,
+    "field_gain_if_dog_wins_pct": 96,
+    "factors_against_favourite": [],
+    "factors_against_underdog": [],
+    "differs_from_pick": false
+   },
+   "sources": [
+    "https://play.hotspawn.com/lobby",
+    "https://www.hotspawn.com/matches/roundsgg-vs-voca-elisa-breakout-series-2-1080289",
+    "https://www.hltv.org/matches/2399428/voca-vs-rounds-elisa-breakout-series-2",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+   ],
+   "result": null
+  },
+  {
+   "match_id": "1080290",
+   "competition": "Elisa BreakOut Series #2",
+   "tier": "C",
+   "stage": "waiting for information",
+   "start_utc": "2026-10-16T18:00:00Z",
+   "lock_utc": "2026-10-16T17:54:00Z",
+   "team_a": "Phantom",
+   "team_b": "HAVU",
+   "hotspawn_match_url": "https://www.hotspawn.com/matches/phantom-vs-havu-elisa-breakout-series-2-1080290",
+   "pages": [
+    "lobby",
+    "cs2-pickems",
+    "thp-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 2,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "open",
+   "crowd_a": 98,
+   "crowd_b": 2,
+   "total_picks": 51,
+   "hltv_url": "https://www.hltv.org/matches/2399429/phantom-vs-havu-elisa-breakout-series-2",
+   "hltv_note": null,
+   "format": "BO1",
+   "format_source": "HLTV match page",
+   "vrs_a": {
+    "name": "Phantom",
+    "rank": 72,
+    "points": 1147,
+    "roster": [
+     "KEi",
+     "Kunai",
+     "Kylar",
+     "nicoodoz",
+     "TMB"
+    ],
+    "matches_with_current_five": 8,
+    "first_rated_match_current_five": "2026-07-15"
+   },
+   "vrs_b": {
+    "name": "HAVU",
+    "rank": 124,
+    "points": 937,
+    "roster": [
+     "8Juho8",
+     "Alxc",
+     "ottob",
+     "p3kko",
+     "uli"
+    ],
+    "matches_with_current_five": 22,
+    "first_rated_match_current_five": "2026-07-31"
+   },
+   "own_p_a": 0.6355,
+   "own_p_b": 0.3645,
+   "hltv_rank_a": 88,
+   "hltv_rank_b": 118,
+   "hltv_team_a": "https://www.hltv.org/team/13173/phantom",
+   "hltv_team_b": "https://www.hltv.org/team/7865/havu",
+   "p_a": 0.6355,
+   "p_b": 0.3645,
+   "basis": "Our own line (Valve points)",
+   "rung": "C",
+   "pick": "Phantom",
+   "pick_p": 0.6355,
+   "factors": [
+    {
+     "side": "a",
+     "team": "Phantom",
+     "kind": "stand-in",
+     "summary": "HLTV's match analytics for Elisa BreakOut Series 2 says Phantom plays with stand-in cej0t instead of Kunai. HLTV ranks Voca #59 and Phantom #88, and says Voca won 3 of its last 5 matches; the same page says Phantom is the bookmakers' favourite against Voca (no price shown in the static page).",
+     "argues_against": true,
+     "strength": "strong",
+     "source_urls": [
+      "https://www.hltv.org/betting/analytics/2399424/voca-vs-phantom-elisa-breakout-series-2"
+     ],
+     "read_utc": "2026-10-15T10:24:00Z"
+    }
+   ],
+   "flags": [
+    "NO_MARKET",
+    "VRS_ROSTER_OUTDATED"
+   ],
+   "strategy": {
+    "class": "SITUATIONAL",
+    "reason": "Real upset chance, heavily faded by the crowd, plus a verified factor (roster change, stand-in or late replacement) against the favourite.",
+    "leaderboard_pick": "HAVU",
+    "favourite": "Phantom",
+    "underdog": "HAVU",
+    "p_fav": 0.6355,
+    "p_dog": 0.3645,
+    "min_src_dog": 0.3645,
+    "estimates": [
+     "own line"
+    ],
+    "crowd_fav": 0.98,
+    "crowd_dog": 0.02,
+    "edge_vs_crowd_pp": 34.5,
+    "leverage": 18.23,
+    "ev_cost_pts": 0.54,
+    "ev_cost_if_faded": 0.54,
+    "field_gain_if_dog_wins_pct": 98,
+    "factors_against_favourite": [
+     "stand-in"
+    ],
+    "factors_against_underdog": [],
+    "differs_from_pick": true
+   },
+   "sources": [
+    "https://play.hotspawn.com/lobby",
+    "https://www.hotspawn.com/matches/phantom-vs-havu-elisa-breakout-series-2-1080290",
+    "https://www.hltv.org/matches/2399429/phantom-vs-havu-elisa-breakout-series-2",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+   ],
+   "result": null
+  },
+  {
+   "match_id": "1079621",
+   "competition": "CCT Europe 2026 Series #11",
+   "tier": "B",
+   "stage": "waiting for information",
+   "start_utc": "2026-10-14T08:00:00Z",
+   "lock_utc": "2026-10-14T07:54:00Z",
+   "team_a": "Gothic",
+   "team_b": "Lavked",
+   "hotspawn_match_url": null,
+   "pages": [
+    "lobby",
+    "cs2-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 3,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "locked",
+   "crowd_a": 13,
+   "crowd_b": 88,
+   "total_picks": 16,
+   "hltv_url": null,
+   "hltv_note": null,
+   "format": "",
+   "format_source": "",
+   "vrs_a": {
+    "name": "Gothic",
+    "rank": 211,
+    "points": 705,
+    "roster": [
+     "Get_Jeka",
+     "Raijin",
+     "Ryujin",
+     "shg",
+     "synyx"
+    ],
+    "matches_with_current_five": 6,
+    "first_rated_match_current_five": "2026-07-27"
+   },
+   "vrs_b": {
+    "name": "Lavked",
+    "rank": 143,
+    "points": 862,
+    "roster": [
+     "1NVISIBLEE",
+     "azukay",
+     "k4nfuz",
+     "sol",
+     "xm1nd"
+    ],
+    "matches_with_current_five": 29,
+    "first_rated_match_current_five": "2026-08-14"
+   },
+   "own_p_a": 0.3976,
+   "own_p_b": 0.6024,
+   "hltv_rank_a": null,
+   "hltv_rank_b": 140,
+   "hltv_team_a": null,
+   "hltv_team_b": "https://www.hltv.org/team/12609/lavked",
+   "p_a": 0.3976,
+   "p_b": 0.6024,
+   "basis": "Our own line (Valve points)",
+   "rung": "C",
+   "pick": "Lavked",
+   "pick_p": 0.6024,
+   "factors": [],
+   "flags": [
+    "LOCKED"
+   ],
+   "strategy": null,
+   "sources": [
+    "https://play.hotspawn.com/lobby",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+   ],
+   "result": null
+  },
+  {
+   "match_id": "1079440",
+   "competition": "Stake Pulse Beat III",
+   "tier": "B",
+   "stage": "waiting for information",
+   "start_utc": "2026-10-15T10:00:00Z",
+   "lock_utc": "2026-10-15T09:54:00Z",
+   "team_a": "MIBR",
+   "team_b": "BC.Game",
+   "hotspawn_match_url": "https://www.hotspawn.com/matches/mibr-vs-bc-game-stake-pulse-beat-iii-1079440",
+   "pages": [
+    "lobby",
+    "cs2-pickems",
+    "thp-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 3,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "locked",
+   "crowd_a": 35,
+   "crowd_b": 65,
+   "total_picks": 79,
+   "hltv_url": null,
+   "hltv_note": null,
+   "pm": {
+    "source": "Polymarket",
+    "price_a": 0.385,
+    "price_b": 0.615,
+    "p_a": 0.385,
+    "p_b": 0.615,
+    "read_utc": "2026-10-15T10:41:50Z",
+    "url": "https://polymarket.com/event/cs2-mibr-bcg-2026-10-15",
+    "listed_start": "2026-10-15T10:00:00Z",
+    "gap_h": 0.0,
+    "question": "Counter-Strike: MIBR vs BC.Game Esports (BO3) - Stake Pulse Beat III Group D",
+    "volume": 458941.2296000004
+   },
+   "format": "BO3",
+   "format_source": "Polymarket market title",
+   "vrs_a": {
+    "name": "MIBR",
+    "rank": 12,
+    "points": 1585,
+    "roster": [
+     "insani",
+     "LNZ",
+     "nqz",
+     "tomaszin",
+     "venomzera"
+    ],
+    "matches_with_current_five": 13,
+    "first_rated_match_current_five": "2026-09-02"
+   },
+   "vrs_b": {
+    "name": "BC.Game",
+    "rank": 50,
+    "points": 1318,
+    "roster": [
+     "asap",
+     "Magisk",
+     "mzinho",
+     "s1mple",
+     "Senzu"
+    ],
+    "matches_with_current_five": 6,
+    "first_rated_match_current_five": "2026-10-02"
+   },
+   "own_p_a": 0.6697,
+   "own_p_b": 0.3303,
+   "hltv_rank_a": 12,
+   "hltv_rank_b": 70,
+   "hltv_team_a": "https://www.hltv.org/team/9215/mibr",
+   "hltv_team_b": "https://www.hltv.org/team/12878/bcgame",
+   "p_a": 0.385,
+   "p_b": 0.615,
+   "basis": "Polymarket price (prediction market)",
+   "rung": "B",
+   "pick": "BC.Game",
+   "pick_p": 0.615,
+   "factors": [
+    {
+     "side": "b",
+     "team": "BC.Game",
+     "kind": "new five (Valve data)",
+     "summary": "Valve's standings show only 6 rated matches for this exact five, the first on 2026-10-02.",
+     "argues_against": true,
+     "strength": "moderate",
+     "source_urls": [
+      "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+     ],
+     "automated": true
+    }
+   ],
+   "flags": [
+    "LOCKED",
+    "MODEL_MARKET_SPLIT"
+   ],
+   "strategy": null,
+   "sources": [
+    "https://play.hotspawn.com/lobby",
+    "https://www.hotspawn.com/matches/mibr-vs-bc-game-stake-pulse-beat-iii-1079440",
+    "https://polymarket.com/event/cs2-mibr-bcg-2026-10-15",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+   ],
+   "result": null
+  },
+  {
+   "match_id": "1079442",
+   "competition": "Stake Pulse Beat III",
+   "tier": "B",
+   "stage": "waiting for information",
+   "start_utc": "2026-10-15T10:00:00Z",
+   "lock_utc": "2026-10-15T09:54:00Z",
+   "team_a": "Heroic",
+   "team_b": "Envy",
+   "hotspawn_match_url": "https://www.hotspawn.com/matches/heroic-vs-envy-stake-pulse-beat-iii-1079442",
+   "pages": [
+    "lobby",
+    "cs2-pickems",
+    "thp-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 3,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "locked",
+   "crowd_a": 91,
+   "crowd_b": 9,
+   "total_picks": 80,
+   "hltv_url": null,
+   "hltv_note": null,
+   "format": "",
+   "format_source": "",
+   "vrs_a": {
+    "name": "HEROIC",
+    "rank": 15,
+    "points": 1550,
+    "roster": [
+     "Brollan",
+     "Chr1zN",
+     "MartinezSa",
+     "nilo",
+     "susp"
+    ],
+    "matches_with_current_five": 32,
+    "first_rated_match_current_five": "2026-07-15"
+   },
+   "vrs_b": null,
+   "own_p_a": null,
+   "own_p_b": null,
+   "hltv_rank_a": 30,
+   "hltv_rank_b": 20,
+   "hltv_team_a": "https://www.hltv.org/team/7175/heroic",
+   "hltv_team_b": "https://www.hltv.org/team/5991/envy",
+   "p_a": null,
+   "p_b": null,
+   "basis": "Unresolved",
+   "rung": "D",
+   "pick": null,
+   "pick_p": null,
+   "factors": [],
+   "flags": [
+    "LOCKED"
+   ],
+   "strategy": null,
+   "sources": [
+    "https://play.hotspawn.com/lobby",
+    "https://www.hotspawn.com/matches/heroic-vs-envy-stake-pulse-beat-iii-1079442",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+   ],
+   "result": null
+  },
+  {
+   "match_id": "1080280",
+   "competition": "Elisa BreakOut Series #2",
+   "tier": "C",
+   "stage": "waiting for information",
+   "start_utc": "2026-10-15T10:00:00Z",
+   "lock_utc": "2026-10-15T09:54:00Z",
+   "team_a": "ENCE",
+   "team_b": "BOJONG",
+   "hotspawn_match_url": "https://www.hotspawn.com/matches/ence-vs-bojong-elisa-breakout-series-2-1080280",
+   "pages": [
+    "lobby",
+    "cs2-pickems",
+    "thp-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 2,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "locked",
+   "crowd_a": 94,
+   "crowd_b": 6,
+   "total_picks": 71,
+   "hltv_url": "https://www.hltv.org/matches/2399419/ence-vs-bojong-elisa-breakout-series-2",
+   "hltv_note": null,
+   "format": "BO1",
+   "format_source": "HLTV match page",
+   "vrs_a": {
+    "name": "ENCE",
+    "rank": 105,
+    "points": 1025,
+    "roster": [
+     "HENU",
+     "joeski",
+     "millert",
+     "Schwarz",
+     "teme"
+    ],
+    "matches_with_current_five": 30,
+    "first_rated_match_current_five": "2026-08-13"
+   },
+   "vrs_b": {
+    "name": "BOJONG",
+    "rank": 363,
+    "points": 463,
+    "roster": [
+     "ArtwOo",
+     "BlNGB0NG",
+     "jkzin",
+     "stunt",
+     "Villeboe"
+    ],
+    "matches_with_current_five": 10,
+    "first_rated_match_current_five": "2026-04-10"
+   },
+   "own_p_a": 0.8157,
+   "own_p_b": 0.1843,
+   "hltv_rank_a": 114,
+   "hltv_rank_b": 220,
+   "hltv_team_a": "https://www.hltv.org/team/4869/ence",
+   "hltv_team_b": "https://www.hltv.org/team/13795/bojong",
+   "p_a": 0.8157,
+   "p_b": 0.1843,
+   "basis": "Our own line (Valve points)",
+   "rung": "C",
+   "pick": "ENCE",
+   "pick_p": 0.8157,
+   "factors": [],
+   "flags": [
+    "LOCKED"
+   ],
+   "strategy": null,
+   "sources": [
+    "https://play.hotspawn.com/lobby",
+    "https://www.hotspawn.com/matches/ence-vs-bojong-elisa-breakout-series-2-1080280",
+    "https://www.hltv.org/matches/2399419/ence-vs-bojong-elisa-breakout-series-2",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+   ],
+   "result": null
+  },
+  {
+   "match_id": "1052746",
+   "competition": "European Pro League Series 8 Play-In",
+   "tier": "C",
+   "stage": "waiting for information",
+   "start_utc": "2026-06-26T10:30:00Z",
+   "lock_utc": "2026-06-26T10:24:00Z",
+   "team_a": "Fortress",
+   "team_b": "Endless Journey",
+   "hotspawn_match_url": null,
+   "pages": [
+    "lobby",
+    "cs2-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 2,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "stale",
+   "crowd_a": 20,
+   "crowd_b": 80,
+   "total_picks": 10,
+   "hltv_url": null,
+   "hltv_note": null,
+   "format": "",
+   "format_source": "",
+   "vrs_a": {
+    "name": "Fortress",
+    "rank": 239,
+    "points": 657,
+    "roster": [
+     "As K",
+     "BqreBedre",
+     "Brand",
+     "GrEnNiE",
+     "K1ngShield"
+    ],
+    "matches_with_current_five": 22,
+    "first_rated_match_current_five": "2026-06-26"
+   },
+   "vrs_b": {
+    "name": "Endless Journey",
+    "rank": 219,
+    "points": 688,
+    "roster": [
+     "Aliot",
+     "deb0",
+     "pavlysha666",
+     "swetsi",
+     "Temny Prince"
+    ],
+    "matches_with_current_five": 5,
+    "first_rated_match_current_five": "2026-05-14"
+   },
+   "own_p_a": 0.4795,
+   "own_p_b": 0.5205,
+   "hltv_rank_a": 230,
+   "hltv_rank_b": null,
+   "hltv_team_a": "https://www.hltv.org/team/13646/fortress",
+   "hltv_team_b": null,
+   "p_a": 0.4795,
+   "p_b": 0.5205,
+   "basis": "Our own line (Valve points)",
+   "rung": "C",
+   "pick": "Endless Journey",
+   "pick_p": 0.5205,
+   "factors": [],
+   "flags": [
+    "STALE_LISTING"
+   ],
+   "strategy": null,
+   "sources": [
+    "https://play.hotspawn.com/lobby",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+   ],
+   "result": null
+  },
+  {
+   "match_id": "1051339",
+   "competition": "DraculaN Season 7",
+   "tier": "B",
+   "stage": "waiting for information",
+   "start_utc": "2026-06-26T12:00:00Z",
+   "lock_utc": "2026-06-26T11:54:00Z",
+   "team_a": "Acend",
+   "team_b": "Infinite",
+   "hotspawn_match_url": null,
+   "pages": [
+    "lobby",
+    "cs2-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 3,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "stale",
+   "crowd_a": 0,
+   "crowd_b": 0,
+   "total_picks": 0,
+   "hltv_url": null,
+   "hltv_note": null,
+   "format": "",
+   "format_source": "",
+   "vrs_a": {
+    "name": "Acend",
+    "rank": 63,
+    "points": 1197,
+    "roster": [
+     "h4rn",
+     "REDSTAR",
+     "SHiPZ",
+     "Skrimo",
+     "SPELLAN"
+    ],
+    "matches_with_current_five": 2,
+    "first_rated_match_current_five": "2026-09-25"
+   },
+   "vrs_b": {
+    "name": "INFINITE",
+    "rank": 56,
+    "points": 1259,
+    "roster": [
+     "Blytz",
+     "kreaz",
+     "kyuubii",
+     "sl3nd",
+     "volt"
+    ],
+    "matches_with_current_five": 9,
+    "first_rated_match_current_five": "2026-09-25"
+   },
+   "own_p_a": 0.4591,
+   "own_p_b": 0.5409,
+   "hltv_rank_a": 132,
+   "hltv_rank_b": 86,
+   "hltv_team_a": "https://www.hltv.org/team/13518/acend",
+   "hltv_team_b": "https://www.hltv.org/team/10823/infinite",
+   "p_a": 0.4591,
+   "p_b": 0.5409,
+   "basis": "Our own line (Valve points)",
+   "rung": "C",
+   "pick": "Infinite",
+   "pick_p": 0.5409,
+   "factors": [
+    {
+     "side": "a",
+     "team": "Acend",
+     "kind": "new five (Valve data)",
+     "summary": "Valve's standings show only 2 rated matches for this exact five, the first on 2026-09-25.",
+     "argues_against": true,
+     "strength": "moderate",
+     "source_urls": [
+      "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+     ],
+     "automated": true
+    },
+    {
+     "side": "b",
+     "team": "Infinite",
+     "kind": "new five (Valve data)",
+     "summary": "Valve's standings show only 9 rated matches for this exact five, the first on 2026-09-25.",
+     "argues_against": true,
+     "strength": "moderate",
+     "source_urls": [
+      "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+     ],
+     "automated": true
+    }
+   ],
+   "flags": [
+    "STALE_LISTING"
+   ],
+   "strategy": null,
+   "sources": [
+    "https://play.hotspawn.com/lobby",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+   ],
+   "result": null
+  },
+  {
+   "match_id": "1051301",
+   "competition": "LG UltraGear Tournament 2026",
+   "tier": "C",
+   "stage": null,
+   "start_utc": "2026-06-26T13:00:00Z",
+   "lock_utc": "2026-06-26T12:54:00Z",
+   "team_a": "CYBERSHOKE Prospects",
+   "team_b": "PCIFIC",
+   "hotspawn_match_url": null,
+   "pages": [
+    "lobby",
+    "cs2-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 2,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "stale",
+   "crowd_a": 0,
+   "crowd_b": 0,
+   "total_picks": 0,
+   "hltv_url": null,
+   "hltv_note": null,
+   "format": "",
+   "format_source": "",
+   "vrs_a": null,
+   "vrs_b": {
+    "name": "PCIFIC",
+    "rank": 139,
+    "points": 870,
+    "roster": [
+     "jresy",
+     "l0gicman",
+     "lugseN",
+     "oyesil",
+     "scolleN"
+    ],
+    "matches_with_current_five": 10,
+    "first_rated_match_current_five": "2026-09-12"
+   },
+   "own_p_a": null,
+   "own_p_b": null,
+   "hltv_rank_a": null,
+   "hltv_rank_b": 135,
+   "hltv_team_a": null,
+   "hltv_team_b": "https://www.hltv.org/team/13054/pcific",
+   "p_a": null,
+   "p_b": null,
+   "basis": "Unresolved",
+   "rung": "D",
+   "pick": null,
+   "pick_p": null,
+   "factors": [
+    {
+     "side": "b",
+     "team": "PCIFIC",
+     "kind": "new five (Valve data)",
+     "summary": "Valve's standings show only 10 rated matches for this exact five, the first on 2026-09-12.",
+     "argues_against": true,
+     "strength": "moderate",
+     "source_urls": [
+      "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+     ],
+     "automated": true
+    }
+   ],
+   "flags": [
+    "STALE_LISTING"
+   ],
+   "strategy": null,
+   "sources": [
+    "https://play.hotspawn.com/lobby",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+   ],
+   "result": null
+  },
+  {
+   "match_id": "1053068",
+   "competition": "Svenska CS-Ligan 2026",
+   "tier": "C",
+   "stage": null,
+   "start_utc": "2026-06-26T13:00:00Z",
+   "lock_utc": "2026-06-26T12:54:00Z",
+   "team_a": "Johnny Speeds",
+   "team_b": "ReThink",
+   "hotspawn_match_url": null,
+   "pages": [
+    "lobby",
+    "cs2-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 2,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "stale",
+   "crowd_a": 100,
+   "crowd_b": 0,
+   "total_picks": 4,
+   "hltv_url": null,
+   "hltv_note": null,
+   "format": "",
+   "format_source": "",
+   "vrs_a": null,
+   "vrs_b": null,
+   "own_p_a": null,
+   "own_p_b": null,
+   "hltv_rank_a": 73,
+   "hltv_rank_b": null,
+   "hltv_team_a": "https://www.hltv.org/team/12604/johnny-speeds",
+   "hltv_team_b": null,
+   "p_a": null,
+   "p_b": null,
+   "basis": "Unresolved",
+   "rung": "D",
+   "pick": null,
+   "pick_p": null,
+   "factors": [],
+   "flags": [
+    "STALE_LISTING"
+   ],
+   "strategy": null,
+   "sources": [
+    "https://play.hotspawn.com/lobby"
+   ],
+   "result": null
+  },
+  {
+   "match_id": "1052747",
+   "competition": "European Pro League Series 8 Play-In",
+   "tier": "C",
+   "stage": "waiting for information",
+   "start_utc": "2026-06-26T13:10:00Z",
+   "lock_utc": "2026-06-26T13:04:00Z",
+   "team_a": "Sashi Academy",
+   "team_b": "eternal premium",
+   "hotspawn_match_url": null,
+   "pages": [
+    "lobby",
+    "cs2-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 2,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "stale",
+   "crowd_a": 78,
+   "crowd_b": 22,
+   "total_picks": 9,
+   "hltv_url": null,
+   "hltv_note": null,
+   "format": "",
+   "format_source": "",
+   "vrs_a": {
+    "name": "Sashi Academy",
+    "rank": 293,
+    "points": 585,
+    "roster": [
+     "Bl4zE",
+     "Damsi",
+     "Mizi",
+     "Mol011",
+     "rosen"
+    ],
+    "matches_with_current_five": 5,
+    "first_rated_match_current_five": "2026-04-11"
+   },
+   "vrs_b": {
+    "name": "eternal premium",
+    "rank": 287,
+    "points": 592,
+    "roster": [
+     "dazzy",
+     "Innerpeace",
+     "P1kan0",
+     "saizius",
+     "skept1K"
+    ],
+    "matches_with_current_five": 3,
+    "first_rated_match_current_five": "2026-09-29"
+   },
+   "own_p_a": 0.4954,
+   "own_p_b": 0.5046,
+   "hltv_rank_a": null,
+   "hltv_rank_b": 208,
+   "hltv_team_a": null,
+   "hltv_team_b": "https://www.hltv.org/team/13161/eternal-premium",
+   "p_a": 0.4954,
+   "p_b": 0.5046,
+   "basis": "Our own line (Valve points)",
+   "rung": "C",
+   "pick": "eternal premium",
+   "pick_p": 0.5046,
+   "factors": [
+    {
+     "side": "b",
+     "team": "eternal premium",
+     "kind": "new five (Valve data)",
+     "summary": "Valve's standings show only 3 rated matches for this exact five, the first on 2026-09-29.",
+     "argues_against": true,
+     "strength": "moderate",
+     "source_urls": [
+      "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+     ],
+     "automated": true
+    }
+   ],
+   "flags": [
+    "STALE_LISTING"
+   ],
+   "strategy": null,
+   "sources": [
+    "https://play.hotspawn.com/lobby",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+   ],
+   "result": null
+  },
+  {
+   "match_id": "1053146",
+   "competition": "Rainhas do Clutch 2026",
+   "tier": "B",
+   "stage": null,
+   "start_utc": "2026-06-26T14:00:00Z",
+   "lock_utc": "2026-06-26T13:54:00Z",
+   "team_a": "Atrix",
+   "team_b": "Clutchain",
+   "hotspawn_match_url": null,
+   "pages": [
+    "lobby",
+    "cs2-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 3,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "stale",
+   "crowd_a": 100,
+   "crowd_b": 0,
+   "total_picks": 1,
+   "hltv_url": null,
+   "hltv_note": null,
+   "format": "",
+   "format_source": "",
+   "vrs_a": null,
+   "vrs_b": {
+    "name": "Clutchain",
+    "rank": 353,
+    "points": 481,
+    "roster": [
+     "Kyojin",
+     "Nivera",
+     "Python",
+     "ScreaM",
+     "SHOGU"
+    ],
+    "matches_with_current_five": 7,
+    "first_rated_match_current_five": "2026-04-13"
+   },
+   "own_p_a": null,
+   "own_p_b": null,
+   "hltv_rank_a": null,
+   "hltv_rank_b": null,
+   "hltv_team_a": null,
+   "hltv_team_b": null,
+   "p_a": null,
+   "p_b": null,
+   "basis": "Unresolved",
+   "rung": "D",
+   "pick": null,
+   "pick_p": null,
+   "factors": [],
+   "flags": [
+    "STALE_LISTING"
+   ],
+   "strategy": null,
+   "sources": [
+    "https://play.hotspawn.com/lobby",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+   ],
+   "result": null
+  },
+  {
+   "match_id": "1051340",
+   "competition": "DraculaN Season 7",
+   "tier": "B",
+   "stage": "waiting for information",
+   "start_utc": "2026-06-26T15:00:00Z",
+   "lock_utc": "2026-06-26T14:54:00Z",
+   "team_a": "Walczaki",
+   "team_b": "Inner Circle",
+   "hotspawn_match_url": null,
+   "pages": [
+    "lobby",
+    "cs2-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 3,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "stale",
+   "crowd_a": 0,
+   "crowd_b": 100,
+   "total_picks": 1,
+   "hltv_url": null,
+   "hltv_note": null,
+   "format": "",
+   "format_source": "",
+   "vrs_a": {
+    "name": "Walczaki",
+    "rank": 120,
+    "points": 962,
+    "roster": [
+     "bajmi",
+     "olimp",
+     "reiko",
+     "SaMey",
+     "sNx"
+    ],
+    "matches_with_current_five": 9,
+    "first_rated_match_current_five": "2026-08-28"
+   },
+   "vrs_b": {
+    "name": "Inner Circle",
+    "rank": 20,
+    "points": 1516,
+    "roster": [
+     "cptkurtka023",
+     "Dawy",
+     "headtr1ck",
+     "onic",
+     "zeRRoFIX"
+    ],
+    "matches_with_current_five": 39,
+    "first_rated_match_current_five": "2026-05-21"
+   },
+   "own_p_a": 0.1875,
+   "own_p_b": 0.8125,
+   "hltv_rank_a": 149,
+   "hltv_rank_b": 29,
+   "hltv_team_a": "https://www.hltv.org/team/13808/walczaki",
+   "hltv_team_b": "https://www.hltv.org/team/13117/inner-circle",
+   "p_a": 0.1875,
+   "p_b": 0.8125,
+   "basis": "Our own line (Valve points)",
+   "rung": "C",
+   "pick": "Inner Circle",
+   "pick_p": 0.8125,
+   "factors": [
+    {
+     "side": "a",
+     "team": "Walczaki",
+     "kind": "new five (Valve data)",
+     "summary": "Valve's standings show only 9 rated matches for this exact five, the first on 2026-08-28.",
+     "argues_against": true,
+     "strength": "moderate",
+     "source_urls": [
+      "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+     ],
+     "automated": true
+    }
+   ],
+   "flags": [
+    "STALE_LISTING"
+   ],
+   "strategy": null,
+   "sources": [
+    "https://play.hotspawn.com/lobby",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+   ],
+   "result": null
+  },
+  {
+   "match_id": "1053069",
+   "competition": "Svenska CS-Ligan 2026",
+   "tier": "C",
+   "stage": null,
+   "start_utc": "2026-06-26T16:45:00Z",
+   "lock_utc": "2026-06-26T16:39:00Z",
+   "team_a": "roamsfiest",
+   "team_b": "train launcher",
+   "hotspawn_match_url": null,
+   "pages": [
+    "lobby",
+    "cs2-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 2,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "stale",
+   "crowd_a": 20,
+   "crowd_b": 80,
+   "total_picks": 5,
+   "hltv_url": null,
+   "hltv_note": null,
+   "format": "",
+   "format_source": "",
+   "vrs_a": {
+    "name": "roamsfiest",
+    "rank": 202,
+    "points": 723,
+    "roster": [
+     "Realyummy",
+     "Sn0w",
+     "TiiREX"
+    ],
+    "matches_with_current_five": 0,
+    "first_rated_match_current_five": null
+   },
+   "vrs_b": {
+    "name": "train launcher",
+    "rank": 257,
+    "points": 635,
+    "roster": [
+     "bsover",
+     "Leon1das",
+     "Majkn",
+     "Siz",
+     "timothybtw"
+    ],
+    "matches_with_current_five": 5,
+    "first_rated_match_current_five": "2026-06-23"
+   },
+   "own_p_a": 0.558,
+   "own_p_b": 0.442,
+   "hltv_rank_a": null,
+   "hltv_rank_b": null,
+   "hltv_team_a": null,
+   "hltv_team_b": null,
+   "p_a": 0.558,
+   "p_b": 0.442,
+   "basis": "Our own line (Valve points)",
+   "rung": "C",
+   "pick": "roamsfiest",
+   "pick_p": 0.558,
+   "factors": [],
+   "flags": [
+    "STALE_LISTING"
+   ],
+   "strategy": null,
+   "sources": [
+    "https://play.hotspawn.com/lobby",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+   ],
+   "result": null
+  },
+  {
+   "match_id": "1052686",
+   "competition": "Rainhas do Clutch 2026",
+   "tier": "B",
+   "stage": null,
+   "start_utc": "2026-06-26T17:45:00Z",
+   "lock_utc": "2026-06-26T17:39:00Z",
+   "team_a": "shimmer",
+   "team_b": "MIBR fe",
+   "hotspawn_match_url": null,
+   "pages": [
+    "lobby",
+    "cs2-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 3,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "stale",
+   "crowd_a": 67,
+   "crowd_b": 33,
+   "total_picks": 3,
+   "hltv_url": null,
+   "hltv_note": null,
+   "format": "",
+   "format_source": "",
+   "vrs_a": {
+    "name": "Shimmer",
+    "rank": 256,
+    "points": 637,
+    "roster": [
+     "alicerawr",
+     "AVA174",
+     "empathy",
+     "Serendipity",
+     "Stx"
+    ],
+    "matches_with_current_five": 4,
+    "first_rated_match_current_five": "2026-04-09"
+   },
+   "vrs_b": {
+    "name": "MIBR fe",
+    "rank": 198,
+    "points": 731,
+    "roster": [
+     "Dani",
+     "GaBi",
+     "Olga",
+     "poppins",
+     "yungher"
+    ],
+    "matches_with_current_five": 12,
+    "first_rated_match_current_five": "2026-05-08"
+   },
+   "own_p_a": 0.4381,
+   "own_p_b": 0.5619,
+   "hltv_rank_a": 239,
+   "hltv_rank_b": 205,
+   "hltv_team_a": "https://www.hltv.org/team/12190/shimmer",
+   "hltv_team_b": "https://www.hltv.org/team/10975/mibr-fe",
+   "p_a": 0.4381,
+   "p_b": 0.5619,
+   "basis": "Our own line (Valve points)",
+   "rung": "C",
+   "pick": "MIBR fe",
+   "pick_p": 0.5619,
+   "factors": [],
+   "flags": [
+    "STALE_LISTING"
+   ],
+   "strategy": null,
+   "sources": [
+    "https://play.hotspawn.com/lobby",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+   ],
+   "result": null
+  },
+  {
+   "match_id": "1051789",
+   "competition": "Thunderpick World Championship 2026: South American Series #1",
+   "tier": "C",
+   "stage": "waiting for information",
+   "start_utc": "2026-06-26T18:00:00Z",
+   "lock_utc": "2026-06-26T17:54:00Z",
+   "team_a": "MIBR Academy",
+   "team_b": "Isurus",
+   "hotspawn_match_url": null,
+   "pages": [
+    "lobby",
+    "cs2-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 2,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "stale",
+   "crowd_a": 60,
+   "crowd_b": 40,
+   "total_picks": 5,
+   "hltv_url": null,
+   "hltv_note": null,
+   "format": "",
+   "format_source": "",
+   "vrs_a": {
+    "name": "MIBR Academy",
+    "rank": 263,
+    "points": 628,
+    "roster": [
+     "brn$",
+     "fl4sh",
+     "Jerr1",
+     "lkz",
+     "stormzyn"
+    ],
+    "matches_with_current_five": 17,
+    "first_rated_match_current_five": "2026-04-08"
+   },
+   "vrs_b": {
+    "name": "Isurus",
+    "rank": 173,
+    "points": 783,
+    "roster": [
+     "atarax1a",
+     "deco",
+     "dott1",
+     "Hezz",
+     "rzk"
+    ],
+    "matches_with_current_five": 29,
+    "first_rated_match_current_five": "2026-06-24"
+   },
+   "own_p_a": 0.3989,
+   "own_p_b": 0.6011,
+   "hltv_rank_a": null,
+   "hltv_rank_b": 204,
+   "hltv_team_a": null,
+   "hltv_team_b": "https://www.hltv.org/team/7653/isurus",
+   "p_a": 0.3989,
+   "p_b": 0.6011,
+   "basis": "Our own line (Valve points)",
+   "rung": "C",
+   "pick": "Isurus",
+   "pick_p": 0.6011,
+   "factors": [],
+   "flags": [
+    "STALE_LISTING"
+   ],
+   "strategy": null,
+   "sources": [
+    "https://play.hotspawn.com/lobby",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+   ],
+   "result": null
+  },
+  {
+   "match_id": "1053070",
+   "competition": "Svenska CS-Ligan 2026",
+   "tier": "C",
+   "stage": null,
+   "start_utc": "2026-06-26T19:00:00Z",
+   "lock_utc": "2026-06-26T18:54:00Z",
+   "team_a": "ReThink",
+   "team_b": "train launcher",
+   "hotspawn_match_url": null,
+   "pages": [
+    "lobby",
+    "cs2-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 2,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "stale",
+   "crowd_a": 0,
+   "crowd_b": 0,
+   "total_picks": 0,
+   "hltv_url": null,
+   "hltv_note": null,
+   "format": "",
+   "format_source": "",
+   "vrs_a": null,
+   "vrs_b": {
+    "name": "train launcher",
+    "rank": 257,
+    "points": 635,
+    "roster": [
+     "bsover",
+     "Leon1das",
+     "Majkn",
+     "Siz",
+     "timothybtw"
+    ],
+    "matches_with_current_five": 5,
+    "first_rated_match_current_five": "2026-06-23"
+   },
+   "own_p_a": null,
+   "own_p_b": null,
+   "hltv_rank_a": null,
+   "hltv_rank_b": null,
+   "hltv_team_a": null,
+   "hltv_team_b": null,
+   "p_a": null,
+   "p_b": null,
+   "basis": "Unresolved",
+   "rung": "D",
+   "pick": null,
+   "pick_p": null,
+   "factors": [],
+   "flags": [
+    "STALE_LISTING"
+   ],
+   "strategy": null,
+   "sources": [
+    "https://play.hotspawn.com/lobby",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+   ],
+   "result": null
+  },
+  {
+   "match_id": "1051790",
+   "competition": "Thunderpick World Championship 2026: South American Series #1",
+   "tier": "C",
+   "stage": "waiting for information",
+   "start_utc": "2026-06-26T21:00:00Z",
+   "lock_utc": "2026-06-26T20:54:00Z",
+   "team_a": "Keyd",
+   "team_b": "Yawara",
+   "hotspawn_match_url": null,
+   "pages": [
+    "lobby",
+    "cs2-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 2,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "stale",
+   "crowd_a": 100,
+   "crowd_b": 0,
+   "total_picks": 3,
+   "hltv_url": null,
+   "hltv_note": null,
+   "format": "",
+   "format_source": "",
+   "vrs_a": null,
+   "vrs_b": {
+    "name": "Yawara",
+    "rank": 147,
+    "points": 845,
+    "roster": [
+     "brn$",
+     "deemO",
+     "j0w",
+     "pancc",
+     "tele"
+    ],
+    "matches_with_current_five": 18,
+    "first_rated_match_current_five": "2026-08-25"
+   },
+   "own_p_a": null,
+   "own_p_b": null,
+   "hltv_rank_a": null,
+   "hltv_rank_b": 153,
+   "hltv_team_a": null,
+   "hltv_team_b": "https://www.hltv.org/team/11933/yawara",
+   "p_a": null,
+   "p_b": null,
+   "basis": "Unresolved",
+   "rung": "D",
+   "pick": null,
+   "pick_p": null,
+   "factors": [],
+   "flags": [
+    "STALE_LISTING"
+   ],
+   "strategy": null,
+   "sources": [
+    "https://play.hotspawn.com/lobby",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+   ],
+   "result": null
+  },
+  {
+   "match_id": "1052748",
+   "competition": "European Pro League Series 8 Play-In",
+   "tier": "C",
+   "stage": "waiting for information",
+   "start_utc": "2026-06-27T08:00:00Z",
+   "lock_utc": "2026-06-27T07:54:00Z",
+   "team_a": "Inner Circle Academy",
+   "team_b": "sAw",
+   "hotspawn_match_url": null,
+   "pages": [
+    "lobby",
+    "cs2-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 2,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "stale",
+   "crowd_a": 33,
+   "crowd_b": 67,
+   "total_picks": 6,
+   "hltv_url": null,
+   "hltv_note": null,
+   "format": "",
+   "format_source": "",
+   "vrs_a": {
+    "name": "Inner Circle Academy",
+    "rank": 94,
+    "points": 1064,
+    "roster": [
+     "3ippoch",
+     "Flierax",
+     "L1seYoung",
+     "NaYz",
+     "Tamefear"
+    ],
+    "matches_with_current_five": 16,
+    "first_rated_match_current_five": "2026-09-05"
+   },
+   "vrs_b": {
+    "name": "SAW",
+    "rank": 42,
+    "points": 1346,
+    "roster": [
+     "ewjerkz",
+     "krazy",
+     "MUTiRiS",
+     "NOPEEj",
+     "story"
+    ],
+    "matches_with_current_five": 23,
+    "first_rated_match_current_five": "2026-08-07"
+   },
+   "own_p_a": 0.3216,
+   "own_p_b": 0.6784,
+   "hltv_rank_a": 85,
+   "hltv_rank_b": 63,
+   "hltv_team_a": "https://www.hltv.org/team/13681/inner-circle-academy",
+   "hltv_team_b": "https://www.hltv.org/team/10567/saw",
+   "p_a": 0.3216,
+   "p_b": 0.6784,
+   "basis": "Our own line (Valve points)",
+   "rung": "C",
+   "pick": "sAw",
+   "pick_p": 0.6784,
+   "factors": [],
+   "flags": [
+    "STALE_LISTING"
+   ],
+   "strategy": null,
+   "sources": [
+    "https://play.hotspawn.com/lobby",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+   ],
+   "result": null
+  },
+  {
+   "match_id": "1053071",
+   "competition": "Svenska CS-Ligan 2026",
+   "tier": "C",
+   "stage": null,
+   "start_utc": "2026-06-27T10:00:00Z",
+   "lock_utc": "2026-06-27T09:54:00Z",
+   "team_a": "Johnny Speeds",
+   "team_b": "roamsfiest",
+   "hotspawn_match_url": null,
+   "pages": [
+    "lobby",
+    "cs2-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 2,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "stale",
+   "crowd_a": 0,
+   "crowd_b": 0,
+   "total_picks": 0,
+   "hltv_url": null,
+   "hltv_note": null,
+   "format": "",
+   "format_source": "",
+   "vrs_a": null,
+   "vrs_b": {
+    "name": "roamsfiest",
+    "rank": 202,
+    "points": 723,
+    "roster": [
+     "Realyummy",
+     "Sn0w",
+     "TiiREX"
+    ],
+    "matches_with_current_five": 0,
+    "first_rated_match_current_five": null
+   },
+   "own_p_a": null,
+   "own_p_b": null,
+   "hltv_rank_a": 73,
+   "hltv_rank_b": null,
+   "hltv_team_a": "https://www.hltv.org/team/12604/johnny-speeds",
+   "hltv_team_b": null,
+   "p_a": null,
+   "p_b": null,
+   "basis": "Unresolved",
+   "rung": "D",
+   "pick": null,
+   "pick_p": null,
+   "factors": [],
+   "flags": [
+    "STALE_LISTING"
+   ],
+   "strategy": null,
+   "sources": [
+    "https://play.hotspawn.com/lobby",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+   ],
+   "result": null
+  },
+  {
+   "match_id": "1052749",
+   "competition": "European Pro League Series 8 Play-In",
+   "tier": "C",
+   "stage": "waiting for information",
+   "start_utc": "2026-06-27T10:30:00Z",
+   "lock_utc": "2026-06-27T10:24:00Z",
+   "team_a": "Misa",
+   "team_b": "WROTBERRY",
+   "hotspawn_match_url": null,
+   "pages": [
+    "lobby",
+    "cs2-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 2,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "stale",
+   "crowd_a": 100,
+   "crowd_b": 0,
+   "total_picks": 6,
+   "hltv_url": null,
+   "hltv_note": null,
+   "format": "",
+   "format_source": "",
+   "vrs_a": null,
+   "vrs_b": {
+    "name": "WBT",
+    "rank": 60,
+    "points": 1201,
+    "roster": [
+     "DemQQ",
+     "Psycho",
+     "s4ltovsk1yy",
+     "Smash",
+     "tyr1k"
+    ],
+    "matches_with_current_five": 8,
+    "first_rated_match_current_five": "2026-09-11"
+   },
+   "own_p_a": null,
+   "own_p_b": null,
+   "hltv_rank_a": 126,
+   "hltv_rank_b": 109,
+   "hltv_team_a": "https://www.hltv.org/team/13528/misa",
+   "hltv_team_b": "https://www.hltv.org/team/13683/wbt",
+   "p_a": null,
+   "p_b": null,
+   "basis": "Unresolved",
+   "rung": "D",
+   "pick": null,
+   "pick_p": null,
+   "factors": [
+    {
+     "side": "b",
+     "team": "WROTBERRY",
+     "kind": "new five (Valve data)",
+     "summary": "Valve's standings show only 8 rated matches for this exact five, the first on 2026-09-11.",
+     "argues_against": true,
+     "strength": "moderate",
+     "source_urls": [
+      "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+     ],
+     "automated": true
+    }
+   ],
+   "flags": [
+    "STALE_LISTING"
+   ],
+   "strategy": null,
+   "sources": [
+    "https://play.hotspawn.com/lobby",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+   ],
+   "result": null
+  },
+  {
+   "match_id": "1052180",
+   "competition": "CCT Europe 2026 Challengers #4",
+   "tier": "C",
+   "stage": "waiting for information",
+   "start_utc": "2026-06-27T11:00:00Z",
+   "lock_utc": "2026-06-27T10:54:00Z",
+   "team_a": "NEW VISION",
+   "team_b": "Julie&Cie",
+   "hotspawn_match_url": null,
+   "pages": [
+    "lobby",
+    "cs2-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 2,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "stale",
+   "crowd_a": 29,
+   "crowd_b": 71,
+   "total_picks": 7,
+   "hltv_url": null,
+   "hltv_note": null,
+   "format": "",
+   "format_source": "",
+   "vrs_a": {
+    "name": "NEW VISION",
+    "rank": 241,
+    "points": 655,
+    "roster": [
+     "fen2k",
+     "hahanz0",
+     "w0l33n",
+     "wonimo",
+     "x1nk1n"
+    ],
+    "matches_with_current_five": 34,
+    "first_rated_match_current_five": "2026-05-03"
+   },
+   "vrs_b": {
+    "name": "Julie&Cie",
+    "rank": 375,
+    "points": 400,
+    "roster": [
+     "amanek",
+     "Empera",
+     "Joker",
+     "KIRADODO",
+     "Monkey D Julie"
+    ],
+    "matches_with_current_five": 5,
+    "first_rated_match_current_five": "2026-05-21"
+   },
+   "own_p_a": 0.6626,
+   "own_p_b": 0.3374,
+   "hltv_rank_a": null,
+   "hltv_rank_b": null,
+   "hltv_team_a": null,
+   "hltv_team_b": null,
+   "p_a": 0.6626,
+   "p_b": 0.3374,
+   "basis": "Our own line (Valve points)",
+   "rung": "C",
+   "pick": "NEW VISION",
+   "pick_p": 0.6626,
+   "factors": [],
+   "flags": [
+    "STALE_LISTING"
+   ],
+   "strategy": null,
+   "sources": [
+    "https://play.hotspawn.com/lobby",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+   ],
+   "result": null
+  },
+  {
+   "match_id": "1052181",
+   "competition": "CCT Europe 2026 Challengers #4",
+   "tier": "C",
+   "stage": "waiting for information",
+   "start_utc": "2026-06-27T11:00:00Z",
+   "lock_utc": "2026-06-27T10:54:00Z",
+   "team_a": "Just Players",
+   "team_b": "OlyBet",
+   "hotspawn_match_url": null,
+   "pages": [
+    "lobby",
+    "cs2-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 2,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "stale",
+   "crowd_a": 100,
+   "crowd_b": 0,
+   "total_picks": 6,
+   "hltv_url": null,
+   "hltv_note": null,
+   "format": "",
+   "format_source": "",
+   "vrs_a": null,
+   "vrs_b": {
+    "name": "OlyBet",
+    "rank": 352,
+    "points": 481,
+    "roster": [
+     "cgk",
+     "ChipaaN",
+     "Frip",
+     "hexoq",
+     "imp"
+    ],
+    "matches_with_current_five": 7,
+    "first_rated_match_current_five": "2026-05-12"
+   },
+   "own_p_a": null,
+   "own_p_b": null,
+   "hltv_rank_a": 116,
+   "hltv_rank_b": null,
+   "hltv_team_a": "https://www.hltv.org/team/13776/just-players",
+   "hltv_team_b": null,
+   "p_a": null,
+   "p_b": null,
+   "basis": "Unresolved",
+   "rung": "D",
+   "pick": null,
+   "pick_p": null,
+   "factors": [],
+   "flags": [
+    "STALE_LISTING"
+   ],
+   "strategy": null,
+   "sources": [
+    "https://play.hotspawn.com/lobby",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+   ],
+   "result": null
+  },
+  {
+   "match_id": "1051800",
+   "competition": "Thunderpick World Championship 2026: South American Series #1",
+   "tier": "C",
+   "stage": "waiting for information",
+   "start_utc": "2026-06-27T13:00:00Z",
+   "lock_utc": "2026-06-27T12:54:00Z",
+   "team_a": "ShindeN",
+   "team_b": "MIBR Academy",
+   "hotspawn_match_url": null,
+   "pages": [
+    "lobby",
+    "cs2-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 2,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "stale",
+   "crowd_a": 0,
+   "crowd_b": 0,
+   "total_picks": 0,
+   "hltv_url": null,
+   "hltv_note": null,
+   "format": "",
+   "format_source": "",
+   "vrs_a": {
+    "name": "ShindeN",
+    "rank": 74,
+    "points": 1121,
+    "roster": [
+     "abizz",
+     "guty",
+     "ivz",
+     "naz",
+     "tom1jed"
+    ],
+    "matches_with_current_five": 35,
+    "first_rated_match_current_five": "2026-04-08"
+   },
+   "vrs_b": {
+    "name": "MIBR Academy",
+    "rank": 263,
+    "points": 628,
+    "roster": [
+     "brn$",
+     "fl4sh",
+     "Jerr1",
+     "lkz",
+     "stormzyn"
+    ],
+    "matches_with_current_five": 17,
+    "first_rated_match_current_five": "2026-04-08"
+   },
+   "own_p_a": 0.7867,
+   "own_p_b": 0.2133,
+   "hltv_rank_a": 50,
+   "hltv_rank_b": null,
+   "hltv_team_a": "https://www.hltv.org/team/12959/shinden",
+   "hltv_team_b": null,
+   "p_a": 0.7867,
+   "p_b": 0.2133,
+   "basis": "Our own line (Valve points)",
+   "rung": "C",
+   "pick": "ShindeN",
+   "pick_p": 0.7867,
+   "factors": [],
+   "flags": [
+    "STALE_LISTING"
+   ],
+   "strategy": null,
+   "sources": [
+    "https://play.hotspawn.com/lobby",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+   ],
+   "result": null
+  },
+  {
+   "match_id": "1052699",
+   "competition": "CCT South America 2026 Series #3",
+   "tier": "B",
+   "stage": "waiting for information",
+   "start_utc": "2026-06-27T13:00:00Z",
+   "lock_utc": "2026-06-27T12:54:00Z",
+   "team_a": "Vasco",
+   "team_b": "Red Feet",
+   "hotspawn_match_url": null,
+   "pages": [
+    "lobby",
+    "cs2-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 3,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "stale",
+   "crowd_a": 80,
+   "crowd_b": 20,
+   "total_picks": 5,
+   "hltv_url": null,
+   "hltv_note": null,
+   "format": "",
+   "format_source": "",
+   "vrs_a": {
+    "name": "Vasco",
+    "rank": 309,
+    "points": 552,
+    "roster": [
+     "mawth",
+     "n1cks",
+     "prt",
+     "tatazin",
+     "trindade"
+    ],
+    "matches_with_current_five": 0,
+    "first_rated_match_current_five": null
+   },
+   "vrs_b": null,
+   "own_p_a": null,
+   "own_p_b": null,
+   "hltv_rank_a": null,
+   "hltv_rank_b": null,
+   "hltv_team_a": null,
+   "hltv_team_b": null,
+   "p_a": null,
+   "p_b": null,
+   "basis": "Unresolved",
+   "rung": "D",
+   "pick": null,
+   "pick_p": null,
+   "factors": [],
+   "flags": [
+    "STALE_LISTING"
+   ],
+   "strategy": null,
+   "sources": [
+    "https://play.hotspawn.com/lobby",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+   ],
+   "result": null
+  },
+  {
+   "match_id": "1052183",
+   "competition": "CCT Europe 2026 Challengers #4",
+   "tier": "C",
+   "stage": "waiting for information",
+   "start_utc": "2026-06-27T13:45:00Z",
+   "lock_utc": "2026-06-27T13:39:00Z",
+   "team_a": "Misa",
+   "team_b": "Wampirki",
+   "hotspawn_match_url": null,
+   "pages": [
+    "lobby",
+    "cs2-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 2,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "stale",
+   "crowd_a": 100,
+   "crowd_b": 0,
+   "total_picks": 5,
+   "hltv_url": null,
+   "hltv_note": null,
+   "format": "",
+   "format_source": "",
+   "vrs_a": null,
+   "vrs_b": null,
+   "own_p_a": null,
+   "own_p_b": null,
+   "hltv_rank_a": 126,
+   "hltv_rank_b": null,
+   "hltv_team_a": "https://www.hltv.org/team/13528/misa",
+   "hltv_team_b": null,
+   "p_a": null,
+   "p_b": null,
+   "basis": "Unresolved",
+   "rung": "D",
+   "pick": null,
+   "pick_p": null,
+   "factors": [],
+   "flags": [
+    "STALE_LISTING"
+   ],
+   "strategy": null,
+   "sources": [
+    "https://play.hotspawn.com/lobby"
+   ],
+   "result": null
+  },
+  {
+   "match_id": "1051341",
+   "competition": "DraculaN Season 7",
+   "tier": "B",
+   "stage": "waiting for information",
+   "start_utc": "2026-06-27T13:50:00Z",
+   "lock_utc": "2026-06-27T13:44:00Z",
+   "team_a": "Sharks",
+   "team_b": "Inner Circle",
+   "hotspawn_match_url": null,
+   "pages": [
+    "lobby",
+    "cs2-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 3,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "stale",
+   "crowd_a": 0,
+   "crowd_b": 0,
+   "total_picks": 0,
+   "hltv_url": null,
+   "hltv_note": null,
+   "format": "",
+   "format_source": "",
+   "vrs_a": null,
+   "vrs_b": {
+    "name": "Inner Circle",
+    "rank": 20,
+    "points": 1516,
+    "roster": [
+     "cptkurtka023",
+     "Dawy",
+     "headtr1ck",
+     "onic",
+     "zeRRoFIX"
+    ],
+    "matches_with_current_five": 39,
+    "first_rated_match_current_five": "2026-05-21"
+   },
+   "own_p_a": null,
+   "own_p_b": null,
+   "hltv_rank_a": null,
+   "hltv_rank_b": 29,
+   "hltv_team_a": null,
+   "hltv_team_b": "https://www.hltv.org/team/13117/inner-circle",
+   "p_a": null,
+   "p_b": null,
+   "basis": "Unresolved",
+   "rung": "D",
+   "pick": null,
+   "pick_p": null,
+   "factors": [],
+   "flags": [
+    "STALE_LISTING"
+   ],
+   "strategy": null,
+   "sources": [
+    "https://play.hotspawn.com/lobby",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+   ],
+   "result": null
+  },
+  {
+   "match_id": "1052599",
+   "competition": "CCT Europe 2026 Challengers #4",
+   "tier": "C",
+   "stage": "waiting for information",
+   "start_utc": "2026-06-27T14:00:00Z",
+   "lock_utc": "2026-06-27T13:54:00Z",
+   "team_a": "Mai Tai",
+   "team_b": "Megoshort",
+   "hotspawn_match_url": null,
+   "pages": [
+    "lobby",
+    "cs2-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 2,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "stale",
+   "crowd_a": 100,
+   "crowd_b": 0,
+   "total_picks": 4,
+   "hltv_url": null,
+   "hltv_note": null,
+   "format": "",
+   "format_source": "",
+   "vrs_a": null,
+   "vrs_b": {
+    "name": "megoshort",
+    "rank": 160,
+    "points": 806,
+    "roster": [
+     "jayzaR",
+     "robiin",
+     "Siz",
+     "Twinkey",
+     "zen"
+    ],
+    "matches_with_current_five": 10,
+    "first_rated_match_current_five": "2026-09-06"
+   },
+   "own_p_a": null,
+   "own_p_b": null,
+   "hltv_rank_a": null,
+   "hltv_rank_b": 179,
+   "hltv_team_a": null,
+   "hltv_team_b": "https://www.hltv.org/team/11018/megoshort",
+   "p_a": null,
+   "p_b": null,
+   "basis": "Unresolved",
+   "rung": "D",
+   "pick": null,
+   "pick_p": null,
+   "factors": [
+    {
+     "side": "b",
+     "team": "Megoshort",
+     "kind": "new five (Valve data)",
+     "summary": "Valve's standings show only 10 rated matches for this exact five, the first on 2026-09-06.",
+     "argues_against": true,
+     "strength": "moderate",
+     "source_urls": [
+      "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+     ],
+     "automated": true
+    }
+   ],
+   "flags": [
+    "STALE_LISTING"
+   ],
+   "strategy": null,
+   "sources": [
+    "https://play.hotspawn.com/lobby",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+   ],
+   "result": null
+  },
+  {
+   "match_id": "1053072",
+   "competition": "Svenska CS-Ligan 2026",
+   "tier": "C",
+   "stage": null,
+   "start_utc": "2026-06-27T14:10:00Z",
+   "lock_utc": "2026-06-27T14:04:00Z",
+   "team_a": "train launcher",
+   "team_b": "roamsfiest",
+   "hotspawn_match_url": null,
+   "pages": [
+    "lobby",
+    "cs2-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 2,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "stale",
+   "crowd_a": 0,
+   "crowd_b": 0,
+   "total_picks": 0,
+   "hltv_url": null,
+   "hltv_note": null,
+   "format": "",
+   "format_source": "",
+   "vrs_a": {
+    "name": "train launcher",
+    "rank": 257,
+    "points": 635,
+    "roster": [
+     "bsover",
+     "Leon1das",
+     "Majkn",
+     "Siz",
+     "timothybtw"
+    ],
+    "matches_with_current_five": 5,
+    "first_rated_match_current_five": "2026-06-23"
+   },
+   "vrs_b": {
+    "name": "roamsfiest",
+    "rank": 202,
+    "points": 723,
+    "roster": [
+     "Realyummy",
+     "Sn0w",
+     "TiiREX"
+    ],
+    "matches_with_current_five": 0,
+    "first_rated_match_current_five": null
+   },
+   "own_p_a": 0.442,
+   "own_p_b": 0.558,
+   "hltv_rank_a": null,
+   "hltv_rank_b": null,
+   "hltv_team_a": null,
+   "hltv_team_b": null,
+   "p_a": 0.442,
+   "p_b": 0.558,
+   "basis": "Our own line (Valve points)",
+   "rung": "C",
+   "pick": "roamsfiest",
+   "pick_p": 0.558,
+   "factors": [],
+   "flags": [
+    "STALE_LISTING"
+   ],
+   "strategy": null,
+   "sources": [
+    "https://play.hotspawn.com/lobby",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+   ],
+   "result": null
+  },
+  {
+   "match_id": "1052357",
+   "competition": "DACH CS Masters Season 5",
+   "tier": "C",
+   "stage": null,
+   "start_utc": "2026-06-27T15:00:00Z",
+   "lock_utc": "2026-06-27T14:54:00Z",
+   "team_a": "BIG Academy",
+   "team_b": "BERG",
+   "hotspawn_match_url": null,
+   "pages": [
+    "lobby",
+    "cs2-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 2,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "stale",
+   "crowd_a": 100,
+   "crowd_b": 0,
+   "total_picks": 5,
+   "hltv_url": null,
+   "hltv_note": null,
+   "format": "",
+   "format_source": "",
+   "vrs_a": null,
+   "vrs_b": {
+    "name": "BERG",
+    "rank": 185,
+    "points": 754,
+    "roster": [
+     "Askan",
+     "kdaN",
+     "KiMaRR",
+     "nopzy",
+     "Rezst"
+    ],
+    "matches_with_current_five": 20,
+    "first_rated_match_current_five": "2026-08-12"
+   },
+   "own_p_a": null,
+   "own_p_b": null,
+   "hltv_rank_a": 224,
+   "hltv_rank_b": 171,
+   "hltv_team_a": "https://www.hltv.org/team/10254/big-academy",
+   "hltv_team_b": "https://www.hltv.org/team/13747/berg",
+   "p_a": null,
+   "p_b": null,
+   "basis": "Unresolved",
+   "rung": "D",
+   "pick": null,
+   "pick_p": null,
+   "factors": [],
+   "flags": [
+    "STALE_LISTING"
+   ],
+   "strategy": null,
+   "sources": [
+    "https://play.hotspawn.com/lobby",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+   ],
+   "result": null
+  },
+  {
+   "match_id": "1051801",
+   "competition": "Thunderpick World Championship 2026: South American Series #1",
+   "tier": "C",
+   "stage": "waiting for information",
+   "start_utc": "2026-06-27T16:00:00Z",
+   "lock_utc": "2026-06-27T15:54:00Z",
+   "team_a": "Bounty Hunters",
+   "team_b": "UNO MILLE",
+   "hotspawn_match_url": null,
+   "pages": [
+    "lobby",
+    "cs2-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 2,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "stale",
+   "crowd_a": 0,
+   "crowd_b": 0,
+   "total_picks": 0,
+   "hltv_url": null,
+   "hltv_note": null,
+   "format": "",
+   "format_source": "",
+   "vrs_a": {
+    "name": "Bounty Hunters",
+    "rank": 96,
+    "points": 1054,
+    "roster": [
+     "KAISER",
+     "pepe",
+     "ponter",
+     "urban0",
+     "zock"
+    ],
+    "matches_with_current_five": 28,
+    "first_rated_match_current_five": "2026-08-25"
+   },
+   "vrs_b": null,
+   "own_p_a": null,
+   "own_p_b": null,
+   "hltv_rank_a": 74,
+   "hltv_rank_b": null,
+   "hltv_team_a": "https://www.hltv.org/team/12776/bounty-hunters",
+   "hltv_team_b": null,
+   "p_a": null,
+   "p_b": null,
+   "basis": "Unresolved",
+   "rung": "D",
+   "pick": null,
+   "pick_p": null,
+   "factors": [],
+   "flags": [
+    "STALE_LISTING"
+   ],
+   "strategy": null,
+   "sources": [
+    "https://play.hotspawn.com/lobby",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+   ],
+   "result": null
+  },
+  {
+   "match_id": "1052700",
+   "competition": "CCT South America 2026 Series #3",
+   "tier": "B",
+   "stage": "waiting for information",
+   "start_utc": "2026-06-27T16:00:00Z",
+   "lock_utc": "2026-06-27T15:54:00Z",
+   "team_a": "GameHunters",
+   "team_b": "VEXA",
+   "hotspawn_match_url": null,
+   "pages": [
+    "lobby",
+    "cs2-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 3,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "stale",
+   "crowd_a": 100,
+   "crowd_b": 0,
+   "total_picks": 4,
+   "hltv_url": null,
+   "hltv_note": null,
+   "format": "",
+   "format_source": "",
+   "vrs_a": {
+    "name": "GameHunters",
+    "rank": 351,
+    "points": 482,
+    "roster": [
+     "abr",
+     "bnc",
+     "bsd",
+     "f4stzin",
+     "nyezin"
+    ],
+    "matches_with_current_five": 10,
+    "first_rated_match_current_five": "2026-04-24"
+   },
+   "vrs_b": {
+    "name": "VEXA",
+    "rank": 303,
+    "points": 557,
+    "roster": [
+     "neozix",
+     "nolkz",
+     "rainny",
+     "ryuzen",
+     "zock9"
+    ],
+    "matches_with_current_five": 5,
+    "first_rated_match_current_five": "2026-06-27"
+   },
+   "own_p_a": 0.4505,
+   "own_p_b": 0.5495,
+   "hltv_rank_a": null,
+   "hltv_rank_b": null,
+   "hltv_team_a": null,
+   "hltv_team_b": null,
+   "p_a": 0.4505,
+   "p_b": 0.5495,
+   "basis": "Our own line (Valve points)",
+   "rung": "C",
+   "pick": "VEXA",
+   "pick_p": 0.5495,
+   "factors": [],
+   "flags": [
+    "STALE_LISTING"
+   ],
+   "strategy": null,
+   "sources": [
+    "https://play.hotspawn.com/lobby",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+   ],
+   "result": null
+  },
+  {
+   "match_id": "1051342",
+   "competition": "DraculaN Season 7",
+   "tier": "B",
+   "stage": "waiting for information",
+   "start_utc": "2026-06-27T17:00:00Z",
+   "lock_utc": "2026-06-27T16:54:00Z",
+   "team_a": "ex-Tricked",
+   "team_b": "Acend",
+   "hotspawn_match_url": null,
+   "pages": [
+    "lobby",
+    "cs2-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 3,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "stale",
+   "crowd_a": 0,
+   "crowd_b": 0,
+   "total_picks": 0,
+   "hltv_url": null,
+   "hltv_note": null,
+   "format": "",
+   "format_source": "",
+   "vrs_a": null,
+   "vrs_b": {
+    "name": "Acend",
+    "rank": 63,
+    "points": 1197,
+    "roster": [
+     "h4rn",
+     "REDSTAR",
+     "SHiPZ",
+     "Skrimo",
+     "SPELLAN"
+    ],
+    "matches_with_current_five": 2,
+    "first_rated_match_current_five": "2026-09-25"
+   },
+   "own_p_a": null,
+   "own_p_b": null,
+   "hltv_rank_a": null,
+   "hltv_rank_b": 132,
+   "hltv_team_a": null,
+   "hltv_team_b": "https://www.hltv.org/team/13518/acend",
+   "p_a": null,
+   "p_b": null,
+   "basis": "Unresolved",
+   "rung": "D",
+   "pick": null,
+   "pick_p": null,
+   "factors": [
+    {
+     "side": "b",
+     "team": "Acend",
+     "kind": "new five (Valve data)",
+     "summary": "Valve's standings show only 2 rated matches for this exact five, the first on 2026-09-25.",
+     "argues_against": true,
+     "strength": "moderate",
+     "source_urls": [
+      "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+     ],
+     "automated": true
+    }
+   ],
+   "flags": [
+    "STALE_LISTING"
+   ],
+   "strategy": null,
+   "sources": [
+    "https://play.hotspawn.com/lobby",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+   ],
+   "result": null
+  },
+  {
+   "match_id": "1053073",
+   "competition": "Svenska CS-Ligan 2026",
+   "tier": "C",
+   "stage": null,
+   "start_utc": "2026-06-27T17:00:00Z",
+   "lock_utc": "2026-06-27T16:54:00Z",
+   "team_a": "roamsfiest",
+   "team_b": "ReThink",
+   "hotspawn_match_url": null,
+   "pages": [
+    "lobby",
+    "cs2-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 2,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "stale",
+   "crowd_a": 0,
+   "crowd_b": 0,
+   "total_picks": 0,
+   "hltv_url": null,
+   "hltv_note": null,
+   "format": "",
+   "format_source": "",
+   "vrs_a": {
+    "name": "roamsfiest",
+    "rank": 202,
+    "points": 723,
+    "roster": [
+     "Realyummy",
+     "Sn0w",
+     "TiiREX"
+    ],
+    "matches_with_current_five": 0,
+    "first_rated_match_current_five": null
+   },
+   "vrs_b": null,
+   "own_p_a": null,
+   "own_p_b": null,
+   "hltv_rank_a": null,
+   "hltv_rank_b": null,
+   "hltv_team_a": null,
+   "hltv_team_b": null,
+   "p_a": null,
+   "p_b": null,
+   "basis": "Unresolved",
+   "rung": "D",
+   "pick": null,
+   "pick_p": null,
+   "factors": [],
+   "flags": [
+    "STALE_LISTING"
+   ],
+   "strategy": null,
+   "sources": [
+    "https://play.hotspawn.com/lobby",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+   ],
+   "result": null
+  },
+  {
+   "match_id": "1052701",
+   "competition": "CCT South America 2026 Series #3",
+   "tier": "B",
+   "stage": "waiting for information",
+   "start_utc": "2026-06-27T19:00:00Z",
+   "lock_utc": "2026-06-27T18:54:00Z",
+   "team_a": "paiN Academy",
+   "team_b": "Alka",
+   "hotspawn_match_url": null,
+   "pages": [
+    "lobby",
+    "cs2-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 3,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "stale",
+   "crowd_a": 100,
+   "crowd_b": 0,
+   "total_picks": 4,
+   "hltv_url": null,
+   "hltv_note": null,
+   "format": "",
+   "format_source": "",
+   "vrs_a": {
+    "name": "paiN Academy",
+    "rank": 283,
+    "points": 597,
+    "roster": [
+     "Misfit",
+     "Rkzinho",
+     "shazn",
+     "Tatu",
+     "tsug"
+    ],
+    "matches_with_current_five": 10,
+    "first_rated_match_current_five": "2026-08-25"
+   },
+   "vrs_b": {
+    "name": "ALKA",
+    "rank": 163,
+    "points": 802,
+    "roster": [
+     "bnc",
+     "cerolzin",
+     "proSHOW",
+     "puni",
+     "vinaabEAST"
+    ],
+    "matches_with_current_five": 45,
+    "first_rated_match_current_five": "2026-05-12"
+   },
+   "own_p_a": 0.3676,
+   "own_p_b": 0.6324,
+   "hltv_rank_a": null,
+   "hltv_rank_b": 147,
+   "hltv_team_a": null,
+   "hltv_team_b": "https://www.hltv.org/team/13756/alka",
+   "p_a": 0.3676,
+   "p_b": 0.6324,
+   "basis": "Our own line (Valve points)",
+   "rung": "C",
+   "pick": "Alka",
+   "pick_p": 0.6324,
+   "factors": [
+    {
+     "side": "a",
+     "team": "paiN Academy",
+     "kind": "new five (Valve data)",
+     "summary": "Valve's standings show only 10 rated matches for this exact five, the first on 2026-08-25.",
+     "argues_against": true,
+     "strength": "moderate",
+     "source_urls": [
+      "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+     ],
+     "automated": true
+    }
+   ],
+   "flags": [
+    "STALE_LISTING"
+   ],
+   "strategy": null,
+   "sources": [
+    "https://play.hotspawn.com/lobby",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+   ],
+   "result": null
+  },
+  {
+   "match_id": "1053313",
+   "competition": "Thunderpick World Championship 2026: South American Series #1",
+   "tier": "C",
+   "stage": "waiting for information",
+   "start_utc": "2026-06-27T19:00:00Z",
+   "lock_utc": "2026-06-27T18:54:00Z",
+   "team_a": "Fake do Biru",
+   "team_b": "LP",
+   "hotspawn_match_url": null,
+   "pages": [
+    "lobby",
+    "cs2-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 2,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "stale",
+   "crowd_a": 0,
+   "crowd_b": 0,
+   "total_picks": 0,
+   "hltv_url": null,
+   "hltv_note": null,
+   "format": "",
+   "format_source": "",
+   "vrs_a": {
+    "name": "Fake do Biru",
+    "rank": 210,
+    "points": 705,
+    "roster": [
+     "b4rtiN",
+     "detr0ittJ",
+     "hardzao",
+     "pesadelo",
+     "PKL"
+    ],
+    "matches_with_current_five": 7,
+    "first_rated_match_current_five": "2026-07-06"
+   },
+   "vrs_b": {
+    "name": "LP",
+    "rank": 90,
+    "points": 1072,
+    "roster": [
+     "Alisson",
+     "divine",
+     "happ",
+     "Leomonster",
+     "zmb"
+    ],
+    "matches_with_current_five": 51,
+    "first_rated_match_current_five": "2026-05-01"
+   },
+   "own_p_a": 0.2746,
+   "own_p_b": 0.7254,
+   "hltv_rank_a": null,
+   "hltv_rank_b": 107,
+   "hltv_team_a": null,
+   "hltv_team_b": "https://www.hltv.org/team/13304/lp",
+   "p_a": 0.2746,
+   "p_b": 0.7254,
+   "basis": "Our own line (Valve points)",
+   "rung": "C",
+   "pick": "LP",
+   "pick_p": 0.7254,
+   "factors": [],
+   "flags": [
+    "STALE_LISTING"
+   ],
+   "strategy": null,
+   "sources": [
+    "https://play.hotspawn.com/lobby",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+   ],
+   "result": null
+  },
+  {
+   "match_id": "1051803",
+   "competition": "Thunderpick World Championship 2026: South American Series #1",
+   "tier": "C",
+   "stage": "waiting for information",
+   "start_utc": "2026-06-27T22:00:00Z",
+   "lock_utc": "2026-06-27T21:54:00Z",
+   "team_a": "Fluxo",
+   "team_b": "Keyd",
+   "hotspawn_match_url": null,
+   "pages": [
+    "lobby",
+    "cs2-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 2,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "stale",
+   "crowd_a": 0,
+   "crowd_b": 0,
+   "total_picks": 0,
+   "hltv_url": null,
+   "hltv_note": null,
+   "format": "",
+   "format_source": "",
+   "vrs_a": {
+    "name": "Fluxo",
+    "rank": 55,
+    "points": 1277,
+    "roster": [
+     "dav1deuS",
+     "exit",
+     "kye",
+     "Ltz",
+     "zevy"
+    ],
+    "matches_with_current_five": 44,
+    "first_rated_match_current_five": "2026-06-27"
+   },
+   "vrs_b": null,
+   "own_p_a": null,
+   "own_p_b": null,
+   "hltv_rank_a": 60,
+   "hltv_rank_b": null,
+   "hltv_team_a": "https://www.hltv.org/team/11837/fluxo",
+   "hltv_team_b": null,
+   "p_a": null,
+   "p_b": null,
+   "basis": "Unresolved",
+   "rung": "D",
+   "pick": null,
+   "pick_p": null,
+   "factors": [],
+   "flags": [
+    "STALE_LISTING"
+   ],
+   "strategy": null,
+   "sources": [
+    "https://play.hotspawn.com/lobby",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+   ],
+   "result": null
+  },
+  {
+   "match_id": "1052702",
+   "competition": "CCT South America 2026 Series #3",
+   "tier": "B",
+   "stage": "waiting for information",
+   "start_utc": "2026-06-27T22:00:00Z",
+   "lock_utc": "2026-06-27T21:54:00Z",
+   "team_a": "Procyon",
+   "team_b": "BESTIA Academy",
+   "hotspawn_match_url": null,
+   "pages": [
+    "lobby",
+    "cs2-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 3,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "stale",
+   "crowd_a": 0,
+   "crowd_b": 100,
+   "total_picks": 5,
+   "hltv_url": null,
+   "hltv_note": null,
+   "format": "",
+   "format_source": "",
+   "vrs_a": {
+    "name": "Procyon",
+    "rank": 149,
+    "points": 842,
+    "roster": [
+     "laser",
+     "lenci",
+     "MaxOff",
+     "next",
+     "pavv"
+    ],
+    "matches_with_current_five": 27,
+    "first_rated_match_current_five": "2026-07-15"
+   },
+   "vrs_b": {
+    "name": "BESTIA Academy",
+    "rank": 215,
+    "points": 698,
+    "roster": [
+     "agt",
+     "F4QQ",
+     "Jotag3",
+     "Lekzi",
+     "lezy"
+    ],
+    "matches_with_current_five": 35,
+    "first_rated_match_current_five": "2026-04-29"
+   },
+   "own_p_a": 0.5941,
+   "own_p_b": 0.4059,
+   "hltv_rank_a": 119,
+   "hltv_rank_b": 180,
+   "hltv_team_a": "https://www.hltv.org/team/10997/procyon",
+   "hltv_team_b": "https://www.hltv.org/team/13026/bestia-academy",
+   "p_a": 0.5941,
+   "p_b": 0.4059,
+   "basis": "Our own line (Valve points)",
+   "rung": "C",
+   "pick": "Procyon",
+   "pick_p": 0.5941,
+   "factors": [],
+   "flags": [
+    "STALE_LISTING"
+   ],
+   "strategy": null,
+   "sources": [
+    "https://play.hotspawn.com/lobby",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+   ],
+   "result": null
+  },
+  {
+   "match_id": "1052750",
+   "competition": "European Pro League Series 8 Play-In",
+   "tier": "C",
+   "stage": "waiting for information",
+   "start_utc": "2026-06-28T08:00:00Z",
+   "lock_utc": "2026-06-28T07:54:00Z",
+   "team_a": "Honvéd",
+   "team_b": "OlyBet",
+   "hotspawn_match_url": null,
+   "pages": [
+    "lobby",
+    "cs2-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 2,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "stale",
+   "crowd_a": 67,
+   "crowd_b": 33,
+   "total_picks": 3,
+   "hltv_url": null,
+   "hltv_note": null,
+   "format": "",
+   "format_source": "",
+   "vrs_a": null,
+   "vrs_b": {
+    "name": "OlyBet",
+    "rank": 352,
+    "points": 481,
+    "roster": [
+     "cgk",
+     "ChipaaN",
+     "Frip",
+     "hexoq",
+     "imp"
+    ],
+    "matches_with_current_five": 7,
+    "first_rated_match_current_five": "2026-05-12"
+   },
+   "own_p_a": null,
+   "own_p_b": null,
+   "hltv_rank_a": 156,
+   "hltv_rank_b": null,
+   "hltv_team_a": "https://www.hltv.org/team/11110/honvd",
+   "hltv_team_b": null,
+   "p_a": null,
+   "p_b": null,
+   "basis": "Unresolved",
+   "rung": "D",
+   "pick": null,
+   "pick_p": null,
+   "factors": [],
+   "flags": [
+    "STALE_LISTING"
+   ],
+   "strategy": null,
+   "sources": [
+    "https://play.hotspawn.com/lobby",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+   ],
+   "result": null
+  },
+  {
+   "match_id": "1052751",
+   "competition": "European Pro League Series 8 Play-In",
+   "tier": "C",
+   "stage": "waiting for information",
+   "start_utc": "2026-06-28T10:50:00Z",
+   "lock_utc": "2026-06-28T10:44:00Z",
+   "team_a": "ex-MANA",
+   "team_b": "Subtop De France",
+   "hotspawn_match_url": null,
+   "pages": [
+    "lobby",
+    "cs2-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 2,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "stale",
+   "crowd_a": 100,
+   "crowd_b": 0,
+   "total_picks": 3,
+   "hltv_url": null,
+   "hltv_note": null,
+   "format": "",
+   "format_source": "",
+   "vrs_a": null,
+   "vrs_b": {
+    "name": "Subtop De France",
+    "rank": 348,
+    "points": 484,
+    "roster": [
+     "Razzmo",
+     "Revol",
+     "sanjoCRAKITO",
+     "Supr3me",
+     "XiMaa"
+    ],
+    "matches_with_current_five": 11,
+    "first_rated_match_current_five": "2026-06-25"
+   },
+   "own_p_a": null,
+   "own_p_b": null,
+   "hltv_rank_a": null,
+   "hltv_rank_b": null,
+   "hltv_team_a": null,
+   "hltv_team_b": null,
+   "p_a": null,
+   "p_b": null,
+   "basis": "Unresolved",
+   "rung": "D",
+   "pick": null,
+   "pick_p": null,
+   "factors": [],
+   "flags": [
+    "STALE_LISTING"
+   ],
+   "strategy": null,
+   "sources": [
+    "https://play.hotspawn.com/lobby",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+   ],
+   "result": null
+  },
+  {
+   "match_id": "1052185",
+   "competition": "CCT Europe 2026 Challengers #4",
+   "tier": "C",
+   "stage": "waiting for information",
+   "start_utc": "2026-06-28T11:00:00Z",
+   "lock_utc": "2026-06-28T10:54:00Z",
+   "team_a": "sAw",
+   "team_b": "Entropy",
+   "hotspawn_match_url": null,
+   "pages": [
+    "lobby",
+    "cs2-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 2,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "stale",
+   "crowd_a": 60,
+   "crowd_b": 40,
+   "total_picks": 5,
+   "hltv_url": null,
+   "hltv_note": null,
+   "format": "",
+   "format_source": "",
+   "vrs_a": {
+    "name": "SAW",
+    "rank": 42,
+    "points": 1346,
+    "roster": [
+     "ewjerkz",
+     "krazy",
+     "MUTiRiS",
+     "NOPEEj",
+     "story"
+    ],
+    "matches_with_current_five": 23,
+    "first_rated_match_current_five": "2026-08-07"
+   },
+   "vrs_b": {
+    "name": "Entropy",
+    "rank": 156,
+    "points": 813,
+    "roster": [
+     "dottie",
+     "flaw",
+     "Sapec",
+     "tevsii",
+     "Toshas"
+    ],
+    "matches_with_current_five": 3,
+    "first_rated_match_current_five": "2026-09-15"
+   },
+   "own_p_a": 0.8039,
+   "own_p_b": 0.1961,
+   "hltv_rank_a": 63,
+   "hltv_rank_b": null,
+   "hltv_team_a": "https://www.hltv.org/team/10567/saw",
+   "hltv_team_b": null,
+   "p_a": 0.8039,
+   "p_b": 0.1961,
+   "basis": "Our own line (Valve points)",
+   "rung": "C",
+   "pick": "sAw",
+   "pick_p": 0.8039,
+   "factors": [
+    {
+     "side": "b",
+     "team": "Entropy",
+     "kind": "new five (Valve data)",
+     "summary": "Valve's standings show only 3 rated matches for this exact five, the first on 2026-09-15.",
+     "argues_against": true,
+     "strength": "moderate",
+     "source_urls": [
+      "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+     ],
+     "automated": true
+    }
+   ],
+   "flags": [
+    "STALE_LISTING"
+   ],
+   "strategy": null,
+   "sources": [
+    "https://play.hotspawn.com/lobby",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+   ],
+   "result": null
+  },
+  {
+   "match_id": "1053431",
+   "competition": "Urban Riga Open #5",
+   "tier": "C",
+   "stage": null,
+   "start_utc": "2026-06-28T11:00:00Z",
+   "lock_utc": "2026-06-28T10:54:00Z",
+   "team_a": "GAMEHARMONY",
+   "team_b": "Coalesce",
+   "hotspawn_match_url": null,
+   "pages": [
+    "lobby",
+    "cs2-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 2,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "stale",
+   "crowd_a": 0,
+   "crowd_b": 0,
+   "total_picks": 0,
+   "hltv_url": null,
+   "hltv_note": null,
+   "format": "",
+   "format_source": "",
+   "vrs_a": null,
+   "vrs_b": {
+    "name": "Coalesce",
+    "rank": 364,
+    "points": 460,
+    "roster": [
+     "Flicky",
+     "onder",
+     "sen1ar"
+    ],
+    "matches_with_current_five": 0,
+    "first_rated_match_current_five": null
+   },
+   "own_p_a": null,
+   "own_p_b": null,
+   "hltv_rank_a": null,
+   "hltv_rank_b": null,
+   "hltv_team_a": null,
+   "hltv_team_b": null,
+   "p_a": null,
+   "p_b": null,
+   "basis": "Unresolved",
+   "rung": "D",
+   "pick": null,
+   "pick_p": null,
+   "factors": [],
+   "flags": [
+    "STALE_LISTING"
+   ],
+   "strategy": null,
+   "sources": [
+    "https://play.hotspawn.com/lobby",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+   ],
+   "result": null
+  },
+  {
+   "match_id": "1053432",
+   "competition": "Urban Riga Open #5",
+   "tier": "C",
+   "stage": null,
+   "start_utc": "2026-06-28T11:00:00Z",
+   "lock_utc": "2026-06-28T10:54:00Z",
+   "team_a": "Leo",
+   "team_b": "Aimhaus",
+   "hotspawn_match_url": null,
+   "pages": [
+    "lobby",
+    "cs2-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 2,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "stale",
+   "crowd_a": 0,
+   "crowd_b": 0,
+   "total_picks": 0,
+   "hltv_url": null,
+   "hltv_note": null,
+   "format": "",
+   "format_source": "",
+   "vrs_a": null,
+   "vrs_b": {
+    "name": "Aimhaus",
+    "rank": 369,
+    "points": 421,
+    "roster": [
+     "flairr",
+     "silrak",
+     "Yamero"
+    ],
+    "matches_with_current_five": 0,
+    "first_rated_match_current_five": null
+   },
+   "own_p_a": null,
+   "own_p_b": null,
+   "hltv_rank_a": 83,
+   "hltv_rank_b": null,
+   "hltv_team_a": "https://www.hltv.org/team/11446/leo",
+   "hltv_team_b": null,
+   "p_a": null,
+   "p_b": null,
+   "basis": "Unresolved",
+   "rung": "D",
+   "pick": null,
+   "pick_p": null,
+   "factors": [],
+   "flags": [
+    "STALE_LISTING"
+   ],
+   "strategy": null,
+   "sources": [
+    "https://play.hotspawn.com/lobby",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+   ],
+   "result": null
+  },
+  {
+   "match_id": "1053433",
+   "competition": "Urban Riga Open #5",
+   "tier": "C",
+   "stage": null,
+   "start_utc": "2026-06-28T12:00:00Z",
+   "lock_utc": "2026-06-28T11:54:00Z",
+   "team_a": "GAMEHARMONY",
+   "team_b": "Aimhaus",
+   "hotspawn_match_url": null,
+   "pages": [
+    "lobby",
+    "cs2-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 2,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "stale",
+   "crowd_a": 100,
+   "crowd_b": 0,
+   "total_picks": 1,
+   "hltv_url": null,
+   "hltv_note": null,
+   "format": "",
+   "format_source": "",
+   "vrs_a": null,
+   "vrs_b": {
+    "name": "Aimhaus",
+    "rank": 369,
+    "points": 421,
+    "roster": [
+     "flairr",
+     "silrak",
+     "Yamero"
+    ],
+    "matches_with_current_five": 0,
+    "first_rated_match_current_five": null
+   },
+   "own_p_a": null,
+   "own_p_b": null,
+   "hltv_rank_a": null,
+   "hltv_rank_b": null,
+   "hltv_team_a": null,
+   "hltv_team_b": null,
+   "p_a": null,
+   "p_b": null,
+   "basis": "Unresolved",
+   "rung": "D",
+   "pick": null,
+   "pick_p": null,
+   "factors": [],
+   "flags": [
+    "STALE_LISTING"
+   ],
+   "strategy": null,
+   "sources": [
+    "https://play.hotspawn.com/lobby",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+   ],
+   "result": null
+  },
+  {
+   "match_id": "1053434",
+   "competition": "Urban Riga Open #5",
+   "tier": "C",
+   "stage": null,
+   "start_utc": "2026-06-28T12:00:00Z",
+   "lock_utc": "2026-06-28T11:54:00Z",
+   "team_a": "Leo",
+   "team_b": "Coalesce",
+   "hotspawn_match_url": null,
+   "pages": [
+    "lobby",
+    "cs2-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 2,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "stale",
+   "crowd_a": 100,
+   "crowd_b": 0,
+   "total_picks": 1,
+   "hltv_url": null,
+   "hltv_note": null,
+   "format": "",
+   "format_source": "",
+   "vrs_a": null,
+   "vrs_b": {
+    "name": "Coalesce",
+    "rank": 364,
+    "points": 460,
+    "roster": [
+     "Flicky",
+     "onder",
+     "sen1ar"
+    ],
+    "matches_with_current_five": 0,
+    "first_rated_match_current_five": null
+   },
+   "own_p_a": null,
+   "own_p_b": null,
+   "hltv_rank_a": 83,
+   "hltv_rank_b": null,
+   "hltv_team_a": "https://www.hltv.org/team/11446/leo",
+   "hltv_team_b": null,
+   "p_a": null,
+   "p_b": null,
+   "basis": "Unresolved",
+   "rung": "D",
+   "pick": null,
+   "pick_p": null,
+   "factors": [],
+   "flags": [
+    "STALE_LISTING"
+   ],
+   "strategy": null,
+   "sources": [
+    "https://play.hotspawn.com/lobby",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+   ],
+   "result": null
+  },
+  {
+   "match_id": "1052698",
+   "competition": "CCT South America 2026 Series #3",
+   "tier": "B",
+   "stage": "waiting for information",
+   "start_utc": "2026-06-28T13:00:00Z",
+   "lock_utc": "2026-06-28T12:54:00Z",
+   "team_a": "ex-KRÜ",
+   "team_b": "MAGICOS",
+   "hotspawn_match_url": null,
+   "pages": [
+    "lobby",
+    "cs2-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 3,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "stale",
+   "crowd_a": 40,
+   "crowd_b": 60,
+   "total_picks": 5,
+   "hltv_url": null,
+   "hltv_note": null,
+   "format": "",
+   "format_source": "",
+   "vrs_a": {
+    "name": "ex-KRÜ",
+    "rank": 362,
+    "points": 464,
+    "roster": [
+     "1962",
+     "ABM",
+     "guidimon",
+     "laser",
+     "reversive"
+    ],
+    "matches_with_current_five": 6,
+    "first_rated_match_current_five": "2026-06-27"
+   },
+   "vrs_b": null,
+   "own_p_a": null,
+   "own_p_b": null,
+   "hltv_rank_a": null,
+   "hltv_rank_b": null,
+   "hltv_team_a": null,
+   "hltv_team_b": null,
+   "p_a": null,
+   "p_b": null,
+   "basis": "Unresolved",
+   "rung": "D",
+   "pick": null,
+   "pick_p": null,
+   "factors": [],
+   "flags": [
+    "STALE_LISTING"
+   ],
+   "strategy": null,
+   "sources": [
+    "https://play.hotspawn.com/lobby",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+   ],
+   "result": null
+  },
+  {
+   "match_id": "1053435",
+   "competition": "Urban Riga Open #5",
+   "tier": "C",
+   "stage": null,
+   "start_utc": "2026-06-28T13:00:00Z",
+   "lock_utc": "2026-06-28T12:54:00Z",
+   "team_a": "GAMEHARMONY",
+   "team_b": "Leo",
+   "hotspawn_match_url": null,
+   "pages": [
+    "lobby",
+    "cs2-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 2,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "stale",
+   "crowd_a": 0,
+   "crowd_b": 0,
+   "total_picks": 0,
+   "hltv_url": null,
+   "hltv_note": null,
+   "format": "",
+   "format_source": "",
+   "vrs_a": null,
+   "vrs_b": null,
+   "own_p_a": null,
+   "own_p_b": null,
+   "hltv_rank_a": null,
+   "hltv_rank_b": 83,
+   "hltv_team_a": null,
+   "hltv_team_b": "https://www.hltv.org/team/11446/leo",
+   "p_a": null,
+   "p_b": null,
+   "basis": "Unresolved",
+   "rung": "D",
+   "pick": null,
+   "pick_p": null,
+   "factors": [],
+   "flags": [
+    "STALE_LISTING"
+   ],
+   "strategy": null,
+   "sources": [
+    "https://play.hotspawn.com/lobby"
+   ],
+   "result": null
+  },
+  {
+   "match_id": "1053436",
+   "competition": "Urban Riga Open #5",
+   "tier": "C",
+   "stage": null,
+   "start_utc": "2026-06-28T13:00:00Z",
+   "lock_utc": "2026-06-28T12:54:00Z",
+   "team_a": "Aimhaus",
+   "team_b": "Coalesce",
+   "hotspawn_match_url": null,
+   "pages": [
+    "lobby",
+    "cs2-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 2,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "stale",
+   "crowd_a": 0,
+   "crowd_b": 0,
+   "total_picks": 0,
+   "hltv_url": null,
+   "hltv_note": null,
+   "format": "",
+   "format_source": "",
+   "vrs_a": {
+    "name": "Aimhaus",
+    "rank": 369,
+    "points": 421,
+    "roster": [
+     "flairr",
+     "silrak",
+     "Yamero"
+    ],
+    "matches_with_current_five": 0,
+    "first_rated_match_current_five": null
+   },
+   "vrs_b": {
+    "name": "Coalesce",
+    "rank": 364,
+    "points": 460,
+    "roster": [
+     "Flicky",
+     "onder",
+     "sen1ar"
+    ],
+    "matches_with_current_five": 0,
+    "first_rated_match_current_five": null
+   },
+   "own_p_a": 0.4742,
+   "own_p_b": 0.5258,
+   "hltv_rank_a": null,
+   "hltv_rank_b": null,
+   "hltv_team_a": null,
+   "hltv_team_b": null,
+   "p_a": 0.4742,
+   "p_b": 0.5258,
+   "basis": "Our own line (Valve points)",
+   "rung": "C",
+   "pick": "Coalesce",
+   "pick_p": 0.5258,
+   "factors": [],
+   "flags": [
+    "STALE_LISTING"
+   ],
+   "strategy": null,
+   "sources": [
+    "https://play.hotspawn.com/lobby",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+   ],
+   "result": null
+  },
+  {
+   "match_id": "1051343",
+   "competition": "DraculaN Season 7",
+   "tier": "B",
+   "stage": "waiting for information",
+   "start_utc": "2026-06-28T13:35:00Z",
+   "lock_utc": "2026-06-28T13:29:00Z",
+   "team_a": "Sharks",
+   "team_b": "ex-Tricked",
+   "hotspawn_match_url": null,
+   "pages": [
+    "lobby",
+    "cs2-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 3,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "stale",
+   "crowd_a": 0,
+   "crowd_b": 0,
+   "total_picks": 0,
+   "hltv_url": null,
+   "hltv_note": null,
+   "format": "",
+   "format_source": "",
+   "vrs_a": null,
+   "vrs_b": null,
+   "own_p_a": null,
+   "own_p_b": null,
+   "hltv_rank_a": null,
+   "hltv_rank_b": null,
+   "hltv_team_a": null,
+   "hltv_team_b": null,
+   "p_a": null,
+   "p_b": null,
+   "basis": "Unresolved",
+   "rung": "D",
+   "pick": null,
+   "pick_p": null,
+   "factors": [],
+   "flags": [
+    "STALE_LISTING"
+   ],
+   "strategy": null,
+   "sources": [
+    "https://play.hotspawn.com/lobby"
+   ],
+   "result": null
+  },
+  {
+   "match_id": "1052186",
+   "competition": "CCT Europe 2026 Challengers #4",
+   "tier": "C",
+   "stage": "waiting for information",
+   "start_utc": "2026-06-28T13:45:00Z",
+   "lock_utc": "2026-06-28T13:39:00Z",
+   "team_a": "Lilmix",
+   "team_b": "Subtop De France",
+   "hotspawn_match_url": null,
+   "pages": [
+    "lobby",
+    "cs2-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 2,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "stale",
+   "crowd_a": 100,
+   "crowd_b": 0,
+   "total_picks": 6,
+   "hltv_url": null,
+   "hltv_note": null,
+   "format": "",
+   "format_source": "",
+   "vrs_a": null,
+   "vrs_b": {
+    "name": "Subtop De France",
+    "rank": 348,
+    "points": 484,
+    "roster": [
+     "Razzmo",
+     "Revol",
+     "sanjoCRAKITO",
+     "Supr3me",
+     "XiMaa"
+    ],
+    "matches_with_current_five": 11,
+    "first_rated_match_current_five": "2026-06-25"
+   },
+   "own_p_a": null,
+   "own_p_b": null,
+   "hltv_rank_a": 216,
+   "hltv_rank_b": null,
+   "hltv_team_a": "https://www.hltv.org/team/9735/lilmix",
+   "hltv_team_b": null,
+   "p_a": null,
+   "p_b": null,
+   "basis": "Unresolved",
+   "rung": "D",
+   "pick": null,
+   "pick_p": null,
+   "factors": [],
+   "flags": [
+    "STALE_LISTING"
+   ],
+   "strategy": null,
+   "sources": [
+    "https://play.hotspawn.com/lobby",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+   ],
+   "result": null
+  },
+  {
+   "match_id": "1052187",
+   "competition": "CCT Europe 2026 Challengers #4",
+   "tier": "C",
+   "stage": "waiting for information",
+   "start_utc": "2026-06-28T13:45:00Z",
+   "lock_utc": "2026-06-28T13:39:00Z",
+   "team_a": "BIG Academy",
+   "team_b": "Endless Journey",
+   "hotspawn_match_url": null,
+   "pages": [
+    "lobby",
+    "cs2-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 2,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "stale",
+   "crowd_a": 100,
+   "crowd_b": 0,
+   "total_picks": 5,
+   "hltv_url": null,
+   "hltv_note": null,
+   "format": "",
+   "format_source": "",
+   "vrs_a": null,
+   "vrs_b": {
+    "name": "Endless Journey",
+    "rank": 219,
+    "points": 688,
+    "roster": [
+     "Aliot",
+     "deb0",
+     "pavlysha666",
+     "swetsi",
+     "Temny Prince"
+    ],
+    "matches_with_current_five": 5,
+    "first_rated_match_current_five": "2026-05-14"
+   },
+   "own_p_a": null,
+   "own_p_b": null,
+   "hltv_rank_a": 224,
+   "hltv_rank_b": null,
+   "hltv_team_a": "https://www.hltv.org/team/10254/big-academy",
+   "hltv_team_b": null,
+   "p_a": null,
+   "p_b": null,
+   "basis": "Unresolved",
+   "rung": "D",
+   "pick": null,
+   "pick_p": null,
+   "factors": [],
+   "flags": [
+    "STALE_LISTING"
+   ],
+   "strategy": null,
+   "sources": [
+    "https://play.hotspawn.com/lobby",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+   ],
+   "result": null
+  },
+  {
+   "match_id": "1052184",
+   "competition": "CCT Europe 2026 Challengers #4",
+   "tier": "C",
+   "stage": "waiting for information",
+   "start_utc": "2026-06-28T14:05:00Z",
+   "lock_utc": "2026-06-28T13:59:00Z",
+   "team_a": "Atreides",
+   "team_b": "Donstu",
+   "hotspawn_match_url": null,
+   "pages": [
+    "lobby",
+    "cs2-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 2,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "stale",
+   "crowd_a": 100,
+   "crowd_b": 0,
+   "total_picks": 6,
+   "hltv_url": null,
+   "hltv_note": null,
+   "format": "",
+   "format_source": "",
+   "vrs_a": null,
+   "vrs_b": {
+    "name": "DONSTU",
+    "rank": 197,
+    "points": 732,
+    "roster": [
+     "Due1yant",
+     "gleb86rus",
+     "LAKSHERi",
+     "NeoLife",
+     "phorate"
+    ],
+    "matches_with_current_five": 20,
+    "first_rated_match_current_five": "2026-06-28"
+   },
+   "own_p_a": null,
+   "own_p_b": null,
+   "hltv_rank_a": null,
+   "hltv_rank_b": 206,
+   "hltv_team_a": null,
+   "hltv_team_b": "https://www.hltv.org/team/13714/donstu",
+   "p_a": null,
+   "p_b": null,
+   "basis": "Unresolved",
+   "rung": "D",
+   "pick": null,
+   "pick_p": null,
+   "factors": [],
+   "flags": [
+    "STALE_LISTING"
+   ],
+   "strategy": null,
+   "sources": [
+    "https://play.hotspawn.com/lobby",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+   ],
+   "result": null
+  },
+  {
+   "match_id": "1052696",
+   "competition": "CCT South America 2026 Series #3",
+   "tier": "B",
+   "stage": "waiting for information",
+   "start_utc": "2026-06-28T16:00:00Z",
+   "lock_utc": "2026-06-28T15:54:00Z",
+   "team_a": "Yawara",
+   "team_b": "Blitzkrieg",
+   "hotspawn_match_url": null,
+   "pages": [
+    "lobby",
+    "cs2-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 3,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "stale",
+   "crowd_a": 60,
+   "crowd_b": 40,
+   "total_picks": 5,
+   "hltv_url": null,
+   "hltv_note": null,
+   "format": "",
+   "format_source": "",
+   "vrs_a": {
+    "name": "Yawara",
+    "rank": 147,
+    "points": 845,
+    "roster": [
+     "brn$",
+     "deemO",
+     "j0w",
+     "pancc",
+     "tele"
+    ],
+    "matches_with_current_five": 18,
+    "first_rated_match_current_five": "2026-08-25"
+   },
+   "vrs_b": null,
+   "own_p_a": null,
+   "own_p_b": null,
+   "hltv_rank_a": 153,
+   "hltv_rank_b": null,
+   "hltv_team_a": "https://www.hltv.org/team/11933/yawara",
+   "hltv_team_b": null,
+   "p_a": null,
+   "p_b": null,
+   "basis": "Unresolved",
+   "rung": "D",
+   "pick": null,
+   "pick_p": null,
+   "factors": [],
+   "flags": [
+    "STALE_LISTING"
+   ],
+   "strategy": null,
+   "sources": [
+    "https://play.hotspawn.com/lobby",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+   ],
+   "result": null
+  },
+  {
+   "match_id": "1053439",
+   "competition": "Urban Riga Open #5",
+   "tier": "C",
+   "stage": null,
+   "start_utc": "2026-06-28T16:00:00Z",
+   "lock_utc": "2026-06-28T15:54:00Z",
+   "team_a": "6666",
+   "team_b": "ASTRAL",
+   "hotspawn_match_url": null,
+   "pages": [
+    "lobby",
+    "cs2-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 2,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "stale",
+   "crowd_a": 0,
+   "crowd_b": 100,
+   "total_picks": 1,
+   "hltv_url": null,
+   "hltv_note": null,
+   "format": "",
+   "format_source": "",
+   "vrs_a": null,
+   "vrs_b": {
+    "name": "ASTRAL",
+    "rank": 91,
+    "points": 1072,
+    "roster": [
+     "gxx-",
+     "meowpop",
+     "Neqy",
+     "RaY5ive",
+     "swiz"
+    ],
+    "matches_with_current_five": 66,
+    "first_rated_match_current_five": "2026-04-09"
+   },
+   "own_p_a": null,
+   "own_p_b": null,
+   "hltv_rank_a": 80,
+   "hltv_rank_b": 108,
+   "hltv_team_a": "https://www.hltv.org/team/13882/6666",
+   "hltv_team_b": "https://www.hltv.org/team/13333/astral",
+   "p_a": null,
+   "p_b": null,
+   "basis": "Unresolved",
+   "rung": "D",
+   "pick": null,
+   "pick_p": null,
+   "factors": [],
+   "flags": [
+    "STALE_LISTING"
+   ],
+   "strategy": null,
+   "sources": [
+    "https://play.hotspawn.com/lobby",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+   ],
+   "result": null
+  },
+  {
+   "match_id": "1053469",
+   "competition": "Urban Riga Open #5",
+   "tier": "C",
+   "stage": null,
+   "start_utc": "2026-06-28T16:00:00Z",
+   "lock_utc": "2026-06-28T15:54:00Z",
+   "team_a": "BERG",
+   "team_b": "SINQU REHTI",
+   "hotspawn_match_url": null,
+   "pages": [
+    "lobby",
+    "cs2-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 2,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "stale",
+   "crowd_a": 0,
+   "crowd_b": 100,
+   "total_picks": 1,
+   "hltv_url": null,
+   "hltv_note": null,
+   "format": "",
+   "format_source": "",
+   "vrs_a": {
+    "name": "BERG",
+    "rank": 185,
+    "points": 754,
+    "roster": [
+     "Askan",
+     "kdaN",
+     "KiMaRR",
+     "nopzy",
+     "Rezst"
+    ],
+    "matches_with_current_five": 20,
+    "first_rated_match_current_five": "2026-08-12"
+   },
+   "vrs_b": null,
+   "own_p_a": null,
+   "own_p_b": null,
+   "hltv_rank_a": 171,
+   "hltv_rank_b": null,
+   "hltv_team_a": "https://www.hltv.org/team/13747/berg",
+   "hltv_team_b": null,
+   "p_a": null,
+   "p_b": null,
+   "basis": "Unresolved",
+   "rung": "D",
+   "pick": null,
+   "pick_p": null,
+   "factors": [],
+   "flags": [
+    "STALE_LISTING"
+   ],
+   "strategy": null,
+   "sources": [
+    "https://play.hotspawn.com/lobby",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+   ],
+   "result": null
+  },
+  {
+   "match_id": "1053441",
+   "competition": "Urban Riga Open #5",
+   "tier": "C",
+   "stage": null,
+   "start_utc": "2026-06-28T17:00:00Z",
+   "lock_utc": "2026-06-28T16:54:00Z",
+   "team_a": "ASTRAL",
+   "team_b": "BERG",
+   "hotspawn_match_url": null,
+   "pages": [
+    "lobby",
+    "cs2-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 2,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "stale",
+   "crowd_a": 0,
+   "crowd_b": 0,
+   "total_picks": 0,
+   "hltv_url": null,
+   "hltv_note": null,
+   "format": "",
+   "format_source": "",
+   "vrs_a": {
+    "name": "ASTRAL",
+    "rank": 91,
+    "points": 1072,
+    "roster": [
+     "gxx-",
+     "meowpop",
+     "Neqy",
+     "RaY5ive",
+     "swiz"
+    ],
+    "matches_with_current_five": 66,
+    "first_rated_match_current_five": "2026-04-09"
+   },
+   "vrs_b": {
+    "name": "BERG",
+    "rank": 185,
+    "points": 754,
+    "roster": [
+     "Askan",
+     "kdaN",
+     "KiMaRR",
+     "nopzy",
+     "Rezst"
+    ],
+    "matches_with_current_five": 20,
+    "first_rated_match_current_five": "2026-08-12"
+   },
+   "own_p_a": 0.6988,
+   "own_p_b": 0.3012,
+   "hltv_rank_a": 108,
+   "hltv_rank_b": 171,
+   "hltv_team_a": "https://www.hltv.org/team/13333/astral",
+   "hltv_team_b": "https://www.hltv.org/team/13747/berg",
+   "p_a": 0.6988,
+   "p_b": 0.3012,
+   "basis": "Our own line (Valve points)",
+   "rung": "C",
+   "pick": "ASTRAL",
+   "pick_p": 0.6988,
+   "factors": [],
+   "flags": [
+    "STALE_LISTING"
+   ],
+   "strategy": null,
+   "sources": [
+    "https://play.hotspawn.com/lobby",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+   ],
+   "result": null
+  },
+  {
+   "match_id": "1053470",
+   "competition": "Urban Riga Open #5",
+   "tier": "C",
+   "stage": null,
+   "start_utc": "2026-06-28T17:00:00Z",
+   "lock_utc": "2026-06-28T16:54:00Z",
+   "team_a": "6666",
+   "team_b": "SINQU REHTI",
+   "hotspawn_match_url": null,
+   "pages": [
+    "lobby",
+    "cs2-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 2,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "stale",
+   "crowd_a": 0,
+   "crowd_b": 0,
+   "total_picks": 0,
+   "hltv_url": null,
+   "hltv_note": null,
+   "format": "",
+   "format_source": "",
+   "vrs_a": null,
+   "vrs_b": null,
+   "own_p_a": null,
+   "own_p_b": null,
+   "hltv_rank_a": 80,
+   "hltv_rank_b": null,
+   "hltv_team_a": "https://www.hltv.org/team/13882/6666",
+   "hltv_team_b": null,
+   "p_a": null,
+   "p_b": null,
+   "basis": "Unresolved",
+   "rung": "D",
+   "pick": null,
+   "pick_p": null,
+   "factors": [],
+   "flags": [
+    "STALE_LISTING"
+   ],
+   "strategy": null,
+   "sources": [
+    "https://play.hotspawn.com/lobby"
+   ],
+   "result": null
+  },
+  {
+   "match_id": "1051344",
+   "competition": "DraculaN Season 7",
+   "tier": "B",
+   "stage": "waiting for information",
+   "start_utc": "2026-06-28T17:30:00Z",
+   "lock_utc": "2026-06-28T17:24:00Z",
+   "team_a": "Inner Circle",
+   "team_b": "Acend",
+   "hotspawn_match_url": null,
+   "pages": [
+    "lobby",
+    "cs2-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 3,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "stale",
+   "crowd_a": 0,
+   "crowd_b": 0,
+   "total_picks": 0,
+   "hltv_url": null,
+   "hltv_note": null,
+   "format": "",
+   "format_source": "",
+   "vrs_a": {
+    "name": "Inner Circle",
+    "rank": 20,
+    "points": 1516,
+    "roster": [
+     "cptkurtka023",
+     "Dawy",
+     "headtr1ck",
+     "onic",
+     "zeRRoFIX"
+    ],
+    "matches_with_current_five": 39,
+    "first_rated_match_current_five": "2026-05-21"
+   },
+   "vrs_b": {
+    "name": "Acend",
+    "rank": 63,
+    "points": 1197,
+    "roster": [
+     "h4rn",
+     "REDSTAR",
+     "SHiPZ",
+     "Skrimo",
+     "SPELLAN"
+    ],
+    "matches_with_current_five": 2,
+    "first_rated_match_current_five": "2026-09-25"
+   },
+   "own_p_a": 0.6994,
+   "own_p_b": 0.3006,
+   "hltv_rank_a": 29,
+   "hltv_rank_b": 132,
+   "hltv_team_a": "https://www.hltv.org/team/13117/inner-circle",
+   "hltv_team_b": "https://www.hltv.org/team/13518/acend",
+   "p_a": 0.6994,
+   "p_b": 0.3006,
+   "basis": "Our own line (Valve points)",
+   "rung": "C",
+   "pick": "Inner Circle",
+   "pick_p": 0.6994,
+   "factors": [
+    {
+     "side": "b",
+     "team": "Acend",
+     "kind": "new five (Valve data)",
+     "summary": "Valve's standings show only 2 rated matches for this exact five, the first on 2026-09-25.",
+     "argues_against": true,
+     "strength": "moderate",
+     "source_urls": [
+      "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+     ],
+     "automated": true
+    }
+   ],
+   "flags": [
+    "STALE_LISTING"
+   ],
+   "strategy": null,
+   "sources": [
+    "https://play.hotspawn.com/lobby",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+   ],
+   "result": null
+  },
+  {
+   "match_id": "1051804",
+   "competition": "Thunderpick World Championship 2026: South American Series #1",
+   "tier": "C",
+   "stage": "waiting for information",
+   "start_utc": "2026-06-28T18:00:00Z",
+   "lock_utc": "2026-06-28T17:54:00Z",
+   "team_a": "Fluxo",
+   "team_b": "UNO MILLE",
+   "hotspawn_match_url": null,
+   "pages": [
+    "lobby",
+    "cs2-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 2,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "stale",
+   "crowd_a": 0,
+   "crowd_b": 0,
+   "total_picks": 0,
+   "hltv_url": null,
+   "hltv_note": null,
+   "format": "",
+   "format_source": "",
+   "vrs_a": {
+    "name": "Fluxo",
+    "rank": 55,
+    "points": 1277,
+    "roster": [
+     "dav1deuS",
+     "exit",
+     "kye",
+     "Ltz",
+     "zevy"
+    ],
+    "matches_with_current_five": 44,
+    "first_rated_match_current_five": "2026-06-27"
+   },
+   "vrs_b": null,
+   "own_p_a": null,
+   "own_p_b": null,
+   "hltv_rank_a": 60,
+   "hltv_rank_b": null,
+   "hltv_team_a": "https://www.hltv.org/team/11837/fluxo",
+   "hltv_team_b": null,
+   "p_a": null,
+   "p_b": null,
+   "basis": "Unresolved",
+   "rung": "D",
+   "pick": null,
+   "pick_p": null,
+   "factors": [],
+   "flags": [
+    "STALE_LISTING"
+   ],
+   "strategy": null,
+   "sources": [
+    "https://play.hotspawn.com/lobby",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+   ],
+   "result": null
+  },
+  {
+   "match_id": "1053442",
+   "competition": "Urban Riga Open #5",
+   "tier": "C",
+   "stage": null,
+   "start_utc": "2026-06-28T18:00:00Z",
+   "lock_utc": "2026-06-28T17:54:00Z",
+   "team_a": "6666",
+   "team_b": "BERG",
+   "hotspawn_match_url": null,
+   "pages": [
+    "lobby",
+    "cs2-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 2,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "stale",
+   "crowd_a": 0,
+   "crowd_b": 0,
+   "total_picks": 0,
+   "hltv_url": null,
+   "hltv_note": null,
+   "format": "",
+   "format_source": "",
+   "vrs_a": null,
+   "vrs_b": {
+    "name": "BERG",
+    "rank": 185,
+    "points": 754,
+    "roster": [
+     "Askan",
+     "kdaN",
+     "KiMaRR",
+     "nopzy",
+     "Rezst"
+    ],
+    "matches_with_current_five": 20,
+    "first_rated_match_current_five": "2026-08-12"
+   },
+   "own_p_a": null,
+   "own_p_b": null,
+   "hltv_rank_a": 80,
+   "hltv_rank_b": 171,
+   "hltv_team_a": "https://www.hltv.org/team/13882/6666",
+   "hltv_team_b": "https://www.hltv.org/team/13747/berg",
+   "p_a": null,
+   "p_b": null,
+   "basis": "Unresolved",
+   "rung": "D",
+   "pick": null,
+   "pick_p": null,
+   "factors": [],
+   "flags": [
+    "STALE_LISTING"
+   ],
+   "strategy": null,
+   "sources": [
+    "https://play.hotspawn.com/lobby",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+   ],
+   "result": null
+  },
+  {
+   "match_id": "1053471",
+   "competition": "Urban Riga Open #5",
+   "tier": "C",
+   "stage": null,
+   "start_utc": "2026-06-28T18:00:00Z",
+   "lock_utc": "2026-06-28T17:54:00Z",
+   "team_a": "ASTRAL",
+   "team_b": "SINQU REHTI",
+   "hotspawn_match_url": null,
+   "pages": [
+    "lobby",
+    "cs2-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 2,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "stale",
+   "crowd_a": 0,
+   "crowd_b": 0,
+   "total_picks": 0,
+   "hltv_url": null,
+   "hltv_note": null,
+   "format": "",
+   "format_source": "",
+   "vrs_a": {
+    "name": "ASTRAL",
+    "rank": 91,
+    "points": 1072,
+    "roster": [
+     "gxx-",
+     "meowpop",
+     "Neqy",
+     "RaY5ive",
+     "swiz"
+    ],
+    "matches_with_current_five": 66,
+    "first_rated_match_current_five": "2026-04-09"
+   },
+   "vrs_b": null,
+   "own_p_a": null,
+   "own_p_b": null,
+   "hltv_rank_a": 108,
+   "hltv_rank_b": null,
+   "hltv_team_a": "https://www.hltv.org/team/13333/astral",
+   "hltv_team_b": null,
+   "p_a": null,
+   "p_b": null,
+   "basis": "Unresolved",
+   "rung": "D",
+   "pick": null,
+   "pick_p": null,
+   "factors": [],
+   "flags": [
+    "STALE_LISTING"
+   ],
+   "strategy": null,
+   "sources": [
+    "https://play.hotspawn.com/lobby",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+   ],
+   "result": null
+  },
+  {
+   "match_id": "1052697",
+   "competition": "CCT South America 2026 Series #3",
+   "tier": "B",
+   "stage": "waiting for information",
+   "start_utc": "2026-06-28T19:05:00Z",
+   "lock_utc": "2026-06-28T18:59:00Z",
+   "team_a": "METANOIA Wolves",
+   "team_b": "Guara",
+   "hotspawn_match_url": null,
+   "pages": [
+    "lobby",
+    "cs2-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 3,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "stale",
+   "crowd_a": 60,
+   "crowd_b": 40,
+   "total_picks": 5,
+   "hltv_url": null,
+   "hltv_note": null,
+   "format": "",
+   "format_source": "",
+   "vrs_a": null,
+   "vrs_b": {
+    "name": "GUARA",
+    "rank": 358,
+    "points": 469,
+    "roster": [
+     "fnbJESUS",
+     "Longo",
+     "neskk",
+     "paqueta",
+     "Tineu"
+    ],
+    "matches_with_current_five": 8,
+    "first_rated_match_current_five": "2026-06-28"
+   },
+   "own_p_a": null,
+   "own_p_b": null,
+   "hltv_rank_a": null,
+   "hltv_rank_b": null,
+   "hltv_team_a": null,
+   "hltv_team_b": null,
+   "p_a": null,
+   "p_b": null,
+   "basis": "Unresolved",
+   "rung": "D",
+   "pick": null,
+   "pick_p": null,
+   "factors": [],
+   "flags": [
+    "STALE_LISTING"
+   ],
+   "strategy": null,
+   "sources": [
+    "https://play.hotspawn.com/lobby",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+   ],
+   "result": null
+  },
+  {
+   "match_id": "1053679",
+   "competition": "Thunderpick World Championship 2026: South American Series #1",
+   "tier": "C",
+   "stage": "waiting for information",
+   "start_utc": "2026-06-28T21:15:00Z",
+   "lock_utc": "2026-06-28T21:09:00Z",
+   "team_a": "ShindeN",
+   "team_b": "LP",
+   "hotspawn_match_url": null,
+   "pages": [
+    "lobby",
+    "cs2-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 2,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "stale",
+   "crowd_a": 0,
+   "crowd_b": 0,
+   "total_picks": 0,
+   "hltv_url": null,
+   "hltv_note": null,
+   "format": "",
+   "format_source": "",
+   "vrs_a": {
+    "name": "ShindeN",
+    "rank": 74,
+    "points": 1121,
+    "roster": [
+     "abizz",
+     "guty",
+     "ivz",
+     "naz",
+     "tom1jed"
+    ],
+    "matches_with_current_five": 35,
+    "first_rated_match_current_five": "2026-04-08"
+   },
+   "vrs_b": {
+    "name": "LP",
+    "rank": 90,
+    "points": 1072,
+    "roster": [
+     "Alisson",
+     "divine",
+     "happ",
+     "Leomonster",
+     "zmb"
+    ],
+    "matches_with_current_five": 51,
+    "first_rated_match_current_five": "2026-05-01"
+   },
+   "own_p_a": 0.5324,
+   "own_p_b": 0.4676,
+   "hltv_rank_a": 50,
+   "hltv_rank_b": 107,
+   "hltv_team_a": "https://www.hltv.org/team/12959/shinden",
+   "hltv_team_b": "https://www.hltv.org/team/13304/lp",
+   "p_a": 0.5324,
+   "p_b": 0.4676,
+   "basis": "Our own line (Valve points)",
+   "rung": "C",
+   "pick": "ShindeN",
+   "pick_p": 0.5324,
+   "factors": [],
+   "flags": [
+    "STALE_LISTING"
+   ],
+   "strategy": null,
+   "sources": [
+    "https://play.hotspawn.com/lobby",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+   ],
+   "result": null
+  },
+  {
+   "match_id": "1052695",
+   "competition": "CCT South America 2026 Series #3",
+   "tier": "B",
+   "stage": "waiting for information",
+   "start_utc": "2026-06-28T22:00:00Z",
+   "lock_utc": "2026-06-28T21:54:00Z",
+   "team_a": "MIBR Academy",
+   "team_b": "Patins de Ferrari",
+   "hotspawn_match_url": null,
+   "pages": [
+    "lobby",
+    "cs2-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 3,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "stale",
+   "crowd_a": 100,
+   "crowd_b": 0,
+   "total_picks": 5,
+   "hltv_url": null,
+   "hltv_note": null,
+   "format": "",
+   "format_source": "",
+   "vrs_a": {
+    "name": "MIBR Academy",
+    "rank": 263,
+    "points": 628,
+    "roster": [
+     "brn$",
+     "fl4sh",
+     "Jerr1",
+     "lkz",
+     "stormzyn"
+    ],
+    "matches_with_current_five": 17,
+    "first_rated_match_current_five": "2026-04-08"
+   },
+   "vrs_b": null,
+   "own_p_a": null,
+   "own_p_b": null,
+   "hltv_rank_a": null,
+   "hltv_rank_b": null,
+   "hltv_team_a": null,
+   "hltv_team_b": null,
+   "p_a": null,
+   "p_b": null,
+   "basis": "Unresolved",
+   "rung": "D",
+   "pick": null,
+   "pick_p": null,
+   "factors": [],
+   "flags": [
+    "STALE_LISTING"
+   ],
+   "strategy": null,
+   "sources": [
+    "https://play.hotspawn.com/lobby",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+   ],
+   "result": null
+  },
+  {
+   "match_id": "1055478",
+   "competition": "European Pro League Series 8",
+   "tier": "C",
+   "stage": "waiting for information",
+   "start_utc": "2026-07-10T08:00:00Z",
+   "lock_utc": "2026-07-10T07:54:00Z",
+   "team_a": "illwill",
+   "team_b": "Lavked",
+   "hotspawn_match_url": null,
+   "pages": [
+    "lobby",
+    "cs2-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 2,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "stale",
+   "crowd_a": 100,
+   "crowd_b": 0,
+   "total_picks": 2,
+   "hltv_url": null,
+   "hltv_note": null,
+   "format": "",
+   "format_source": "",
+   "vrs_a": {
+    "name": "illwill",
+    "rank": 255,
+    "points": 638,
+    "roster": [
+     "7Kick",
+     "hAdji",
+     "Maden",
+     "shalfey",
+     "VLDN"
+    ],
+    "matches_with_current_five": 10,
+    "first_rated_match_current_five": "2026-06-10"
+   },
+   "vrs_b": {
+    "name": "Lavked",
+    "rank": 143,
+    "points": 862,
+    "roster": [
+     "1NVISIBLEE",
+     "azukay",
+     "k4nfuz",
+     "sol",
+     "xm1nd"
+    ],
+    "matches_with_current_five": 29,
+    "first_rated_match_current_five": "2026-08-14"
+   },
+   "own_p_a": 0.356,
+   "own_p_b": 0.644,
+   "hltv_rank_a": null,
+   "hltv_rank_b": 140,
+   "hltv_team_a": null,
+   "hltv_team_b": "https://www.hltv.org/team/12609/lavked",
+   "p_a": 0.356,
+   "p_b": 0.644,
+   "basis": "Our own line (Valve points)",
+   "rung": "C",
+   "pick": "Lavked",
+   "pick_p": 0.644,
+   "factors": [],
+   "flags": [
+    "STALE_LISTING"
+   ],
+   "strategy": null,
+   "sources": [
+    "https://play.hotspawn.com/lobby",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+   ],
+   "result": null
+  },
+  {
+   "match_id": "1081105",
+   "competition": "CCT South America 2026 Series #7",
+   "tier": "C",
+   "stage": "waiting for information",
+   "start_utc": "2026-10-13T22:00:00Z",
+   "lock_utc": "2026-10-13T21:54:00Z",
+   "team_a": "SUKEBAN",
+   "team_b": "your end",
+   "hotspawn_match_url": null,
+   "pages": [
+    "lobby",
+    "cs2-pickems"
+   ],
+   "read_utc": "2026-10-15T10:41:47Z",
+   "points": 2,
+   "lobby_url": "https://play.hotspawn.com/lobby",
+   "source_url": "https://play.hotspawn.com/lobby",
+   "status": "stale",
+   "crowd_a": 0,
+   "crowd_b": 100,
+   "total_picks": 6,
+   "hltv_url": null,
+   "hltv_note": null,
+   "format": "",
+   "format_source": "",
+   "vrs_a": null,
+   "vrs_b": {
+    "name": "your end",
+    "rank": 295,
+    "points": 582,
+    "roster": [
+     "Cr1a",
+     "ghosT1",
+     "Lcs",
+     "Lukita",
+     "rx"
+    ],
+    "matches_with_current_five": 5,
+    "first_rated_match_current_five": "2026-09-04"
+   },
+   "own_p_a": null,
+   "own_p_b": null,
+   "hltv_rank_a": null,
+   "hltv_rank_b": 215,
+   "hltv_team_a": null,
+   "hltv_team_b": "https://www.hltv.org/team/14008/your-end",
+   "p_a": null,
+   "p_b": null,
+   "basis": "Unresolved",
+   "rung": "D",
+   "pick": null,
+   "pick_p": null,
+   "factors": [
+    {
+     "side": "b",
+     "team": "your end",
+     "kind": "new five (Valve data)",
+     "summary": "Valve's standings show only 5 rated matches for this exact five, the first on 2026-09-04.",
+     "argues_against": true,
+     "strength": "moderate",
+     "source_urls": [
+      "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+     ],
+     "automated": true
+    }
+   ],
+   "flags": [
+    "STALE_LISTING"
+   ],
+   "strategy": null,
+   "sources": [
+    "https://play.hotspawn.com/lobby",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+   ],
+   "result": null
+  }
+ ],
+ "day1": {
+  "info": {
+   "about": "Thunderpick World Championship 2026 (Malta, HLTV event 8932) day 1 = 14 Oct 2026. Results, maps and ratings from HLTV; pre-match prices from the Pinnacle guest API reads archived in this repository (session 8944bb84, read 2026-10-14 01:48 UTC); Hotspawn crowd pick shares from the pre-lock board capture (session 8e782f95, board/data/analysis.csv). Derived numbers (de-vig, own line, strategy class) are recomputed by hotspawn/model.py with today's rule so the review shows what the rule would have said. Compiled by arena/22be6967 on 2026-10-15 10:10-10:30 UTC.",
+   "event": {
+    "name": "Thunderpick World Championship 2026",
+    "hltv": "https://www.hltv.org/events/8932/thunderpick-world-championship-2026",
+    "results": "https://www.hltv.org/results?event=8932",
+    "format": "Two BO3 GSL groups of four; top two per group to single-elimination BO3 playoffs; BO5 grand final after a third-place decider.",
+    "format_source": "https://www.hltv.org/news/45688/thunderpick-world-championship-matchups-announced-with-virtuspro-replaced-by-nip"
+   },
+   "price_source": {
+    "label": "Pinnacle guest API (direct event reads), archived in data/8944bb84/external_lines.csv",
+    "url": "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/data/8944bb84/external_lines.csv",
+    "read_utc": "2026-10-14T01:48:00Z"
+   },
+   "crowd_source": {
+    "label": "Hotspawn crowd pick share captured before lock (board/data/analysis.csv, columns crowd_pct_*_audit_only)",
+    "url": "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/board/data/analysis.csv",
+    "note": "Captured hours before lock on 2026-10-13/14, not at lock; final shares may differ."
+   },
+   "pick_source": {
+    "label": "Published board pick before lock (data/fbcccda2/every_pick.csv)",
+    "url": "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/data/fbcccda2/every_pick.csv"
+   },
+   "lessons": [
+    "The only upset (9z over Aurora) came from the side with the largest gap between our own line and the crowd: the official-points line gave 9z about 39% while the market said 27% and only 5% of Hotspawn players picked 9z. A correct pick there gained 7 points on 95% of the field.",
+    "The three favourites the crowd agreed with all won 2-0, so 'chalk' cost nothing on day 1; contrarian picks pay off only when the underdog's real chance is large, which is why the rule requires a minimum probability before fading the crowd.",
+    "Roster churn is a usable signal but not proof: Aurora's July rebuild did not stop a 3rd place at EPL S24, yet the team still lost 0-2 here. Treat onboarding as a tiebreaker on close matches, not as a reason to back long shots."
+   ]
+  },
+  "matches": [
+   {
+    "hotspawn_id": "1080176",
+    "team_a": "9z",
+    "team_b": "Aurora",
+    "start_utc": "2026-10-14T08:30:00Z",
+    "points": 7,
+    "odds_a": 3.55,
+    "odds_b": 1.307,
+    "crowd_a": 5,
+    "crowd_b": 95,
+    "board_pick": "Aurora",
+    "winner": "9z",
+    "score": "2-0",
+    "maps": "Inferno 13-11, Nuke 13-1",
+    "star": "luchov 1.61 rating (HLTV)",
+    "hltv": "https://www.hltv.org/matches/2399384/9z-vs-aurora-thunderpick-world-championship-2026",
+    "report": "https://www.hltv.org/news/45718/9z-beat-aurora-2-0-to-kick-off-twc-2026",
+    "context": "Aurora (#5 VRS per HLTV) rebuilt in July (kyxsan IGL, Jimpphat); they had beaten 9z 2-0 at EPL S24 on 3 Oct. 9z arrived after four straight group-stage exits.",
+    "p_a": 0.2691,
+    "p_b": 0.7309,
+    "overround_pct": 4.68,
+    "own_p_a": 0.3875,
+    "own_p_b": 0.6125,
+    "vrs_points_a": 1543,
+    "vrs_points_b": 1716,
+    "pick": "Aurora",
+    "factors": [
+     {
+      "side": "a",
+      "kind": "form context",
+      "argues_against": false,
+      "strength": "weak"
+     },
+     {
+      "side": "b",
+      "kind": "roster change (new IGL + new player)",
+      "argues_against": true,
+      "strength": "moderate"
+     }
+    ],
+    "strategy": {
+     "class": "SITUATIONAL",
+     "reason": "Real upset chance, heavily faded by the crowd, plus a verified factor (roster change, stand-in or late replacement) against the favourite.",
+     "leaderboard_pick": "9z",
+     "favourite": "Aurora",
+     "underdog": "9z",
+     "p_fav": 0.6717,
+     "p_dog": 0.3283,
+     "min_src_dog": 0.2691,
+     "estimates": [
+      "market",
+      "own line"
+     ],
+     "crowd_fav": 0.95,
+     "crowd_dog": 0.05,
+     "edge_vs_crowd_pp": 27.8,
+     "leverage": 6.57,
+     "ev_cost_pts": 2.4,
+     "ev_cost_if_faded": 2.4,
+     "field_gain_if_dog_wins_pct": 95,
+     "factors_against_favourite": [
+      "roster change (new IGL + new player)"
+     ],
+     "factors_against_underdog": [],
+     "differs_from_pick": true
+    },
+    "pick_correct": false,
+    "leaderboard_correct": true
+   },
+   {
+    "hotspawn_id": "1080177",
+    "team_a": "Falcons",
+    "team_b": "Ninjas in Pyjamas",
+    "start_utc": "2026-10-14T11:00:00Z",
+    "points": 7,
+    "odds_a": 1.254,
+    "odds_b": 4.01,
+    "crowd_a": 90,
+    "crowd_b": 10,
+    "board_pick": "Falcons",
+    "winner": "Falcons",
+    "score": "2-0",
+    "maps": "Ancient 16-13 (OT), Dust2 13-6",
+    "star": "",
+    "hltv": "https://www.hltv.org/matches/2399385/falcons-vs-ninjas-in-pyjamas-thunderpick-world-championship-2026",
+    "report": "https://www.hltv.org/news/45723/furia-fend-off-betboom-to-end-day-one-of-twc",
+    "context": "NiP replaced Virtus.pro on 5 days' notice (announced 9 Oct).",
+    "p_a": 0.7618,
+    "p_b": 0.2382,
+    "overround_pct": 4.68,
+    "own_p_a": 0.6938,
+    "own_p_b": 0.3062,
+    "vrs_points_a": 1843,
+    "vrs_points_b": 1534,
+    "pick": "Falcons",
+    "factors": [
+     {
+      "side": "b",
+      "kind": "late replacement (5 days' notice)",
+      "argues_against": true,
+      "strength": "strong"
+     }
+    ],
+    "strategy": {
+     "class": "LONG SHOT",
+     "reason": "Big leverage but a low chance: keep the favourite unless you are far behind with few matches left.",
+     "leaderboard_pick": "Falcons",
+     "favourite": "Falcons",
+     "underdog": "Ninjas in Pyjamas",
+     "p_fav": 0.7278,
+     "p_dog": 0.2722,
+     "min_src_dog": 0.2382,
+     "estimates": [
+      "market",
+      "own line"
+     ],
+     "crowd_fav": 0.9,
+     "crowd_dog": 0.1,
+     "edge_vs_crowd_pp": 17.2,
+     "leverage": 2.72,
+     "ev_cost_pts": 0.0,
+     "ev_cost_if_faded": 3.19,
+     "field_gain_if_dog_wins_pct": 90,
+     "factors_against_favourite": [],
+     "factors_against_underdog": [
+      "late replacement (5 days' notice)"
+     ],
+     "differs_from_pick": false
+    },
+    "pick_correct": true,
+    "leaderboard_correct": true
+   },
+   {
+    "hotspawn_id": "1080178",
+    "team_a": "Legacy",
+    "team_b": "PARIVISION",
+    "start_utc": "2026-10-14T13:30:00Z",
+    "points": 7,
+    "odds_a": 1.654,
+    "odds_b": 2.26,
+    "crowd_a": 75,
+    "crowd_b": 25,
+    "board_pick": "Legacy",
+    "winner": "Legacy",
+    "score": "2-0",
+    "maps": "Dust2 13-11, Mirage 16-14 (OT)",
+    "star": "dumau 1.57 on Mirage (HLTV)",
+    "hltv": "https://www.hltv.org/matches/2399386/legacy-vs-parivision-thunderpick-world-championship-2026",
+    "report": "https://www.hltv.org/news/45723/furia-fend-off-betboom-to-end-day-one-of-twc",
+    "context": "arT returned for Legacy after a health absence; PARIVISION had swapped slaxejezzz for HObbit on 17 Sep.",
+    "p_a": 0.5774,
+    "p_b": 0.4226,
+    "overround_pct": 4.71,
+    "own_p_a": 0.7984,
+    "own_p_b": 0.2016,
+    "vrs_points_a": 1931,
+    "vrs_points_b": 1411,
+    "pick": "Legacy",
+    "factors": [
+     {
+      "side": "a",
+      "kind": "player return after health absence",
+      "argues_against": false,
+      "strength": "weak"
+     },
+     {
+      "side": "b",
+      "kind": "roster change (player swap 28 days before TWC)",
+      "argues_against": true,
+      "strength": "strong"
+     }
+    ],
+    "strategy": {
+     "class": "CHALK",
+     "reason": "The favourite is both likely and popular; fading it costs points without enough upside.",
+     "leaderboard_pick": "Legacy",
+     "favourite": "Legacy",
+     "underdog": "PARIVISION",
+     "p_fav": 0.6879,
+     "p_dog": 0.3121,
+     "min_src_dog": 0.2016,
+     "estimates": [
+      "market",
+      "own line"
+     ],
+     "crowd_fav": 0.75,
+     "crowd_dog": 0.25,
+     "edge_vs_crowd_pp": 6.2,
+     "leverage": 1.25,
+     "ev_cost_pts": 0.0,
+     "ev_cost_if_faded": 2.63,
+     "field_gain_if_dog_wins_pct": 75,
+     "factors_against_favourite": [],
+     "factors_against_underdog": [
+      "roster change (player swap 28 days before TWC)"
+     ],
+     "differs_from_pick": false
+    },
+    "pick_correct": true,
+    "leaderboard_correct": true
+   },
+   {
+    "hotspawn_id": "1080179",
+    "team_a": "FURIA",
+    "team_b": "BETBOOM",
+    "start_utc": "2026-10-14T16:00:00Z",
+    "points": 7,
+    "odds_a": 1.364,
+    "odds_b": 3.18,
+    "crowd_a": 90,
+    "crowd_b": 10,
+    "board_pick": "FURIA",
+    "winner": "FURIA",
+    "score": "2-0",
+    "maps": "Ancient 13-10, Mirage 13-9",
+    "star": "KSCERATO 1.72 rating (HLTV)",
+    "hltv": "https://www.hltv.org/matches/2399387/furia-vs-betboom-thunderpick-world-championship-2026",
+    "report": "https://www.hltv.org/news/45723/furia-fend-off-betboom-to-end-day-one-of-twc",
+    "context": "BETBOOM let 8-4 leads slip on both maps (HLTV).",
+    "p_a": 0.6998,
+    "p_b": 0.3002,
+    "overround_pct": 4.76,
+    "own_p_a": 0.6495,
+    "own_p_b": 0.3505,
+    "vrs_points_a": 1829,
+    "vrs_points_b": 1596,
+    "pick": "FURIA",
+    "factors": [
+     {
+      "side": "a",
+      "kind": "schedule load (HLTV: 'grueling schedule')",
+      "argues_against": true,
+      "strength": "weak"
+     }
+    ],
+    "strategy": {
+     "class": "LONG SHOT",
+     "reason": "Big leverage but a low chance: keep the favourite unless you are far behind with few matches left.",
+     "leaderboard_pick": "FURIA",
+     "favourite": "FURIA",
+     "underdog": "BETBOOM",
+     "p_fav": 0.6746,
+     "p_dog": 0.3254,
+     "min_src_dog": 0.3002,
+     "estimates": [
+      "market",
+      "own line"
+     ],
+     "crowd_fav": 0.9,
+     "crowd_dog": 0.1,
+     "edge_vs_crowd_pp": 22.5,
+     "leverage": 3.25,
+     "ev_cost_pts": 0.0,
+     "ev_cost_if_faded": 2.45,
+     "field_gain_if_dog_wins_pct": 90,
+     "factors_against_favourite": [],
+     "factors_against_underdog": [],
+     "differs_from_pick": false
+    },
+    "pick_correct": true,
+    "leaderboard_correct": true
+   }
+  ]
+ },
+ "flag_text": {
+  "KICKOFF_GAP": "Outside source lists a different kickoff than Hotspawn (joined because both teams match and the gap is within 6 h).",
+  "ALIAS": "A team name was joined through a verified alias (see research/aliases.json for the evidence).",
+  "NO_MARKET": "No outside price found; the probability is our own line from official Valve points.",
+  "MODEL_MARKET_SPLIT": "Our own line and the market disagree on the favourite or by 10+ points.",
+  "BOOK_PM_SPLIT": "Pinnacle and Polymarket differ by 8+ points.",
+  "VRS_ROSTER_OUTDATED": "A verified roster change happened after Valve's latest standings, so Valve points describe a different five.",
+  "FORMAT_UNKNOWN": "No source stated the series length; nothing was assumed.",
+  "UNRESOLVED": "No outside price and at least one team is missing from Valve's standings; pick left blank.",
+  "STALE_LISTING": "Hotspawn still lists this fixture although its lock time passed more than 36 h ago (not pickable).",
+  "LOCKED": "Lock time has passed; kept for the record and for grading.",
+  "CROWD_MISSING": "Hotspawn did not publish a crowd share; no leaderboard play computed.",
+  "HOTSPAWN_PARTIAL": "Not every Hotspawn page was read successfully in this capture.",
+  "COIN_FLIP": "Probabilities within one point of 50%; pick follows our own line.",
+  "STALE_PRICE": "The outside price was read more than 8 h before this build."
+ },
+ "history": {
+  "1080202": {
+   "match_id": "1080202",
+   "team_a": "9z",
+   "team_b": "Falcons",
+   "competition": "Thunderpick World Championship 2026",
+   "start_utc": "2026-10-15T11:00:00Z",
+   "lock_utc": "2026-10-15T10:54:00Z",
+   "points": 7,
+   "pick": "Falcons",
+   "pick_p": 0.7563,
+   "p_a": 0.2437,
+   "p_b": 0.7563,
+   "basis": "Pinnacle odds, margin removed",
+   "leaderboard_pick": "Falcons",
+   "class": "LONG SHOT",
+   "crowd_a": 6,
+   "crowd_b": 94,
+   "as_of": "2026-10-15T10:41:47Z",
+   "frozen": false
+  },
+  "1080281": {
+   "match_id": "1080281",
+   "team_a": "WROTBERRY",
+   "team_b": "ENCE",
+   "competition": "Elisa BreakOut Series #2",
+   "start_utc": "2026-10-15T12:00:00Z",
+   "lock_utc": "2026-10-15T11:54:00Z",
+   "points": 2,
+   "pick": "WROTBERRY",
+   "pick_p": 0.6053,
+   "p_a": 0.6053,
+   "p_b": 0.3947,
+   "basis": "Pinnacle odds, margin removed",
+   "leaderboard_pick": "WROTBERRY",
+   "class": "VALUE",
+   "crowd_a": 17,
+   "crowd_b": 83,
+   "as_of": "2026-10-15T10:41:47Z",
+   "frozen": false
+  },
+  "1080203": {
+   "match_id": "1080203",
+   "team_a": "PARIVISION",
+   "team_b": "BetBoom",
+   "competition": "Thunderpick World Championship 2026",
+   "start_utc": "2026-10-15T13:30:00Z",
+   "lock_utc": "2026-10-15T13:24:00Z",
+   "points": 7,
+   "pick": "PARIVISION",
+   "pick_p": 0.5342,
+   "p_a": 0.5342,
+   "p_b": 0.4658,
+   "basis": "Pinnacle odds, margin removed",
+   "leaderboard_pick": "BetBoom",
+   "class": "CONTRARIAN",
+   "crowd_a": 69,
+   "crowd_b": 31,
+   "as_of": "2026-10-15T10:41:47Z",
+   "frozen": false
+  },
+  "1080282": {
+   "match_id": "1080282",
+   "team_a": "EAC",
+   "team_b": "BOJONG",
+   "competition": "Elisa BreakOut Series #2",
+   "start_utc": "2026-10-15T14:00:00Z",
+   "lock_utc": "2026-10-15T13:54:00Z",
+   "points": 2,
+   "pick": "EAC",
+   "pick_p": 0.8197,
+   "p_a": 0.8197,
+   "p_b": 0.1803,
+   "basis": "Our own line (Valve points)",
+   "leaderboard_pick": "EAC",
+   "class": "CHALK",
+   "crowd_a": 95,
+   "crowd_b": 5,
+   "as_of": "2026-10-15T10:41:47Z",
+   "frozen": false
+  },
+  "1080204": {
+   "match_id": "1080204",
+   "team_a": "Legacy",
+   "team_b": "FURIA",
+   "competition": "Thunderpick World Championship 2026",
+   "start_utc": "2026-10-15T16:00:00Z",
+   "lock_utc": "2026-10-15T15:54:00Z",
+   "points": 7,
+   "pick": "FURIA",
+   "pick_p": 0.5758,
+   "p_a": 0.4242,
+   "p_b": 0.5758,
+   "basis": "Pinnacle odds, margin removed",
+   "leaderboard_pick": "Legacy",
+   "class": "CONTRARIAN",
+   "crowd_a": 27,
+   "crowd_b": 73,
+   "as_of": "2026-10-15T10:41:47Z",
+   "frozen": false
+  },
+  "1080283": {
+   "match_id": "1080283",
+   "team_a": "WROTBERRY",
+   "team_b": "BOJONG",
+   "competition": "Elisa BreakOut Series #2",
+   "start_utc": "2026-10-15T16:00:00Z",
+   "lock_utc": "2026-10-15T15:54:00Z",
+   "points": 2,
+   "pick": "WROTBERRY",
+   "pick_p": 0.8758,
+   "p_a": 0.8758,
+   "p_b": 0.1242,
+   "basis": "Our own line (Valve points)",
+   "leaderboard_pick": "WROTBERRY",
+   "class": "CHALK",
+   "crowd_a": 91,
+   "crowd_b": 9,
+   "as_of": "2026-10-15T10:41:47Z",
+   "frozen": false
+  },
+  "1080284": {
+   "match_id": "1080284",
+   "team_a": "EAC",
+   "team_b": "ENCE",
+   "competition": "Elisa BreakOut Series #2",
+   "start_utc": "2026-10-15T18:00:00Z",
+   "lock_utc": "2026-10-15T17:54:00Z",
+   "points": 2,
+   "pick": "EAC",
+   "pick_p": 0.5856,
+   "p_a": 0.5856,
+   "p_b": 0.4144,
+   "basis": "Pinnacle odds, margin removed",
+   "leaderboard_pick": "EAC",
+   "class": "VALUE",
+   "crowd_a": 15,
+   "crowd_b": 85,
+   "as_of": "2026-10-15T10:41:47Z",
+   "frozen": false
+  },
+  "1080285": {
+   "match_id": "1080285",
+   "team_a": "Voca",
+   "team_b": "Phantom",
+   "competition": "Elisa BreakOut Series #2",
+   "start_utc": "2026-10-16T08:00:00Z",
+   "lock_utc": "2026-10-16T07:54:00Z",
+   "points": 2,
+   "pick": "Voca",
+   "pick_p": 0.5231,
+   "p_a": 0.5231,
+   "p_b": 0.4769,
+   "basis": "Our own line (Valve points)",
+   "leaderboard_pick": "Voca",
+   "class": "VALUE",
+   "crowd_a": 17,
+   "crowd_b": 83,
+   "as_of": "2026-10-15T10:41:47Z",
+   "frozen": false
+  },
+  "1080286": {
+   "match_id": "1080286",
+   "team_a": "HAVU",
+   "team_b": "RoundsGG",
+   "competition": "Elisa BreakOut Series #2",
+   "start_utc": "2026-10-16T10:00:00Z",
+   "lock_utc": "2026-10-16T09:54:00Z",
+   "points": 2,
+   "pick": "HAVU",
+   "pick_p": 0.7368,
+   "p_a": 0.7368,
+   "p_b": 0.2632,
+   "basis": "Our own line (Valve points)",
+   "leaderboard_pick": "HAVU",
+   "class": "LONG SHOT",
+   "crowd_a": 93,
+   "crowd_b": 7,
+   "as_of": "2026-10-15T10:41:47Z",
+   "frozen": false
+  },
+  "1080287": {
+   "match_id": "1080287",
+   "team_a": "Voca",
+   "team_b": "HAVU",
+   "competition": "Elisa BreakOut Series #2",
+   "start_utc": "2026-10-16T12:00:00Z",
+   "lock_utc": "2026-10-16T11:54:00Z",
+   "points": 2,
+   "pick": "Voca",
+   "pick_p": 0.6567,
+   "p_a": 0.6567,
+   "p_b": 0.3433,
+   "basis": "Our own line (Valve points)",
+   "leaderboard_pick": "Voca",
+   "class": "CHALK",
+   "crowd_a": 84,
+   "crowd_b": 16,
+   "as_of": "2026-10-15T10:41:47Z",
+   "frozen": false
+  },
+  "1080288": {
+   "match_id": "1080288",
+   "team_a": "Phantom",
+   "team_b": "RoundsGG",
+   "competition": "Elisa BreakOut Series #2",
+   "start_utc": "2026-10-16T14:00:00Z",
+   "lock_utc": "2026-10-16T13:54:00Z",
+   "points": 2,
+   "pick": "Phantom",
+   "pick_p": 0.83,
+   "p_a": 0.83,
+   "p_b": 0.17,
+   "basis": "Our own line (Valve points)",
+   "leaderboard_pick": "Phantom",
+   "class": "CHALK",
+   "crowd_a": 96,
+   "crowd_b": 4,
+   "as_of": "2026-10-15T10:41:47Z",
+   "frozen": false
+  },
+  "1081120": {
+   "match_id": "1081120",
+   "team_a": "mellren",
+   "team_b": "Privateer",
+   "competition": "CCT Europe 2026 Series #12 Play-In",
+   "start_utc": "2026-10-16T14:00:00Z",
+   "lock_utc": "2026-10-16T13:54:00Z",
+   "points": 2,
+   "pick": "mellren",
+   "pick_p": 0.7022,
+   "p_a": 0.7022,
+   "p_b": 0.2978,
+   "basis": "Our own line (Valve points)",
+   "leaderboard_pick": "mellren",
+   "class": "LONG SHOT",
+   "crowd_a": 90,
+   "crowd_b": 10,
+   "as_of": "2026-10-15T10:41:47Z",
+   "frozen": false
+  },
+  "1080289": {
+   "match_id": "1080289",
+   "team_a": "RoundsGG",
+   "team_b": "Voca",
+   "competition": "Elisa BreakOut Series #2",
+   "start_utc": "2026-10-16T16:00:00Z",
+   "lock_utc": "2026-10-16T15:54:00Z",
+   "points": 2,
+   "pick": "Voca",
+   "pick_p": 0.8427,
+   "p_a": 0.1573,
+   "p_b": 0.8427,
+   "basis": "Our own line (Valve points)",
+   "leaderboard_pick": "Voca",
+   "class": "CHALK",
+   "crowd_a": 4,
+   "crowd_b": 96,
+   "as_of": "2026-10-15T10:41:47Z",
+   "frozen": false
+  },
+  "1080290": {
+   "match_id": "1080290",
+   "team_a": "Phantom",
+   "team_b": "HAVU",
+   "competition": "Elisa BreakOut Series #2",
+   "start_utc": "2026-10-16T18:00:00Z",
+   "lock_utc": "2026-10-16T17:54:00Z",
+   "points": 2,
+   "pick": "Phantom",
+   "pick_p": 0.6355,
+   "p_a": 0.6355,
+   "p_b": 0.3645,
+   "basis": "Our own line (Valve points)",
+   "leaderboard_pick": "HAVU",
+   "class": "SITUATIONAL",
+   "crowd_a": 98,
+   "crowd_b": 2,
+   "as_of": "2026-10-15T10:41:47Z",
+   "frozen": false
+  }
+ },
+ "graded": []
+}
