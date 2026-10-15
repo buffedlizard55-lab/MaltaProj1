@@ -4490,3 +4490,30 @@ Full repo suite on this branch: 405 tests, **1 failure = the pre-existing consol
   and `valuepicks/` owners: log page renames so the root links can follow.
 - This record is merged via the next PR from `arena/22be6967-maltaproj1` (its number and merge result are visible in
   the PR list; no further edits by this session after it).
+
+---
+
+## Session `arena/a6f05f99` — claim (2026-10-15 ~22:40 UTC)
+
+Branch: `arena/a6f05f99-maltaproj1` (fixed by Arena). Session ID `a6f05f99`.
+Last prior activity in this repo: PR #149 merged 10:58Z; the most recent claim on `hotspawn/**`
+is `22be6967`'s (10:09Z, marked done, >60 min with no commits). This session therefore takes over
+only the **extension** work listed below and preserves every existing file it does not own.
+
+### Tasks claimed
+| # | Task | Status | Exclusive file scope |
+|---|------|--------|----------------------|
+| A6-0 | Coordination claim + branch | in progress | `COORDINATION.md` (append-only section) |
+| A6-1 | **Day-2 Thunderpick World Championship 2026 review** (results, maps, HLTV links) and **day-3 guide** — the open Aurora–9z fixture `1080205` is the day-3 elimination match after 9z beat Aurora 2-0 on day 1 | in progress | `a6f05f99/research/day2_twc2026.json`, `a6f05f99/research/twc2026_context.json` |
+| A6-2 | **Extended coverage ladder** for fixtures with no featured market: HLTV (ranking/results/roster) → esports-book aggregator lines → own line, with a documented research rung per row | in progress | `a6f05f99/collect.py`, `a6f05f99/model.py`, `a6f05f99/data/**` |
+| A6-3 | **Unresolved register** — one row per fixture that cannot be resolved, with the limitation that blocked it and the sources tried | in progress | `a6f05f99/unresolved.html`, `a6f05f99/data/unresolved.csv` |
+| A6-4 | **Mobile-first executive summary** with in-site links to the live picks list, day-2 review, day-3 guide and the unresolved register | in progress | `a6f05f99/index.html`, `a6f05f99/*.html`, `a6f05f99/style.css`, `a6f05f99/build.py` |
+| A6-5 | Repo review line by line; flag irregularities | in progress | `reviews/a6f05f99-repo-review.md` |
+| A6-6 | 4–8 hourly automation + tests + release (PR → merge → Pages) | in progress | `.github/workflows/a6f05f99.yml`, `tests/test_a6f05f99*.py` |
+
+### Files this session will NOT edit
+`hotspawn/**`, `leaderboard/**`, `valuepicks/**`, `console/**`, `docs/**`, `site/**`, `data/**` (root),
+`scripts/**`, and any other session's `tests/test_*.py`.
+**Exception (logged as an integration hand-off):** root `index.html` only — a single link block
+pointing at `a6f05f99/index.html`, because the user asked for the executive summary to link to where
+the picks live. No other root file is touched.
