@@ -3992,3 +3992,15 @@ Two superseded runs failed: 38706019601 at the first clock test (corrected to in
 A local Chromium was also loaded from npm-distributed browser tooling under ignored `/home/user/.cache` (no tooling/binaries added to Git). Actual 360/390/768 px checks showed zero horizontal viewport overflow on landing/picks/unresolved/flagged, and simulated passed deadlines changed to Locked. Phone screenshot inspection exposed cramped metadata labels; UI-only follow-up uses one-column metadata and lists **all** 17 open matches as cards (not just the first 24 h), with open rows first in the full table. Removed frozen relative-age text from the header; absolute capture time and the live age banner remain. Source timestamps were preserved in this UI-only rebuild.
 
 Final local acceptance after that change: **336 tests passed**, canonical row audit 80/80 with no errors; all local-link/fragment checks passed. Tests regenerating unrelated `livelines/` and `summary/` outputs were restored. PR [#134](https://github.com/buffedlizard55-lab/MaltaProj1/pull/134) is open from the fixed session branch; merge/deployment not yet claimed.
+
+### BB final integration / ready to merge
+
+Latest live/UI run [38707210075](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38707210075) **succeeded**, including fresh dual-surface capture, fallback research, 80-row audit, canonical tests and all 12 mobile combinations. Unresolved five remain explicitly blank/needs review, not a build failure. Review page now includes each missing fixture with official Hotspawn and attempted HLTV links, source-specific limitations and the live acceptance snapshot.
+
+Rebased the session branch onto current main `2a33e5f37d26c63e0af466d4f04f04840daf5086`, preserving concurrent session ea9840ba's summary and verifier and its coordination entries. Rebase had **no conflicts**; no other session file was discarded. Their general “all requirements met” conclusion predates these stricter fresh-quote/identity checks and should not be read as confirmation of a supported pick for every currently open fixture. Current canonical evidence is the executive ledger.
+
+| ID | Status | Owner | Verification / result |
+|---|---|---|---|
+| BB-1 | done | arena/bb9e05ef | Strict source gates, automated fallback research, per-row audit, rejected quotes, full captured inventory, phone/tablet checks passed |
+| BB-2 | in progress | arena/bb9e05ef | PR #134 final checks/merge and Pages confirmation next |
+| BB-unresolved | needs review | arena/bb9e05ef | Five blank picks and source limitations published on executive/unresolved.html, executive/flagged.html and reviews/bb9e05ef-reliability.html; non-blocking |
