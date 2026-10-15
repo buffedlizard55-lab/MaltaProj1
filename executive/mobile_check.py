@@ -30,6 +30,7 @@ def main():
             browser = p.chromium.launch()
             for width in (360, 390, 768):
                 page = browser.new_page(viewport={'width': width, 'height': 844})
+                page.clock.install()
                 for route in ('index.html', 'executive/picks.html', 'executive/unresolved.html', 'executive/flagged.html'):
                     response = page.goto(f'http://127.0.0.1:{server.server_port}/{route}')
                     page.wait_for_load_state('networkidle')
@@ -49,7 +50,6 @@ def main():
                 page.goto(f'http://127.0.0.1:{server.server_port}/executive/picks.html')
                 if page.locator('[data-lock]').count():
                     page.locator('[data-lock]').first.evaluate("el => el.dataset.lock = '2000-01-01T00:00:00Z'")
-                    page.clock.install()
                     page.clock.fast_forward(31000)
                     if 'Locked' not in page.locator('[data-lock]').first.inner_text():
                         errors.append({'route': 'deadline clock', 'width': width})

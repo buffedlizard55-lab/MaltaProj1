@@ -77,7 +77,7 @@ jobs:
           python - <<'PY'
           import os, time, urllib.request
           base = 'https://buffedlizard55-lab.github.io/MaltaProj1/'
-          checks = {'': 'Your matches.', 'js/landing.js': 'function parseStandings',
+          checks = {'': 'Every match. One clear picks list.', 'js/landing.js': 'function parseStandings',
                     'css/landing.css': 'color-scheme:dark', 'reviews/43c32386.html': 'Flagged for Review'}
           for attempt in range(12):
               try:

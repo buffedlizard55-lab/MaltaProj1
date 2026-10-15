@@ -324,7 +324,7 @@ def team_record(name: str, inputs: dict, indexes: dict, needed: bool = True) -> 
         if hltv_team.get("url"):
             record["hltv_url"] = hltv_team["url"]
             record["hltv_name"] = hltv_team.get("name") or ""
-            record["hltv_roster"] = ", ".join(hltv_team.get("players") or [])
+            record["hltv_roster"] = ""  # legacy imported roster is not independently verified
     return record
 
 
@@ -392,7 +392,7 @@ def hltv_link_for(fixture: dict, ratings: dict, inputs: dict, indexes: dict) -> 
         if not paired:
             continue
         kickoff = parse_iso(row.get("kickoff_utc"))
-        if start and kickoff and abs((kickoff - start).total_seconds()) > 30 * 60:
+        if not start or not kickoff or abs((kickoff - start).total_seconds()) > 15 * 60:
             continue
         return {"hltv_match_url": row.get("hltv_url", ""), "hltv_match_id": row.get("hltv_match_id", ""),
                 "hltv_format": row.get("format") or "", "hltv_event": row.get("event") or "",
