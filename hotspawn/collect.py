@@ -286,86 +286,97 @@ def _json_list(value) -> list:
     return json.loads(value or "[]")
 
 
+PM_SERIES = 10310  # Polymarket series "counter-strike" (every CS2 match event)
+PM_EVENTS_URL = ("https://gamma-api.polymarket.com/events?series_id={series}&closed={closed}"
+                 "&end_date_min={since}&limit=200&offset={offset}")
+
+
+def _pm_markets(closed: bool, since: str, out: dict) -> list[dict]:
+    """Match markets from the CS2 series (events -> nested markets) plus the tag query, de-duplicated."""
+    markets, seen = [], set()
+    for offset in (0, 200, 400, 600):
+        url = PM_EVENTS_URL.format(series=PM_SERIES, closed=str(closed).lower(), since=since, offset=offset)
+        out.setdefault("api_urls", []).append(url)
+        page, got = get_json(url, timeout=60)
+        if not isinstance(page, list):
+            out["error"] = f"events {got.get('status')}/{got.get('error')}"
+            break
+        out["read_utc"] = got["fetched_utc"]
+        for ev in page:
+            for m in (ev.get("markets") or []) if isinstance(ev, dict) else []:
+                if isinstance(m, dict) and m.get("slug") not in seen:
+                    seen.add(m.get("slug"))
+                    markets.append(m)
+        if len(page) < 200:
+            break
+    if not closed:
+        url = PM_URL.format(tag=PM_TAG, since=since, offset=0)
+        out["api_urls"].append(url)
+        page, got = get_json(url, timeout=60)
+        for m in page if isinstance(page, list) else []:
+            if isinstance(m, dict) and m.get("slug") not in seen:
+                seen.add(m.get("slug"))
+                markets.append(m)
+    return markets
+
+
+def _pm_match(m: dict):
+    """(outcomes, prices, regex match) for a match-winner market, else None."""
+    q = (m.get("question") or "").strip()
+    mm = PM_QUESTION.match(q)
+    if not mm:
+        return None
+    group = (m.get("groupItemTitle") or "Match Winner").strip().lower()
+    if group not in ("match winner", ""):
+        return None
+    try:
+        outcomes = _json_list(m.get("outcomes"))
+        prices = [float(x) for x in _json_list(m.get("outcomePrices"))]
+    except (ValueError, TypeError, json.JSONDecodeError):
+        return None
+    if len(outcomes) != 2 or len(prices) != 2:
+        return None
+    return outcomes, prices, mm
+
+
 def collect_polymarket() -> dict:
-    out = {"status": "unavailable", "quotes": [], "read_utc": now_iso(), "api_urls": []}
+    out = {"status": "unavailable", "quotes": [], "resolved": [], "read_utc": now_iso(), "api_urls": []}
     if OFFLINE:
         fixture = Path(OFFLINE) / "polymarket_markets_test.json"
         markets = read_json(fixture, []) if fixture.exists() else []
         out["read_utc"] = "offline-fixture"
     else:
-        since = iso(now_utc() - timedelta(days=1))
-        markets = []
-        for offset in (0, 500, 1000):
-            url = PM_URL.format(tag=PM_TAG, since=since, offset=offset)
-            out["api_urls"].append(url)
-            page, got = get_json(url, timeout=60)
-            if not isinstance(page, list):
-                out["error"] = f"{got.get('status')}/{got.get('error')}"
-                break
-            markets.extend(page)
-            out["read_utc"] = got["fetched_utc"]
-            if len(page) < 500:
-                break
+        markets = _pm_markets(False, iso(now_utc() - timedelta(days=1)), out)
     for m in markets:
-        if not isinstance(m, dict):
+        if not isinstance(m, dict) or m.get("closed"):
             continue
-        q = (m.get("question") or "").strip()
-        mm = PM_QUESTION.match(q)
-        if not mm or m.get("closed"):
+        parsed = _pm_match(m)
+        if not parsed:
             continue
-        group = (m.get("groupItemTitle") or "Match Winner").strip()
-        if group and group.lower() != "match winner":
-            continue
-        try:
-            outcomes = _json_list(m.get("outcomes"))
-            prices = [float(x) for x in _json_list(m.get("outcomePrices"))]
-        except (ValueError, TypeError, json.JSONDecodeError):
-            continue
-        if len(outcomes) != 2 or len(prices) != 2:
-            continue
+        outcomes, prices, mm = parsed
         slug = m.get("slug") or ""
         out["quotes"].append({
             "source": "Polymarket", "kind": "prediction_market",
             "team_a": outcomes[0], "team_b": outcomes[1], "price_a": prices[0], "price_b": prices[1],
-            "format": mm.group("fmt").upper(), "event": mm.group("event").strip(), "question": q,
+            "format": mm.group("fmt").upper(), "event": mm.group("event").strip(), "question": m.get("question"),
             "start_utc": iso(parse_iso(m.get("gameStartTime"))), "end_utc": iso(parse_iso(m.get("endDate"))),
             "volume": m.get("volumeNum") or m.get("volume"), "slug": slug,
             "source_url": f"https://polymarket.com/event/{slug}" if slug else "https://polymarket.com/",
             "read_utc": out["read_utc"]})
+    if not OFFLINE:
+        for m in _pm_markets(True, iso(now_utc() - timedelta(days=4)), {"api_urls": out["api_urls"]}):
+            parsed = _pm_match(m)
+            if not parsed or max(parsed[1]) < 0.99:
+                continue
+            outcomes, prices, _ = parsed
+            slug = m.get("slug") or ""
+            out["resolved"].append({"team_a": outcomes[0], "team_b": outcomes[1],
+                                    "winner": outcomes[0] if prices[0] > prices[1] else outcomes[1],
+                                    "start_utc": iso(parse_iso(m.get("gameStartTime"))), "question": m.get("question"),
+                                    "source_url": f"https://polymarket.com/event/{slug}" if slug else "https://polymarket.com/",
+                                    "resolution_source": m.get("resolutionSource") or "", "read_utc": out["read_utc"]})
     out["status"] = "observed" if out["quotes"] else ("served, no CS2 match-winner market" if markets else out["status"])
-    out["resolved"] = collect_polymarket_resolved()
     log(f"polymarket: {len(out['quotes'])} CS2 match-winner markets; {len(out['resolved'])} resolved in the last 4 days")
-    return out
-
-
-PM_CLOSED_URL = "https://gamma-api.polymarket.com/markets?closed=true&tag_id={tag}&end_date_min={since}&limit=500"
-
-
-def collect_polymarket_resolved() -> list[dict]:
-    """Resolved CS2 match-winner markets (a provisional result feed; Polymarket names HLTV as its
-    resolution source).  Only markets whose final price is >= 0.99 for one side are kept."""
-    if OFFLINE:
-        return []
-    url = PM_CLOSED_URL.format(tag=PM_TAG, since=iso(now_utc() - timedelta(days=4)))
-    page, got = get_json(url, timeout=60)
-    out = []
-    for m in page if isinstance(page, list) else []:
-        mm = PM_QUESTION.match((m.get("question") or "").strip())
-        group = (m.get("groupItemTitle") or "Match Winner").strip().lower()
-        if not mm or group != "match winner":
-            continue
-        try:
-            outcomes = _json_list(m.get("outcomes"))
-            prices = [float(x) for x in _json_list(m.get("outcomePrices"))]
-        except (ValueError, TypeError, json.JSONDecodeError):
-            continue
-        if len(outcomes) != 2 or len(prices) != 2 or max(prices) < 0.99:
-            continue
-        slug = m.get("slug") or ""
-        out.append({"team_a": outcomes[0], "team_b": outcomes[1], "winner": outcomes[0] if prices[0] > prices[1] else outcomes[1],
-                    "start_utc": iso(parse_iso(m.get("gameStartTime"))), "question": m.get("question"),
-                    "source_url": f"https://polymarket.com/event/{slug}" if slug else "https://polymarket.com/",
-                    "resolution_source": m.get("resolutionSource") or "", "read_utc": got.get("fetched_utc")})
     return out
 
 
