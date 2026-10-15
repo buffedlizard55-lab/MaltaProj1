@@ -83,3 +83,7 @@ li.locked { text-decoration: line-through; }
 .hero h3, section > h3 { margin-top: 18px; }
 .callout { background: var(--panel); border: 1px solid var(--line); border-left: 4px solid var(--accent); border-radius: 8px; padding: 10px 12px; }
 @media (max-width: 760px) { .table-wrap.quick { display: none; } }
+.side.likely .p { color: var(--text); }
+.side.pick { border-color: var(--good); background: #15291f; }
+.tag { display: inline-block; margin-left: 4px; padding: 0 6px; border-radius: 4px; font-size: 11px; font-weight: 800; background: var(--good); color: #0c1a12; vertical-align: middle; }
+.tag.chase { background: var(--warn); color: #241a05; }
