@@ -28,6 +28,7 @@ on:
     paths:
       - "matchpicks/**"
       - "tests/test_b44b5d5e.py"
+      - "tests/test_b44b5d5e_data.py"
       - ".github/workflows/matchpicks-b44b5d5e.yml"
 
 permissions:
@@ -67,8 +68,11 @@ jobs:
       - name: Rebuild the board and its data
         run: python3 -u matchpicks/build.py
 
-      - name: Unit tests (recompute every published probability from the stored inputs)
+      - name: Unit tests (ladder, joins, scoring rules, page contract)
         run: python3 -m unittest tests.test_b44b5d5e -v
+
+      - name: Data verification (recompute every published number from the committed dataset)
+        run: python3 -m unittest tests.test_b44b5d5e_data -v
 
       - name: Commit the refreshed board
         run: |
