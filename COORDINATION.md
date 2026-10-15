@@ -4529,3 +4529,96 @@ only the **extension** work listed below and preserves every existing file it do
 **Exception (logged as an integration hand-off):** root `index.html` only — a single link block
 pointing at `a6f05f99/index.html`, because the user asked for the executive summary to link to where
 the picks live. No other root file is touched.
+
+---
+
+## Session `arena/a6f05f99` — finished (2026-10-15 23:45 UTC)
+
+**PR:** https://github.com/buffedlizard55-lab/MaltaProj1/pull/152 — **MERGED** 2026-10-15T23:39:22Z
+(merge commit on `main`). **GitHub Pages:** run **38824878077 completed success**
+23:39:24Z, site status `built`; verified live at
+https://buffedlizard55-lab.github.io/MaltaProj1/a6f05f99/index.html .
+
+### Scope delivered (all six tasks A6-0…A6-6)
+
+| # | Task | Result | Files |
+|---|------|--------|-------|
+| A6-0 | Coordination claim + branch | done | `COORDINATION.md` (append-only) |
+| A6-1 | TWC 2026 day-1/day-2 review + day-3 Aurora v 9z guide | done | `a6f05f99/research/twc2026.json`, `twc.html` |
+| A6-2 | Five-rung coverage ladder (Pinnacle → bo3.gg-relayed book → Polymarket → own Valve line → hand read) | done | `a6f05f99/{collect,model}.py`, `a6f05f99/data/**` |
+| A6-3 | Unresolved register + limitations | done | `a6f05f99/unresolved.html`, `data/unresolved.csv`, limitation list on `index.html` |
+| A6-4 | Mobile-first executive summary with in-site links | done | `a6f05f99/{index,picks,twc,unresolved,method,flagged}.html`, `style.css`, `build.py` |
+| A6-5 | Repo review line by line, irregularities flagged | done | `reviews/a6f05f99-repo-review.md` |
+| A6-6 | 4-hourly automation + tests + release | done | `.github/workflows/a6f05f99.yml`, `a6f05f99/tests.py`, `a6f05f99/verify.py` |
+
+Also: one link block added to root `index.html` (declared as an integration hand-off in the claim).
+No other session's files were edited. `hotspawn/**`, `leaderboard/**`, `valuepicks/**`, `executive/**`,
+`console/**`, `docs/**` left untouched.
+
+### Sources read (all with links and read times)
+
+- Hotspawn `play.hotspawn.com/lobby`, `/cs2-pickems`, `/thp-pickems` — fixtures, points, lock times,
+  crowd ownership. Live 2026-10-15T23:33Z (`a6f05f99/data/capture.json`).
+- Pinnacle guest API — **refused the runner every time** (sandbox and GitHub Actions). Rung 1 keeps
+  the previous capture with the original read time; it is dropped after eight hours. Unverified
+  request parameters are the one open gap.
+- bo3.gg public match API — 356 matches with a relayed bookmaker price and a named provider. Live.
+- Polymarket gamma API (series 10310, tag 100780) — 165 quotes. Live.
+- Valve Regional Standings `standings_global_2026_10_05.md @ eec4853d7b`, 380 teams. Live.
+- HLTV world ranking `2026/october/12`. Live.
+- HLTV event 8932 results, team pages, match pages — every day-1/day-2/day-3 result and line-up.
+- Two hand-verified bookmaker reads recorded in `a6f05f99/research/manual_lines.json`.
+
+### Verification
+
+- `a6f05f99/tests.py` — **26 invariants, all green**, including
+  `test_crowd_never_creates_a_probability`, `test_every_open_fixture_has_pick_or_unresolved_flag`,
+  `test_no_single_provider_is_counted_twice`, `test_percentage_pairs_sum_to_one_hundred`,
+  `test_no_broken_local_links`, `test_pages_are_mobile_ready`.
+- `a6f05f99/verify.py` — local link check (hard fail) + budgeted external sweep (report only).
+- Three CI runs of `.github/workflows/a6f05f99.yml` all **success** (38823389648, 38824227209,
+  38824244551). The first of them was also the first live end-to-end collect: hotspawn, bo3.gg,
+  Polymarket, Valve and HLTV all returned `live`.
+
+### Defects found and fixed while building
+
+1. `collect_vrs` listed `/contents/live`, which returns *directories*, so the `standings_global_*.md`
+   regex could never match and the live Valve read always fell back. Now lists
+   `/contents/live/<year>`; confirmed `standings_global_2026_10_05.md`, 380 teams, mode `live`.
+2. `to_csv_rows` hard-coded `"bo3_url": ""`, so the bo3.gg source link never reached the CSV or the
+   pages.
+3. The Aurora v 9z hand read returned the same 1.42 / 2.70 from the same provider bo3.gg now reads
+   automatically — leaving both in counted one bookmaker twice. Hand reads now carry
+   `skip_if_rung` / `status: superseded` and are dropped from the average; a unit test enforces it.
+4. `build_twc` rendered day-3 matches inside the results table, escaped `&mdash;` inside `esc()`, and
+   printed a stray `Z` where no timestamp existed.
+
+### Irregularities published (see `a6f05f99/flagged.html`)
+
+Duplicate Hotspawn listing for Legacy v FURIA (`1080204` + `1081614`); Hotspawn lists no row for
+Aurora v NiP or BETBOOM v Legacy although both are on HLTV event 8932; settled fixtures leave the
+payload between captures (88 → 86 listings inside three hours); `1079628` Gothic v *LFO 10* has an
+unnamed opponent on every counterpart page; Valve's 2026-10-05 snapshot predates PARIVISION's
+17 Sep roster swap; Polymarket is a prediction market, not a bookmaker, and is labelled as such;
+bo3.gg's bet links are affiliate redirects, so those rungs are published with the provider and the
+exact page rather than as a direct book read.
+
+### Honest limits
+
+- **The day-1 Thunderpick ledger is retrospective, not live.** Only the three day-2 rows have frozen
+  pre-lock records. Day 2 (out of sample) went **2/3 picks, 2/3 plays**. The 5-of-7 / 6-of-7 headline
+  mixes that with `arena/22be6967`'s in-sample day-1 review; both the page and
+  `reviews/a6f05f99-repo-review.md` say so.
+- **Pinnacle has never been read by this session's collector** — six open fixtures lean on an
+  inherited read that ages out after eight hours.
+- No headless-browser phone render was captured; only the viewport meta tag and 44 px tap targets are
+  asserted.
+
+### Note for other sessions
+
+`verify.yml` on `main` fails with **2 failures + 1 error that are pre-existing and not mine**
+(`test_457629c4::test_rebuild_is_deterministic_with_a_pinned_clock`,
+`test_7759beef::test_coverage_page_lists_every_captured_fixture`,
+`test_7759beef::test_every_open_executive_fixture_has_a_pick_and_two_probabilities`). Confirmed
+identical on a clean worktree of `origin/main`. That is in addition to the previously reported
+`test_228bb5bc` red.
