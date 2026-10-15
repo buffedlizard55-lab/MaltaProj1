@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0c1116">
+<meta name="description" content="How the board reverse-engineers Hotspawn, the probability ladder, the own line and the leaderboard rule, with every source and its read time.">
+<title>Method and sources — Hotspawn CS2</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top"><div class="wrap">
+<a class="brand" href="index.html">Hotspawn CS2 &middot; every match, one pick</a>
+<nav class="topnav"><a href="index.html">Summary</a><a href="picks.html">All picks</a><a href="twc.html">Thunderpick day 3</a><a href="unresolved.html">Unresolved</a><a href="method.html" aria-current="page">Method</a><a href="flagged.html">Flagged</a></nav>
+</div></header>
+<main class="wrap" id="content">
+
+
+<p class="eyebrow">Method</p>
+<h1>How every number on this board is produced</h1>
+<h2>Reverse-engineering the Hotspawn lobby</h2>
+<p>play.hotspawn.com is an Angular app that renders on the server. Every public page
+(<code>/lobby</code>, <code>/cs2-pickems</code>, <code>/thp-pickems</code>) ships its data inside a
+single <code>&lt;script id="ng-state"&gt;</code> block (Angular TransferState). The collector fetches
+the three pages, parses that JSON, and walks it for objects that carry
+<code>scheduled_start_time</code> and <code>participants0_name</code>. That gives the fixture id,
+competition, tier, stage, points, the exact <code>lock_time</code> epoch, both teams, and the public
+crowd pick share. Nothing is scraped out of the rendered HTML, and no login or key is used.</p>
+<p class="src">The crowd share is stored as <em>ownership</em> and is never allowed to touch a
+probability. A unit test fails the build if it ever does.</p>
+<h2>The probability ladder</h2>
+<p>Every rung that answers is kept, and the published probability is the average of the independent
+answers. Each answer is shown on the pick card with its own link.</p>
+<ul class="clean"><li><strong>Pinnacle</strong> &mdash; Pinnacle moneyline, margin removed (sharp bookmaker) (6 open fixtures resolved on this rung)</li><li><strong>Bookmaker (bo3.gg)</strong> &mdash; Bookmaker price relayed by bo3.gg (8 open fixtures resolved on this rung)</li><li><strong>Polymarket</strong> &mdash; Polymarket prediction-market price, normalised (8 open fixtures resolved on this rung)</li><li><strong>Our own line</strong> &mdash; Our own line from official Valve Regional Standings points (0 open fixtures resolved on this rung)</li><li><strong>Unresolved</strong> &mdash; Unresolved - no outside price and no official rating for one or both teams</li></ul>
+<h2>Our own line</h2>
+<p>When no market prices a fixture we originate one from Valve's official Regional Standings:
+<code>P = 1/(1+10^(-k*(pointsA-pointsB)/400))</code> with <code>k = 0.4598</code>.
+k = 0.4598, fitted by session arena/22be6967 on 13,609 official Valve-rated matches (held-out log-loss 0.6395 vs 0.6541 for Valve's raw slope); see hotspawn/data/calibration.json and hotspawn/calibrate.py in this repository. HLTV's world ranking is carried alongside as an independent cross-check
+and is shown on every row that has one.</p>
+<p class="src">Valve file: standings_global_2026_10_05.md @ eec4853d7b
+&mdash; <a href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md">official source</a>.
+HLTV ranking: 2026-10-12 &mdash;
+<a href="https://www.hltv.org/ranking/teams/2026/october/12">official source</a>.</p>
+<h2>Margin removal</h2>
+<p>Bookmaker odds are converted with proportional (multiplicative) margin removal: each side's
+implied probability is divided by the sum of both. A pair is rejected as not a real two-way book when
+the overround is below 0.98 or above 1.25. Polymarket prices are normalised the same way.</p>
+<h2>Leaderboard rule (v3)</h2>
+<ul class="clean"><li><strong>VALUE</strong> &mdash; The crowd majority is on the side our numbers make the underdog. Take the favourite: it is both more likely and less owned.</li><li><strong>CONTRARIAN</strong> &mdash; Underdog consensus at least 38%, every estimate at least 30%, and crowd share at least 10 points below its chance. Take the underdog.</li><li><strong>SITUATIONAL</strong> &mdash; Underdog consensus at least 30%, every estimate at least 25%, crowd share at most half its chance, and a strong or moderate verified factor against the favourite with none against the underdog. Take the underdog.</li><li><strong>LONG SHOT</strong> &mdash; Underdog at least 20% with 10% or less of the crowd. Keep the favourite; punt on the underdog only if you are far behind.</li><li><strong>CHALK</strong> &mdash; Anything else. Take the favourite.</li></ul>
+<div class="notice">v3 keeps v2's thresholds. Day 2 produced one contrarian win and one contrarian
+loss on signals that look the same on paper; at seven graded matches, retuning those thresholds
+would be fitting noise. What v3 changes is measurement: the underdog's chance is the consensus of up
+to four independent estimates instead of two, because bo3.gg and the hand-verified book reads were
+added to the ladder.</div>
+<h2>Sources in the latest collection</h2>
+<div class="scroll"><table><tr><th>Source</th><th>Mode</th><th>Read (UTC)</th><th>URL</th></tr>
+<tr><td><strong>hotspawn</strong></td><td>live</td>
+<td class="src">2026-10-15T23:33:01Z</td>
+<td class="src"></td></tr><tr><td><strong>pinnacle</strong></td><td>previous_capture</td>
+<td class="src">2026-10-15T21:34:15Z</td>
+<td class="src">https://www.pinnacle.com/en/esports/games/cs2/matchups/</td></tr><tr><td><strong>bo3</strong></td><td>live</td>
+<td class="src">2026-10-15T23:33:05Z</td>
+<td class="src">https://bo3.gg/matches/current</td></tr><tr><td><strong>polymarket</strong></td><td>live</td>
+<td class="src">2026-10-15T23:33:07Z</td>
+<td class="src">https://polymarket.com/sports/counter-strike-2</td></tr><tr><td><strong>vrs</strong></td><td>live</td>
+<td class="src">2026-10-15T23:33:07Z</td>
+<td class="src">https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md</td></tr><tr><td><strong>hltv</strong></td><td>live</td>
+<td class="src">2026-10-15T23:33:07Z</td>
+<td class="src">https://www.hltv.org/ranking/teams/2026/october/12</td></tr></table></div>
+<h2>Automation</h2>
+<p>The scheduled workflow runs every four hours: collect, model, build, run the invariant tests,
+commit, and ask GitHub Pages to rebuild. A source that fails keeps its previous capture with the
+original read time. Nothing is hand-edited on a schedule.</p>
+<h2>Known gaps</h2>
+<ul class="clean"><li>Not every Hotspawn fixture has an HLTV match page; low-tier events often do not.
+Where HLTV is missing, the row links the team's HLTV page or, failing that, the Hotspawn fixture only.</li>
+<li>Pinnacle's public feed prices a small number of CS2 leagues, so most bookmaker prices on this
+board come from the provider relayed by bo3.gg, and that provider is named on every row.</li>
+<li>Hotspawn's own "View match" links are placeholders on some listings; the row then falls back to
+the lobby.</li></ul>
+f<h2>Hand-verified prices</h2><p class='muted'>Where no automated source priced a fixture, a bookmaker price was read by hand from the named page and tagged <code>MANUAL_READ</code> with the exact time. A hand read exists to stand in for an automated read of the same source: as soon as the collector reads that source itself the hand read is marked <em>superseded</em> and dropped from the average, so one bookmaker is never counted twice. A unit test enforces it.</p><div class='scroll'><table><tr><th>Match</th><th>Source</th><th>Odds</th><th>Read (UTC)</th><th>Status</th><th>Page</th><th>Note</th></tr><tr><td>Aurora v 9z</td><td>Thunderpick (bookmaker), price relayed by bo3.gg</td><td>1.42 / 2.7</td><td>2026-10-15T22:55:00Z</td><td>superseded</td><td class='src'><a href="https://bo3.gg/matches/aurora-gaming-vs-9z-16-10-2026">page</a></td><td class='src'>Kept as the cross-check that validated the automated bo3.gg reader: the automated read now returns the same 1.42 / 2.70 from the same provider, so the hand read is no longer merged into the average (it would count one bookmaker twice).</td></tr><tr><td>BETBOOM v Legacy</td><td>Thunderpick (bookmaker), price relayed by bo3.gg</td><td>2.5 / 1.48</td><td>2026-10-15T22:55:00Z</td><td>context only</td><td class='src'><a href="https://bo3.gg/matches/legacy-br-vs-betboom-team-16-10-2026">page</a></td><td class='src'>BETBOOM v Legacy is a real Thunderpick Group B decider with a real price, but Hotspawn never lists it, so there is no pick&#x27;em pick to make. The price is recorded for context and is not merged into any published probability.</td></tr></table></div>
+</main>
+<footer><div class="wrap">
+<p>Session arena/a6f05f99 &middot; built by an unattended collector that reads Hotspawn's public pages,
+Pinnacle, bo3.gg, Polymarket, Valve's Regional Standings and HLTV. Hotspawn's own crowd percentages
+are never used as a probability &mdash; only as ownership, to measure how contrarian a play is.</p>
+<p><a href="https://github.com/buffedlizard55-lab/MaltaProj1">Repository</a> &middot; <a href="https://play.hotspawn.com/lobby">Hotspawn lobby</a></p>
+</div></footer>
+</body>
+</html>

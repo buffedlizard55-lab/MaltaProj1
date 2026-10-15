@@ -4502,3 +4502,30 @@ Branch: `arena/71c4e4ab-maltaproj1` (fixed by Arena). Reviewed the board and cur
 | HS-D2 | Verify every TWC day-2 result against HLTV; add sourced result records so the frozen day-2 picks grade; publish a mobile-readable day-2 review and day-3 Aurora–9z recommendation with separate market/own-line probabilities, cautious contrarian guidance, and the exact evidence limits. Record the official Group B decider if it is absent from the saved Hotspawn slate, without inventing a Hotspawn pick. Keep the three-hour collector unchanged. | in progress | arena/71c4e4ab | `hotspawn/research/day2_twc2026.json`, `hotspawn/research/results.json`, `hotspawn/research/irregularities.json`, `hotspawn/build.py`, `hotspawn/model.py`, `hotspawn/tests.py`, generated `hotspawn/data/{board.json,summary.json,picks.csv,all_fixtures.csv,landing.json}` and `hotspawn/{strategy,index,flagged}.html`, `reviews/71c4e4ab-verification.md`, `COORDINATION.md` |
 
 Read-only / no scope: `hotspawn/collect.py`, `.github/workflows/hotspawn-22be6967.yml`, root `index.html`, other boards' datasets, and other sessions' PRs. Probability inputs remain outside Hotspawn crowd data; any quote not traceable to a source is omitted or marked unverified.
+
+---
+
+## Session `arena/a6f05f99` — claim (2026-10-15 ~22:40 UTC)
+
+Branch: `arena/a6f05f99-maltaproj1` (fixed by Arena). Session ID `a6f05f99`.
+Last prior activity in this repo: PR #149 merged 10:58Z; the most recent claim on `hotspawn/**`
+is `22be6967`'s (10:09Z, marked done, >60 min with no commits). This session therefore takes over
+only the **extension** work listed below and preserves every existing file it does not own.
+
+### Tasks claimed
+| # | Task | Status | Exclusive file scope |
+|---|------|--------|----------------------|
+| A6-0 | Coordination claim + branch | in progress | `COORDINATION.md` (append-only section) |
+| A6-1 | **Day-2 Thunderpick World Championship 2026 review** (results, maps, HLTV links) and **day-3 guide** — the open Aurora–9z fixture `1080205` is the day-3 elimination match after 9z beat Aurora 2-0 on day 1 | in progress | `a6f05f99/research/day2_twc2026.json`, `a6f05f99/research/twc2026_context.json` |
+| A6-2 | **Extended coverage ladder** for fixtures with no featured market: HLTV (ranking/results/roster) → esports-book aggregator lines → own line, with a documented research rung per row | in progress | `a6f05f99/collect.py`, `a6f05f99/model.py`, `a6f05f99/data/**` |
+| A6-3 | **Unresolved register** — one row per fixture that cannot be resolved, with the limitation that blocked it and the sources tried | in progress | `a6f05f99/unresolved.html`, `a6f05f99/data/unresolved.csv` |
+| A6-4 | **Mobile-first executive summary** with in-site links to the live picks list, day-2 review, day-3 guide and the unresolved register | in progress | `a6f05f99/index.html`, `a6f05f99/*.html`, `a6f05f99/style.css`, `a6f05f99/build.py` |
+| A6-5 | Repo review line by line; flag irregularities | in progress | `reviews/a6f05f99-repo-review.md` |
+| A6-6 | 4–8 hourly automation + tests + release (PR → merge → Pages) | in progress | `.github/workflows/a6f05f99.yml`, `tests/test_a6f05f99*.py` |
+
+### Files this session will NOT edit
+`hotspawn/**`, `leaderboard/**`, `valuepicks/**`, `console/**`, `docs/**`, `site/**`, `data/**` (root),
+`scripts/**`, and any other session's `tests/test_*.py`.
+**Exception (logged as an integration hand-off):** root `index.html` only — a single link block
+pointing at `a6f05f99/index.html`, because the user asked for the executive summary to link to where
+the picks live. No other root file is touched.
