@@ -1,111 +1,75 @@
 {
  "calibration": {
   "fitted": true,
-  "n": 10,
-  "scale": 744.0,
-  "mae_pp": 5.42,
-  "logloss": 0.3482,
+  "n": 7,
+  "scale": 617.75,
+  "mae_pp": 3.52,
+  "logloss": 0.3645,
   "grid": "20.0-2000.0 points per 90% favourite, step 0.25; mean absolute error against the outside market's de-vigged probability",
   "default_scale": 400.0,
   "logloss_alternative": {
-   "scale": 134.5,
-   "mae_pp": 20.58,
-   "logloss": 0.174
+   "scale": 157.0,
+   "mae_pp": 16.57,
+   "logloss": 0.2401
   },
   "objective": "mae",
   "candidate_transforms": {
    "vrs_points": {
     "fitted": true,
-    "n": 10,
-    "scale": 744.0,
-    "mae_pp": 5.42,
-    "logloss": 0.3482,
+    "n": 7,
+    "scale": 617.75,
+    "mae_pp": 3.52,
+    "logloss": 0.3645,
     "grid": "20.0-2000.0 points per 90% favourite, step 0.25; mean absolute error against the outside market's de-vigged probability",
     "default_scale": 400.0,
     "logloss_alternative": {
-     "scale": 134.5,
-     "mae_pp": 20.58,
-     "logloss": 0.174
+     "scale": 157.0,
+     "mae_pp": 16.57,
+     "logloss": 0.2401
     },
     "objective": "mae"
    },
    "hltv_points": {
     "fitted": true,
-    "n": 10,
+    "n": 7,
     "scale": 20.0,
-    "mae_pp": 12.87,
-    "logloss": 0.5247,
+    "mae_pp": 12.52,
+    "logloss": 0.5231,
     "grid": "20.0-2000.0 points per 90% favourite, step 0.25; mean absolute error against the outside market's de-vigged probability",
     "default_scale": 400.0,
     "logloss_alternative": {
      "scale": 20.0,
-     "mae_pp": 12.87,
-     "logloss": 0.5247
+     "mae_pp": 12.52,
+     "logloss": 0.5231
     },
     "objective": "mae"
    },
    "vrs_rank": {
     "fitted": true,
-    "n": 10,
+    "n": 7,
     "scale": 2000.0,
-    "mae_pp": 26.3,
-    "logloss": 0.7778,
+    "mae_pp": 25.8,
+    "logloss": 0.7603,
     "grid": "20.0-2000.0 points per 90% favourite, step 0.25; mean absolute error against the outside market's de-vigged probability",
     "default_scale": 400.0,
     "logloss_alternative": {
      "scale": 2000.0,
-     "mae_pp": 26.3,
-     "logloss": 0.7778
+     "mae_pp": 25.8,
+     "logloss": 0.7603
     },
     "objective": "mae"
    },
    "vrs_log_rank": {
     "fitted": true,
-    "n": 10,
+    "n": 7,
     "scale": 0.05,
-    "logloss": 0.715,
-    "mae_pp": 23.43
+    "logloss": 0.7113,
+    "mae_pp": 23.54
    }
   },
   "chosen": "official Valve Regional Standings points (vrs_points) at the calibration (MAE) optimum, because that is the transform whose published percentage is closest to the outside market on the same rows and it has the widest team coverage; the log-loss optimum is disclosed next to it and the disagreement is flagged on every row that depends on the scale"
  },
  "fit_rows": [
-  {
-   "match_id": "1080281",
-   "teams": "WROTBERRY v ENCE",
-   "vrs_a": 1201,
-   "vrs_b": 1025,
-   "hltv_a": 109,
-   "hltv_b": 114,
-   "market_p_a_pct": 57.5,
-   "source": "Polymarket",
-   "captured_utc": "2026-10-15T06:23:29Z",
-   "url": "https://polymarket.com/event/cs2-wbt-ence-2026-10-15"
-  },
-  {
-   "match_id": "1080282",
-   "teams": "EAC v BOJONG",
-   "vrs_a": 1035,
-   "vrs_b": 463,
-   "hltv_a": 110,
-   "hltv_b": 220,
-   "market_p_a_pct": 76.6,
-   "source": "Pinnacle",
-   "captured_utc": "2026-10-15T08:51:15Z",
-   "url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/"
-  },
-  {
-   "match_id": "1080283",
-   "teams": "WROTBERRY v BOJONG",
-   "vrs_a": 1201,
-   "vrs_b": 463,
-   "hltv_a": 109,
-   "hltv_b": 220,
-   "market_p_a_pct": 81.5,
-   "source": "Polymarket",
-   "captured_utc": "2026-10-15T06:23:29Z",
-   "url": "https://polymarket.com/event/cs2-wbt-bojong-2026-10-15"
-  },
   {
    "match_id": "1080284",
    "teams": "EAC v ENCE",
@@ -113,10 +77,10 @@
    "vrs_b": 1025,
    "hltv_a": 110,
    "hltv_b": 114,
-   "market_p_a_pct": 58.56,
-   "source": "Pinnacle",
-   "captured_utc": "2026-10-15T08:51:15Z",
-   "url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/"
+   "market_p_a_pct": 56.0,
+   "source": "Polymarket",
+   "captured_utc": "2026-10-15T17:19:36Z",
+   "url": "https://polymarket.com/event/cs2-eac-ence-2026-10-15"
   },
   {
    "match_id": "1080285",
@@ -127,7 +91,7 @@
    "hltv_b": 88,
    "market_p_a_pct": 44.5,
    "source": "Polymarket",
-   "captured_utc": "2026-10-15T06:23:29Z",
+   "captured_utc": "2026-10-15T17:19:36Z",
    "url": "https://polymarket.com/event/cs2-voc-pha-2026-10-16"
   },
   {
@@ -137,10 +101,10 @@
    "vrs_b": 548,
    "hltv_a": 118,
    "hltv_b": 237,
-   "market_p_a_pct": 76.92,
-   "source": "bo3.gg",
-   "captured_utc": "2026-10-15T06:23:29Z",
-   "url": "https://bo3.gg/matches/havu-vs-roundsgg-16-10-2026"
+   "market_p_a_pct": 81.0,
+   "source": "Polymarket",
+   "captured_utc": "2026-10-15T17:19:36Z",
+   "url": "https://polymarket.com/event/cs2-havu-rgg-2026-10-16"
   },
   {
    "match_id": "1080287",
@@ -149,9 +113,9 @@
    "vrs_b": 937,
    "hltv_a": 59,
    "hltv_b": 118,
-   "market_p_a_pct": 65.5,
+   "market_p_a_pct": 67.5,
    "source": "Polymarket",
-   "captured_utc": "2026-10-15T06:23:29Z",
+   "captured_utc": "2026-10-15T17:19:36Z",
    "url": "https://polymarket.com/event/cs2-voc-havu-2026-10-16"
   },
   {
@@ -163,7 +127,7 @@
    "hltv_b": 237,
    "market_p_a_pct": 91.5,
    "source": "Polymarket",
-   "captured_utc": "2026-10-15T06:23:29Z",
+   "captured_utc": "2026-10-15T17:19:36Z",
    "url": "https://polymarket.com/event/cs2-pha-rgg-2026-10-16"
   },
   {
@@ -173,9 +137,9 @@
    "vrs_b": 1182,
    "hltv_a": 237,
    "hltv_b": 59,
-   "market_p_a_pct": 11.0,
+   "market_p_a_pct": 13.0,
    "source": "Polymarket",
-   "captured_utc": "2026-10-15T06:23:29Z",
+   "captured_utc": "2026-10-15T17:19:36Z",
    "url": "https://polymarket.com/event/cs2-voc-rgg-2026-10-16"
   },
   {
@@ -185,9 +149,9 @@
    "vrs_b": 937,
    "hltv_a": 88,
    "hltv_b": 118,
-   "market_p_a_pct": 71.0,
+   "market_p_a_pct": 70.0,
    "source": "Polymarket",
-   "captured_utc": "2026-10-15T06:23:29Z",
+   "captured_utc": "2026-10-15T17:19:36Z",
    "url": "https://polymarket.com/event/cs2-pha-havu-2026-10-16"
   }
  ],
