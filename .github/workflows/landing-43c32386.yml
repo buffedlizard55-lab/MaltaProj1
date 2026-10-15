@@ -18,11 +18,11 @@ on:
       - .github/workflows/landing-43c32386.yml
 permissions:
   contents: read
-concurrency:
-  group: landing-evidence-${{ github.ref }}
-  cancel-in-progress: false
 jobs:
   verify:
+    concurrency:
+      group: landing-evidence-${{ github.ref }}
+      cancel-in-progress: false
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
@@ -100,6 +100,9 @@ jobs:
         run: echo 'Source refusals are recorded in provenance. A successful test is not proof that every quote is available or every forecast is calibrated. This workflow never writes collector-owned datasets to Git.' >> "$GITHUB_STEP_SUMMARY"
 
   public-release:
+    concurrency:
+      group: public-release-${{ github.ref }}
+      cancel-in-progress: false
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 6
