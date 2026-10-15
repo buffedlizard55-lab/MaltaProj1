@@ -1,20 +1,20 @@
 {
  "generated_for_utc": "2026-10-14T04:00:00Z",
- "data_as_of_utc": "2026-10-14T04:39:49Z",
- "newest_input_age_hours": -0.66,
+ "data_as_of_utc": "2026-10-15T08:26:05Z",
+ "newest_input_age_hours": -28.43,
  "max_input_age_hours": 6.0,
  "stale": false,
  "counts": {
-  "rows": 28,
-  "open": 28,
+  "rows": 15,
+  "open": 15,
   "locked": 0,
-  "open_with_pick": 28,
-  "open_market_basis": 25,
-  "open_own_line_basis": 2,
-  "open_research_basis": 1,
+  "open_with_pick": 15,
+  "open_market_basis": 14,
+  "open_own_line_basis": 1,
+  "open_research_basis": 0,
   "open_without_pick": 0,
-  "flags": 62,
-  "rows_with_flags": 23
+  "flags": 27,
+  "rows_with_flags": 11
  },
  "inputs": [
   {
@@ -22,27 +22,27 @@
    "label": "Secondary-market feed (arena/a0bdf924)",
    "page": "feeds/index.html",
    "file": "feeds/data/fixtures.csv",
-   "captured_utc": "2026-10-14T03:19:00Z",
-   "sha256": "96532f50773c4c17d6ee8d1056867aea3158f54b74f5f39f7a0b1856a33c2165",
-   "rows": 28
+   "captured_utc": "2026-10-15T06:23:32Z",
+   "sha256": "748a9a8971fa218ea999c2de91354f32a1d9a699fa71b0109009ca9f8715fc3c",
+   "rows": 15
   },
   {
    "key": "cs2",
    "label": "Line-analysis board (arena/a174d77f)",
    "page": "cs2/index.html",
    "file": "cs2/data/analysis.csv",
-   "captured_utc": "2026-10-14T02:45:17Z",
-   "sha256": "15d36b53bca066ef434acf3fae248db920e51c4d6ccfe9e10239a9ddcef3cd1d",
-   "rows": 88
+   "captured_utc": "2026-10-15T04:42:23Z",
+   "sha256": "a7b15d2cac1c25bfe0e69c2b78453c743af400894d72a521c2ec646de521fd0f",
+   "rows": 76
   },
   {
    "key": "executive",
    "label": "Executive board (arena/5545dbb8)",
    "page": "executive/index.html",
    "file": "executive/data/analysis.csv",
-   "captured_utc": "2026-10-14T04:39:49Z",
-   "sha256": "df6d01dc2c4e04ac74f631de70a695d1569deaaf64b2ebdf89a85f573077294a",
-   "rows": 88
+   "captured_utc": "2026-10-15T08:26:05Z",
+   "sha256": "2dee4c16da593e244fb45ca6c9db8e2496952b23e39a6321c51e168068672b74",
+   "rows": 76
   },
   {
    "key": "every",
@@ -78,10 +78,10 @@
   "claimed_sha256": "df96e7fc3cd91a2687ec08cac0128e50cc4e4e55346581679572e881d79ae61b",
   "integrity_ok": true,
   "anchors": {
-   "verified": 48,
+   "verified": 23,
    "alias": 7,
    "unverified": 0,
-   "absent": 1
+   "absent": 0
   }
  },
  "rules": {

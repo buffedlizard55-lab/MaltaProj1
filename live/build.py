@@ -797,6 +797,15 @@ is not pickable</th><th>Source</th></tr></thead><tbody>{''.join(f"<tr><td>{escap
 
 
 def render_flagged(rows, meta, flags) -> str:
+    # Historical inventory rows also link flag codes. Keep their explanations
+    # reachable without counting those old rows as current actionable findings.
+    flags = list(flags)
+    published = {flag["id"] for flag in flags}
+    referenced = {code for row in rows for code in (row.get("flags") or "").split(";") if code}
+    for code in sorted(referenced - published):
+        text, url = FLAG_TEXT.get(code, ("Unclassified finding.", ""))
+        flags.append({"id": code, "text": text, "source_url": url,
+                      "fixtures": [], "severity": "historical inventory only"})
     items = []
     for flag in flags:
         fixtures = flag["fixtures"]
