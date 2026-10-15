@@ -15,8 +15,9 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from common import DATA, REPO_URL, RESEARCH, ROOT, SESSION, parse_iso, read_json, utc_label, write_json  # noqa: E402
 
-NAV = [("index.html", "Summary"), ("picks.html", "All picks"), ("strategy.html", "Leaderboard plan"),
-       ("unresolved.html", "Unresolved"), ("flagged.html", "Flagged"), ("method.html", "Method")]
+NAV = [("index.html", "Summary"), ("picks.html", "All picks"), ("twc.html", "TWC 2026"),
+       ("strategy.html", "Leaderboard plan"), ("unresolved.html", "Unresolved"), ("flagged.html", "Flagged"),
+       ("method.html", "Method")]
 CLASS_ORDER = ["VALUE", "CONTRARIAN", "SITUATIONAL", "LONG SHOT", "CHALK", "NO CROWD DATA"]
 CLASS_TEXT = {
     "VALUE": "Play the favourite: it is the likely winner AND most players are on the other side.",
@@ -260,6 +261,7 @@ def strategy_page(board: dict) -> None:
 <div class="tablewrap"><table><thead><tr><th>Match</th><th>Market (pre-match)</th><th>Our line</th><th>Crowd</th><th>Market pick</th><th>Plan (v2)</th><th>Result (HLTV)</th><th>Pick</th><th>Plan</th></tr></thead><tbody>{''.join(d1rows)}</tbody></table></div>
 <p class="small">Prices: {link(info.get('price_source', {}).get('url'), info.get('price_source', {}).get('label'))} (read {e(info.get('price_source', {}).get('read_utc'))}). Crowd: {link(info.get('crowd_source', {}).get('url'), info.get('crowd_source', {}).get('label'))} — {e(info.get('crowd_source', {}).get('note'))} Board pick before lock: {link(info.get('pick_source', {}).get('url'), info.get('pick_source', {}).get('label'))}.</p>
 <h3>What day 1 taught us</h3><ul>{lessons}</ul>
+<p><a href="twc.html">Day 2 review, group standings and day-3 picks for the TWC 2026 deciders →</a></p>
 <h3>The upset: 9z 2-0 Aurora</h3>
 <p>Aurora rebuilt in July 2026 — Jimpphat joined on 3 Jul and kyxsan became in-game leader on 8 Jul (coach ash). That is about three months before TWC, and the new five had just finished 3rd at ESL Pro League S24, beating 9z 2-0 there on 3 Oct. In Malta 9z won Inferno 13-11 and Nuke 13-1 (luchov 1.61). Pinnacle had 9z at 27%, our official-points line at 39%, and only 5% of Hotspawn players picked 9z. {link('https://www.hltv.org/team/11861/aurora', 'HLTV: Aurora roster & transfers')} · {link('https://www.hltv.org/news/45718/9z-beat-aurora-2-0-to-kick-off-twc-2026', 'HLTV match report')}</p>
 <h2>Grading since launch</h2>
@@ -268,6 +270,140 @@ def strategy_page(board: dict) -> None:
 <p class="small">{len(pending)} frozen pick(s) awaiting a result.</p>
 """
     page("strategy.html", "Leaderboard plan", body, board)
+
+
+def twc_page(board: dict) -> None:
+    """Thunderpick World Championship 2026: day-by-day review and day-3 picking guidance.
+
+    Every line of this page comes from ``research/twc2026.json`` (each row carries its own source
+    URL and read time) plus the live board row for the one TWC fixture Hotspawn currently lists.
+    Nothing is inferred: a value that no source supports is printed as "not read" and explained in
+    the limitations list.
+    """
+    d = read_json(RESEARCH / "twc2026.json", {})
+    if not d:
+        return
+    ev = d.get("event", {})
+    rows_by_id = {str(r.get("match_id")): r for r in board["rows"]}
+    read = e(d.get("read_utc"))
+
+    def srcs(items) -> str:
+        return " · ".join(link(i.get("url"), i.get("label")) for i in (items or []) if i.get("url"))
+
+    ev_src = " · ".join(link(u, u.split("/")[2]) for u in [x.get("url") for x in ev.get("sources", [])] if u)
+
+    series_rows = []
+    for m in d.get("series", []):
+        note = f'<br><span class="small">{e(m["note"])}</span>' if m.get("note") else ""
+        series_rows.append(
+            f'<tr><td>{e(m.get("day"))}<br><span class="small">{e(m.get("stage"))}</span></td>'
+            f'<td><b>{e(m.get("score"))}</b>{note}</td><td>{e(m.get("maps"))}</td>'
+            f'<td>{link(m.get("hltv"), "HLTV")} · {link(m.get("liquipedia"), "Liquipedia")}</td></tr>')
+
+    def table(rows, cols) -> str:
+        head = "".join(f"<th>{e(c)}</th>" for c in cols)
+        return ('<div class="tablewrap"><table><thead><tr>' + head + "</tr></thead><tbody>" + "".join(rows) + "</tbody></table></div>")
+
+    stand_rows = []
+    for group in ("group_a", "group_b"):
+        for t in d.get("standings", {}).get(group, []):
+            stand_rows.append(f'<tr><td>{e(group.split("_")[1].upper())}</td><td>{e(t.get("rank"))}</td><td>{e(t.get("team"))}</td>'
+                              f'<td>{e(t.get("record"))}</td><td>{e(t.get("rounds"))}</td><td>{e(t.get("diff"))}</td><td>{e(t.get("state"))}</td></tr>')
+
+    plays = []
+    for f in d.get("day3", []):
+        live = rows_by_id.get(str(f.get("hotspawn_match_id"))) if f.get("hotspawn_match_id") else None
+        lines = []
+        for l in f.get("outside_lines", []):
+            pa, pb = l.get("team_a_pct"), l.get("team_b_pct")
+            shown = ("50.0% / 50.0% (rejected placeholder)" if pa == 50.0 and pb == 50.0 else f"{pa}% / {pb}%")
+            lines.append(f'<li><b>{e(l.get("source"))}</b>: {e(shown)} — {link(l.get("url"), "source")} (read {e(l.get("read_utc"))}) '
+                         f'<span class="small">{e(l.get("tier"))}</span></li>')
+        own = f.get("own_line") or {}
+        own_txt = (f'<li><b>Our own line (Valve points, rung C)</b>: {e(f.get("team_a"))} {e(own.get("team_a_pct"))}% / '
+                   f'{e(f.get("team_b"))} {e(own.get("team_b_pct"))}% — {e(own.get("formula"))}; '
+                   f'points {e(f.get("team_a"))} {e(own.get("points_a"))} (#{e(own.get("rank_a"))}) vs {e(f.get("team_b"))} '
+                   f'{e(own.get("points_b"))} (#{e(own.get("rank_b"))}); {link((own.get("source") or {}).get("url"), (own.get("source") or {}).get("label"))}</li>')
+        crowd = f.get("crowd") or {}
+        crowd_txt = (f'Hotspawn crowd: {e(f.get("team_a"))} {e(crowd.get("team_a_pct"))}% / {e(f.get("team_b"))} '
+                     f'{e(crowd.get("team_b_pct"))}% (ownership only, never a probability) · {link((crowd.get("source") or {}).get("url"), "lobby read")}') if crowd else ""
+        pick, play = f.get("pick") or {}, f.get("leaderboard_play") or {}
+        board_row = ""
+        if live:
+            board_row = (f'<p class="small">On the board now: pick <b>{e(live.get("pick"))}</b> at {pc(live.get("pick_p"))} '
+                         f'({e(RUNG_TEXT.get(live.get("rung")))}), leaderboard play <b>{e((live.get("strategy") or {}).get("leaderboard_pick"))}</b>, '
+                         f'lock {e(utc_label(live.get("lock_utc")))}. <a href="picks.html#m{e(live.get("match_id"))}">Open the card</a>.</p>')
+        else:
+            board_row = ('<p class="small">Not listed in Hotspawn&#39;s CS2 payload at the last read, so it has no lock time, crowd '
+                         'share or points on the board; the pick below is our own line and is labelled as such.</p>')
+        plays.append(
+            f'<section class="play"><h3>{e(f.get("team_a"))} vs {e(f.get("team_b"))} — {e(f.get("stage"))}</h3>'
+            f'<p class="small">Starts {e(utc_label(f.get("start_utc")))} · {e(f.get("format"))} · '
+            f'{link(f.get("hotspawn_url"), "Hotspawn fixture") if f.get("hotspawn_url") else "not on Hotspawn"}'
+            f'{" · " + link(f.get("hltv_url"), "HLTV match page") if f.get("hltv_url") else ""}'
+            f'{" · " + link(f.get("liquipedia_url"), "Liquipedia") if f.get("liquipedia_url") else ""}</p>'
+            + (pair_bar(f.get("team_a"), f.get("team_b"), pick.get("team_a_pct"), pick.get("team_b_pct")) if pick.get("team_b_pct") is not None else "")
+            + f'<p><b>Pick: {e(pick.get("team"))}</b> — {e(pick.get("basis"))}.</p>'
+            + (f'<p class="small"><b>Leaderboard play: {e(play.get("team"))}.</b> {e(play.get("why"))}</p>' if play else "")
+            + board_row + (f'<p class="small">{crowd_txt}</p>' if crowd_txt else "")
+            + '<details><summary>Every outside line and our own line</summary><ul>' + "".join(lines) + own_txt + "</ul></details>"
+            + ('<details><summary>Evidence for each side</summary><ul>'
+               + "".join(f"<li>{e(x)}</li>" for x in (f.get("evidence_for_9z") or []) + (f.get("evidence_for_aurora") or []))
+               + "</ul></details>" if (f.get("evidence_for_9z") or f.get("evidence_for_aurora")) else "")
+            + '<p class="small"><b>Limitations:</b> ' + "; ".join(e(x) for x in f.get("limitations", [])) + "</p></section>")
+
+    sit_rows = []
+    for s_ in d.get("situations", []):
+        turn = f'<br><span class="small">{e(s_.get("turnaround"))}</span>' if s_.get("turnaround") else ""
+        sit_rows.append(f'<tr><td><b>{e(s_.get("team"))}</b></td><td>{e(s_.get("what"))}{turn}</td>'
+                        f'<td>{e(s_.get("verdict"))}</td><td>{srcs(s_.get("sources"))}</td></tr>')
+
+    lessons = "".join(f"<li>{e(x)}</li>" for x in d.get("lessons", []))
+    media = "".join(f"<li>{link(m.get('url'), m.get('label'))} (read {e(m.get('read_utc'))})</li>" for m in d.get("media_views", []))
+
+    body = f"""<h1>Thunderpick World Championship 2026 — what day 1 and day 2 changed, and what to pick on day 3</h1>
+<p class="lead">Eight teams, USD 1,000,000, BLAST Arena Studios in Attard, Malta, 14-18 October 2026. This page reviews every
+series played so far (map scores and a match link per row), the two groups as they stand, the roster/onboarding/rest situation
+behind each remaining team, and the day-3 deciders with every outside line we could read plus our own line. The one TWC fixture
+Hotspawn currently lists is picked on the <a href="picks.html">All picks</a> board; the fixture Hotspawn has not listed yet is
+picked from our own line here and labelled. {ev_src} · researched {read}.</p>
+<p class="small">{e(ev.get("format"))} Prize pool {e(ev.get("prize_pool"))}. <a href="strategy.html">Leaderboard plan</a> ·
+<a href="unresolved.html">Unresolved picks &amp; limitations</a> · <a href="all.html">Full fixture inventory</a></p>
+
+<h2>Day 1 and day 2, every series</h2>
+{table(series_rows, ["Day / stage", "Result", "Map scores", "Source"])}
+<p class="small">Day 1: 14 Oct 2026. Day 2: 15 Oct 2026. Map scores as published by Liquipedia and HLTV; the HLTV link on each row
+opens the match page these scores were checked against.</p>
+
+<h2>Groups after day 2</h2>
+{table(stand_rows, ["Group", "#", "Team", "Record", "Rounds", "Diff", "Status"])}
+<p class="small">{link((d.get("standings") or {}).get("source", {}).get("url"), (d.get("standings") or {}).get("source", {}).get("label"))}.
+Two wins reach the playoffs, two losses eliminate: the 1-1 pair in each group plays a decider on day 3.</p>
+
+<h2>Day 3 — the two deciders</h2>
+{''.join(plays)}
+
+<h2>Roster, onboarding and rest — what is real, what is stale</h2>
+{table(sit_rows, ["Team", "What happened", "Does it move the pick?", "Sources"])}
+<p class="small">Rule used by the board: a roster change, stand-in or late replacement only counts against a favourite when it is
+verified on an official page and is not already priced in; a change three months old is context, not an edge. Factors never change
+a probability on their own — they decide which side of a coin-flip market is worth fading.</p>
+
+<h2>How to climb the board on day 3</h2>
+<ul>{lessons}</ul>
+
+<h2>Media views (context only, never a probability input)</h2>
+<ul>{media}</ul>
+<p class="small">Hotspawn&#39;s own percentages are the crowd&#39;s pick share. They are shown here as ownership only, so we can see
+how contrarian a pick is; they are never used to set a probability.</p>
+"""
+    page("twc.html", "TWC 2026 day review & day-3 picks", body, board)
+
+
+def pair_bar(name_a: str, name_b: str, pa, pb) -> str:
+    if pa is None or pb is None:
+        return ""
+    return f'<div class="bars">{team_bar(name_a, pa / 100.0, pa >= pb)}{team_bar(name_b, pb / 100.0, pb > pa)}</div>'
 
 
 def unresolved_section(board: dict, full: bool) -> str:
@@ -303,7 +439,8 @@ def unresolved_section(board: dict, full: bool) -> str:
             hl = f"HLTV #{r.get('hltv_rank_a') or '–'} vs #{r.get('hltv_rank_b') or '–'}"
             step3 = (f"3 Betting lines: {link((r.get('pm') or {}).get('url'), 'Polymarket')} {e((r.get('pm') or {}).get('price_a'))} / {e((r.get('pm') or {}).get('price_b'))}"
                      if r["rung"] == "B" else "3 Betting lines: Polymarket — not listed → our own line")
-            rows.append(f"<tr><td><a href=\"picks.html#m{e(r['match_id'])}\">{e(r['team_a'])} vs {e(r['team_b'])}</a><br><span class=small>{e(utc_label(r.get('lock_utc')))}</span></td>"
+            twc = ' <a href="twc.html">day-3 page</a>' if 'thunderpick world championship 2026' == (r.get('competition') or '').strip().lower() else ''
+            rows.append(f"<tr><td><a href=\"picks.html#m{e(r['match_id'])}\">{e(r['team_a'])} vs {e(r['team_b'])}</a><br><span class=small>{e(utc_label(r.get('lock_utc')))}{twc}</span></td>"
                         f"<td>{e(r.get('pick'))} {pc(r.get('pick_p'))}<br><span class=small>{e(r['team_a'])} {pc(r.get('p_a'))} / {e(r['team_b'])} {pc(r.get('p_b'))}</span></td>"
                         f"<td>1 HLTV: {link(r.get('hltv_url'), 'page')} ({e(hl)})<br>2 Esportsbook: Pinnacle — not listed<br>{step3}</td>"
                         f"<td>{e('; '.join(lim))}</td></tr>")
@@ -404,6 +541,7 @@ def index_page(board: dict) -> None:
 <div class="btns">
 <a class="btn primary" href="picks.html"><strong>All picks ({s['open']} open) →</strong><span>One card per match: pick, both probabilities, sources.</span></a>
 <a class="btn" href="strategy.html"><strong>Leaderboard plan</strong><span>{s['leaderboard_classes'].get('VALUE', 0)} value · {s['leaderboard_classes'].get('CONTRARIAN', 0)} contrarian · {s['leaderboard_classes'].get('SITUATIONAL', 0)} situational plays; day-1 review.</span></a>
+<a class="btn" href="twc.html"><strong>TWC 2026 day review</strong><span>Every series of days 1-2 with sources, the groups, and both day-3 deciders with all outside lines plus our own.</span></a>
 <a class="btn" href="unresolved.html"><strong>Unresolved &amp; limitations</strong><span>{s['open_rung'].get('B', 0) + s['open_rung'].get('C', 0)} via the research ladder · {s['open_unresolved']} without a pick.</span></a>
 <a class="btn" href="flagged.html"><strong>Flagged for Review</strong><span>Irregularities and per-match flags with evidence.</span></a>
 </div>
@@ -445,6 +583,7 @@ def main() -> int:
     index_page(board)
     picks_page(board)
     strategy_page(board)
+    twc_page(board)
     unresolved_page(board)
     flagged_page(board)
     all_page(board)

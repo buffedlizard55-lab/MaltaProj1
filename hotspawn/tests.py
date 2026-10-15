@@ -10,6 +10,7 @@ import json
 import re
 import sys
 import unittest
+from html import unescape
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urlparse
@@ -23,7 +24,7 @@ from common import Aliases, devig_two_way, norm_name, own_line, parse_iso, read_
 BOARD = read_json(HERE / "data" / "board.json", {}) or {}
 ROWS = BOARD.get("rows", [])
 OPEN = [r for r in ROWS if r.get("status") == "open"]
-PAGES = ["index.html", "picks.html", "strategy.html", "unresolved.html", "flagged.html", "all.html", "method.html"]
+PAGES = ["index.html", "picks.html", "twc.html", "strategy.html", "unresolved.html", "flagged.html", "all.html", "method.html"]
 
 
 class Links(HTMLParser):
@@ -257,6 +258,43 @@ class Pages(unittest.TestCase):
         self.assertIn('id="unresolved"', text)
         self.assertIn("Limitations that apply to every pick", text)
         self.assertIn('href="picks.html"', text)
+
+
+class TwcReview(unittest.TestCase):
+    """The TWC 2026 page must carry a source for every result row it publishes."""
+
+    def setUp(self):
+        self.data = read_json(HERE / "research" / "twc2026.json")
+        raw = (HERE / "twc.html").read_text(encoding="utf-8")
+        # compare against rendered text, so HTML escaping of apostrophes does not hide a missing line
+        self.text = unescape(raw)
+
+    def test_every_played_series_has_an_hltv_and_liquipedia_link(self):
+        self.assertEqual(len(self.data["series"]), 8)
+        for m in self.data["series"]:
+            self.assertTrue(m["hltv"].startswith("https://www.hltv.org/matches/"), m["score"])
+            self.assertTrue(m["liquipedia"].startswith("https://liquipedia.net/"), m["score"])
+            self.assertIn(m["hltv"], self.text, m["score"])
+
+    def test_day3_rows_lists_their_limitations_and_lines(self):
+        for f in self.data["day3"]:
+            for lim in f["limitations"]:
+                self.assertIn(lim, self.text, f["id"])
+            for line in f["outside_lines"]:
+                self.assertTrue(line["url"].startswith("https://"), f["id"])
+
+    def test_no_value_is_published_without_a_source_url(self):
+        for s in self.data["situations"]:
+            self.assertTrue(s["sources"], s["team"])
+            for src in s["sources"]:
+                self.assertTrue(src["url"].startswith("https://"), s["team"])
+        for f in self.data["day3"]:
+            self.assertTrue((f["own_line"].get("source") or {}).get("url"), f["id"])
+
+    def test_page_is_linked_from_the_board_summary_and_the_picks_page_nav(self):
+        self.assertIn('href="twc.html"', (HERE / "index.html").read_text(encoding="utf-8"))
+        self.assertIn('href="twc.html"', (HERE / "strategy.html").read_text(encoding="utf-8"))
+        self.assertIn('href="twc.html"', self.text)
 
 
 if __name__ == "__main__":
