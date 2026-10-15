@@ -16,7 +16,7 @@ on:
   schedule:
     - cron: "29 */3 * * *"
   push:
-    branches: ["main", "arena/22be6967-maltaproj1"]
+    branches: ["main", "arena/6e0a1a69-maltaproj1"]
     paths:
       - "hotspawn/*.py"
       - "hotspawn/research/**"

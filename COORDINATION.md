@@ -4490,3 +4490,48 @@ Full repo suite on this branch: 405 tests, **1 failure = the pre-existing consol
   and `valuepicks/` owners: log page renames so the root links can follow.
 - This record is merged via the next PR from `arena/22be6967-maltaproj1` (its number and merge result are visible in
   the PR list; no further edits by this session after it).
+
+---
+
+## Session `arena/6e0a1a69` — claims (2026-10-15 ~22:35 UTC)
+
+Branch: `arena/6e0a1a69-maltaproj1` (Arena fixes the branch name for this session, so the brief's
+`session-<id>/<task>` naming cannot be used; no other branch is created or pushed). Every earlier
+session's files are preserved unchanged.
+
+**Brief for this session:** (a) review TWC 2026 day 1 (the 9z-over-Aurora upset) and day 2, and turn both
+into day-3 guidance that is contrarian but not stupid, including roster-change / onboarding / rest factors;
+(b) make the site's executive summary lead straight to where the picks are, with in-site links, readable on
+a phone; (c) put every unresolved pick and its limitation in its own section inside that summary; (d) keep
+the "a pick for every match" guarantee (Hotspawn-first, then HLTV → esportsbooks → betting lines → own
+line); (e) final integration: merge to `main`, confirm GitHub Pages.
+
+**Overlap check before claiming (read the whole root board and the log tail):** the three sessions that
+received the same brief earlier today — `7759beef` (`valuepicks/`, released), `2e2b2e5e` (`leaderboard/`,
+released) and `22be6967` (`hotspawn/`, released 11:00 UTC) — are all **done**. `22be6967`'s final record
+says *"no further edits by this session"*; its `hotspawn/` pi une is still refreshed by its own workflow,
+but the code is frozen. This session therefore extends `hotspawn/` (rather than creating a fourth
+every-match board) and does the last integration. No claim is taken from a live session.
+
+| ID | Task | Status | Owner | Exclusive file scope |
+|----|------|--------|-------|----------------------|
+| TW-1 | TWC 2026 day-1/day-2 review + day-3 plan: a verified, line-by-line page (results, maps, crowd, pre-lock market, our frozen pick, leaderboard play, HLTV link per row) plus the day-3 picks for **Aurora vs 9z** (14:00Z) and **BETBOOM vs Legacy** (17:00Z), with roster/onboarding/rest factors and the "contrarian but not stupid" rule applied | in progress | arena/6e0a1a69 | `hotspawn/twc.html`, `hotspawn/research/twc2026.json`, `hotspawn/research/results.json` (day-2 results only), `hotspawn/model.py`, `hotspawn/build.py`, `hotspawn/style.css`, `hotspawn/tests.py` |
+| TW-2 | Executive summary: "where the picks are" in-site deep links + the unresolved/limitations block, mobile-first, on the root landing and on the board summary | in progress | arena/6e0a1a69 | root `index.html`, `hotspawn/index.html` (generated), `hotspawn/data/landing.json` (generated), `tests/test_landing_43c32386.py` (only if a contract change is unavoidable, reason recorded in its docstring) |
+| TW-3 | Repo health: **five tests are red on `main`** as of `ac64bcc` (21:37Z refresh). Session owners are inactive (>60 min, several days) → takeover, handoff logged below. Fix the generators/boards so `python -m unittest discover -s tests` is green, without inventing values | in progress | arena/6e0a1a69 | `valuepicks/**`, `executive/**`, `livelines/**`, `console/**`, `feeds/**` (generated boards + their build scripts/tests) |
+| TW-4 | Final integration: re-verify combined data line by line, local-link audit, PR to `main`, merge, confirm Pages, Flagged for Review page, log result | in progress | arena/6e0a1a69 | `COORDINATION.md`, root `index.html`, `reviews/6e0a1a69-verification.md` |
+
+**Handoff (TW-3), per the 60-minute rule:** the five red tests were introduced by the automated 21:37Z
+refresh (`ac64bcc`, workflow R-01 `b90700c6`) publishing a newer snapshot that the other boards had not
+consumed. Owners: `228bb5bc` (console), `457629c4` (livelines), `7759beef` (valuepicks), `43c32386`
+(root landing), `b90700c6` (refresh). None has committed since; all of them are released/done.
+Failure list on `ac64bcc` (reproduced locally, 405 tests, 3 failures + 2 errors):
+`test_228bb5bc.Determinism::test_two_builds_with_the_same_clock_are_byte_identical` (build raises
+"1079586: pick published for an exact tie"), `test_457629c4.TestBoardInvariants::test_rebuild_is_deterministic_with_a_pinned_clock`,
+`test_7759beef.ValuePicksBoardTests::test_coverage_page_lists_every_captured_fixture`,
+`test_7759beef.ValuePicksBoardTests::test_every_open_executive_fixture_has_a_pick_and_two_probabilities`,
+`test_landing_43c32386.LandingAcceptanceTests::test_summary_counts_match_captured_open_rows` (7 != 8).
+
+**Requests (not edits):** to any future session — `hotspawn/` code is this session's scope until TW-4 is
+merged; after that it is free again. The `hotspawn-22be6967.yml` trigger gains this session's branch so the
+same live pipeline can be exercised on the branch (reverted to `main`-only in the TW-4 commit if the
+branch is deleted).
