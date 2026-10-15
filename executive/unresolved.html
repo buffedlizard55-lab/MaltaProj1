@@ -14,27 +14,31 @@
   <div class="topbar__inner">
     <a class="brand" href="index.html"><span class="brand__mark">◎</span><span class="brand__text">Hotspawn CS2 · independent lines</span></a>
     <div class="topbar__meta">
-      <strong>Snapshot is 5.7 h old</strong>
+      <strong>Snapshot is 9.1 h old</strong>
       <span class="muted">2026-10-14T23:22Z (previous_capture)</span>
     </div>
   </div>
   <nav class="nav" aria-label="Sections"><a class="nav__link" href="index.html">Summary</a><a class="nav__link" href="picks.html">All picks</a><a class="nav__link nav__link--active" href="unresolved.html">Unresolved</a><a class="nav__link" href="lines.html">Betting lines</a><a class="nav__link" href="own-lines.html">Our lines</a><a class="nav__link" href="tournaments.html">Tournaments</a><a class="nav__link" href="coverage.html">Coverage</a><a class="nav__link" href="cadence.html">Refresh</a><a class="nav__link" href="verification.html">Verification</a><a class="nav__link" href="sources.html">Sources</a><a class="nav__link" href="methodology.html">Method</a><a class="nav__link" href="flagged.html">Flagged</a></nav>
 </header>
 <main id="main" class="wrap">
-
+<div class="banner" role="status"><strong>Snapshot is 9.1 h old.</strong> Prices shown are the last readable capture — each row prints its own read time. The scheduled refresh replaces this snapshot with a live read; nothing here is presented as a current price until it is.</div>
+<aside class="banner" role="status" data-source-time="2026-10-14T23:22:17Z" data-slate-current="false">
+<strong data-age>Source capture: 2026-10-14T23:22:17Z (UTC).</strong>
+<span data-health>Current full coverage is unverified: both lobby and CS2 source reads must succeed with no identity conflict. Saved fixtures remain visible with their original timestamp.</span>
+<a href="unresolved.html">Unresolved &amp; limitations</a> · <a href="flagged.html">Flagged for Review</a>
+</aside>
 
 <section class="hero">
   <p class="eyebrow">Unresolved picks &amp; limitations</p>
-  <h1>Every open match has a pick. 10 of them cannot rest on the featured route — here is
-  exactly what they rest on instead, and what that costs.</h1>
+  <h1>3 open matches have no supported side. 9 matches need fallback research or remain unresolved.</h1>
   <p class="lede">A <strong>featured pick</strong> is resolved from a primary esportsbook moneyline
   (Pinnacle's own price feed, de-vigged). Matches no such book covers — the low-tier CCT / qualifier /
   academy cards — are resolved with the research ladder <strong>HLTV → esportsbooks → betting lines</strong>,
   and only where that trail finds a real two-sided market or an official rating. Nothing on this page is
   a Hotspawn crowd percentage; those are dropped at ingest.</p>
-  <p class="meta-line">5 featured-route picks · 9 secondary-book
-  listings · 0 prediction-market-only · 1 own originated lines ·
-  0 provisional bounds · generated 2026-10-15T05:03:49Z</p>
+  <p class="meta-line">5 featured-route picks · 3 secondary-book
+  listings · 2 prediction-market-only · 1 own originated lines ·
+  0 provisional bounds · generated 2026-10-15T08:26:05Z</p>
 </section>
 
 <section class="panel panel--primary">
@@ -54,106 +58,112 @@
       recent official results for teams no ranking lists (for example LFO 10's HLTV team page and its
       match page 2399301, and Banda Chuya's match page 2399462).</li>
     <li><strong>Esportsbooks</strong> — EGamersWorld match pages (bc.game listings), bo3.gg relayed
-      bookmaker prices, Pinnacle's guest markets where they exist. Equal-pair 1.8/1.8 prints and
-      single-side prints are the known “no market posted” placeholders and are rejected, never de-vigged.</li>
+      bookmaker prices, Pinnacle's guest markets where they exist. Single-sided and explicitly identified placeholder prices are rejected. Equal odds alone are not a placeholder.</li>
     <li><strong>Betting lines / prediction markets</strong> — Polymarket's own match markets (series
       moneyline share prices) where no bookmaker publishes a line. Where a market exists but is
       uninitialised (both sides above 90¢, zero volume) the prices are refused outright rather than
       turned into a fake 50/50.</li>
   </ol>
-  <p class="muted small">Where the ladder finds nothing at all, the board still publishes a pick from the
-  official Valve standings (or a conservative bound), clearly labelled and flagged — a pick is never left
-  blank on an open fixture, and never guessed.</p>
+  <p class="muted small">Where no usable market is retrieved, the board attempts a model from
+  sourced rating pairs and confirmed formats when available. Otherwise the pick is blank and flagged, never guessed.</p>
 </section>
 
 <section>
-  <h2>Unresolved by the featured route · secondary esportsbook listing <span class="muted small">(9 of 15 open fixtures)</span></h2>
-  <p class="muted">Limitation of this route: No primary-book market was readable, so the pick rests on a bookmaker price quoted through a public aggregator or this site&#x27;s own hourly relay. Aggregator pages move with the book and can lag it; the capture minute is on every row. A link identifies the listing — it does not prove the quote is still current.</p>
-  <div class="cards"><article class="pick" data-tier="2" data-status="open"
-  data-team="wrotberry eac"
-  data-search="wrotberry eac elisa breakout series #2">
-  <div class="pick__top">
-    <span class="pick__tour">Elisa BreakOut Series #2</span>
-    <span class="badge badge--tier-2">T2 market</span>
-    <span class="badge badge--status">Open</span>
-  </div>
-  <div class="pick__teams">
-    <span class="team">WROTBERRY<b>45.7%</b></span>
-    <span class="vs">vs</span>
-    <span class="team team--fav">EAC<b>54.3%</b></span>
-  </div>
-  <div class="pick__call">
-    <span class="pick__label">Pick</span>
-    <span class="pick__pick">EAC</span>
-    <span class="pick__prob">54.3%</span>
-  </div>
-  <dl class="pick__meta">
-    <div><dt>Locks</dt><dd>2026-10-15T07:54:00Z <span class="muted">(in 2.9 h)</span></dd></div>
-    <div><dt>Tier / value</dt><dd>C · 2 pts</dd></div>
-    <div><dt>Format</dt><dd>—</dd></div>
-    <div><dt>Our own line</dt><dd>23.2% / 76.8% <span class="muted">(HLTV world-rank logistic, official bound)</span></dd></div>
-    <div><dt>Confidence</dt><dd>Medium (secondary listing)</dd></div>
-  </dl>
-  <p class="pick__basis">EGamersWorld (bc.game) listing 2.01 / 1.69 (decimal), overround 8.92%, proportional de-vig. Secondary listing: the aggregator&#x27;s own page is the source, not the book itself. Originated rating line: WBT 1201 vs EAC 1035 official points, p = 1/(1+10^((Rb-Ra)/400)) = 72.2%. Our own line for the same fixture, from the official ranking only: 23.2% for WROTBERRY (22.5 pp from the price this row is based on).</p>
-  <p class="pick__note">HLTV: HLTV files this fixture under “elisa-breakout-series-2” (team pair and event name both match; seen on 2 team page(s)).</p>
-  <p class="pick__sources"><a href="https://egamersworld.com/counterstrike/match/4yn491uUVl/wbt-vs-ea-copenhagen-hSC7a2mtP" target="_blank" rel="noopener noreferrer">EGamersWorld (bc.game)</a> · <a href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md" target="_blank" rel="noopener noreferrer">WBT standings</a> · <a href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md" target="_blank" rel="noopener noreferrer">EAC standings</a> · <a href="https://www.hotspawn.com/matches/wrotberry-vs-eac-elisa-breakout-series-2-1080279" target="_blank" rel="noopener noreferrer">Hotspawn</a> · <a href="https://www.hltv.org/matches/2399418/wbt-vs-eac-elisa-breakout-series-2" target="_blank" rel="noopener noreferrer">HLTV match</a></p>
-</article><article class="pick" data-tier="2" data-status="open"
+  <h2>No supported pick — unverified inputs remain blank <span class="muted small">(3 of 14 open fixtures)</span></h2>
+  <p class="muted">Limitation of this route: No fresh whole-match quote or usable pair of sourced ratings and confirmed series format was found. Missing ranks are never assigned floor values; unknown formats are never assumed BO1. A 50/50 model has no preferred side. Source refusal is not evidence that a market does not exist.</p>
+  <div class="cards"><article class="pick" data-tier="0" data-status="open"
   data-team="wrotberry ence"
   data-search="wrotberry ence elisa breakout series #2">
   <div class="pick__top">
     <span class="pick__tour">Elisa BreakOut Series #2</span>
-    <span class="badge badge--tier-2">T2 market</span>
+    <span class="badge badge--tier-0">no basis</span>
     <span class="badge badge--status">Open</span>
   </div>
   <div class="pick__teams">
-    <span class="team team--fav">WROTBERRY<b>61.5%</b></span>
+    <span class="team">WROTBERRY<b>—%</b></span>
     <span class="vs">vs</span>
-    <span class="team">ENCE<b>38.5%</b></span>
+    <span class="team">ENCE<b>—%</b></span>
   </div>
   <div class="pick__call">
     <span class="pick__label">Pick</span>
-    <span class="pick__pick">WROTBERRY</span>
-    <span class="pick__prob">61.5%</span>
+    <span class="pick__pick">— no pick —</span>
+    <span class="pick__prob">%</span>
   </div>
   <dl class="pick__meta">
-    <div><dt>Locks</dt><dd>2026-10-15T11:54:00Z <span class="muted">(in 6.9 h)</span></dd></div>
+    <div><dt>Locks</dt><dd>2026-10-15T11:54:00Z <span class="muted" data-lock="2026-10-15T11:54:00Z">UTC lock; status at build</span></dd></div>
     <div><dt>Tier / value</dt><dd>C · 2 pts</dd></div>
-    <div><dt>Format</dt><dd>BO1 <a href="https://bo3.gg/matches/wbt-vs-ence-15-10-2026" target="_blank" rel="noopener noreferrer">stated by</a></dd></div>
-    <div><dt>Our own line</dt><dd>23.9% / 76.1% <span class="muted">(HLTV world-rank logistic, official bound)</span></dd></div>
-    <div><dt>Confidence</dt><dd>Medium (secondary listing)</dd></div>
+    <div><dt>Format</dt><dd>—</dd></div>
+    <div><dt>Our own line</dt><dd><span class="muted">not originated — see the flags on this row</span></dd></div>
+    <div><dt>Price read (UTC)</dt><dd>no market quote</dd></div>
+    <div><dt>Confidence</dt><dd>—</dd></div>
   </dl>
-  <p class="pick__basis">Thunderpick listing 1.50 / 2.40 (decimal), overround 8.33%, proportional de-vig. Secondary listing: the aggregator&#x27;s own page is the source, not the book itself. Series length BO1 as stated by the pricing listing (Thunderpick); Hotspawn states none. Originated rating line: WBT 1201 vs ENCE 1025 official points, p = 1/(1+10^((Rb-Ra)/400)) = 73.4%. Our own line for the same fixture, from the official ranking only: 23.9% for WROTBERRY (37.6 pp from the price this row is based on).</p>
+  <p class="pick__basis">No VRS estimate: one team&#x27;s points are missing. An unlisted team is not assigned a floor rating.</p>
   <p class="pick__note">HLTV: HLTV files this fixture under “elisa-breakout-series-2” (team pair and event name both match; seen on 2 team page(s)).</p>
-  <p class="pick__sources"><a href="https://bo3.gg/matches/wbt-vs-ence-15-10-2026" target="_blank" rel="noopener noreferrer">Thunderpick</a> · <a href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md" target="_blank" rel="noopener noreferrer">WBT standings</a> · <a href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md" target="_blank" rel="noopener noreferrer">ENCE standings</a> · <a href="https://www.hotspawn.com/matches/wrotberry-vs-ence-elisa-breakout-series-2-1080281" target="_blank" rel="noopener noreferrer">Hotspawn</a> · <a href="https://www.hltv.org/matches/2399420/wbt-vs-ence-elisa-breakout-series-2" target="_blank" rel="noopener noreferrer">HLTV match</a></p>
-</article><article class="pick" data-tier="2" data-status="open"
+  <p class="pick__sources"><a href="https://www.hotspawn.com/matches/wrotberry-vs-ence-elisa-breakout-series-2-1080281" target="_blank" rel="noopener noreferrer">Hotspawn</a> · <a href="https://www.hltv.org/matches/2399420/wbt-vs-ence-elisa-breakout-series-2" target="_blank" rel="noopener noreferrer">HLTV match</a></p>
+</article><article class="pick" data-tier="0" data-status="open"
   data-team="wrotberry bojong"
   data-search="wrotberry bojong elisa breakout series #2">
   <div class="pick__top">
     <span class="pick__tour">Elisa BreakOut Series #2</span>
-    <span class="badge badge--tier-2">T2 market</span>
+    <span class="badge badge--tier-0">no basis</span>
     <span class="badge badge--status">Open</span>
   </div>
   <div class="pick__teams">
-    <span class="team team--fav">WROTBERRY<b>76.7%</b></span>
+    <span class="team">WROTBERRY<b>—%</b></span>
     <span class="vs">vs</span>
-    <span class="team">BOJONG<b>23.3%</b></span>
+    <span class="team">BOJONG<b>—%</b></span>
   </div>
   <div class="pick__call">
     <span class="pick__label">Pick</span>
-    <span class="pick__pick">WROTBERRY</span>
-    <span class="pick__prob">76.7%</span>
+    <span class="pick__pick">— no pick —</span>
+    <span class="pick__prob">%</span>
   </div>
   <dl class="pick__meta">
-    <div><dt>Locks</dt><dd>2026-10-15T15:54:00Z <span class="muted">(in 10.9 h)</span></dd></div>
+    <div><dt>Locks</dt><dd>2026-10-15T15:54:00Z <span class="muted" data-lock="2026-10-15T15:54:00Z">UTC lock; status at build</span></dd></div>
     <div><dt>Tier / value</dt><dd>C · 2 pts</dd></div>
-    <div><dt>Format</dt><dd>BO1 <a href="https://bo3.gg/matches/wbt-vs-bojong-15-10-2026" target="_blank" rel="noopener noreferrer">stated by</a></dd></div>
-    <div><dt>Our own line</dt><dd>44.3% / 55.7% <span class="muted">(HLTV world-rank logistic, official bound)</span></dd></div>
-    <div><dt>Confidence</dt><dd>Medium (secondary listing)</dd></div>
+    <div><dt>Format</dt><dd>—</dd></div>
+    <div><dt>Our own line</dt><dd><span class="muted">not originated — see the flags on this row</span></dd></div>
+    <div><dt>Price read (UTC)</dt><dd>no market quote</dd></div>
+    <div><dt>Confidence</dt><dd>—</dd></div>
   </dl>
-  <p class="pick__basis">EGamersWorld (bc.game) listing 1.21 / 3.99 (decimal), overround 7.71%, proportional de-vig. Secondary listing: the aggregator&#x27;s own page is the source, not the book itself. Series length BO1 as stated by Thunderpick, whose page for this fixture states the length (the listing the price is taken from prints none); Hotspawn states none. Originated rating line: WBT 1201 vs BOJONG 463 official points, p = 1/(1+10^((Rb-Ra)/400)) = 98.6%. Our own line for the same fixture, from the official ranking only: 44.3% for WROTBERRY (32.4 pp from the price this row is based on).</p>
+  <p class="pick__basis">No VRS estimate: one team&#x27;s points are missing. An unlisted team is not assigned a floor rating.</p>
   <p class="pick__note">HLTV: HLTV files this fixture under “elisa-breakout-series-2” (team pair and event name both match; seen on 2 team page(s)).</p>
-  <p class="pick__sources"><a href="https://egamersworld.com/counterstrike/match/4yn491uUVl/wbt-vs-bojong-r7kNL0-LX6" target="_blank" rel="noopener noreferrer">EGamersWorld (bc.game)</a> · <a href="https://bo3.gg/matches/wbt-vs-bojong-15-10-2026" target="_blank" rel="noopener noreferrer">Thunderpick (series length)</a> · <a href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md" target="_blank" rel="noopener noreferrer">WBT standings</a> · <a href="https://www.hotspawn.com/matches/wrotberry-vs-bojong-elisa-breakout-series-2-1080283" target="_blank" rel="noopener noreferrer">Hotspawn</a> · <a href="https://www.hltv.org/matches/2399422/wbt-vs-bojong-elisa-breakout-series-2" target="_blank" rel="noopener noreferrer">HLTV match</a></p>
-</article><article class="pick" data-tier="2" data-status="open"
+  <p class="pick__sources"><a href="https://www.hotspawn.com/matches/wrotberry-vs-bojong-elisa-breakout-series-2-1080283" target="_blank" rel="noopener noreferrer">Hotspawn</a> · <a href="https://www.hltv.org/matches/2399422/wbt-vs-bojong-elisa-breakout-series-2" target="_blank" rel="noopener noreferrer">HLTV match</a></p>
+</article><article class="pick" data-tier="0" data-status="open"
+  data-team="havu roundsgg"
+  data-search="havu roundsgg elisa breakout series #2">
+  <div class="pick__top">
+    <span class="pick__tour">Elisa BreakOut Series #2</span>
+    <span class="badge badge--tier-0">no basis</span>
+    <span class="badge badge--status">Open</span>
+  </div>
+  <div class="pick__teams">
+    <span class="team">HAVU<b>—%</b></span>
+    <span class="vs">vs</span>
+    <span class="team">RoundsGG<b>—%</b></span>
+  </div>
+  <div class="pick__call">
+    <span class="pick__label">Pick</span>
+    <span class="pick__pick">— no pick —</span>
+    <span class="pick__prob">%</span>
+  </div>
+  <dl class="pick__meta">
+    <div><dt>Locks</dt><dd>2026-10-16T09:54:00Z <span class="muted" data-lock="2026-10-16T09:54:00Z">UTC lock; status at build</span></dd></div>
+    <div><dt>Tier / value</dt><dd>C · 2 pts</dd></div>
+    <div><dt>Format</dt><dd>—</dd></div>
+    <div><dt>Our own line</dt><dd><span class="muted">not originated — see the flags on this row</span></dd></div>
+    <div><dt>Price read (UTC)</dt><dd>no market quote</dd></div>
+    <div><dt>Confidence</dt><dd>—</dd></div>
+  </dl>
+  <p class="pick__basis">No VRS estimate: one team&#x27;s points are missing. An unlisted team is not assigned a floor rating.</p>
+  <p class="pick__note">HLTV: HLTV files this fixture under “elisa-breakout-series-2” (team pair and event name both match; seen on 2 team page(s)).</p>
+  <p class="pick__sources"><a href="https://www.hotspawn.com/matches/havu-vs-roundsgg-elisa-breakout-series-2-1080286" target="_blank" rel="noopener noreferrer">Hotspawn</a> · <a href="https://www.hltv.org/matches/2399425/havu-vs-rounds-elisa-breakout-series-2" target="_blank" rel="noopener noreferrer">HLTV match</a></p>
+</article></div>
+</section>
+<section>
+  <h2>Unresolved by the featured route · secondary esportsbook listing <span class="muted small">(3 of 14 open fixtures)</span></h2>
+  <p class="muted">Limitation of this route: No primary-book market was readable, so the pick rests on a bookmaker price quoted through a public aggregator or this site&#x27;s own hourly relay. Aggregator pages move with the book and can lag it; the capture minute is on every row. A link identifies the listing — it does not prove the quote is still current.</p>
+  <div class="cards"><article class="pick" data-tier="2" data-status="open"
   data-team="voca phantom"
   data-search="voca phantom elisa breakout series #2">
   <div class="pick__top">
@@ -172,43 +182,16 @@
     <span class="pick__prob">51.4%</span>
   </div>
   <dl class="pick__meta">
-    <div><dt>Locks</dt><dd>2026-10-16T07:54:00Z <span class="muted">(in 26.9 h)</span></dd></div>
+    <div><dt>Locks</dt><dd>2026-10-16T07:54:00Z <span class="muted" data-lock="2026-10-16T07:54:00Z">UTC lock; status at build</span></dd></div>
     <div><dt>Tier / value</dt><dd>C · 2 pts</dd></div>
     <div><dt>Format</dt><dd>BO1 <a href="https://bo3.gg/matches/voca-vs-phantom-esports-16-10-2026" target="_blank" rel="noopener noreferrer">stated by</a></dd></div>
     <div><dt>Our own line</dt><dd>56.3% / 43.7% <span class="muted">(HLTV world-rank logistic)</span></dd></div>
+    <div><dt>Price read (UTC)</dt><dd>2026-10-15T00:49:12Z</dd></div>
     <div><dt>Confidence</dt><dd>Medium (secondary listing)</dd></div>
   </dl>
-  <p class="pick__basis">Thunderpick listing 1.90 / 1.80 (decimal), overround 8.19%, proportional de-vig. Secondary listing: the aggregator&#x27;s own page is the source, not the book itself. Series length BO1 as stated by the pricing listing (Thunderpick); Hotspawn states none. Originated rating line: Voca 1182 vs Phantom 1147 official points, p = 1/(1+10^((Rb-Ra)/400)) = 55.0%. Our own line for the same fixture, from the official ranking only: 56.3% for Voca (7.7 pp from the price this row is based on).</p>
+  <p class="pick__basis">Thunderpick listing 1.90 / 1.80 (decimal), overround 8.19%, proportional de-vig. Secondary listing: the aggregator&#x27;s own page is the source, not the book itself. Series length BO1 as stated by the pricing listing (Thunderpick); Hotspawn states none. Rating inputs: Voca 1182 vs Phantom 1147 official points; project 400-point logistic with independent-map series transform, BO1: 55.0%. This is an uncalibrated project estimate, not a Valve match forecast. Our own line for the same fixture, from the official ranking only: 56.3% for Voca (7.7 pp from the price this row is based on).</p>
   <p class="pick__note">HLTV: HLTV files this fixture under “elisa-breakout-series-2” (team pair and event name both match; seen on 2 team page(s)).</p>
   <p class="pick__sources"><a href="https://bo3.gg/matches/voca-vs-phantom-esports-16-10-2026" target="_blank" rel="noopener noreferrer">Thunderpick</a> · <a href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md" target="_blank" rel="noopener noreferrer">Voca standings</a> · <a href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md" target="_blank" rel="noopener noreferrer">Phantom standings</a> · <a href="https://www.hotspawn.com/matches/voca-vs-phantom-elisa-breakout-series-2-1080285" target="_blank" rel="noopener noreferrer">Hotspawn</a> · <a href="https://www.hltv.org/matches/2399424/voca-vs-phantom-elisa-breakout-series-2" target="_blank" rel="noopener noreferrer">HLTV match</a></p>
-</article><article class="pick" data-tier="2" data-status="open"
-  data-team="havu roundsgg"
-  data-search="havu roundsgg elisa breakout series #2">
-  <div class="pick__top">
-    <span class="pick__tour">Elisa BreakOut Series #2</span>
-    <span class="badge badge--tier-2">T2 market</span>
-    <span class="badge badge--status">Open</span>
-  </div>
-  <div class="pick__teams">
-    <span class="team team--fav">HAVU<b>76.9%</b></span>
-    <span class="vs">vs</span>
-    <span class="team">RoundsGG<b>23.1%</b></span>
-  </div>
-  <div class="pick__call">
-    <span class="pick__label">Pick</span>
-    <span class="pick__pick">HAVU</span>
-    <span class="pick__prob">76.9%</span>
-  </div>
-  <dl class="pick__meta">
-    <div><dt>Locks</dt><dd>2026-10-16T09:54:00Z <span class="muted">(in 28.9 h)</span></dd></div>
-    <div><dt>Tier / value</dt><dd>C · 2 pts</dd></div>
-    <div><dt>Format</dt><dd>BO1 <a href="https://bo3.gg/matches/havu-vs-roundsgg-16-10-2026" target="_blank" rel="noopener noreferrer">stated by</a></dd></div>
-    <div><dt>Our own line</dt><dd>75.5% / 24.5% <span class="muted">(HLTV world-rank logistic, official bound)</span></dd></div>
-    <div><dt>Confidence</dt><dd>Medium (secondary listing)</dd></div>
-  </dl>
-  <p class="pick__basis">Thunderpick listing 1.20 / 4.00 (decimal), overround 8.33%, proportional de-vig. Secondary listing: the aggregator&#x27;s own page is the source, not the book itself. Series length BO1 as stated by the pricing listing (Thunderpick); Hotspawn states none. Originated rating line: HAVU 937 vs ROUNDS 548 official points, p = 1/(1+10^((Rb-Ra)/400)) = 90.4%. Our own line for the same fixture, from the official ranking only: 75.5% for HAVU (1.4 pp from the price this row is based on).</p>
-  <p class="pick__note">HLTV: HLTV files this fixture under “elisa-breakout-series-2” (team pair and event name both match; seen on 2 team page(s)).</p>
-  <p class="pick__sources"><a href="https://bo3.gg/matches/havu-vs-roundsgg-16-10-2026" target="_blank" rel="noopener noreferrer">Thunderpick</a> · <a href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md" target="_blank" rel="noopener noreferrer">HAVU standings</a> · <a href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md" target="_blank" rel="noopener noreferrer">ROUNDS standings</a> · <a href="https://www.hotspawn.com/matches/havu-vs-roundsgg-elisa-breakout-series-2-1080286" target="_blank" rel="noopener noreferrer">Hotspawn</a> · <a href="https://www.hltv.org/matches/2399425/havu-vs-rounds-elisa-breakout-series-2" target="_blank" rel="noopener noreferrer">HLTV match</a></p>
 </article><article class="pick" data-tier="2" data-status="open"
   data-team="voca havu"
   data-search="voca havu elisa breakout series #2">
@@ -228,71 +211,16 @@
     <span class="pick__prob">65.5%</span>
   </div>
   <dl class="pick__meta">
-    <div><dt>Locks</dt><dd>2026-10-16T11:54:00Z <span class="muted">(in 30.9 h)</span></dd></div>
+    <div><dt>Locks</dt><dd>2026-10-16T11:54:00Z <span class="muted" data-lock="2026-10-16T11:54:00Z">UTC lock; status at build</span></dd></div>
     <div><dt>Tier / value</dt><dd>C · 2 pts</dd></div>
     <div><dt>Format</dt><dd>BO1 <a href="https://bo3.gg/matches/voca-vs-havu-16-10-2026" target="_blank" rel="noopener noreferrer">stated by</a></dd></div>
     <div><dt>Our own line</dt><dd>62.7% / 37.3% <span class="muted">(HLTV world-rank logistic)</span></dd></div>
+    <div><dt>Price read (UTC)</dt><dd>2026-10-15T00:49:12Z</dd></div>
     <div><dt>Confidence</dt><dd>Medium (secondary listing)</dd></div>
   </dl>
-  <p class="pick__basis">Thunderpick listing 1.42 / 2.70 (decimal), overround 7.46%, proportional de-vig. Secondary listing: the aggregator&#x27;s own page is the source, not the book itself. Series length BO1 as stated by the pricing listing (Thunderpick); Hotspawn states none. Originated rating line: Voca 1182 vs HAVU 937 official points, p = 1/(1+10^((Rb-Ra)/400)) = 80.4%. Our own line for the same fixture, from the official ranking only: 62.7% for Voca (2.8 pp from the price this row is based on).</p>
+  <p class="pick__basis">Thunderpick listing 1.42 / 2.70 (decimal), overround 7.46%, proportional de-vig. Secondary listing: the aggregator&#x27;s own page is the source, not the book itself. Series length BO1 as stated by the pricing listing (Thunderpick); Hotspawn states none. Rating inputs: Voca 1182 vs HAVU 937 official points; project 400-point logistic with independent-map series transform, BO1: 80.4%. This is an uncalibrated project estimate, not a Valve match forecast. Our own line for the same fixture, from the official ranking only: 62.7% for Voca (2.8 pp from the price this row is based on).</p>
   <p class="pick__note">HLTV: HLTV files this fixture under “elisa-breakout-series-2” (team pair and event name both match; seen on 2 team page(s)).</p>
   <p class="pick__sources"><a href="https://bo3.gg/matches/voca-vs-havu-16-10-2026" target="_blank" rel="noopener noreferrer">Thunderpick</a> · <a href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md" target="_blank" rel="noopener noreferrer">Voca standings</a> · <a href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md" target="_blank" rel="noopener noreferrer">HAVU standings</a> · <a href="https://www.hotspawn.com/matches/voca-vs-havu-elisa-breakout-series-2-1080287" target="_blank" rel="noopener noreferrer">Hotspawn</a> · <a href="https://www.hltv.org/matches/2399426/voca-vs-havu-elisa-breakout-series-2" target="_blank" rel="noopener noreferrer">HLTV match</a></p>
-</article><article class="pick" data-tier="2" data-status="open"
-  data-team="phantom roundsgg"
-  data-search="phantom roundsgg elisa breakout series #2">
-  <div class="pick__top">
-    <span class="pick__tour">Elisa BreakOut Series #2</span>
-    <span class="badge badge--tier-2">T2 market</span>
-    <span class="badge badge--status">Open</span>
-  </div>
-  <div class="pick__teams">
-    <span class="team team--fav">Phantom<b>86.5%</b></span>
-    <span class="vs">vs</span>
-    <span class="team">RoundsGG<b>13.5%</b></span>
-  </div>
-  <div class="pick__call">
-    <span class="pick__label">Pick</span>
-    <span class="pick__pick">Phantom</span>
-    <span class="pick__prob">86.5%</span>
-  </div>
-  <dl class="pick__meta">
-    <div><dt>Locks</dt><dd>2026-10-16T13:54:00Z <span class="muted">(in 32.9 h)</span></dd></div>
-    <div><dt>Tier / value</dt><dd>C · 2 pts</dd></div>
-    <div><dt>Format</dt><dd>BO1 <a href="https://bo3.gg/matches/phantom-esports-vs-roundsgg-16-10-2026" target="_blank" rel="noopener noreferrer">stated by</a></dd></div>
-    <div><dt>Our own line</dt><dd>80.0% / 20.0% <span class="muted">(HLTV world-rank logistic, official bound)</span></dd></div>
-    <div><dt>Confidence</dt><dd>Medium (secondary listing)</dd></div>
-  </dl>
-  <p class="pick__basis">EGamersWorld (bc.game) listing 1.08 / 6.94 (decimal), overround 7.00%, proportional de-vig. Secondary listing: the aggregator&#x27;s own page is the source, not the book itself. Series length BO1 as stated by Thunderpick, whose page for this fixture states the length (the listing the price is taken from prints none); Hotspawn states none. Originated rating line: Phantom 1147 vs ROUNDS 548 official points, p = 1/(1+10^((Rb-Ra)/400)) = 96.9%. Our own line for the same fixture, from the official ranking only: 80.0% for Phantom (6.5 pp from the price this row is based on).</p>
-  <p class="pick__note">HLTV: HLTV files this fixture under “elisa-breakout-series-2” (team pair and event name both match; seen on 2 team page(s)).</p>
-  <p class="pick__sources"><a href="https://egamersworld.com/counterstrike/match/4yn491uUVl/phantom-esports-vs-rounds-m6Cnk4tOxU" target="_blank" rel="noopener noreferrer">EGamersWorld (bc.game)</a> · <a href="https://bo3.gg/matches/phantom-esports-vs-roundsgg-16-10-2026" target="_blank" rel="noopener noreferrer">Thunderpick (series length)</a> · <a href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md" target="_blank" rel="noopener noreferrer">Phantom standings</a> · <a href="https://www.hotspawn.com/matches/phantom-vs-roundsgg-elisa-breakout-series-2-1080288" target="_blank" rel="noopener noreferrer">Hotspawn</a> · <a href="https://www.hltv.org/matches/2399427/phantom-vs-rounds-elisa-breakout-series-2" target="_blank" rel="noopener noreferrer">HLTV match</a></p>
-</article><article class="pick" data-tier="2" data-status="open"
-  data-team="roundsgg voca"
-  data-search="roundsgg voca elisa breakout series #2">
-  <div class="pick__top">
-    <span class="pick__tour">Elisa BreakOut Series #2</span>
-    <span class="badge badge--tier-2">T2 market</span>
-    <span class="badge badge--status">Open</span>
-  </div>
-  <div class="pick__teams">
-    <span class="team">RoundsGG<b>15.9%</b></span>
-    <span class="vs">vs</span>
-    <span class="team team--fav">Voca<b>84.1%</b></span>
-  </div>
-  <div class="pick__call">
-    <span class="pick__label">Pick</span>
-    <span class="pick__pick">Voca</span>
-    <span class="pick__prob">84.1%</span>
-  </div>
-  <dl class="pick__meta">
-    <div><dt>Locks</dt><dd>2026-10-16T15:54:00Z <span class="muted">(in 34.9 h)</span></dd></div>
-    <div><dt>Tier / value</dt><dd>C · 2 pts</dd></div>
-    <div><dt>Format</dt><dd>BO1 <a href="https://bo3.gg/matches/voca-vs-roundsgg-16-10-2026" target="_blank" rel="noopener noreferrer">stated by</a></dd></div>
-    <div><dt>Our own line</dt><dd>16.2% / 83.8% <span class="muted">(HLTV world-rank logistic, official bound)</span></dd></div>
-    <div><dt>Confidence</dt><dd>Medium (secondary listing)</dd></div>
-  </dl>
-  <p class="pick__basis">Thunderpick listing 5.80 / 1.10 (decimal), overround 8.15%, proportional de-vig. Secondary listing: the aggregator&#x27;s own page is the source, not the book itself. Series length BO1 as stated by the pricing listing (Thunderpick); Hotspawn states none. Originated rating line: ROUNDS 548 vs Voca 1182 official points, p = 1/(1+10^((Rb-Ra)/400)) = 2.5%. Our own line for the same fixture, from the official ranking only: 16.2% for RoundsGG (0.3 pp from the price this row is based on).</p>
-  <p class="pick__note">HLTV: HLTV files this fixture under “elisa-breakout-series-2” (team pair and event name both match; seen on 2 team page(s)).</p>
-  <p class="pick__sources"><a href="https://bo3.gg/matches/voca-vs-roundsgg-16-10-2026" target="_blank" rel="noopener noreferrer">Thunderpick</a> · <a href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md" target="_blank" rel="noopener noreferrer">ROUNDS standings</a> · <a href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md" target="_blank" rel="noopener noreferrer">Voca standings</a> · <a href="https://www.hotspawn.com/matches/roundsgg-vs-voca-elisa-breakout-series-2-1080289" target="_blank" rel="noopener noreferrer">Hotspawn</a> · <a href="https://www.hltv.org/matches/2399428/voca-vs-rounds-elisa-breakout-series-2" target="_blank" rel="noopener noreferrer">HLTV match</a></p>
 </article><article class="pick" data-tier="2" data-status="open"
   data-team="phantom havu"
   data-search="phantom havu elisa breakout series #2">
@@ -302,30 +230,94 @@
     <span class="badge badge--status">Open</span>
   </div>
   <div class="pick__teams">
-    <span class="team team--fav">Phantom<b>67.8%</b></span>
+    <span class="team team--fav">Phantom<b>68.2%</b></span>
     <span class="vs">vs</span>
-    <span class="team">HAVU<b>32.2%</b></span>
+    <span class="team">HAVU<b>31.8%</b></span>
   </div>
   <div class="pick__call">
     <span class="pick__label">Pick</span>
     <span class="pick__pick">Phantom</span>
-    <span class="pick__prob">67.8%</span>
+    <span class="pick__prob">68.2%</span>
   </div>
   <dl class="pick__meta">
-    <div><dt>Locks</dt><dd>2026-10-16T17:54:00Z <span class="muted">(in 36.9 h)</span></dd></div>
+    <div><dt>Locks</dt><dd>2026-10-16T17:54:00Z <span class="muted" data-lock="2026-10-16T17:54:00Z">UTC lock; status at build</span></dd></div>
     <div><dt>Tier / value</dt><dd>C · 2 pts</dd></div>
     <div><dt>Format</dt><dd>BO1 <a href="https://bo3.gg/matches/phantom-esports-vs-havu-16-10-2026" target="_blank" rel="noopener noreferrer">stated by</a></dd></div>
     <div><dt>Our own line</dt><dd>56.6% / 43.4% <span class="muted">(HLTV world-rank logistic)</span></dd></div>
+    <div><dt>Price read (UTC)</dt><dd>2026-10-15T00:49:12Z</dd></div>
     <div><dt>Confidence</dt><dd>Medium (secondary listing)</dd></div>
   </dl>
-  <p class="pick__basis">EGamersWorld (bc.game) listing 1.36 / 2.87 (decimal), overround 8.37%, proportional de-vig. Secondary listing: the aggregator&#x27;s own page is the source, not the book itself. Series length BO1 as stated by Thunderpick, whose page for this fixture states the length (the listing the price is taken from prints none); Hotspawn states none. Originated rating line: Phantom 1147 vs HAVU 937 official points, p = 1/(1+10^((Rb-Ra)/400)) = 77.0%. Our own line for the same fixture, from the official ranking only: 56.6% for Phantom (11.2 pp from the price this row is based on).</p>
+  <p class="pick__basis">Thunderpick listing 1.35 / 2.90 (decimal), overround 8.56%, proportional de-vig. Secondary listing: the aggregator&#x27;s own page is the source, not the book itself. Series length BO1 as stated by the pricing listing (Thunderpick); Hotspawn states none. Rating inputs: Phantom 1147 vs HAVU 937 official points; project 400-point logistic with independent-map series transform, BO1: 77.0%. This is an uncalibrated project estimate, not a Valve match forecast. Our own line for the same fixture, from the official ranking only: 56.6% for Phantom (11.6 pp from the price this row is based on).</p>
   <p class="pick__note">HLTV: HLTV files this fixture under “elisa-breakout-series-2” (team pair and event name both match; seen on 2 team page(s)).</p>
-  <p class="pick__sources"><a href="https://egamersworld.com/counterstrike/match/4yn491uUVl/phantom-esports-vs-havu-H8whr4r586" target="_blank" rel="noopener noreferrer">EGamersWorld (bc.game)</a> · <a href="https://bo3.gg/matches/phantom-esports-vs-havu-16-10-2026" target="_blank" rel="noopener noreferrer">Thunderpick (series length)</a> · <a href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md" target="_blank" rel="noopener noreferrer">Phantom standings</a> · <a href="https://www.hotspawn.com/matches/phantom-vs-havu-elisa-breakout-series-2-1080290" target="_blank" rel="noopener noreferrer">Hotspawn</a> · <a href="https://www.hltv.org/matches/2399429/phantom-vs-havu-elisa-breakout-series-2" target="_blank" rel="noopener noreferrer">HLTV match</a></p>
+  <p class="pick__sources"><a href="https://bo3.gg/matches/phantom-esports-vs-havu-16-10-2026" target="_blank" rel="noopener noreferrer">Thunderpick</a> · <a href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md" target="_blank" rel="noopener noreferrer">Phantom standings</a> · <a href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md" target="_blank" rel="noopener noreferrer">HAVU standings</a> · <a href="https://www.hotspawn.com/matches/phantom-vs-havu-elisa-breakout-series-2-1080290" target="_blank" rel="noopener noreferrer">Hotspawn</a> · <a href="https://www.hltv.org/matches/2399429/phantom-vs-havu-elisa-breakout-series-2" target="_blank" rel="noopener noreferrer">HLTV match</a></p>
 </article></div>
 </section>
 <section>
-  <h2>Unresolved by any market · our own originated line <span class="muted small">(1 of 15 open fixtures)</span></h2>
-  <p class="muted">Limitation of this route: No bookmaker and no usable prediction market prices the fixture. The probability is originated by this project from Valve&#x27;s official Regional Standings points (published relation, 400-point logistic), cross-checked on HLTV. Uncalibrated — low confidence by construction.</p>
+  <h2>Unresolved by any bookmaker · prediction market only <span class="muted small">(2 of 14 open fixtures)</span></h2>
+  <p class="muted">Limitation of this route: No usable esportsbook quote was retrieved for this fixture. The probability is a prediction market&#x27;s implied price (Polymarket), normalised the same way and flagged FL-PREDICTION-MARKET-BASIS so it is never read as a bookmaker&#x27;s line. Liquidity is thin on low-tier cards; a single trade can move the print.</p>
+  <div class="cards"><article class="pick" data-tier="2" data-status="open"
+  data-team="phantom roundsgg"
+  data-search="phantom roundsgg elisa breakout series #2">
+  <div class="pick__top">
+    <span class="pick__tour">Elisa BreakOut Series #2</span>
+    <span class="badge badge--tier-2">T2 market</span>
+    <span class="badge badge--status">Open</span>
+  </div>
+  <div class="pick__teams">
+    <span class="team team--fav">Phantom<b>92.0%</b></span>
+    <span class="vs">vs</span>
+    <span class="team">RoundsGG<b>8.0%</b></span>
+  </div>
+  <div class="pick__call">
+    <span class="pick__label">Pick</span>
+    <span class="pick__pick">Phantom</span>
+    <span class="pick__prob">92.0%</span>
+  </div>
+  <dl class="pick__meta">
+    <div><dt>Locks</dt><dd>2026-10-16T13:54:00Z <span class="muted" data-lock="2026-10-16T13:54:00Z">UTC lock; status at build</span></dd></div>
+    <div><dt>Tier / value</dt><dd>C · 2 pts</dd></div>
+    <div><dt>Format</dt><dd>BO1 <a href="https://polymarket.com/event/cs2-pha-rgg-2026-10-16" target="_blank" rel="noopener noreferrer">stated by</a></dd></div>
+    <div><dt>Our own line</dt><dd><span class="muted">not originated — see the flags on this row</span></dd></div>
+    <div><dt>Price read (UTC)</dt><dd>2026-10-15T00:49:11Z</dd></div>
+    <div><dt>Confidence</dt><dd>Medium (secondary listing)</dd></div>
+  </dl>
+  <p class="pick__basis">Polymarket (prediction market) implied probabilities 92.0% / 8.0% (native implied probability), normalised to 100% by proportional de-vig. Prediction market, not a bookmaker; only used where no bookmaker line exists for this fixture. Series length BO1 as stated by the pricing listing (Polymarket (prediction market)); Hotspawn states none. No VRS estimate: one team&#x27;s points are missing. An unlisted team is not assigned a floor rating.</p>
+  <p class="pick__note">HLTV: HLTV files this fixture under “elisa-breakout-series-2” (team pair and event name both match; seen on 2 team page(s)).</p>
+  <p class="pick__sources"><a href="https://polymarket.com/event/cs2-pha-rgg-2026-10-16" target="_blank" rel="noopener noreferrer">Polymarket (prediction market)</a> · <a href="https://www.hotspawn.com/matches/phantom-vs-roundsgg-elisa-breakout-series-2-1080288" target="_blank" rel="noopener noreferrer">Hotspawn</a> · <a href="https://www.hltv.org/matches/2399427/phantom-vs-rounds-elisa-breakout-series-2" target="_blank" rel="noopener noreferrer">HLTV match</a></p>
+</article><article class="pick" data-tier="2" data-status="open"
+  data-team="roundsgg voca"
+  data-search="roundsgg voca elisa breakout series #2">
+  <div class="pick__top">
+    <span class="pick__tour">Elisa BreakOut Series #2</span>
+    <span class="badge badge--tier-2">T2 market</span>
+    <span class="badge badge--status">Open</span>
+  </div>
+  <div class="pick__teams">
+    <span class="team">RoundsGG<b>10.5%</b></span>
+    <span class="vs">vs</span>
+    <span class="team team--fav">Voca<b>89.5%</b></span>
+  </div>
+  <div class="pick__call">
+    <span class="pick__label">Pick</span>
+    <span class="pick__pick">Voca</span>
+    <span class="pick__prob">89.5%</span>
+  </div>
+  <dl class="pick__meta">
+    <div><dt>Locks</dt><dd>2026-10-16T15:54:00Z <span class="muted" data-lock="2026-10-16T15:54:00Z">UTC lock; status at build</span></dd></div>
+    <div><dt>Tier / value</dt><dd>C · 2 pts</dd></div>
+    <div><dt>Format</dt><dd>BO1 <a href="https://polymarket.com/event/cs2-voc-rgg-2026-10-16" target="_blank" rel="noopener noreferrer">stated by</a></dd></div>
+    <div><dt>Our own line</dt><dd><span class="muted">not originated — see the flags on this row</span></dd></div>
+    <div><dt>Price read (UTC)</dt><dd>2026-10-15T00:49:11Z</dd></div>
+    <div><dt>Confidence</dt><dd>Medium (secondary listing)</dd></div>
+  </dl>
+  <p class="pick__basis">Polymarket (prediction market) implied probabilities 10.5% / 89.5% (native implied probability), normalised to 100% by proportional de-vig. Prediction market, not a bookmaker; only used where no bookmaker line exists for this fixture. Series length BO1 as stated by the pricing listing (Polymarket (prediction market)); Hotspawn states none. No VRS estimate: one team&#x27;s points are missing. An unlisted team is not assigned a floor rating.</p>
+  <p class="pick__note">HLTV: HLTV files this fixture under “elisa-breakout-series-2” (team pair and event name both match; seen on 2 team page(s)).</p>
+  <p class="pick__sources"><a href="https://polymarket.com/event/cs2-voc-rgg-2026-10-16" target="_blank" rel="noopener noreferrer">Polymarket (prediction market)</a> · <a href="https://www.hotspawn.com/matches/roundsgg-vs-voca-elisa-breakout-series-2-1080289" target="_blank" rel="noopener noreferrer">Hotspawn</a> · <a href="https://www.hltv.org/matches/2399428/voca-vs-rounds-elisa-breakout-series-2" target="_blank" rel="noopener noreferrer">HLTV match</a></p>
+</article></div>
+</section>
+<section>
+  <h2>Unresolved by any market · our own originated line <span class="muted small">(1 of 14 open fixtures)</span></h2>
+  <p class="muted">Limitation of this route: No usable bookmaker or prediction-market quote was retrieved for this fixture. The probability is originated by this project from Valve&#x27;s official Regional Standings points (published relation, 400-point logistic), cross-checked on HLTV. Uncalibrated — low confidence by construction.</p>
   <div class="cards"><article class="pick" data-tier="3" data-status="open"
   data-team="mellren privateer"
   data-search="mellren privateer cct europe 2026 series #12 play-in">
@@ -335,23 +327,24 @@
     <span class="badge badge--status">Open</span>
   </div>
   <div class="pick__teams">
-    <span class="team team--fav">mellren<b>86.6%</b></span>
+    <span class="team team--fav">mellren<b>95.1%</b></span>
     <span class="vs">vs</span>
-    <span class="team">Privateer<b>13.4%</b></span>
+    <span class="team">Privateer<b>4.9%</b></span>
   </div>
   <div class="pick__call">
     <span class="pick__label">Pick</span>
     <span class="pick__pick">mellren</span>
-    <span class="pick__prob">86.6%</span>
+    <span class="pick__prob">95.1%</span>
   </div>
   <dl class="pick__meta">
-    <div><dt>Locks</dt><dd>2026-10-16T13:54:00Z <span class="muted">(in 32.9 h)</span></dd></div>
+    <div><dt>Locks</dt><dd>2026-10-16T13:54:00Z <span class="muted" data-lock="2026-10-16T13:54:00Z">UTC lock; status at build</span></dd></div>
     <div><dt>Tier / value</dt><dd>C · 2 pts</dd></div>
     <div><dt>Format</dt><dd>BO3 <a href="https://polymarket.com/esports/cs2/cct-europe/cs2-mellre-pg5-2026-10-16" target="_blank" rel="noopener noreferrer">stated by</a></dd></div>
     <div><dt>Our own line</dt><dd>85.6% / 14.4% <span class="muted">(HLTV world-rank logistic)</span></dd></div>
-    <div><dt>Confidence</dt><dd>Low (our line, uncalibrated)</dd></div>
+    <div><dt>Price read (UTC)</dt><dd>no market quote</dd></div>
+    <div><dt>Confidence</dt><dd>Low (project model, not official forecast)</dd></div>
   </dl>
-  <p class="pick__basis">Series length BO3 as stated by the research source named on this row (Polymarket market title (&quot;mellren vs Privateer Gaming (BO3) - CCT Europe Closed Qualifier: Series #12 Group D&quot;) — title only; the market&#x27;s prices are refused, see refusals); Hotspawn states none. Polymarket opened a market for this card (cs2-mellre-pg5-2026-10-16, title states BO3) but the book is uninitialised: it prints 94¢ for mellren and 93¢ for Privateer Gaming (both sides above 90¢, sum $1.87 for a $1 pair) with $0.00 volume. Ingesting those numbers would invent a ~50/50 that no trader believes, so the prices are refused (see refusals). The row keeps its originated line from the official Valve points (mellren 932 vs Privateer 608) cross-checked on HLTV (#94 vs #226), and the series length is taken from the market title only. Originated rating line: mellren 932 vs Privateer 608 official points, p = 1/(1+10^((Rb-Ra)/400)) = 86.6%.</p>
+  <p class="pick__basis">Series length BO3 as stated by the research source named on this row (Polymarket market title (&quot;mellren vs Privateer Gaming (BO3) - CCT Europe Closed Qualifier: Series #12 Group D&quot;) — title only; the market&#x27;s prices are refused, see refusals); Hotspawn states none. Polymarket opened a market for this card (cs2-mellre-pg5-2026-10-16, title states BO3) but the book is uninitialised: it prints 94¢ for mellren and 93¢ for Privateer Gaming (both sides above 90¢, sum $1.87 for a $1 pair) with $0.00 volume. Ingesting those numbers would invent a ~50/50 that no trader believes, so the prices are refused (see refusals). The row keeps its originated line from the official Valve points (mellren 932 vs Privateer 608) cross-checked on HLTV (#94 vs #226), and the series length is taken from the market title only. Rating inputs: mellren 932 vs Privateer 608 official points; project 400-point logistic with independent-map series transform, BO3: 95.1%. This is an uncalibrated project estimate, not a Valve match forecast.</p>
   <p class="pick__note">HLTV: HLTV files this fixture under “cct-2026-europe-series-12-closed-qualifier” (team pair and event name both match; seen on 2 team page(s)).</p>
   <p class="pick__sources"><a href="https://polymarket.com/esports/cs2/cct-europe/cs2-mellre-pg5-2026-10-16" target="_blank" rel="noopener noreferrer">Polymarket market title (&quot;mellren vs Privateer Gaming (BO3) - CCT Europe Closed Qualifier: Series #12 Group D&quot;) — title only; the market&#x27;s prices are refused, see refusals (series length)</a> · <a href="https://egamersworld.com/counterstrike/match/1sGIL2gAYu/wraith-pcific-vs-ryvex-bBH6HvaalZ" target="_blank" rel="noopener noreferrer">series length (cross-check)</a> · <a href="https://polymarket.com/esports/cs2/cct-europe/cs2-mellre-pg5-2026-10-16" target="_blank" rel="noopener noreferrer">research read (arena/e13aca8a)</a> · <a href="https://www.hotspawn.com/matches/mellren-vs-privateer-cct-europe-2026-series-12-play-in-1081120" target="_blank" rel="noopener noreferrer">Hotspawn</a> · <a href="https://www.hltv.org/matches/2399471/mellren-vs-privateer-cct-2026-europe-series-12-closed-qualifier" target="_blank" rel="noopener noreferrer">HLTV match</a></p>
 </article></div>
@@ -401,7 +394,7 @@
   </ul>
   <p class="muted small">Slate cross-check 2026-10-14T04:35:00Z: the live Hotspawn board was
   re-read (https://play.hotspawn.com/lobby, https://play.hotspawn.com/cs2-pickems); all
-  15 open fixtures on this board appear there with identical pairings.
+  14 open fixtures on this board appear there with identical pairings.
   Nothing on this page uses Hotspawn's crowd percentages.</p>
 </section>
 
@@ -413,7 +406,7 @@
   probability input. Values that no source confirms stay blank and are listed on
   <a href="flagged.html">Flagged for review</a>.</p>
   <p class="muted">Built by the executive-board session from <a href="sources.html">these sources</a>.
-  Snapshot 2026-10-15T05:03:49Z · capture 2026-10-14T23:22:17Z ·
+  Snapshot 2026-10-15T08:26:05Z · capture 2026-10-14T23:22:17Z ·
   <a href="../index.html">all boards on this site</a></p>
 </footer>
 <script src="board.js" defer></script>

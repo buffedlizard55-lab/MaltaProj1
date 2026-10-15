@@ -17,6 +17,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
+from ownlines import series_probability, format_to_best_of
 from common import DATA, EXEC, devig_pair, logit_prob, parse_iso, read_csv, read_json  # noqa: E402
 
 FAILURES: list[str] = []
@@ -109,7 +110,7 @@ def main() -> int:
             if not (a.get("vrs_points") and b.get("vrs_points")):
                 bad_model.append((row["match_id"], "tier 3 without both ratings"))
                 continue
-            expected = logit_prob(float(a["vrs_points"]), float(b["vrs_points"])) * 100.0
+            expected = series_probability(logit_prob(float(a["vrs_points"]), float(b["vrs_points"])), format_to_best_of(row.get("series_format"))) * 100.0
         else:
             listed = [(a, "a"), (b, "b")] if a.get("vrs_points") and not b.get("vrs_points") else \
                      [(b, "b"), (a, "a")]
@@ -207,7 +208,7 @@ def main() -> int:
         "total_fixtures": len(rows), "open_fixtures": len(open_rows),
         "open_with_pick": len(with_pick),
         "open_market_basis": len([r for r in open_rows if int(r["basis_tier"] or 0) in (1, 2)]),
-        "open_model_basis": len([r for r in open_rows if int(r["basis_tier"] or 0) in (3, 4)]),
+        "open_model_basis": len([r for r in open_rows if int(r["basis_tier"] or 0) in (3, 4, 5)]),
         "open_provisional": len([r for r in open_rows if int(r["basis_tier"] or 0) == 4]),
         "flagged_rows": len([r for r in rows if r.get("flags")]),
     }

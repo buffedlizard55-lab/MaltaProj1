@@ -47,7 +47,7 @@ from common import (  # noqa: E402
 
 SITE = "Hotspawn CS2 · independent lines"
 STALE_HOURS = 6            # a row is labelled stale for display after this many hours
-MARKET_MAX_AGE_HOURS = 12  # a price older than this may not drive the headline probability
+MARKET_MAX_AGE_HOURS = 8  # a price older than this may not drive the headline probability
 RATINGS_WEEK_DAYS = 7      # the official standings file is published weekly
 KICKOFF_TOLERANCE_MIN = 15
 
@@ -66,9 +66,13 @@ TIER_SHORT = {1: "T1 market", 2: "T2 market", 3: "T3 model", 4: "T4 provisional"
               5: "T5 research line", 0: "no basis"}
 
 FLAG_DEFS = {
+    "FL-IDENTITY-UNVERIFIED": "A non-exact rating identity lacks a renewed team-specific proof; points are withheld, not inherited from a cached roster or alias.",
+    "FL-SLATE-UNVERIFIED": "Current full slate could not be confirmed from both official Hotspawn surfaces. Saved rows may omit new matches.",
+    "FL-NO-SOURCED-PICK": "No supported pick; missing values remain blank. See the unresolved page.",
+    "FL-RATING-EXPIRED": "The standings are missing, future-dated or older than 14 days; not used for a forecast.",
+    "FL-RANK-MISSING": "A team has no confirmed HLTV rank. No floor rank is invented.",
     "FL-NO-MARKET": "No outside bookmaker line for this fixture was readable at capture time.",
-    "FL-UNLISTED-OPPONENT": ("A team is absent from the official standings file, so the model uses the "
-                             "lowest published value in that same official file as a conservative bound."),
+    "FL-UNLISTED-OPPONENT": ("Legacy flag: floor point imputation is disabled; missing points are now blank."),
     "FL-MODEL-MARKET-SPLIT": "Our originated line and the external market disagree by more than 15 points.",
     "FL-FORMAT-UNKNOWN": "The source does not state a series format for this fixture; left blank.",
     "FL-COINFLIP": "The headline probability is within 1 point of 50%; the pick has no edge.",
@@ -92,7 +96,7 @@ FLAG_DEFS = {
     "FL-PREDICTION-MARKET-BASIS": "No bookmaker line exists for this fixture; the headline probability comes from a prediction market (Polymarket), flagged so it is never read as a bookmaker price.",
     "FL-FORMAT-FROM-LISTING": "Hotspawn states no series format; the length shown is the one printed on the outside listing named on the row (linked), not an assumption.",
     "FL-RESEARCH-BASIS": "No outside price and no official VRS point pair: the published probability is this board's own ranking line, flagged as uncalibrated and never a price.",
-    "FL-RANK-FLOOR-BOUND": "A team is absent from the official HLTV world ranking, so one place below the last ranked team is used as a conservative bound.",
+    "FL-RANK-FLOOR-BOUND": "Legacy flag: floor rank imputation is disabled; missing ranks are now blank.",
     "FL-NO-HLTV-RANKING": "The official HLTV world ranking could not be read this run, so no ranking line was originated.",
     "FL-OWN-LINE-MARKET-SPLIT": "Our originated ranking line and the outside price disagree by more than 15 points on this row; both are published.",
     # added by session arena/e13aca8a (research ladder for matches the featured route cannot resolve)
@@ -285,6 +289,12 @@ def team_record(name: str, inputs: dict, indexes: dict, needed: bool = True) -> 
         method = method or "exact"
         evidence = evidence or (inputs["vrs"].get("blob_url", "") if method == "exact" else evidence)
 
+    if method in ("roster", "alias", "hltv", "exact+roster"):
+        # Legacy cross-board aliases/roster captures lack a bounded, current identity proof.
+        # Do not turn a same-sidebar roster (e.g. Spirit) into another team's rating.
+        record["flags"].append("FL-IDENTITY-UNVERIFIED")
+        record["alias_note"] = "Candidate rating identity withheld: non-exact identity requires a renewed, team-specific proof."
+        vrs, method = None, "none"
     record["match_method"] = method or "none"
     if vrs is not None:
         details_tail = (vrs.get("vrs_details_path") or "").lstrip("./")
@@ -343,9 +353,9 @@ def assigned_quotes(fixture: dict, quotes: list[dict]) -> list[dict]:
             odds_b = float(quote["odds_a"] if reversed_order else quote["odds_b"])
         except (KeyError, TypeError, ValueError):
             continue
-        if min(odds_a, odds_b) <= 1.0:
+        if not all(math.isfinite(v) and v > 1.0 for v in (odds_a, odds_b)):
             continue
-        if abs(odds_a - odds_b) < 1e-9:
+        if quote.get("placeholder") is True:
             # An equal pair is the well-known "no market posted" placeholder (1.80/1.80).
             out.append({**quote, "placeholder": True})
             continue
@@ -479,11 +489,11 @@ def analyse(fixture: dict, ratings: dict, market: list[dict], secondary: list[di
     flags: list[str] = []
     a, b = ratings[fixture["team_a"]], ratings[fixture["team_b"]]
     start, lock = parse_iso(fixture["start_utc"]), parse_iso(fixture["lock_utc"])
-    live = bool(start and start > now)
+    live = bool(lock and lock > now and start and start > now)
     if not live:
         flags.append("FL-LOCKED")
     series_format = fixture["series_format"]
-    series_format_source = ""
+    series_format_source = fixture["hotspawn_match_url"] or fixture["hotspawn_pickem_url"] if series_format else ""
     if not series_format and hltv.get("hltv_format"):
         series_format = hltv["hltv_format"]
         series_format_source = hltv.get("hltv_match_url", "")
@@ -617,37 +627,27 @@ def analyse(fixture: dict, ratings: dict, market: list[dict], secondary: list[di
     if vrs_meta.get("rows"):
         ranked_floor = min(int(row["vrs_points"]) for row in vrs_meta["rows"])
 
+    if "FL-FORMAT-CONFLICT" in flags:
+        series_format = ""
+    from evidence import rating_is_recent
+    if not rating_is_recent(vrs_meta.get("standings_date"), now):
+        have_vrs_a = have_vrs_b = False
+        flags.append("FL-RATING-EXPIRED")
     if have_vrs_a and have_vrs_b:
         ra, rb = float(a["vrs_points"]), float(b["vrs_points"])
-        model_prob_a = logit_prob(ra, rb)
-        if basis_tier == 0:
+        model_prob_a = (ownlines.series_probability(logit_prob(ra, rb), ownlines.format_to_best_of(series_format))
+                        if ownlines.format_to_best_of(series_format) else None)
+        if basis_tier == 0 and model_prob_a is not None:
             prob_a, prob_b = model_prob_a, 1 - model_prob_a
             basis_tier = 3
         basis_detail = (basis_detail + " " if basis_detail else "") + (
-            f"Originated rating line: {a['vrs_name']} {a['vrs_points']} vs {b['vrs_name']} {b['vrs_points']} "
-            f"official points, p = 1/(1+10^((Rb-Ra)/400)) = {pct(model_prob_a, 1)}%.")
+            f"Rating inputs: {a['vrs_name']} {a['vrs_points']} vs {b['vrs_name']} {b['vrs_points']} "
+            f"official points; project 400-point logistic with independent-map series transform, {series_format or 'format unverified'}: {pct(model_prob_a, 1) + '%' if model_prob_a is not None else 'not originated — format unverified'}. This is an uncalibrated project estimate, not a Valve match forecast.")
         basis_sources += [(a["vrs_url"], f"{a['vrs_name']} standings"),
                           (b["vrs_url"], f"{b['vrs_name']} standings")]
-    elif (have_vrs_a != have_vrs_b) and ranked_floor and (
-            (a["match_method"] == "none") != (b["match_method"] == "none")):
-        known, known_key, missing = ((a, "a", b) if have_vrs_a else (b, "b", a))
-        if missing["match_method"] != "none":
-            missing = a if missing is b else b
-        r_known, r_missing = float(known["vrs_points"]), float(ranked_floor)
-        p_known = logit_prob(r_known, r_missing)
-        model_prob_a = p_known if known_key == "a" else 1 - p_known
-        if basis_tier == 0:
-            prob_a, prob_b = model_prob_a, 1 - model_prob_a
-            basis_tier = 4
-        flags.append("FL-UNLISTED-OPPONENT")
-        basis_detail = (basis_detail + " " if basis_detail else "") + (
-            f"Provisional bound: {missing['team']} is absent from the official standings file, so the lowest "
-            f"published value in that same file ({ranked_floor} points) is used as its ceiling; "
-            f"{known['vrs_name']} keeps its published {known['vrs_points']} points. "
-            f"Because the unlisted team's value can only be lower, the favourite's true win probability is at "
-            f"least this estimate ({pct(model_prob_a, 1)}% for {known['team']}), which is what is published.")
-        basis_sources += [(known["vrs_url"], f"{known['vrs_name']} standings"),
-                          (vrs_meta.get("blob_url") or VRS_REPO, "official standings file (bound)")]
+    elif have_vrs_a != have_vrs_b:
+        flags.append("FL-RATING-MISSING")
+        basis_detail += " No VRS estimate: one team's points are missing. An unlisted team is not assigned a floor rating."
     elif a["match_method"] == "ambiguous" or b["match_method"] == "ambiguous":
         flags.append("FL-AMBIGUOUS-NAME")
         basis_detail = (basis_detail + " " if basis_detail else "") + (
@@ -687,7 +687,7 @@ def analyse(fixture: dict, ratings: dict, market: list[dict], secondary: list[di
             if abs(pick_prob - 0.5) <= 0.01:
                 flags.append("FL-COINFLIP")
         confidence = {1: "High (market line)", 2: "Medium (secondary listing)",
-                      3: "Low (our line, uncalibrated)", 4: "Provisional (official bound)"}.get(basis_tier, "")
+                      3: "Low (project model, not official forecast)", 4: "Provisional (official bound)"}.get(basis_tier, "")
     elif a["match_method"] == "ambiguous" or b["match_method"] == "ambiguous":
         flags.append("FL-AMBIGUOUS-NAME")
         basis_detail = (basis_detail + " " if basis_detail else "") + (
@@ -772,6 +772,11 @@ def page(title: str, body: str, meta: dict, active: str = "") -> str:
 </header>
 <main id="main" class="wrap">
 {stale_banner}
+<aside class="banner" role="status" data-source-time="{esc(meta.get('capture_utc') or '')}" data-slate-current="{str(meta.get('slate_health', {}).get('current', False)).lower()}">
+<strong data-age>Source capture: {esc(meta.get('capture_utc') or 'unknown')} (UTC).</strong>
+<span data-health>{esc(meta.get('slate_health', {}).get('limitation') or 'Full lobby and CS2 reads succeeded at capture; check source age before use.')}</span>
+<a href="unresolved.html">Unresolved &amp; limitations</a> · <a href="flagged.html">Flagged for Review</a>
+</aside>
 {body}
 </main>
 <footer class="foot">
@@ -805,7 +810,7 @@ def table(headers: list[str], rows: list[list[str]], classes: str = "",
 
 
 def pick_card(row: dict, now: datetime) -> str:
-    start = parse_iso(row["start_utc"])
+    start = parse_iso(row["lock_utc"])
     when = ""
     if start:
         hours = (start - now).total_seconds() / 3600.0
@@ -846,10 +851,11 @@ def pick_card(row: dict, now: datetime) -> str:
     <span class="pick__prob">{esc(row['pick_prob_pct'])}%</span>
   </div>
   <dl class="pick__meta">
-    <div><dt>Locks</dt><dd>{esc(row['lock_utc'])} <span class="muted">({esc(when)})</span></dd></div>
+    <div><dt>Locks</dt><dd>{esc(row['lock_utc'])} <span class="muted" data-lock="{esc(row['lock_utc'])}">UTC lock; status at build</span></dd></div>
     <div><dt>Tier / value</dt><dd>{esc(row['tier'] or '—')} · {esc(row['offered_points'] or '—')} pts</dd></div>
     <div><dt>Format</dt><dd>{esc(row['series_format'] or '—')}{(' ' + link(row['series_format_source'], 'stated by')) if row.get('series_format_source') else ''}</dd></div>
     <div><dt>Our own line</dt><dd>{own_text}</dd></div>
+    <div><dt>Price read (UTC)</dt><dd>{esc(row.get("market_captured_utc") or "no market quote")}</dd></div>
     <div><dt>Confidence</dt><dd>{esc(row['confidence'] or '—')}</dd></div>
   </dl>
   <p class="pick__basis">{esc(row['basis_detail'])}</p>
@@ -905,7 +911,7 @@ def render_index(rows: list[dict], meta: dict, coverage: dict) -> str:
     return f"""
 <section class="hero">
   <p class="eyebrow">Executive summary</p>
-  <h1>Every CS2 match on the Hotspawn board — one pick, two probabilities, and the source behind them.</h1>
+  <h1>Every captured CS2 match — supported picks, probabilities, and unresolved gaps.</h1>
   <p class="lede">This page is the starting point. It lists <strong>{len(open_rows)} open fixtures</strong>
   right now, gives a pick for <strong>{len(with_pick)} of them</strong> ({pct(len(with_pick)/len(open_rows) if open_rows else 0, 0)}%),
   and links straight to the table where every number is written down with its source.</p>
@@ -925,11 +931,10 @@ def render_index(rows: list[dict], meta: dict, coverage: dict) -> str:
 
 <section class="panel">
   <h2>Unresolved picks &amp; limitations</h2>
-  <p>Every open match carries a pick, but <strong>{unresolved_total} of {len(open_rows)}</strong> cannot be
+  <p><strong>{len(no_pick)}</strong> open matches lack a supported side. <strong>{unresolved_total} of {len(open_rows)}</strong> cannot be
   resolved the same way as the featured picks (a primary esportsbook moneyline):
   <strong>{pred_only}</strong> rest on a prediction market only, and <strong>{own_total}</strong> rest on
-  our own originated line from the official standings (or a conservative bound) because no bookmaker and
-  no usable market prices them. Those rows are listed separately, with the research trail
+  our own originated estimate because no usable market quote was retrieved. Those rows are listed separately, with the research trail
   (HLTV &rarr; esportsbooks &rarr; betting lines) and the concrete limitations of each substitute route.</p>
   <p><a class="button" href="unresolved.html"><strong>Open the unresolved section</strong>
   <span>per-row basis, refused prices, and what still limits these picks</span></a></p>
@@ -981,10 +986,8 @@ def render_index(rows: list[dict], meta: dict, coverage: dict) -> str:
     <li><strong>Model · official ratings</strong> — both teams' points in Valve's official Regional
       Standings through the relation Valve publish in
       <a href="{esc(HLTV_GLICKO_FILE)}" target="_blank" rel="noopener noreferrer">model/glicko.js</a>
-      (<code>p = 1/(1+10^((Rb−Ra)/−400))</code>). Uncalibrated, so labelled low confidence.</li>
-    <li><strong>Model · official bound (provisional)</strong> — the fallback for low-tier fixtures no book
-      prices: when one team is not in the official standings at all, the lowest published value in that
-      same official file is used as that team's ceiling. Always flagged.</li>
+      (<code>p = 1/(1+10^((Rb−Ra)/400))</code>). Uncalibrated, so labelled low confidence.</li>
+    <li><strong>Missing ratings or format</strong> — no numeric bound is invented; the unsupported pick remains blank and flagged.</li>
     <li><strong>Research · official ranking line</strong> — the tier for matches nothing else can resolve
       (low-tier CCT / Elisa / qualifier fixtures). Both teams' positions in the official HLTV world ranking
       go through a logistic whose scale is <strong>fitted on this board's own priced fixtures</strong>
@@ -1034,7 +1037,7 @@ def render_picks(rows: list[dict], meta: dict) -> str:
             f'<span class="cell-teams">{esc(row["team_a"])} <span class="muted">vs</span> {esc(row["team_b"])}</span>'
             f'<span class="cell-sub">{esc(row["tournament"])} · {esc(row["tier"] or "—")} · {esc(row["series_format"] or "format —")}</span>',
             f'{badge(TIER_SHORT[row["basis_tier"]], "tier-" + str(row["basis_tier"]))}',
-            f'<span class="cell-probs"><b>{esc(row["prob_a_pct"] or "—")}%</b> / <b>{esc(row["prob_b_pct"] or "—")}%</b></span>',
+            f'<span class="cell-sub">Price read UTC: {esc(row.get("market_captured_utc") or "not priced")}</span><span class="cell-probs"><b>{esc(row["prob_a_pct"] or "—")}%</b> / <b>{esc(row["prob_b_pct"] or "—")}%</b></span>',
             f'<strong>{esc(row["pick"] or "—")}</strong>' + (f' <span class="muted">{esc(row["pick_prob_pct"])}%</span>' if row["pick_prob_pct"] else ""),
             esc(row["confidence"] or "—"),
             sources,
@@ -1092,8 +1095,13 @@ def unresolved_groups(open_rows: list[dict]) -> list[tuple[str, str, list[dict],
                        and has_flag(r, "FL-PREDICTION-MARKET-BASIS")]
     own_line = [r for r in open_rows if r["basis_tier"] == 3]
     bound = [r for r in open_rows if r["basis_tier"] == 4]
+    missing = [r for r in open_rows if not r["pick"] or r["pick"] == "(no side — 50/50)"]
     research_line = [r for r in open_rows if r["basis_tier"] == 5]
     return [
+        ("missing", "No supported pick — unverified inputs remain blank", missing,
+         "No fresh whole-match quote or usable pair of sourced ratings and confirmed series format was found. "
+         "Missing ranks are never assigned floor values; unknown formats are never assumed BO1. "
+         "A 50/50 model has no preferred side. Source refusal is not evidence that a market does not exist."),
         ("featured", "Resolved like the featured picks · primary esportsbook moneyline", featured,
          "Pinnacle's own public price feed, de-vigged. This is the featured route; rows here are not "
          "listed as unresolved."),
@@ -1103,12 +1111,12 @@ def unresolved_groups(open_rows: list[dict]) -> list[tuple[str, str, list[dict],
          "lag it; the capture minute is on every row. A link identifies the listing — it does not prove "
          "the quote is still current."),
         ("prediction", "Unresolved by any bookmaker · prediction market only", prediction_only,
-         "No esportsbook prices the fixture at all. The probability is a prediction market's implied "
+         "No usable esportsbook quote was retrieved for this fixture. The probability is a prediction market's implied "
          "price (Polymarket), normalised the same way and flagged "
          "FL-PREDICTION-MARKET-BASIS so it is never read as a bookmaker's line. Liquidity is thin on "
          "low-tier cards; a single trade can move the print."),
         ("own", "Unresolved by any market · our own originated line", own_line,
-         "No bookmaker and no usable prediction market prices the fixture. The probability is originated "
+         "No usable bookmaker or prediction-market quote was retrieved for this fixture. The probability is originated "
          "by this project from Valve's official Regional Standings points (published relation, 400-point "
          "logistic), cross-checked on HLTV. Uncalibrated — low confidence by construction."),
         ("bound", "Unresolved and partly unrateable · provisional official bound", bound,
@@ -1168,8 +1176,7 @@ def render_unresolved(rows: list[dict], meta: dict, research: dict | None = None
     return f"""
 <section class="hero">
   <p class="eyebrow">Unresolved picks &amp; limitations</p>
-  <h1>Every open match has a pick. {unresolved_total} of them cannot rest on the featured route — here is
-  exactly what they rest on instead, and what that costs.</h1>
+  <h1>{counts.get("missing", 0)} open matches have no supported side. {unresolved_total} matches need fallback research or remain unresolved.</h1>
   <p class="lede">A <strong>featured pick</strong> is resolved from a primary esportsbook moneyline
   (Pinnacle's own price feed, de-vigged). Matches no such book covers — the low-tier CCT / qualifier /
   academy cards — are resolved with the research ladder <strong>HLTV → esportsbooks → betting lines</strong>,
@@ -1197,16 +1204,14 @@ def render_unresolved(rows: list[dict], meta: dict, research: dict | None = None
       recent official results for teams no ranking lists (for example LFO 10's HLTV team page and its
       match page 2399301, and Banda Chuya's match page 2399462).</li>
     <li><strong>Esportsbooks</strong> — EGamersWorld match pages (bc.game listings), bo3.gg relayed
-      bookmaker prices, Pinnacle's guest markets where they exist. Equal-pair 1.8/1.8 prints and
-      single-side prints are the known “no market posted” placeholders and are rejected, never de-vigged.</li>
+      bookmaker prices, Pinnacle's guest markets where they exist. Single-sided and explicitly identified placeholder prices are rejected. Equal odds alone are not a placeholder.</li>
     <li><strong>Betting lines / prediction markets</strong> — Polymarket's own match markets (series
       moneyline share prices) where no bookmaker publishes a line. Where a market exists but is
       uninitialised (both sides above 90¢, zero volume) the prices are refused outright rather than
       turned into a fake 50/50.</li>
   </ol>
-  <p class="muted small">Where the ladder finds nothing at all, the board still publishes a pick from the
-  official Valve standings (or a conservative bound), clearly labelled and flagged — a pick is never left
-  blank on an open fixture, and never guessed.</p>
+  <p class="muted small">Where no usable market is retrieved, the board attempts a model from
+  sourced rating pairs and confirmed formats when available. Otherwise the pick is blank and flagged, never guessed.</p>
 </section>
 {''.join(group_sections)}
 
@@ -1361,13 +1366,11 @@ def render_own_lines(rows: list[dict], meta: dict, own_meta: dict | None = None)
       Valve publish in <a href="{esc(HLTV_GLICKO_FILE)}" target="_blank" rel="noopener noreferrer">model/glicko.js</a>:
       <code>p = 1/(1+10^((Rb−Ra)/400))</code>.</li>
     <li><strong>HLTV world ranking</strong> — rank numbers only, from the official ranking page, through
-      <code>p = 1/(1+10^((rank_b−rank_a)/{esc(cal.get('scale'))}))</code> with a scale of
+      <code>p = 1/(1+10^((rank_a−rank_b)/{esc(cal.get('scale'))}))</code> with a scale of
       {esc(scale_note)}. This is what reaches the smaller rosters VRS does not list.</li>
     <li><strong>Series length</strong> — a per-map probability is converted to the stated best-of with the
-      exact closed form (BO3 = 3p²−2p³, BO5 = 10p³−15p⁴+6p⁵). If no source states a length, the
-      per-map value is published as-is and the row keeps its format flag.</li>
-    <li><strong>Absent from an official list</strong> — the team is bounded one place below the last ranked
-      team in that same list and the row is flagged; it is never given an invented rating.</li>
+      independent-map transform (BO3 = 3p²−2p³, BO5 = 10p³−15p⁴+6p⁵). If no source states a length, no series probability is published.</li>
+    <li><strong>Absent from an official list</strong> — no floor rank is assigned. The estimate is withheld and flagged.</li>
   </ul>
 </section>
 <section>
@@ -1651,91 +1654,53 @@ def render_sources(inputs: dict, meta: dict) -> str:
 
 def render_methodology(rows: list[dict], meta: dict) -> str:
     return f"""
-<section class="hero hero--tight">
-  <p class="eyebrow">Method</p>
-  <h1>Selection rules, and what they cannot do</h1>
-</section>
+<section class="hero hero--tight"><p class="eyebrow">Method</p>
+<h1>Source facts, project estimates, and unresolved inputs</h1></section>
 <section class="prose">
-<h2>1. The slate</h2>
-<p>Hotspawn's <code>/cs2-pickems</code>, <code>/lobby</code> and <code>/thp-pickems</code> pages are read in
-full. The Angular render state (<code>&lt;script id="ng-state"&gt;</code>) carries every fixture the board
-knows about, including rows it no longer paints. We keep fixture id, teams, tournament, tier, offered
-points, stage and the exact UTC start/lock epochs. Crowd pick percentages and pick counts are dropped at
-ingest and never stored. Fixtures whose lock time is in the past are labelled <em>locked</em> and kept only
-for the record. Fixtures dated months ago are labelled stale, exactly as Hotspawn still lists them.</p>
-
-<h2>2. Outside prices (the preferred basis)</h2>
-<p>Whole-match moneylines only, read from public pages at the printed UTC minute. Pinnacle's public guest
-response is the primary basis because it is the book's own price feed; aggregator listings (EGamersWorld's
-bc.game prices) are a secondary basis and are labelled as such wherever used. Equal-pair placeholders
-(1.80/1.80) are treated as “no market posted” and rejected. De-vig is proportional:
-<code>p = (1/o) / Σ(1/o)</code>, and the overround is printed per row. A quote is only accepted when the
-team pair matches the fixture in either order <em>and</em> the kickoff agrees within 15 minutes.</p>
-
-<h2>3. Our own lines</h2>
-<p>Where no outside line exists, we originate one from the official Valve Regional Standings points of both
-teams: <code>p = 1/(1+10^((Rb−Ra)/−400))</code>, the relation Valve publish in
-<a href="{esc(HLTV_GLICKO_FILE)}" target="_blank" rel="noopener noreferrer">model/glicko.js</a>. This line is
-<strong>not calibrated</strong> in this project: a 90% favourite is not observed to win 90% of the time, so the
-rows carry a low-confidence label and the arithmetic is printed. Ranks are matched to Hotspawn's spelling by
-exact name, HLTV's spelling, a ≥4-of-5 roster match, or an evidence-linked rename — every match method is
-printed with its evidence link.</p>
-
-<h2>4. The fallback for low-tier fixtures no book prices</h2>
-<p>Some fixtures on Hotspawn are below the level any bookmaker prices (recent examples: CCT play-in rounds,
-Elisa BreakOut, Svenska CS-Ligan). For those:</p>
-<ul>
-  <li>If <strong>both</strong> teams are in the official standings, the line is originated as in §3.</li>
-  <li>If <strong>one</strong> team is listed and the other is absent from the entire official file, the absent
-  team is bounded by the lowest published value in that same file — its ceiling, not its measured value.
-  The favourite's probability from that bound is a conservative estimate and the row is labelled
-  <em>provisional</em> and flagged, every time.</li>
-  <li>If <strong>neither</strong> team is listed, or the standings file itself could not be read, the row shows
-  no pick and carries the flag for review. Nothing is filled in.</li>
-</ul>
-
-<h2>4b. The ranking line for matches nothing else resolves (session <code>1b6ae823</code>)</h2>
-<p>Most fixtures on the lower tiers are not priced by any book, and the standings file in §3 only reaches the
-teams Valve ranks. The research tier therefore uses the <strong>official HLTV world ranking</strong> — the same
-list every outlet quotes — and only its <em>rank numbers</em>:</p>
-<ul>
-  <li>per-map probability <code>p = 1/(1+10^((rank_b−rank_a)/S))</code> with a higher-is-better strength of
-  <code>{{rank places − team rank}}</code>, so the scale stays in ranking places;</li>
-  <li><code>S</code> = {esc((meta.get('own_line') or {}).get('calibration', {}).get('scale', ''))} places for a
-  90% per-map favourite, <strong>fitted</strong> on the {(meta.get('own_line') or {}).get('calibration', {}).get('n', 0)}
-  fixtures on this board that an outside market prices (lowest mean absolute error over a whole-number grid
-  5–400; mean absolute error
-  {(meta.get('own_line') or {}).get('calibration', {}).get('mae_pp', '—')} pp against those prices). Where there
-  are too few priced fixtures to fit, the documented default 100 is used and the page says so;</li>
-  <li>a per-map line is then converted to the stated series length with the exact closed form
-  <code>BO1 = p</code>, <code>BO3 = 3p²−2p³</code>, <code>BO5 = 10p³−15p⁴+6p⁵</code>. Series length is used only
-  when a source states it (Hotspawn never does); where the listing that prices the fixture prints a length, the
-  row links to that listing and carries <code>FL-FORMAT-FROM-LISTING</code>;</li>
-  <li>a team absent from the ranking is bounded <strong>one place below the last ranked team in that same
-  official list</strong> ({esc((meta.get('own_line') or {}).get('rank_floor', '—'))}) and the row is flagged
-  <code>FL-RANK-FLOOR-BOUND</code> — a bound, never an invented rating;</li>
-  <li>this line only becomes the headline where tiers 1–3 are unavailable, and it is always badged
-  {esc(TIER_SHORT[5])} / <code>FL-RESEARCH-BASIS</code>. Where a price <em>does</em> exist, the line is published
-  beside it as a cross-check, and a gap over 15 points is flagged
-  <code>FL-OWN-LINE-MARKET-SPLIT</code> rather than averaged away.</li>
-</ul>
-<p class="muted small">Every one of these numbers is re-derived by <code>executive/tests.py</code> and
-<code>tests/test_1b6ae823.py</code> from the stored ranking and price files before a snapshot is published, so a
-page can never print a value its own inputs do not produce.</p>
-
-<h2>5. What this board does not claim</h2>
-<ul>
-  <li>It is not betting advice, and no number here is an offer you can take.</li>
-  <li>Hotspawn's crowd percentages are not evidence and are never used.</li>
-  <li>Coverage of outside prices is limited by which books publish CS2 at the time. When the total number of
-  priced fixtures is low, that is a coverage fact, not a modelling choice.</li>
-  <li>Ratings are from the newest official snapshot Valve publish (weekly). The file's own date is printed
-  everywhere it is used.</li>
-  <li>Where a source refused the read, the row shows the refusal. Automation bias is visible on
-  <a href="flagged.html">Flagged for review</a> and on <a href="verification.html">Verification</a>.</li>
-</ul>
-</section>
-"""
+<h2>1. Complete captured slate, not guaranteed current coverage</h2>
+<p>The official <a href="{HOTSPAWN_LOBBY}">Hotspawn lobby</a> and
+<a href="{HOTSPAWN_CS2}">CS2 page</a> expose Angular TransferState fixture caches.
+We union successful fixture endpoints by ID and discard all crowd probabilities at ingest.
+Both surfaces must be successfully read with no identity conflict to claim complete coverage at capture.
+A failed read preserves the last capture's timestamp, not a new verification time. New matches may be missing.</p>
+<h2>2. Outside whole-match prices first</h2>
+<p>Read Pinnacle's public guest feed, then secondary esportsbook listings and prediction markets.
+Accept only explicit match-winner markets with two finite decimal prices above 1, a source URL,
+open status, a capture no older than eight hours, and the exact team pair and kickoff within 15 minutes.
+Reject stale, Map 1, unresolved-alias, and missing-time quotes. Equal odds alone do not prove a placeholder.
+Prediction-market prices are normalised implied prices, not bookmaker offers or observed win rates.</p>
+<p>For decimals oA and oB: <code>pA = (1/oA) / (1/oA + 1/oB)</code>.
+Overround is <code>100 × (1/oA + 1/oB − 1)</code>. No averaging across sources;
+prefer the primary bookmaker, then a secondary book, then a prediction market.</p>
+<h2>3. Research only when the featured route cannot resolve a match</h2>
+<p>HLTV match/team/ranking pages supply identity, format and ranking evidence; esportsbook and
+betting-line reads are attempted automatically. A refusal means unreadable to this collector,
+not proof that no bookmaker prices the match.</p>
+<p>If no accepted price exists, use both teams' sourced Valve VRS points, or both HLTV ranks.
+Missing rank/points stay blank: absence does not imply worst-ranked strength.
+Missing or conflicting format means no series-model probability. Ratings older than 14 days are withheld.</p>
+<h2>4. Our model is not an official forecast</h2>
+<p>Project VRS approximation: <code>pMap = 1/(1+10^((Rb−Ra)/400))</code>.
+<a href="{HLTV_GLICKO_FILE}">Valve's glicko.js</a> motivates a 400-point scale, but this approximation
+ignores deviation and assumes a per-map interpretation. It is not a Valve-endorsed series forecast.</p>
+<p>Rank model: <code>pMap = 1/(1+10^((rankA−rankB)/S))</code>.
+S is fitted on accepted market quotes, minimising mean absolute error after each sample's
+confirmed series transform. Fewer than four samples uses a disclosed project default of 100.
+This is in-sample calibration against prices, not held-out accuracy or outcome validation.</p>
+<p>Assuming independent identically distributed maps:
+<code>BO1 = p</code>; <code>BO3 = 3p²−2p³</code>; <code>BO5 = 10p³−15p⁴+6p⁵</code>.
+Map vetoes, lineups, travel, map correlation and roster changes are not modelled.
+400 points or S rank places implies 90.9%, not exactly 90%. Low confidence; not betting advice.</p>
+<h2>5. Missing values and deadlines</h2>
+<p>All captured fixtures remain in the full table. Past lock times are historical, not actionable;
+no prediction is a verified result. Unsupported values remain blank and flagged.
+A near-50/50 estimate has no supported preferred side. Browser clocks update deadline and capture age;
+with JavaScript off, rely on absolute UTC timestamps.</p>
+<p><a href="unresolved.html">Unresolved picks &amp; limitations</a> ·
+<a href="flagged.html">Flagged for Review</a> ·
+<a href="data/rejected_quotes.json">Rejected quote ledger</a> ·
+<a href="data/row_verification.json">Line-by-line stored-input audit</a></p>
+</section>"""
 
 
 def render_flagged(rows: list[dict], inputs: dict, meta: dict) -> str:
@@ -1765,6 +1730,7 @@ def render_flagged(rows: list[dict], inputs: dict, meta: dict) -> str:
   {table(["Lock (UTC)", "Match", "Flags", "Basis detail", "Sources"], body_rows)}
 </section>
 <section>
+  <p><a href="data/rejected_quotes.json">Rejected quote ledger</a> · <a href="data/row_verification.json">Stored-input audit for every row</a></p>
   <h2>Flag codes</h2>
   {table(["Code", "Meaning"], code_rows)}
 </section>
@@ -1853,6 +1819,11 @@ def main() -> int:
     research_quotes = list(research.get("quotes") or [])
     secondary_quotes = secondary_quotes + research_quotes
 
+    from evidence import split_quotes, slate_health
+    market_quotes, rejected_primary = split_quotes(market_quotes, now)
+    secondary_quotes, rejected_secondary = split_quotes(secondary_quotes, now)
+    write_json(DATA / "rejected_quotes.json", {"generated_utc": iso(now),
+               "quotes": rejected_primary + rejected_secondary})
     rows = []
     for fixture in fixtures:
         market = assigned_quotes(fixture, market_quotes)
@@ -1869,6 +1840,7 @@ def main() -> int:
             hltv["hltv_schedule"] = scheduled
         row = analyse(fixture, ratings, market, secondary, now, inputs["vrs"], hltv,
                       research=research)
+        row["_build_now"] = now
         row["_market"] = market
         row["_secondary"] = secondary
         rows.append(row)
@@ -1881,7 +1853,7 @@ def main() -> int:
         if prior.get("first_seen_utc") and prior["first_seen_utc"] != row["first_seen_utc"]:
             if (parse_iso(row["start_utc"]) or now) - parse_iso(prior["first_seen_utc"]) > timedelta(days=1):
                 row["flags"] = sorted(set(row["flags"] + ["FL-MULTI-DAY"]))
-        row["last_verified_utc"] = now.strftime("%Y-%m-%dT%H:%M:%SZ")
+        row["last_verified_utc"] = inputs["hotspawn"].get("fetched_utc") or ""
 
     open_rows = [r for r in rows if r["status"] == "open"]
     locked_rows = [r for r in rows if r["status"] != "open"]
@@ -1891,6 +1863,13 @@ def main() -> int:
     calibration_pairs = {r["match_id"]: r["_market_prob_a"] for r in rows
                          if r.get("_market_prob_a") is not None}
     own_meta = ownlines.originate(rows, ranking, ranking.get("teams", []) or [], calibration_pairs)
+    health = slate_health(inputs["hotspawn"], now)
+    for row in rows:
+        if not health["current"]:
+            row["flags"] = sorted(set(row["flags"] + ["FL-SLATE-UNVERIFIED"]))
+        if not row["pick"]:
+            row["flags"] = sorted(set(row["flags"] + ["FL-NO-SOURCED-PICK"]))
+
     for row in rows:
         own = row["own"]
         if own.get("p_series") is not None and int(row["basis_tier"] or 0) in (1, 2) \
@@ -1917,6 +1896,7 @@ def main() -> int:
     fresh_hours = (now - oldest).total_seconds() / 3600.0 if oldest else None
     meta = {
         "now": now,
+        "slate_health": health,
         "generated_utc": now.strftime("%Y-%m-%dT%H:%M:%SZ"),
         "capture_utc": iso(oldest),
         "snapshot_age_text": (f"Snapshot is {fresh_hours:.1f} h old" if fresh_hours is not None
@@ -1937,7 +1917,7 @@ def main() -> int:
         "stale_fixtures": len(stale_rows),
         "open_with_pick": len([r for r in open_rows if r["pick"] and r["pick"] != "(no side — 50/50)"]),
         "open_market_basis": len([r for r in open_rows if r["basis_tier"] in (1, 2)]),
-        "open_model_basis": len([r for r in open_rows if r["basis_tier"] in (3, 4)]),
+        "open_model_basis": len([r for r in open_rows if r["basis_tier"] in (3, 4, 5)]),
         "open_provisional": len([r for r in open_rows if r["basis_tier"] == 4]),
         "open_no_pick": len([r for r in open_rows if not r["pick"] or r["pick"] == "(no side — 50/50)"]),
         "flagged_rows": len([r for r in rows if r["flags"]]),
@@ -1956,7 +1936,7 @@ def main() -> int:
     }
 
     checks = [
-        {"name": "Hotspawn payload read", "passed": bool(inputs["hotspawn"].get("fixtures")),
+        {"name": "Hotspawn payload read", "passed": health["current"],
          "detail": f"{len(rows)} CS2 fixtures from {len(inputs['hotspawn'].get('pages', []))} pages, mode {inputs['hotspawn'].get('mode')}."},
         {"name": "Official standings read", "passed": bool(inputs["vrs"].get("rows")),
          "detail": f"{len(inputs['vrs'].get('rows', []))} teams, standings {inputs['vrs'].get('standings_date')}, mode {inputs['vrs'].get('mode')}."},
@@ -1976,7 +1956,7 @@ def main() -> int:
         {"name": "Every open fixture carries an originated line or a reason it cannot",
          "passed": all(r["own"].get("p_series") is not None or r["flags"] for r in open_rows),
          "detail": (f"{coverage['open_own_line']}/{len(open_rows)} open fixtures have our own ranking line "
-                    f"(scale {own_meta['calibration']['scale']:g} ranks per 90%, "
+                    f"(scale {own_meta['calibration']['scale']:g} ranks per 90.9%, "
                     f"{'fitted on ' + str(own_meta['calibration']['n']) + ' priced fixtures' if own_meta['calibration']['fitted'] else 'documented default, too few priced fixtures to fit'}); "
                     "rows without one are flagged.")},
         {"name": "Research tier only where no market line exists",
@@ -1988,8 +1968,7 @@ def main() -> int:
          "passed": bool(own_meta["rank_count"]),
          "detail": (f"HLTV world ranking: {own_meta['rank_count']} teams, dated "
                     f"{own_meta.get('ranking_date') or 'not read'}, mode {own_meta.get('ranking_mode')},"
-                    f" lowest ranked position used as the bound for unlisted teams: "
-                    f"{own_meta['rank_floor'] + 1}.")},
+                    " Missing ranks remain blank; no floor ranks are assigned.")},
     ]
 
     # -------- write data
@@ -2060,7 +2039,7 @@ def main() -> int:
                 "source_role": quote.get("source_role"), "placeholder_rejected": quote.get("placeholder"),
                 "odds_a": quote.get("odds_a_for_fixture") or quote.get("odds_a"),
                 "odds_b": quote.get("odds_b_for_fixture") or quote.get("odds_b"),
-                "overround_pct": f"{quote['overround_pct']:.4f}" if quote.get("overround_pct") else "",
+                "overround_pct": f"{quote['overround_pct']:.4f}" if quote.get("overround_pct") is not None else "",
                 "devig_p_a_pct": pct(quote.get("p_a"), 4), "devig_p_b_pct": pct(quote.get("p_b"), 4),
                 "captured_utc": quote.get("captured_utc"), "source_url": quote.get("source_url"),
                 "api_url": quote.get("api_url"),
@@ -2101,6 +2080,10 @@ def main() -> int:
     for filename, (title, body) in pages.items():
         (EXEC / filename).write_text(page(title, body, meta, active=filename), encoding="utf-8")
 
+    from verify_rows import audit
+    audit_result = audit()
+    if audit_result["errors"]:
+        raise ValueError(audit_result["errors"])
     links = link_check()
     write_json(DATA / "linkcheck.json", links)
     print(json.dumps({"coverage": coverage, "checks": [c["name"] for c in checks if not c["passed"]],

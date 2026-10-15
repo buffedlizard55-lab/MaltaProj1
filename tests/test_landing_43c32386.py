@@ -52,7 +52,7 @@ class LandingAcceptanceTests(unittest.TestCase):
         open_rows = [row for row in fixtures.values() if row.get("status") == "open"]
         self.assertEqual(len(fixtures), coverage["total_fixtures"])
         self.assertEqual(len(open_rows), coverage["open_fixtures"])
-        picked = [row for row in open_rows if isinstance(row.get("pick"), str) and row["pick"].strip()]
+        picked = [row for row in open_rows if isinstance(row.get("pick"), str) and row["pick"].strip() and row["pick"] != "(no side — 50/50)"]
         self.assertEqual(len(picked), coverage["open_with_pick"])
         self.assertEqual(len(open_rows) - len(picked), coverage["open_no_pick"])
         self.assertEqual(
@@ -60,11 +60,16 @@ class LandingAcceptanceTests(unittest.TestCase):
             coverage["open_market_basis"]
         )
         self.assertEqual(
-            sum(str(row.get("basis_label", "")).startswith("Model ·") for row in picked),
+            sum(str(row.get("basis_label", "")).startswith(("Model ·", "Research ·")) for row in picked),
             coverage["open_model_basis"],
         )
         for row in open_rows:
-            self.assertTrue(row.get("pick"), row.get("match_id"))
+            if not row.get("pick") or row.get("pick") == "(no side — 50/50)":
+                self.assertTrue(row.get("flags"), row.get("match_id"))
+                if not row.get("pick"):
+                    self.assertFalse(row.get("prob_a_pct"), row.get("match_id"))
+                    self.assertFalse(row.get("prob_b_pct"), row.get("match_id"))
+                continue
             a, b = float(row["prob_a_pct"]), float(row["prob_b_pct"])
             self.assertTrue(math.isfinite(a) and math.isfinite(b), row.get("match_id"))
             self.assertAlmostEqual(a + b, 100.0, delta=0.2, msg=row.get("match_id"))

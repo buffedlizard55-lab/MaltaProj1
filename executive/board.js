@@ -77,3 +77,34 @@
 
   apply();
 })();
+
+/* Source and deadline clocks are calculated in the visitor's browser, not frozen at build time. */
+(function () {
+  "use strict";
+  function updateClocks() {
+    var now = Date.now();
+    document.querySelectorAll("[data-source-time]").forEach(function (box) {
+      var time = Date.parse(box.dataset.sourceTime);
+      var age = (now - time) / 3600000;
+      var label = box.querySelector("[data-age]");
+      var invalid = !Number.isFinite(age) || age < -0.0834;
+      var stale = invalid || age > 8;
+      if (label) label.textContent = invalid ? "Source age unknown — do not treat as current." :
+        (stale ? "STALE — " : age > 4 ? "Refresh due — " : "") + "Source capture " + age.toFixed(1) + " h ago (" + box.dataset.sourceTime + ").";
+      box.classList.toggle("banner--stale", stale || box.dataset.slateCurrent !== "true");
+    });
+    document.querySelectorAll("[data-lock]").forEach(function (label) {
+      var delta = Date.parse(label.dataset.lock) - now;
+      if (!Number.isFinite(delta)) { label.textContent = "Lock unverified"; return; }
+      label.textContent = delta <= 0 ? "Locked — not an actionable pick" :
+        "Locks in " + Math.ceil(delta / 60000) + " min";
+      var card = label.closest(".pick");
+      if (card) {
+        card.classList.toggle("pick--locked", delta <= 0);
+        card.dataset.status = delta <= 0 ? "locked" : "open";
+      }
+    });
+  }
+  updateClocks();
+  setInterval(updateClocks, 30000);
+})();

@@ -15,9 +15,8 @@ The board's headline probability is always an outside market price where one exi
    When neither a market line nor a VRS pair exists, a 5th tier is published: the HLTV-rank logistic,
    converted to the length of the series when a source states one.
 
-Nothing is averaged and nothing is invented.  Where a team is absent from an official list, the
-value is taken as *one place worse than the last ranked team in that same official list* — a
-conservative bound, never a rating — and the row is flagged so the bound is visible.
+Missing official ranks and missing series formats stay blank. Absence from a ranking does not
+establish a strength bound. All probabilities here are project estimates, not official forecasts.
 
 All functions are pure and re-derivable: ``tests/test_1b6ae823.py`` recomputes every published number
 from the stored inputs and fails the build if a page disagrees.
@@ -137,13 +136,13 @@ def calibrate_scale(samples: Iterable[tuple[float, float]]) -> dict:
     de-vigged, externally sourced probability.  The fitted value is the grid point with the lowest
     mean absolute error; ties resolve to the smallest scale so the result is deterministic.
     """
-    data = [(float(dr), float(p)) for dr, p in samples]
+    data = [(float(s[0]), float(s[1]), int(s[2]) if len(s) > 2 else 1) for s in samples]
     if len(data) < CALIBRATION_MIN_SAMPLES:
         return {"scale": DEFAULT_RANK_SCALE, "fitted": False, "n": len(data),
                 "mae_pp": None, "reason": f"only {len(data)} calibration pairs (<{CALIBRATION_MIN_SAMPLES})"}
     best = None
     for scale in CALIBRATION_GRID:
-        errors = [abs(logit_ratio(dr, 0.0, scale) - p) * 100.0 for dr, p in data]
+        errors = [abs(series_probability(logit_ratio(dr, 0.0, scale), bo) - p) * 100.0 for dr, p, bo in data]
         mae = sum(errors) / len(errors)
         if best is None or mae < best[1] - 1e-12:
             best = (scale, mae)
@@ -164,6 +163,11 @@ def originate(rows: list[dict], ranking: dict, ranking_rows: list[dict],
     ``market_by_id`` maps ``match_id`` → de-vigged probability for team A from an outside source and is
     used *only* to fit the rank scale — never to fill a gap.
     """
+    from evidence import rating_is_recent
+    from datetime import datetime, timezone
+    # The build supplies its clock so replaying stored evidence is deterministic.
+    clock = next((r.get("_build_now") for r in rows if r.get("_build_now")), datetime.now(timezone.utc))
+    ranking_recent = rating_is_recent(ranking.get("ranking_date"), clock)
     ranked = [int(t["rank"]) for t in ranking_rows if str(t.get("rank", "")).isdigit()]
     rank_floor = max(ranked) if ranked else 0
     rank_count = len(ranked)
@@ -174,11 +178,8 @@ def originate(rows: list[dict], ranking: dict, ranking_rows: list[dict],
     def rank_of(record: dict) -> tuple[float | None, bool]:
         """(strength in rank positions, was-a-bound) for one team's official HLTV rank."""
         raw = str(record.get("hltv_rank") or "").strip()
-        if raw.isdigit():
+        if raw.isdigit() and ranking_recent:
             return rank_strength(int(raw), rank_floor), False
-        if rank_floor:
-            # Team is absent from the official list entirely: bound it one place below the last one.
-            return rank_strength(rank_floor + 1, rank_floor), True
         return None, False
 
     # ---- calibration from the rows that an outside market prices
@@ -195,13 +196,14 @@ def originate(rows: list[dict], ranking: dict, ranking_rows: list[dict],
         if sa is None or sb is None or bound_a or bound_b:
             continue
         bo = format_to_best_of(row.get("series_format"))
-        diffs.append((sa - sb, prob))
+        if bo:
+            diffs.append((sa - sb, prob, bo))
     calibration = calibrate_scale(diffs)
     scale = calibration["scale"]
 
     def series_of(row: dict) -> int:
         bo = format_to_best_of(row.get("series_format"))
-        return bo if bo else 1
+        return bo
 
     for row in rows:
         a, b = rating_pair(row)
@@ -209,13 +211,15 @@ def originate(rows: list[dict], ranking: dict, ranking_rows: list[dict],
         sa, bound_a = rank_of(a)
         sb, bound_b = rank_of(b)
         bo = series_of(row)
+        if not ranking_recent:
+            flags.append("FL-RATING-EXPIRED")
         info = {"best_of": bo, "scale": scale, "fitted": calibration["fitted"],
                 "rank_floor": rank_floor, "rank_count": rank_count,
                 "rank_a": a.get("hltv_rank", ""), "rank_b": b.get("hltv_rank", ""),
                 "bound_a": bound_a, "bound_b": bound_b,
                 "p_map": None, "p_series": None, "method": "", "sources": [], "detail": ""}
 
-        if sa is not None and sb is not None:
+        if sa is not None and sb is not None and bo is not None:
             p_map = logit_ratio(sa, sb, scale)
             info["p_map"] = p_map
             info["p_series"] = series_probability(p_map, bo)
@@ -236,7 +240,11 @@ def originate(rows: list[dict], ranking: dict, ranking_rows: list[dict],
                 parts.append(f"one side is absent from that ranking, so {rank_floor + 1} "
                              f"(one place below the last ranked team) is used as a conservative bound")
             info["detail"] = "; ".join(parts)
-        elif rank_floor == 0:
+        else:
+            flags.append("FL-RANK-MISSING" if sa is None or sb is None else "FL-FORMAT-UNKNOWN")
+            info["method"] = "not originated — inputs unverified"
+            info["detail"] = "Both sourced ranks and a confirmed series format are required; missing inputs stay blank."
+        if rank_floor == 0:
             flags.append("FL-NO-HLTV-RANKING")
             info["method"] = "no official ranking read"
             info["detail"] = ("The official HLTV world ranking was not readable this run, so no rank line "
@@ -244,7 +252,7 @@ def originate(rows: list[dict], ranking: dict, ranking_rows: list[dict],
 
         # VRS line (the existing tier-3 arithmetic) is kept alongside as a cross-check.
         vrs_a, vrs_b = a, b
-        if vrs_a.get("vrs_points") and vrs_b.get("vrs_points"):
+        if vrs_a.get("vrs_points") and vrs_b.get("vrs_points") and bo is not None:
             p_vrs = logit_ratio(float(vrs_a["vrs_points"]), float(vrs_b["vrs_points"]), RATIO_POINTS)
             info["vrs_p_series"] = series_probability(p_vrs, bo)
             info["vrs_p_map"] = p_vrs
@@ -271,9 +279,10 @@ def originate(rows: list[dict], ranking: dict, ranking_rows: list[dict],
             if bound_a or bound_b:
                 flags.append("FL-RANK-FLOOR-BOUND")
             row["flags"] = sorted(set(flags))
-            pick = row["team_a"] if p_a >= 0.5 else row["team_b"]
+            pick = ("(no side — 50/50)" if abs(p_a - 0.5) < 0.0025 else
+                    row["team_a"] if p_a > 0.5 else row["team_b"])
             row["pick"] = pick
-            row["pick_prob_pct"] = f"{max(p_a, 1 - p_a) * 100:.1f}"
+            row["pick_prob_pct"] = f"{max(p_a, 1 - p_a) * 100:.1f}" if pick != "(no side — 50/50)" else ""
 
     return {"calibration": calibration, "rank_floor": rank_floor, "rank_count": rank_count,
             "ranking_date": ranking.get("ranking_date"), "ranking_mode": ranking.get("mode"),

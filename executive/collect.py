@@ -123,15 +123,20 @@ def parse_hotspawn_page(url: str) -> tuple[dict, list[dict], dict, dict | None]:
     if not match:
         entry["result"] = "FAILED - ng-state TransferState not found"
         return entry, [], {}, None
-    state = json.loads(match.group(1))
+    try:
+        state = json.loads(match.group(1))
+    except (ValueError, TypeError):
+        entry["result"] = "FAILED - invalid TransferState JSON"
+        return entry, [], {}, None
     fixtures: list[dict] = []
     permalinks: dict[str, str] = {}
     week = None
     for key, value in state.items():
         body_item = value.get("b") if isinstance(value, dict) else None
         if isinstance(body_item, list) and body_item and isinstance(body_item[0], dict) \
-                and "participants0_name" in body_item[0] and len(body_item) > len(fixtures):
-            fixtures = body_item
+                and "participants0_name" in body_item[0] and value.get("s") == 200 \
+                and str(value.get("u", "")).endswith("/api/v1/fixtures"):
+            fixtures.extend(body_item)
         if isinstance(body_item, dict) and "weekStartUtc" in body_item:
             week = {k: body_item.get(k) for k in ("weekId", "weekStartUtc", "weekEndUtc", "cutoffUtc")}
         if isinstance(body_item, dict) and isinstance(body_item.get("permalinks"), dict):
@@ -158,6 +163,7 @@ def parse_hotspawn_page(url: str) -> tuple[dict, list[dict], dict, dict | None]:
 
 def collect_hotspawn(use_previous: bool = True) -> dict:
     pages, union, permalinks, week = [], {}, {}, None
+    conflicts = []
     for url in HOTSPAWN_PAGES:
         entry, fixtures, links, wk = parse_hotspawn_page(url)
         pages.append(entry)
@@ -169,9 +175,14 @@ def collect_hotspawn(use_previous: bool = True) -> dict:
             fid = str(fixture.get("id"))
             record = {field: fixture.get(field) for field in KEEP_FIELDS}
             record["seen_on"] = []
+            if fid in union:
+                keys = [k for k in KEEP_FIELDS if union[fid].get(k) != record.get(k)]
+                if keys:
+                    conflicts.append({"match_id": fid, "fields": keys, "source_url": url})
             union.setdefault(fid, record)
             union[fid]["seen_on"].append(url)
     payload = {
+        "identity_conflicts": conflicts,
         "source_url": HOTSPAWN_CS2, "source_urls": HOTSPAWN_PAGES,
         "fetched_utc": max((p["fetched_utc"] for p in pages if p.get("fixture_count")), default=now_iso()),
         "pages": pages, "fixture_count": len(union), "pickem_week": week,
@@ -185,6 +196,8 @@ def collect_hotspawn(use_previous: bool = True) -> dict:
         prev = json.loads((DATA / "hotspawn_pages.json").read_text()) if (DATA / "hotspawn_pages.json").exists() else None
         if prev and prev.get("fixtures"):
             prev["mode"] = "previous_capture"
+            prev["latest_attempts"] = pages
+            prev["latest_attempt_utc"] = now_iso()
             prov(HOTSPAWN_CS2, mode="previous_capture", status=0,
                  note=f"live read failed; reusing capture from {prev.get('fetched_utc')}")
             return prev

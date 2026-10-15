@@ -22,7 +22,7 @@ on:
     - cron: "33 */4 * * *"
   workflow_dispatch: {}
   push:
-    branches: ["arena/5545dbb8-maltaproj1", "main"]
+    branches: ["arena/5545dbb8-maltaproj1", "arena/bb9e05ef-maltaproj1", "main"]
     paths:
       - "executive/collect.py"
       - "executive/build.py"
@@ -33,6 +33,9 @@ on:
       - "executive/aliases.json"
       - "executive/feedline.py"
       - "executive/ownlines.py"
+      - "executive/evidence.py"
+      - "executive/verify_rows.py"
+      - "tests/test_bb9e05ef.py"
       - "executive/README.md"
       - "feeds/data/market_feed.csv"
       - "feeds/data/capture.json"
@@ -76,6 +79,11 @@ jobs:
         run: |
           set -o pipefail
           python executive/build.py 2>&1 | tee -a /tmp/executive-build.log
+
+      - name: Verify every fixture and selected quote against stored source inputs
+        run: |
+          python executive/verify_rows.py
+          python -m unittest tests.test_bb9e05ef -v
 
       - name: Run the invariant suite
         run: |

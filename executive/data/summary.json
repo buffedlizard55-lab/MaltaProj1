@@ -1,8 +1,17 @@
 {
  "meta": {
-  "generated_utc": "2026-10-15T05:03:49Z",
+  "slate_health": {
+   "mode": "previous_capture",
+   "fetched_utc": "2026-10-14T23:22:17Z",
+   "age_hours": 9.063,
+   "complete_live_read": false,
+   "current": false,
+   "identity_conflicts": [],
+   "limitation": "Current full coverage is unverified: both lobby and CS2 source reads must succeed with no identity conflict. Saved fixtures remain visible with their original timestamp."
+  },
+  "generated_utc": "2026-10-15T08:26:05Z",
   "capture_utc": "2026-10-14T23:22:17Z",
-  "snapshot_age_text": "Snapshot is 5.7 h old",
+  "snapshot_age_text": "Snapshot is 9.1 h old",
   "hotspawn_read_text": "2026-10-14T23:22Z (previous_capture)",
   "market_read_text": "live read 2026-10-15T05:02 (13 CS2 quotes)",
   "vrs_read_text": "official standings 2026-10-05 · HLTV ranking 2026-10-12",
@@ -11,7 +20,7 @@
     "scale": 262.0,
     "fitted": true,
     "n": 8,
-    "mae_pp": 7.438,
+    "mae_pp": 8.355,
     "default_scale": 100.0,
     "reason": "grid search 5-400 rank positions per 90% favourite, minimum mean absolute error"
    },
@@ -23,35 +32,35 @@
    "min_samples": 4,
    "ratio_points": 400.0
   },
-  "stale": false
+  "stale": true
  },
  "coverage": {
   "total_fixtures": 76,
-  "open_fixtures": 15,
-  "locked_fixtures": 61,
+  "open_fixtures": 14,
+  "locked_fixtures": 62,
   "stale_fixtures": 59,
-  "open_with_pick": 15,
-  "open_market_basis": 14,
+  "open_with_pick": 11,
+  "open_market_basis": 10,
   "open_model_basis": 1,
   "open_provisional": 0,
-  "open_no_pick": 0,
+  "open_no_pick": 3,
   "flagged_rows": 76,
   "unique_teams": 89,
-  "teams_resolved_official": 85,
+  "teams_resolved_official": 59,
   "open_research_basis": 0,
-  "open_own_line": 15,
-  "fixtures_with_stated_format": 14,
+  "open_own_line": 9,
+  "fixtures_with_stated_format": 11,
   "own_line_scale": 262.0,
   "own_line_scale_fitted": true,
   "own_line_calibration_n": 8,
-  "own_line_calibration_mae_pp": 7.438,
+  "own_line_calibration_mae_pp": 8.355,
   "hltv_ranking_teams": 245,
   "hltv_ranking_date": "2026-10-12"
  },
  "checks": [
   {
    "name": "Hotspawn payload read",
-   "passed": true,
+   "passed": false,
    "detail": "76 CS2 fixtures from 3 pages, mode previous_capture."
   },
   {
@@ -62,12 +71,12 @@
   {
    "name": "Outside prices read",
    "passed": true,
-   "detail": "Pinnacle 13 quotes (live); secondary 62 (repo_capture+polymarket+feed)."
+   "detail": "Pinnacle 13 quotes (live); secondary 22 (repo_capture+polymarket+feed)."
   },
   {
    "name": "Pick coverage on open fixtures",
-   "passed": true,
-   "detail": "15/15 open fixtures have a pick; 0 flagged without one."
+   "passed": false,
+   "detail": "11/14 open fixtures have a pick; 3 flagged without one."
   },
   {
    "name": "No Hotspawn crowd value stored",
@@ -81,13 +90,13 @@
   },
   {
    "name": "Snapshot age",
-   "passed": true,
-   "detail": "Oldest capture behind this board: 2026-10-14T23:22:17Z (Snapshot is 5.7 h old)."
+   "passed": false,
+   "detail": "Oldest capture behind this board: 2026-10-14T23:22:17Z (Snapshot is 9.1 h old)."
   },
   {
    "name": "Every open fixture carries an originated line or a reason it cannot",
    "passed": true,
-   "detail": "15/15 open fixtures have our own ranking line (scale 262 ranks per 90%, fitted on 8 priced fixtures); rows without one are flagged."
+   "detail": "9/14 open fixtures have our own ranking line (scale 262 ranks per 90.9%, fitted on 8 priced fixtures); rows without one are flagged."
   },
   {
    "name": "Research tier only where no market line exists",
@@ -97,7 +106,7 @@
   {
    "name": "Official ranking read for the own lines",
    "passed": true,
-   "detail": "HLTV world ranking: 245 teams, dated 2026-10-12, mode live, lowest ranked position used as the bound for unlisted teams: 246."
+   "detail": "HLTV world ranking: 245 teams, dated 2026-10-12, mode live, Missing ranks remain blank; no floor ranks are assigned."
   }
  ],
  "own_lines": {
@@ -105,7 +114,7 @@
    "scale": 262.0,
    "fitted": true,
    "n": 8,
-   "mae_pp": 7.438,
+   "mae_pp": 8.355,
    "default_scale": 100.0,
    "reason": "grid search 5-400 rank positions per 90% favourite, minimum mean absolute error"
   },

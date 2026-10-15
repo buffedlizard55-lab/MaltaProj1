@@ -250,3 +250,13 @@ pre { background: var(--bg-soft); border: 1px solid var(--line); border-radius: 
   border-left-width: 5px; background: color-mix(in srgb, var(--warn) 10%, var(--card));
   border-radius: var(--radius); padding: .7rem .8rem; margin: .2rem 0 1rem; font-size: .86rem;
 }
+
+/* Currency and touch targets on small screens. */
+.banner--stale { border: 2px solid #d97706; }
+.pick--locked { opacity: .72; }
+.pick--locked .pick__call::before { content: "Deadline passed · historical estimate"; display: block; font-weight: 700; }
+button, .nav__link { min-height: 44px; }
+@media (max-width: 540px) {
+  .pick__teams { overflow-wrap: anywhere; }
+  .pick__meta dd, .pick__sources, .banner { overflow-wrap: anywhere; }
+}
