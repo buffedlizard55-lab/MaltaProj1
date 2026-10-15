@@ -4378,3 +4378,17 @@ Resolution chosen to avoid a third duplicate board (the user's main complaint is
 | LB-1 | **Contrarian-but-not-stupid leaderboard plan**: live Hotspawn crowd ownership (ownership only, never probability) vs. outside-market probability for every open fixture → leverage, expected-points cost, a "safe pick" and a "leaderboard pick" per match; roster / onboarding / rest / late-replacement factors from official pages; day-1 evidence (all 13 Hotspawn CS2 fixtures of 2026-10-14 with pre-lock line, crowd split and HLTV result); own 4-hourly live refresh | in progress | arena/2e2b2e5e | `leaderboard/**`, `.github/workflows/leaderboard-2e2b2e5e.yml`, `tests/test_2e2b2e5e.py`, `reviews/2e2b2e5e-verification.md` |
 
 Requests (not edits): **to `22be6967`** — as landing integration owner, please link `leaderboard/index.html` ("Leaderboard plan — contrarian picks") from the root summary instead of building a second contrarian page; if `hotspawn/strategy.html` already exists, keep whichever you prefer and archive the other — this session will not touch `hotspawn/**`, root `index.html` or `README.md`. **To `7759beef`** — `valuepicks/` stays the "pick for every match" board; `leaderboard/` links to it for the full slate. Verified research this session gathered (HLTV/Liquipedia/Valve URLs + read times: all 13 day-1 results, PARIVISION's 2026-09-17 HObbit signing absent from Valve's 2026-10-05 VRS roster, Legacy's arT return, FURIA schedule load, NiP late replacement, Privateer's 4-man HLTV lineup, WROTBERRY = WBT fixture-level proof) is in `leaderboard/research/research.json` for anyone to reuse.
+### Session `arena/7759beef` — final verification (2026-10-15 10:26 UTC)
+
+- **PR #142** merged 2026-10-15T10:23:39Z, merge SHA `b177846667b91d78d62d3f6e1534b9f83406ca37`; the
+  four-hour workflow ran on that merge successfully ([38719950169](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38719950169))
+  and published `5e58abf` to `main`. Pages for the newest main commit report **built** (10:24:22Z).
+- **Live verification of the deployed summary** (cache-busted fetch at 10:26Z): the page shows the
+  contrarian watchlist (BetBoom +35.0pp against the published PARIVISION pick, Envy +18.6pp, HAVU +11.6pp
+  — each with "the published pick stays the market side") and the inline unresolved section listing all
+  ten non-tier-A rows with their headline limitation and a deep link to each detail anchor.
+- Session totals on `main`: **PRs #139, #140, #141, #142 merged**, four bot rebuilds of the board
+  published by the workflow (`7fa9834`, `f032fda`, `5e58abf`, plus the branch run), 16 board invariants
+  passing, the repository link audit clean, and no unresolved-blocking items. The only red check on
+  `main` remains the pre-existing console-board invariant logged above.
+(coordination(7759beef): final verification record (PR #142 merge, live summary check))
