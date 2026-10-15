@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Method &amp; sources — Hotspawn CS2</title>
+<meta name="description" content="Every Counter-Strike 2 fixture on the Hotspawn Pick'em board with a pick, a win probability from outside sources, and the source of every number.">
+<link rel="stylesheet" href="style.css">
+</head><body>
+<header class="top"><div class="wrap">
+  <a class="home" href="index.html">Hotspawn CS2 — every-match picks</a>
+  <nav><a href="index.html">Executive summary &amp; picks</a><a href="all-fixtures.html">Full inventory</a><a href="unresolved.html">Unresolved picks</a><a href="flagged.html">Flagged for review</a><a href="methodology.html" class="on">Method &amp; sources</a></nav>
+  <p class="freshness">Board generated <time datetime="2026-10-15T08:45:34Z">2026-10-15T08:45:34Z</time>
+  (0.0 h old) · Hotspawn fixture read 2026-10-15T08:45:34Z · refreshes every 4 hours automatically.</p>
+</div></header>
+<main class="wrap">
+
+<section class="notice">
+  <h2>Method &amp; sources</h2>
+  <p>This board exists to answer the brief's question for <em>every</em> Counter-Strike 2 fixture on
+  Hotspawn, including the low-tier matches that bookmakers do not cover. It is built automatically:
+  a GitHub Actions job reads the public pages, rebuilds the pages and the CSV data, and fails without
+  publishing if any check does not hold.</p>
+
+  <h3>How a probability is chosen (in this order)</h3>
+  <ol>
+    <li><strong>Bookmaker line</strong> — an exact-match whole-match moneyline from Pinnacle's public
+      guest response (American prices converted to decimal), or from EGamersWorld's aggregated
+      two-way decimal pair on the match page. De-vigged:
+      <code>p_A = (1/odds_A) / (1/odds_A + 1/odds_B)</code>. The overround is printed on the row.</li>
+    <li><strong>Prediction market</strong> — Polymarket, only when the market names both teams and a
+      start time within 120 minutes of the fixture. Published as the implied
+      probability, labelled, never de-vigged and never averaged with a bookmaker price.</li>
+    <li><strong>Our own line</strong> — originated from official rating files only:
+      Valve Regional Standings points with the official 400-point logistic, or, when either team is
+      missing there, the official HLTV world ranking with a rank logistic
+      (100 rank positions per 90% per-map favourite, the repository's documented default).
+      The per-map figure is converted to the series length <em>only</em> when Hotspawn states one
+      (BO3 → 0.5748 at
+      p<sub>map</sub>=0.55, for example); otherwise the row says “per-map” and is flagged MP-F05.</li>
+    <li><strong>Blank.</strong> If none of the above is available, no probability and no pick are
+      published; the row goes to the <a href="unresolved.html">Unresolved page</a>.</li>
+  </ol>
+
+  <h3>What Hotspawn is and is not used for</h3>
+  <p>Used: fixture identity, competition, tier, stage, offered points, exact UTC start and lock epochs,
+  and the score published for a finished fixture. <strong>Not used:</strong> the crowd pick percentages
+  in the same payload. The collector drops every crowd field at ingest and this page reports how many
+  were dropped (1437 in the capture shown here); the build fails if a
+  crowd value appears in the dataset.</p>
+
+  <h3>Verification rules</h3>
+  <ul>
+    <li>Every published row carries a source link and the UTC time the source was read.</li>
+    <li>If a value cannot be confirmed from an official or clearly-labelled source it is left blank and
+      flagged — never inferred, never interpolated.</li>
+    <li>A fixture the payload lists without participant names is published as an unresolved row rather
+      than dropped, so a coverage gap can never be invisible.</li>
+    <li>The score of a finished fixture is cross-checked against the repository's independently verified
+      result trail (HLTV match pages read by an earlier session); a mismatch is flagged MP-F30 and both
+      values are shown.</li>
+    <li>Unit tests recompute every published probability from the stored inputs and compare it to the
+      generated page, so a page can never disagree with its own data.</li>
+  </ul>
+
+  <h3>Refresh cadence</h3>
+  <p>The workflow runs every 4 hours (and on demand). Each run re-reads Hotspawn, the rating files, the
+  bookmaker sources and the prediction market; the data files and pages are regenerated together, so the
+  timestamp on a row always belongs to the numbers next to it.</p>
+
+  <h3>Sources used in this capture</h3>
+  <table class="grid"><tr><th>Source</th><th>What it supplies</th><th>Read (UTC)</th></tr><tr><td><a href="https://play.hotspawn.com/lobby" rel="noopener noreferrer nofollow" target="_blank">Hotspawn Pick&#x27;em lobby</a></td><td>fixture identity, tier, offered points, exact UTC start/lock epochs, published score</td><td>2026-10-15T08:45:34</td></tr><tr><td><a href="https://play.hotspawn.com/cs2-pickems" rel="noopener noreferrer nofollow" target="_blank">Hotspawn CS2 Pick&#x27;ems</a></td><td>same payload, CS2 tab</td><td>2026-10-15T08:45:34</td></tr><tr><td><a href="https://play.hotspawn.com/thp-pickems" rel="noopener noreferrer nofollow" target="_blank">Hotspawn Thunderpick Pick&#x27;ems</a></td><td>same payload, Thunderpick tab (carries the Tier-S fixtures)</td><td>2026-10-15T08:45:34</td></tr><tr><td><a href="https://github.com/ValveSoftware/counter-strike_regional_standings" rel="noopener noreferrer nofollow" target="_blank">Valve Regional Standings</a></td><td>official team rating points for the originated line</td><td>2026-10-15T08:44:57</td></tr><tr><td><a href="https://www.pinnacle.com/en/esports/matchups/highlights/" rel="noopener noreferrer nofollow" target="_blank">Pinnacle (public guest response)</a></td><td>primary bookmaker moneyline</td><td>2026-10-15T08:45:34</td></tr><tr><td><a href="https://egamersworld.com/counterstrike/matches" rel="noopener noreferrer nofollow" target="_blank">EGamersWorld</a></td><td>aggregated bookmaker prices for the low-tier fixtures the primary book does not list</td><td>2026-10-15T08:45:34</td></tr><tr><td><a href="https://polymarket.com/" rel="noopener noreferrer nofollow" target="_blank">Polymarket</a></td><td>prediction-market price, labelled and never de-vigged</td><td>2026-10-15T08:45:34</td></tr><tr><td><a href="https://www.hltv.org/ranking/teams" rel="noopener noreferrer nofollow" target="_blank">HLTV world ranking</a></td><td>official rank number used only when the VRS pair is missing</td><td>2026-10-15T08:45:30</td></tr></table>
+  <p class="muted">Total fixtures captured: 80 · open at capture:
+  17 · with an outside market line: 10 ·
+  with our own line: 17 · unresolved rows: 24.</p>
+</section>
+
+</main>
+<footer class="wrap"><p>Hotspawn supplies fixture identity, times and the published score only. Its crowd
+pick percentages are dropped at ingest and are never used as a probability. Every probability on this
+board comes from an outside market or from our own line built on official rating files, and carries its
+source link and read time. Values that could not be confirmed are left blank and listed on the
+<a href="unresolved.html">Unresolved picks &amp; limitations</a> page.</p></footer>
+</body></html>

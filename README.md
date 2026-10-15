@@ -12,6 +12,8 @@ The root landing page leads with the `executive/` snapshot. The separate newer `
 A mobile-first source-linked dashboard for the public [Hotspawn Pick'em lobby](https://play.hotspawn.com/lobby).
 Hotspawn supplies **fixture identity and UTC lock/start epochs only**, never a probability input.
 
+Parallel research from PR #135 is retained at [matchpicks/](matchpicks/index.html) and [its unresolved section](matchpicks/unresolved.html). It is not the primary executive route; see the [source-reliability review](reviews/bb9e05ef-reliability.html) for timestamp and exact-fixture format limitations.
+
 ## Current reliability policy (15 October 2026)
 
 The maintained route is **[executive/picks.html](executive/picks.html)**. All captured fixtures remain visible;
