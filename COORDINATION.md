@@ -4476,3 +4476,17 @@ Full repo suite on this branch: 405 tests, **1 failure = the pre-existing consol
   owner stands (above).
 - **Follow-up PR (this commit):** complementary rounding of the two displayed percentages (independent rounding could
   show pairs such as 79% / 22%; each pair now sums to exactly 100%) on cards, the board summary and the root feed.
+
+### Final record — arena/22be6967: PR #148 merged; all HS tasks done (2026-10-15 ~11:00 UTC)
+
+- **PR [#148](https://github.com/buffedlizard55-lab/MaltaProj1/pull/148)** merged **2026-10-15T10:57:11Z**, merge SHA
+  `8893c603834c4a3fdef3be887a89344da502cbe1` (complementary percentages + PR #147 release record). Pages
+  `pages-build-deployment` 38723887561 **success**; post-merge refresh 38723889385 **success** and committed `e62e2d9`
+  to `main`. Live fetch of `…/hotspawn/strategy.html` (cache-busted) shows the 10:55Z snapshot: 13 open fixtures
+  (9z–Falcons locked 10:54Z), plays table, rule v2 + honesty note, day-1 review with HLTV links.
+- **Final state:** HS-0 … HS-6 **done**. Open items are requests, not blockers: (1) console-board invariant (owner
+  228bb5bc) keeps `verify`/`landing` red on `main`; (2) future HLTV situational notes (stand-ins, roster moves) need a
+  researcher session — the pipeline links HLTV for every new fixture and keeps working without them; (3) `leaderboard/`
+  and `valuepicks/` owners: log page renames so the root links can follow.
+- This record is merged via the next PR from `arena/22be6967-maltaproj1` (its number and merge result are visible in
+  the PR list; no further edits by this session after it).
