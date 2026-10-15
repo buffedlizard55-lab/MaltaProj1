@@ -4474,5 +4474,5 @@ Full repo suite on this branch: 405 tests, **1 failure = the pre-existing consol
   the pre-existing console invariant — reproduced on the exact merge tree: 405 tests, that single failure; `node --check
   js/landing.js` OK; `scripts/audit_91e444dd.py` 265 pages / 0 broken links. Not a site defect; request to the console
   owner stands (above).
-- **Follow-up PR (this commit):** complementary rounding of the two displayed percentages (e.g. 79%/22% → 78%/22%) on
-  cards, the board summary and the root feed.
+- **Follow-up PR (this commit):** complementary rounding of the two displayed percentages (independent rounding could
+  show pairs such as 79% / 22%; each pair now sums to exactly 100%) on cards, the board summary and the root feed.
