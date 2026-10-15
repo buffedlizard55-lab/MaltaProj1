@@ -1,0 +1,112 @@
+# Every-match Hotspawn CS2 board with an executive summary (session arena/a6f05f99).
+#
+# Every 4 hours, with no credentials and no manual input:
+#   1. read all three Hotspawn CS2 pick'em surfaces (TransferState), Pinnacle's public guest JSON,
+#      bo3.gg's public match API, Polymarket, Valve's official standings and HLTV's world ranking;
+#   2. originate a pick + both probabilities for every open match through the five-rung ladder,
+#      never using Hotspawn's crowd percentages as a probability;
+#   3. run the leaderboard rule (v3) and flag every irregularity;
+#   4. rebuild a6f05f99/*.html — executive summary, all picks, Thunderpick day 3, unresolved and
+#      limitations, method, flagged for review;
+#   5. run a6f05f99/tests.py; commit data + pages ONLY when it passes, so the last good pages stay
+#      published and a broken run goes red instead of shipping.
+name: Hotspawn board + executive summary (a6f05f99)
+
+on:
+  workflow_dispatch: {}
+  schedule:
+    - cron: "43 */4 * * *"
+  push:
+    branches: ["main", "arena/a6f05f99-maltaproj1"]
+    paths:
+      - "a6f05f99/*.py"
+      - "a6f05f99/research/**"
+      - ".github/workflows/a6f05f99.yml"
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: a6f05f99-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Collect Hotspawn, Pinnacle, bo3.gg, Polymarket, Valve, HLTV
+        run: python3 -u a6f05f99/collect.py
+
+      - name: Originate picks, probabilities, leaderboard plan and flags
+        run: python3 -u a6f05f99/model.py
+
+      - name: Build the pages
+        run: python3 -u a6f05f99/build.py
+
+      - name: Invariants (probabilities, crowd isolation, sources, links, mobile viewport)
+        run: python3 -u a6f05f99/tests.py
+
+      - name: Keep the generated board fresh on schedule
+        if: github.event_name != 'pull_request'
+        run: python3 -u a6f05f99/verify.py
+
+      - name: Commit the refreshed board
+        if: github.event_name != 'pull_request'
+        run: |
+          set -euo pipefail
+          BR="${GITHUB_REF_NAME}"
+          git config user.name "a6f05f99[bot]"
+          git config user.email "a6f05f99@users.noreply.github.com"
+          git add -A a6f05f99/data a6f05f99/*.html a6f05f99/style.css
+          if git diff --cached --quiet; then echo "no changes"; exit 0; fi
+          git commit -q -m "a6f05f99: refresh board + executive summary [skip ci] [run ${GITHUB_RUN_ID}]"
+          for i in 1 2 3 4 5; do
+            if git pull --rebase -q origin "$BR"; then
+              git push -q origin "HEAD:$BR" && { echo "pushed to $BR"; exit 0; }
+            fi
+            git rebase --abort 2>/dev/null || true
+            sleep $((i * 10))
+          done
+          echo "::warning::could not push this refresh; the next scheduled run starts from the newer tip"
+
+      - name: Ask GitHub Pages to rebuild (main only, best effort)
+        if: github.event_name != 'pull_request' && github.ref_name == 'main'
+        continue-on-error: true
+        run: |
+          curl -sS -o /dev/null -w "pages build request: HTTP %{http_code}\n" -X POST \
+            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${{ github.repository }}/pages/builds"
+
+      - name: Run summary
+        if: always()
+        run: |
+          python3 - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          import json, pathlib
+          p = pathlib.Path("a6f05f99/data/board.json")
+          if not p.exists():
+              print("No board produced; the published pages are unchanged.")
+              raise SystemExit(0)
+          b = json.loads(p.read_text())
+          cov = b.get("coverage", {})
+          print("## Hotspawn board + executive summary (a6f05f99)")
+          print(f"* Hotspawn read `{cov.get('generated_utc')}` · open {cov.get('open')} · "
+                f"with pick {cov.get('open_with_pick')} · unresolved {len(b.get('unresolved', []))}")
+          print(f"* next lock {cov.get('next_lock_utc')}")
+          single = sum(1 for r in b["rows"] if r.get("status") == "open"
+                       and "SINGLE_SOURCE" in (r.get("flags") or []))
+          print(f"* single-source rows {single} · own-line k {cov.get('k_valve')} "
+                f"({cov.get('k_valve_provenance')})")
+          print(f"* pages: index, picks, twc, unresolved, method, flagged")
+          PY

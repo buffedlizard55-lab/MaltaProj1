@@ -1,0 +1,340 @@
+{
+  "about": "Thunderpick World Championship 2026 (Malta, HLTV event 8932). Day 1 = 14 Oct 2026, day 2 = 15 Oct 2026, day 3 = 16 Oct 2026. Every result below was read off HLTV's own event-results page or the individual HLTV match page; pre-lock picks and probabilities come from this repository's frozen pick history (hotspawn/data/pick_history.json, entries with frozen=true) and from the Pinnacle guest-API reads it records. Map details for day 2 come from the HLTV match page for 9z-Falcons and from Hotspawn's own day-2 review for the other two matches. Day-3 prices were read from bo3.gg's match page (which names the bookmaker it relays) and from Polymarket's market. Compiled by session arena/a6f05f99 on 2026-10-15 22:40-23:10 UTC.",
+  "event": {
+    "name": "Thunderpick World Championship 2026",
+    "hltv_event_url": "https://www.hltv.org/events/8932/thunderpick-world-championship-2026",
+    "hltv_results_url": "https://www.hltv.org/results?event=8932",
+    "format": "Two BO3 GSL groups of four; the two group winners go to the playoffs, the group decider winner joins them. Single-elimination BO3 semi-finals, then a BO5 grand final.",
+    "format_source": "https://www.hltv.org/news/45688/thunderpick-world-championship-matchups-announced-with-virtuspro-replaced-by-nip",
+    "prize_source": "https://esports.gg/news/counter-strike-2/cs2-thunderpick-world-championship-2026-results/",
+    "venue": "Malta (LAN)",
+    "hotspawn_points": 7,
+    "hotspawn_tier": "S"
+  },
+  "grading_note": "Day 1 and day 2 are graded on this repository's frozen pre-lock records. A leaderboard play is scored against the crowd: it is 'correct' when the play we published differs from the crowd majority and wins, or matches the crowd majority and wins. Nothing here is inferred from an outcome after the fact - every result has an HLTV link.",
+  "days": [
+    {
+      "day": 1,
+      "date": "2026-10-14",
+      "label": "Group openers (both groups)",
+      "matches": [
+        {
+          "hotspawn_id": "1080176",
+          "team_a": "9z",
+          "team_b": "Aurora",
+          "start_utc": "2026-10-14T08:30:00Z",
+          "points": 7,
+          "winner": "9z",
+          "score": "2-0",
+          "maps": "Inferno 13-11, Nuke 13-1",
+          "board_pick": "Aurora",
+          "board_pick_p": 0.73,
+          "leaderboard_play": "9z",
+          "crowd_a": 5,
+          "crowd_b": 95,
+          "hltv": "https://www.hltv.org/matches/2399384/9z-vs-aurora-thunderpick-world-championship-2026",
+          "report": "https://www.hltv.org/news/45718/9z-beat-aurora-2-0-to-kick-off-twc-2026",
+          "note": "The upset the whole board is judged against: 95% of Hotspawn players were on Aurora. Price source: Pinnacle 3.55 / 1.31 archived in data/8944bb84/external_lines.csv.",
+          "class": "SITUATIONAL",
+          "pick_record_source": "reviews/22be6967-verification.md (day-1 review, section 3)",
+          "pick_record_utc": null,
+          "pick_record_note": "Itemised by session arena/22be6967 in reviews/22be6967-verification.md section 3 (rule v2, in-sample, n = 4). The aggregate - 4 of 4 plays, 3 of 4 picks - is recorded in hotspawn/data/summary.json under day1_review."
+        },
+        {
+          "hotspawn_id": "1080177",
+          "team_a": "Falcons",
+          "team_b": "Ninjas in Pyjamas",
+          "start_utc": "2026-10-14T11:00:00Z",
+          "points": 7,
+          "winner": "Falcons",
+          "score": "2-0",
+          "maps": "Ancient 16-13 (OT), Dust2 13-6",
+          "board_pick": "Falcons",
+          "board_pick_p": 0.82,
+          "leaderboard_play": "Falcons",
+          "crowd_a": 90,
+          "crowd_b": 10,
+          "hltv": "https://www.hltv.org/matches/2399385/falcons-vs-ninjas-in-pyjamas-thunderpick-world-championship-2026",
+          "report": "https://www.hltv.org/news/45723/furia-fend-off-betboom-to-end-day-one-of-twc",
+          "note": "NiP took the slot on five days' notice after Virtus.pro withdrew.",
+          "class": "LONG SHOT",
+          "pick_record_source": "reviews/22be6967-verification.md (day-1 review, section 3)",
+          "pick_record_utc": null,
+          "pick_record_note": "Itemised by session arena/22be6967 in reviews/22be6967-verification.md section 3 (rule v2, in-sample, n = 4). The aggregate - 4 of 4 plays, 3 of 4 picks - is recorded in hotspawn/data/summary.json under day1_review."
+        },
+        {
+          "hotspawn_id": "1080178",
+          "team_a": "Legacy",
+          "team_b": "PARIVISION",
+          "start_utc": "2026-10-14T13:30:00Z",
+          "points": 7,
+          "winner": "Legacy",
+          "score": "2-0",
+          "maps": "Dust2 13-11, Mirage 16-14 (OT)",
+          "board_pick": "Legacy",
+          "board_pick_p": 0.64,
+          "leaderboard_play": "Legacy",
+          "crowd_a": 75,
+          "crowd_b": 25,
+          "hltv": "https://www.hltv.org/matches/2399386/legacy-vs-parivision-thunderpick-world-championship-2026",
+          "report": "https://www.hltv.org/news/45723/furia-fend-off-betboom-to-end-day-one-of-twc",
+          "note": "PARIVISION had swapped slaxejezzz for HObbit on 17 Sep 2026.",
+          "class": "CHALK",
+          "pick_record_source": "reviews/22be6967-verification.md (day-1 review, section 3)",
+          "pick_record_utc": null,
+          "pick_record_note": "Itemised by session arena/22be6967 in reviews/22be6967-verification.md section 3 (rule v2, in-sample, n = 4). The aggregate - 4 of 4 plays, 3 of 4 picks - is recorded in hotspawn/data/summary.json under day1_review."
+        },
+        {
+          "hotspawn_id": "1080179",
+          "team_a": "FURIA",
+          "team_b": "BETBOOM",
+          "start_utc": "2026-10-14T16:00:00Z",
+          "points": 7,
+          "winner": "FURIA",
+          "score": "2-0",
+          "maps": "Ancient 13-10, Mirage 13-9",
+          "board_pick": "FURIA",
+          "board_pick_p": 0.72,
+          "leaderboard_play": "FURIA",
+          "crowd_a": 90,
+          "crowd_b": 10,
+          "hltv": "https://www.hltv.org/matches/2399387/furia-vs-betboom-thunderpick-world-championship-2026",
+          "report": "https://www.hltv.org/news/45723/furia-fend-off-betboom-to-end-day-one-of-twc",
+          "note": "KSCERATO 1.72 rating across the series (HLTV).",
+          "class": "LONG SHOT",
+          "pick_record_source": "reviews/22be6967-verification.md (day-1 review, section 3)",
+          "pick_record_utc": null,
+          "pick_record_note": "Itemised by session arena/22be6967 in reviews/22be6967-verification.md section 3 (rule v2, in-sample, n = 4). The aggregate - 4 of 4 plays, 3 of 4 picks - is recorded in hotspawn/data/summary.json under day1_review."
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2026-10-15",
+      "label": "Winners' and elimination matches",
+      "matches": [
+        {
+          "hotspawn_id": "1080202",
+          "team_a": "9z",
+          "team_b": "Falcons",
+          "start_utc": "2026-10-15T11:00:00Z",
+          "points": 7,
+          "winner": "Falcons",
+          "score": "2-1",
+          "maps": "Nuke 9-13 (9z pick), Mirage 13-8 (Falcons pick, 9z win), Dust2 9-13",
+          "board_pick": "Falcons",
+          "board_pick_p": 0.7563,
+          "leaderboard_play": "Falcons",
+          "class": "LONG SHOT",
+          "crowd_a": 6,
+          "crowd_b": 94,
+          "pick_record_utc": "2026-10-15T10:53:42Z",
+          "pick_record_frozen": true,
+          "pick_record_source": "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/hotspawn/data/pick_history.json",
+          "hltv": "https://www.hltv.org/matches/2399409/9z-vs-falcons-thunderpick-world-championship-2026",
+          "note": "Group A winners' match: Falcons advanced, 9z dropped to the decider. 9z took their opponent's Mirage pick and lost the other two maps 9-13 - competitive, not a collapse."
+        },
+        {
+          "hotspawn_id": "1080203",
+          "team_a": "PARIVISION",
+          "team_b": "BetBoom",
+          "start_utc": "2026-10-15T13:30:00Z",
+          "points": 7,
+          "winner": "BetBoom",
+          "score": "2-1",
+          "maps": "PARIVISION won map 1; BetBoom took maps 2 and 3, closing Mirage 13-7",
+          "board_pick": "PARIVISION",
+          "board_pick_p": 0.5342,
+          "leaderboard_play": "BetBoom",
+          "class": "CONTRARIAN",
+          "crowd_a": 69,
+          "crowd_b": 31,
+          "pick_record_utc": "2026-10-15T10:57:29Z",
+          "pick_record_frozen": true,
+          "pick_record_source": "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/hotspawn/data/pick_history.json",
+          "hltv": "https://www.hltv.org/matches/2399410/parivision-vs-betboom-thunderpick-world-championship-2026",
+          "report": "https://www.hotspawn.com/counter-strike/news/thunderpick-world-championship-2026-day-2-review",
+          "note": "The contrarian rule paid: our published pick lost, but the leaderboard play (BetBoom) won against 69% of the field."
+        },
+        {
+          "hotspawn_id": "1080204",
+          "team_a": "Legacy",
+          "team_b": "FURIA",
+          "start_utc": "2026-10-15T16:00:00Z",
+          "points": 7,
+          "winner": "FURIA",
+          "score": "2-1",
+          "maps": "Cache 10-13 (FURIA pick, Legacy steal), Inferno 5-13 (FURIA), Mirage 8-13 (FURIA)",
+          "board_pick": "FURIA",
+          "board_pick_p": 0.5758,
+          "leaderboard_play": "Legacy",
+          "class": "CONTRARIAN",
+          "crowd_a": 27,
+          "crowd_b": 73,
+          "pick_record_utc": "2026-10-15T10:57:29Z",
+          "pick_record_frozen": true,
+          "pick_record_source": "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/hotspawn/data/pick_history.json",
+          "hltv": "https://www.hltv.org/matches/2399411/legacy-vs-furia-thunderpick-world-championship-2026",
+          "report": "https://www.hotspawn.com/counter-strike/news/thunderpick-world-championship-2026-day-2-review",
+          "note": "The contrarian rule cost: the published pick (FURIA) won, the leaderboard play (Legacy) lost to 73% of the field. Hotspawn also carried a duplicate listing for this match (id 1081614, 17:00 UTC)."
+        },
+        {
+          "hotspawn_id": null,
+          "team_a": "Aurora",
+          "team_b": "Ninjas in Pyjamas",
+          "start_utc": "2026-10-15T08:30:00Z",
+          "points": null,
+          "winner": "Aurora",
+          "score": "2-0",
+          "maps": "Cache 13-9, Dust2 13-7",
+          "board_pick": null,
+          "board_pick_p": null,
+          "leaderboard_play": null,
+          "crowd_a": null,
+          "crowd_b": null,
+          "hltv": "https://www.hltv.org/matches/2399408/aurora-vs-ninjas-in-pyjamas-thunderpick-world-championship-2026",
+          "note": "Not offered as a Hotspawn pick'em fixture in any capture this repository holds (checked 2026-10-15 21:34 UTC capture: the only Thunderpick rows are 1080204, 1081614 and 1080205). Ninjas in Pyjamas are eliminated with 0-2 in the group."
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2026-10-16",
+      "label": "Group deciders (winner reaches the playoffs)",
+      "matches": [
+        {
+          "hotspawn_id": "1080205",
+          "team_a": "Aurora",
+          "team_b": "9z",
+          "start_utc": "2026-10-16T14:00:00Z",
+          "lock_utc": "2026-10-16T13:54:00Z",
+          "points": 7,
+          "tier": "S",
+          "stage": "Group A decider (Bo3, LAN)",
+          "hltv": "https://www.hltv.org/matches/2399412/aurora-vs-9z-thunderpick-world-championship-2026",
+          "bo3gg": "https://bo3.gg/matches/aurora-gaming-vs-9z-16-10-2026",
+          "polymarket": "https://polymarket.com/event/cs2-aur1-9z-2026-10-16",
+          "head_to_head": [
+            {
+              "when": "2026-10-14",
+              "result": "9z 2-0 Aurora",
+              "url": "https://www.hltv.org/matches/2399384/9z-vs-aurora-thunderpick-world-championship-2026"
+            },
+            {
+              "when": "2026-10-03",
+              "result": "Aurora 2-0 9z",
+              "url": "https://bo3.gg/matches/aurora-gaming-vs-9z-03-10-2026"
+            },
+            {
+              "when": "2026-06-14",
+              "result": "Aurora 2-0 9z",
+              "url": "https://bo3.gg/matches/aurora-gaming-vs-9z-14-06-2026"
+            }
+          ],
+          "market_reads": [
+            {
+              "source": "Thunderpick book, relayed by bo3.gg",
+              "odds_a": 1.42,
+              "odds_b": 2.7,
+              "read_utc": "2026-10-15T22:55:00Z",
+              "url": "https://bo3.gg/matches/aurora-gaming-vs-9z-16-10-2026",
+              "note": "Two-way moneyline as displayed on the match page; the page's affiliate link goes to Thunderpick."
+            },
+            {
+              "source": "Polymarket (prediction market)",
+              "price_a": 0.685,
+              "price_b": 0.315,
+              "read_utc": "2026-10-15T21:34:15Z",
+              "url": "https://polymarket.com/event/cs2-aur1-9z-2026-10-16",
+              "note": "Market price, not a bookmaker price."
+            },
+            {
+              "source": "Our own line (official Valve Regional Standings)",
+              "vrs_points_a": 1716,
+              "vrs_points_b": 1543,
+              "vrs_rank_a": 5,
+              "vrs_rank_b": null,
+              "read_utc": "2026-10-15T21:34:19Z",
+              "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
+              "note": "Valve's 2026-10-05 file is the newest official snapshot; it predates Aurora's 15 Oct win over NiP."
+            }
+          ],
+          "hltv_rank": {
+            "a": 6,
+            "b": 17,
+            "url": "https://www.hltv.org/ranking/teams/2026/october/12",
+            "date": "2026-10-12"
+          },
+          "crowd": {
+            "a": 89,
+            "b": 11,
+            "read_utc": "2026-10-15T21:34:12Z",
+            "source": "Hotspawn lobby payload (ownership only)"
+          },
+          "map_pool_note": "bo3.gg map win rates over six months: Aurora Anubis 76% (17 maps) and Mirage 68% (19); 9z first-pick Nuke (22 maps, 50%) and ban Anubis (81% ban rate, 1 map played). Source: https://bo3.gg/matches/aurora-gaming-vs-9z-16-10-2026",
+          "lineups": {
+            "Aurora": [
+              "XANTARES",
+              "woxic",
+              "Jimpphat",
+              "kyxsan",
+              "Wicadia"
+            ],
+            "9z": [
+              "meyern",
+              "max",
+              "luchov",
+              "dgt",
+              "HUASOPEEK"
+            ],
+            "source": "https://bo3.gg/matches/aurora-gaming-vs-9z-16-10-2026 and https://www.hltv.org/team/11861/aurora"
+          }
+        },
+        {
+          "hotspawn_id": null,
+          "team_a": "BETBOOM",
+          "team_b": "Legacy",
+          "start_utc": "2026-10-16T17:00:00Z",
+          "lock_utc": null,
+          "points": null,
+          "tier": "S",
+          "stage": "Group B decider (Bo3, LAN)",
+          "hltv": "https://www.hltv.org/matches/2399413/betboom-vs-legacy-furia-loser-thunderpick-world-championship-2026",
+          "bo3gg": "https://bo3.gg/matches/legacy-br-vs-betboom-team-16-10-2026",
+          "market_reads": [
+            {
+              "source": "Thunderpick book, relayed by bo3.gg",
+              "odds_legacy": 2.5,
+              "odds_betboom": 1.48,
+              "read_utc": "2026-10-15T22:55:00Z",
+              "url": "https://bo3.gg/matches/legacy-br-vs-betboom-team-16-10-2026"
+            }
+          ],
+          "note": "Not offered as a Hotspawn pick'em fixture in any capture this repository holds, so there is no Hotspawn pick to make for it. Listed here so the day-3 picture is complete; it is not counted in the board's coverage numbers."
+        }
+      ]
+    }
+  ],
+  "lessons": [
+    "Day 1 gave the board's best result and day 2 gave its worst, and the split is not random: the two leaderboard plays that worked were the two where the crowd was on the side our own numbers said was the weaker one by a wide margin (Aurora at 73% price with 95% crowd on 9z-Aurora day 1; PARIVISION at 53.4% with 69% crowd on PARIVISION-BetBoom day 2).",
+    "Day 2 also shows the cost. Legacy-FURIA was priced near a coin flip (57.6% FURIA) with 73% of the crowd on FURIA; fading that crowd lost 7 points against most of the field even though the number was reasonable. A 4-point edge on a near coin flip is not enough to justify being different.",
+    "9z's day-2 line is the most useful new information for day 3: they lost 1-2 to the tournament's strongest side but took a map off them and lost the other two only 9-13. The team the market priced at 24% on day 2 was not the team that lost 2-0 without a map.",
+    "Aurora's reply was equally clear: 2-0 over Ninjas in Pyjamas with a 1.65 rating from Wicadia. The day-1 loss to 9z looks like a bad day, not a broken team - which is why the day-3 price still makes Aurora the favourite.",
+    "The July rebuild is real but old news: kyxsan and Jimpphat joined on 8 and 3 July 2026, roughly 100 days before this match, and Aurora reached a StarSeries Fall final and sit 5th on Valve's standings with them. Rostermania is a tiebreak on a close match, not a reason to back a long shot."
+  ],
+  "sources": [
+    "https://www.hltv.org/results?event=8932",
+    "https://www.hltv.org/matches/2399408/aurora-vs-ninjas-in-pyjamas-thunderpick-world-championship-2026",
+    "https://www.hltv.org/matches/2399409/9z-vs-falcons-thunderpick-world-championship-2026",
+    "https://www.hltv.org/matches/2399410/parivision-vs-betboom-thunderpick-world-championship-2026",
+    "https://www.hltv.org/matches/2399411/legacy-vs-furia-thunderpick-world-championship-2026",
+    "https://www.hltv.org/matches/2399412/aurora-vs-9z-thunderpick-world-championship-2026",
+    "https://www.hltv.org/team/11861/aurora",
+    "https://www.hltv.org/news/45688/thunderpick-world-championship-matchups-announced-with-virtuspro-replaced-by-nip",
+    "https://www.hltv.org/news/45057/jimpphat-signs-with-aurora",
+    "https://www.hltv.org/news/45082/official-aurora-complete-rebuild-with-kyxsan",
+    "https://www.hotspawn.com/counter-strike/news/thunderpick-world-championship-2026-day-2-review",
+    "https://bo3.gg/matches/aurora-gaming-vs-9z-16-10-2026",
+    "https://bo3.gg/matches/legacy-br-vs-betboom-team-16-10-2026"
+  ]
+}

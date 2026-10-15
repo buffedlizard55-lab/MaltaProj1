@@ -1,0 +1,88 @@
+{
+ "about": "Situational factors researched by session arena/a6f05f99 on 2026-10-15 22:40-23:15 UTC from official sources only (HLTV news and team pages, bo3.gg match pages, Valve's Regional Standings). 'risk_for' names the team the factor argues AGAINST. 'strength': strong = a change inside 60 days, a stand-in, or a late call-up; moderate = a change 60-120 days old; weak = context only. Only strong and moderate factors can trigger the SITUATIONAL leaderboard rule; weak ones are displayed but never move a pick. A factor never changes a probability - it only feeds the leaderboard rule, and it is always shown with the link it came from.",
+ "factors": [
+  {
+   "team": "aurora",
+   "kind": "roster change (new in-game leader + new player + new coach)",
+   "risk_for": "aurora",
+   "strength": "moderate",
+   "as_of": "2026-07-08",
+   "relevant_until": "2026-11-15",
+   "players_in": ["Jimpphat", "kyxsan"],
+   "players_out": ["MAJ3R", "soulfly"],
+   "coach_in": "ash",
+   "coach_out": "Fabre",
+   "summary": "Aurora rebuilt around their Turkish core (XANTARES, woxic, Wicadia) in July 2026: MAJ3R stepped down and soulfly was benched on 2 July, Jimpphat signed from MOUZ on 3 July, ash became head coach on 3 July and kyxsan joined from Falcons as in-game leader on 8 July. That is about 100 days before the day-3 decider, and the rebuilt five has since reached the StarSeries Fall final (HLTV news, 19 Sep 2026) and sits 5th on Valve's official standings. Treat the churn as a tiebreak on a close match, not as evidence of a broken team.",
+   "counter_evidence": "Aurora beat Ninjas in Pyjamas 2-0 on 15 Oct 2026 (Cache 13-9, Dust2 13-7) two days after the 9z loss, with Wicadia on a 1.65 rating, and HLTV lists them 6th in the world on 12 Oct 2026.",
+   "source_urls": [
+    "https://www.hltv.org/news/45057/jimpphat-signs-with-aurora",
+    "https://www.hltv.org/news/45082/official-aurora-complete-rebuild-with-kyxsan",
+    "https://www.hltv.org/team/11861/aurora",
+    "https://www.hltv.org/matches/2399408/aurora-vs-ninjas-in-pyjamas-thunderpick-world-championship-2026"
+   ],
+   "read_utc": "2026-10-15T23:05:00Z"
+  },
+  {
+   "team": "parivision",
+   "kind": "roster change (player swap 28 days before the event)",
+   "risk_for": "parivision",
+   "strength": "strong",
+   "as_of": "2026-09-17",
+   "relevant_until": "2026-12-15",
+   "players_in": ["HObbit"],
+   "players_out": ["slaxejezzz"],
+   "summary": "HObbit replaced the benched slaxejezzz on 17 Sep 2026. Valve's 2026-10-05 standings still list the old five, so Valve points describe a roster that no longer plays. PARIVISION lost 0-2 to Legacy and 1-2 to BetBoom and are eliminated from Thunderpick.",
+   "source_urls": [
+    "https://www.hltv.org/news/45534/parivision-replace-slaxejezzz-with-hobbit",
+    "https://www.hltv.org/team/12467/parivision",
+    "https://www.hltv.org/matches/2399410/parivision-vs-betboom-thunderpick-world-championship-2026"
+   ],
+   "read_utc": "2026-10-15T23:05:00Z"
+  },
+  {
+   "team": "nip",
+   "kind": "late call-up (five days' notice)",
+   "risk_for": "nip",
+   "strength": "strong",
+   "as_of": "2026-10-09",
+   "relevant_until": "2026-10-18",
+   "summary": "Ninjas in Pyjamas replaced Virtus.pro at Thunderpick after Virtus.pro withdrew (visa issue for AquaRS, health of F0R3VER); announced 9 Oct 2026. They lost 0-2 to Falcons and 0-2 to Aurora and are eliminated. They have an ordinary league match on 16 Oct against Team Liquid in which this factor no longer applies as an event-specific call-up, but the short preparation window does.",
+   "source_urls": [
+    "https://www.hltv.org/news/45688/thunderpick-world-championship-matchups-announced-with-virtuspro-replaced-by-nip",
+    "https://www.hltv.org/matches/2399408/aurora-vs-ninjas-in-pyjamas-thunderpick-world-championship-2026"
+   ],
+   "read_utc": "2026-10-15T23:05:00Z"
+  },
+  {
+   "team": "9z",
+   "kind": "schedule load (third best-of-three in three days)",
+   "risk_for": "9z",
+   "strength": "weak",
+   "as_of": "2026-10-16",
+   "relevant_until": "2026-10-16",
+   "summary": "9z played Aurora on 14 Oct 08:30 UTC, Falcons on 15 Oct 11:00 UTC and meet Aurora again on 16 Oct 14:00 UTC - three best-of-threes in three days at a LAN. Aurora's schedule is the same shape (14 Oct 08:30, 15 Oct 08:30, 16 Oct 14:00), so this is close to symmetric and is recorded as context only; it never moves a pick.",
+   "source_urls": [
+    "https://www.hltv.org/results?event=8932",
+    "https://www.hltv.org/matches/2399412/aurora-vs-9z-thunderpick-world-championship-2026"
+   ],
+   "read_utc": "2026-10-15T23:10:00Z"
+  },
+  {
+   "team": "aurora",
+   "kind": "schedule load (third best-of-three in three days)",
+   "risk_for": "aurora",
+   "strength": "weak",
+   "as_of": "2026-10-16",
+   "relevant_until": "2026-10-16",
+   "summary": "Same as the 9z entry above: Aurora also play their third best-of-three in three days on 16 Oct. Context only.",
+   "source_urls": ["https://www.hltv.org/results?event=8932"],
+   "read_utc": "2026-10-15T23:10:00Z"
+  }
+ ],
+ "do_not_alias": [
+  {"note": "Hotspawn's 'ASTRAL' (DraculaN Season 7, fixture 1081532) is NOT Astralis. No alias is created between them.",
+   "source": "https://play.hotspawn.com/lobby"},
+  {"note": "'Phantom' (Elisa BreakOut Series 2) is NOT 'Phantom Academy'. Name matching requires both teams and a kickoff inside six hours, so the two are never joined.",
+   "source": "https://www.hltv.org/events/9332/matches"}
+ ]
+}
