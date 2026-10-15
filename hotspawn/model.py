@@ -73,6 +73,7 @@ def load_inputs() -> dict:
         "notes": (read_json(RESEARCH / "notes.json", {}) or {}).get("notes", []),
         "hltv_links": read_json(RESEARCH / "hltv_links.json", {}) or {},
         "day1": read_json(RESEARCH / "day1_twc2026.json", {}) or {},
+        "day2": read_json(RESEARCH / "day2_twc2026.json", {}) or {},
         "results": (read_json(RESEARCH / "results.json", {}) or {}).get("results", {}),
         "history": read_json(DATA / "pick_history.json", {}) or {},
     }
@@ -441,12 +442,20 @@ def attach_results(rows: list[dict], inp: dict) -> None:
             break
 
 
-def graded_history(history: dict, rows: list[dict]) -> list[dict]:
+def graded_history(history: dict, rows: list[dict], results: dict | None = None) -> list[dict]:
+    """Grade only frozen picks, preferring a verified result even after its fixture leaves the live feed.
+
+    Historical rows disappear from Hotspawn's current payload. ``results.json`` is keyed by the frozen
+    Hotspawn id, so it remains authoritative for those matches and is also preferred over a provisional
+    resolution attached to a current row.
+    """
     by_id = {str(r["match_id"]): r for r in rows}
+    results = results or {}
     out = []
     for mid, h in sorted(history.items(), key=lambda kv: kv[1].get("start_utc") or ""):
         r = by_id.get(mid)
-        res = (r or {}).get("result")
+        manual = results.get(str(mid))
+        res = {**manual, "kind": "verified (HLTV)"} if manual and manual.get("winner") else (r or {}).get("result")
         if not h.get("frozen"):
             continue
         out.append({**h, "result": res, "pick_correct": (res["winner"] == h.get("pick")) if res else None,
@@ -495,8 +504,19 @@ def main() -> int:
     rows.sort(key=lambda r: ({"open": 0, "locked": 1, "stale": 2}[r["status"]], r["start_utc"], r["match_id"]))
     attach_results(rows, inp)
     history = update_history(rows, inp["history"], meta["reference_utc"])
-    graded = graded_history(history, rows)
+    graded = graded_history(history, rows, inp["results"])
     review = day1_review(inp, meta["k"])
+    d2_matches = inp["day2"].get("day2_matches", [])
+    d2_ids = {str(m.get("hotspawn_id")) for m in d2_matches}
+    d2_graded = [g for g in graded if str(g.get("match_id")) in d2_ids and g.get("result")]
+    d2_picks = [g for g in d2_graded if g.get("pick")]
+    d2_unarchived = [str(m.get("hotspawn_id")) for m in d2_matches if not m.get("prelock_pick")]
+    day2_review = {
+        "matches": len(d2_matches), "archived_picks": len(d2_picks), "graded_picks": len(d2_picks),
+        "picks_correct": sum(1 for g in d2_picks if g.get("pick_correct")),
+        "leaderboard_correct": sum(1 for g in d2_picks if g.get("leaderboard_correct")),
+        "unarchived_match_ids": d2_unarchived,
+    }
     open_rows = [r for r in rows if r["status"] == "open"]
     summary = {
         "generated_utc": now_iso(), "session": SESSION, "reference_utc": meta["reference_utc"],
@@ -519,6 +539,7 @@ def main() -> int:
                                 "leaderboard_correct": sum(1 for g in graded if g.get("leaderboard_correct"))},
         "day1_review": {"matches": len(review), "picks_correct": sum(1 for x in review if x["pick_correct"]),
                         "leaderboard_correct": sum(1 for x in review if x.get("leaderboard_correct"))},
+        "day2_review": day2_review,
     }
     board = {"meta": meta, "summary": summary, "rows": rows, "day1": {"info": {k2: v for k2, v in inp["day1"].items() if k2 != "matches"},
                                                                       "matches": review},
