@@ -1,0 +1,107 @@
+# Session arena/b44b5d5e — every-match Hotspawn CS2 picks board.
+#
+# What it does with no credentials and no manual input:
+#   1. Reads the public Hotspawn Pick'em pages (/lobby, /cs2-pickems, /thp-pickems) and takes
+#      EVERY CS2 fixture node out of the Angular TransferState payload — including fixtures
+#      Hotspawn has opened but not yet filled with participant names, which is exactly how the
+#      Tier-S Thunderpick fixtures went missing from the other boards' inventories.  Crowd pick
+#      percentages are dropped at ingest and never stored.
+#   2. Reads outside prices (Pinnacle's public guest response first, then EGamersWorld match pages,
+#      then Polymarket), the official Valve Regional Standings file and the official HLTV ranking.
+#   3. Rebuilds matchpicks/*.html and matchpicks/data/*, and runs the unit tests, which recompute
+#      every published probability from the stored inputs.
+#   4. Commits only after collect + build + tests pass, so a failed capture never replaces a good
+#      board.  The build refuses to publish an empty inventory.
+#
+# A source that refuses the read is recorded as unavailable and its fields stay blank: nothing is
+# ever guessed.
+name: Every-match picks board (b44b5d5e)
+
+on:
+  schedule:
+    # Every 4 hours, as the brief asks. GitHub treats schedule events as best-effort; each page
+    # publishes the exact UTC time its data was read instead of claiming currency.
+    - cron: "17 */4 * * *"
+  workflow_dispatch: {}
+  push:
+    branches: ["arena/b44b5d5e-maltaproj1", "main"]
+    paths:
+      - "matchpicks/**"
+      - "tests/test_b44b5d5e.py"
+      - ".github/workflows/matchpicks-b44b5d5e.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: matchpicks-b44b5d5e-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      LIVE_BUDGET_SECONDS: "1500"
+      MATCHPICKS_EGW_LIMIT: "40"
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Browser used for the pages that refuse a plain client
+        run: |
+          python -m pip install --quiet playwright
+          python -m playwright install --with-deps chromium
+
+      - name: Collect every CS2 fixture and every outside line
+        run: python3 -u matchpicks/collect_full.py
+
+      - name: Rebuild the board and its data
+        run: python3 -u matchpicks/build.py
+
+      - name: Unit tests (recompute every published probability from the stored inputs)
+        run: python3 -m unittest tests.test_b44b5d5e -v
+
+      - name: Commit the refreshed board
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add matchpicks/data matchpicks/*.html
+          if git diff --cached --quiet; then
+            echo "no changes to commit"
+            exit 0
+          fi
+          git commit -m "matchpicks(b44b5d5e): refresh every-match picks board [skip ci]"
+          git pull --rebase origin "${{ github.ref_name }}"
+          git push origin "HEAD:${{ github.ref_name }}"
+
+      - name: Publish run summary
+        if: always()
+        run: |
+          python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          import json
+          from pathlib import Path
+          p = Path("matchpicks/data/summary.json")
+          if not p.exists():
+              print("No summary produced; the previously published board is unchanged.")
+              raise SystemExit(0)
+          s = json.loads(p.read_text())
+          print("## Every-match picks board")
+          print("| field | value |")
+          print("|---|---|")
+          for key in ("generated_utc", "fixtures_captured", "open", "open_with_pick",
+                      "open_market_basis", "open_own_line_basis", "open_without_pick",
+                      "open_with_market", "open_with_own_line", "identity_incomplete",
+                      "markup_only", "unresolved_total", "flags_total",
+                      "crowd_fields_dropped", "independent_checks_agreed",
+                      "independent_checks_failed"):
+              print(f"| {key} | {s.get(key)} |")
+          PY
