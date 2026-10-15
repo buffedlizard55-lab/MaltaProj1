@@ -582,8 +582,22 @@ def match_card(row: dict, mode: str = "plan") -> str:
     fac_html = f'<details class="factors"><summary>Roster / rest factors ({len(factors)})</summary><ul>{"".join(factors)}</ul></details>' if factors else ""
     flags = "".join(f"<li>{esc(f)}</li>" for f in row["flags"])
     flag_html = f'<details class="flags"><summary>Notes & flags ({len(row["flags"])})</summary><ul>{flags}</ul></details>' if row["flags"] else ""
-    win_a = "win" if pa is not None and pa >= 0.5 else ""
-    win_b = "win" if pa is not None and pa < 0.5 else ""
+    def side_cls(team):
+        cls = []
+        if pa is not None and team == row["pick"]:
+            cls.append("likely")
+        if team == row.get("protect_pick"):
+            cls.append("pick")
+        return " ".join(cls)
+
+    def side_tag(team):
+        tags = []
+        if team == row.get("protect_pick"):
+            tags.append('<span class="tag">PICK</span>')
+        if team == row.get("chase_pick") and row.get("chase_pick") != row.get("protect_pick"):
+            tags.append('<span class="tag chase">CHASE</span>')
+        return "".join(tags)
+    win_a, win_b = side_cls(fx["team_a"]), side_cls(fx["team_b"])
     own = f'Our VRS line: {esc(fx["team_a"])} {pct(row["own_p"])}' if row["own_p"] is not None else "Our VRS line: n/a"
     return f"""<article class="card" id="m{esc(fx['match_id'])}" data-lock="{esc(fx.get('lock_utc'))}">
   <p class="meta"><span class="lockstate" aria-live="polite"></span><span class="tier tier-{esc(fx.get('tier') or 'x')}">Tier {esc((fx.get('tier') or '?').upper())} · {esc(fx.get('offered_points'))} pts</span>
@@ -591,8 +605,8 @@ def match_card(row: dict, mode: str = "plan") -> str:
   <h3>{esc(fx['team_a'])} <span class="vs">vs</span> {esc(fx['team_b'])}</h3>
   <p class="when">Locks {esc(fmt_utc(fx.get('lock_utc')))} · starts {esc(fmt_utc(fx.get('start_utc')))}</p>
   <div class="probs" role="group" aria-label="Win probabilities">
-    <div class="side {win_a}"><span class="team">{esc(fx['team_a'])}</span><span class="p">{pct(pa)}</span></div>
-    <div class="side {win_b}"><span class="team">{esc(fx['team_b'])}</span><span class="p">{pct(pb)}</span></div>
+    <div class="side {win_a}"><span class="team">{esc(fx['team_a'])} {side_tag(fx['team_a'])}</span><span class="p">{pct(pa)}</span></div>
+    <div class="side {win_b}"><span class="team">{esc(fx['team_b'])} {side_tag(fx['team_b'])}</span><span class="p">{pct(pb)}</span></div>
   </div>
   <p class="basis">{esc(row['basis'])} · {own} · Crowd on Hotspawn: {crowd} {label_chip(c.get('label'))}</p>
   {rec}
@@ -795,8 +809,13 @@ but they help pick between two similar contrarian spots.</p></section>
         if r["pin"] and r["p_a"] is not None and not r["flags"]:
             continue
         fx = r["fx"]
-        why = ("No pick — no outside price and no official rating for both teams." if r["p_a"] is None else
-               f"Pick {r['pick']} from: {r['basis']}.")
+        if r["p_a"] is None:
+            why = "No pick — no outside price and no official rating for both teams."
+        else:
+            why = f"Likely winner {r['pick']} ({pct(max(r['p_a'], 1 - r['p_a']))}, {r['basis']}); plan pick: {r['protect_pick']}"
+            if r["chase_pick"] != r["protect_pick"]:
+                why += f" (chasing: {r['chase_pick']})"
+            why += "."
         fb_items.append(f'<li><a href="index.html#m{esc(fx["match_id"])}"><strong>{esc(fx["team_a"])} vs {esc(fx["team_b"])}</strong></a> '
                         f'({esc(fmt_utc(fx.get("lock_utc")))}) — {esc(why)}<ul>{"".join(f"<li>{esc(f)}</li>" for f in r["flags"])}</ul></li>')
     body = f"""
@@ -863,8 +882,9 @@ def flagged_items(rows, capture, research):
         last = max(r["fx"]["start_utc"] for r in stale)
         out.append(("Stale Hotspawn listings", esc(f"{len(stale)} CS2 fixtures dated {first[:10]} to {last[:10]} are still 'scheduled' in Hotspawn's data and counted in its filter totals, though they locked long ago."), HOTSPAWN_LOBBY))
     pages = hot.get("pages") or []
-    heads = {p.get("header_matches_this_week") for p in pages if p.get("header_matches_this_week")}
-    totals = {p.get("filter_all_tiers") for p in pages if p.get("filter_all_tiers")}
+    main_pages = [p for p in pages if p.get("page") in ("lobby", "cs2-pickems")]
+    heads = {p.get("header_matches_this_week") for p in main_pages if p.get("header_matches_this_week")}
+    totals = {p.get("filter_all_tiers") for p in main_pages if p.get("filter_all_tiers")}
     if heads and totals:
         out.append(("Counter mismatch", esc(f"Hotspawn's header says {', '.join(map(str, sorted(heads)))} matches this week while the tier filter counts {', '.join(map(str, sorted(totals)))} (the filter includes the stale listings; the header may include LoL)."), HOTSPAWN_LOBBY))
     for r in rows:
