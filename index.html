@@ -4,36 +4,35 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0d1218">
-  <meta name="description" content="A mobile-first executive summary for Hotspawn Counter-Strike 2 Pick'em matches: sourced win probabilities, picks, read times, and limitations.">
-  <title>Hotspawn CS2 — picks &amp; research</title>
+  <meta name="description" content="Executive summary for Hotspawn Counter-Strike 2 Pick'em: a pick and both teams' win probabilities for every open match, a contrarian leaderboard plan, unresolved picks and limitations.">
+  <title>Hotspawn CS2 — a pick for every match</title>
   <link rel="stylesheet" href="css/landing.css">
   <style>
     :root { color-scheme: dark; }
-    .home-hero { padding: 28px 0 24px; max-width: 850px; }
-    .home-hero h1 { max-width: 18ch; margin: 10px 0 14px; }
+    .home-hero { padding: 22px 0 10px; max-width: 860px; }
+    .home-hero h1 { max-width: 18ch; margin: 8px 0 12px; }
     .home-hero .eyebrow { margin: 0; }
     header nav a { display: inline-flex; align-items: center; min-height: 44px; }
-    .quick-links { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 22px 0; }
-    .quick-link, .category-card { display: block; min-width: 0; padding: 16px; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); text-decoration: none; }
-    .quick-link { min-height: 92px; }
+    .quick-links { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 18px 0; }
+    .quick-link, .category-card { display: block; min-width: 0; min-height: 44px; padding: 16px; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); text-decoration: none; }
     .quick-link strong, .category-card strong { display: block; color: var(--text); font-size: 1rem; }
     .quick-link span, .category-card span { display: block; margin-top: 6px; color: var(--muted); font-size: .9rem; }
-    .quick-link.primary { background: #bbaaff; border-color: #bbaaff; color: #17132b; }
+    .quick-link.primary { background: #bbaaff; border-color: #bbaaff; }
     .quick-link.primary strong, .quick-link.primary span { color: #17132b; }
     .coverage-panel { padding: 16px; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); }
-    .coverage-panel .stats { grid-template-columns: repeat(5, minmax(0, 1fr)); margin: 12px 0; }
+    .coverage-panel .stats { grid-template-columns: repeat(4, minmax(0, 1fr)); margin: 12px 0; }
     .coverage-panel .stats > div { padding: 12px; }
     .coverage-panel .stats b { font-size: 27px; }
     .snapshot-status { margin: 10px 0; padding: 12px 14px; border-left: 4px solid var(--green); border-radius: 5px; background: var(--panel); overflow-wrap: anywhere; }
     .snapshot-status.warning { border-left-color: var(--amber); }
     .snapshot-status.stale, .snapshot-status.error { border-left-color: #ff8585; }
-    .snapshot-meta { font-size: 13px; overflow-wrap: anywhere; }
     .recheck { min-height: 44px; margin: 4px 0; padding: 10px 14px; border: 1px solid var(--line); border-radius: 8px; background: #263544; color: var(--text); font: inherit; cursor: pointer; }
-    .recheck:hover { background: #31485d; }
     .recheck:focus-visible { outline: 3px solid var(--amber); outline-offset: 3px; }
+    .next-list { list-style: none; padding: 0; margin: 8px 0; }
+    .next-list li { padding: 10px 0; border-bottom: 1px solid var(--line); }
+    .next-list .who { font-weight: 700; display: inline-flex; align-items: center; min-height: 44px; }
+    .next-list .meta { display: block; color: var(--muted); font-size: 13px; }
     .category-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
-    .category-card { min-height: 100px; }
-    .limits { padding: 18px 20px; }
     .limits li { margin: 8px 0; color: var(--muted); }
     .archive { margin: 28px 0; }
     .archive > summary { min-height: 44px; padding: 12px 0; }
@@ -49,188 +48,147 @@
     .inline-links { display: flex; flex-wrap: wrap; gap: 8px 18px; }
     .inline-links a { display: inline-flex; align-items: center; min-height: 44px; }
     .flag-note { border-left-color: #ff8585; }
-    .vp-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line); }
-    .vp-row:last-of-type { border-bottom: 0; }
-    .vp-pick { font-weight: 700; text-align: right; white-space: nowrap; }
     @media (max-width: 800px) {
-      .coverage-panel .stats { grid-template-columns: repeat(3, minmax(0, 1fr)); }
       .quick-links, .category-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
     @media (max-width: 520px) {
       header, main, footer { padding: 16px; }
-      .home-hero { padding: 18px 0; }
-      .home-hero h1 { font-size: clamp(34px, 10vw, 46px); }
+      .home-hero { padding: 14px 0; }
+      .home-hero h1 { font-size: clamp(32px, 10vw, 44px); }
       .quick-links, .category-grid, .archive-grid { grid-template-columns: 1fr; }
-      .quick-link { min-height: 0; }
       .legacy-link-list { columns: 1; }
       .coverage-panel .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
-      .coverage-panel .stats > div { padding: 10px; }
       .coverage-panel .stats b { font-size: 24px; }
-      .coverage-panel .stats span { font-size: 12px; }
     }
   </style>
 </head>
 <body>
   <a class="skip" href="#main">Skip to main content</a>
   <header>
-    <a class="brand" href="index.html">HOTSPAWN <span>/ independent CS2 research</span></a>
+    <a class="brand" href="index.html">HOTSPAWN <span>/ CS2 picks</span></a>
     <nav aria-label="Primary navigation">
-      <a href="#picks">Picks</a>
-      <a href="#research">Research &amp; review</a>
-      <a href="#freshness">Snapshot freshness</a>
+      <a href="hotspawn/picks.html">All picks</a>
+      <a href="hotspawn/strategy.html">Leaderboard plan</a>
+      <a href="hotspawn/unresolved.html">Unresolved</a>
+      <a href="hotspawn/flagged.html">Flagged</a>
     </nav>
   </header>
 
   <main id="main">
     <section class="home-hero" aria-labelledby="page-title">
-      <p class="eyebrow">Executive summary · Counter-Strike 2 Pick'em</p>
+      <p class="eyebrow">Executive summary · Counter-Strike 2 Pick'em on Hotspawn</p>
       <h1 id="page-title">Every match. One clear picks list.</h1>
-      <p>The first link below opens the verified executive board: each captured match has its source and status; supported picks show both teams’ win probabilities and evidence times. Unsupported picks remain blank and appear in the unresolved section. The separate unresolved section explains the research ladder used when a match has no primary-book line and states what limits each fallback.</p>
+      <p>Every open Hotspawn CS2 match gets a pick and <strong>both teams' win probabilities</strong> — from outside betting prices where they exist, otherwise from our own line built on Valve's official standings. A separate leaderboard plan shows where fading the crowd is worth it. The board collects Hotspawn's own match list and refreshes itself every three hours.</p>
 
       <div class="quick-links" aria-label="Start here">
-        <a class="quick-link primary" href="executive/picks.html">
+        <a class="quick-link primary" href="hotspawn/picks.html">
           <strong>View all picks &amp; probabilities →</strong>
-          <span>One mobile-friendly card per open match, with both teams’ percentages, the pick, and its sources.</span>
+          <span>One phone-friendly card per open match: the pick, both percentages, sources, lock time.</span>
         </a>
-        <a class="quick-link" href="executive/unresolved.html">
+        <a class="quick-link" href="hotspawn/strategy.html">
+          <strong>Leaderboard plan &amp; day-1 review</strong>
+          <span>Contrarian but not reckless: value, contrarian and situational plays, and how day 1 went.</span>
+        </a>
+        <a class="quick-link" href="hotspawn/unresolved.html">
           <strong>Unresolved picks &amp; limitations</strong>
-          <span>Research ladder: HLTV → esportsbooks → betting lines; includes refused prices and per-route limitations.</span>
-        </a>
-        <a class="quick-link" href="executive/own-lines.html">
-          <strong>Matches with no market price</strong>
-          <span>Our originated estimates, rating evidence, flags, and the limits of model-only picks.</span>
+          <span>Research ladder HLTV → esportsbooks → betting lines, and what limits each pick.</span>
         </a>
       </div>
 
       <section id="freshness" class="coverage-panel" aria-labelledby="coverage-title">
-        <h2 id="coverage-title">Published executive snapshot</h2>
-        <div class="stats" aria-label="Coverage counts from the published executive snapshot">
-          <div><b id="open-count">—</b><span>Open at capture</span></div>
-          <div><b id="pick-count">—</b><span>Picks published</span></div>
-          <div><b id="market-count">—</b><span>Outside-market basis</span></div>
-          <div><b id="own-count">—</b><span>No-market own-line picks</span></div>
-          <div><b id="missing-count">—</b><span>Without a sourced pick</span></div>
+        <h2 id="coverage-title">Right now</h2>
+        <div class="stats" aria-label="Coverage counts from the latest published snapshot">
+          <div><b id="open-count">—</b><span>Open matches</span></div>
+          <div><b id="pick-count">—</b><span>With a pick</span></div>
+          <div><b id="market-count">—</b><span>Featured (Pinnacle)</span></div>
+          <div><b id="own-count">—</b><span>Via research ladder</span></div>
         </div>
-        <p id="slate-health" class="snapshot-status warning">Current full-slate coverage is unverified until both Hotspawn surfaces have a successful recent read. See the <a href="executive/coverage.html">coverage audit</a>.</p>
-        <p id="snapshot-status" class="snapshot-status" role="status" aria-live="polite">Loading the published snapshot timestamp and coverage counts…</p>
-        <p id="research-status" class="snapshot-meta">Loading the source read times…</p>
-        <button id="recheck-snapshot" class="recheck" type="button">Check for a newer published snapshot</button>
-        <p class="small">Counts describe the saved capture, not a live query to Hotspawn. Exact UTC lock times and each quote’s read time are shown on the picks page. GitHub Actions refreshes are scheduled every four hours but run best-effort; check timestamps before relying on an estimate.</p>
-        <p class="small"><strong>Lock display caveat:</strong> the linked executive picks page includes generated “in X h” countdowns that can be stale after a match locks. Use the absolute UTC lock time and row-level source-read time—not the relative countdown—to judge whether a fixture is still open/actionable.</p>
-        <div class="inline-links">
-          <a href="executive/data/analysis.csv">Machine-readable pick rows (CSV)</a>
-          <a href="executive/data/summary.json">Snapshot summary (JSON)</a>
-          <a href="https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/.github/workflows/executive-5545dbb8.yml">Four-hour refresh workflow</a>
-          <a href="executive/cadence.html">Detailed cadence page (check absolute timestamps)</a>
-        </div>
+        <p id="snapshot-status" class="snapshot-status warning" role="status" aria-live="polite">Loading the latest snapshot time and counts…</p>
+        <button id="recheck-snapshot" class="recheck" type="button">Check for a newer snapshot</button>
+        <p class="small">Counts describe the saved capture, not a live query to Hotspawn. GitHub Actions refreshes are scheduled every three hours but run best-effort; every price on the picks page shows its own read time. Open the <a href="https://play.hotspawn.com/lobby">live Hotspawn lobby</a> to check for brand-new matches.</p>
       </section>
     </section>
 
-    <section id="day-picks" aria-labelledby="day-picks-title">
-      <h2 id="day-picks-title">Today's picks, day review &amp; value watches</h2>
-      <p>Same open fixtures, arranged for a phone: the pick, both teams' probabilities, the evidence
-      tier and the source link for every row — plus the day-1 upset review, the roster-change intel
-      and a separate list of the rows that could not reach the top evidence tier.</p>
-      <div class="quick-links" aria-label="Day review and value picks">
-        <a class="quick-link primary" href="valuepicks/index.html">
-          <strong>Open the day review &amp; picks board →</strong>
-          <span>Every open match with a pick and a two-sided probability, the 9z–Aurora review, and the roster notes behind the calls.</span>
-        </a>
-        <a class="quick-link" href="valuepicks/value.html">
-          <strong>Value watches (contrarian)</strong>
-          <span>Where the outside market and the project's official-ratings line disagree by 5pp or more, with the caveats attached.</span>
-        </a>
-        <a class="quick-link" href="valuepicks/unresolved.html">
-          <strong>Unresolved picks &amp; limits</strong>
-          <span>Rows that fall below the top evidence tier, the ladder used to price them, and the exact limitation on each.</span>
-        </a>
-      </div>
-      <div id="vp-slate" class="coverage-panel" role="status" aria-live="polite">
-        <p class="snapshot-meta">Loading the latest published picks…</p>
-      </div>
-      <p class="small"><a href="valuepicks/coverage.html">All captured fixtures (coverage)</a> ·
-      <a href="valuepicks/sources.html">sources and read times</a> ·
-      <a href="valuepicks/flagged.html">flagged for review</a></p>
-    </section>
-    <script>
-    (function () {
-      var target = document.getElementById('vp-slate');
-      if (!target || !window.fetch) { return; }
-      function esc(value) {
-        return String(value == null ? '' : value).replace(/[&<>"']/g, function (ch) {
-          return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch];
-        });
-      }
-      fetch('valuepicks/data/board.json', { cache: 'no-store' }).then(function (response) {
-        if (!response.ok) { throw new Error('http ' + response.status); }
-        return response.json();
-      }).then(function (data) {
-        var rows = (data.rows || []).filter(function (row) { return row.status === 'open' && row.pick; });
-        rows.sort(function (a, b) { return a.lock_utc < b.lock_utc ? -1 : 1; });
-        var html = '<p class="snapshot-meta"><strong>' + rows.length + ' open fixtures picked</strong> · capture ' +
-          esc((data.meta || {}).capture_utc) + ' · board rebuilt ' + esc((data.meta || {}).generated_utc) + '</p>';
-        rows.slice(0, 3).forEach(function (row) {
-          html += '<div class="vp-row"><div><strong>' + esc(row.team_a) + ' vs ' + esc(row.team_b) + '</strong>' +
-            '<div class="snapshot-meta">' + esc(row.tournament) + ' · lock ' +
-            esc(String(row.lock_utc).slice(0, 16).replace('T', ' ')) + 'Z</div></div>' +
-            '<div class="vp-pick">' + esc(row.pick) + '<br><span class="snapshot-meta">' +
-            Number(row.prob_a_pct).toFixed(1) + '% / ' + Number(row.prob_b_pct).toFixed(1) + '%</span></div></div>';
-        });
-        html += '<p><a class="button" href="valuepicks/index.html">See every open match →</a></p>';
-        target.innerHTML = html;
-      }).catch(function () {
-        target.innerHTML = '<p class="snapshot-meta">The live list could not load right now — open the ' +
-          '<a href="valuepicks/index.html">day review &amp; picks board</a> for the stored snapshot.</p>';
-      });
-    })();
-    </script>
-
     <span id="matches" aria-hidden="true"></span>
     <section id="picks" aria-labelledby="picks-title">
-      <h2 id="picks-title">Find the match picks</h2>
-      <p>The all-match list is designed for phone screens: where supported, the recommended pick and both probabilities are prominent, followed by the match, UTC lock time, evidence tier, and source links for each row.</p>
-      <p><a class="button" href="executive/picks.html">Open the complete picks list →</a></p>
+      <h2 id="picks-title">Next to lock</h2>
+      <ol id="next-list" class="next-list"><li>Loading the next matches… If nothing appears, <a href="hotspawn/picks.html">open the complete picks list</a>.</li></ol>
+      <p><a class="button" href="hotspawn/picks.html">Open the complete picks list →</a></p>
+    </section>
+
+    <section id="unresolved-summary" aria-labelledby="unresolved-title">
+      <h2 id="unresolved-title">Unresolved picks &amp; limitations</h2>
+      <p id="unresolved-counts">Matches without a sharp-bookmaker (Pinnacle) line go down the research ladder — HLTV first, then esportsbooks, then betting lines such as Polymarket, then our own line from Valve's official standings. A pick is left blank only when nothing supports one.</p>
+      <ul class="limits">
+        <li>Low-tier matches are often priced by Pinnacle only about a day before they start (and pulled close to start), so they sit on Polymarket or our own line and switch on a later refresh.</li>
+        <li>Our own line knows rating points, not stand-ins or brand-new rosters; those are researched on HLTV and shown on each card as factors.</li>
+        <li>HLTV blocks most automated reads, so formats, rosters and stand-ins come from researched notes with links and read times.</li>
+      </ul>
+      <p><a href="hotspawn/unresolved.html">Full unresolved list, research trail and limitations →</a> · <a href="hotspawn/index.html#unresolved">Board summary</a></p>
     </section>
 
     <section id="research" aria-labelledby="research-title">
-      <h2 id="research-title">Research, coverage &amp; review</h2>
+      <h2 id="research-title">Research, review &amp; sources</h2>
       <div class="category-grid">
-        <a class="category-card" href="executive/unresolved.html"><strong>Unresolved picks &amp; limitations</strong><span>Every non-featured route in the research snapshot, its source trail, refused quotes, and concrete limits.</span></a>
-        <a class="category-card" href="executive/lines.html"><strong>Outside betting lines</strong><span>Named bookmakers and secondary listings, with odds and capture times.</span></a>
-        <a class="category-card" href="executive/own-lines.html"><strong>Our own lines</strong><span>Official Valve standings, HLTV cross-checks, model arithmetic, and unpriced matches.</span></a>
-        <a class="category-card" href="executive/sources.html"><strong>Sources &amp; read times</strong><span>What each source returned, where it was read, and which observations were refused.</span></a>
-        <a class="category-card" href="executive/methodology.html"><strong>Methodology</strong><span>Market de-vigging, research hierarchy, model labels, and uncertainty.</span></a>
-        <a class="category-card" href="executive/coverage.html"><strong>Hotspawn coverage audit</strong><span>Captured fixture inventory, open/locked/stale distinctions, and known source gaps.</span></a>
-        <a class="category-card" href="executive/flagged.html"><strong>Flagged for Review</strong><span>Aliases, stale ratings, rejected markets, disagreements, and model limitations.</span></a>
-        <a class="category-card" href="executive/cadence.html"><strong>Refresh workflow &amp; cadence</strong><span>Four-hour schedule, source read times, and capture limitations. Source availability and Actions scheduling are not guaranteed.</span></a>
-        <a class="category-card" href="reviews/e13aca8a-verification.md"><strong>Line-by-line research verification</strong><span>Per-fixture pick, probability basis, format, source links, and recorded limitations.</span></a>
-        <a class="category-card" href="reviews/6f9eab3b-acceptance.html"><strong>Flagged landing/source-link audit</strong><span>Evidence for the separate newer board’s broken Valve link and one-fixture count discrepancy.</span></a>
-        <a class="category-card" href="https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/COORDINATION.md"><strong>Release &amp; coordination log</strong><span>Task history, sources, requests to other owners, known irregularities, and publication results.</span></a>
+        <a class="category-card" href="hotspawn/index.html"><strong>Board summary</strong><span>Counts, next locks, plays and the unresolved section in one page.</span></a>
+        <a class="category-card" href="hotspawn/flagged.html"><strong>Flagged for Review</strong><span>Irregularities and every per-match flag, with evidence links.</span></a>
+        <a class="category-card" href="hotspawn/method.html"><strong>Method, sources &amp; read times</strong><span>Probability ladder, de-vig, our own line's calibration, every request.</span></a>
+        <a class="category-card" href="hotspawn/all.html"><strong>Every captured fixture</strong><span>Open, recently locked and stale Hotspawn listings.</span></a>
+        <a class="category-card" href="reviews/22be6967-verification.md"><strong>Line-by-line verification</strong><span>Repository review with links for manual checking and the irregularities found.</span></a>
+        <a class="category-card" href="https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/COORDINATION.md"><strong>Coordination log</strong><span>Sessions, claims, sources, merges and Pages confirmations.</span></a>
+      </div>
+    </section>
+
+    <section id="second-opinions" aria-labelledby="second-title">
+      <h2 id="second-title">Second opinions (parallel sessions, same brief)</h2>
+      <p class="small">Built independently on 15 October from the same request. Their numbers come from different captures and methods, so small differences are expected — when they disagree with the board above, check both cards' sources and read times.</p>
+      <div class="category-grid">
+        <a class="category-card" href="valuepicks/index.html"><strong>Day review &amp; picks board (session 7759beef)</strong><span>Every open match with a pick from the executive capture plus researched resolutions, and the 9z–Aurora review.</span></a>
+        <a class="category-card" href="valuepicks/value.html"><strong>Value watches (7759beef)</strong><span>Where the outside market and that board's ratings line disagree by 5 points or more.</span></a>
+        <a class="category-card" href="valuepicks/unresolved.html"><strong>Unresolved picks &amp; limits (7759beef)</strong><span>Rows below the top evidence tier and the limitation on each.</span></a>
+        <a class="category-card" href="leaderboard/index.html"><strong>Leaderboard plan — contrarian picks (session 2e2b2e5e)</strong><span>Independent crowd-ownership vs market plan with its own collector; a second opinion on the plays.</span></a>
+      </div>
+      <p class="small"><a href="valuepicks/coverage.html">All captured fixtures (coverage)</a> · <a href="valuepicks/sources.html">sources and read times</a> · <a href="valuepicks/flagged.html">flagged for review</a></p>
+      <h3>Strict-evidence executive board (previous primary)</h3>
+      <p class="small">Kept and still refreshed by its own workflow. It leaves a match blank whenever any join check fails, so it can show fewer picks than the board above.</p>
+      <div class="inline-links">
+        <a href="executive/picks.html">Executive picks</a>
+        <a href="executive/unresolved.html">Executive unresolved</a>
+        <a href="executive/own-lines.html">Own lines</a>
+        <a href="executive/lines.html">Outside lines</a>
+        <a href="executive/sources.html">Sources</a>
+        <a href="executive/methodology.html">Methodology</a>
+        <a href="executive/coverage.html">Coverage audit</a>
+        <a href="executive/flagged.html">Executive flags</a>
+        <a href="executive/cadence.html">Cadence</a>
+        <a href="executive/data/analysis.csv">Executive pick rows (CSV)</a>
+        <a href="executive/data/summary.json">Executive snapshot (JSON)</a>
+        <a href="reviews/6f9eab3b-acceptance.html">Landing/source-link audit</a>
+        <a href="reviews/bb9e05ef-reliability.html">Reliability review</a>
       </div>
     </section>
 
     <section class="notice limits" aria-labelledby="limits-title">
       <h2 id="limits-title">How to read the probabilities</h2>
-      <p><strong>Evidence policy:</strong> a source link is not proof of a current price. Whole-match quotes expire after eight hours; missing ranks and series formats stay blank. A failed Hotspawn read means new-match coverage is unverified, even when the page build succeeds. <a href="reviews/bb9e05ef-reliability.html">Reliability review &amp; sources</a>.</p>
+      <p><strong>Evidence policy:</strong> every number has a source link and a read time; values no source supports stay blank and flagged. A source link is not proof of a current price — check the read time.</p>
       <ul>
-        <li><strong>Hotspawn is the fixture source, not the forecast.</strong> The collector uses its CS2 match list and start/lock times. Hotspawn crowd-pick percentages are never probability inputs.</li>
-        <li><strong>Outside prices come first.</strong> Primary-book odds are converted to a two-way, margin-removed market estimate. Secondary listings, relayed bookmaker prices, and prediction-market prices are identified as such and can lag or differ from a bookmaker.</li>
-        <li><strong>Own lines are estimates, not book prices.</strong> Where no usable outside market exists, the project uses independently sourced team-rating evidence and clearly labels the model and its limitations. Unconfirmed teams, formats, or prices remain flagged rather than guessed.</li>
-        <li><strong>Snapshots are not live odds.</strong> Every match row carries its source and read time. The refresh schedule is best-effort; use the timestamp on the row and the cadence page, not the mere presence of a link, to judge freshness.</li>
+        <li><strong>Hotspawn is the fixture source, not the forecast.</strong> Hotspawn crowd-pick percentages are never probability inputs; the leaderboard plan shows them only as "ownership" — how many players already hold each side.</li>
+        <li><strong>Outside prices come first.</strong> Pinnacle odds with the margin removed; otherwise Polymarket prices (a prediction market, labelled as such).</li>
+        <li><strong>Our own line fills the gaps.</strong> Valve's official points on a curve fitted to Valve's own match results; clearly labelled, with its limits.</li>
+        <li><strong>Lock display caveat:</strong> countdowns are computed on your device. Use the absolute UTC lock time and row-level source-read time—not the relative countdown—to judge whether a fixture is still open.</li>
       </ul>
       <p>Independent research only. Probabilities are estimates, not guarantees or betting advice.</p>
-    </section>
-
-    <section class="notice flag-note" aria-labelledby="source-flag-title">
-      <h2 id="source-flag-title">Flagged for review: newer parallel board has a broken Valve source link</h2>
-      <p>The separate live-read board under <code>livelines/</code> has a later page-build timestamp, but its published Valve standings URLs use a file-blob SHA where GitHub expects a commit SHA and return 404. Its stored payload also has 89 fixtures while a later Hotspawn lobby read shows 88. Until that board’s owner repairs and rechecks it, this site uses the executive board above as the primary verified destination.</p>
-      <p><a href="reviews/6f9eab3b-acceptance.html">Open the source-link and coverage evidence, corrected official URL, and coordination request →</a></p>
     </section>
 
     <details class="archive">
       <summary>Other dashboards &amp; historical research (different snapshots and methods)</summary>
       <div class="legacy">
-        <p>Several sessions produced independent boards and audits. Their coverage counts, dates, source integrity, and model assumptions are not interchangeable with the executive board above. Check each board’s own snapshot and Flagged for Review page before comparing it.</p>
+        <div class="notice flag-note">
+      <h3>Flagged for review: newer parallel board has a broken Valve source link</h3>
+      <p>The separate live-read board under <code>livelines/</code> has a later page-build timestamp, but its published Valve standings URLs use a file-blob SHA where GitHub expects a commit SHA and return 404. Its stored payload also has 89 fixtures while a later Hotspawn lobby read shows 88. Until that board’s owner repairs and rechecks it, this site uses the executive board above as the primary verified destination.</p>
+      <p><a href="reviews/6f9eab3b-acceptance.html">Open the source-link and coverage evidence, corrected official URL, and coordination request →</a></p>
+    </div>
+        <p>Several sessions produced independent boards and audits. Their coverage counts, dates, source integrity, and model assumptions are not interchangeable with the every-match board above. Check each board’s own snapshot and Flagged for Review page before comparing it.</p>
         <div class="archive-grid">
           <a href="matchpicks/index.html"><strong>Parallel every-match board — review its assumptions</strong><span>Preserved from PR #135. Its independently maintained models and format evidence are not the canonical executive picks.</span></a>
           <a href="matchpicks/unresolved.html"><strong>Parallel board’s unresolved research</strong><span>Historical/source limitations; see this session’s source-reliability review before treating its inputs as verified.</span></a>
@@ -353,122 +311,74 @@
     </div>
   </footer>
 
-  <noscript><p class="notice">JavaScript is disabled, so summary counts and live age cannot update. The <a href="executive/picks.html">complete source-linked picks list</a>, unresolved research, and timestamps remain available as static pages.</p></noscript>
+  <noscript><p class="notice">JavaScript is disabled, so the counts and next-match list cannot load. The <a href="hotspawn/picks.html">complete picks list</a>, the <a href="hotspawn/unresolved.html">unresolved section</a> and every timestamp remain available as static pages.</p></noscript>
   <script>
     (function () {
       "use strict";
-      var current = null;
       var status = document.getElementById("snapshot-status");
-      var researchStatus = document.getElementById("research-status");
-      var refreshButton = document.getElementById("recheck-snapshot");
-
-      function valueAt(object, key) {
-        var value = object && object[key];
-        var number = Number(value);
-        return value !== null && value !== undefined && value !== "" && Number.isFinite(number) ? number : null;
-      }
-
-      function utcText(value) {
-        var date = new Date(value);
-        return Number.isNaN(date.getTime()) ? "unavailable" : date.toISOString().replace("T", " ").replace(".000Z", " UTC").replace("Z", " UTC");
-      }
+      var list = document.getElementById("next-list");
+      var unresolved = document.getElementById("unresolved-counts");
+      var CLASS_WORD = { "VALUE": "value", "CONTRARIAN": "contrarian", "SITUATIONAL": "situational", "LONG SHOT": "long shot", "CHALK": "chalk" };
 
       function ageHours(value) {
         var elapsed = Date.now() - Date.parse(value);
         return Number.isFinite(elapsed) && elapsed >= 0 ? elapsed / 3600000 : null;
       }
-
-      function ageLabel(hours) {
-        if (hours === null) return "age unavailable";
-        if (hours < 1) return Math.max(0, Math.round(hours * 60)) + " min old";
-        return hours.toFixed(1) + " h old";
+      function utcText(value) {
+        var d = new Date(value);
+        return Number.isNaN(d.getTime()) ? "unavailable" : d.toISOString().slice(0, 16).replace("T", " ") + " UTC";
       }
+      function pct(x) { return typeof x === "number" && Number.isFinite(x) ? Math.round(x * 100) + "%" : "—"; }
+      function setText(id, value) { var node = document.getElementById(id); if (node) node.textContent = value === null || value === undefined ? "—" : String(value); }
+      function make(tag, cls, text) { var n = document.createElement(tag); if (cls) n.className = cls; if (text !== undefined) n.textContent = text; return n; }
 
-      function renderSummary() {
-        if (!current) return;
-        var meta = current.meta || {};
-        var healthBox = document.getElementById("slate-health");
-        var health = meta.slate_health || {};
-        var captureIsFresh = ageHours(meta.capture_utc) !== null && ageHours(meta.capture_utc) <= 8;
-        if (healthBox) {
-          var confirmed = health.current === true && captureIsFresh;
-          healthBox.textContent = confirmed ? "Both official Hotspawn surfaces were read successfully at capture. Check source timestamps; this is not a live query." : "FULL COVERAGE UNVERIFIED — " + (health.limitation || "Source capture is incomplete or stale; new matches may be missing.");
-          healthBox.className = "snapshot-status " + (confirmed ? "" : "warning");
-        }
-        var coverage = current.coverage || {};
-        var capture = meta.capture_utc || meta.generated_utc;
-        var open = valueAt(coverage, "open_fixtures");
-        var picks = valueAt(coverage, "open_with_pick");
-        var market = valueAt(coverage, "open_market_basis");
-        var ownOnly = valueAt(coverage, "open_model_basis");
-        var missing = valueAt(coverage, "open_no_pick");
-        var countValues = [open, picks, market, ownOnly, missing];
-        var ids = ["open-count", "pick-count", "market-count", "own-count", "missing-count"];
-        for (var i = 0; i < ids.length; i++) {
-          document.getElementById(ids[i]).textContent = countValues[i] === null ? "—" : String(countValues[i]);
-        }
-
-        var countsAgree = open !== null && picks !== null && missing !== null && picks + missing === open;
-        var age = ageHours(capture);
-        var message = "Executive board capture: " + utcText(capture) + " (" + ageLabel(age) + "). Page generated: " + utcText(meta.generated_utc) + ".";
-        status.className = "snapshot-status";
-        if (age === null) {
-          status.className += " error";
-          message += " Age could not be checked; use the input read times below and on each match row.";
-        } else if (age > 8) {
-          status.className += " stale";
-          message += " This is beyond the requested 4–8 hour update window; treat the snapshot as stale.";
-        } else if (age > 4) {
-          status.className += " warning";
-          message += " It is older than the scheduled four-hour interval but remains within the requested eight-hour maximum. Refreshes are best-effort.";
+      function render(d) {
+        var rung = d.open_rung || {};
+        setText("open-count", d.open);
+        setText("pick-count", d.open_with_pick);
+        setText("market-count", rung.A || 0);
+        setText("own-count", (rung.B || 0) + (rung.C || 0));
+        var h = ageHours(d.reference_utc);
+        if (h === null) {
+          status.textContent = "Snapshot time unavailable; check timestamps on the picks page.";
+          status.className = "snapshot-status warning";
+        } else if (h > 8) {
+          status.textContent = "Hotspawn read " + utcText(d.reference_utc) + " — " + h.toFixed(1) + " h old, beyond the requested 4–8 hour update window. The scheduled refresh may have failed; check the live lobby before relying on it.";
+          status.className = "snapshot-status stale";
         } else {
-          message += " A four-hour refresh is configured; GitHub Actions timing is best-effort.";
+          status.textContent = "Hotspawn read " + utcText(d.reference_utc) + " (" + (h < 1 ? Math.round(h * 60) + " min" : h.toFixed(1) + " h") + " ago)" + (d.hotspawn_complete === false ? " — Hotspawn read incomplete, new matches may be missing." : ". All three Hotspawn CS2 pages were read.");
+          status.className = d.hotspawn_complete === false ? "snapshot-status warning" : "snapshot-status";
         }
-        if (meta.stale === true) {
-          status.className += " stale";
-          message += " The published metadata marks at least one required input as stale.";
-        }
-        if (!countsAgree) {
-          status.className += " warning";
-          message += " Coverage totals do not reconcile; check Flagged for Review before relying on counts.";
-        }
-        status.textContent = message;
-
-        var hotspawn = meta.hotspawn_read_text || "read time not reported";
-        var prices = meta.market_read_text || "read time not reported";
-        var ratings = meta.vrs_read_text || "read time not reported";
-        researchStatus.textContent = "Source reads for this capture — Hotspawn: " + hotspawn + "; outside prices: " + prices + "; ratings: " + ratings + ". Row-specific quote times and links are on the picks page.";
-        if (refreshButton) refreshButton.disabled = false;
-      }
-
-      function fetchSummary() {
-        var url = "executive/data/summary.json?published=" + Date.now();
-        return fetch(url, { cache: "no-store", credentials: "same-origin" }).then(function (response) {
-          if (!response.ok) throw new Error("HTTP " + response.status);
-          return response.json();
+        unresolved.textContent = ((rung.B || 0) + (rung.C || 0)) + " open match(es) had no Pinnacle line and were resolved via the research ladder (" + (rung.B || 0) + " by Polymarket, " + (rung.C || 0) + " by our own line); " + (d.open_unresolved || 0) + " have no pick. Limits below.";
+        while (list.firstChild) list.removeChild(list.firstChild);
+        var now = Date.now();
+        (d.next || []).forEach(function (m) {
+          var li = make("li");
+          var a = make("a", "who", m.a + " vs " + m.b);
+          a.href = "hotspawn/picks.html#m" + encodeURIComponent(m.id);
+          li.appendChild(a);
+          var locked = Date.parse(m.lock) <= now;
+          li.appendChild(make("span", "meta", (m.tier || "?") + "-tier · locks " + utcText(m.lock) + (locked ? " (locked)" : "")));
+          li.appendChild(make("span", "meta", m.pick ? "Pick " + m.pick + " " + pct(m.p) + " (" + m.a + " " + pct(m.pa) + " / " + m.b + " " + pct(m.pb) + ")" : "No pick — see unresolved"));
+          if (m.play && m["class"]) li.appendChild(make("span", "meta", "Leaderboard play: " + m.play + " (" + (CLASS_WORD[m["class"]] || m["class"]) + ")"));
+          list.appendChild(li);
         });
+        if (!list.firstChild) list.appendChild(make("li", "", "No open matches in this snapshot."));
       }
 
       function loadSummary() {
-        if (refreshButton) refreshButton.disabled = true;
-        status.className = "snapshot-status";
-        status.textContent = "Checking the latest published executive snapshot…";
-        return fetchSummary().then(function (data) {
-          if (!data || !data.meta || !data.coverage || !data.meta.capture_utc || !Number.isFinite(Date.parse(data.meta.capture_utc))) {
-            throw new Error("snapshot schema or capture time is missing");
-          }
-          current = data;
-          renderSummary();
-        }).catch(function (error) {
-          status.className = "snapshot-status error";
-          status.textContent = "Could not load the executive snapshot metadata (" + error.message + "). The source-linked picks list is still available; see its own timestamp and refresh page.";
-          if (refreshButton) refreshButton.disabled = false;
-        });
+        var url = "hotspawn/data/landing.json?published=" + Date.now();
+        return fetch(url, { cache: "no-store" })
+          .then(function (r) { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
+          .then(render)
+          .catch(function (err) {
+            status.textContent = "Could not load the latest snapshot (" + err.message + "). The picks pages remain available.";
+            status.className = "snapshot-status error";
+          });
       }
 
-      if (refreshButton) refreshButton.addEventListener("click", loadSummary);
+      document.getElementById("recheck-snapshot").addEventListener("click", loadSummary);
       loadSummary();
-      window.setInterval(function () { if (current) renderSummary(); }, 60000);
       window.setInterval(loadSummary, 15 * 60000);
     })();
   </script>
