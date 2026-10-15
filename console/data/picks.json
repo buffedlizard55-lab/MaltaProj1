@@ -1,21 +1,21 @@
 {
  "meta": {
-  "generated_for_utc": "2026-10-14T04:00:00Z",
-  "data_as_of_utc": "2026-10-15T09:57:22Z",
-  "newest_input_age_hours": -29.96,
+  "generated_for_utc": "2026-10-15T22:26:20Z",
+  "data_as_of_utc": "2026-10-15T20:31:32Z",
+  "newest_input_age_hours": 1.91,
   "max_input_age_hours": 6.0,
   "stale": false,
   "counts": {
-   "rows": 18,
-   "open": 18,
+   "rows": 12,
+   "open": 12,
    "locked": 0,
-   "open_with_pick": 15,
-   "open_market_basis": 17,
-   "open_own_line_basis": 1,
+   "open_with_pick": 12,
+   "open_market_basis": 12,
+   "open_own_line_basis": 0,
    "open_research_basis": 0,
-   "open_without_pick": 3,
-   "flags": 32,
-   "rows_with_flags": 15
+   "open_without_pick": 0,
+   "flags": 21,
+   "rows_with_flags": 11
   },
   "inputs": [
    {
@@ -23,27 +23,27 @@
     "label": "Secondary-market feed (arena/a0bdf924)",
     "page": "feeds/index.html",
     "file": "feeds/data/fixtures.csv",
-    "captured_utc": "2026-10-15T06:23:32Z",
-    "sha256": "748a9a8971fa218ea999c2de91354f32a1d9a699fa71b0109009ca9f8715fc3c",
-    "rows": 15
+    "captured_utc": "2026-10-15T20:31:32Z",
+    "sha256": "591f0679237a6c04a0fc156276c4ad59d4210969826f7b6eb47e57d4ed135e19",
+    "rows": 12
    },
    {
     "key": "cs2",
     "label": "Line-analysis board (arena/a174d77f)",
     "page": "cs2/index.html",
     "file": "cs2/data/analysis.csv",
-    "captured_utc": "2026-10-15T09:57:22Z",
-    "sha256": "8107b7b04359b375915ac89ecefb99e0c20cf39926a0dec187993c7ec619ed95",
-    "rows": 78
+    "captured_utc": "2026-10-15T19:10:23Z",
+    "sha256": "b94ca75a354a645a086486cbd774ffa7fff3b84c6d33634ec7249fa68abc56d0",
+    "rows": 76
    },
    {
     "key": "executive",
     "label": "Executive board (arena/5545dbb8)",
     "page": "executive/index.html",
     "file": "executive/data/analysis.csv",
-    "captured_utc": "2026-10-15T08:53:21Z",
-    "sha256": "487b53ef50fd84f1b2cd496a110e6570cda9c1d5760f78feb5476224966c8377",
-    "rows": 80
+    "captured_utc": "2026-10-15T20:01:37Z",
+    "sha256": "923c5414b063b827b0a500d9e1206d5c8c581e4b63cf1317236753e775907630",
+    "rows": 76
    },
    {
     "key": "every",
@@ -79,9 +79,9 @@
    "claimed_sha256": "df96e7fc3cd91a2687ec08cac0128e50cc4e4e55346581679572e881d79ae61b",
    "integrity_ok": true,
    "anchors": {
-    "verified": 23,
-    "alias": 7,
-    "unverified": 3,
+    "verified": 11,
+    "alias": 3,
+    "unverified": 4,
     "absent": 0
    }
   },
@@ -116,1178 +116,59 @@
  },
  "rows": [
   {
-   "fixture_id": "1080202",
-   "competition": "Thunderpick World Championship 2026",
-   "tier": "S",
-   "team_a": "9z",
-   "team_b": "Falcons",
-   "start_utc": "2026-10-15T11:00:00Z",
-   "lock_utc": "2026-10-15T10:54:00Z",
-   "state": "open",
-   "series_format": "3",
-   "format_source": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
-   "basis_rung": "market-1",
-   "basis_label": "book \u00b7 read directly",
-   "basis_detail": "Pinnacle \u2014 public guest response read by the line-analysis board; de-vigged two-way price (manual check: Pinnacle CS2 matchups page)",
-   "p_a_pct": 24.2,
-   "p_b_pct": 75.8,
-   "pick": "",
-   "pick_pct": 75.8,
-   "margin_pp": 51.599999999999994,
-   "confidence": "heavy favourite",
-   "source_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
-   "read_utc": "2026-10-15T09:57:22Z",
-   "hltv_match_url": "",
-   "hotspawn_match_url": "",
-   "board_flags": "FL-FORMAT-UNKNOWN;FL-NO-MARKET;FL-NO-SOURCED-PICK;FL-RATING-MISSING",
-   "flags": [
-    "C-FORMAT-UNKNOWN"
-   ],
-   "market_candidates": [
-    {
-     "rung": 1,
-     "rung_label": "book \u00b7 read directly",
-     "book": "Pinnacle",
-     "p_a": 24.2,
-     "p_b": 75.8,
-     "odds_a": "3.95",
-     "odds_b": "1.260417",
-     "overround_pct": "4.66",
-     "url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
-     "manual_url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
-     "read_utc": "2026-10-15T09:57:22Z",
-     "caveat": "public guest response read by the line-analysis board; de-vigged two-way price (manual check: Pinnacle CS2 matchups page)"
-    }
-   ],
-   "own_line": {
-    "p_a": 31.0,
-    "p_b": 69.0,
-    "method": "P=1/(1+10^(-0.4630*\u0394pts/400)); slope re-fit by cs2/calibrate.py on Valve's own match results",
-    "format": "3",
-    "rating_url_a": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md?plain=1#L22",
-    "rating_url_b": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md?plain=1#L11",
-    "hltv_match_url": "",
-    "research": false,
-    "flags": "",
-    "verified": null,
-    "verification": {},
-    "unverified_sides": []
-   },
-   "research_lines": []
-  },
-  {
-   "fixture_id": "1080203",
-   "competition": "Thunderpick World Championship 2026",
-   "tier": "S",
-   "team_a": "PARIVISION",
-   "team_b": "BetBoom",
-   "start_utc": "2026-10-15T13:30:00Z",
-   "lock_utc": "2026-10-15T13:24:00Z",
-   "state": "open",
-   "series_format": "3",
-   "format_source": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
-   "basis_rung": "market-1",
-   "basis_label": "book \u00b7 read directly",
-   "basis_detail": "Pinnacle \u2014 public guest response read by the line-analysis board; de-vigged two-way price (manual check: Pinnacle CS2 matchups page)",
-   "p_a_pct": 53.4,
-   "p_b_pct": 46.6,
-   "pick": "",
-   "pick_pct": 53.4,
-   "margin_pp": 6.799999999999997,
-   "confidence": "narrow favourite",
-   "source_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
-   "read_utc": "2026-10-15T09:57:22Z",
-   "hltv_match_url": "",
-   "hotspawn_match_url": "",
-   "board_flags": "FL-FORMAT-UNKNOWN;FL-NO-MARKET;FL-NO-SOURCED-PICK;FL-RATING-MISSING;A-DIVERGE;A-DIVERGE",
-   "flags": [
-    "C-FORMAT-UNKNOWN",
-    "C-MARKET-MODEL-SPLIT"
-   ],
-   "market_candidates": [
-    {
-     "rung": 1,
-     "rung_label": "book \u00b7 read directly",
-     "book": "Pinnacle",
-     "p_a": 53.4,
-     "p_b": 46.6,
-     "odds_a": "1.787402",
-     "odds_b": "2.05",
-     "overround_pct": "4.73",
-     "url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
-     "manual_url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
-     "read_utc": "2026-10-15T09:57:22Z",
-     "caveat": "public guest response read by the line-analysis board; de-vigged two-way price (manual check: Pinnacle CS2 matchups page)"
-    }
-   ],
-   "own_line": {
-    "p_a": 37.9,
-    "p_b": 62.1,
-    "method": "P=1/(1+10^(-0.4630*\u0394pts/400)); slope re-fit by cs2/calibrate.py on Valve's own match results",
-    "format": "3",
-    "rating_url_a": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md?plain=1#L41",
-    "rating_url_b": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md?plain=1#L16",
-    "hltv_match_url": "",
-    "research": false,
-    "flags": "A-DIVERGE",
-    "verified": null,
-    "verification": {},
-    "unverified_sides": []
-   },
-   "research_lines": []
-  },
-  {
-   "fixture_id": "1080204",
-   "competition": "Thunderpick World Championship 2026",
-   "tier": "S",
-   "team_a": "Legacy",
-   "team_b": "FURIA",
-   "start_utc": "2026-10-15T16:00:00Z",
-   "lock_utc": "2026-10-15T15:54:00Z",
-   "state": "open",
-   "series_format": "3",
-   "format_source": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
-   "basis_rung": "market-1",
-   "basis_label": "book \u00b7 read directly",
-   "basis_detail": "Pinnacle \u2014 public guest response read by the line-analysis board; de-vigged two-way price (manual check: Pinnacle CS2 matchups page)",
-   "p_a_pct": 42.4,
-   "p_b_pct": 57.6,
-   "pick": "",
-   "pick_pct": 57.6,
-   "margin_pp": 15.200000000000003,
-   "confidence": "slight favourite",
-   "source_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
-   "read_utc": "2026-10-15T09:57:22Z",
-   "hltv_match_url": "",
-   "hotspawn_match_url": "",
-   "board_flags": "FL-FORMAT-FROM-LISTING;FL-MODEL-MARKET-SPLIT;A-DIVERGE;A-DIVERGE",
-   "flags": [
-    "C-FORMAT-UNKNOWN",
-    "C-MARKET-MODEL-SPLIT"
-   ],
-   "market_candidates": [
-    {
-     "rung": 1,
-     "rung_label": "book \u00b7 read directly",
-     "book": "Pinnacle",
-     "p_a": 42.4,
-     "p_b": 57.6,
-     "odds_a": "2.25",
-     "odds_b": "1.657895",
-     "overround_pct": "4.76",
-     "url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
-     "manual_url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
-     "read_utc": "2026-10-15T09:57:22Z",
-     "caveat": "public guest response read by the line-analysis board; de-vigged two-way price (manual check: Pinnacle CS2 matchups page)"
-    }
-   ],
-   "own_line": {
-    "p_a": 56.8,
-    "p_b": 43.2,
-    "method": "P=1/(1+10^(-0.4630*\u0394pts/400)); slope re-fit by cs2/calibrate.py on Valve's own match results",
-    "format": "3",
-    "rating_url_a": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md?plain=1#L7",
-    "rating_url_b": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md?plain=1#L12",
-    "hltv_match_url": "",
-    "research": false,
-    "flags": "A-DIVERGE",
-    "verified": null,
-    "verification": {},
-    "unverified_sides": []
-   },
-   "research_lines": [
-    {
-     "source": "executive/ (arena/5545dbb8) model line",
-     "p_a": 70.8,
-     "p_b": 29.2,
-     "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
-     "read_utc": "2026-10-15T08:51:05Z",
-     "note": "Pinnacle whole-match moneyline 2.24 / 1.66 (native american), overround 4.80%, proportional de-vig. Series length BO3 as stated by the pricing listing (Pinnacle); Hotspawn states none. Rating inputs: Legacy 1931 vs FURIA 1829 official points; project 400-point logistic with independent-map series transform, BO3: 70.8%. This is an uncalibrated project estimate, not a Valve match forecast. Our own line for the same fixture, from the official ranking only: 49.0% for Legacy (6.4 pp from the price this row is based on)."
-    }
-   ]
-  },
-  {
-   "fixture_id": "1080279",
-   "competition": "Elisa BreakOut Series #2",
-   "tier": "c",
-   "team_a": "WROTBERRY",
-   "team_b": "EAC",
-   "start_utc": "2026-10-15T08:00:00Z",
-   "lock_utc": "2026-10-15T07:54:00Z",
-   "state": "open",
-   "series_format": "BO1",
-   "format_source": "bo3.gg, Polymarket",
-   "basis_rung": "market-2",
-   "basis_label": "book \u00b7 relayed via bo3.gg",
-   "basis_detail": "Thunderpick \u2014 quote relayed by bo3.gg's public API, not read from the bookmaker's own site (MF-09); the bookmaker match URL is linked so the price can be checked by hand",
-   "p_a_pct": 51.35,
-   "p_b_pct": 48.65,
-   "pick": "WROTBERRY",
-   "pick_pct": 51.35,
-   "margin_pp": 2.700000000000003,
-   "confidence": "narrow favourite",
-   "source_url": "https://thunderpick.io/match/2807510",
-   "read_utc": "2026-10-15T06:23:25Z",
-   "hltv_match_url": "https://www.hltv.org/matches/2399418/wbt-vs-eac-elisa-breakout-series-2",
-   "hotspawn_match_url": "https://www.hotspawn.com/matches/wrotberry-vs-eac-elisa-breakout-series-2-1080279",
-   "board_flags": "FL-FORMAT-FROM-LISTING;FL-IDENTITY-UNVERIFIED;FL-LOCKED;FL-PREDICTION-MARKET-BASIS;FL-RANK-MISSING;FL-RATING-MISSING;E-02-AGGREGATOR-LINE;E-02-DIVERGENCE;FL-ALIAS-RESOLVED;FL-ALIAS-WBT;FL-NO-PERMALINK",
-   "flags": [
-    "C-ALIAS-RATING-ROW",
-    "C-NAME-VARIANT",
-    "C-RELAYED-BOOK-PRICE"
-   ],
-   "market_candidates": [
-    {
-     "rung": 2,
-     "rung_label": "book \u00b7 relayed via bo3.gg",
-     "book": "Thunderpick",
-     "p_a": 51.35,
-     "p_b": 48.65,
-     "odds_a": "",
-     "odds_b": "",
-     "overround_pct": "",
-     "url": "https://thunderpick.io/match/2807510",
-     "read_utc": "2026-10-15T06:23:25Z",
-     "caveat": "quote relayed by bo3.gg's public API, not read from the bookmaker's own site (MF-09); the bookmaker match URL is linked so the price can be checked by hand"
-    },
-    {
-     "rung": 3,
-     "rung_label": "book \u00b7 relayed via EGamersWorld",
-     "book": "bc.game (EGamersWorld)",
-     "p_a": 45.7,
-     "p_b": 54.3,
-     "odds_a": "2.01",
-     "odds_b": "1.69",
-     "overround_pct": "8.92",
-     "url": "https://egamersworld.com/counterstrike/match/4yn491uUVl/wbt-vs-ea-copenhagen-hSC7a2mtP",
-     "read_utc": "2026-10-14T02:48:00Z",
-     "caveat": "aggregator-reported bookmaker odds, not independently verified against the book (PF-01 class)"
-    },
-    {
-     "rung": 4,
-     "rung_label": "prediction market \u00b7 Polymarket",
-     "book": "Polymarket",
-     "p_a": 52.0,
-     "p_b": 48.0,
-     "odds_a": "",
-     "odds_b": "",
-     "overround_pct": "",
-     "url": "https://polymarket.com/event/cs2-wbt-eac-2026-10-15",
-     "read_utc": "2026-10-15T06:23:25Z",
-     "caveat": "prediction market (traded prices, no bookmaker margin, MF-10); thin books move quickly"
-    }
-   ],
-   "own_line": {
-    "p_a": 60.7,
-    "p_b": 39.3,
-    "method": "Own VRS model, calibrated k=0.4568, BO1 transform",
-    "format": "BO1",
-    "rating_url_a": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L65",
-    "rating_url_b": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L108",
-    "hltv_match_url": "https://www.hltv.org/matches/2399418/wbt-vs-eac-elisa-breakout-series-2",
-    "research": false,
-    "flags": "FL-ALIAS-WBT;FL-NO-PERMALINK",
-    "verified": true,
-    "verification": {
-     "a": {
-      "ok": true,
-      "alias_of": "WBT",
-      "evidence_url": "https://www.hltv.org/matches/2399418/wbt-vs-eac-elisa-breakout-series-2",
-      "detail": "line 65: WBT #60 1201 points"
-     },
-     "b": {
-      "ok": true,
-      "alias_of": "",
-      "evidence_url": "",
-      "detail": "line 108: EAC #103 1035 points"
-     }
-    },
-    "unverified_sides": []
-   },
-   "research_lines": [
-    {
-     "source": "every/ (arena/75fd29ee) researched rating line",
-     "p_a": 61.11,
-     "p_b": 38.89,
-     "url": "https://egamersworld.com/counterstrike/match/4yn491uUVl/wbt-vs-ea-copenhagen-hSC7a2mtP",
-     "read_utc": "2026-10-14T01:49:00Z",
-     "note": "market favourite \u2014 bc.game (EGamersWorld) odds reported by aggregator (EGamersWorld), captured 2026-10-14T01:49:00Z; flagged aggregator-reported"
-    }
-   ]
-  },
-  {
-   "fixture_id": "1079440",
+   "fixture_id": "1079586",
    "competition": "Stake Pulse Beat III",
    "tier": "b",
-   "team_a": "MIBR",
-   "team_b": "BC.Game",
-   "start_utc": "2026-10-15T10:00:00Z",
-   "lock_utc": "2026-10-15T09:54:00Z",
+   "team_a": "Ninjas in Pyjamas",
+   "team_b": "Team Liquid",
+   "start_utc": "2026-10-16T08:00:00Z",
+   "lock_utc": "2026-10-16T07:54:00Z",
    "state": "open",
    "series_format": "BO3",
    "format_source": "bo3.gg, Polymarket",
-   "basis_rung": "market-1",
-   "basis_label": "book \u00b7 read directly",
-   "basis_detail": "Pinnacle \u2014 public guest response read by the line-analysis board; de-vigged two-way price (manual check: Pinnacle CS2 matchups page)",
-   "p_a_pct": 50.6,
-   "p_b_pct": 49.4,
-   "pick": "MIBR",
-   "pick_pct": 50.6,
-   "margin_pp": 1.2000000000000028,
-   "confidence": "coin-flip",
-   "source_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
-   "read_utc": "2026-10-15T09:57:22Z",
-   "hltv_match_url": "https://www.hltv.org/matches/2399136/mibr-vs-bcgame-stake-pulse-beat-iii",
-   "hotspawn_match_url": "https://www.hotspawn.com/matches/mibr-vs-bc-game-stake-pulse-beat-iii-1079440",
-   "board_flags": "FL-FORMAT-FROM-LISTING;FL-MODEL-MARKET-SPLIT;A-STALE",
-   "flags": [
-    "C-THIN-MARKET"
-   ],
-   "market_candidates": [
-    {
-     "rung": 1,
-     "rung_label": "book \u00b7 read directly",
-     "book": "Pinnacle",
-     "p_a": 50.6,
-     "p_b": 49.4,
-     "odds_a": "1.869565",
-     "odds_b": "1.917431",
-     "overround_pct": "5.64",
-     "url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
-     "manual_url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
-     "read_utc": "2026-10-15T09:57:22Z",
-     "caveat": "public guest response read by the line-analysis board; de-vigged two-way price (manual check: Pinnacle CS2 matchups page)"
-    },
-    {
-     "rung": 2,
-     "rung_label": "book \u00b7 relayed via bo3.gg",
-     "book": "Thunderpick",
-     "p_a": 53.76,
-     "p_b": 46.24,
-     "odds_a": "",
-     "odds_b": "",
-     "overround_pct": "",
-     "url": "https://thunderpick.io/match/2767837",
-     "read_utc": "2026-10-15T06:23:25Z",
-     "caveat": "quote relayed by bo3.gg's public API, not read from the bookmaker's own site (MF-09); the bookmaker match URL is linked so the price can be checked by hand"
-    },
-    {
-     "rung": 3,
-     "rung_label": "book \u00b7 relayed via EGamersWorld",
-     "book": "bc.game (EGamersWorld)",
-     "p_a": 56.3,
-     "p_b": 43.7,
-     "odds_a": "1.62",
-     "odds_b": "2.09",
-     "overround_pct": "9.58",
-     "url": "https://egamersworld.com/counterstrike/match/EJZmJpBjeNx/mibr-vs-bcgame-esports-X8nMpUjAX",
-     "read_utc": "2026-10-14T02:48:00Z",
-     "caveat": "aggregator-reported bookmaker odds, not independently verified against the book (PF-01 class)"
-    },
-    {
-     "rung": 4,
-     "rung_label": "prediction market \u00b7 Polymarket",
-     "book": "Polymarket",
-     "p_a": 56.5,
-     "p_b": 43.5,
-     "odds_a": "",
-     "odds_b": "",
-     "overround_pct": "",
-     "url": "https://polymarket.com/event/cs2-mibr-bcg-2026-10-15",
-     "read_utc": "2026-10-15T06:23:25Z",
-     "caveat": "prediction market (traded prices, no bookmaker margin, MF-10); thin books move quickly"
-    }
-   ],
-   "own_line": {
-    "p_a": 74.3,
-    "p_b": 25.7,
-    "method": "Own VRS model, calibrated k=0.4568, BO3 transform",
-    "format": "BO3",
-    "rating_url_a": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L17",
-    "rating_url_b": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L55",
-    "hltv_match_url": "https://www.hltv.org/matches/2399136/mibr-vs-bcgame-stake-pulse-beat-iii",
-    "research": false,
-    "flags": "",
-    "verified": true,
-    "verification": {
-     "a": {
-      "ok": true,
-      "alias_of": "",
-      "evidence_url": "",
-      "detail": "line 17: MIBR #12 1585 points"
-     },
-     "b": {
-      "ok": true,
-      "alias_of": "",
-      "evidence_url": "",
-      "detail": "line 55: BC.Game #50 1318 points"
-     }
-    },
-    "unverified_sides": []
-   },
-   "research_lines": [
-    {
-     "source": "every/ (arena/75fd29ee) researched rating line",
-     "p_a": 85.34,
-     "p_b": 14.66,
-     "url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
-     "read_utc": "2026-10-14T02:21:41Z",
-     "note": "market favourite \u2014 direct Pinnacle line (de-vig), captured 2026-10-14T02:21:41Z"
-    },
-    {
-     "source": "executive/ (arena/5545dbb8) model line",
-     "p_a": 91.7,
-     "p_b": 8.3,
-     "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
-     "read_utc": "2026-10-15T08:51:05Z",
-     "note": "Pinnacle whole-match moneyline 1.72 / 2.09 (native american), overround 5.83%, proportional de-vig. Series length BO3 as stated by the pricing listing (Pinnacle); Hotspawn states none. Rating inputs: MIBR 1585 vs BC.Game 1318 official points; project 400-point logistic with independent-map series transform, BO3: 91.7%. This is an uncalibrated project estimate, not a Valve match forecast. Our own line for the same fixture, from the official ranking only: 68.3% for MIBR (13.5 pp from the price this row is based on)."
-    }
-   ]
-  },
-  {
-   "fixture_id": "1079442",
-   "competition": "Stake Pulse Beat III",
-   "tier": "b",
-   "team_a": "Heroic",
-   "team_b": "Envy",
-   "start_utc": "2026-10-15T10:00:00Z",
-   "lock_utc": "2026-10-15T09:54:00Z",
-   "state": "open",
-   "series_format": "BO3",
-   "format_source": "bo3.gg, Polymarket",
-   "basis_rung": "market-1",
-   "basis_label": "book \u00b7 read directly",
-   "basis_detail": "Pinnacle \u2014 public guest response read by the line-analysis board; de-vigged two-way price (manual check: Pinnacle CS2 matchups page)",
-   "p_a_pct": 65.3,
-   "p_b_pct": 34.7,
-   "pick": "Heroic",
-   "pick_pct": 65.3,
-   "margin_pp": 30.599999999999994,
-   "confidence": "strong favourite",
-   "source_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
-   "read_utc": "2026-10-15T09:57:22Z",
-   "hltv_match_url": "https://www.hltv.org/matches/2399137/heroic-vs-envy-stake-pulse-beat-iii",
-   "hotspawn_match_url": "https://www.hotspawn.com/matches/heroic-vs-envy-stake-pulse-beat-iii-1079442",
-   "board_flags": "FL-FORMAT-FROM-LISTING;FL-IDENTITY-UNVERIFIED;FL-OWN-LINE-MARKET-SPLIT;FL-RATING-MISSING;A-NO-RATING A-STALE;FL-ALIAS-RESOLVED",
-   "flags": [
-    "C-ALIAS-RATING-ROW",
-    "C-NAME-VARIANT"
-   ],
-   "market_candidates": [
-    {
-     "rung": 1,
-     "rung_label": "book \u00b7 read directly",
-     "book": "Pinnacle",
-     "p_a": 65.3,
-     "p_b": 34.7,
-     "odds_a": "1.440529",
-     "odds_b": "2.71",
-     "overround_pct": "6.32",
-     "url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
-     "manual_url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
-     "read_utc": "2026-10-15T09:57:22Z",
-     "caveat": "public guest response read by the line-analysis board; de-vigged two-way price (manual check: Pinnacle CS2 matchups page)"
-    },
-    {
-     "rung": 2,
-     "rung_label": "book \u00b7 relayed via bo3.gg",
-     "book": "Thunderpick",
-     "p_a": 65.53,
-     "p_b": 34.47,
-     "odds_a": "",
-     "odds_b": "",
-     "overround_pct": "",
-     "url": "https://thunderpick.io/match/2767856",
-     "read_utc": "2026-10-15T06:23:25Z",
-     "caveat": "quote relayed by bo3.gg's public API, not read from the bookmaker's own site (MF-09); the bookmaker match URL is linked so the price can be checked by hand"
-    },
-    {
-     "rung": 3,
-     "rung_label": "book \u00b7 relayed via EGamersWorld",
-     "book": "bc.game (EGamersWorld)",
-     "p_a": 63.0,
-     "p_b": 37.0,
-     "odds_a": "1.45",
-     "odds_b": "2.47",
-     "overround_pct": "9.45",
-     "url": "https://egamersworld.com/counterstrike/match/EJZmJpBjeNx/heroic-vs-team-envy-NcCqzpPZdC",
-     "read_utc": "2026-10-14T02:48:00Z",
-     "caveat": "aggregator-reported bookmaker odds, not independently verified against the book (PF-01 class)"
-    },
-    {
-     "rung": 4,
-     "rung_label": "prediction market \u00b7 Polymarket",
-     "book": "Polymarket",
-     "p_a": 63.5,
-     "p_b": 36.5,
-     "odds_a": "",
-     "odds_b": "",
-     "overround_pct": "",
-     "url": "https://polymarket.com/event/cs2-hero-envy-2026-10-15",
-     "read_utc": "2026-10-15T06:23:25Z",
-     "caveat": "prediction market (traded prices, no bookmaker margin, MF-10); thin books move quickly"
-    }
-   ],
-   "own_line": {
-    "p_a": 54.9,
-    "p_b": 45.1,
-    "method": "Own VRS model, calibrated k=0.4568, BO3 transform",
-    "format": "BO3",
-    "rating_url_a": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L20",
-    "rating_url_b": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L26",
-    "hltv_match_url": "https://www.hltv.org/matches/2399137/heroic-vs-envy-stake-pulse-beat-iii",
-    "research": false,
-    "flags": "",
-    "verified": true,
-    "verification": {
-     "a": {
-      "ok": true,
-      "alias_of": "",
-      "evidence_url": "",
-      "detail": "line 20: HEROIC #15 1550 points"
-     },
-     "b": {
-      "ok": true,
-      "alias_of": "3DMAX",
-      "evidence_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/main/live/2026/details/2026_10_05/0021--3dmax--graviti-kursy-lucky-maka-misutaaa.md",
-      "detail": "line 26: 3DMAX #21 1500 points"
-     }
-    },
-    "unverified_sides": []
-   },
-   "research_lines": [
-    {
-     "source": "every/ (arena/75fd29ee) researched rating line",
-     "p_a": 51.47,
-     "p_b": 48.53,
-     "url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
-     "read_utc": "2026-10-14T02:21:41Z",
-     "note": "market favourite \u2014 direct Pinnacle line (de-vig), captured 2026-10-14T02:21:41Z"
-    }
-   ]
-  },
-  {
-   "fixture_id": "1080280",
-   "competition": "Elisa BreakOut Series #2",
-   "tier": "c",
-   "team_a": "ENCE",
-   "team_b": "BOJONG",
-   "start_utc": "2026-10-15T10:00:00Z",
-   "lock_utc": "2026-10-15T09:54:00Z",
-   "state": "open",
-   "series_format": "BO1",
-   "format_source": "bo3.gg, Polymarket",
-   "basis_rung": "market-1",
-   "basis_label": "book \u00b7 read directly",
-   "basis_detail": "Pinnacle \u2014 public guest response read by the line-analysis board; de-vigged two-way price (manual check: Pinnacle CS2 matchups page)",
-   "p_a_pct": 74.6,
-   "p_b_pct": 25.4,
-   "pick": "ENCE",
-   "pick_pct": 74.6,
-   "margin_pp": 49.199999999999996,
-   "confidence": "heavy favourite",
-   "source_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
-   "read_utc": "2026-10-15T09:57:22Z",
-   "hltv_match_url": "https://www.hltv.org/matches/2399419/ence-vs-bojong-elisa-breakout-series-2",
-   "hotspawn_match_url": "https://www.hotspawn.com/matches/ence-vs-bojong-elisa-breakout-series-2-1080280",
-   "board_flags": "FL-FORMAT-FROM-LISTING;FL-MODEL-MARKET-SPLIT;A-STALE;E-02-AGGREGATOR-LINE;FL-NO-PERMALINK",
-   "flags": [],
-   "market_candidates": [
-    {
-     "rung": 1,
-     "rung_label": "book \u00b7 read directly",
-     "book": "Pinnacle",
-     "p_a": 74.6,
-     "p_b": 25.4,
-     "odds_a": "1.251256",
-     "odds_b": "3.67",
-     "overround_pct": "7.17",
-     "url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
-     "manual_url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
-     "read_utc": "2026-10-15T09:57:22Z",
-     "caveat": "public guest response read by the line-analysis board; de-vigged two-way price (manual check: Pinnacle CS2 matchups page)"
-    },
-    {
-     "rung": 2,
-     "rung_label": "book \u00b7 relayed via bo3.gg",
-     "book": "Thunderpick",
-     "p_a": 75.7,
-     "p_b": 24.3,
-     "odds_a": "",
-     "odds_b": "",
-     "overround_pct": "",
-     "url": "https://thunderpick.io/match/2807501",
-     "read_utc": "2026-10-15T06:23:25Z",
-     "caveat": "quote relayed by bo3.gg's public API, not read from the bookmaker's own site (MF-09); the bookmaker match URL is linked so the price can be checked by hand"
-    },
-    {
-     "rung": 3,
-     "rung_label": "book \u00b7 relayed via EGamersWorld",
-     "book": "bc.game (EGamersWorld)",
-     "p_a": 70.9,
-     "p_b": 29.1,
-     "odds_a": "1.30",
-     "odds_b": "3.17",
-     "overround_pct": "8.47",
-     "url": "https://egamersworld.com/counterstrike/match/4yn491uUVl/ence-vs-bojong-qV78OzvXFg",
-     "read_utc": "2026-10-14T02:48:00Z",
-     "caveat": "aggregator-reported bookmaker odds, not independently verified against the book (PF-01 class)"
-    },
-    {
-     "rung": 4,
-     "rung_label": "prediction market \u00b7 Polymarket",
-     "book": "Polymarket",
-     "p_a": 74.5,
-     "p_b": 25.5,
-     "odds_a": "",
-     "odds_b": "",
-     "overround_pct": "",
-     "url": "https://polymarket.com/event/cs2-ence-bojong-2026-10-15",
-     "read_utc": "2026-10-15T06:23:25Z",
-     "caveat": "prediction market (traded prices, no bookmaker margin, MF-10); thin books move quickly"
-    }
-   ],
-   "own_line": {
-    "p_a": 81.4,
-    "p_b": 18.6,
-    "method": "Own VRS model, calibrated k=0.4568, BO1 transform",
-    "format": "BO1",
-    "rating_url_a": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L110",
-    "rating_url_b": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L368",
-    "hltv_match_url": "https://www.hltv.org/matches/2399419/ence-vs-bojong-elisa-breakout-series-2",
-    "research": false,
-    "flags": "FL-NO-PERMALINK",
-    "verified": true,
-    "verification": {
-     "a": {
-      "ok": true,
-      "alias_of": "",
-      "evidence_url": "",
-      "detail": "line 110: ENCE #105 1025 points"
-     },
-     "b": {
-      "ok": true,
-      "alias_of": "",
-      "evidence_url": "",
-      "detail": "line 368: BOJONG #363 463 points"
-     }
-    },
-    "unverified_sides": []
-   },
-   "research_lines": [
-    {
-     "source": "every/ (arena/75fd29ee) researched rating line",
-     "p_a": 73.47,
-     "p_b": 26.53,
-     "url": "https://egamersworld.com/counterstrike/match/4yn491uUVl/ence-vs-bojong-qV78OzvXFg",
-     "read_utc": "2026-10-14T01:49:00Z",
-     "note": "market favourite \u2014 bc.game (EGamersWorld) odds reported by aggregator (EGamersWorld), captured 2026-10-14T01:49:00Z; flagged aggregator-reported"
-    },
-    {
-     "source": "executive/ (arena/5545dbb8) model line",
-     "p_a": 96.2,
-     "p_b": 3.8,
-     "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
-     "read_utc": "2026-10-15T08:51:05Z",
-     "note": "Pinnacle whole-match moneyline 1.30 / 3.31 (native american), overround 6.90%, proportional de-vig. Series length BO1 as stated by the pricing listing (Pinnacle); Hotspawn states none. Rating inputs: ENCE 1025 vs BOJONG 463 official points; project 400-point logistic with independent-map series transform, BO1: 96.2%. This is an uncalibrated project estimate, not a Valve match forecast. Our own line for the same fixture, from the official ranking only: 71.7% for ENCE (0.0 pp from the price this row is based on)."
-    }
-   ]
-  },
-  {
-   "fixture_id": "1080281",
-   "competition": "Elisa BreakOut Series #2",
-   "tier": "c",
-   "team_a": "WROTBERRY",
-   "team_b": "ENCE",
-   "start_utc": "2026-10-15T12:00:00Z",
-   "lock_utc": "2026-10-15T11:54:00Z",
-   "state": "open",
-   "series_format": "BO1",
-   "format_source": "bo3.gg, Polymarket",
-   "basis_rung": "market-1",
-   "basis_label": "book \u00b7 read directly",
-   "basis_detail": "Pinnacle \u2014 public guest response read by the line-analysis board; de-vigged two-way price (manual check: Pinnacle CS2 matchups page)",
-   "p_a_pct": 60.5,
-   "p_b_pct": 39.5,
-   "pick": "WROTBERRY",
-   "pick_pct": 60.5,
-   "margin_pp": 21.0,
-   "confidence": "strong favourite",
-   "source_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
-   "read_utc": "2026-10-15T09:57:22Z",
-   "hltv_match_url": "https://www.hltv.org/matches/2399420/wbt-vs-ence-elisa-breakout-series-2",
-   "hotspawn_match_url": "https://www.hotspawn.com/matches/wrotberry-vs-ence-elisa-breakout-series-2-1080281",
-   "board_flags": "FL-FORMAT-UNKNOWN;FL-IDENTITY-UNVERIFIED;FL-NO-MARKET;FL-NO-SOURCED-PICK;FL-RANK-MISSING;FL-RATING-MISSING;A-ALIAS A-NO-FORMAT;E-02-AGGREGATOR-LINE;FL-ALIAS-RESOLVED;FL-ALIAS-WBT;FL-NO-PERMALINK",
-   "flags": [
-    "C-ALIAS-RATING-ROW",
-    "C-NAME-VARIANT"
-   ],
-   "market_candidates": [
-    {
-     "rung": 1,
-     "rung_label": "book \u00b7 read directly",
-     "book": "Pinnacle",
-     "p_a": 60.5,
-     "p_b": 39.5,
-     "odds_a": "1.558659",
-     "odds_b": "2.39",
-     "overround_pct": "6.0",
-     "url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
-     "manual_url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
-     "read_utc": "2026-10-15T09:57:22Z",
-     "caveat": "public guest response read by the line-analysis board; de-vigged two-way price (manual check: Pinnacle CS2 matchups page)"
-    },
-    {
-     "rung": 2,
-     "rung_label": "book \u00b7 relayed via bo3.gg",
-     "book": "Thunderpick",
-     "p_a": 61.54,
-     "p_b": 38.46,
-     "odds_a": "",
-     "odds_b": "",
-     "overround_pct": "",
-     "url": "https://thunderpick.io/match/2807512",
-     "read_utc": "2026-10-15T06:23:25Z",
-     "caveat": "quote relayed by bo3.gg's public API, not read from the bookmaker's own site (MF-09); the bookmaker match URL is linked so the price can be checked by hand"
-    },
-    {
-     "rung": 3,
-     "rung_label": "book \u00b7 relayed via EGamersWorld",
-     "book": "bc.game (EGamersWorld)",
-     "p_a": 56.5,
-     "p_b": 43.5,
-     "odds_a": "1.62",
-     "odds_b": "2.107",
-     "overround_pct": "9.19",
-     "url": "https://egamersworld.com/counterstrike/match/4yn491uUVl/wbt-vs-ence-GQ0xieRgQS",
-     "read_utc": "2026-10-14T02:48:00Z",
-     "caveat": "aggregator-reported bookmaker odds, not independently verified against the book (PF-01 class)"
-    },
-    {
-     "rung": 4,
-     "rung_label": "prediction market \u00b7 Polymarket",
-     "book": "Polymarket",
-     "p_a": 57.5,
-     "p_b": 42.5,
-     "odds_a": "",
-     "odds_b": "",
-     "overround_pct": "",
-     "url": "https://polymarket.com/event/cs2-wbt-ence-2026-10-15",
-     "read_utc": "2026-10-15T06:23:25Z",
-     "caveat": "prediction market (traded prices, no bookmaker margin, MF-10); thin books move quickly"
-    }
-   ],
-   "own_line": {
-    "p_a": 61.4,
-    "p_b": 38.6,
-    "method": "Own VRS model, calibrated k=0.4568, BO1 transform",
-    "format": "BO1",
-    "rating_url_a": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L65",
-    "rating_url_b": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L110",
-    "hltv_match_url": "https://www.hltv.org/matches/2399420/wbt-vs-ence-elisa-breakout-series-2",
-    "research": false,
-    "flags": "FL-ALIAS-WBT;FL-NO-PERMALINK",
-    "verified": true,
-    "verification": {
-     "a": {
-      "ok": true,
-      "alias_of": "WBT",
-      "evidence_url": "https://www.hltv.org/matches/2399418/wbt-vs-eac-elisa-breakout-series-2",
-      "detail": "line 65: WBT #60 1201 points"
-     },
-     "b": {
-      "ok": true,
-      "alias_of": "",
-      "evidence_url": "",
-      "detail": "line 110: ENCE #105 1025 points"
-     }
-    },
-    "unverified_sides": []
-   },
-   "research_lines": [
-    {
-     "source": "every/ (arena/75fd29ee) researched rating line",
-     "p_a": 61.68,
-     "p_b": 38.32,
-     "url": "https://egamersworld.com/counterstrike/match/4yn491uUVl/wbt-vs-ence-GQ0xieRgQS",
-     "read_utc": "2026-10-14T01:49:00Z",
-     "note": "market favourite \u2014 bc.game (EGamersWorld) odds reported by aggregator (EGamersWorld), captured 2026-10-14T01:49:00Z; flagged aggregator-reported"
-    }
-   ]
-  },
-  {
-   "fixture_id": "1080282",
-   "competition": "Elisa BreakOut Series #2",
-   "tier": "c",
-   "team_a": "EAC",
-   "team_b": "BOJONG",
-   "start_utc": "2026-10-15T14:00:00Z",
-   "lock_utc": "2026-10-15T13:54:00Z",
-   "state": "open",
-   "series_format": "BO1",
-   "format_source": "bo3.gg, Polymarket",
-   "basis_rung": "market-1",
-   "basis_label": "book \u00b7 read directly",
-   "basis_detail": "Pinnacle \u2014 public guest response read by the line-analysis board; de-vigged two-way price (manual check: Pinnacle CS2 matchups page)",
-   "p_a_pct": 76.6,
-   "p_b_pct": 23.4,
-   "pick": "EAC",
-   "pick_pct": 76.6,
-   "margin_pp": 53.199999999999996,
-   "confidence": "heavy favourite",
-   "source_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
-   "read_utc": "2026-10-15T09:57:22Z",
-   "hltv_match_url": "https://www.hltv.org/matches/2399421/eac-vs-bojong-elisa-breakout-series-2",
-   "hotspawn_match_url": "https://www.hotspawn.com/matches/eac-vs-bojong-elisa-breakout-series-2-1080282",
-   "board_flags": "FL-FORMAT-FROM-LISTING;FL-MODEL-MARKET-SPLIT;E-02-AGGREGATOR-LINE;FL-NO-PERMALINK",
-   "flags": [],
-   "market_candidates": [
-    {
-     "rung": 1,
-     "rung_label": "book \u00b7 read directly",
-     "book": "Pinnacle",
-     "p_a": 76.6,
-     "p_b": 23.4,
-     "odds_a": "1.215983",
-     "odds_b": "3.98",
-     "overround_pct": "7.36",
-     "url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
-     "manual_url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
-     "read_utc": "2026-10-15T09:57:22Z",
-     "caveat": "public guest response read by the line-analysis board; de-vigged two-way price (manual check: Pinnacle CS2 matchups page)"
-    },
-    {
-     "rung": 2,
-     "rung_label": "book \u00b7 relayed via bo3.gg",
-     "book": "Thunderpick",
-     "p_a": 76.92,
-     "p_b": 23.08,
-     "odds_a": "",
-     "odds_b": "",
-     "overround_pct": "",
-     "url": "https://thunderpick.io/match/2807496",
-     "read_utc": "2026-10-15T06:23:25Z",
-     "caveat": "quote relayed by bo3.gg's public API, not read from the bookmaker's own site (MF-09); the bookmaker match URL is linked so the price can be checked by hand"
-    },
-    {
-     "rung": 3,
-     "rung_label": "book \u00b7 relayed via EGamersWorld",
-     "book": "bc.game (EGamersWorld)",
-     "p_a": 77.2,
-     "p_b": 22.8,
-     "odds_a": "1.19",
-     "odds_b": "4.02",
-     "overround_pct": "8.91",
-     "url": "https://egamersworld.com/counterstrike/match/4yn491uUVl/ea-copenhagen-vs-bojong-vBsvfnHU5",
-     "read_utc": "2026-10-14T02:48:00Z",
-     "caveat": "aggregator-reported bookmaker odds, not independently verified against the book (PF-01 class)"
-    },
-    {
-     "rung": 4,
-     "rung_label": "prediction market \u00b7 Polymarket",
-     "book": "Polymarket",
-     "p_a": 79.5,
-     "p_b": 20.5,
-     "odds_a": "",
-     "odds_b": "",
-     "overround_pct": "",
-     "url": "https://polymarket.com/event/cs2-eac-bojong-2026-10-15",
-     "read_utc": "2026-10-15T06:23:25Z",
-     "caveat": "prediction market (traded prices, no bookmaker margin, MF-10); thin books move quickly"
-    }
-   ],
-   "own_line": {
-    "p_a": 81.8,
-    "p_b": 18.2,
-    "method": "Own VRS model, calibrated k=0.4568, BO1 transform",
-    "format": "BO1",
-    "rating_url_a": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L108",
-    "rating_url_b": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L368",
-    "hltv_match_url": "https://www.hltv.org/matches/2399421/eac-vs-bojong-elisa-breakout-series-2",
-    "research": false,
-    "flags": "FL-NO-PERMALINK",
-    "verified": true,
-    "verification": {
-     "a": {
-      "ok": true,
-      "alias_of": "",
-      "evidence_url": "",
-      "detail": "line 108: EAC #103 1035 points"
-     },
-     "b": {
-      "ok": true,
-      "alias_of": "",
-      "evidence_url": "",
-      "detail": "line 368: BOJONG #363 463 points"
-     }
-    },
-    "unverified_sides": []
-   },
-   "research_lines": [
-    {
-     "source": "every/ (arena/75fd29ee) researched rating line",
-     "p_a": 73.57,
-     "p_b": 26.43,
-     "url": "https://egamersworld.com/counterstrike/match/4yn491uUVl/ea-copenhagen-vs-bojong-vBsvfnHU5",
-     "read_utc": "2026-10-14T01:49:00Z",
-     "note": "market favourite \u2014 bc.game (EGamersWorld) odds reported by aggregator (EGamersWorld), captured 2026-10-14T01:49:00Z; flagged aggregator-reported"
-    },
-    {
-     "source": "executive/ (arena/5545dbb8) model line",
-     "p_a": 96.4,
-     "p_b": 3.6,
-     "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
-     "read_utc": "2026-10-15T08:51:05Z",
-     "note": "Pinnacle whole-match moneyline 1.22 / 3.98 (native american), overround 7.36%, proportional de-vig. Series length BO1 as stated by the pricing listing (Pinnacle); Hotspawn states none. Rating inputs: EAC 1035 vs BOJONG 463 official points; project 400-point logistic with independent-map series transform, BO1: 96.4%. This is an uncalibrated project estimate, not a Valve match forecast. Our own line for the same fixture, from the official ranking only: 72.4% for EAC (4.2 pp from the price this row is based on)."
-    }
-   ]
-  },
-  {
-   "fixture_id": "1080283",
-   "competition": "Elisa BreakOut Series #2",
-   "tier": "c",
-   "team_a": "WROTBERRY",
-   "team_b": "BOJONG",
-   "start_utc": "2026-10-15T16:00:00Z",
-   "lock_utc": "2026-10-15T15:54:00Z",
-   "state": "open",
-   "series_format": "BO1",
-   "format_source": "bo3.gg, Polymarket",
-   "basis_rung": "market-1",
-   "basis_label": "book \u00b7 read directly",
-   "basis_detail": "Pinnacle \u2014 public guest response read by the line-analysis board; de-vigged two-way price (manual check: Pinnacle CS2 matchups page)",
-   "p_a_pct": 78.4,
-   "p_b_pct": 21.6,
-   "pick": "WROTBERRY",
-   "pick_pct": 78.4,
-   "margin_pp": 56.800000000000004,
-   "confidence": "heavy favourite",
-   "source_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
-   "read_utc": "2026-10-15T09:57:22Z",
-   "hltv_match_url": "https://www.hltv.org/matches/2399422/wbt-vs-bojong-elisa-breakout-series-2",
-   "hotspawn_match_url": "https://www.hotspawn.com/matches/wrotberry-vs-bojong-elisa-breakout-series-2-1080283",
-   "board_flags": "FL-FORMAT-UNKNOWN;FL-IDENTITY-UNVERIFIED;FL-NO-MARKET;FL-NO-SOURCED-PICK;FL-RANK-MISSING;FL-RATING-MISSING;A-ALIAS A-NO-FORMAT;E-02-AGGREGATOR-LINE;FL-ALIAS-RESOLVED;FL-ALIAS-WBT;FL-NO-PERMALINK",
-   "flags": [
-    "C-ALIAS-RATING-ROW",
-    "C-NAME-VARIANT"
-   ],
-   "market_candidates": [
-    {
-     "rung": 1,
-     "rung_label": "book \u00b7 read directly",
-     "book": "Pinnacle",
-     "p_a": 78.4,
-     "p_b": 21.6,
-     "odds_a": "1.185874",
-     "odds_b": "4.31",
-     "overround_pct": "7.53",
-     "url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
-     "manual_url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
-     "read_utc": "2026-10-15T09:57:22Z",
-     "caveat": "public guest response read by the line-analysis board; de-vigged two-way price (manual check: Pinnacle CS2 matchups page)"
-    },
-    {
-     "rung": 2,
-     "rung_label": "book \u00b7 relayed via bo3.gg",
-     "book": "Thunderpick",
-     "p_a": 76.92,
-     "p_b": 23.08,
-     "odds_a": "",
-     "odds_b": "",
-     "overround_pct": "",
-     "url": "https://thunderpick.io/match/2807511",
-     "read_utc": "2026-10-15T06:23:25Z",
-     "caveat": "quote relayed by bo3.gg's public API, not read from the bookmaker's own site (MF-09); the bookmaker match URL is linked so the price can be checked by hand"
-    },
-    {
-     "rung": 3,
-     "rung_label": "book \u00b7 relayed via EGamersWorld",
-     "book": "bc.game (EGamersWorld)",
-     "p_a": 76.7,
-     "p_b": 23.3,
-     "odds_a": "1.21",
-     "odds_b": "3.99",
-     "overround_pct": "7.71",
-     "url": "https://egamersworld.com/counterstrike/match/4yn491uUVl/wbt-vs-bojong-r7kNL0-LX6",
-     "read_utc": "2026-10-14T02:48:00Z",
-     "caveat": "aggregator-reported bookmaker odds, not independently verified against the book (PF-01 class)"
-    },
-    {
-     "rung": 4,
-     "rung_label": "prediction market \u00b7 Polymarket",
-     "book": "Polymarket",
-     "p_a": 81.5,
-     "p_b": 18.5,
-     "odds_a": "",
-     "odds_b": "",
-     "overround_pct": "",
-     "url": "https://polymarket.com/event/cs2-wbt-bojong-2026-10-15",
-     "read_utc": "2026-10-15T06:23:25Z",
-     "caveat": "prediction market (traded prices, no bookmaker margin, MF-10); thin books move quickly"
-    }
-   ],
-   "own_line": {
-    "p_a": 87.4,
-    "p_b": 12.6,
-    "method": "Own VRS model, calibrated k=0.4568, BO1 transform",
-    "format": "BO1",
-    "rating_url_a": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L65",
-    "rating_url_b": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L368",
-    "hltv_match_url": "https://www.hltv.org/matches/2399422/wbt-vs-bojong-elisa-breakout-series-2",
-    "research": false,
-    "flags": "FL-ALIAS-WBT;FL-NO-PERMALINK",
-    "verified": true,
-    "verification": {
-     "a": {
-      "ok": true,
-      "alias_of": "WBT",
-      "evidence_url": "https://www.hltv.org/matches/2399418/wbt-vs-eac-elisa-breakout-series-2",
-      "detail": "line 65: WBT #60 1201 points"
-     },
-     "b": {
-      "ok": true,
-      "alias_of": "",
-      "evidence_url": "",
-      "detail": "line 368: BOJONG #363 463 points"
-     }
-    },
-    "unverified_sides": []
-   },
-   "research_lines": [
-    {
-     "source": "every/ (arena/75fd29ee) researched rating line",
-     "p_a": 74.66,
-     "p_b": 25.34,
-     "url": "https://egamersworld.com/counterstrike/match/4yn491uUVl/wbt-vs-bojong-r7kNL0-LX6",
-     "read_utc": "2026-10-14T01:49:00Z",
-     "note": "market favourite \u2014 bc.game (EGamersWorld) odds reported by aggregator (EGamersWorld), captured 2026-10-14T01:49:00Z; flagged aggregator-reported"
-    }
-   ]
-  },
-  {
-   "fixture_id": "1080284",
-   "competition": "Elisa BreakOut Series #2",
-   "tier": "c",
-   "team_a": "EAC",
-   "team_b": "ENCE",
-   "start_utc": "2026-10-15T18:00:00Z",
-   "lock_utc": "2026-10-15T17:54:00Z",
-   "state": "open",
-   "series_format": "BO1",
-   "format_source": "bo3.gg, Polymarket",
-   "basis_rung": "market-1",
-   "basis_label": "book \u00b7 read directly",
-   "basis_detail": "Pinnacle \u2014 public guest response read by the line-analysis board; de-vigged two-way price (manual check: Pinnacle CS2 matchups page)",
-   "p_a_pct": 58.6,
-   "p_b_pct": 41.4,
-   "pick": "EAC",
-   "pick_pct": 58.6,
-   "margin_pp": 17.200000000000003,
+   "basis_rung": "market-4",
+   "basis_label": "prediction market \u00b7 Polymarket",
+   "basis_detail": "Polymarket \u2014 prediction market (traded prices, no bookmaker margin, MF-10); thin books move quickly",
+   "p_a_pct": 55.5,
+   "p_b_pct": 44.5,
+   "pick": "Ninjas in Pyjamas",
+   "pick_pct": 55.5,
+   "margin_pp": 11.0,
    "confidence": "slight favourite",
-   "source_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
-   "read_utc": "2026-10-15T09:57:22Z",
-   "hltv_match_url": "https://www.hltv.org/matches/2399423/eac-vs-ence-elisa-breakout-series-2",
-   "hotspawn_match_url": "https://www.hotspawn.com/matches/eac-vs-ence-elisa-breakout-series-2-1080284",
-   "board_flags": "FL-FORMAT-FROM-LISTING;E-02-AGGREGATOR-LINE;FL-NO-PERMALINK",
-   "flags": [],
+   "source_url": "https://polymarket.com/event/cs2-nip-tl1-2026-10-16",
+   "read_utc": "2026-10-15T20:31:27Z",
+   "hltv_match_url": "",
+   "hotspawn_match_url": "https://www.hotspawn.com/matches/ninjas-in-pyjamas-vs-team-liquid-stake-pulse-beat-iii-1079586",
+   "board_flags": "MF-14;FL-COINFLIP;FL-FORMAT-FROM-LISTING;A-NO-FORMAT A-NO-LINE A-NO-PICK A-NO-RATING",
+   "flags": [
+    "C-PREDICTION-MARKET-PRICE",
+    "C-QUOTE-REJECTED",
+    "C-TIE-QUOTE-REJECTED"
+   ],
    "market_candidates": [
-    {
-     "rung": 1,
-     "rung_label": "book \u00b7 read directly",
-     "book": "Pinnacle",
-     "p_a": 58.6,
-     "p_b": 41.4,
-     "odds_a": "1.613497",
-     "odds_b": "2.28",
-     "overround_pct": "5.84",
-     "url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
-     "manual_url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
-     "read_utc": "2026-10-15T09:57:22Z",
-     "caveat": "public guest response read by the line-analysis board; de-vigged two-way price (manual check: Pinnacle CS2 matchups page)"
-    },
-    {
-     "rung": 2,
-     "rung_label": "book \u00b7 relayed via bo3.gg",
-     "book": "Thunderpick",
-     "p_a": 61.54,
-     "p_b": 38.46,
-     "odds_a": "",
-     "odds_b": "",
-     "overround_pct": "",
-     "url": "https://thunderpick.io/match/2807492",
-     "read_utc": "2026-10-15T06:23:25Z",
-     "caveat": "quote relayed by bo3.gg's public API, not read from the bookmaker's own site (MF-09); the bookmaker match URL is linked so the price can be checked by hand"
-    },
-    {
-     "rung": 3,
-     "rung_label": "book \u00b7 relayed via EGamersWorld",
-     "book": "bc.game (EGamersWorld)",
-     "p_a": 60.9,
-     "p_b": 39.1,
-     "odds_a": "1.51",
-     "odds_b": "2.35",
-     "overround_pct": "8.78",
-     "url": "https://egamersworld.com/counterstrike/match/4yn491uUVl/ea-copenhagen-vs-ence-kTR_sMK3PT",
-     "read_utc": "2026-10-14T02:48:00Z",
-     "caveat": "aggregator-reported bookmaker odds, not independently verified against the book (PF-01 class)"
-    },
     {
      "rung": 4,
      "rung_label": "prediction market \u00b7 Polymarket",
      "book": "Polymarket",
-     "p_a": 56.5,
-     "p_b": 43.5,
+     "p_a": 55.5,
+     "p_b": 44.5,
      "odds_a": "",
      "odds_b": "",
      "overround_pct": "",
-     "url": "https://polymarket.com/event/cs2-eac-ence-2026-10-15",
-     "read_utc": "2026-10-15T06:23:25Z",
+     "url": "https://polymarket.com/event/cs2-nip-tl1-2026-10-16",
+     "read_utc": "2026-10-15T20:31:27Z",
      "caveat": "prediction market (traded prices, no bookmaker margin, MF-10); thin books move quickly"
     }
    ],
-   "own_line": {
-    "p_a": 50.7,
-    "p_b": 49.3,
-    "method": "Own VRS model, calibrated k=0.4568, BO1 transform",
-    "format": "BO1",
-    "rating_url_a": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L108",
-    "rating_url_b": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L110",
-    "hltv_match_url": "https://www.hltv.org/matches/2399423/eac-vs-ence-elisa-breakout-series-2",
-    "research": false,
-    "flags": "FL-NO-PERMALINK",
-    "verified": true,
-    "verification": {
-     "a": {
-      "ok": true,
-      "alias_of": "",
-      "evidence_url": "",
-      "detail": "line 108: EAC #103 1035 points"
-     },
-     "b": {
-      "ok": true,
-      "alias_of": "",
-      "evidence_url": "",
-      "detail": "line 110: ENCE #105 1025 points"
-     }
-    },
-    "unverified_sides": []
-   },
+   "own_line": null,
    "research_lines": [
     {
-     "source": "every/ (arena/75fd29ee) researched rating line",
-     "p_a": 50.72,
-     "p_b": 49.28,
-     "url": "https://egamersworld.com/counterstrike/match/4yn491uUVl/ea-copenhagen-vs-ence-kTR_sMK3PT",
-     "read_utc": "2026-10-14T01:49:00Z",
-     "note": "market favourite \u2014 bc.game (EGamersWorld) odds reported by aggregator (EGamersWorld), captured 2026-10-14T01:49:00Z; flagged aggregator-reported"
-    },
-    {
      "source": "executive/ (arena/5545dbb8) model line",
-     "p_a": 51.4,
-     "p_b": 48.6,
+     "p_a": 51.5,
+     "p_b": 48.5,
      "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
-     "read_utc": "2026-10-15T08:51:05Z",
-     "note": "Pinnacle whole-match moneyline 1.61 / 2.28 (native american), overround 5.84%, proportional de-vig. Series length BO1 as stated by the pricing listing (Pinnacle); Hotspawn states none. Rating inputs: EAC 1035 vs ENCE 1025 official points; project 400-point logistic with independent-map series transform, BO1: 51.4%. This is an uncalibrated project estimate, not a Valve match forecast. Our own line for the same fixture, from the official ranking only: 50.9% for EAC (7.7 pp from the price this row is based on)."
+     "read_utc": "2026-10-15T19:59:28Z",
+     "note": "Pinnacle whole-match moneyline 1.89 / 1.89 (native american), overround 5.66%, proportional de-vig. Series length BO3 as stated by the pricing listing (Pinnacle); Hotspawn states none. Rating inputs: Ninjas in Pyjamas 1534 vs Liquid 1527 official points; project 400-point logistic with independent-map series transform, BO3: 51.5%. This is an uncalibrated project estimate, not a Valve match forecast. Our own line for the same fixture, from the official ranking only: 50.4% for Ninjas in Pyjamas (0.4 pp from the price this row is based on)."
     }
    ]
   },
@@ -1305,14 +186,14 @@
    "basis_rung": "market-2",
    "basis_label": "book \u00b7 relayed via bo3.gg",
    "basis_detail": "Thunderpick \u2014 quote relayed by bo3.gg's public API, not read from the bookmaker's own site (MF-09); the bookmaker match URL is linked so the price can be checked by hand",
-   "p_a_pct": 48.65,
-   "p_b_pct": 51.35,
+   "p_a_pct": 45.04,
+   "p_b_pct": 54.96,
    "pick": "Phantom",
-   "pick_pct": 51.35,
-   "margin_pp": 2.700000000000003,
+   "pick_pct": 54.96,
+   "margin_pp": 9.920000000000002,
    "confidence": "narrow favourite",
    "source_url": "https://thunderpick.io/match/2807497",
-   "read_utc": "2026-10-15T06:23:25Z",
+   "read_utc": "2026-10-15T20:31:24Z",
    "hltv_match_url": "https://www.hltv.org/matches/2399424/voca-vs-phantom-elisa-breakout-series-2",
    "hotspawn_match_url": "https://www.hotspawn.com/matches/voca-vs-phantom-elisa-breakout-series-2-1080285",
    "board_flags": "FL-FORMAT-FROM-LISTING;A-NO-FORMAT A-NO-LINE;E-02-AGGREGATOR-LINE;E-02-DIVERGENCE;FL-NO-PERMALINK",
@@ -1325,13 +206,13 @@
      "rung": 2,
      "rung_label": "book \u00b7 relayed via bo3.gg",
      "book": "Thunderpick",
-     "p_a": 48.65,
-     "p_b": 51.35,
+     "p_a": 45.04,
+     "p_b": 54.96,
      "odds_a": "",
      "odds_b": "",
      "overround_pct": "",
      "url": "https://thunderpick.io/match/2807497",
-     "read_utc": "2026-10-15T06:23:25Z",
+     "read_utc": "2026-10-15T20:31:24Z",
      "caveat": "quote relayed by bo3.gg's public API, not read from the bookmaker's own site (MF-09); the bookmaker match URL is linked so the price can be checked by hand"
     },
     {
@@ -1351,13 +232,13 @@
      "rung": 4,
      "rung_label": "prediction market \u00b7 Polymarket",
      "book": "Polymarket",
-     "p_a": 44.5,
-     "p_b": 55.5,
+     "p_a": 42.5,
+     "p_b": 57.5,
      "odds_a": "",
      "odds_b": "",
      "overround_pct": "",
      "url": "https://polymarket.com/event/cs2-voc-pha-2026-10-16",
-     "read_utc": "2026-10-15T06:23:25Z",
+     "read_utc": "2026-10-15T20:31:24Z",
      "caveat": "prediction market (traded prices, no bookmaker margin, MF-10); thin books move quickly"
     }
    ],
@@ -1402,8 +283,8 @@
      "p_a": 55.0,
      "p_b": 45.0,
      "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
-     "read_utc": "2026-10-15T08:51:05Z",
-     "note": "Thunderpick listing 1.90 / 1.80 (decimal), overround 8.19%, proportional de-vig. Secondary listing: the aggregator's own page is the source, not the book itself. Series length BO1 as stated by the pricing listing (Thunderpick); Hotspawn states none. Rating inputs: Voca 1182 vs Phantom 1147 official points; project 400-point logistic with independent-map series transform, BO1: 55.0%. This is an uncalibrated project estimate, not a Valve match forecast. Our own line for the same fixture, from the official ranking only: 56.3% for Voca (7.7 pp from the price this row is based on)."
+     "read_utc": "2026-10-15T19:59:28Z",
+     "note": "Thunderpick listing 1.90 / 1.80 (decimal), overround 8.19%, proportional de-vig. Secondary listing: the aggregator's own page is the source, not the book itself. Series length BO1 as stated by the pricing listing (Thunderpick); Hotspawn states none. Rating inputs: Voca 1182 vs Phantom 1147 official points; project 400-point logistic with independent-map series transform, BO1: 55.0%. This is an uncalibrated project estimate, not a Valve match forecast. Our own line for the same fixture, from the official ranking only: 57.1% for Voca (8.5 pp from the price this row is based on)."
     }
    ]
   },
@@ -1417,28 +298,40 @@
    "lock_utc": "2026-10-16T09:54:00Z",
    "state": "open",
    "series_format": "BO1",
-   "format_source": "bo3.gg",
-   "basis_rung": "market-2",
-   "basis_label": "book \u00b7 relayed via bo3.gg",
-   "basis_detail": "Thunderpick \u2014 quote relayed by bo3.gg's public API, not read from the bookmaker's own site (MF-09); the bookmaker match URL is linked so the price can be checked by hand",
-   "p_a_pct": 76.92,
-   "p_b_pct": 23.08,
+   "format_source": "bo3.gg, Polymarket",
+   "basis_rung": "market-1",
+   "basis_label": "book \u00b7 read directly",
+   "basis_detail": "Pinnacle \u2014 public guest response read by the line-analysis board; de-vigged two-way price (manual check: Pinnacle CS2 matchups page)",
+   "p_a_pct": 78.5,
+   "p_b_pct": 21.5,
    "pick": "HAVU",
-   "pick_pct": 76.92,
-   "margin_pp": 53.84,
+   "pick_pct": 78.5,
+   "margin_pp": 57.0,
    "confidence": "heavy favourite",
-   "source_url": "https://thunderpick.io/match/2807498",
-   "read_utc": "2026-10-15T06:23:25Z",
+   "source_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
+   "read_utc": "2026-10-15T19:10:23Z",
    "hltv_match_url": "https://www.hltv.org/matches/2399425/havu-vs-rounds-elisa-breakout-series-2",
    "hotspawn_match_url": "https://www.hotspawn.com/matches/havu-vs-roundsgg-elisa-breakout-series-2-1080286",
-   "board_flags": "MF-05;FL-FORMAT-UNKNOWN;FL-IDENTITY-UNVERIFIED;FL-NO-MARKET;FL-NO-SOURCED-PICK;FL-RANK-MISSING;FL-RATING-MISSING;A-ALIAS A-NO-FORMAT A-NO-LINE;E-02-AGGREGATOR-LINE;FL-ALIAS-RESOLVED;FL-ALIAS-ROUNDS;FL-NO-PERMALINK",
+   "board_flags": "FL-FORMAT-FROM-LISTING;FL-IDENTITY-UNVERIFIED;FL-PREDICTION-MARKET-BASIS;FL-RANK-MISSING;FL-RATING-MISSING;A-ALIAS;E-02-AGGREGATOR-LINE;FL-ALIAS-RESOLVED;FL-ALIAS-ROUNDS;FL-NO-PERMALINK",
    "flags": [
     "C-ALIAS-RATING-ROW",
-    "C-NAME-VARIANT",
-    "C-QUOTE-REJECTED",
-    "C-RELAYED-BOOK-PRICE"
+    "C-NAME-VARIANT"
    ],
    "market_candidates": [
+    {
+     "rung": 1,
+     "rung_label": "book \u00b7 read directly",
+     "book": "Pinnacle",
+     "p_a": 78.5,
+     "p_b": 21.5,
+     "odds_a": "1.185529",
+     "odds_b": "4.32",
+     "overround_pct": "7.5",
+     "url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
+     "manual_url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
+     "read_utc": "2026-10-15T19:10:23Z",
+     "caveat": "public guest response read by the line-analysis board; de-vigged two-way price (manual check: Pinnacle CS2 matchups page)"
+    },
     {
      "rung": 2,
      "rung_label": "book \u00b7 relayed via bo3.gg",
@@ -1449,7 +342,7 @@
      "odds_b": "",
      "overround_pct": "",
      "url": "https://thunderpick.io/match/2807498",
-     "read_utc": "2026-10-15T06:23:25Z",
+     "read_utc": "2026-10-15T20:31:24Z",
      "caveat": "quote relayed by bo3.gg's public API, not read from the bookmaker's own site (MF-09); the bookmaker match URL is linked so the price can be checked by hand"
     },
     {
@@ -1464,6 +357,19 @@
      "url": "https://egamersworld.com/counterstrike/match/4yn491uUVl/havu-vs-rounds-rg48QwsiJ9",
      "read_utc": "2026-10-14T02:48:00Z",
      "caveat": "aggregator-reported bookmaker odds, not independently verified against the book (PF-01 class)"
+    },
+    {
+     "rung": 4,
+     "rung_label": "prediction market \u00b7 Polymarket",
+     "book": "Polymarket",
+     "p_a": 83.5,
+     "p_b": 16.5,
+     "odds_a": "",
+     "odds_b": "",
+     "overround_pct": "",
+     "url": "https://polymarket.com/event/cs2-havu-rgg-2026-10-16",
+     "read_utc": "2026-10-15T20:31:24Z",
+     "caveat": "prediction market (traded prices, no bookmaker margin, MF-10); thin books move quickly"
     }
    ],
    "own_line": {
@@ -1515,35 +421,47 @@
    "state": "open",
    "series_format": "BO1",
    "format_source": "bo3.gg, Polymarket",
-   "basis_rung": "market-2",
-   "basis_label": "book \u00b7 relayed via bo3.gg",
-   "basis_detail": "Thunderpick \u2014 quote relayed by bo3.gg's public API, not read from the bookmaker's own site (MF-09); the bookmaker match URL is linked so the price can be checked by hand",
-   "p_a_pct": 65.53,
-   "p_b_pct": 34.47,
+   "basis_rung": "market-1",
+   "basis_label": "book \u00b7 read directly",
+   "basis_detail": "Pinnacle \u2014 public guest response read by the line-analysis board; de-vigged two-way price (manual check: Pinnacle CS2 matchups page)",
+   "p_a_pct": 64.1,
+   "p_b_pct": 35.9,
    "pick": "Voca",
-   "pick_pct": 65.53,
-   "margin_pp": 31.060000000000002,
+   "pick_pct": 64.1,
+   "margin_pp": 28.199999999999996,
    "confidence": "strong favourite",
-   "source_url": "https://thunderpick.io/match/2807499",
-   "read_utc": "2026-10-15T06:23:25Z",
+   "source_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
+   "read_utc": "2026-10-15T19:10:23Z",
    "hltv_match_url": "https://www.hltv.org/matches/2399426/voca-vs-havu-elisa-breakout-series-2",
    "hotspawn_match_url": "https://www.hotspawn.com/matches/voca-vs-havu-elisa-breakout-series-2-1080287",
-   "board_flags": "FL-FORMAT-FROM-LISTING;A-NO-FORMAT A-NO-LINE;E-02-AGGREGATOR-LINE;FL-NO-PERMALINK",
-   "flags": [
-    "C-RELAYED-BOOK-PRICE"
-   ],
+   "board_flags": "FL-FORMAT-FROM-LISTING;FL-MODEL-MARKET-SPLIT;E-02-AGGREGATOR-LINE;FL-NO-PERMALINK",
+   "flags": [],
    "market_candidates": [
+    {
+     "rung": 1,
+     "rung_label": "book \u00b7 read directly",
+     "book": "Pinnacle",
+     "p_a": 64.1,
+     "p_b": 35.9,
+     "odds_a": "1.469484",
+     "odds_b": "2.62",
+     "overround_pct": "6.22",
+     "url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
+     "manual_url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
+     "read_utc": "2026-10-15T19:10:23Z",
+     "caveat": "public guest response read by the line-analysis board; de-vigged two-way price (manual check: Pinnacle CS2 matchups page)"
+    },
     {
      "rung": 2,
      "rung_label": "book \u00b7 relayed via bo3.gg",
      "book": "Thunderpick",
-     "p_a": 65.53,
-     "p_b": 34.47,
+     "p_a": 64.2,
+     "p_b": 35.8,
      "odds_a": "",
      "odds_b": "",
      "overround_pct": "",
      "url": "https://thunderpick.io/match/2807499",
-     "read_utc": "2026-10-15T06:23:25Z",
+     "read_utc": "2026-10-15T20:31:24Z",
      "caveat": "quote relayed by bo3.gg's public API, not read from the bookmaker's own site (MF-09); the bookmaker match URL is linked so the price can be checked by hand"
     },
     {
@@ -1563,13 +481,13 @@
      "rung": 4,
      "rung_label": "prediction market \u00b7 Polymarket",
      "book": "Polymarket",
-     "p_a": 65.5,
-     "p_b": 34.5,
+     "p_a": 67.5,
+     "p_b": 32.5,
      "odds_a": "",
      "odds_b": "",
      "overround_pct": "",
      "url": "https://polymarket.com/event/cs2-voc-havu-2026-10-16",
-     "read_utc": "2026-10-15T06:23:25Z",
+     "read_utc": "2026-10-15T20:31:24Z",
      "caveat": "prediction market (traded prices, no bookmaker margin, MF-10); thin books move quickly"
     }
    ],
@@ -1614,10 +532,82 @@
      "p_a": 80.4,
      "p_b": 19.6,
      "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
-     "read_utc": "2026-10-15T08:51:05Z",
-     "note": "Thunderpick listing 1.42 / 2.70 (decimal), overround 7.46%, proportional de-vig. Secondary listing: the aggregator's own page is the source, not the book itself. Series length BO1 as stated by the pricing listing (Thunderpick); Hotspawn states none. Rating inputs: Voca 1182 vs HAVU 937 official points; project 400-point logistic with independent-map series transform, BO1: 80.4%. This is an uncalibrated project estimate, not a Valve match forecast. Our own line for the same fixture, from the official ranking only: 62.7% for Voca (2.8 pp from the price this row is based on)."
+     "read_utc": "2026-10-15T19:59:28Z",
+     "note": "Pinnacle whole-match moneyline 1.47 / 2.62 (native american), overround 6.22%, proportional de-vig. Series length BO1 as stated by the pricing listing (Pinnacle); Hotspawn states none. Rating inputs: Voca 1182 vs HAVU 937 official points; project 400-point logistic with independent-map series transform, BO1: 80.4%. This is an uncalibrated project estimate, not a Valve match forecast. Our own line for the same fixture, from the official ranking only: 64.1% for Voca (0.0 pp from the price this row is based on)."
     }
    ]
+  },
+  {
+   "fixture_id": "1080205",
+   "competition": "Thunderpick World Championship 2026",
+   "tier": "s",
+   "team_a": "Aurora",
+   "team_b": "9z",
+   "start_utc": "2026-10-16T14:00:00Z",
+   "lock_utc": "2026-10-16T13:54:00Z",
+   "state": "open",
+   "series_format": "BO3",
+   "format_source": "bo3.gg, Polymarket",
+   "basis_rung": "market-2",
+   "basis_label": "book \u00b7 relayed via bo3.gg",
+   "basis_detail": "Thunderpick \u2014 quote relayed by bo3.gg's public API, not read from the bookmaker's own site (MF-09); the bookmaker match URL is linked so the price can be checked by hand",
+   "p_a_pct": 65.53,
+   "p_b_pct": 34.47,
+   "pick": "Aurora",
+   "pick_pct": 65.53,
+   "margin_pp": 31.060000000000002,
+   "confidence": "strong favourite",
+   "source_url": "https://thunderpick.io/match/2830808",
+   "read_utc": "2026-10-15T20:31:27Z",
+   "hltv_match_url": "",
+   "hotspawn_match_url": "https://www.hotspawn.com/matches/aurora-vs-9z-thunderpick-world-championship-2026-1080205",
+   "board_flags": "FL-FORMAT-UNKNOWN;FL-HLTV-IDENTITY-AMBIGUOUS;FL-NO-MARKET;FL-NO-SOURCED-PICK;FL-RATING-MISSING;A-NO-FORMAT A-NO-LINE;A-NO-FORMAT A-NO-LINE",
+   "flags": [
+    "C-RELAYED-BOOK-PRICE"
+   ],
+   "market_candidates": [
+    {
+     "rung": 2,
+     "rung_label": "book \u00b7 relayed via bo3.gg",
+     "book": "Thunderpick",
+     "p_a": 65.53,
+     "p_b": 34.47,
+     "odds_a": "",
+     "odds_b": "",
+     "overround_pct": "",
+     "url": "https://thunderpick.io/match/2830808",
+     "read_utc": "2026-10-15T20:31:27Z",
+     "caveat": "quote relayed by bo3.gg's public API, not read from the bookmaker's own site (MF-09); the bookmaker match URL is linked so the price can be checked by hand"
+    },
+    {
+     "rung": 4,
+     "rung_label": "prediction market \u00b7 Polymarket",
+     "book": "Polymarket",
+     "p_a": 65.5,
+     "p_b": 34.5,
+     "odds_a": "",
+     "odds_b": "",
+     "overround_pct": "",
+     "url": "https://polymarket.com/event/cs2-aur1-9z-2026-10-16",
+     "read_utc": "2026-10-15T20:31:27Z",
+     "caveat": "prediction market (traded prices, no bookmaker margin, MF-10); thin books move quickly"
+    }
+   ],
+   "own_line": {
+    "p_a": 61.3,
+    "p_b": 38.7,
+    "method": "P=1/(1+10^(-0.4630*\u0394pts/400)); slope re-fit by cs2/calibrate.py on Valve's own match results",
+    "format": "",
+    "rating_url_a": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md?plain=1#L14",
+    "rating_url_b": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md?plain=1#L22",
+    "hltv_match_url": "",
+    "research": false,
+    "flags": "A-NO-FORMAT A-NO-LINE",
+    "verified": null,
+    "verification": {},
+    "unverified_sides": []
+   },
+   "research_lines": []
   },
   {
    "fixture_id": "1080288",
@@ -1633,14 +623,14 @@
    "basis_rung": "market-2",
    "basis_label": "book \u00b7 relayed via bo3.gg",
    "basis_detail": "Thunderpick \u2014 quote relayed by bo3.gg's public API, not read from the bookmaker's own site (MF-09); the bookmaker match URL is linked so the price can be checked by hand",
-   "p_a_pct": 86.85,
-   "p_b_pct": 13.15,
+   "p_a_pct": 85.37,
+   "p_b_pct": 14.63,
    "pick": "Phantom",
-   "pick_pct": 86.85,
-   "margin_pp": 73.69999999999999,
+   "pick_pct": 85.37,
+   "margin_pp": 70.74000000000001,
    "confidence": "heavy favourite",
    "source_url": "https://thunderpick.io/match/2807503",
-   "read_utc": "2026-10-15T06:23:25Z",
+   "read_utc": "2026-10-15T20:31:24Z",
    "hltv_match_url": "https://www.hltv.org/matches/2399427/phantom-vs-rounds-elisa-breakout-series-2",
    "hotspawn_match_url": "https://www.hotspawn.com/matches/phantom-vs-roundsgg-elisa-breakout-series-2-1080288",
    "board_flags": "FL-FORMAT-FROM-LISTING;FL-IDENTITY-UNVERIFIED;FL-PREDICTION-MARKET-BASIS;FL-RANK-MISSING;FL-RATING-MISSING;A-ALIAS A-NO-LINE;E-02-AGGREGATOR-LINE;FL-ALIAS-RESOLVED;FL-ALIAS-ROUNDS;FL-NO-PERMALINK",
@@ -1654,13 +644,13 @@
      "rung": 2,
      "rung_label": "book \u00b7 relayed via bo3.gg",
      "book": "Thunderpick",
-     "p_a": 86.85,
-     "p_b": 13.15,
+     "p_a": 85.37,
+     "p_b": 14.63,
      "odds_a": "",
      "odds_b": "",
      "overround_pct": "",
      "url": "https://thunderpick.io/match/2807503",
-     "read_utc": "2026-10-15T06:23:25Z",
+     "read_utc": "2026-10-15T20:31:24Z",
      "caveat": "quote relayed by bo3.gg's public API, not read from the bookmaker's own site (MF-09); the bookmaker match URL is linked so the price can be checked by hand"
     },
     {
@@ -1680,13 +670,13 @@
      "rung": 4,
      "rung_label": "prediction market \u00b7 Polymarket",
      "book": "Polymarket",
-     "p_a": 91.5,
-     "p_b": 8.5,
+     "p_a": 89.5,
+     "p_b": 10.5,
      "odds_a": "",
      "odds_b": "",
      "overround_pct": "",
      "url": "https://polymarket.com/event/cs2-pha-rgg-2026-10-16",
-     "read_utc": "2026-10-15T06:23:25Z",
+     "read_utc": "2026-10-15T20:31:24Z",
      "caveat": "prediction market (traded prices, no bookmaker margin, MF-10); thin books move quickly"
     }
    ],
@@ -1738,27 +728,39 @@
    "lock_utc": "2026-10-16T13:54:00Z",
    "state": "open",
    "series_format": "BO3",
-   "format_source": "bo3.gg (match listed, no usable quote)",
-   "basis_rung": "own-line",
-   "basis_label": "own line \u00b7 Valve Regional Standings + HLTV ranking",
-   "basis_detail": "Own VRS model, calibrated k=0.4568, BO3 transform",
-   "p_a_pct": 78.5,
-   "p_b_pct": 21.5,
+   "format_source": "Polymarket",
+   "basis_rung": "market-4",
+   "basis_label": "prediction market \u00b7 Polymarket",
+   "basis_detail": "Polymarket \u2014 prediction market (traded prices, no bookmaker margin, MF-10); thin books move quickly",
+   "p_a_pct": 90.5,
+   "p_b_pct": 9.5,
    "pick": "mellren",
-   "pick_pct": 78.5,
-   "margin_pp": 57.0,
+   "pick_pct": 90.5,
+   "margin_pp": 81.0,
    "confidence": "heavy favourite",
-   "source_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L130",
-   "read_utc": "2026-10-15T08:51:05Z",
+   "source_url": "https://polymarket.com/event/cs2-mellre-pg5-2026-10-16",
+   "read_utc": "2026-10-15T20:31:24Z",
    "hltv_match_url": "https://www.hltv.org/matches/2399471/mellren-vs-privateer-cct-2026-europe-series-12-closed-qualifier",
    "hotspawn_match_url": "https://www.hotspawn.com/matches/mellren-vs-privateer-cct-europe-2026-series-12-play-in-1081120",
-   "board_flags": "MF-01;MF-05;FL-FORMAT-FROM-RESEARCH;FL-MARKET-NO-LIQUIDITY;FL-NO-MARKET;FL-RATINGS-WEEK-OLD;A-NO-FORMAT A-NO-LINE;E-02-MODEL-PICK;FL-NO-PERMALINK;PF-01;PF-05",
+   "board_flags": "FL-FORMAT-FROM-RESEARCH;FL-MARKET-NO-LIQUIDITY;FL-NO-MARKET;FL-RATINGS-WEEK-OLD;A-NO-FORMAT A-NO-LINE;E-02-MODEL-PICK;FL-NO-PERMALINK;PF-01;PF-05",
    "flags": [
-    "C-NO-OUTSIDE-MARKET",
-    "C-NO-SECONDARY-MARKET",
-    "C-QUOTE-REJECTED"
+    "C-PREDICTION-MARKET-PRICE"
    ],
-   "market_candidates": [],
+   "market_candidates": [
+    {
+     "rung": 4,
+     "rung_label": "prediction market \u00b7 Polymarket",
+     "book": "Polymarket",
+     "p_a": 90.5,
+     "p_b": 9.5,
+     "odds_a": "",
+     "odds_b": "",
+     "overround_pct": "",
+     "url": "https://polymarket.com/event/cs2-mellre-pg5-2026-10-16",
+     "read_utc": "2026-10-15T20:31:24Z",
+     "caveat": "prediction market (traded prices, no bookmaker margin, MF-10); thin books move quickly"
+    }
+   ],
    "own_line": {
     "p_a": 78.5,
     "p_b": 21.5,
@@ -1800,7 +802,7 @@
      "p_a": 95.1,
      "p_b": 4.9,
      "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
-     "read_utc": "2026-10-15T08:51:05Z",
+     "read_utc": "2026-10-15T19:59:28Z",
      "note": "Series length BO3 as stated by the research source named on this row (Polymarket market title (\"mellren vs Privateer Gaming (BO3) - CCT Europe Closed Qualifier: Series #12 Group D\") \u2014 title only; the market's prices are refused, see refusals); Hotspawn states none. Polymarket opened a market for this card (cs2-mellre-pg5-2026-10-16, title states BO3) but the book is uninitialised: it prints 94\u00a2 for mellren and 93\u00a2 for Privateer Gaming (both sides above 90\u00a2, sum $1.87 for a $1 pair) with $0.00 volume. Ingesting those numbers would invent a ~50/50 that no trader believes, so the prices are refused (see refusals). The row keeps its originated line from the official Valve points (mellren 932 vs Privateer 608) cross-checked on HLTV (#94 vs #226), and the series length is taken from the market title only. Rating inputs: mellren 932 vs Privateer 608 official points; project 400-point logistic with independent-map series transform, BO3: 95.1%. This is an uncalibrated project estimate, not a Valve match forecast."
     }
    ]
@@ -1816,26 +818,40 @@
    "state": "open",
    "series_format": "BO1",
    "format_source": "bo3.gg, Polymarket",
-   "basis_rung": "market-2",
-   "basis_label": "book \u00b7 relayed via bo3.gg",
-   "basis_detail": "Thunderpick \u2014 quote relayed by bo3.gg's public API, not read from the bookmaker's own site (MF-09); the bookmaker match URL is linked so the price can be checked by hand",
-   "p_a_pct": 15.94,
-   "p_b_pct": 84.06,
-   "pick": "Voca",
-   "pick_pct": 84.06,
-   "margin_pp": 68.12,
+   "basis_rung": "market-1",
+   "basis_label": "book \u00b7 read directly",
+   "basis_detail": "Pinnacle \u2014 public guest response read by the line-analysis board; de-vigged two-way price (manual check: Pinnacle CS2 matchups page)",
+   "p_a_pct": 84.1,
+   "p_b_pct": 15.9,
+   "pick": "RoundsGG",
+   "pick_pct": 84.1,
+   "margin_pp": 68.19999999999999,
    "confidence": "heavy favourite",
-   "source_url": "https://thunderpick.io/match/2807505",
-   "read_utc": "2026-10-15T06:23:25Z",
+   "source_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
+   "read_utc": "2026-10-15T19:10:23Z",
    "hltv_match_url": "https://www.hltv.org/matches/2399428/voca-vs-rounds-elisa-breakout-series-2",
    "hotspawn_match_url": "https://www.hotspawn.com/matches/roundsgg-vs-voca-elisa-breakout-series-2-1080289",
-   "board_flags": "FL-FORMAT-FROM-LISTING;FL-IDENTITY-UNVERIFIED;FL-PREDICTION-MARKET-BASIS;FL-RANK-MISSING;FL-RATING-MISSING;A-ALIAS A-NO-FORMAT A-NO-LINE;E-02-AGGREGATOR-LINE;FL-ALIAS-RESOLVED;FL-ALIAS-ROUNDS;FL-NO-PERMALINK;PF-09",
+   "board_flags": "FL-FORMAT-FROM-LISTING;FL-IDENTITY-UNVERIFIED;FL-PREDICTION-MARKET-BASIS;FL-RANK-MISSING;FL-RATING-MISSING;A-ALIAS A-DIVERGE;E-02-AGGREGATOR-LINE;FL-ALIAS-RESOLVED;FL-ALIAS-ROUNDS;FL-NO-PERMALINK;PF-09",
    "flags": [
     "C-ALIAS-RATING-ROW",
-    "C-NAME-VARIANT",
-    "C-RELAYED-BOOK-PRICE"
+    "C-MARKET-MODEL-SPLIT",
+    "C-NAME-VARIANT"
    ],
    "market_candidates": [
+    {
+     "rung": 1,
+     "rung_label": "book \u00b7 read directly",
+     "book": "Pinnacle",
+     "p_a": 84.1,
+     "p_b": 15.9,
+     "odds_a": "1.104058",
+     "odds_b": "5.82",
+     "overround_pct": "7.76",
+     "url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
+     "manual_url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
+     "read_utc": "2026-10-15T19:10:23Z",
+     "caveat": "public guest response read by the line-analysis board; de-vigged two-way price (manual check: Pinnacle CS2 matchups page)"
+    },
     {
      "rung": 2,
      "rung_label": "book \u00b7 relayed via bo3.gg",
@@ -1846,7 +862,7 @@
      "odds_b": "",
      "overround_pct": "",
      "url": "https://thunderpick.io/match/2807505",
-     "read_utc": "2026-10-15T06:23:25Z",
+     "read_utc": "2026-10-15T20:31:24Z",
      "caveat": "quote relayed by bo3.gg's public API, not read from the bookmaker's own site (MF-09); the bookmaker match URL is linked so the price can be checked by hand"
     },
     {
@@ -1866,13 +882,13 @@
      "rung": 4,
      "rung_label": "prediction market \u00b7 Polymarket",
      "book": "Polymarket",
-     "p_a": 11.0,
-     "p_b": 89.0,
+     "p_a": 13.0,
+     "p_b": 87.0,
      "odds_a": "",
      "odds_b": "",
      "overround_pct": "",
      "url": "https://polymarket.com/event/cs2-voc-rgg-2026-10-16",
-     "read_utc": "2026-10-15T06:23:25Z",
+     "read_utc": "2026-10-15T20:31:24Z",
      "caveat": "prediction market (traded prices, no bookmaker margin, MF-10); thin books move quickly"
     }
    ],
@@ -1915,6 +931,87 @@
    ]
   },
   {
+   "fixture_id": "1079589",
+   "competition": "Stake Pulse Beat III",
+   "tier": "b",
+   "team_a": "100 Thieves",
+   "team_b": "Sangal",
+   "start_utc": "2026-10-16T17:00:00Z",
+   "lock_utc": "2026-10-16T16:54:00Z",
+   "state": "open",
+   "series_format": "BO3",
+   "format_source": "bo3.gg, Polymarket",
+   "basis_rung": "market-2",
+   "basis_label": "book \u00b7 relayed via bo3.gg",
+   "basis_detail": "Thunderpick \u2014 quote relayed by bo3.gg's public API, not read from the bookmaker's own site (MF-09); the bookmaker match URL is linked so the price can be checked by hand",
+   "p_a_pct": 60.72,
+   "p_b_pct": 39.28,
+   "pick": "100 Thieves",
+   "pick_pct": 60.72,
+   "margin_pp": 21.439999999999998,
+   "confidence": "strong favourite",
+   "source_url": "https://thunderpick.io/match/2828222",
+   "read_utc": "2026-10-15T20:31:27Z",
+   "hltv_match_url": "",
+   "hotspawn_match_url": "https://www.hotspawn.com/matches/100-thieves-vs-sangal-stake-pulse-beat-iii-1079589",
+   "board_flags": "FL-FORMAT-FROM-LISTING;A-NO-FORMAT A-NO-LINE;A-NO-FORMAT A-NO-LINE",
+   "flags": [
+    "C-RELAYED-BOOK-PRICE"
+   ],
+   "market_candidates": [
+    {
+     "rung": 2,
+     "rung_label": "book \u00b7 relayed via bo3.gg",
+     "book": "Thunderpick",
+     "p_a": 60.72,
+     "p_b": 39.28,
+     "odds_a": "",
+     "odds_b": "",
+     "overround_pct": "",
+     "url": "https://thunderpick.io/match/2828222",
+     "read_utc": "2026-10-15T20:31:27Z",
+     "caveat": "quote relayed by bo3.gg's public API, not read from the bookmaker's own site (MF-09); the bookmaker match URL is linked so the price can be checked by hand"
+    },
+    {
+     "rung": 4,
+     "rung_label": "prediction market \u00b7 Polymarket",
+     "book": "Polymarket",
+     "p_a": 65.5,
+     "p_b": 34.5,
+     "odds_a": "",
+     "odds_b": "",
+     "overround_pct": "",
+     "url": "https://polymarket.com/event/cs2-100t-sng2-2026-10-16",
+     "read_utc": "2026-10-15T20:31:27Z",
+     "caveat": "prediction market (traded prices, no bookmaker margin, MF-10); thin books move quickly"
+    }
+   ],
+   "own_line": {
+    "p_a": 57.7,
+    "p_b": 42.3,
+    "method": "P=1/(1+10^(-0.4630*\u0394pts/400)); slope re-fit by cs2/calibrate.py on Valve's own match results",
+    "format": "",
+    "rating_url_a": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md?plain=1#L33",
+    "rating_url_b": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md?plain=1#L45",
+    "hltv_match_url": "",
+    "research": false,
+    "flags": "A-NO-FORMAT A-NO-LINE",
+    "verified": null,
+    "verification": {},
+    "unverified_sides": []
+   },
+   "research_lines": [
+    {
+     "source": "executive/ (arena/5545dbb8) model line",
+     "p_a": 73.3,
+     "p_b": 26.7,
+     "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
+     "read_utc": "2026-10-15T19:59:28Z",
+     "note": "Pinnacle whole-match moneyline 1.53 / 2.47 (native american), overround 6.00%, proportional de-vig. Series length BO3 as stated by the pricing listing (Pinnacle); Hotspawn states none. Rating inputs: 100 Thieves 1478 vs Sangal 1362 official points; project 400-point logistic with independent-map series transform, BO3: 73.3%. This is an uncalibrated project estimate, not a Valve match forecast. Our own line for the same fixture, from the official ranking only: 52.9% for 100 Thieves (8.9 pp from the price this row is based on)."
+    }
+   ]
+  },
+  {
    "fixture_id": "1080290",
    "competition": "Elisa BreakOut Series #2",
    "tier": "c",
@@ -1928,14 +1025,14 @@
    "basis_rung": "market-2",
    "basis_label": "book \u00b7 relayed via bo3.gg",
    "basis_detail": "Thunderpick \u2014 quote relayed by bo3.gg's public API, not read from the bookmaker's own site (MF-09); the bookmaker match URL is linked so the price can be checked by hand",
-   "p_a_pct": 68.24,
-   "p_b_pct": 31.76,
+   "p_a_pct": 70.14,
+   "p_b_pct": 29.86,
    "pick": "Phantom",
-   "pick_pct": 68.24,
-   "margin_pp": 36.47999999999999,
-   "confidence": "strong favourite",
+   "pick_pct": 70.14,
+   "margin_pp": 40.28,
+   "confidence": "heavy favourite",
    "source_url": "https://thunderpick.io/match/2807508",
-   "read_utc": "2026-10-15T06:23:25Z",
+   "read_utc": "2026-10-15T20:31:24Z",
    "hltv_match_url": "https://www.hltv.org/matches/2399429/phantom-vs-havu-elisa-breakout-series-2",
    "hotspawn_match_url": "https://www.hotspawn.com/matches/phantom-vs-havu-elisa-breakout-series-2-1080290",
    "board_flags": "FL-FORMAT-FROM-LISTING;A-NO-FORMAT A-NO-LINE;E-02-AGGREGATOR-LINE;FL-NO-PERMALINK",
@@ -1947,13 +1044,13 @@
      "rung": 2,
      "rung_label": "book \u00b7 relayed via bo3.gg",
      "book": "Thunderpick",
-     "p_a": 68.24,
-     "p_b": 31.76,
+     "p_a": 70.14,
+     "p_b": 29.86,
      "odds_a": "",
      "odds_b": "",
      "overround_pct": "",
      "url": "https://thunderpick.io/match/2807508",
-     "read_utc": "2026-10-15T06:23:25Z",
+     "read_utc": "2026-10-15T20:31:24Z",
      "caveat": "quote relayed by bo3.gg's public API, not read from the bookmaker's own site (MF-09); the bookmaker match URL is linked so the price can be checked by hand"
     },
     {
@@ -1973,13 +1070,13 @@
      "rung": 4,
      "rung_label": "prediction market \u00b7 Polymarket",
      "book": "Polymarket",
-     "p_a": 71.0,
-     "p_b": 29.0,
+     "p_a": 71.5,
+     "p_b": 28.5,
      "odds_a": "",
      "odds_b": "",
      "overround_pct": "",
      "url": "https://polymarket.com/event/cs2-pha-havu-2026-10-16",
-     "read_utc": "2026-10-15T06:23:25Z",
+     "read_utc": "2026-10-15T20:31:24Z",
      "caveat": "prediction market (traded prices, no bookmaker margin, MF-10); thin books move quickly"
     }
    ],
@@ -2024,10 +1121,130 @@
      "p_a": 77.0,
      "p_b": 23.0,
      "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
-     "read_utc": "2026-10-15T08:51:05Z",
-     "note": "Thunderpick listing 1.35 / 2.90 (decimal), overround 8.56%, proportional de-vig. Secondary listing: the aggregator's own page is the source, not the book itself. Series length BO1 as stated by the pricing listing (Thunderpick); Hotspawn states none. Rating inputs: Phantom 1147 vs HAVU 937 official points; project 400-point logistic with independent-map series transform, BO1: 77.0%. This is an uncalibrated project estimate, not a Valve match forecast. Our own line for the same fixture, from the official ranking only: 56.6% for Phantom (11.6 pp from the price this row is based on)."
+     "read_utc": "2026-10-15T19:59:28Z",
+     "note": "Thunderpick listing 1.35 / 2.90 (decimal), overround 8.56%, proportional de-vig. Secondary listing: the aggregator's own page is the source, not the book itself. Series length BO1 as stated by the pricing listing (Thunderpick); Hotspawn states none. Rating inputs: Phantom 1147 vs HAVU 937 official points; project 400-point logistic with independent-map series transform, BO1: 77.0%. This is an uncalibrated project estimate, not a Valve match forecast. Our own line for the same fixture, from the official ranking only: 57.3% for Phantom (10.9 pp from the price this row is based on)."
     }
    ]
+  },
+  {
+   "fixture_id": "1081530",
+   "competition": "DraculaN Season 7",
+   "tier": "b",
+   "team_a": "Iberian Soul",
+   "team_b": "HyperSpirit",
+   "start_utc": "2026-10-19T10:45:00Z",
+   "lock_utc": "2026-10-19T10:39:00Z",
+   "state": "open",
+   "series_format": "BO1",
+   "format_source": "bo3.gg",
+   "basis_rung": "market-2",
+   "basis_label": "book \u00b7 relayed via bo3.gg",
+   "basis_detail": "Thunderpick \u2014 quote relayed by bo3.gg's public API, not read from the bookmaker's own site (MF-09); the bookmaker match URL is linked so the price can be checked by hand",
+   "p_a_pct": 65.85,
+   "p_b_pct": 34.15,
+   "pick": "Iberian Soul",
+   "pick_pct": 65.85,
+   "margin_pp": 31.699999999999996,
+   "confidence": "strong favourite",
+   "source_url": "https://thunderpick.io/match/2825162",
+   "read_utc": "2026-10-15T20:31:27Z",
+   "hltv_match_url": "",
+   "hotspawn_match_url": "",
+   "board_flags": "MF-05;FL-FORMAT-UNKNOWN;FL-NO-MARKET;FL-NO-SOURCED-PICK;FL-RATING-MISSING;A-NO-FORMAT A-NO-LINE;A-NO-FORMAT A-NO-LINE",
+   "flags": [
+    "C-QUOTE-REJECTED",
+    "C-RELAYED-BOOK-PRICE"
+   ],
+   "market_candidates": [
+    {
+     "rung": 2,
+     "rung_label": "book \u00b7 relayed via bo3.gg",
+     "book": "Thunderpick",
+     "p_a": 65.85,
+     "p_b": 34.15,
+     "odds_a": "",
+     "odds_b": "",
+     "overround_pct": "",
+     "url": "https://thunderpick.io/match/2825162",
+     "read_utc": "2026-10-15T20:31:27Z",
+     "caveat": "quote relayed by bo3.gg's public API, not read from the bookmaker's own site (MF-09); the bookmaker match URL is linked so the price can be checked by hand"
+    }
+   ],
+   "own_line": {
+    "p_a": 75.1,
+    "p_b": 24.9,
+    "method": "P=1/(1+10^(-0.4630*\u0394pts/400)); slope re-fit by cs2/calibrate.py on Valve's own match results",
+    "format": "",
+    "rating_url_a": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md?plain=1#L64",
+    "rating_url_b": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md?plain=1#L167",
+    "hltv_match_url": "",
+    "research": false,
+    "flags": "A-NO-FORMAT A-NO-LINE",
+    "verified": null,
+    "verification": {},
+    "unverified_sides": []
+   },
+   "research_lines": []
+  },
+  {
+   "fixture_id": "1081531",
+   "competition": "DraculaN Season 7",
+   "tier": "b",
+   "team_a": "Sashi",
+   "team_b": "mouz NXT",
+   "start_utc": "2026-10-19T10:45:00Z",
+   "lock_utc": "2026-10-19T10:39:00Z",
+   "state": "open",
+   "series_format": "BO1",
+   "format_source": "bo3.gg",
+   "basis_rung": "market-2",
+   "basis_label": "book \u00b7 relayed via bo3.gg",
+   "basis_detail": "Thunderpick \u2014 quote relayed by bo3.gg's public API, not read from the bookmaker's own site (MF-09); the bookmaker match URL is linked so the price can be checked by hand",
+   "p_a_pct": 62.81,
+   "p_b_pct": 37.19,
+   "pick": "Sashi",
+   "pick_pct": 62.81,
+   "margin_pp": 25.620000000000005,
+   "confidence": "strong favourite",
+   "source_url": "https://thunderpick.io/match/2807395",
+   "read_utc": "2026-10-15T20:31:27Z",
+   "hltv_match_url": "",
+   "hotspawn_match_url": "",
+   "board_flags": "MF-05;FL-FORMAT-UNKNOWN;FL-IDENTITY-UNVERIFIED;FL-NO-MARKET;FL-NO-SOURCED-PICK;FL-RANK-MISSING;FL-RATING-MISSING;A-NO-FORMAT A-NO-LINE A-VRS-DUP;A-NO-FORMAT A-NO-LINE A-VRS-DUP",
+   "flags": [
+    "C-QUOTE-REJECTED",
+    "C-RELAYED-BOOK-PRICE"
+   ],
+   "market_candidates": [
+    {
+     "rung": 2,
+     "rung_label": "book \u00b7 relayed via bo3.gg",
+     "book": "Thunderpick",
+     "p_a": 62.81,
+     "p_b": 37.19,
+     "odds_a": "",
+     "odds_b": "",
+     "overround_pct": "",
+     "url": "https://thunderpick.io/match/2807395",
+     "read_utc": "2026-10-15T20:31:27Z",
+     "caveat": "quote relayed by bo3.gg's public API, not read from the bookmaker's own site (MF-09); the bookmaker match URL is linked so the price can be checked by hand"
+    }
+   ],
+   "own_line": {
+    "p_a": 66.3,
+    "p_b": 33.7,
+    "method": "P=1/(1+10^(-0.4630*\u0394pts/400)); slope re-fit by cs2/calibrate.py on Valve's own match results",
+    "format": "",
+    "rating_url_a": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md?plain=1#L78",
+    "rating_url_b": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md?plain=1#L142",
+    "hltv_match_url": "",
+    "research": false,
+    "flags": "A-NO-FORMAT A-NO-LINE A-VRS-DUP",
+    "verified": null,
+    "verification": {},
+    "unverified_sides": []
+   },
+   "research_lines": []
   }
  ]
 }

@@ -207,9 +207,11 @@ def main() -> int:
     recomputed = {
         "total_fixtures": len(rows), "open_fixtures": len(open_rows),
         "open_with_pick": len(with_pick),
-        "open_market_basis": len([r for r in open_rows if int(r["basis_tier"] or 0) in (1, 2)]),
-        "open_model_basis": len([r for r in open_rows if int(r["basis_tier"] or 0) in (3, 4, 5)]),
-        "open_provisional": len([r for r in open_rows if int(r["basis_tier"] or 0) == 4]),
+        # basis counts describe the rows that actually publish a pick (a "(no side — 50/50)" row
+        # publishes no side and is counted under open_no_pick instead)
+        "open_market_basis": len([r for r in open_rows if str(r["pick"]).strip() and r["pick"] != "(no side — 50/50)" and int(r["basis_tier"] or 0) in (1, 2)]),
+        "open_model_basis": len([r for r in open_rows if str(r["pick"]).strip() and r["pick"] != "(no side — 50/50)" and int(r["basis_tier"] or 0) in (3, 4, 5)]),
+        "open_provisional": len([r for r in open_rows if str(r["pick"]).strip() and r["pick"] != "(no side — 50/50)" and int(r["basis_tier"] or 0) == 4]),
         "flagged_rows": len([r for r in rows if r.get("flags")]),
     }
     mismatched = {k: (v, coverage.get(k)) for k, v in recomputed.items() if coverage.get(k) != v}

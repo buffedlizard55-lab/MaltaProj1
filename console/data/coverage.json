@@ -1,20 +1,20 @@
 {
- "generated_for_utc": "2026-10-14T04:00:00Z",
- "data_as_of_utc": "2026-10-15T09:57:22Z",
- "newest_input_age_hours": -29.96,
+ "generated_for_utc": "2026-10-15T22:26:20Z",
+ "data_as_of_utc": "2026-10-15T20:31:32Z",
+ "newest_input_age_hours": 1.91,
  "max_input_age_hours": 6.0,
  "stale": false,
  "counts": {
-  "rows": 18,
-  "open": 18,
+  "rows": 12,
+  "open": 12,
   "locked": 0,
-  "open_with_pick": 15,
-  "open_market_basis": 17,
-  "open_own_line_basis": 1,
+  "open_with_pick": 12,
+  "open_market_basis": 12,
+  "open_own_line_basis": 0,
   "open_research_basis": 0,
-  "open_without_pick": 3,
-  "flags": 32,
-  "rows_with_flags": 15
+  "open_without_pick": 0,
+  "flags": 21,
+  "rows_with_flags": 11
  },
  "inputs": [
   {
@@ -22,27 +22,27 @@
    "label": "Secondary-market feed (arena/a0bdf924)",
    "page": "feeds/index.html",
    "file": "feeds/data/fixtures.csv",
-   "captured_utc": "2026-10-15T06:23:32Z",
-   "sha256": "748a9a8971fa218ea999c2de91354f32a1d9a699fa71b0109009ca9f8715fc3c",
-   "rows": 15
+   "captured_utc": "2026-10-15T20:31:32Z",
+   "sha256": "591f0679237a6c04a0fc156276c4ad59d4210969826f7b6eb47e57d4ed135e19",
+   "rows": 12
   },
   {
    "key": "cs2",
    "label": "Line-analysis board (arena/a174d77f)",
    "page": "cs2/index.html",
    "file": "cs2/data/analysis.csv",
-   "captured_utc": "2026-10-15T09:57:22Z",
-   "sha256": "8107b7b04359b375915ac89ecefb99e0c20cf39926a0dec187993c7ec619ed95",
-   "rows": 78
+   "captured_utc": "2026-10-15T19:10:23Z",
+   "sha256": "b94ca75a354a645a086486cbd774ffa7fff3b84c6d33634ec7249fa68abc56d0",
+   "rows": 76
   },
   {
    "key": "executive",
    "label": "Executive board (arena/5545dbb8)",
    "page": "executive/index.html",
    "file": "executive/data/analysis.csv",
-   "captured_utc": "2026-10-15T08:53:21Z",
-   "sha256": "487b53ef50fd84f1b2cd496a110e6570cda9c1d5760f78feb5476224966c8377",
-   "rows": 80
+   "captured_utc": "2026-10-15T20:01:37Z",
+   "sha256": "923c5414b063b827b0a500d9e1206d5c8c581e4b63cf1317236753e775907630",
+   "rows": 76
   },
   {
    "key": "every",
@@ -78,9 +78,9 @@
   "claimed_sha256": "df96e7fc3cd91a2687ec08cac0128e50cc4e4e55346581679572e881d79ae61b",
   "integrity_ok": true,
   "anchors": {
-   "verified": 23,
-   "alias": 7,
-   "unverified": 3,
+   "verified": 11,
+   "alias": 3,
+   "unverified": 4,
    "absent": 0
   }
  },
