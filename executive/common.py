@@ -209,7 +209,7 @@ def write_csv(path: Path, rows: list[dict], fields: list[str] | None = None) -> 
     if fields is None:
         fields = list(rows[0].keys()) if rows else []
     with path.open("w", encoding="utf-8", newline="") as handle:
-        writer = csv.DictWriter(handle, fieldnames=fields, extrasaction="ignore")
+        writer = csv.DictWriter(handle, fieldnames=fields, extrasaction="ignore", lineterminator="\n")
         writer.writeheader()
         for row in rows:
             writer.writerow({k: row.get(k, "") for k in fields})

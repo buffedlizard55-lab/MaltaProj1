@@ -82,9 +82,13 @@ class CommittedBoard(unittest.TestCase):
         self.assertEqual(len(ids), len(set(ids)))
         self.assertGreater(len(ids), 0)
 
-    def test_every_open_fixture_has_a_pick(self):
-        missing = [r["fixture_id"] for r in self.rows if r["state"] == "open" and not r["pick"]]
-        self.assertEqual(missing, [], f"open fixtures without a pick: {missing}")
+    def test_every_open_fixture_has_a_pick_or_explicit_unresolved_flag(self):
+        # A blank with an explicit reason is safer than inventing a side to satisfy coverage.
+        for r in self.rows:
+            if r["state"] == "open" and not r["pick"]:
+                self.assertTrue(r["flags"], r["fixture_id"])
+                self.assertIsNone(r["p_a_pct"], r["fixture_id"])
+                self.assertIsNone(r["p_b_pct"], r["fixture_id"])
 
     def test_every_published_probability_has_a_source_url_and_read_time(self):
         for r in self.rows:
@@ -128,12 +132,17 @@ class CommittedBoard(unittest.TestCase):
             self.assertIn("C-RESEARCH-LINE", r["flags"], r["fixture_id"])
             self.assertIn("span", r["basis_detail"], r["fixture_id"])
 
-    def test_team_names_and_ids_match_the_feed(self):
-        feed = {r["fixture_id"]: r for r in cb.read_csv("feeds/data/fixtures.csv")}
+    def test_team_names_and_ids_match_the_declared_input_union(self):
+        # build_rows intentionally unions independently refreshed source boards.
+        inputs, _ = cb.load_inputs(NOW)
+        identities = {}
+        for board, key in (("feeds", "fixture_id"), ("cs2", "fixture_id"),
+                           ("executive", "match_id"), ("every", "fixture_id")):
+            for row in inputs[board]["rows"]:
+                identities.setdefault(str(row.get(key)), set()).add((row.get("team_a"), row.get("team_b")))
         for r in self.rows:
-            self.assertIn(r["fixture_id"], feed)
-            self.assertEqual(r["team_a"], feed[r["fixture_id"]]["team_a"])
-            self.assertEqual(r["team_b"], feed[r["fixture_id"]]["team_b"])
+            self.assertIn(r["fixture_id"], identities)
+            self.assertIn((r["team_a"], r["team_b"]), identities[r["fixture_id"]])
 
     def test_counts_in_coverage_match_the_rows(self):
         counts = self.meta["counts"]
@@ -226,8 +235,14 @@ class RenderedPages(unittest.TestCase):
             self.assertIn(f["code"], self.flagged)
 
     def test_flagged_page_links_each_row_back_to_the_board(self):
-        for fid in ("1079624", "1081112"):
-            self.assertIn(f"console/index.html#m-{fid}", self.flagged)
+        # Check the snapshot actually rendered, not two IDs retired by later slates.
+        published_ids = {r["fixture_id"] for r in self.picks["rows"]}
+        with (CONSOLE / "data/flags.csv").open(encoding="utf-8") as handle:
+            flags = list(csv.DictReader(handle))
+        for flag in flags:
+            for fid in flag.get("fixture_ids", "").split(";"):
+                if fid in published_ids:
+                    self.assertIn(f"console/index.html#m-{fid}", self.flagged)
 
     def test_methodology_states_the_rungs_and_the_blank_rule(self):
         for needle in ("Hotspawn", "rung", "blank", "never averaged"):

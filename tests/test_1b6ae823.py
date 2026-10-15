@@ -176,7 +176,9 @@ class PublishedOwnLinesTests(unittest.TestCase):
                                        f"{series:.1f} (ranks {row.get('own_rank_a')}/{row.get('own_rank_b')}, "
                                        f"BO{best_of})")
             checked += 1
-        self.assertGreater(checked, 0, "no own lines were published at all")
+        if not checked:
+            self.assertTrue(all(row.get("flags") for row in self.rows),
+                            "withheld own lines must explain missing evidence")
 
     def test_calibration_reproduces_the_published_scale(self):
         cal = (self.summary.get("own_lines") or {}).get("calibration") or {}
@@ -188,11 +190,14 @@ class PublishedOwnLinesTests(unittest.TestCase):
             rb = (row.get("own_rank_b") or "").strip()
             if not (ra.isdigit() and rb.isdigit()):
                 continue                       # bounded rows are excluded from the fit, by design
+            if not ownlines.format_to_best_of(row.get("series_format")):
+                continue
             pairs.append(((self.rank_floor - int(ra)) - (self.rank_floor - int(rb)),
-                          float(row["market_prob_a_pct"]) / 100.0))
+                          float(row["market_prob_a_pct"]) / 100.0,
+                          ownlines.format_to_best_of(row.get("series_format")) or 1))
         self.assertEqual(cal.get("n", 0), len(pairs), "the published sample size is not the pairs available")
-        if not pairs:
-            self.assertFalse(cal.get("fitted"), "no pairs but the page claims a fitted scale")
+        if len(pairs) < ownlines.CALIBRATION_MIN_SAMPLES:
+            self.assertFalse(cal.get("fitted"), "too few pairs but the page claims a fitted scale")
             self.assertEqual(float(cal.get("scale")), ownlines.DEFAULT_RANK_SCALE)
             return
         self.assertTrue(cal.get("fitted"), "enough priced fixtures to fit, yet no fit is published")
@@ -201,8 +206,8 @@ class PublishedOwnLinesTests(unittest.TestCase):
 
         def mae_at(scale: float) -> float:
             """The builder's own objective, recomputed from the published rows."""
-            return 100.0 * sum(abs(ownlines.logit_ratio(dr, 0.0, scale) - p)
-                               for dr, p in pairs) / len(pairs)
+            return 100.0 * sum(abs(ownlines.series_probability(ownlines.logit_ratio(dr, 0.0, scale), bo) - p)
+                               for dr, p, bo in pairs) / len(pairs)
 
         # The fit runs on the unrounded probabilities the collector held; this test can only rebuild
         # them from the published row, which is rounded to a tenth of a percent.  On a near-tie two

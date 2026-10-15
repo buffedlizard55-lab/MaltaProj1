@@ -1138,6 +1138,7 @@ number for the match is listed under “all published numbers”. Build {esc(met
 
 def render_flagged(rows: list[dict], flags: list[dict], meta: dict) -> str:
     body = []
+    published_ids = {r["fixture_id"] for r in rows}
     for f in flags:
         seen_pairs = set()
         row_list = []
@@ -1150,7 +1151,7 @@ def render_flagged(rows: list[dict], flags: list[dict], meta: dict) -> str:
             detail = f' <span class="muted">({esc(r["detail"])})</span>' if r.get("detail") else ""
             fid = r["fixture_id"]
             label = (f'<a href="../console/index.html#{slug(fid)}">{esc(fid)}</a>'
-                     if fid.isdigit() else f'<b>{esc(fid)}</b>')
+                     if fid in published_ids else f'<b>{esc(fid)}</b> (not in this captured slate)')
             row_list.append(f'<li>{label}{link}{detail}</li>')
         body.append(f'''<section class="m"><div class="head"><b><code>{esc(f["code"])}</code></b>
  <span class="muted">{len(f["rows"])} row(s)</span></div>
@@ -1355,7 +1356,7 @@ def write_outputs(rows: list[dict], flags: list[dict], meta: dict) -> None:
         "source_url", "read_utc", "hltv_match_url", "hotspawn_match_url", "flags", "board_flags",
     ]
     with (DATA / "picks.csv").open("w", newline="", encoding="utf-8") as fh:
-        w = csv.DictWriter(fh, fieldnames=csv_cols, extrasaction="ignore")
+        w = csv.DictWriter(fh, fieldnames=csv_cols, extrasaction="ignore", lineterminator="\n")
         w.writeheader()
         for r in rows:
             out = {k: (f"{r[k]:.1f}" if isinstance(r.get(k), float) else r.get(k, "")) for k in csv_cols}
@@ -1376,13 +1377,13 @@ def write_outputs(rows: list[dict], flags: list[dict], meta: dict) -> None:
     (DATA / "coverage.json").write_text(json.dumps(meta, indent=1, sort_keys=False), encoding="utf-8")
 
     with (DATA / "sources.csv").open("w", newline="", encoding="utf-8") as fh:
-        w = csv.writer(fh)
+        w = csv.writer(fh, lineterminator="\n")
         w.writerow(["board", "file", "page", "captured_utc", "sha256", "rows"])
         for i in meta["inputs"]:
             w.writerow([i["label"], i["file"], i["page"], i["captured_utc"], i["sha256"], i["rows"]])
 
     with (DATA / "flags.csv").open("w", newline="", encoding="utf-8") as fh:
-        w = csv.writer(fh)
+        w = csv.writer(fh, lineterminator="\n")
         w.writerow(["code", "rows", "meaning", "fixtures"])
         for f in flags:
             w.writerow([f["code"], len(f["rows"]), f["meaning"],

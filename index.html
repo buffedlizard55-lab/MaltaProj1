@@ -82,7 +82,7 @@
     <section class="home-hero" aria-labelledby="page-title">
       <p class="eyebrow">Executive summary · Counter-Strike 2 Pick'em</p>
       <h1 id="page-title">Every match. One clear picks list.</h1>
-      <p>The first link below opens the verified executive board: each open match has one pick, both teams’ win probabilities, an evidence basis, source links, and row-level read times. The separate unresolved section explains the research ladder used when a match has no primary-book line and states what limits each fallback.</p>
+      <p>The first link below opens the verified executive board: each captured match has its source and status; supported picks show both teams’ win probabilities and evidence times. Unsupported picks remain blank and appear in the unresolved section. The separate unresolved section explains the research ladder used when a match has no primary-book line and states what limits each fallback.</p>
 
       <div class="quick-links" aria-label="Start here">
         <a class="quick-link primary" href="executive/picks.html">
@@ -108,6 +108,7 @@
           <div><b id="own-count">—</b><span>No-market own-line picks</span></div>
           <div><b id="missing-count">—</b><span>Without a sourced pick</span></div>
         </div>
+        <p id="slate-health" class="snapshot-status warning">Current full-slate coverage is unverified until both Hotspawn surfaces have a successful recent read. See the <a href="executive/coverage.html">coverage audit</a>.</p>
         <p id="snapshot-status" class="snapshot-status" role="status" aria-live="polite">Loading the published snapshot timestamp and coverage counts…</p>
         <p id="research-status" class="snapshot-meta">Loading the source read times…</p>
         <button id="recheck-snapshot" class="recheck" type="button">Check for a newer published snapshot</button>
@@ -125,7 +126,7 @@
     <span id="matches" aria-hidden="true"></span>
     <section id="picks" aria-labelledby="picks-title">
       <h2 id="picks-title">Find the match picks</h2>
-      <p>The all-match list is designed for phone screens: the recommended pick and both probabilities are prominent, followed by the match, UTC lock time, evidence tier, and source links for each row.</p>
+      <p>The all-match list is designed for phone screens: where supported, the recommended pick and both probabilities are prominent, followed by the match, UTC lock time, evidence tier, and source links for each row.</p>
       <p><a class="button" href="executive/picks.html">Open the complete picks list →</a></p>
     </section>
 
@@ -139,7 +140,7 @@
         <a class="category-card" href="executive/methodology.html"><strong>Methodology</strong><span>Market de-vigging, research hierarchy, model labels, and uncertainty.</span></a>
         <a class="category-card" href="executive/coverage.html"><strong>Hotspawn coverage audit</strong><span>Captured fixture inventory, open/locked/stale distinctions, and known source gaps.</span></a>
         <a class="category-card" href="executive/flagged.html"><strong>Flagged for Review</strong><span>Aliases, stale ratings, rejected markets, disagreements, and model limitations.</span></a>
-        <a class="category-card" href="executive/cadence.html"><strong>Refresh workflow &amp; cadence</strong><span>See the schedule and source record. Its displayed elapsed age and lock countdown are known stale; use this landing page’s computed capture age and absolute source times.</span></a>
+        <a class="category-card" href="executive/cadence.html"><strong>Refresh workflow &amp; cadence</strong><span>Four-hour schedule, source read times, and capture limitations. Source availability and Actions scheduling are not guaranteed.</span></a>
         <a class="category-card" href="reviews/e13aca8a-verification.md"><strong>Line-by-line research verification</strong><span>Per-fixture pick, probability basis, format, source links, and recorded limitations.</span></a>
         <a class="category-card" href="reviews/6f9eab3b-acceptance.html"><strong>Flagged landing/source-link audit</strong><span>Evidence for the separate newer board’s broken Valve link and one-fixture count discrepancy.</span></a>
         <a class="category-card" href="https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/COORDINATION.md"><strong>Release &amp; coordination log</strong><span>Task history, sources, requests to other owners, known irregularities, and publication results.</span></a>
@@ -148,6 +149,7 @@
 
     <section class="notice limits" aria-labelledby="limits-title">
       <h2 id="limits-title">How to read the probabilities</h2>
+      <p><strong>Evidence policy:</strong> a source link is not proof of a current price. Whole-match quotes expire after eight hours; missing ranks and series formats stay blank. A failed Hotspawn read means new-match coverage is unverified, even when the page build succeeds. <a href="reviews/bb9e05ef-reliability.html">Reliability review &amp; sources</a>.</p>
       <ul>
         <li><strong>Hotspawn is the fixture source, not the forecast.</strong> The collector uses its CS2 match list and start/lock times. Hotspawn crowd-pick percentages are never probability inputs.</li>
         <li><strong>Outside prices come first.</strong> Primary-book odds are converted to a two-way, margin-removed market estimate. Secondary listings, relayed bookmaker prices, and prediction-market prices are identified as such and can lag or differ from a bookmaker.</li>
@@ -168,6 +170,8 @@
       <div class="legacy">
         <p>Several sessions produced independent boards and audits. Their coverage counts, dates, source integrity, and model assumptions are not interchangeable with the executive board above. Check each board’s own snapshot and Flagged for Review page before comparing it.</p>
         <div class="archive-grid">
+          <a href="matchpicks/index.html"><strong>Parallel every-match board — review its assumptions</strong><span>Preserved from PR #135. Its independently maintained models and format evidence are not the canonical executive picks.</span></a>
+          <a href="matchpicks/unresolved.html"><strong>Parallel board’s unresolved research</strong><span>Historical/source limitations; see this session’s source-reliability review before treating its inputs as verified.</span></a>
           <a href="livelines/picks.html"><strong>Newer live-read board — flagged pending correction</strong><span>08:04Z page build; review the broken VRS source URL and 89-vs-88 fixture difference before using this board as authoritative.</span></a>
           <a href="livelines/flagged.html"><strong>Newer live-read board’s flags</strong><span>Published flags for its source observations, read times, placeholders, and model caveats.</span></a>
           <a href="briefing/index.html"><strong>Briefing board</strong><span>Independent four-hour snapshot and its own market/model split.</span></a>
@@ -321,6 +325,14 @@
       function renderSummary() {
         if (!current) return;
         var meta = current.meta || {};
+        var healthBox = document.getElementById("slate-health");
+        var health = meta.slate_health || {};
+        var captureIsFresh = ageHours(meta.capture_utc) !== null && ageHours(meta.capture_utc) <= 8;
+        if (healthBox) {
+          var confirmed = health.current === true && captureIsFresh;
+          healthBox.textContent = confirmed ? "Both official Hotspawn surfaces were read successfully at capture. Check source timestamps; this is not a live query." : "FULL COVERAGE UNVERIFIED — " + (health.limitation || "Source capture is incomplete or stale; new matches may be missing.");
+          healthBox.className = "snapshot-status " + (confirmed ? "" : "warning");
+        }
         var coverage = current.coverage || {};
         var capture = meta.capture_utc || meta.generated_utc;
         var open = valueAt(coverage, "open_fixtures");

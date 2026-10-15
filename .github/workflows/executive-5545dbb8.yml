@@ -22,7 +22,7 @@ on:
     - cron: "33 */4 * * *"
   workflow_dispatch: {}
   push:
-    branches: ["arena/5545dbb8-maltaproj1", "main"]
+    branches: ["arena/5545dbb8-maltaproj1", "arena/bb9e05ef-maltaproj1", "main"]
     paths:
       - "executive/collect.py"
       - "executive/build.py"
@@ -33,6 +33,11 @@ on:
       - "executive/aliases.json"
       - "executive/feedline.py"
       - "executive/ownlines.py"
+      - "executive/evidence.py"
+      - "executive/verify_rows.py"
+      - "executive/mobile_check.py"
+      - "executive/research.py"
+      - "tests/test_bb9e05ef.py"
       - "executive/README.md"
       - "feeds/data/market_feed.csv"
       - "feeds/data/capture.json"
@@ -76,6 +81,21 @@ jobs:
         run: |
           set -o pipefail
           python executive/build.py 2>&1 | tee -a /tmp/executive-build.log
+
+      - name: Install ordinary browser for mobile acceptance
+        run: |
+          python -m pip install -r requirements.txt
+          python -m playwright install --with-deps chromium
+
+      - name: Research unsupported rows only (HLTV then outside lines)
+        run: |
+          python executive/research.py
+          python executive/build.py
+
+      - name: Verify every fixture and selected quote against stored source inputs
+        run: |
+          python executive/verify_rows.py
+          python -m unittest tests.test_bb9e05ef -v
 
       - name: Run the invariant suite
         run: |
@@ -141,6 +161,9 @@ jobs:
           PY
           } >> "$GITHUB_STEP_SUMMARY"
 
+      - name: Check phone and tablet rendering and deadline clocks
+        run: python executive/mobile_check.py
+
       - name: Commit the validated snapshot
         if: ${{ github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' || github.event_name == 'push' }}
         run: |
@@ -196,4 +219,6 @@ jobs:
             /tmp/executive-build.log
             /tmp/executive-tests.log
             executive/data/provenance.json
+            executive/data/mobile_verification.json
+            /tmp/mobile-*.png
           if-no-files-found: ignore

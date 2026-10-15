@@ -26,14 +26,14 @@ import re
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-ANALYSIS_CSV = os.path.join(ROOT, "executive", "data", "analysis.csv")
+ANALYSIS_CSV = os.path.join(ROOT, "fullpicks", "data", "analysis_at_20261014.csv")
 STALE_FIXTURES_CSV = os.path.join(ROOT, "fullpicks", "data", "stale_fixtures_from_executive.csv")
 STALE_RESULTS_CSV = os.path.join(ROOT, "fullpicks", "data", "stale_results.csv")
 BOARD_CSV = os.path.join(ROOT, "fullpicks", "data", "fullpicks_board.csv")
 INDEX_HTML = os.path.join(ROOT, "fullpicks", "index.html")
 UNRESOLVED_HTML = os.path.join(ROOT, "fullpicks", "unresolved.html")
 SESSION = "arena/c13ca42a"
-BUILD_NOTE = "Data checked 2026-10-14T08:35Z (official HLTV + Liquipedia reads). Board regenerated automatically every 4 h."
+BUILD_NOTE = "Data checked 2026-10-14T08:35Z (official HLTV + Liquipedia reads). Archived source snapshot — not current picks. Use executive/picks.html for maintained coverage."
 
 # HLTV event result pages used for the C-02 verification (for manual review).
 EVENT_PAGES = {
@@ -364,7 +364,7 @@ footer a{{color:#8fb4ff}}
 <section class="hero" id="start" aria-label="Executive summary">
 <div class="eyebrow">Full-coverage pick&#39;em board &middot; session {SESSION} &middot; refresh every 4 h</div>
 <h1>Every Hotspawn CS2 match &mdash; pick, probability, result</h1>
-<p>All <b>88</b> CS2 Pick&#39;em fixtures captured from Hotspawn, one row each.
+<p><strong>ARCHIVE — source snapshot 14 October 2026, not current picks.</strong> <a href="../executive/picks.html">Current picks &amp; unresolved gaps</a>.</p><p>All <b>88</b> CS2 Pick&#39;em fixtures captured from Hotspawn, one row each.
 <b>28 open</b> matches carry a live pick with win probabilities for both teams (outside betting lines
 first; our own originated line where no market prices the match). <b>54 played</b> matches carry their
 officially verified result next to the pick we originally published. <b>6 matches are unresolved</b> and

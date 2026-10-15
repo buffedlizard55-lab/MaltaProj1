@@ -11,15 +11,13 @@ name: Full-coverage picks board refresh (c13ca42a)
 # fullpicks/. The 4-hour schedule also acts as a periodic re-verification of invariants.
 
 on:
-  schedule:
-    # Every 4 hours, offset from the other boards' slots so the runners do not collide.
-    - cron: "7 */4 * * *"
+  # Historical 2026-10-14 snapshot. The canonical executive pipeline refreshes live picks.
   workflow_dispatch:
   push:
     branches: [main, "arena/c13ca42a-maltaproj1"]
     paths:
       - "fullpicks/**"
-      - "executive/data/analysis.csv"
+      - "fullpicks/data/analysis_at_20261014.csv"
       - "data/c13ca42a/stale_result_rows.py"
       - "scripts/c13ca42a_build_fullpicks.py"
       - "tests/test_c13ca42a.py"
@@ -63,10 +61,5 @@ jobs:
           fi
           git add fullpicks
           git commit -m "fullpicks(c13ca42a): validated refresh from run ${{ github.run_id }}"
-          for i in 1 2 3; do
-            git pull --rebase --autostash origin "${GITHUB_REF_NAME}" \
-              -X theirs --strategy-option=theirs && break
-            echo "rebase attempt $i failed, retrying"
-            sleep 5
-          done
+          git pull --rebase origin "${GITHUB_REF_NAME}"
           git push origin "HEAD:${GITHUB_REF_NAME}"

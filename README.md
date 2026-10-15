@@ -4,13 +4,33 @@
 - **Root mobile executive summary:** [landing page](https://buffedlizard55-lab.github.io/MaltaProj1/)
 - **Primary all-match picks:** [executive picks and probabilities](https://buffedlizard55-lab.github.io/MaltaProj1/executive/picks.html)
 - **Unresolved research & limitations:** [HLTV → esportsbooks → betting-line fallback](https://buffedlizard55-lab.github.io/MaltaProj1/executive/unresolved.html)
-- **Full captured-slate board (parallel):** [88 fixtures, including verified historical results and flagged gaps](https://buffedlizard55-lab.github.io/MaltaProj1/fullpicks/index.html)
+- **Archived 2026-10-14 captured-slate report:** [88 fixtures, including verified historical results and flagged gaps](https://buffedlizard55-lab.github.io/MaltaProj1/fullpicks/index.html)
 - **Acceptance/source-link audit:** [review](https://buffedlizard55-lab.github.io/MaltaProj1/reviews/6f9eab3b-acceptance.html)
 
 The root landing page leads with the `executive/` snapshot. The separate newer `livelines/` board is preserved in the archive but is not authoritative until its malformed Valve source links (used by 88 of 89 fixture rows) and 89-versus-88 fixture discrepancy are repaired and rechecked. See the [acceptance review](reviews/6f9eab3b-acceptance.md) for exact URLs, capture times, and the request to its owner.
 
 A mobile-first source-linked dashboard for the public [Hotspawn Pick'em lobby](https://play.hotspawn.com/lobby).
 Hotspawn supplies **fixture identity and UTC lock/start epochs only**, never a probability input.
+
+Parallel research from PR #135 is retained at [matchpicks/](matchpicks/index.html) and [its unresolved section](matchpicks/unresolved.html). It is not the primary executive route; see the [source-reliability review](reviews/bb9e05ef-reliability.html) for timestamp and exact-fixture format limitations.
+
+## Current reliability policy (15 October 2026)
+
+The maintained route is **[executive/picks.html](executive/picks.html)**. All captured fixtures remain visible;
+unsupported picks have blank probabilities and explicit reasons at **[Unresolved](executive/unresolved.html)**.
+
+- Refresh scheduled every four hours; Actions timing and external source availability are best-effort.
+- Require successful lobby **and** CS2 page reads, no identity conflict and a capture ≤8 h old before claiming current full-slate coverage.
+- Only fresh (≤8 h), explicitly whole-match, two-sided outside quotes may drive picks. Keep original source times; never use Hotspawn crowd picks.
+- Missing ranks/points are **not** worst-rank bounds; missing series formats are **not** BO1. Non-exact VRS identities without renewed proof are withheld.
+- Originated probabilities are labelled project estimates, with independent-map assumptions and no claim of outcome calibration.
+- [Per-row stored-input audit](executive/data/row_verification.json), [rejected quotes](executive/data/rejected_quotes.json), [live attempt provenance](executive/data/provenance.json), [reliability review](reviews/bb9e05ef-reliability.html).
+- `fullpicks/` is pinned to its historical 88-row input from [merge 1d775daf](https://github.com/buffedlizard55-lab/MaltaProj1/commit/1d775daf348e291f851a7d5f34bceb0edd21013e); it no longer claims to refresh live picks. Other historical boards are secondary archives, not independently verified current forecasts.
+
+Run `python executive/build.py`, `python executive/verify_rows.py`, `python executive/tests.py`, and
+`python -m unittest discover -s tests -v` for local stored-evidence verification. Live collection runs in GitHub Actions;
+this agent sandbox cannot directly reach Hotspawn/HLTV/bookmakers. Chromium checks at 360, 390 and 768 px run in
+that workflow; screenshot artifacts are retained there, not in Git.
 
 ## Parallel consolidated-board audit (session `228bb5bc`, 2026-10-14)
 

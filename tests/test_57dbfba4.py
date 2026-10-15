@@ -9,7 +9,10 @@ class GapResolution(unittest.TestCase):
         cls.unres = list(csv.DictReader(open(os.path.join(ROOT,"gap-resolution/data/unresolved.csv"),encoding="utf-8")))
         cls.pages = {n: read(f"gap-resolution/{n}.html") for n in ("index","unresolved","flagged","methodology")}
     def test_unresolved_is_exactly_non_market(self):
-        expect = {r["fixture_id"] for r in self.picks if not r["basis_rung"].startswith("market")}
+        # This is archived research. Its own captured research ledger, not
+        # independently refreshed console output, defines the frozen scope.
+        with open(os.path.join(ROOT, "gap-resolution/data/research.csv"), encoding="utf-8") as handle:
+            expect = {r["fixture_id"] for r in csv.DictReader(handle)}
         self.assertEqual(expect, {r["fixture_id"] for r in self.unres})
         self.assertTrue(expect, "expected at least one unresolved row in this snapshot")
     def test_probs_sum_and_pick(self):

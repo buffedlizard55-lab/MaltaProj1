@@ -30,7 +30,7 @@ def load_module(name, path):
 class TestC13ca42aData(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.analysis = list(csv.DictReader(open(os.path.join(ROOT, "executive", "data", "analysis.csv"), newline="", encoding="utf-8")))
+        cls.analysis = list(csv.DictReader(open(os.path.join(ROOT, "fullpicks", "data", "analysis_at_20261014.csv"), newline="", encoding="utf-8")))
         cls.stale_fx = list(csv.DictReader(open(os.path.join(ROOT, "fullpicks", "data", "stale_fixtures_from_executive.csv"), newline="", encoding="utf-8")))
         cls.results = list(csv.DictReader(open(os.path.join(ROOT, "fullpicks", "data", "stale_results.csv"), newline="", encoding="utf-8")))
         cls.board = list(csv.DictReader(open(os.path.join(ROOT, "fullpicks", "data", "fullpicks_board.csv"), newline="", encoding="utf-8")))
