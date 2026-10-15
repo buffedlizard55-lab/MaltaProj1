@@ -4286,3 +4286,23 @@ integration pass link **both** every-match boards rather than dropping one.
    progress); the board publishes that state with its read time and claims no final score.
 4. HLTV's on-page clock is not UTC (it rendered `04:35` for a fixture whose Hotspawn lock is
    `08:24Z`); all conversions used the stored lock/start epochs, never the rendered clock.
+
+### Release record — PR #139 merged, Pages confirmed, publication-step repair (PR #140)
+
+- **PR #139** (`arena/7759beef-maltaproj1` → `main`) **merged 2026-10-15T10:14:33Z**, merge SHA
+  `cf382cbb5612afef1b97dfdbdeddf692d6497781`; the valuepicks board, its research file, builder, tests,
+  workflow, the additive landing section and the completion log above are on `main`.
+- **GitHub Pages confirmed:** the Pages build for `cf382cb` reports **built** (created 10:14:34Z, updated
+  10:15:30Z). Live fetch checks: `…/MaltaProj1/valuepicks/index.html` and `…/valuepicks/unresolved.html`
+  both return the board ("Every open Hotspawn match now has a pick", ledger 17 picked / 7 tier A / 10
+  fallback / 12 value watches, and the 10-row ladder list on the unresolved page).
+- **Workflow irregularity found and repaired:** branch-push run `38718842227` **succeeded**; main-push run
+  [`38718856948`](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38718856948) failed **only**
+  in the "Commit the rebuilt board (main only)" step — the build, the 13 invariants and the repository link
+  audit had already passed. Cause, reproduced in a fresh clone of `main`: `scripts/audit_91e444dd.py`
+  rewrites the tracked `status/report.json`, so `git pull --rebase` refuses with *"cannot pull with rebase:
+  You have unstaged changes"* (same class of bug the console workflow hit above). Nothing bad was published;
+  `main` kept the board already verified earlier in that same run.
+- **Repair (PR #140):** the publication step now discards the generated report before committing, pulls with
+  `--rebase --autostash`, and retries with diagnostics. Verified locally in a fresh clone: the old command
+  fails exactly as above, the new sequence commits, rebases and completes a `git push --dry-run` cleanly.
