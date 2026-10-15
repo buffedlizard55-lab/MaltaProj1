@@ -49,6 +49,9 @@
     .inline-links { display: flex; flex-wrap: wrap; gap: 8px 18px; }
     .inline-links a { display: inline-flex; align-items: center; min-height: 44px; }
     .flag-note { border-left-color: #ff8585; }
+    .vp-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line); }
+    .vp-row:last-of-type { border-bottom: 0; }
+    .vp-pick { font-weight: 700; text-align: right; white-space: nowrap; }
     @media (max-width: 800px) {
       .coverage-panel .stats { grid-template-columns: repeat(3, minmax(0, 1fr)); }
       .quick-links, .category-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -122,6 +125,65 @@
         </div>
       </section>
     </section>
+
+    <section id="day-picks" aria-labelledby="day-picks-title">
+      <h2 id="day-picks-title">Today's picks, day review &amp; value watches</h2>
+      <p>Same open fixtures, arranged for a phone: the pick, both teams' probabilities, the evidence
+      tier and the source link for every row — plus the day-1 upset review, the roster-change intel
+      and a separate list of the rows that could not reach the top evidence tier.</p>
+      <div class="quick-links" aria-label="Day review and value picks">
+        <a class="quick-link primary" href="valuepicks/index.html">
+          <strong>Open the day review &amp; picks board →</strong>
+          <span>Every open match with a pick and a two-sided probability, the 9z–Aurora review, and the roster notes behind the calls.</span>
+        </a>
+        <a class="quick-link" href="valuepicks/value.html">
+          <strong>Value watches (contrarian)</strong>
+          <span>Where the outside market and the project's official-ratings line disagree by 5pp or more, with the caveats attached.</span>
+        </a>
+        <a class="quick-link" href="valuepicks/unresolved.html">
+          <strong>Unresolved picks &amp; limits</strong>
+          <span>Rows that fall below the top evidence tier, the ladder used to price them, and the exact limitation on each.</span>
+        </a>
+      </div>
+      <div id="vp-slate" class="coverage-panel" role="status" aria-live="polite">
+        <p class="snapshot-meta">Loading the latest published picks…</p>
+      </div>
+      <p class="small"><a href="valuepicks/coverage.html">All captured fixtures (coverage)</a> ·
+      <a href="valuepicks/sources.html">sources and read times</a> ·
+      <a href="valuepicks/flagged.html">flagged for review</a></p>
+    </section>
+    <script>
+    (function () {
+      var target = document.getElementById('vp-slate');
+      if (!target || !window.fetch) { return; }
+      function esc(value) {
+        return String(value == null ? '' : value).replace(/[&<>"']/g, function (ch) {
+          return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch];
+        });
+      }
+      fetch('valuepicks/data/board.json', { cache: 'no-store' }).then(function (response) {
+        if (!response.ok) { throw new Error('http ' + response.status); }
+        return response.json();
+      }).then(function (data) {
+        var rows = (data.rows || []).filter(function (row) { return row.status === 'open' && row.pick; });
+        rows.sort(function (a, b) { return a.lock_utc < b.lock_utc ? -1 : 1; });
+        var html = '<p class="snapshot-meta"><strong>' + rows.length + ' open fixtures picked</strong> · capture ' +
+          esc((data.meta || {}).capture_utc) + ' · board rebuilt ' + esc((data.meta || {}).generated_utc) + '</p>';
+        rows.slice(0, 3).forEach(function (row) {
+          html += '<div class="vp-row"><div><strong>' + esc(row.team_a) + ' vs ' + esc(row.team_b) + '</strong>' +
+            '<div class="snapshot-meta">' + esc(row.tournament) + ' · lock ' +
+            esc(String(row.lock_utc).slice(0, 16).replace('T', ' ')) + 'Z</div></div>' +
+            '<div class="vp-pick">' + esc(row.pick) + '<br><span class="snapshot-meta">' +
+            Number(row.prob_a_pct).toFixed(1) + '% / ' + Number(row.prob_b_pct).toFixed(1) + '%</span></div></div>';
+        });
+        html += '<p><a class="button" href="valuepicks/index.html">See every open match →</a></p>';
+        target.innerHTML = html;
+      }).catch(function () {
+        target.innerHTML = '<p class="snapshot-meta">The live list could not load right now — open the ' +
+          '<a href="valuepicks/index.html">day review &amp; picks board</a> for the stored snapshot.</p>';
+      });
+    })();
+    </script>
 
     <span id="matches" aria-hidden="true"></span>
     <section id="picks" aria-labelledby="picks-title">

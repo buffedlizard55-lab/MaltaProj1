@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0d1218">
+<title>Method - Hotspawn CS2 - day review, guaranteed picks &amp; value watches</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="top">
+  <a class="brand" href="index.html">HOTSPAWN <span>/ day review &amp; value picks</span></a>
+  <nav aria-label="Board navigation"><a href="index.html">Today&#x27;s picks</a><a href="value.html">Value watches</a><a href="unresolved.html">Unresolved &amp; limits</a><a href="coverage.html">All fixtures</a><a href="sources.html">Sources</a><a href="methodology.html" class="active">Method</a><a href="flagged.html">Flagged</a></nav>
+</header>
+<main id="main">
+
+<section class="hero">
+  <p class="eyebrow">Reproducible</p>
+  <h1>Method</h1>
+  <p class="lede">Three published tiers, one ladder, no inference. This page says exactly what each
+  number is so a row can be challenged line by line.</p>
+</section>
+<section>
+  <h2>Probabilities</h2>
+  <ul>
+    <li><strong>Market tiers.</strong> Decimal odds are converted with proportional de-vigging:
+    p = (1/odds) / (1/odds_a + 1/odds_b). Direct bookmaker quotes are labelled tier A; relayed or
+    listing-site quotes, and prediction markets, are labelled B and C and never described as a
+    bookmaker price.</li>
+    <li><strong>Project line (tier D).</strong> Official Valve Regional Standings points, per-map
+    logistic <code>1/(1+10^((points_b - points_a)/400))</code> - the convention Valve's own model
+    file uses - then the exact best-of transform used across this repository
+    (BO1 = p, BO3 = 3p^2 - 2p^3, BO5 negative-binomial sum). Where the official standings do not
+    list a team, its rank on the official HLTV world ranking is used with the project's published
+    rank scale. Missing inputs stay blank; absence is never treated as a rating bound.</li>
+    <li><strong>Pick.</strong> The side with the higher published probability. A pick is not advice.</li>
+    <li><strong>Value gap.</strong> project - market on the better side, published when both exist.
+    It measures disagreement between two sources, not the truth.</li>
+  </ul>
+  <h2>What this board refuses to do</h2>
+  <ul>
+    <li>It never uses Hotspawn's crowd pick percentage as a probability input.</li>
+    <li>It never fills a probability from a news headline, a community vote, or a "feels like" view.</li>
+    <li>It never silently equates two differently named teams; identity evidence is printed on the row
+    (see the WBT and ROUNDS rows on the unresolved page).</li>
+    <li>It does not claim calibration. Project lines are estimates with named inputs and named limits.</li>
+  </ul>
+  <h2>Freshness and cadence</h2>
+  <ul>
+    <li>The upstream executive capture refreshes on a four-hour GitHub Actions schedule; this board
+    is rebuilt from that capture plus <code>research/7759beef/sources.json</code> on every run, and
+    its build fails if a published market or project probability does not recompute from the stored
+    inputs.</li>
+    <li>Quote ages are printed on every row. A stale quote is still published (with its capture time)
+    only when the row would otherwise have no pick at all, and it is flagged.</li>
+  </ul>
+</section>
+
+</main>
+<footer>
+  <p>Independent research only - probabilities are estimates, not guarantees or betting advice.
+  Hotspawn supplies fixture identity and lock times; its crowd-pick percentages are never used as probability inputs.</p>
+  <p class="meta">Session arena/7759beef · rebuilt by <code>scripts/7759beef_build.py</code> ·
+  <a href="../executive/picks.html">executive board</a> ·
+  <a href="../executive/unresolved.html">executive unresolved</a> ·
+  <a href="../index.html">site home</a></p>
+</footer>
+</body>
+</html>
