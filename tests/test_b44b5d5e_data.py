@@ -23,6 +23,7 @@ from __future__ import annotations
 import csv
 import json
 import math
+import re
 import unittest
 from pathlib import Path
 
@@ -206,6 +207,16 @@ class PublishedData(unittest.TestCase):
                 if row["own_p_a_pct"]:
                     self.assertEqual(row["own_scope"], "per-map",
                                      f"{row['match_id']}: per-map line must say so")
+
+    def test_no_published_source_link_is_an_hltv_id_only_url(self):
+        """A link a reader cannot open is not a source: HLTV 404s the slug-less form."""
+        pattern = re.compile(r"^https?://www\.hltv\.org/matches/\d+/?$")
+        for row in self.rows:
+            for column in ("result_source_url", "series_url", "market_url", "own_url"):
+                value = (row.get(column) or "").strip()
+                if value.startswith("http"):
+                    self.assertIsNone(pattern.match(value),
+                                      f"{row['match_id']}: {column} would 404 for a reader: {value}")
 
     def test_results_only_ever_come_with_an_official_link(self):
         for row in self.rows:

@@ -140,6 +140,30 @@ def logistic(diff: float, scale: float) -> float:
     return 1.0 / (1.0 + 10.0 ** (-float(diff) / float(scale)))
 
 
+HLTV_ID_ONLY = re.compile(r"^https://www\.hltv\.org/matches/(\d+)/?$")
+
+
+def slugify(value: str) -> str:
+    return re.sub(r"-+", "-", re.sub(r"[^a-z0-9]+", "-", (value or "").lower())).strip("-")
+
+
+def repair_source_url(url: str, team_a: str = "", team_b: str = "") -> tuple[str, bool]:
+    """Make an id-only HLTV match link resolve.
+
+    The repository's result trail stores links such as ``https://www.hltv.org/matches/2395365``.
+    HLTV answers that form with HTTP 404 ("Page not found"), but serves the canonical page for any
+    slug segment (verified by this session on 2026-10-15: ``/matches/2395365/x`` and
+    ``/matches/2395497/<wrong-event-slug>`` both returned the correct match page).  Rather than
+    publish a dead link, the board appends a slug built from the two team names; the repaired link is
+    flagged so the repair is visible.
+    """
+    match = HLTV_ID_ONLY.match((url or "").strip())
+    if not match:
+        return url, False
+    slug = "-vs-".join(part for part in (slugify(team_a), slugify(team_b)) if part) or "match"
+    return f"https://www.hltv.org/matches/{match.group(1)}/{slug}", True
+
+
 def load_series_research() -> dict:
     """Source-linked best-of lengths read by hand for the fixtures the automated runner cannot source.
 
@@ -426,7 +450,10 @@ def build(snapshot: dict) -> dict:
         if own["bo"]:
             row["series"] = f"BO{own['bo']}"
             row["series_source"] = own["series_source"]
-            row["series_url"] = own["series_url"]
+            repaired, was_repaired = repair_source_url(own["series_url"], row["team_a"], row["team_b"])
+            row["series_url"] = repaired
+            if was_repaired:
+                row_flags.append("MP-F35")
             row["series_read_utc"] = own["series_read_utc"]
             row["series_evidence"] = own.get("series_evidence") or ""
             if own["series_source"] == "official HLTV match list":
@@ -490,7 +517,11 @@ def build(snapshot: dict) -> dict:
         #      cross-check it against the payload's own score whenever the payload publishes one.
         if trail and (trail.get("status") or "").strip() == "verified" and trail.get("winner"):
             row["result"] = f"{trail['winner']} {trail.get('score') or ''}".strip()
-            row["result_source_url"] = trail.get("official_source_url") or ""
+            repaired, was_repaired = repair_source_url(trail.get("official_source_url") or "",
+                                                       row["team_a"], row["team_b"])
+            row["result_source_url"] = repaired
+            if was_repaired:
+                row_flags.append("MP-F35")
             row["result_read_utc"] = trail.get("read_utc") or ""
             row["result_note"] = ("carried from the repository's independently verified result "
                                   f"trail, which cites the official match page above and was read "
@@ -500,7 +531,11 @@ def build(snapshot: dict) -> dict:
                                   "page is the only source shown")
         elif trail and (trail.get("status") or "").strip():
             row["result"] = ""
-            row["result_source_url"] = trail.get("official_source_url") or ""
+            repaired, was_repaired = repair_source_url(trail.get("official_source_url") or "",
+                                                       row["team_a"], row["team_b"])
+            row["result_source_url"] = repaired
+            if was_repaired:
+                row_flags.append("MP-F35")
             row["result_read_utc"] = trail.get("read_utc") or ""
             row["result_note"] = f"trail status “{trail['status']}”: {(trail.get('flag') or '')[:220]}"
             row_flags.append("MP-F32")
@@ -670,6 +705,11 @@ FLAG_TEXT = {
                "read, which is recorded in every capture), so the best-of length comes from a named "
                "official HLTV match or event page read by hand, quoted on the row and linked with "
                "its read time. Nothing is inferred from the score or the number of maps."),
+    "MP-F35": ("Source link repaired so it resolves", "The link stored by the source trail was the "
+               "id-only form (for example https://www.hltv.org/matches/2395365), which HLTV answers "
+               "with HTTP 404; the board appends a slug built from the two team names, which HLTV "
+               "serves as the canonical match page (verified by hand on the id-only links "
+               "2395365 and 2395497 on 2026-10-15). The underlying claim is unchanged — only the link is."),
     "MP-F34": ("Capture gap closed by this board", "This fixture was missing from the other boards' "
                "captured inventories because the payload node had no participant names when they "
                "were read; it is listed here so it cannot disappear silently."),

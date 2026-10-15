@@ -59,6 +59,17 @@ Written 2026-10-15 (UTC). Every row on the board links the source it was read fr
   the capture really read it, (b) falls back to the hand-checked, source-linked research trail
   (MP-F33), and (c) publishes the aggregator tier as unavailable instead of substituting a guess. The
   next capture re-tries both.
+* **I8 — dead source links in the result trail (found by this session, 2026-10-15).** 54 of the
+  trail's rows link the id-only form `https://www.hltv.org/matches/<id>`, which HLTV answers with
+  **HTTP 404 "Page not found"** — a link a reader cannot open is not a source. Verified against two
+  of them by hand: `/matches/2395365` → 404, while `/matches/2395365/x` and
+  `/matches/2395497/<slug>` both return the correct canonical page (HLTV ignores the slug segment and
+  redirects). The board therefore appends a slug built from the two team names
+  (`/matches/2395365/johnny-speeds-vs-rethink`) and flags the repair **MP-F35**; a data test now fails
+  if any published link is the id-only form again. The same re-reads re-confirmed two published
+  results: Johnny Speeds 1-2 ReThink ("Best of 3 (LAN)", 26 Jun, Svenska CS-Ligan Finals) and Sashi
+  Academy 2-1 eternal premium ("Best of 3 (Online)", 26 Jun, EPL Series 8 CQ) — both agree with the
+  trail's winner/score/series.
 * **I7 — refresh races.** The 4-hourly workflow's commit step could fail when the working session
   pushed at the same moment (run `38706401986`). The step now rebases with `-X theirs` (every committed
   file is regenerated output) and retries the push four times before failing.
