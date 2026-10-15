@@ -934,7 +934,7 @@ def render_index(rows: list[dict], unresolved: list[dict], flags: dict, summary:
   <div class="stat"><span class="n">{summary['open_market_basis']}</span><span class="l">open picks on an outside market line</span></div>
   <div class="stat"><span class="n">{summary['open_own_line_basis']}</span><span class="l">open picks on our own official-input line</span></div>
   <div class="stat warn"><span class="n">{summary['unresolved_total']}</span><span class="l">rows on the Unresolved page</span></div>
-  <div class="stat"><span class="n">{summary['independent_checks_agreed']}</span><span class="l">results cross-checked against an independent trail</span></div>
+  <div class="stat"><span class="n">{summary['independent_checks_agreed']}</span><span class="l">fixtures where Hotspawn published a score at all (it publishes none: every fixture sits at 0-0 “scheduled”, so results are taken from the linked official match pages instead)</span></div>
   <div class="stat"><span class="n">{summary['crowd_fields_dropped']}</span><span class="l">Hotspawn crowd fields dropped at ingest</span></div>
 </section>
 <section class="notice" id="summary">
@@ -948,6 +948,19 @@ def render_index(rows: list[dict], unresolved: list[dict], flags: dict, summary:
   <a href="unresolved.html">Unresolved picks &amp; limitations ({summary['unresolved_total']})</a> ·
   <a href="flagged.html">Flagged for review ({summary['flags_total']} item(s))</a> ·
   <a href="methodology.html">Method &amp; sources</a></p>
+  <p><strong>Limitations, stated up front.</strong> Two of the sources this ladder prefers refused the
+  automated read during this capture — HLTV's upcoming-match list and the EGamersWorld aggregate both
+  answer the runner with HTTP 403 (recorded in every capture), so the length of a series comes from a
+  hand-checked, linked official HLTV page ({meta.get('source_health', {}).get('hltv_format_rows', 0)}
+  row(s) joined live this time, the rest from the research trail), and rows that would have used an
+  aggregate price are labelled as our own line instead. The own line is built on Valve's newest
+  <em>published</em> standings file, so between publications a team's live rating may have moved.
+  Hotspawn publishes no best-of length and no usable score at all — its <code>best_of</code> and
+  <code>series_format</code> fields are null for every fixture and every fixture is stuck at 0-0
+  “scheduled”, even ones from June. Everything that could not be confirmed stays blank and is flagged:
+  <a href="unresolved.html">Unresolved picks &amp; limitations ({summary['unresolved_total']})</a> lists
+  every row without a pick, with the reason, and <a href="flagged.html">Flagged for review
+  ({summary['flags_total']} item(s))</a> lists every irregularity with the rows it touches.</p>
   <p><strong>Freshness.</strong> Captured {escape(summary['generated_utc'])}; Hotspawn reports
   “{escape(meta.get('week_text') or '')}” and a reset in {escape(meta.get('reset_text') or '')}. The board
   rebuilds automatically every 4 hours; the timestamp above is the time of the data on this page, not of

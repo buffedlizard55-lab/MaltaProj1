@@ -355,16 +355,39 @@ def parse_hltv_formats(text: str, fixtures: list[dict]) -> dict:
     return {"matches": found}
 
 
+CHALLENGE_MARKERS = ("just a moment", "performing security verification",
+                     "enable javascript and cookies", "verifies you are not a bot")
+
+
 def collect_hltv_formats(fixtures: list[dict]) -> dict:
-    got = lc.browser_get(HLTV_MATCHES_URL, wait_ms=4000)
-    html = got["html"] or ""
-    text = lc.text_of(html) if html else ""
-    parsed = parse_hltv_formats(text, fixtures) if text else {"matches": []}
+    """Best-of lengths from HLTV's own upcoming-matches list, with a bounded challenge retry.
+
+    The list is normally behind a bot check that the runner sometimes clears and sometimes does not,
+    so it is read up to three times with a longer wait each time; the outcome and every attempt are
+    recorded, and a fixture the list never yields keeps no length (the researched trail supplies the
+    ones this session checked by hand).  Nothing is guessed.
+    """
+    attempts = []
+    got = parsed = None
+    text = ""
+    for wait_ms in (4000, 12000, 20000):
+        got = lc.browser_get(HLTV_MATCHES_URL, wait_ms=wait_ms)
+        html = got["html"] or ""
+        text = lc.text_of(html) if html else ""
+        parsed = parse_hltv_formats(text, fixtures) if text else {"matches": []}
+        challenged = any(marker in text.lower() for marker in CHALLENGE_MARKERS)
+        attempts.append({"wait_ms": wait_ms, "status": got.get("status"),
+                         "bytes": got.get("bytes"), "challenged": challenged,
+                         "rows": len(parsed["matches"]), "read_utc": got.get("fetched_utc")})
+        print(f"[matchpicks] hltv format attempt wait={wait_ms}ms status={got.get('status')} "
+              f"challenged={challenged} rows={len(parsed['matches'])}", flush=True)
+        if parsed["matches"] and not challenged:
+            break
     sample = re.sub(r"\s+", " ", text)[:1500]
-    return {"status": "observed" if parsed["matches"] else "unavailable",
-            "url": HLTV_MATCHES_URL, "read_utc": got["fetched_utc"],
-            "matches": parsed["matches"], "text_sha256": got["sha256"],
-            "debug_text_sample": sample}
+    return {"status": "observed" if (parsed or {}).get("matches") else "unavailable",
+            "url": HLTV_MATCHES_URL, "read_utc": (got or {}).get("fetched_utc"),
+            "matches": (parsed or {}).get("matches") or [], "text_sha256": (got or {}).get("sha256"),
+            "attempts": attempts, "debug_text_sample": sample}
 
 
 def main() -> int:
