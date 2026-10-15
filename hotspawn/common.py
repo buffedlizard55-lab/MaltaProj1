@@ -278,5 +278,23 @@ def within(value: str | None, start: datetime, end: datetime) -> bool:
     return bool(dt and start <= dt <= end)
 
 
+
+def run_main(fn) -> None:
+    """Run a pipeline entry point; on a crash print the traceback AND a GitHub ::error annotation
+    (annotations are readable through the API even when raw job logs are not)."""
+    import os
+    import traceback
+    try:
+        code = fn()
+    except Exception:  # noqa: BLE001
+        tb = traceback.format_exc()
+        print(tb, flush=True)
+        if os.environ.get("GITHUB_ACTIONS"):
+            msg = tb[-1800:].replace("%", "%25").replace("\r", "").replace("\n", "%0A")
+            print(f"::error title={os.path.basename(getattr(fn, '__module__', 'script') or 'script')} crashed::{msg}", flush=True)
+        raise SystemExit(1)
+    raise SystemExit(code or 0)
+
+
 __all__ = [name for name in dir() if not name.startswith("_")]
 _ = timedelta  # re-exported for callers via ``from common import *``
