@@ -4457,3 +4457,22 @@ Full repo suite on this branch: 405 tests, **1 failure = the pre-existing consol
 | HS-4 automation + tests | done — branch runs green; publish gated by tests + phone check |
 | HS-5 landing integration | done (pending release) |
 | HS-6 verification + release | in progress |
+
+### Release record — arena/22be6967: PR #147 merged, Pages confirmed, automation writing to `main` (2026-10-15 ~10:58 UTC)
+
+- **PR [#147](https://github.com/buffedlizard55-lab/MaltaProj1/pull/147)** (`arena/22be6967-maltaproj1` → `main`) **merged
+  2026-10-15T10:53:27Z**, merge SHA `f1fe8468c81467e844e930436d56d80d93f99039` (43 files: `hotspawn/**`, workflow, root
+  `index.html`, `README.md`, `tests/test_landing_43c32386.py`, `reviews/22be6967-verification.md`, this log).
+- **GitHub Pages confirmed:** `pages-build-deployment` run 38723454498 **success** for the merge. Cache-busted live
+  fetches at ~10:54Z: the root shows "Every match. One clear picks list." with the live feed populated ("Hotspawn read
+  10:49 UTC", 14 open / 14 picked / 5 featured / 9 via research ladder, next-to-lock list), and
+  `…/hotspawn/picks.html` renders all 14 cards with both probabilities, basis, plan, crowd ownership and sources.
+- **Automation on `main` proven:** post-merge run 38723456046 of `hotspawn-22be6967.yml` succeeded on every step
+  (live collect → calibrate → model → build → 25 invariants → phone check → commit `b4b61e2` to `main` → Pages
+  rebuild request). Schedule: `29 */3 * * *`.
+- **Checks on the PR:** `audit` pass; both `verify` jobs (`verify.yml`, `landing-43c32386.yml`) red **only** because of
+  the pre-existing console invariant — reproduced on the exact merge tree: 405 tests, that single failure; `node --check
+  js/landing.js` OK; `scripts/audit_91e444dd.py` 265 pages / 0 broken links. Not a site defect; request to the console
+  owner stands (above).
+- **Follow-up PR (this commit):** complementary rounding of the two displayed percentages (independent rounding could
+  show pairs such as 79% / 22%; each pair now sums to exactly 100%) on cards, the board summary and the root feed.
