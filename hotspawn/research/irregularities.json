@@ -168,17 +168,18 @@
    "id": "IR-18",
    "status": "open",
    "title": "valuepicks board still fails two of its own invariants",
-   "detail": "tests/test_7759beef.py fails twice on the committed board: the coverage page lists 80 rows while the executive capture now holds 76, and the board's open set (1080280-84, 1079440/42, 1080202-04) no longer matches the capture's open set (1080205, 1079586, 1081530, 1081531, 1079589). Cause: the board is regenerated from the executive capture plus its own verified research, and several fixtures in the new capture have no quote there (Aurora vs 9z is 'No sourced basis' in executive/data/analysis.json), which only a live collector run can supply. Sessions cannot portably re-run those collectors from this sandbox (no outbound network in-shell); the four-hourly valuepicks workflow must refresh it. Not the primary route: the root summary links hotspawn/ first.",
+   "detail": "tests/test_7759beef.py fails twice on the committed board: the coverage page lists 80 rows while the executive capture now holds 76, and the board's open set (1080280-84, 1079440/42, 1080202-04) no longer matches the capture's (1080205, 1079586, 1081530, 1081531, 1079589). Root cause found in session e1ceecc2 on 2026-10-15: the board is only rebuilt from the committed capture by its own four-hourly workflow, and that workflow is currently failing, so the published board is a capture behind. Rebuilding it here made things worse because the module's own inputs have moved on: four of its five hand-written resolutions (1080202, 1080281, 1080203, 1080283) name fixtures that have since left the capture, which raises StopIteration in its recompute test, and the capture's headline quote for Ninjas in Pyjamas vs Team Liquid (Pinnacle whole-match 1.89 / 1.89, de-vigged to exactly 50.0 / 50.0) carries the sentinel pick '(no side - 50/50)', which the module republishes as a headline pick its own invariant forbids. Fixing it needs that module's owner to (a) prune or re-point orphaned resolutions, (b) treat a de-vigged coin flip as 'no side, next rung or unresolved' instead of a pick, and (c) add resolutions for today's unpriced open rows from sources the repo already captured (Polymarket 55.5 / 44.5 for 1079586 read 20:31:27Z; Thunderpick relayed 65.5 / 34.5 for 1080205 read 20:31:27Z). It is flagged, not fixed, and it does not touch the primary route (hotspawn/).",
    "evidence": [
     "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/tests/test_7759beef.py",
-    "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/executive/data/summary.json"
+    "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/executive/data/analysis.csv",
+    "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/console/data/picks.csv"
    ]
   },
   {
    "id": "IR-19",
    "status": "fixed",
    "title": "livelines build crashed on a market observation outside the current slate",
-   "detail": "livelines/build.py raised KeyError '1079586' when a stored market observation named a fixture the slate capture no longer contained, which failed its deterministic rebuild test. Fixed by skipping such observations and recording them in coverage.json under observations_without_slate_fixture; the 20 livelines tests pass. The board itself stays flagged (broken Valve source links, 89-vs-88 fixtures) as recorded in the earlier sessions' reviews.",
+   "detail": "livelines/build.py raised KeyError '1079586' when a stored market observation named a fixture the slate capture no longer contained, which failed its deterministic rebuild test. Fixed by skipping such observations and recording them in coverage.json under observations_without_slate_fixture; the 20 livelines tests pass (20/20 in `python3 -m unittest tests.test_457629c4` after the fix). The board itself stays flagged (broken Valve source links, 89-vs-88 fixtures) as recorded in the earlier sessions' reviews.",
    "evidence": [
     "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/livelines/build.py"
    ]
@@ -201,6 +202,17 @@
     "https://www.freetips.com/esports/thunderpick-world-championship-2026-betting-odds-20261011-0007/",
     "https://tribuna.com/amp/en/betting/blogs/thunderpick-world-championship-2026-odds-favorites-our-predi/",
     "https://tips.gg/article/thunderpick-wc2026-winner-odds/"
+   ]
+  },
+  {
+   "id": "IR-22",
+   "status": "fixed",
+   "title": "The executive capture publishes a pick for a de-vigged coin flip",
+   "detail": "For Ninjas in Pyjamas vs Team Liquid (1079586) the stored Pinnacle whole-match line is 1.89 / 1.89; after the 5.66% overround is removed proportionally the fair line is exactly 50.0 / 50.0, so the capture's pick column holds the sentinel '(no side - 50/50)'. Session e1ceecc2 made the coverage counters on the root summary and in executive/build.py count only rows that publish an actual side (so the coin flip is reported under open_no_pick, not as a market pick) and executive/tests.py now encodes that definition. The capture's own pick string is left as it is, because inventing a side from a dead-heat line would be a guess; the fixture still has a pick on the primary route (hotspawn/ and console/ both publish Ninjas in Pyjamas at 55.4-55.5% from a Polymarket price read 20:31:27Z).",
+   "evidence": [
+    "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/executive/data/analysis.csv",
+    "https://polymarket.com/event/cs2-nip-tl1-2026-10-16",
+    "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/console/data/picks.csv"
    ]
   }
  ]

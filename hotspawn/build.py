@@ -8,6 +8,7 @@ No external requests; the only script is inline and optional (local lock countdo
 """
 from __future__ import annotations
 
+import re
 import sys
 from html import escape
 from pathlib import Path
@@ -295,9 +296,12 @@ def twc_page(board: dict) -> None:
     series_rows = []
     for m in d.get("series", []):
         note = f'<br><span class="small">{e(m["note"])}</span>' if m.get("note") else ""
+        veto = m.get("map_picks") or {}
+        veto_txt = ('<br><span class="small">Veto: ' + " · ".join(f"{e(k)} {e(v)}" for k, v in veto.items())
+                    + f' (read {e(m.get("maps_verified_utc"))})</span>') if veto else ""
         series_rows.append(
             f'<tr><td>{e(m.get("day"))}<br><span class="small">{e(m.get("stage"))}</span></td>'
-            f'<td><b>{e(m.get("score"))}</b>{note}</td><td>{e(m.get("maps"))}</td>'
+            f'<td><b>{e(m.get("score"))}</b>{note}</td><td>{e(m.get("maps"))}{veto_txt}</td>'
             f'<td>{link(m.get("hltv"), "HLTV")} · {link(m.get("liquipedia"), "Liquipedia")}</td></tr>')
 
     def table(rows, cols) -> str:
@@ -345,8 +349,12 @@ def twc_page(board: dict) -> None:
             + (pair_bar(f.get("team_a"), f.get("team_b"), pick.get("team_a_pct"), pick.get("team_b_pct")) if pick.get("team_b_pct") is not None else "")
             + f'<p><b>Pick: {e(pick.get("team"))}</b> — {e(pick.get("basis"))}.</p>'
             + (f'<p class="small"><b>Leaderboard play: {e(play.get("team"))}.</b> {e(play.get("why"))}</p>' if play else "")
-            + board_row + (f'<p class="small">{crowd_txt}</p>' if crowd_txt else "")
+            + board_row + (f'<p class="small">{crowd_txt}</p>' if crowd_txt else "")  # crowd_txt already carries its link
             + '<details><summary>Every outside line and our own line</summary><ul>' + "".join(lines) + own_txt + "</ul></details>"
+            + ('<details><summary>What happened when these two played here</summary><ul>'
+               + "".join(h2h_li(x) for x in (f.get("head_to_head") or []))
+               + "</ul></details>" if f.get("head_to_head") else "")
+            + (f'<p class="small"><b>Reading:</b> {e(f.get("head_to_head_read"))}</p>' if f.get("head_to_head_read") else "")
             + ('<details><summary>Evidence for each side</summary><ul>'
                + "".join(f"<li>{e(x)}</li>" for x in (f.get("evidence_for_9z") or []) + (f.get("evidence_for_aurora") or []))
                + "</ul></details>" if (f.get("evidence_for_9z") or f.get("evidence_for_aurora")) else "")
@@ -372,8 +380,8 @@ picked from our own line here and labelled. {ev_src} · researched {read}.</p>
 
 <h2>Day 1 and day 2, every series</h2>
 {table(series_rows, ["Day / stage", "Result", "Map scores", "Source"])}
-<p class="small">Day 1: 14 Oct 2026. Day 2: 15 Oct 2026. Map scores as published by Liquipedia and HLTV; the HLTV link on each row
-opens the match page these scores were checked against.</p>
+<p class="small">Day 1: 14 Oct 2026. Day 2: 15 Oct 2026. {e(d.get("maps_convention", ""))} The HLTV link on each row opens the
+match page every score and veto on that row was re-read from.</p>
 
 <h2>Groups after day 2</h2>
 {table(stand_rows, ["Group", "#", "Team", "Record", "Rounds", "Diff", "Status"])}
@@ -398,6 +406,17 @@ a probability on their own — they decide which side of a coin-flip market is w
 how contrarian a pick is; they are never used to set a probability.</p>
 """
     page("twc.html", "TWC 2026 day review & day-3 picks", body, board)
+
+
+def h2h_li(item: str) -> str:
+    """One head-to-head research line: everything before the URL is text, the URL becomes a source link."""
+    urls = re.findall(r"https?://\S+", item)
+    text = re.sub(r"https?://\S+", "", item)
+    text = re.sub(r"\s*Source:\s*", " ", text)
+    text = re.sub(r"\s*\u2014\s*$", "", text).strip().strip("\u2014- ").strip()
+    text = re.sub(r"\s{2,}", " ", text).strip()
+    links = " \u00b7 ".join(f'<a href="{u}">source</a>' if u else "" for u in urls)
+    return f"<li>{e(text)} {links}</li>"
 
 
 def pair_bar(name_a: str, name_b: str, pa, pb) -> str:

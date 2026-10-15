@@ -291,6 +291,27 @@ class TwcReview(unittest.TestCase):
         for f in self.data["day3"]:
             self.assertTrue((f["own_line"].get("source") or {}).get("url"), f["id"])
 
+    def test_every_map_score_and_veto_is_re_read_with_a_timestamp(self):
+        # added session e1ceecc2: the per-map scores and map picks are the part of this page most likely to be
+        # mis-ordered, so each row must carry the read time and the match page it was re-read from.
+        for m in self.data["series"]:
+            self.assertEqual(m["maps_verified_from"], "HLTV match-page map block, re-read live in session e1ceecc2", m["score"])
+            self.assertTrue(m["maps_verified_utc"].endswith("Z"), m["score"])
+            self.assertIn(m["maps_verified_utc"], self.text, m["score"])
+            self.assertTrue(m["map_picks"], m["score"])
+        self.assertIn("winner-first", self.data["maps_convention"])
+
+    def test_every_day3_head_to_head_line_renders_a_source_link(self):
+        links = 0
+        for f in self.data["day3"]:
+            for line in f["head_to_head"]:
+                urls = [u for u in line.split() if u.startswith("https://")]
+                self.assertTrue(urls, f["id"])
+                for u in urls:
+                    self.assertIn(u, self.text, f["id"])
+                    links += 1
+        self.assertGreaterEqual(links, len(self.data["day3"]), "each decider needs its own match sources")
+
     def test_page_is_linked_from_the_board_summary_and_the_picks_page_nav(self):
         self.assertIn('href="twc.html"', (HERE / "index.html").read_text(encoding="utf-8"))
         self.assertIn('href="twc.html"', (HERE / "strategy.html").read_text(encoding="utf-8"))
