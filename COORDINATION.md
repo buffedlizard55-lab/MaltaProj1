@@ -4434,7 +4434,7 @@ as the counts feed and "every three hours" wording (reason recorded in its docst
 
 **Evidence so far:** branch runs of `hotspawn-22be6967.yml`: 38721257693 and 38721925309 failed in *collect*
 (`gzip.open(..., mtime=)` TypeError — found via the new traceback annotation, fixed in `a8d8bb0` with a test);
-38722062215, 38722333608, 38722584176 **succeeded end-to-end** (live collect → calibrate → model → build → 26
+38722062215, 38722333608, 38722584176 **succeeded end-to-end** (live collect → calibrate → model → build → 25
 invariants → 390-px phone check → commit to branch). Live snapshot 10:44Z: 78 fixtures, 14 open, **14/14 picked**
 (Pinnacle 5, Polymarket 8→9 with the EAC alias, own line 1→0, unresolved 0). Own-line slope k = 0.4598 fitted on
 13,609 Valve-rated matches (held-out log-loss 0.6395 vs 0.6541 raw), independently matching cs2's 0.463.
