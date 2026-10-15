@@ -38,6 +38,14 @@ def pc(x, d=0) -> str:
     return "—" if x is None else f"{x * 100:.{d}f}%"
 
 
+def pair(pa, pb) -> tuple[str, str]:
+    """Both teams' percentages rounded so they always add up to 100."""
+    if pa is None or pb is None:
+        return pc(pa), pc(pb)
+    a = round(pa * 100)
+    return f"{a}%", f"{100 - a}%"
+
+
 def link(url, text=None) -> str:
     if not url:
         return e(text or "")
@@ -98,10 +106,10 @@ def snapshot_banner(board: dict) -> str:
             f'<a href="https://play.hotspawn.com/lobby">Open the live Hotspawn lobby</a></p>')
 
 
-def team_bar(name, p, fav) -> str:
+def team_bar(name, p, fav, label=None) -> str:
     w = 0 if p is None else max(2, round(p * 100))
     return (f'<div class="bar{" fav" if fav else ""}"><span class="name">{e(name)}</span>'
-            f'<span class="track"><i style="width:{w}%"></i></span><span class="v">{pc(p)}</span></div>')
+            f'<span class="track"><i style="width:{w}%"></i></span><span class="v">{label or pc(p)}</span></div>')
 
 
 def evidence_list(r: dict, board: dict) -> str:
@@ -142,10 +150,11 @@ def evidence_list(r: dict, board: dict) -> str:
 
 def card(r: dict, board: dict) -> str:
     s = r.get("strategy") or {}
-    pick_line = (f'<div class="pick">Pick: <strong>{e(r["pick"])}</strong><span class="pp">{pc(r.get("pick_p"))}</span></div>'
-                 if r.get("pick") else '<div class="pick"><strong style="color:var(--red)">No pick — unresolved</strong></div>')
+    la, lb = pair(r.get("p_a"), r.get("p_b"))
     fav_a = r.get("pick") == r["team_a"]
-    bars = team_bar(r["team_a"], r.get("p_a"), fav_a and r.get("pick")) + team_bar(r["team_b"], r.get("p_b"), (not fav_a) and r.get("pick"))
+    pick_line = (f'<div class="pick">Pick: <strong>{e(r["pick"])}</strong><span class="pp">{la if fav_a else lb}</span></div>'
+                 if r.get("pick") else '<div class="pick"><strong style="color:var(--red)">No pick — unresolved</strong></div>')
+    bars = team_bar(r["team_a"], r.get("p_a"), fav_a and r.get("pick"), la) + team_bar(r["team_b"], r.get("p_b"), (not fav_a) and r.get("pick"), lb)
     basis = RUNG_TEXT.get(r.get("rung"), r.get("basis"))
     own = ""
     if r.get("own_p_a") is not None and r.get("rung") in ("A", "B"):
@@ -388,7 +397,7 @@ def index_page(board: dict) -> None:
     def li(r):
         st = r.get("strategy") or {}
         return (f"<li><a href=\"picks.html#m{e(r['match_id'])}\"><b>{e(r['team_a'])} vs {e(r['team_b'])}</b></a> · {e(r.get('tier'))}-tier · locks {e(utc_label(r.get('lock_utc')))}<br>"
-                f"Pick <b>{e(r.get('pick') or '—')}</b> {pc(r.get('pick_p'))} ({e(r['team_a'])} {pc(r.get('p_a'))} / {e(r['team_b'])} {pc(r.get('p_b'))}) · {cls_tag(st.get('class'))} play <b>{e(st.get('leaderboard_pick'))}</b></li>")
+                f"Pick <b>{e(r.get('pick') or '—')}</b> {pair(r.get('p_a'), r.get('p_b'))[0 if r.get('pick') == r['team_a'] else 1]} ({e(r['team_a'])} {pair(r.get('p_a'), r.get('p_b'))[0]} / {e(r['team_b'])} {pair(r.get('p_a'), r.get('p_b'))[1]}) · {cls_tag(st.get('class'))} play <b>{e(st.get('leaderboard_pick'))}</b></li>")
     d1 = board["day1"]["matches"]
     body = f"""<h1>Hotspawn CS2 — executive summary</h1>
 <p class="lead">A pick and both teams' win probabilities for <strong>every</strong> open Counter-Strike 2 match on Hotspawn, plus a leaderboard plan that fades the crowd only when the numbers support it.</p>

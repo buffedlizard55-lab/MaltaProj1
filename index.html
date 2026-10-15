@@ -359,7 +359,9 @@
           li.appendChild(a);
           var locked = Date.parse(m.lock) <= now;
           li.appendChild(make("span", "meta", (m.tier || "?") + "-tier · locks " + utcText(m.lock) + (locked ? " (locked)" : "")));
-          li.appendChild(make("span", "meta", m.pick ? "Pick " + m.pick + " " + pct(m.p) + " (" + m.a + " " + pct(m.pa) + " / " + m.b + " " + pct(m.pb) + ")" : "No pick — see unresolved"));
+          var ia = typeof m.pa === "number" && Number.isFinite(m.pa) ? Math.round(m.pa * 100) : null;
+          var sa = ia === null ? "—" : ia + "%", sb = ia === null ? "—" : (100 - ia) + "%";
+          li.appendChild(make("span", "meta", m.pick ? "Pick " + m.pick + " " + (m.pick === m.a ? sa : sb) + " (" + m.a + " " + sa + " / " + m.b + " " + sb + ")" : "No pick — see unresolved"));
           if (m.play && m["class"]) li.appendChild(make("span", "meta", "Leaderboard play: " + m.play + " (" + (CLASS_WORD[m["class"]] || m["class"]) + ")"));
           list.appendChild(li);
         });
