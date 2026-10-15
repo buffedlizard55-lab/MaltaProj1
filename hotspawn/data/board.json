@@ -1,6 +1,6 @@
 {
  "meta": {
-  "reference_utc": "2026-10-15T10:41:47Z",
+  "reference_utc": "2026-10-15T10:44:06Z",
   "k": 0.4598,
   "k_label": "fitted on Valve's published match results",
   "vrs": {
@@ -12,19 +12,19 @@
   "hltv": {
    "status": "observed",
    "url": "https://www.hltv.org/ranking/teams/2026/october/12",
-   "read_utc": "2026-10-15T10:41:53Z",
+   "read_utc": "2026-10-15T10:44:12Z",
    "carry_note": null
   },
   "pinnacle": {
    "status": "observed",
-   "read_utc": "2026-10-15T10:41:50Z",
+   "read_utc": "2026-10-15T10:44:09Z",
    "page_url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
    "markets_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
    "error": null
   },
   "polymarket": {
    "status": "observed",
-   "read_utc": "2026-10-15T10:41:50Z",
+   "read_utc": "2026-10-15T10:44:09Z",
    "error": null
   },
   "hotspawn": {
@@ -34,7 +34,7 @@
      "url": "https://play.hotspawn.com/lobby",
      "status": 200,
      "error": null,
-     "read_utc": "2026-10-15T10:41:47Z",
+     "read_utc": "2026-10-15T10:44:06Z",
      "bytes": 304901,
      "sha256": "c1180d7e45f2ec004f02aafe0ffcdfee9d13925f61015d71d18a0e9d16d56825",
      "week_text": "72 matches this week",
@@ -46,7 +46,7 @@
      "url": "https://play.hotspawn.com/cs2-pickems",
      "status": 200,
      "error": null,
-     "read_utc": "2026-10-15T10:41:48Z",
+     "read_utc": "2026-10-15T10:44:07Z",
      "bytes": 303994,
      "sha256": "5573b8d995c724954716cfa9562b4d3c9ed74381aa847be3d6d18f1896b5c97b",
      "week_text": "72 matches this week",
@@ -58,7 +58,7 @@
      "url": "https://play.hotspawn.com/thp-pickems",
      "status": 200,
      "error": null,
-     "read_utc": "2026-10-15T10:41:49Z",
+     "read_utc": "2026-10-15T10:44:08Z",
      "bytes": 178779,
      "sha256": "fa446751003f35c9f623d8e7fa5dfe017661a80b5435a8bd0618c06f52ee08b9",
      "week_text": "72 matches this week",
@@ -120,9 +120,9 @@
   }
  },
  "summary": {
-  "generated_utc": "2026-10-15T10:41:56Z",
+  "generated_utc": "2026-10-15T10:44:17Z",
   "session": "arena/22be6967",
-  "reference_utc": "2026-10-15T10:41:47Z",
+  "reference_utc": "2026-10-15T10:44:06Z",
   "fixtures": 78,
   "open": 14,
   "locked_recent": 4,
@@ -130,15 +130,15 @@
   "open_with_pick": 14,
   "open_rung": {
    "A": 5,
-   "B": 0,
-   "C": 9,
+   "B": 8,
+   "C": 1,
    "D": 0
   },
   "open_unresolved": 0,
-  "open_flagged": 12,
+  "open_flagged": 7,
   "leaderboard_classes": {
-   "VALUE": 3,
-   "CONTRARIAN": 2,
+   "VALUE": 2,
+   "CONTRARIAN": 3,
    "SITUATIONAL": 1,
    "LONG SHOT": 3,
    "CHALK": 5,
@@ -181,7 +181,7 @@
     "cs2-pickems",
     "thp-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 7,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -198,13 +198,26 @@
     "p_a": 0.2437,
     "p_b": 0.7563,
     "overround_pct": 4.68,
-    "read_utc": "2026-10-15T10:41:50Z",
+    "read_utc": "2026-10-15T10:44:09Z",
     "url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
     "api_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
     "league": "CS2 - TP World Championship",
     "listed_start": "2026-10-15T11:30:00Z",
     "gap_h": 0.5,
     "names": "9z vs Falcons"
+   },
+   "pm": {
+    "source": "Polymarket",
+    "price_a": 0.245,
+    "price_b": 0.755,
+    "p_a": 0.245,
+    "p_b": 0.755,
+    "read_utc": "2026-10-15T10:44:09Z",
+    "url": "https://polymarket.com/event/cs2-9z-fal2-2026-10-15",
+    "listed_start": "2026-10-15T11:00:00Z",
+    "gap_h": 0.0,
+    "question": "Counter-Strike: 9z vs Team Falcons (BO3) - Thunderpick World Championship Group A",
+    "volume": 104100.328759
    },
    "format": "BO3",
    "format_source": "HLTV match page",
@@ -295,6 +308,7 @@
     "https://www.hotspawn.com/?fixtures=waiting-for-information-1080202",
     "https://www.hltv.org/matches/2399409/9z-vs-falcons-thunderpick-world-championship-2026",
     "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
+    "https://polymarket.com/event/cs2-9z-fal2-2026-10-15",
     "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
    ],
    "result": null
@@ -313,7 +327,7 @@
     "lobby",
     "cs2-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 2,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -330,13 +344,26 @@
     "p_a": 0.6053,
     "p_b": 0.3947,
     "overround_pct": 6.0,
-    "read_utc": "2026-10-15T10:41:50Z",
+    "read_utc": "2026-10-15T10:44:09Z",
     "url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
     "api_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
     "league": "CS2 - Elisa BreakOut",
     "listed_start": "2026-10-15T12:00:00Z",
     "gap_h": 0.0,
     "names": "WBT vs ENCE"
+   },
+   "pm": {
+    "source": "Polymarket",
+    "price_a": 0.61,
+    "price_b": 0.39,
+    "p_a": 0.61,
+    "p_b": 0.39,
+    "read_utc": "2026-10-15T10:44:09Z",
+    "url": "https://polymarket.com/event/cs2-wbt-ence-2026-10-15",
+    "listed_start": "2026-10-15T12:00:00Z",
+    "gap_h": 0.0,
+    "question": "Counter-Strike: WBT vs ENCE (BO1) - Elisa BreakOut Series #2 Group A",
+    "volume": 2268.741948
    },
    "format": "BO1",
    "format_source": "HLTV match page",
@@ -428,6 +455,7 @@
     "https://www.hotspawn.com/matches/wrotberry-vs-ence-elisa-breakout-series-2-1080281",
     "https://www.hltv.org/matches/2399420/wbt-vs-ence-elisa-breakout-series-2",
     "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
+    "https://polymarket.com/event/cs2-wbt-ence-2026-10-15",
     "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
    ],
    "result": null
@@ -447,7 +475,7 @@
     "cs2-pickems",
     "thp-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 7,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -464,13 +492,26 @@
     "p_a": 0.5342,
     "p_b": 0.4658,
     "overround_pct": 4.73,
-    "read_utc": "2026-10-15T10:41:50Z",
+    "read_utc": "2026-10-15T10:44:09Z",
     "url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
     "api_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
     "league": "CS2 - TP World Championship",
     "listed_start": "2026-10-15T13:30:00Z",
     "gap_h": 0.0,
     "names": "PVISION vs BB Team"
+   },
+   "pm": {
+    "source": "Polymarket",
+    "price_a": 0.525,
+    "price_b": 0.475,
+    "p_a": 0.525,
+    "p_b": 0.475,
+    "read_utc": "2026-10-15T10:44:09Z",
+    "url": "https://polymarket.com/event/cs2-prv-bb3-2026-10-15",
+    "listed_start": "2026-10-15T13:30:00Z",
+    "gap_h": 0.0,
+    "question": "Counter-Strike: PARIVISION vs BetBoom Team (BO3) - Thunderpick World Championship Group B",
+    "volume": 114780.2137819999
    },
    "format": "BO3",
    "format_source": "HLTV match page",
@@ -577,6 +618,7 @@
     "https://www.hotspawn.com/?fixtures=waiting-for-information-1080203",
     "https://www.hltv.org/matches/2399410/parivision-vs-betboom-thunderpick-world-championship-2026",
     "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
+    "https://polymarket.com/event/cs2-prv-bb3-2026-10-15",
     "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
    ],
    "result": null
@@ -595,7 +637,7 @@
     "lobby",
     "cs2-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 2,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -697,7 +739,7 @@
     "cs2-pickems",
     "thp-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 7,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -714,13 +756,26 @@
     "p_a": 0.4242,
     "p_b": 0.5758,
     "overround_pct": 4.76,
-    "read_utc": "2026-10-15T10:41:50Z",
+    "read_utc": "2026-10-15T10:44:09Z",
     "url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
     "api_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
     "league": "CS2 - TP World Championship",
     "listed_start": "2026-10-15T16:00:00Z",
     "gap_h": 0.0,
     "names": "Legacy vs FURIA"
+   },
+   "pm": {
+    "source": "Polymarket",
+    "price_a": 0.415,
+    "price_b": 0.585,
+    "p_a": 0.415,
+    "p_b": 0.585,
+    "read_utc": "2026-10-15T10:44:09Z",
+    "url": "https://polymarket.com/event/cs2-lgc-furia-2026-10-15",
+    "listed_start": "2026-10-15T16:00:00Z",
+    "gap_h": 0.0,
+    "question": "Counter-Strike: Legacy vs FURIA (BO3) - Thunderpick World Championship Group B",
+    "volume": 89797.05412600003
    },
    "format": "BO3",
    "format_source": "HLTV match page",
@@ -824,6 +879,7 @@
     "https://www.hotspawn.com/?fixtures=waiting-for-information-1080204",
     "https://www.hltv.org/matches/2399411/legacy-vs-furia-thunderpick-world-championship-2026",
     "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
+    "https://polymarket.com/event/cs2-lgc-furia-2026-10-15",
     "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
    ],
    "result": null
@@ -842,7 +898,7 @@
     "lobby",
     "cs2-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 2,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -852,6 +908,19 @@
    "total_picks": 58,
    "hltv_url": "https://www.hltv.org/matches/2399422/wbt-vs-bojong-elisa-breakout-series-2",
    "hltv_note": null,
+   "pm": {
+    "source": "Polymarket",
+    "price_a": 0.835,
+    "price_b": 0.165,
+    "p_a": 0.835,
+    "p_b": 0.165,
+    "read_utc": "2026-10-15T10:44:09Z",
+    "url": "https://polymarket.com/event/cs2-wbt-bojong-2026-10-15",
+    "listed_start": "2026-10-15T16:00:00Z",
+    "gap_h": 0.0,
+    "question": "Counter-Strike: WBT vs BOJONG (BO1) - Elisa BreakOut Series #2 Group A",
+    "volume": 377.084452
+   },
    "format": "BO1",
    "format_source": "HLTV match page",
    "vrs_a": {
@@ -888,12 +957,12 @@
    "hltv_rank_b": 220,
    "hltv_team_a": "https://www.hltv.org/team/13683/wbt",
    "hltv_team_b": "https://www.hltv.org/team/13795/bojong",
-   "p_a": 0.8758,
-   "p_b": 0.1242,
-   "basis": "Our own line (Valve points)",
-   "rung": "C",
+   "p_a": 0.835,
+   "p_b": 0.165,
+   "basis": "Polymarket price (prediction market)",
+   "rung": "B",
    "pick": "WROTBERRY",
-   "pick_p": 0.8758,
+   "pick_p": 0.835,
    "factors": [
     {
      "side": "a",
@@ -909,7 +978,7 @@
     }
    ],
    "flags": [
-    "NO_MARKET"
+    "ALIAS"
    ],
    "strategy": {
     "class": "CHALK",
@@ -917,18 +986,19 @@
     "leaderboard_pick": "WROTBERRY",
     "favourite": "WROTBERRY",
     "underdog": "BOJONG",
-    "p_fav": 0.8758,
-    "p_dog": 0.1242,
+    "p_fav": 0.8554,
+    "p_dog": 0.1446,
     "min_src_dog": 0.1242,
     "estimates": [
+     "market",
      "own line"
     ],
     "crowd_fav": 0.91,
     "crowd_dog": 0.09,
-    "edge_vs_crowd_pp": 3.4,
-    "leverage": 1.38,
+    "edge_vs_crowd_pp": 5.5,
+    "leverage": 1.61,
     "ev_cost_pts": 0.0,
-    "ev_cost_if_faded": 1.5,
+    "ev_cost_if_faded": 1.42,
     "field_gain_if_dog_wins_pct": 91,
     "factors_against_favourite": [
      "new five (Valve data)"
@@ -940,6 +1010,7 @@
     "https://play.hotspawn.com/lobby",
     "https://www.hotspawn.com/matches/wrotberry-vs-bojong-elisa-breakout-series-2-1080283",
     "https://www.hltv.org/matches/2399422/wbt-vs-bojong-elisa-breakout-series-2",
+    "https://polymarket.com/event/cs2-wbt-bojong-2026-10-15",
     "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
    ],
    "result": null
@@ -958,7 +1029,7 @@
     "lobby",
     "cs2-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 2,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -975,7 +1046,7 @@
     "p_a": 0.5856,
     "p_b": 0.4144,
     "overround_pct": 5.84,
-    "read_utc": "2026-10-15T10:41:50Z",
+    "read_utc": "2026-10-15T10:44:09Z",
     "url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
     "api_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
     "league": "CS2 - Elisa BreakOut",
@@ -1075,7 +1146,7 @@
     "cs2-pickems",
     "thp-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 2,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -1085,6 +1156,19 @@
    "total_picks": 54,
    "hltv_url": "https://www.hltv.org/matches/2399424/voca-vs-phantom-elisa-breakout-series-2",
    "hltv_note": null,
+   "pm": {
+    "source": "Polymarket",
+    "price_a": 0.445,
+    "price_b": 0.555,
+    "p_a": 0.445,
+    "p_b": 0.555,
+    "read_utc": "2026-10-15T10:44:09Z",
+    "url": "https://polymarket.com/event/cs2-voc-pha-2026-10-16",
+    "listed_start": "2026-10-16T08:00:00Z",
+    "gap_h": 0.0,
+    "question": "Counter-Strike: Voca vs Phantom (BO1) - Elisa BreakOut Series #2 Group B",
+    "volume": 90.17777899999999
+   },
    "format": "BO1",
    "format_source": "HLTV match page",
    "vrs_a": {
@@ -1121,12 +1205,12 @@
    "hltv_rank_b": 88,
    "hltv_team_a": "https://www.hltv.org/team/13499/voca",
    "hltv_team_b": "https://www.hltv.org/team/13173/phantom",
-   "p_a": 0.5231,
-   "p_b": 0.4769,
-   "basis": "Our own line (Valve points)",
-   "rung": "C",
-   "pick": "Voca",
-   "pick_p": 0.5231,
+   "p_a": 0.445,
+   "p_b": 0.555,
+   "basis": "Polymarket price (prediction market)",
+   "rung": "B",
+   "pick": "Phantom",
+   "pick_p": 0.555,
    "factors": [
     {
      "side": "b",
@@ -1142,38 +1226,39 @@
     }
    ],
    "flags": [
-    "NO_MARKET",
+    "MODEL_MARKET_SPLIT",
     "VRS_ROSTER_OUTDATED"
    ],
    "strategy": {
-    "class": "VALUE",
-    "reason": "Most players are on the underdog, so the likely winner is also the contrarian pick.",
+    "class": "CONTRARIAN",
+    "reason": "Close match that the crowd treats as lopsided: every estimate gives the underdog a real chance, far above its crowd share.",
     "leaderboard_pick": "Voca",
-    "favourite": "Voca",
-    "underdog": "Phantom",
-    "p_fav": 0.5231,
-    "p_dog": 0.4769,
-    "min_src_dog": 0.4769,
+    "favourite": "Phantom",
+    "underdog": "Voca",
+    "p_fav": 0.555,
+    "p_dog": 0.445,
+    "min_src_dog": 0.445,
     "estimates": [
-     "own line"
+     "market"
     ],
-    "crowd_fav": 0.17,
-    "crowd_dog": 0.83,
-    "edge_vs_crowd_pp": -35.3,
-    "leverage": 0.57,
-    "ev_cost_pts": 0.0,
-    "ev_cost_if_faded": 0.09,
-    "field_gain_if_dog_wins_pct": 17,
-    "factors_against_favourite": [],
-    "factors_against_underdog": [
+    "crowd_fav": 0.83,
+    "crowd_dog": 0.17,
+    "edge_vs_crowd_pp": 27.5,
+    "leverage": 2.62,
+    "ev_cost_pts": 0.22,
+    "ev_cost_if_faded": 0.22,
+    "field_gain_if_dog_wins_pct": 83,
+    "factors_against_favourite": [
      "stand-in"
     ],
-    "differs_from_pick": false
+    "factors_against_underdog": [],
+    "differs_from_pick": true
    },
    "sources": [
     "https://play.hotspawn.com/lobby",
     "https://www.hotspawn.com/matches/voca-vs-phantom-elisa-breakout-series-2-1080285",
     "https://www.hltv.org/matches/2399424/voca-vs-phantom-elisa-breakout-series-2",
+    "https://polymarket.com/event/cs2-voc-pha-2026-10-16",
     "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
    ],
    "result": null
@@ -1192,7 +1277,7 @@
     "lobby",
     "cs2-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 2,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -1202,6 +1287,19 @@
    "total_picks": 55,
    "hltv_url": "https://www.hltv.org/matches/2399425/havu-vs-rounds-elisa-breakout-series-2",
    "hltv_note": null,
+   "pm": {
+    "source": "Polymarket",
+    "price_a": 0.69,
+    "price_b": 0.31,
+    "p_a": 0.69,
+    "p_b": 0.31,
+    "read_utc": "2026-10-15T10:44:09Z",
+    "url": "https://polymarket.com/event/cs2-havu-rgg-2026-10-16",
+    "listed_start": "2026-10-16T10:00:00Z",
+    "gap_h": 0.0,
+    "question": "Counter-Strike: HAVU vs RoundsGG (BO1) - Elisa BreakOut Series #2 Group B",
+    "volume": null
+   },
    "format": "BO1",
    "format_source": "HLTV match page",
    "vrs_a": {
@@ -1238,12 +1336,12 @@
    "hltv_rank_b": 237,
    "hltv_team_a": "https://www.hltv.org/team/7865/havu",
    "hltv_team_b": "https://www.hltv.org/team/12457/rounds",
-   "p_a": 0.7368,
-   "p_b": 0.2632,
-   "basis": "Our own line (Valve points)",
-   "rung": "C",
+   "p_a": 0.69,
+   "p_b": 0.31,
+   "basis": "Polymarket price (prediction market)",
+   "rung": "B",
    "pick": "HAVU",
-   "pick_p": 0.7368,
+   "pick_p": 0.69,
    "factors": [
     {
      "side": "b",
@@ -1259,7 +1357,7 @@
     }
    ],
    "flags": [
-    "NO_MARKET"
+    "ALIAS"
    ],
    "strategy": {
     "class": "LONG SHOT",
@@ -1267,18 +1365,19 @@
     "leaderboard_pick": "HAVU",
     "favourite": "HAVU",
     "underdog": "RoundsGG",
-    "p_fav": 0.7368,
-    "p_dog": 0.2632,
+    "p_fav": 0.7134,
+    "p_dog": 0.2866,
     "min_src_dog": 0.2632,
     "estimates": [
+     "market",
      "own line"
     ],
     "crowd_fav": 0.93,
     "crowd_dog": 0.07,
-    "edge_vs_crowd_pp": 19.3,
-    "leverage": 3.76,
+    "edge_vs_crowd_pp": 21.7,
+    "leverage": 4.09,
     "ev_cost_pts": 0.0,
-    "ev_cost_if_faded": 0.95,
+    "ev_cost_if_faded": 0.85,
     "field_gain_if_dog_wins_pct": 93,
     "factors_against_favourite": [],
     "factors_against_underdog": [],
@@ -1288,6 +1387,7 @@
     "https://play.hotspawn.com/lobby",
     "https://www.hotspawn.com/matches/havu-vs-roundsgg-elisa-breakout-series-2-1080286",
     "https://www.hltv.org/matches/2399425/havu-vs-rounds-elisa-breakout-series-2",
+    "https://polymarket.com/event/cs2-havu-rgg-2026-10-16",
     "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
    ],
    "result": null
@@ -1307,7 +1407,7 @@
     "cs2-pickems",
     "thp-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 2,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -1317,6 +1417,19 @@
    "total_picks": 51,
    "hltv_url": "https://www.hltv.org/matches/2399426/voca-vs-havu-elisa-breakout-series-2",
    "hltv_note": null,
+   "pm": {
+    "source": "Polymarket",
+    "price_a": 0.675,
+    "price_b": 0.325,
+    "p_a": 0.675,
+    "p_b": 0.325,
+    "read_utc": "2026-10-15T10:44:09Z",
+    "url": "https://polymarket.com/event/cs2-voc-havu-2026-10-16",
+    "listed_start": "2026-10-16T12:00:00Z",
+    "gap_h": 0.0,
+    "question": "Counter-Strike: Voca vs HAVU (BO1) - Elisa BreakOut Series #2 Group B",
+    "volume": 25
+   },
    "format": "BO1",
    "format_source": "HLTV match page",
    "vrs_a": {
@@ -1353,34 +1466,33 @@
    "hltv_rank_b": 118,
    "hltv_team_a": "https://www.hltv.org/team/13499/voca",
    "hltv_team_b": "https://www.hltv.org/team/7865/havu",
-   "p_a": 0.6567,
-   "p_b": 0.3433,
-   "basis": "Our own line (Valve points)",
-   "rung": "C",
+   "p_a": 0.675,
+   "p_b": 0.325,
+   "basis": "Polymarket price (prediction market)",
+   "rung": "B",
    "pick": "Voca",
-   "pick_p": 0.6567,
+   "pick_p": 0.675,
    "factors": [],
-   "flags": [
-    "NO_MARKET"
-   ],
+   "flags": [],
    "strategy": {
     "class": "CHALK",
     "reason": "The favourite is both likely and popular; fading it costs points without enough upside.",
     "leaderboard_pick": "Voca",
     "favourite": "Voca",
     "underdog": "HAVU",
-    "p_fav": 0.6567,
-    "p_dog": 0.3433,
-    "min_src_dog": 0.3433,
+    "p_fav": 0.6659,
+    "p_dog": 0.3342,
+    "min_src_dog": 0.325,
     "estimates": [
+     "market",
      "own line"
     ],
     "crowd_fav": 0.84,
     "crowd_dog": 0.16,
-    "edge_vs_crowd_pp": 18.3,
-    "leverage": 2.15,
+    "edge_vs_crowd_pp": 17.4,
+    "leverage": 2.09,
     "ev_cost_pts": 0.0,
-    "ev_cost_if_faded": 0.63,
+    "ev_cost_if_faded": 0.66,
     "field_gain_if_dog_wins_pct": 84,
     "factors_against_favourite": [],
     "factors_against_underdog": [],
@@ -1390,6 +1502,7 @@
     "https://play.hotspawn.com/lobby",
     "https://www.hotspawn.com/matches/voca-vs-havu-elisa-breakout-series-2-1080287",
     "https://www.hltv.org/matches/2399426/voca-vs-havu-elisa-breakout-series-2",
+    "https://polymarket.com/event/cs2-voc-havu-2026-10-16",
     "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
    ],
    "result": null
@@ -1408,7 +1521,7 @@
     "lobby",
     "cs2-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 2,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -1418,6 +1531,19 @@
    "total_picks": 51,
    "hltv_url": "https://www.hltv.org/matches/2399427/phantom-vs-rounds-elisa-breakout-series-2",
    "hltv_note": null,
+   "pm": {
+    "source": "Polymarket",
+    "price_a": 0.92,
+    "price_b": 0.08,
+    "p_a": 0.92,
+    "p_b": 0.08,
+    "read_utc": "2026-10-15T10:44:09Z",
+    "url": "https://polymarket.com/event/cs2-pha-rgg-2026-10-16",
+    "listed_start": "2026-10-16T14:00:00Z",
+    "gap_h": 0.0,
+    "question": "Counter-Strike: Phantom vs RoundsGG (BO1) - Elisa BreakOut Series #2 Group B",
+    "volume": null
+   },
    "format": "BO1",
    "format_source": "HLTV match page",
    "vrs_a": {
@@ -1454,12 +1580,12 @@
    "hltv_rank_b": 237,
    "hltv_team_a": "https://www.hltv.org/team/13173/phantom",
    "hltv_team_b": "https://www.hltv.org/team/12457/rounds",
-   "p_a": 0.83,
-   "p_b": 0.17,
-   "basis": "Our own line (Valve points)",
-   "rung": "C",
+   "p_a": 0.92,
+   "p_b": 0.08,
+   "basis": "Polymarket price (prediction market)",
+   "rung": "B",
    "pick": "Phantom",
-   "pick_p": 0.83,
+   "pick_p": 0.92,
    "factors": [
     {
      "side": "a",
@@ -1487,7 +1613,7 @@
     }
    ],
    "flags": [
-    "NO_MARKET",
+    "ALIAS",
     "VRS_ROSTER_OUTDATED"
    ],
    "strategy": {
@@ -1496,18 +1622,18 @@
     "leaderboard_pick": "Phantom",
     "favourite": "Phantom",
     "underdog": "RoundsGG",
-    "p_fav": 0.83,
-    "p_dog": 0.17,
-    "min_src_dog": 0.17,
+    "p_fav": 0.92,
+    "p_dog": 0.08,
+    "min_src_dog": 0.08,
     "estimates": [
-     "own line"
+     "market"
     ],
     "crowd_fav": 0.96,
     "crowd_dog": 0.04,
-    "edge_vs_crowd_pp": 13.0,
-    "leverage": 4.25,
+    "edge_vs_crowd_pp": 4.0,
+    "leverage": 2.0,
     "ev_cost_pts": 0.0,
-    "ev_cost_if_faded": 1.32,
+    "ev_cost_if_faded": 1.68,
     "field_gain_if_dog_wins_pct": 96,
     "factors_against_favourite": [
      "stand-in"
@@ -1519,6 +1645,7 @@
     "https://play.hotspawn.com/lobby",
     "https://www.hotspawn.com/matches/phantom-vs-roundsgg-elisa-breakout-series-2-1080288",
     "https://www.hltv.org/matches/2399427/phantom-vs-rounds-elisa-breakout-series-2",
+    "https://polymarket.com/event/cs2-pha-rgg-2026-10-16",
     "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
    ],
    "result": null
@@ -1537,7 +1664,7 @@
     "lobby",
     "cs2-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 2,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -1547,8 +1674,21 @@
    "total_picks": 39,
    "hltv_url": "https://www.hltv.org/team/13759/mellren",
    "hltv_note": "HLTV lists this as 'CCT 2026 Europe Series 12 Closed Qualifier' (16 Oct) on both teams' pages; no match-page id was read. HLTV ranks mellren #94 and Privateer #226 (team pages). Series length not confirmed by HLTV in this read (EGamersWorld says BO3) - left blank.",
-   "format": "",
-   "format_source": "",
+   "pm": {
+    "source": "Polymarket",
+    "price_a": 0.75,
+    "price_b": 0.25,
+    "p_a": 0.75,
+    "p_b": 0.25,
+    "read_utc": "2026-10-15T10:44:09Z",
+    "url": "https://polymarket.com/event/cs2-mellre-pg5-2026-10-16",
+    "listed_start": "2026-10-16T14:00:00Z",
+    "gap_h": 0.0,
+    "question": "Counter-Strike: mellren vs Privateer Gaming (BO3) - CCT Europe Closed Qualifier: Series #12 Group D",
+    "volume": 98.78
+   },
+   "format": "BO3",
+   "format_source": "Polymarket market title",
    "vrs_a": {
     "name": "mellren",
     "rank": 125,
@@ -1583,12 +1723,12 @@
    "hltv_rank_b": 226,
    "hltv_team_a": "https://www.hltv.org/team/13759/mellren",
    "hltv_team_b": "https://www.hltv.org/team/13914/privateer",
-   "p_a": 0.7022,
-   "p_b": 0.2978,
-   "basis": "Our own line (Valve points)",
-   "rung": "C",
+   "p_a": 0.75,
+   "p_b": 0.25,
+   "basis": "Polymarket price (prediction market)",
+   "rung": "B",
    "pick": "mellren",
-   "pick_p": 0.7022,
+   "pick_p": 0.75,
    "factors": [
     {
      "side": "b",
@@ -1603,28 +1743,26 @@
      "automated": true
     }
    ],
-   "flags": [
-    "FORMAT_UNKNOWN",
-    "NO_MARKET"
-   ],
+   "flags": [],
    "strategy": {
     "class": "LONG SHOT",
     "reason": "Big leverage but a low chance: keep the favourite unless you are far behind with few matches left.",
     "leaderboard_pick": "mellren",
     "favourite": "mellren",
     "underdog": "Privateer",
-    "p_fav": 0.7022,
-    "p_dog": 0.2978,
-    "min_src_dog": 0.2978,
+    "p_fav": 0.7261,
+    "p_dog": 0.2739,
+    "min_src_dog": 0.25,
     "estimates": [
+     "market",
      "own line"
     ],
     "crowd_fav": 0.9,
     "crowd_dog": 0.1,
-    "edge_vs_crowd_pp": 19.8,
-    "leverage": 2.98,
+    "edge_vs_crowd_pp": 17.4,
+    "leverage": 2.74,
     "ev_cost_pts": 0.0,
-    "ev_cost_if_faded": 0.81,
+    "ev_cost_if_faded": 0.9,
     "field_gain_if_dog_wins_pct": 90,
     "factors_against_favourite": [],
     "factors_against_underdog": [],
@@ -1634,6 +1772,7 @@
     "https://play.hotspawn.com/lobby",
     "https://www.hotspawn.com/matches/mellren-vs-privateer-cct-europe-2026-series-12-play-in-1081120",
     "https://www.hltv.org/team/13759/mellren",
+    "https://polymarket.com/event/cs2-mellre-pg5-2026-10-16",
     "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
    ],
    "result": null
@@ -1652,7 +1791,7 @@
     "lobby",
     "cs2-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 2,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -1662,6 +1801,19 @@
    "total_picks": 52,
    "hltv_url": "https://www.hltv.org/matches/2399428/voca-vs-rounds-elisa-breakout-series-2",
    "hltv_note": null,
+   "pm": {
+    "source": "Polymarket",
+    "price_a": 0.11,
+    "price_b": 0.89,
+    "p_a": 0.11,
+    "p_b": 0.89,
+    "read_utc": "2026-10-15T10:44:09Z",
+    "url": "https://polymarket.com/event/cs2-voc-rgg-2026-10-16",
+    "listed_start": "2026-10-16T16:00:00Z",
+    "gap_h": 0.0,
+    "question": "Counter-Strike: Voca vs RoundsGG (BO1) - Elisa BreakOut Series #2 Group B",
+    "volume": null
+   },
    "format": "BO1",
    "format_source": "HLTV match page",
    "vrs_a": {
@@ -1698,12 +1850,12 @@
    "hltv_rank_b": 59,
    "hltv_team_a": "https://www.hltv.org/team/12457/rounds",
    "hltv_team_b": "https://www.hltv.org/team/13499/voca",
-   "p_a": 0.1573,
-   "p_b": 0.8427,
-   "basis": "Our own line (Valve points)",
-   "rung": "C",
+   "p_a": 0.11,
+   "p_b": 0.89,
+   "basis": "Polymarket price (prediction market)",
+   "rung": "B",
    "pick": "Voca",
-   "pick_p": 0.8427,
+   "pick_p": 0.89,
    "factors": [
     {
      "side": "a",
@@ -1719,7 +1871,7 @@
     }
    ],
    "flags": [
-    "NO_MARKET"
+    "ALIAS"
    ],
    "strategy": {
     "class": "CHALK",
@@ -1727,18 +1879,19 @@
     "leaderboard_pick": "Voca",
     "favourite": "Voca",
     "underdog": "RoundsGG",
-    "p_fav": 0.8427,
-    "p_dog": 0.1573,
-    "min_src_dog": 0.1573,
+    "p_fav": 0.8663,
+    "p_dog": 0.1336,
+    "min_src_dog": 0.11,
     "estimates": [
+     "market",
      "own line"
     ],
     "crowd_fav": 0.96,
     "crowd_dog": 0.04,
-    "edge_vs_crowd_pp": 11.7,
-    "leverage": 3.93,
+    "edge_vs_crowd_pp": 9.4,
+    "leverage": 3.34,
     "ev_cost_pts": 0.0,
-    "ev_cost_if_faded": 1.37,
+    "ev_cost_if_faded": 1.47,
     "field_gain_if_dog_wins_pct": 96,
     "factors_against_favourite": [],
     "factors_against_underdog": [],
@@ -1748,6 +1901,7 @@
     "https://play.hotspawn.com/lobby",
     "https://www.hotspawn.com/matches/roundsgg-vs-voca-elisa-breakout-series-2-1080289",
     "https://www.hltv.org/matches/2399428/voca-vs-rounds-elisa-breakout-series-2",
+    "https://polymarket.com/event/cs2-voc-rgg-2026-10-16",
     "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
    ],
    "result": null
@@ -1767,7 +1921,7 @@
     "cs2-pickems",
     "thp-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 2,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -1777,6 +1931,19 @@
    "total_picks": 51,
    "hltv_url": "https://www.hltv.org/matches/2399429/phantom-vs-havu-elisa-breakout-series-2",
    "hltv_note": null,
+   "pm": {
+    "source": "Polymarket",
+    "price_a": 0.7,
+    "price_b": 0.3,
+    "p_a": 0.7,
+    "p_b": 0.3,
+    "read_utc": "2026-10-15T10:44:09Z",
+    "url": "https://polymarket.com/event/cs2-pha-havu-2026-10-16",
+    "listed_start": "2026-10-16T18:00:00Z",
+    "gap_h": 0.0,
+    "question": "Counter-Strike: Phantom vs HAVU (BO1) - Elisa BreakOut Series #2 Group B",
+    "volume": null
+   },
    "format": "BO1",
    "format_source": "HLTV match page",
    "vrs_a": {
@@ -1813,12 +1980,12 @@
    "hltv_rank_b": 118,
    "hltv_team_a": "https://www.hltv.org/team/13173/phantom",
    "hltv_team_b": "https://www.hltv.org/team/7865/havu",
-   "p_a": 0.6355,
-   "p_b": 0.3645,
-   "basis": "Our own line (Valve points)",
-   "rung": "C",
+   "p_a": 0.7,
+   "p_b": 0.3,
+   "basis": "Polymarket price (prediction market)",
+   "rung": "B",
    "pick": "Phantom",
-   "pick_p": 0.6355,
+   "pick_p": 0.7,
    "factors": [
     {
      "side": "a",
@@ -1834,7 +2001,6 @@
     }
    ],
    "flags": [
-    "NO_MARKET",
     "VRS_ROSTER_OUTDATED"
    ],
    "strategy": {
@@ -1843,18 +2009,18 @@
     "leaderboard_pick": "HAVU",
     "favourite": "Phantom",
     "underdog": "HAVU",
-    "p_fav": 0.6355,
-    "p_dog": 0.3645,
-    "min_src_dog": 0.3645,
+    "p_fav": 0.7,
+    "p_dog": 0.3,
+    "min_src_dog": 0.3,
     "estimates": [
-     "own line"
+     "market"
     ],
     "crowd_fav": 0.98,
     "crowd_dog": 0.02,
-    "edge_vs_crowd_pp": 34.5,
-    "leverage": 18.23,
-    "ev_cost_pts": 0.54,
-    "ev_cost_if_faded": 0.54,
+    "edge_vs_crowd_pp": 28.0,
+    "leverage": 15.0,
+    "ev_cost_pts": 0.8,
+    "ev_cost_if_faded": 0.8,
     "field_gain_if_dog_wins_pct": 98,
     "factors_against_favourite": [
      "stand-in"
@@ -1866,6 +2032,7 @@
     "https://play.hotspawn.com/lobby",
     "https://www.hotspawn.com/matches/phantom-vs-havu-elisa-breakout-series-2-1080290",
     "https://www.hltv.org/matches/2399429/phantom-vs-havu-elisa-breakout-series-2",
+    "https://polymarket.com/event/cs2-pha-havu-2026-10-16",
     "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
    ],
    "result": null
@@ -1884,7 +2051,7 @@
     "lobby",
     "cs2-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 3,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -1962,7 +2129,7 @@
     "cs2-pickems",
     "thp-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 3,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -1974,11 +2141,11 @@
    "hltv_note": null,
    "pm": {
     "source": "Polymarket",
-    "price_a": 0.385,
-    "price_b": 0.615,
-    "p_a": 0.385,
-    "p_b": 0.615,
-    "read_utc": "2026-10-15T10:41:50Z",
+    "price_a": 0.35,
+    "price_b": 0.65,
+    "p_a": 0.35,
+    "p_b": 0.65,
+    "read_utc": "2026-10-15T10:44:09Z",
     "url": "https://polymarket.com/event/cs2-mibr-bcg-2026-10-15",
     "listed_start": "2026-10-15T10:00:00Z",
     "gap_h": 0.0,
@@ -2021,12 +2188,12 @@
    "hltv_rank_b": 70,
    "hltv_team_a": "https://www.hltv.org/team/9215/mibr",
    "hltv_team_b": "https://www.hltv.org/team/12878/bcgame",
-   "p_a": 0.385,
-   "p_b": 0.615,
+   "p_a": 0.35,
+   "p_b": 0.65,
    "basis": "Polymarket price (prediction market)",
    "rung": "B",
    "pick": "BC.Game",
-   "pick_p": 0.615,
+   "pick_p": 0.65,
    "factors": [
     {
      "side": "b",
@@ -2069,7 +2236,7 @@
     "cs2-pickems",
     "thp-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 3,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -2079,8 +2246,21 @@
    "total_picks": 80,
    "hltv_url": null,
    "hltv_note": null,
-   "format": "",
-   "format_source": "",
+   "pm": {
+    "source": "Polymarket",
+    "price_a": 0.635,
+    "price_b": 0.365,
+    "p_a": 0.635,
+    "p_b": 0.365,
+    "read_utc": "2026-10-15T10:44:09Z",
+    "url": "https://polymarket.com/event/cs2-hero-envy-2026-10-15",
+    "listed_start": "2026-10-15T10:00:00Z",
+    "gap_h": 0.0,
+    "question": "Counter-Strike: Heroic vs Envy (BO3) - Stake Pulse Beat III Group D",
+    "volume": 176790.31591699994
+   },
+   "format": "BO3",
+   "format_source": "Polymarket market title",
    "vrs_a": {
     "name": "HEROIC",
     "rank": 15,
@@ -2102,12 +2282,12 @@
    "hltv_rank_b": 20,
    "hltv_team_a": "https://www.hltv.org/team/7175/heroic",
    "hltv_team_b": "https://www.hltv.org/team/5991/envy",
-   "p_a": null,
-   "p_b": null,
-   "basis": "Unresolved",
-   "rung": "D",
-   "pick": null,
-   "pick_p": null,
+   "p_a": 0.635,
+   "p_b": 0.365,
+   "basis": "Polymarket price (prediction market)",
+   "rung": "B",
+   "pick": "Heroic",
+   "pick_p": 0.635,
    "factors": [],
    "flags": [
     "LOCKED"
@@ -2116,6 +2296,7 @@
    "sources": [
     "https://play.hotspawn.com/lobby",
     "https://www.hotspawn.com/matches/heroic-vs-envy-stake-pulse-beat-iii-1079442",
+    "https://polymarket.com/event/cs2-hero-envy-2026-10-15",
     "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
    ],
    "result": null
@@ -2135,7 +2316,7 @@
     "cs2-pickems",
     "thp-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 2,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -2145,6 +2326,19 @@
    "total_picks": 71,
    "hltv_url": "https://www.hltv.org/matches/2399419/ence-vs-bojong-elisa-breakout-series-2",
    "hltv_note": null,
+   "pm": {
+    "source": "Polymarket",
+    "price_a": 0.745,
+    "price_b": 0.255,
+    "p_a": 0.745,
+    "p_b": 0.255,
+    "read_utc": "2026-10-15T10:44:09Z",
+    "url": "https://polymarket.com/event/cs2-ence-bojong-2026-10-15",
+    "listed_start": "2026-10-15T10:35:00Z",
+    "gap_h": 0.58,
+    "question": "Counter-Strike: ENCE vs BOJONG (BO1) - Elisa BreakOut Series #2 Group A",
+    "volume": 7584.877221
+   },
    "format": "BO1",
    "format_source": "HLTV match page",
    "vrs_a": {
@@ -2181,12 +2375,12 @@
    "hltv_rank_b": 220,
    "hltv_team_a": "https://www.hltv.org/team/4869/ence",
    "hltv_team_b": "https://www.hltv.org/team/13795/bojong",
-   "p_a": 0.8157,
-   "p_b": 0.1843,
-   "basis": "Our own line (Valve points)",
-   "rung": "C",
+   "p_a": 0.745,
+   "p_b": 0.255,
+   "basis": "Polymarket price (prediction market)",
+   "rung": "B",
    "pick": "ENCE",
-   "pick_p": 0.8157,
+   "pick_p": 0.745,
    "factors": [],
    "flags": [
     "LOCKED"
@@ -2196,6 +2390,7 @@
     "https://play.hotspawn.com/lobby",
     "https://www.hotspawn.com/matches/ence-vs-bojong-elisa-breakout-series-2-1080280",
     "https://www.hltv.org/matches/2399419/ence-vs-bojong-elisa-breakout-series-2",
+    "https://polymarket.com/event/cs2-ence-bojong-2026-10-15",
     "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
    ],
    "result": null
@@ -2214,7 +2409,7 @@
     "lobby",
     "cs2-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 2,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -2291,7 +2486,7 @@
     "lobby",
     "cs2-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 3,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -2393,7 +2588,7 @@
     "lobby",
     "cs2-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 2,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -2470,7 +2665,7 @@
     "lobby",
     "cs2-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 2,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -2520,7 +2715,7 @@
     "lobby",
     "cs2-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 2,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -2610,7 +2805,7 @@
     "lobby",
     "cs2-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 3,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -2674,7 +2869,7 @@
     "lobby",
     "cs2-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 3,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -2764,7 +2959,7 @@
     "lobby",
     "cs2-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 2,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -2839,7 +3034,7 @@
     "lobby",
     "cs2-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 3,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -2916,7 +3111,7 @@
     "lobby",
     "cs2-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 2,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -2993,7 +3188,7 @@
     "lobby",
     "cs2-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 2,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -3057,7 +3252,7 @@
     "lobby",
     "cs2-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 2,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -3121,7 +3316,7 @@
     "lobby",
     "cs2-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 2,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -3198,7 +3393,7 @@
     "lobby",
     "cs2-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 2,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -3260,7 +3455,7 @@
     "lobby",
     "cs2-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 2,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -3337,7 +3532,7 @@
     "lobby",
     "cs2-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 2,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -3414,7 +3609,7 @@
     "lobby",
     "cs2-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 2,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -3478,7 +3673,7 @@
     "lobby",
     "cs2-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 2,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -3555,7 +3750,7 @@
     "lobby",
     "cs2-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 3,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -3619,7 +3814,7 @@
     "lobby",
     "cs2-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 2,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -3669,7 +3864,7 @@
     "lobby",
     "cs2-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 3,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -3733,7 +3928,7 @@
     "lobby",
     "cs2-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 2,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -3810,7 +4005,7 @@
     "lobby",
     "cs2-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 2,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -3885,7 +4080,7 @@
     "lobby",
     "cs2-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 2,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -3949,7 +4144,7 @@
     "lobby",
     "cs2-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 2,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -4013,7 +4208,7 @@
     "lobby",
     "cs2-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 3,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -4090,7 +4285,7 @@
     "lobby",
     "cs2-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 3,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -4167,7 +4362,7 @@
     "lobby",
     "cs2-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 2,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -4229,7 +4424,7 @@
     "lobby",
     "cs2-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 3,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -4319,7 +4514,7 @@
     "lobby",
     "cs2-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 2,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -4396,7 +4591,7 @@
     "lobby",
     "cs2-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 2,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -4460,7 +4655,7 @@
     "lobby",
     "cs2-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 3,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -4537,7 +4732,7 @@
     "lobby",
     "cs2-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 2,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -4601,7 +4796,7 @@
     "lobby",
     "cs2-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 2,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -4665,7 +4860,7 @@
     "lobby",
     "cs2-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 2,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -4755,7 +4950,7 @@
     "lobby",
     "cs2-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 2,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -4817,7 +5012,7 @@
     "lobby",
     "cs2-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 2,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -4879,7 +5074,7 @@
     "lobby",
     "cs2-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 2,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -4941,7 +5136,7 @@
     "lobby",
     "cs2-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 2,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -5003,7 +5198,7 @@
     "lobby",
     "cs2-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 3,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -5067,7 +5262,7 @@
     "lobby",
     "cs2-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 2,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -5117,7 +5312,7 @@
     "lobby",
     "cs2-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 2,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -5190,7 +5385,7 @@
     "lobby",
     "cs2-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 3,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -5240,7 +5435,7 @@
     "lobby",
     "cs2-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 2,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -5304,7 +5499,7 @@
     "lobby",
     "cs2-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 2,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -5368,7 +5563,7 @@
     "lobby",
     "cs2-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 2,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -5432,7 +5627,7 @@
     "lobby",
     "cs2-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 3,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -5496,7 +5691,7 @@
     "lobby",
     "cs2-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 2,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -5560,7 +5755,7 @@
     "lobby",
     "cs2-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 2,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -5624,7 +5819,7 @@
     "lobby",
     "cs2-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 2,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -5701,7 +5896,7 @@
     "lobby",
     "cs2-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 2,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -5751,7 +5946,7 @@
     "lobby",
     "cs2-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 3,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -5841,7 +6036,7 @@
     "lobby",
     "cs2-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 2,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -5905,7 +6100,7 @@
     "lobby",
     "cs2-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 2,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -5969,7 +6164,7 @@
     "lobby",
     "cs2-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 2,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -6033,7 +6228,7 @@
     "lobby",
     "cs2-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 3,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -6097,7 +6292,7 @@
     "lobby",
     "cs2-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 2,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -6174,7 +6369,7 @@
     "lobby",
     "cs2-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 3,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -6238,7 +6433,7 @@
     "lobby",
     "cs2-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 2,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -6315,7 +6510,7 @@
     "lobby",
     "cs2-pickems"
    ],
-   "read_utc": "2026-10-15T10:41:47Z",
+   "read_utc": "2026-10-15T10:44:06Z",
    "points": 2,
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
@@ -6708,7 +6903,7 @@
    "class": "LONG SHOT",
    "crowd_a": 6,
    "crowd_b": 94,
-   "as_of": "2026-10-15T10:41:47Z",
+   "as_of": "2026-10-15T10:44:06Z",
    "frozen": false
   },
   "1080281": {
@@ -6728,7 +6923,7 @@
    "class": "VALUE",
    "crowd_a": 17,
    "crowd_b": 83,
-   "as_of": "2026-10-15T10:41:47Z",
+   "as_of": "2026-10-15T10:44:06Z",
    "frozen": false
   },
   "1080203": {
@@ -6748,7 +6943,7 @@
    "class": "CONTRARIAN",
    "crowd_a": 69,
    "crowd_b": 31,
-   "as_of": "2026-10-15T10:41:47Z",
+   "as_of": "2026-10-15T10:44:06Z",
    "frozen": false
   },
   "1080282": {
@@ -6768,7 +6963,7 @@
    "class": "CHALK",
    "crowd_a": 95,
    "crowd_b": 5,
-   "as_of": "2026-10-15T10:41:47Z",
+   "as_of": "2026-10-15T10:44:06Z",
    "frozen": false
   },
   "1080204": {
@@ -6788,7 +6983,7 @@
    "class": "CONTRARIAN",
    "crowd_a": 27,
    "crowd_b": 73,
-   "as_of": "2026-10-15T10:41:47Z",
+   "as_of": "2026-10-15T10:44:06Z",
    "frozen": false
   },
   "1080283": {
@@ -6800,15 +6995,15 @@
    "lock_utc": "2026-10-15T15:54:00Z",
    "points": 2,
    "pick": "WROTBERRY",
-   "pick_p": 0.8758,
-   "p_a": 0.8758,
-   "p_b": 0.1242,
-   "basis": "Our own line (Valve points)",
+   "pick_p": 0.835,
+   "p_a": 0.835,
+   "p_b": 0.165,
+   "basis": "Polymarket price (prediction market)",
    "leaderboard_pick": "WROTBERRY",
    "class": "CHALK",
    "crowd_a": 91,
    "crowd_b": 9,
-   "as_of": "2026-10-15T10:41:47Z",
+   "as_of": "2026-10-15T10:44:06Z",
    "frozen": false
   },
   "1080284": {
@@ -6828,7 +7023,7 @@
    "class": "VALUE",
    "crowd_a": 15,
    "crowd_b": 85,
-   "as_of": "2026-10-15T10:41:47Z",
+   "as_of": "2026-10-15T10:44:06Z",
    "frozen": false
   },
   "1080285": {
@@ -6839,16 +7034,16 @@
    "start_utc": "2026-10-16T08:00:00Z",
    "lock_utc": "2026-10-16T07:54:00Z",
    "points": 2,
-   "pick": "Voca",
-   "pick_p": 0.5231,
-   "p_a": 0.5231,
-   "p_b": 0.4769,
-   "basis": "Our own line (Valve points)",
+   "pick": "Phantom",
+   "pick_p": 0.555,
+   "p_a": 0.445,
+   "p_b": 0.555,
+   "basis": "Polymarket price (prediction market)",
    "leaderboard_pick": "Voca",
-   "class": "VALUE",
+   "class": "CONTRARIAN",
    "crowd_a": 17,
    "crowd_b": 83,
-   "as_of": "2026-10-15T10:41:47Z",
+   "as_of": "2026-10-15T10:44:06Z",
    "frozen": false
   },
   "1080286": {
@@ -6860,15 +7055,15 @@
    "lock_utc": "2026-10-16T09:54:00Z",
    "points": 2,
    "pick": "HAVU",
-   "pick_p": 0.7368,
-   "p_a": 0.7368,
-   "p_b": 0.2632,
-   "basis": "Our own line (Valve points)",
+   "pick_p": 0.69,
+   "p_a": 0.69,
+   "p_b": 0.31,
+   "basis": "Polymarket price (prediction market)",
    "leaderboard_pick": "HAVU",
    "class": "LONG SHOT",
    "crowd_a": 93,
    "crowd_b": 7,
-   "as_of": "2026-10-15T10:41:47Z",
+   "as_of": "2026-10-15T10:44:06Z",
    "frozen": false
   },
   "1080287": {
@@ -6880,15 +7075,15 @@
    "lock_utc": "2026-10-16T11:54:00Z",
    "points": 2,
    "pick": "Voca",
-   "pick_p": 0.6567,
-   "p_a": 0.6567,
-   "p_b": 0.3433,
-   "basis": "Our own line (Valve points)",
+   "pick_p": 0.675,
+   "p_a": 0.675,
+   "p_b": 0.325,
+   "basis": "Polymarket price (prediction market)",
    "leaderboard_pick": "Voca",
    "class": "CHALK",
    "crowd_a": 84,
    "crowd_b": 16,
-   "as_of": "2026-10-15T10:41:47Z",
+   "as_of": "2026-10-15T10:44:06Z",
    "frozen": false
   },
   "1080288": {
@@ -6900,15 +7095,15 @@
    "lock_utc": "2026-10-16T13:54:00Z",
    "points": 2,
    "pick": "Phantom",
-   "pick_p": 0.83,
-   "p_a": 0.83,
-   "p_b": 0.17,
-   "basis": "Our own line (Valve points)",
+   "pick_p": 0.92,
+   "p_a": 0.92,
+   "p_b": 0.08,
+   "basis": "Polymarket price (prediction market)",
    "leaderboard_pick": "Phantom",
    "class": "CHALK",
    "crowd_a": 96,
    "crowd_b": 4,
-   "as_of": "2026-10-15T10:41:47Z",
+   "as_of": "2026-10-15T10:44:06Z",
    "frozen": false
   },
   "1081120": {
@@ -6920,15 +7115,15 @@
    "lock_utc": "2026-10-16T13:54:00Z",
    "points": 2,
    "pick": "mellren",
-   "pick_p": 0.7022,
-   "p_a": 0.7022,
-   "p_b": 0.2978,
-   "basis": "Our own line (Valve points)",
+   "pick_p": 0.75,
+   "p_a": 0.75,
+   "p_b": 0.25,
+   "basis": "Polymarket price (prediction market)",
    "leaderboard_pick": "mellren",
    "class": "LONG SHOT",
    "crowd_a": 90,
    "crowd_b": 10,
-   "as_of": "2026-10-15T10:41:47Z",
+   "as_of": "2026-10-15T10:44:06Z",
    "frozen": false
   },
   "1080289": {
@@ -6940,15 +7135,15 @@
    "lock_utc": "2026-10-16T15:54:00Z",
    "points": 2,
    "pick": "Voca",
-   "pick_p": 0.8427,
-   "p_a": 0.1573,
-   "p_b": 0.8427,
-   "basis": "Our own line (Valve points)",
+   "pick_p": 0.89,
+   "p_a": 0.11,
+   "p_b": 0.89,
+   "basis": "Polymarket price (prediction market)",
    "leaderboard_pick": "Voca",
    "class": "CHALK",
    "crowd_a": 4,
    "crowd_b": 96,
-   "as_of": "2026-10-15T10:41:47Z",
+   "as_of": "2026-10-15T10:44:06Z",
    "frozen": false
   },
   "1080290": {
@@ -6960,15 +7155,15 @@
    "lock_utc": "2026-10-16T17:54:00Z",
    "points": 2,
    "pick": "Phantom",
-   "pick_p": 0.6355,
-   "p_a": 0.6355,
-   "p_b": 0.3645,
-   "basis": "Our own line (Valve points)",
+   "pick_p": 0.7,
+   "p_a": 0.7,
+   "p_b": 0.3,
+   "basis": "Polymarket price (prediction market)",
    "leaderboard_pick": "HAVU",
    "class": "SITUATIONAL",
    "crowd_a": 98,
    "crowd_b": 2,
-   "as_of": "2026-10-15T10:41:47Z",
+   "as_of": "2026-10-15T10:44:06Z",
    "frozen": false
   }
  },
