@@ -1,23 +1,23 @@
 {
- "generated_utc": "2026-10-15T17:24:10Z",
+ "generated_utc": "2026-10-15T20:33:48Z",
  "fixture_spine": "slate/data/fixtures.csv",
  "totals": {
-  "open_fixtures": 8,
-  "with_pick": 8,
-  "with_market": 7,
-  "with_market_direct": 1,
-  "with_market_secondary": 6,
+  "open_fixtures": 7,
+  "with_pick": 7,
+  "with_market": 6,
+  "with_market_direct": 3,
+  "with_market_secondary": 3,
   "model_only": 1,
   "no_basis": 0,
-  "flagged_rows": 7,
+  "flagged_rows": 4,
   "disagreement_rows": 7,
-  "locked_or_started": 80,
+  "locked_or_started": 81,
   "inventory": {
    "payload_rows": 88,
-   "open": 8,
-   "locked_or_started": 80,
+   "open": 7,
+   "locked_or_started": 81,
    "stale_over_a_day": 59,
-   "started_within_a_day": 21
+   "started_within_a_day": 22
   }
  },
  "boards": [
@@ -35,7 +35,7 @@
    "rows": 28,
    "captured_utc": "2026-10-14T02:23:08Z",
    "open_rows_with_pick": 0,
-   "open_rows_covered": 8
+   "open_rows_covered": 7
   },
   {
    "id": "oct14",
@@ -50,8 +50,8 @@
    "present": true,
    "rows": 32,
    "captured_utc": "2026-10-14T01:58:00Z",
-   "open_rows_with_pick": 8,
-   "open_rows_covered": 8
+   "open_rows_with_pick": 7,
+   "open_rows_covered": 7
   },
   {
    "id": "openslate",
@@ -66,8 +66,8 @@
    "present": true,
    "rows": 28,
    "captured_utc": "2026-10-14T01:41Z-01:58Z",
-   "open_rows_with_pick": 8,
-   "open_rows_covered": 8
+   "open_rows_with_pick": 7,
+   "open_rows_covered": 7
   },
   {
    "id": "everypick",
@@ -82,8 +82,8 @@
    "present": true,
    "rows": 28,
    "captured_utc": "2026-10-14T02:23:08Z",
-   "open_rows_with_pick": 8,
-   "open_rows_covered": 8
+   "open_rows_with_pick": 7,
+   "open_rows_covered": 7
   },
   {
    "id": "cs2",
@@ -94,94 +94,24 @@
    "method": "cs2/methodology.html",
    "owner": "arena/a174d77f",
    "what": "Pinnacle guest prices and a model slope re-fitted on Valve's own match archive.",
-   "captured_sidecar": "2026-10-15T15:05:20Z",
+   "captured_sidecar": "2026-10-15T19:12:39Z",
    "present": true,
-   "rows": 73,
-   "captured_utc": "2026-10-15T15:05:20Z",
-   "open_rows_with_pick": 8,
-   "open_rows_covered": 8
+   "rows": 76,
+   "captured_utc": "2026-10-15T19:12:39Z",
+   "open_rows_with_pick": 7,
+   "open_rows_covered": 7
   }
  ],
  "open": [
   {
-   "poly_reference": null,
-   "fixture_id": "1080284",
-   "kickoff_utc": "2026-10-15T18:00:00Z",
-   "lock_utc": "2026-10-15T17:54:00Z",
-   "competition": "Elisa BreakOut Series #2",
-   "tier": "C",
-   "team_a": "EAC",
-   "team_b": "ENCE",
-   "hotspawn_match_url": "",
-   "hotspawn_fixture_url": "https://play.hotspawn.com/cs2-pickems",
-   "best_of": "BO1",
-   "best_of_source": "https://www.hltv.org/matches/2399423/eac-vs-ence-elisa-breakout-series-2",
-   "market_book": "Pinnacle",
-   "market_class": "direct",
-   "market_odds_a": 1.613497,
-   "market_odds_b": 2.28,
-   "market_p_a": 58.6,
-   "market_p_b": 41.4,
-   "market_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
-   "market_captured_utc": "2026-10-15T15:03:09Z",
-   "market_board": "cs2",
-   "market_page": "cs2/index.html",
-   "market_note": "",
-   "own_p_a": 50.7,
-   "own_p_b": 49.3,
-   "own_basis": "P=1/(1+10^(-0.4630*\u0394pts/400)); slope re-fit by cs2/calibrate.py on Valve's own match results",
-   "own_url": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md?plain=1#L108",
-   "own_board": "cs2",
-   "own_page": "cs2/index.html",
-   "line_source": "market-direct",
-   "p_a": 58.6,
-   "p_b": 41.4,
-   "pick": "EAC",
-   "pick_pct": 58.6,
-   "pick_basis": "external bookmaker price, de-vigged (direct)",
-   "pick_source_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
-   "pick_board": "cs2",
-   "pick_page": "cs2/index.html",
-   "boards_publishing": {
-    "slate": {
-     "market": false,
-     "model": true,
-     "pick": false
-    },
-    "oct14": {
-     "market": true,
-     "model": true,
-     "pick": true
-    },
-    "openslate": {
-     "market": false,
-     "model": true,
-     "pick": true
-    },
-    "everypick": {
-     "market": true,
-     "model": true,
-     "pick": true
-    },
-    "cs2": {
-     "market": true,
-     "model": true,
-     "pick": true
-    }
-   },
-   "disagreements": [],
-   "flags": [],
-   "state": "open"
-  },
-  {
    "poly_reference": {
-    "p_a": 44.5,
-    "p_b": 55.5,
+    "p_a": 42.5,
+    "p_b": 57.5,
     "url": "https://polymarket.com/event/cs2-voc-pha-2026-10-16",
     "board": "exec/collect_polymarket.py",
     "source": "Polymarket",
-    "updated_utc": "2026-10-15T17:23:11.020059Z",
-    "liquidity_usd": 3229.2991
+    "updated_utc": "2026-10-15T20:29:07.635595Z",
+    "liquidity_usd": 7384.6142
    },
    "fixture_id": "1080285",
    "kickoff_utc": "2026-10-16T08:00:00Z",
@@ -272,32 +202,32 @@
    "hotspawn_fixture_url": "https://play.hotspawn.com/cs2-pickems",
    "best_of": "BO1",
    "best_of_source": "https://www.hltv.org/matches/2399425/havu-vs-rounds-elisa-breakout-series-2",
-   "market_book": "bc.game (EGamersWorld)",
-   "market_class": "secondary",
-   "market_odds_a": 1.19,
-   "market_odds_b": 4.02,
-   "market_p_a": 77.2,
-   "market_p_b": 22.8,
-   "market_url": "https://egamersworld.com/counterstrike/match/4yn491uUVl/havu-vs-rounds-rg48QwsiJ9",
-   "market_captured_utc": "2026-10-14T01:49:00Z",
-   "market_board": "everypick",
-   "market_page": "everypick/index.html",
-   "market_note": "External market \u2014 EGamersWorld bc.game report (secondary, not re-read vs bookmaker), de-vigged",
-   "own_p_a": 88.4,
-   "own_p_b": 11.6,
-   "own_basis": "80% Valve VRS Glicko + 20% HLTV Ranking (BO1)",
-   "own_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L129",
-   "own_board": "everypick",
-   "own_page": "everypick/index.html",
-   "line_source": "market-secondary",
-   "p_a": 77.2,
-   "p_b": 22.8,
+   "market_book": "Pinnacle",
+   "market_class": "direct",
+   "market_odds_a": 1.185529,
+   "market_odds_b": 4.32,
+   "market_p_a": 78.5,
+   "market_p_b": 21.5,
+   "market_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
+   "market_captured_utc": "2026-10-15T19:10:23Z",
+   "market_board": "cs2",
+   "market_page": "cs2/index.html",
+   "market_note": "",
+   "own_p_a": 73.8,
+   "own_p_b": 26.2,
+   "own_basis": "P=1/(1+10^(-0.4630*\u0394pts/400)); slope re-fit by cs2/calibrate.py on Valve's own match results",
+   "own_url": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md?plain=1#L129",
+   "own_board": "cs2",
+   "own_page": "cs2/index.html",
+   "line_source": "market-direct",
+   "p_a": 78.5,
+   "p_b": 21.5,
    "pick": "HAVU",
-   "pick_pct": 77.2,
-   "pick_basis": "external bookmaker price, de-vigged (aggregator-mediated)",
-   "pick_source_url": "https://egamersworld.com/counterstrike/match/4yn491uUVl/havu-vs-rounds-rg48QwsiJ9",
-   "pick_board": "everypick",
-   "pick_page": "everypick/index.html",
+   "pick_pct": 78.5,
+   "pick_basis": "external bookmaker price, de-vigged (direct)",
+   "pick_source_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
+   "pick_board": "cs2",
+   "pick_page": "cs2/index.html",
    "boards_publishing": {
     "slate": {
      "market": false,
@@ -320,22 +250,15 @@
      "pick": true
     },
     "cs2": {
-     "market": false,
+     "market": true,
      "model": true,
      "pick": true
     }
    },
    "disagreements": [
-    "market 77% vs our model 88% for HAVU (11 pp)",
     "our own lines differ between boards: 71%\u201388% for HAVU"
    ],
-   "flags": [
-    {
-     "code": "X-SECONDARY-PRICE",
-     "severity": "caveat",
-     "text": "Price comes from a bookmaker listing served by an aggregator, not from the bookmaker's own response."
-    }
-   ],
+   "flags": [],
    "state": "open"
   },
   {
@@ -345,8 +268,8 @@
     "url": "https://polymarket.com/event/cs2-voc-havu-2026-10-16",
     "board": "exec/collect_polymarket.py",
     "source": "Polymarket",
-    "updated_utc": "2026-10-15T17:23:11.020059Z",
-    "liquidity_usd": 4705.5156
+    "updated_utc": "2026-10-15T20:33:09.312504Z",
+    "liquidity_usd": 8147.4588
    },
    "fixture_id": "1080287",
    "kickoff_utc": "2026-10-16T12:00:00Z",
@@ -359,32 +282,32 @@
    "hotspawn_fixture_url": "https://play.hotspawn.com/cs2-pickems",
    "best_of": "BO1",
    "best_of_source": "https://www.hltv.org/matches/2399426/voca-vs-havu-elisa-breakout-series-2",
-   "market_book": "bc.game (EGamersWorld)",
-   "market_class": "secondary",
-   "market_odds_a": 1.38,
-   "market_odds_b": 2.7,
-   "market_p_a": 66.2,
-   "market_p_b": 33.8,
-   "market_url": "https://egamersworld.com/counterstrike/match/4yn491uUVl/voca-vs-havu-nQn6IrZXP",
-   "market_captured_utc": "2026-10-14T01:49:00Z",
-   "market_board": "everypick",
-   "market_page": "everypick/index.html",
-   "market_note": "External market \u2014 EGamersWorld bc.game report (secondary, not re-read vs bookmaker), de-vigged",
-   "own_p_a": 78.5,
-   "own_p_b": 21.5,
-   "own_basis": "80% Valve VRS Glicko + 20% HLTV Ranking (BO1)",
-   "own_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L73",
-   "own_board": "everypick",
-   "own_page": "everypick/index.html",
-   "line_source": "market-secondary",
-   "p_a": 66.2,
-   "p_b": 33.8,
+   "market_book": "Pinnacle",
+   "market_class": "direct",
+   "market_odds_a": 1.469484,
+   "market_odds_b": 2.62,
+   "market_p_a": 64.1,
+   "market_p_b": 35.9,
+   "market_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
+   "market_captured_utc": "2026-10-15T19:10:23Z",
+   "market_board": "cs2",
+   "market_page": "cs2/index.html",
+   "market_note": "",
+   "own_p_a": 65.8,
+   "own_p_b": 34.2,
+   "own_basis": "P=1/(1+10^(-0.4630*\u0394pts/400)); slope re-fit by cs2/calibrate.py on Valve's own match results",
+   "own_url": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md?plain=1#L73",
+   "own_board": "cs2",
+   "own_page": "cs2/index.html",
+   "line_source": "market-direct",
+   "p_a": 64.1,
+   "p_b": 35.9,
    "pick": "Voca",
-   "pick_pct": 66.2,
-   "pick_basis": "external bookmaker price, de-vigged (aggregator-mediated)",
-   "pick_source_url": "https://egamersworld.com/counterstrike/match/4yn491uUVl/voca-vs-havu-nQn6IrZXP",
-   "pick_board": "everypick",
-   "pick_page": "everypick/index.html",
+   "pick_pct": 64.1,
+   "pick_basis": "external bookmaker price, de-vigged (direct)",
+   "pick_source_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
+   "pick_board": "cs2",
+   "pick_page": "cs2/index.html",
    "boards_publishing": {
     "slate": {
      "market": false,
@@ -407,22 +330,15 @@
      "pick": true
     },
     "cs2": {
-     "market": false,
+     "market": true,
      "model": true,
      "pick": true
     }
    },
    "disagreements": [
-    "market 66% vs our model 78% for Voca (12 pp)",
     "our own lines differ between boards: 66%\u201378% for Voca"
    ],
-   "flags": [
-    {
-     "code": "X-SECONDARY-PRICE",
-     "severity": "caveat",
-     "text": "Price comes from a bookmaker listing served by an aggregator, not from the bookmaker's own response."
-    }
-   ],
+   "flags": [],
    "state": "open"
   },
   {
@@ -594,32 +510,32 @@
    "hotspawn_fixture_url": "https://play.hotspawn.com/cs2-pickems",
    "best_of": "BO1",
    "best_of_source": "https://www.hltv.org/matches/2399428/voca-vs-rounds-elisa-breakout-series-2",
-   "market_book": "bc.game (EGamersWorld)",
-   "market_class": "secondary",
-   "market_odds_a": 6.4,
-   "market_odds_b": 1.063,
-   "market_p_a": 14.2,
-   "market_p_b": 85.8,
-   "market_url": "https://egamersworld.com/counterstrike/match/4yn491uUVl/voca-vs-rounds-_dTpdE0K7U",
-   "market_captured_utc": "2026-10-14T01:49:00Z",
-   "market_board": "everypick",
-   "market_page": "everypick/index.html",
-   "market_note": "External market \u2014 EGamersWorld bc.game report (secondary, not re-read vs bookmaker), de-vigged",
-   "own_p_a": 4.6,
-   "own_p_b": 95.4,
-   "own_basis": "80% Valve VRS Glicko + 20% HLTV Ranking (BO1)",
-   "own_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L315",
-   "own_board": "everypick",
-   "own_page": "everypick/index.html",
-   "line_source": "market-secondary",
-   "p_a": 14.2,
-   "p_b": 85.8,
-   "pick": "Voca",
-   "pick_pct": 85.8,
-   "pick_basis": "external bookmaker price, de-vigged (aggregator-mediated)",
-   "pick_source_url": "https://egamersworld.com/counterstrike/match/4yn491uUVl/voca-vs-rounds-_dTpdE0K7U",
-   "pick_board": "everypick",
-   "pick_page": "everypick/index.html",
+   "market_book": "Pinnacle",
+   "market_class": "direct",
+   "market_odds_a": 1.104058,
+   "market_odds_b": 5.82,
+   "market_p_a": 84.1,
+   "market_p_b": 15.9,
+   "market_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
+   "market_captured_utc": "2026-10-15T19:10:23Z",
+   "market_board": "cs2",
+   "market_page": "cs2/index.html",
+   "market_note": "",
+   "own_p_a": 15.6,
+   "own_p_b": 84.4,
+   "own_basis": "P=1/(1+10^(-0.4630*\u0394pts/400)); slope re-fit by cs2/calibrate.py on Valve's own match results",
+   "own_url": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md?plain=1#L315",
+   "own_board": "cs2",
+   "own_page": "cs2/index.html",
+   "line_source": "market-direct",
+   "p_a": 84.1,
+   "p_b": 15.9,
+   "pick": "RoundsGG",
+   "pick_pct": 84.1,
+   "pick_basis": "external bookmaker price, de-vigged (direct)",
+   "pick_source_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
+   "pick_board": "cs2",
+   "pick_page": "cs2/index.html",
    "boards_publishing": {
     "slate": {
      "market": false,
@@ -642,32 +558,29 @@
      "pick": true
     },
     "cs2": {
-     "market": false,
+     "market": true,
      "model": true,
      "pick": true
     }
    },
    "disagreements": [
-    "our own lines differ between boards: 5%\u201325% for RoundsGG"
+    "market 84% vs our model 16% for RoundsGG (68 pp)",
+    "the boards' outside prices differ by 70 pp (14%\u201384% for RoundsGG)",
+    "our own lines differ between boards: 5%\u201325% for RoundsGG",
+    "boards name different winners \u2014 cs2: RoundsGG, everypick: Voca, oct14: Voca, openslate: Voca (this page: RoundsGG)"
    ],
-   "flags": [
-    {
-     "code": "X-SECONDARY-PRICE",
-     "severity": "caveat",
-     "text": "Price comes from a bookmaker listing served by an aggregator, not from the bookmaker's own response."
-    }
-   ],
+   "flags": [],
    "state": "open"
   },
   {
    "poly_reference": {
-    "p_a": 70.0,
-    "p_b": 30.0,
+    "p_a": 71.0,
+    "p_b": 29.0,
     "url": "https://polymarket.com/event/cs2-pha-havu-2026-10-16",
     "board": "exec/collect_polymarket.py",
     "source": "Polymarket",
-    "updated_utc": "2026-10-15T17:23:11.020059Z",
-    "liquidity_usd": 4731.9041
+    "updated_utc": "2026-10-15T20:33:09.312504Z",
+    "liquidity_usd": 3235.0578
    },
    "fixture_id": "1080290",
    "kickoff_utc": "2026-10-16T18:00:00Z",
@@ -747,6 +660,55 @@
   }
  ],
  "locked_or_started": [
+  {
+   "poly_reference": null,
+   "fixture_id": "1080284",
+   "kickoff_utc": "2026-10-15T18:00:00Z",
+   "lock_utc": "2026-10-15T17:54:00Z",
+   "competition": "Elisa BreakOut Series #2",
+   "tier": "C",
+   "team_a": "EAC",
+   "team_b": "ENCE",
+   "hotspawn_match_url": "",
+   "hotspawn_fixture_url": "https://play.hotspawn.com/cs2-pickems",
+   "best_of": "BO1",
+   "best_of_source": "https://www.hltv.org/matches/2399423/eac-vs-ence-elisa-breakout-series-2",
+   "market_book": "bc.game (EGamersWorld)",
+   "market_class": "secondary",
+   "market_odds_a": 1.51,
+   "market_odds_b": 2.35,
+   "market_p_a": 60.9,
+   "market_p_b": 39.1,
+   "market_url": "https://egamersworld.com/counterstrike/match/4yn491uUVl/ea-copenhagen-vs-ence-kTR_sMK3PT",
+   "market_captured_utc": "2026-10-14T01:49:00Z",
+   "market_board": "everypick",
+   "market_page": "everypick/index.html",
+   "market_note": "External market \u2014 EGamersWorld bc.game report (secondary, not re-read vs bookmaker), de-vigged",
+   "own_p_a": 51.3,
+   "own_p_b": 48.7,
+   "own_basis": "80% Valve VRS Glicko + 20% HLTV Ranking (BO1)",
+   "own_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L108",
+   "own_board": "everypick",
+   "own_page": "everypick/index.html",
+   "line_source": "market-secondary",
+   "p_a": 60.9,
+   "p_b": 39.1,
+   "pick": "EAC",
+   "pick_pct": 60.9,
+   "pick_basis": "external bookmaker price, de-vigged (aggregator-mediated)",
+   "pick_source_url": "https://egamersworld.com/counterstrike/match/4yn491uUVl/ea-copenhagen-vs-ence-kTR_sMK3PT",
+   "pick_board": "everypick",
+   "pick_page": "everypick/index.html",
+   "disagreements": [],
+   "flags": [
+    {
+     "code": "X-SECONDARY-PRICE",
+     "severity": "caveat",
+     "text": "Price comes from a bookmaker listing served by an aggregator, not from the bookmaker's own response."
+    }
+   ],
+   "state": "locked_or_started"
+  },
   {
    "poly_reference": null,
    "fixture_id": "1080283",

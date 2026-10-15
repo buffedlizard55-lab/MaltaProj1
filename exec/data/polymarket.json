@@ -1,8 +1,8 @@
 {
  "status": "ok",
  "endpoint": "https://gamma-api.polymarket.com/public-search?q=<team_a> <team_b>&limit_per_type=4 (one lookup per open fixture)",
- "captured_utc": "2026-10-15T17:24:07Z",
- "fixtures_considered": 8,
+ "captured_utc": "2026-10-15T20:33:46Z",
+ "fixtures_considered": 7,
  "note": "Polymarket lists some of the low-tier cups that big bookmakers skip. Only whole-match (series) markets are republished as a series reference; per-map markets are recorded separately and are never used as a series probability. A fixture with no matching event is recorded as unmatched, not filled in.",
  "matches": [
   {
@@ -16,13 +16,13 @@
     "Voca",
     "Phantom"
    ],
-   "p_a": 44.5,
-   "p_b": 55.5,
-   "best_bid": 0.44,
-   "best_ask": 0.45,
-   "liquidity_usd": 3229.2991,
-   "volume_usd": 99.12420799999998,
-   "updated_utc": "2026-10-15T17:23:11.020059Z",
+   "p_a": 42.5,
+   "p_b": 57.5,
+   "best_bid": 0.42,
+   "best_ask": 0.43,
+   "liquidity_usd": 7384.6142,
+   "volume_usd": 288.85165499999994,
+   "updated_utc": "2026-10-15T20:29:07.635595Z",
    "url": "https://polymarket.com/event/cs2-voc-pha-2026-10-16"
   },
   {
@@ -40,9 +40,9 @@
    "p_b": 32.5,
    "best_bid": 0.67,
    "best_ask": 0.68,
-   "liquidity_usd": 4705.5156,
-   "volume_usd": 32,
-   "updated_utc": "2026-10-15T17:23:11.020059Z",
+   "liquidity_usd": 8147.4588,
+   "volume_usd": 47,
+   "updated_utc": "2026-10-15T20:33:09.312504Z",
    "url": "https://polymarket.com/event/cs2-voc-havu-2026-10-16"
   },
   {
@@ -56,32 +56,20 @@
     "Phantom",
     "HAVU"
    ],
-   "p_a": 70.0,
-   "p_b": 30.0,
-   "best_bid": 0.67,
-   "best_ask": 0.73,
-   "liquidity_usd": 4731.9041,
-   "volume_usd": null,
-   "updated_utc": "2026-10-15T17:23:11.020059Z",
+   "p_a": 71.0,
+   "p_b": 29.0,
+   "best_bid": 0.7,
+   "best_ask": 0.72,
+   "liquidity_usd": 3235.0578,
+   "volume_usd": 5,
+   "updated_utc": "2026-10-15T20:33:09.312504Z",
    "url": "https://polymarket.com/event/cs2-pha-havu-2026-10-16"
   }
  ],
  "map_markets": [],
- "unmatched": [
-  {
-   "fixture_id": "1080284",
-   "team_a": "EAC",
-   "team_b": "ENCE"
-  }
- ],
+ "unmatched": [],
  "errors": [],
  "search_log": [
-  {
-   "fixture_id": "1080284",
-   "events": 1,
-   "matched": "",
-   "how": "kickoff mismatch (2026-09-30T13:00:00Z vs 2026-10-15T18:00:00Z)"
-  },
   {
    "fixture_id": "1080285",
    "events": 1,
