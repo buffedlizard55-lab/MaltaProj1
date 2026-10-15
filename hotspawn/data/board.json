@@ -120,7 +120,7 @@
   }
  },
  "summary": {
-  "generated_utc": "2026-10-15T21:34:21Z",
+  "generated_utc": "2026-10-15T22:35:54Z",
   "session": "arena/22be6967",
   "reference_utc": "2026-10-15T21:34:12Z",
   "fixtures": 88,
@@ -155,14 +155,24 @@
   "own_line_k": 0.4598,
   "own_line_k_source": "fitted on Valve's published match results",
   "graded_since_launch": {
-   "n": 1,
-   "picks_correct": 0,
-   "leaderboard_correct": 0
+   "n": 4,
+   "picks_correct": 2,
+   "leaderboard_correct": 2
   },
   "day1_review": {
    "matches": 4,
    "picks_correct": 3,
    "leaderboard_correct": 4
+  },
+  "day2_review": {
+   "matches": 4,
+   "archived_picks": 3,
+   "graded_picks": 3,
+   "picks_correct": 2,
+   "leaderboard_correct": 2,
+   "unarchived_match_ids": [
+    "1080201"
+   ]
   }
  },
  "rows": [
@@ -3116,7 +3126,15 @@
     "https://polymarket.com/event/cs2-lgc-furia-2026-10-15",
     "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
    ],
-   "result": null
+   "result": {
+    "winner": "FURIA",
+    "score": "2-1",
+    "maps": "Cache 13-10 Legacy; Inferno 5-13; Mirage 8-13",
+    "source_url": "https://www.hltv.org/matches/2399411/legacy-vs-furia-thunderpick-world-championship-2026",
+    "report_url": "https://www.hltv.org/news/45730/furia-make-twc-playoffs-over-legacy",
+    "read_utc": "2026-10-15T22:30:54Z",
+    "kind": "verified (HLTV)"
+   }
   },
   {
    "match_id": "1079628",
@@ -8552,9 +8570,17 @@
    "crowd_b": 94,
    "as_of": "2026-10-15T10:53:42Z",
    "frozen": true,
-   "result": null,
-   "pick_correct": null,
-   "leaderboard_correct": null
+   "result": {
+    "winner": "Falcons",
+    "score": "2-1",
+    "maps": "Nuke 9-13; Mirage 13-8; Dust2 9-13",
+    "source_url": "https://www.hltv.org/matches/2399409/9z-vs-falcons-thunderpick-world-championship-2026",
+    "report_url": "https://www.hltv.org/news/45728/falcons-secure-playoff-berth-at-twc-2026",
+    "read_utc": "2026-10-15T22:30:54Z",
+    "kind": "verified (HLTV)"
+   },
+   "pick_correct": true,
+   "leaderboard_correct": true
   },
   {
    "match_id": "1080203",
@@ -8575,9 +8601,17 @@
    "crowd_b": 31,
    "as_of": "2026-10-15T10:57:29Z",
    "frozen": true,
-   "result": null,
-   "pick_correct": null,
-   "leaderboard_correct": null
+   "result": {
+    "winner": "BetBoom",
+    "score": "2-1",
+    "maps": "Ancient 13-10 PARIVISION; Anubis 4-13; Mirage 7-13",
+    "source_url": "https://www.hltv.org/matches/2399410/parivision-vs-betboom-thunderpick-world-championship-2026",
+    "report_url": "https://www.hltv.org/news/45729/betboom-eliminate-parivision-from-twc",
+    "read_utc": "2026-10-15T22:30:54Z",
+    "kind": "verified (HLTV)"
+   },
+   "pick_correct": false,
+   "leaderboard_correct": true
   },
   {
    "match_id": "1080282",
@@ -8621,9 +8655,17 @@
    "crowd_b": 73,
    "as_of": "2026-10-15T10:57:29Z",
    "frozen": true,
-   "result": null,
-   "pick_correct": null,
-   "leaderboard_correct": null
+   "result": {
+    "winner": "FURIA",
+    "score": "2-1",
+    "maps": "Cache 13-10 Legacy; Inferno 5-13; Mirage 8-13",
+    "source_url": "https://www.hltv.org/matches/2399411/legacy-vs-furia-thunderpick-world-championship-2026",
+    "report_url": "https://www.hltv.org/news/45730/furia-make-twc-playoffs-over-legacy",
+    "read_utc": "2026-10-15T22:30:54Z",
+    "kind": "verified (HLTV)"
+   },
+   "pick_correct": true,
+   "leaderboard_correct": false
   },
   {
    "match_id": "1080283",
