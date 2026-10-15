@@ -145,6 +145,19 @@ class ValuePicksBoardTests(unittest.TestCase):
             unresolved_csv = list(csv.DictReader(handle))
         self.assertEqual({row["match_id"] for row in unresolved_csv}, {row["match_id"] for row in fallback})
 
+    def test_executive_summary_shows_the_contrarian_watchlist(self):
+        # The brief asks for a "contrarian but not stupid" strategy: the summary must name the rows
+        # where the project's own line prefers the market underdog, and say that the pick does not change.
+        html = self.pages["index.html"]
+        self.assertIn('id="contrarian"', html)
+        contrary = [row for row in self.rows
+                    if row.get("divergence") and row["divergence"]["value_side"] != row["pick"]
+                    and row["divergence"]["value_pp"] >= 5]
+        self.assertTrue(contrary, "expected at least one contrarian row in this capture")
+        for row in contrary[:3]:
+            with self.subTest(match_id=row["match_id"]):
+                self.assertIn(escape(row["divergence"]["value_side"]), html)
+
     def test_executive_summary_contains_the_unresolved_section(self):
         # The brief asks for the limitations to live inside the executive summary, not only behind a
         # link, and for every non-tier-A row to be reachable from it.

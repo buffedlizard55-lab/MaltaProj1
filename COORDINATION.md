@@ -4321,3 +4321,21 @@ integration pass link **both** every-match boards rather than dropping one.
   invariant suite grew to **15 tests** (added: the unresolved section must be inside the summary, and the
   mobile discovery contract — viewport meta, primary picks button, value/unresolved links, one `<h1>`, and
   the 600px breakpoint in the stylesheet).
+
+### Closing record — PR #141 merged, deployed summary verified, contrarian watchlist shipped (PR #142)
+
+- **PR #141** merged 2026-10-15T10:21:23Z, merge SHA `84a48fac0269f29fcaae65c001be1552fd5f482d`; the
+  four-hour workflow then ran on that merge ([38719678072](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38719678088))
+  and published `f032fda` to `main`. Pages for `f032fda` report **built** (10:22:10Z), and the live fetch
+  of `…/valuepicks/index.html` shows the day-review facts, the roster intel and the unresolved summary.
+- **PR #142** adds the last piece the brief asked for as a headline, not a hint: a **contrarian
+  watchlist** on the executive summary naming the rows where the project's own line prefers the market
+  underdog (today: BetBoom +35.0pp against the published PARIVISION pick, Envy +18.6pp, WROTBERRY/BOJONG),
+  with the explicit statement that the published pick stays the market side and the project line is an
+  uncalibrated estimate. The suite grows to **16 invariants**, including this watchlist.
+- **Known red check, unchanged and not ours:** the repository's `verify` workflow (`python -m unittest
+  discover -s tests`) fails on `main` for the console-board invariant recorded above; it has been failing
+  since `30ed6f4` (before this session's first merge), it fails identically in a clean worktree at
+  `06c2bdf`, and every other check — the valuepicks build/tests/link audit, `audit`, `build`, Pages —
+  passes. Fixing it means editing `console/**`, which belongs to another session; this note is the logged
+  request rather than a silent cross-scope edit.
