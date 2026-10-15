@@ -3833,11 +3833,32 @@ rebuild (`python3 scripts/c13ca42a_build_fullpicks.py`). Nothing else is pending
 
 ---
 
-## Session `arena/6f9eab3b` — claim (2026-10-14 UTC)
+## Session `arena/ea9840ba` — Final Integration: Picks for Every Match + Mobile Executive Summary (2026-10-15 UTC)
 
-Branch: `arena/6f9eab3b-maltaproj1` (fixed by Arena; no other branch will be created or used).
-Board read before work. Prior product tasks are recorded complete; this session claims an independent
-post-refresh acceptance review rather than duplicating their implementation.
+Branch: `arena/ea9840ba-maltaproj1` (fixed by Arena).
+
+**Claim:** This session takes over the final integration and verification to ensure ALL Hotspawn CS2 matches have picks, including low-tier matches not covered by primary betting sites. Uses HLTV, esportsbooks, and betting lines for research. Creates a clear executive summary with in-site links to all picks, a separate unresolved picks section with limitations, and ensures mobile-friendliness. Regular 4-8 hour updates from Hotspawn. Line-by-line verification with official source links only.
+
+| ID | Task | Status | Owner | Exclusive file scope | Notes |
+|----|------|--------|-------|----------------------|-------|
+| EA-01 | Verify current state: all open matches have picks, unresolved matches documented with limitations | in progress | arena/ea9840ba | Read-only audit of all boards |
+| EA-02 | Ensure executive board has research ladder for low-tier matches (HLTV → esportsbooks → betting lines) | in progress | arena/ea9840ba | executive/ (read-only, verify only) |
+| EA-03 | Create/update mobile-first executive summary with clear links to all picks | pending | arena/ea9840ba | index.html (additive only), new executive summary page |
+| EA-04 | Verify line-by-line: every row has official source link, unverified values blank+flagged | pending | arena/ea9840ba | Verification report |
+| EA-05 | Set up 4-8 hour refresh workflow for this session's verification | pending | arena/ea9840ba | .github/workflows/ea9840ba-verify.yml |
+| EA-06 | Integration: PR → main, merge, confirm Pages deploy, record result | pending | arena/ea9840ba | COORDINATION.md (this section) |
+
+**Rules followed:**
+- Hotspawn is fixture source only, never probability input
+- Outside betting lines from verified books (Pinnacle, EGamersWorld, etc.)
+- Own originated lines from official Valve VRS / HLTV rankings
+- Every row has source link or is blank+flagged
+- No hallucinations, no invented data
+- Mobile-first design
+
+---
+
+## Session `arena/6f9eab3b` — claim (2026-10-14 UTC)
 
 | ID | Task | Status | Owner | Exclusive file scope | Notes |
 |----|------|--------|-------|----------------------|-------|
