@@ -9,7 +9,7 @@
 #      pick, both probabilities, the evidence tier and the source links). The build fails closed if a
 #      published market probability does not de-vig from the stored decimal odds or a published own
 #      line does not recompute from the stored official rating inputs.
-#   2. python3 -m unittest tests.test_7759beef — 13 invariants, including "every open fixture has a
+#   2. python3 -m unittest tests.test_7759beef — 15 invariants, including "every open fixture has a
 #      pick", "every published row carries a source link", and "no Hotspawn crowd percentage is used
 #      as a probability input".
 #   3. Commit valuepicks/ ONLY when the build and the tests pass, and only on main, so a failed run

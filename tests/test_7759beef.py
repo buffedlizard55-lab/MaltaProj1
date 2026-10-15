@@ -145,6 +145,26 @@ class ValuePicksBoardTests(unittest.TestCase):
             unresolved_csv = list(csv.DictReader(handle))
         self.assertEqual({row["match_id"] for row in unresolved_csv}, {row["match_id"] for row in fallback})
 
+    def test_executive_summary_contains_the_unresolved_section(self):
+        # The brief asks for the limitations to live inside the executive summary, not only behind a
+        # link, and for every non-tier-A row to be reachable from it.
+        html = self.pages["index.html"]
+        self.assertIn('id="unresolved-summary"', html)
+        self.assertIn('href="unresolved.html"', html)
+        for row in self.rows:
+            if row["status"] == "open" and row["pick"] and not row["basis_tier"].startswith("A"):
+                with self.subTest(match_id=row["match_id"]):
+                    self.assertIn('unresolved.html#u{}'.format(row["match_id"]), html)
+
+    def test_mobile_discovery_contract(self):
+        html = self.pages["index.html"]
+        self.assertIn('name="viewport" content="width=device-width, initial-scale=1"', html)
+        self.assertIn('<a class="btn primary" href="#slate">', html)
+        for target in ("value.html", "unresolved.html"):
+            self.assertIn('href="{}"'.format(target), html)
+        self.assertEqual(html.count("<h1>"), 1)
+        self.assertIn("@media(max-width:600px)", (OUT / "style.css").read_text(encoding="utf-8"))
+
     def test_no_hotspawn_crowd_percentage_is_used_as_a_probability(self):
         for row in self.rows:
             evidence = json.dumps(row)

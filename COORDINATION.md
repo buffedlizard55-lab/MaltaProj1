@@ -4306,3 +4306,18 @@ integration pass link **both** every-match boards rather than dropping one.
 - **Repair (PR #140):** the publication step now discards the generated report before committing, pulls with
   `--rebase --autostash`, and retries with diagnostics. Verified locally in a fresh clone: the old command
   fails exactly as above, the new sequence commits, rebases and completes a `git push --dry-run` cleanly.
+
+### Final record — PR #140 merged, four-hour refresh confirmed writing to `main`
+
+- **PR #140** merged 2026-10-15T10:17:16Z, merge SHA `769f3296f5ef70e2a50f207e6f0bf317a3dbefc8`.
+- The repaired workflow's run on that merge, [run 38719187888](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38719187888),
+  **succeeded on every step** including "Commit the rebuilt board (main only)", and the bot published
+  `7fa9834` (`valuepicks(7759beef): rebuild day review, picks and value watches [skip ci]`) to `main` —
+  end-to-end proof that the four-hour refresh writes to `main`. Guards unchanged: publication runs only on
+  `main`, only after the build, the invariants and the link audit pass, and it never force-pushes.
+- **Final polish (PR #141):** the executive summary now lists the unresolved rows inline (fixture, pick,
+  headline limitation and a deep link to the detail anchor) instead of only linking the page, so the
+  "separate unresolved section inside the executive summary" requirement is satisfied without a click. The
+  invariant suite grew to **15 tests** (added: the unresolved section must be inside the summary, and the
+  mobile discovery contract — viewport meta, primary picks button, value/unresolved links, one `<h1>`, and
+  the 600px breakpoint in the stylesheet).

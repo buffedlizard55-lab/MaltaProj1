@@ -2,7 +2,7 @@
 
 Board: `valuepicks/` (day review, guaranteed picks, value watches). Branch:
 `arena/7759beef-maltaproj1`. Built by `scripts/7759beef_build.py`; invariants in
-`tests/test_7759beef.py` (13 tests, all passing at commit time).
+`tests/test_7759beef.py` (15 tests, all passing at commit time).
 
 Everything published by this board comes from one of two places:
 
@@ -99,6 +99,9 @@ watched these teams this week.
   match-page read by the CI collector at 08:53Z, which is why those rows were blank. The same pages
   were readable from this session's tools at 10:02–10:05Z; the difference is recorded here rather
   than hidden.
+* **IR-7759beef-07** — the executive summary carries the unresolved rows inline
+  (fixture, pick, headline limitation, link to the detail anchor) as well as linking the page, so the
+  requirement "a separate unresolved section inside the executive summary" is met without a click.
 * **IR-7759beef-06** — The sandbox cannot reach Hotspawn/HLTV/bookmakers from `bash` (egress is
   restricted to a small host allowlist), so all live reads in this record were performed with the
   session's fetch/search tools; the automated four-hour pipeline remains the collector of record.
@@ -107,6 +110,6 @@ watched these teams this week.
 
 ```
 python3 scripts/7759beef_build.py        # rebuild valuepicks/ from the committed capture
-python3 -m unittest tests.test_7759beef  # 13 invariants (picks, maths, sources, links)
+python3 -m unittest tests.test_7759beef  # 15 invariants (picks, maths, sources, links, mobile contract)
 python3 scripts/audit_91e444dd.py        # repository-wide local-link audit
 ```
