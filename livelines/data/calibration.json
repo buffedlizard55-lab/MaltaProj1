@@ -1,123 +1,75 @@
 {
  "calibration": {
   "fitted": true,
-  "n": 14,
-  "scale": 971.75,
-  "mae_pp": 6.1,
-  "logloss": 0.414,
+  "n": 10,
+  "scale": 744.0,
+  "mae_pp": 5.42,
+  "logloss": 0.3482,
   "grid": "20.0-2000.0 points per 90% favourite, step 0.25; mean absolute error against the outside market's de-vigged probability",
   "default_scale": 400.0,
   "logloss_alternative": {
-   "scale": 96.75,
-   "mae_pp": 24.21,
-   "logloss": 0.149
+   "scale": 134.5,
+   "mae_pp": 20.58,
+   "logloss": 0.174
   },
   "objective": "mae",
   "candidate_transforms": {
    "vrs_points": {
     "fitted": true,
-    "n": 14,
-    "scale": 971.75,
-    "mae_pp": 6.1,
-    "logloss": 0.414,
+    "n": 10,
+    "scale": 744.0,
+    "mae_pp": 5.42,
+    "logloss": 0.3482,
     "grid": "20.0-2000.0 points per 90% favourite, step 0.25; mean absolute error against the outside market's de-vigged probability",
     "default_scale": 400.0,
     "logloss_alternative": {
-     "scale": 96.75,
-     "mae_pp": 24.21,
-     "logloss": 0.149
+     "scale": 134.5,
+     "mae_pp": 20.58,
+     "logloss": 0.174
     },
     "objective": "mae"
    },
    "hltv_points": {
     "fitted": true,
-    "n": 13,
+    "n": 10,
     "scale": 20.0,
-    "mae_pp": 14.27,
-    "logloss": 0.4913,
+    "mae_pp": 12.87,
+    "logloss": 0.5247,
     "grid": "20.0-2000.0 points per 90% favourite, step 0.25; mean absolute error against the outside market's de-vigged probability",
     "default_scale": 400.0,
     "logloss_alternative": {
      "scale": 20.0,
-     "mae_pp": 14.27,
-     "logloss": 0.4913
+     "mae_pp": 12.87,
+     "logloss": 0.5247
     },
     "objective": "mae"
    },
    "vrs_rank": {
     "fitted": true,
-    "n": 14,
+    "n": 10,
     "scale": 2000.0,
-    "mae_pp": 22.88,
-    "logloss": 0.7686,
+    "mae_pp": 26.3,
+    "logloss": 0.7778,
     "grid": "20.0-2000.0 points per 90% favourite, step 0.25; mean absolute error against the outside market's de-vigged probability",
     "default_scale": 400.0,
     "logloss_alternative": {
      "scale": 2000.0,
-     "mae_pp": 22.88,
-     "logloss": 0.7686
+     "mae_pp": 26.3,
+     "logloss": 0.7778
     },
     "objective": "mae"
    },
    "vrs_log_rank": {
     "fitted": true,
-    "n": 14,
+    "n": 10,
     "scale": 0.05,
-    "logloss": 0.7152,
-    "mae_pp": 20.44
+    "logloss": 0.715,
+    "mae_pp": 23.43
    }
   },
   "chosen": "official Valve Regional Standings points (vrs_points) at the calibration (MAE) optimum, because that is the transform whose published percentage is closest to the outside market on the same rows and it has the widest team coverage; the log-loss optimum is disclosed next to it and the disagreement is flagged on every row that depends on the scale"
  },
  "fit_rows": [
-  {
-   "match_id": "1080279",
-   "teams": "WROTBERRY v EAC",
-   "vrs_a": 1201,
-   "vrs_b": 1035,
-   "hltv_a": 109,
-   "hltv_b": 110,
-   "market_p_a_pct": 52.0,
-   "source": "Polymarket",
-   "captured_utc": "2026-10-15T06:23:29Z",
-   "url": "https://polymarket.com/event/cs2-wbt-eac-2026-10-15"
-  },
-  {
-   "match_id": "1079440",
-   "teams": "MIBR v BC.Game",
-   "vrs_a": 1585,
-   "vrs_b": 1318,
-   "hltv_a": 12,
-   "hltv_b": 70,
-   "market_p_a_pct": 56.5,
-   "source": "Polymarket",
-   "captured_utc": "2026-10-15T06:23:29Z",
-   "url": "https://polymarket.com/event/cs2-mibr-bcg-2026-10-15"
-  },
-  {
-   "match_id": "1079442",
-   "teams": "Heroic v Envy",
-   "vrs_a": 1550,
-   "vrs_b": 1500,
-   "hltv_a": 30,
-   "hltv_b": null,
-   "market_p_a_pct": 63.5,
-   "source": "Polymarket",
-   "captured_utc": "2026-10-15T06:23:29Z",
-   "url": "https://polymarket.com/event/cs2-hero-envy-2026-10-15"
-  },
-  {
-   "match_id": "1080280",
-   "teams": "ENCE v BOJONG",
-   "vrs_a": 1025,
-   "vrs_b": 463,
-   "hltv_a": 114,
-   "hltv_b": 220,
-   "market_p_a_pct": 74.5,
-   "source": "Polymarket",
-   "captured_utc": "2026-10-15T06:23:29Z",
-   "url": "https://polymarket.com/event/cs2-ence-bojong-2026-10-15"
-  },
   {
    "match_id": "1080281",
    "teams": "WROTBERRY v ENCE",
@@ -137,10 +89,10 @@
    "vrs_b": 463,
    "hltv_a": 110,
    "hltv_b": 220,
-   "market_p_a_pct": 79.5,
-   "source": "Polymarket",
-   "captured_utc": "2026-10-15T06:23:29Z",
-   "url": "https://polymarket.com/event/cs2-eac-bojong-2026-10-15"
+   "market_p_a_pct": 76.6,
+   "source": "Pinnacle",
+   "captured_utc": "2026-10-15T08:51:15Z",
+   "url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/"
   },
   {
    "match_id": "1080283",
@@ -161,10 +113,10 @@
    "vrs_b": 1025,
    "hltv_a": 110,
    "hltv_b": 114,
-   "market_p_a_pct": 56.5,
-   "source": "Polymarket",
-   "captured_utc": "2026-10-15T06:23:29Z",
-   "url": "https://polymarket.com/event/cs2-eac-ence-2026-10-15"
+   "market_p_a_pct": 58.56,
+   "source": "Pinnacle",
+   "captured_utc": "2026-10-15T08:51:15Z",
+   "url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/"
   },
   {
    "match_id": "1080285",

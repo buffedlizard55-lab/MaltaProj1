@@ -403,6 +403,25 @@ def render_index(board: list[dict], sources: dict, meta: dict) -> str:
 
     unresolved_items = "".join(unresolved_item(row) for row in limited)
 
+    # Contrarian watchlist: rows where the project's own line prefers the side the market prices as
+    # the underdog. These are the "contrarian but not stupid" cases - a stated disagreement, not a tip.
+    contrarian_rows = sorted((row for row in contradictions
+                              if row["divergence"]["value_side"] != row["pick"]),
+                             key=lambda row: -row["divergence"]["value_pp"])[:3]
+
+    def contrarian_item(row: dict) -> str:
+        market_side_pct = row["prob_a_pct"] if row["pick"] == row["team_a"] else row["prob_b_pct"]
+        model_side_pct = row["own_prob_a_pct"] if row["divergence"]["value_side"] == row["team_a"] else row["own_prob_b_pct"]
+        return ('<li><strong>{} vs {}</strong> - market prices <strong>{}</strong> at {}; the project line '
+                'prefers <strong>{}</strong> at {} (+{}pp). <a href="value.html">value page</a>'
+                '<br><span class="meta">pick stays {} ({}) - flags: {}</span></li>').format(
+            esc(row["team_a"]), esc(row["team_b"]), esc(row["pick"]), fmt_pct(market_side_pct),
+            esc(row["divergence"]["value_side"]), fmt_pct(model_side_pct),
+            row["divergence"]["value_pp"], esc(row["pick"]), esc(row["basis_label"]),
+            esc(", ".join(flag.split()[0] for flag in row["flags"]) or "none"))
+
+    contrarian_items = "".join(contrarian_item(row) for row in contrarian_rows)
+
     day = "".join(
         f'<li><strong>{esc(facts[fid]["claim"])}</strong><br><a href="{esc(facts[fid]["url"])}">{esc(facts[fid]["source_name"])}</a> '
         f'<span class="meta">· read {esc(facts[fid]["read_utc"][:16].replace("T", " "))}Z</span></li>'
@@ -459,6 +478,15 @@ def render_index(board: list[dict], sources: dict, meta: dict) -> str:
 <section>
   <h2>Roster-change and context intel behind the picks</h2>
   <ul class="facts">{roster}</ul>
+</section>
+
+<section id="contrarian">
+  <h2>Contrarian watchlist - where the project line prefers the market underdog</h2>
+  <p class="meta">"Contrarian, but not stupid" in practice: these are the rows where the project's own
+  line from official ratings prefers the side the outside market prices as the underdog, ranked by the
+  size of that disagreement. The published pick stays the market side; the disagreement is a watch, and
+  the project line is an uncalibrated estimate, not advice.</p>
+  <ul class="unresolved-list">{contrarian_items or '<li>No row currently disagrees with the market favourite by more than 5pp.</li>'}</ul>
 </section>
 
 <section id="unresolved-summary">
