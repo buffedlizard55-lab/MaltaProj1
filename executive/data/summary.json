@@ -2,25 +2,25 @@
  "meta": {
   "slate_health": {
    "mode": "live",
-   "fetched_utc": "2026-10-15T08:39:29Z",
-   "age_hours": 0.036,
+   "fetched_utc": "2026-10-15T08:42:55Z",
+   "age_hours": 0.113,
    "complete_live_read": true,
    "current": true,
    "identity_conflicts": [],
    "limitation": ""
   },
-  "generated_utc": "2026-10-15T08:41:37Z",
-  "capture_utc": "2026-10-15T08:39:29Z",
-  "snapshot_age_text": "Snapshot is 0.0 h old",
-  "hotspawn_read_text": "2026-10-15T08:39Z (live)",
-  "market_read_text": "live read 2026-10-15T08:39 (14 CS2 quotes)",
+  "generated_utc": "2026-10-15T08:49:43Z",
+  "capture_utc": "2026-10-15T08:42:55Z",
+  "snapshot_age_text": "Snapshot is 0.1 h old",
+  "hotspawn_read_text": "2026-10-15T08:42Z (live)",
+  "market_read_text": "live read 2026-10-15T08:43 (13 CS2 quotes)",
   "vrs_read_text": "official standings 2026-10-05 · HLTV ranking 2026-10-12",
   "own_line": {
    "calibration": {
-    "scale": 214.0,
+    "scale": 262.0,
     "fitted": true,
-    "n": 10,
-    "mae_pp": 8.401,
+    "n": 9,
+    "mae_pp": 8.065,
     "default_scale": 100.0,
     "reason": "grid search 5-400 rank positions per 90% favourite, minimum mean absolute error"
    },
@@ -50,10 +50,10 @@
   "open_research_basis": 0,
   "open_own_line": 10,
   "fixtures_with_stated_format": 12,
-  "own_line_scale": 214.0,
+  "own_line_scale": 262.0,
   "own_line_scale_fitted": true,
-  "own_line_calibration_n": 10,
-  "own_line_calibration_mae_pp": 8.401,
+  "own_line_calibration_n": 9,
+  "own_line_calibration_mae_pp": 8.065,
   "hltv_ranking_teams": 245,
   "hltv_ranking_date": "2026-10-12"
  },
@@ -71,7 +71,7 @@
   {
    "name": "Outside prices read",
    "passed": true,
-   "detail": "Pinnacle 14 quotes (live); secondary 19 (repo_capture+feed)."
+   "detail": "Pinnacle 13 quotes (live); secondary 19 (repo_capture+feed)."
   },
   {
    "name": "Pick coverage on open fixtures",
@@ -91,12 +91,12 @@
   {
    "name": "Snapshot age",
    "passed": true,
-   "detail": "Oldest capture behind this board: 2026-10-15T08:39:29Z (Snapshot is 0.0 h old)."
+   "detail": "Oldest capture behind this board: 2026-10-15T08:42:55Z (Snapshot is 0.1 h old)."
   },
   {
    "name": "Every open fixture carries an originated line or a reason it cannot",
    "passed": true,
-   "detail": "10/17 open fixtures have our own ranking line (scale 214 ranks per 90.9%, fitted on 10 priced fixtures); rows without one are flagged."
+   "detail": "10/17 open fixtures have our own ranking line (scale 262 ranks per 90.9%, fitted on 9 priced fixtures); rows without one are flagged."
   },
   {
    "name": "Research tier only where no market line exists",
@@ -111,10 +111,10 @@
  ],
  "own_lines": {
   "calibration": {
-   "scale": 214.0,
+   "scale": 262.0,
    "fitted": true,
-   "n": 10,
-   "mae_pp": 8.401,
+   "n": 9,
+   "mae_pp": 8.065,
    "default_scale": 100.0,
    "reason": "grid search 5-400 rank positions per 90% favourite, minimum mean absolute error"
   },
