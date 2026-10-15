@@ -4127,3 +4127,46 @@ Main's [canonical live run 38708595573](https://github.com/buffedlizard55-lab/Ma
 During the doc/CI follow-up, older queued branch refresh `38707743953` successfully published its tested capture, while the merged main run published a newer capture. These generated HTML/JSON/CSV snapshots conflicted when bringing main back into the follow-up branch. **Resolution: retain the complete, newer, successfully validated main `executive/**` snapshot from e8b0ff1**, not a mixture of timestamps or stale branch outputs. No hand-written executive code differs in this follow-up; the earlier branch capture remains in Git history. PR #137 therefore carries only release documentation and the archive/public-release workflow repairs, not a rollback of main's current evidence.
 
 BB additional post-release CI irregularity: consolidated-console run [38708595472](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38708595472) passed build, invariants and repository links, then failed only at publication. Its commit step stages generated files and calls `git pull --rebase` **before committing**: Git refuses that dirty/staged tree. The Pages/executive release is unaffected. Taking over this narrow dormant workflow-file repair (no console model/source edits): commit before rebase, then rebuild/retest against the latest pulled source capture and retry the push without discarding other files. Record the irregularity and successful replacement run rather than misclassifying this as a source/model failure.
+
+---
+
+## Session `arena/22be6967` — claim (2026-10-15 10:16 UTC)
+
+Branch: `arena/22be6967-maltaproj1` (fixed by Arena — the brief's `session-<id>/<task>` naming cannot be
+used; no other branch is created or pushed). Board read first: this file (head + every session section
+since `arena/e13aca8a`), `git ls-remote --heads origin` (65 heads), `gh pr list` (open: #136 b44b5d5e,
+#132 262b4d3b) and `gh run list` at 10:01–10:10 UTC.
+
+**Activity check at claim time:** every other session's last commit is older than 60 minutes
+(`bb9e05ef` 09:00:01Z, PR #137 merged 09:04:30Z, BB-1/BB-2 recorded done; `b44b5d5e` 08:52:18Z, PR #136
+open; `262b4d3b` 2026-10-14). Only bots (`cs2-a174d77f` hourly refresh, 09:59Z) are active.
+
+User brief for this session (verbatim goals): review TWC 2026 **day 1** (9z beat Aurora — Aurora roster
+change), design a **contrarian-but-not-stupid** leaderboard strategy; a pick for **every** Hotspawn CS2
+match incl. low-tier/unpriced ones (research ladder HLTV → esportsbooks → betting lines only where the
+featured route cannot resolve); a separate **unresolved picks & limitations** section inside the
+executive summary; a simple **mobile** executive summary with in-site links to the picks; 4–8 h
+automatic refresh; outside lines + our own lines, **never Hotspawn % as a probability**; every row
+source-linked, blanks + flags for anything unconfirmable; PR → merge → Pages confirmed.
+
+| ID | Task | Status | Owner | Exclusive file scope |
+|----|------|--------|-------|----------------------|
+| HS-0 | Claim + push (this section) | done | arena/22be6967 | `COORDINATION.md` (append-only) |
+| HS-1 | **TWC 2026 day-1 review + contrarian leaderboard strategy**: official HLTV results/maps for day 1, pre-match lines vs. result vs. Hotspawn crowd share, verified roster/situational factors (HLTV team/transfer pages, HLTV news); a transparent leverage rule (market probability vs. crowd ownership — crowd share used ONLY as ownership, never as probability) | in progress | arena/22be6967 | `hotspawn/research/**`, `hotspawn/strategy.html` (generated) |
+| HS-2 | **Every-match picks board** from a live read of all three Hotspawn CS2 surfaces (`/lobby`, `/cs2-pickems`, `/thp-pickems` TransferState): research ladder Pinnacle (de-vigged) → other books / Polymarket → own line (official Valve VRS points; HLTV rank fallback) → session research overlay → unresolved (blank + flag) | in progress | arena/22be6967 | `hotspawn/*.py`, `hotspawn/data/**`, `hotspawn/*.html`, `hotspawn/style.css` |
+| HS-3 | **Unresolved picks & limitations** page + **Flagged for Review** page, both summarised inside the executive summary | in progress | arena/22be6967 | `hotspawn/unresolved.html`, `hotspawn/flagged.html` (generated) |
+| HS-4 | Automation: GitHub Actions refresh every 3 h (inside the 4–8 h requirement even if one scheduled run is dropped), fail-closed (tests gate the publish), plus `hotspawn/tests.py` | in progress | arena/22be6967 | `.github/workflows/hotspawn-22be6967.yml`, `hotspawn/tests.py` |
+| HS-5 | **Final integration (shared outputs)**: root `index.html` becomes a short mobile executive summary that links straight to the every-match picks, strategy, unresolved and flagged pages; every pre-existing landing link preserved in the collapsed archive; README pointer; landing contract tests updated to the new primary destination (release markers `Every match. One clear picks list.` / `Evidence policy:` kept so `landing-43c32386.yml` stays valid) | in progress | arena/22be6967 | root `index.html`, `README.md`, `tests/test_6f9eab3b.py`, `tests/test_landing_43c32386.py`, other `tests/test_*.py` **only** where they assert the old landing contract (logged per file) |
+| HS-6 | Line-by-line verification record + release (rebase, PR → main, merge without waiting, Pages deploy confirmed, record here) | in progress | arena/22be6967 | `reviews/22be6967-verification.md`, `COORDINATION.md` (append-only) |
+
+**Handoff note (60-minute rule):** root `index.html` and `README.md` were last claimed by `arena/bb9e05ef`
+(BB-2, recorded done; last commit 09:00:01Z, >60 min before this claim). This session takes the
+final-integration landing scope only. `executive/**`, `matchpicks/**`, `cs2/**`, `livelines/**` and every
+other board stay **read-only** (their links are preserved). Open PR #136 (`b44b5d5e`) is not touched.
+
+**Rules restated:** Hotspawn supplies fixture identity, times, points and (for strategy only) the crowd
+pick share; it is never a probability input. Unconfirmable values stay blank and flagged. Every value
+carries a source link and a read time.
+
+### Log — arena/22be6967
+- 2026-10-15 10:16 UTC: claim written, committed and pushed before any build work.
