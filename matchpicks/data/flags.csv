@@ -1,0 +1,11 @@
+flag,title,detail,count
+MP-F01,No outside market line joined,"No bookmaker or prediction-market quote could be joined to this fixture by name and start time. The pick therefore rests on our own originated line, or is withheld.",9
+MP-F02,No originated line,"Neither the official Valve Regional Standings pair nor the official HLTV ranking pair is complete for both teams, so no own line is published.",1
+MP-F03,Two quotes equally close,Two outside quotes join this fixture with start times less than a minute apart; the higher-ranked source was used and the tie is disclosed.,3
+MP-F04,Stale listing,"The payload still lists the fixture but its start time is days in the past. It is published as a stale listing, not as a pickable match.",59
+MP-F05,Series length not stated,"Hotspawn does not state a best-of length for this fixture, so the own line is published per map and labelled as such.",20
+MP-F09,Markup-only fixture id,"The id is rendered on the page but is absent from the TransferState payload, so it cannot be confirmed.",244
+MP-F10,Name variant joined,"The source spells a team differently from the fixture (for example an abbreviation); the join used the repository's documented alias table and the fixture's start time, and both spellings are shown on the row.",4
+MP-F20,Market and own line diverge,The joined outside line and our own originated line differ by 12.5 percentage points or more. The market line is published as the probability; the own line is shown next to it and never averaged in.,9
+MP-F30,Result disagreement with the verification trail,The score in the Hotspawn payload and the independently verified result on file disagree. Both are linked; neither is overwritten.,24
+MP-F31,Result not independently cross-checked,A score is published in the payload but no independently verified result is on file yet for this fixture.,26
