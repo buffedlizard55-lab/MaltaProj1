@@ -608,6 +608,11 @@ def build_rows(inputs: dict, now: datetime) -> tuple[list[dict], list[dict], dic
         feed = seen.get(fid, {})
         cs2 = cs2_by.get(fid)
         execu = execu_by.get(fid)
+        # the names this row will publish, from whichever input board actually carries the fixture
+        team_a_name = (feed.get("team_a") or (execu or {}).get("team_a") or
+                       (cs2 or {}).get("team_a") or "").strip()
+        team_b_name = (feed.get("team_b") or (execu or {}).get("team_b") or
+                       (cs2 or {}).get("team_b") or "").strip()
         every = every_by.get(fid)
         pf_market = pf_market_by.get(fid)
         pf_own = pf_own_by.get(fid)
@@ -727,11 +732,15 @@ def build_rows(inputs: dict, now: datetime) -> tuple[list[dict], list[dict], dic
                      "current captures; probabilities stay blank.",
                      fid, "")
 
+        # The published names come from whichever input board actually carries the fixture, so the
+        # pick must be taken from those and never from one board's possibly-empty row: a fixture that
+        # arrived from the cs2 board used to keep a probability and lose its pick because the
+        # secondary-market feed did not list it (found 2026-10-15, fixture 1079631).
         pick = ""
         pick_pct = None
         margin = None
-        if p_a is not None and p_b is not None:
-            pick = feed.get("team_a", "") if p_a >= p_b else feed.get("team_b", "")
+        if p_a is not None and p_b is not None and team_a_name and team_b_name:
+            pick = team_a_name if p_a >= p_b else team_b_name
             pick_pct = max(p_a, p_b)
             margin = abs(p_a - p_b)
             if margin <= 2.0:
@@ -819,10 +828,8 @@ def build_rows(inputs: dict, now: datetime) -> tuple[list[dict], list[dict], dic
                             (cs2 or {}).get("competition") or "").strip(),
             "tier": (feed.get("tier") or (execu or {}).get("tier") or
                      (cs2 or {}).get("tier") or "").strip(),
-            "team_a": (feed.get("team_a") or (execu or {}).get("team_a") or
-                       (cs2 or {}).get("team_a") or "").strip(),
-            "team_b": (feed.get("team_b") or (execu or {}).get("team_b") or
-                       (cs2 or {}).get("team_b") or "").strip(),
+            "team_a": team_a_name,
+            "team_b": team_b_name,
             "start_utc": iso(start_dt),
             "lock_utc": iso(lock_dt),
             "state": state,

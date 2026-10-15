@@ -1398,14 +1398,14 @@
  },
  {
   "fixture_id": "1081105",
-  "code": "A-STARTED",
+  "code": "A-STALE",
   "team_a": "SUKEBAN",
   "team_b": "your end",
   "start_utc": "2026-10-13T22:00:00Z",
   "pickable": "no",
-  "detail": "lock time already passed at capture; listed for completeness, not pickable",
+  "detail": "the board still lists this fixture months after its start time",
   "row_url": "https://play.hotspawn.com/lobby",
-  "flag_url": "flagged.html#A-STARTED"
+  "flag_url": "flagged.html#A-STALE"
  },
  {
   "fixture_id": "1081105",
@@ -1430,6 +1430,17 @@
   "flag_url": "flagged.html#A-STARTED"
  },
  {
+  "fixture_id": "1079626",
+  "code": "A-STARTED",
+  "team_a": "Walczaki",
+  "team_b": "mellren",
+  "start_utc": "2026-10-15T11:00:00Z",
+  "pickable": "no",
+  "detail": "lock time already passed at capture; listed for completeness, not pickable",
+  "row_url": "https://play.hotspawn.com/lobby",
+  "flag_url": "flagged.html#A-STARTED"
+ },
+ {
   "fixture_id": "1080204",
   "code": "A-STARTED",
   "team_a": "Legacy",
@@ -1439,6 +1450,39 @@
   "detail": "lock time already passed at capture; listed for completeness, not pickable",
   "row_url": "https://play.hotspawn.com/lobby",
   "flag_url": "flagged.html#A-STARTED"
+ },
+ {
+  "fixture_id": "1079628",
+  "code": "A-NO-RATING",
+  "team_a": "Gothic",
+  "team_b": "LFO 10",
+  "start_utc": "2026-10-15T17:00:00Z",
+  "pickable": "no",
+  "detail": "no official rating (Valve VRS) for LFO 10; own line left blank",
+  "row_url": "https://play.hotspawn.com/lobby",
+  "flag_url": "flagged.html#A-NO-RATING"
+ },
+ {
+  "fixture_id": "1079628",
+  "code": "A-STARTED",
+  "team_a": "Gothic",
+  "team_b": "LFO 10",
+  "start_utc": "2026-10-15T17:00:00Z",
+  "pickable": "no",
+  "detail": "lock time already passed at capture; listed for completeness, not pickable",
+  "row_url": "https://play.hotspawn.com/lobby",
+  "flag_url": "flagged.html#A-STARTED"
+ },
+ {
+  "fixture_id": "1079628",
+  "code": "A-NO-PICK",
+  "team_a": "Gothic",
+  "team_b": "LFO 10",
+  "start_utc": "2026-10-15T17:00:00Z",
+  "pickable": "no",
+  "detail": "neither a verified market line nor an official rating for both teams; no pick published",
+  "row_url": "https://play.hotspawn.com/lobby",
+  "flag_url": "flagged.html#A-NO-PICK"
  },
  {
   "fixture_id": "1081614",
@@ -1452,17 +1496,6 @@
   "flag_url": "flagged.html#A-STARTED"
  },
  {
-  "fixture_id": "1080284",
-  "code": "A-STARTED",
-  "team_a": "EAC",
-  "team_b": "ENCE",
-  "start_utc": "2026-10-15T18:00:00Z",
-  "pickable": "no",
-  "detail": "lock time already passed at capture; listed for completeness, not pickable",
-  "row_url": "https://www.hotspawn.com/matches/eac-vs-ence-elisa-breakout-series-2-1080284",
-  "flag_url": "flagged.html#A-STARTED"
- },
- {
   "fixture_id": "1079586",
   "code": "A-NO-RATING",
   "team_a": "Ninjas in Pyjamas",
@@ -1472,39 +1505,6 @@
   "detail": "no official rating (Valve VRS) for Team Liquid; own line left blank",
   "row_url": "https://www.hotspawn.com/matches/ninjas-in-pyjamas-vs-team-liquid-stake-pulse-beat-iii-1079586",
   "flag_url": "flagged.html#A-NO-RATING"
- },
- {
-  "fixture_id": "1079586",
-  "code": "A-NO-LINE",
-  "team_a": "Ninjas in Pyjamas",
-  "team_b": "Team Liquid",
-  "start_utc": "2026-10-16T08:00:00Z",
-  "pickable": "yes",
-  "detail": "no external two-way bookmaker line found for this fixture in any source read",
-  "row_url": "https://www.hotspawn.com/matches/ninjas-in-pyjamas-vs-team-liquid-stake-pulse-beat-iii-1079586",
-  "flag_url": "flagged.html#A-NO-LINE"
- },
- {
-  "fixture_id": "1079586",
-  "code": "A-NO-PICK",
-  "team_a": "Ninjas in Pyjamas",
-  "team_b": "Team Liquid",
-  "start_utc": "2026-10-16T08:00:00Z",
-  "pickable": "yes",
-  "detail": "neither a verified market line nor an official rating for both teams; no pick published",
-  "row_url": "https://www.hotspawn.com/matches/ninjas-in-pyjamas-vs-team-liquid-stake-pulse-beat-iii-1079586",
-  "flag_url": "flagged.html#A-NO-PICK"
- },
- {
-  "fixture_id": "1079586",
-  "code": "A-NO-FORMAT",
-  "team_a": "Ninjas in Pyjamas",
-  "team_b": "Team Liquid",
-  "start_utc": "2026-10-16T08:00:00Z",
-  "pickable": "yes",
-  "detail": "series length not published by Hotspawn, the bookmaker or HLTV; the probability is match-level only",
-  "row_url": "https://www.hotspawn.com/matches/ninjas-in-pyjamas-vs-team-liquid-stake-pulse-beat-iii-1079586",
-  "flag_url": "flagged.html#A-NO-FORMAT"
  },
  {
   "fixture_id": "1080285",
@@ -1538,6 +1538,83 @@
   "detail": "team name 'RoundsGG' matched Valve's standings only through the evidence-backed alias 'ROUNDS' (see cs2/aliases.json)",
   "row_url": "https://www.hotspawn.com/matches/havu-vs-roundsgg-elisa-breakout-series-2-1080286",
   "flag_url": "flagged.html#A-ALIAS"
+ },
+ {
+  "fixture_id": "1079630",
+  "code": "A-VRS-DUP",
+  "team_a": "ex-RUSTEC",
+  "team_b": "Saint Sinners",
+  "start_utc": "2026-10-16T11:00:00Z",
+  "pickable": "yes",
+  "detail": "Valve's standings list this team name more than once (different rosters); the highest-points row is used and the alternative is named in the note — using ex-RUSTEC 1066 pts, also listed: 824 pts",
+  "row_url": "https://www.hotspawn.com/matches/ex-rustec-vs-saint-sinners-cct-europe-2026-series-11-1079630",
+  "flag_url": "flagged.html#A-VRS-DUP"
+ },
+ {
+  "fixture_id": "1079630",
+  "code": "A-NO-LINE",
+  "team_a": "ex-RUSTEC",
+  "team_b": "Saint Sinners",
+  "start_utc": "2026-10-16T11:00:00Z",
+  "pickable": "yes",
+  "detail": "no external two-way bookmaker line found for this fixture in any source read",
+  "row_url": "https://www.hotspawn.com/matches/ex-rustec-vs-saint-sinners-cct-europe-2026-series-11-1079630",
+  "flag_url": "flagged.html#A-NO-LINE"
+ },
+ {
+  "fixture_id": "1079630",
+  "code": "A-NO-FORMAT",
+  "team_a": "ex-RUSTEC",
+  "team_b": "Saint Sinners",
+  "start_utc": "2026-10-16T11:00:00Z",
+  "pickable": "yes",
+  "detail": "series length not published by Hotspawn, the bookmaker or HLTV; the probability is match-level only",
+  "row_url": "https://www.hotspawn.com/matches/ex-rustec-vs-saint-sinners-cct-europe-2026-series-11-1079630",
+  "flag_url": "flagged.html#A-NO-FORMAT"
+ },
+ {
+  "fixture_id": "1081498",
+  "code": "A-NO-RATING",
+  "team_a": "JOGA DE TERNO",
+  "team_b": "your end",
+  "start_utc": "2026-10-16T13:00:00Z",
+  "pickable": "yes",
+  "detail": "no official rating (Valve VRS) for JOGA DE TERNO; own line left blank",
+  "row_url": "https://www.hotspawn.com/matches/joga-de-terno-vs-your-end-cct-south-america-2026-series-7-1081498",
+  "flag_url": "flagged.html#A-NO-RATING"
+ },
+ {
+  "fixture_id": "1081498",
+  "code": "A-NO-LINE",
+  "team_a": "JOGA DE TERNO",
+  "team_b": "your end",
+  "start_utc": "2026-10-16T13:00:00Z",
+  "pickable": "yes",
+  "detail": "no external two-way bookmaker line found for this fixture in any source read",
+  "row_url": "https://www.hotspawn.com/matches/joga-de-terno-vs-your-end-cct-south-america-2026-series-7-1081498",
+  "flag_url": "flagged.html#A-NO-LINE"
+ },
+ {
+  "fixture_id": "1081498",
+  "code": "A-NO-PICK",
+  "team_a": "JOGA DE TERNO",
+  "team_b": "your end",
+  "start_utc": "2026-10-16T13:00:00Z",
+  "pickable": "yes",
+  "detail": "neither a verified market line nor an official rating for both teams; no pick published",
+  "row_url": "https://www.hotspawn.com/matches/joga-de-terno-vs-your-end-cct-south-america-2026-series-7-1081498",
+  "flag_url": "flagged.html#A-NO-PICK"
+ },
+ {
+  "fixture_id": "1081498",
+  "code": "A-NO-FORMAT",
+  "team_a": "JOGA DE TERNO",
+  "team_b": "your end",
+  "start_utc": "2026-10-16T13:00:00Z",
+  "pickable": "yes",
+  "detail": "series length not published by Hotspawn, the bookmaker or HLTV; the probability is match-level only",
+  "row_url": "https://www.hotspawn.com/matches/joga-de-terno-vs-your-end-cct-south-america-2026-series-7-1081498",
+  "flag_url": "flagged.html#A-NO-FORMAT"
  },
  {
   "fixture_id": "1080205",
@@ -1628,25 +1705,80 @@
   "flag_url": "flagged.html#A-DIVERGE"
  },
  {
-  "fixture_id": "1079589",
+  "fixture_id": "1081502",
+  "code": "A-NO-RATING",
+  "team_a": "Procyon",
+  "team_b": "LOS NINOS",
+  "start_utc": "2026-10-16T16:00:00Z",
+  "pickable": "yes",
+  "detail": "no official rating (Valve VRS) for LOS NINOS; own line left blank",
+  "row_url": "https://www.hotspawn.com/matches/procyon-vs-los-ninos-cct-south-america-2026-series-7-1081502",
+  "flag_url": "flagged.html#A-NO-RATING"
+ },
+ {
+  "fixture_id": "1081502",
   "code": "A-NO-LINE",
-  "team_a": "100 Thieves",
-  "team_b": "Sangal",
-  "start_utc": "2026-10-16T17:00:00Z",
+  "team_a": "Procyon",
+  "team_b": "LOS NINOS",
+  "start_utc": "2026-10-16T16:00:00Z",
   "pickable": "yes",
   "detail": "no external two-way bookmaker line found for this fixture in any source read",
-  "row_url": "https://www.hotspawn.com/matches/100-thieves-vs-sangal-stake-pulse-beat-iii-1079589",
+  "row_url": "https://www.hotspawn.com/matches/procyon-vs-los-ninos-cct-south-america-2026-series-7-1081502",
   "flag_url": "flagged.html#A-NO-LINE"
  },
  {
-  "fixture_id": "1079589",
+  "fixture_id": "1081502",
+  "code": "A-NO-PICK",
+  "team_a": "Procyon",
+  "team_b": "LOS NINOS",
+  "start_utc": "2026-10-16T16:00:00Z",
+  "pickable": "yes",
+  "detail": "neither a verified market line nor an official rating for both teams; no pick published",
+  "row_url": "https://www.hotspawn.com/matches/procyon-vs-los-ninos-cct-south-america-2026-series-7-1081502",
+  "flag_url": "flagged.html#A-NO-PICK"
+ },
+ {
+  "fixture_id": "1081502",
   "code": "A-NO-FORMAT",
+  "team_a": "Procyon",
+  "team_b": "LOS NINOS",
+  "start_utc": "2026-10-16T16:00:00Z",
+  "pickable": "yes",
+  "detail": "series length not published by Hotspawn, the bookmaker or HLTV; the probability is match-level only",
+  "row_url": "https://www.hotspawn.com/matches/procyon-vs-los-ninos-cct-south-america-2026-series-7-1081502",
+  "flag_url": "flagged.html#A-NO-FORMAT"
+ },
+ {
+  "fixture_id": "1079589",
+  "code": "A-DIVERGE",
   "team_a": "100 Thieves",
   "team_b": "Sangal",
   "start_utc": "2026-10-16T17:00:00Z",
   "pickable": "yes",
-  "detail": "series length not published by Hotspawn, the bookmaker or HLTV; the probability is match-level only",
+  "detail": "our own line and the external market disagree on the favourite (23.2 percentage points apart); market kept as the headline, both shown",
   "row_url": "https://www.hotspawn.com/matches/100-thieves-vs-sangal-stake-pulse-beat-iii-1079589",
+  "flag_url": "flagged.html#A-DIVERGE"
+ },
+ {
+  "fixture_id": "1079632",
+  "code": "A-NO-LINE",
+  "team_a": "BakS",
+  "team_b": "G2 Ares",
+  "start_utc": "2026-10-16T17:00:00Z",
+  "pickable": "yes",
+  "detail": "no external two-way bookmaker line found for this fixture in any source read",
+  "row_url": "https://www.hotspawn.com/matches/baks-vs-g2-ares-cct-europe-2026-series-11-1079632",
+  "flag_url": "flagged.html#A-NO-LINE"
+ },
+ {
+  "fixture_id": "1079632",
+  "code": "A-NO-FORMAT",
+  "team_a": "BakS",
+  "team_b": "G2 Ares",
+  "start_utc": "2026-10-16T17:00:00Z",
+  "pickable": "yes",
+  "detail": "series length not published by Hotspawn, the bookmaker or HLTV; the probability is match-level only",
+  "row_url": "https://www.hotspawn.com/matches/baks-vs-g2-ares-cct-europe-2026-series-11-1079632",
   "flag_url": "flagged.html#A-NO-FORMAT"
  },
  {
@@ -1672,6 +1804,138 @@
   "flag_url": "flagged.html#A-NO-FORMAT"
  },
  {
+  "fixture_id": "1081526",
+  "code": "A-NO-RATING",
+  "team_a": "Infinite",
+  "team_b": "Insiders",
+  "start_utc": "2026-10-19T09:00:00Z",
+  "pickable": "yes",
+  "detail": "no official rating (Valve VRS) for Insiders; own line left blank",
+  "row_url": "https://play.hotspawn.com/lobby",
+  "flag_url": "flagged.html#A-NO-RATING"
+ },
+ {
+  "fixture_id": "1081526",
+  "code": "A-NO-LINE",
+  "team_a": "Infinite",
+  "team_b": "Insiders",
+  "start_utc": "2026-10-19T09:00:00Z",
+  "pickable": "yes",
+  "detail": "no external two-way bookmaker line found for this fixture in any source read",
+  "row_url": "https://play.hotspawn.com/lobby",
+  "flag_url": "flagged.html#A-NO-LINE"
+ },
+ {
+  "fixture_id": "1081526",
+  "code": "A-NO-PICK",
+  "team_a": "Infinite",
+  "team_b": "Insiders",
+  "start_utc": "2026-10-19T09:00:00Z",
+  "pickable": "yes",
+  "detail": "neither a verified market line nor an official rating for both teams; no pick published",
+  "row_url": "https://play.hotspawn.com/lobby",
+  "flag_url": "flagged.html#A-NO-PICK"
+ },
+ {
+  "fixture_id": "1081526",
+  "code": "A-NO-FORMAT",
+  "team_a": "Infinite",
+  "team_b": "Insiders",
+  "start_utc": "2026-10-19T09:00:00Z",
+  "pickable": "yes",
+  "detail": "series length not published by Hotspawn, the bookmaker or HLTV; the probability is match-level only",
+  "row_url": "https://play.hotspawn.com/lobby",
+  "flag_url": "flagged.html#A-NO-FORMAT"
+ },
+ {
+  "fixture_id": "1081527",
+  "code": "A-VRS-DUP",
+  "team_a": "aimclub",
+  "team_b": "BASEMENT BOYS",
+  "start_utc": "2026-10-19T09:00:00Z",
+  "pickable": "yes",
+  "detail": "Valve's standings list this team name more than once (different rosters); the highest-points row is used and the alternative is named in the note — using aimclub 1113 pts, also listed: 504 pts",
+  "row_url": "https://play.hotspawn.com/lobby",
+  "flag_url": "flagged.html#A-VRS-DUP"
+ },
+ {
+  "fixture_id": "1081527",
+  "code": "A-NO-LINE",
+  "team_a": "aimclub",
+  "team_b": "BASEMENT BOYS",
+  "start_utc": "2026-10-19T09:00:00Z",
+  "pickable": "yes",
+  "detail": "no external two-way bookmaker line found for this fixture in any source read",
+  "row_url": "https://play.hotspawn.com/lobby",
+  "flag_url": "flagged.html#A-NO-LINE"
+ },
+ {
+  "fixture_id": "1081527",
+  "code": "A-NO-FORMAT",
+  "team_a": "aimclub",
+  "team_b": "BASEMENT BOYS",
+  "start_utc": "2026-10-19T09:00:00Z",
+  "pickable": "yes",
+  "detail": "series length not published by Hotspawn, the bookmaker or HLTV; the probability is match-level only",
+  "row_url": "https://play.hotspawn.com/lobby",
+  "flag_url": "flagged.html#A-NO-FORMAT"
+ },
+ {
+  "fixture_id": "1081528",
+  "code": "A-NO-LINE",
+  "team_a": "BC.Game",
+  "team_b": "Drama",
+  "start_utc": "2026-10-19T09:00:00Z",
+  "pickable": "yes",
+  "detail": "no external two-way bookmaker line found for this fixture in any source read",
+  "row_url": "https://play.hotspawn.com/lobby",
+  "flag_url": "flagged.html#A-NO-LINE"
+ },
+ {
+  "fixture_id": "1081528",
+  "code": "A-NO-FORMAT",
+  "team_a": "BC.Game",
+  "team_b": "Drama",
+  "start_utc": "2026-10-19T09:00:00Z",
+  "pickable": "yes",
+  "detail": "series length not published by Hotspawn, the bookmaker or HLTV; the probability is match-level only",
+  "row_url": "https://play.hotspawn.com/lobby",
+  "flag_url": "flagged.html#A-NO-FORMAT"
+ },
+ {
+  "fixture_id": "1081529",
+  "code": "A-ALIAS",
+  "team_a": "Nexus",
+  "team_b": "WROTBERRY",
+  "start_utc": "2026-10-19T09:00:00Z",
+  "pickable": "yes",
+  "detail": "team name 'WROTBERRY' matched Valve's standings only through the evidence-backed alias 'WBT' (see cs2/aliases.json)",
+  "row_url": "https://play.hotspawn.com/lobby",
+  "flag_url": "flagged.html#A-ALIAS"
+ },
+ {
+  "fixture_id": "1081529",
+  "code": "A-NO-LINE",
+  "team_a": "Nexus",
+  "team_b": "WROTBERRY",
+  "start_utc": "2026-10-19T09:00:00Z",
+  "pickable": "yes",
+  "detail": "no external two-way bookmaker line found for this fixture in any source read",
+  "row_url": "https://play.hotspawn.com/lobby",
+  "flag_url": "flagged.html#A-NO-LINE"
+ },
+ {
+  "fixture_id": "1081529",
+  "code": "A-NO-FORMAT",
+  "team_a": "Nexus",
+  "team_b": "WROTBERRY",
+  "start_utc": "2026-10-19T09:00:00Z",
+  "pickable": "yes",
+  "detail": "series length not published by Hotspawn, the bookmaker or HLTV; the probability is match-level only",
+  "row_url": "https://play.hotspawn.com/lobby",
+  "flag_url": "flagged.html#A-NO-FORMAT"
+ },
+ {
   "fixture_id": "1081530",
   "code": "A-NO-LINE",
   "team_a": "Iberian Soul",
@@ -1679,7 +1943,7 @@
   "start_utc": "2026-10-19T10:45:00Z",
   "pickable": "yes",
   "detail": "no external two-way bookmaker line found for this fixture in any source read",
-  "row_url": "https://play.hotspawn.com/thp-pickems",
+  "row_url": "https://play.hotspawn.com/lobby",
   "flag_url": "flagged.html#A-NO-LINE"
  },
  {
@@ -1690,7 +1954,7 @@
   "start_utc": "2026-10-19T10:45:00Z",
   "pickable": "yes",
   "detail": "series length not published by Hotspawn, the bookmaker or HLTV; the probability is match-level only",
-  "row_url": "https://play.hotspawn.com/thp-pickems",
+  "row_url": "https://play.hotspawn.com/lobby",
   "flag_url": "flagged.html#A-NO-FORMAT"
  },
  {
@@ -1701,7 +1965,7 @@
   "start_utc": "2026-10-19T10:45:00Z",
   "pickable": "yes",
   "detail": "Valve's standings list this team name more than once (different rosters); the highest-points row is used and the alternative is named in the note — using MOUZ NXT 877 pts, also listed: 534 pts",
-  "row_url": "https://play.hotspawn.com/thp-pickems",
+  "row_url": "https://play.hotspawn.com/lobby",
   "flag_url": "flagged.html#A-VRS-DUP"
  },
  {
@@ -1712,7 +1976,7 @@
   "start_utc": "2026-10-19T10:45:00Z",
   "pickable": "yes",
   "detail": "no external two-way bookmaker line found for this fixture in any source read",
-  "row_url": "https://play.hotspawn.com/thp-pickems",
+  "row_url": "https://play.hotspawn.com/lobby",
   "flag_url": "flagged.html#A-NO-LINE"
  },
  {
@@ -1723,7 +1987,40 @@
   "start_utc": "2026-10-19T10:45:00Z",
   "pickable": "yes",
   "detail": "series length not published by Hotspawn, the bookmaker or HLTV; the probability is match-level only",
-  "row_url": "https://play.hotspawn.com/thp-pickems",
+  "row_url": "https://play.hotspawn.com/lobby",
+  "flag_url": "flagged.html#A-NO-FORMAT"
+ },
+ {
+  "fixture_id": "1081532",
+  "code": "A-VRS-DUP",
+  "team_a": "ASTRAL",
+  "team_b": "Leo",
+  "start_utc": "2026-10-19T10:45:00Z",
+  "pickable": "yes",
+  "detail": "Valve's standings list this team name more than once (different rosters); the highest-points row is used and the alternative is named in the note — using Leo 1001 pts, also listed: 499 pts",
+  "row_url": "https://play.hotspawn.com/lobby",
+  "flag_url": "flagged.html#A-VRS-DUP"
+ },
+ {
+  "fixture_id": "1081532",
+  "code": "A-NO-LINE",
+  "team_a": "ASTRAL",
+  "team_b": "Leo",
+  "start_utc": "2026-10-19T10:45:00Z",
+  "pickable": "yes",
+  "detail": "no external two-way bookmaker line found for this fixture in any source read",
+  "row_url": "https://play.hotspawn.com/lobby",
+  "flag_url": "flagged.html#A-NO-LINE"
+ },
+ {
+  "fixture_id": "1081532",
+  "code": "A-NO-FORMAT",
+  "team_a": "ASTRAL",
+  "team_b": "Leo",
+  "start_utc": "2026-10-19T10:45:00Z",
+  "pickable": "yes",
+  "detail": "series length not published by Hotspawn, the bookmaker or HLTV; the probability is match-level only",
+  "row_url": "https://play.hotspawn.com/lobby",
   "flag_url": "flagged.html#A-NO-FORMAT"
  }
 ]
