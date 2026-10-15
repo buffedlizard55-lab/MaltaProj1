@@ -1,50 +1,10 @@
 {
  "status": "ok",
  "endpoint": "https://gamma-api.polymarket.com/public-search?q=<team_a> <team_b>&limit_per_type=4 (one lookup per open fixture)",
- "captured_utc": "2026-10-14T14:05:02Z",
- "fixtures_considered": 17,
+ "captured_utc": "2026-10-15T12:10:11Z",
+ "fixtures_considered": 10,
  "note": "Polymarket lists some of the low-tier cups that big bookmakers skip. Only whole-match (series) markets are republished as a series reference; per-map markets are recorded separately and are never used as a series probability. A fixture with no matching event is recorded as unmatched, not filled in.",
  "matches": [
-  {
-   "fixture_id": "1079442",
-   "team_a": "Heroic",
-   "team_b": "Envy",
-   "title": "Counter-Strike: Heroic vs Envy (BO3) - Stake Pulse Beat III Group D",
-   "market_kind": "series",
-   "question": "Counter-Strike: Heroic vs Envy (BO3) - Stake Pulse Beat III Group D",
-   "outcomes": [
-    "Heroic",
-    "Envy"
-   ],
-   "p_a": 66.5,
-   "p_b": 33.5,
-   "best_bid": 0.66,
-   "best_ask": 0.67,
-   "liquidity_usd": 20112.8064,
-   "volume_usd": 3987.9834339999993,
-   "updated_utc": "2026-10-14T14:04:45.655355Z",
-   "url": "https://polymarket.com/event/cs2-hero-envy-2026-10-15"
-  },
-  {
-   "fixture_id": "1080280",
-   "team_a": "ENCE",
-   "team_b": "BOJONG",
-   "title": "Counter-Strike: ENCE vs BOJONG (BO1) - Elisa BreakOut Series #2 Group A",
-   "market_kind": "series",
-   "question": "Counter-Strike: ENCE vs BOJONG (BO1) - Elisa BreakOut Series #2 Group A",
-   "outcomes": [
-    "ENCE",
-    "BOJONG"
-   ],
-   "p_a": 75.5,
-   "p_b": 24.5,
-   "best_bid": 0.73,
-   "best_ask": 0.78,
-   "liquidity_usd": 7310.9419,
-   "volume_usd": 5.78,
-   "updated_utc": "2026-10-14T14:04:45.655355Z",
-   "url": "https://polymarket.com/event/cs2-ence-bojong-2026-10-15"
-  },
   {
    "fixture_id": "1080285",
    "team_a": "Voca",
@@ -60,9 +20,9 @@
    "p_b": 55.5,
    "best_bid": 0.44,
    "best_ask": 0.45,
-   "liquidity_usd": 5479.3915,
+   "liquidity_usd": 6145.6544,
    "volume_usd": 90.17777899999999,
-   "updated_utc": "2026-10-14T14:04:45.655355Z",
+   "updated_utc": "2026-10-15T12:06:52.62106Z",
    "url": "https://polymarket.com/event/cs2-voc-pha-2026-10-16"
   },
   {
@@ -76,13 +36,13 @@
     "Voca",
     "HAVU"
    ],
-   "p_a": 62.0,
-   "p_b": 38.0,
-   "best_bid": 0.53,
-   "best_ask": 0.71,
-   "liquidity_usd": 5925.2579,
+   "p_a": 67.0,
+   "p_b": 33.0,
+   "best_bid": 0.65,
+   "best_ask": 0.69,
+   "liquidity_usd": 8234.2741,
    "volume_usd": 25,
-   "updated_utc": "2026-10-14T14:04:45.655355Z",
+   "updated_utc": "2026-10-15T12:08:51.497374Z",
    "url": "https://polymarket.com/event/cs2-voc-havu-2026-10-16"
   },
   {
@@ -96,56 +56,18 @@
     "Phantom",
     "HAVU"
    ],
-   "p_a": 63.0,
-   "p_b": 37.0,
-   "best_bid": 0.53,
+   "p_a": 70.0,
+   "p_b": 30.0,
+   "best_bid": 0.67,
    "best_ask": 0.73,
-   "liquidity_usd": 5621.5615,
+   "liquidity_usd": 7777.9502,
    "volume_usd": null,
-   "updated_utc": "2026-10-14T14:04:45.655355Z",
+   "updated_utc": "2026-10-15T12:08:51.497374Z",
    "url": "https://polymarket.com/event/cs2-pha-havu-2026-10-16"
   }
  ],
- "map_markets": [
-  {
-   "fixture_id": "1079442",
-   "title": "Counter-Strike: Heroic vs Envy (BO3) - Stake Pulse Beat III Group D",
-   "market_kind": "map",
-   "question": "Counter-Strike: Heroic vs Envy - Map 1 Winner",
-   "p_a": 55.0,
-   "p_b": 45.0,
-   "liquidity_usd": 3620.2041,
-   "updated_utc": "2026-10-14T14:00:47.104208Z",
-   "url": "https://polymarket.com/event/cs2-hero-envy-2026-10-15"
-  },
-  {
-   "fixture_id": "1079442",
-   "title": "Counter-Strike: Heroic vs Envy (BO3) - Stake Pulse Beat III Group D",
-   "market_kind": "map",
-   "question": "Counter-Strike: Heroic vs Envy - Map 2 Winner",
-   "p_a": 65.5,
-   "p_b": 34.5,
-   "liquidity_usd": 3316.4833,
-   "updated_utc": "2026-10-14T14:04:45.655355Z",
-   "url": "https://polymarket.com/event/cs2-hero-envy-2026-10-15"
-  }
- ],
+ "map_markets": [],
  "unmatched": [
-  {
-   "fixture_id": "1079624",
-   "team_a": "FORZE Reload",
-   "team_b": "LFO 10"
-  },
-  {
-   "fixture_id": "1080279",
-   "team_a": "WROTBERRY",
-   "team_b": "EAC"
-  },
-  {
-   "fixture_id": "1080281",
-   "team_a": "WROTBERRY",
-   "team_b": "ENCE"
-  },
   {
    "fixture_id": "1080282",
    "team_a": "EAC",
@@ -164,48 +86,6 @@
  ],
  "errors": [],
  "search_log": [
-  {
-   "fixture_id": "1080179",
-   "events": 4,
-   "matched": "cs2-furia-bb3-2026-10-14",
-   "how": "names+kickoff"
-  },
-  {
-   "fixture_id": "1079624",
-   "events": 4,
-   "matched": "",
-   "how": "no title match"
-  },
-  {
-   "fixture_id": "1080279",
-   "events": 2,
-   "matched": "",
-   "how": "no title match"
-  },
-  {
-   "fixture_id": "1079440",
-   "events": 4,
-   "matched": "cs2-mibr-bcg-2026-10-15",
-   "how": "names+kickoff"
-  },
-  {
-   "fixture_id": "1079442",
-   "events": 2,
-   "matched": "cs2-hero-envy-2026-10-15",
-   "how": "names+kickoff"
-  },
-  {
-   "fixture_id": "1080280",
-   "events": 3,
-   "matched": "cs2-ence-bojong-2026-10-15",
-   "how": "names+kickoff"
-  },
-  {
-   "fixture_id": "1080281",
-   "events": 2,
-   "matched": "",
-   "how": "no title match"
-  },
   {
    "fixture_id": "1080282",
    "events": 4,
@@ -267,5 +147,5 @@
    "how": "names+kickoff"
   }
  ],
- "matched_fixtures": 5
+ "matched_fixtures": 3
 }
