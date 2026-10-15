@@ -1,28 +1,27 @@
-name: Gap-resolution board (57dbfba4)
+name: Archived gap-resolution evidence (57dbfba4)
+# This frozen historical report is not the maintained picks route.
+# Current discovery, odds and unresolved research refresh via executive-5545dbb8.yml.
 on:
   workflow_dispatch: {}
-  schedule:
-    - cron: "19 */4 * * *"   # every 4 hours, inside the required 4-8h window
   push:
-    branches: ["main", "arena/57dbfba4-maltaproj1"]
-    paths: ["scripts/57dbfba4_build.py","tests/test_57dbfba4.py","gap-resolution/**","console/data/**",".github/workflows/gap-resolution-57dbfba4.yml"]
-permissions: {contents: write}
-concurrency: {group: gap-resolution-57dbfba4-${{ github.ref }}, cancel-in-progress: false}
+    branches: [main]
+    paths:
+      - gap-resolution/**
+      - tests/test_57dbfba4.py
+      - .github/workflows/gap-resolution-57dbfba4.yml
+permissions:
+  contents: read
+concurrency:
+  group: "archived-gap-resolution-${{ github.ref }}"
+  cancel-in-progress: false
 jobs:
-  build:
+  verify-archive:
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
-        with: {python-version: "3.12"}
-      - name: Build (fail-closed)
-        run: python3 scripts/57dbfba4_build.py
-      - name: Tests
+        with:
+          python-version: '3.12'
+      - name: Verify the frozen research ledger and pages (no live claims)
         run: python3 -m unittest tests.test_57dbfba4 -v
-      - name: Commit validated build (main only)
-        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
-        run: |
-          git config user.name "github-actions[bot]"; git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add gap-resolution
-          if git diff --cached --quiet; then echo "no change"; else git pull --rebase origin main; git commit -m "gap-resolution(57dbfba4): automated 4-hourly rebuild [skip ci]"; git push origin HEAD:main; fi
