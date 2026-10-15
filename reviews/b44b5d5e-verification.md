@@ -14,7 +14,7 @@ Written 2026-10-15 (UTC). Every row on the board links the source it was read fr
 | Outside price #1: **Pinnacle** (public guest response the matchups page loads itself) | `https://guest.api.arcadia.pinnacle.com/0.1/sports/12/matchups?withSpecials=false` via `https://www.pinnacle.com/en/esports/matchups/highlights/` | 14 whole-match quotes in the capture; American prices converted to decimal, de-vigged with the stored formula and re-derived by `tests/test_b44b5d5e_data.py`. |
 | Outside price #2: **Polymarket** (prediction market, never de-vigged, labelled) | `https://gamma-api.polymarket.com/…` via the public event page | 6 quotes with volume/liquidity and `observed_utc`; flagged MP-F25 so it is never read as a bookmaker price. |
 | Own originated line (probabilities per team for **every** fixture a source can price) | official **Valve Regional Standings** file, else the official **HLTV world ranking #** | Re-derived from the stored VRS points / rank pair by the data test; per-map → series conversion uses the exact best-of enumeration only when the series length is sourced, otherwise the row says `per-map` and is flagged MP-F05. |
-| **Series length** where published | Hotspawn payload (never states one) → HLTV match list captured live → hand-checked official HLTV match/event page (`matchpicks/series_research.csv`) → official match page linked by the verified result trail | 74 of 80 rows now carry a sourced length (53 from the result trail's official match pages, 15 from a researched HLTV match page, 6 from a researched HLTV event page); 6 rows stay blank and flagged MP-F05. Sources re-read by hand on 2026-10-15 — see §2. |
+| **Series length** where published | Hotspawn payload (never states one) → HLTV match list captured live → hand-checked official HLTV match/event page (`matchpicks/series_research.csv`) → official match page linked by the verified result trail | 74 of 80 rows carry a sourced length in the live capture of 08:45Z: **17 open fixtures from the live official HLTV match list**, 53 from the result trail's official match pages, 2 from a researched HLTV match page and 1 from a researched HLTV event page; 6 rows stay blank and flagged MP-F05. Format sources re-read by hand on 2026-10-15 — see §2. |
 | Results for played fixtures | repository result trail, every row carrying an official HLTV/Liquipedia URL and its own read time | 54 rows publish a result with a link; 6 rows are recorded as unresolvable (DraculaN, see §3); 20 rows have no independent result on file and say so. **Hotspawn's payload is never used for a score** (see §3, I2). |
 | Stale/ambiguous fixtures are never silently dropped | `matchpicks/data/unresolved.csv` + `unresolved.html` | 24 unresolved rows with the reason and the flags on each; ids of markup-only fixtures are listed inside one grouped row instead of being invented as fixtures. |
 
@@ -32,6 +32,24 @@ Written 2026-10-15 (UTC). Every row on the board links the source it was read fr
 | Stake Pulse Beat III (`1079440`, `1079442`) | `hltv.org/events/9223/stake-pulse-beat-iii` | Formats: "Group stage: GSL Bo3 / Playoffs: Single elimination Bo3" | 2 rows `BO3` — agrees |
 | CCT 2026 Europe Series 12 Closed Qualifier (`1081120` mellren–Privateer) | `hltv.org/events/9456/cct-2026-europe-series-12-closed-qualifier` + the HLTV match list row "16:00 bo3 … Group D Elimination Match" | "Group stage: GSL Bo3" | row `BO3` — agrees |
 | Official ratings used by the own line | `github.com/ValveSoftware/counter-strike_regional_standings` (latest published file **2026-10-05**), `hltv.org/ranking/teams/2026/october/12` | as cited on the rows | rows cite file date and URL; the age of the VRS file is disclosed as a limitation on the board. |
+
+## 2b. Sanity checks of the originated ("own") line against outside sources
+
+The own line is our own number and is published as such, never mixed with a market price. To make sure
+it is not *invented*, it was checked against the outside sources that cover the same fixtures:
+
+| Fixture | Our own line | Outside source read 2026-10-15 | Agreement |
+| --- | --- | --- | --- |
+| `1080287` Voca vs HAVU (Elisa) | Voca 80.4 % (VRS 932 v 918 pts) | HLTV match page 2399426 forecast **78.6 % / 21.4 %** | ~2 pp |
+| `1080285` Voca vs Phantom (Elisa) | Voca 55.0 % (VRS 1159 v 1086) | HLTV match page 2399424 forecast **69.2 % / 30.8 %** | **14 pp apart** — HLTV's model is more confident than the pure points ratio; the row says `official HLTV ranking/VRS` and is flagged MP-F01 (no joined market), so a reader sees exactly which basis produced 55.0 % |
+| `1080286` HAVU vs RoundsGG, `1080289` RoundsGG vs Voca, `1080290` Phantom vs HAVU (Elisa) | HAVU 90.4 %, Voca 97.5 %, Phantom 77.0 % | EGamersWorld pages for these fixtures show the **placeholder pair 1.80 / 1.80** (both sides equal) — the same pair the repository's own ladder is built to reject | not usable as a price; supports publishing our own line and flagging MP-F01 |
+| `1079440` MIBR vs BC.Game | market line 54.8 % (Pinnacle, de-vigged) | EGamersWorld **1.55 / 2.22** (≈59/41 de-vigged), Polymarket 56/44 with $228k traded | same direction, ≤4 pp spread between books |
+| `1080203` PARIVISION vs BetBoom | market line 53.2 % (Pinnacle, de-vigged) | BETBOOM's own odds **1.85 / 1.95** (≈51/49 de-vigged); a second book quoted 1.79–1.83 | ~1–2 pp |
+| `1080202` 9z vs Falcons | market line Falcons 75.6 % (Pinnacle) | esportbet **9z +240 / Falcons −349.9** (≈27/73 de-vigged) | ~2 pp |
+
+Nothing in the table was used to change a published value: the checks exist so the reader can see the
+originated line is in the same range as outside opinion, and where it deliberately differs (Voca vs
+Phantom) the row itself states the basis.
 
 ## 3. Irregularities found (all published on the board's "Flagged for review" page)
 
@@ -53,12 +71,15 @@ Written 2026-10-15 (UTC). Every row on the board links the source it was read fr
 * **I5 — forfeits presented as scores.** `1081105` (1-0, SUKEBAN forfeit) and `1079621` (Lavked 1-0,
   Gothic forfeit) are defaults, not played series. The board labels them as recorded by the official
   match page; a reader must not treat the 1-0 as a map score.
-* **I6 — live source refusals from the automated runner.** HLTV's `/matches` page answers the runner's
-  browser with Cloudflare's "Just a moment…" interstitial (HTTP 403, recorded per capture) and
-  EGamersWorld answers HTTP 403 as well. The board therefore (a) joins the HLTV match list only when
-  the capture really read it, (b) falls back to the hand-checked, source-linked research trail
-  (MP-F33), and (c) publishes the aggregator tier as unavailable instead of substituting a guess. The
-  next capture re-tries both.
+* **I6 — one refusing source, one that yields on a second attempt.** EGamersWorld answers the runner
+  with HTTP 403 on every attempt (aggregator tier published as unavailable; rows that would have used
+  it are labelled as our own line instead). HLTV's `/matches` page answers with Cloudflare's
+  "Just a moment…" interstitial on a 4-second wait, but the *same* capture read it successfully with a
+  12-second wait — attempt log in the capture of 08:45Z: `wait_ms 4000 → 403, challenged=true, rows=0;
+  wait_ms 12000 → 200, 1 124 034 bytes, rows=18`. The collector therefore retries with a longer wait
+  before giving up, and the board now takes **all 17 open fixtures' series lengths** from the live
+  official HLTV match list (MP-F11); the hand-checked research trail (MP-F33) covers the rows the list
+  does not carry, and nothing is ever guessed.
 * **I8 — dead source links in the result trail (found by this session, 2026-10-15).** 54 of the
   trail's rows link the id-only form `https://www.hltv.org/matches/<id>`, which HLTV answers with
   **HTTP 404 "Page not found"** — a link a reader cannot open is not a source. Verified against two
