@@ -732,6 +732,7 @@ or (cap.get(k) or {}).get('url') or '')}</td></tr>"""
              ("CHALK", "Anything else. Take the favourite.")]
     rule_rows = "".join(f"<li><strong>{esc(a)}</strong> &mdash; {esc(b)}</li>" for a, b in rules)
     body = f"""
+
 <p class="eyebrow">Method</p>
 <h1>How every number on this board is produced</h1>
 <h2>Reverse-engineering the Hotspawn lobby</h2>
@@ -782,7 +783,29 @@ Where HLTV is missing, the row links the team's HLTV page or, failing that, the 
 board come from the provider relayed by bo3.gg, and that provider is named on every row.</li>
 <li>Hotspawn's own "View match" links are placeholders on some listings; the row then falls back to
 the lobby.</li></ul>
-"""
+f"""
+    manual = read_json(RESEARCH / "manual_lines.json", {}) or {}
+    if manual.get("entries"):
+        mrows = []
+        for e in manual["entries"]:
+            mrows.append("<tr><td>" + esc(e.get("team_a")) + " v " + esc(e.get("team_b")) + "</td>"
+                         + "<td>" + esc(e.get("source")) + "</td><td>" + esc(e.get("odds_a"))
+                         + " / " + esc(e.get("odds_b")) + "</td><td>" + esc(e.get("read_utc"))
+                         + "</td><td>" + esc(e.get("status", "merged into the average")) + "</td>"
+                         + "<td class='src'>" + a_href(e.get("url"), "page")
+                         + "</td><td class='src'>"
+                         + esc(e.get("status_note") or e.get("note", "")) + "</td></tr>")
+        body += ("<h2>Hand-verified prices</h2>"
+                 "<p class='muted'>Where no automated source priced a fixture, a bookmaker price was "
+                 "read by hand from the named page and tagged <code>MANUAL_READ</code> with the "
+                 "exact time. A hand read exists to stand in for an automated read of the same "
+                 "source: as soon as the collector reads that source itself the hand read is marked "
+                 "<em>superseded</em> and dropped from the average, so one bookmaker is never "
+                 "counted twice. A unit test enforces it.</p>"
+                 "<div class='scroll'><table><tr><th>Match</th><th>Source</th><th>Odds</th>"
+                 "<th>Read (UTC)</th><th>Status</th><th>Page</th><th>Note</th></tr>"
+                 + "".join(mrows) + "</table></div>")
+
     return page("Method and sources — Hotspawn CS2", "method.html", body,
                 "How the board reverse-engineers Hotspawn, the probability ladder, the own line and "
                 "the leaderboard rule, with every source and its read time.")

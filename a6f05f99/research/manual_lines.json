@@ -1,37 +1,40 @@
 {
- "about": "Bookmaker prices read and verified by hand by session arena/a6f05f99 on 2026-10-15 22:50-23:15 UTC, for fixtures the automated rungs could not price (or could price with only one source). Each entry records the exact page the number was read from, the time it was read, and who read it. These are not estimates: they are prices as displayed on the named page. The scheduled collector re-reads bo3.gg automatically every four hours, so an entry here is a floor under coverage, not a permanent substitute - and it is dropped from the average once it is more than eight hours old, exactly like any other price.",
- "why_this_exists": "The brief asks for a pick for every Hotspawn CS2 match, including low-tier fixtures that sharp books and prediction markets do not cover. Where the automated rungs leave a fixture with no bookmaker price at all, a hand-verified esports-book read is the next rung. It is labelled MANUAL_READ everywhere it is used.",
- "entries": [
-  {
-   "team_a": "Aurora",
-   "team_b": "9z",
-   "start_utc": "2026-10-16T14:00:00Z",
-   "hotspawn_id": "1080205",
-   "source": "Thunderpick (bookmaker), price relayed by bo3.gg",
-   "kind": "bookmaker",
-   "odds_a": 1.42,
-   "odds_b": 2.70,
-   "url": "https://bo3.gg/matches/aurora-gaming-vs-9z-16-10-2026",
-   "read_utc": "2026-10-15T22:55:00Z",
-   "read_by": "arena/a6f05f99",
-   "note": "Two-way moneyline shown on the match page ('view all markets: 1 1.42 / 2 2.70'). The page's bet link goes to Thunderpick, and bo3.gg's API names the provider in bet_updates.provider. Also cross-checked on the same page: Aurora to win at least one map 1.13, 9z +1.5 maps 1.50.",
-   "verified": true
-  },
-  {
-   "team_a": "BETBOOM",
-   "team_b": "Legacy",
-   "start_utc": "2026-10-16T17:00:00Z",
-   "hotspawn_id": null,
-   "source": "Thunderpick (bookmaker), price relayed by bo3.gg",
-   "kind": "bookmaker",
-   "odds_a": 2.5,
-   "odds_b": 1.48,
-   "url": "https://bo3.gg/matches/legacy-br-vs-betboom-team-16-10-2026",
-   "read_utc": "2026-10-15T22:55:00Z",
-   "read_by": "arena/a6f05f99",
-   "note": "Group B decider. Stated here for context only: Hotspawn does not list this match, so no pick'em pick is made for it and it is not counted in the board's coverage numbers.",
-   "verified": true,
-   "context_only": true
-  }
- ]
+  "about": "Bookmaker prices read and verified by hand by session arena/a6f05f99 on 2026-10-15 22:50-23:15 UTC, for fixtures the automated rungs could not price (or could price with only one source). Each entry records the exact page the number was read from, the time it was read, and who read it. These are not estimates: they are prices as displayed on the named page. The scheduled collector re-reads bo3.gg automatically every four hours, so an entry here is a floor under coverage, not a permanent substitute - and it is dropped from the average once it is more than eight hours old, exactly like any other price.",
+  "why_this_exists": "The brief asks for a pick for every Hotspawn CS2 match, including low-tier fixtures that sharp books and prediction markets do not cover. Where the automated rungs leave a fixture with no bookmaker price at all, a hand-verified esports-book read is the next rung. It is labelled MANUAL_READ everywhere it is used.",
+  "entries": [
+    {
+      "team_a": "Aurora",
+      "team_b": "9z",
+      "start_utc": "2026-10-16T14:00:00Z",
+      "hotspawn_id": "1080205",
+      "source": "Thunderpick (bookmaker), price relayed by bo3.gg",
+      "kind": "bookmaker",
+      "odds_a": 1.42,
+      "odds_b": 2.7,
+      "url": "https://bo3.gg/matches/aurora-gaming-vs-9z-16-10-2026",
+      "read_utc": "2026-10-15T22:55:00Z",
+      "read_by": "arena/a6f05f99",
+      "note": "Two-way moneyline shown on the match page ('view all markets: 1 1.42 / 2 2.70'). The page's bet link goes to Thunderpick, and bo3.gg's API names the provider in bet_updates.provider. Also cross-checked on the same page: Aurora to win at least one map 1.13, 9z +1.5 maps 1.50.",
+      "verified": true,
+      "skip_if_rung": "2",
+      "status": "superseded",
+      "status_note": "Kept as the cross-check that validated the automated bo3.gg reader: the automated read now returns the same 1.42 / 2.70 from the same provider, so the hand read is no longer merged into the average (it would count one bookmaker twice)."
+    },
+    {
+      "team_a": "BETBOOM",
+      "team_b": "Legacy",
+      "start_utc": "2026-10-16T17:00:00Z",
+      "hotspawn_id": null,
+      "source": "Thunderpick (bookmaker), price relayed by bo3.gg",
+      "kind": "bookmaker",
+      "odds_a": 2.5,
+      "odds_b": 1.48,
+      "url": "https://bo3.gg/matches/legacy-br-vs-betboom-team-16-10-2026",
+      "read_utc": "2026-10-15T22:55:00Z",
+      "read_by": "arena/a6f05f99",
+      "note": "Group B decider. Stated here for context only: Hotspawn does not list this match, so no pick'em pick is made for it and it is not counted in the board's coverage numbers.",
+      "verified": true,
+      "context_only": true
+    }
+  ]
 }

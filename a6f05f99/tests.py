@@ -85,6 +85,16 @@ class DataTests(unittest.TestCase):
             self.assertNotIn("crowd", estimates.lower(),
                              f"{row.get('match_id')} used the crowd as an estimate")
 
+    def test_no_single_provider_is_counted_twice(self):
+        """A hand read exists to stand in for an automated read. If the collector later reads the
+        same bookmaker itself, merging both would count one provider twice and skew the mean."""
+        for row in load_board().get("rows", []):
+            shorts = [x.strip() for x in (row.get("estimate_sources") or "").split("|") if x.strip()]
+            providers = [re.split(r"[ (,]", s, 1)[0].strip().lower() for s in shorts]
+            dupes = {p for p in providers if providers.count(p) > 1}
+            self.assertFalse(dupes,
+                             f"{row.get('match_id')} counts these providers twice: {sorted(dupes)}")
+
     def test_coverage_counts_are_consistent(self):
         board, cov = load_board(), load_board().get("coverage", {})
         rows = board.get("rows", [])

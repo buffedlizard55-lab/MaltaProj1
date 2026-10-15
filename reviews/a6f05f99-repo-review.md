@@ -5,10 +5,14 @@ line-by-line verification of the board this session published under `a6f05f99/`.
 tables below is copied out of `a6f05f99/data/board.csv`; nothing was typed by hand. Where a value
 could not be confirmed from an official source it is left blank and flagged — never inferred.
 
-**Snapshot verified.** Hotspawn read **2026-10-15T21:34:19Z** (lobby, cs2-pickems and
-thp-pickems, all HTTP 200). Pinnacle guest JSON read 2026-10-15 21:34Z. Polymarket read
-2026-10-15 21:34Z. Valve Regional Standings **2026-10-05**
-([file](https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md)). HLTV world ranking read 2026-10-15 21:34Z
+**Snapshot verified.** Hotspawn read **2026-10-15T23:24:52Z** (mode `live`).
+Pinnacle read 2026-10-15 21:34Z (mode `previous_capture` — Pinnacle's guest API refused
+the GitHub Actions runner, so the last successful read was kept **with its original timestamp** and
+is dropped automatically once it passes the eight-hour freshness limit). bo3.gg read
+2026-10-15 23:24Z (mode `live`, 356 matches with a
+relayed bookmaker price). Polymarket read 2026-10-15 23:24Z (mode `live`,
+165 quotes). Valve Regional Standings **2026-10-05**
+([file](https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md)). HLTV world ranking read 2026-10-15 23:24Z
 ([page](https://www.hltv.org/ranking/teams)).
 
 **How to re-check any row.** Open the Hotspawn link (fixture identity, lock time, points), then each
@@ -19,14 +23,14 @@ Crowd percentages are ownership only and never enter a probability.
 
 ## 1. Coverage
 
-- Hotspawn payload: **88** CS2 listings — **22 open**,
-  5 locked, 61 stale (lock passed; not pickable).
+- Hotspawn payload: **86** CS2 listings — **22 open**,
+  3 locked, 61 stale (lock passed; not pickable).
 - Open fixtures with a pick: **22/22**
   (0 unresolved).
-- Independent estimates per open fixture: {'0': 0, '1': 3, '2': 12, '3': 7, '4': 0}.
-- Highest rung reached per open fixture: {'1': 6, '2': 1, '3': 15, '4': 0, '5': 0}
+- Independent estimates per open fixture: {'0': 0, '1': 3, '2': 5, '3': 9, '4': 5}.
+- Highest rung reached per open fixture: {'1': 6, '2': 8, '3': 8, '4': 0, '5': 0}
   (1 Pinnacle · 2 bookmaker line relayed by bo3.gg · 3 Polymarket · 4 our own line · 5 hand-read).
-- Leaderboard classes on the open slate: {'VALUE': 4, 'CONTRARIAN': 2, 'LONG SHOT': 4, 'CHALK': 11, 'SITUATIONAL': 1}.
+- Leaderboard classes on the open slate: {'VALUE': 4, 'CONTRARIAN': 2, 'LONG SHOT': 5, 'CHALK': 10, 'SITUATIONAL': 1}.
 - Single-source rows: **3** — JOGA DE TERNO v your end, Procyon v LOS NINOS, Infinite v Insiders.
 - Next lock: **2026-10-16T07:54:00Z**.
 
@@ -39,32 +43,32 @@ the mean of every rung that answered. Hotspawn's crowd percentage is never one o
 
 | Hotspawn | Match | Lock (UTC) | Tier/pts | Pick | Prob. A / B | Basis & sources | Our line (Valve pts) | HLTV | Crowd (ownership) | Plan | Flags |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| [1079586](https://play.hotspawn.com/lobby) | Ninjas in Pyjamas vs Team Liquid | 2026-10-16 07:54Z | B/3 | **Ninjas in Pyjamas** | 52.4% / 47.6% | Pinnacle | Polymarket | Our own line — [Pinnacle](https://www.pinnacle.com/en/esports/games/cs2/matchups/) · [Polymarket](https://polymarket.com/event/cs2-nip-tl1-2026-10-16) | 50.5% (1534 vs 1527, [Valve](https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md)) | [link](https://www.hltv.org/team/4411/ninjas-in-pyjamas) | 44% / 56% | VALUE → Ninjas in Pyjamas | ALIAS |
-| [1080285](https://play.hotspawn.com/lobby) | Voca vs Phantom | 2026-10-16 07:54Z | C/2 | **Phantom** | 47.4% / 52.6% | Polymarket | Our own line — [Polymarket](https://polymarket.com/event/cs2-voc-pha-2026-10-16) | 52.3% (1182 vs 1147, [Valve](https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md)) | [link](https://www.hltv.org/team/13499/voca) | 16% / 84% | CONTRARIAN → Voca |   |
-| [1080286](https://play.hotspawn.com/lobby) | HAVU vs RoundsGG | 2026-10-16 09:54Z | C/2 | **HAVU** | 78.2% / 21.8% | Pinnacle | Polymarket | Our own line — [Pinnacle](https://www.pinnacle.com/en/esports/games/cs2/matchups/) · [Polymarket](https://polymarket.com/event/cs2-havu-rgg-2026-10-16) | 73.7% (937 vs 548, [Valve](https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md)) | [link](https://www.hltv.org/team/7865/havu) | 94% / 6% | LONG SHOT → HAVU | ALIAS |
-| [1079630](https://play.hotspawn.com/lobby) | ex-RUSTEC vs Saint Sinners | 2026-10-16 10:54Z | B/3 | **ex-RUSTEC** | 55.7% / 44.3% | Polymarket | Our own line — [Polymarket](https://polymarket.com/event/cs2-rustec-ssins-2026-10-16) | 50.9% (824 vs 810, [Valve](https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md)) | [link](https://www.hltv.org/team/13901/ex-rustec) | 88% / 13% | CONTRARIAN → Saint Sinners |   |
-| [1080287](https://play.hotspawn.com/lobby) | Voca vs HAVU | 2026-10-16 11:54Z | C/2 | **Voca** | 65.7% / 34.3% | Pinnacle | Polymarket | Our own line — [Pinnacle](https://www.pinnacle.com/en/esports/games/cs2/matchups/) · [Polymarket](https://polymarket.com/event/cs2-voc-havu-2026-10-16) | 65.7% (1182 vs 937, [Valve](https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md)) | [link](https://www.hltv.org/team/13499/voca) | 86% / 14% | CHALK → Voca |   |
-| [1081498](https://play.hotspawn.com/lobby) | JOGA DE TERNO vs your end | 2026-10-16 12:54Z | C/2 | **your end** | 47.0% / 53.0% | Polymarket — [Polymarket](https://polymarket.com/event/cs2-jdt-youren-2026-10-16) | — (a team is missing from Valve's standings) | — | 71% / 29% | VALUE → your end | NO_VRS_TEAM, SINGLE_SOURCE |
+| [1079586](https://play.hotspawn.com/lobby) | Ninjas in Pyjamas vs Team Liquid | 2026-10-16 07:54Z | B/3 | **Ninjas in Pyjamas** | 52.4% / 47.6% | Pinnacle | thunderpick (via bo3.gg) | Polymarket | Our own line — [Pinnacle](https://www.pinnacle.com/en/esports/games/cs2/matchups/) · [bo3.gg](https://bo3.gg/matches/nip-vs-liquid-16-10-2026) · [Polymarket](https://polymarket.com/event/cs2-nip-tl1-2026-10-16) | 50.5% (1534 vs 1527, [Valve](https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md)) | [link](https://www.hltv.org/team/4411/ninjas-in-pyjamas) | 44% / 56% | VALUE → Ninjas in Pyjamas | ALIAS |
+| [1080285](https://play.hotspawn.com/lobby) | Voca vs Phantom | 2026-10-16 07:54Z | C/2 | **Phantom** | 47.1% / 52.9% | thunderpick (via bo3.gg) | Polymarket | Our own line — [bo3.gg](https://bo3.gg/matches/voca-vs-phantom-esports-16-10-2026) · [Polymarket](https://polymarket.com/event/cs2-voc-pha-2026-10-16) | 52.3% (1182 vs 1147, [Valve](https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md)) | [link](https://www.hltv.org/team/13499/voca) | 16% / 84% | CONTRARIAN → Voca |   |
+| [1080286](https://play.hotspawn.com/lobby) | HAVU vs RoundsGG | 2026-10-16 09:54Z | C/2 | **HAVU** | 78.0% / 22.0% | Pinnacle | thunderpick (via bo3.gg) | Polymarket | Our own line — [Pinnacle](https://www.pinnacle.com/en/esports/games/cs2/matchups/) · [bo3.gg](https://bo3.gg/matches/havu-vs-roundsgg-16-10-2026) · [Polymarket](https://polymarket.com/event/cs2-havu-rgg-2026-10-16) | 73.7% (937 vs 548, [Valve](https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md)) | [link](https://www.hltv.org/team/7865/havu) | 94% / 6% | LONG SHOT → HAVU | ALIAS |
+| [1079630](https://play.hotspawn.com/lobby) | ex-RUSTEC vs Saint Sinners | 2026-10-16 10:54Z | B/3 | **ex-RUSTEC** | 51.7% / 48.3% | Polymarket | Our own line — [Polymarket](https://polymarket.com/event/cs2-rustec-ssins-2026-10-16) | 50.9% (824 vs 810, [Valve](https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md)) | [link](https://www.hltv.org/team/13901/ex-rustec) | 88% / 13% | CONTRARIAN → Saint Sinners |   |
+| [1080287](https://play.hotspawn.com/lobby) | Voca vs HAVU | 2026-10-16 11:54Z | C/2 | **Voca** | 65.4% / 34.6% | Pinnacle | thunderpick (via bo3.gg) | Polymarket | Our own line — [Pinnacle](https://www.pinnacle.com/en/esports/games/cs2/matchups/) · [bo3.gg](https://bo3.gg/matches/voca-vs-havu-16-10-2026) · [Polymarket](https://polymarket.com/event/cs2-voc-havu-2026-10-16) | 65.7% (1182 vs 937, [Valve](https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md)) | [link](https://www.hltv.org/team/13499/voca) | 86% / 14% | CHALK → Voca |   |
+| [1081498](https://play.hotspawn.com/lobby) | JOGA DE TERNO vs your end | 2026-10-16 12:54Z | C/2 | **your end** | 48.0% / 52.0% | Polymarket — [Polymarket](https://polymarket.com/event/cs2-jdt-youren-2026-10-16) | — (a team is missing from Valve's standings) | — | 71% / 29% | VALUE → your end | NO_VRS_TEAM, SINGLE_SOURCE |
 | [1079631](https://play.hotspawn.com/lobby) | FORZE Reload vs Lavked | 2026-10-16 13:54Z | B/3 | **FORZE Reload** | 73.5% / 26.5% | Pinnacle | Polymarket | Our own line — [Pinnacle](https://www.pinnacle.com/en/esports/games/cs2/matchups/) · [Polymarket](https://polymarket.com/event/cs2-forzer-lavked-2026-10-16) | 65.2% (1100 vs 862, [Valve](https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md)) | [link](https://www.hltv.org/team/12857/forze-reload) | 86% / 14% | CHALK → FORZE Reload |   |
-| [1080205](https://play.hotspawn.com/lobby) | Aurora vs 9z | 2026-10-16 13:54Z | S/7 | **Aurora** | 65.1% / 34.9% | Polymarket | Thunderpick (bookmaker), price relayed by bo3.gg | Our own line — [Polymarket](https://polymarket.com/event/cs2-aur1-9z-2026-10-16) | 61.3% (1716 vs 1543, [Valve](https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md)) | [link](https://www.hltv.org/team/11861/aurora) | 89% / 11% | SITUATIONAL → 9z | ALIAS, MANUAL_READ |
-| [1080288](https://play.hotspawn.com/lobby) | Phantom vs RoundsGG | 2026-10-16 13:54Z | C/2 | **Phantom** | 86.2% / 13.8% | Polymarket | Our own line — [Polymarket](https://polymarket.com/event/cs2-pha-rgg-2026-10-16) | 83.0% (1147 vs 548, [Valve](https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md)) | [link](https://www.hltv.org/team/13173/phantom) | 97% / 3% | CHALK → Phantom | ALIAS |
-| [1081120](https://play.hotspawn.com/lobby) | mellren vs Privateer | 2026-10-16 13:54Z | C/2 | **mellren** | 80.4% / 19.6% | Polymarket | Our own line — [Polymarket](https://polymarket.com/event/cs2-mellre-pg5-2026-10-16) | 70.2% (932 vs 608, [Valve](https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md)) | [link](https://www.hltv.org/team/13759/mellren) | 95% / 5% | CHALK → mellren |   |
-| [1080289](https://play.hotspawn.com/lobby) | RoundsGG vs Voca | 2026-10-16 15:54Z | C/2 | **Voca** | 15.1% / 84.9% | Pinnacle | Polymarket | Our own line — [Pinnacle](https://www.pinnacle.com/en/esports/games/cs2/matchups/) · [Polymarket](https://polymarket.com/event/cs2-voc-rgg-2026-10-16) | 15.7% (548 vs 1182, [Valve](https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md)) | [link](https://www.hltv.org/team/12457/rounds) | 5% / 95% | CHALK → Voca | ALIAS |
+| [1080205](https://play.hotspawn.com/lobby) | Aurora vs 9z | 2026-10-16 13:54Z | S/7 | **Aurora** | 65.5% / 34.5% | thunderpick (via bo3.gg) | Polymarket | Our own line — [bo3.gg](https://bo3.gg/matches/aurora-gaming-vs-9z-16-10-2026) · [Polymarket](https://polymarket.com/event/cs2-aur1-9z-2026-10-16) | 61.3% (1716 vs 1543, [Valve](https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md)) | [link](https://www.hltv.org/team/11861/aurora) | 89% / 11% | SITUATIONAL → 9z | ALIAS |
+| [1080288](https://play.hotspawn.com/lobby) | Phantom vs RoundsGG | 2026-10-16 13:54Z | C/2 | **Phantom** | 86.0% / 14.0% | thunderpick (via bo3.gg) | Polymarket | Our own line — [bo3.gg](https://bo3.gg/matches/phantom-esports-vs-roundsgg-16-10-2026) · [Polymarket](https://polymarket.com/event/cs2-pha-rgg-2026-10-16) | 83.0% (1147 vs 548, [Valve](https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md)) | [link](https://www.hltv.org/team/13173/phantom) | 97% / 3% | CHALK → Phantom | ALIAS |
+| [1081120](https://play.hotspawn.com/lobby) | mellren vs Privateer | 2026-10-16 13:54Z | C/2 | **mellren** | 73.1% / 26.9% | Polymarket | Our own line — [Polymarket](https://polymarket.com/event/cs2-mellre-pg5-2026-10-16) | 70.2% (932 vs 608, [Valve](https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md)) | [link](https://www.hltv.org/team/13759/mellren) | 95% / 5% | LONG SHOT → mellren |   |
+| [1080289](https://play.hotspawn.com/lobby) | RoundsGG vs Voca | 2026-10-16 15:54Z | C/2 | **Voca** | 15.0% / 85.0% | Pinnacle | thunderpick (via bo3.gg) | Polymarket | Our own line — [Pinnacle](https://www.pinnacle.com/en/esports/games/cs2/matchups/) · [bo3.gg](https://bo3.gg/matches/voca-vs-roundsgg-16-10-2026) · [Polymarket](https://polymarket.com/event/cs2-voc-rgg-2026-10-16) | 15.7% (548 vs 1182, [Valve](https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md)) | [link](https://www.hltv.org/team/12457/rounds) | 5% / 95% | CHALK → Voca | ALIAS |
 | [1081502](https://play.hotspawn.com/lobby) | Procyon vs LOS NINOS | 2026-10-16 15:54Z | C/2 | **Procyon** | 65.0% / 35.0% | Polymarket — [Polymarket](https://polymarket.com/event/cs2-pcy-ln-2026-10-16) | — (a team is missing from Valve's standings) | [link](https://www.hltv.org/team/10997/procyon) | 86% / 14% | CHALK → Procyon | NO_VRS_TEAM, SINGLE_SOURCE |
-| [1079589](https://play.hotspawn.com/lobby) | 100 Thieves vs Sangal | 2026-10-16 16:54Z | B/3 | **100 Thieves** | 63.2% / 36.8% | Pinnacle | Polymarket | Our own line — [Pinnacle](https://www.pinnacle.com/en/esports/games/cs2/matchups/) · [Polymarket](https://polymarket.com/event/cs2-100t-sng2-2026-10-16) | 57.6% (1478 vs 1362, [Valve](https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md)) | [link](https://www.hltv.org/team/8474/100-thieves) | 88% / 13% | CHALK → 100 Thieves |   |
-| [1079632](https://play.hotspawn.com/lobby) | BakS vs G2 Ares | 2026-10-16 16:54Z | B/3 | **BakS** | 64.8% / 35.2% | Polymarket | Our own line — [Polymarket](https://polymarket.com/event/cs2-baks-g2a-2026-10-16) | 58.6% (1044 vs 913, [Valve](https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md)) | [link](https://www.hltv.org/team/11699/baks) | 50% / 50% | CHALK → BakS |   |
-| [1080290](https://play.hotspawn.com/lobby) | Phantom vs HAVU | 2026-10-16 17:54Z | C/2 | **Phantom** | 67.3% / 32.7% | Polymarket | Our own line — [Polymarket](https://polymarket.com/event/cs2-pha-havu-2026-10-16) | 63.5% (1147 vs 937, [Valve](https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md)) | [link](https://www.hltv.org/team/13173/phantom) | 98% / 2% | LONG SHOT → Phantom |   |
+| [1079589](https://play.hotspawn.com/lobby) | 100 Thieves vs Sangal | 2026-10-16 16:54Z | B/3 | **100 Thieves** | 63.9% / 36.1% | Pinnacle | thunderpick (via bo3.gg) | Polymarket | Our own line — [Pinnacle](https://www.pinnacle.com/en/esports/games/cs2/matchups/) · [bo3.gg](https://bo3.gg/matches/100-thieves-vs-sangal-16-10-2026) · [Polymarket](https://polymarket.com/event/cs2-100t-sng2-2026-10-16) | 57.6% (1478 vs 1362, [Valve](https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md)) | [link](https://www.hltv.org/team/8474/100-thieves) | 88% / 13% | CHALK → 100 Thieves |   |
+| [1079632](https://play.hotspawn.com/lobby) | BakS vs G2 Ares | 2026-10-16 16:54Z | B/3 | **BakS** | 63.5% / 36.5% | Polymarket | Our own line — [Polymarket](https://polymarket.com/event/cs2-baks-g2a-2026-10-16) | 58.6% (1044 vs 913, [Valve](https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md)) | [link](https://www.hltv.org/team/11699/baks) | 50% / 50% | CHALK → BakS |   |
+| [1080290](https://play.hotspawn.com/lobby) | Phantom vs HAVU | 2026-10-16 17:54Z | C/2 | **Phantom** | 68.2% / 31.8% | thunderpick (via bo3.gg) | Polymarket | Our own line — [bo3.gg](https://bo3.gg/matches/phantom-esports-vs-havu-16-10-2026) · [Polymarket](https://polymarket.com/event/cs2-pha-havu-2026-10-16) | 63.5% (1147 vs 937, [Valve](https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md)) | [link](https://www.hltv.org/team/13173/phantom) | 98% / 2% | LONG SHOT → Phantom |   |
 | [1081526](https://play.hotspawn.com/lobby) | Infinite vs Insiders | 2026-10-19 08:54Z | B/3 | **Infinite** | 69.0% / 31.0% | Polymarket — [Polymarket](https://polymarket.com/event/cs2-inf6-ins-2026-10-19) | — (a team is missing from Valve's standings) | [link](https://www.hltv.org/team/10823/infinite) | 100% / 0% | LONG SHOT → Infinite | NO_VRS_TEAM, SINGLE_SOURCE |
-| [1081527](https://play.hotspawn.com/lobby) | aimclub vs BASEMENT BOYS | 2026-10-19 08:54Z | B/3 | **BASEMENT BOYS** | 34.6% / 65.4% | Polymarket | Our own line — [Polymarket](https://polymarket.com/event/cs2-aim1-bmb-2026-10-19) | 19.7% (504 vs 1036, [Valve](https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md)) | [link](https://www.hltv.org/team/6810/aimclub) | 75% / 25% | VALUE → BASEMENT BOYS |   |
+| [1081527](https://play.hotspawn.com/lobby) | aimclub vs BASEMENT BOYS | 2026-10-19 08:54Z | B/3 | **BASEMENT BOYS** | 38.2% / 61.8% | bookmaker (via bo3.gg) | Polymarket | Our own line — [bo3.gg](https://bo3.gg/matches/aimclub-vs-basement-boys-19-10-2026) · [Polymarket](https://polymarket.com/event/cs2-aim1-bmb-2026-10-19) | 19.7% (504 vs 1036, [Valve](https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md)) | [link](https://www.hltv.org/team/6810/aimclub) | 75% / 25% | VALUE → BASEMENT BOYS |   |
 | [1081528](https://play.hotspawn.com/lobby) | BC.Game vs Drama | 2026-10-19 08:54Z | B/3 | **BC.Game** | 76.4% / 23.6% | Polymarket | Our own line — [Polymarket](https://polymarket.com/event/cs2-bcg-drama-2026-10-19) | 77.8% (1318 vs 845, [Valve](https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md)) | [link](https://www.hltv.org/team/12878/bcgame) | 100% / 0% | LONG SHOT → BC.Game | ALIAS |
-| [1081529](https://play.hotspawn.com/lobby) | Nexus vs WROTBERRY | 2026-10-19 08:54Z | B/3 | **WROTBERRY** | 43.7% / 56.3% | Polymarket | Our own line — [Polymarket](https://polymarket.com/event/cs2-wbt-nxs1-2026-10-19) | 37.5% (1008 vs 1201, [Valve](https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md)) | [link](https://www.hltv.org/team/7187/nexus) | 75% / 25% | VALUE → WROTBERRY | ALIAS |
-| [1081530](https://play.hotspawn.com/lobby) | Iberian Soul vs HyperSpirit | 2026-10-19 10:39Z | B/3 | **Iberian Soul** | 69.7% / 30.3% | Polymarket | Our own line — [Polymarket](https://polymarket.com/event/cs2-is-hs2-2026-10-19) | 75.0% (1218 vs 803, [Valve](https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md)) | [link](https://www.hltv.org/team/13104/iberian-soul) | 75% / 25% | CHALK → Iberian Soul |   |
-| [1081531](https://play.hotspawn.com/lobby) | Sashi vs mouz NXT | 2026-10-19 10:39Z | B/3 | **Sashi** | 74.7% / 25.3% | Polymarket | Our own line — [Polymarket](https://polymarket.com/event/cs2-sashi-mouzn-2026-10-19) | 82.9% (1131 vs 534, [Valve](https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md)) | — | 75% / 25% | CHALK → Sashi |   |
+| [1081529](https://play.hotspawn.com/lobby) | Nexus vs WROTBERRY | 2026-10-19 08:54Z | B/3 | **WROTBERRY** | 44.6% / 55.4% | thunderpick (via bo3.gg) | Polymarket | Our own line — [bo3.gg](https://bo3.gg/matches/wbt-vs-nexus-19-10-2026) · [Polymarket](https://polymarket.com/event/cs2-wbt-nxs1-2026-10-19) | 37.5% (1008 vs 1201, [Valve](https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md)) | [link](https://www.hltv.org/team/7187/nexus) | 75% / 25% | VALUE → WROTBERRY | ALIAS |
+| [1081530](https://play.hotspawn.com/lobby) | Iberian Soul vs HyperSpirit | 2026-10-19 10:39Z | B/3 | **Iberian Soul** | 69.3% / 30.7% | thunderpick (via bo3.gg) | Polymarket | Our own line — [bo3.gg](https://bo3.gg/matches/iberian-soul-vs-hyperspirit-19-10-2026) · [Polymarket](https://polymarket.com/event/cs2-is-hs2-2026-10-19) | 75.0% (1218 vs 803, [Valve](https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md)) | [link](https://www.hltv.org/team/13104/iberian-soul) | 75% / 25% | CHALK → Iberian Soul |   |
+| [1081531](https://play.hotspawn.com/lobby) | Sashi vs mouz NXT | 2026-10-19 10:39Z | B/3 | **Sashi** | 70.2% / 29.8% | thunderpick (via bo3.gg) | Polymarket | Our own line — [bo3.gg](https://bo3.gg/matches/sashi-esport-vs-mouz-nxt-19-10-2026) · [Polymarket](https://polymarket.com/event/cs2-sashi-mouzn-2026-10-19) | 82.9% (1131 vs 534, [Valve](https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md)) | — | 75% / 25% | CHALK → Sashi |   |
 | [1081532](https://play.hotspawn.com/lobby) | ASTRAL vs Leo | 2026-10-19 10:39Z | B/3 | **ASTRAL** | 65.8% / 34.2% | Polymarket | Our own line — [Polymarket](https://polymarket.com/event/cs2-ast-leo2-2026-10-19) | 82.0% (1072 vs 499, [Valve](https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md)) | [link](https://www.hltv.org/team/13333/astral) | 50% / 50% | CHALK → ASTRAL |   |
 
-Read times: Pinnacle 2026-10-15 21:34Z, Polymarket 2026-10-15 21:34Z,
-Valve 2026-10-05, HLTV 2026-10-15 21:34Z. A source link is not proof of a current price —
-always check the read time.
+Read times: Pinnacle 2026-10-15 21:34Z, bo3.gg 2026-10-15 23:24Z,
+Polymarket 2026-10-15 23:24Z, Valve 2026-10-05, HLTV 2026-10-15 23:24Z. A source
+link is not proof of a current price — always check the read time.
 
 ## 3. Thunderpick World Championship 2026 — days 1 and 2 graded, day 3 called
 
@@ -72,10 +76,10 @@ always check the read time.
 
 | Match | Result (HLTV) | Maps | Our pick before lock | Crowd (ownership) | Leaderboard play | Verdict |
 |---|---|---|---|---|---|---|
-| [9z vs Aurora](https://www.hltv.org/matches/2399384/9z-vs-aurora-thunderpick-world-championship-2026) | **9z** 2-0 | Inferno 13-11, Nuke 13-1 | **Aurora** (73.0%) | 5% / 95% | 9z () | play won; pick lost |
-| [Falcons vs Ninjas in Pyjamas](https://www.hltv.org/matches/2399385/falcons-vs-ninjas-in-pyjamas-thunderpick-world-championship-2026) | **Falcons** 2-0 | Ancient 16-13 (OT), Dust2 13-6 | **Falcons** (82.0%) | 90% / 10% | Falcons () | play won; pick won |
-| [Legacy vs PARIVISION](https://www.hltv.org/matches/2399386/legacy-vs-parivision-thunderpick-world-championship-2026) | **Legacy** 2-0 | Dust2 13-11, Mirage 16-14 (OT) | **Legacy** (64.0%) | 75% / 25% | Legacy () | play won; pick won |
-| [FURIA vs BETBOOM](https://www.hltv.org/matches/2399387/furia-vs-betboom-thunderpick-world-championship-2026) | **FURIA** 2-0 | Ancient 13-10, Mirage 13-9 | **FURIA** (72.0%) | 90% / 10% | FURIA () | play won; pick won |
+| [9z vs Aurora](https://www.hltv.org/matches/2399384/9z-vs-aurora-thunderpick-world-championship-2026) | **9z** 2-0 | Inferno 13-11, Nuke 13-1 | **Aurora** (73.0%)<br>*see provenance note* | 5% / 95% | 9z (SITUATIONAL) | play won; pick lost |
+| [Falcons vs Ninjas in Pyjamas](https://www.hltv.org/matches/2399385/falcons-vs-ninjas-in-pyjamas-thunderpick-world-championship-2026) | **Falcons** 2-0 | Ancient 16-13 (OT), Dust2 13-6 | **Falcons** (82.0%)<br>*see provenance note* | 90% / 10% | Falcons (LONG SHOT) | play won; pick won |
+| [Legacy vs PARIVISION](https://www.hltv.org/matches/2399386/legacy-vs-parivision-thunderpick-world-championship-2026) | **Legacy** 2-0 | Dust2 13-11, Mirage 16-14 (OT) | **Legacy** (64.0%)<br>*see provenance note* | 75% / 25% | Legacy (CHALK) | play won; pick won |
+| [FURIA vs BETBOOM](https://www.hltv.org/matches/2399387/furia-vs-betboom-thunderpick-world-championship-2026) | **FURIA** 2-0 | Ancient 13-10, Mirage 13-9 | **FURIA** (72.0%)<br>*see provenance note* | 90% / 10% | FURIA (LONG SHOT) | play won; pick won |
 
 ### Day 2 · 2026-10-15 · Winners' and elimination matches
 
@@ -107,11 +111,12 @@ headline mixes that with a retrospective. Seven graded matches is far too few to
 which is why rule v3 keeps v2's thresholds and only changes how the underdog's chance is *measured*.
 
 **The day-3 call.** Aurora vs 9z is the only Thunderpick fixture Hotspawn still lists for 16 Oct
-(id `1080205`, 7 points, lock 2026-10-16 13:54Z). Our published number is **65% / 35%** from three
-rungs — Polymarket 68.5/31.5, the Thunderpick book line relayed by bo3.gg at 1.42/2.70, our own
-Valve line 61.3/38.7 — class SITUATIONAL, **leaderboard play 9z**: 9z is a 35% chance against 11%
-ownership and a verified roster factor counts against Aurora. Taking 9z instead of Aurora gives up
-about 2.1 points of expectation on our own numbers; it pays only if 9z is better than 35%.
+(id `1080205`, 7 points, lock 2026-10-16 13:54Z). Our published number is **65.5% / 34.5%** from
+three rungs — the Thunderpick book line relayed by bo3.gg at 1.42/2.70 (66.2%), Polymarket
+68.5/31.5, our own Valve line 61.3/38.7 — class SITUATIONAL, **leaderboard play 9z**: 9z is a 34.5%
+chance against 11% ownership and a verified roster factor counts against Aurora. Taking 9z instead of
+Aurora gives up about 2.2 points of expectation on our own numbers; it pays only if 9z is better than
+34.5%.
 
 **Why 9z is not a silly play.** On day 2, 9z lost 1-2 to Falcons but took Falcons' own Mirage pick
 13-8 and lost the other two maps 9-13 — a competitive series against the group winner, not a
@@ -148,15 +153,17 @@ Never aliased on purpose: Hotspawn's `ASTRAL` is **not** Astralis, and `Phantom`
 Academy. The matcher requires both team names plus a kickoff inside six hours before any outside
 price is joined to a fixture.
 
-## 6. Hand-verified prices (no automated source priced these)
+## 6. Hand-verified prices
 
-| Match | Source | Odds A / B | Read (UTC) | Page | Note |
-|---|---|---|---|---|---|
-| Aurora vs 9z | Thunderpick (bookmaker), price relayed by bo3.gg | 1.42 / 2.7 | 2026-10-15T22:55:00Z | [link](https://bo3.gg/matches/aurora-gaming-vs-9z-16-10-2026) | Two-way moneyline shown on the match page ('view all markets: 1 1.42 / 2 2.70'). The page's bet link goes to Thunderpick, and bo3.gg's API names the provider in bet_updates.provider. Also cross-checked on the same page: Aurora to win at least one map 1.13, 9z +1.5 maps 1.50. |
-| BETBOOM vs Legacy | Thunderpick (bookmaker), price relayed by bo3.gg | 2.5 / 1.48 | 2026-10-15T22:55:00Z | [link](https://bo3.gg/matches/legacy-br-vs-betboom-team-16-10-2026) | Group B decider. Stated here for context only: Hotspawn does not list this match, so no pick'em pick is made for it and it is not counted in the board's coverage numbers. |
+| Match | Source | Odds A / B | Read (UTC) | Status | Page | Note |
+|---|---|---|---|---|---|---|
+| Aurora vs 9z | Thunderpick (bookmaker), price relayed by bo3.gg | 1.42 / 2.7 | 2026-10-15T22:55:00Z | superseded | [link](https://bo3.gg/matches/aurora-gaming-vs-9z-16-10-2026) | Kept as the cross-check that validated the automated bo3.gg reader: the automated read now returns the same 1.42 / 2.70 from the same provider, so the hand read is no longer merged into the average (it would count one bookmaker twice). |
+| BETBOOM vs Legacy | Thunderpick (bookmaker), price relayed by bo3.gg | 2.5 / 1.48 | 2026-10-15T22:55:00Z | merged into the average | [link](https://bo3.gg/matches/legacy-br-vs-betboom-team-16-10-2026) | Group B decider. Stated here for context only: Hotspawn does not list this match, so no pick'em pick is made for it and it is not counted in the board's coverage numbers. |
 
-Each is tagged `MANUAL_READ` and carries the exact page, provider and read time. It is dropped from
-the average once it is more than eight hours old, like any other price.
+Each carries the exact page, provider and read time. The Aurora v 9z read is marked **superseded**:
+once bo3.gg's automated reader returned the same 1.42 / 2.70 from the same provider, merging both
+would have counted one bookmaker twice, so the hand read now serves only as the cross-check that
+validated the automated reader. `tests.py::test_no_single_provider_is_counted_twice` enforces this.
 
 ## 7. Irregularities found (published on the Flagged page rather than silently fixed)
 
@@ -166,9 +173,10 @@ the average once it is more than eight hours old, like any other price.
    BETBOOM v Legacy (16 Oct, Group B decider) are on
    [HLTV](https://www.hltv.org/results?event=8932) but have no row in any capture this repository
    holds, so there is no pick'em pick to make for them.
-3. **Settled fixtures vanish from the payload.** 9z v Falcons and PARIVISION v BetBoom were captured
-   before lock on 15 Oct and are gone from the 21:34 UTC capture. Grading therefore depends on
-   HLTV, not on Hotspawn; the pre-lock numbers survive in `hotspawn/data/pick_history.json`.
+3. **Settled fixtures vanish from the payload.** Hotspawn's live payload held 86
+   fixtures on the second read of the day versus 88 on the first — two rows had already been dropped.
+   Grading therefore depends on HLTV, not on Hotspawn; the pre-lock numbers survive in
+   `hotspawn/data/pick_history.json`.
 4. **One fixture has an unnamed opponent.** Hotspawn lists `1079628` Gothic v *LFO 10*. The
    counterpart book page names only a line-up (Jackinho, Sapec, dottie, flaw, tvs) and never a team,
    so the identity is flagged rather than asserted.
@@ -177,9 +185,12 @@ the average once it is more than eight hours old, like any other price.
    `VRS_ROSTER_OUTDATED` and the own line is dropped when the change is under 60 days old.
 6. **Prediction markets are not bookmakers.** Polymarket prices are labelled as market opinion
    everywhere and averaged with bookmaker prices rather than substituted for them.
-7. **Relayed bookmaker prices.** bo3.gg and EGamersWorld name the provider but link through an
-   affiliate redirect, so these rungs are published with the provider and the exact page rather than
-   passed off as a direct book read.
+7. **Relayed bookmaker prices.** bo3.gg names the provider (e.g. `thunderpick`) and links the match
+   page; the bet link behind it is an affiliate redirect. These rungs are published with the provider
+   and the exact page rather than passed off as a direct book read.
+8. **Pinnacle refused the runner.** The scheduled GitHub Actions run could not read Pinnacle's guest
+   API, so rung 1 kept its previous capture with the original read time instead of being relabelled
+   as fresh.
 
 ## 8. State of the repository when this session started
 
@@ -195,22 +206,16 @@ the average once it is more than eight hours old, like any other price.
   places because they read at different times with different ladders. All are linked from the
   landing page; none was deleted or overwritten by this session.
 
-## 9. Known gaps in this session's board
+## 9. Known gaps
 
-- `a6f05f99/collect.py` **has been executed end to end** and does not crash, but this sandbox can
-  only reach `github.com` and `api.github.com`, so Hotspawn, Pinnacle, bo3.gg, Polymarket and HLTV
-  could not be read live here. What that run *did* verify: every one of those five sources fell back
-  to its previous capture **with the original read time** rather than being relabelled as fresh, the
-  run still exited 0, and the board rebuilt unchanged afterwards. What it did **not** verify: the
-  request parameters for Hotspawn, Pinnacle, bo3.gg and Polymarket, which are copied from other
-  sessions' collectors. The first scheduled GitHub Actions run exercises them.
-- One real defect was found and fixed by that exercise: `collect_vrs` listed `/contents/live`, which
-  returns *directories* (`2024`, `2025`, `2026`) rather than files, so the regular expression for
-  `standings_global_*.md` could never match and the live Valve read could never succeed. It now lists
-  `/contents/live/<year>` for the current and previous year. Re-run and confirmed:
-  `standings_global_2026_10_05.md @ eec4853d7b`, 380 teams, mode `live`.
-- The `bo3.gg` rung in today's board therefore comes from a hand-verified price
-  (`research/manual_lines.json`) rather than an automated read.
+- **Pinnacle (rung 1) has never been read by this session's collector.** Every attempt — from this
+  sandbox and from GitHub Actions — kept the previous capture. Its request parameters are inherited
+  from other sessions' collectors and remain unverified against a live response. Six open fixtures
+  still lean on that inherited read, which ages out after eight hours.
+- Two defects were found and fixed by exercising the collector: `collect_vrs` listed
+  `/contents/live`, which returns *directories* not files, so the live Valve read could never
+  succeed (now lists `/contents/live/<year>`); and `to_csv_rows` hard-coded an empty `bo3_url`, so
+  the bo3.gg source link never reached the CSV or the pages.
 - No headless-browser check of the phone layout ran in CI. The pages are single-column with a
   viewport meta tag and 44 px tap targets, and `a6f05f99/tests.py` asserts the viewport tag and that
   every internal link resolves, but a real device render has not been captured.

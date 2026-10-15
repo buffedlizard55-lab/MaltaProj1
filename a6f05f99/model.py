@@ -216,7 +216,12 @@ def estimates_for(fx: dict, capture: dict, aliases: Aliases, flags: list,
             if alias:
                 flags.append("ALIAS")
 
+    # A hand read is a stand-in for an automated read of the same source. Once the collector reads
+    # that source itself, using both would count one bookmaker twice and skew the consensus.
+    answered_rungs = {e["rung"] for e in out}
     for entry in MANUAL.get("entries", []):
+        if entry.get("skip_if_rung") and entry["skip_if_rung"] in answered_rungs:
+            continue
         if aliases.key(entry.get("team_a")) == aliases.key(fx["team_a"]) and \
                 aliases.key(entry.get("team_b")) == aliases.key(fx["team_b"]):
             pair = devig_two_way(entry.get("odds_a"), entry.get("odds_b")) or \
@@ -476,7 +481,8 @@ def to_csv_rows(board: dict) -> list[dict]:
             "leaderboard_play": (r.get("strategy") or {}).get("play", ""),
             "flags": ";".join(r.get("flags", [])),
             "hotspawn_url": r.get("hotspawn_match_url") or "https://play.hotspawn.com/lobby",
-            "hltv_url": r.get("hltv_url_a") or "", "bo3_url": "",
+            "hltv_url": r.get("hltv_url_a") or "",
+            "bo3_url": next((e["url"] for e in ests if e["rung"] == "2" and e.get("url")), ""),
             "pinnacle_url": next((e["url"] for e in ests if e["rung"] == "1"), ""),
             "polymarket_url": next((e["url"] for e in ests if e["rung"] == "3"), ""),
             "vrs_url": next((e["url"] for e in ests if e["rung"] == "4"), ""),
