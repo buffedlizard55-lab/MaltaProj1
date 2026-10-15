@@ -1,51 +1,51 @@
 {
- "generated_utc": "2026-10-15T08:26:05Z",
- "capture_utc": "2026-10-14T23:22:17Z",
+ "generated_utc": "2026-10-15T08:29:02Z",
+ "capture_utc": "2026-10-15T08:27:04Z",
  "coverage": {
-  "total_fixtures": 76,
-  "open_fixtures": 14,
-  "locked_fixtures": 62,
+  "total_fixtures": 80,
+  "open_fixtures": 17,
+  "locked_fixtures": 63,
   "stale_fixtures": 59,
-  "open_with_pick": 11,
-  "open_market_basis": 10,
+  "open_with_pick": 12,
+  "open_market_basis": 11,
   "open_model_basis": 1,
   "open_provisional": 0,
-  "open_no_pick": 3,
-  "flagged_rows": 76,
-  "unique_teams": 89,
-  "teams_resolved_official": 59,
+  "open_no_pick": 5,
+  "flagged_rows": 80,
+  "unique_teams": 97,
+  "teams_resolved_official": 67,
   "open_research_basis": 0,
-  "open_own_line": 9,
-  "fixtures_with_stated_format": 11,
-  "own_line_scale": 262.0,
+  "open_own_line": 10,
+  "fixtures_with_stated_format": 12,
+  "own_line_scale": 214.0,
   "own_line_scale_fitted": true,
-  "own_line_calibration_n": 8,
-  "own_line_calibration_mae_pp": 8.355,
+  "own_line_calibration_n": 10,
+  "own_line_calibration_mae_pp": 8.401,
   "hltv_ranking_teams": 245,
   "hltv_ranking_date": "2026-10-12"
  },
  "meta": {
   "slate_health": {
-   "mode": "previous_capture",
-   "fetched_utc": "2026-10-14T23:22:17Z",
-   "age_hours": 9.063,
-   "complete_live_read": false,
-   "current": false,
+   "mode": "live",
+   "fetched_utc": "2026-10-15T08:27:04Z",
+   "age_hours": 0.033,
+   "complete_live_read": true,
+   "current": true,
    "identity_conflicts": [],
-   "limitation": "Current full coverage is unverified: both lobby and CS2 source reads must succeed with no identity conflict. Saved fixtures remain visible with their original timestamp."
+   "limitation": ""
   },
-  "generated_utc": "2026-10-15T08:26:05Z",
-  "capture_utc": "2026-10-14T23:22:17Z",
-  "snapshot_age_text": "Snapshot is 9.1 h old",
-  "hotspawn_read_text": "2026-10-14T23:22Z (previous_capture)",
-  "market_read_text": "live read 2026-10-15T05:02 (13 CS2 quotes)",
+  "generated_utc": "2026-10-15T08:29:02Z",
+  "capture_utc": "2026-10-15T08:27:04Z",
+  "snapshot_age_text": "Snapshot is 0.0 h old",
+  "hotspawn_read_text": "2026-10-15T08:27Z (live)",
+  "market_read_text": "live read 2026-10-15T08:27 (14 CS2 quotes)",
   "vrs_read_text": "official standings 2026-10-05 · HLTV ranking 2026-10-12",
   "own_line": {
    "calibration": {
-    "scale": 262.0,
+    "scale": 214.0,
     "fitted": true,
-    "n": 8,
-    "mae_pp": 8.355,
+    "n": 10,
+    "mae_pp": 8.401,
     "default_scale": 100.0,
     "reason": "grid search 5-400 rank positions per 90% favourite, minimum mean absolute error"
    },
@@ -57,7 +57,7 @@
    "min_samples": 4,
    "ratio_points": 400.0
   },
-  "stale": true
+  "stale": false
  },
  "fixtures": {
   "1052746": {
@@ -151,14 +151,13 @@
     "FL-NO-MARKET",
     "FL-NO-SOURCED-PICK",
     "FL-RANK-MISSING",
-    "FL-RATING-MISSING",
-    "FL-SLATE-UNVERIFIED"
+    "FL-RATING-MISSING"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T23:22:17Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
    "own": {
     "best_of": null,
-    "scale": 262.0,
+    "scale": 214.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -265,14 +264,13 @@
     "FL-LOCKED",
     "FL-NO-MARKET",
     "FL-NO-SOURCED-PICK",
-    "FL-RATING-MISSING",
-    "FL-SLATE-UNVERIFIED"
+    "FL-RATING-MISSING"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T23:22:17Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
    "own": {
     "best_of": null,
-    "scale": 262.0,
+    "scale": 214.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -374,14 +372,13 @@
     "FL-NO-MARKET",
     "FL-NO-SOURCED-PICK",
     "FL-RANK-MISSING",
-    "FL-RATING-MISSING",
-    "FL-SLATE-UNVERIFIED"
+    "FL-RATING-MISSING"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T23:22:17Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
    "own": {
     "best_of": null,
-    "scale": 262.0,
+    "scale": 214.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -485,14 +482,13 @@
     "FL-NO-MARKET",
     "FL-NO-SOURCED-PICK",
     "FL-RANK-MISSING",
-    "FL-RATING-MISSING",
-    "FL-SLATE-UNVERIFIED"
+    "FL-RATING-MISSING"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T23:22:17Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
    "own": {
     "best_of": null,
-    "scale": 262.0,
+    "scale": 214.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -600,14 +596,13 @@
     "FL-NO-MARKET",
     "FL-NO-SOURCED-PICK",
     "FL-RANK-MISSING",
-    "FL-RATING-MISSING",
-    "FL-SLATE-UNVERIFIED"
+    "FL-RATING-MISSING"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T23:22:17Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
    "own": {
     "best_of": null,
-    "scale": 262.0,
+    "scale": 214.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -709,14 +704,13 @@
     "FL-NO-MARKET",
     "FL-NO-SOURCED-PICK",
     "FL-RANK-MISSING",
-    "FL-RATING-MISSING",
-    "FL-SLATE-UNVERIFIED"
+    "FL-RATING-MISSING"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T23:22:17Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
    "own": {
     "best_of": null,
-    "scale": 262.0,
+    "scale": 214.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -823,14 +817,13 @@
     "FL-LOCKED",
     "FL-NO-MARKET",
     "FL-NO-SOURCED-PICK",
-    "FL-RATING-MISSING",
-    "FL-SLATE-UNVERIFIED"
+    "FL-RATING-MISSING"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T23:22:17Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
    "own": {
     "best_of": null,
-    "scale": 262.0,
+    "scale": 214.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -938,14 +931,13 @@
     "FL-NO-MARKET",
     "FL-NO-SOURCED-PICK",
     "FL-RANK-MISSING",
-    "FL-RATING-MISSING",
-    "FL-SLATE-UNVERIFIED"
+    "FL-RATING-MISSING"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T23:22:17Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
    "own": {
     "best_of": null,
-    "scale": 262.0,
+    "scale": 214.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -1052,14 +1044,13 @@
     "FL-LOCKED",
     "FL-NO-MARKET",
     "FL-NO-SOURCED-PICK",
-    "FL-RATING-MISSING",
-    "FL-SLATE-UNVERIFIED"
+    "FL-RATING-MISSING"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T23:22:17Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
    "own": {
     "best_of": null,
-    "scale": 262.0,
+    "scale": 214.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -1167,14 +1158,13 @@
     "FL-NO-MARKET",
     "FL-NO-SOURCED-PICK",
     "FL-RANK-MISSING",
-    "FL-RATING-MISSING",
-    "FL-SLATE-UNVERIFIED"
+    "FL-RATING-MISSING"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T23:22:17Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
    "own": {
     "best_of": null,
-    "scale": 262.0,
+    "scale": 214.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -1276,14 +1266,13 @@
     "FL-NO-MARKET",
     "FL-NO-SOURCED-PICK",
     "FL-RANK-MISSING",
-    "FL-RATING-MISSING",
-    "FL-SLATE-UNVERIFIED"
+    "FL-RATING-MISSING"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T23:22:17Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
    "own": {
     "best_of": null,
-    "scale": 262.0,
+    "scale": 214.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -1385,14 +1374,13 @@
     "FL-NO-MARKET",
     "FL-NO-SOURCED-PICK",
     "FL-RANK-MISSING",
-    "FL-RATING-MISSING",
-    "FL-SLATE-UNVERIFIED"
+    "FL-RATING-MISSING"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T23:22:17Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
    "own": {
     "best_of": null,
-    "scale": 262.0,
+    "scale": 214.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -1499,14 +1487,13 @@
     "FL-LOCKED",
     "FL-NO-MARKET",
     "FL-NO-SOURCED-PICK",
-    "FL-RATING-MISSING",
-    "FL-SLATE-UNVERIFIED"
+    "FL-RATING-MISSING"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T23:22:17Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
    "own": {
     "best_of": null,
-    "scale": 262.0,
+    "scale": 214.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -1608,14 +1595,13 @@
     "FL-NO-MARKET",
     "FL-NO-SOURCED-PICK",
     "FL-RANK-MISSING",
-    "FL-RATING-MISSING",
-    "FL-SLATE-UNVERIFIED"
+    "FL-RATING-MISSING"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T23:22:17Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
    "own": {
     "best_of": null,
-    "scale": 262.0,
+    "scale": 214.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -1719,14 +1705,13 @@
     "FL-NO-MARKET",
     "FL-NO-SOURCED-PICK",
     "FL-RANK-MISSING",
-    "FL-RATING-MISSING",
-    "FL-SLATE-UNVERIFIED"
+    "FL-RATING-MISSING"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T23:22:17Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
    "own": {
     "best_of": null,
-    "scale": 262.0,
+    "scale": 214.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -1834,14 +1819,13 @@
     "FL-NO-MARKET",
     "FL-NO-SOURCED-PICK",
     "FL-RANK-MISSING",
-    "FL-RATING-MISSING",
-    "FL-SLATE-UNVERIFIED"
+    "FL-RATING-MISSING"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T23:22:17Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
    "own": {
     "best_of": null,
-    "scale": 262.0,
+    "scale": 214.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -1943,14 +1927,13 @@
     "FL-NO-MARKET",
     "FL-NO-SOURCED-PICK",
     "FL-RANK-MISSING",
-    "FL-RATING-MISSING",
-    "FL-SLATE-UNVERIFIED"
+    "FL-RATING-MISSING"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T23:22:17Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
    "own": {
     "best_of": null,
-    "scale": 262.0,
+    "scale": 214.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -2058,14 +2041,13 @@
     "FL-NO-MARKET",
     "FL-NO-SOURCED-PICK",
     "FL-RANK-MISSING",
-    "FL-RATING-MISSING",
-    "FL-SLATE-UNVERIFIED"
+    "FL-RATING-MISSING"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T23:22:17Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
    "own": {
     "best_of": null,
-    "scale": 262.0,
+    "scale": 214.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -2167,14 +2149,13 @@
     "FL-NO-MARKET",
     "FL-NO-SOURCED-PICK",
     "FL-RANK-MISSING",
-    "FL-RATING-MISSING",
-    "FL-SLATE-UNVERIFIED"
+    "FL-RATING-MISSING"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T23:22:17Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
    "own": {
     "best_of": null,
-    "scale": 262.0,
+    "scale": 214.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -2278,14 +2259,13 @@
     "FL-NO-MARKET",
     "FL-NO-SOURCED-PICK",
     "FL-RANK-MISSING",
-    "FL-RATING-MISSING",
-    "FL-SLATE-UNVERIFIED"
+    "FL-RATING-MISSING"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T23:22:17Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
    "own": {
     "best_of": null,
-    "scale": 262.0,
+    "scale": 214.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -2387,14 +2367,13 @@
     "FL-NO-MARKET",
     "FL-NO-SOURCED-PICK",
     "FL-RANK-MISSING",
-    "FL-RATING-MISSING",
-    "FL-SLATE-UNVERIFIED"
+    "FL-RATING-MISSING"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T23:22:17Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
    "own": {
     "best_of": null,
-    "scale": 262.0,
+    "scale": 214.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -2496,14 +2475,13 @@
     "FL-NO-MARKET",
     "FL-NO-SOURCED-PICK",
     "FL-RANK-MISSING",
-    "FL-RATING-MISSING",
-    "FL-SLATE-UNVERIFIED"
+    "FL-RATING-MISSING"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T23:22:17Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
    "own": {
     "best_of": null,
-    "scale": 262.0,
+    "scale": 214.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -2611,14 +2589,13 @@
     "FL-NO-MARKET",
     "FL-NO-SOURCED-PICK",
     "FL-RANK-MISSING",
-    "FL-RATING-MISSING",
-    "FL-SLATE-UNVERIFIED"
+    "FL-RATING-MISSING"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T23:22:17Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
    "own": {
     "best_of": null,
-    "scale": 262.0,
+    "scale": 214.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -2719,14 +2696,13 @@
     "FL-LOCKED",
     "FL-NO-MARKET",
     "FL-NO-SOURCED-PICK",
-    "FL-RATING-MISSING",
-    "FL-SLATE-UNVERIFIED"
+    "FL-RATING-MISSING"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T23:22:17Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
    "own": {
     "best_of": null,
-    "scale": 262.0,
+    "scale": 214.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -2828,14 +2804,13 @@
     "FL-NO-MARKET",
     "FL-NO-SOURCED-PICK",
     "FL-RANK-MISSING",
-    "FL-RATING-MISSING",
-    "FL-SLATE-UNVERIFIED"
+    "FL-RATING-MISSING"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T23:22:17Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
    "own": {
     "best_of": null,
-    "scale": 262.0,
+    "scale": 214.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -2943,14 +2918,13 @@
     "FL-NO-MARKET",
     "FL-NO-SOURCED-PICK",
     "FL-RANK-MISSING",
-    "FL-RATING-MISSING",
-    "FL-SLATE-UNVERIFIED"
+    "FL-RATING-MISSING"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T23:22:17Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
    "own": {
     "best_of": null,
-    "scale": 262.0,
+    "scale": 214.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -3052,14 +3026,13 @@
     "FL-NO-MARKET",
     "FL-NO-SOURCED-PICK",
     "FL-RANK-MISSING",
-    "FL-RATING-MISSING",
-    "FL-SLATE-UNVERIFIED"
+    "FL-RATING-MISSING"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T23:22:17Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
    "own": {
     "best_of": null,
-    "scale": 262.0,
+    "scale": 214.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -3161,14 +3134,13 @@
     "FL-NO-MARKET",
     "FL-NO-SOURCED-PICK",
     "FL-RANK-MISSING",
-    "FL-RATING-MISSING",
-    "FL-SLATE-UNVERIFIED"
+    "FL-RATING-MISSING"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T23:22:17Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
    "own": {
     "best_of": null,
-    "scale": 262.0,
+    "scale": 214.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -3276,14 +3248,13 @@
     "FL-NO-MARKET",
     "FL-NO-SOURCED-PICK",
     "FL-RANK-MISSING",
-    "FL-RATING-MISSING",
-    "FL-SLATE-UNVERIFIED"
+    "FL-RATING-MISSING"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T23:22:17Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
    "own": {
     "best_of": null,
-    "scale": 262.0,
+    "scale": 214.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -3391,14 +3362,13 @@
     "FL-NO-MARKET",
     "FL-NO-SOURCED-PICK",
     "FL-RANK-MISSING",
-    "FL-RATING-MISSING",
-    "FL-SLATE-UNVERIFIED"
+    "FL-RATING-MISSING"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T23:22:17Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
    "own": {
     "best_of": null,
-    "scale": 262.0,
+    "scale": 214.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -3500,14 +3470,13 @@
     "FL-NO-MARKET",
     "FL-NO-SOURCED-PICK",
     "FL-RANK-MISSING",
-    "FL-RATING-MISSING",
-    "FL-SLATE-UNVERIFIED"
+    "FL-RATING-MISSING"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T23:22:17Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
    "own": {
     "best_of": null,
-    "scale": 262.0,
+    "scale": 214.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -3615,14 +3584,13 @@
     "FL-LOCKED",
     "FL-NO-MARKET",
     "FL-NO-SOURCED-PICK",
-    "FL-RATING-MISSING",
-    "FL-SLATE-UNVERIFIED"
+    "FL-RATING-MISSING"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T23:22:17Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
    "own": {
     "best_of": null,
-    "scale": 262.0,
+    "scale": 214.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -3724,14 +3692,13 @@
     "FL-NO-MARKET",
     "FL-NO-SOURCED-PICK",
     "FL-RANK-MISSING",
-    "FL-RATING-MISSING",
-    "FL-SLATE-UNVERIFIED"
+    "FL-RATING-MISSING"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T23:22:17Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
    "own": {
     "best_of": null,
-    "scale": 262.0,
+    "scale": 214.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -3833,14 +3800,13 @@
     "FL-NO-MARKET",
     "FL-NO-SOURCED-PICK",
     "FL-RANK-MISSING",
-    "FL-RATING-MISSING",
-    "FL-SLATE-UNVERIFIED"
+    "FL-RATING-MISSING"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T23:22:17Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
    "own": {
     "best_of": null,
-    "scale": 262.0,
+    "scale": 214.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -3948,14 +3914,13 @@
     "FL-NO-MARKET",
     "FL-NO-SOURCED-PICK",
     "FL-RANK-MISSING",
-    "FL-RATING-MISSING",
-    "FL-SLATE-UNVERIFIED"
+    "FL-RATING-MISSING"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T23:22:17Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
    "own": {
     "best_of": null,
-    "scale": 262.0,
+    "scale": 214.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -4057,14 +4022,13 @@
     "FL-NO-MARKET",
     "FL-NO-SOURCED-PICK",
     "FL-RANK-MISSING",
-    "FL-RATING-MISSING",
-    "FL-SLATE-UNVERIFIED"
+    "FL-RATING-MISSING"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T23:22:17Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
    "own": {
     "best_of": null,
-    "scale": 262.0,
+    "scale": 214.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -4166,14 +4130,13 @@
     "FL-NO-MARKET",
     "FL-NO-SOURCED-PICK",
     "FL-RANK-MISSING",
-    "FL-RATING-MISSING",
-    "FL-SLATE-UNVERIFIED"
+    "FL-RATING-MISSING"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T23:22:17Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
    "own": {
     "best_of": null,
-    "scale": 262.0,
+    "scale": 214.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -4275,14 +4238,13 @@
     "FL-NO-MARKET",
     "FL-NO-SOURCED-PICK",
     "FL-RANK-MISSING",
-    "FL-RATING-MISSING",
-    "FL-SLATE-UNVERIFIED"
+    "FL-RATING-MISSING"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T23:22:17Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
    "own": {
     "best_of": null,
-    "scale": 262.0,
+    "scale": 214.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -4384,14 +4346,13 @@
     "FL-NO-MARKET",
     "FL-NO-SOURCED-PICK",
     "FL-RANK-MISSING",
-    "FL-RATING-MISSING",
-    "FL-SLATE-UNVERIFIED"
+    "FL-RATING-MISSING"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T23:22:17Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
    "own": {
     "best_of": null,
-    "scale": 262.0,
+    "scale": 214.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -4493,14 +4454,13 @@
     "FL-NO-MARKET",
     "FL-NO-SOURCED-PICK",
     "FL-RANK-MISSING",
-    "FL-RATING-MISSING",
-    "FL-SLATE-UNVERIFIED"
+    "FL-RATING-MISSING"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T23:22:17Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
    "own": {
     "best_of": null,
-    "scale": 262.0,
+    "scale": 214.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -4604,14 +4564,13 @@
     "FL-NO-MARKET",
     "FL-NO-SOURCED-PICK",
     "FL-RANK-MISSING",
-    "FL-RATING-MISSING",
-    "FL-SLATE-UNVERIFIED"
+    "FL-RATING-MISSING"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T23:22:17Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
    "own": {
     "best_of": null,
-    "scale": 262.0,
+    "scale": 214.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -4719,14 +4678,13 @@
     "FL-NO-MARKET",
     "FL-NO-SOURCED-PICK",
     "FL-RANK-MISSING",
-    "FL-RATING-MISSING",
-    "FL-SLATE-UNVERIFIED"
+    "FL-RATING-MISSING"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T23:22:17Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
    "own": {
     "best_of": null,
-    "scale": 262.0,
+    "scale": 214.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -4830,14 +4788,13 @@
     "FL-NO-MARKET",
     "FL-NO-SOURCED-PICK",
     "FL-RANK-MISSING",
-    "FL-RATING-MISSING",
-    "FL-SLATE-UNVERIFIED"
+    "FL-RATING-MISSING"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T23:22:17Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
    "own": {
     "best_of": null,
-    "scale": 262.0,
+    "scale": 214.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -4939,14 +4896,13 @@
     "FL-NO-MARKET",
     "FL-NO-SOURCED-PICK",
     "FL-RANK-MISSING",
-    "FL-RATING-MISSING",
-    "FL-SLATE-UNVERIFIED"
+    "FL-RATING-MISSING"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T23:22:17Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
    "own": {
     "best_of": null,
-    "scale": 262.0,
+    "scale": 214.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -5048,14 +5004,13 @@
     "FL-NO-MARKET",
     "FL-NO-SOURCED-PICK",
     "FL-RANK-MISSING",
-    "FL-RATING-MISSING",
-    "FL-SLATE-UNVERIFIED"
+    "FL-RATING-MISSING"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T23:22:17Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
    "own": {
     "best_of": null,
-    "scale": 262.0,
+    "scale": 214.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -5157,14 +5112,13 @@
     "FL-NO-MARKET",
     "FL-NO-SOURCED-PICK",
     "FL-RANK-MISSING",
-    "FL-RATING-MISSING",
-    "FL-SLATE-UNVERIFIED"
+    "FL-RATING-MISSING"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T23:22:17Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
    "own": {
     "best_of": null,
-    "scale": 262.0,
+    "scale": 214.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -5266,14 +5220,13 @@
     "FL-NO-MARKET",
     "FL-NO-SOURCED-PICK",
     "FL-RANK-MISSING",
-    "FL-RATING-MISSING",
-    "FL-SLATE-UNVERIFIED"
+    "FL-RATING-MISSING"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T23:22:17Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
    "own": {
     "best_of": null,
-    "scale": 262.0,
+    "scale": 214.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -5374,14 +5327,13 @@
     "FL-LOCKED",
     "FL-NO-MARKET",
     "FL-NO-SOURCED-PICK",
-    "FL-RATING-MISSING",
-    "FL-SLATE-UNVERIFIED"
+    "FL-RATING-MISSING"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T23:22:17Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
    "own": {
     "best_of": null,
-    "scale": 262.0,
+    "scale": 214.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -5483,14 +5435,13 @@
     "FL-NO-MARKET",
     "FL-NO-SOURCED-PICK",
     "FL-RANK-MISSING",
-    "FL-RATING-MISSING",
-    "FL-SLATE-UNVERIFIED"
+    "FL-RATING-MISSING"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T23:22:17Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
    "own": {
     "best_of": null,
-    "scale": 262.0,
+    "scale": 214.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -5597,14 +5548,13 @@
     "FL-LOCKED",
     "FL-NO-MARKET",
     "FL-NO-SOURCED-PICK",
-    "FL-RATING-MISSING",
-    "FL-SLATE-UNVERIFIED"
+    "FL-RATING-MISSING"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T23:22:17Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
    "own": {
     "best_of": null,
-    "scale": 262.0,
+    "scale": 214.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -5708,14 +5658,13 @@
     "FL-NO-MARKET",
     "FL-NO-SOURCED-PICK",
     "FL-RANK-MISSING",
-    "FL-RATING-MISSING",
-    "FL-SLATE-UNVERIFIED"
+    "FL-RATING-MISSING"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T23:22:17Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
    "own": {
     "best_of": null,
-    "scale": 262.0,
+    "scale": 214.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -5822,14 +5771,13 @@
     "FL-LOCKED",
     "FL-NO-MARKET",
     "FL-NO-SOURCED-PICK",
-    "FL-RATING-MISSING",
-    "FL-SLATE-UNVERIFIED"
+    "FL-RATING-MISSING"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T23:22:17Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
    "own": {
     "best_of": null,
-    "scale": 262.0,
+    "scale": 214.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -5931,14 +5879,13 @@
     "FL-NO-MARKET",
     "FL-NO-SOURCED-PICK",
     "FL-RANK-MISSING",
-    "FL-RATING-MISSING",
-    "FL-SLATE-UNVERIFIED"
+    "FL-RATING-MISSING"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T23:22:17Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
    "own": {
     "best_of": null,
-    "scale": 262.0,
+    "scale": 214.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -6039,14 +5986,13 @@
     "FL-LOCKED",
     "FL-NO-MARKET",
     "FL-NO-SOURCED-PICK",
-    "FL-RATING-MISSING",
-    "FL-SLATE-UNVERIFIED"
+    "FL-RATING-MISSING"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T23:22:17Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
    "own": {
     "best_of": null,
-    "scale": 262.0,
+    "scale": 214.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -6148,14 +6094,13 @@
     "FL-NO-MARKET",
     "FL-NO-SOURCED-PICK",
     "FL-RANK-MISSING",
-    "FL-RATING-MISSING",
-    "FL-SLATE-UNVERIFIED"
+    "FL-RATING-MISSING"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T23:22:17Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
    "own": {
     "best_of": null,
-    "scale": 262.0,
+    "scale": 214.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -6257,14 +6202,13 @@
     "FL-NO-MARKET",
     "FL-NO-SOURCED-PICK",
     "FL-RANK-MISSING",
-    "FL-RATING-MISSING",
-    "FL-SLATE-UNVERIFIED"
+    "FL-RATING-MISSING"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T23:22:17Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
    "own": {
     "best_of": null,
-    "scale": 262.0,
+    "scale": 214.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -6371,14 +6315,13 @@
     "FL-LOCKED",
     "FL-NO-MARKET",
     "FL-NO-SOURCED-PICK",
-    "FL-RATING-MISSING",
-    "FL-SLATE-UNVERIFIED"
+    "FL-RATING-MISSING"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T23:22:17Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
    "own": {
     "best_of": null,
-    "scale": 262.0,
+    "scale": 214.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -6480,14 +6423,13 @@
     "FL-NO-MARKET",
     "FL-NO-SOURCED-PICK",
     "FL-RANK-MISSING",
-    "FL-RATING-MISSING",
-    "FL-SLATE-UNVERIFIED"
+    "FL-RATING-MISSING"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T23:22:17Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
    "own": {
     "best_of": null,
-    "scale": 262.0,
+    "scale": 214.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -6595,14 +6537,13 @@
     "FL-NO-MARKET",
     "FL-NO-SOURCED-PICK",
     "FL-RANK-MISSING",
-    "FL-RATING-MISSING",
-    "FL-SLATE-UNVERIFIED"
+    "FL-RATING-MISSING"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T23:22:17Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
    "own": {
     "best_of": null,
-    "scale": 262.0,
+    "scale": 214.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -6701,14 +6642,13 @@
     "FL-NO-MARKET",
     "FL-NO-SOURCED-PICK",
     "FL-RANK-MISSING",
-    "FL-RATING-MISSING",
-    "FL-SLATE-UNVERIFIED"
+    "FL-RATING-MISSING"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T23:22:17Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
    "own": {
     "best_of": null,
-    "scale": 262.0,
+    "scale": 214.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -6816,14 +6756,13 @@
     "FL-NO-MARKET",
     "FL-NO-SOURCED-PICK",
     "FL-RANK-MISSING",
-    "FL-RATING-MISSING",
-    "FL-SLATE-UNVERIFIED"
+    "FL-RATING-MISSING"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T23:22:17Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
    "own": {
     "best_of": null,
-    "scale": 262.0,
+    "scale": 214.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -6860,7 +6799,7 @@
    "hotspawn_match_url": "https://www.hotspawn.com/matches/wrotberry-vs-eac-elisa-breakout-series-2-1080279",
    "basis_tier": 2,
    "basis_label": "Market · secondary listing",
-   "basis_detail": "Polymarket (prediction market) implied probabilities 50.0% / 50.0% (native implied probability), normalised to 100% by proportional de-vig. Prediction market, not a bookmaker; only used where no bookmaker line exists for this fixture. Series length BO1 as stated by the pricing listing (Polymarket (prediction market)); Hotspawn states none. No VRS estimate: one team's points are missing. An unlisted team is not assigned a floor rating.",
+   "basis_detail": "Polymarket (prediction market) implied probabilities 52.0% / 48.0% (native implied probability), normalised to 100% by proportional de-vig. Prediction market, not a bookmaker; only used where no bookmaker line exists for this fixture. Series length BO1 as stated by the pricing listing (Polymarket (prediction market)); Hotspawn states none. No VRS estimate: one team's points are missing. An unlisted team is not assigned a floor rating.",
    "basis_sources": [
     [
      "https://polymarket.com/event/cs2-wbt-eac-2026-10-15",
@@ -6868,20 +6807,20 @@
     ]
    ],
    "market_source": "Polymarket (prediction market)",
-   "market_odds_a": "2.00",
-   "market_odds_b": "2.00",
+   "market_odds_a": "1.92",
+   "market_odds_b": "2.08",
    "market_overround_pct": "0.00",
-   "market_captured_utc": "2026-10-15T00:49:11Z",
-   "market_prob_a_pct": "50.0",
-   "market_prob_b_pct": "50.0",
+   "market_captured_utc": "2026-10-15T06:23:29Z",
+   "market_prob_a_pct": "52.0",
+   "market_prob_b_pct": "48.0",
    "model_prob_a_pct": "",
    "model_prob_b_pct": "",
-   "prob_a_pct": "50.0",
-   "prob_b_pct": "50.0",
-   "fair_odds_a": "2.00",
-   "fair_odds_b": "2.00",
-   "pick": "(no side — 50/50)",
-   "pick_prob_pct": "",
+   "prob_a_pct": "52.0",
+   "prob_b_pct": "48.0",
+   "fair_odds_a": "1.92",
+   "fair_odds_b": "2.08",
+   "pick": "WROTBERRY",
+   "pick_prob_pct": "52.0",
    "confidence": "Medium (secondary listing)",
    "rating_a": {
     "team": "WROTBERRY",
@@ -6924,21 +6863,18 @@
     "flags": []
    },
    "flags": [
-    "FL-COINFLIP",
     "FL-FORMAT-FROM-LISTING",
     "FL-IDENTITY-UNVERIFIED",
     "FL-LOCKED",
     "FL-PREDICTION-MARKET-BASIS",
     "FL-RANK-MISSING",
-    "FL-RATING-MISSING",
-    "FL-SLATE-UNVERIFIED",
-    "FL-STALE-CAPTURE"
+    "FL-RATING-MISSING"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T23:22:17Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
    "own": {
     "best_of": 1,
-    "scale": 262.0,
+    "scale": 214.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -6955,6 +6891,150 @@
     "vrs_p_map": null
    }
   },
+  "1080201": {
+   "match_id": "1080201",
+   "tournament": "Thunderpick World Championship 2026",
+   "tier": "S",
+   "offered_points": 7,
+   "stage": "group stage and playoffs",
+   "series_format": "BO3",
+   "series_format_source": "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
+   "hltv_match_url": "https://www.hltv.org/matches/2399408/aurora-vs-ninjas-in-pyjamas-thunderpick-world-championship-2026",
+   "hltv_match_id": "2399408",
+   "hltv_schedule_note": "HLTV files this fixture under “thunderpick-world-championship-2026” (team pair and event name both match; seen on 2 team page(s)).",
+   "start_utc": "2026-10-15T08:30:00Z",
+   "lock_utc": "2026-10-15T08:24:00Z",
+   "status": "locked",
+   "team_a": "Aurora",
+   "team_b": "Ninjas in Pyjamas",
+   "hotspawn_pickem_url": "https://play.hotspawn.com/cs2-pickems",
+   "hotspawn_match_url": "https://www.hotspawn.com/?fixtures=waiting-for-information-1080201",
+   "basis_tier": 1,
+   "basis_label": "Market · primary book",
+   "basis_detail": "Pinnacle whole-match moneyline 1.40 / 2.95 (native american), overround 5.41%, proportional de-vig. Series length BO3 as stated by the pricing listing (Pinnacle); Hotspawn states none. Rating inputs: Aurora 1716 vs Ninjas in Pyjamas 1534 official points; project 400-point logistic with independent-map series transform, BO3: 83.3%. This is an uncalibrated project estimate, not a Valve match forecast. Our own line for the same fixture, from the official ranking only: 58.0% for Aurora (9.8 pp from the price this row is based on).",
+   "basis_sources": [
+    [
+     "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
+     "Pinnacle"
+    ],
+    [
+     "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight",
+     "raw response"
+    ],
+    [
+     "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
+     "Aurora standings"
+    ],
+    [
+     "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
+     "Ninjas in Pyjamas standings"
+    ],
+    [
+     "https://www.hltv.org/team/11861/aurora",
+     "Aurora (HLTV rank)"
+    ],
+    [
+     "https://www.hltv.org/team/4411/ninjas-in-pyjamas",
+     "Ninjas in Pyjamas (HLTV rank)"
+    ],
+    [
+     "https://www.hltv.org/ranking/teams/2026/october/12",
+     "official HLTV world ranking"
+    ]
+   ],
+   "market_source": "Pinnacle",
+   "market_odds_a": "1.40",
+   "market_odds_b": "2.95",
+   "market_overround_pct": "5.41",
+   "market_captured_utc": "2026-10-15T08:27:16Z",
+   "market_prob_a_pct": "67.8",
+   "market_prob_b_pct": "32.2",
+   "model_prob_a_pct": "83.3",
+   "model_prob_b_pct": "16.7",
+   "prob_a_pct": "67.8",
+   "prob_b_pct": "32.2",
+   "fair_odds_a": "1.47",
+   "fair_odds_b": "3.11",
+   "pick": "Aurora",
+   "pick_prob_pct": "67.8",
+   "confidence": "High (market line)",
+   "rating_a": {
+    "team": "Aurora",
+    "vrs_name": "Aurora",
+    "vrs_rank": 9,
+    "vrs_points": 1716,
+    "vrs_roster": "Jimpphat, kyxsan, Wicadia, woxic, XANTARES",
+    "vrs_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
+    "vrs_details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0009--aurora--jimpphat-kyxsan-wicadia-woxic-xantares.md",
+    "match_method": "exact",
+    "match_evidence_url": "",
+    "alias_note": "",
+    "hltv_name": "Aurora",
+    "hltv_team_id": "11861",
+    "hltv_rank": 6,
+    "hltv_points": 461,
+    "hltv_url": "https://www.hltv.org/team/11861/aurora",
+    "hltv_roster": "XANTARES, woxic, Jimpphat, kyxsan, Wicadia",
+    "flags": []
+   },
+   "rating_b": {
+    "team": "Ninjas in Pyjamas",
+    "vrs_name": "Ninjas in Pyjamas",
+    "vrs_rank": 18,
+    "vrs_points": 1534,
+    "vrs_roster": "adamb, Krimbo, sjuush, stavn, xKacpersky",
+    "vrs_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
+    "vrs_details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0018--ninjas_in_pyjamas--adamb-krimbo-sjuush-stavn-xkacpersky.md",
+    "match_method": "exact",
+    "match_evidence_url": "",
+    "alias_note": "",
+    "hltv_name": "Ninjas in Pyjamas",
+    "hltv_team_id": "4411",
+    "hltv_rank": 26,
+    "hltv_points": 74,
+    "hltv_url": "https://www.hltv.org/team/4411/ninjas-in-pyjamas",
+    "hltv_roster": "stavn, sjuush, Krimbo, adamb, xKacpersky",
+    "flags": []
+   },
+   "flags": [
+    "FL-FORMAT-FROM-LISTING",
+    "FL-LOCKED",
+    "FL-MODEL-MARKET-SPLIT"
+   ],
+   "first_seen_utc": "2026-10-15T08:29:02Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
+   "own": {
+    "best_of": 3,
+    "scale": 214.0,
+    "fitted": true,
+    "rank_floor": 245,
+    "rank_count": 245,
+    "rank_a": 6,
+    "rank_b": 26,
+    "bound_a": false,
+    "bound_b": false,
+    "p_map": 0.553592061096341,
+    "p_series": 0.5800802471611592,
+    "method": "HLTV world-rank logistic",
+    "sources": [
+     [
+      "https://www.hltv.org/team/11861/aurora",
+      "Aurora (HLTV rank)"
+     ],
+     [
+      "https://www.hltv.org/team/4411/ninjas-in-pyjamas",
+      "Ninjas in Pyjamas (HLTV rank)"
+     ],
+     [
+      "https://www.hltv.org/ranking/teams/2026/october/12",
+      "official HLTV world ranking"
+     ]
+    ],
+    "detail": "ranks 6 vs 26 (official HLTV ranking, 2026-10-12), 214 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/214)) = 55.4%; converted to BO3: p = 58.0%",
+    "vrs_p_series": 0.8327309720995701,
+    "vrs_p_map": 0.7403284195148304
+   }
+  },
   "1079440": {
    "match_id": "1079440",
    "tournament": "Stake Pulse Beat III",
@@ -6965,7 +7045,7 @@
    "series_format_source": "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
    "hltv_match_url": "https://www.hltv.org/matches/2399136/mibr-vs-bcgame-stake-pulse-beat-iii",
    "hltv_match_id": "2399136",
-   "hltv_schedule_note": "HLTV files this fixture under “stake-pulse-beat-iii” (team pair and event name both match; seen on 2 team page(s)).",
+   "hltv_schedule_note": "HLTV files this fixture under “stake-pulse-beat-iii” (team pair and event name both match; seen on 1 team page(s)).",
    "start_utc": "2026-10-15T10:00:00Z",
    "lock_utc": "2026-10-15T09:54:00Z",
    "status": "open",
@@ -6975,7 +7055,7 @@
    "hotspawn_match_url": "https://www.hotspawn.com/matches/mibr-vs-bc-game-stake-pulse-beat-iii-1079440",
    "basis_tier": 1,
    "basis_label": "Market · primary book",
-   "basis_detail": "Pinnacle whole-match moneyline 1.72 / 2.10 (native american), overround 5.78%, proportional de-vig. Series length BO3 as stated by the pricing listing (Pinnacle); Hotspawn states none. Rating inputs: MIBR 1585 vs BC.Game 1318 official points; project 400-point logistic with independent-map series transform, BO3: 91.7%. This is an uncalibrated project estimate, not a Valve match forecast. Our own line for the same fixture, from the official ranking only: 68.3% for MIBR (13.3 pp from the price this row is based on).",
+   "basis_detail": "Pinnacle whole-match moneyline 1.72 / 2.09 (native american), overround 5.83%, proportional de-vig. Series length BO3 as stated by the pricing listing (Pinnacle); Hotspawn states none. Rating inputs: MIBR 1585 vs BC.Game 1318 official points; project 400-point logistic with independent-map series transform, BO3: 91.7%. This is an uncalibrated project estimate, not a Valve match forecast. Our own line for the same fixture, from the official ranking only: 72.0% for MIBR (17.2 pp from the price this row is based on).",
    "basis_sources": [
     [
      "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
@@ -7008,19 +7088,19 @@
    ],
    "market_source": "Pinnacle",
    "market_odds_a": "1.72",
-   "market_odds_b": "2.10",
-   "market_overround_pct": "5.78",
-   "market_captured_utc": "2026-10-15T05:02:17Z",
-   "market_prob_a_pct": "55.0",
-   "market_prob_b_pct": "45.0",
+   "market_odds_b": "2.09",
+   "market_overround_pct": "5.83",
+   "market_captured_utc": "2026-10-15T08:27:16Z",
+   "market_prob_a_pct": "54.8",
+   "market_prob_b_pct": "45.2",
    "model_prob_a_pct": "91.7",
    "model_prob_b_pct": "8.3",
-   "prob_a_pct": "55.0",
-   "prob_b_pct": "45.0",
-   "fair_odds_a": "1.82",
-   "fair_odds_b": "2.22",
+   "prob_a_pct": "54.8",
+   "prob_b_pct": "45.2",
+   "fair_odds_a": "1.83",
+   "fair_odds_b": "2.21",
    "pick": "MIBR",
-   "pick_prob_pct": "55.0",
+   "pick_prob_pct": "54.8",
    "confidence": "High (market line)",
    "rating_a": {
     "team": "MIBR",
@@ -7063,13 +7143,13 @@
    "flags": [
     "FL-FORMAT-FROM-LISTING",
     "FL-MODEL-MARKET-SPLIT",
-    "FL-SLATE-UNVERIFIED"
+    "FL-OWN-LINE-MARKET-SPLIT"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T23:22:17Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
    "own": {
     "best_of": 3,
-    "scale": 262.0,
+    "scale": 214.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -7077,8 +7157,8 @@
     "rank_b": 70,
     "bound_a": false,
     "bound_b": false,
-    "p_map": 0.6247437823790216,
-    "p_series": 0.6832333947685372,
+    "p_map": 0.6511425308395505,
+    "p_series": 0.7198083767740727,
     "method": "HLTV world-rank logistic",
     "sources": [
      [
@@ -7094,7 +7174,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks 12 vs 70 (official HLTV ranking, 2026-10-12), 262 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/262)) = 62.5%; converted to BO3: p = 68.3%",
+    "detail": "ranks 12 vs 70 (official HLTV ranking, 2026-10-12), 214 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/214)) = 65.1%; converted to BO3: p = 72.0%",
     "vrs_p_series": 0.9171249911423566,
     "vrs_p_map": 0.8230246289217321
    }
@@ -7119,7 +7199,7 @@
    "hotspawn_match_url": "https://www.hotspawn.com/matches/heroic-vs-envy-stake-pulse-beat-iii-1079442",
    "basis_tier": 1,
    "basis_label": "Market · primary book",
-   "basis_detail": "Pinnacle whole-match moneyline 1.53 / 2.46 (native american), overround 6.05%, proportional de-vig. Series length BO3 as stated by the pricing listing (Pinnacle); Hotspawn states none. No VRS estimate: one team's points are missing. An unlisted team is not assigned a floor rating. Our own line for the same fixture, from the official ranking only: 46.7% for Heroic (15.0 pp from the price this row is based on).",
+   "basis_detail": "Pinnacle whole-match moneyline 1.44 / 2.71 (native american), overround 6.32%, proportional de-vig. Series length BO3 as stated by the pricing listing (Pinnacle); Hotspawn states none. No VRS estimate: one team's points are missing. An unlisted team is not assigned a floor rating. Our own line for the same fixture, from the official ranking only: 46.0% for Heroic (19.3 pp from the price this row is based on).",
    "basis_sources": [
     [
      "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
@@ -7143,20 +7223,20 @@
     ]
    ],
    "market_source": "Pinnacle",
-   "market_odds_a": "1.53",
-   "market_odds_b": "2.46",
-   "market_overround_pct": "6.05",
-   "market_captured_utc": "2026-10-15T05:02:17Z",
-   "market_prob_a_pct": "61.7",
-   "market_prob_b_pct": "38.3",
+   "market_odds_a": "1.44",
+   "market_odds_b": "2.71",
+   "market_overround_pct": "6.32",
+   "market_captured_utc": "2026-10-15T08:27:16Z",
+   "market_prob_a_pct": "65.3",
+   "market_prob_b_pct": "34.7",
    "model_prob_a_pct": "",
    "model_prob_b_pct": "",
-   "prob_a_pct": "61.7",
-   "prob_b_pct": "38.3",
-   "fair_odds_a": "1.62",
-   "fair_odds_b": "2.61",
+   "prob_a_pct": "65.3",
+   "prob_b_pct": "34.7",
+   "fair_odds_a": "1.53",
+   "fair_odds_b": "2.88",
    "pick": "Heroic",
-   "pick_prob_pct": "61.7",
+   "pick_prob_pct": "65.3",
    "confidence": "High (market line)",
    "rating_a": {
     "team": "Heroic",
@@ -7201,14 +7281,14 @@
    "flags": [
     "FL-FORMAT-FROM-LISTING",
     "FL-IDENTITY-UNVERIFIED",
-    "FL-RATING-MISSING",
-    "FL-SLATE-UNVERIFIED"
+    "FL-OWN-LINE-MARKET-SPLIT",
+    "FL-RATING-MISSING"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T23:22:17Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
    "own": {
     "best_of": 3,
-    "scale": 262.0,
+    "scale": 214.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -7216,8 +7296,8 @@
     "rank_b": 20,
     "bound_a": false,
     "bound_b": false,
-    "p_map": 0.4780428989933358,
-    "p_series": 0.4670855201540919,
+    "p_map": 0.47312656304951944,
+    "p_series": 0.45972865957839526,
     "method": "HLTV world-rank logistic",
     "sources": [
      [
@@ -7233,7 +7313,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks 30 vs 20 (official HLTV ranking, 2026-10-12), 262 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/262)) = 47.8%; converted to BO3: p = 46.7%",
+    "detail": "ranks 30 vs 20 (official HLTV ranking, 2026-10-12), 214 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/214)) = 47.3%; converted to BO3: p = 46.0%",
     "vrs_p_series": null,
     "vrs_p_map": null
    }
@@ -7258,7 +7338,7 @@
    "hotspawn_match_url": "https://www.hotspawn.com/matches/ence-vs-bojong-elisa-breakout-series-2-1080280",
    "basis_tier": 1,
    "basis_label": "Market · primary book",
-   "basis_detail": "Pinnacle whole-match moneyline 1.30 / 3.31 (native american), overround 6.90%, proportional de-vig. Series length BO1 as stated by the pricing listing (Pinnacle); Hotspawn states none. Rating inputs: ENCE 1025 vs BOJONG 463 official points; project 400-point logistic with independent-map series transform, BO1: 96.2%. This is an uncalibrated project estimate, not a Valve match forecast. Our own line for the same fixture, from the official ranking only: 71.7% for ENCE (0.0 pp from the price this row is based on).",
+   "basis_detail": "Pinnacle whole-match moneyline 1.30 / 3.31 (native american), overround 6.90%, proportional de-vig. Series length BO1 as stated by the pricing listing (Pinnacle); Hotspawn states none. Rating inputs: ENCE 1025 vs BOJONG 463 official points; project 400-point logistic with independent-map series transform, BO1: 96.2%. This is an uncalibrated project estimate, not a Valve match forecast. Our own line for the same fixture, from the official ranking only: 75.8% for ENCE (4.1 pp from the price this row is based on).",
    "basis_sources": [
     [
      "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
@@ -7293,7 +7373,7 @@
    "market_odds_a": "1.30",
    "market_odds_b": "3.31",
    "market_overround_pct": "6.90",
-   "market_captured_utc": "2026-10-15T05:02:17Z",
+   "market_captured_utc": "2026-10-15T08:27:16Z",
    "market_prob_a_pct": "71.7",
    "market_prob_b_pct": "28.3",
    "model_prob_a_pct": "96.2",
@@ -7345,14 +7425,13 @@
    },
    "flags": [
     "FL-FORMAT-FROM-LISTING",
-    "FL-MODEL-MARKET-SPLIT",
-    "FL-SLATE-UNVERIFIED"
+    "FL-MODEL-MARKET-SPLIT"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T23:22:17Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
    "own": {
     "best_of": 1,
-    "scale": 262.0,
+    "scale": 214.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -7360,8 +7439,8 @@
     "rank_b": 220,
     "bound_a": false,
     "bound_b": false,
-    "p_map": 0.7173957695876042,
-    "p_series": 0.7173957695876042,
+    "p_map": 0.7577774488581215,
+    "p_series": 0.7577774488581215,
     "method": "HLTV world-rank logistic",
     "sources": [
      [
@@ -7377,9 +7456,121 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks 114 vs 220 (official HLTV ranking, 2026-10-12), 262 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/262)) = 71.7%",
+    "detail": "ranks 114 vs 220 (official HLTV ranking, 2026-10-12), 214 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/214)) = 75.8%",
     "vrs_p_series": 0.9621351633851132,
     "vrs_p_map": 0.9621351633851132
+   }
+  },
+  "1080202": {
+   "match_id": "1080202",
+   "tournament": "Thunderpick World Championship 2026",
+   "tier": "S",
+   "offered_points": 7,
+   "stage": "group stage and playoffs",
+   "series_format": "",
+   "series_format_source": "",
+   "hltv_match_url": "https://www.hltv.org/matches/2399409/9z-vs-falcons-thunderpick-world-championship-2026",
+   "hltv_match_id": "2399409",
+   "hltv_schedule_note": "HLTV files this fixture under “thunderpick-world-championship-2026” (team pair and event name both match; seen on 1 team page(s)).",
+   "start_utc": "2026-10-15T11:00:00Z",
+   "lock_utc": "2026-10-15T10:54:00Z",
+   "status": "open",
+   "team_a": "9z",
+   "team_b": "Falcons",
+   "hotspawn_pickem_url": "https://play.hotspawn.com/cs2-pickems",
+   "hotspawn_match_url": "https://www.hotspawn.com/?fixtures=waiting-for-information-1080202",
+   "basis_tier": 0,
+   "basis_label": "No sourced basis",
+   "basis_detail": "Rating inputs: 9z 1543 vs Falcons 1843 official points; project 400-point logistic with independent-map series transform, format unverified: not originated — format unverified. This is an uncalibrated project estimate, not a Valve match forecast.",
+   "basis_sources": [
+    [
+     "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
+     "9z standings"
+    ],
+    [
+     "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
+     "Falcons standings"
+    ]
+   ],
+   "market_source": "",
+   "market_odds_a": "",
+   "market_odds_b": "",
+   "market_overround_pct": "",
+   "market_captured_utc": "",
+   "market_prob_a_pct": "",
+   "market_prob_b_pct": "",
+   "model_prob_a_pct": "",
+   "model_prob_b_pct": "",
+   "prob_a_pct": "",
+   "prob_b_pct": "",
+   "fair_odds_a": "",
+   "fair_odds_b": "",
+   "pick": "",
+   "pick_prob_pct": "",
+   "confidence": "",
+   "rating_a": {
+    "team": "9z",
+    "vrs_name": "9z",
+    "vrs_rank": 17,
+    "vrs_points": 1543,
+    "vrs_roster": "dgt, HUASOPEEK, luchov, max, meyern",
+    "vrs_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
+    "vrs_details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0017--9z--dgt-huasopeek-luchov-max-meyern.md",
+    "match_method": "exact",
+    "match_evidence_url": "",
+    "alias_note": "",
+    "hltv_name": "9z",
+    "hltv_team_id": "9996",
+    "hltv_rank": 17,
+    "hltv_points": 124,
+    "hltv_url": "https://www.hltv.org/team/9996/9z",
+    "hltv_roster": "max, dgt, meyern, luchov, HUASOPEEK",
+    "flags": []
+   },
+   "rating_b": {
+    "team": "Falcons",
+    "vrs_name": "Falcons",
+    "vrs_rank": 6,
+    "vrs_points": 1843,
+    "vrs_roster": "karrigan, kyousuke, m0NESY, NiKo, TeSeS",
+    "vrs_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
+    "vrs_details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0006--falcons--karrigan-kyousuke-m0nesy-niko-teses.md",
+    "match_method": "exact",
+    "match_evidence_url": "",
+    "alias_note": "",
+    "hltv_name": "Falcons",
+    "hltv_team_id": "11283",
+    "hltv_rank": 5,
+    "hltv_points": 488,
+    "hltv_url": "https://www.hltv.org/team/11283/falcons",
+    "hltv_roster": "karrigan, NiKo, TeSeS, m0NESY, kyousuke",
+    "flags": []
+   },
+   "flags": [
+    "FL-FORMAT-UNKNOWN",
+    "FL-NO-MARKET",
+    "FL-NO-SOURCED-PICK",
+    "FL-RATING-MISSING"
+   ],
+   "first_seen_utc": "2026-10-15T08:29:02Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
+   "own": {
+    "best_of": null,
+    "scale": 214.0,
+    "fitted": true,
+    "rank_floor": 245,
+    "rank_count": 245,
+    "rank_a": 17,
+    "rank_b": 5,
+    "bound_a": false,
+    "bound_b": false,
+    "p_map": null,
+    "p_series": null,
+    "method": "not originated — inputs unverified",
+    "sources": [],
+    "detail": "Both sourced ranks and a confirmed series format are required; missing inputs stay blank.",
+    "vrs_p_series": null,
+    "vrs_p_map": null
    }
   },
   "1080281": {
@@ -7466,19 +7657,130 @@
     "FL-NO-MARKET",
     "FL-NO-SOURCED-PICK",
     "FL-RANK-MISSING",
-    "FL-RATING-MISSING",
-    "FL-SLATE-UNVERIFIED"
+    "FL-RATING-MISSING"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T23:22:17Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
    "own": {
     "best_of": null,
-    "scale": 262.0,
+    "scale": 214.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
     "rank_a": "",
     "rank_b": 114,
+    "bound_a": false,
+    "bound_b": false,
+    "p_map": null,
+    "p_series": null,
+    "method": "not originated — inputs unverified",
+    "sources": [],
+    "detail": "Both sourced ranks and a confirmed series format are required; missing inputs stay blank.",
+    "vrs_p_series": null,
+    "vrs_p_map": null
+   }
+  },
+  "1080203": {
+   "match_id": "1080203",
+   "tournament": "Thunderpick World Championship 2026",
+   "tier": "S",
+   "offered_points": 7,
+   "stage": "group stage and playoffs",
+   "series_format": "",
+   "series_format_source": "",
+   "hltv_match_url": "https://www.hltv.org/matches/2399410/parivision-vs-betboom-thunderpick-world-championship-2026",
+   "hltv_match_id": "2399410",
+   "hltv_schedule_note": "HLTV files this fixture under “thunderpick-world-championship-2026” (team pair and event name both match; seen on 2 team page(s)).",
+   "start_utc": "2026-10-15T13:30:00Z",
+   "lock_utc": "2026-10-15T13:24:00Z",
+   "status": "open",
+   "team_a": "PARIVISION",
+   "team_b": "BetBoom",
+   "hotspawn_pickem_url": "https://play.hotspawn.com/cs2-pickems",
+   "hotspawn_match_url": "https://www.hotspawn.com/?fixtures=waiting-for-information-1080203",
+   "basis_tier": 0,
+   "basis_label": "No sourced basis",
+   "basis_detail": "Rating inputs: PARIVISION 1411 vs BETBOOM 1596 official points; project 400-point logistic with independent-map series transform, format unverified: not originated — format unverified. This is an uncalibrated project estimate, not a Valve match forecast.",
+   "basis_sources": [
+    [
+     "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
+     "PARIVISION standings"
+    ],
+    [
+     "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
+     "BETBOOM standings"
+    ]
+   ],
+   "market_source": "",
+   "market_odds_a": "",
+   "market_odds_b": "",
+   "market_overround_pct": "",
+   "market_captured_utc": "",
+   "market_prob_a_pct": "",
+   "market_prob_b_pct": "",
+   "model_prob_a_pct": "",
+   "model_prob_b_pct": "",
+   "prob_a_pct": "",
+   "prob_b_pct": "",
+   "fair_odds_a": "",
+   "fair_odds_b": "",
+   "pick": "",
+   "pick_prob_pct": "",
+   "confidence": "",
+   "rating_a": {
+    "team": "PARIVISION",
+    "vrs_name": "PARIVISION",
+    "vrs_rank": 36,
+    "vrs_points": 1411,
+    "vrs_roster": "FL1T, Jame, slaxejezzz, xiELO, zweih",
+    "vrs_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
+    "vrs_details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0036--parivision--fl1t-jame-slaxejezzz-xielo-zweih.md",
+    "match_method": "exact",
+    "match_evidence_url": "",
+    "alias_note": "",
+    "hltv_name": "PARIVISION",
+    "hltv_team_id": "12467",
+    "hltv_rank": 11,
+    "hltv_points": 178,
+    "hltv_url": "https://www.hltv.org/team/12467/parivision",
+    "hltv_roster": "HObbit, FL1T, Jame, xiELO, zweih",
+    "flags": []
+   },
+   "rating_b": {
+    "team": "BetBoom",
+    "vrs_name": "BETBOOM",
+    "vrs_rank": 11,
+    "vrs_points": 1596,
+    "vrs_roster": "Boombl4, d1Ledez, Magnojez, S1ren, zorte",
+    "vrs_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
+    "vrs_details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0011--betboom--boombl4-d1ledez-magnojez-s1ren-zorte.md",
+    "match_method": "exact",
+    "match_evidence_url": "",
+    "alias_note": "",
+    "hltv_name": "BETBOOM",
+    "hltv_team_id": "12394",
+    "hltv_rank": 14,
+    "hltv_points": 148,
+    "hltv_url": "https://www.hltv.org/team/12394/betboom",
+    "hltv_roster": "Boombl4, zorte, S1ren, d1Ledez, Magnojez",
+    "flags": []
+   },
+   "flags": [
+    "FL-FORMAT-UNKNOWN",
+    "FL-NO-MARKET",
+    "FL-NO-SOURCED-PICK",
+    "FL-RATING-MISSING"
+   ],
+   "first_seen_utc": "2026-10-15T08:29:02Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
+   "own": {
+    "best_of": null,
+    "scale": 214.0,
+    "fitted": true,
+    "rank_floor": 245,
+    "rank_count": 245,
+    "rank_a": 11,
+    "rank_b": 14,
     "bound_a": false,
     "bound_b": false,
     "p_map": null,
@@ -7510,7 +7812,7 @@
    "hotspawn_match_url": "https://www.hotspawn.com/matches/eac-vs-bojong-elisa-breakout-series-2-1080282",
    "basis_tier": 1,
    "basis_label": "Market · primary book",
-   "basis_detail": "Pinnacle whole-match moneyline 1.22 / 3.98 (native american), overround 7.36%, proportional de-vig. Series length BO1 as stated by the pricing listing (Pinnacle); Hotspawn states none. Rating inputs: EAC 1035 vs BOJONG 463 official points; project 400-point logistic with independent-map series transform, BO1: 96.4%. This is an uncalibrated project estimate, not a Valve match forecast. Our own line for the same fixture, from the official ranking only: 72.4% for EAC (4.2 pp from the price this row is based on).",
+   "basis_detail": "Pinnacle whole-match moneyline 1.22 / 3.98 (native american), overround 7.36%, proportional de-vig. Series length BO1 as stated by the pricing listing (Pinnacle); Hotspawn states none. Rating inputs: EAC 1035 vs BOJONG 463 official points; project 400-point logistic with independent-map series transform, BO1: 96.4%. This is an uncalibrated project estimate, not a Valve match forecast. Our own line for the same fixture, from the official ranking only: 76.6% for EAC (0.0 pp from the price this row is based on).",
    "basis_sources": [
     [
      "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
@@ -7545,7 +7847,7 @@
    "market_odds_a": "1.22",
    "market_odds_b": "3.98",
    "market_overround_pct": "7.36",
-   "market_captured_utc": "2026-10-15T05:02:17Z",
+   "market_captured_utc": "2026-10-15T08:27:16Z",
    "market_prob_a_pct": "76.6",
    "market_prob_b_pct": "23.4",
    "model_prob_a_pct": "96.4",
@@ -7597,14 +7899,13 @@
    },
    "flags": [
     "FL-FORMAT-FROM-LISTING",
-    "FL-MODEL-MARKET-SPLIT",
-    "FL-SLATE-UNVERIFIED"
+    "FL-MODEL-MARKET-SPLIT"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T23:22:17Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
    "own": {
     "best_of": 1,
-    "scale": 262.0,
+    "scale": 214.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -7612,8 +7913,8 @@
     "rank_b": 220,
     "bound_a": false,
     "bound_b": false,
-    "p_map": 0.7244680761035225,
-    "p_series": 0.7244680761035225,
+    "p_map": 0.7655894108759841,
+    "p_series": 0.7655894108759841,
     "method": "HLTV world-rank logistic",
     "sources": [
      [
@@ -7629,9 +7930,152 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks 110 vs 220 (official HLTV ranking, 2026-10-12), 262 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/262)) = 72.4%",
+    "detail": "ranks 110 vs 220 (official HLTV ranking, 2026-10-12), 214 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/214)) = 76.6%",
     "vrs_p_series": 0.9641774124186709,
     "vrs_p_map": 0.9641774124186709
+   }
+  },
+  "1080204": {
+   "match_id": "1080204",
+   "tournament": "Thunderpick World Championship 2026",
+   "tier": "S",
+   "offered_points": 7,
+   "stage": "group stage and playoffs",
+   "series_format": "BO3",
+   "series_format_source": "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
+   "hltv_match_url": "https://www.hltv.org/matches/2399411/legacy-vs-furia-thunderpick-world-championship-2026",
+   "hltv_match_id": "2399411",
+   "hltv_schedule_note": "HLTV files this fixture under “thunderpick-world-championship-2026” (team pair and event name both match; seen on 2 team page(s)).",
+   "start_utc": "2026-10-15T16:00:00Z",
+   "lock_utc": "2026-10-15T15:54:00Z",
+   "status": "open",
+   "team_a": "Legacy",
+   "team_b": "FURIA",
+   "hotspawn_pickem_url": "https://play.hotspawn.com/cs2-pickems",
+   "hotspawn_match_url": "https://www.hotspawn.com/?fixtures=waiting-for-information-1080204",
+   "basis_tier": 1,
+   "basis_label": "Market · primary book",
+   "basis_detail": "Pinnacle whole-match moneyline 2.26 / 1.65 (native american), overround 4.88%, proportional de-vig. Series length BO3 as stated by the pricing listing (Pinnacle); Hotspawn states none. Rating inputs: Legacy 1931 vs FURIA 1829 official points; project 400-point logistic with independent-map series transform, BO3: 70.8%. This is an uncalibrated project estimate, not a Valve match forecast. Our own line for the same fixture, from the official ranking only: 48.8% for Legacy (6.6 pp from the price this row is based on).",
+   "basis_sources": [
+    [
+     "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
+     "Pinnacle"
+    ],
+    [
+     "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight",
+     "raw response"
+    ],
+    [
+     "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
+     "Legacy standings"
+    ],
+    [
+     "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
+     "FURIA standings"
+    ],
+    [
+     "https://www.hltv.org/team/12468/legacy",
+     "Legacy (HLTV rank)"
+    ],
+    [
+     "https://www.hltv.org/team/8297/furia",
+     "FURIA (HLTV rank)"
+    ],
+    [
+     "https://www.hltv.org/ranking/teams/2026/october/12",
+     "official HLTV world ranking"
+    ]
+   ],
+   "market_source": "Pinnacle",
+   "market_odds_a": "2.26",
+   "market_odds_b": "1.65",
+   "market_overround_pct": "4.88",
+   "market_captured_utc": "2026-10-15T08:27:16Z",
+   "market_prob_a_pct": "42.2",
+   "market_prob_b_pct": "57.8",
+   "model_prob_a_pct": "70.8",
+   "model_prob_b_pct": "29.2",
+   "prob_a_pct": "42.2",
+   "prob_b_pct": "57.8",
+   "fair_odds_a": "2.37",
+   "fair_odds_b": "1.73",
+   "pick": "FURIA",
+   "pick_prob_pct": "57.8",
+   "confidence": "High (market line)",
+   "rating_a": {
+    "team": "Legacy",
+    "vrs_name": "Legacy",
+    "vrs_rank": 2,
+    "vrs_points": 1931,
+    "vrs_roster": "arT, dumau, latto, n1ssim, try",
+    "vrs_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
+    "vrs_details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0002--legacy--art-dumau-latto-n1ssim-try.md",
+    "match_method": "exact",
+    "match_evidence_url": "",
+    "alias_note": "",
+    "hltv_name": "Legacy",
+    "hltv_team_id": "12468",
+    "hltv_rank": 7,
+    "hltv_points": 379,
+    "hltv_url": "https://www.hltv.org/team/12468/legacy",
+    "hltv_roster": "arT, dumau, latto, n1ssim, try",
+    "flags": []
+   },
+   "rating_b": {
+    "team": "FURIA",
+    "vrs_name": "FURIA",
+    "vrs_rank": 7,
+    "vrs_points": 1829,
+    "vrs_roster": "FalleN, KSCERATO, molodoy, YEKINDAR, yuurih",
+    "vrs_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
+    "vrs_details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0007--furia--fallen-kscerato-molodoy-yekindar-yuurih.md",
+    "match_method": "exact",
+    "match_evidence_url": "",
+    "alias_note": "",
+    "hltv_name": "FURIA",
+    "hltv_team_id": "8297",
+    "hltv_rank": 4,
+    "hltv_points": 527,
+    "hltv_url": "https://www.hltv.org/team/8297/furia",
+    "hltv_roster": "FalleN, yuurih, YEKINDAR, KSCERATO, molodoy",
+    "flags": []
+   },
+   "flags": [
+    "FL-FORMAT-FROM-LISTING",
+    "FL-MODEL-MARKET-SPLIT"
+   ],
+   "first_seen_utc": "2026-10-15T08:29:02Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
+   "own": {
+    "best_of": 3,
+    "scale": 214.0,
+    "fitted": true,
+    "rank_floor": 245,
+    "rank_count": 245,
+    "rank_a": 7,
+    "rank_b": 4,
+    "bound_a": false,
+    "bound_b": false,
+    "p_map": 0.49193089305189164,
+    "p_series": 0.4878973903448026,
+    "method": "HLTV world-rank logistic",
+    "sources": [
+     [
+      "https://www.hltv.org/team/12468/legacy",
+      "Legacy (HLTV rank)"
+     ],
+     [
+      "https://www.hltv.org/team/8297/furia",
+      "FURIA (HLTV rank)"
+     ],
+     [
+      "https://www.hltv.org/ranking/teams/2026/october/12",
+      "official HLTV world ranking"
+     ]
+    ],
+    "detail": "ranks 7 vs 4 (official HLTV ranking, 2026-10-12), 214 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/214)) = 49.2%; converted to BO3: p = 48.8%",
+    "vrs_p_series": 0.7082563233901202,
+    "vrs_p_map": 0.6427130688326204
    }
   },
   "1080283": {
@@ -7718,14 +8162,13 @@
     "FL-NO-MARKET",
     "FL-NO-SOURCED-PICK",
     "FL-RANK-MISSING",
-    "FL-RATING-MISSING",
-    "FL-SLATE-UNVERIFIED"
+    "FL-RATING-MISSING"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T23:22:17Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
    "own": {
     "best_of": null,
-    "scale": 262.0,
+    "scale": 214.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -7762,7 +8205,7 @@
    "hotspawn_match_url": "https://www.hotspawn.com/matches/eac-vs-ence-elisa-breakout-series-2-1080284",
    "basis_tier": 1,
    "basis_label": "Market · primary book",
-   "basis_detail": "Pinnacle whole-match moneyline 1.50 / 2.55 (native american), overround 6.10%, proportional de-vig. Series length BO1 as stated by the pricing listing (Pinnacle); Hotspawn states none. Rating inputs: EAC 1035 vs ENCE 1025 official points; project 400-point logistic with independent-map series transform, BO1: 51.4%. This is an uncalibrated project estimate, not a Valve match forecast. Our own line for the same fixture, from the official ranking only: 50.9% for EAC (12.1 pp from the price this row is based on).",
+   "basis_detail": "Pinnacle whole-match moneyline 1.61 / 2.28 (native american), overround 5.84%, proportional de-vig. Series length BO1 as stated by the pricing listing (Pinnacle); Hotspawn states none. Rating inputs: EAC 1035 vs ENCE 1025 official points; project 400-point logistic with independent-map series transform, BO1: 51.4%. This is an uncalibrated project estimate, not a Valve match forecast. Our own line for the same fixture, from the official ranking only: 51.1% for EAC (7.5 pp from the price this row is based on).",
    "basis_sources": [
     [
      "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
@@ -7794,20 +8237,20 @@
     ]
    ],
    "market_source": "Pinnacle",
-   "market_odds_a": "1.50",
-   "market_odds_b": "2.55",
-   "market_overround_pct": "6.10",
-   "market_captured_utc": "2026-10-15T05:02:17Z",
-   "market_prob_a_pct": "63.0",
-   "market_prob_b_pct": "37.0",
+   "market_odds_a": "1.61",
+   "market_odds_b": "2.28",
+   "market_overround_pct": "5.84",
+   "market_captured_utc": "2026-10-15T08:27:16Z",
+   "market_prob_a_pct": "58.6",
+   "market_prob_b_pct": "41.4",
    "model_prob_a_pct": "51.4",
    "model_prob_b_pct": "48.6",
-   "prob_a_pct": "63.0",
-   "prob_b_pct": "37.0",
-   "fair_odds_a": "1.59",
-   "fair_odds_b": "2.71",
+   "prob_a_pct": "58.6",
+   "prob_b_pct": "41.4",
+   "fair_odds_a": "1.71",
+   "fair_odds_b": "2.41",
    "pick": "EAC",
-   "pick_prob_pct": "63.0",
+   "pick_prob_pct": "58.6",
    "confidence": "High (market line)",
    "rating_a": {
     "team": "EAC",
@@ -7848,14 +8291,13 @@
     "flags": []
    },
    "flags": [
-    "FL-FORMAT-FROM-LISTING",
-    "FL-SLATE-UNVERIFIED"
+    "FL-FORMAT-FROM-LISTING"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T23:22:17Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
    "own": {
     "best_of": 1,
-    "scale": 262.0,
+    "scale": 214.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -7863,8 +8305,8 @@
     "rank_b": 114,
     "bound_a": false,
     "bound_b": false,
-    "p_map": 0.5087875877636882,
-    "p_series": 0.5087875877636882,
+    "p_map": 0.5107580828289912,
+    "p_series": 0.5107580828289912,
     "method": "HLTV world-rank logistic",
     "sources": [
      [
@@ -7880,7 +8322,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks 110 vs 114 (official HLTV ranking, 2026-10-12), 262 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/262)) = 50.9%",
+    "detail": "ranks 110 vs 114 (official HLTV ranking, 2026-10-12), 214 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/214)) = 51.1%",
     "vrs_p_series": 0.5143871841659987,
     "vrs_p_map": 0.5143871841659987
    }
@@ -7905,7 +8347,7 @@
    "hotspawn_match_url": "https://www.hotspawn.com/matches/voca-vs-phantom-elisa-breakout-series-2-1080285",
    "basis_tier": 2,
    "basis_label": "Market · secondary listing",
-   "basis_detail": "Thunderpick listing 1.90 / 1.80 (decimal), overround 8.19%, proportional de-vig. Secondary listing: the aggregator's own page is the source, not the book itself. Series length BO1 as stated by the pricing listing (Thunderpick); Hotspawn states none. Rating inputs: Voca 1182 vs Phantom 1147 official points; project 400-point logistic with independent-map series transform, BO1: 55.0%. This is an uncalibrated project estimate, not a Valve match forecast. Our own line for the same fixture, from the official ranking only: 56.3% for Voca (7.7 pp from the price this row is based on).",
+   "basis_detail": "Thunderpick listing 1.90 / 1.80 (decimal), overround 8.19%, proportional de-vig. Secondary listing: the aggregator's own page is the source, not the book itself. Series length BO1 as stated by the pricing listing (Thunderpick); Hotspawn states none. Rating inputs: Voca 1182 vs Phantom 1147 official points; project 400-point logistic with independent-map series transform, BO1: 55.0%. This is an uncalibrated project estimate, not a Valve match forecast. Our own line for the same fixture, from the official ranking only: 57.7% for Voca (9.1 pp from the price this row is based on).",
    "basis_sources": [
     [
      "https://bo3.gg/matches/voca-vs-phantom-esports-16-10-2026",
@@ -7936,7 +8378,7 @@
    "market_odds_a": "1.90",
    "market_odds_b": "1.80",
    "market_overround_pct": "8.19",
-   "market_captured_utc": "2026-10-15T00:49:12Z",
+   "market_captured_utc": "2026-10-15T06:23:29Z",
    "market_prob_a_pct": "48.6",
    "market_prob_b_pct": "51.4",
    "model_prob_a_pct": "55.0",
@@ -7987,15 +8429,13 @@
     "flags": []
    },
    "flags": [
-    "FL-FORMAT-FROM-LISTING",
-    "FL-SLATE-UNVERIFIED",
-    "FL-STALE-CAPTURE"
+    "FL-FORMAT-FROM-LISTING"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T23:22:17Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
    "own": {
     "best_of": 1,
-    "scale": 262.0,
+    "scale": 214.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -8003,8 +8443,8 @@
     "rank_b": 88,
     "bound_a": false,
     "bound_b": false,
-    "p_map": 0.5633738957879644,
-    "p_series": 0.5633738957879644,
+    "p_map": 0.577381308118693,
+    "p_series": 0.577381308118693,
     "method": "HLTV world-rank logistic",
     "sources": [
      [
@@ -8020,7 +8460,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks 59 vs 88 (official HLTV ranking, 2026-10-12), 262 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/262)) = 56.3%",
+    "detail": "ranks 59 vs 88 (official HLTV ranking, 2026-10-12), 214 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/214)) = 57.7%",
     "vrs_p_series": 0.550199353253537,
     "vrs_p_map": 0.550199353253537
    }
@@ -8109,14 +8549,13 @@
     "FL-NO-MARKET",
     "FL-NO-SOURCED-PICK",
     "FL-RANK-MISSING",
-    "FL-RATING-MISSING",
-    "FL-SLATE-UNVERIFIED"
+    "FL-RATING-MISSING"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T23:22:17Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
    "own": {
     "best_of": null,
-    "scale": 262.0,
+    "scale": 214.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -8153,7 +8592,7 @@
    "hotspawn_match_url": "https://www.hotspawn.com/matches/voca-vs-havu-elisa-breakout-series-2-1080287",
    "basis_tier": 2,
    "basis_label": "Market · secondary listing",
-   "basis_detail": "Thunderpick listing 1.42 / 2.70 (decimal), overround 7.46%, proportional de-vig. Secondary listing: the aggregator's own page is the source, not the book itself. Series length BO1 as stated by the pricing listing (Thunderpick); Hotspawn states none. Rating inputs: Voca 1182 vs HAVU 937 official points; project 400-point logistic with independent-map series transform, BO1: 80.4%. This is an uncalibrated project estimate, not a Valve match forecast. Our own line for the same fixture, from the official ranking only: 62.7% for Voca (2.8 pp from the price this row is based on).",
+   "basis_detail": "Thunderpick listing 1.42 / 2.70 (decimal), overround 7.46%, proportional de-vig. Secondary listing: the aggregator's own page is the source, not the book itself. Series length BO1 as stated by the pricing listing (Thunderpick); Hotspawn states none. Rating inputs: Voca 1182 vs HAVU 937 official points; project 400-point logistic with independent-map series transform, BO1: 80.4%. This is an uncalibrated project estimate, not a Valve match forecast. Our own line for the same fixture, from the official ranking only: 65.4% for Voca (0.1 pp from the price this row is based on).",
    "basis_sources": [
     [
      "https://bo3.gg/matches/voca-vs-havu-16-10-2026",
@@ -8184,7 +8623,7 @@
    "market_odds_a": "1.42",
    "market_odds_b": "2.70",
    "market_overround_pct": "7.46",
-   "market_captured_utc": "2026-10-15T00:49:12Z",
+   "market_captured_utc": "2026-10-15T06:23:29Z",
    "market_prob_a_pct": "65.5",
    "market_prob_b_pct": "34.5",
    "model_prob_a_pct": "80.4",
@@ -8235,15 +8674,13 @@
     "flags": []
    },
    "flags": [
-    "FL-FORMAT-FROM-LISTING",
-    "FL-SLATE-UNVERIFIED",
-    "FL-STALE-CAPTURE"
+    "FL-FORMAT-FROM-LISTING"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T23:22:17Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
    "own": {
     "best_of": 1,
-    "scale": 262.0,
+    "scale": 214.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -8251,8 +8688,8 @@
     "rank_b": 118,
     "bound_a": false,
     "bound_b": false,
-    "p_map": 0.6268018781678408,
-    "p_series": 0.6268018781678408,
+    "p_map": 0.6535826785778568,
+    "p_series": 0.6535826785778568,
     "method": "HLTV world-rank logistic",
     "sources": [
      [
@@ -8268,7 +8705,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks 59 vs 118 (official HLTV ranking, 2026-10-12), 262 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/262)) = 62.7%",
+    "detail": "ranks 59 vs 118 (official HLTV ranking, 2026-10-12), 214 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/214)) = 65.4%",
     "vrs_p_series": 0.8038185194246843,
     "vrs_p_map": 0.8038185194246843
    }
@@ -8293,7 +8730,7 @@
    "hotspawn_match_url": "https://www.hotspawn.com/matches/phantom-vs-roundsgg-elisa-breakout-series-2-1080288",
    "basis_tier": 2,
    "basis_label": "Market · secondary listing",
-   "basis_detail": "Polymarket (prediction market) implied probabilities 92.0% / 8.0% (native implied probability), normalised to 100% by proportional de-vig. Prediction market, not a bookmaker; only used where no bookmaker line exists for this fixture. Series length BO1 as stated by the pricing listing (Polymarket (prediction market)); Hotspawn states none. No VRS estimate: one team's points are missing. An unlisted team is not assigned a floor rating.",
+   "basis_detail": "Polymarket (prediction market) implied probabilities 91.5% / 8.5% (native implied probability), normalised to 100% by proportional de-vig. Prediction market, not a bookmaker; only used where no bookmaker line exists for this fixture. Series length BO1 as stated by the pricing listing (Polymarket (prediction market)); Hotspawn states none. No VRS estimate: one team's points are missing. An unlisted team is not assigned a floor rating.",
    "basis_sources": [
     [
      "https://polymarket.com/event/cs2-pha-rgg-2026-10-16",
@@ -8302,19 +8739,19 @@
    ],
    "market_source": "Polymarket (prediction market)",
    "market_odds_a": "1.09",
-   "market_odds_b": "12.50",
-   "market_overround_pct": "-0.00",
-   "market_captured_utc": "2026-10-15T00:49:11Z",
-   "market_prob_a_pct": "92.0",
-   "market_prob_b_pct": "8.0",
+   "market_odds_b": "11.76",
+   "market_overround_pct": "0.00",
+   "market_captured_utc": "2026-10-15T06:23:29Z",
+   "market_prob_a_pct": "91.5",
+   "market_prob_b_pct": "8.5",
    "model_prob_a_pct": "",
    "model_prob_b_pct": "",
-   "prob_a_pct": "92.0",
-   "prob_b_pct": "8.0",
+   "prob_a_pct": "91.5",
+   "prob_b_pct": "8.5",
    "fair_odds_a": "1.09",
-   "fair_odds_b": "12.50",
+   "fair_odds_b": "11.76",
    "pick": "Phantom",
-   "pick_prob_pct": "92.0",
+   "pick_prob_pct": "91.5",
    "confidence": "Medium (secondary listing)",
    "rating_a": {
     "team": "Phantom",
@@ -8361,15 +8798,13 @@
     "FL-IDENTITY-UNVERIFIED",
     "FL-PREDICTION-MARKET-BASIS",
     "FL-RANK-MISSING",
-    "FL-RATING-MISSING",
-    "FL-SLATE-UNVERIFIED",
-    "FL-STALE-CAPTURE"
+    "FL-RATING-MISSING"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T23:22:17Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
    "own": {
     "best_of": 1,
-    "scale": 262.0,
+    "scale": 214.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -8507,14 +8942,13 @@
     "FL-FORMAT-FROM-RESEARCH",
     "FL-MARKET-NO-LIQUIDITY",
     "FL-NO-MARKET",
-    "FL-RATINGS-WEEK-OLD",
-    "FL-SLATE-UNVERIFIED"
+    "FL-RATINGS-WEEK-OLD"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T23:22:17Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
    "own": {
     "best_of": 3,
-    "scale": 262.0,
+    "scale": 214.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -8522,8 +8956,8 @@
     "rank_b": 226,
     "bound_a": false,
     "bound_b": false,
-    "p_map": 0.7613474397794221,
-    "p_series": 0.8563198008752162,
+    "p_map": 0.8053832689799663,
+    "p_series": 0.9011154629581275,
     "method": "HLTV world-rank logistic",
     "sources": [
      [
@@ -8539,7 +8973,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks 94 vs 226 (official HLTV ranking, 2026-10-12), 262 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/262)) = 76.1%; converted to BO3: p = 85.6%",
+    "detail": "ranks 94 vs 226 (official HLTV ranking, 2026-10-12), 214 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/214)) = 80.5%; converted to BO3: p = 90.1%",
     "vrs_p_series": 0.9508673014674639,
     "vrs_p_map": 0.8658895824550439
    }
@@ -8564,7 +8998,7 @@
    "hotspawn_match_url": "https://www.hotspawn.com/matches/roundsgg-vs-voca-elisa-breakout-series-2-1080289",
    "basis_tier": 2,
    "basis_label": "Market · secondary listing",
-   "basis_detail": "Polymarket (prediction market) implied probabilities 10.5% / 89.5% (native implied probability), normalised to 100% by proportional de-vig. Prediction market, not a bookmaker; only used where no bookmaker line exists for this fixture. Series length BO1 as stated by the pricing listing (Polymarket (prediction market)); Hotspawn states none. No VRS estimate: one team's points are missing. An unlisted team is not assigned a floor rating.",
+   "basis_detail": "Polymarket (prediction market) implied probabilities 11.0% / 89.0% (native implied probability), normalised to 100% by proportional de-vig. Prediction market, not a bookmaker; only used where no bookmaker line exists for this fixture. Series length BO1 as stated by the pricing listing (Polymarket (prediction market)); Hotspawn states none. No VRS estimate: one team's points are missing. An unlisted team is not assigned a floor rating.",
    "basis_sources": [
     [
      "https://polymarket.com/event/cs2-voc-rgg-2026-10-16",
@@ -8572,20 +9006,20 @@
     ]
    ],
    "market_source": "Polymarket (prediction market)",
-   "market_odds_a": "9.52",
+   "market_odds_a": "9.09",
    "market_odds_b": "1.12",
-   "market_overround_pct": "0.00",
-   "market_captured_utc": "2026-10-15T00:49:11Z",
-   "market_prob_a_pct": "10.5",
-   "market_prob_b_pct": "89.5",
+   "market_overround_pct": "-0.00",
+   "market_captured_utc": "2026-10-15T06:23:29Z",
+   "market_prob_a_pct": "11.0",
+   "market_prob_b_pct": "89.0",
    "model_prob_a_pct": "",
    "model_prob_b_pct": "",
-   "prob_a_pct": "10.5",
-   "prob_b_pct": "89.5",
-   "fair_odds_a": "9.52",
+   "prob_a_pct": "11.0",
+   "prob_b_pct": "89.0",
+   "fair_odds_a": "9.09",
    "fair_odds_b": "1.12",
    "pick": "Voca",
-   "pick_prob_pct": "89.5",
+   "pick_prob_pct": "89.0",
    "confidence": "Medium (secondary listing)",
    "rating_a": {
     "team": "RoundsGG",
@@ -8632,15 +9066,13 @@
     "FL-IDENTITY-UNVERIFIED",
     "FL-PREDICTION-MARKET-BASIS",
     "FL-RANK-MISSING",
-    "FL-RATING-MISSING",
-    "FL-SLATE-UNVERIFIED",
-    "FL-STALE-CAPTURE"
+    "FL-RATING-MISSING"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T23:22:17Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
    "own": {
     "best_of": 1,
-    "scale": 262.0,
+    "scale": 214.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -8677,7 +9109,7 @@
    "hotspawn_match_url": "https://www.hotspawn.com/matches/phantom-vs-havu-elisa-breakout-series-2-1080290",
    "basis_tier": 2,
    "basis_label": "Market · secondary listing",
-   "basis_detail": "Thunderpick listing 1.35 / 2.90 (decimal), overround 8.56%, proportional de-vig. Secondary listing: the aggregator's own page is the source, not the book itself. Series length BO1 as stated by the pricing listing (Thunderpick); Hotspawn states none. Rating inputs: Phantom 1147 vs HAVU 937 official points; project 400-point logistic with independent-map series transform, BO1: 77.0%. This is an uncalibrated project estimate, not a Valve match forecast. Our own line for the same fixture, from the official ranking only: 56.6% for Phantom (11.6 pp from the price this row is based on).",
+   "basis_detail": "Thunderpick listing 1.35 / 2.90 (decimal), overround 8.56%, proportional de-vig. Secondary listing: the aggregator's own page is the source, not the book itself. Series length BO1 as stated by the pricing listing (Thunderpick); Hotspawn states none. Rating inputs: Phantom 1147 vs HAVU 937 official points; project 400-point logistic with independent-map series transform, BO1: 77.0%. This is an uncalibrated project estimate, not a Valve match forecast. Our own line for the same fixture, from the official ranking only: 58.0% for Phantom (10.2 pp from the price this row is based on).",
    "basis_sources": [
     [
      "https://bo3.gg/matches/phantom-esports-vs-havu-16-10-2026",
@@ -8708,7 +9140,7 @@
    "market_odds_a": "1.35",
    "market_odds_b": "2.90",
    "market_overround_pct": "8.56",
-   "market_captured_utc": "2026-10-15T00:49:12Z",
+   "market_captured_utc": "2026-10-15T06:23:29Z",
    "market_prob_a_pct": "68.2",
    "market_prob_b_pct": "31.8",
    "model_prob_a_pct": "77.0",
@@ -8759,15 +9191,13 @@
     "flags": []
    },
    "flags": [
-    "FL-FORMAT-FROM-LISTING",
-    "FL-SLATE-UNVERIFIED",
-    "FL-STALE-CAPTURE"
+    "FL-FORMAT-FROM-LISTING"
    ],
    "first_seen_utc": "2026-10-14T02:50:00Z",
-   "last_verified_utc": "2026-10-14T23:22:17Z",
+   "last_verified_utc": "2026-10-15T08:27:04Z",
    "own": {
     "best_of": 1,
-    "scale": 262.0,
+    "scale": 214.0,
     "fitted": true,
     "rank_floor": 245,
     "rank_count": 245,
@@ -8775,8 +9205,8 @@
     "rank_b": 118,
     "bound_a": false,
     "bound_b": false,
-    "p_map": 0.5655345048968166,
-    "p_series": 0.5655345048968166,
+    "p_map": 0.5800046065891558,
+    "p_series": 0.5800046065891558,
     "method": "HLTV world-rank logistic",
     "sources": [
      [
@@ -8792,7 +9222,7 @@
       "official HLTV world ranking"
      ]
     ],
-    "detail": "ranks 88 vs 118 (official HLTV ranking, 2026-10-12), 262 places per 90% (fitted on 8 priced fixtures), per-map p = 1/(1+10^((rb-ra)/262)) = 56.6%",
+    "detail": "ranks 88 vs 118 (official HLTV ranking, 2026-10-12), 214 places per 90% (fitted on 10 priced fixtures), per-map p = 1/(1+10^((rb-ra)/214)) = 58.0%",
     "vrs_p_series": 0.770096676660982,
     "vrs_p_map": 0.770096676660982
    }
