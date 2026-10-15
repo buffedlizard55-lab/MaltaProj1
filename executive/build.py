@@ -1216,6 +1216,7 @@ def render_unresolved(rows: list[dict], meta: dict, research: dict | None = None
 {''.join(group_sections)}
 
 <section>
+  <p><a href="data/fallback_research.json">Automated per-fixture fallback research: HLTV reads, outside-line candidates and unresolved limitations</a></p>
   <h2>Prices this research trail refused</h2>
   <p class="muted">Printed by a source, deliberately <em>not</em> used. Each refusal is recorded with the
   reason so the decision can be reviewed.</p>
@@ -1813,7 +1814,13 @@ def main() -> int:
 
     market_quotes = inputs["pinnacle"].get("quotes", [])
     secondary_quotes = list(inputs["secondary"].get("quotes", []) or [])
-    research = inputs.get("research") or {}
+    research = dict(inputs.get("research") or {})
+    fallback = read_json(DATA / "fallback_research.json", {}) or {}
+    # Fallback formats are allowed only for the fixture IDs just researched, with their own read time.
+    fresh_formats = {k: v for k, v in (fallback.get("formats") or {}).items()
+                     if parse_iso(v.get("read_utc")) and
+                     0 <= (now - parse_iso(v["read_utc"])).total_seconds() <= 8 * 3600}
+    research["formats"] = {**(research.get("formats") or {}), **fresh_formats}
     # Session arena/e13aca8a: live research reads join the quote pool with their own read times and
     # source URLs, exactly like the hourly feed rows. They are never re-stamped as the feed's capture.
     research_quotes = list(research.get("quotes") or [])
