@@ -73,9 +73,13 @@ jobs:
       - name: Commit the rebuilt board (main only)
         if: github.ref == 'refs/heads/main'
         run: |
-          set -euo pipefail
+          set -uo pipefail
           git config user.name "valuepicks-bot"
           git config user.email "valuepicks-bot@users.noreply.github.com"
+          # The link audit (and other repository tooling) rewrites status/report.json. Leave that
+          # generated file out of this commit; a dirty tracked file is what makes `git pull --rebase`
+          # refuse to run, which is how the publication step failed on run 38718856948.
+          git checkout -- status 2>/dev/null || true
           git add valuepicks
           if git diff --cached --quiet; then
             echo "board unchanged"
@@ -83,12 +87,15 @@ jobs:
           fi
           git commit -m "valuepicks(7759beef): rebuild day review, picks and value watches [skip ci]"
           for attempt in 1 2 3 4; do
-            if git pull --rebase origin main && git push origin HEAD:main; then
+            if git pull --rebase --autostash origin main && git push origin HEAD:main; then
               echo "pushed on attempt $attempt"
               exit 0
             fi
             git rebase --abort 2>/dev/null || true
-            sleep $((attempt * 5))
+            git checkout -- status 2>/dev/null || true
+            echo "attempt $attempt failed; retrying" >&2
+            git status --short | head -20 >&2
+            sleep $((attempt * 10))
           done
           echo "push failed after 4 attempts" >&2
           exit 1
