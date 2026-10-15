@@ -1164,9 +1164,13 @@ def render_unresolved(rows: list[dict], unresolved: list[dict], summary: dict, m
       no value is interpolated.</li>
     <li><strong>Freshness limitation.</strong> Numbers are as fresh as the read time printed on each row.
       A market can move after the read; re-read the linked source before acting.</li>
-    <li><strong>Score limitation.</strong> A finished fixture's score is taken from Hotspawn's payload and
-      cross-checked against an independent verification trail where one exists; a disagreement is flagged,
-      never silently resolved.</li>
+    <li><strong>Score limitation.</strong> Hotspawn's payload publishes no usable score at all — every
+      fixture, including ones from June, sits at <code>0-0</code> with status “scheduled”, so a payload
+      score is never published here. A finished fixture's result is taken from the repository's
+      independently verified trail, which links the official match page (and the read time) on the row;
+      if a payload score ever appears it is cross-checked against that trail and a disagreement is
+      flagged, never silently resolved. Results that cannot be verified stay blank and flagged MP-F32;
+      forfeit outcomes are labelled as defaults on the row.</li>
   </ul>
 </section>
 {''.join(sections)}
