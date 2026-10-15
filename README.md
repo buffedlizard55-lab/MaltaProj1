@@ -2,6 +2,8 @@
 
 - **Published site:** [buffedlizard55-lab.github.io/MaltaProj1](https://buffedlizard55-lab.github.io/MaltaProj1/)
 - **Root mobile executive summary:** [landing page](https://buffedlizard55-lab.github.io/MaltaProj1/)
+- **Day review & value picks (new):** [every open match with a pick, day-1 review, contrarian watches](https://buffedlizard55-lab.github.io/MaltaProj1/valuepicks/index.html)
+- **Unresolved picks & limits (new):** [rows below the top evidence tier, with the reason](https://buffedlizard55-lab.github.io/MaltaProj1/valuepicks/unresolved.html)
 - **Primary all-match picks:** [executive picks and probabilities](https://buffedlizard55-lab.github.io/MaltaProj1/executive/picks.html)
 - **Unresolved research & limitations:** [HLTV → esportsbooks → betting-line fallback](https://buffedlizard55-lab.github.io/MaltaProj1/executive/unresolved.html)
 - **Archived 2026-10-14 captured-slate report:** [88 fixtures, including verified historical results and flagged gaps](https://buffedlizard55-lab.github.io/MaltaProj1/fullpicks/index.html)
@@ -13,6 +15,32 @@ A mobile-first source-linked dashboard for the public [Hotspawn Pick'em lobby](h
 Hotspawn supplies **fixture identity and UTC lock/start epochs only**, never a probability input.
 
 Parallel research from PR #135 is retained at [matchpicks/](matchpicks/index.html) and [its unresolved section](matchpicks/unresolved.html). It is not the primary executive route; see the [source-reliability review](reviews/bb9e05ef-reliability.html) for timestamp and exact-fixture format limitations.
+
+## Day review, guaranteed picks and value watches (session `7759beef`, 15 October 2026)
+
+`valuepicks/` answers the brief's "a pick for every match" requirement without weakening the
+evidence rules. Every open fixture in the executive capture carries a pick and a two-sided
+probability; the tier that produced the number is printed on the row.
+
+| Page | What it is |
+|---|---|
+| `valuepicks/index.html` | Phone-first cards for every open match: pick, both probabilities, tier, sources |
+| `valuepicks/value.html` | Contrarian value table: outside market vs the project's official-ratings line, gap in points |
+| `valuepicks/unresolved.html` | Rows below tier A, the HLTV → esportsbook → own-line ladder, and the limitation on each |
+| `valuepicks/coverage.html` | All 80 captured fixtures (open rows picked; locked rows as inventory) |
+| `valuepicks/sources.html` / `valuepicks/flagged.html` / `valuepicks/methodology.html` | Source trail with read times, flags, and the exact maths |
+
+Data: `valuepicks/data/board.csv`, `board.json`, `value.csv`, `unresolved.csv`, `coverage.csv`.
+Research inputs (one row per fact, with URL, tier and read time): `research/7759beef/sources.json`.
+Reproduce with `python3 scripts/7759beef_build.py` then `python3 -m unittest tests.test_7759beef`.
+The four-hour workflow `.github/workflows/valuepicks-7759beef.yml` rebuilds and commits the board on
+`main` only after the build and the 13 invariants pass.
+
+Day-review finding used by the board: on 14 October 2026, 9z beat Aurora 2-0 (Inferno 13-11, Nuke
+13-1) at the Thunderpick World Championship — Aurora's first match after the July rebuild that brought
+in kyxsan, Jimpphat and coach ash, and a week after their ESL Pro League bronze. The board applies
+that lesson as a rule, not a hunch: take the contrarian side only where the market and the official
+ratings disagree, and publish the disagreement with its caveats.
 
 ## Current reliability policy (15 October 2026)
 

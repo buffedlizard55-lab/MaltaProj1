@@ -1,0 +1,94 @@
+# Day review, guaranteed picks & value watches — session arena/7759beef.
+#
+# This board collects nothing of its own. It reads the committed executive capture (fixture identity,
+# lock times, stored market quotes and official rating inputs) plus the hand-verified research file
+# `research/7759beef/sources.json`, and rebuilds `valuepicks/`.
+#
+# Every run:
+#   1. python3 scripts/7759beef_build.py  — publish valuepicks/ (one card per open fixture with the
+#      pick, both probabilities, the evidence tier and the source links). The build fails closed if a
+#      published market probability does not de-vig from the stored decimal odds or a published own
+#      line does not recompute from the stored official rating inputs.
+#   2. python3 -m unittest tests.test_7759beef — 13 invariants, including "every open fixture has a
+#      pick", "every published row carries a source link", and "no Hotspawn crowd percentage is used
+#      as a probability input".
+#   3. Commit valuepicks/ ONLY when the build and the tests pass, and only on main, so a failed run
+#      leaves the last verified board live. The schedule follows the brief's 4-8 h refresh window;
+#      GitHub treats schedules as best-effort, which is why every page prints its own capture and
+#      build times.
+name: Day review & value picks (7759beef)
+
+on:
+  workflow_dispatch: {}
+  schedule:
+    - cron: "47 */4 * * *"
+  push:
+    branches: ["main", "arena/7759beef-maltaproj1"]
+    paths:
+      - "scripts/7759beef_build.py"
+      - "tests/test_7759beef.py"
+      - "research/7759beef/**"
+      - "valuepicks/**"
+      - "executive/data/analysis.csv"
+      - "executive/data/summary.json"
+      - "executive/ownlines.py"
+      - ".github/workflows/valuepicks-7759beef.yml"
+  pull_request:
+    paths:
+      - "scripts/7759beef_build.py"
+      - "tests/test_7759beef.py"
+      - "research/7759beef/**"
+      - "valuepicks/**"
+      - ".github/workflows/valuepicks-7759beef.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: valuepicks-7759beef-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Rebuild the board from the committed capture
+        run: python3 scripts/7759beef_build.py
+
+      - name: Verify every published number
+        run: python3 -m unittest tests.test_7759beef -v
+
+      - name: Check local links on the new pages
+        run: python3 scripts/audit_91e444dd.py
+
+      - name: Commit the rebuilt board (main only)
+        if: github.ref == 'refs/heads/main'
+        run: |
+          set -euo pipefail
+          git config user.name "valuepicks-bot"
+          git config user.email "valuepicks-bot@users.noreply.github.com"
+          git add valuepicks
+          if git diff --cached --quiet; then
+            echo "board unchanged"
+            exit 0
+          fi
+          git commit -m "valuepicks(7759beef): rebuild day review, picks and value watches [skip ci]"
+          for attempt in 1 2 3 4; do
+            if git pull --rebase origin main && git push origin HEAD:main; then
+              echo "pushed on attempt $attempt"
+              exit 0
+            fi
+            git rebase --abort 2>/dev/null || true
+            sleep $((attempt * 5))
+          done
+          echo "push failed after 4 attempts" >&2
+          exit 1
