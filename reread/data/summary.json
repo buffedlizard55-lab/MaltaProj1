@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-10-15T01:55:55Z",
+ "generated_utc": "2026-10-15T07:49:34Z",
  "session": "arena/bdc98a9a",
  "what": "live re-read of every external URL cited by the merged boards' data files",
  "offline": false,
@@ -10,13 +10,13 @@
   "every"
  ],
  "boards_missing": [],
- "claims": 330,
+ "claims": 332,
  "verdicts": {
-  "match": 184,
+  "match": 207,
   "mismatch": 0,
-  "refused": 131,
+  "refused": 108,
   "dead": 0,
-  "not-checkable": 15,
+  "not-checkable": 17,
   "placeholder": 0
  },
  "by_kind": {
@@ -27,27 +27,30 @@
   },
   "hltv_match": {
    "total": 56,
-   "refused": 36,
-   "match": 20
+   "refused": 42,
+   "match": 14
   },
   "hltv_team": {
    "total": 39,
-   "match": 13,
-   "refused": 26
+   "match": 39
   },
   "egw_market": {
    "total": 49,
-   "refused": 49
+   "refused": 47,
+   "not-checkable": 2
   },
   "pinnacle": {
    "total": 19,
    "not-checkable": 15,
    "refused": 4
   },
+  "polymarket": {
+   "total": 2,
+   "match": 2
+  },
   "vrs": {
    "total": 150,
-   "match": 149,
-   "refused": 1
+   "match": 150
   }
  },
  "by_host": {
@@ -58,11 +61,12 @@
   "www.hotspawn.com": 15,
   "guest.api.arcadia.pinnacle.com": 14,
   "www.pinnacle.com": 5,
-  "play.hotspawn.com": 2
+  "play.hotspawn.com": 2,
+  "polymarket.com": 2
  },
- "fetches": 111,
+ "fetches": 98,
  "fetch_errors": 2,
  "reused_within_hours": 6,
- "reused_rows": 16,
+ "reused_rows": 168,
  "policy": "Hotspawn is read for fixture identity and series format only, never for a probability. A refusal or a mismatch is recorded and flagged; this tool never edits another board's data and never fills a value in."
 }
