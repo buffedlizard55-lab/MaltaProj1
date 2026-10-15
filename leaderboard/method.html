@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Method · Hotspawn CS2 leaderboard plan</title>
+<meta name="description" content="Contrarian-but-not-stupid Hotspawn CS2 Pick'em plan: outside-market win probabilities vs. crowd ownership for every open match.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top">
+  <div class="wrap">
+    <p class="crumbs"><a href="../index.html">Home</a> › Leaderboard plan</p>
+    <nav aria-label="Leaderboard plan sections"><a href="index.html">Plan</a><a href="day1.html">Day 1 review</a><a href="factors.html">Roster &amp; rest</a><a href="unresolved.html">Unresolved &amp; limits</a><a href="flagged.html">Flagged for review</a><a href="method.html" aria-current="page">Method</a></nav>
+  </div>
+</header>
+<main id="main" class="wrap">
+<p class="banner" role="status">Live capture Thu 15 Oct 10:23 UTC · rebuilt automatically every 4 h · <a href="https://github.com/buffedlizard55-lab/MaltaProj1/actions/workflows/leaderboard-2e2b2e5e.yml">refresh log</a></p>
+
+<section class="hero"><h1>Method</h1><p class="lede">How the probabilities, the crowd leverage and the two plans are produced.</p></section>
+<section id="scoring" aria-labelledby="h-sc"><h2 id="h-sc">Hotspawn scoring</h2><p>Points for every correct pick; higher tiers pay more (lobby cards: S x3 = 7 pts, A x2 = 5 pts, B x1.5 = 3 pts, C = 2 pts, each with a x1.25 multiplier shown); a streak bonus for consecutive correct picks; the leaderboard resets weekly (week 270: 2026-10-12 00:00Z to 2026-10-18 23:59Z); weekly prizes for places 1-10 ($400/$200/$100/$50 Steam vouchers); minimum 10 picks to qualify. (<a href="https://play.hotspawn.com/how-it-works">how it works</a>, <a href="https://play.hotspawn.com/lobby">lobby</a>)</p></section>
+<section aria-labelledby="h-pr"><h2 id="h-pr">Win probabilities</h2><ul class="tight">
+<li>Decimal prices are de-vigged proportionally: p = (1/odds) / Σ(1/odds). American prices are converted first.</li>
+<li>Polymarket share prices are normalized to sum to 1; a market above 98.5% for one side is treated as settled and skipped.</li>
+<li>Own line: per-map p = 1 / (1 + 10^(−k·ΔVRS/400)) (Valve's VRS convention, "400 points = 90%"), then the series probability for the fixture's best-of. k is fitted daily on matched outside prices (current k = 0.36, n = 16).</li>
+<li>Teams are matched across sources only by exact name or a documented alias with evidence (e.g. Hotspawn "WROTBERRY" = WBT, proven by the identical six-fixture schedule on HLTV).</li>
+<li>Hotspawn's crowd split is <strong>never</strong> a probability input; the build's probability function does not receive it, and a test changes the crowd numbers to prove the probabilities do not move.</li></ul></section>
+<section aria-labelledby="h-lev"><h2 id="h-lev">Leverage and labels</h2><ul class="tight">
+<li><b>Expected-points cost</b> of taking the underdog = points × (p<sub>fav</sub> − p<sub>dog</sub>).</li>
+<li><b>Leverage</b> = p<sub>dog</sub> ÷ (share of Hotspawn players on the underdog). Above 1 the crowd under-owns the underdog relative to its real chance.</li>
+<li><b>Contrarian value</b>: underdog ≥ 40% and leverage ≥ 1.5 — costs at most 20% of the match's points in expectation, but a hit gains the full points on most of the field.</li>
+<li><b>Upset shot</b>: underdog 25–40% and leverage ≥ 3 — for players who must pass several people above them.</li>
+<li><b>Take the favourite</b>: everything else. Thresholds are judgement calls shown openly so you can apply your own.</li>
+<li><b>Protect a lead</b> = favourites + value spots. <b>Chase the top</b> = also upset shots. S-tier matches (7 pts) carry 3.5× the swing of C-tier (2 pts).</li></ul></section>
+<section aria-labelledby="h-src"><h2 id="h-src">Sources and refresh</h2><ul class="tight">
+<li>Hotspawn lobby / CS2 / Thunderpick boards — public Angular TransferState (fixture list, tier, points, lock time, crowd split).</li>
+<li>Pinnacle public guest prices, Polymarket gamma API, bo3.gg public match API, Valve VRS repository (<a href="https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md">standings_global_2026_10_05.md</a>), HLTV world ranking (2026-10-12).</li>
+<li><a href="https://github.com/buffedlizard55-lab/MaltaProj1/actions/workflows/leaderboard-2e2b2e5e.yml">GitHub Actions</a> re-collects and rebuilds every 4 hours; tests must pass before anything is published.</li></ul></section>
+</main>
+<footer class="wrap foot">
+  <p>Independent analysis (session arena/2e2b2e5e). Not affiliated with Hotspawn, HLTV, Valve, Pinnacle, Polymarket or bo3.gg.
+  Hotspawn crowd shares are used only to measure how many players pick each side — never as a win probability.
+  Data: <a href="data/plan.csv">plan.csv</a> · <a href="data/plan.json">plan.json</a> · <a href="data/day1.csv">day1.csv</a> · <a href="data/summary.json">summary.json</a>.</p>
+</footer>
+<script>
+(function () {
+  var now = Date.now();
+  document.querySelectorAll("[data-lock]").forEach(function (el) {
+    var t = Date.parse(el.getAttribute("data-lock"));
+    if (t && t <= now) {
+      el.classList.add("locked");
+      var b = el.querySelector(".lockstate");
+      if (b) { b.textContent = "Locked on Hotspawn · "; }
+    }
+  });
+})();
+</script>
+</body>
+</html>

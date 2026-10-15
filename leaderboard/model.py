@@ -98,8 +98,11 @@ def contrarian(p_a: float, points: int | None, crowd_a: float | None, crowd_b: f
     Returns the favourite/underdog split, the expected-points cost of taking the underdog, the
     leverage ratio (our underdog probability / share of players on the underdog) and a label:
 
-    * ``value``  — underdog >= 40% and <= 35% of the field on it: cheap, sensible contrarian pick.
-    * ``upset``  — underdog 25-40% and leverage >= 3: high-variance shot for players chasing the top.
+    * ``fade``   — the crowd is mostly on the market underdog: taking the favourite is already
+                   contrarian and costs nothing (best spots of all).
+    * ``value``  — underdog >= 40% and leverage >= 1.5: costs at most 20% of the match's points in
+                   expectation, but a hit gains the full points on most of the field.
+    * ``upset``  — underdog 25-40% and leverage >= 3: a high-variance shot for players chasing the top.
     * ``chalk``  — everything else: take the favourite.
     """
     pts = points or 0
@@ -108,14 +111,16 @@ def contrarian(p_a: float, points: int | None, crowd_a: float | None, crowd_b: f
     p_dog = 1 - p_fav
     out = {"fav": "a" if fav_is_a else "b", "dog": "b" if fav_is_a else "a", "p_dog": p_dog,
            "ev_cost": pts * (p_fav - p_dog), "crowd_dog": None, "leverage": None, "label": "chalk"}
-    if crowd_a is None or crowd_b is None or (crowd_a + crowd_b) <= 0:
+    if crowd_a is None or crowd_b is None or (float(crowd_a) + float(crowd_b)) <= 0:
         out["label"] = "no crowd data"
         return out
     total = float(crowd_a) + float(crowd_b)
     crowd_dog = (float(crowd_b) if fav_is_a else float(crowd_a)) / total
     out["crowd_dog"] = crowd_dog
     out["leverage"] = (p_dog / crowd_dog) if crowd_dog > 0 else float("inf")
-    if p_dog >= 0.40 and crowd_dog <= 0.35:
+    if crowd_dog > 0.5:
+        out["label"] = "fade"
+    elif p_dog >= 0.40 and out["leverage"] >= 1.5:
         out["label"] = "value"
     elif p_dog >= 0.25 and out["leverage"] >= 3.0:
         out["label"] = "upset"
