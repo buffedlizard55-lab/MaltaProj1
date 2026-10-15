@@ -178,6 +178,13 @@ def strategy(row: dict) -> dict | None:
     cls, reason = classify(p_dog, min_src, c_dog, c_fav, bool(vs_fav), bool(vs_dog))
     play = dog if cls in ("CONTRARIAN", "SITUATIONAL") else fav
     pts = row.get("points") or 0
+    # EV cost is measured on the DISPLAYED probabilities (the pick's basis), not the consensus, so it is
+    # never understated: points x (chance of the pick - chance of the play).
+    shown = {row["team_a"]: pa, row["team_b"]: pb}
+    pick_side = row.get("pick") or (row["team_a"] if pa >= pb else row["team_b"])
+    other = row["team_b"] if pick_side == row["team_a"] else row["team_a"]
+    cost_play = max(0.0, pts * (shown[pick_side] - shown[play])) if play != pick_side else 0.0
+    cost_fade = max(0.0, pts * (shown[pick_side] - shown[other]))
     return {
         "class": cls, "reason": reason, "leaderboard_pick": play, "favourite": fav, "underdog": dog,
         "p_fav": round(p_fav, 4), "p_dog": round(p_dog, 4), "min_src_dog": round(min_src, 4),
@@ -185,8 +192,8 @@ def strategy(row: dict) -> dict | None:
         "crowd_fav": round(c_fav, 4), "crowd_dog": round(c_dog, 4),
         "edge_vs_crowd_pp": round((p_dog - c_dog) * 100, 1),
         "leverage": round(p_dog / max(c_dog, 0.01), 2),
-        "ev_cost_pts": round(pts * (p_fav - p_dog), 2) if play == dog else 0.0,
-        "ev_cost_if_faded": round(pts * (p_fav - p_dog), 2),
+        "ev_cost_pts": round(cost_play, 2),
+        "ev_cost_if_faded": round(cost_fade, 2),
         "field_gain_if_dog_wins_pct": round(c_fav * 100),
         "factors_against_favourite": [f.get("kind") for f in vs_fav],
         "factors_against_underdog": [f.get("kind") for f in vs_dog],

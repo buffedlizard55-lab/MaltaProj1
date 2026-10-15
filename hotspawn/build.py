@@ -236,7 +236,7 @@ def strategy_page(board: dict) -> None:
 <p class="small">This week: {e(week.get('weekStartUtc'))} → {e(week.get('weekEndUtc'))} (Hotspawn payload). Prizes: {e(prizes) or 'not published in payload'}. Hotspawn requires at least 10 picks to qualify (lobby text).</p>
 <h2>Plays for the open slate ({len(rows)})</h2>
 {plays_table(rows)}
-<p class="small">EV cost = expected points given up versus simply taking the favourite (points × gap in win chance). Underdog chance = consensus of the market and our own line (our line is dropped when Valve's roster is out of date). Crowd = Hotspawn's pick share, used here only to measure how contrarian a pick is.</p>
+<p class="small">EV cost = expected points given up versus taking the published pick, measured on the published probabilities (points × gap in win chance). Underdog chance = consensus of the market and our own line (our line is dropped when Valve's roster is out of date). Crowd = Hotspawn's pick share, used here only to measure how contrarian a pick is.</p>
 <h2>The rule (v2)</h2>
 <ul>
 <li><span class="tag c-VALUE">VALUE</span> crowd majority sits on the consensus underdog → play the favourite.</li>
