@@ -1,12 +1,31 @@
 {
- "quotes": [],
+ "quotes": [
+  {
+   "source_id": "polymarket",
+   "source_name": "Polymarket",
+   "source_role": "prediction_market",
+   "event_id": "1196166",
+   "market_id": "5758572",
+   "league": "Counter-Strike: fnatic vs Heroic (BO3) - Stake Pulse Beat III Playoffs",
+   "team_a": "fnatic",
+   "team_b": "Heroic",
+   "start_time": "2026-10-16T11:00:00Z",
+   "best_of": null,
+   "native_format": "implied_probability",
+   "native_a": 0.5,
+   "native_b": 0.5,
+   "odds_a": 2.0,
+   "odds_b": 2.0,
+   "market_type": "match_winner",
+   "status": "open",
+   "source_url": "https://polymarket.com/event/cs2-fnc-hero-2026-10-16",
+   "api_url": "https://gamma-api.polymarket.com/events?closed=false&limit=100&order=startDate&ascending=false",
+   "captured_utc": "2026-10-15T19:59:41Z"
+  }
+ ],
  "mode": "live",
- "http_status": 200,
+ "read": "newest events feed (paged)",
  "events_scanned": 500,
- "second_attempt": {
-  "url": "https://gamma-api.polymarket.com/events?closed=false&limit=200&tag_slug=counter-strike",
-  "http_status": 200
- },
  "source_url": "https://gamma-api.polymarket.com/events?closed=false&limit=100&order=startDate&ascending=false",
- "fetched_utc": "2026-10-15T13:38:05Z"
+ "fetched_utc": "2026-10-15T19:59:41Z"
 }
