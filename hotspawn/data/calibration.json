@@ -1,0 +1,21 @@
+{
+ "status": "ok",
+ "method": "MLE of k in P = 1/(1+10^(-k*dPoints/400)); dPoints from the previous Valve snapshot; rosters matched with >= 3 shared players; last window held out",
+ "valve_repo": "https://github.com/ValveSoftware/counter-strike_regional_standings",
+ "valve_commit": "eec4853d7bcf0f1f7efe7f0d901234bef7e98b75",
+ "k": 0.4598,
+ "k_source": "fitted on Valve's published match results",
+ "k_valve_raw": 0.972821,
+ "n_train": 13609,
+ "n_test": 901,
+ "windows": 46,
+ "first_window": "2024-08-06",
+ "last_window": "2026-09-07..2026-10-05",
+ "holdout": {
+  "log_loss_fitted": 0.6395,
+  "log_loss_valve_raw": 0.6541,
+  "brier_fitted": 0.2234,
+  "brier_valve_raw": 0.2237
+ },
+ "generated_utc": "2026-10-15T10:50:05Z"
+}

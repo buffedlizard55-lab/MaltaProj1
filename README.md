@@ -1,15 +1,33 @@
 # MaltaProj1 — Hotspawn CS2 picks & research
 
+## Start here — a pick for every Hotspawn CS2 match (session `22be6967`, 15 Oct 2026)
+
+| Page | What it is |
+|---|---|
+| [All picks](https://buffedlizard55-lab.github.io/MaltaProj1/hotspawn/picks.html) | One phone card per open match: the pick, **both teams' win probabilities**, the basis, sources and read times |
+| [Leaderboard plan](https://buffedlizard55-lab.github.io/MaltaProj1/hotspawn/strategy.html) | Contrarian-but-not-reckless plays (crowd share used only as ownership) + TWC 2026 day-1 review + live grading |
+| [Unresolved & limitations](https://buffedlizard55-lab.github.io/MaltaProj1/hotspawn/unresolved.html) | Research ladder HLTV → esportsbooks → betting lines, and the limits on every non-bookmaker pick |
+| [Flagged for Review](https://buffedlizard55-lab.github.io/MaltaProj1/hotspawn/flagged.html) | Irregularities and per-match flags with evidence |
+| [Method & sources](https://buffedlizard55-lab.github.io/MaltaProj1/hotspawn/method.html) | Probability ladder, de-vig, own-line calibration, every request with read time |
+
+How it works: `.github/workflows/hotspawn-22be6967.yml` runs every 3 hours — `hotspawn/collect.py` reads the
+`ng-state` TransferState of Hotspawn's `/lobby`, `/cs2-pickems` and `/thp-pickems`, Pinnacle's public guest
+JSON, Polymarket's CS2 series and Valve's official standings; `hotspawn/calibrate.py` fits our own line on
+Valve's published results; `hotspawn/model.py` applies the ladder (Pinnacle → Polymarket → own line →
+unresolved) and the leaderboard rule; `hotspawn/build.py` writes the pages; `hotspawn/tests.py` and a
+headless phone check gate publication. Hotspawn crowd percentages are never probability inputs.
+Line-by-line verification: [reviews/22be6967-verification.md](reviews/22be6967-verification.md).
+
 - **Published site:** [buffedlizard55-lab.github.io/MaltaProj1](https://buffedlizard55-lab.github.io/MaltaProj1/)
 - **Root mobile executive summary:** [landing page](https://buffedlizard55-lab.github.io/MaltaProj1/)
 - **Day review & value picks (new):** [every open match with a pick, day-1 review, contrarian watches](https://buffedlizard55-lab.github.io/MaltaProj1/valuepicks/index.html)
 - **Unresolved picks & limits (new):** [rows below the top evidence tier, with the reason](https://buffedlizard55-lab.github.io/MaltaProj1/valuepicks/unresolved.html)
-- **Primary all-match picks:** [executive picks and probabilities](https://buffedlizard55-lab.github.io/MaltaProj1/executive/picks.html)
+- **Strict-evidence executive picks (previous primary):** [executive picks and probabilities](https://buffedlizard55-lab.github.io/MaltaProj1/executive/picks.html)
 - **Unresolved research & limitations:** [HLTV → esportsbooks → betting-line fallback](https://buffedlizard55-lab.github.io/MaltaProj1/executive/unresolved.html)
 - **Archived 2026-10-14 captured-slate report:** [88 fixtures, including verified historical results and flagged gaps](https://buffedlizard55-lab.github.io/MaltaProj1/fullpicks/index.html)
 - **Acceptance/source-link audit:** [review](https://buffedlizard55-lab.github.io/MaltaProj1/reviews/6f9eab3b-acceptance.html)
 
-The root landing page leads with the `executive/` snapshot. The separate newer `livelines/` board is preserved in the archive but is not authoritative until its malformed Valve source links (used by 88 of 89 fixture rows) and 89-versus-88 fixture discrepancy are repaired and rechecked. See the [acceptance review](reviews/6f9eab3b-acceptance.md) for exact URLs, capture times, and the request to its owner.
+The root landing page now leads with the every-match `hotspawn/` board (session `22be6967`); the strict-evidence `executive/` snapshot, `valuepicks/` (7759beef) and `leaderboard/` (2e2b2e5e) stay linked as second opinions. The separate newer `livelines/` board is preserved in the archive but is not authoritative until its malformed Valve source links (used by 88 of 89 fixture rows) and 89-versus-88 fixture discrepancy are repaired and rechecked. See the [acceptance review](reviews/6f9eab3b-acceptance.md) for exact URLs, capture times, and the request to its owner.
 
 A mobile-first source-linked dashboard for the public [Hotspawn Pick'em lobby](https://play.hotspawn.com/lobby).
 Hotspawn supplies **fixture identity and UTC lock/start epochs only**, never a probability input.

@@ -1,4 +1,12 @@
-"""Acceptance checks for the root landing and its verified executive snapshot feed."""
+"""Acceptance checks for the root landing and its verified executive snapshot feed.
+
+Contract update (arena/22be6967, final integration, 2026-10-15): the user asked for one executive summary
+that leads straight to a pick for EVERY open match.  The primary destination moved from executive/picks.html
+(which leaves blanks whenever a join check fails) to the every-match board hotspawn/picks.html; the landing's
+live counts now come from hotspawn/data/landing.json and that board refreshes every three hours.  The intent
+of every check is unchanged: one primary destination first, the executive board and all research still linked,
+honest freshness wording, crowd percentages never used as probabilities, archive preserved after the fold.
+"""
 import json
 import math
 import re
@@ -19,9 +27,10 @@ class LandingAcceptanceTests(unittest.TestCase):
     def test_one_verified_primary_board_and_research_navigation(self):
         self.assertEqual(len(re.findall(r"<h1\b", self.html, re.I)), 1)
         first_quick_link = self.html.split('<div class="quick-links"', 1)[1].split("</div>", 1)[0]
-        self.assertIn('href="executive/picks.html"', first_quick_link)
-        self.assertIn('href="executive/unresolved.html"', first_quick_link)
-        self.assertIn('href="executive/own-lines.html"', first_quick_link)
+        self.assertIn('href="hotspawn/picks.html"', first_quick_link)
+        self.assertIn('href="hotspawn/unresolved.html"', first_quick_link)
+        self.assertIn('href="hotspawn/strategy.html"', first_quick_link)
+        self.assertLess(first_quick_link.index('href="hotspawn/picks.html"'), first_quick_link.index('href="hotspawn/unresolved.html"'))
         for path in (
             "executive/picks.html",
             "executive/unresolved.html",
@@ -93,13 +102,13 @@ class LandingAcceptanceTests(unittest.TestCase):
         self.assertIn('window.setInterval(loadSummary, 15 * 60000)', self.html)
         self.assertIn("Date.now() - Date.parse(value)", self.html)
         self.assertIn("beyond the requested 4–8 hour update window", self.html)
-        self.assertIn("GitHub Actions refreshes are scheduled every four hours but run best-effort", self.html)
+        self.assertIn("GitHub Actions refreshes are scheduled every three hours but run best-effort", self.html)
         self.assertIn("Lock display caveat:", self.html)
         self.assertIn("absolute UTC lock time and row-level source-read time—not the relative countdown", self.html)
         self.assertIn("Hotspawn crowd-pick percentages are never probability inputs", self.html)
         self.assertNotIn("All 28 open", self.html)
         self.assertNotIn("0.0 h old", self.html)
-        self.assertIn('var url = "executive/data/summary.json?published=" + Date.now()', self.html)
+        self.assertIn('var url = "hotspawn/data/landing.json?published=" + Date.now()', self.html)
         self.assertNotIn('fetch("livelines/data/picks.json', self.html)
 
     def test_local_landing_links_resolve(self):
