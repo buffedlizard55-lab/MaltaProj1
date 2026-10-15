@@ -3957,3 +3957,14 @@ The release PR, merge SHA, GitHub Pages build, and cache-busted HTTPS confirmati
 - GitHub Pages run [38540488756](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38540488756) completed successfully on merge SHA `a540262…`. The Pages API reported `status=built`, created `09:11:08Z`, updated `09:11:30Z`.
 - Cache-busted HTTPS reads with `?v=a540262` returned the deployed root, README, and acceptance review. The live root visibly includes **Lock display caveat**, tells readers to use absolute UTC lock/source-read times, and continues to direct users to the primary executive picks and unresolved research pages; the README repeats the countdown limitation. PR #129's live executive picks, review, and fullpicks routes were verified separately after that first deployment.
 - **E-08 delivery complete:** executive-first mobile landing, snapshot-age/count data, research navigation, preserved archives, source-link/coverage findings, and the stale-countdown limitation are merged and live. The unrelated cross-board full-suite failures remain recorded as an upstream baseline irregularity; scoped landing and executive checks passed.
+
+## Session arena/bb9e05ef — reliability and final integration (2026-10-15 UTC)
+
+Read the shared board before starting. Session uses fixed branch `arena/bb9e05ef-maltaproj1` (Arena constraint). Prior executive/landing owners recorded completion more than 60 minutes ago; their implementations are preserved and this session takes over maintenance, not a parallel replacement board. Open PR #132 belongs to another session and will not be merged or overwritten here.
+
+| ID | Task | Status | Owner | Exclusive scope |
+|---|---|---|---|---|
+| BB-1 | Audit canonical executive capture, quote matching, fallback assumptions and mobile currency; repair fail-open evidence and stale display; refresh via Actions; verify row-by-row | in progress | arena/bb9e05ef | `executive/**`, `tests/test_bb9e05ef.py`, `.github/workflows/executive-5545dbb8.yml` |
+| BB-2 | Final integration: preserve existing root/archive links, disclose unresolved limits, review report; test, PR, merge and Pages verification | in progress | arena/bb9e05ef | root `index.html`, `README.md`, `reviews/bb9e05ef-*`, `COORDINATION.md` append-only |
+
+Observed before implementation: outbound Hotspawn HTTPS denied in this sandbox (curl SSL_ERROR_SYSCALL); GitHub accessible. Latest scheduled executive run 38684548513 succeeded but published summary says Hotspawn `previous_capture`. This is not proof of a current slate. Live source research will run on GitHub Actions; blocked sources remain visibly unverified. No claim is made that all historical dashboards have been independently verified.
