@@ -4362,3 +4362,19 @@ User brief for this session (new requirements): review Thunderpick WC day 1 (9z 
 | HS-7 | Final integration: simpler root executive summary leading to `hotspawn/` (all prior root links preserved in a collapsed archive), README pointer, landing contract tests updated to the new primary route, PR → main, merge, Pages verification, release record | unclaimed until HS-1..HS-6 done | arena/2e2b2e5e | root `index.html`, `README.md`, `tests/test_landing_43c32386.py`, `tests/test_6f9eab3b.py`, `tests/test_228bb5bc.py` (`LandingPage` class only), `.github/workflows/landing-43c32386.yml` (release markers only), `COORDINATION.md` (append-only) |
 
 Handoff note (HS-7): root `index.html`/`README.md` were claimed by `arena/bb9e05ef` (BB-2, recorded **done**; last commit 09:00:01Z, >60 min). Taking them over under the 60-minute rule once HS-1..HS-6 are done; every existing root link stays reachable. `executive/**`, `matchpicks/**` and all other boards remain read-only for this session.
+
+### Log — arena/2e2b2e5e: three-way overlap found and resolved (2026-10-15 10:27 UTC)
+
+While rebasing onto `main` (10:25Z) this session found two parallel sessions working the **same brief**. Claim times (git author dates): `7759beef` **10:03:53Z** (`b3f08d2`, branch-only until PR #139 merged 10:14:32Z) · `2e2b2e5e` **10:08:29Z** (`3da78c4`, branch-only) · `22be6967` **10:09:02Z** (`30ed6f4`, on `main` via PR #138 at 10:09:22Z). None of the three claims was visible to the others when written.
+
+Resolution chosen to avoid a third duplicate board (the user's main complaint is that the site is confusing) and any file collision — **this session releases** HS-1, HS-2 (every-match parts), HS-4 (every-match pages), HS-6/HS-7 (landing integration) and the `hotspawn/` directory name:
+- every-open-fixture picks + day-review + additive landing links → delivered first by `7759beef` (`valuepicks/`);
+- `hotspawn/` directory and the final landing integration → `22be6967` (its claim was the first visible on `main`; this session never pushed a file under `hotspawn/`).
+
+**This session keeps one task, where its claim is the earliest (10:08:29Z, 33 s before `22be6967`'s HS-1):**
+
+| ID | Task | Status | Owner | Exclusive file scope |
+|----|------|--------|-------|----------------------|
+| LB-1 | **Contrarian-but-not-stupid leaderboard plan**: live Hotspawn crowd ownership (ownership only, never probability) vs. outside-market probability for every open fixture → leverage, expected-points cost, a "safe pick" and a "leaderboard pick" per match; roster / onboarding / rest / late-replacement factors from official pages; day-1 evidence (all 13 Hotspawn CS2 fixtures of 2026-10-14 with pre-lock line, crowd split and HLTV result); own 4-hourly live refresh | in progress | arena/2e2b2e5e | `leaderboard/**`, `.github/workflows/leaderboard-2e2b2e5e.yml`, `tests/test_2e2b2e5e.py`, `reviews/2e2b2e5e-verification.md` |
+
+Requests (not edits): **to `22be6967`** — as landing integration owner, please link `leaderboard/index.html` ("Leaderboard plan — contrarian picks") from the root summary instead of building a second contrarian page; if `hotspawn/strategy.html` already exists, keep whichever you prefer and archive the other — this session will not touch `hotspawn/**`, root `index.html` or `README.md`. **To `7759beef`** — `valuepicks/` stays the "pick for every match" board; `leaderboard/` links to it for the full slate. Verified research this session gathered (HLTV/Liquipedia/Valve URLs + read times: all 13 day-1 results, PARIVISION's 2026-09-17 HObbit signing absent from Valve's 2026-10-05 VRS roster, Legacy's arT return, FURIA schedule load, NiP late replacement, Privateer's 4-man HLTV lineup, WROTBERRY = WBT fixture-level proof) is in `leaderboard/research/research.json` for anyone to reuse.

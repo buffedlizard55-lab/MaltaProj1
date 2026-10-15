@@ -1,0 +1,206 @@
+{
+  "schema": 1,
+  "session": "arena/2e2b2e5e",
+  "read_window_utc": "2026-10-15T10:00Z-10:17Z",
+  "how_read": "Ordinary public page reads during the session (HLTV answers GitHub Actions runners with HTTP 403, so these facts cannot be refreshed unattended). HLTV rendered clock times for this reader in UTC-4; every time below is converted to UTC. Each fact carries the page it came from; nothing here is inferred from memory.",
+  "events": [
+    {
+      "id": "twc2026",
+      "name": "Thunderpick World Championship 2026",
+      "hotspawn_competition": "Thunderpick World Championship 2026",
+      "dates": "2026-10-14 to 2026-10-18",
+      "location": "Malta (LAN)",
+      "format": "Two best-of-three GSL groups of four; top two per group to a single-elimination playoff; third-place decider; best-of-five grand final.",
+      "best_of": 3,
+      "best_of_exceptions": {"Grand Final": 5},
+      "groups": {"A": ["Falcons", "Ninjas in Pyjamas", "9z", "Aurora"], "B": ["Legacy", "PARIVISION", "FURIA", "BetBoom"]},
+      "sources": [
+        {"url": "https://www.hltv.org/events/8932/thunderpick-world-championship-2026", "label": "HLTV event page", "excerpt": "Oct 14th - Oct 18th 2026 | $1,000,000 | 8 | Malta; Playoffs: Single Elimination Bracket"},
+        {"url": "https://www.hltv.org/news/45688/thunderpick-world-championship-matchups-announced-with-virtuspro-replaced-by-nip", "label": "HLTV news 2026-10-09", "excerpt": "The Maltese tournament will utilize two best-of-three GSL groups to send four teams through to a single-elimination playoffs bracket, which will culminate with a best-of-five grand final after a third-place decider."}
+      ],
+      "schedule_utc": [
+        {"label": "Group A elimination", "teams": ["Aurora", "Ninjas in Pyjamas"], "start_utc": "2026-10-15T08:30:00Z", "hltv": "https://www.hltv.org/matches/2399408/aurora-vs-ninjas-in-pyjamas-thunderpick-world-championship-2026"},
+        {"label": "Group A winners' match", "teams": ["9z", "Falcons"], "start_utc": "2026-10-15T11:00:00Z", "hltv": "https://www.hltv.org/matches/2399409/9z-vs-falcons-thunderpick-world-championship-2026"},
+        {"label": "Group B elimination", "teams": ["PARIVISION", "BetBoom"], "start_utc": "2026-10-15T13:30:00Z", "hltv": "https://www.hltv.org/matches/2399410/parivision-vs-betboom-thunderpick-world-championship-2026"},
+        {"label": "Group B winners' match", "teams": ["Legacy", "FURIA"], "start_utc": "2026-10-15T16:00:00Z", "hltv": "https://www.hltv.org/matches/2399411/legacy-vs-furia-thunderpick-world-championship-2026"},
+        {"label": "Match 9 (group decider)", "teams": [], "start_utc": "2026-10-16T14:00:00Z", "hltv": "https://www.hltv.org/matches/2399412/thunderpick-world-championship-2026-match-9-thunderpick-world-championship-2026"},
+        {"label": "Match 10 (group decider)", "teams": [], "start_utc": "2026-10-16T17:00:00Z", "hltv": "https://www.hltv.org/matches/2399413/thunderpick-world-championship-2026-match-10-thunderpick-world-championship-2026"},
+        {"label": "Semi-final #1", "teams": [], "start_utc": "2026-10-17T14:00:00Z", "hltv": "https://www.hltv.org/matches/2399414/thunderpick-world-championship-2026-semi-final-1-thunderpick-world-championship-2026"},
+        {"label": "Semi-final #2", "teams": [], "start_utc": "2026-10-17T17:00:00Z", "hltv": "https://www.hltv.org/matches/2399415/thunderpick-world-championship-2026-semi-final-2-thunderpick-world-championship-2026"},
+        {"label": "3rd place decider", "teams": [], "start_utc": "2026-10-18T11:30:00Z", "hltv": "https://www.hltv.org/matches/2399416/thunderpick-world-championship-2026-3rd-place-decider-match-thunderpick-world-championship-2026"},
+        {"label": "Grand Final (BO5)", "teams": [], "start_utc": "2026-10-18T15:00:00Z", "hltv": "https://www.hltv.org/matches/2399417/thunderpick-world-championship-2026-grand-final-thunderpick-world-championship-2026"}
+      ],
+      "schedule_source": "https://www.hltv.org/events/8932/matches"
+    },
+    {
+      "id": "elisa2",
+      "name": "Elisa BreakOut Series 2",
+      "hotspawn_competition": "Elisa BreakOut Series #2",
+      "dates": "2026-10-15 to 2026-10-17",
+      "location": "Tampere, Finland (LAN)",
+      "format": "Two groups of four, every group match best-of-one; top two per group to best-of-three semi-finals and final.",
+      "best_of": 1,
+      "groups": {"A": ["WBT", "ENCE", "EAC", "BOJONG"], "B": ["Voca", "Phantom", "HAVU", "ROUNDS"]},
+      "sources": [
+        {"url": "https://www.hltv.org/events/9332/elisa-breakout-series-2", "label": "HLTV event page", "excerpt": "Group A: WBT, ENCE, BOJONG, EAC; Group B: Voca, Phantom, HAVU, ROUNDS; every listed group match 'bo1'"},
+        {"url": "https://liquipedia.net/counterstrike/Elisa/BreakOut_Series/2", "label": "Liquipedia event page", "excerpt": "WBT — WhiteBIT Team vs(Bo1) EAC — Esport Academy Copenhagen"}
+      ]
+    },
+    {
+      "id": "cct-eu-s12-cq",
+      "name": "CCT 2026 Europe Series 12 Closed Qualifier",
+      "hotspawn_competition": "CCT Europe 2026 Series #12 Play-In",
+      "sources": [
+        {"url": "https://www.hltv.org/matches/2399471/mellren-vs-privateer-cct-2026-europe-series-12-closed-qualifier", "label": "HLTV match page (linked from Privateer's team page)", "excerpt": "16 Oct vs. mellren"}
+      ]
+    }
+  ],
+  "fixture_links": {
+    "1080176": {"hltv": "https://www.hltv.org/matches/2399384/9z-vs-aurora-thunderpick-world-championship-2026"},
+    "1080177": {"hltv": "https://www.hltv.org/matches/2399385/falcons-vs-ninjas-in-pyjamas-thunderpick-world-championship-2026"},
+    "1080178": {"hltv": "https://www.hltv.org/matches/2399386/legacy-vs-parivision-thunderpick-world-championship-2026"},
+    "1080179": {"hltv": "https://www.hltv.org/matches/2399387/furia-vs-betboom-thunderpick-world-championship-2026"},
+    "1080201": {"hltv": "https://www.hltv.org/matches/2399408/aurora-vs-ninjas-in-pyjamas-thunderpick-world-championship-2026", "best_of": 3, "format_source": "https://www.hltv.org/events/8932/matches"},
+    "1080202": {"hltv": "https://www.hltv.org/matches/2399409/9z-vs-falcons-thunderpick-world-championship-2026", "best_of": 3, "format_source": "https://www.hltv.org/events/8932/matches"},
+    "1080203": {"hltv": "https://www.hltv.org/matches/2399410/parivision-vs-betboom-thunderpick-world-championship-2026", "best_of": 3, "format_source": "https://www.hltv.org/events/8932/matches"},
+    "1080204": {"hltv": "https://www.hltv.org/matches/2399411/legacy-vs-furia-thunderpick-world-championship-2026", "best_of": 3, "format_source": "https://www.hltv.org/events/8932/matches"},
+    "1080279": {"hltv": "https://www.hltv.org/matches/2399418/wbt-vs-eac-elisa-breakout-series-2", "best_of": 1, "format_source": "https://www.hltv.org/events/9332/elisa-breakout-series-2"},
+    "1080280": {"hltv": "https://www.hltv.org/matches/2399419/ence-vs-bojong-elisa-breakout-series-2", "best_of": 1, "format_source": "https://www.hltv.org/events/9332/elisa-breakout-series-2"},
+    "1080281": {"hltv": "https://www.hltv.org/matches/2399420/wbt-vs-ence-elisa-breakout-series-2", "best_of": 1, "format_source": "https://www.hltv.org/events/9332/elisa-breakout-series-2"},
+    "1080282": {"hltv": "https://www.hltv.org/matches/2399421/eac-vs-bojong-elisa-breakout-series-2", "best_of": 1, "format_source": "https://www.hltv.org/events/9332/elisa-breakout-series-2"},
+    "1080283": {"hltv": "https://www.hltv.org/matches/2399422/wbt-vs-bojong-elisa-breakout-series-2", "best_of": 1, "format_source": "https://www.hltv.org/events/9332/elisa-breakout-series-2"},
+    "1080284": {"hltv": "https://www.hltv.org/matches/2399423/eac-vs-ence-elisa-breakout-series-2", "best_of": 1, "format_source": "https://www.hltv.org/events/9332/elisa-breakout-series-2"},
+    "1080285": {"hltv": "https://www.hltv.org/matches/2399424/voca-vs-phantom-elisa-breakout-series-2", "best_of": 1, "format_source": "https://www.hltv.org/events/9332/elisa-breakout-series-2"},
+    "1080286": {"hltv": "https://www.hltv.org/matches/2399425/havu-vs-rounds-elisa-breakout-series-2", "best_of": 1, "format_source": "https://www.hltv.org/events/9332/elisa-breakout-series-2"},
+    "1080287": {"hltv": "https://www.hltv.org/matches/2399426/voca-vs-havu-elisa-breakout-series-2", "best_of": 1, "format_source": "https://www.hltv.org/events/9332/elisa-breakout-series-2"},
+    "1080288": {"hltv": "https://www.hltv.org/matches/2399427/phantom-vs-rounds-elisa-breakout-series-2", "best_of": 1, "format_source": "https://www.hltv.org/events/9332/elisa-breakout-series-2"},
+    "1080289": {"hltv": "https://www.hltv.org/matches/2399428/voca-vs-rounds-elisa-breakout-series-2", "best_of": 1, "format_source": "https://www.hltv.org/events/9332/elisa-breakout-series-2"},
+    "1080290": {"hltv": "https://www.hltv.org/matches/2399429/phantom-vs-havu-elisa-breakout-series-2", "best_of": 1, "format_source": "https://www.hltv.org/events/9332/elisa-breakout-series-2"},
+    "1081120": {"hltv": "https://www.hltv.org/matches/2399471/mellren-vs-privateer-cct-2026-europe-series-12-closed-qualifier"},
+    "1081111": {"hltv": "https://www.hltv.org/matches/2399461/enjoy-vs-b8-academy-cct-2026-europe-series-12-closed-qualifier"},
+    "1079621": {"hltv": "https://www.hltv.org/matches/2399298/gothic-vs-lavked-cct-2026-europe-series-11"},
+    "1079438": {"hltv": "https://www.hltv.org/matches/2399134/astralis-vs-sashi-stake-pulse-beat-iii"},
+    "1079439": {"hltv": "https://www.hltv.org/matches/2399135/hotu-vs-fnatic-stake-pulse-beat-iii"},
+    "1081112": {"hltv": "https://www.hltv.org/matches/2399462/banda-chuya-vs-6666-cct-2026-europe-series-12-closed-qualifier"},
+    "1079622": {"hltv": "https://www.hltv.org/matches/2399299/ex-rustec-vs-mellren-cct-2026-europe-series-11"},
+    "1081113": {"hltv": "https://www.hltv.org/matches/2399463/pcific-vs-ryvex-cct-2026-europe-series-12-closed-qualifier"},
+    "1079623": {"hltv": "https://www.hltv.org/matches/2399300/g2-ares-vs-the-last-resort-cct-2026-europe-series-11"},
+    "1079624": {"hltv": "https://www.hltv.org/matches/2399301/forze-reload-vs-lfo-10-cct-2026-europe-series-11"},
+    "1081105": {"hltv": "https://www.hltv.org/matches/2399460/your-end-vs-sukeban-cct-2026-south-america-series-7"}
+  },
+  "aliases": [
+    {"hotspawn": "WROTBERRY", "equivalents": ["WBT", "WhiteBIT", "WhiteBIT Team"], "scope": "Elisa BreakOut Series #2",
+     "proof": "Fixture-level: Hotspawn's six Group A fixtures (1080279-1080284) are WROTBERRY/ENCE/EAC/BOJONG round-robin at 08:00-18:00 UTC on 2026-10-15; HLTV's Group A is WBT/ENCE/EAC/BOJONG with the same six pairings at the same UTC times, and HLTV lists the 08:00 opener as WBT 13-5 EAC (match 2399418). The name WROTBERRY appears on no HLTV or Liquipedia page for this event.",
+     "sources": ["https://www.hltv.org/events/9332/elisa-breakout-series-2", "https://liquipedia.net/counterstrike/Elisa/BreakOut_Series/2", "https://www.hltv.org/team/13683/wbt"]},
+    {"hotspawn": "RoundsGG", "equivalents": ["ROUNDS"], "scope": "Elisa BreakOut Series #2",
+     "proof": "HLTV Group B lists ROUNDS in all three RoundsGG slots (HAVU, Phantom, Voca) at the Hotspawn UTC times.",
+     "sources": ["https://www.hltv.org/events/9332/elisa-breakout-series-2"]},
+    {"hotspawn": "Voca", "equivalents": ["Team Voca"], "scope": "Elisa BreakOut Series #2", "proof": "Liquipedia Group B shows 'Voca — Team Voca'.", "sources": ["https://liquipedia.net/counterstrike/Elisa/BreakOut_Series/2"]},
+    {"hotspawn": "Phantom", "equivalents": ["Phantom Esports"], "scope": "Elisa BreakOut Series #2", "proof": "Liquipedia Group B shows 'Phantom — Phantom Esports'.", "sources": ["https://liquipedia.net/counterstrike/Elisa/BreakOut_Series/2"]},
+    {"hotspawn": "EAC", "equivalents": ["EA Copenhagen", "Esport Academy Copenhagen"], "scope": "Elisa BreakOut Series #2", "proof": "Liquipedia Group A shows 'EAC — EA Copenhagen / Esport Academy Copenhagen'. EAC EXTRA is a different team and is never merged.", "sources": ["https://liquipedia.net/counterstrike/Elisa/BreakOut_Series/2"]},
+    {"hotspawn": "PARIVISION", "equivalents": ["PVISION"], "scope": "Thunderpick World Championship 2026",
+     "proof": "Pinnacle's league 'CS2 - TP World Championship' prices 'PVISION' at the exact Hotspawn kickoffs of both PARIVISION fixtures (Legacy 2026-10-14 13:30Z; BetBoom 2026-10-15 13:30Z). Only eight teams play the event (HLTV) and PARIVISION is the only one matching.",
+     "sources": ["https://www.hltv.org/events/8932/thunderpick-world-championship-2026", "https://www.pinnacle.com/en/esports/games/cs2/matchups/"]},
+    {"hotspawn": "BetBoom", "equivalents": ["BB Team", "BETBOOM", "BetBoom Team"], "scope": "Thunderpick World Championship 2026",
+     "proof": "HLTV names the team BETBOOM; Pinnacle prices 'BB Team' at the exact Hotspawn kickoffs of FURIA-BetBoom (2026-10-14 16:00Z) and PARIVISION-BetBoom (2026-10-15 13:30Z). Only one TWC team matches.",
+     "sources": ["https://www.hltv.org/team/12394/betboom", "https://www.pinnacle.com/en/esports/games/cs2/matchups/"]},
+    {"hotspawn": "Heroic", "equivalents": ["HEROIC"], "scope": "any", "proof": "Case-only difference (Valve VRS lists 'HEROIC').", "sources": []},
+    {"hotspawn": "Ninjas in Pyjamas", "equivalents": ["NIP", "NiP", "Ninjas In Pyjamas"], "scope": "any", "proof": "Case-only / standard abbreviation (HLTV news uses NIP).", "sources": ["https://www.hltv.org/news/45688/thunderpick-world-championship-matchups-announced-with-virtuspro-replaced-by-nip"]},
+    {"hotspawn": "Falcons", "equivalents": ["Team Falcons", "Falcons Esports"], "scope": "any", "proof": "Organisation name variants.", "sources": ["https://www.hltv.org/team/11283/falcons"]},
+    {"hotspawn": "9z", "equivalents": ["9z Team"], "scope": "any", "proof": "Organisation name variant.", "sources": ["https://www.hltv.org/team/9996/9z"]},
+    {"hotspawn": "Aurora", "equivalents": ["Aurora Gaming"], "scope": "any", "proof": "Organisation name variant.", "sources": ["https://www.hltv.org/team/11861/aurora"]},
+    {"hotspawn": "Fnatic", "equivalents": ["fnatic"], "scope": "any", "proof": "Case-only difference.", "sources": []}
+  ],
+  "context": [
+    {"team": "Aurora", "kind": "roster", "effect": "against", "date": "2026-07-08",
+     "summary": "Summer rebuild: new IGL kyxsan (from Falcons) and Jimi 'Jimpphat' Salo, coach ash; MAJ3R, soulfly and coach Fabre replaced. HLTV's team page counts 62 maps for the new pair. Aurora lost 0-2 to 9z on day 1 with kyxsan rated 0.53 for the series.",
+     "sources": [
+       {"url": "https://www.hltv.org/news/45082/official-aurora-complete-rebuild-with-kyxsan", "label": "HLTV news 2026-07-08", "excerpt": "The move for the Macedonian in-game-leader follows the additions of Jimi \"Jimpphat\" Salo and Ashley \"ash\" Battye ... the new trio replacing Engin \"MAJ3R\" Küpeli, Caner \"soulfly\" Kesici, and Sezgin \"Fabre\" Kalaycı."},
+       {"url": "https://www.hltv.org/team/11861/aurora", "label": "HLTV team page", "excerpt": "Jimpphat STARTER 3 months 62 maps; kyxsan STARTER 3 months 62 maps 0.97; coach ash 3 months 62 maps 61%"},
+       {"url": "https://www.hltv.org/matches/2399384/9z-vs-aurora-thunderpick-world-championship-2026", "label": "HLTV match page", "excerpt": "kyxsan 9-29 ... Rating 3.0 0.53"}
+     ]},
+    {"team": "PARIVISION", "kind": "roster", "effect": "against", "date": "2026-09-17",
+     "summary": "Onboarding a new starter: benched slaxejezzz and signed HObbit four weeks before the event. Valve's official VRS (2026-10-05) still lists the old five (with slaxejezzz). Lost 0-2 to Legacy on day 1.",
+     "sources": [
+       {"url": "https://www.hltv.org/search?term=PARIVISION", "label": "HLTV team search (current five)", "excerpt": "HObbit, FL1T, Jame, xiELO, zweih"},
+       {"url": "https://liquipedia.net/counterstrike/PARIVISION", "label": "Liquipedia team page", "excerpt": "September 17th - PARIVISION bench slaxejezzz and sign HObbit."},
+       {"url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md", "label": "Valve VRS 2026-10-05", "excerpt": "36 | 1411 | PARIVISION | FL1T, Jame, slaxejezzz, xiELO, zweih"}
+     ]},
+    {"team": "Legacy", "kind": "returning player", "effect": "for", "date": "2026-10-07",
+     "summary": "IGL arT back after missing ESL Pro League with meningitis (Legacy went out in the EPL group stage with a stand-in). Legacy were second in Valve's VRS before his absence; they beat PARIVISION 2-0 on day 1.",
+     "sources": [
+       {"url": "https://www.hltv.org/news/45669/art-to-return-for-thunderpick-world-championship", "label": "HLTV news 2026-10-07", "excerpt": "After a brief one-tournament absence with meningitis, arT is ready to return to the server."}
+     ]},
+    {"team": "FURIA", "kind": "schedule load", "effect": "against", "date": "2026-10-09",
+     "summary": "HLTV describes FURIA's 'grueling schedule'; KSCERATO told HLTV the team is mentally tired from playing so many tournaments. FURIA beat BetBoom 2-0 on day 1.",
+     "sources": [
+       {"url": "https://www.hltv.org/news/45688/thunderpick-world-championship-matchups-announced-with-virtuspro-replaced-by-nip", "label": "HLTV news 2026-10-09", "excerpt": "FURIA's grueling schedule will also continue as they begin their run against BETBOOM."},
+       {"url": "https://liquipedia.net/counterstrike/ESL/Pro_League/Season_24", "label": "Liquipedia (lists HLTV interview 2026-10-07)", "excerpt": "KSCERATO: \"We're playing a lot of tournaments; when you see frustration, you can't handle it like you used to because you're so tired mentally\" by NER0 of HLTV"}
+     ]},
+    {"team": "Ninjas in Pyjamas", "kind": "late replacement", "effect": "against", "date": "2026-10-09",
+     "summary": "Invited five days before the event to replace Virtus.pro (visa and health withdrawals); lost 0-2 to Falcons on day 1.",
+     "sources": [
+       {"url": "https://www.hltv.org/news/45688/thunderpick-world-championship-matchups-announced-with-virtuspro-replaced-by-nip", "label": "HLTV news 2026-10-09", "excerpt": "Ninjas in Pyjamas would replace Virtus.pro after the latter team withdrew from the event due to visa issues ... and health reasons"}
+     ]},
+    {"team": "9z", "kind": "form", "effect": "for", "date": "2026-10-14",
+     "summary": "Beat Aurora 2-0 (13-11 Inferno, 13-1 Nuke) after four straight group-stage exits; luchov rated 1.61. +62 VRS points per HLTV.",
+     "sources": [
+       {"url": "https://www.hltv.org/news/45718/9z-beat-aurora-2-0-to-kick-off-twc-2026", "label": "HLTV news 2026-10-14", "excerpt": "9z earned a statement win against the fifth-ranked team in the VRS, Aurora ... group-stage exit streak at their last four events: EWC, BLAST Porto, FPG 3, and EPL 24."}
+     ]},
+    {"team": "Privateer", "kind": "roster", "effect": "against", "date": "2026-10-04",
+     "summary": "HLTV lists only four Privateer players plus an unknown fifth; moz joined 11 days before the read. Valve's VRS roster (2026-10-05) lists Ariant0 and JAUSTERE, who are no longer on HLTV's lineup.",
+     "sources": [
+       {"url": "https://www.hltv.org/team/13914/privateer", "label": "HLTV team page", "excerpt": "moz STARTER 11 days 10 maps; main lineup Frazehh, Prime, moz & M1n1maL"}
+     ]}
+  ],
+  "results": [
+    {"match_id": "1081111", "winner": "Enjoy", "score": "2-1", "hltv": "https://www.hltv.org/matches/2399461/enjoy-vs-b8-academy-cct-2026-europe-series-12-closed-qualifier"},
+    {"match_id": "1079621", "winner": "Lavked", "score": "default (forfeit)", "hltv": "https://www.hltv.org/matches/2399298/gothic-vs-lavked-cct-2026-europe-series-11"},
+    {"match_id": "1080176", "winner": "9z", "score": "2-0 (Inferno 13-11, Nuke 13-1)", "hltv": "https://www.hltv.org/matches/2399384/9z-vs-aurora-thunderpick-world-championship-2026"},
+    {"match_id": "1079438", "winner": "Astralis", "score": "2-0", "hltv": "https://www.hltv.org/matches/2399134/astralis-vs-sashi-stake-pulse-beat-iii"},
+    {"match_id": "1079439", "winner": "HOTU", "score": "2-0", "hltv": "https://www.hltv.org/matches/2399135/hotu-vs-fnatic-stake-pulse-beat-iii"},
+    {"match_id": "1081112", "winner": "6666", "score": "2-1", "hltv": "https://www.hltv.org/matches/2399462/banda-chuya-vs-6666-cct-2026-europe-series-12-closed-qualifier"},
+    {"match_id": "1079622", "winner": "ex-RUSTEC", "score": "2-1", "hltv": "https://www.hltv.org/matches/2399299/ex-rustec-vs-mellren-cct-2026-europe-series-11"},
+    {"match_id": "1080177", "winner": "Falcons", "score": "2-0 (Ancient 16-13, Dust2 13-6)", "hltv": "https://www.hltv.org/matches/2399385/falcons-vs-ninjas-in-pyjamas-thunderpick-world-championship-2026"},
+    {"match_id": "1080178", "winner": "Legacy", "score": "2-0 (Dust2 13-11, Mirage 16-14)", "hltv": "https://www.hltv.org/matches/2399386/legacy-vs-parivision-thunderpick-world-championship-2026"},
+    {"match_id": "1081113", "winner": "PCIFIC", "score": "2-0", "hltv": "https://www.hltv.org/matches/2399463/pcific-vs-ryvex-cct-2026-europe-series-12-closed-qualifier"},
+    {"match_id": "1079623", "winner": "G2 Ares", "score": "2-1", "hltv": "https://www.hltv.org/matches/2399300/g2-ares-vs-the-last-resort-cct-2026-europe-series-11"},
+    {"match_id": "1080179", "winner": "FURIA", "score": "2-0 (Ancient, Mirage)", "hltv": "https://www.hltv.org/matches/2399387/furia-vs-betboom-thunderpick-world-championship-2026"},
+    {"match_id": "1079624", "winner": "FORZE Reload", "score": "2-0", "hltv": "https://www.hltv.org/matches/2399301/forze-reload-vs-lfo-10-cct-2026-europe-series-11"},
+    {"match_id": "1081105", "winner": "your end", "score": "default (forfeit)", "hltv": "https://www.hltv.org/matches/2399460/your-end-vs-sukeban-cct-2026-south-america-series-7"},
+    {"match_id": "1080279", "winner": "WROTBERRY", "score": "13-5 (Mirage, BO1)", "hltv": "https://www.hltv.org/matches/2399418/wbt-vs-eac-elisa-breakout-series-2"}
+  ],
+  "results_source": "https://www.hltv.org/results",
+  "day1": {
+    "date": "2026-10-14",
+    "note": "Pre-match prices and Hotspawn crowd splits come from this repository's live/ capture taken 2026-10-14T07:58Z (26 minutes before the first day-1 lock). Those values can no longer be re-read live; the commit is linked so they can be audited.",
+    "capture_url": "https://github.com/buffedlizard55-lab/MaltaProj1/blob/10bbd5b470/live/data/snapshot.json",
+    "capture_utc": "2026-10-14T07:58:26Z",
+    "rows": [
+      {"match_id": "1081111", "start_utc": "2026-10-14T08:00:00Z", "competition": "CCT Europe 2026 Series #12 Play-In", "tier": "c", "points": 2, "team_a": "Enjoy", "team_b": "B8 Academy", "crowd_a": 40, "crowd_b": 60, "crowd_n": 10, "line_source": "Pinnacle", "native_a": -164, "native_b": 122},
+      {"match_id": "1079621", "start_utc": "2026-10-14T08:00:00Z", "competition": "CCT Europe 2026 Series #11", "tier": "b", "points": 3, "team_a": "Gothic", "team_b": "Lavked", "crowd_a": 7, "crowd_b": 93, "crowd_n": 15, "line_source": null, "native_a": null, "native_b": null},
+      {"match_id": "1080176", "start_utc": "2026-10-14T08:30:00Z", "competition": "Thunderpick World Championship 2026", "tier": "s", "points": 7, "team_a": "9z", "team_b": "Aurora", "crowd_a": 4, "crowd_b": 96, "crowd_n": 25, "line_source": "Pinnacle", "native_a": 265, "native_b": -365},
+      {"match_id": "1079438", "start_utc": "2026-10-14T10:00:00Z", "competition": "Stake Pulse Beat III", "tier": "b", "points": 3, "team_a": "Astralis", "team_b": "Sashi", "crowd_a": 96, "crowd_b": 4, "crowd_n": 26, "line_source": null, "native_a": null, "native_b": null},
+      {"match_id": "1079439", "start_utc": "2026-10-14T10:00:00Z", "competition": "Stake Pulse Beat III", "tier": "b", "points": 3, "team_a": "HOTU", "team_b": "Fnatic", "crowd_a": 8, "crowd_b": 92, "crowd_n": 25, "line_source": "Pinnacle", "native_a": 106, "native_b": -133},
+      {"match_id": "1081112", "start_utc": "2026-10-14T11:00:00Z", "competition": "CCT Europe 2026 Series #12 Play-In", "tier": "c", "points": 2, "team_a": "Banda chuya", "team_b": "6666", "crowd_a": 0, "crowd_b": 100, "crowd_n": 6, "line_source": null, "native_a": null, "native_b": null},
+      {"match_id": "1079622", "start_utc": "2026-10-14T11:00:00Z", "competition": "CCT Europe 2026 Series #11", "tier": "b", "points": 3, "team_a": "ex-RUSTEC", "team_b": "mellren", "crowd_a": 92, "crowd_b": 8, "crowd_n": 12, "line_source": null, "native_a": null, "native_b": null},
+      {"match_id": "1080177", "start_utc": "2026-10-14T11:00:00Z", "competition": "Thunderpick World Championship 2026", "tier": "s", "points": 7, "team_a": "Falcons", "team_b": "Ninjas in Pyjamas", "crowd_a": 91, "crowd_b": 9, "crowd_n": 23, "line_source": "Pinnacle", "native_a": -302, "native_b": 238},
+      {"match_id": "1080178", "start_utc": "2026-10-14T13:30:00Z", "competition": "Thunderpick World Championship 2026", "tier": "s", "points": 7, "team_a": "Legacy", "team_b": "PARIVISION", "crowd_a": 68, "crowd_b": 32, "crowd_n": 22, "line_source": "Pinnacle", "native_a": -151, "native_b": 124},
+      {"match_id": "1081113", "start_utc": "2026-10-14T14:00:00Z", "competition": "CCT Europe 2026 Series #12 Play-In", "tier": "c", "points": 2, "team_a": "Ryvex", "team_b": "PCIFIC", "crowd_a": 0, "crowd_b": 100, "crowd_n": 6, "line_source": "Pinnacle", "native_a": 379, "native_b": -793},
+      {"match_id": "1079623", "start_utc": "2026-10-14T14:00:00Z", "competition": "CCT Europe 2026 Series #11", "tier": "b", "points": 3, "team_a": "G2 Ares", "team_b": "The Last Resort", "crowd_a": 100, "crowd_b": 0, "crowd_n": 12, "line_source": null, "native_a": null, "native_b": null},
+      {"match_id": "1080179", "start_utc": "2026-10-14T16:00:00Z", "competition": "Thunderpick World Championship 2026", "tier": "s", "points": 7, "team_a": "FURIA", "team_b": "BetBoom", "crowd_a": 82, "crowd_b": 18, "crowd_n": 22, "line_source": "Pinnacle", "native_a": -294, "native_b": 232},
+      {"match_id": "1079624", "start_utc": "2026-10-14T17:00:00Z", "competition": "CCT Europe 2026 Series #11", "tier": "b", "points": 3, "team_a": "FORZE Reload", "team_b": "LFO 10", "crowd_a": 92, "crowd_b": 8, "crowd_n": 12, "line_source": null, "native_a": null, "native_b": null}
+    ]
+  },
+  "scoring": {
+    "source": "https://play.hotspawn.com/how-it-works",
+    "lobby_source": "https://play.hotspawn.com/lobby",
+    "summary": "Points for every correct pick; higher tiers pay more (lobby cards: S x3 = 7 pts, A x2 = 5 pts, B x1.5 = 3 pts, C = 2 pts, each with a x1.25 multiplier shown); a streak bonus for consecutive correct picks; the leaderboard resets weekly (week 270: 2026-10-12 00:00Z to 2026-10-18 23:59Z); weekly prizes for places 1-10 ($400/$200/$100/$50 Steam vouchers); minimum 10 picks to qualify.",
+    "excerpts": [
+      "Earn points for every correct pick. Higher tier matches reward more points.",
+      "Get bonus points for consecutive correct picks. The longer your streak, the bigger the bonus.",
+      "The leaderboard resets every week so everyone has a fresh chance to be #1.",
+      "Prizes awarded after the weekly reset. Winners contacted via email. Minimum 10 picks to qualify."
+    ]
+  }
+}
