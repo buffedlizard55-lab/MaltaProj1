@@ -267,11 +267,17 @@ class Ladder(unittest.TestCase):
         self.assertEqual(row["pick"], "ENCE")
         self.assertIn("MP-F01", row["flags"])
 
-    def test_own_line_falls_back_to_official_hltv_rank_and_is_labelled_per_map(self):
+    def test_own_line_falls_back_to_the_official_hltv_rank_and_uses_the_researched_series(self):
+        """Rank-based own line; the length comes from the source-linked researched trail."""
         row = self.rows["1080290"]
         self.assertIn("HLTV world ranking", row["own_basis"])
-        self.assertEqual(row["own_scope"], "per-map")
-        self.assertIn("MP-F05", row["flags"])
+        self.assertEqual(row["series"], "BO1")
+        self.assertEqual(row["series_source"], "official HLTV match page")
+        self.assertTrue(row["series_url"].startswith("https://www.hltv.org/"), row["series_url"])
+        self.assertTrue(row["series_evidence"], "a researched series length must quote its evidence")
+        self.assertIn("MP-F33", row["flags"])
+        self.assertNotIn("MP-F05", row["flags"])
+        self.assertEqual(row["own_scope"], "series")
         self.assertEqual(row["pick"], "HAVU")
         self.assertAlmostEqual(float(row["own_p_a_pct"]),
                                round(100 * (1 / (1 + 10 ** ((61 - 45) / 100.0))), 1), places=1)

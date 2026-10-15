@@ -72,6 +72,8 @@ VRS_SCALE = 400.0            # official VRS convention used by executive/ownline
 RANK_SCALE = ownlines.DEFAULT_RANK_SCALE   # HLTV rank positions per 90% per-map favourite
 STALE_AFTER_DAYS = 3         # a listing whose start is days past is a stale listing, not a fixture
 FULLPICKS_RESULTS = ROOT / "fullpicks" / "data" / "stale_results.csv"
+SERIES_RESEARCH = ROOT / "matchpicks" / "series_research.csv"   # hand-checked, source-linked
+                                                                # best-of lengths (see reviews/)
 
 SOURCES_TABLE = [
     ("Hotspawn Pick'em lobby", "https://play.hotspawn.com/lobby",
@@ -138,12 +140,39 @@ def logistic(diff: float, scale: float) -> float:
     return 1.0 / (1.0 + 10.0 ** (-float(diff) / float(scale)))
 
 
-def series_info(fixture: dict, formats: dict) -> dict:
+def load_series_research() -> dict:
+    """Source-linked best-of lengths read by hand for the fixtures the automated runner cannot source.
+
+    The runner's fetch of HLTV's live match list is refused by that site's bot protection (recorded
+    per capture), and Hotspawn's own payload states no length, so for those fixtures the length is
+    taken from a named official page that was read by hand and is linked on the row.  Only rows that
+    carry a real URL and a best-of value are used; nothing is inferred.
+    """
+    table: dict[str, dict] = {}
+    if not SERIES_RESEARCH.exists():
+        return table
+    with SERIES_RESEARCH.open(newline="", encoding="utf-8") as handle:
+        for row in csv.DictReader(handle):
+            bo = (row.get("series") or "").strip().upper()
+            if not (row.get("match_id") and row.get("source_url") and bo[:2] == "BO" and bo[2:].isdigit()):
+                continue
+            table[str(row["match_id"]).strip()] = {
+                "bo": int(bo[2:]), "source": (row.get("source") or "").strip(),
+                "url": row["source_url"].strip(), "evidence": (row.get("evidence") or "").strip(),
+                "read_utc": (row.get("read_utc") or "").strip()}
+    return table
+
+
+def series_info(fixture: dict, formats: dict, research: dict, trail_row: dict | None) -> dict:
     """The series length and the source it came from — never guessed.
 
-    Order: what Hotspawn's payload states, then the official HLTV match list (joined on the team pair
-    with the label and the start time on the same row).  Nothing else is used, and a row with no
-    source stays ``None`` and is flagged MP-F05.
+    Order of sources, all of them named and linked on the row:
+      1. what Hotspawn's payload states (in practice never);
+      2. the official HLTV match list captured by this run, joined on the team pair with the label
+         and the start time on the same row (MP-F11);
+      3. the hand-checked research trail of official HLTV match/event pages (MP-F33);
+      4. the official match page already linked by the repository's verified result trail (MP-F33).
+    A fixture whose length no source states keeps an empty length and is flagged MP-F05.
     """
     stated = series_length(fixture)
     if stated:
@@ -156,17 +185,30 @@ def series_info(fixture: dict, formats: dict) -> dict:
         return {"bo": int(row["best_of"]), "source": "official HLTV match list",
                 "url": meta.get("url") or "https://www.hltv.org/matches",
                 "evidence": row.get("evidence") or "", "read_utc": meta.get("read_utc") or ""}
+    entry = research.get(str(fixture.get("match_id") or "").strip())
+    if entry:
+        return {"bo": entry["bo"], "source": entry["source"], "url": entry["url"],
+                "evidence": entry["evidence"], "read_utc": entry["read_utc"]}
+    if trail_row:
+        bo = ownlines.format_to_best_of(trail_row.get("series_format") or "") or \
+             (int(re.findall(r"\d+", trail_row["series_format"])[0])
+              if re.findall(r"\d+", trail_row.get("series_format") or "") else None)
+        if bo and trail_row.get("official_source_url"):
+            return {"bo": bo, "source": "official match page (verified result trail)",
+                    "url": trail_row["official_source_url"], "evidence": "best-of recorded with the "
+                    "verified result on the same official match page", "read_utc": trail_row.get("read_utc") or ""}
     return {"bo": None, "source": "", "url": "", "evidence": "", "read_utc": ""}
 
 
-def own_line(fixture: dict, vrs: dict, hltv_ranks: dict, formats: dict) -> dict:
+def own_line(fixture: dict, vrs: dict, hltv_ranks: dict, formats: dict,
+             research: dict, trail_row: dict | None) -> dict:
     """Originated probability from official inputs only, or a reason why it cannot be made.
 
     Tier A: both teams present in Valve's official Regional Standings → points ratio, scale 400.
     Tier B: otherwise, both teams present in the official HLTV world ranking → rank logistic.
     The per-map figure is converted to the stated series length when Hotspawn states one.
     """
-    series = series_info(fixture, formats)
+    series = series_info(fixture, formats, research, trail_row)
     bo = series["bo"]
     a, b = fixture.get("team_a"), fixture.get("team_b")
     entry_a, alt_a = pick_vrs(vrs.get(norm(a or "")))
@@ -296,6 +338,7 @@ def build(snapshot: dict) -> dict:
     hltv_read = snapshot.get("hltv", {}).get("fetched_utc")
     quotes = external_quotes(snapshot)
     formats = format_lookup(snapshot)
+    series_research = load_series_research()
     formats_meta = {"url": (snapshot.get("hltv_formats") or {}).get("url") or "",
                     "read_utc": (snapshot.get("hltv_formats") or {}).get("read_utc") or ""}
     published = load_published_results()
@@ -378,16 +421,21 @@ def build(snapshot: dict) -> dict:
 
         # ---- 3. our own originated line from official inputs
         fixture["_formats_meta"] = formats_meta
-        own = own_line(fixture, vrs, hltv_ranks, formats)
+        trail = published.get(row["match_id"])
+        own = own_line(fixture, vrs, hltv_ranks, formats, series_research, trail)
         if own["bo"]:
             row["series"] = f"BO{own['bo']}"
             row["series_source"] = own["series_source"]
             row["series_url"] = own["series_url"]
             row["series_read_utc"] = own["series_read_utc"]
+            row["series_evidence"] = own.get("series_evidence") or ""
             if own["series_source"] == "official HLTV match list":
                 row_flags.append("MP-F11")
+            elif own["series_source"] != "Hotspawn payload":
+                row_flags.append("MP-F33")
         else:
             row["series_source"] = row["series_url"] = row["series_read_utc"] = ""
+            row["series_evidence"] = ""
         row["own_basis"] = own["basis"]
         row["own_url"] = vrs_url if own.get("vrs_a") and own.get("vrs_b") else (hltv_url or "")
         row["own_read_utc"] = (vrs_as_of if own.get("vrs_a") and own.get("vrs_b") else hltv_read) or ""
@@ -402,12 +450,14 @@ def build(snapshot: dict) -> dict:
             row.update(own_p_a_pct=pct(round(100 * published_a, 1)),
                        own_p_b_pct=pct(round(100 * (1 - published_a), 1)),
                        own_scope="series" if own["bo"] else "per-map")
-            if not own["bo"]:
-                row_flags.append("MP-F05")
         else:
             row.update(own_p_a_pct="", own_p_b_pct="", own_scope="")
             row_flags.append("MP-F02")
             row["own_missing"] = ", ".join(own["missing"])
+        # Every row whose series length no source states is flagged, whether or not an own line is
+        # published on it — the length itself is never inferred from the score or the map count.
+        if not own["bo"]:
+            row_flags.append("MP-F05")
         if own.get("vrs_alt_a") or own.get("vrs_alt_b"):
             row_flags.append("MP-F26")
 
@@ -438,13 +488,16 @@ def build(snapshot: dict) -> dict:
 
         # ---- played fixtures: publish the result from the independent verification trail, and
         #      cross-check it against the payload's own score whenever the payload publishes one.
-        trail = published.get(row["match_id"])
         if trail and (trail.get("status") or "").strip() == "verified" and trail.get("winner"):
             row["result"] = f"{trail['winner']} {trail.get('score') or ''}".strip()
             row["result_source_url"] = trail.get("official_source_url") or ""
             row["result_read_utc"] = trail.get("read_utc") or ""
-            row["result_note"] = ("verified against the official match page in the repository's "
-                                  "result trail")
+            row["result_note"] = ("carried from the repository's independently verified result "
+                                  f"trail, which cites the official match page above and was read "
+                                  f"{(trail.get('read_utc') or '').strip() or 'earlier'}; Hotspawn's "
+                                  "payload publishes no usable score for this fixture (it keeps "
+                                  "every fixture at 0-0 / \u201cscheduled\u201d), so the linked match "
+                                  "page is the only source shown")
         elif trail and (trail.get("status") or "").strip():
             row["result"] = ""
             row["result_source_url"] = trail.get("official_source_url") or ""
@@ -549,6 +602,7 @@ def build(snapshot: dict) -> dict:
         "hotspawn_series_stated": sum(1 for r in rows if r.get("series_source") == "Hotspawn payload"),
     }
     summary = summarise(snapshot, rows, unresolved, flags)
+    summary["flag_kinds_documented"] = len(FLAG_TEXT)
     summary["source_health"] = source_health
     return {"rows": rows, "unresolved": unresolved, "flags": flags, "summary": summary,
             "meta": {"source_health": source_health,
@@ -611,7 +665,12 @@ FLAG_TEXT = {
     "MP-F32": ("Result unverified", "The fixture is over but the repository's result trail records "
                "the outcome as unresolved (for example an event whose official page contradicts the "
                "listed card). No result is published rather than a guessed one."),
-    "MP-F32": ("Capture gap closed by this board", "This fixture was missing from the other boards' "
+    "MP-F33": ("Series length from a researched official page", "The live capture could not read "
+               "HLTV's match list for this fixture (the site's bot protection refuses the automated "
+               "read, which is recorded in every capture), so the best-of length comes from a named "
+               "official HLTV match or event page read by hand, quoted on the row and linked with "
+               "its read time. Nothing is inferred from the score or the number of maps."),
+    "MP-F34": ("Capture gap closed by this board", "This fixture was missing from the other boards' "
                "captured inventories because the payload node had no participant names when they "
                "were read; it is listed here so it cannot disappear silently."),
 }
@@ -677,7 +736,7 @@ def summarise(snapshot: dict, rows: list[dict], unresolved: list[dict], flags: d
 
 # --------------------------------------------------------------------------- output
 COLUMNS = ["match_id", "state", "lock_utc", "start_utc", "competition", "tier", "stage", "points",
-           "team_a", "team_b", "series", "series_source", "series_url", "series_read_utc",
+           "team_a", "team_b", "series", "series_source", "series_url", "series_read_utc", "series_evidence",
            "pick", "pick_pct", "p_a", "p_b", "probability_source",
            "pick_basis", "market_source", "market_book", "market_odds_a", "market_odds_b",
            "market_overround_pct", "market_p_a_pct", "market_p_b_pct", "market_url",
@@ -759,8 +818,11 @@ def fixture_card(row: dict) -> str:
                            + " " + link(row.get("series_url") or "", "source")
                            + (f' <span class="muted">read {escape((row.get("series_read_utc") or "")[:16])}Z</span>'
                               if row.get("series_read_utc") else ""))
-         if row.get("series") else '<em>not stated by any source read in this run — the own line is '
-                                   'published per map (MP-F05)</em>'),
+         if row.get("series") else ('<em>not stated by any source read in this run — the own line is '
+                                   'published per map (MP-F05)</em>'
+                                   if "MP-F05" in flags else
+                                   '<em>not stated by any source read in this run; no length is '
+                                   'published rather than a guessed one</em>')),
         ("Probability source", escape(basis) if basis else '<em>none published</em>'),
         ("Own originated line", (f'{escape(row.get("own_p_a_pct"))}% / '
                                  f'{escape(row.get("own_p_b_pct"))}%'
@@ -1084,11 +1146,14 @@ def render_flagged(rows: list[dict], unresolved: list[dict], flags: dict, summar
             continue
         seen_rows.add(key)
         unique.append(row)
-    for flag, info in sorted(flags.items()):
+    for flag in sorted(set(FLAG_TEXT) | set(flags)):
+        title, detail = FLAG_TEXT.get(flag, (flags.get(flag, {}).get("title", ""),
+                                            flags.get(flag, {}).get("detail", "")))
+        count = flags.get(flag, {}).get("count", 0)
         items = [r for r in unique if flag in (r.get("flags") or "").split(";")]
-        blocks.append(f"<h3><code>{escape(flag)}</code> {escape(info['title'])} "
-                      f"<span class='muted'>({info['count']})</span></h3>"
-                      f"<p class='muted'>{escape(info['detail'])}</p>{table(items)}")
+        blocks.append(f"<h3><code>{escape(flag)}</code> {escape(title)} "
+                      f"<span class='muted'>({count} row(s) in this capture)</span></h3>"
+                      f"<p class='muted'>{escape(detail)}</p>{table(items)}")
     body = f"""
 <section class="notice warn">
   <h2>Flagged for review</h2>
@@ -1096,9 +1161,12 @@ def render_flagged(rows: list[dict], unresolved: list[dict], flags: dict, summar
   reviewed after publication. Flags do not block the board; they mark where a reader should look before
   trusting a number. Flagged, unverified values are never filled in — they stay blank.</p>
   <p><strong>{summary['flags_total']}</strong> flagged item(s) across
-  <strong>{summary['flag_kinds']}</strong> flag kind(s).</p>
+  <strong>{summary['flag_kinds']}</strong> flag kind(s) raised in this capture. Every kind this board
+  can raise is documented below (<strong>{summary.get('flag_kinds_documented', len(FLAG_TEXT))}</strong>
+  in total), including the kinds that no row raised here — a documented check that finds nothing is
+  still a check.</p>
 </section>
-{''.join(blocks) if blocks else '<p>No flags: every row is backed by a source read in this run.</p>'}
+{''.join(blocks)}
 """
     return page("Flagged for review — Hotspawn CS2", body, "flagged.html", summary, meta)
 

@@ -49,6 +49,7 @@ class PublishedData(unittest.TestCase):
         cls.unresolved = load_csv("unresolved.csv")
         cls.flags = load_csv("flags.csv")
         cls.summary = json.loads((DATA / "summary.json").read_text())
+        cls.explained_flags = set()  # populated by the flag-explanation test
 
     def test_market_probabilities_are_exactly_the_devigged_stored_prices(self):
         checked = 0
@@ -138,6 +139,19 @@ class PublishedData(unittest.TestCase):
                 self.assertNotIn("hotspawn", row["probability_source"].lower(),
                                  f"{row['match_id']}: Hotspawn used as a probability source")
 
+    def test_every_flag_raised_on_a_published_row_is_explained_in_the_flag_text(self):
+        """No row may carry a flag the board does not explain (the page renders FLAG_TEXT)."""
+        index = (ROOT / "matchpicks" / "flagged.html")
+        if not index.exists():
+            self.skipTest("board not built yet")
+        page = index.read_text(encoding="utf-8")
+        codes = set()
+        for row in self.rows:
+            codes.update((row["flags"] or "").split(";"))
+        codes.discard("")
+        missing = [code for code in sorted(codes) if code not in page]
+        self.assertEqual(missing, [], f"flags raised but never explained: {missing}")
+
     def test_summary_counts_agree_with_the_rows(self):
         summary = self.summary
         self.assertEqual(summary["fixtures_captured"], len(self.rows))
@@ -151,6 +165,47 @@ class PublishedData(unittest.TestCase):
         self.assertEqual(summary["flags_total"], sum(int(row["count"]) for row in self.flags))
         if summary["fixtures_captured"]:
             self.assertTrue(summary["independent_checks_agreed"] >= 0)
+
+    def test_series_research_trail_is_fully_source_linked(self):
+        """Every hand-checked best-of line must name a source, a URL, a read time and quoted proof."""
+        trail = ROOT / "matchpicks" / "series_research.csv"
+        if not trail.exists():
+            self.skipTest("no researched series trail in the tree")
+        with trail.open(newline="", encoding="utf-8") as handle:
+            rows = list(csv.DictReader(handle))
+        self.assertTrue(rows, "the researched series trail is empty")
+        for row in rows:
+            with self.subTest(match_id=row["match_id"]):
+                self.assertRegex(row["series"], r"^BO[1357]$")
+                self.assertTrue(row["source"].strip())
+                self.assertTrue(row["source_url"].startswith("https://"))
+                self.assertTrue(row["read_utc"].strip())
+                self.assertTrue(row["evidence"].strip())
+
+    def test_every_published_length_is_sourced_and_unstyled_rows_are_flagged(self):
+        for row in self.rows:
+            if row["series"]:
+                self.assertRegex(row["series"], r"^BO[1357]$")
+                self.assertTrue(row["series_source"], f"{row['match_id']}: length without a source")
+                self.assertTrue(row["series_url"].startswith("https://"),
+                                f"{row['match_id']}: length without a link")
+                self.assertTrue(row["series_read_utc"], f"{row['match_id']}: length without a read time")
+                self.assertNotIn("MP-F05", row["flags"])
+            else:
+                self.assertEqual(row["series_url"], "")
+                self.assertEqual(row["series_read_utc"], "")
+                if row["state"] == "stale listing":
+                    # a stale listing keeps only the historical flags (MP-F04 and friends); the
+                    # length is simply left blank, and the row is listed on the unresolved page
+                    self.assertIn("MP-F04", row["flags"])
+                    continue
+                self.assertIn("MP-F05", row["flags"],
+                              f"{row['match_id']}: unstated length must be flagged")
+                self.assertIn("MP-F05", self.explained_flags,
+                              "an MP-F05 flag must be explained on the flagged page")
+                if row["own_p_a_pct"]:
+                    self.assertEqual(row["own_scope"], "per-map",
+                                     f"{row['match_id']}: per-map line must say so")
 
     def test_results_only_ever_come_with_an_official_link(self):
         for row in self.rows:

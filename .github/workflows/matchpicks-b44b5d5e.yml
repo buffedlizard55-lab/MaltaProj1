@@ -84,8 +84,20 @@ jobs:
             exit 0
           fi
           git commit -m "matchpicks(b44b5d5e): refresh every-match picks board [skip ci]"
-          git pull --rebase origin "${{ github.ref_name }}"
-          git push origin "HEAD:${{ github.ref_name }}"
+          # This branch is also written to by the working session, so the push can race a manual
+          # push or another run.  Everything committed here is regenerated data, so a conflict is
+          # always resolved in favour of this run's newer artefacts, and the push is retried.
+          branch="${{ github.ref_name }}"
+          for attempt in 1 2 3 4; do
+            git pull --rebase -X theirs origin "$branch" >/dev/null 2>&1 || {
+              echo "rebase failed on attempt $attempt"; git rebase --abort >/dev/null 2>&1 || true; }
+            if git push origin "HEAD:$branch"; then
+              echo "pushed on attempt $attempt"; exit 0
+            fi
+            sleep 10
+          done
+          echo "could not publish the refreshed board after 4 attempts" >&2
+          exit 1
 
       - name: Publish run summary
         if: always()
