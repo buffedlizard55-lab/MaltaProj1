@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-10-15T13:46:45Z",
+ "generated_utc": "2026-10-15T18:43:32Z",
  "session": "arena/bdc98a9a",
  "what": "live re-read of every external URL cited by the merged boards' data files",
  "offline": false,
@@ -10,29 +10,30 @@
   "every"
  ],
  "boards_missing": [],
- "claims": 342,
+ "claims": 323,
  "verdicts": {
-  "match": 218,
+  "match": 195,
   "mismatch": 0,
-  "refused": 106,
+  "refused": 117,
   "dead": 0,
-  "not-checkable": 18,
+  "not-checkable": 11,
   "placeholder": 0
  },
  "by_kind": {
   "hotspawn": {
-   "total": 16,
+   "total": 12,
    "match": 2,
-   "refused": 14
+   "refused": 10
   },
   "hltv_match": {
    "total": 56,
-   "refused": 40,
-   "match": 16
+   "refused": 38,
+   "match": 18
   },
   "hltv_team": {
    "total": 39,
-   "match": 39
+   "match": 23,
+   "refused": 16
   },
   "egw_market": {
    "total": 49,
@@ -40,33 +41,34 @@
    "not-checkable": 1
   },
   "pinnacle": {
-   "total": 21,
-   "not-checkable": 17,
+   "total": 14,
+   "not-checkable": 10,
    "refused": 4
   },
   "polymarket": {
-   "total": 5,
-   "match": 5
+   "total": 2,
+   "match": 2
   },
   "vrs": {
-   "total": 156,
-   "match": 156
+   "total": 151,
+   "match": 150,
+   "refused": 1
   }
  },
  "by_host": {
   "www.hltv.org": 100,
-  "raw.githubusercontent.com": 78,
   "github.com": 77,
+  "raw.githubusercontent.com": 73,
   "egamersworld.com": 45,
-  "guest.api.arcadia.pinnacle.com": 16,
-  "www.hotspawn.com": 14,
+  "www.hotspawn.com": 10,
+  "guest.api.arcadia.pinnacle.com": 9,
   "www.pinnacle.com": 5,
-  "polymarket.com": 5,
-  "play.hotspawn.com": 2
+  "play.hotspawn.com": 2,
+  "polymarket.com": 2
  },
- "fetches": 87,
+ "fetches": 90,
  "fetch_errors": 2,
  "reused_within_hours": 6,
- "reused_rows": 39,
+ "reused_rows": 173,
  "policy": "Hotspawn is read for fixture identity and series format only, never for a probability. A refusal or a mismatch is recorded and flagged; this tool never edits another board's data and never fills a value in."
 }
