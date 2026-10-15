@@ -2,25 +2,25 @@
  "meta": {
   "slate_health": {
    "mode": "live",
-   "fetched_utc": "2026-10-15T19:59:28Z",
-   "age_hours": 0.036,
+   "fetched_utc": "2026-10-15T23:12:00Z",
+   "age_hours": 0.041,
    "complete_live_read": true,
    "current": true,
    "identity_conflicts": [],
    "limitation": ""
   },
-  "generated_utc": "2026-10-15T20:01:37Z",
-  "capture_utc": "2026-10-15T19:59:28Z",
+  "generated_utc": "2026-10-15T23:14:28Z",
+  "capture_utc": "2026-10-15T23:12:00Z",
   "snapshot_age_text": "Snapshot is 0.0 h old",
-  "hotspawn_read_text": "2026-10-15T19:59Z (live)",
-  "market_read_text": "live read 2026-10-15T19:59 (8 CS2 quotes)",
+  "hotspawn_read_text": "2026-10-15T23:12Z (live)",
+  "market_read_text": "live read 2026-10-15T23:12 (10 CS2 quotes)",
   "vrs_read_text": "official standings 2026-10-05 · HLTV ranking 2026-10-12",
   "own_line": {
    "calibration": {
-    "scale": 235.0,
+    "scale": 210.0,
     "fitted": true,
-    "n": 6,
-    "mae_pp": 5.968,
+    "n": 9,
+    "mae_pp": 7.339,
     "default_scale": 100.0,
     "reason": "grid search 5-400 rank positions per 90% favourite, minimum mean absolute error"
    },
@@ -35,25 +35,25 @@
   "stale": false
  },
  "coverage": {
-  "total_fixtures": 76,
-  "open_fixtures": 12,
+  "total_fixtures": 86,
+  "open_fixtures": 22,
   "locked_fixtures": 64,
   "stale_fixtures": 59,
-  "open_with_pick": 8,
-  "open_market_basis": 8,
-  "open_model_basis": 1,
+  "open_with_pick": 13,
+  "open_market_basis": 13,
+  "open_model_basis": 0,
   "open_provisional": 0,
-  "open_no_pick": 4,
-  "flagged_rows": 76,
-  "unique_teams": 96,
-  "teams_resolved_official": 66,
+  "open_no_pick": 9,
+  "flagged_rows": 86,
+  "unique_teams": 108,
+  "teams_resolved_official": 72,
   "open_research_basis": 0,
-  "open_own_line": 6,
-  "fixtures_with_stated_format": 9,
-  "own_line_scale": 235.0,
+  "open_own_line": 9,
+  "fixtures_with_stated_format": 13,
+  "own_line_scale": 210.0,
   "own_line_scale_fitted": true,
-  "own_line_calibration_n": 6,
-  "own_line_calibration_mae_pp": 5.968,
+  "own_line_calibration_n": 9,
+  "own_line_calibration_mae_pp": 7.339,
   "hltv_ranking_teams": 245,
   "hltv_ranking_date": "2026-10-12"
  },
@@ -61,7 +61,7 @@
   {
    "name": "Hotspawn payload read",
    "passed": true,
-   "detail": "76 CS2 fixtures from 3 pages, mode live."
+   "detail": "86 CS2 fixtures from 3 pages, mode live."
   },
   {
    "name": "Official standings read",
@@ -71,12 +71,12 @@
   {
    "name": "Outside prices read",
    "passed": true,
-   "detail": "Pinnacle 8 quotes (live); secondary 12 (repo_capture+polymarket+feed)."
+   "detail": "Pinnacle 10 quotes (live); secondary 23 (repo_capture+polymarket+feed)."
   },
   {
    "name": "Pick coverage on open fixtures",
    "passed": false,
-   "detail": "8/12 open fixtures have a pick; 4 flagged without one."
+   "detail": "13/22 open fixtures have a pick; 9 flagged without one."
   },
   {
    "name": "No Hotspawn crowd value stored",
@@ -91,12 +91,12 @@
   {
    "name": "Snapshot age",
    "passed": true,
-   "detail": "Oldest capture behind this board: 2026-10-15T19:59:28Z (Snapshot is 0.0 h old)."
+   "detail": "Oldest capture behind this board: 2026-10-15T23:12:00Z (Snapshot is 0.0 h old)."
   },
   {
    "name": "Every open fixture carries an originated line or a reason it cannot",
    "passed": true,
-   "detail": "6/12 open fixtures have our own ranking line (scale 235 ranks per 90.9%, fitted on 6 priced fixtures); rows without one are flagged."
+   "detail": "9/22 open fixtures have our own ranking line (scale 210 ranks per 90.9%, fitted on 9 priced fixtures); rows without one are flagged."
   },
   {
    "name": "Research tier only where no market line exists",
@@ -111,10 +111,10 @@
  ],
  "own_lines": {
   "calibration": {
-   "scale": 235.0,
+   "scale": 210.0,
    "fitted": true,
-   "n": 6,
-   "mae_pp": 5.968,
+   "n": 9,
+   "mae_pp": 7.339,
    "default_scale": 100.0,
    "reason": "grid search 5-400 rank positions per 90% favourite, minimum mean absolute error"
   },
