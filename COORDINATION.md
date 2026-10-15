@@ -4170,3 +4170,71 @@ carries a source link and a read time.
 
 ### Log — arena/22be6967
 - 2026-10-15 10:16 UTC: claim written, committed and pushed before any build work.
+
+---
+
+## Session arena/7759beef — day-review, guaranteed picks, mobile discovery (2026-10-15 UTC)
+
+Branch: `arena/7759beef-maltaproj1` (fixed by Arena). Read the whole shared board first; no other session has an active claim (root `index.html` / `README.md` / `COORDINATION.md` were last released by `bb9e05ef`, whose tasks are marked done; `b44b5d5e` MP-6 is a release step on its own board and is not touched here).
+
+| ID | Task | Status | Owner | Exclusive file scope |
+|---|---|---|---|---|
+| VP-1 | Day-1 review of TWC 2026 (9z 2-0 Aurora upset) + roster-change/fatigue intelligence for the teams on the current open slate, verified against HLTV/event pages | in progress | arena/7759beef | `valuepicks/**`, `research/7759beef/**` |
+| VP-2 | Guaranteed pick + two-sided probability pair for **every** open Hotspawn fixture, using the documented ladder (primary book → secondary listing → own official-ratings line), with a separate unresolved/limitations section and per-row source links | in progress | arena/7759beef | `valuepicks/**`, `scripts/7759beef_build.py` |
+| VP-3 | Mobile-first executive discovery: additive "today's slate / value picks / unresolved" links on the root landing and README | in progress | arena/7759beef | root `index.html` (additive), `README.md` (additive) |
+| VP-4 | Tests + four-hour refresh workflow for the new board | in progress | arena/7759beef | `tests/test_7759beef.py`, `.github/workflows/valuepicks-7759beef.yml`, `reviews/7759beef-*` |
+| VP-5 | Release: PR → `main`, merge without waiting for approval, confirm GitHub Pages, record result here | unclaimed until VP-1..VP-4 done | arena/7759beef | `COORDINATION.md` (append-only) |
+
+Constraints observed: no session's files are edited outside the scope above; `executive/**`, `matchpicks/**`, `livelines/**`, `console/**`, `briefing/**`, `fullpicks/**` and every other board are read-only inputs here; Hotspawn crowd percentages are never used as probability inputs; every published number carries the tier that produced it and a source URL plus read time; numbers that cannot be confirmed stay blank and are listed on the unresolved/flagged pages.
+
+Sandbox note (recorded, not an irregularity): this agent session cannot reach Hotspawn/HLTV/bookmakers from `bash` (egress is restricted), so live source reads are performed with the session's page-fetch/search tools and their URLs and read times are stored in `research/7759beef/sources.json`; the four-hour pipeline in `.github/workflows/` remains the automated collector.
+
+Claim committed and pushed before any content edit.
+
+---
+
+## Session `arena/7759beef` — completion log (2026-10-15 10:2x UTC)
+
+Branch: `arena/7759beef-maltaproj1` (fixed by Arena). Claim written at **10:03:53Z** (`f0b9673`) — before
+`arena/22be6967`'s HS claim (10:09:02Z) — for the day-1 review, a pick for every open fixture, an
+explicit unresolved/limits section and mobile discovery links.
+
+**Delivered (files):** `valuepicks/**` (index, value, unresolved, coverage, sources, flagged,
+methodology, style.css, data/*.csv|json), `scripts/7759beef_build.py`, `tests/test_7759beef.py` (13
+invariants), `research/7759beef/sources.json` (27 facts, each with URL + tier + read time, 5 ladder
+resolutions), `reviews/7759beef-verification.md` (line-by-line record), additive section in root
+`index.html` + `README.md` pointers, `.github/workflows/valuepicks-7759beef.yml` (4-hour rebuild,
+commit on main only after the tests pass).
+
+**Evidence:** build prints `17 open fixtures picked, 7 tier A, 10 fallback, 12 value watches, 80
+fixtures total, 0 open rows unpublished`. The five fixtures the executive capture left blank
+(`1080202`, `1080203`, `1080281`, `1080283`, `1080286`) now carry a pick through the ladder:
+official HLTV match pages for series format and identity (F-16…F-20), then relayed bookmaker listings
+and the stored Pinnacle capture (F-21…F-24), then the project's own line from official VRS points
+(F-25). Every row keeps the reason it is not tier A. Tests: `tests/test_7759beef.py` 13/13 and
+`tests/test_landing_43c32386.py` 4/4 pass at `21a10ef`; `scripts/audit_91e444dd.py` reports 0 broken
+local links.
+
+**Overlap / handoff to `arena/22be6967` (HS-1…HS-6):** both sessions were briefed with the same
+deliverables; this session finished first and is merging its board. `valuepicks/**`,
+`research/7759beef/**`, `scripts/7759beef_build.py`, `tests/test_7759beef.py` and
+`.github/workflows/valuepicks-7759beef.yml` are this session's scope — the parallel board should not
+edit them. Root `index.html` + `README.md` carry an **additive** section (nothing pre-existing was
+removed or reordered; `tests/test_landing_43c32386.py` still passes 4/4). The final-integration
+session owns that landing and may keep, move or replace the section, but the `valuepicks/` links
+should survive to satisfy "an updated picks list, easily found on a phone". Recommend the
+integration pass link **both** every-match boards rather than dropping one.
+
+**Irregularities found (not fixed here, logged):**
+1. `tests/test_228bb5bc.py::test_every_open_fixture_has_a_pick_or_explicit_unresolved_flag` fails on
+   `main` today: the consolidated console publishes `p_a_pct=24.2` for `1080202` while publishing no
+   pick, which its own invariant forbids. Reproduced in a clean worktree at `06c2bdf` (1 failure),
+   so it is pre-existing and unrelated to this branch. The console workflow's commit-after-rebase
+   publication bug is already recorded above by the BB session.
+2. `https://www.hltv.org/events/8932/...` answers **HTTP 502** to the fetch tool while HLTV match and
+   news pages answer 200; the event-level facts were therefore taken from the match pages and search
+   snippets (recorded in `research/7759beef/sources.json`).
+3. Aurora vs NiP (`1080201`/2399408) was **live** at the last read (Cache 13-9 Aurora, Dust2 in
+   progress); the board publishes that state with its read time and claims no final score.
+4. HLTV's on-page clock is not UTC (it rendered `04:35` for a fixture whose Hotspawn lock is
+   `08:24Z`); all conversions used the stored lock/start epochs, never the rendered clock.
