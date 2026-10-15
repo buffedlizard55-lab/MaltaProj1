@@ -764,8 +764,8 @@ def page(title: str, body: str, meta: dict, active: str = "") -> str:
   <div class="topbar__inner">
     <a class="brand" href="index.html"><span class="brand__mark">◎</span><span class="brand__text">{esc(SITE)}</span></a>
     <div class="topbar__meta">
-      <strong>{esc(meta.get("snapshot_age_text", ""))}</strong>
-      <span class="muted">{esc(meta.get("hotspawn_read_text", ""))}</span>
+      <strong>Source snapshot</strong>
+      <span class="muted">{esc((meta.get("capture_utc") or "unknown")[:10])}<br>{esc((meta.get("capture_utc") or "")[11:16])} UTC</span>
     </div>
   </div>
   <nav class="nav" aria-label="Sections">{links}</nav>
@@ -1017,10 +1017,9 @@ def render_index(rows: list[dict], meta: dict, coverage: dict) -> str:
 def render_picks(rows: list[dict], meta: dict) -> str:
     now = meta["now"]
     open_rows = [r for r in rows if r["status"] == "open"]
-    soon = [r for r in sorted(open_rows, key=lambda r: r["lock_utc"] or "9999")
-            if (parse_iso(r["lock_utc"]) or now) <= now + timedelta(hours=24)]
+    soon = sorted(open_rows, key=lambda r: r["lock_utc"] or "9999")
     body_rows, row_attrs = [], []
-    for row in sorted(rows, key=lambda r: (r["status"], r["lock_utc"] or "9999")):
+    for row in sorted(rows, key=lambda r: (r["status"] != "open", r["lock_utc"] or "9999")):
         row_attrs.append({
             "data-status": row["status"], "data-tier": str(row["basis_tier"]),
             "data-pick": row["pick"] or "", "data-flags": " ".join(row["flags"]),
@@ -1052,7 +1051,7 @@ def render_picks(rows: list[dict], meta: dict) -> str:
 </section>
 
 <section id="today">
-  <h2>Locking in the next 24 hours ({len(soon)})</h2>
+  <h2>All open matches at build ({len(soon)})</h2>
   <div class="cards">{''.join(pick_card(r, now) for r in soon) or '<p class="muted">Nothing locks in the next 24 hours.</p>'}</div>
 </section>
 
@@ -1270,7 +1269,7 @@ def render_lines(rows: list[dict], inputs: dict, meta: dict) -> str:
     market = inputs["pinnacle"]
     secondary = inputs["secondary"]
     body = []
-    for row in sorted(rows, key=lambda r: (r["status"], r["lock_utc"] or "9999")):
+    for row in sorted(rows, key=lambda r: (r["status"] != "open", r["lock_utc"] or "9999")):
         quotes = row.get("_market", []) + row.get("_secondary", [])
         if not quotes:
             body.append([f'{esc(row["team_a"])} vs {esc(row["team_b"])}',
@@ -1315,7 +1314,7 @@ def render_lines(rows: list[dict], inputs: dict, meta: dict) -> str:
 def render_own_lines(rows: list[dict], meta: dict, own_meta: dict | None = None) -> str:
     cal = (own_meta or {}).get("calibration") or {}
     body = []
-    for row in sorted(rows, key=lambda r: (r["status"], r["lock_utc"] or "9999")):
+    for row in sorted(rows, key=lambda r: (r["status"] != "open", r["lock_utc"] or "9999")):
         a, b = row["rating_a"], row["rating_b"]
         own = row.get("own") or {}
         if own.get("p_series") is not None:

@@ -260,3 +260,9 @@ button, .nav__link { min-height: 44px; }
   .pick__teams { overflow-wrap: anywhere; }
   .pick__meta dd, .pick__sources, .banner { overflow-wrap: anywhere; }
 }
+@media (max-width: 540px) {
+  .pick__meta { grid-template-columns: 1fr; }
+  .pick__meta dt { flex: 0 0 7rem; }
+  .pick__meta dd { min-width: 0; }
+  .topbar__meta { flex: 0 0 6.8rem; }
+}
