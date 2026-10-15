@@ -14,7 +14,7 @@ Written 2026-10-15 (UTC). Every row on the board links the source it was read fr
 | Outside price #1: **Pinnacle** (public guest response the matchups page loads itself) | `https://guest.api.arcadia.pinnacle.com/0.1/sports/12/matchups?withSpecials=false` via `https://www.pinnacle.com/en/esports/matchups/highlights/` | 14 whole-match quotes in the capture; American prices converted to decimal, de-vigged with the stored formula and re-derived by `tests/test_b44b5d5e_data.py`. |
 | Outside price #2: **Polymarket** (prediction market, never de-vigged, labelled) | `https://gamma-api.polymarket.com/…` via the public event page | 6 quotes with volume/liquidity and `observed_utc`; flagged MP-F25 so it is never read as a bookmaker price. |
 | Own originated line (probabilities per team for **every** fixture a source can price) | official **Valve Regional Standings** file, else the official **HLTV world ranking #** | Re-derived from the stored VRS points / rank pair by the data test; per-map → series conversion uses the exact best-of enumeration only when the series length is sourced, otherwise the row says `per-map` and is flagged MP-F05. |
-| **Series length** where published | Hotspawn payload (never states one) → HLTV match list captured live → hand-checked official HLTV match/event page (`matchpicks/series_research.csv`) → official match page linked by the verified result trail | 74 of 80 rows now carry a sourced length (53 from the result trail's official match pages, 15 from a researched HLTV match page, 6 from a researched HLTV event page); 6 rows stay blank and flagged MP-F05. Sources re-read by hand on 2026-10-15 — see §2. |
+| **Series length** where published | Hotspawn payload (never states one) → HLTV match list captured live → hand-checked official HLTV match/event page (`matchpicks/series_research.csv`) → official match page linked by the verified result trail | 74 of 80 rows carry a sourced length in the live capture of 08:45Z: **17 open fixtures from the live official HLTV match list**, 53 from the result trail's official match pages, 2 from a researched HLTV match page and 1 from a researched HLTV event page; 6 rows stay blank and flagged MP-F05. Format sources re-read by hand on 2026-10-15 — see §2. |
 | Results for played fixtures | repository result trail, every row carrying an official HLTV/Liquipedia URL and its own read time | 54 rows publish a result with a link; 6 rows are recorded as unresolvable (DraculaN, see §3); 20 rows have no independent result on file and say so. **Hotspawn's payload is never used for a score** (see §3, I2). |
 | Stale/ambiguous fixtures are never silently dropped | `matchpicks/data/unresolved.csv` + `unresolved.html` | 24 unresolved rows with the reason and the flags on each; ids of markup-only fixtures are listed inside one grouped row instead of being invented as fixtures. |
 
@@ -53,12 +53,15 @@ Written 2026-10-15 (UTC). Every row on the board links the source it was read fr
 * **I5 — forfeits presented as scores.** `1081105` (1-0, SUKEBAN forfeit) and `1079621` (Lavked 1-0,
   Gothic forfeit) are defaults, not played series. The board labels them as recorded by the official
   match page; a reader must not treat the 1-0 as a map score.
-* **I6 — live source refusals from the automated runner.** HLTV's `/matches` page answers the runner's
-  browser with Cloudflare's "Just a moment…" interstitial (HTTP 403, recorded per capture) and
-  EGamersWorld answers HTTP 403 as well. The board therefore (a) joins the HLTV match list only when
-  the capture really read it, (b) falls back to the hand-checked, source-linked research trail
-  (MP-F33), and (c) publishes the aggregator tier as unavailable instead of substituting a guess. The
-  next capture re-tries both.
+* **I6 — one refusing source, one that yields on a second attempt.** EGamersWorld answers the runner
+  with HTTP 403 on every attempt (aggregator tier published as unavailable; rows that would have used
+  it are labelled as our own line instead). HLTV's `/matches` page answers with Cloudflare's
+  "Just a moment…" interstitial on a 4-second wait, but the *same* capture read it successfully with a
+  12-second wait — attempt log in the capture of 08:45Z: `wait_ms 4000 → 403, challenged=true, rows=0;
+  wait_ms 12000 → 200, 1 124 034 bytes, rows=18`. The collector therefore retries with a longer wait
+  before giving up, and the board now takes **all 17 open fixtures' series lengths** from the live
+  official HLTV match list (MP-F11); the hand-checked research trail (MP-F33) covers the rows the list
+  does not carry, and nothing is ever guessed.
 * **I8 — dead source links in the result trail (found by this session, 2026-10-15).** 54 of the
   trail's rows link the id-only form `https://www.hltv.org/matches/<id>`, which HLTV answers with
   **HTTP 404 "Page not found"** — a link a reader cannot open is not a source. Verified against two

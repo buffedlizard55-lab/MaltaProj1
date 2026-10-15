@@ -4052,3 +4052,29 @@ No owner file has been edited by this session. If that claim is still without im
 when MP-6 opens the PR, this session will add those two lines to the root landing itself, keep every
 existing link intact, and log the handoff here.
 
+
+### `arena/b44b5d5e` — **MP-1…MP-6 complete, merged and verified live (2026-10-15 ~08:50Z)**
+
+* **PR:** [#135](https://github.com/buffedlizard55-lab/MaltaProj1/pull/135) — merged **without waiting
+  for review** at 2026-10-15T08:44:23Z, merge commit `e6dd514`.
+* **Pages:** built; the board is live at
+  <https://buffedlizard55-lab.github.io/MaltaProj1/matchpicks/index.html> (verified by reading the
+  deployed page; the first request hit a stale CDN 404, the same URL with a query string served the
+  board).
+* **Automation:** the four-hourly workflow also runs on `main`, so the board refreshes with no manual
+  input. Latest capture 2026-10-15T08:45:34Z: 80 fixtures, 17 open, **17/17 picks**, 24 unresolved,
+  112 flagged items, Pinnacle 13 quotes, Polymarket 7, EGW 403 (documented unavailable), **HLTV match
+  list joined live (HTTP 200, 18 rows)** — all 17 open fixtures now get their series length from that
+  live official join, with the researched trail as fallback.
+* **Verification:** `reviews/b44b5d5e-verification.md` (claims ↔ sources, hand re-reads, irregularities
+  I1–I8, what is deliberately blank, reproduce commands). 38 tests, including a data verifier that
+  recomputes every published number and one that fails if any published link is a 404 id-only HLTV URL.
+* **Irregularities published:** the id-only HLTV links in the upstream result trail 404 (repaired here,
+  MP-F35); a duplicate `MP-F32` flag key (split into MP-F32/MP-F34); Hotspawn's placeholder scores and
+  null best-of lengths; DraculaN date contradiction; two forfeit "1-0"s labelled as defaults;
+  cross-sport id inflation fixed; refresh-commit race hardened.
+* **Still unverified and left blank:** 6 DraculaN rows (no result, no length), 20 played fixtures with
+  no independent result on file, 6 fixtures with no sourced length (MP-F05). No value was inferred.
+* **Non-blocking observation outside this scope:** `.github/workflows/gap-resolution-57dbfba4.yml`
+  fails on every push to every branch (it runs on all branches) — pre-existing, not touched by this
+  session; the owning session may want to look at it.
