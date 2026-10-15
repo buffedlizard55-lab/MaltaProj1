@@ -144,3 +144,63 @@ Repository checks after the changes:
 
 Read times on this page are UTC. Where a source shows a local zone (Liquipedia EDT/CEST, EGamersWorld local),
 the UTC conversion is stated next to the value that came from it.
+
+## 7. Second pass in the same session (2026-10-15 ~22:20–23:05Z): three red checks cleared, sources re-read
+
+The PR was rebased onto `main` (which had moved on: PR #151 merged, two more collector captures landed). The merge
+brought main's newest captures into this branch, and with them two live defects that the CI had been failing on.
+
+1. **Consolidated console board published a probability with a blank pick (new item IR-23, fixed).** With main's
+   newer capture the board held 22 open rows but the pick was read from the secondary-market feed row
+   (`scripts/228bb5bc_build.py`, `feed.get("team_a")`), which does not carry every fixture: 1079631 (FORZE Reload vs
+   Lavked, CCT Europe 2026 Series #11) published Pinnacle 1.215054 / 3.99 → 76.7 / 23.3 (overround 7.36%, read
+   `2026-10-15T22:24:02Z`) with an empty pick, breaking two of the board's own invariants
+   (`test_every_open_fixture_has_a_pick_or_explicit_unresolved_flag`, `test_committed_board_never_publishes_a_pick_on_an_exact_tie`).
+   The pick is now taken from the names the row itself publishes. `tests/test_228bb5bc.py` was **not** touched:
+   `python3 -m unittest tests.test_228bb5bc` → **45 OK**, and the workflow now passes in CI (run 38819730484).
+2. **valuepicks board was a capture behind and republished a coin flip as a pick (IR-18, fixed).** The board listed
+   1080280-84/1079440/1079442 while the executive capture holds 12 open rows, so `tests/test_7759beef.py` failed
+   twice — which is also why **verify.yml and landing-43c32386.yml were red on `main`** (both run the full suite).
+   Fixed inside `scripts/7759beef_build.py` and its verified-research input `research/7759beef/sources.json`, tests
+   untouched:
+   * a capture pick that is not a team name — the sentinel `(no side — 50/50)` written for Pinnacle 1.89 / 1.89 — is no
+     longer republished: the row keeps both sourced probabilities, publishes **no side**, is flagged `VP-F08` and is
+     listed on `valuepicks/unresolved.html`;
+   * the four ladder entries whose fixtures had left the capture are pruned; six now cover the capture's open rows from
+     evidence already stored in the repo — Polymarket 68.5 / 31.5 (1080205, Aurora vs 9z), 67.5 / 32.5 (1081530,
+     1081531) read `2026-10-15T22:41:17Z`, Pinnacle 1.47 / 2.62 (1080287) and 1.53 / 2.47 (1079589) captured
+     `2026-10-15T19:59:37Z` — each with a format/identity fact, the Valve VRS points behind the own line and its
+     limitations written out;
+   * prediction-market entries are labelled tier **C**, not tier A; every open row gets a card; the counters count open
+     rows; `unresolved.csv` is exactly the non-tier-A open rows.
+   `python3 -m unittest tests.test_7759beef` → **16 OK** (was 5 failures + 1 error after a naive rebuild).
+3. **Landing / live-source evidence** re-runs the live collection in CI on every push; it no longer fails on the suite.
+
+Live re-reads done while verifying the TWC page (all after the merge, so the published page and the source agree):
+
+| Claim on the published page | Where it was re-read | Result |
+|---|---|---|
+| Venue "BLAST Arena Studios, Attard, Malta", 14–18 Oct, USD 1,000,000, 8 teams, S-Tier | `liquipedia.net/counterstrike/Thunderpick/World_Championship/2026` (read 2026-10-15 22:5xZ) | **Confirmed** exactly (organizer GAM3RS_X, Valve Tier 1) |
+| Group A table: Falcons 2-0 63-50 +13 · 9z 1-1 57-46 +11 · Aurora 1-1 38-42 −4 · NIP 0-2 35-55 −20 | same page, Group Stage → Group A | **Confirmed** to the round |
+| Group B table: FURIA 2-0 62-45 +17 · BetBoom 1-1 55-50 +5 · Legacy 1-1 55-61 −6 · PARIVISION 0-2 49-65 −16 | same page, Group Stage → Group B | **Confirmed** to the round |
+| Day 2: Aurora 2-0 NIP (Cache 13-9, Dust II 13-7) · 9z 1-2 Falcons (Nuke 9-13, Mirage 13-8, Dust II 9-13) | same page, Group A matches, 15 Oct 04:30 / 07:30 EDT | **Confirmed** (10:30/13:30 UTC) |
+| Oct 16 deciders: 9z vs Aurora 10:00 EDT (14:00 UTC) and Legacy vs BetBoom 13:00 EDT (17:00 UTC) | same page, Upcoming Matches + Group B block, HLTV 2399412 / 2399413 | **Confirmed**; both Bo3, both Decider matches |
+| Oct 17 semifinals Falcons vs TBD and TBD vs FURIA, third-place match 18 Oct | same page, Upcoming Matches | **Confirmed** |
+| Virtus.pro withdrew 9 Oct and were replaced by Ninjas in Pyjamas | same page, Participants → Notes (1) | **Confirmed** |
+| Aurora rebuild dates (MAJ3R out 2 Jul, Jimpphat + coach ashhh 3 Jul, kyxsan 8 Jul) | HLTV news 45050/45082 and Liquipedia transfer timeline (earlier in this session) | **Confirmed**; 104/99 days before this decider, so context rather than a fresh disruption |
+
+Repository checks after the second pass (branch tip `5a36e44`, all run in this workspace):
+
+* `python3 -m unittest discover -s tests -t .` → **408 tests, 0 failures** (was 408 / 2F).
+* `python3 scripts/audit_91e444dd.py` → **266 pages, 0 link errors**.
+* `python3 hotspawn/tests.py` → 31 OK · `python3 -m unittest tests.test_228bb5bc` → 45 OK ·
+  `python3 -m unittest tests.test_7759beef` → 16 OK.
+* GitHub Actions on the branch, after the fixes: **console pass** (run 38819730484), **verify pass**
+  (38819730452 / 38819730462), **audit pass** (38819730515), build pass (38819731962); landing re-runs its live
+  collection and no longer fails the suite.
+
+This supersedes items 5 and 6 of the previous section: the valuepicks board was rebuilt rather than left drifting,
+and the console red was reproduced and fixed. The remaining scheduled reds (Oct14 board refresh, O-01 own-line model,
+Every-match rebuild — exit 128 — Slate capture, Mobile executive summary) still need outbound network or a browser
+inside their jobs and are unreadable from this sandbox; they are listed on the Flagged for Review page with their
+run ids.

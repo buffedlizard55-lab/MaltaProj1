@@ -1,5 +1,5 @@
 {
- "about": "Irregularities found by session arena/22be6967 while researching and reviewing (2026-10-15). Each item is published on hotspawn/flagged.html with its evidence. Status: open = still true at the last check; handled = this board works around it.",
+ "about": "Irregularities found while researching and reviewing (2026-10-15): the board's own session arena/22be6967 plus the follow-up session arena/e1ceecc2. Each item is published on hotspawn/flagged.html with its evidence. Status: open = still true at the last check; handled = this board works around it; fixed = the defect was repaired and the owning tests pass.",
  "items": [
   {
    "id": "IR-01",
@@ -166,13 +166,14 @@
   },
   {
    "id": "IR-18",
-   "status": "open",
-   "title": "valuepicks board still fails two of its own invariants",
-   "detail": "tests/test_7759beef.py fails twice on the committed board: the coverage page lists 80 rows while the executive capture now holds 76, and the board's open set (1080280-84, 1079440/42, 1080202-04) no longer matches the capture's (1080205, 1079586, 1081530, 1081531, 1079589). Root cause found in session e1ceecc2 on 2026-10-15: the board is only rebuilt from the committed capture by its own four-hourly workflow, and that workflow is currently failing, so the published board is a capture behind. Rebuilding it here made things worse because the module's own inputs have moved on: four of its five hand-written resolutions (1080202, 1080281, 1080203, 1080283) name fixtures that have since left the capture, which raises StopIteration in its recompute test, and the capture's headline quote for Ninjas in Pyjamas vs Team Liquid (Pinnacle whole-match 1.89 / 1.89, de-vigged to exactly 50.0 / 50.0) carries the sentinel pick '(no side - 50/50)', which the module republishes as a headline pick its own invariant forbids. Fixing it needs that module's owner to (a) prune or re-point orphaned resolutions, (b) treat a de-vigged coin flip as 'no side, next rung or unresolved' instead of a pick, and (c) add resolutions for today's unpriced open rows from sources the repo already captured (Polymarket 55.5 / 44.5 for 1079586 read 20:31:27Z; Thunderpick relayed 65.5 / 34.5 for 1080205 read 20:31:27Z). It is flagged, not fixed, and it does not touch the primary route (hotspawn/).",
+   "status": "fixed",
+   "title": "valuepicks board was a capture behind and republished a coin flip as a pick (fixed)",
+   "detail": "Fixed by session e1ceecc2 on 2026-10-15. The board listed 1080280-84/1079440/1079442 while the executive capture now holds 12 open rows, so tests/test_7759beef.py failed twice and both verify.yml and landing-43c32386.yml were red. The module now (a) treats a capture pick that is not a team name - the sentinel '(no side - 50/50)' the executive writes for an exact coin flip - as no pick, publishing both sourced probabilities and no side, flagged VP-F08 and listed on unresolved.html; (b) keeps only the ladder entries whose fixture is still an open capture row and adds entries for today's unpriced rows from evidence already stored in the repo (Polymarket 68.5/31.5 for 1080205, 67.5/32.5 for 1081530 and 1081531, read 2026-10-15T22:41:17Z; Pinnacle 1.47/2.62 for 1080287 and 1.53/2.47 for 1079589, captured 2026-10-15T19:59:37Z), each with a format/identity fact, Valve VRS points for the own line and its limitations; (c) labels prediction-market entries tier C instead of tier A; (d) gives every open row a card and counts open rows in meta; (e) lists exactly the non-tier-A open rows in unresolved.csv. tests/test_7759beef.py is untouched and now passes 16/16; full discovery 408 OK; audit 266 pages / 0 link errors. Still published as a limitation, not hidden: the coin-flip row (Ninjas in Pyjamas vs Team Liquid, Pinnacle 1.89/1.89) carries 50.0/50.0 and no side, and the three ladder-resolved rows rest on prediction-market prices rather than a book.",
    "evidence": [
-    "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/tests/test_7759beef.py",
-    "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/executive/data/analysis.csv",
-    "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/console/data/picks.csv"
+    "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/valuepicks/index.html",
+    "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/valuepicks/unresolved.html",
+    "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/scripts/7759beef_build.py",
+    "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/research/7759beef/sources.json"
    ]
   },
   {
@@ -214,6 +215,18 @@
     "https://polymarket.com/event/cs2-nip-tl1-2026-10-16",
     "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/console/data/picks.csv"
    ]
+  },
+  {
+   "id": "IR-23",
+   "status": "fixed",
+   "title": "consolidated console board published a probability with a blank pick when only the cs2 board carried the fixture",
+   "detail": "Found and fixed by session e1ceecc2 on 2026-10-15. scripts/228bb5bc_build.py took the pick from the secondary-market feed row (feed.get('team_a')/('team_b')), which does not carry every fixture, while the probabilities came from whichever board did. Fixture 1079631 (FORZE Reload vs Lavked, CCT Europe 2026 Series #11) therefore published a Pinnacle de-vig (76.7 / 23.3, overround 7.36%, read 2026-10-15T22:24:02Z) with an empty pick, which broke two of the board's own invariants (test_every_open_fixture_has_a_pick_or_explicit_unresolved_flag, test_committed_board_never_publishes_a_pick_on_an_exact_tie) and failed the console workflow on main. The pick is now taken from the names the row itself publishes, and the counter set is consistent again: 22 open rows, 13 picked, 9 blank with their flags. tests/test_228bb5bc.py untouched, 45/45 OK.",
+   "evidence": [
+    "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/scripts/228bb5bc_build.py",
+    "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/tests/test_228bb5bc.py",
+    "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/console/flagged.html"
+   ]
   }
- ]
+ ],
+ "updated_utc": "2026-10-15T23:03:00Z"
 }
