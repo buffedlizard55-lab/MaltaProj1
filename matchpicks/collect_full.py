@@ -77,6 +77,19 @@ def load_live_collector():
 
 lc = load_live_collector()
 
+
+def load_live_builder():
+    """The repository's name normalisation (including the documented alias table), read-only."""
+    path = ROOT / "live" / "build.py"
+    spec = importlib.util.spec_from_file_location("live_build_459ff624", path)
+    module = importlib.util.module_from_spec(spec)
+    assert spec.loader is not None
+    spec.loader.exec_module(module)
+    return module
+
+
+lb = load_live_builder()
+
 FIELD_ALIASES = {
     "match_id": ("id", "match_id", "fixture_id"),
     "team_a": ("participants0_name", "teamA", "home_name"),
@@ -135,6 +148,7 @@ def collect_hotspawn_full() -> dict:
     complete: dict[str, dict] = {}
     incomplete: dict[str, dict] = {}
     dom_ids: set[str] = set()
+    payload_ids_all: set[str] = set()   # every fixture node on every page, any sport
     pages: list[dict] = []
     crowd_fields_dropped = 0
 
@@ -177,6 +191,7 @@ def collect_hotspawn_full() -> dict:
                         match_id = str(get(node, "match_id", "") or "")
                         if not match_id:
                             continue
+                        payload_ids_all.add(match_id)
                         sport = get(node, "sport")
                         team_a, team_b = get(node, "team_a"), get(node, "team_b")
                         start = lc.ms_to_iso(get(node, "start"))
@@ -268,11 +283,88 @@ def collect_hotspawn_full() -> dict:
         "fixtures_complete": complete_rows,
         "fixtures_incomplete": incomplete_rows,
         "dom_ids": sorted(dom_ids),
-        "dom_only_ids": sorted(dom_ids - complete_ids),
+        "payload_ids_all": sorted(payload_ids_all),
+        # A rendered link with no payload node at all — compared against every sport, so the LoL
+        # fixtures on the same lobby can never be reported as missing CS2 fixtures.
+        "dom_only_ids": sorted(dom_ids - payload_ids_all),
         "crowd_fields_dropped": crowd_fields_dropped,
         "week_text": next((p["week_text"] for p in pages if p["week_text"]), None),
         "reset_text": next((p["reset_text"] for p in pages if p["reset_text"]), None),
     }
+
+
+HLTV_MATCHES_URL = "https://www.hltv.org/matches"
+BO_TOKEN = re.compile(r"^bo([135])$", re.I)
+
+
+def parse_hltv_formats(text: str, fixtures: list[dict]) -> dict:
+    """Best-of length per fixture from HLTV's own upcoming-matches page text.
+
+    Hotspawn's payload leaves ``best_of``/``series_format`` null for every fixture (observed
+    2026-10-15), so the length of a series — which decides how a per-map probability becomes a match
+    probability — has to come from an official source.  HLTV publishes it as a ``bo1``/``bo3``/``bo5``
+    label on the match row.
+
+    The join is deliberately strict and never guesses: a fixture is only given a length when both of
+    its team names appear next to each other in the flattened page text with a single bo label inside
+    the same window.  The window is kept as evidence on the row.  No match → no value.
+    """
+    tokens = [t for t in re.split(r"\s+", text) if t]
+    compact = [re.sub(r"[^a-z0-9]", "", t.lower()) for t in tokens]
+    found: list[dict] = []
+    for fixture in fixtures:
+        keys = []
+        for raw in (fixture.get("team_a"), fixture.get("team_b")):
+            key = re.sub(r"[^a-z0-9]", "", lb.norm(raw or ""))
+            keys.append(key)
+        if not all(keys):
+            continue
+        # HLTV renders each name twice in a row (image alt + visible text); accept either spelling.
+        hits = []
+        for key in keys:
+            pairs = [i for i in range(len(compact) - 1)
+                     if compact[i] == key and compact[i + 1] == key]
+            singles = [i for i, token in enumerate(compact) if token == key]
+            hits.append(pairs or singles)
+        if not (hits[0] and hits[1]):
+            continue
+        window = None
+        for i in hits[0]:
+            for j in hits[1]:
+                if i == j or abs(i - j) > 6:
+                    continue        # the two names must sit in the same match row
+                low, high = min(i, j), max(i, j)
+                start = max(0, low - 8)
+                labels = {int(BO_TOKEN.match(tokens[k]).group(1))
+                          for k in range(start, high + 1)
+                          if BO_TOKEN.match(tokens[k] or "")}
+                # a real HLTV match row always carries its start time next to the label
+                has_time = any(re.fullmatch(r"\d{1,2}:\d{2}", tokens[k])
+                               for k in range(start, high + 1))
+                if len(labels) == 1 and has_time:
+                    window = (start, high, labels.pop())
+                    break
+            if window:
+                break
+        if not window:
+            continue
+        start, high, best_of = window
+        found.append({"match_id": fixture["match_id"], "team_a": fixture.get("team_a"),
+                      "team_b": fixture.get("team_b"), "best_of": best_of,
+                      "evidence": " ".join(tokens[start: high + 2])[:300]})
+    return {"matches": found}
+
+
+def collect_hltv_formats(fixtures: list[dict]) -> dict:
+    got = lc.browser_get(HLTV_MATCHES_URL, wait_ms=4000)
+    html = got["html"] or ""
+    text = lc.text_of(html) if html else ""
+    parsed = parse_hltv_formats(text, fixtures) if text else {"matches": []}
+    sample = re.sub(r"\s+", " ", text)[:1500]
+    return {"status": "observed" if parsed["matches"] else "unavailable",
+            "url": HLTV_MATCHES_URL, "read_utc": got["fetched_utc"],
+            "matches": parsed["matches"], "text_sha256": got["sha256"],
+            "debug_text_sample": sample}
 
 
 def main() -> int:
@@ -291,6 +383,11 @@ def main() -> int:
     print(f"[matchpicks] egw listing={len(egw['listing'])} detail={len(egw['detail'])}", flush=True)
     polymarket = lc.collect_polymarket()
     print(f"[matchpicks] polymarket quotes={len(polymarket['quotes'])}", flush=True)
+
+    open_fixtures = [row for row in hotspawn["fixtures_complete"]
+                     if row.get("team_a") and row.get("team_b")]
+    formats = collect_hltv_formats(open_fixtures)
+    print(f"[matchpicks] hltv format rows={len(formats['matches'])}", flush=True)
 
     names = {row["team_a"] for row in hotspawn["fixtures_complete"]}
     names |= {row["team_b"] for row in hotspawn["fixtures_complete"]}
@@ -315,6 +412,7 @@ def main() -> int:
         "egw": egw,
         "polymarket": polymarket,
         "hltv": hltv,
+        "hltv_formats": formats,
         "provenance": lc.provenance,
     }
     DATA.mkdir(parents=True, exist_ok=True)

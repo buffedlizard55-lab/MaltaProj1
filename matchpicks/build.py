@@ -99,8 +99,21 @@ def is_cs2(fixture: dict) -> bool:
     return True
 
 
+def format_lookup(snapshot: dict) -> dict:
+    """Official HLTV match-list reads, keyed by the unordered pair of normalised team names."""
+    table: dict[tuple[str, str], dict] = {}
+    for row in (snapshot.get("hltv_formats") or {}).get("matches") or []:
+        key = tuple(sorted([norm(row.get("team_a") or ""), norm(row.get("team_b") or "")]))
+        if all(key):
+            table[key] = row
+    return table
+
+
 def series_length(fixture: dict) -> int | None:
-    """Best-of length as stated by Hotspawn, or None when the payload does not state one."""
+    """Best-of length as stated by Hotspawn, or None when the payload does not state one.
+
+    Observed 2026-10-15: Hotspawn leaves ``best_of``/``series_format`` null for every fixture, so in
+    practice the length comes from :func:`series_info` (the official HLTV match list) instead."""
     for key in ("best_of", "series_format"):
         value = fixture.get(key)
         if value in (None, ""):
@@ -125,18 +138,42 @@ def logistic(diff: float, scale: float) -> float:
     return 1.0 / (1.0 + 10.0 ** (-float(diff) / float(scale)))
 
 
-def own_line(fixture: dict, vrs: dict, hltv_ranks: dict) -> dict:
+def series_info(fixture: dict, formats: dict) -> dict:
+    """The series length and the source it came from — never guessed.
+
+    Order: what Hotspawn's payload states, then the official HLTV match list (joined on the team pair
+    with the label and the start time on the same row).  Nothing else is used, and a row with no
+    source stays ``None`` and is flagged MP-F05.
+    """
+    stated = series_length(fixture)
+    if stated:
+        return {"bo": stated, "source": "Hotspawn payload", "url": fixture.get("source_url") or "",
+                "evidence": "", "read_utc": fixture.get("snapshot_utc") or ""}
+    key = tuple(sorted([norm(fixture.get("team_a") or ""), norm(fixture.get("team_b") or "")]))
+    row = formats.get(key)
+    if row and row.get("best_of"):
+        meta = (fixture.get("_formats_meta") or {})
+        return {"bo": int(row["best_of"]), "source": "official HLTV match list",
+                "url": meta.get("url") or "https://www.hltv.org/matches",
+                "evidence": row.get("evidence") or "", "read_utc": meta.get("read_utc") or ""}
+    return {"bo": None, "source": "", "url": "", "evidence": "", "read_utc": ""}
+
+
+def own_line(fixture: dict, vrs: dict, hltv_ranks: dict, formats: dict) -> dict:
     """Originated probability from official inputs only, or a reason why it cannot be made.
 
     Tier A: both teams present in Valve's official Regional Standings → points ratio, scale 400.
     Tier B: otherwise, both teams present in the official HLTV world ranking → rank logistic.
     The per-map figure is converted to the stated series length when Hotspawn states one.
     """
-    bo = series_length(fixture)
+    series = series_info(fixture, formats)
+    bo = series["bo"]
     a, b = fixture.get("team_a"), fixture.get("team_b")
     entry_a, alt_a = pick_vrs(vrs.get(norm(a or "")))
     entry_b, alt_b = pick_vrs(vrs.get(norm(b or "")))
-    out = {"bo": bo, "vrs_a": entry_a, "vrs_b": entry_b, "vrs_alt_a": alt_a, "vrs_alt_b": alt_b,
+    out = {"bo": bo, "series_source": series["source"], "series_url": series["url"],
+           "series_evidence": series["evidence"], "series_read_utc": series["read_utc"],
+           "vrs_a": entry_a, "vrs_b": entry_b, "vrs_alt_a": alt_a, "vrs_alt_b": alt_b,
            "basis": "", "p_map_a": None, "p_series_a": None, "missing": []}
     if entry_a and entry_b:
         p_map = logistic(entry_a["points"] - entry_b["points"], VRS_SCALE)
@@ -223,11 +260,29 @@ def load_published_results() -> dict[str, dict]:
     return table
 
 
+FINISHED_STATUSES = {"finished", "completed", "closed", "ended"}
+
+
 def hotspawn_score(fixture: dict) -> str:
+    """The score **only** when the payload really publishes one.
+
+    Observed 2026-10-15: Hotspawn's payload carries ``participants0_score``/``participants1_score``
+    as ``0`` for every fixture, including June fixtures that are long over, and keeps
+    ``status = "scheduled"``.  A placeholder therefore has to be rejected explicitly: a score is
+    published here only when the payload calls the fixture finished *and* the two sides differ and at
+    least one is non-zero.  Anything else is "not published", never "0-0".
+    """
+    status = (fixture.get("status") or "").strip().lower()
     a, b = fixture.get("team_a_score"), fixture.get("team_b_score")
-    if a in (None, "") or b in (None, ""):
+    if status not in FINISHED_STATUSES:
         return ""
-    return f"{a}-{b}"
+    try:
+        a_int, b_int = int(a), int(b)
+    except (TypeError, ValueError):
+        return ""
+    if a_int == b_int or (a_int == 0 and b_int == 0):
+        return ""
+    return f"{a_int}-{b_int}"
 
 
 # --------------------------------------------------------------------------- build
@@ -240,6 +295,9 @@ def build(snapshot: dict) -> dict:
     hltv_url = snapshot.get("hltv", {}).get("url")
     hltv_read = snapshot.get("hltv", {}).get("fetched_utc")
     quotes = external_quotes(snapshot)
+    formats = format_lookup(snapshot)
+    formats_meta = {"url": (snapshot.get("hltv_formats") or {}).get("url") or "",
+                    "read_utc": (snapshot.get("hltv_formats") or {}).get("read_utc") or ""}
     published = load_published_results()
     complete = snapshot.get("fixtures_complete") or snapshot.get("fixtures") or []
     incomplete = snapshot.get("fixtures_incomplete") or []
@@ -264,7 +322,7 @@ def build(snapshot: dict) -> dict:
             "points": fixture.get("points") or "",
             "team_a": fixture.get("team_a") or "",
             "team_b": fixture.get("team_b") or "",
-            "series": f"BO{ownlines.format_to_best_of(series_length(fixture))}" if series_length(fixture) else "",
+            "series": "",
             "hotspawn_url": fixture.get("hotspawn_match_url") or fixture.get("source_url") or "",
             "hotspawn_page": fixture.get("source_url") or "",
             "hotspawn_status": fixture.get("status") or "",
@@ -319,7 +377,17 @@ def build(snapshot: dict) -> dict:
                        market_url="", market_observed_utc="")
 
         # ---- 3. our own originated line from official inputs
-        own = own_line(fixture, vrs, hltv_ranks)
+        fixture["_formats_meta"] = formats_meta
+        own = own_line(fixture, vrs, hltv_ranks, formats)
+        if own["bo"]:
+            row["series"] = f"BO{own['bo']}"
+            row["series_source"] = own["series_source"]
+            row["series_url"] = own["series_url"]
+            row["series_read_utc"] = own["series_read_utc"]
+            if own["series_source"] == "official HLTV match list":
+                row_flags.append("MP-F11")
+        else:
+            row["series_source"] = row["series_url"] = row["series_read_utc"] = ""
         row["own_basis"] = own["basis"]
         row["own_url"] = vrs_url if own.get("vrs_a") and own.get("vrs_b") else (hltv_url or "")
         row["own_read_utc"] = (vrs_as_of if own.get("vrs_a") and own.get("vrs_b") else hltv_read) or ""
@@ -368,20 +436,36 @@ def build(snapshot: dict) -> dict:
             if abs(float(row["p_a"]) - float(row["own_p_a_pct"])) >= 12.5:
                 row_flags.append("MP-F20")
 
-        # ---- finished-fixture cross-check against an independent verification trail
+        # ---- played fixtures: publish the result from the independent verification trail, and
+        #      cross-check it against the payload's own score whenever the payload publishes one.
+        trail = published.get(row["match_id"])
+        if trail and (trail.get("status") or "").strip() == "verified" and trail.get("winner"):
+            row["result"] = f"{trail['winner']} {trail.get('score') or ''}".strip()
+            row["result_source_url"] = trail.get("official_source_url") or ""
+            row["result_read_utc"] = trail.get("read_utc") or ""
+            row["result_note"] = ("verified against the official match page in the repository's "
+                                  "result trail")
+        elif trail and (trail.get("status") or "").strip():
+            row["result"] = ""
+            row["result_source_url"] = trail.get("official_source_url") or ""
+            row["result_read_utc"] = trail.get("read_utc") or ""
+            row["result_note"] = f"trail status “{trail['status']}”: {(trail.get('flag') or '')[:220]}"
+            row_flags.append("MP-F32")
+        else:
+            row["result"], row["result_source_url"], row["result_read_utc"] = "", "", ""
+            row["result_note"] = "no independent result on file for this fixture"
         if row["score"]:
-            trail = published.get(row["match_id"])
             if trail and trail.get("winner"):
-                hotspawn_winner = row["team_a"] if row["score"].split("-")[0] > row["score"].split("-")[1] \
-                    else row["team_b"]
+                a_int, b_int = (int(x) for x in row["score"].split("-"))
+                hotspawn_winner = row["team_a"] if a_int > b_int else row["team_b"]
                 if norm(hotspawn_winner) == norm(trail["winner"]):
-                    row["result_cross_check"] = f"agrees with {trail['official_source_url']}"
+                    row["result_cross_check"] = f"payload score agrees with {trail['official_source_url']}"
                 else:
-                    row["result_cross_check"] = (f"DISAGREES: Hotspawn score says {hotspawn_winner}, "
+                    row["result_cross_check"] = (f"DISAGREES: payload score says {hotspawn_winner}, "
                                                  f"{trail['official_source_url']} says {trail['winner']}")
                     row_flags.append("MP-F30")
             else:
-                row["result_cross_check"] = "no independent result on file to cross-check"
+                row["result_cross_check"] = "payload publishes a score but no independent result is on file"
                 row_flags.append("MP-F31")
         else:
             row["result_cross_check"] = ""
@@ -438,20 +522,37 @@ def build(snapshot: dict) -> dict:
             "payload_keys": ", ".join(fixture.get("payload_keys") or []),
         })
 
-    for dom_id in snapshot.get("dom_only_ids") or []:
+    dom_only = snapshot.get("dom_only_ids") or []
+    if dom_only:
         unresolved.append({
-            "match_id": dom_id, "state": "markup only",
-            "competition": "rendered on the Hotspawn page but absent from the payload",
+            "match_id": f"{len(dom_only)} id(s)", "state": "markup only",
+            "competition": "rendered links on the Hotspawn pages",
             "flags": "MP-F09",
-            "unresolved_reason": "fixture id appears in the page markup but not in the TransferState "
-                                 "payload; identity cannot be confirmed from the payload",
+            "unresolved_reason": ("rendered link ids that have no fixture node in the TransferState "
+                                 "payload; they are counted here instead of being published as "
+                                 "fixtures. Ids: " + ", ".join(dom_only[:30])
+                                 + (" …" if len(dom_only) > 30 else "")),
             "hotspawn_read_utc": snapshot.get("generated_utc"),
         })
 
     flags = collect_flags(rows, unresolved)
+    source_health = {
+        "pinnacle_quotes": len(snapshot.get("pinnacle", {}).get("quotes") or []),
+        "pinnacle_status": snapshot.get("pinnacle", {}).get("status") or "unknown",
+        "egw_status": snapshot.get("egw", {}).get("status") or "unknown",
+        "egw_detail": len(snapshot.get("egw", {}).get("detail") or []),
+        "egw_http": next((str(p.get("status")) for p in (snapshot.get("provenance") or [])
+                          if "egamersworld" in (p.get("url") or "")), ""),
+        "polymarket_quotes": len(snapshot.get("polymarket", {}).get("quotes") or []),
+        "hltv_rank_rows": snapshot.get("hltv", {}).get("total_rows") or 0,
+        "hltv_format_rows": len((snapshot.get("hltv_formats") or {}).get("matches") or []),
+        "hotspawn_series_stated": sum(1 for r in rows if r.get("series_source") == "Hotspawn payload"),
+    }
     summary = summarise(snapshot, rows, unresolved, flags)
+    summary["source_health"] = source_health
     return {"rows": rows, "unresolved": unresolved, "flags": flags, "summary": summary,
-            "meta": {"generated_utc": snapshot["generated_utc"],
+            "meta": {"source_health": source_health,
+                     "generated_utc": snapshot["generated_utc"],
                      "week_text": snapshot.get("week_text") or "",
                      "reset_text": snapshot.get("reset_text") or "",
                      "pages": snapshot.get("hotspawn_pages") or [],
@@ -483,6 +584,11 @@ FLAG_TEXT = {
     "MP-F08": ("Identity incomplete in the payload", "Hotspawn has opened the fixture but has not "
                "published both participant names and/or the start time. No pick can be produced "
                "without inventing an identity."),
+    "MP-F11": ("Series length from the official HLTV match list", "Hotspawn's payload publishes no "
+               "best-of length for any fixture (its fields are null), so the length that turns a "
+               "per-map probability into a match probability is taken from the official HLTV match "
+               "list, joined on the team pair with the label and start time on the same row. The "
+               "matched text is kept as evidence."),
     "MP-F10": ("Name variant joined", "The source spells a team differently from the fixture (for "
                "example an abbreviation); the join used the repository's documented alias table and "
                "the fixture's start time, and both spellings are shown on the row."),
@@ -498,8 +604,13 @@ FLAG_TEXT = {
     "MP-F30": ("Result disagreement with the verification trail", "The score in the Hotspawn payload "
                "and the independently verified result on file disagree. Both are linked; neither is "
                "overwritten."),
-    "MP-F31": ("Result not independently cross-checked", "A score is published in the payload but no "
-               "independently verified result is on file yet for this fixture."),
+    "MP-F31": ("Payload score without an independent check", "Hotspawn's payload publishes a score "
+               "for this fixture but no independently verified result is on file yet to check it "
+               "against. The payload score is shown only for finished fixtures and is never presented "
+               "as verified."),
+    "MP-F32": ("Result unverified", "The fixture is over but the repository's result trail records "
+               "the outcome as unresolved (for example an event whose official page contradicts the "
+               "listed card). No result is published rather than a guessed one."),
     "MP-F32": ("Capture gap closed by this board", "This fixture was missing from the other boards' "
                "captured inventories because the payload node had no participant names when they "
                "were read; it is listed here so it cannot disappear silently."),
@@ -548,11 +659,15 @@ def summarise(snapshot: dict, rows: list[dict], unresolved: list[dict], flags: d
         "open_with_market": sum(1 for r in open_rows if r.get("market_p_a_pct")),
         "open_with_own_line": sum(1 for r in open_rows if r.get("own_p_a_pct")),
         "identity_incomplete": len(identity_rows),
-        "markup_only": len(markup_rows),
+        "markup_only": len(dom_only) if (dom_only := snapshot.get("dom_only_ids") or []) else 0,
         "unresolved_total": len(unresolved),
         "flags_total": sum(v["count"] for v in flags.values()),
         "flag_kinds": len(flags),
         "crowd_fields_dropped": snapshot.get("crowd_fields_dropped") or 0,
+        "results_verified_with_source": sum(1 for r in rows if r.get("result")),
+        "results_unverified": sum(1 for r in rows if not r.get("result")
+                                  and r["state"] == "stale listing"
+                                  and (r.get("result_note") or "").startswith("trail status")),
         "independent_checks_agreed": sum(1 for r in rows if (r.get("result_cross_check") or "")
                                          .startswith("agrees")),
         "independent_checks_failed": sum(1 for r in rows if (r.get("result_cross_check") or "")
@@ -562,12 +677,14 @@ def summarise(snapshot: dict, rows: list[dict], unresolved: list[dict], flags: d
 
 # --------------------------------------------------------------------------- output
 COLUMNS = ["match_id", "state", "lock_utc", "start_utc", "competition", "tier", "stage", "points",
-           "team_a", "team_b", "series", "pick", "pick_pct", "p_a", "p_b", "probability_source",
+           "team_a", "team_b", "series", "series_source", "series_url", "series_read_utc",
+           "pick", "pick_pct", "p_a", "p_b", "probability_source",
            "pick_basis", "market_source", "market_book", "market_odds_a", "market_odds_b",
            "market_overround_pct", "market_p_a_pct", "market_p_b_pct", "market_url",
            "market_observed_utc", "own_p_a_pct", "own_p_b_pct", "own_basis", "own_scope", "own_url",
            "own_read_utc", "vrs_points_a", "vrs_points_b", "vrs_rank_a", "vrs_rank_b",
-           "hltv_rank_a", "hltv_rank_b", "divergence_pp", "score", "result_cross_check",
+           "hltv_rank_a", "hltv_rank_b", "divergence_pp", "score", "result", "result_source_url",
+           "result_read_utc", "result_note", "result_cross_check",
            "hotspawn_status", "hotspawn_url", "hotspawn_page", "hotspawn_read_utc", "flags"]
 
 
@@ -638,6 +755,12 @@ def fixture_card(row: dict) -> str:
          + (f' · {escape(row["stage"])}' if row.get("stage") else "")
          + (f' · {escape(str(row["points"]))} pts' if row.get("points") else "")),
         ("Lock (UTC)", escape(fmt_lock(row))),
+        ("Series length", (escape(row.get("series") or "") + " — " + escape(row.get("series_source") or "")
+                           + " " + link(row.get("series_url") or "", "source")
+                           + (f' <span class="muted">read {escape((row.get("series_read_utc") or "")[:16])}Z</span>'
+                              if row.get("series_read_utc") else ""))
+         if row.get("series") else '<em>not stated by any source read in this run — the own line is '
+                                   'published per map (MP-F05)</em>'),
         ("Probability source", escape(basis) if basis else '<em>none published</em>'),
         ("Own originated line", (f'{escape(row.get("own_p_a_pct"))}% / '
                                  f'{escape(row.get("own_p_b_pct"))}%'
@@ -656,8 +779,13 @@ def fixture_card(row: dict) -> str:
             or '<em>not available</em>')),
         ("Market vs own line", escape(row.get("divergence_pp", "")) + " pp"
          if row.get("divergence_pp") else '<em>only one line available</em>'),
-        ("Result (Hotspawn payload)", escape(row.get("score") or "") or '<em>not published</em>'),
-        ("Independent cross-check", escape(row.get("result_cross_check") or "") or '<em>—</em>'),
+        ("Result (verified, with source)", (escape(row["result"]) + " — " + link(row["result_source_url"], "official match page")
+                                            + f' <span class="muted">read {escape((row["result_read_utc"] or "")[:16])}Z</span>')
+         if row.get("result") else f'<em>{escape(row.get("result_note") or "not published")}</em>'),
+        ("Result (Hotspawn payload)", escape(row.get("score") or "")
+         + ("" if row.get("score") else ' <span class="muted">— the payload publishes 0-0 placeholders for '
+            'every fixture and keeps status “scheduled”, so no score is used from it</span>')),
+        ("Payload vs trail", escape(row.get("result_cross_check") or "") or '<em>no payload score to compare</em>'),
         ("Sources", sources or '<em>none</em>'),
     ]
     details = "".join(f"<tr><th>{escape(name)}</th><td>{value}</td></tr>" for name, value in detail_rows)
@@ -833,6 +961,11 @@ def render_unresolved(rows: list[dict], unresolved: list[dict], summary: dict, m
                 why = "; ".join(needs) or "no probability could be derived"
             if row.get("state") == "stale listing":
                 need = "nothing — Hotspawn keeps the fixture listed without a playable match; a pick would be a fabrication"
+                if row.get("result"):
+                    need += (f". Played: {escape(row['result'])} ("
+                             + link(row["result_source_url"], "official match page") + ")")
+                elif row.get("result_note"):
+                    need += f". {escape(row['result_note'])}"
             elif row.get("state") == "identity incomplete":
                 need = "Hotspawn publishing the participant names and start time; the next refresh then fills this row automatically"
             elif row.get("state") == "markup only":
@@ -893,6 +1026,27 @@ def render_unresolved(rows: list[dict], unresolved: list[dict], summary: dict, m
     <li><strong>Stale-listing limitation.</strong> Hotspawn keeps fixtures from past events in the
       payload (June 2026 cards are still listed). They are not playable matches; a “pick” for them would
       be meaningless, so they are shown as stale listings.</li>
+    <li><strong>Source-availability limitation.</strong> The ladder can only use a source it can read
+      from the automated runner. In the capture behind this page the primary bookmaker
+      (Pinnacle) returned {meta.get('source_health', {}).get('pinnacle_quotes', 0)} whole-match
+      quote(s) and the prediction market {meta.get('source_health', {}).get('polymarket_quotes', 0)};
+      the aggregator tier (EGamersWorld) returned
+      {meta.get('source_health', {}).get('egw_detail', 0)} usable match page(s)
+      (its status was “{escape(meta.get('source_health', {}).get('egw_status', 'unknown'))}”,
+      HTTP {escape(meta.get('source_health', {}).get('egw_http', 'n/a'))} on
+      2026-10-15 — it refuses automated reads). Rows that would have used an aggregator price are
+      labelled as our own line instead, or stay unresolved.</li>
+    <li><strong>Series-length limitation.</strong> Hotspawn's payload publishes no best-of length at
+      all (its <code>best_of</code> and <code>series_format</code> fields are null for every fixture,
+      observed 2026-10-15). Where the official HLTV match list states one, this board uses it and
+      links the row ({meta.get('source_health', {}).get('hltv_format_rows', 0)} match(es) joined in
+      the capture shown here); where no source states one, the own line is published per map and
+      flagged MP-F05.</li>
+    <li><strong>Rating-age limitation.</strong> The own line is built on the newest **officially
+      published** Valve Regional Standings file ({escape(meta.get('vrs', {}).get('as_of') or '')}).
+      Valve publishes that file periodically, so between publications a team's live rating may have
+      moved (HLTV's live mirror page shows the in-between numbers). No un-official rating is used and
+      no value is interpolated.</li>
     <li><strong>Freshness limitation.</strong> Numbers are as fresh as the read time printed on each row.
       A market can move after the read; re-read the linked source before acting.</li>
     <li><strong>Score limitation.</strong> A finished fixture's score is taken from Hotspawn's payload and
@@ -922,8 +1076,16 @@ def render_flagged(rows: list[dict], unresolved: list[dict], flags: dict, summar
                 "<th>Probability source</th><th>Cross-check</th></tr>" + "".join(body) + "</table>")
 
     blocks = []
+    seen_rows: set[tuple] = set()
+    unique: list[dict] = []
+    for row in rows + unresolved:
+        key = (row.get("match_id"), row.get("state"))
+        if key in seen_rows:
+            continue
+        seen_rows.add(key)
+        unique.append(row)
     for flag, info in sorted(flags.items()):
-        items = [r for r in rows + unresolved if flag in (r.get("flags") or "").split(";")]
+        items = [r for r in unique if flag in (r.get("flags") or "").split(";")]
         blocks.append(f"<h3><code>{escape(flag)}</code> {escape(info['title'])} "
                       f"<span class='muted'>({info['count']})</span></h3>"
                       f"<p class='muted'>{escape(info['detail'])}</p>{table(items)}")

@@ -75,7 +75,7 @@ def synthetic_snapshot() -> dict:
         # 4. No market at all, both teams in Valve's official standings → own line, series length stated.
         {
             "match_id": "1080280", "sport": "cs2", "competition": "Elisa BreakOut Series #2",
-            "tier": "c", "stage": "Waiting For Information", "points": 2, "best_of": 3,
+            "tier": "c", "stage": "Waiting For Information", "points": 2, "best_of": None,
             "status": "scheduled", "team_a": "ENCE", "team_b": "BOJONG",
             "start_utc": "2026-10-16T12:00:00Z", "lock_utc": "2026-10-16T11:54:00Z",
             "hotspawn_match_url": "https://www.hotspawn.com/matches/ence-vs-bojong-1080280",
@@ -151,6 +151,12 @@ def synthetic_snapshot() -> dict:
             "fetched_utc": GENERATED, "total_rows": 208,
             "ranks": {"phantom": 61, "havu": 45, "mystery mix": 0},
             "matched": {},
+        },
+        "hltv_formats": {
+            "status": "observed", "url": "https://www.hltv.org/matches",
+            "read_utc": GENERATED,
+            "matches": [{"match_id": "1080280", "team_a": "ENCE", "team_b": "BOJONG", "best_of": 3,
+                         "evidence": "Elisa BreakOut Series 2 12:00 bo3 ENCE ENCE BOJONG BOJONG"}],
         },
         "pinnacle": {"status": "observed", "quotes": [{
             "bookmaker": "Pinnacle", "market": "match_winner", "team_a": "Aurora Gaming",
@@ -240,7 +246,17 @@ class Ladder(unittest.TestCase):
         # an un-de-vigged prediction market can show an overround, which is printed on the row
         self.assertNotEqual(row["market_overround_pct"], "")
 
-    def test_own_line_from_official_vrs_uses_stated_series_length(self):
+    def test_series_length_from_official_hltv_match_list_is_used_and_flagged(self):
+        """Hotspawn publishes no best-of length; the official HLTV match list supplies it."""
+        row = self.rows["1080280"]
+        self.assertEqual(row["series"], "BO3")
+        self.assertEqual(row["series_source"], "official HLTV match list")
+        self.assertEqual(row["series_url"], "https://www.hltv.org/matches")
+        self.assertIn("MP-F11", row["flags"])
+        self.assertNotIn("MP-F05", row["flags"])
+        self.assertEqual(row["own_scope"], "series")
+
+    def test_own_line_from_official_vrs_uses_the_series_length_it_was_given(self):
         row = self.rows["1080280"]
         self.assertEqual(row["market_p_a_pct"], "")
         self.assertIn("Valve Regional Standings", row["own_basis"])
@@ -275,17 +291,37 @@ class Ladder(unittest.TestCase):
         self.assertIn("MP-F08", entry["flags"])
         self.assertIn("has not published", entry["unresolved_reason"])
 
-    def test_markup_only_id_is_published_as_unresolved(self):
-        self.assertIn("9999999", self.unresolved)
-        self.assertEqual(self.unresolved["9999999"]["state"], "markup only")
+    def test_markup_only_ids_are_accounted_for_in_one_row(self):
+        entry = next(r for r in self.built["unresolved"] if r["state"] == "markup only")
+        self.assertIn("9999999", entry["unresolved_reason"])
+        self.assertIn("MP-F09", entry["flags"])
+        self.assertEqual(self.built["summary"]["markup_only"], 1)
 
-    def test_played_fixture_score_is_cross_checked_both_ways(self):
+    def test_played_fixture_result_comes_from_the_trail_and_is_cross_checked(self):
         agree = self.rows["1052746"]
-        self.assertTrue(agree["result_cross_check"].startswith("agrees"))
+        self.assertEqual(agree["result"], "Endless Journey 2-0")
+        self.assertTrue(agree["result_source_url"].startswith("https://www.hltv.org/matches/"))
+        self.assertTrue(agree["result_cross_check"].startswith("payload score agrees"))
         self.assertNotIn("MP-F30", agree["flags"])
+        # a payload score that contradicts the verified trail is flagged, never silently resolved
         disagree = self.rows["1052747"]
         self.assertTrue(disagree["result_cross_check"].startswith("DISAGREES"))
         self.assertIn("MP-F30", disagree["flags"])
+
+    def test_placeholder_payload_score_is_never_published(self):
+        """Hotspawn ships 0-0 with status 'scheduled' for every fixture; that is not a result."""
+        placeholder = {
+            "match_id": "1050000", "sport": "cs2", "competition": "X", "tier": "c", "stage": "Y",
+            "points": 2, "best_of": 3, "status": "scheduled", "team_a": "A Team", "team_b": "B Team",
+            "start_utc": "2026-06-26T10:00:00Z", "lock_utc": "2026-06-26T09:54:00Z",
+            "team_a_score": 0, "team_b_score": 0, "hotspawn_match_url": "https://www.hotspawn.com/matches/x",
+            "source_url": "https://play.hotspawn.com/lobby",
+        }
+        self.assertEqual(build_mod.hotspawn_score(placeholder), "")
+        placeholder["status"] = "finished"
+        self.assertEqual(build_mod.hotspawn_score(placeholder), "")
+        placeholder["team_a_score"], placeholder["team_b_score"] = 2, 1
+        self.assertEqual(build_mod.hotspawn_score(placeholder), "2-1")
 
     def test_summary_accounting(self):
         summary = self.built["summary"]
@@ -380,9 +416,13 @@ class Pages(unittest.TestCase):
 
     def test_flagged_page_explains_every_flag_it_renders(self):
         html = self.pages["flagged.html"]
+        plain = html.replace("&#x27;", "'").replace("&amp;", "&").replace("&quot;", '"')
         for flag in self.built["flags"]:
             self.assertIn(flag, html)
-            self.assertIn(build_mod.FLAG_TEXT[flag][1][:40], html)
+            self.assertIn(build_mod.FLAG_TEXT[flag][1][:40], plain)
+        # a row must not be listed twice for the same flag
+        for flag in self.built["flags"]:
+            self.assertLessEqual(plain.count(f"<code>{flag}</code>"), 1)
 
     def test_methodology_states_the_rules_the_board_relies_on(self):
         html = self.pages["methodology.html"]
