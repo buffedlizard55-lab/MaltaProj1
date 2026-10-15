@@ -94,7 +94,25 @@ jobs:
           if git diff --cached --quiet; then
             echo "no change — the published board already reflects the newest inputs"
           else
-            git pull --rebase origin "${GITHUB_REF_NAME}"
+            # Commit before rebasing: pull refuses staged, uncommitted generated files.
             git commit -m "console(228bb5bc): automated rebuild from the source boards' captures [skip ci]"
-            git push origin "HEAD:${GITHUB_REF_NAME}"
+            for attempt in 1 2 3 4; do
+              git pull --rebase origin "${GITHUB_REF_NAME}"
+              # A collector may have published newer evidence while this job ran.
+              # Rebuild and gate it again rather than publishing an outdated mixture.
+              python3 -u scripts/228bb5bc_build.py
+              python3 -m unittest tests/test_228bb5bc.py -q
+              python3 scripts/audit_91e444dd.py --output "$RUNNER_TEMP/console-rebased-links.json"
+              python3 -c 'import json,os,sys; sys.exit(bool(json.load(open(os.environ["RUNNER_TEMP"] + "/console-rebased-links.json"))["links"]["errors"]))'
+              git add console
+              if ! git diff --cached --quiet; then
+                git commit -m "console(228bb5bc): revalidated against latest committed captures [skip ci]"
+              fi
+              if git push origin "HEAD:${GITHUB_REF_NAME}"; then
+                exit 0
+              fi
+              echo "Concurrent update; retrying publication ($attempt/4)"
+            done
+            echo "Unable to publish after four validated attempts" >&2
+            exit 1
           fi
