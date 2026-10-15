@@ -387,6 +387,21 @@ def render_index(board: list[dict], sources: dict, meta: dict) -> str:
     tier_a = [row for row in open_rows if row["basis_tier"].startswith("A")]
     tier_lower = [row for row in open_rows if not row["basis_tier"].startswith("A")]
     contradictions = [row for row in open_rows if row.get("divergence", {}) and row["divergence"]["value_pp"] >= 5]
+    limited = limited_evidence_rows(board)
+
+    def unresolved_item(row: dict) -> str:
+        if row["pick"]:
+            head = "pick <strong>{}</strong> ({} / {})".format(esc(row["pick"]), fmt_pct(row["prob_a_pct"]), fmt_pct(row["prob_b_pct"]))
+        else:
+            head = "<strong>not picked</strong>"
+        limitation = (row.get("limitations") or ["no limitation text recorded"])[0]
+        return ('<li><strong>{} vs {}</strong> - {} - {}'
+                '<br><span class="meta">{} - {}</span> '
+                '<a href="unresolved.html#u{}">detail</a></li>').format(
+            esc(row["team_a"]), esc(row["team_b"]), esc(row["tournament"]), head,
+            esc(row["basis_label"]), esc(limitation), esc(row["match_id"]))
+
+    unresolved_items = "".join(unresolved_item(row) for row in limited)
 
     day = "".join(
         f'<li><strong>{esc(facts[fid]["claim"])}</strong><br><a href="{esc(facts[fid]["url"])}">{esc(facts[fid]["source_name"])}</a> '
@@ -444,6 +459,15 @@ def render_index(board: list[dict], sources: dict, meta: dict) -> str:
 <section>
   <h2>Roster-change and context intel behind the picks</h2>
   <ul class="facts">{roster}</ul>
+</section>
+
+<section id="unresolved-summary">
+  <h2>Unresolved &amp; limits - the rows that are not tier A ({len(limited)})</h2>
+  <p class="meta">Every row below carries a pick, but not a direct-bookmaker number - or, if it is marked
+  "not picked", no sourced basis at all. The full reasoning, the ladder evidence and the flags are on
+  <a href="unresolved.html">Unresolved &amp; limits</a>; they are listed here so the summary itself states
+  what is weak instead of hiding it behind a link.</p>
+  <ul class="unresolved-list">{unresolved_items}</ul>
 </section>
 
 <section class="callout">

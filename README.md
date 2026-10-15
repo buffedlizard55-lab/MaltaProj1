@@ -34,7 +34,7 @@ Data: `valuepicks/data/board.csv`, `board.json`, `value.csv`, `unresolved.csv`, 
 Research inputs (one row per fact, with URL, tier and read time): `research/7759beef/sources.json`.
 Reproduce with `python3 scripts/7759beef_build.py` then `python3 -m unittest tests.test_7759beef`.
 The four-hour workflow `.github/workflows/valuepicks-7759beef.yml` rebuilds and commits the board on
-`main` only after the build and the 13 invariants pass.
+`main` only after the build and the 15 invariants pass.
 
 Day-review finding used by the board: on 14 October 2026, 9z beat Aurora 2-0 (Inferno 13-11, Nuke
 13-1) at the Thunderpick World Championship — Aurora's first match after the July rebuild that brought
