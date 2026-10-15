@@ -33,6 +33,24 @@ Written 2026-10-15 (UTC). Every row on the board links the source it was read fr
 | CCT 2026 Europe Series 12 Closed Qualifier (`1081120` mellren–Privateer) | `hltv.org/events/9456/cct-2026-europe-series-12-closed-qualifier` + the HLTV match list row "16:00 bo3 … Group D Elimination Match" | "Group stage: GSL Bo3" | row `BO3` — agrees |
 | Official ratings used by the own line | `github.com/ValveSoftware/counter-strike_regional_standings` (latest published file **2026-10-05**), `hltv.org/ranking/teams/2026/october/12` | as cited on the rows | rows cite file date and URL; the age of the VRS file is disclosed as a limitation on the board. |
 
+## 2b. Sanity checks of the originated ("own") line against outside sources
+
+The own line is our own number and is published as such, never mixed with a market price. To make sure
+it is not *invented*, it was checked against the outside sources that cover the same fixtures:
+
+| Fixture | Our own line | Outside source read 2026-10-15 | Agreement |
+| --- | --- | --- | --- |
+| `1080287` Voca vs HAVU (Elisa) | Voca 80.4 % (VRS 932 v 918 pts) | HLTV match page 2399426 forecast **78.6 % / 21.4 %** | ~2 pp |
+| `1080285` Voca vs Phantom (Elisa) | Voca 55.0 % (VRS 1159 v 1086) | HLTV match page 2399424 forecast **69.2 % / 30.8 %** | **14 pp apart** — HLTV's model is more confident than the pure points ratio; the row says `official HLTV ranking/VRS` and is flagged MP-F01 (no joined market), so a reader sees exactly which basis produced 55.0 % |
+| `1080286` HAVU vs RoundsGG, `1080289` RoundsGG vs Voca, `1080290` Phantom vs HAVU (Elisa) | HAVU 90.4 %, Voca 97.5 %, Phantom 77.0 % | EGamersWorld pages for these fixtures show the **placeholder pair 1.80 / 1.80** (both sides equal) — the same pair the repository's own ladder is built to reject | not usable as a price; supports publishing our own line and flagging MP-F01 |
+| `1079440` MIBR vs BC.Game | market line 54.8 % (Pinnacle, de-vigged) | EGamersWorld **1.55 / 2.22** (≈59/41 de-vigged), Polymarket 56/44 with $228k traded | same direction, ≤4 pp spread between books |
+| `1080203` PARIVISION vs BetBoom | market line 53.2 % (Pinnacle, de-vigged) | BETBOOM's own odds **1.85 / 1.95** (≈51/49 de-vigged); a second book quoted 1.79–1.83 | ~1–2 pp |
+| `1080202` 9z vs Falcons | market line Falcons 75.6 % (Pinnacle) | esportbet **9z +240 / Falcons −349.9** (≈27/73 de-vigged) | ~2 pp |
+
+Nothing in the table was used to change a published value: the checks exist so the reader can see the
+originated line is in the same range as outside opinion, and where it deliberately differs (Voca vs
+Phantom) the row itself states the basis.
+
 ## 3. Irregularities found (all published on the board's "Flagged for review" page)
 
 * **I1 — duplicate flag code.** `MP-F32` was defined twice in `FLAG_TEXT` ("result unverified" and
