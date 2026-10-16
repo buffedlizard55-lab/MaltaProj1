@@ -17,6 +17,7 @@ from common import (DATA, REPO_URL, RESEARCH, ROOT, SESSION, devig_two_way, norm
                     normalise_prices, own_line, parse_iso, read_json, utc_label, write_json)
 
 DAY3_FILE = RESEARCH / "day3_twc2026.json"
+DAY2_FILE = RESEARCH / "day2_twc2026.json"
 
 NAV = [("index.html", "Summary"), ("picks.html", "All picks"), ("strategy.html", "Leaderboard plan"),
        ("unresolved.html", "Unresolved"), ("flagged.html", "Flagged"), ("method.html", "Method")]
@@ -371,6 +372,114 @@ def day3_section(board: dict) -> str:
 <p class="small"><b>Limits of this section:</b></p><ul class="small">{limits}</ul>"""
 
 
+def _day2_data() -> tuple[list[dict], dict]:
+    """Frozen day-2 picks + the verified day-2 results, with every grade recomputed (never copied).
+
+    The research file is the only input: it stores the pre-lock pick as Hotspawn archived it and the
+    series result as HLTV reported it. The tallies returned here are arithmetic on those two fields, so
+    the page can never show a scorecard that disagrees with the matches it prints. Returns ([], {}) when
+    the file is absent.
+    """
+    data = read_json(DAY2_FILE, {}) or {}
+    matches = [m for m in (data.get("day2_matches") or []) if len(m.get("teams") or []) >= 2]
+    tally = {"matches": len(matches), "archived": 0, "correct": 0, "lb_correct": 0, "unarchived": [],
+             "grade": {}, "lb_grade": {}}
+    for m in matches:
+        pk = m.get("prelock_pick") or {}
+        winner = (m.get("result") or {}).get("winner")
+        pick, lb = pk.get("pick"), pk.get("leaderboard_pick")
+        mid = m.get("hotspawn_id")
+        grade = lb_grade = None
+        if pick and winner:
+            grade = norm_name(pick) == norm_name(winner)
+            tally["archived"] += 1
+            tally["correct"] += int(grade)
+            if lb:
+                lb_grade = norm_name(lb) == norm_name(winner)
+                tally["lb_correct"] += int(lb_grade)
+        else:
+            tally["unarchived"].append(f"{m['teams'][0]} vs {m['teams'][1]}")
+        tally["grade"][mid] = grade
+        tally["lb_grade"][mid] = lb_grade
+    return matches, tally
+
+
+def day2_section(board: dict) -> str:
+    """Thunderpick World Championship 2026 day-2 review, built from research/day2_twc2026.json.
+
+    Renders what actually happened on 15 October (HLTV-reported result per series, with the match link),
+    the pick Hotspawn had frozen before each lock, and the recomputed grade of both the pick and the
+    leaderboard plan. Closes with what these results set up on day 3. Returns "" when the research file
+    is absent, so the three-hourly refresh can never fail on it.
+    """
+    matches, tally = _day2_data()
+    if not matches:
+        return ""
+    rows = []
+    for m in matches:
+        a, b = m["teams"][0], m["teams"][1]
+        res = m.get("result") or {}
+        pk = m.get("prelock_pick") or {}
+        mid = m.get("hotspawn_id")
+        maps = " · ".join(res.get("maps") or [])
+        pick, lb = pk.get("pick"), pk.get("leaderboard_pick")
+        grade, lb_grade = tally["grade"].get(mid), tally["lb_grade"].get(mid)
+        if pick:
+            stored = (pk.get("grade") or "").lower()
+            warn = ""
+            if stored in ("correct", "miss") and (stored == "correct") != bool(grade):
+                warn = f' <span class=small>⚠ the grade stored in the research file ({e(stored)}) disagrees with this recomputation</span>'
+            meta = ", ".join(b for b in (e(pk.get("history_basis")), f"frozen {e(utc_label(pk.get('as_of_utc')))}") if b)
+            pick_cell = f"<b>{e(pick)}</b> {pc(pk.get('probability'))}<br><span class=small>{meta}{warn}</span>"
+        else:
+            pick_cell = "<span class=small>no frozen pre-lock pick — excluded from the scorecard (see limitations)</span>"
+        cell = lambda v: ("<td class=\"ok\">✓</td>" if v else "<td class=\"miss\">✗</td>") if v is not None else "<td>—</td>"  # noqa: E731
+        rows.append(
+            f"<tr><td>{link(res.get('hltv_match'), f'{a} vs {b}')}<br><span class=small>{e(utc_label(m.get('start_utc')))}"
+            f" · lock {e(utc_label(m.get('lock_utc')))}</span></td>"
+            f"<td><b>{e(res.get('winner'))}</b> {e(res.get('series_score'))}<br><span class=small>{e(maps)}</span></td>"
+            f"<td>{pick_cell}</td>{cell(grade)}"
+            f"<td>{cls_tag(pk.get('leaderboard_class'))} <b>{e(lb or '—')}</b></td>{cell(lb_grade)}</tr>")
+    d3 = read_json(DAY3_FILE, {}) or {}
+    sets = []
+    for m in (d3.get("matches") or []):
+        if m.get("team_a") and m.get("team_b"):
+            label = f"{m['team_a']} vs {m['team_b']}"
+            sets.append(f"{link(m.get('hltv_match_url'), label)} — {e(utc_label(m.get('start_utc')))}")
+    lim = []
+    for m in matches:
+        if m.get("market_provenance_note"):
+            lim.append(f"{m['teams'][0]} vs {m['teams'][1]}: {m['market_provenance_note']}")
+    for irr in (read_json(DAY2_FILE, {}) or {}).get("capture_irregularities") or []:
+        lim.append(f"Hotspawn payload irregularity ({' / '.join(str(x) for x in irr.get('hotspawn_ids') or [])}): "
+                   f"{irr.get('evidence')} Treatment: {irr.get('treatment')}")
+    unarchived = f" No frozen pick exists for {', '.join(tally['unarchived'])}, so it is in no denominator." if tally["unarchived"] else ""
+    return f"""<p class="small">Rendered from <code>hotspawn/research/day2_twc2026.json</code> (audit read {e(utc_label((read_json(DAY2_FILE, {}) or {}).get('reviewed_utc')))}). Results are the HLTV-reported series and map scores; the pre-lock pick is the one Hotspawn froze before that match's lock. Both grades are recomputed here by comparing the frozen pick with the reported winner — nothing on this page is a hand-typed record.</p>
+<div class="tablewrap"><table><thead><tr><th>Match (HLTV)</th><th>Result</th><th>Frozen pick before lock</th><th>Pick</th><th>Leaderboard plan</th><th>Plan</th></tr></thead><tbody>{''.join(rows)}</tbody></table></div>
+<p><b>Day-2 scorecard (recomputed):</b> {tally['matches']} series played · {tally['archived']} frozen pre-lock pick(s) · pick {tally['correct']}/{tally['archived']} · leaderboard plan {tally['lb_correct']}/{tally['archived']}.{unarchived} Small sample on one day: descriptive only, not evidence of skill, and it does not change any open pick.</p>
+<h3>What these results set up on day 3</h3>
+<ul><li>{e('Deciders:')} {' · '.join(sets) if sets else e('no day-3 fixtures stored')} — the winner reaches the semifinal and the loser is eliminated.</li></ul>
+<p class="small"><b>Limitations of this review:</b></p><ul class="small">{''.join(f'<li>{e(t)}</li>' for t in lim)}{'<li>Grade denominators exclude series with no frozen pick.</li>'}</ul>"""
+
+
+def day2_one_line(board: dict) -> str:
+    """One-sentence day-2 summary for the executive summary, tied to the full review by an in-page link."""
+    matches, tally = _day2_data()
+    if not matches:
+        return '<p class="small">No day-2 review is stored for this board.</p>'
+    series = []
+    for m in matches:
+        a, b = m["teams"][0], m["teams"][1]
+        res = m.get("result") or {}
+        winner = res.get("winner")
+        loser = b if winner and norm_name(winner) == norm_name(a) else a
+        series.append(f"{e(winner)} {e(res.get('series_score'))} {e(loser)}")
+    unarchived = f" ({', '.join(tally['unarchived'])} had no frozen pick)" if tally["unarchived"] else ""
+    return (f"<p>TWC 2026 day 2: {tally['matches']} series — {' · '.join(series)}. Frozen pre-lock picks went "
+            f"<b>{tally['correct']}/{tally['archived']}</b> and the leaderboard plan <b>{tally['lb_correct']}/{tally['archived']}</b>"
+            f"{e(unarchived)}. <a href=\"strategy.html#day2\">Full day-2 review, with HLTV links and the exact limits →</a></p>")
+
+
 def strategy_page(board: dict) -> None:
     rows = [r for r in board["rows"] if r["status"] == "open" and r.get("strategy")]
     rows.sort(key=lambda r: (CLASS_ORDER.index(r["strategy"]["class"]) if r["strategy"]["class"] in CLASS_ORDER else 9, r.get("lock_utc") or ""))
@@ -412,6 +521,8 @@ def strategy_page(board: dict) -> None:
 <div class="tablewrap"><table><thead><tr><th>Match</th><th>Market (pre-match)</th><th>Our line</th><th>Crowd</th><th>Market pick</th><th>Plan (v2)</th><th>Result (HLTV)</th><th>Pick</th><th>Plan</th></tr></thead><tbody>{''.join(d1rows)}</tbody></table></div>
 <p class="small">Prices: {link(info.get('price_source', {}).get('url'), info.get('price_source', {}).get('label'))} (read {e(info.get('price_source', {}).get('read_utc'))}). Crowd: {link(info.get('crowd_source', {}).get('url'), info.get('crowd_source', {}).get('label'))} — {e(info.get('crowd_source', {}).get('note'))} Board pick before lock: {link(info.get('pick_source', {}).get('url'), info.get('pick_source', {}).get('label'))}.</p>
 <h3>What day 1 taught us</h3><ul>{lessons}</ul>
+<h2 id="day2">Day 2 review — Thunderpick World Championship 2026 (15 October)</h2>
+{day2_section(board)}
 <h2 id="day3">Day 3 — the two deciders (16 October)</h2>
 <p class="lead">Both of today's S-tier fixtures are group deciders: the winner reaches the semifinal, the loser goes home. This section holds the hand-verified evidence — outside prices, official Valve points, crowd ownership, H2H, map pools and the exact limits — next to the board's own pick.</p>
 {day3_section(board)}
@@ -591,7 +702,7 @@ def index_page(board: dict) -> None:
 <p class="lead">A pick and both teams' win probabilities for <strong>every</strong> open Counter-Strike 2 match on Hotspawn, plus a leaderboard plan that fades the crowd only when the numbers support it.</p>
 <div class="btns">
 <a class="btn primary" href="picks.html"><strong>All picks ({s['open']} open) →</strong><span>One card per match: pick, both probabilities, sources.</span></a>
-<a class="btn" href="strategy.html"><strong>Leaderboard plan</strong><span>{s['leaderboard_classes'].get('VALUE', 0)} value · {s['leaderboard_classes'].get('CONTRARIAN', 0)} contrarian · {s['leaderboard_classes'].get('SITUATIONAL', 0)} situational plays; day-1 review.</span></a>
+<a class="btn" href="strategy.html"><strong>Leaderboard plan</strong><span>{s['leaderboard_classes'].get('VALUE', 0)} value · {s['leaderboard_classes'].get('CONTRARIAN', 0)} contrarian · {s['leaderboard_classes'].get('SITUATIONAL', 0)} situational plays; day-1 and day-2 reviews.</span></a>
 <a class="btn" href="unresolved.html"><strong>Unresolved &amp; limitations</strong><span>{s['open_rung'].get('B', 0) + s['open_rung'].get('C', 0)} via the research ladder · {s['open_unresolved']} without a pick.</span></a>
 <a class="btn" href="flagged.html"><strong>Flagged for Review</strong><span>Irregularities and per-match flags with evidence.</span></a>
 </div>
@@ -604,6 +715,8 @@ def index_page(board: dict) -> None:
 <p><a href="strategy.html">Why these plays, and the rule behind them →</a></p>
 <h2>Day 1 in one line</h2>
 <p>TWC 2026 day 1: all four series ended 2-0; favourites won three. The upset was <b>9z 2-0 Aurora</b> (market 27%, our line 39%, picked by 5% of players). Market picks went {s['day1_review']['picks_correct']}/{s['day1_review']['matches']}. <a href="strategy.html">Full review →</a></p>
+<h2>Day 2 in one line</h2>
+{day2_one_line(board)}
 <h2 id="day3">Day 3 — the two deciders (16 October)</h2>
 {day3_section(board)}
 <h2 id="unresolved">Unresolved picks &amp; limitations</h2>

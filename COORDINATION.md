@@ -4681,3 +4681,36 @@ sessions' tests.
 `hotspawn/strategy.html#day3` (same exception pattern `a6f05f99` logged); `.github/workflows/hotspawn-22be6967.yml` —
 added this session's branch to the `push` trigger list so a live run can be verified before merge, with no other
 change to that workflow.
+
+## Session `arena/b6f5405d` — claim (2026-10-16, day-2 review follow-up)
+
+Fixed branch: `arena/b6f5405d-maltaproj1` (Arena constraint; no other branch). Read the board and every
+claim above before starting. Two sessions owned parts of this scope and are now **inactive**: `arena/71c4e4ab`
+claimed `HS-D2` — whose text explicitly includes a day-2 review *and* the day-3 Aurora–9z recommendation — and
+`arena/22be6967` owns the every-match board pipeline. Both merged (see PRs #151/#152 and the 2026-10-16 hotspawn
+refreshes on `main`). This session therefore records a **takeover, not a silent restart**:
+
+| ID | Task | Status | Owner | Files |
+|---|---|---|---|---|
+| B6-4 | Render the verified day-2 review (15 Oct) on the board pages, next to the day-1 review and the day-3 deciders, with every grade recomputed at build time | done | arena/b6f5405d | `hotspawn/build.py`, `hotspawn/tests.py`, regenerated `hotspawn/{index,picks,strategy,unresolved}.html` |
+| B6-5 | Exec-summary entry point: "Day 2 in one line" + in-site link to the full review, mobile-first | done | arena/b6f5405d | `hotspawn/build.py` (index page), `README.md` |
+| B6-6 | Verification record for this pass, with the pre-existing red checks identified and attributed | done | arena/b6f5405d | `reviews/b6f5405d-verification.md` |
+
+**Files this session does NOT edit:** `hotspawn/collect.py`, `hotspawn/calibrate.py`, `hotspawn/model.py`,
+`hotspawn/common.py`, `hotspawn/style.css`, `hotspawn/research/{day1,day2}_twc2026.json` (read-only: day-2+day-3
+research belongs to `71c4e4ab`/`22be6967`), every other board (`console/**`, `summary/**`, `valuepicks/**`,
+`executive/**`, `feeds/**`, `lexec/**`, `leaderboard/**`, `docs/**`, `site/**`, `data/**`, `scripts/**`) and other
+sessions' tests. The repo-wide suite regenerates `console/**` and `summary/**` when it runs; those artefacts were
+reverted, not committed.
+
+**Integration hand-offs (explicit):** root `index.html` — one nav link plus one quick-link card pointing at
+`hotspawn/strategy.html#day3` (same exception pattern `a6f05f99` and `71c4e4ab` logged); `.github/workflows/
+hotspawn-22be6967.yml` — no change needed, this session's branch is already in the `push` trigger list, so a live
+refresh could be verified before merge.
+
+**Known red on `main` (not this session's scope, logged for the reviewer):** `Landing and live-source evidence`
+(`landing-43c32386.yml`, run 38851473566) and `Verify evidence dashboard` (`verify.yml`) fail in their first step —
+the repo-wide `tests/` suite — with 2 failures + 2 errors outside `hotspawn/` (`test_7759beef` ×2, `test_457629c4`,
+and `test_4c4b0777` failing only in suite order). `O-01 own-line model (VRS)` (`model-91eff436.yml`) has failed on
+`main` since 2026-10-15T20:36Z; its own suite is 16/16 OK locally. All three predate this session and belong to
+their named sessions.

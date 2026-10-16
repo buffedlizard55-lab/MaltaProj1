@@ -1,143 +1,104 @@
-# Session `arena/b6f5405d` — line-by-line verification (TWC 2026 day 3, 16 October 2026)
+# Session `arena/b6f5405d` — verification record (2026-10-16, follow-up pass)
 
-Scope of this session: the Thunderpick World Championship 2026 day-3 board — day-1/day-2 review, today's two
-deciders (Aurora vs 9z, BetBoom vs Legacy), the every-match coverage gap, and the mobile executive-summary links.
-Claim and file scope: see the `arena/b6f5405d` section of [COORDINATION.md](../COORDINATION.md).
+Branch: `arena/b6f5405d-maltaproj1`. Scope of this pass: **render the TWC 2026 day-2 review** (the user asked for a
+day-2 review that guides the day-3 picks) on the every-match board's pages, beside the day-1 review and the day-3
+decider table, and re-verify the day-3 decider facts that the board publishes.
 
-Every value below carries the source URL it was read from and the read time. Nothing here is inferred: where a value
-could not be confirmed it is left blank and listed under **Not verified**. All percentages on the published pages are
-recomputed at build time by `hotspawn/build.py` from the raw inputs in `hotspawn/research/day3_twc2026.json`
-(decimal odds → margin removal via `common.devig_two_way`; Valve points → `common.own_line` with the calibrated slope
-from `hotspawn/data/calibration.json`). No probability is typed into a file by hand.
+Nothing on the pages is hand-typed: the review is rendered from `hotspawn/research/day2_twc2026.json` (frozen
+Hotspawn picks + HLTV-reported results) and **every grade is recomputed at build time** by comparing the frozen pick
+with the reported winner. If the grade stored in the research file disagreed with the recomputation, the page prints
+a ⚠ warning instead of hiding it. Six new invariants in `hotspawn/tests.py` guard that (see "Tests run").
 
-## 1. Event and schedule
+## What was published by this pass
 
-| Fact | Value | Source | Read (UTC) |
-|---|---|---|---|
-| Event | Thunderpick World Championship 2026, Malta, 8 teams, $1,000,000, 14–18 Oct 2026 | https://www.hltv.org/events/8932/thunderpick-world-championship-2026 | 2026-10-16 04:19 |
-| Day 3 fixtures | Fri 16 Oct: Aurora vs 9z (bo3), BetBoom vs Legacy (bo3) | https://www.hltv.org/events/8932/matches | 2026-10-16 04:33 |
-| Playoffs | Sat 17 Oct: FURIA vs Aurora/9z winner, Falcons vs BetBoom/Legacy winner (both bo3). Sun 18 Oct: 3rd-place decider (bo3), grand final (bo5) | https://www.hltv.org/events/8932/matches | 2026-10-16 04:33 |
-| Stage labels | Aurora vs 9z = "* Group A decider match"; PARIVISION vs BETBOOM (15 Oct) = "* Group B elimination match" | https://www.hltv.org/matches/2399412/aurora-vs-9z-thunderpick-world-championship-2026, https://www.hltv.org/matches/2399410/parivision-vs-betboom-thunderpick-world-championship-2026 | 2026-10-16 04:27–04:33 |
-| Groups | Group A: Falcons, NiP, 9z, Aurora. Group B: FURIA, Legacy, PARIVISION, BETBOOM (derived from the two decider labels plus the four opening matches and the bracket) | https://www.hltv.org/events/8932/matches | 2026-10-16 04:33 |
+| Route | What changed |
+| --- | --- |
+| `hotspawn/strategy.html#day2` | New "Day 2 review — Thunderpick World Championship 2026 (15 October)" section: one row per series with the HLTV match link, the series and map scores, the pick Hotspawn froze before that lock, the recomputed grade of the pick **and** of the leaderboard plan, the recomputed scorecard, what the results set up on day 3 (the two deciders, with their HLTV pages) and the limits of the review. |
+| `hotspawn/index.html` | New "Day 2 in one line" block on the executive summary, with an in-site link to `strategy.html#day2`; the leaderboard-plan button now says "day-1 and day-2 reviews". |
+| `hotspawn/picks.html`, `hotspawn/unresolved.html` | Rebuilt (the day-2 review's hand-off line changed the page footers/banners only). |
 
-## 2. Kickoff times — three machine-readable sources, one conclusion
+## Day-2 facts as rendered (all with HLTV links on the page)
 
-| Source | What it says | Read (UTC) |
-|---|---|---|
-| Hotspawn TransferState (this project's own capture, `hotspawn/data/capture.json`) | Aurora–9z `start 2026-10-16T14:00:00Z`, `lock 2026-10-16T13:54:00Z`, `lock_offset_sec 360`, tier `S`, 7 offered points | 2026-10-15 22:41:15 |
-| Polymarket API record for the two markets | `start_utc 2026-10-16T14:00:00Z` (Aurora Gaming vs 9z, BO3) and `start_utc 2026-10-16T17:00:00Z` (Legacy vs BetBoom Team, BO3) | 2026-10-15 22:41:17 |
-| HLTV match pages | render **10:00** / **13:00** and countdowns of 9h43m / 12h43m at ~04:2xZ → 14:00Z / 17:00Z | 2026-10-16 04:26–04:33 |
-| Hotspawn fixture page | renders **14:00 16 OCT** | https://www.hotspawn.com/matches/aurora-vs-9z-thunderpick-world-championship-2026-1080205 — 2026-10-16 04:40 |
-| EGamersWorld event page | renders **16:00** and **19:00** (= UTC+2, venue time) | https://egamersworld.com/counterstrike/event/thunderpick-world-championship-2026-5X5sFiL7H — 2026-10-16 04:39 |
+| # | Series (Hotspawn id) | Result (HLTV) | Frozen pick before lock | Pick | Leaderboard plan | Plan |
+| --- | --- | --- | --- | --- | --- | --- |
+| 1 | Aurora vs Ninjas in Pyjamas (1080201) | Aurora 2-0 · Cache 13-9 · Dust2 13-7 · [2399408](https://www.hltv.org/matches/2399408/aurora-vs-ninjas-in-pyjamas-thunderpick-world-championship-2026) | none frozen — excluded from every denominator | — | — | — |
+| 2 | 9z vs Falcons (1080202) | Falcons 2-1 · Nuke 9-13 · Mirage 13-8 · Dust2 9-13 · [2399409](https://www.hltv.org/matches/2399409/9z-vs-falcons-thunderpick-world-championship-2026) | Falcons 76% (Pinnacle, margin removed, frozen 10:53Z) | ✓ | LONG SHOT Falcons | ✓ |
+| 3 | PARIVISION vs BetBoom (1080203) | BetBoom 2-1 · Ancient 13-10 PARIVISION · Anubis 4-13 BetBoom · Mirage 7-13 BetBoom · [2399410](https://www.hltv.org/matches/2399410/parivision-vs-betboom-thunderpick-world-championship-2026) | PARIVISION 53% (Pinnacle, margin removed, frozen 10:57Z) | ✗ | CONTRARIAN BetBoom | ✓ |
+| 4 | Legacy vs FURIA (1080204) | FURIA 2-1 · Cache 13-10 Legacy · Inferno 5-13 FURIA · Mirage 8-13 FURIA · [2399411](https://www.hltv.org/matches/2399411/legacy-vs-furia-thunderpick-world-championship-2026) | FURIA 58% (frozen 10:57Z) | ✓ | CONTRARIAN Legacy | ✗ |
 
-Conclusion published: **14:00Z (Aurora–9z) and 17:00Z (BetBoom–Legacy), i.e. 16:00 and 19:00 in Malta.** Human-readable
-clocks are viewer-timezone renderings and are never used as times on the page. This corrects two earlier readings in
-this project: (a) "venue-local CEST" was assumed while HLTV was in fact rendering in the fetch path's timezone (UTC-4),
-and (b) EGamersWorld was described as GMT+3 when its 16:00/19:00 displays are UTC+2. The UTC values above agree with
-Hotspawn's own epochs, so no irregularity record is required.
+Scorecard as recomputed by `hotspawn/build.py` and asserted by the tests: **4 series played · 3 frozen pre-lock
+picks · pick 2/3 · leaderboard plan 2/3**; Aurora–NiP is in no denominator because no pick was frozen for it.
+Small sample on one day — descriptive only, and it changes no open pick.
 
-## 3. Day 1 and day 2 results (all series scores)
+Sources for the day-2 facts: the research file records its own provenance — Hotspawn capture
+`2026-10-15T21:34:12Z` (lobby SHA-256 `75b6aae72cd9baa18aa2f6ebd84f99a9929254bb1c83719750ebf8f0c287982d`), the four
+HLTV match pages above, and HLTV reports
+[45724](https://www.hltv.org/news/45724/nip-spared-scheduling-headache-after-early-thunderpick-world-championship-exit),
+[45728](https://www.hltv.org/news/45728/falcons-secure-playoff-berth-at-twc-2026),
+[45729](https://www.hltv.org/news/45729/betboom-eliminate-parivision-from-twc) and
+[45730](https://www.hltv.org/news/45730/furia-make-twc-playoffs-over-legacy).
 
-Source for every series score: https://www.hltv.org/results?event=8932 (read 2026-10-16 04:19 and 04:32).
+## Re-verified this pass (read 2026-10-16, ~04:45-05:05Z)
 
-| Day | Match | Score | Maps (where re-verified this session) | HLTV |
-|---|---|---|---|---|
-| 14 Oct | 9z vs Aurora | 2-0 | Inferno 13-11, Nuke 13-1 (page re-read 04:34) | https://www.hltv.org/matches/2399384/9z-vs-aurora-thunderpick-world-championship-2026 |
-| 14 Oct | Falcons vs NiP | 2-0 | not re-verified this session | https://www.hltv.org/matches/2399385/falcons-vs-ninjas-in-pyjamas-thunderpick-world-championship-2026 |
-| 14 Oct | Legacy vs PARIVISION | 2-0 | not re-verified this session | https://www.hltv.org/matches/2399386/legacy-vs-parivision-thunderpick-world-championship-2026 |
-| 14 Oct | FURIA vs BETBOOM | 2-0 | not re-verified this session | https://www.hltv.org/matches/2399387/furia-vs-betboom-thunderpick-world-championship-2026 |
-| 15 Oct | Aurora vs NiP | 2-0 | not re-verified this session | https://www.hltv.org/matches/2399408/aurora-vs-ninjas-in-pyjamas-thunderpick-world-championship-2026 |
-| 15 Oct | 9z vs Falcons | 1-2 | Nuke 9-13, Mirage 13-8, Dust2 9-13 (page re-read 04:37) | https://www.hltv.org/matches/2399409/9z-vs-falcons-thunderpick-world-championship-2026 |
-| 15 Oct | PARIVISION vs BETBOOM | 1-2 | Ancient 13-10 PARIVISION, Anubis 4-13, Mirage 7-13 (page re-read 04:27) | https://www.hltv.org/matches/2399410/parivision-vs-betboom-thunderpick-world-championship-2026 |
-| 15 Oct | Legacy vs FURIA | 1-2 | not re-verified this session | https://www.hltv.org/matches/2399411/legacy-vs-furia-thunderpick-world-championship-2026 |
+- **HLTV team page, Aurora** (<https://www.hltv.org/team/11861/aurora>): five = XANTARES, woxic, Jimpphat, kyxsan,
+  Wicadia; coach Ashley "ash" Battye; **Valve ranking #5 (EU #5)**, HLTV world ranking **#6** (list dated 2026-10-12);
+  the page's day-2 line confirms the Cache 13-9 / Dust2 13-7 win over Ninjas in Pyjamas and that the Group A decider
+  is Aurora's next match. So the "recent roster change" the user asked about is the **July 2026 rebuild** (Jimpphat
+  3 Jul, kyxsan as IGL 8 Jul, coach ash), i.e. roughly three months old at kickoff — not a days-old change, and no
+  stand-in is listed. That matches what the day-3 section publishes.
+- **Liquipedia, Aurora Gaming** (<https://liquipedia.net/counterstrike/Aurora_Gaming>): in-game leader kyxsan, coach
+  ashhh, org location Serbia/Turkey — consistent with HLTV; used as a second opinion only.
+- **Every-match board pages** (<https://buffedlizard55-lab.github.io/MaltaProj1/hotspawn/strategy.html#day3> and
+  `.../hotspawn/index.html`): the live day-3 table renders Aurora–9z as **14:00Z / lock 13:54Z**, outside market
+  67/33 (1.40/2.70 · 1.43/2.76 · Polymarket 0.695/0.305), our line 61/39 (Valve points 1716/1543), crowd 87/13,
+  board pick Aurora 67% (Pinnacle, rung A) with the SITUATIONAL 9z swing; BetBoom–Legacy **17:00Z**, market 38/62,
+  our line 29/71, crowd 50/50, pick Legacy 66%.
+- **Board data on main** (`hotspawn/data/board.json` at commit `e921b18`, generated `2026-10-16T04:36:34Z`):
+  31 open, 29 with a pick, **2 without** — `1079170` BET-M vs Just Players (NODOVERWIN Clutch Series #13, 2026-10-17
+  08:00Z, lock 07:54Z, BO3 per HLTV `2399087`; one side unrated on Valve's table) and `1081126` Banda chuya vs Enjoy
+  (CCT Europe Series #12 Play-In, 2026-10-18 08:00Z, lock 07:54Z, BO3 per HLTV `2399477`; one side unrated). Both are
+  rung D with the reason published on `unresolved.html` and summarised on the executive summary — an explicit
+  unresolved register, not a silent gap.
 
-The day-2 Legacy 1-2 FURIA score is cross-checked by EGamersWorld's schedule row (15.10.26, "1:2") at
-https://egamersworld.com/counterstrike/event/thunderpick-world-championship-2026-5X5sFiL7H (read 04:39).
+## Timezone note (unchanged conclusion, stated once more for reviewers)
 
-## 4. Outside prices and crowd ownership for today's deciders
+HLTV rendered the two deciders as "10:00 / 13:00" while the board publishes **14:00Z / 17:00Z**. The UTC values are
+the ones carried by Hotspawn's structured payload and by Polymarket's API; HLTV's clock is a viewer-timezone render
+(UTC-4 in this session) and EGamersWorld showed the same matches at 16:00/19:00 local. Do not read HLTV page clocks
+as UTC.
 
-| Input | Aurora–9z | BetBoom–Legacy | Source & read time |
-|---|---|---|---|
-| bc.game schedule row (secondary relay via EGamersWorld) | 1.40 / 2.70 | 2.50 / 1.48 | https://egamersworld.com/counterstrike/event/thunderpick-world-championship-2026-5X5sFiL7H — 2026-10-16 04:39 |
-| bc.game prematch block (same page) | 1.43 / 2.76 | 2.52 / 1.50 | same page — 2026-10-16 04:39 |
-| Polymarket match-winner market | 0.685 / 0.315 (US$8,364.86 traded) | 0.605 / 0.395 (Legacy first) | this project's own capture of the Polymarket API, `hotspawn/data/capture.json` — 2026-10-15 22:41:17 |
-| Hotspawn crowd ownership | 88 / 13 (9 picks at the capture) | 50 / 50 | https://play.hotspawn.com/lobby — 2026-10-16 04:22 |
-| Official Valve points (2026-10-05 snapshot) | Aurora 1716 (#9), 9z 1543 (#17) | Legacy 1931 (#2), BetBoom 1596 (#11) | https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md (repo HEAD `eec4853d…`, cloned 2026-10-16 04:29) |
-| Pinnacle | **no quote** for either fixture — the live read returned 8 CS2 quotes, none for TWC | same | `hotspawn/data/capture.json`, Pinnacle guest API, 2026-10-15 22:41:17 |
+## Tests run
 
-Margin removal on the bc.game rows gives Aurora 65.9% / 9z 34.1% (1.40/2.70) and 65.9% / 34.1% (1.43/2.76);
-BetBoom 37.2% / Legacy 62.8% (2.50/1.48) and BetBoom 37.3% / Legacy 62.7% (2.52/1.50). The Polymarket prices are
-already normalised. The own line is `1/(1+10^(-0.4598·Δpoints/400))` → Aurora 61.0% / 9z 39.0%; Legacy 70.3% /
-BetBoom 29.7%. Hotspawn's crowd share is ownership only and is never an input to any probability on the site.
+```
+python3 hotspawn/tests.py            -> 37 tests, OK   (31 before this pass: +6 day-2 invariants)
+python3 -m unittest tests.test_landing_43c32386 -> not triggered: root index.html was not modified this pass
+```
 
-## 5. Roster changes, form and maps — checked, not assumed
+The six new invariants: the section renders between day-1 and day-3; every series links its HLTV record with its
+series and map scores; the printed scorecard equals a recomputation from the frozen pick + reported winner (and the
+same tallies reach the executive summary); a series without a frozen pick is named and excluded; the section hands
+off to the two deciders it sets up; and **no percentage reaches the page unless it is in the raw research file**.
 
-| Claim | Verdict | Source |
-|---|---|---|
-| "Aurora had a recent roster change" | Partly. The change is a **summer rebuild now ~100 days old**: Jimpphat joined 3 Jul 2026, kyxsan joined from Falcons as in-game leader on 8 Jul 2026, coach ash; MAJ3R, soulfly and coach Fabre left. No stand-in or replacement is reported for this event. | https://www.hltv.org/news/45082/official-aurora-complete-rebuild-with-kyxsan (reported 8 Jul 2026), https://www.hltv.org/team/11861/aurora, https://liquipedia.net/counterstrike/Aurora_Gaming |
-| 9z roster change | None found; 9z's five (dgt, HUASOPEEK, luchov, max, meyern) equals Valve's 2026-10-05 snapshot. | Valve standings file above; https://www.hltv.org/betting/analytics/2399412/aurora-vs-9z-thunderpick-world-championship-2026 |
-| BetBoom / Legacy roster changes | None found around this event; both fives equal Valve's 2026-10-05 snapshot. | Valve standings file; https://www.hltv.org/betting/analytics/2399413/betboom-vs-legacy-thunderpick-world-championship-2026 |
-| Head-to-head | 9z won the only recent meeting 2-0 on 14 Oct at this event; HLTV's analytics summary states Aurora "played 2 matches against 9z in the past 30 days, and lost the latest". | https://www.hltv.org/matches/2399384/9z-vs-aurora-thunderpick-world-championship-2026, https://www.hltv.org/betting/analytics/2399412/aurora-vs-9z-thunderpick-world-championship-2026 |
-| HLTV community vote | Aurora 81.0% / 9z 19.0% — a site visitor vote, **not a price**, and not used as one. | https://www.hltv.org/betting/analytics/2399412/aurora-vs-9z-thunderpick-world-championship-2026 (read 04:31) |
-| Map pool | Aurora: Nuke 78% (9 maps), Anubis 75% (12), Mirage 62% (16), Ancient first-ban 87%. 9z: Mirage 67% (6), Cache 50% (4), Dust2 43% (7), Nuke 30% (10), Inferno 25% (4), Anubis first-ban 84%. | https://www.hltv.org/betting/analytics/2399412/aurora-vs-9z-thunderpick-world-championship-2026 |
-| Lineups and form | Hotspawn's fixture page lists both fives and the last five series for each side (9z: L Falcons 1-2, W Aurora 2-0, L FURIA 0-2, W BetBoom 2-0, L NaVi 0-2). | https://www.hotspawn.com/matches/aurora-vs-9z-thunderpick-world-championship-2026-1080205 |
+## Pre-existing failures on main (not caused by this change; do not "fix" here)
 
-## 6. What the board does with these inputs (rule v2, unchanged)
+- `Landing and live-source evidence` (run `38851473566`, main, 2026-10-16T04:36:13Z) fails in its first step, the
+  repo-wide `tests/` suite, which reports 2 failures + 2 errors outside `hotspawn/`:
+  `test_7759beef.ValuePicksBoardTests.test_coverage_page_lists_every_captured_fixture`,
+  `test_7759beef...test_every_open_executive_fixture_has_a_pick_and_two_probabilities`,
+  `test_457629c4.TestBoardInvariants.test_rebuild_is_deterministic_with_a_pinned_clock` (error) and
+  `test_4c4b0777.Assurance.test_event_fallback_never_inherits_an_unrelated_team_page` (error — passes when run
+  alone, so it is a test-order interaction in that suite).
+- `Verify evidence dashboard` (`verify.yml`) is red on every PR for the same reason; `O-01 own-line model (VRS)`
+  (`model-91eff436.yml`) has failed on main since 2026-10-15T20:36Z — locally `model/test_model.py` is 16/16 OK and
+  `executive/tests.py` is 15/15 OK, so both are CI-side/source-side failures owned by other sessions.
+- The repo suite also regenerates `console/**` and `summary/**` when it runs, dirtying the tree; those artefacts
+  were reverted and are not part of this change.
 
-`hotspawn/model.py` classifies each open fixture from the consensus of the outside estimate(s) and our own line,
-against the crowd share: VALUE (crowd is not even on the favourite) → CONTRARIAN (underdog ≥ 38%, every source
-≥ 30%, crowd ≤ underdog − 10 pp) → SITUATIONAL (underdog ≥ 30%, every source ≥ 25%, crowd ≤ half the underdog's
-chance, and a verified factor against the favourite with none against the underdog) → LONG SHOT (≥ 20%, crowd
-≤ 10%) → CHALK. With the inputs above:
+## Not verified / deliberately left out
 
-* **Aurora vs 9z** — consensus underdog (9z) ≈ 35%; crowd on 9z 12.9% (normalised from 88/13). CONTRARIAN needs
-  38%, so the rule does not fire; SITUATIONAL does (the July rebuild is the rule's active moderate factor against
-  Aurora). The board therefore keeps **Aurora** as the pick and shows **9z** as the leaderboard play, with the
-  leverage (crowd 12.9% vs ≈35% chance, i.e. winning that side gains on ~87% of the field picking this match)
-  printed on the page rather than hidden.
-* **BetBoom vs Legacy** — consensus underdog (BetBoom) ≈ 35% but the crowd is level (50/50), so no crowd-fade
-  rule applies; class CHALK → pick **Legacy** by market and own line. Legacy's own line is 70.3% while the market
-  pays 62.7%: the favourite is a value-lean favourite, which is why the board does not fade it.
-
-Both fixtures lack a Pinnacle price, so they sit on rung B (Polymarket) in the ladder — recorded, not hidden.
-
-## 7. Coverage gap (every-match guarantee)
-
-`BetBoom vs Legacy` (Hotspawn `1081775`) was **not** in the 2026-10-15T22:41:15Z Hotspawn capture, so the board has no
-row for it. It is in Hotspawn's lobby now (https://play.hotspawn.com/lobby, read 04:22). Rather than publishing a
-blank, the day-3 section renders the fallback lean from the outside prices plus our own line, labels it
-"no board row", and the unresolved page and the executive summary carry a **coverage gap** block naming the fixture,
-the reason and the sources. The next three-hourly refresh (triggered by this merge) re-reads Hotspawn and should pick
-it up; the invariant `hotspawn/tests.py::Day3.test_coverage_gaps_are_surfaced_when_they_exist` fails the build if a
-researched fixture is neither covered by the board nor named as a gap.
-
-## 8. Tests run in this session (all local, offline inputs)
-
-* `python3 hotspawn/model.py` → 22 open / 86 fixtures, rungs A 6 / B 16 / C 0 / D 0.
-* `python3 hotspawn/build.py` → 7 pages; verified by re-reading the generated HTML that the day-3 table, the
-  coverage-gap block and the internal links (`strategy.html#day3`, `unresolved.html`) are present.
-* `python3 hotspawn/tests.py` → **31 tests, all passing** (added: raw-input discipline, two-way price sanity,
-  board cross-check on teams/start/lock/Valve points, rendered-and-linked section, coverage-gap surfacing,
-  computed fallback lean).
-* `python3 tests/test_landing_43c32386.py` → 4 tests passing (root landing quick-link contract).
-* `python3 -m unittest discover -s tests` → 405 tests with the same **pre-existing** failures recorded in
-  `COORDINATION.md`: `test_457629c4.TestBoardInvariants.test_rebuild_is_deterministic_with_a_pinned_clock` (error),
-  `test_7759beef.ValuePicksBoardTests.test_coverage_page_lists_every_captured_fixture` and
-  `...test_every_open_executive_fixture_has_a_pick_and_two_probabilities` (failures; that board covers
-  1081526–1081531 while the open fixtures are 1079440/1079442/1080202–1080204/1080280–1080284). Not owned by this
-  session; left untouched and logged.
-
-## 9. Not verified / left blank (deliberately)
-
-* Hotspawn **lock time for BetBoom–Legacy**: the fixture was not in the capture, so no lock is published. Hotspawn's
-  own offset is 360 s before start (would be 16:54Z) — that is arithmetic, not a read, and is labelled as derived.
-* **Map vetoes for today's deciders**: not published before the match; both pages say maps TBA.
-* **Day-1/day-2 map scores** for Falcons–NiP, Legacy–PARIVISION, FURIA–BETBOOM, Aurora–NiP and Legacy–FURIA were not
-  re-read in this session; only their series scores are asserted here.
-* **No price is taken from HLTV's analytics pages**: the odds cells there render placeholder values for anonymous
-  readers; HLTV is used for facts (ranks, H2H, form, map pools) only.
-* **No price is taken from Hotspawn**: its crowd share is ownership, its site is used for lineup/form/stage only.
-* The 26 other red/flagged items outside this scope (four failing workflows on `main` — Slate capture `180a42a0`
-  run 38836131515, Live picks board `457629c4` runs 38836621281/38836170355, Every-match CS2 picks rebuild
-  `75fd29ee` run 38836582191, O-01 own-line model (VRS) run 38836621329) are pre-existing, belong to other sessions,
-  and are listed for review rather than edited here.
+- No exact bookmaker quote is reproduced for day-2 pick 1080204 (the frozen record keeps the label but no price) and
+  the page says so in its limitations; the same is true for 1080203's frozen label.
+- HLTV's team-page prose is machine-generated ("AI generated"); it was used only to cross-check the roster and the
+  day-2 score, never as a probability input.
+- The two unpaid fixtures stay unresolved rather than gaining an invented number: with one side outside Valve's
+  standings and no bookmaker or prediction-market price joined to them, any probability would be fabricated.
