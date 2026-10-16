@@ -4714,3 +4714,17 @@ the repo-wide `tests/` suite — with 2 failures + 2 errors outside `hotspawn/` 
 and `test_4c4b0777` failing only in suite order). `O-01 own-line model (VRS)` (`model-91eff436.yml`) has failed on
 `main` since 2026-10-15T20:36Z; its own suite is 16/16 OK locally. All three predate this session and belong to
 their named sessions.
+
+## Session `arena/b6f5405d` — release record (2026-10-16)
+
+| Step | Result |
+|---|---|
+| PR | **#157** `TWC 2026 day-2 review published beside the day-1 and day-3 sections` → opened against `main`, merged (merge commit `ceab455`) |
+| Branch | `arena/b6f5405d-maltaproj1`; final branch head `d4ee481` (two main merges resolved by keeping the newest live board and re-rendering pages with this session's `build.py`) |
+| Live check before merge | `hotspawn-22be6967.yml` run **38852189528** on this branch: success, committed refresh `f3b29e6`; board `2026-10-16T04:45:09Z` — 31 open, 29 picked, 2 unresolved, rungs A 9 / B 18 / C 2 / D 2 |
+| Tests | `hotspawn/tests.py` **37 OK** (31 before, +6 day-2 invariants); landing contract untouched (root `index.html` not modified in this pass) |
+| Pages | `pages build and deployment` on `main` succeeded after the merge; live verification read `hotspawn/index.html` at 2026-10-16T04:5xZ: "Day 2 in one line — frozen pre-lock picks went **2/3** and the leaderboard plan **2/3** (Aurora vs Ninjas in Pyjamas had no frozen pick)" with the in-site link `strategy.html#day2`, and the day-3 decider table with Aurora 67% (rung A, SITUATIONAL 9z) and Legacy 66% |
+| Flagged items | 2 open fixtures still have no pick and stay explicitly unresolved with reasons and the HLTV research trail (`1079170` BET-M vs Just Players, `1081126` Banda chuya vs Enjoy — one side each is absent from Valve's standings and neither has a Pinnacle/Polymarket price). Pre-existing red on `main`, not this session's scope: `Landing and live-source evidence`, `Verify evidence dashboard` (repo-wide `tests/` suite: 2 failures + 2 errors outside `hotspawn/`) and `O-01 own-line model (VRS)` |
+| Sources | `reviews/b6f5405d-verification.md` — every fact with link and read time; HLTV page clocks are viewer-local, the board's UTC times come from Hotspawn's payload and Polymarket's API |
+
+Public routes changed by this session: `hotspawn/strategy.html#day2` (new day-2 review, 4 series with HLTV links, recomputed grades), `hotspawn/index.html` ("Day 2 in one line" + link), `hotspawn/strategy.html#day3` (day-3 deciders, unchanged this pass but re-verified).
