@@ -2,25 +2,25 @@
  "meta": {
   "slate_health": {
    "mode": "live",
-   "fetched_utc": "2026-10-16T05:15:19Z",
-   "age_hours": 0.035,
+   "fetched_utc": "2026-10-16T05:37:34Z",
+   "age_hours": 0.037,
    "complete_live_read": true,
    "current": true,
    "identity_conflicts": [],
    "limitation": ""
   },
-  "generated_utc": "2026-10-16T05:17:23Z",
-  "capture_utc": "2026-10-16T05:15:19Z",
+  "generated_utc": "2026-10-16T05:39:47Z",
+  "capture_utc": "2026-10-16T05:37:34Z",
   "snapshot_age_text": "Snapshot is 0.0 h old",
-  "hotspawn_read_text": "2026-10-16T05:15Z (live)",
-  "market_read_text": "live read 2026-10-16T05:15 (10 CS2 quotes)",
+  "hotspawn_read_text": "2026-10-16T05:37Z (live)",
+  "market_read_text": "live read 2026-10-16T05:37 (12 CS2 quotes)",
   "vrs_read_text": "official standings 2026-10-05 · HLTV ranking 2026-10-12",
   "own_line": {
    "calibration": {
     "scale": 236.0,
     "fitted": true,
     "n": 13,
-    "mae_pp": 7.004,
+    "mae_pp": 6.9,
     "default_scale": 100.0,
     "reason": "grid search 5-400 rank positions per 90% favourite, minimum mean absolute error"
    },
@@ -39,21 +39,21 @@
   "open_fixtures": 31,
   "locked_fixtures": 64,
   "stale_fixtures": 59,
-  "open_with_pick": 16,
-  "open_market_basis": 16,
+  "open_with_pick": 18,
+  "open_market_basis": 18,
   "open_model_basis": 0,
   "open_provisional": 0,
-  "open_no_pick": 15,
+  "open_no_pick": 13,
   "flagged_rows": 95,
   "unique_teams": 122,
   "teams_resolved_official": 85,
   "open_research_basis": 0,
   "open_own_line": 13,
-  "fixtures_with_stated_format": 17,
+  "fixtures_with_stated_format": 19,
   "own_line_scale": 236.0,
   "own_line_scale_fitted": true,
   "own_line_calibration_n": 13,
-  "own_line_calibration_mae_pp": 7.004,
+  "own_line_calibration_mae_pp": 6.9,
   "hltv_ranking_teams": 245,
   "hltv_ranking_date": "2026-10-12"
  },
@@ -71,12 +71,12 @@
   {
    "name": "Outside prices read",
    "passed": true,
-   "detail": "Pinnacle 10 quotes (live); secondary 29 (repo_capture+polymarket+feed)."
+   "detail": "Pinnacle 12 quotes (live); secondary 29 (repo_capture+polymarket+feed)."
   },
   {
    "name": "Pick coverage on open fixtures",
    "passed": false,
-   "detail": "16/31 open fixtures have a pick; 15 flagged without one."
+   "detail": "18/31 open fixtures have a pick; 13 flagged without one."
   },
   {
    "name": "No Hotspawn crowd value stored",
@@ -91,7 +91,7 @@
   {
    "name": "Snapshot age",
    "passed": true,
-   "detail": "Oldest capture behind this board: 2026-10-16T05:15:19Z (Snapshot is 0.0 h old)."
+   "detail": "Oldest capture behind this board: 2026-10-16T05:37:34Z (Snapshot is 0.0 h old)."
   },
   {
    "name": "Every open fixture carries an originated line or a reason it cannot",
@@ -114,7 +114,7 @@
    "scale": 236.0,
    "fitted": true,
    "n": 13,
-   "mae_pp": 7.004,
+   "mae_pp": 6.9,
    "default_scale": 100.0,
    "reason": "grid search 5-400 rank positions per 90% favourite, minimum mean absolute error"
   },
