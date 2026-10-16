@@ -5152,3 +5152,21 @@ Checks run (all green):
 
 Irregularities: none new. Existing flagged items remain published on `hotspawn/flagged.html` and `hotspawn/unresolved.html`. No network access was used; no live refresh performed, so capture timestamps are unchanged.
 
+---
+
+### Session `arena/3fd94456` — final integration verification (2026-10-16)
+
+Branch: `arena/3fd94456-maltaproj1`. Scope: verification only; no source data edits, no generator changes.
+
+Checks run (all green):
+- `python3 -m unittest discover -s tests` → 427 tests OK.
+- `python3 hotspawn/tests.py` → 68 tests OK.
+- `python3 hotspawn/verify.py` → 95/95 source fixtures, 0 errors.
+- `python3 tests/audit_site.py` → 0 broken internal links; data integrity 100%.
+- `python3 briefing/linkcheck.py` → 0 broken links (168 internal, 269 external).
+- `python3 hotspawn/build.py` → 8 pages written (reverted timestamp-only churn; no data change).
+- `python3 f323b4a7/tests.py` → all invariants passed (8 pages, 31 rows).
+- Hotspawn mobile page link audit: 0 broken internal links across `hotspawn/*.html`.
+
+Irregularities: none new. Existing flagged items remain published on `hotspawn/flagged.html` and `hotspawn/unresolved.html`. No network access was used; no live refresh performed, so capture timestamps are unchanged. Two stale open PRs (#132, #136) remain CONFLICTING on main and are outside this session's scope; logged for review.
+
