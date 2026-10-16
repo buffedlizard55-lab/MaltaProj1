@@ -5135,3 +5135,45 @@ prior report. No fresh source fact, price or inferred timezone was added. All al
 remain intact and outside blanket certification. Four-hour unattended schedules/freshness warnings
 remain active; no credentials or manual entry requested. Receipt follow-up stays on the fixed Arena
 branch and is merged autonomously; its final Pages confirmation is posted in that PR.
+
+---
+
+## Session `arena/83090640` — claim (2026-10-16 07:25 UTC)
+
+Branch: `arena/83090640-maltaproj1` (fixed by Arena). Session ID `83090640`.
+
+Board read before claiming: section index of `COORDINATION.md`, the FI final handoff ("FI-1..FI-5 complete.
+**No exclusive human claim remains after this receipt follow-up merges**"), `hotspawn/` owner `22be6967`
+marked done, `f323b4a7` F3-1..F3-8 all done. `git log`, `gh pr list` (no open PR covers the scope below).
+
+**Why this scope is not a duplicate.** The user brief for this session requires (a) researched resolution
+of every match that still has no pick ("Try hltv, then try looking at esportsbooks and esports betting
+lines"), (b) a day-1/day-2/day-3 TWC review with the contrarian-but-not-stupid leaderboard plan fed by the
+9z upset and the Aurora roster change, (c) an executive summary that links to the picks and is phone-first,
+and (d) full Hotspawn coverage refreshed every 4-8 h. The primary board captured **2026-10-16T05:58:32Z**
+still has **2 rung-D unresolved fixtures** (`1079170` BET-M vs Just Players, `1081126` Banda chuya vs
+Enjoy) with only a circuit-breaker "not requested" research attempt, and the live lobby may have added
+fixtures since that capture (95 listed at 04:18Z on 16 Oct vs 86 the day before). This session therefore
+claims the research-fallback resolution pass, the day-3 strategy refresh, and final integration.
+
+| ID | Task | Status | Exclusive file scope |
+|----|------|--------|----------------------|
+| M83-1 | Research-fallback resolution pass for the 2 rung-D unresolved fixtures: HLTV first (match/team pages, ranks, form), then esportsbook/betting lines (Pinnacle, Polymarket, Thunderpick/relay, GG.Bet/EGB/BC.Game-class books via search). Resolve with a sourced pick + probability where evidence exists; otherwise keep explicit unresolved with a full research-trail + limitations (never invented) | in progress | `83090640/research/**`, `83090640/model_fallback.py`, `hotspawn/research/fallback_83090640.json` (new file only) |
+| M83-2 | TWC 2026 day-1 (9z upset) / day-2 review re-verification + day-3 guide refresh (Aurora–9z, BetBoom–Legacy; contrarian-but-not-stupid leaderboard classes; Aurora roster-change note verified against official sources) | in progress | `hotspawn/research/**` (new session files), `hotspawn/build.py` copy blocks for strategy/twc only if needed |
+| M83-3 | Coverage completeness: live lobby re-check for fixtures added since the 05:58:32Z capture; pick for every open match or explicit unresolved entry | in progress | `83090640/**`, collector input notes |
+| M83-4 | Executive-summary + phone audit: in-site links to the picks list/TWC/unresolved/flagged on the landing; 360 px readability re-check | in progress | `83090640/mobile_check.py` (record), `hotspawn/mobile_check.json` via pipeline |
+| M83-5 | Line-by-line verification record with official links + flagged irregularities append | in progress | `reviews/83090640-verification.md`, `hotspawn/flagged.html` (append via build) |
+| M83-6 | Final integration: rebase, tests (hotspawn + root suite as-is), link audit, PR → main, merge autonomously, confirm Pages, log PR URL + result here | in progress | `COORDINATION.md` (this section), merge commits |
+
+**File disposition for shared paths.** `hotspawn/**` owner `22be6967` is done and the FI handoff recorded no
+remaining exclusive claim; this session takes a **narrow refresh-and-research-update takeover** of
+`hotspawn/` consistent with prior FI practice: data + pages regenerated only through the repo's own
+`hotspawn/collect.py → model.py → build.py → tests.py` pipeline (no hand-edited data). The workflow
+`.github/workflows/hotspawn-22be6967.yml` gets one line added to its `push.branches` list
+(`arena/83090640-maltaproj1`) so the unattended refresh can be verified on this branch before merge — the
+same pattern session `71c4e4ab`/`b6f5405d` used. Root `index.html`, `docs/**`, `executive/**`, `f323b4a7/**`,
+`a6f05f99/**`, and every other session's namespace stay untouched except additive nav only if a landing
+link is missing (logged here if so). Other open claims: none found.
+
+### Log — arena/83090640 (2026-10-16)
+- **07:25Z** claim committed and pushed to `arena/83090640-maltaproj1` (this commit).
