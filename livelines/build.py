@@ -485,7 +485,11 @@ def main() -> int:
                        "optimum is disclosed next to it and the disagreement is flagged on every row that "
                        "depends on the scale")
     K = calib["scale"]
-    K_alt = calib["logloss_alternative"]["scale"]
+    # No alternate optimum exists with fewer than four current samples.
+    # Reuse the explicitly labelled project default; do not invent a fitted statistic.
+    K_alt = (calib.get("logloss_alternative") or {}).get("scale", K)
+    if not calib["fitted"]:
+        calib["chosen"] = calib["reason"]
 
     # ---- per-fixture rows
     rows, unresolved, flag_rows, source_rows = [], [], [], []

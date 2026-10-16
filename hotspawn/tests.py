@@ -25,7 +25,7 @@ from common import (Aliases, devig_two_way, norm_name, normalise_prices, own_lin
 BOARD = read_json(HERE / "data" / "board.json", {}) or {}
 ROWS = BOARD.get("rows", [])
 OPEN = [r for r in ROWS if r.get("status") == "open"]
-PAGES = ["index.html", "picks.html", "twc.html", "strategy.html", "unresolved.html", "flagged.html", "all.html", "method.html"]
+PAGES = ["index.html", "picks.html", "twc.html", "strategy.html", "unresolved.html", "flagged.html", "all.html", "method.html", "release-audit.html"]
 
 DAY3 = read_json(HERE / "research" / "day3_twc2026.json", {}) or {}
 DAY3_ROWS = {r.get("match_id"):r for r in ROWS}

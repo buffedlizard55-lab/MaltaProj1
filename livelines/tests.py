@@ -37,6 +37,20 @@ def load_picks():
         return list(csv.DictReader(fh))
 
 
+class EmptyCalibration(unittest.TestCase):
+    def test_insufficient_samples_never_claim_an_alternate_optimum(self):
+        import importlib.util
+        spec = importlib.util.spec_from_file_location('livelines_empty_fit', OUT / 'build.py')
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        for samples in ([], [(100, 200, 40)]):
+            fit = module.fit_scale(samples)
+            self.assertFalse(fit['fitted'])
+            self.assertIsNone(fit['mae_pp'])
+            self.assertNotIn('logloss_alternative', fit)
+            self.assertEqual((fit.get('logloss_alternative') or {}).get('scale', fit['scale']), 400.0)
+
+
 class TestLivelines(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
