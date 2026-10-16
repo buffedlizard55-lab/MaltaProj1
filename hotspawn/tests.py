@@ -642,6 +642,87 @@ class Day3(unittest.TestCase):
             self.assertIn("No current pick or probability is fabricated", strategy, m["hotspawn_id"])
 
 
+class Day2(unittest.TestCase):
+    """The 15 October review must be on the page, and its grades recomputed here - never copied from prose."""
+
+    DATA = read_json(HERE / "research" / "day2_twc2026.json", {}) or {}
+    MATCHES = [m for m in (DATA.get("day2_matches") or []) if len(m.get("teams") or []) >= 2]
+
+    def strategy(self) -> str:
+        return (HERE / "strategy.html").read_text(encoding="utf-8")
+
+    def section(self) -> str:
+        page = self.strategy()
+        return page[page.index('id="day2"'):page.index('id="day3"')]
+
+    def test_review_is_rendered_between_the_day1_and_day3_sections(self):
+        index = (HERE / "index.html").read_text(encoding="utf-8")
+        page = self.strategy()
+        self.assertIn('id="day2"', page)
+        self.assertIn("Day 2 review — Thunderpick World Championship 2026", page)
+        self.assertLess(page.index("Day 1 review —"),page.index('id="day2"'))
+        self.assertLess(page.index('id="day2"'), page.index('id="day3"'))
+        self.assertIn("Day 2 in one line", index)
+        self.assertIn("strategy.html#day2", index)
+
+    def test_every_day2_series_links_its_hltv_record_and_score(self):
+        section = self.section()
+        self.assertEqual(len(self.MATCHES), 4)
+        for m in self.MATCHES:
+            res = m.get("result") or {}
+            self.assertIn(res.get("hltv_match"), section, m.get("hotspawn_id"))
+            self.assertIn(str(res.get("series_score")), section, m.get("hotspawn_id"))
+            for mp in res.get("maps") or []:
+                self.assertIn(mp, section, m.get("hotspawn_id"))
+
+    def test_scorecard_is_recomputed_from_the_frozen_pick_and_the_reported_winner(self):
+        section, index = self.section(), (HERE / "index.html").read_text(encoding="utf-8")
+        archived = correct = lb = 0
+        for m in self.MATCHES:
+            pk = m.get("prelock_pick") or {}
+            winner = (m.get("result") or {}).get("winner")
+            if not (pk.get("pick") and winner):
+                continue
+            archived += 1
+            correct += int(norm_name(pk["pick"]) == norm_name(winner))
+            if pk.get("leaderboard_pick"):
+                lb += int(norm_name(pk["leaderboard_pick"]) == norm_name(winner))
+        self.assertGreater(archived, 0)
+        self.assertIn(f"pick {correct}/{archived}", section)
+        self.assertIn(f"leaderboard plan {lb}/{archived}", section)
+        self.assertIn(f"<b>{correct}/{archived}</b>", index)
+        self.assertIn(f"<b>{lb}/{archived}</b>", index)
+
+    def test_a_series_without_a_frozen_pick_is_named_and_excluded(self):
+        section = self.section()
+        for m in self.MATCHES:
+            if (m.get("prelock_pick") or {}).get("pick"):
+                continue
+            self.assertIn(f"{m['teams'][0]} vs {m['teams'][1]}", section)
+            self.assertIn("no frozen pre-lock pick", section)
+            self.assertIn("in no denominator", section)
+
+    def test_review_hands_off_to_the_two_deciders_it_sets_up(self):
+        section = self.section()
+        self.assertIn("What these results set up on day 3", section)
+        self.assertIn("the winner reaches the semifinal", section)
+        for m in DAY3.get("matches") or []:
+            self.assertIn(m["hltv_match_url"], section, m.get("hotspawn_id"))
+
+    def test_no_hand_typed_grade_or_probability_reaches_the_page(self):
+        """Every percentage in the review must be a stored raw input (a frozen probability or a quoted note)."""
+        section = self.section()
+        allowed = set(re.findall(r"\d+(?:\.\d+)?%", json.dumps(self.DATA, ensure_ascii=False)))
+        for m in self.MATCHES:
+            p = (m.get("prelock_pick") or {}).get("probability")
+            if p is not None:
+                allowed.add(f"{round(p * 100)}%")
+        printed = set(re.findall(r"\d+(?:\.\d+)?%", section))
+        self.assertTrue(printed)
+        self.assertEqual(printed - allowed, set(), "the review printed a percentage that is not in the raw research file")
+        self.assertIn("recomputed here", section)
+
+
 if __name__ == "__main__":
     result = unittest.main(verbosity=1, exit=False).result
     sys.exit(0 if result.wasSuccessful() else 1)

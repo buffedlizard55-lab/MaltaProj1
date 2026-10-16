@@ -1,16 +1,16 @@
 {
  "meta": {
-  "generated_utc": "2026-10-16T04:43:32Z",
-  "capture_utc": "2026-10-15T23:12:00Z",
+  "generated_utc": "2026-10-16T05:07:43Z",
+  "capture_utc": "2026-10-16T04:51:14Z",
   "session": "arena/7759beef",
-  "open_fixtures": 22,
-  "open_picked": 9,
-  "open_unpicked": 13,
-  "tier_a": 5,
-  "fallback_basis": 17,
-  "value_watches": 5,
-  "unresolved_top_tier": 17,
-  "total_fixtures": 86,
+  "open_fixtures": 31,
+  "open_picked": 16,
+  "open_unpicked": 15,
+  "tier_a": 6,
+  "fallback_basis": 24,
+  "value_watches": 7,
+  "unresolved_top_tier": 25,
+  "total_fixtures": 95,
   "source_facts": 35
  },
  "rows": [
@@ -26,15 +26,15 @@
    "hotspawn_pickem_url": "https://play.hotspawn.com/cs2-pickems",
    "hotspawn_match_url": "https://www.hotspawn.com/matches/ninjas-in-pyjamas-vs-team-liquid-stake-pulse-beat-iii-1079586",
    "pick": "Ninjas in Pyjamas",
-   "prob_a_pct": 55.1,
-   "prob_b_pct": 44.9,
-   "own_prob_a_pct": 50.5,
-   "own_prob_b_pct": 49.5,
-   "market_odds_a": "1.72",
-   "market_odds_b": "2.11",
-   "market_captured_utc": "2026-10-15T23:12:11Z",
-   "market_prob_a_pct": 55.1,
-   "market_prob_b_pct": 44.9,
+   "prob_a_pct": 52.2,
+   "prob_b_pct": 47.8,
+   "own_prob_a_pct": 50.4,
+   "own_prob_b_pct": 49.6,
+   "market_odds_a": "1.81",
+   "market_odds_b": "1.98",
+   "market_captured_utc": "2026-10-16T04:51:25Z",
+   "market_prob_a_pct": 52.2,
+   "market_prob_b_pct": 47.8,
    "basis_label": "Market \u00b7 primary book",
    "basis_tier": "A \u00b7 direct bookmaker",
    "series_format": "BO3",
@@ -42,10 +42,10 @@
    "limitations": [],
    "resolution": false,
    "divergence": {
-    "side_a_pp": -4.6,
-    "side_b_pp": 4.6,
+    "side_a_pp": -1.8,
+    "side_b_pp": 1.8,
     "value_side": "Team Liquid",
-    "value_pp": 4.6,
+    "value_pp": 1.8,
     "contradiction": true
    },
    "flags": [],
@@ -65,6 +65,86 @@
    "start_utc": "2026-10-16T08:00:00Z",
    "hotspawn_pickem_url": "https://play.hotspawn.com/cs2-pickems",
    "hotspawn_match_url": "https://www.hotspawn.com/matches/voca-vs-phantom-elisa-breakout-series-2-1080285",
+   "pick": "Phantom",
+   "prob_a_pct": 45.0,
+   "prob_b_pct": 55.0,
+   "own_prob_a_pct": 57.0,
+   "own_prob_b_pct": 43.0,
+   "market_odds_a": "2.05",
+   "market_odds_b": "1.68",
+   "market_captured_utc": "2026-10-16T01:37:51Z",
+   "market_prob_a_pct": 45.0,
+   "market_prob_b_pct": 55.0,
+   "basis_label": "Market \u00b7 secondary listing",
+   "basis_tier": "B \u00b7 relayed/secondary listing",
+   "series_format": "BO1",
+   "series_format_source": "https://bo3.gg/matches/voca-vs-phantom-esports-16-10-2026",
+   "limitations": [
+    "Headline number is a relayed/secondary listing price, not a direct bookmaker page read; it can lag the book it copies."
+   ],
+   "resolution": false,
+   "divergence": {
+    "side_a_pp": 12.0,
+    "side_b_pp": -12.0,
+    "value_side": "Voca",
+    "value_pp": 12.0,
+    "contradiction": true
+   },
+   "flags": [],
+   "source_urls": [
+    "https://www.hotspawn.com/matches/voca-vs-phantom-elisa-breakout-series-2-1080285",
+    "https://bo3.gg/matches/voca-vs-phantom-esports-16-10-2026"
+   ]
+  },
+  {
+   "match_id": "1080286",
+   "status": "open",
+   "team_a": "HAVU",
+   "team_b": "RoundsGG",
+   "tournament": "Elisa BreakOut Series #2",
+   "tier": "C",
+   "lock_utc": "2026-10-16T09:54:00Z",
+   "start_utc": "2026-10-16T10:00:00Z",
+   "hotspawn_pickem_url": "https://play.hotspawn.com/cs2-pickems",
+   "hotspawn_match_url": "https://www.hotspawn.com/matches/havu-vs-roundsgg-elisa-breakout-series-2-1080286",
+   "pick": "HAVU",
+   "prob_a_pct": 83.0,
+   "prob_b_pct": 17.0,
+   "own_prob_a_pct": null,
+   "own_prob_b_pct": null,
+   "market_odds_a": "1.20",
+   "market_odds_b": "5.88",
+   "market_captured_utc": "2026-10-16T01:37:51Z",
+   "market_prob_a_pct": 83.0,
+   "market_prob_b_pct": 17.0,
+   "basis_label": "Market \u00b7 secondary listing",
+   "basis_tier": "B \u00b7 relayed/secondary listing",
+   "series_format": "BO1",
+   "series_format_source": "https://polymarket.com/event/cs2-havu-rgg-2026-10-16",
+   "limitations": [
+    "Headline number is a relayed/secondary listing price, not a direct bookmaker page read; it can lag the book it copies."
+   ],
+   "resolution": false,
+   "divergence": null,
+   "flags": [
+    "VP-F02 identity of a Hotspawn team name is not exact in the official source used for the ratings"
+   ],
+   "source_urls": [
+    "https://www.hotspawn.com/matches/havu-vs-roundsgg-elisa-breakout-series-2-1080286",
+    "https://polymarket.com/event/cs2-havu-rgg-2026-10-16"
+   ]
+  },
+  {
+   "match_id": "1079167",
+   "status": "open",
+   "team_a": "Bushido Wildcats",
+   "team_b": "ex-RUSTEC",
+   "tournament": "NODWIN Clutch Series #13",
+   "tier": "B",
+   "lock_utc": "2026-10-16T10:54:00Z",
+   "start_utc": "2026-10-16T11:00:00Z",
+   "hotspawn_pickem_url": "https://play.hotspawn.com/cs2-pickems",
+   "hotspawn_match_url": "https://www.hotspawn.com/matches/bushido-wildcats-vs-ex-rustec-nodwin-clutch-series-13-1079167",
    "pick": "",
    "prob_a_pct": null,
    "prob_b_pct": null,
@@ -90,55 +170,7 @@
     "VP-F05 no direct bookmaker quote is stored for this fixture"
    ],
    "source_urls": [
-    "https://www.hotspawn.com/matches/voca-vs-phantom-elisa-breakout-series-2-1080285"
-   ]
-  },
-  {
-   "match_id": "1080286",
-   "status": "open",
-   "team_a": "HAVU",
-   "team_b": "RoundsGG",
-   "tournament": "Elisa BreakOut Series #2",
-   "tier": "C",
-   "lock_utc": "2026-10-16T09:54:00Z",
-   "start_utc": "2026-10-16T10:00:00Z",
-   "hotspawn_pickem_url": "https://play.hotspawn.com/cs2-pickems",
-   "hotspawn_match_url": "https://www.hotspawn.com/matches/havu-vs-roundsgg-elisa-breakout-series-2-1080286",
-   "pick": "HAVU",
-   "prob_a_pct": 76.9,
-   "prob_b_pct": 23.1,
-   "own_prob_a_pct": 90.4,
-   "own_prob_b_pct": 9.6,
-   "market_odds_a": 1.2,
-   "market_odds_b": 4.0,
-   "market_captured_utc": "2026-10-15T06:23:29Z",
-   "market_prob_a_pct": 76.9,
-   "market_prob_b_pct": 23.1,
-   "basis_label": "Thunderpick (relayed listing via bo3.gg, stored capture)",
-   "basis_tier": "B \u00b7 relayed/secondary listing",
-   "series_format": "BO1",
-   "series_format_source": "https://www.hltv.org/matches/2399420/wbt-vs-ence-elisa-breakout-series-2",
-   "limitations": [
-    "Fixture starts 16 Oct; the quote is stored from 06:23:29Z and will age before the match.",
-    "Identity rests on four identical starters plus fixture correspondence (F-20); the fifth player differs in the official standings entry."
-   ],
-   "resolution_used": true,
-   "divergence": {
-    "side_a_pp": 13.5,
-    "side_b_pp": -13.5,
-    "value_side": "HAVU",
-    "value_pp": 13.5,
-    "contradiction": false
-   },
-   "flags": [
-    "VP-F02 identity of a Hotspawn team name is not exact in the official source used for the ratings",
-    "VP-F06 row was resolved by this session's ladder from a stored/relayed quote; see valuepicks/unresolved.html"
-   ],
-   "source_urls": [
-    "https://www.hltv.org/matches/2399420/wbt-vs-ence-elisa-breakout-series-2",
-    "https://www.hltv.org/team/12457/rounds",
-    "https://bo3.gg/matches/wbt-vs-ence-15-10-2026",
-    "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/executive/ownlines.py"
+    "https://www.hotspawn.com/matches/bushido-wildcats-vs-ex-rustec-nodwin-clutch-series-13-1079167"
    ]
   },
   {
@@ -181,6 +213,46 @@
    ]
   },
   {
+   "match_id": "1081712",
+   "status": "open",
+   "team_a": "Fnatic",
+   "team_b": "Heroic",
+   "tournament": "Stake Pulse Beat III",
+   "tier": "B",
+   "lock_utc": "2026-10-16T10:54:00Z",
+   "start_utc": "2026-10-16T11:00:00Z",
+   "hotspawn_pickem_url": "https://play.hotspawn.com/cs2-pickems",
+   "hotspawn_match_url": "https://www.hotspawn.com/matches/fnatic-vs-heroic-stake-pulse-beat-iii-1081712",
+   "pick": "Heroic",
+   "prob_a_pct": 35.1,
+   "prob_b_pct": 64.9,
+   "own_prob_a_pct": 47.8,
+   "own_prob_b_pct": 52.2,
+   "market_odds_a": "2.68",
+   "market_odds_b": "1.45",
+   "market_captured_utc": "2026-10-16T04:51:25Z",
+   "market_prob_a_pct": 35.1,
+   "market_prob_b_pct": 64.9,
+   "basis_label": "Market \u00b7 primary book",
+   "basis_tier": "A \u00b7 direct bookmaker",
+   "series_format": "BO3",
+   "series_format_source": "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
+   "limitations": [],
+   "resolution": false,
+   "divergence": {
+    "side_a_pp": 12.7,
+    "side_b_pp": -12.7,
+    "value_side": "Fnatic",
+    "value_pp": 12.7,
+    "contradiction": true
+   },
+   "flags": [],
+   "source_urls": [
+    "https://www.hotspawn.com/matches/fnatic-vs-heroic-stake-pulse-beat-iii-1081712",
+    "https://www.pinnacle.com/en/esports/games/cs2/matchups/"
+   ]
+  },
+  {
    "match_id": "1080287",
    "status": "open",
    "team_a": "Voca",
@@ -192,15 +264,15 @@
    "hotspawn_pickem_url": "https://play.hotspawn.com/cs2-pickems",
    "hotspawn_match_url": "https://www.hotspawn.com/matches/voca-vs-havu-elisa-breakout-series-2-1080287",
    "pick": "Voca",
-   "prob_a_pct": 64.1,
-   "prob_b_pct": 35.9,
-   "own_prob_a_pct": 67.1,
-   "own_prob_b_pct": 32.9,
-   "market_odds_a": "1.47",
-   "market_odds_b": "2.62",
-   "market_captured_utc": "2026-10-15T23:12:11Z",
-   "market_prob_a_pct": 64.1,
-   "market_prob_b_pct": 35.9,
+   "prob_a_pct": 60.5,
+   "prob_b_pct": 39.5,
+   "own_prob_a_pct": 64.0,
+   "own_prob_b_pct": 36.0,
+   "market_odds_a": "1.56",
+   "market_odds_b": "2.39",
+   "market_captured_utc": "2026-10-16T04:51:25Z",
+   "market_prob_a_pct": 60.5,
+   "market_prob_b_pct": 39.5,
    "basis_label": "Market \u00b7 primary book",
    "basis_tier": "A \u00b7 direct bookmaker",
    "series_format": "BO1",
@@ -208,10 +280,10 @@
    "limitations": [],
    "resolution": false,
    "divergence": {
-    "side_a_pp": 3.0,
-    "side_b_pp": -3.0,
+    "side_a_pp": 3.5,
+    "side_b_pp": -3.5,
     "value_side": "Voca",
-    "value_pp": 3.0,
+    "value_pp": 3.5,
     "contradiction": false
    },
    "flags": [
@@ -262,6 +334,50 @@
    ]
   },
   {
+   "match_id": "1079588",
+   "status": "open",
+   "team_a": "Astralis",
+   "team_b": "MIBR",
+   "tournament": "Stake Pulse Beat III",
+   "tier": "B",
+   "lock_utc": "2026-10-16T13:54:00Z",
+   "start_utc": "2026-10-16T14:00:00Z",
+   "hotspawn_pickem_url": "https://play.hotspawn.com/cs2-pickems",
+   "hotspawn_match_url": "https://www.hotspawn.com/matches/astralis-vs-mibr-stake-pulse-beat-iii-1079588",
+   "pick": "",
+   "prob_a_pct": 49.8,
+   "prob_b_pct": 50.2,
+   "own_prob_a_pct": 48.9,
+   "own_prob_b_pct": 51.1,
+   "market_odds_a": "1.90",
+   "market_odds_b": "1.88",
+   "market_captured_utc": "2026-10-16T04:51:25Z",
+   "market_prob_a_pct": 49.8,
+   "market_prob_b_pct": 50.2,
+   "basis_label": "Market \u00b7 primary book",
+   "basis_tier": "A \u00b7 direct bookmaker",
+   "series_format": "BO3",
+   "series_format_source": "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
+   "limitations": [],
+   "resolution": false,
+   "no_sourced_basis": true,
+   "divergence": {
+    "side_a_pp": -0.9,
+    "side_b_pp": 0.9,
+    "value_side": "MIBR",
+    "value_pp": 0.9,
+    "contradiction": true
+   },
+   "flags": [
+    "VP-F08 the capture's only sourced quote de-vigs to an exact coin flip: both probabilities are published, no side is named, and the row is listed with its limitation rather than given a made-up pick",
+    "VP-F03 project line and market line disagree by 15pp or more"
+   ],
+   "source_urls": [
+    "https://www.hotspawn.com/matches/astralis-vs-mibr-stake-pulse-beat-iii-1079588",
+    "https://www.pinnacle.com/en/esports/games/cs2/matchups/"
+   ]
+  },
+  {
    "match_id": "1079631",
    "status": "open",
    "team_a": "FORZE Reload",
@@ -273,15 +389,15 @@
    "hotspawn_pickem_url": "https://play.hotspawn.com/cs2-pickems",
    "hotspawn_match_url": "https://www.hotspawn.com/matches/forze-reload-vs-lavked-cct-europe-2026-series-11-1079631",
    "pick": "FORZE Reload",
-   "prob_a_pct": 76.7,
-   "prob_b_pct": 23.3,
-   "own_prob_a_pct": 76.7,
-   "own_prob_b_pct": 23.3,
-   "market_odds_a": "1.22",
-   "market_odds_b": "3.99",
-   "market_captured_utc": "2026-10-15T23:12:11Z",
-   "market_prob_a_pct": 76.7,
-   "market_prob_b_pct": 23.3,
+   "prob_a_pct": 73.5,
+   "prob_b_pct": 26.5,
+   "own_prob_a_pct": 72.3,
+   "own_prob_b_pct": 27.7,
+   "market_odds_a": "1.27",
+   "market_odds_b": "3.53",
+   "market_captured_utc": "2026-10-16T04:51:25Z",
+   "market_prob_a_pct": 73.5,
+   "market_prob_b_pct": 26.5,
    "basis_label": "Market \u00b7 primary book",
    "basis_tier": "A \u00b7 direct bookmaker",
    "series_format": "BO3",
@@ -289,13 +405,15 @@
    "limitations": [],
    "resolution": false,
    "divergence": {
-    "side_a_pp": 0.0,
-    "side_b_pp": 0.0,
+    "side_a_pp": -1.2,
+    "side_b_pp": 1.2,
     "value_side": "Lavked",
-    "value_pp": 0.0,
+    "value_pp": 1.2,
     "contradiction": true
    },
-   "flags": [],
+   "flags": [
+    "VP-F03 project line and market line disagree by 15pp or more"
+   ],
    "source_urls": [
     "https://www.hotspawn.com/matches/forze-reload-vs-lavked-cct-europe-2026-series-11-1079631",
     "https://www.pinnacle.com/en/esports/games/cs2/matchups/"
@@ -313,15 +431,15 @@
    "hotspawn_pickem_url": "https://play.hotspawn.com/cs2-pickems",
    "hotspawn_match_url": "https://www.hotspawn.com/matches/aurora-vs-9z-thunderpick-world-championship-2026-1080205",
    "pick": "Aurora",
-   "prob_a_pct": 66.5,
-   "prob_b_pct": 33.5,
-   "own_prob_a_pct": 55.0,
-   "own_prob_b_pct": 45.0,
-   "market_odds_a": "1.43",
-   "market_odds_b": "2.85",
-   "market_captured_utc": "2026-10-15T23:12:11Z",
-   "market_prob_a_pct": 66.5,
-   "market_prob_b_pct": 33.5,
+   "prob_a_pct": 67.0,
+   "prob_b_pct": 33.0,
+   "own_prob_a_pct": 54.0,
+   "own_prob_b_pct": 46.0,
+   "market_odds_a": "1.42",
+   "market_odds_b": "2.89",
+   "market_captured_utc": "2026-10-16T04:51:25Z",
+   "market_prob_a_pct": 67.0,
+   "market_prob_b_pct": 33.0,
    "basis_label": "Market \u00b7 primary book",
    "basis_tier": "A \u00b7 direct bookmaker",
    "series_format": "BO3",
@@ -329,10 +447,10 @@
    "limitations": [],
    "resolution": false,
    "divergence": {
-    "side_a_pp": -11.5,
-    "side_b_pp": 11.5,
+    "side_a_pp": -13.0,
+    "side_b_pp": 13.0,
     "value_side": "9z",
-    "value_pp": 11.5,
+    "value_pp": 13.0,
     "contradiction": true
    },
    "flags": [
@@ -354,33 +472,31 @@
    "start_utc": "2026-10-16T14:00:00Z",
    "hotspawn_pickem_url": "https://play.hotspawn.com/cs2-pickems",
    "hotspawn_match_url": "https://www.hotspawn.com/matches/phantom-vs-roundsgg-elisa-breakout-series-2-1080288",
-   "pick": "",
-   "prob_a_pct": null,
-   "prob_b_pct": null,
+   "pick": "Phantom",
+   "prob_a_pct": 89.5,
+   "prob_b_pct": 10.5,
    "own_prob_a_pct": null,
    "own_prob_b_pct": null,
-   "market_odds_a": null,
-   "market_odds_b": null,
-   "market_captured_utc": "",
-   "market_prob_a_pct": null,
-   "market_prob_b_pct": null,
-   "basis_label": "No sourced basis",
-   "basis_tier": "E \u00b7 unresolved at top tier",
-   "series_format": "",
-   "series_format_source": "",
+   "market_odds_a": "1.12",
+   "market_odds_b": "9.52",
+   "market_captured_utc": "2026-10-16T01:37:51Z",
+   "market_prob_a_pct": 89.5,
+   "market_prob_b_pct": 10.5,
+   "basis_label": "Market \u00b7 secondary listing",
+   "basis_tier": "B \u00b7 relayed/secondary listing",
+   "series_format": "BO1",
+   "series_format_source": "https://polymarket.com/event/cs2-pha-rgg-2026-10-16",
    "limitations": [
-    "The capture holds no outside quote, no official rating pair and no sourced pick for this fixture, so no probability is published - the row is listed here so the gap is visible."
+    "Headline number is a relayed/secondary listing price, not a direct bookmaker page read; it can lag the book it copies."
    ],
    "resolution": false,
-   "no_sourced_basis": true,
    "divergence": null,
    "flags": [
-    "VP-F01 no sourced basis in this capture: no outside quote, no rating pair and no sourced pick - the row is listed with its limitation, not picked",
-    "VP-F02 identity of a Hotspawn team name is not exact in the official source used for the ratings",
-    "VP-F05 no direct bookmaker quote is stored for this fixture"
+    "VP-F02 identity of a Hotspawn team name is not exact in the official source used for the ratings"
    ],
    "source_urls": [
-    "https://www.hotspawn.com/matches/phantom-vs-roundsgg-elisa-breakout-series-2-1080288"
+    "https://www.hotspawn.com/matches/phantom-vs-roundsgg-elisa-breakout-series-2-1080288",
+    "https://polymarket.com/event/cs2-pha-rgg-2026-10-16"
    ]
   },
   {
@@ -395,49 +511,47 @@
    "hotspawn_pickem_url": "https://play.hotspawn.com/cs2-pickems",
    "hotspawn_match_url": "https://www.hotspawn.com/matches/mellren-vs-privateer-cct-europe-2026-series-12-play-in-1081120",
    "pick": "mellren",
-   "prob_a_pct": 95.1,
-   "prob_b_pct": 4.9,
-   "own_prob_a_pct": 92.4,
-   "own_prob_b_pct": 7.6,
-   "market_odds_a": null,
-   "market_odds_b": null,
-   "market_captured_utc": "",
-   "market_prob_a_pct": null,
-   "market_prob_b_pct": null,
-   "basis_label": "Model \u00b7 official ratings",
-   "basis_tier": "D \u00b7 project line (official ratings)",
+   "prob_a_pct": 88.0,
+   "prob_b_pct": 12.0,
+   "own_prob_a_pct": 88.0,
+   "own_prob_b_pct": 12.0,
+   "market_odds_a": "1.14",
+   "market_odds_b": "8.33",
+   "market_captured_utc": "2026-10-16T01:37:51Z",
+   "market_prob_a_pct": 88.0,
+   "market_prob_b_pct": 12.0,
+   "basis_label": "Market \u00b7 secondary listing",
+   "basis_tier": "B \u00b7 relayed/secondary listing",
    "series_format": "BO3",
-   "series_format_source": "https://polymarket.com/esports/cs2/cct-europe/cs2-mellre-pg5-2026-10-16",
+   "series_format_source": "https://polymarket.com/event/cs2-mellre-pg5-2026-10-16",
    "limitations": [
-    "No outside market priced this fixture, so the number is the project's own line from official ratings: an uncalibrated estimate, not a book price."
+    "Headline number is a relayed/secondary listing price, not a direct bookmaker page read; it can lag the book it copies."
    ],
    "resolution": false,
    "divergence": {
-    "side_a_pp": -2.7,
-    "side_b_pp": 2.7,
+    "side_a_pp": 0.0,
+    "side_b_pp": 0.0,
     "value_side": "Privateer",
-    "value_pp": 2.7,
+    "value_pp": 0.0,
     "contradiction": true
    },
-   "flags": [
-    "VP-F05 no direct bookmaker quote is stored for this fixture",
-    "VP-F07 rating inputs are a week old"
-   ],
+   "flags": [],
    "source_urls": [
-    "https://www.hotspawn.com/matches/mellren-vs-privateer-cct-europe-2026-series-12-play-in-1081120"
+    "https://www.hotspawn.com/matches/mellren-vs-privateer-cct-europe-2026-series-12-play-in-1081120",
+    "https://polymarket.com/event/cs2-mellre-pg5-2026-10-16"
    ]
   },
   {
-   "match_id": "1080289",
+   "match_id": "1081769",
    "status": "open",
-   "team_a": "RoundsGG",
-   "team_b": "Voca",
-   "tournament": "Elisa BreakOut Series #2",
-   "tier": "C",
-   "lock_utc": "2026-10-16T15:54:00Z",
-   "start_utc": "2026-10-16T16:00:00Z",
+   "team_a": "ex-Zero Tenacity",
+   "team_b": "UNiTY",
+   "tournament": "NODWIN Clutch Series #13",
+   "tier": "B",
+   "lock_utc": "2026-10-16T13:54:00Z",
+   "start_utc": "2026-10-16T14:00:00Z",
    "hotspawn_pickem_url": "https://play.hotspawn.com/cs2-pickems",
-   "hotspawn_match_url": "https://www.hotspawn.com/matches/roundsgg-vs-voca-elisa-breakout-series-2-1080289",
+   "hotspawn_match_url": "https://www.hotspawn.com/matches/ex-zero-tenacity-vs-unity-nodwin-clutch-series-13-1081769",
    "pick": "",
    "prob_a_pct": null,
    "prob_b_pct": null,
@@ -460,11 +574,48 @@
    "divergence": null,
    "flags": [
     "VP-F01 no sourced basis in this capture: no outside quote, no rating pair and no sourced pick - the row is listed with its limitation, not picked",
-    "VP-F02 identity of a Hotspawn team name is not exact in the official source used for the ratings",
     "VP-F05 no direct bookmaker quote is stored for this fixture"
    ],
    "source_urls": [
-    "https://www.hotspawn.com/matches/roundsgg-vs-voca-elisa-breakout-series-2-1080289"
+    "https://www.hotspawn.com/matches/ex-zero-tenacity-vs-unity-nodwin-clutch-series-13-1081769"
+   ]
+  },
+  {
+   "match_id": "1080289",
+   "status": "open",
+   "team_a": "RoundsGG",
+   "team_b": "Voca",
+   "tournament": "Elisa BreakOut Series #2",
+   "tier": "C",
+   "lock_utc": "2026-10-16T15:54:00Z",
+   "start_utc": "2026-10-16T16:00:00Z",
+   "hotspawn_pickem_url": "https://play.hotspawn.com/cs2-pickems",
+   "hotspawn_match_url": "https://www.hotspawn.com/matches/roundsgg-vs-voca-elisa-breakout-series-2-1080289",
+   "pick": "Voca",
+   "prob_a_pct": 13.5,
+   "prob_b_pct": 86.5,
+   "own_prob_a_pct": null,
+   "own_prob_b_pct": null,
+   "market_odds_a": "7.41",
+   "market_odds_b": "1.16",
+   "market_captured_utc": "2026-10-16T01:37:51Z",
+   "market_prob_a_pct": 13.5,
+   "market_prob_b_pct": 86.5,
+   "basis_label": "Market \u00b7 secondary listing",
+   "basis_tier": "B \u00b7 relayed/secondary listing",
+   "series_format": "BO1",
+   "series_format_source": "https://polymarket.com/event/cs2-voc-rgg-2026-10-16",
+   "limitations": [
+    "Headline number is a relayed/secondary listing price, not a direct bookmaker page read; it can lag the book it copies."
+   ],
+   "resolution": false,
+   "divergence": null,
+   "flags": [
+    "VP-F02 identity of a Hotspawn team name is not exact in the official source used for the ratings"
+   ],
+   "source_urls": [
+    "https://www.hotspawn.com/matches/roundsgg-vs-voca-elisa-breakout-series-2-1080289",
+    "https://polymarket.com/event/cs2-voc-rgg-2026-10-16"
    ]
   },
   {
@@ -520,11 +671,11 @@
    "pick": "100 Thieves",
    "prob_a_pct": 65.5,
    "prob_b_pct": 34.5,
-   "own_prob_a_pct": 53.6,
-   "own_prob_b_pct": 46.4,
+   "own_prob_a_pct": 52.9,
+   "own_prob_b_pct": 47.1,
    "market_odds_a": "1.43",
    "market_odds_b": "2.73",
-   "market_captured_utc": "2026-10-15T23:12:11Z",
+   "market_captured_utc": "2026-10-16T04:51:25Z",
    "market_prob_a_pct": 65.5,
    "market_prob_b_pct": 34.5,
    "basis_label": "Market \u00b7 primary book",
@@ -534,10 +685,10 @@
    "limitations": [],
    "resolution": false,
    "divergence": {
-    "side_a_pp": -11.9,
-    "side_b_pp": 11.9,
+    "side_a_pp": -12.6,
+    "side_b_pp": 12.6,
     "value_side": "Sangal",
-    "value_pp": 11.9,
+    "value_pp": 12.6,
     "contradiction": true
    },
    "flags": [],
@@ -586,6 +737,50 @@
    ]
   },
   {
+   "match_id": "1081775",
+   "status": "open",
+   "team_a": "BetBoom",
+   "team_b": "Legacy",
+   "tournament": "Thunderpick World Championship 2026",
+   "tier": "S",
+   "lock_utc": "2026-10-16T16:54:00Z",
+   "start_utc": "2026-10-16T17:00:00Z",
+   "hotspawn_pickem_url": "https://play.hotspawn.com/cs2-pickems",
+   "hotspawn_match_url": "https://www.hotspawn.com/matches/betboom-vs-legacy-thunderpick-world-championship-2026-1081775",
+   "pick": "Legacy",
+   "prob_a_pct": 37.2,
+   "prob_b_pct": 62.8,
+   "own_prob_a_pct": 47.4,
+   "own_prob_b_pct": 52.6,
+   "market_odds_a": "2.50",
+   "market_odds_b": "1.48",
+   "market_captured_utc": "2026-10-16T01:37:51Z",
+   "market_prob_a_pct": 37.2,
+   "market_prob_b_pct": 62.8,
+   "basis_label": "Market \u00b7 secondary listing",
+   "basis_tier": "B \u00b7 relayed/secondary listing",
+   "series_format": "BO3",
+   "series_format_source": "https://bo3.gg/matches/legacy-br-vs-betboom-team-16-10-2026",
+   "limitations": [
+    "Headline number is a relayed/secondary listing price, not a direct bookmaker page read; it can lag the book it copies."
+   ],
+   "resolution": false,
+   "divergence": {
+    "side_a_pp": 10.2,
+    "side_b_pp": -10.2,
+    "value_side": "BetBoom",
+    "value_pp": 10.2,
+    "contradiction": true
+   },
+   "flags": [
+    "VP-F03 project line and market line disagree by 15pp or more"
+   ],
+   "source_urls": [
+    "https://www.hotspawn.com/matches/betboom-vs-legacy-thunderpick-world-championship-2026-1081775",
+    "https://bo3.gg/matches/legacy-br-vs-betboom-team-16-10-2026"
+   ]
+  },
+  {
    "match_id": "1080290",
    "status": "open",
    "team_a": "Phantom",
@@ -596,6 +791,88 @@
    "start_utc": "2026-10-16T18:00:00Z",
    "hotspawn_pickem_url": "https://play.hotspawn.com/cs2-pickems",
    "hotspawn_match_url": "https://www.hotspawn.com/matches/phantom-vs-havu-elisa-breakout-series-2-1080290",
+   "pick": "Phantom",
+   "prob_a_pct": 70.1,
+   "prob_b_pct": 29.9,
+   "own_prob_a_pct": 57.3,
+   "own_prob_b_pct": 42.7,
+   "market_odds_a": "1.32",
+   "market_odds_b": "3.10",
+   "market_captured_utc": "2026-10-16T01:37:51Z",
+   "market_prob_a_pct": 70.1,
+   "market_prob_b_pct": 29.9,
+   "basis_label": "Market \u00b7 secondary listing",
+   "basis_tier": "B \u00b7 relayed/secondary listing",
+   "series_format": "BO1",
+   "series_format_source": "https://bo3.gg/matches/phantom-esports-vs-havu-16-10-2026",
+   "limitations": [
+    "Headline number is a relayed/secondary listing price, not a direct bookmaker page read; it can lag the book it copies."
+   ],
+   "resolution": false,
+   "divergence": {
+    "side_a_pp": -12.8,
+    "side_b_pp": 12.8,
+    "value_side": "HAVU",
+    "value_pp": 12.8,
+    "contradiction": true
+   },
+   "flags": [],
+   "source_urls": [
+    "https://www.hotspawn.com/matches/phantom-vs-havu-elisa-breakout-series-2-1080290",
+    "https://bo3.gg/matches/phantom-esports-vs-havu-16-10-2026"
+   ]
+  },
+  {
+   "match_id": "1079170",
+   "status": "open",
+   "team_a": "BET-M",
+   "team_b": "Just Players",
+   "tournament": "NODWIN Clutch Series #13",
+   "tier": "B",
+   "lock_utc": "2026-10-17T07:54:00Z",
+   "start_utc": "2026-10-17T08:00:00Z",
+   "hotspawn_pickem_url": "https://play.hotspawn.com/cs2-pickems",
+   "hotspawn_match_url": "https://www.hotspawn.com/matches/bet-m-vs-just-players-nodwin-clutch-series-13-1079170",
+   "pick": "",
+   "prob_a_pct": null,
+   "prob_b_pct": null,
+   "own_prob_a_pct": null,
+   "own_prob_b_pct": null,
+   "market_odds_a": null,
+   "market_odds_b": null,
+   "market_captured_utc": "",
+   "market_prob_a_pct": null,
+   "market_prob_b_pct": null,
+   "basis_label": "No sourced basis",
+   "basis_tier": "E \u00b7 unresolved at top tier",
+   "series_format": "",
+   "series_format_source": "",
+   "limitations": [
+    "The capture holds no outside quote, no official rating pair and no sourced pick for this fixture, so no probability is published - the row is listed here so the gap is visible."
+   ],
+   "resolution": false,
+   "no_sourced_basis": true,
+   "divergence": null,
+   "flags": [
+    "VP-F01 no sourced basis in this capture: no outside quote, no rating pair and no sourced pick - the row is listed with its limitation, not picked",
+    "VP-F02 identity of a Hotspawn team name is not exact in the official source used for the ratings",
+    "VP-F05 no direct bookmaker quote is stored for this fixture"
+   ],
+   "source_urls": [
+    "https://www.hotspawn.com/matches/bet-m-vs-just-players-nodwin-clutch-series-13-1079170"
+   ]
+  },
+  {
+   "match_id": "1079171",
+   "status": "open",
+   "team_a": "GenOne",
+   "team_b": "Butterfly",
+   "tournament": "NODWIN Clutch Series #13",
+   "tier": "B",
+   "lock_utc": "2026-10-17T10:54:00Z",
+   "start_utc": "2026-10-17T11:00:00Z",
+   "hotspawn_pickem_url": "https://play.hotspawn.com/cs2-pickems",
+   "hotspawn_match_url": "https://www.hotspawn.com/matches/genone-vs-butterfly-nodwin-clutch-series-13-1079171",
    "pick": "",
    "prob_a_pct": null,
    "prob_b_pct": null,
@@ -621,7 +898,86 @@
     "VP-F05 no direct bookmaker quote is stored for this fixture"
    ],
    "source_urls": [
-    "https://www.hotspawn.com/matches/phantom-vs-havu-elisa-breakout-series-2-1080290"
+    "https://www.hotspawn.com/matches/genone-vs-butterfly-nodwin-clutch-series-13-1079171"
+   ]
+  },
+  {
+   "match_id": "1079173",
+   "status": "open",
+   "team_a": "BakS",
+   "team_b": "Fire Flux",
+   "tournament": "NODWIN Clutch Series #13",
+   "tier": "B",
+   "lock_utc": "2026-10-17T16:54:00Z",
+   "start_utc": "2026-10-17T17:00:00Z",
+   "hotspawn_pickem_url": "https://play.hotspawn.com/cs2-pickems",
+   "hotspawn_match_url": "https://www.hotspawn.com/matches/baks-vs-fire-flux-nodwin-clutch-series-13-1079173",
+   "pick": "",
+   "prob_a_pct": null,
+   "prob_b_pct": null,
+   "own_prob_a_pct": null,
+   "own_prob_b_pct": null,
+   "market_odds_a": null,
+   "market_odds_b": null,
+   "market_captured_utc": "",
+   "market_prob_a_pct": null,
+   "market_prob_b_pct": null,
+   "basis_label": "No sourced basis",
+   "basis_tier": "E \u00b7 unresolved at top tier",
+   "series_format": "",
+   "series_format_source": "",
+   "limitations": [
+    "The capture holds no outside quote, no official rating pair and no sourced pick for this fixture, so no probability is published - the row is listed here so the gap is visible."
+   ],
+   "resolution": false,
+   "no_sourced_basis": true,
+   "divergence": null,
+   "flags": [
+    "VP-F01 no sourced basis in this capture: no outside quote, no rating pair and no sourced pick - the row is listed with its limitation, not picked",
+    "VP-F05 no direct bookmaker quote is stored for this fixture"
+   ],
+   "source_urls": [
+    "https://www.hotspawn.com/matches/baks-vs-fire-flux-nodwin-clutch-series-13-1079173"
+   ]
+  },
+  {
+   "match_id": "1081126",
+   "status": "open",
+   "team_a": "Banda chuya",
+   "team_b": "Enjoy",
+   "tournament": "CCT Europe 2026 Series #12 Play-In",
+   "tier": "C",
+   "lock_utc": "2026-10-18T07:54:00Z",
+   "start_utc": "2026-10-18T08:00:00Z",
+   "hotspawn_pickem_url": "https://play.hotspawn.com/cs2-pickems",
+   "hotspawn_match_url": "https://www.hotspawn.com/matches/banda-chuya-vs-enjoy-cct-europe-2026-series-12-play-in-1081126",
+   "pick": "",
+   "prob_a_pct": null,
+   "prob_b_pct": null,
+   "own_prob_a_pct": null,
+   "own_prob_b_pct": null,
+   "market_odds_a": null,
+   "market_odds_b": null,
+   "market_captured_utc": "",
+   "market_prob_a_pct": null,
+   "market_prob_b_pct": null,
+   "basis_label": "No sourced basis",
+   "basis_tier": "E \u00b7 unresolved at top tier",
+   "series_format": "",
+   "series_format_source": "",
+   "limitations": [
+    "The capture holds no outside quote, no official rating pair and no sourced pick for this fixture, so no probability is published - the row is listed here so the gap is visible."
+   ],
+   "resolution": false,
+   "no_sourced_basis": true,
+   "divergence": null,
+   "flags": [
+    "VP-F01 no sourced basis in this capture: no outside quote, no rating pair and no sourced pick - the row is listed with its limitation, not picked",
+    "VP-F02 identity of a Hotspawn team name is not exact in the official source used for the ratings",
+    "VP-F05 no direct bookmaker quote is stored for this fixture"
+   ],
+   "source_urls": [
+    "https://www.hotspawn.com/matches/banda-chuya-vs-enjoy-cct-europe-2026-series-12-play-in-1081126"
    ]
   },
   {
@@ -674,33 +1030,37 @@
    "start_utc": "2026-10-19T09:00:00Z",
    "hotspawn_pickem_url": "https://play.hotspawn.com/cs2-pickems",
    "hotspawn_match_url": "",
-   "pick": "",
-   "prob_a_pct": null,
-   "prob_b_pct": null,
-   "own_prob_a_pct": null,
-   "own_prob_b_pct": null,
-   "market_odds_a": null,
-   "market_odds_b": null,
-   "market_captured_utc": "",
-   "market_prob_a_pct": null,
-   "market_prob_b_pct": null,
-   "basis_label": "No sourced basis",
-   "basis_tier": "E \u00b7 unresolved at top tier",
-   "series_format": "",
-   "series_format_source": "",
+   "pick": "BASEMENT BOYS",
+   "prob_a_pct": 45.3,
+   "prob_b_pct": 54.7,
+   "own_prob_a_pct": 49.0,
+   "own_prob_b_pct": 51.0,
+   "market_odds_a": "2.04",
+   "market_odds_b": "1.69",
+   "market_captured_utc": "2026-10-16T01:37:51Z",
+   "market_prob_a_pct": 45.3,
+   "market_prob_b_pct": 54.7,
+   "basis_label": "Market \u00b7 secondary listing",
+   "basis_tier": "B \u00b7 relayed/secondary listing",
+   "series_format": "BO1",
+   "series_format_source": "https://bo3.gg/matches/aimclub-vs-basement-boys-19-10-2026",
    "limitations": [
-    "The capture holds no outside quote, no official rating pair and no sourced pick for this fixture, so no probability is published - the row is listed here so the gap is visible."
+    "Headline number is a relayed/secondary listing price, not a direct bookmaker page read; it can lag the book it copies."
    ],
    "resolution": false,
-   "no_sourced_basis": true,
-   "divergence": null,
+   "divergence": {
+    "side_a_pp": 3.7,
+    "side_b_pp": -3.7,
+    "value_side": "aimclub",
+    "value_pp": 3.7,
+    "contradiction": true
+   },
    "flags": [
-    "VP-F01 no sourced basis in this capture: no outside quote, no rating pair and no sourced pick - the row is listed with its limitation, not picked",
-    "VP-F02 identity of a Hotspawn team name is not exact in the official source used for the ratings",
-    "VP-F05 no direct bookmaker quote is stored for this fixture"
+    "VP-F02 identity of a Hotspawn team name is not exact in the official source used for the ratings"
    ],
    "source_urls": [
-    "https://play.hotspawn.com/cs2-pickems"
+    "https://play.hotspawn.com/cs2-pickems",
+    "https://bo3.gg/matches/aimclub-vs-basement-boys-19-10-2026"
    ]
   },
   {
@@ -794,40 +1154,36 @@
    "hotspawn_pickem_url": "https://play.hotspawn.com/cs2-pickems",
    "hotspawn_match_url": "",
    "pick": "Iberian Soul",
-   "prob_a_pct": 67.5,
-   "prob_b_pct": 32.5,
-   "own_prob_a_pct": 91.6,
-   "own_prob_b_pct": 8.4,
-   "market_odds_a": 1.481481,
-   "market_odds_b": 3.076923,
-   "market_captured_utc": "2026-10-15T22:41:17Z",
-   "market_prob_a_pct": 67.5,
-   "market_prob_b_pct": 32.5,
-   "basis_label": "Polymarket (prediction market, stored refresh capture)",
-   "basis_tier": "C \u00b7 prediction market",
+   "prob_a_pct": 65.9,
+   "prob_b_pct": 34.1,
+   "own_prob_a_pct": 72.2,
+   "own_prob_b_pct": 27.8,
+   "market_odds_a": "1.40",
+   "market_odds_b": "2.70",
+   "market_captured_utc": "2026-10-16T01:37:51Z",
+   "market_prob_a_pct": 65.9,
+   "market_prob_b_pct": 34.1,
+   "basis_label": "Market \u00b7 secondary listing",
+   "basis_tier": "B \u00b7 relayed/secondary listing",
    "series_format": "BO1",
-   "series_format_source": "https://polymarket.com/event/cs2-is-hs2-2026-10-19",
+   "series_format_source": "https://bo3.gg/matches/iberian-soul-vs-hyperspirit-19-10-2026",
    "limitations": [
-    "Headline number is a prediction-market price, not a bookmaker line, and the market is thin.",
-    "Series format (Bo1) rests on the market title recorded in the project capture, not on an official match page.",
-    "Quote read 2026-10-15T22:41:17Z; the fixture locks 2026-10-19T10:39:00Z."
+    "Headline number is a relayed/secondary listing price, not a direct bookmaker page read; it can lag the book it copies."
    ],
-   "resolution_used": true,
+   "resolution": false,
    "divergence": {
-    "side_a_pp": 24.1,
-    "side_b_pp": -24.1,
+    "side_a_pp": 6.3,
+    "side_b_pp": -6.3,
     "value_side": "Iberian Soul",
-    "value_pp": 24.1,
+    "value_pp": 6.3,
     "contradiction": false
    },
    "flags": [
-    "VP-F03 project line and market line disagree by 15pp or more",
-    "VP-F06 row was resolved by this session's ladder from a stored/relayed quote; see valuepicks/unresolved.html"
+    "VP-F03 project line and market line disagree by 15pp or more"
    ],
    "source_urls": [
-    "https://polymarket.com/event/cs2-is-hs2-2026-10-19",
-    "https://polymarket.com/event/cs2-is-hs2-2026-10-19",
-    "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/executive/ownlines.py"
+    "https://play.hotspawn.com/cs2-pickems",
+    "https://bo3.gg/matches/iberian-soul-vs-hyperspirit-19-10-2026"
    ]
   },
   {
@@ -842,40 +1198,30 @@
    "hotspawn_pickem_url": "https://play.hotspawn.com/cs2-pickems",
    "hotspawn_match_url": "",
    "pick": "Sashi",
-   "prob_a_pct": 67.5,
-   "prob_b_pct": 32.5,
-   "own_prob_a_pct": 81.2,
-   "own_prob_b_pct": 18.8,
-   "market_odds_a": 1.481481,
-   "market_odds_b": 3.076923,
-   "market_captured_utc": "2026-10-15T22:41:17Z",
-   "market_prob_a_pct": 67.5,
-   "market_prob_b_pct": 32.5,
-   "basis_label": "Polymarket (prediction market, stored refresh capture)",
-   "basis_tier": "C \u00b7 prediction market",
+   "prob_a_pct": 62.8,
+   "prob_b_pct": 37.2,
+   "own_prob_a_pct": null,
+   "own_prob_b_pct": null,
+   "market_odds_a": "1.48",
+   "market_odds_b": "2.50",
+   "market_captured_utc": "2026-10-16T01:37:51Z",
+   "market_prob_a_pct": 62.8,
+   "market_prob_b_pct": 37.2,
+   "basis_label": "Market \u00b7 secondary listing",
+   "basis_tier": "B \u00b7 relayed/secondary listing",
    "series_format": "BO1",
-   "series_format_source": "https://polymarket.com/event/cs2-sashi-mouzn-2026-10-19",
+   "series_format_source": "https://bo3.gg/matches/sashi-esport-vs-mouz-nxt-19-10-2026",
    "limitations": [
-    "Headline number is a prediction-market price, not a bookmaker line.",
-    "Valve's official file lists two MOUZ NXT entries (#137, 877 points, roster ay0k/deeN/eSx/mixer/Nikodeon; #320, 534 points, roster AiyvaN/ay0k/Flierax/Nikodeon/opdust) with overlapping players, so the own line uses #137 and the identity is not independently confirmed - only the market price is relied on for the pick.",
-    "Series format (Bo1) rests on the market title recorded in the project capture; quote read 2026-10-15T22:41:17Z, lock 2026-10-19T10:39:00Z."
+    "Headline number is a relayed/secondary listing price, not a direct bookmaker page read; it can lag the book it copies."
    ],
-   "resolution_used": true,
-   "divergence": {
-    "side_a_pp": 13.7,
-    "side_b_pp": -13.7,
-    "value_side": "Sashi",
-    "value_pp": 13.7,
-    "contradiction": false
-   },
+   "resolution": false,
+   "divergence": null,
    "flags": [
-    "VP-F02 identity of a Hotspawn team name is not exact in the official source used for the ratings",
-    "VP-F06 row was resolved by this session's ladder from a stored/relayed quote; see valuepicks/unresolved.html"
+    "VP-F02 identity of a Hotspawn team name is not exact in the official source used for the ratings"
    ],
    "source_urls": [
-    "https://polymarket.com/event/cs2-sashi-mouzn-2026-10-19",
-    "https://polymarket.com/event/cs2-sashi-mouzn-2026-10-19",
-    "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/executive/ownlines.py"
+    "https://play.hotspawn.com/cs2-pickems",
+    "https://bo3.gg/matches/sashi-esport-vs-mouz-nxt-19-10-2026"
    ]
   },
   {

@@ -49,7 +49,7 @@ The notes below describe earlier sessions and their own capture times. Reference
 | Page | What it is |
 |---|---|
 | [All picks](https://buffedlizard55-lab.github.io/MaltaProj1/hotspawn/picks.html) | One phone card per open match: the pick, **both teams' win probabilities**, the basis, sources and read times |
-| [Leaderboard plan](https://buffedlizard55-lab.github.io/MaltaProj1/hotspawn/strategy.html) | Contrarian-but-not-reckless plays (crowd share used only as ownership) + TWC 2026 day-1 review + live grading |
+| [Leaderboard plan](https://buffedlizard55-lab.github.io/MaltaProj1/hotspawn/strategy.html) | Contrarian-but-not-reckless plays (crowd share used only as ownership) + [TWC 2026 day-2 review](https://buffedlizard55-lab.github.io/MaltaProj1/hotspawn/strategy.html#day2) (frozen pick vs HLTV result, 2/3 and 2/3) + day-1 review + live grading |
 | [Unresolved & limitations](https://buffedlizard55-lab.github.io/MaltaProj1/hotspawn/unresolved.html) | Research ladder HLTV → esportsbooks → betting lines, and the limits on every non-bookmaker pick |
 | [Flagged for Review](https://buffedlizard55-lab.github.io/MaltaProj1/hotspawn/flagged.html) | Irregularities and per-match flags with evidence |
 | [Method & sources](https://buffedlizard55-lab.github.io/MaltaProj1/hotspawn/method.html) | Probability ladder, de-vig, own-line calibration, every request with read time |

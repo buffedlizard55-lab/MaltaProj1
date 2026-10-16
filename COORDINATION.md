@@ -4857,3 +4857,182 @@ Removed the false generalization that any equal genuine odds must be a placehold
 
 Next: commit/pull with merges/push fixed branch; fresh strict collector plus final real-browser gate;
 then autonomous integration PR→main and live Pages verification. No approval/manual-input wait.
+
+
+## Session `arena/b6f5405d` — claim (2026-10-16, day-2 review follow-up)
+
+Fixed branch: `arena/b6f5405d-maltaproj1` (Arena constraint; no other branch). Read the board and every
+claim above before starting. Two sessions owned parts of this scope and are now **inactive**: `arena/71c4e4ab`
+claimed `HS-D2` — whose text explicitly includes a day-2 review *and* the day-3 Aurora–9z recommendation — and
+`arena/22be6967` owns the every-match board pipeline. Both merged (see PRs #151/#152 and the 2026-10-16 hotspawn
+refreshes on `main`). This session therefore records a **takeover, not a silent restart**:
+
+| ID | Task | Status | Owner | Files |
+|---|---|---|---|---|
+| B6-4 | Render the verified day-2 review (15 Oct) on the board pages, next to the day-1 review and the day-3 deciders, with every grade recomputed at build time | done | arena/b6f5405d | `hotspawn/build.py`, `hotspawn/tests.py`, regenerated `hotspawn/{index,picks,strategy,unresolved}.html` |
+| B6-5 | Exec-summary entry point: "Day 2 in one line" + in-site link to the full review, mobile-first | done | arena/b6f5405d | `hotspawn/build.py` (index page), `README.md` |
+| B6-6 | Verification record for this pass, with the pre-existing red checks identified and attributed | done | arena/b6f5405d | `reviews/b6f5405d-verification.md` |
+
+**Files this session does NOT edit:** `hotspawn/collect.py`, `hotspawn/calibrate.py`, `hotspawn/model.py`,
+`hotspawn/common.py`, `hotspawn/style.css`, `hotspawn/research/{day1,day2}_twc2026.json` (read-only: day-2+day-3
+research belongs to `71c4e4ab`/`22be6967`), every other board (`console/**`, `summary/**`, `valuepicks/**`,
+`executive/**`, `feeds/**`, `lexec/**`, `leaderboard/**`, `docs/**`, `site/**`, `data/**`, `scripts/**`) and other
+sessions' tests. The repo-wide suite regenerates `console/**` and `summary/**` when it runs; those artefacts were
+reverted, not committed.
+
+**Integration hand-offs (explicit):** root `index.html` — one nav link plus one quick-link card pointing at
+`hotspawn/strategy.html#day3` (same exception pattern `a6f05f99` and `71c4e4ab` logged); `.github/workflows/
+hotspawn-22be6967.yml` — no change needed, this session's branch is already in the `push` trigger list, so a live
+refresh could be verified before merge.
+
+**Known red on `main` (not this session's scope, logged for the reviewer):** `Landing and live-source evidence`
+(`landing-43c32386.yml`, run 38851473566) and `Verify evidence dashboard` (`verify.yml`) fail in their first step —
+the repo-wide `tests/` suite — with 2 failures + 2 errors outside `hotspawn/` (`test_7759beef` ×2, `test_457629c4`,
+and `test_4c4b0777` failing only in suite order). `O-01 own-line model (VRS)` (`model-91eff436.yml`) has failed on
+`main` since 2026-10-15T20:36Z; its own suite is 16/16 OK locally. All three predate this session and belong to
+their named sessions.
+
+## Session `arena/b6f5405d` — release record (2026-10-16)
+
+| Step | Result |
+|---|---|
+| PR | **#157** `TWC 2026 day-2 review published beside the day-1 and day-3 sections` → opened against `main`, merged (merge commit `ceab455`) |
+| Branch | `arena/b6f5405d-maltaproj1`; final branch head `d4ee481` (two main merges resolved by keeping the newest live board and re-rendering pages with this session's `build.py`) |
+| Live check before merge | `hotspawn-22be6967.yml` run **38852189528** on this branch: success, committed refresh `f3b29e6`; board `2026-10-16T04:45:09Z` — 31 open, 29 picked, 2 unresolved, rungs A 9 / B 18 / C 2 / D 2 |
+| Tests | `hotspawn/tests.py` **37 OK** (31 before, +6 day-2 invariants); landing contract untouched (root `index.html` not modified in this pass) |
+| Pages | `pages build and deployment` on `main` succeeded after the merge; live verification read `hotspawn/index.html` at 2026-10-16T04:5xZ: "Day 2 in one line — frozen pre-lock picks went **2/3** and the leaderboard plan **2/3** (Aurora vs Ninjas in Pyjamas had no frozen pick)" with the in-site link `strategy.html#day2`, and the day-3 decider table with Aurora 67% (rung A, SITUATIONAL 9z) and Legacy 66% |
+| Flagged items | 2 open fixtures still have no pick and stay explicitly unresolved with reasons and the HLTV research trail (`1079170` BET-M vs Just Players, `1081126` Banda chuya vs Enjoy — one side each is absent from Valve's standings and neither has a Pinnacle/Polymarket price). Pre-existing red on `main`, not this session's scope: `Landing and live-source evidence`, `Verify evidence dashboard` (repo-wide `tests/` suite: 2 failures + 2 errors outside `hotspawn/`) and `O-01 own-line model (VRS)` |
+| Sources | `reviews/b6f5405d-verification.md` — every fact with link and read time; HLTV page clocks are viewer-local, the board's UTC times come from Hotspawn's payload and Polymarket's API |
+
+Public routes changed by this session: `hotspawn/strategy.html#day2` (new day-2 review, 4 series with HLTV links, recomputed grades), `hotspawn/index.html` ("Day 2 in one line" + link), `hotspawn/strategy.html#day3` (day-3 deciders, unchanged this pass but re-verified).
+
+---
+
+## Session `arena/f323b4a7` — claim (2026-10-16 04:20 UTC)
+
+Branch: `arena/f323b4a7-maltaproj1` (fixed by Arena). Session ID `f323b4a7`.
+
+Board read before claiming: all 4,531 lines of `COORDINATION.md` (section index + the last three
+sessions in full), `git log`, `gh pr list`, `gh run list`. Most recent human session is
+`a6f05f99` (PR #152 merged 2026-10-15 23:24Z). No open PR claims the scope below.
+
+**Why this scope is not a duplicate.** `hotspawn/**` is owned by `22be6967` (done) plus its
+three-hour collector; `a6f05f99/**` is a parallel board on a 2026-10-15T22:41Z capture. Both are
+built on the **86-fixture** TransferState capture. The live lobby read at
+**2026-10-16T04:18Z lists 95 CS2 fixtures** ("All tiers (95)", "123 matches this week" vs "111"
+in the capture), i.e. **9 fixtures that neither board covers**, and the market snapshot both use
+is 5.5 h old with the day-3 locks starting at 07:54Z. This session therefore claims the *live
+day-3* refresh in its own namespace and touches no other session's files.
+
+| ID | Task | Status | Exclusive file scope |
+|----|------|--------|----------------------|
+| F3-1 | Live re-read of all three Hotspawn CS2 surfaces; derive exact UTC start/lock for the 9 new fixtures with a documented, verified rule (display = UTC-4, lock = start - 360 s) | done | `f323b4a7/data/sources.json`, `f323b4a7/data/archived_fixtures.json`, `f323b4a7/prep_sources.py` |
+| F3-2 | Originate a pick + both probabilities for **all 31 open fixtures** (95 listed, 64 locked/stale): Pinnacle devig → Polymarket → own line on Valve points (k = 0.4598) → explicit unresolved rung | done | `f323b4a7/model.py`, `f323b4a7/data/picks.csv`, `f323b4a7/data/board.json`, `f323b4a7/data/summary.json` |
+| F3-3 | Unresolved register + per-row limitations, summarised inside the executive summary | done | `f323b4a7/unresolved.html`, `f323b4a7/data/unresolved.csv` |
+| F3-4 | TWC 2026 day-1/day-2 review (every result with its HLTV link) and the day-3 guide (Aurora–9z, BetBoom–Legacy, group tables, playoff path, contrarian rule) | done | `f323b4a7/research.py`, `f323b4a7/review.html`, `f323b4a7/day3.html` |
+| F3-5 | Mobile-first executive summary with in-site links to the picks list, day-3 guide, review, unresolved register, inventory, flagged page and methodology | done | `f323b4a7/index.html`, `f323b4a7/*.html`, `f323b4a7/style.css`, `f323b4a7/build.py` |
+| F3-6 | 4-hourly unattended refresh (collect → model → build → invariants → phone check → commit), fail-closed | done | `f323b4a7/collect.py`, `f323b4a7/tests.py`, `f323b4a7/mobile_check.py`, `.github/workflows/f323b4a7.yml` |
+| F3-7 | Line-by-line verification record with official links + flagged irregularities | done | `reviews/f323b4a7-verification.md`, `f323b4a7/flagged.html` |
+| F3-8 | Integration hand-off: one additive link block on the root landing so the board is reachable from the phone landing page | done | root `index.html` (additive only — one nav link + one card + two inline links; no existing markup changed) |
+
+**Files this session will NOT edit:** `hotspawn/**`, `a6f05f99/**`, `leaderboard/**`,
+`valuepicks/**`, `console/**`, `docs/**`, `site/**`, `executive/**`, `matchpicks/**`,
+`summary/**`, root `data/**`, `scripts/**`, `tests/test_*.py`, and every other session's workflow.
+
+### Log — arena/f323b4a7 (2026-10-16 04:18–04:40 UTC)
+
+- **04:18Z** live read of `https://play.hotspawn.com/lobby`: "123 matches this week",
+  CS2 filter "All tiers (95)"; tier split B 38 / C 54 / S 3 across 18 tournaments.
+  Sum of the per-tournament counts = 95, matching the tier filter exactly.
+- **Fixture delta computed, not guessed.** The 2026-10-15T22:41:15Z TransferState capture in
+  `hotspawn/data/raw/hotspawn_state_lobby.json.gz` holds 86 fixtures. Tournament-by-tournament
+  diff gives exactly **9 additions**: NODWIN Clutch Series #13 ×5 (1079167, 1079170, 1079171,
+  1079173, 1081769), Stake Pulse Beat III ×2 (1079588, 1081712), Thunderpick World Championship
+  ×1 (1081775 BetBoom–Legacy), CCT Europe 2026 Series #12 Play-In ×1 (1081126). 86 + 9 = 95.
+- **Time derivation verified before use.** `lock_offset_sec == 360` for all 86 captured fixtures
+  (rule R2). The rendered kick-off equals UTC − 4 h (rule R1), cross-checked on six captured
+  fixtures (1079586 08:00Z → "Oct 16, 04:00"; 1080205 14:00Z → "Oct 16, 10:00"; 1081526
+  2026-10-19T09:00Z → "Oct 19, 05:00"; 1081529/1081530/1081531) and then independently confirmed
+  by HLTV: match 2399412 Aurora–9z is displayed "10:00" and Polymarket's `gameStartTime` for the
+  same market is `2026-10-16 14:00:00+00`; HLTV displays BetBoom–Legacy "13:00", so 17:00Z.
+- **31 open fixtures, 31 picks, 0 unresolved.** Rungs: Pinnacle 6, Polymarket 17, own line 8.
+  No fixture needed the unresolved rung, because every team in the open set is present in Valve's
+  2026-10-05 global standings once the repo's *verified* aliases are applied
+  (`RoundsGG→ROUNDS`, `WROTBERRY→WBT`) and generic words are dropped (`Team Liquid→Liquid`).
+  Per-row flags: NO_MARKET 8, FORMAT_UNKNOWN 9, MODEL_MARKET_SPLIT 6, COIN_FLIP 4.
+  Leaderboard classes: VALUE 7, CONTRARIAN 7, SITUATIONAL 5, LONG SHOT 3, CHALK 9.
+- **Live re-read** of Polymarket for 1080205 (Aurora–9z): `outcomePrices ["0.695","0.305"]`,
+  `updatedAt 2026-10-16T04:23:06.938887Z` — replaces the 22:41Z snapshot value of 0.685/0.315.
+- **Day-1/day-2 results verified against HLTV** (event 8932 bracket, match links 2399384, 2399386,
+  2399387, 2399408–2399413, news 45718/45723/45724/45728/45729/45730) plus the repository's own
+  HLTV-verified capture `hotspawn/research/results.json` (read 2026-10-15T22:30:54Z).
+- **Roster claim corrected.** The brief calls Aurora's roster change "recent". It is a
+  **2026-07-08/09** rebuild (kyxsan IGL, Jimpphat, coach ash) — three months old — and Valve's
+  2026-10-05 standings already score that exact five (Aurora #9, 1716 pts), so no roster adjustment
+  is applied. Published as irregularity F-01 rather than silently used as an edge.
+- **Live collector proven on GitHub Actions** (run 38851478755, success): Hotspawn 95 fixtures from
+  3 pages, Pinnacle 47 matchups / 847 markets, Polymarket 159 markets, HLTV 245 team links; the
+  Valve-standings step failed on a path bug (`contents/live` lists year directories, not files) and
+  was fixed the same session. That run also surfaced a Polymarket price for BetBoom–Legacy
+  (`cs2-lgc-bb3-2026-10-16`, 0.655 Legacy, `updatedAt 2026-10-16T04:35:07Z`), which is now in the
+  board. **Join safety verified by hand:** that market lists the teams in the opposite order to
+  Hotspawn; the join keys on normalised team names, not position, so the price is attached to the
+  right side, and markets more than 30 h from the fixture's lock time are rejected.
+- **Checks:** `f323b4a7/tests.py` 31/31 rows pass (pick = higher-probability side, probabilities
+  sum to 1, rung labelled, Hotspawn link present, all 8 pages have a viewport tag and no broken
+  local links); `f323b4a7/mobile_check.py` pass at 390 px. Full repo suite: 405 tests, **3
+  pre-existing failures** reproduced on the untouched `main` tree (`test_457629c4`
+  determinism error, two `test_7759beef` board tests) — not caused by this session.
+  `tests/test_landing_43c32386.py` passes unchanged after the additive root link block.
+
+**Rebase & release (2026-10-16T04:5xZ):** rebased this session's six commits onto `origin/main`
+(which had moved to `2c62d32`, PR #159) and resolved the one conflict, in `COORDINATION.md`, by
+keeping **both** sessions' appended sections. The conflict was purely additive — another session's
+claim block and this one's log sit at the same place in the append-only file — so nothing was
+overwritten. Root `index.html` auto-merged: this session's `f323b4a7/index.html` link block and the
+newer `b6f5405d` day-3 links are both present. `f323b4a7/tests.py` (31/31 rows, 8 pages),
+`f323b4a7/mobile_check.py` (390 px) and `tests/test_landing_43c32386.py` (4/4) re-run green on the
+rebased tree. PR #158 is `MERGEABLE / CLEAN` and is being merged without waiting for review, as
+requested; the three pre-existing `verify.yml` failures are unrelated and documented above.
+
+**Follow-up (after PR #158 merged as `f4344c2`):** the live collector re-ran on `main` (run
+38853116008, commit `3b66dd7`) and priced more fixtures again — rungs moved to **A 0 / B 23 / C 8**,
+flags to **NO_MARKET 8, FORMAT_UNKNOWN 9, MODEL_MARKET_SPLIT 8, COIN_FLIP 5**. Two numbers in the
+executive summary were still hardcoded (`and 4 are coin-flips`, `the 28 rows whose series length no
+source states`) and no longer matched the board, which is exactly the drift this board is supposed to
+avoid. `f323b4a7/build.py` now derives both counts from the row set, so the sentence can never
+disagree with the data it renders. The branch was also rebuilt on `origin/main` with the intermediate
+bot refresh commits dropped — they only rewrite `f323b4a7/data/**` and `f323b4a7/*.html`, and the
+4-hourly run regenerates them anyway, so keeping them only made the history conflict-prone.
+
+### FI second concurrent-main disposition — 2026-10-16 05:14 UTC
+
+Final browser run **38853646824** on3ac755b succeeded; bot551b47a contains a new **05:02:02Z** capture,
+95/31/29 with9A/18B/2C/2D, and **27/27 real Chromium cases**, including actual positive/negative search,
+reset and tier filtering. Before merging PR161, main advanced again through PR158/159/160 and their
+scheduled collectors. Stopped for the conflict instead of masking it; merged incoming a9eb0c6 explicitly
+while preserving both complete coordination blocks and all new f323b4a7 files/workflow/review.
+
+**37 conflicts resolved by source disposition:** retained the newer validated strict551b47a primary
+capture/raw/history (all three frozen historical records identical to incoming); integrated b6f5405d's
+new recomputed day-2 scorecard + all6 tests, with chronological day1/day2/day3 and corrected map-score
+orientation. New day-3 schedule references use the current epoch-derived rows, not an old second price.
+Preserved incoming newer executive raw inputs and rebuilt with the retained coin-flip counter fix;
+regenerated console/livelines/valuepicks dependents. The f323b4a7 alternative is reachable inside the
+folded alternatives, with no second competing primary nav item or hardcoded promoted coverage claim.
+
+Fresh incoming executive data has95 fixtures rather than86, so the old dependent valuepicks output
+was stale: rebuilt it to16/31 with15 honest blanks. Its test also incorrectly required at least one
+manual resolution to remain in use after the live collector had legitimately superseded all of them.
+Retained every stored-odds check, added an in-memory positive/precedence regression, and explicitly
+allow zero published manual resolutions when all are superseded. **425 root tests pass;66 primary
+invariants pass;95/95 row audit,0 errors;281 HTML/6,639 local links/0 errors.**
+
+Narrow integration takeover (prior human executive claim >60min inactive):
+`.github/workflows/executive-5545dbb8.yml` now rebuilds/tests/publishes its dependent console/livelines/
+valuepicks views from the same capture, and rechecks after rebase. Without this, the next unattended
+executive refresh reintroduces the exact stale-dependent CI failure just repaired. Added only this
+fixed branch for pre-merge workflow verification. Other owners' source logic and four-hour schedule
+retained. Requested final-integration exclusivity again for shared nav/outputs while PR161 is in flight.
+The new day-2 integration requires another mandatory primary mobile run; no pass on those new edits
+is claimed yet. Build/site failures block merge; research limitations remain explicit and nonblocking.

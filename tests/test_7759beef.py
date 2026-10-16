@@ -1,7 +1,7 @@
 """Acceptance checks for the valuepicks board (session arena/7759beef).
 
 These tests recompute every published number from stored inputs. They fail the build if a page
-disagrees with its data, if a pick is missing for an open fixture, if a market probability does not
+disagrees with its data, if an open fixture disappears or is unpriced without a flag, if a market probability does not
 de-vig from the stored odds, if an own line does not recompute from the stored rating inputs, or if a
 row has no source link. Hotspawn's crowd percentage must never appear as a probability input.
 """
@@ -98,7 +98,28 @@ class ValuePicksBoardTests(unittest.TestCase):
             row = next(r for r in self.rows if r["match_id"] == res["match_id"])
             if not row.get("resolution_used"):
                 self.assertTrue(row["pick"], f"{res['match_id']}: resolution skipped without a pick")
-        self.assertGreaterEqual(checked, 1, "expected at least one ladder-resolved row")
+        # A fresh collector may legitimately supersede EVERY manual resolution. Still verify all
+        # stored quote arithmetic, even when none of those old pairs is the published basis.
+        self.assertEqual(checked,sum(bool(r.get("resolution_used")) for r in self.rows))
+        self.assertTrue(self.sources["resolutions"])
+        for res in self.sources["resolutions"]:
+            market=res["market"]
+            self.assertEqual((market["prob_a_pct"],market["prob_b_pct"]),BUILD.devig(market["odds_a"],market["odds_b"]))
+
+    def test_manual_resolution_and_fresher_executive_precedence_in_memory(self):
+        # Exercise both paths even when today's real feed prices every manually researched fixture.
+        # These are in-memory test mutations only, never newly published prices or picks.
+        res=self.sources["resolutions"][0]
+        original=next((r for r in self.exec_rows if r["match_id"]==res["match_id"]),self.exec_rows[0])
+        unpriced={**original,"status":"open","match_id":res["match_id"],"team_a":res["hotspawn_team_a"],"team_b":res["hotspawn_team_b"],"pick":"","prob_a_pct":"","prob_b_pct":""}
+        resolved=BUILD.build_board([unpriced],self.sources)[0][0]
+        self.assertTrue(resolved["resolution_used"])
+        self.assertEqual((resolved["prob_a_pct"],resolved["prob_b_pct"]),BUILD.devig(res["market"]["odds_a"],res["market"]["odds_b"]))
+        named={**unpriced,"pick":unpriced["team_a"],"prob_a_pct":"60.0","prob_b_pct":"40.0"}
+        superseded=BUILD.build_board([named],self.sources)[0][0]
+        self.assertFalse(superseded.get("resolution_used",False))
+        self.assertEqual(superseded["pick"],named["pick"])
+        self.assertEqual(superseded["prob_a_pct"],60.0)
 
     def test_own_lines_recompute_from_official_rating_inputs(self):
         checked = 0
