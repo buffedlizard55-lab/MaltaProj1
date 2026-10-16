@@ -51,3 +51,13 @@ The bo3 API's internal-provider-ID schema is now retained instead of silently dr
 - Earlier run 38956246162 **failed** on an overly broad historical-test section slice that included the newly inserted market-watch percentages. Fixed the section boundary; later green run above supersedes it. No failed build was merged.
 
 Public Pages/PR receipt follows in COORDINATION.md after release. These checks verify code, stored input reconciliation and layout; they do not certify all historical dashboards' factual claims or guarantee a future win.
+
+
+## Release candidate receipt — 4061d8f1
+
+- PR: https://github.com/buffedlizard55-lab/MaltaProj1/pull/177 (release candidate; merge/deployment receipt to follow).
+- Final source+real-browser refresh: https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38956767531 — **success**, published bot commit 3597846; capture 2026-10-16T19:41:41Z, 83 fixtures / 16 open / 16 picks / zero unresolved captured open fixtures. 83/83 row reconciliation, 83 primary tests; real Chromium at 360/390/768 px passed. Earlier refresh 38956504140 also succeeded.
+- Combined branch broad discovery: **427 passed**, side effects to legacy generated outputs restored. Final captured-snapshot link audit: 281 HTML pages / 6570 local links / **zero broken files or fragments**. Link totals vary as capture flags/source lists change.
+- HLTV event results re-read during release checks: still only Aurora–9z completed on Day 3; no BetBoom–Legacy final winner invented. Dated partial bracket remains disclosed.
+- All unresolved evidence flags remain nonblocking and published. Complete coverage of the observed 16-match slate is not a claim of complete live inventory: empty TWC surface and differing source surfaces remain flagged.
+- The refresh bot's [skip ci] output advances the PR head without PR checks. This documentation receipt deliberately triggers fresh PR checks on the final generated snapshot before merge; it does not trigger another source refresh.

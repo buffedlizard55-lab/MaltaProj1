@@ -5332,3 +5332,13 @@ Full repository discovery found a pre-existing real-clock crash in the archived 
 4061d8f1 concurrent-refresh reconciliation: `git pull --rebase origin main` encountered generated-file conflicts from main refresh 38956238613. Stopped and aborted the rebase without discarding work, then merged main on the fixed session branch (avoids rewriting the already-published branch). Preserved main's independent briefing/leaderboard updates. Primary input choice: coherent session capture at 19:37:57Z over main's 19:37:23Z, including raw files/calibration; pick-history union preserves every ID and asserts identical frozen forecast fields. Rebuilt derived pages/data, 83/83 row audit and 83 tests pass. No hand-written competing source edits were lost.
 
 A second pull found the already-running session refresh 38956504140 had published while integration ran. Again stopped/aborted the conflicting rebase, merged the bot tip instead, retained the later successful capture and unioned immutable history, then regenerated with the current code. This preserves both parent histories without force-pushing. No duplicate session task was started.
+
+
+## Release candidate receipt — 4061d8f1
+
+- PR: https://github.com/buffedlizard55-lab/MaltaProj1/pull/177 (release candidate; merge/deployment receipt to follow).
+- Final source+real-browser refresh: https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38956767531 — **success**, published bot commit 3597846; capture 2026-10-16T19:41:41Z, 83 fixtures / 16 open / 16 picks / zero unresolved captured open fixtures. 83/83 row reconciliation, 83 primary tests; real Chromium at 360/390/768 px passed. Earlier refresh 38956504140 also succeeded.
+- Combined branch broad discovery: **427 passed**, side effects to legacy generated outputs restored. Final captured-snapshot link audit: 281 HTML pages / 6570 local links / **zero broken files or fragments**. Link totals vary as capture flags/source lists change.
+- HLTV event results re-read during release checks: still only Aurora–9z completed on Day 3; no BetBoom–Legacy final winner invented. Dated partial bracket remains disclosed.
+- All unresolved evidence flags remain nonblocking and published. Complete coverage of the observed 16-match slate is not a claim of complete live inventory: empty TWC surface and differing source surfaces remain flagged.
+- The refresh bot's [skip ci] output advances the PR head without PR checks. This documentation receipt deliberately triggers fresh PR checks on the final generated snapshot before merge; it does not trigger another source refresh.
