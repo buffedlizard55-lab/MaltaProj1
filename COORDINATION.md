@@ -5314,3 +5314,31 @@ All test and verification suites passed with zero errors:
 - GitHub Pages: `pages build and deployment` run **38873063220 → success** (earlier runs superseded/cancelled by the refresh workflow's commits — normal single-deploy behaviour).
 - Live confirmation (fetched 2026-10-16T09:2xZ): https://buffedlizard55-lab.github.io/MaltaProj1/hotspawn/index.html serves the 08:16Z snapshot — "39 open matches · 38 with a pick · 27 via research ladder · 1 without a pick", day-3 plan copy, picks/TWC/leaderboard/unresolved/flagged links all live.
 - Live workflow runs on the branch (both green, incl. real-browser phone check): 38869789949, 38872540390. Board refresh on main post-merge also scheduled (every 4h).
+
+## Session arena/4061d8f1 — 2026-10-16 19:30 UTC
+
+| Task | Status | Owner | File scope |
+|---|---|---|---|
+| Maintain primary board: day-3 results/day-4 research, source verification, every-match fallback audit; no new competing dashboard | in progress | arena/4061d8f1 | `hotspawn/**`, `reviews/4061d8f1-verification.md` |
+| Final integration: simple root navigation to maintained picks, verify/build, PR/merge/Pages | in progress | arena/4061d8f1 | `index.html`, `.github/workflows/hotspawn-22be6967.yml`, this append-only log |
+
+Handoff: primary-board owners 6b23e38f/83090640 have completion/merge receipts; last logged maintenance is over 60 minutes old. No open PR touches this scope (open PR132 root integration is historical; retain existing archive links). This session maintains the existing primary, not another parallel site. Fixed Arena branch is `arena/4061d8f1-maltaproj1`. Live HLTV event and Hotspawn lobby re-read using fetch tool at session start; event bracket already shows Aurora advanced, so prior day-3 prediction copy needs updating. Full source research and actual workflow receipts will be logged; no unverified scores or probabilities filled in.
+
+### 4061d8f1 — integration blocker scope extension, 19:38 UTC
+Full repository discovery found a pre-existing real-clock crash in the archived `livelines/build.py`: when no same-day open calibration samples remain, `fit_scale()` correctly returns `fitted=false`, but main unconditionally indexes missing `logloss_alternative`. Claim narrow maintenance of `livelines/build.py` and `livelines/tests.py` (prior owner maintenance is over 60 minutes old; no open PR touches them) to fix the empty-calibration crash and test it. No historical observations or model inputs will be edited. Generated `livelines/` and `summary/` test side effects are restored, not published. Day-4 primary tests exposed an overly broad day-2 HTML test slice; repaired to end at the new day-4 section, with 82 primary tests passing. Failed run 38956246162 is retained as a failed receipt; never claimed green.
+
+4061d8f1 final-link integration: 281-page repository audit found 21 broken fragments, all from the dated `hotspawn/release-audit.html` linking matches that have left the current picks page. Historical source links are retained; stale card fragments now link to the current list with an explicit historical notice. Claim `scripts/audit_4c4b0777.py` for the same narrow template correction so a later rebuild cannot reintroduce the defects (no active owner/open PR touches it). Empty-calibration repair now passes the full 427-test discovery and 14 direct livelines tests from the original snapshot; its generated test side effects are restored.
+
+4061d8f1 concurrent-refresh reconciliation: `git pull --rebase origin main` encountered generated-file conflicts from main refresh 38956238613. Stopped and aborted the rebase without discarding work, then merged main on the fixed session branch (avoids rewriting the already-published branch). Preserved main's independent briefing/leaderboard updates. Primary input choice: coherent session capture at 19:37:57Z over main's 19:37:23Z, including raw files/calibration; pick-history union preserves every ID and asserts identical frozen forecast fields. Rebuilt derived pages/data, 83/83 row audit and 83 tests pass. No hand-written competing source edits were lost.
+
+A second pull found the already-running session refresh 38956504140 had published while integration ran. Again stopped/aborted the conflicting rebase, merged the bot tip instead, retained the later successful capture and unioned immutable history, then regenerated with the current code. This preserves both parent histories without force-pushing. No duplicate session task was started.
+
+
+## Release candidate receipt — 4061d8f1
+
+- PR: https://github.com/buffedlizard55-lab/MaltaProj1/pull/177 (release candidate; merge/deployment receipt to follow).
+- Final source+real-browser refresh: https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38956767531 — **success**, published bot commit 3597846; capture 2026-10-16T19:41:41Z, 83 fixtures / 16 open / 16 picks / zero unresolved captured open fixtures. 83/83 row reconciliation, 83 primary tests; real Chromium at 360/390/768 px passed. Earlier refresh 38956504140 also succeeded.
+- Combined branch broad discovery: **427 passed**, side effects to legacy generated outputs restored. Final captured-snapshot link audit: 281 HTML pages / 6570 local links / **zero broken files or fragments**. Link totals vary as capture flags/source lists change.
+- HLTV event results re-read during release checks: still only Aurora–9z completed on Day 3; no BetBoom–Legacy final winner invented. Dated partial bracket remains disclosed.
+- All unresolved evidence flags remain nonblocking and published. Complete coverage of the observed 16-match slate is not a claim of complete live inventory: empty TWC surface and differing source surfaces remain flagged.
+- The refresh bot's [skip ci] output advances the PR head without PR checks. This documentation receipt deliberately triggers fresh PR checks on the final generated snapshot before merge; it does not trigger another source refresh.

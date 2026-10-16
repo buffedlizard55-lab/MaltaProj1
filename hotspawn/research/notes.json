@@ -1,5 +1,5 @@
 {
- "about": "Source-linked context, not probability inputs. July Aurora signing and eight TWC results were checked in this integration; PARIVISION signing, NIP/Legacy/FURIA preview and Voca–Phantom analytics were independently re-read on 16 October. Exact HTTP completion clocks were not captured; known checked dates are recorded instead. Only strong/moderate verified factors can inform the strategy. Match-specific claims are restricted to their fixture; unconfirmed later lineups stay blank and withhold the own line, never invent a stand-in. No current health/travel/fatigue adjustment is inferred.",
+ "about": "Source-linked context, not probability inputs. July Aurora signing and eight TWC results were checked in this integration; PARIVISION signing, NIP/Legacy/FURIA preview and Voca\u2013Phantom analytics were independently re-read on 16 October. Exact HTTP completion clocks were not captured; known checked dates are recorded instead. Only strong/moderate verified factors can inform the strategy. Match-specific claims are restricted to their fixture; unconfirmed later lineups stay blank and withhold the own line, never invent a stand-in. No current health/travel/fatigue adjustment is inferred.",
  "notes": [
   {
    "team": "aurora",
@@ -102,7 +102,7 @@
    "team": "phantom",
    "kind": "stand-in",
    "risk_for": "phantom",
-   "summary": "The HLTV analytics summary for Voca–Phantom on 16 October names cej0t as a stand-in for Kunai. This is a claim about this specific fixture, not proof of Phantom's lineup in its later RoundsGG/HAVU matches. No displayed header percentage or placeholder odds are used.",
+   "summary": "The HLTV analytics summary for Voca\u2013Phantom on 16 October names cej0t as a stand-in for Kunai. This is a claim about this specific fixture, not proof of Phantom's lineup in its later RoundsGG/HAVU matches. No displayed header percentage or placeholder odds are used.",
    "as_of": "2026-10-16",
    "relevant_until": "2026-10-18",
    "source_urls": [
@@ -160,6 +160,31 @@
    "players_out": [],
    "withhold_own_line": true,
    "limitation": "The earlier match-specific stand-in report does not establish the lineup in these later matches. Current factual lineup left blank."
+  },
+  {
+   "team": "aimclub",
+   "kind": "match lineup differs from dated Valve roster",
+   "risk_for": "neutral",
+   "summary": "HLTV 2399591 lists ragga, waZz, mhN1, zewts, XELLOW. Valve 5 October lists two aimclub rosters: rank 77 shares four (ERSIN instead of XELLOW); rank 336 shares two. Identity can be narrowed, but neither is the exact listed five. Strict own line remains withheld; no numeric roster penalty is invented.",
+   "match_ids": [
+    "1081527"
+   ],
+   "as_of": "2026-10-16",
+   "relevant_until": "2026-10-19",
+   "strength": "weak",
+   "players_in": [
+    "XELLOW"
+   ],
+   "players_out": [
+    "ERSIN"
+   ],
+   "verification_status": "verified",
+   "checked_date_utc": "2026-10-16",
+   "withhold_own_line": true,
+   "source_urls": [
+    "https://www.hltv.org/matches/2399591/aimclub-vs-basement-boys-digital-crusade-draculan-season-7",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+   ]
   }
  ]
 }

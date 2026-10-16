@@ -25,7 +25,7 @@ from common import (Aliases, devig_two_way, norm_name, normalise_prices, own_lin
 BOARD = read_json(HERE / "data" / "board.json", {}) or {}
 ROWS = BOARD.get("rows", [])
 OPEN = [r for r in ROWS if r.get("status") == "open"]
-PAGES = ["index.html", "picks.html", "twc.html", "strategy.html", "unresolved.html", "flagged.html", "all.html", "method.html"]
+PAGES = ["index.html", "picks.html", "twc.html", "strategy.html", "unresolved.html", "flagged.html", "all.html", "method.html", "release-audit.html"]
 
 DAY3 = read_json(HERE / "research" / "day3_twc2026.json", {}) or {}
 DAY3_ROWS = {r.get("match_id"):r for r in ROWS}
@@ -222,7 +222,7 @@ class Sources(unittest.TestCase):
         for n in read_json(HERE / "research" / "notes.json")["notes"]:
             self.assertIn(n.get("strength"), ("strong", "moderate", "weak"), n["team"])
             self.assertTrue(n.get("source_urls") and (n.get("read_utc") or n.get("checked_date_utc")), n["team"])
-            self.assertTrue(all("hltv.org" in u for u in n["source_urls"]), n["team"])
+            self.assertTrue(all(urlparse(u).hostname == "www.hltv.org" or u.startswith("https://github.com/ValveSoftware/counter-strike_regional_standings/") for u in n["source_urls"]), n["team"])
         for i in read_json(HERE / "research" / "irregularities.json")["items"]:
             self.assertTrue(i.get("evidence"), i["id"])
 
@@ -763,7 +763,7 @@ class Day2(unittest.TestCase):
 
     def section(self) -> str:
         page = self.strategy()
-        return page[page.index('id="day2"'):page.index('id="day3"')]
+        return page[page.index('id="day2"'):page.index('<section aria-labelledby="day4">')]
 
     def test_review_is_rendered_between_the_day1_and_day3_sections(self):
         index = (HERE / "index.html").read_text(encoding="utf-8")
@@ -831,6 +831,82 @@ class Day2(unittest.TestCase):
         self.assertTrue(printed)
         self.assertEqual(printed - allowed, set(), "the review printed a percentage that is not in the raw research file")
         self.assertIn("recomputed here", section)
+
+
+
+class DayFourMaintenance(unittest.TestCase):
+    def test_numeric_provider_retained_without_guessing_name(self):
+        m = {
+            'status': 'upcoming', 'discipline_id': 1, 'id': 1, 'slug': 'unit',
+            'team1': {'name': 'Test A'}, 'team2': {'name': 'Test B'},
+            'bet_updates': {'bet_provider_id': 39, 'path': 'https://example.com/unit',
+                'team_1': {'name': 'Test A', 'coeff': 2.04, 'active': True},
+                'team_2': {'name': 'Test B', 'coeff': 1.69, 'active': True}}}
+        q = collect.parse_bo3_match(m, '2026-10-16T19:00:00Z', 'https://example.com/unit')['quote']
+        self.assertIsNone(q['provider'])
+        self.assertEqual(q['provider_id'], 39)
+        self.assertFalse(q['provider_verified'])
+        for bad in (0, -1, True, '39', None):
+            m['bet_updates']['bet_provider_id'] = bad
+            self.assertIsNone(collect.parse_bo3_match(m, '2026-10-16T19:00:00Z', 'https://example.com/unit')['quote'])
+
+    def test_unverified_operator_never_triggers_contrarian_fade(self):
+        r = {'team_a':'A','team_b':'B','pick':'A','p_a':.55,'p_b':.45,
+             'crowd_a':99,'crowd_b':1,'total_picks':100,'flags':['BOOKMAKER_UNVERIFIED']}
+        plan = model.strategy(r)
+        self.assertEqual(plan['class'], 'EVIDENCE LIMITED')
+        self.assertEqual(plan['leaderboard_pick'], 'A')
+
+    def test_day4_rows_are_dynamic_main_event_open_only(self):
+        from twc_watch import day4_rows
+        row = {'match_id':'new-id','status':'open','competition':'Thunderpick World Championship 2026','start_utc':'2026-10-17T14:00:00Z'}
+        for mutation in ({'status':'locked'}, {'start_utc':'2026-10-18T14:00:00Z'},
+                         {'competition':'Thunderpick World Championship 2026: South American Series #1'}):
+            self.assertFalse(day4_rows({'rows':[{**row, **mutation}]}))
+        self.assertEqual(day4_rows({'rows':[row]}), [row])
+
+    def test_market_watch_never_fills_unknown_opponent(self):
+        from twc_watch import preview_quotes
+        data = {'semifinals':[{'team_a':'Falcons','team_b':None,'market_start_utc':'2026-10-17T14:00:00Z'}]}
+        self.assertEqual(preview_quotes(read_json(HERE/'data/capture.json'), data, BOARD['summary']['reference_utc']), [])
+
+    def test_market_watch_rejects_old_or_closed_quotes(self):
+        from twc_watch import preview_quotes
+        data={'semifinals':[{'team_a':'FURIA','team_b':'Aurora','market_start_utc':'2026-10-17T14:00:00Z'}]}
+        q={'team_a':'FURIA','team_b':'Aurora','start_utc':'2026-10-17T14:00:00Z',
+           'event':'Thunderpick World Championship 2026','format':'BO3','market_scope':'match_winner',
+           'price_a':.52,'price_b':.48,'read_utc':'2026-10-16T19:00:00Z','source_url':'https://example.com/unit'}
+        cap={'polymarket':{'quotes':[q]}}
+        self.assertEqual(len(preview_quotes(cap,data,'2026-10-16T19:30:00Z')),1)
+        self.assertEqual(preview_quotes(cap,data,'2026-10-17T04:00:00Z'),[])
+        q['closed']=True
+        self.assertEqual(preview_quotes(cap,data,'2026-10-16T19:30:00Z'),[])
+
+    def test_researched_alias_retains_duplicate_valve_rosters(self):
+        a=Aliases()
+        self.assertEqual(a.key('Apogee Betclic'),a.key('Betclic Apogee Esports'))
+        self.assertEqual(a.key('Betclic'),a.key('Apogee Esports'))
+        idx=model.index_by_key(read_json(HERE/'data/capture.json')['vrs']['teams'],a)
+        self.assertIsNone(model.unique(idx,a.key('Betclic')))
+
+    def test_every_strategy_class_is_in_the_summary(self):
+        classes=BOARD['summary']['leaderboard_classes']
+        for r in OPEN:
+            if r.get('strategy'):
+                self.assertIn(r['strategy']['class'],classes)
+        self.assertEqual(sum(classes.values()),sum(bool(r.get('strategy')) for r in OPEN))
+
+    def test_day4_sources_and_live_score_blanks(self):
+        data=read_json(HERE/'research/day4_twc2026.json')
+        for result in data['results']:
+            self.assertTrue(result['url'].startswith('https://www.hltv.org/matches/'))
+            if result['status'] != 'completed':
+                self.assertIsNone(result['score'])
+                self.assertIsNone(result['winner'])
+        for name in ('index','twc','strategy'):
+            text=(HERE/(name+'.html')).read_text()
+            self.assertIn('id="day4"',text)
+            self.assertIn('Research snapshot:',text)
 
 
 if __name__ == "__main__":
