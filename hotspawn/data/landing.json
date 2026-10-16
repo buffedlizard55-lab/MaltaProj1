@@ -1,26 +1,26 @@
 {
- "generated_utc": "2026-10-16T19:46:45Z",
- "reference_utc": "2026-10-16T19:46:29Z",
- "open": 16,
- "open_with_pick": 16,
+ "generated_utc": "2026-10-16T22:55:18Z",
+ "reference_utc": "2026-10-16T22:55:02Z",
+ "open": 21,
+ "open_with_pick": 19,
  "open_rung": {
-  "A": 0,
+  "A": 2,
   "B": 11,
-  "C": 1,
-  "D": 0,
-  "E": 4
+  "C": 3,
+  "D": 2,
+  "E": 3
  },
- "open_unresolved": 0,
+ "open_unresolved": 2,
  "classes": {
-  "VALUE": 5,
-  "CONTRARIAN": 2,
+  "VALUE": 4,
+  "CONTRARIAN": 3,
   "SITUATIONAL": 2,
-  "LONG SHOT": 4,
-  "CHALK": 2,
+  "LONG SHOT": 3,
+  "CHALK": 4,
   "EVIDENCE LIMITED": 1,
-  "NO CROWD DATA": 0
+  "NO CROWD DATA": 2
  },
- "hotspawn_complete": false,
+ "hotspawn_complete": true,
  "next": [
   {
    "id": "1079170",
@@ -43,12 +43,26 @@
    "tier": "B",
    "lock": "2026-10-17T07:54:00Z",
    "pick": "Eternal Fire",
-   "p": 0.5,
-   "pa": 0.5,
-   "pb": 0.5,
+   "p": 0.527,
+   "pa": 0.527,
+   "pb": 0.473,
    "basis": "B",
    "play": "Eternal Fire",
    "class": "VALUE"
+  },
+  {
+   "id": "1081888",
+   "a": "Ninjas in Pyjamas",
+   "b": "Heroic",
+   "tier": "B",
+   "lock": "2026-10-17T07:54:00Z",
+   "pick": "Heroic",
+   "p": 0.5536,
+   "pa": 0.4464,
+   "pb": 0.5536,
+   "basis": "A",
+   "play": "Heroic",
+   "class": "CHALK"
   },
   {
    "id": "1079171",
@@ -70,13 +84,13 @@
    "b": "Donstu",
    "tier": "C",
    "lock": "2026-10-17T10:54:00Z",
-   "pick": "Donstu",
-   "p": 0.5198,
-   "pa": 0.4802,
-   "pb": 0.5198,
-   "basis": "E",
+   "pick": "Bebop",
+   "p": 0.5101,
+   "pa": 0.5101,
+   "pb": 0.4899,
+   "basis": "A",
    "play": "Donstu",
-   "class": "VALUE"
+   "class": "CONTRARIAN"
   },
   {
    "id": "1081515",
@@ -90,7 +104,7 @@
    "pb": 0.6699,
    "basis": "B",
    "play": "Nemesis",
-   "class": "LONG SHOT"
+   "class": "CHALK"
   },
   {
    "id": "1079173",
@@ -119,20 +133,6 @@
    "basis": "E",
    "play": "Enjoy",
    "class": "VALUE"
-  },
-  {
-   "id": "1081521",
-   "a": "ex-6666",
-   "b": "Privateer",
-   "tier": "C",
-   "lock": "2026-10-18T13:39:00Z",
-   "pick": "ex-6666",
-   "p": 0.6971,
-   "pa": 0.6971,
-   "pb": 0.3029,
-   "basis": "E",
-   "play": "Privateer",
-   "class": "SITUATIONAL"
   }
  ]
 }
