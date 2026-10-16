@@ -5135,3 +5135,20 @@ prior report. No fresh source fact, price or inferred timezone was added. All al
 remain intact and outside blanket certification. Four-hour unattended schedules/freshness warnings
 remain active; no credentials or manual entry requested. Receipt follow-up stays on the fixed Arena
 branch and is merged autonomously; its final Pages confirmation is posted in that PR.
+
+---
+
+### Session `arena/742c5e98` — final integration verification (2026-10-16)
+
+Branch: `arena/742c5e98-maltaproj1`. Scope: verification only; no source data edits, no generator changes.
+
+Checks run (all green):
+- `python3 -m unittest discover -s tests` → 427 tests OK.
+- `python3 hotspawn/tests.py` → 68 tests OK.
+- `python3 hotspawn/verify.py` → 95/95 source fixtures, 0 errors.
+- `python3 tests/audit_site.py` → 0 broken internal links; data integrity 100%.
+- `python3 briefing/linkcheck.py` → 0 broken links.
+- `python3 hotspawn/build.py` → 8 pages written (reverted timestamp-only churn; no data change).
+
+Irregularities: none new. Existing flagged items remain published on `hotspawn/flagged.html` and `hotspawn/unresolved.html`. No network access was used; no live refresh performed, so capture timestamps are unchanged.
+
