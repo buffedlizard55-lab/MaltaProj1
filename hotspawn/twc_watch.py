@@ -50,9 +50,9 @@ def render(board, research, card, capture=None, compact=False):
         return f'<a href="{e(url)}">{e(text)}</a>'
 
     out = ['<section aria-labelledby="day4"><h2 id="day4">Day 4 — 17 October semifinals</h2>',
-           '<p><strong>Use the current outside line, not yesterday’s upset.</strong> The headline pick '
+           '<p><strong>Use the current outside line, not yesterday\'s upset.</strong> The headline pick '
            'targets expected points. A contrarian choice is an optional higher-variance chase, not a '
-           'claim of higher win probability. <a href="picks.html">All current picks →</a> · '
+           'claim of higher win probability. <a href="picks.html">All current picks \u2192</a> \u00b7 '
            '<a href="unresolved.html">Unresolved &amp; limitations</a></p>',
            f'<p class="small">Research snapshot: {e(research.get("checked_date_utc"))}, '
            f'{e(research.get("checked_window_utc"))} UTC. {e(research.get("provenance"))}</p>']
@@ -60,7 +60,7 @@ def render(board, research, card, capture=None, compact=False):
     if compact:
         out.append(f'<p>{len(live)} open day-4 main-event fixtures in this capture. '
                    'If none appear, this is a listing limitation, not a prediction. '
-                   '<a href="twc.html#day4">Open day-4 picks / external market watch and day-3 results →</a></p>')
+                   '<a href="twc.html#day4">Open day-4 picks / external market watch and day-3 results \u2192</a></p>')
         out.append('</section>')
         return ''.join(out)
     if live:
@@ -76,7 +76,7 @@ def render(board, research, card, capture=None, compact=False):
                    '<a href="https://play.hotspawn.com/thp-pickems">TWC</a>; there is no fixed match-ID list.</p>')
     prices = preview_quotes(capture or {}, research, board.get('summary', {}).get('reference_utc'))
     if prices and not live:
-        out.append('<h3>External market watch — not yet a Hotspawn pick</h3><p>No ownership-based '
+        out.append('<h3>External market watch \u2014 not yet a Hotspawn pick</h3><p>No ownership-based '
                    'chase is available without a current Hotspawn listing and sample. Near-even lines '
                    'are not a strong favourite. These observed quotes update with the normal capture; '
                    'they do not create a contest fixture or a graded pre-lock pick.</p>'
@@ -90,12 +90,12 @@ def render(board, research, card, capture=None, compact=False):
                        f'<td>{e(p["label"])}: {e(a)} / {e(b)}<br>'
                        + ('Decimal odds; margin removed' if p['odds'] else 'Outcome prices; normalized')
                        + f'</td><td>{e(m["team_a"])} {pa:.1f}% / {e(m["team_b"])} {100-pa:.1f}%</td>'
-                       + f'<td>{e(p["read_utc"])}<br>{source(m["url"])} · '
+                       + f'<td>{e(p["read_utc"])}<br>{source(m["url"])} \u00b7 '
                        + source(p['source_url'], 'quote source')
-                       + (' · ' + source(p['provider_url'], 'provider link') if p.get('provider_url') else '')
+                       + (' \u00b7 ' + source(p['provider_url'], 'provider link') if p.get('provider_url') else '')
                        + '</td></tr>')
         out.append('</tbody></table></div>')
-    out.append('<h3>Semifinal watch — dated research, not an extra picks list</h3>'
+    out.append('<h3>Semifinal watch \u2014 dated research, not an extra picks list</h3>'
                '<div class="tablewrap"><table><thead><tr><th>Date / format</th><th>Match at research check</th>'
                '<th>Context and limitation</th><th>Source</th></tr></thead><tbody>')
     for match in research.get('semifinals', []):
@@ -103,7 +103,7 @@ def render(board, research, card, capture=None, compact=False):
         out.append(f'<tr><td>{e(match.get("date"))}<br>{e(match.get("format"))}</td>'
                    f'<td>{e(match.get("team_a"))} vs {e(opponent)}<br>{e(match.get("opponent_note"))}</td>'
                    f'<td>{e(match.get("context"))}</td><td>{source(match.get("url"))}</td></tr>')
-    out.append('</tbody></table></div><h3>Day-3 results — completed versus still unconfirmed at check</h3>'
+    out.append('</tbody></table></div><h3>Day-3 results \u2014 confirmed from HLTV</h3>'
                '<div class="tablewrap"><table><thead><tr><th>Match</th><th>Final score / status</th>'
                '<th>Maps and veto</th><th>What changes for day 4</th><th>Source</th></tr></thead><tbody>')
     for result in research.get('results', []):
@@ -112,7 +112,92 @@ def render(board, research, card, capture=None, compact=False):
                    f'<td><b>{e(score)}</b><br>{e(result.get("status"))}</td>'
                    f'<td>{e(result.get("maps"))}<br>{e(result.get("veto"))}</td>'
                    f'<td>{e(result.get("meaning"))}</td><td>{source(result.get("url"))}</td></tr>')
-    out.append('</tbody></table></div><h3>How days 1–3 guide the decision</h3><ul>')
+    out.append('</tbody></table></div>')
+
+    # Day 4 contrarian analysis section (from research JSON)
+    picks = research.get('day4_contrarian_picks', {})
+    if picks:
+        out.append('<h3>Day-4 contrarian picks \u2014 source-backed analysis</h3>')
+        out.append(f'<p class="lead"><strong>Headline:</strong> {e(picks.get("headline_strategy"))}</p>')
+        out.append(f'<p class="lead"><strong>Recommended:</strong> {e(picks.get("recommended"))}</p>')
+        out.append('<div class="tablewrap"><table><thead><tr><th>Match</th><th>Start (UTC)</th>'
+                   '<th>Contrarian pick</th><th>Class</th><th>Rationale</th><th>Risk / EV cost</th>'
+                   '<th>Outside lines</th></tr></thead><tbody>')
+        for key in ['contrarian_option_1', 'contrarian_option_2']:
+            opt = picks.get(key)
+            if not opt:
+                continue
+            lines_html = ''
+            start_utc = ''
+            for sf in research.get('semifinals', []):
+                if sf.get('team_a') in opt.get('match', '') and sf.get('team_b') in opt.get('match', ''):
+                    el = sf.get('external_lines', {})
+                    parts = []
+                    for src_name, src_data in el.items():
+                        if src_name == 'pinnacle':
+                            parts.append(f'Pinnacle: {src_data.get("odds_a")}/{src_data.get("odds_b")}')
+                        elif src_name == 'bo3_gg_thunderpick':
+                            parts.append(f'bo3.gg (Thunderpick): {src_data.get("odds_a")}/{src_data.get("odds_b")}')
+                        elif src_name == 'polymarket':
+                            parts.append(f'Polymarket: {src_data.get("price_a")}/{src_data.get("price_b")}')
+                    lines_html = '<br>'.join(parts)
+                    start_utc = sf.get('start_utc', '')
+                    break
+            cls = opt.get('class', '')
+            out.append(f'<tr><td>{e(opt.get("match"))}</td>'
+                       f'<td>{e(start_utc)}</td>'
+                       f'<td><strong>{e(opt.get("pick"))}</strong></td>'
+                       f'<td><span class="tag c-{e(cls.replace(" ", "-"))}">{e(cls)}</span></td>'
+                       f'<td>{e(opt.get("rationale"))}</td>'
+                       f'<td>{e(opt.get("risk"))}<br>EV: {e(opt.get("ev_cost"))}</td>'
+                       f'<td>{lines_html}</td></tr>')
+        out.append('</tbody></table></div>')
+
+    # Day 4 external lines table
+    has_lines = any(sf.get('external_lines') for sf in research.get('semifinals', []))
+    if has_lines:
+        out.append('<h3>Day-4 external lines \u2014 verified from esportsbooks</h3>'
+                   '<div class="tablewrap"><table><thead><tr><th>Match</th><th>Source</th>'
+                   '<th>Odds</th><th>Implied win %</th><th>Source link</th></tr></thead><tbody>')
+        for sf in research.get('semifinals', []):
+            el = sf.get('external_lines', {})
+            for src_name, src_data in el.items():
+                label = {'pinnacle': 'Pinnacle', 'bo3_gg_thunderpick': 'bo3.gg (Thunderpick relay)',
+                         'polymarket': 'Polymarket'}.get(src_name, src_name)
+                if 'odds_a' in src_data:
+                    odds_str = f'{src_data["odds_a"]} / {src_data["odds_b"]}'
+                    imp = src_data.get('implied_a', 0)
+                    prob_str = f'{sf.get("team_a")} {imp*100:.1f}% / {sf.get("team_b")} {(1-imp)*100:.1f}%'
+                else:
+                    odds_str = f'{src_data.get("price_a")} / {src_data.get("price_b")}'
+                    imp = src_data.get('implied_a', 0)
+                    prob_str = f'{sf.get("team_a")} {imp*100:.1f}% / {sf.get("team_b")} {(1-imp)*100:.1f}%'
+                out.append(f'<tr><td>{e(sf.get("team_a"))} vs {e(sf.get("team_b"))}</td>'
+                           f'<td>{e(label)}</td><td>{e(odds_str)}</td><td>{e(prob_str)}</td>'
+                           f'<td>{source(src_data.get("source", ""), "quote source")}</td></tr>')
+        out.append('</tbody></table></div>')
+
+    # Detailed map pool and h2h analysis per semifinal
+    for sf in research.get('semifinals', []):
+        ca = sf.get('contrarian_analysis', {})
+        if not ca:
+            continue
+        out.append(f'<h3>{e(sf.get("team_a"))} vs {e(sf.get("team_b"))} \u2014 deep analysis</h3>')
+        out.append('<div class="tablewrap"><table><thead><tr><th>Factor</th><th>Detail</th></tr></thead><tbody>')
+        out.append(f'<tr><td>Favourite</td><td>{e(ca.get("favourite"))}</td></tr>')
+        out.append(f'<tr><td>Underdog</td><td>{e(ca.get("underdog"))}</td></tr>')
+        if ca.get('h2h_2026'):
+            out.append(f'<tr><td>Head-to-head (2026)</td><td>{e(ca.get("h2h_2026"))}</td></tr>')
+        if ca.get('h2h'):
+            out.append(f'<tr><td>Head-to-head</td><td>{e(ca.get("h2h"))}</td></tr>')
+        out.append(f'<tr><td>Map pool</td><td>{e(ca.get("map_pool"))}</td></tr>')
+        out.append(f'<tr><td>Upset case (for contrarian)</td><td>{e(ca.get("upset_case"))}</td></tr>')
+        out.append(f'<tr><td>Favourite case</td><td>{e(ca.get("favourite_case"))}</td></tr>')
+        if ca.get('verdict'):
+            out.append(f'<tr><td><strong>Verdict</strong></td><td><strong>{e(ca.get("verdict"))}</strong></td></tr>')
+        out.append('</tbody></table></div>')
+
+    out.append('<h3>How days 1\u20133 guide the decision</h3><ul>')
     for lesson in research.get('lessons', []):
         out.append(f'<li>{e(lesson.get("text"))} {source(lesson.get("url"))}</li>')
     out.append('</ul><p class="note"><b>Practical rule:</b> first take the supported favourite. '
@@ -121,5 +206,5 @@ def render(board, research, card, capture=None, compact=False):
                'The existing conservative gates and expected-points cost are on '
                '<a href="strategy.html">Leaderboard plan</a>. Do not force a fade when ownership is '
                'missing, or use a roster-only model as proof of an unpriced upset. No finish-rank '
-               'optimization is claimed without your rank, points gap and the field’s joint selections.</p></section>')
+               'optimization is claimed without your rank, points gap and the field\u2019s joint selections.</p></section>')
     return ''.join(out)
