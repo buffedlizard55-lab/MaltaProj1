@@ -1,6 +1,6 @@
 {
  "about": "Day-3 evidence file for the Thunderpick World Championship 2026 (Malta, HLTV event 8932, 14-18 Oct 2026). Compiled by session arena/b6f5405d on 2026-10-16 between 04:19Z and 04:40Z. Only RAW inputs are stored here (bookmaker decimal odds, Polymarket prices, official Valve points, Hotspawn crowd shares, HLTV facts). Every probability shown on the site is recomputed at build time by hotspawn/build.py from those inputs (margin removal / own-line curve), never typed in by hand. Hotspawn's crowd share is ownership only and is never an input to a probability.",
- "reviewed_utc": "2026-10-16T04:40:00Z",
+ "reviewed_utc": "2026-10-16T04:45:00Z",
  "session": "arena/b6f5405d",
  "read_window_utc": "2026-10-16T04:19Z-2026-10-16T04:40Z",
  "event": {
@@ -189,10 +189,10 @@
    "crowd": {
     "team_a_pct": 88,
     "team_b_pct": 13,
-    "total_picks": 9,
+    "total_picks": 16,
     "source_url": "https://play.hotspawn.com/lobby",
-    "read_utc": "2026-10-16T04:22:00Z",
-    "note": "Ownership only, never a probability. Hotspawn rounds each side, so the two numbers can sum above 100. The total pick count is small (9 at the 22:41Z capture), so the share is noisy."
+    "read_utc": "2026-10-16T04:31:50Z",
+    "note": "Ownership only, never a probability. Hotspawn rounds each side; the pick count in this match is small (16 at the 04:31Z read, 9 at the 22:41Z read), so the share is noisy."
    },
    "markets": [
     {
@@ -218,16 +218,15 @@
      "note": "Re-read in this window and unchanged from the earlier read in the same session."
     },
     {
-     "label": "Polymarket match-winner market cs2-aur1-9z-2026-10-16",
+     "label": "Polymarket match-winner market cs2-aur1-9z-2026-10-16 (live re-read)",
      "kind": "prediction market",
      "team_a": "Aurora Gaming",
      "team_b": "9z",
-     "price_a": 0.685,
-     "price_b": 0.315,
-     "volume_usd": 8364.86,
+     "price_a": 0.695,
+     "price_b": 0.305,
      "url": "https://polymarket.com/event/cs2-aur1-9z-2026-10-16",
-     "read_utc": "2026-10-15T22:41:17Z",
-     "note": "Read by this project's own automation (hotspawn/collect.py, Polymarket gamma API) and archived in hotspawn/data/capture.json, provenance sha256 recorded there."
+     "read_utc": "2026-10-16T04:31:54Z",
+     "note": "Read by this project's own automation (hotspawn/collect.py) after the last hand read; it supersedes the earlier 0.685/0.315. The board's own pick for this fixture now rests on a Pinnacle line (rung A) that appeared in the same refresh."
     }
    ],
    "own_line": {
@@ -284,7 +283,7 @@
     ]
    },
    "limitations": [
-    "The only outside prices read for this match by hand are a relayed bc.game line (EGamersWorld) and a Polymarket price. No direct Pinnacle quote was read for this fixture in this session; the automated pipeline reads Pinnacle and Polymarket itself every three hours and its rung is shown next to this section.",
+    "The board's own line for this fixture is Pinnacle (rung A) as of the 2026-10-16T04:31:50Z live refresh; the hand-read bc.game rows below stay as cross-checks, not as replacements.",
     "HLTV's own analytics page states only that 'Aurora is the bookmaker favorite with the best odds'; the exact odds table on that page did not render for an anonymous reader, so no HLTV price is used.",
     "HLTV's 81/19 figure is a site visitor vote, not a betting line.",
     "Hotspawn's page renders 14:00 for the kickoff and its TransferState epoch says 14:00Z; HLTV renders 10:00 for the same match in the viewer's timezone. The UTC value used here (14:00Z) is the one both Hotspawn's structured data and Polymarket's API carry.",
@@ -294,10 +293,10 @@
    "pinnacle_absence": "Pinnacle's public guest API (sports/12 straight markets) was read live by this project's capture at 2026-10-15T22:41:17Z and returned 8 CS2 two-way quotes - none for this fixture - so the outside-price rung here is Polymarket (and, as a secondary relay, bc.game via EGamersWorld). No Pinnacle price exists to cross-check, and none is invented.",
    "board": {
     "present_in_last_capture": true,
-    "captured_utc": "2026-10-15T22:41:15Z",
-    "rung": "B",
-    "basis": "Polymarket price (prediction market)",
-    "note": "The board recomputes its own pick and both probabilities at build time; this is only what that capture held."
+    "captured_utc": "2026-10-16T04:31:50Z",
+    "rung": "A",
+    "basis": "Pinnacle odds, margin removed",
+    "note": "Pinnacle finally listed this fixture, so the board moved from rung B to rung A in the 04:31Z refresh; the row's own numbers are recomputed at build time from the capture."
    }
   },
   {
@@ -310,16 +309,16 @@
    "team_b": "Legacy",
    "start_utc": "2026-10-16T17:00:00Z",
    "start_source": "Polymarket startTime 2026-10-16T17:00:00Z (capture 2026-10-15T22:41:17Z); HLTV countdown 12h43m at 04:17Z agrees; EGamersWorld shows 19:00 in UTC+2",
-   "lock_utc": null,
-   "lock_source": "Not captured for this fixture: it appeared in the lobby after this project's 2026-10-15T22:41Z capture. Hotspawn's own lock offset is 360 s before the start (16:54Z) but that is derived, not read.",
+   "lock_utc": "2026-10-16T16:54:00Z",
+   "lock_source": "Hotspawn TransferState lock epoch, read live by this project's automation at 2026-10-16T04:31:50Z (360 s before the 17:00Z start); the same figure earlier derived from the offset is now a read value.",
    "best_of": 3,
    "crowd": {
     "team_a_pct": 50,
     "team_b_pct": 50,
-    "total_picks": null,
+    "total_picks": 2,
     "source_url": "https://play.hotspawn.com/lobby",
-    "read_utc": "2026-10-16T04:22:00Z",
-    "note": "Ownership only, never a probability. Both sides rounded to 50%, so the crowd is split and gives no ownership edge either way."
+    "read_utc": "2026-10-16T04:31:50Z",
+    "note": "Ownership only, never a probability. Only two picks were recorded at the 04:31Z read, so the even split carries no information."
    },
    "markets": [
     {
@@ -345,15 +344,15 @@
      "note": "Re-read in this window and unchanged from the earlier read in the same session."
     },
     {
-     "label": "Polymarket match-winner market cs2-lgc-bb3-2026-10-16",
+     "label": "Polymarket match-winner market cs2-lgc-bb3-2026-10-16 (live re-read)",
      "kind": "prediction market",
      "team_a": "Legacy",
      "team_b": "BetBoom Team",
-     "price_a": 0.605,
-     "price_b": 0.395,
+     "price_a": 0.655,
+     "price_b": 0.345,
      "url": "https://polymarket.com/event/cs2-lgc-bb3-2026-10-16",
-     "read_utc": "2026-10-15T22:41:17Z",
-     "note": "Read by this project's own automation (hotspawn/collect.py, Polymarket gamma API) and archived in hotspawn/data/capture.json, provenance sha256 recorded there."
+     "read_utc": "2026-10-16T04:31:54Z",
+     "note": "Read by this project's own automation; supersedes the earlier 0.605/0.395 read. Pinnacle still does not list this fixture, so the board sits on rung B here."
     }
    ],
    "own_line": {
@@ -396,18 +395,20 @@
     ]
    },
    "limitations": [
+    "Snapshot gap closed: the fixture entered Hotspawn's payload in the 2026-10-16T04:31:50Z refresh, so the board row (chalk favourite Legacy) now exists; the coverage-gap block disappears automatically when that happens.",
     "This fixture was not in the 2026-10-15T22:41Z capture, so its Hotspawn lock time and pick count are not read yet; the start time comes from Polymarket and HLTV and agrees.",
     "The only outside prices read by hand are the relayed bc.game line and the Polymarket price; the automated three-hourly pipeline reads Pinnacle directly and its rung is shown next to this section.",
     "No H2H exists between these teams to lean on, and BETBOOM's 2-1 win over Aurora at ESL Pro League S24 shows the market may be underrating them; that is a flag on the favourite, not a probability.",
-    "Because the board has no row, no points/leaderboard play can be computed for this fixture yet; the pick lean shown is the outside market and our line only, and it is flagged instead of being presented as a board pick.",
     "bc.game is a relay: the odds come from EGamersWorld's event page, not from the bookmaker's own site, so the overround is unknown and both rows are treated as one estimate family."
    ],
    "hltv_schedule_source": "https://www.hltv.org/events/8932/matches",
    "pinnacle_absence": "Pinnacle's public guest API (sports/12 straight markets) was read live by this project's capture at 2026-10-15T22:41:17Z and returned 8 CS2 two-way quotes - none for this fixture - so the outside-price rung here is Polymarket (and, as a secondary relay, bc.game via EGamersWorld). No Pinnacle price exists to cross-check, and none is invented.",
    "board": {
-    "present_in_last_capture": false,
-    "captured_utc": "2026-10-15T22:41:15Z",
-    "note": "BetBoom vs Legacy (Hotspawn 1081775) was NOT in the 2026-10-15T22:41:15Z Hotspawn capture, so the board has no row for it: no rung, no points, no crowd share from the board. It is in Hotspawn's lobby now (https://play.hotspawn.com/lobby), so the next live refresh should pick it up. Until then this section renders the outside market and our line only, and labels the gap instead of hiding it."
+    "present_in_last_capture": true,
+    "captured_utc": "2026-10-16T04:31:50Z",
+    "rung": "B",
+    "basis": "Polymarket price (prediction market)",
+    "note": "The fixture appeared in Hotspawn's own payload in the 2026-10-16T04:31:50Z live refresh, so the board now carries a row (BetBoom vs Legacy, 7 offered points, lock 16:54Z) instead of the coverage gap this file first reported."
    }
   }
  ],
@@ -419,10 +420,11 @@
   "Swing play: where the crowd is heavily on one side but the outside estimates do not support that confidence, the upside for a chasing player is quantified in the table. It is labelled as a swing, not as the value pick."
  ],
  "limitations": [
+  "Two snapshots are cited in this file: the hand reads of 2026-10-16 04:19Z-04:45Z and the live automation refresh of 2026-10-16 04:31:50Z (workflow run 38851072935) that closed the coverage gap and added a Pinnacle line for Aurora-9z. Where they differ (Polymarket 0.685 -> 0.695 and 0.605 -> 0.655; crowd picks 9 -> 16), the newer read is the one the board uses.",
   "Hand reads are a snapshot inside the 04:19Z-04:40Z window. The automated board re-reads Pinnacle, Polymarket and Hotspawn every three hours and is the live authority; this file is the audited evidence behind the day-3 rows.",
   "EGamersWorld relays bookmaker prices (bc.game); those rows are labelled as a secondary relay and their overround is removed before use. No price is ever taken from Hotspawn's own pick'em shares, from HLTV's visitor vote, or from HLTV's analytics page, which renders no readable odds.",
-  "The last live capture (2026-10-15T22:41:15Z) is 6 h old at review time and did not contain BetBoom vs Legacy, so one of today's two deciders is covered here by outside prices plus our own line until the next capture lands.",
   "Hotspawn publishes crowd ownership only, rounds each side, and drops the share at lock, so the share at lock time is unknowable from the outside.",
   "Nothing here is a guarantee of a result: 9z beating Aurora on day 1 was an outcome the outside market priced at roughly 27-34%."
- ]
+ ],
+ "second_pass_utc": "2026-10-16T04:35:00Z"
 }

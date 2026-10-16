@@ -351,14 +351,14 @@ class Day3(unittest.TestCase):
         for name in ("unresolved.html", "index.html"):
             page = (HERE / name).read_text(encoding="utf-8")
             if gaps:
-                self.assertIn("Coverage gap", page, f"{name} should flag the gap")
+                self.assertIn("Coverage gap — a fixture Hotspawn lists", page, f"{name} should flag the gap")
                 for m in gaps:
                     self.assertIn(m["team_a"], page, name)
                     self.assertIn(m["team_b"], page, name)
                     self.assertIn(m["hotspawn_id"], page, name)
                     self.assertIn(f"strategy.html#day3", page, name)
             else:
-                self.assertNotIn("Coverage gap", page, f"{name} should not claim a gap once covered")
+                self.assertNotIn("Coverage gap — a fixture Hotspawn lists", page, f"{name} should not claim a gap once covered")
 
     def test_fallback_lean_is_computed_not_typed(self):
         """A researched decider with no board row still shows a pick, and it is the outside-market + own-line
