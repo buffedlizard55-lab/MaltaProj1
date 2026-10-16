@@ -35,6 +35,11 @@ def pct(x):
     return "" if x is None else f"{x * 100:.1f}%"
 
 
+def own_pair(x):
+    """Render our own line, or an explicit blank when it could not be computed."""
+    return "not computable (see flags)" if x is None else f"{x * 100:.1f}% / {(1 - x) * 100:.1f}%"
+
+
 def utc_short(iso):
     return iso.replace("T", " ").replace(":00Z", "Z") if iso else ""
 
@@ -199,7 +204,7 @@ def page_picks(board):
         if r["detail"].get("pinnacle"):
             src.append(f'<a href="https://www.pinnacle.com/en/esports/games/cs2/matchups/">Pinnacle</a>')
         if r["detail"].get("polymarket") or r["rung"] == "B":
-            src.append(f'<a href="{esc(r["detail"].get("polymarket_url") or "https://polymarket.com/")}">Polymarket</a>')
+            src.append(f'<a href="{esc(r.get("polymarket_url") or r["detail"].get("polymarket_url") or "https://polymarket.com/")}">Polymarket</a>')
         src.append('<a href="' + esc(R.SOURCES[4][1]) + '">Valve VRS</a>')
         if r["hltv_rank_a"] or r["hltv_rank_b"]:
             src.append('<a href="https://www.hltv.org/ranking/teams/2026/october/12">HLTV rank</a>')
@@ -224,7 +229,7 @@ def page_picks(board):
   <p class="pick">Pick: <strong>{esc(r['pick'])}</strong> ({pct(pick_p)})</p>
   <p class="meta">{esc(r['competition'])} &middot; starts {esc(utc_short(r['start_utc']))} &middot;
      basis: {esc(r['basis'])} (rung {esc(r['rung'])}) &middot; own line
-     {pct(r['own_p_a'])}/{pct(1 - (r['own_p_a'] or 0))} &middot; crowd ownership
+     {own_pair(r['own_p_a'])} &middot; crowd ownership
      {esc(r['crowd_a_ownership_pct'])}%/{esc(r['crowd_b_ownership_pct'])}% ({esc(r['total_picks'])} picks)</p>
   <p class="meta">Leaderboard play: <strong>{esc(r['leaderboard_pick'])}</strong> &mdash;
      {esc(r['leaderboard_note'])}</p>
@@ -258,7 +263,7 @@ def page_day3(board):
   <table class="tbl">
     <tr><th>Estimate</th><th>{esc(r['team_a'])}</th><th>{esc(r['team_b'])}</th></tr>
     <tr><td>Published price used</td><td>{pct(r['p_a'])}</td><td>{pct(r['p_b'])}</td></tr>
-    <tr><td>Our own line (Valve points)</td><td>{pct(r['own_p_a'])}</td><td>{pct(1 - (r['own_p_a'] or 0))}</td></tr>
+    <tr><td>Our own line (Valve points)</td><td>{own_pair(r['own_p_a'])}</td><td></td></tr>
     <tr><td>Consensus of the two</td><td>{pct(r['consensus_p_a'])}</td><td>{pct(1 - (r['consensus_p_a'] or 0))}</td></tr>
   </table>
   <p class="pickline">Pick <strong>{esc(r['pick'])}</strong> at {pct(pick_p)}</p>
@@ -444,6 +449,12 @@ disagreement is visible rather than hidden.</p>
       <td>No format transform is applied to any row; every market price is already for the series as listed by
       its source, and the own line is a series probability fitted on Valve's published series results. Flagged
       as FORMAT_UNKNOWN per row; no value is assumed.</td></tr>
+  <tr><td>Three teams in the open set &mdash; JOGA DE TERNO (1081498), LOS NINOS (1081502) and
+      Insiders (1081526) &mdash; do not appear in Valve's 2026-10-05 global standings, so no own line can be
+      computed for those rows.</td>
+      <td>3 rows show &ldquo;own line: not computable&rdquo; instead of a number.</td>
+      <td>Flagged <code>NO_OWN_LINE</code> per row. The pick still comes from the market price (rung B);
+      nothing is inferred and no stand-in rating is substituted.</td></tr>
   <tr><td>Hotspawn still lists fixtures whose lock time passed more than 36 h ago.</td>
       <td>Those rows are not pickable.</td>
       <td>They are kept in the full inventory with their status, and excluded from the picks list.</td></tr>
@@ -566,6 +577,26 @@ def page_method(board):
   <tr><td><strong>D</strong></td><td>Unresolved</td>
       <td>No outside price and a team missing from Valve's standings. The pick is left blank and the row is
       flagged.</td></tr>
+</table>
+
+<h2>Flag legend</h2>
+<table class="tbl">
+  <tr><th>Flag</th><th>Meaning</th><th>What the reader should do with it</th></tr>
+  <tr><td><code>NO_MARKET</code></td><td>No Pinnacle or Polymarket price exists for this fixture.</td>
+      <td>The probability is our own Valve-points line (rung C), not a market price. Weight it accordingly.</td></tr>
+  <tr><td><code>MODEL_MARKET_SPLIT</code></td>
+      <td>The market price and our own line disagree on the favourite, or by 10+ points.</td>
+      <td>The published price is used for the pick; the own line is printed beside it so the disagreement is visible.</td></tr>
+  <tr><td><code>COIN_FLIP</code></td><td>The stronger side is between 45% and 55%.</td>
+      <td>Treat the pick as close to a coin toss; a small price move can flip it.</td></tr>
+  <tr><td><code>FORMAT_UNKNOWN</code></td><td>No source states whether the series is BO1 or BO3.</td>
+      <td>No format transform is applied to any row. Every market price is already for the series as its source
+      lists it, and the own line is a series probability.</td></tr>
+  <tr><td><code>NO_OWN_LINE</code></td><td>One or both teams are absent from Valve's standings, so the own line
+      cannot be computed.</td><td>The row shows &ldquo;not computable&rdquo; rather than a blank or a guessed value;
+      the pick comes from the market price.</td></tr>
+  <tr><td><code>STALE_LISTING</code></td><td>Hotspawn still lists the fixture although its lock time passed more
+      than 36 h ago.</td><td>Excluded from the picks list; kept in the full inventory with its status.</td></tr>
 </table>
 
 <h2>What is never a probability</h2>

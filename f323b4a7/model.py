@@ -214,6 +214,8 @@ def main() -> int:
                 fl.append("MODEL_MARKET_SPLIT")
         if p_a is not None and 0.45 <= max(p_a, p_b) <= 0.55:
             fl.append("COIN_FLIP")
+        if own_p is None:
+            fl.append("NO_OWN_LINE")
         if not fmt:
             fl.append("FORMAT_UNKNOWN")
         if f["lock_utc"] < "2026-10-14T00:00:00Z":
