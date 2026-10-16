@@ -5349,3 +5349,39 @@ PR #177 merged at 19:46:10Z, merge `2eefce6bb4746a76227e9de825aaf38865eca4af`. P
 Post-merge archived livelines run 38957352383 failed a stale assertion that calibration must always be fitted. Reproduced by building at the current clock: insufficient samples are valid and now handled by the builder, but its old assertion still rejects them. Continuing the existing narrow `livelines/tests.py` claim: test both fitted and explicitly unfitted contracts instead of requiring fabricated fit metrics. The prior 14-pass direct test used the original stored snapshot; that was not a current-clock build and is not evidence this workflow passed. Primary release and source limitations remain unchanged.
 
 Follow-up verification: corrected the root renderer to count B+C+E and describe all five own-line estimates. Added a Node VM test of the actual inline renderer with mixed, empty, and roster-research-only counts; no duplicated math. Current-clock livelines build → 14 direct tests + 20 integration tests now pass; fitted calibrations still require both objectives, unfitted ones require n<4, default 400, null scores, and honest reason. Full discovery **428 passed**; generated legacy test side effects restored. Main primary refresh 38957352331 succeeded after #177, so four-hour publication remains operational. The previously failed legacy run is disclosed, not represented as green.
+
+## Session arena/ef2db3af — TWC 2026 Day 4 analysis + contrarian picks (2026-10-16 23:45 UTC)
+
+Branch: `arena/ef2db3af-maltaproj1` (fixed by Arena).
+
+| Task | Status | Owner | File scope |
+|---|---|---|---|
+| Update TWC Day 4 analysis with confirmed Day 3 results and both semifinal matchups | done | arena/ef2db3af | `hotspawn/research/day4_twc2026.json`, `hotspawn/twc_watch.py` |
+| Add external betting lines for both semifinals from Pinnacle, Polymarket, bo3.gg | done | arena/ef2db3af | `hotspawn/research/day4_twc2026.json` (external_lines per semifinal) |
+| Contrarian picks: Aurora (CONTRARIAN ~47%) vs FURIA, BETBOOM (LONG SHOT) vs Falcons | done | arena/ef2db3af | `hotspawn/research/day4_twc2026.json` (day4_contrarian_picks) |
+| Deep analysis: map pool, h2h, veto, roster context | done | arena/ef2db3af | `hotspawn/research/day4_twc2026.json` (contrarian_analysis per semifinal) |
+| Updated executive summary navigation | done | arena/ef2db3af | `index.html` |
+| Rebuild and verify all HTML pages (83/83 tests, 83/83 fixtures verified) | done | arena/ef2db3af | `hotspawn/*.html` |
+
+### Completion log
+- **PR**: https://github.com/buffedlizard55-lab/MaltaProj1/pull/179 — **MERGED** 2026-10-16T23:51:46Z, merge commit `37e8b2bf5a24f43e798f235231d025ee5b0224c8`.
+- **GitHub Pages**: Build completed successfully at 2026-10-16T23:51:48Z (status: built, confirmed via Pages API).
+- **Live site**: https://buffedlizard55-lab.github.io/MaltaProj1/ and https://buffedlizard55-lab.github.io/MaltaProj1/hotspawn/twc.html
+
+### Sources verified
+- [HLTV TWC 2026 event page](https://www.hltv.org/events/8932/thunderpick-world-championship-2026) — bracket, dates, prize pool
+- [HLTV results](https://www.hltv.org/results?event=8932) — all 10 completed match scores
+- [HLTV: BETBOOM vs Legacy Day 3](https://www.hltv.org/matches/2399413/betboom-vs-legacy-thunderpick-world-championship-2026) — 2-1, map scores, veto, player stats
+- [HLTV: FURIA vs Aurora SF](https://www.hltv.org/matches/2399414/furia-vs-aurora-thunderpick-world-championship-2026) — 10:00 Oct 17
+- [HLTV: Falcons vs BETBOOM SF](https://www.hltv.org/matches/2399415/falcons-vs-betboom-thunderpick-world-championship-2026) — 13:00 Oct 17
+- [HLTV: Aurora rebuild announcement](https://www.hltv.org/news/45082/official-aurora-complete-rebuild-with-kyxsan) — July 8, kyxsan/Jimpphat/ash
+- [bo3.gg: FURIA vs Aurora](https://bo3.gg/matches/furia-vs-aurora-gaming-17-10-2026) — lines (1.85/1.85), map pool, h2h, form
+- [bo3.gg: Falcons vs BETBOOM](https://bo3.gg/matches/falcons-esports-vs-betboom-team-17-10-2026) — lines (1.20/4.00), map pool, h2h
+- Pinnacle CS2 matchup page — FURIA vs Aurora 1.80/2.03, Falcons vs BETBOOM (from existing capture)
+- Polymarket CS2 — both semifinal markets (from existing capture)
+
+### Key findings
+- Day 3 BETBOOM 2-1 Legacy confirmed (was previously "live at research check")
+- Both semifinals now confirmed: FURIA vs Aurora (10:00), Falcons vs BETBOOM (13:00)
+- Aurora is the strongest contrarian case: 47% implied, beat FURIA 2-1 on Oct 6, 3-month-old roster rebuild showing LAN form
+- BETBOOM is a deep long-shot: beat Falcons 2-0 in June but 43% recent form, on short rest
