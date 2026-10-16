@@ -4817,3 +4817,13 @@ newer `b6f5405d` day-3 links are both present. `f323b4a7/tests.py` (31/31 rows, 
 `f323b4a7/mobile_check.py` (390 px) and `tests/test_landing_43c32386.py` (4/4) re-run green on the
 rebased tree. PR #158 is `MERGEABLE / CLEAN` and is being merged without waiting for review, as
 requested; the three pre-existing `verify.yml` failures are unrelated and documented above.
+
+**Follow-up (after PR #158 merged as `f4344c2`):** the live collector re-ran on `main` (run
+38853116008, commit `3b66dd7`) and priced more fixtures again — rungs moved to **A 0 / B 23 / C 8**,
+flags to **NO_MARKET 8, FORMAT_UNKNOWN 9, MODEL_MARKET_SPLIT 8, COIN_FLIP 5**. Two numbers in the
+executive summary were still hardcoded (`and 4 are coin-flips`, `the 28 rows whose series length no
+source states`) and no longer matched the board, which is exactly the drift this board is supposed to
+avoid. `f323b4a7/build.py` now derives both counts from the row set, so the sentence can never
+disagree with the data it renders. The branch was also rebuilt on `origin/main` with the intermediate
+bot refresh commits dropped — they only rewrite `f323b4a7/data/**` and `f323b4a7/*.html`, and the
+4-hourly run regenerates them anyway, so keeping them only made the history conflict-prone.

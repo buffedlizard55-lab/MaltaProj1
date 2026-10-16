@@ -96,6 +96,8 @@ def page_index(board):
     twc = [r for r in rows if r["tier"] == "S"]
     nomarket = [r for r in rows if r["rung"] == "C"]
     contested = [r for r in rows if "MODEL_MARKET_SPLIT" in (r.get("flags") or "")]
+    coinflip = [r for r in rows if "COIN_FLIP" in (r.get("flags") or "")]
+    fmt_unknown = [r for r in rows if "FORMAT_UNKNOWN" in (r.get("flags") or "")]
 
     stat = f"""
 <section class="stats">
@@ -176,9 +178,9 @@ def page_index(board):
   as the featured picks because <strong>no Pinnacle or Polymarket price exists for them</strong>; their
   probability is our own line from Valve's official standings (rung C) and they are flagged
   <code>NO_MARKET</code>. {len(contested)} more are resolved from a market price but our own line disagrees on
-  the favourite or by 10+ points (<code>MODEL_MARKET_SPLIT</code>), and 4 are coin-flips
-  (<code>COIN_FLIP</code>). Standing limitations, including the 28 rows whose series length no source states,
-  are listed per row and in one table.
+  the favourite or by 10+ points (<code>MODEL_MARKET_SPLIT</code>), and {len(coinflip)} are coin-flips
+  (<code>COIN_FLIP</code>). Standing limitations, including the {len(fmt_unknown)} rows whose series length no
+  source states, are listed per row and in one table.
   <a href="unresolved.html">Full register and per-row limitations &rarr;</a></p>
 </section>
 """
