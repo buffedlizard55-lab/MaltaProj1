@@ -21,6 +21,7 @@ used only by the leaderboard rule, which is labelled as a strategy opinion, not 
 from __future__ import annotations
 
 import csv
+import datetime
 import json
 import pathlib
 import sys
@@ -87,20 +88,32 @@ def main() -> int:
             if not names or not names[0] or not names[1]:
                 continue
             ka, kb = key(names[0]), key(names[1])
+            qend = q.get("end") or q.get("cutoff")
             for f in src["fixtures"]:
-                if {key(f["team_a"]), key(f["team_b"])} == {ka, kb}:
+                if {key(f["team_a"]), key(f["team_b"])} != {ka, kb}:
+                    continue
+                if qend and f.get("lock_utc"):
+                    import datetime as _dt
+                    def _p(x):
+                        return _dt.datetime.strptime(x[:19], "%Y-%m-%dT%H:%M:%S").replace(
+                            tzinfo=_dt.timezone.utc)
+                    if abs((_p(qend) - _p(f["lock_utc"])).total_seconds()) > 30 * 3600:
+                        continue
                     e = lines.setdefault(f["match_id"], {})
                     if kind == "polymarket_raw":
                         e["polymarket_price_a"] = q["price_a"] if key(f["team_a"]) == ka else q["price_b"]
                         e["polymarket_price_b"] = q["price_b"] if key(f["team_a"]) == ka else q["price_a"]
                         e["polymarket_url"] = q.get("url")
                         e["polymarket_read_utc"] = q.get("updated")
+                        if q.get("format"):
+                            e["format"] = q["format"]
+                            e["format_source"] = "Polymarket market title"
                     else:
                         e["pinnacle_odds_a"] = q["home"] if key(f["team_a"]) == ka else q["away"]
                         e["pinnacle_odds_b"] = q["away"] if key(f["team_a"]) == ka else q["home"]
                         e["pinnacle_read_utc"] = q.get("cutoff")
                     break
-    now = "2026-10-16T04:18:00Z"
+    now = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     fixtures = [f for f in src["fixtures"] if f["lock_utc"] > now]
 
     rows, unresolved, flags = [], [], []
@@ -166,6 +179,8 @@ def main() -> int:
         if ests:
             consensus = sum(ests) / len(ests)
 
+        fmt = L.get("format") or (f"BO{f['best_of']}" if f.get("best_of") else None) \
+            or (src.get("formats") or {}).get(f["match_id"], {}).get("format")
         row = {
             "match_id": f["match_id"], "competition": f["competition"], "tier": f["tier"],
             "points": f["offered_points"], "start_utc": f["start_utc"], "lock_utc": f["lock_utc"],
@@ -180,11 +195,30 @@ def main() -> int:
             "hltv_rank_a": (ha or {}).get("rank"), "hltv_rank_b": (hb or {}).get("rank"),
             "crowd_a_ownership_pct": f["crowd_a_pct"], "crowd_b_ownership_pct": f["crowd_b_pct"],
             "total_picks": f["total_picks"],
+            "format": fmt,
+            "format_source": L.get("format_source")
+            or (src.get("formats") or {}).get(f["match_id"], {}).get("format_source"),
             "hotspawn_url": f["hotspawn_url"] or "https://play.hotspawn.com/lobby",
+            "polymarket_url": L.get("polymarket_url"), "pinnacle_url": L.get("pinnacle_url"),
+            "polymarket_read_utc": L.get("polymarket_read_utc"),
+            "pinnacle_read_utc": L.get("pinnacle_read_utc"),
             "detail": detail,
         }
         row["pick"] = (f["team_a"] if p_a is not None and p_a >= 0.5 else
                        f["team_b"] if p_b is not None else None)
+        fl = []
+        if rung == "C":
+            fl.append("NO_MARKET")
+        if rung in ("A", "B") and own_p is not None:
+            if abs(market_p - own_p) >= 0.10 or (market_p >= 0.5) != (own_p >= 0.5):
+                fl.append("MODEL_MARKET_SPLIT")
+        if p_a is not None and 0.45 <= max(p_a, p_b) <= 0.55:
+            fl.append("COIN_FLIP")
+        if not fmt:
+            fl.append("FORMAT_UNKNOWN")
+        if f["lock_utc"] < "2026-10-14T00:00:00Z":
+            fl.append("STALE_LISTING")
+        row["flags"] = ";".join(fl)
         rows.append(row)
 
         if rung == "D" or row["pick"] is None:

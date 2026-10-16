@@ -33,8 +33,9 @@ HOTSPAWN_PAGES = ["https://play.hotspawn.com/lobby",
                   "https://play.hotspawn.com/cs2-pickems",
                   "https://play.hotspawn.com/thp-pickems"]
 STATE = re.compile(r'<script id="ng-state"[^>]*>(.*?)</script>', re.S | re.I)
-TIER_TEXT = re.compile(r"Tier\s*All tiers\s*\((\d+)\)", re.I)
-WEEK_TEXT = re.compile(r"(\d{1,4})\s+matches this week", re.I)
+TIER_TEXT = re.compile(r"All tiers\s*\((\d+)\)", re.I)
+WEEK_TEXT = re.compile(r"\d{1,4}\s+matches this week", re.I)
+MATCH_LINK = re.compile(r'https://www\.hotspawn\.com/(?:matches/[a-z0-9\-]+?-|\?fixtures=[a-z0-9\-]*?-)(\d{6,8})\b', re.I)
 
 PIN_MATCHUPS = "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/matchups?withSpecials=false"
 PIN_MARKETS = "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false"
@@ -119,10 +120,10 @@ def collect_hotspawn(status):
         pages.append({"page": name, "url": url, "status": 200,
                       "read_utc": iso_now(), "bytes": len(body),
                       "sha256": __import__("hashlib").sha256(body.encode()).hexdigest(),
-                      "week_text": (WEEK_TEXT.search(body) or [None, None])[1]
-                      if WEEK_TEXT.search(body) else None,
+                      "week_text": (WEEK_TEXT.search(body).group(0) if WEEK_TEXT.search(body) else None),
                       "tier_total": int(TIER_TEXT.search(body).group(1)) if TIER_TEXT.search(body) else None,
                       "state_rows": len(rows), "week": week})
+        links = {m.group(1): m.group(0) for m in MATCH_LINK.finditer(body)}
         for r in rows:
             fixtures.append({
                 "match_id": str(r["id"]), "competition": r.get("competition_name"),
@@ -135,7 +136,7 @@ def collect_hotspawn(status):
                 "crowd_a_pct": r.get("participants0_picked_percent"),
                 "crowd_b_pct": r.get("participants1_picked_percent"), "status": r.get("status"),
                 "best_of": r.get("best_of"), "series_format": r.get("series_format"),
-                "hotspawn_url": None, "source": f"Hotspawn TransferState {iso_now()}",
+                "hotspawn_url": links.get(str(r["id"])), "source": f"Hotspawn TransferState {iso_now()}",
                 "source_url": url})
     # de-duplicate (lobby and cs2-pickems carry the same rows)
     seen, uniq = set(), []
@@ -194,10 +195,15 @@ def collect_polymarket(status):
 def collect_vrs(status):
     try:
         live = get_json(VRS_API)
-        files = [f["name"] for f in live if f["name"].startswith("standings_global_")]
-        files.sort()
-        name = files[-1]
-        year = name.split("_")[2]
+        years = sorted((f["name"] for f in live if f["name"].isdigit()))
+        if not years:
+            raise RuntimeError("no year directories under live/")
+        year = years[-1]
+        files = [f["name"] for f in get_json(f"{VRS_API}/{year}")
+                 if f["name"].startswith("standings_global_")]
+        if not files:
+            raise RuntimeError(f"no standings_global_* under live/{year}")
+        name = sorted(files)[-1]
         meta = get_json(f"https://api.github.com/repos/{VRS_REPO}/contents/live/{year}/{name}")
         import base64
         text = base64.b64decode(meta["content"]).decode("utf-8", "replace")
@@ -275,16 +281,26 @@ def main() -> int:
                  "end": m.get("endDate"), "updated": m.get("updatedAt")})
 
     out = dict(prev)
-    out.update({
-        "live_capture": {
+    live_capture = dict(prev.get("live_capture") or {})
+    if pages:
+        live_capture.update({
             "read_utc": iso_now(), "url": HOTSPAWN_PAGES[0], "pages": pages,
-            "week_text": (pages[0].get("week_text") if pages else None),
-            "tier_text": f"All tiers ({pages[0].get('tier_total')})" if pages else None,
-            "tier_counts": {}, "tournaments": {},
-        },
+            "week_text": pages[0].get("week_text"),
+            "tier_text": (f"All tiers ({pages[0].get('tier_total')})"
+                          if pages[0].get("tier_total") else live_capture.get("tier_text")),
+            "tier_counts": live_capture.get("tier_counts") or {},
+            "tournaments": live_capture.get("tournaments") or {},
+        })
+    out.update({"live_capture": live_capture,
         "fixtures": fixtures, "vrs": vrs, "hltv": hltv,
         "lines_raw": lines,
         "vrs_as_of": "see vrs[*].url",
+        "derivations": {
+            "R1": "Hotspawn renders kick-off in UTC-4; verified on 6 fixtures of the 2026-10-15T22:41:15Z capture.",
+            "R2": "lock_time = scheduled_start_time - 360 s; lock_offset_sec == 360 for all 86 captured fixtures.",
+            "R3": "Crowd pick share is stored as ownership only and is never used as a probability.",
+            "R4": "Fixture rows are de-duplicated across the three Hotspawn surfaces (lobby, cs2-pickems, thp-pickems).",
+        },
     })
     json.dump(out, open(DATA / "sources.json", "w"), indent=1)
     status["finished_utc"] = iso_now()

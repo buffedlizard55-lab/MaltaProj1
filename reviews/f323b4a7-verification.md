@@ -19,6 +19,8 @@ primary source. Where a value could not be confirmed it is left blank and publis
 | 8 | Pinnacle CS2 moneyline snapshot | 6 open fixtures priced | https://www.pinnacle.com/en/esports/games/cs2/matchups/ | 2026-10-15T22:41:17Z |
 | 9 | Polymarket snapshot | 16 open fixtures priced | https://gamma-api.polymarket.com/markets?slug=cs2-aur1-9z-2026-10-16 | 2026-10-15T22:41:17Z |
 | 10 | Polymarket live re-read, Aurora–9z | 0.695 / 0.305 | Polymarket gamma API, `updatedAt 2026-10-16T04:23:06.938887Z` | 2026-10-16T04:23:06Z |
+| 10b | Polymarket live capture, BetBoom–Legacy | 0.345 / 0.655 | Polymarket gamma API market `cs2-lgc-bb3-2026-10-16`, `updatedAt 2026-10-16T04:35:07Z`, captured by this session's collector (workflow run 38851478755) | 2026-10-16T04:35:07Z |
+| 10c | Live collector run on GitHub Actions | Hotspawn 95 fixtures from 3 pages; Pinnacle 47 matchups / 847 markets; Polymarket 159 markets; HLTV 245 team links; Valve standings FAILED (path bug, since fixed) | workflow run 38851478755 | 2026-10-16T04:36:24–04:36:31Z |
 | 11 | Valve standings snapshot | 2026-10-05 global, 349 teams parsed | ValveSoftware/counter-strike_regional_standings @ eec4853 | 2026-10-05 |
 | 12 | Own-line slope | k = 0.4598, 13,609 train / 901 hold-out, hold-out log-loss 0.6395 vs 0.6541 raw | `hotspawn/data/calibration.json` | 2026-10-15T22:41:28Z |
 | 13 | HLTV world ranking | ranks used as labelled context only | https://www.hltv.org/ranking/teams/2026/october/12 | 2026-10-15T22:41:23Z |
@@ -51,14 +53,28 @@ All four appear in fixtures that do carry a Polymarket price, so no row needed t
 
 ## 3. The 31 open fixtures and how each probability was produced
 
+Final board (built 2026-10-16T04:41:13Z from the committed sources):
+
 Rung A (Pinnacle, margin removed proportionally) — 6 rows: 1079586, 1080286, 1080287, 1080289,
 1079589, 1079631.
-Rung B (Polymarket, normalised) — 16 rows: 1080285, 1079630, 1081498, 1080205 (live re-read),
-1080288, 1081120, 1081502, 1079632, 1080290, 1081526, 1081527, 1081528, 1081529, 1081530,
-1081531, 1081532.
-Rung C (own line, Valve points, k = 0.4598) — 9 rows: 1079167, 1081712, 1079588, 1081769,
-1081775, 1079170, 1079171, 1079173, 1081126.
+Rung B (Polymarket, normalised) — 17 rows: 1080285, 1079630, 1079167, 1081498, 1081120, 1080205
+(live re-read), 1080288, 1081502, 1080289, 1079589, 1079632, 1080290, 1081526, 1081527, 1081528,
+1081529, 1081530, 1081531, 1081532 — plus **1081775 BetBoom–Legacy**, priced by Polymarket as
+`cs2-lgc-bb3-2026-10-16` ("Legacy vs BetBoom Team", 0.655 / 0.345, `updatedAt
+2026-10-16T04:35:07Z`), which the collector found after the original snapshot was taken.
+Rung C (own line, Valve points, k = 0.4598) — 8 rows: 1081712, 1079588, 1079170, 1079171, 1079173,
+1081126 and the two that remain unpriced.
 Rung D (unresolved) — 0 rows.
+
+Per-row flags: `NO_MARKET` 8, `FORMAT_UNKNOWN` 9, `MODEL_MARKET_SPLIT` 6, `COIN_FLIP` 4.
+Series length is stated for 22 of 31 rows (BO1 ×13, BO3 ×9) from Polymarket titles and the archived
+format records; the other 9 are flagged and no transform is applied to any row.
+
+**Join-safety check performed:** the Polymarket market for BetBoom–Legacy lists the teams in the
+opposite order to Hotspawn ("Legacy vs BetBoom Team"). The join matches on normalised team keys,
+not on position, so the 0.655 is attached to Legacy and not to BetBoom; this was verified by hand
+against the captured market record. The join also rejects any market whose end date is more than
+30 h from the fixture's lock time, so a same-pairing market on another day cannot be attached.
 
 Full per-row detail with both probabilities, the basis label, the Valve points, the HLTV ranks and
 the source links: `f323b4a7/picks.html` and `f323b4a7/data/picks.csv`.

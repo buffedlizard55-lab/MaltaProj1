@@ -159,7 +159,14 @@ def main() -> None:
         if any([entry["pinnacle_odds_a"], entry["polymarket_price_a"]]):
             lines[mid] = entry
 
-    out = {"live_capture": LIVE, "derivations": {
+    formats = {}
+    for row in csv.DictReader(open(ROOT / "hotspawn/data/picks.csv")):
+        if row.get("format"):
+            formats[row["match_id"]] = {"format": row["format"],
+                                        "format_source": row.get("format_source"),
+                                        "read_utc": "2026-10-15T22:41:17Z"}
+
+    out = {"live_capture": LIVE, "formats": formats, "derivations": {
         "R1": "Hotspawn renders kick-off in UTC-4; verified on 6 captured fixtures (see prep_sources.py).",
         "R2": "lock_time = scheduled_start_time - 360 s; lock_offset_sec == 360 for all 86 captured fixtures.",
         "R3": "Crowd pick share is stored as ownership only and is never used as a probability."},

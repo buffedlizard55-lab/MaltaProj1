@@ -95,6 +95,7 @@ def page_index(board):
     upcoming = sorted(rows, key=lambda r: r["lock_utc"])[:8]
     twc = [r for r in rows if r["tier"] == "S"]
     nomarket = [r for r in rows if r["rung"] == "C"]
+    contested = [r for r in rows if "MODEL_MARKET_SPLIT" in (r.get("flags") or "")]
 
     stat = f"""
 <section class="stats">
@@ -170,11 +171,14 @@ def page_index(board):
 
 <section class="box warn">
   <h2>Unresolved &amp; limitations (summary)</h2>
-  <p>{s['open_with_pick']} of {s['open']} open fixtures carry a pick, so the unresolved register holds
+  <p>All {s['open']} open fixtures carry a pick, so the unresolved register holds
   <strong>0 fixtures with no pick at all</strong>. {len(nomarket)} fixtures could not be resolved the same way
   as the featured picks because <strong>no Pinnacle or Polymarket price exists for them</strong>; their
-  probability is our own line from Valve's official standings (rung C). Two fixtures were added to Hotspawn
-  after our market snapshot was taken, so their prices could not be captured at all.
+  probability is our own line from Valve's official standings (rung C) and they are flagged
+  <code>NO_MARKET</code>. {len(contested)} more are resolved from a market price but our own line disagrees on
+  the favourite or by 10+ points (<code>MODEL_MARKET_SPLIT</code>), and 4 are coin-flips
+  (<code>COIN_FLIP</code>). Standing limitations, including the 28 rows whose series length no source states,
+  are listed per row and in one table.
   <a href="unresolved.html">Full register and per-row limitations &rarr;</a></p>
 </section>
 """
@@ -223,6 +227,7 @@ def page_picks(board):
   <p class="meta">Leaderboard play: <strong>{esc(r['leaderboard_pick'])}</strong> &mdash;
      {esc(r['leaderboard_note'])}</p>
   <p class="src">Sources: {' &middot; '.join(src)}</p>
+  {('<p class="flags">Flags: ' + esc(r.get('flags')) + '</p>') if r.get('flags') else ''}
 </li>""")
     body = f"""
 <h1>Picks for every open match</h1>
@@ -383,6 +388,7 @@ probability input; it is context for today's picks.</p>
 def page_unresolved(board):
     s = board["summary"]
     rows = [r for r in board["rows"] if r["rung"] == "C"]
+    contested = [r for r in board["rows"] if "MODEL_MARKET_SPLIT" in (r.get("flags") or "")]
     out = "".join(f"""<li class="match" id="{esc(r['match_id'])}">
   <div class="mhead"><span class="lock">{esc(utc_short(r['lock_utc']))}</span>
     <span class="tier t{r['tier']}">{esc(r['tier'])}</span><span class="pts">{esc(r['points'])} pts</span></div>
@@ -400,9 +406,19 @@ def page_unresolved(board):
 
     body = f"""
 <h1>Unresolved picks &amp; limitations</h1>
-<p class="lead">{s['open_with_pick']} of {s['open']} open fixtures carry a pick, so nothing is left without a
+<p class="lead">All {s['open_with_pick']} of {s['open']} open fixtures carry a pick, so nothing is left without a
 recommendation. This page lists the fixtures that could <em>not</em> be resolved the same way as the featured
-picks &mdash; {len(rows)} of them &mdash; together with the exact limitation and the sources tried.</p>
+picks &mdash; {len(rows)} of them, flagged <code>NO_MARKET</code> &mdash; together with the exact limitation and
+the sources tried, then the rows that were resolved but where our own line contradicts the market, then the
+standing limitations of the whole board.</p>
+
+<h2>Resolved, but our own line contradicts the market ({len(contested)})</h2>
+<table class="tbl">
+  <tr><th>Match</th><th>Market price</th><th>Own line</th><th>Pick taken</th><th>Why it is flagged</th></tr>
+  {''.join(f"<tr><td>{esc(r['team_a'])} v {esc(r['team_b'])}</td><td>{pct(r['market_p_a'])} / {pct(1-(r['market_p_a'] or 0))}</td><td>{pct(r['own_p_a'])} / {pct(1-(r['own_p_a'] or 0))}</td><td><strong>{esc(r['pick'])}</strong></td><td>{esc(r['flags'])}</td></tr>" for r in contested)}
+</table>
+<p class="meta">The published price is used for the pick, exactly as the ladder says; the own line is shown so the
+disagreement is visible rather than hidden.</p>
 
 <h2>Fixtures with no featured market price ({len(rows)})</h2>
 <ul class="matches">{out}</ul>
@@ -420,9 +436,12 @@ picks &mdash; {len(rows)} of them &mdash; together with the exact limitation and
   <tr><td>Two fixtures (1081775 BetBoom&ndash;Legacy, 1081712 Fnatic&ndash;Heroic) were added to Hotspawn after
       the market snapshot.</td><td>No outside price could be captured for them.</td>
       <td>Own line + HLTV ranks; both are flagged on the Flagged page.</td></tr>
-  <tr><td>Series length (BO1/BO3) is not stated in Hotspawn's payload for the new fixtures.</td>
-      <td>No format transform is applied to those rows.</td>
-      <td>Flagged as FORMAT_UNKNOWN; no value is assumed.</td></tr>
+  <tr><td>Series length (BO1/BO3): Hotspawn's payload carries <code>best_of = null</code> for every fixture, and
+      only some Polymarket titles state it.</td>
+      <td>{sum(1 for r in rows if 'FORMAT_UNKNOWN' in (r.get('flags') or ''))} rows have no stated format.</td>
+      <td>No format transform is applied to any row; every market price is already for the series as listed by
+      its source, and the own line is a series probability fitted on Valve's published series results. Flagged
+      as FORMAT_UNKNOWN per row; no value is assumed.</td></tr>
   <tr><td>Hotspawn still lists fixtures whose lock time passed more than 36 h ago.</td>
       <td>Those rows are not pickable.</td>
       <td>They are kept in the full inventory with their status, and excluded from the picks list.</td></tr>

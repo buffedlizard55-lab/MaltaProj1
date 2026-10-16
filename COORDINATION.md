@@ -4778,10 +4778,12 @@ day-3* refresh in its own namespace and touches no other session's files.
   2026-10-19T09:00Z → "Oct 19, 05:00"; 1081529/1081530/1081531) and then independently confirmed
   by HLTV: match 2399412 Aurora–9z is displayed "10:00" and Polymarket's `gameStartTime` for the
   same market is `2026-10-16 14:00:00+00`; HLTV displays BetBoom–Legacy "13:00", so 17:00Z.
-- **31 open fixtures, 31 picks, 0 unresolved.** Rungs: Pinnacle 6, Polymarket 16, own line 9.
+- **31 open fixtures, 31 picks, 0 unresolved.** Rungs: Pinnacle 6, Polymarket 17, own line 8.
   No fixture needed the unresolved rung, because every team in the open set is present in Valve's
   2026-10-05 global standings once the repo's *verified* aliases are applied
   (`RoundsGG→ROUNDS`, `WROTBERRY→WBT`) and generic words are dropped (`Team Liquid→Liquid`).
+  Per-row flags: NO_MARKET 8, FORMAT_UNKNOWN 9, MODEL_MARKET_SPLIT 6, COIN_FLIP 4.
+  Leaderboard classes: VALUE 7, CONTRARIAN 7, SITUATIONAL 5, LONG SHOT 3, CHALK 9.
 - **Live re-read** of Polymarket for 1080205 (Aurora–9z): `outcomePrices ["0.695","0.305"]`,
   `updatedAt 2026-10-16T04:23:06.938887Z` — replaces the 22:41Z snapshot value of 0.685/0.315.
 - **Day-1/day-2 results verified against HLTV** (event 8932 bracket, match links 2399384, 2399386,
@@ -4791,6 +4793,14 @@ day-3* refresh in its own namespace and touches no other session's files.
   **2026-07-08/09** rebuild (kyxsan IGL, Jimpphat, coach ash) — three months old — and Valve's
   2026-10-05 standings already score that exact five (Aurora #9, 1716 pts), so no roster adjustment
   is applied. Published as irregularity F-01 rather than silently used as an edge.
+- **Live collector proven on GitHub Actions** (run 38851478755, success): Hotspawn 95 fixtures from
+  3 pages, Pinnacle 47 matchups / 847 markets, Polymarket 159 markets, HLTV 245 team links; the
+  Valve-standings step failed on a path bug (`contents/live` lists year directories, not files) and
+  was fixed the same session. That run also surfaced a Polymarket price for BetBoom–Legacy
+  (`cs2-lgc-bb3-2026-10-16`, 0.655 Legacy, `updatedAt 2026-10-16T04:35:07Z`), which is now in the
+  board. **Join safety verified by hand:** that market lists the teams in the opposite order to
+  Hotspawn; the join keys on normalised team names, not position, so the price is attached to the
+  right side, and markets more than 30 h from the fixture's lock time are rejected.
 - **Checks:** `f323b4a7/tests.py` 31/31 rows pass (pick = higher-probability side, probabilities
   sum to 1, rung labelled, Hotspawn link present, all 8 pages have a viewport tag and no broken
   local links); `f323b4a7/mobile_check.py` pass at 390 px. Full repo suite: 405 tests, **3

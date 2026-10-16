@@ -1,241 +1,147 @@
 {
  "live_capture": {
-  "read_utc": "2026-10-16T04:36:31Z",
+  "read_utc": "2026-10-16T04:18:00Z",
+  "read_window_utc": "2026-10-16T04:17:30Z/2026-10-16T04:24:00Z",
   "url": "https://play.hotspawn.com/lobby",
-  "pages": [
-   {
-    "page": "lobby",
-    "url": "https://play.hotspawn.com/lobby",
-    "status": 200,
-    "read_utc": "2026-10-16T04:36:25Z",
-    "bytes": 437271,
-    "sha256": "538edee1a70776942505009425d944ea4629f8bb10aa8ae9cc1b646a08ffe942",
-    "week_text": "123",
-    "tier_total": null,
-    "state_rows": 95,
-    "week": {
-     "weekId": 270,
-     "sportAlias": "cs2",
-     "status": "OPEN",
-     "weekStartUtc": "2026-10-12T00:00:00.000Z",
-     "weekEndUtc": "2026-10-18T23:59:59.999Z",
-     "cutoffUtc": "2026-10-18T23:59:59.999Z",
-     "countdownTargetUtc": "2026-10-18T23:59:59.999Z",
-     "title": "Top prizes this week",
-     "prizes": [
-      {
-       "id": 137,
-       "title": "$400 Steam Voucher",
-       "description": null,
-       "imageUrl": "https://phpstack-1372681-6459848.cloudwaysapps.com/uploads/week-prizes/week_261_1790054271991_7a050b1b-dda5-4011-a8dd-a353dcd5f55c.png",
-       "ruleType": "RANK",
-       "rank": {
-        "value": 1,
-        "label": "1st",
-        "title": "1st Place"
-       },
-       "minRank": 1,
-       "maxRank": 1,
-       "minPoints": null,
-       "quantityTotal": 1,
-       "quantityClaimed": 0,
-       "quantityRemaining": 1,
-       "countryMode": "ANY",
-       "countryList": []
-      },
-      {
-       "id": 138,
-       "title": "$200 Steam Voucher",
-       "description": null,
-       "imageUrl": "https://phpstack-1372681-6459848.cloudwaysapps.com/uploads/week-prizes/week_261_1790054291233_088b119d-b76f-4efa-a5d3-170d2a7ffeff.png",
-       "ruleType": "RANK",
-       "rank": {
-        "value": 2,
-        "label": "2nd",
-        "title": "2nd Place"
-       },
-       "minRank": 2,
-       "maxRank": 2,
-       "minPoints": null,
-       "quantityTotal": 1,
-       "quantityClaimed": 0,
-       "quantityRemaining": 1,
-       "countryMode": "ANY",
-       "countryList": []
-      },
-      {
-       "id": 139,
-       "title": "$100 Steam Voucher",
-       "description": null,
-       "imageUrl": "https://phpstack-1372681-6459848.cloudwaysapps.com/uploads/week-prizes/week_261_1790054309328_2a04887a-c57c-4b54-91a1-b12bdae2205c.png",
-       "ruleType": "RANK",
-       "rank": {
-        "value": 3,
-        "label": "3rd",
-        "title": "3rd Place"
-       },
-       "minRank": 3,
-       "maxRank": 3,
-       "minPoints": null,
-       "quantityTotal": 1,
-       "quantityClaimed": 0,
-       "quantityRemaining": 1,
-       "countryMode": "ANY",
-       "countryList": []
-      },
-      {
-       "id": 140,
-       "title": "$50 Steam Voucher",
-       "description": null,
-       "imageUrl": "https://phpstack-1372681-6459848.cloudwaysapps.com/uploads/week-prizes/week_261_1790054454740_2e97e8b5-09ae-40e3-a548-87f2a8973c67.png",
-       "ruleType": "RANK",
-       "rank": {
-        "value": 4,
-        "label": "4th-10th",
-        "title": "Places 4-10"
-       },
-       "minRank": 4,
-       "maxRank": 10,
-       "minPoints": null,
-       "quantityTotal": 7,
-       "quantityClaimed": 0,
-       "quantityRemaining": 7,
-       "countryMode": "ANY",
-       "countryList": []
-      }
-     ]
-    }
-   },
-   {
-    "page": "cs2-pickems",
-    "url": "https://play.hotspawn.com/cs2-pickems",
-    "status": 200,
-    "read_utc": "2026-10-16T04:36:26Z",
-    "bytes": 436071,
-    "sha256": "c2eea6c91fe40ad446749389ad7ff348548cbf379865549578e52d038838d1db",
-    "week_text": "123",
-    "tier_total": null,
-    "state_rows": 95,
-    "week": {
-     "weekId": 270,
-     "sportAlias": "cs2",
-     "status": "OPEN",
-     "weekStartUtc": "2026-10-12T00:00:00.000Z",
-     "weekEndUtc": "2026-10-18T23:59:59.999Z",
-     "cutoffUtc": "2026-10-18T23:59:59.999Z",
-     "countdownTargetUtc": "2026-10-18T23:59:59.999Z",
-     "title": "Top prizes this week",
-     "prizes": [
-      {
-       "id": 137,
-       "title": "$400 Steam Voucher",
-       "description": null,
-       "imageUrl": "https://phpstack-1372681-6459848.cloudwaysapps.com/uploads/week-prizes/week_261_1790054271991_7a050b1b-dda5-4011-a8dd-a353dcd5f55c.png",
-       "ruleType": "RANK",
-       "rank": {
-        "value": 1,
-        "label": "1st",
-        "title": "1st Place"
-       },
-       "minRank": 1,
-       "maxRank": 1,
-       "minPoints": null,
-       "quantityTotal": 1,
-       "quantityClaimed": 0,
-       "quantityRemaining": 1,
-       "countryMode": "ANY",
-       "countryList": []
-      },
-      {
-       "id": 138,
-       "title": "$200 Steam Voucher",
-       "description": null,
-       "imageUrl": "https://phpstack-1372681-6459848.cloudwaysapps.com/uploads/week-prizes/week_261_1790054291233_088b119d-b76f-4efa-a5d3-170d2a7ffeff.png",
-       "ruleType": "RANK",
-       "rank": {
-        "value": 2,
-        "label": "2nd",
-        "title": "2nd Place"
-       },
-       "minRank": 2,
-       "maxRank": 2,
-       "minPoints": null,
-       "quantityTotal": 1,
-       "quantityClaimed": 0,
-       "quantityRemaining": 1,
-       "countryMode": "ANY",
-       "countryList": []
-      },
-      {
-       "id": 139,
-       "title": "$100 Steam Voucher",
-       "description": null,
-       "imageUrl": "https://phpstack-1372681-6459848.cloudwaysapps.com/uploads/week-prizes/week_261_1790054309328_2a04887a-c57c-4b54-91a1-b12bdae2205c.png",
-       "ruleType": "RANK",
-       "rank": {
-        "value": 3,
-        "label": "3rd",
-        "title": "3rd Place"
-       },
-       "minRank": 3,
-       "maxRank": 3,
-       "minPoints": null,
-       "quantityTotal": 1,
-       "quantityClaimed": 0,
-       "quantityRemaining": 1,
-       "countryMode": "ANY",
-       "countryList": []
-      },
-      {
-       "id": 140,
-       "title": "$50 Steam Voucher",
-       "description": null,
-       "imageUrl": "https://phpstack-1372681-6459848.cloudwaysapps.com/uploads/week-prizes/week_261_1790054454740_2e97e8b5-09ae-40e3-a548-87f2a8973c67.png",
-       "ruleType": "RANK",
-       "rank": {
-        "value": 4,
-        "label": "4th-10th",
-        "title": "Places 4-10"
-       },
-       "minRank": 4,
-       "maxRank": 10,
-       "minPoints": null,
-       "quantityTotal": 7,
-       "quantityClaimed": 0,
-       "quantityRemaining": 7,
-       "countryMode": "ANY",
-       "countryList": []
-      }
-     ]
-    }
-   },
-   {
-    "page": "thp-pickems",
-    "url": "https://play.hotspawn.com/thp-pickems",
-    "status": 200,
-    "read_utc": "2026-10-16T04:36:26Z",
-    "bytes": 197242,
-    "sha256": "751d4658c16641657d4691116eefd0a5269251a0820e1a41dcd1212abea99693",
-    "week_text": "123",
-    "tier_total": null,
-    "state_rows": 11,
-    "week": {
-     "weekId": 272,
-     "sportAlias": "cs2",
-     "status": "OPEN",
-     "weekStartUtc": "2026-10-12T00:00:00.000Z",
-     "weekEndUtc": "2026-10-18T23:59:59.999Z",
-     "cutoffUtc": "2026-10-18T23:59:59.999Z",
-     "countdownTargetUtc": "2026-10-18T23:59:59.999Z",
-     "title": "Top prizes this week",
-     "prizes": []
-    }
-   }
-  ],
-  "week_text": "123",
-  "tier_text": "All tiers (None)",
-  "tier_counts": {},
-  "tournaments": {}
+  "week_text": "123 matches this week",
+  "tier_text": "All tiers (95)",
+  "tier_counts": {
+   "B": 38,
+   "C": 54,
+   "S": 3
+  },
+  "tournaments": {
+   "CCT Europe 2026 Challengers #4": 8,
+   "CCT Europe 2026 Series #11": 6,
+   "CCT Europe 2026 Series #12 Play-In": 2,
+   "CCT South America 2026 Series #3": 8,
+   "CCT South America 2026 Series #7": 3,
+   "DACH CS Masters Season 5": 1,
+   "DraculaN Season 7": 13,
+   "Elisa BreakOut Series #2": 6,
+   "European Pro League Series 8": 1,
+   "European Pro League Series 8 Play-In": 6,
+   "LG UltraGear Tournament 2026": 1,
+   "NODWIN Clutch Series #13": 5,
+   "Rainhas do Clutch 2026": 2,
+   "Stake Pulse Beat III": 4,
+   "Svenska CS-Ligan 2026": 6,
+   "Thunderpick World Championship 2026": 3,
+   "Thunderpick World Championship 2026: South American Series #1": 8,
+   "Urban Riga Open #5": 12
+  }
+ },
+ "formats": {
+  "1079586": {
+   "format": "BO3",
+   "format_source": "Pinnacle bestOfX",
+   "read_utc": "2026-10-15T22:41:17Z"
+  },
+  "1080285": {
+   "format": "BO1",
+   "format_source": "HLTV match page",
+   "read_utc": "2026-10-15T22:41:17Z"
+  },
+  "1080286": {
+   "format": "BO1",
+   "format_source": "HLTV match page",
+   "read_utc": "2026-10-15T22:41:17Z"
+  },
+  "1079630": {
+   "format": "BO3",
+   "format_source": "Polymarket market title",
+   "read_utc": "2026-10-15T22:41:17Z"
+  },
+  "1080287": {
+   "format": "BO1",
+   "format_source": "HLTV match page",
+   "read_utc": "2026-10-15T22:41:17Z"
+  },
+  "1081498": {
+   "format": "BO3",
+   "format_source": "Polymarket market title",
+   "read_utc": "2026-10-15T22:41:17Z"
+  },
+  "1079631": {
+   "format": "BO3",
+   "format_source": "Pinnacle bestOfX",
+   "read_utc": "2026-10-15T22:41:17Z"
+  },
+  "1080205": {
+   "format": "BO3",
+   "format_source": "Polymarket market title",
+   "read_utc": "2026-10-15T22:41:17Z"
+  },
+  "1080288": {
+   "format": "BO1",
+   "format_source": "HLTV match page",
+   "read_utc": "2026-10-15T22:41:17Z"
+  },
+  "1081120": {
+   "format": "BO3",
+   "format_source": "Polymarket market title",
+   "read_utc": "2026-10-15T22:41:17Z"
+  },
+  "1080289": {
+   "format": "BO1",
+   "format_source": "HLTV match page",
+   "read_utc": "2026-10-15T22:41:17Z"
+  },
+  "1081502": {
+   "format": "BO3",
+   "format_source": "Polymarket market title",
+   "read_utc": "2026-10-15T22:41:17Z"
+  },
+  "1079589": {
+   "format": "BO3",
+   "format_source": "Pinnacle bestOfX",
+   "read_utc": "2026-10-15T22:41:17Z"
+  },
+  "1079632": {
+   "format": "BO3",
+   "format_source": "Polymarket market title",
+   "read_utc": "2026-10-15T22:41:17Z"
+  },
+  "1080290": {
+   "format": "BO1",
+   "format_source": "HLTV match page",
+   "read_utc": "2026-10-15T22:41:17Z"
+  },
+  "1081526": {
+   "format": "BO1",
+   "format_source": "Polymarket market title",
+   "read_utc": "2026-10-15T22:41:17Z"
+  },
+  "1081527": {
+   "format": "BO1",
+   "format_source": "Polymarket market title",
+   "read_utc": "2026-10-15T22:41:17Z"
+  },
+  "1081528": {
+   "format": "BO1",
+   "format_source": "Polymarket market title",
+   "read_utc": "2026-10-15T22:41:17Z"
+  },
+  "1081529": {
+   "format": "BO1",
+   "format_source": "Polymarket market title",
+   "read_utc": "2026-10-15T22:41:17Z"
+  },
+  "1081530": {
+   "format": "BO1",
+   "format_source": "Polymarket market title",
+   "read_utc": "2026-10-15T22:41:17Z"
+  },
+  "1081531": {
+   "format": "BO1",
+   "format_source": "Polymarket market title",
+   "read_utc": "2026-10-15T22:41:17Z"
+  },
+  "1081532": {
+   "format": "BO1",
+   "format_source": "Polymarket market title",
+   "read_utc": "2026-10-15T22:41:17Z"
+  }
  },
  "derivations": {
   "R1": "Hotspawn renders kick-off in UTC-4; verified on 6 captured fixtures (see prep_sources.py).",
@@ -272,7 +178,7 @@
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -301,36 +207,7 @@
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
-   "source_url": "https://play.hotspawn.com/lobby"
-  },
-  {
-   "match_id": "1053068",
-   "competition": "Svenska CS-Ligan 2026",
-   "tier": "C",
-   "stage": null,
-   "team_a": "Johnny Speeds",
-   "team_b": "ReThink",
-   "start_utc": "2026-06-26T13:00:00Z",
-   "lock_utc": "2026-06-26T12:54:00Z",
-   "lock_offset_sec": 360,
-   "offered_points": 2,
-   "base_points": 2,
-   "points_breakdown": {
-    "game_multiplier": 1.25,
-    "tier_multiplier": 1,
-    "series_multiplier": 1,
-    "stage_multiplier": 1,
-    "tournament_multiplier": 1
-   },
-   "total_picks": 4,
-   "crowd_a_pct": 100,
-   "crowd_b_pct": 0,
-   "status": "scheduled",
-   "best_of": null,
-   "series_format": null,
-   "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -359,7 +236,36 @@
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
+   "source_url": "https://play.hotspawn.com/lobby"
+  },
+  {
+   "match_id": "1053068",
+   "competition": "Svenska CS-Ligan 2026",
+   "tier": "C",
+   "stage": null,
+   "team_a": "Johnny Speeds",
+   "team_b": "ReThink",
+   "start_utc": "2026-06-26T13:00:00Z",
+   "lock_utc": "2026-06-26T12:54:00Z",
+   "lock_offset_sec": 360,
+   "offered_points": 2,
+   "base_points": 2,
+   "points_breakdown": {
+    "game_multiplier": 1.25,
+    "tier_multiplier": 1,
+    "series_multiplier": 1,
+    "stage_multiplier": 1,
+    "tournament_multiplier": 1
+   },
+   "total_picks": 4,
+   "crowd_a_pct": 100,
+   "crowd_b_pct": 0,
+   "status": "scheduled",
+   "best_of": null,
+   "series_format": null,
+   "hotspawn_url": null,
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -388,7 +294,7 @@
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -417,7 +323,7 @@
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -446,7 +352,7 @@
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -475,7 +381,7 @@
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -504,7 +410,7 @@
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -533,7 +439,7 @@
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -562,7 +468,7 @@
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -591,7 +497,7 @@
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -620,7 +526,7 @@
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -649,7 +555,7 @@
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -678,7 +584,7 @@
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -707,7 +613,7 @@
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -736,36 +642,7 @@
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
-   "source_url": "https://play.hotspawn.com/lobby"
-  },
-  {
-   "match_id": "1052699",
-   "competition": "CCT South America 2026 Series #3",
-   "tier": "B",
-   "stage": "waiting for information",
-   "team_a": "Vasco",
-   "team_b": "Red Feet",
-   "start_utc": "2026-06-27T13:00:00Z",
-   "lock_utc": "2026-06-27T12:54:00Z",
-   "lock_offset_sec": 360,
-   "offered_points": 3,
-   "base_points": 2,
-   "points_breakdown": {
-    "game_multiplier": 1.25,
-    "tier_multiplier": 1.5,
-    "series_multiplier": 1,
-    "stage_multiplier": 1,
-    "tournament_multiplier": 1
-   },
-   "total_picks": 5,
-   "crowd_a_pct": 80,
-   "crowd_b_pct": 20,
-   "status": "scheduled",
-   "best_of": null,
-   "series_format": null,
-   "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -794,7 +671,36 @@
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
+   "source_url": "https://play.hotspawn.com/lobby"
+  },
+  {
+   "match_id": "1052699",
+   "competition": "CCT South America 2026 Series #3",
+   "tier": "B",
+   "stage": "waiting for information",
+   "team_a": "Vasco",
+   "team_b": "Red Feet",
+   "start_utc": "2026-06-27T13:00:00Z",
+   "lock_utc": "2026-06-27T12:54:00Z",
+   "lock_offset_sec": 360,
+   "offered_points": 3,
+   "base_points": 2,
+   "points_breakdown": {
+    "game_multiplier": 1.25,
+    "tier_multiplier": 1.5,
+    "series_multiplier": 1,
+    "stage_multiplier": 1,
+    "tournament_multiplier": 1
+   },
+   "total_picks": 5,
+   "crowd_a_pct": 80,
+   "crowd_b_pct": 20,
+   "status": "scheduled",
+   "best_of": null,
+   "series_format": null,
+   "hotspawn_url": null,
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -823,7 +729,7 @@
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -852,7 +758,7 @@
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -881,7 +787,7 @@
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -910,7 +816,7 @@
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -939,36 +845,7 @@
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
-   "source_url": "https://play.hotspawn.com/lobby"
-  },
-  {
-   "match_id": "1052700",
-   "competition": "CCT South America 2026 Series #3",
-   "tier": "B",
-   "stage": "waiting for information",
-   "team_a": "GameHunters",
-   "team_b": "VEXA",
-   "start_utc": "2026-06-27T16:00:00Z",
-   "lock_utc": "2026-06-27T15:54:00Z",
-   "lock_offset_sec": 360,
-   "offered_points": 3,
-   "base_points": 2,
-   "points_breakdown": {
-    "game_multiplier": 1.25,
-    "tier_multiplier": 1.5,
-    "series_multiplier": 1,
-    "stage_multiplier": 1,
-    "tournament_multiplier": 1
-   },
-   "total_picks": 4,
-   "crowd_a_pct": 100,
-   "crowd_b_pct": 0,
-   "status": "scheduled",
-   "best_of": null,
-   "series_format": null,
-   "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -997,36 +874,36 @@
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
-   "match_id": "1053073",
-   "competition": "Svenska CS-Ligan 2026",
-   "tier": "C",
-   "stage": null,
-   "team_a": "roamsfiest",
-   "team_b": "ReThink",
-   "start_utc": "2026-06-27T17:00:00Z",
-   "lock_utc": "2026-06-27T16:54:00Z",
+   "match_id": "1052700",
+   "competition": "CCT South America 2026 Series #3",
+   "tier": "B",
+   "stage": "waiting for information",
+   "team_a": "GameHunters",
+   "team_b": "VEXA",
+   "start_utc": "2026-06-27T16:00:00Z",
+   "lock_utc": "2026-06-27T15:54:00Z",
    "lock_offset_sec": 360,
-   "offered_points": 2,
+   "offered_points": 3,
    "base_points": 2,
    "points_breakdown": {
     "game_multiplier": 1.25,
-    "tier_multiplier": 1,
+    "tier_multiplier": 1.5,
     "series_multiplier": 1,
     "stage_multiplier": 1,
     "tournament_multiplier": 1
    },
-   "total_picks": 0,
-   "crowd_a_pct": 0,
+   "total_picks": 4,
+   "crowd_a_pct": 100,
    "crowd_b_pct": 0,
    "status": "scheduled",
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -1055,7 +932,36 @@
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
+   "source_url": "https://play.hotspawn.com/lobby"
+  },
+  {
+   "match_id": "1053073",
+   "competition": "Svenska CS-Ligan 2026",
+   "tier": "C",
+   "stage": null,
+   "team_a": "roamsfiest",
+   "team_b": "ReThink",
+   "start_utc": "2026-06-27T17:00:00Z",
+   "lock_utc": "2026-06-27T16:54:00Z",
+   "lock_offset_sec": 360,
+   "offered_points": 2,
+   "base_points": 2,
+   "points_breakdown": {
+    "game_multiplier": 1.25,
+    "tier_multiplier": 1,
+    "series_multiplier": 1,
+    "stage_multiplier": 1,
+    "tournament_multiplier": 1
+   },
+   "total_picks": 0,
+   "crowd_a_pct": 0,
+   "crowd_b_pct": 0,
+   "status": "scheduled",
+   "best_of": null,
+   "series_format": null,
+   "hotspawn_url": null,
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -1084,7 +990,7 @@
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -1113,36 +1019,7 @@
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
-   "source_url": "https://play.hotspawn.com/lobby"
-  },
-  {
-   "match_id": "1052702",
-   "competition": "CCT South America 2026 Series #3",
-   "tier": "B",
-   "stage": "waiting for information",
-   "team_a": "Procyon",
-   "team_b": "BESTIA Academy",
-   "start_utc": "2026-06-27T22:00:00Z",
-   "lock_utc": "2026-06-27T21:54:00Z",
-   "lock_offset_sec": 360,
-   "offered_points": 3,
-   "base_points": 2,
-   "points_breakdown": {
-    "game_multiplier": 1.25,
-    "tier_multiplier": 1.5,
-    "series_multiplier": 1,
-    "stage_multiplier": 1,
-    "tournament_multiplier": 1
-   },
-   "total_picks": 5,
-   "crowd_a_pct": 0,
-   "crowd_b_pct": 100,
-   "status": "scheduled",
-   "best_of": null,
-   "series_format": null,
-   "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -1171,7 +1048,36 @@
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
+   "source_url": "https://play.hotspawn.com/lobby"
+  },
+  {
+   "match_id": "1052702",
+   "competition": "CCT South America 2026 Series #3",
+   "tier": "B",
+   "stage": "waiting for information",
+   "team_a": "Procyon",
+   "team_b": "BESTIA Academy",
+   "start_utc": "2026-06-27T22:00:00Z",
+   "lock_utc": "2026-06-27T21:54:00Z",
+   "lock_offset_sec": 360,
+   "offered_points": 3,
+   "base_points": 2,
+   "points_breakdown": {
+    "game_multiplier": 1.25,
+    "tier_multiplier": 1.5,
+    "series_multiplier": 1,
+    "stage_multiplier": 1,
+    "tournament_multiplier": 1
+   },
+   "total_picks": 5,
+   "crowd_a_pct": 0,
+   "crowd_b_pct": 100,
+   "status": "scheduled",
+   "best_of": null,
+   "series_format": null,
+   "hotspawn_url": null,
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -1200,7 +1106,7 @@
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -1229,7 +1135,7 @@
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -1258,7 +1164,7 @@
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -1287,7 +1193,7 @@
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -1316,7 +1222,7 @@
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -1345,7 +1251,7 @@
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -1374,7 +1280,7 @@
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -1403,7 +1309,7 @@
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -1432,7 +1338,7 @@
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -1461,7 +1367,7 @@
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -1490,7 +1396,7 @@
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -1519,7 +1425,7 @@
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -1548,7 +1454,7 @@
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -1577,7 +1483,7 @@
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -1606,36 +1512,7 @@
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
-   "source_url": "https://play.hotspawn.com/lobby"
-  },
-  {
-   "match_id": "1053469",
-   "competition": "Urban Riga Open #5",
-   "tier": "C",
-   "stage": null,
-   "team_a": "BERG",
-   "team_b": "SINQU REHTI",
-   "start_utc": "2026-06-28T16:00:00Z",
-   "lock_utc": "2026-06-28T15:54:00Z",
-   "lock_offset_sec": 360,
-   "offered_points": 2,
-   "base_points": 2,
-   "points_breakdown": {
-    "game_multiplier": 1.25,
-    "tier_multiplier": 1,
-    "series_multiplier": 1,
-    "stage_multiplier": 1,
-    "tournament_multiplier": 1
-   },
-   "total_picks": 1,
-   "crowd_a_pct": 0,
-   "crowd_b_pct": 100,
-   "status": "scheduled",
-   "best_of": null,
-   "series_format": null,
-   "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -1664,7 +1541,36 @@
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
+   "source_url": "https://play.hotspawn.com/lobby"
+  },
+  {
+   "match_id": "1053469",
+   "competition": "Urban Riga Open #5",
+   "tier": "C",
+   "stage": null,
+   "team_a": "BERG",
+   "team_b": "SINQU REHTI",
+   "start_utc": "2026-06-28T16:00:00Z",
+   "lock_utc": "2026-06-28T15:54:00Z",
+   "lock_offset_sec": 360,
+   "offered_points": 2,
+   "base_points": 2,
+   "points_breakdown": {
+    "game_multiplier": 1.25,
+    "tier_multiplier": 1,
+    "series_multiplier": 1,
+    "stage_multiplier": 1,
+    "tournament_multiplier": 1
+   },
+   "total_picks": 1,
+   "crowd_a_pct": 0,
+   "crowd_b_pct": 100,
+   "status": "scheduled",
+   "best_of": null,
+   "series_format": null,
+   "hotspawn_url": null,
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -1693,7 +1599,7 @@
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -1722,7 +1628,7 @@
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -1751,65 +1657,7 @@
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
-   "source_url": "https://play.hotspawn.com/lobby"
-  },
-  {
-   "match_id": "1053442",
-   "competition": "Urban Riga Open #5",
-   "tier": "C",
-   "stage": null,
-   "team_a": "6666",
-   "team_b": "BERG",
-   "start_utc": "2026-06-28T18:00:00Z",
-   "lock_utc": "2026-06-28T17:54:00Z",
-   "lock_offset_sec": 360,
-   "offered_points": 2,
-   "base_points": 2,
-   "points_breakdown": {
-    "game_multiplier": 1.25,
-    "tier_multiplier": 1,
-    "series_multiplier": 1,
-    "stage_multiplier": 1,
-    "tournament_multiplier": 1
-   },
-   "total_picks": 0,
-   "crowd_a_pct": 0,
-   "crowd_b_pct": 0,
-   "status": "scheduled",
-   "best_of": null,
-   "series_format": null,
-   "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
-   "source_url": "https://play.hotspawn.com/lobby"
-  },
-  {
-   "match_id": "1053471",
-   "competition": "Urban Riga Open #5",
-   "tier": "C",
-   "stage": null,
-   "team_a": "ASTRAL",
-   "team_b": "SINQU REHTI",
-   "start_utc": "2026-06-28T18:00:00Z",
-   "lock_utc": "2026-06-28T17:54:00Z",
-   "lock_offset_sec": 360,
-   "offered_points": 2,
-   "base_points": 2,
-   "points_breakdown": {
-    "game_multiplier": 1.25,
-    "tier_multiplier": 1,
-    "series_multiplier": 1,
-    "stage_multiplier": 1,
-    "tournament_multiplier": 1
-   },
-   "total_picks": 0,
-   "crowd_a_pct": 0,
-   "crowd_b_pct": 0,
-   "status": "scheduled",
-   "best_of": null,
-   "series_format": null,
-   "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -1838,7 +1686,65 @@
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
+   "source_url": "https://play.hotspawn.com/lobby"
+  },
+  {
+   "match_id": "1053442",
+   "competition": "Urban Riga Open #5",
+   "tier": "C",
+   "stage": null,
+   "team_a": "6666",
+   "team_b": "BERG",
+   "start_utc": "2026-06-28T18:00:00Z",
+   "lock_utc": "2026-06-28T17:54:00Z",
+   "lock_offset_sec": 360,
+   "offered_points": 2,
+   "base_points": 2,
+   "points_breakdown": {
+    "game_multiplier": 1.25,
+    "tier_multiplier": 1,
+    "series_multiplier": 1,
+    "stage_multiplier": 1,
+    "tournament_multiplier": 1
+   },
+   "total_picks": 0,
+   "crowd_a_pct": 0,
+   "crowd_b_pct": 0,
+   "status": "scheduled",
+   "best_of": null,
+   "series_format": null,
+   "hotspawn_url": null,
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
+   "source_url": "https://play.hotspawn.com/lobby"
+  },
+  {
+   "match_id": "1053471",
+   "competition": "Urban Riga Open #5",
+   "tier": "C",
+   "stage": null,
+   "team_a": "ASTRAL",
+   "team_b": "SINQU REHTI",
+   "start_utc": "2026-06-28T18:00:00Z",
+   "lock_utc": "2026-06-28T17:54:00Z",
+   "lock_offset_sec": 360,
+   "offered_points": 2,
+   "base_points": 2,
+   "points_breakdown": {
+    "game_multiplier": 1.25,
+    "tier_multiplier": 1,
+    "series_multiplier": 1,
+    "stage_multiplier": 1,
+    "tournament_multiplier": 1
+   },
+   "total_picks": 0,
+   "crowd_a_pct": 0,
+   "crowd_b_pct": 0,
+   "status": "scheduled",
+   "best_of": null,
+   "series_format": null,
+   "hotspawn_url": null,
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -1867,7 +1773,7 @@
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -1896,7 +1802,7 @@
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -1925,7 +1831,7 @@
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -1954,7 +1860,7 @@
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -1983,7 +1889,7 @@
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -2012,7 +1918,7 @@
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -2041,7 +1947,7 @@
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -2070,7 +1976,7 @@
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -2099,7 +2005,7 @@
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -2121,14 +2027,14 @@
     "stage_multiplier": 1,
     "tournament_multiplier": 1
    },
-   "total_picks": 16,
-   "crowd_a_pct": 31,
-   "crowd_b_pct": 69,
+   "total_picks": 9,
+   "crowd_a_pct": 44,
+   "crowd_b_pct": 56,
    "status": "scheduled",
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -2150,14 +2056,14 @@
     "stage_multiplier": 1,
     "tournament_multiplier": 1
    },
-   "total_picks": 71,
-   "crowd_a_pct": 15,
-   "crowd_b_pct": 85,
+   "total_picks": 68,
+   "crowd_a_pct": 16,
+   "crowd_b_pct": 84,
    "status": "scheduled",
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -2179,14 +2085,37 @@
     "stage_multiplier": 1,
     "tournament_multiplier": 1
    },
-   "total_picks": 72,
+   "total_picks": 69,
    "crowd_a_pct": 94,
    "crowd_b_pct": 6,
    "status": "scheduled",
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
+   "source_url": "https://play.hotspawn.com/lobby"
+  },
+  {
+   "match_id": "1079167",
+   "competition": "NODWIN Clutch Series #13",
+   "tier": "B",
+   "stage": "waiting for information",
+   "team_a": "Bushido Wildcats",
+   "team_b": "ex-RUSTEC",
+   "start_utc": "2026-10-16T11:00:00Z",
+   "lock_utc": "2026-10-16T10:54:00Z",
+   "lock_offset_sec": 360,
+   "offered_points": 3,
+   "base_points": null,
+   "points_breakdown": null,
+   "total_picks": 0,
+   "crowd_a_pct": 0,
+   "crowd_b_pct": 100,
+   "status": "scheduled",
+   "best_of": null,
+   "series_format": null,
+   "hotspawn_url": "https://www.hotspawn.com/matches/bushido-wildcats-vs-ex-rustec-nodwin-clutch-series-13-1079167",
+   "source": "live lobby read 2026-10-16T04:18:00Z + rules R1/R2",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -2208,14 +2137,14 @@
     "stage_multiplier": 1,
     "tournament_multiplier": 1
    },
-   "total_picks": 15,
-   "crowd_a_pct": 87,
+   "total_picks": 8,
+   "crowd_a_pct": 88,
    "crowd_b_pct": 13,
    "status": "scheduled",
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -2229,51 +2158,16 @@
    "lock_utc": "2026-10-16T10:54:00Z",
    "lock_offset_sec": 360,
    "offered_points": 3,
-   "base_points": 2,
-   "points_breakdown": {
-    "game_multiplier": 1.25,
-    "tier_multiplier": 1.5,
-    "series_multiplier": 1,
-    "stage_multiplier": 1,
-    "tournament_multiplier": 1
-   },
-   "total_picks": 2,
+   "base_points": null,
+   "points_breakdown": null,
+   "total_picks": 0,
    "crowd_a_pct": 0,
    "crowd_b_pct": 100,
    "status": "scheduled",
    "best_of": null,
    "series_format": null,
-   "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
-   "source_url": "https://play.hotspawn.com/lobby"
-  },
-  {
-   "match_id": "1079167",
-   "competition": "NODWIN Clutch Series #13",
-   "tier": "B",
-   "stage": "waiting for information",
-   "team_a": "Bushido Wildcats",
-   "team_b": "ex-RUSTEC",
-   "start_utc": "2026-10-16T11:00:00Z",
-   "lock_utc": "2026-10-16T10:54:00Z",
-   "lock_offset_sec": 360,
-   "offered_points": 3,
-   "base_points": 2,
-   "points_breakdown": {
-    "game_multiplier": 1.25,
-    "tier_multiplier": 1.5,
-    "series_multiplier": 1,
-    "stage_multiplier": 1,
-    "tournament_multiplier": 1
-   },
-   "total_picks": 1,
-   "crowd_a_pct": 0,
-   "crowd_b_pct": 100,
-   "status": "scheduled",
-   "best_of": null,
-   "series_format": null,
-   "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "hotspawn_url": "https://www.hotspawn.com/matches/fnatic-vs-heroic-stake-pulse-beat-iii-1081712",
+   "source": "live lobby read 2026-10-16T04:18:00Z + rules R1/R2",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -2295,14 +2189,14 @@
     "stage_multiplier": 1,
     "tournament_multiplier": 1
    },
-   "total_picks": 69,
-   "crowd_a_pct": 87,
-   "crowd_b_pct": 13,
+   "total_picks": 65,
+   "crowd_a_pct": 86,
+   "crowd_b_pct": 14,
    "status": "scheduled",
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -2324,43 +2218,14 @@
     "stage_multiplier": 1,
     "tournament_multiplier": 1
    },
-   "total_picks": 13,
-   "crowd_a_pct": 77,
-   "crowd_b_pct": 23,
+   "total_picks": 7,
+   "crowd_a_pct": 71,
+   "crowd_b_pct": 29,
    "status": "scheduled",
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
-   "source_url": "https://play.hotspawn.com/lobby"
-  },
-  {
-   "match_id": "1081120",
-   "competition": "CCT Europe 2026 Series #12 Play-In",
-   "tier": "C",
-   "stage": "waiting for information",
-   "team_a": "mellren",
-   "team_b": "Privateer",
-   "start_utc": "2026-10-16T14:00:00Z",
-   "lock_utc": "2026-10-16T13:54:00Z",
-   "lock_offset_sec": 360,
-   "offered_points": 2,
-   "base_points": 2,
-   "points_breakdown": {
-    "game_multiplier": 1.25,
-    "tier_multiplier": 1,
-    "series_multiplier": 1,
-    "stage_multiplier": 1,
-    "tournament_multiplier": 1
-   },
-   "total_picks": 58,
-   "crowd_a_pct": 95,
-   "crowd_b_pct": 5,
-   "status": "scheduled",
-   "best_of": null,
-   "series_format": null,
-   "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -2374,22 +2239,16 @@
    "lock_utc": "2026-10-16T13:54:00Z",
    "lock_offset_sec": 360,
    "offered_points": 3,
-   "base_points": 2,
-   "points_breakdown": {
-    "game_multiplier": 1.25,
-    "tier_multiplier": 1.5,
-    "series_multiplier": 1,
-    "stage_multiplier": 1,
-    "tournament_multiplier": 1
-   },
-   "total_picks": 1,
+   "base_points": null,
+   "points_breakdown": null,
+   "total_picks": 0,
    "crowd_a_pct": 100,
    "crowd_b_pct": 0,
    "status": "scheduled",
    "best_of": null,
    "series_format": null,
-   "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "hotspawn_url": "https://www.hotspawn.com/matches/astralis-vs-mibr-stake-pulse-beat-iii-1079588",
+   "source": "live lobby read 2026-10-16T04:18:00Z + rules R1/R2",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -2411,14 +2270,14 @@
     "stage_multiplier": 1,
     "tournament_multiplier": 1
    },
-   "total_picks": 13,
-   "crowd_a_pct": 85,
-   "crowd_b_pct": 15,
+   "total_picks": 7,
+   "crowd_a_pct": 86,
+   "crowd_b_pct": 14,
    "status": "scheduled",
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -2440,43 +2299,14 @@
     "stage_multiplier": 1,
     "tournament_multiplier": 1
    },
-   "total_picks": 16,
-   "crowd_a_pct": 88,
-   "crowd_b_pct": 13,
+   "total_picks": 9,
+   "crowd_a_pct": 89,
+   "crowd_b_pct": 11,
    "status": "scheduled",
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
-   "source_url": "https://play.hotspawn.com/lobby"
-  },
-  {
-   "match_id": "1081769",
-   "competition": "NODWIN Clutch Series #13",
-   "tier": "B",
-   "stage": "waiting for information",
-   "team_a": "ex-Zero Tenacity",
-   "team_b": "UNiTY",
-   "start_utc": "2026-10-16T14:00:00Z",
-   "lock_utc": "2026-10-16T13:54:00Z",
-   "lock_offset_sec": 360,
-   "offered_points": 3,
-   "base_points": 2,
-   "points_breakdown": {
-    "game_multiplier": 1.25,
-    "tier_multiplier": 1.5,
-    "series_multiplier": 1,
-    "stage_multiplier": 1,
-    "tournament_multiplier": 1
-   },
-   "total_picks": 2,
-   "crowd_a_pct": 0,
-   "crowd_b_pct": 100,
-   "status": "scheduled",
-   "best_of": null,
-   "series_format": null,
-   "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -2498,25 +2328,25 @@
     "stage_multiplier": 1,
     "tournament_multiplier": 1
    },
-   "total_picks": 67,
+   "total_picks": 64,
    "crowd_a_pct": 97,
    "crowd_b_pct": 3,
    "status": "scheduled",
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
-   "match_id": "1081502",
-   "competition": "CCT South America 2026 Series #7",
+   "match_id": "1081120",
+   "competition": "CCT Europe 2026 Series #12 Play-In",
    "tier": "C",
    "stage": "waiting for information",
-   "team_a": "Procyon",
-   "team_b": "LOS NINOS",
-   "start_utc": "2026-10-16T16:00:00Z",
-   "lock_utc": "2026-10-16T15:54:00Z",
+   "team_a": "mellren",
+   "team_b": "Privateer",
+   "start_utc": "2026-10-16T14:00:00Z",
+   "lock_utc": "2026-10-16T13:54:00Z",
    "lock_offset_sec": 360,
    "offered_points": 2,
    "base_points": 2,
@@ -2527,14 +2357,37 @@
     "stage_multiplier": 1,
     "tournament_multiplier": 1
    },
-   "total_picks": 13,
-   "crowd_a_pct": 92,
-   "crowd_b_pct": 8,
+   "total_picks": 55,
+   "crowd_a_pct": 95,
+   "crowd_b_pct": 5,
    "status": "scheduled",
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
+   "source_url": "https://play.hotspawn.com/lobby"
+  },
+  {
+   "match_id": "1081769",
+   "competition": "NODWIN Clutch Series #13",
+   "tier": "B",
+   "stage": "waiting for information",
+   "team_a": "ex-Zero Tenacity",
+   "team_b": "UNiTY",
+   "start_utc": "2026-10-16T14:00:00Z",
+   "lock_utc": "2026-10-16T13:54:00Z",
+   "lock_offset_sec": 360,
+   "offered_points": 3,
+   "base_points": null,
+   "points_breakdown": null,
+   "total_picks": 0,
+   "crowd_a_pct": 0,
+   "crowd_b_pct": 100,
+   "status": "scheduled",
+   "best_of": null,
+   "series_format": null,
+   "hotspawn_url": "https://www.hotspawn.com/matches/ex-zero-tenacity-vs-unity-nodwin-clutch-series-13-1081769",
+   "source": "live lobby read 2026-10-16T04:18:00Z + rules R1/R2",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -2556,14 +2409,43 @@
     "stage_multiplier": 1,
     "tournament_multiplier": 1
    },
-   "total_picks": 68,
-   "crowd_a_pct": 4,
-   "crowd_b_pct": 96,
+   "total_picks": 65,
+   "crowd_a_pct": 5,
+   "crowd_b_pct": 95,
    "status": "scheduled",
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
+   "source_url": "https://play.hotspawn.com/lobby"
+  },
+  {
+   "match_id": "1081502",
+   "competition": "CCT South America 2026 Series #7",
+   "tier": "C",
+   "stage": "waiting for information",
+   "team_a": "Procyon",
+   "team_b": "LOS NINOS",
+   "start_utc": "2026-10-16T16:00:00Z",
+   "lock_utc": "2026-10-16T15:54:00Z",
+   "lock_offset_sec": 360,
+   "offered_points": 2,
+   "base_points": 2,
+   "points_breakdown": {
+    "game_multiplier": 1.25,
+    "tier_multiplier": 1,
+    "series_multiplier": 1,
+    "stage_multiplier": 1,
+    "tournament_multiplier": 1
+   },
+   "total_picks": 7,
+   "crowd_a_pct": 86,
+   "crowd_b_pct": 14,
+   "status": "scheduled",
+   "best_of": null,
+   "series_format": null,
+   "hotspawn_url": null,
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -2585,14 +2467,14 @@
     "stage_multiplier": 1,
     "tournament_multiplier": 1
    },
-   "total_picks": 15,
-   "crowd_a_pct": 93,
-   "crowd_b_pct": 7,
+   "total_picks": 8,
+   "crowd_a_pct": 88,
+   "crowd_b_pct": 13,
    "status": "scheduled",
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -2614,14 +2496,14 @@
     "stage_multiplier": 1,
     "tournament_multiplier": 1
    },
-   "total_picks": 14,
-   "crowd_a_pct": 43,
-   "crowd_b_pct": 57,
+   "total_picks": 8,
+   "crowd_a_pct": 50,
+   "crowd_b_pct": 50,
    "status": "scheduled",
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -2635,22 +2517,16 @@
    "lock_utc": "2026-10-16T16:54:00Z",
    "lock_offset_sec": 360,
    "offered_points": 7,
-   "base_points": 2,
-   "points_breakdown": {
-    "game_multiplier": 1.25,
-    "tier_multiplier": 3,
-    "series_multiplier": 1,
-    "stage_multiplier": 1,
-    "tournament_multiplier": 1
-   },
-   "total_picks": 2,
+   "base_points": null,
+   "points_breakdown": null,
+   "total_picks": 0,
    "crowd_a_pct": 50,
    "crowd_b_pct": 50,
    "status": "scheduled",
    "best_of": null,
    "series_format": null,
-   "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "hotspawn_url": "https://www.hotspawn.com/matches/betboom-vs-legacy-thunderpick-world-championship-2026-1081775",
+   "source": "live lobby read 2026-10-16T04:18:00Z + rules R1/R2",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -2672,14 +2548,14 @@
     "stage_multiplier": 1,
     "tournament_multiplier": 1
    },
-   "total_picks": 65,
+   "total_picks": 62,
    "crowd_a_pct": 98,
    "crowd_b_pct": 2,
    "status": "scheduled",
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -2693,22 +2569,16 @@
    "lock_utc": "2026-10-17T07:54:00Z",
    "lock_offset_sec": 360,
    "offered_points": 3,
-   "base_points": 2,
-   "points_breakdown": {
-    "game_multiplier": 1.25,
-    "tier_multiplier": 1.5,
-    "series_multiplier": 1,
-    "stage_multiplier": 1,
-    "tournament_multiplier": 1
-   },
-   "total_picks": 1,
+   "base_points": null,
+   "points_breakdown": null,
+   "total_picks": 0,
    "crowd_a_pct": 100,
    "crowd_b_pct": 0,
    "status": "scheduled",
    "best_of": null,
    "series_format": null,
-   "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "hotspawn_url": "https://www.hotspawn.com/matches/bet-m-vs-just-players-nodwin-clutch-series-13-1079170",
+   "source": "live lobby read 2026-10-16T04:18:00Z + rules R1/R2",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -2722,22 +2592,16 @@
    "lock_utc": "2026-10-17T10:54:00Z",
    "lock_offset_sec": 360,
    "offered_points": 3,
-   "base_points": 2,
-   "points_breakdown": {
-    "game_multiplier": 1.25,
-    "tier_multiplier": 1.5,
-    "series_multiplier": 1,
-    "stage_multiplier": 1,
-    "tournament_multiplier": 1
-   },
-   "total_picks": 1,
+   "base_points": null,
+   "points_breakdown": null,
+   "total_picks": 0,
    "crowd_a_pct": 0,
    "crowd_b_pct": 100,
    "status": "scheduled",
    "best_of": null,
    "series_format": null,
-   "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "hotspawn_url": "https://www.hotspawn.com/matches/genone-vs-butterfly-nodwin-clutch-series-13-1079171",
+   "source": "live lobby read 2026-10-16T04:18:00Z + rules R1/R2",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -2751,22 +2615,16 @@
    "lock_utc": "2026-10-17T16:54:00Z",
    "lock_offset_sec": 360,
    "offered_points": 3,
-   "base_points": 2,
-   "points_breakdown": {
-    "game_multiplier": 1.25,
-    "tier_multiplier": 1.5,
-    "series_multiplier": 1,
-    "stage_multiplier": 1,
-    "tournament_multiplier": 1
-   },
-   "total_picks": 1,
+   "base_points": null,
+   "points_breakdown": null,
+   "total_picks": 0,
    "crowd_a_pct": 100,
    "crowd_b_pct": 0,
    "status": "scheduled",
    "best_of": null,
    "series_format": null,
-   "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "hotspawn_url": "https://www.hotspawn.com/matches/baks-vs-fire-flux-nodwin-clutch-series-13-1079173",
+   "source": "live lobby read 2026-10-16T04:18:00Z + rules R1/R2",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -2774,28 +2632,22 @@
    "competition": "CCT Europe 2026 Series #12 Play-In",
    "tier": "C",
    "stage": "waiting for information",
-   "team_a": "Banda chuya",
+   "team_a": "banda chuya",
    "team_b": "Enjoy",
    "start_utc": "2026-10-18T08:00:00Z",
    "lock_utc": "2026-10-18T07:54:00Z",
    "lock_offset_sec": 360,
    "offered_points": 2,
-   "base_points": 2,
-   "points_breakdown": {
-    "game_multiplier": 1.25,
-    "tier_multiplier": 1,
-    "series_multiplier": 1,
-    "stage_multiplier": 1,
-    "tournament_multiplier": 1
-   },
-   "total_picks": 1,
+   "base_points": null,
+   "points_breakdown": null,
+   "total_picks": 0,
    "crowd_a_pct": 100,
    "crowd_b_pct": 0,
    "status": "scheduled",
    "best_of": null,
    "series_format": null,
-   "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "hotspawn_url": "https://www.hotspawn.com/matches/banda-chuya-vs-enjoy-cct-europe-2026-series-12-play-in-1081126",
+   "source": "live lobby read 2026-10-16T04:18:00Z + rules R1/R2",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -2817,14 +2669,14 @@
     "stage_multiplier": 1,
     "tournament_multiplier": 1
    },
-   "total_picks": 10,
+   "total_picks": 4,
    "crowd_a_pct": 100,
    "crowd_b_pct": 0,
    "status": "scheduled",
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -2846,14 +2698,14 @@
     "stage_multiplier": 1,
     "tournament_multiplier": 1
    },
-   "total_picks": 9,
-   "crowd_a_pct": 78,
-   "crowd_b_pct": 22,
+   "total_picks": 4,
+   "crowd_a_pct": 75,
+   "crowd_b_pct": 25,
    "status": "scheduled",
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -2875,14 +2727,14 @@
     "stage_multiplier": 1,
     "tournament_multiplier": 1
    },
-   "total_picks": 10,
+   "total_picks": 5,
    "crowd_a_pct": 100,
    "crowd_b_pct": 0,
    "status": "scheduled",
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -2904,14 +2756,14 @@
     "stage_multiplier": 1,
     "tournament_multiplier": 1
    },
-   "total_picks": 9,
-   "crowd_a_pct": 78,
-   "crowd_b_pct": 22,
+   "total_picks": 4,
+   "crowd_a_pct": 75,
+   "crowd_b_pct": 25,
    "status": "scheduled",
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -2933,14 +2785,14 @@
     "stage_multiplier": 1,
     "tournament_multiplier": 1
    },
-   "total_picks": 9,
-   "crowd_a_pct": 89,
-   "crowd_b_pct": 11,
+   "total_picks": 4,
+   "crowd_a_pct": 75,
+   "crowd_b_pct": 25,
    "status": "scheduled",
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -2962,14 +2814,14 @@
     "stage_multiplier": 1,
     "tournament_multiplier": 1
    },
-   "total_picks": 9,
-   "crowd_a_pct": 89,
-   "crowd_b_pct": 11,
+   "total_picks": 4,
+   "crowd_a_pct": 75,
+   "crowd_b_pct": 25,
    "status": "scheduled",
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
@@ -2991,14 +2843,14 @@
     "stage_multiplier": 1,
     "tournament_multiplier": 1
    },
-   "total_picks": 9,
-   "crowd_a_pct": 33,
-   "crowd_b_pct": 67,
+   "total_picks": 4,
+   "crowd_a_pct": 50,
+   "crowd_b_pct": 50,
    "status": "scheduled",
    "best_of": null,
    "series_format": null,
    "hotspawn_url": null,
-   "source": "Hotspawn TransferState 2026-10-16T04:36:25Z",
+   "source": "hotspawn TransferState (ng-state) 2026-10-15T22:41:15Z",
    "source_url": "https://play.hotspawn.com/lobby"
   }
  ],
@@ -5099,740 +4951,191 @@
   }
  },
  "hltv": {
-  "spirit": {
-   "team_url": "https://www.hltv.org/team/7020/spirit"
+  "Falcons": {
+   "rank": 5,
+   "url": "https://www.hltv.org/ranking/teams/2026/october/5",
+   "label": "HLTV World Ranking 2026-10-05 (496 pts)"
   },
-  "vitality": {
-   "team_url": "https://www.hltv.org/team/9565/vitality"
+  "FURIA": {
+   "rank": 4,
+   "url": "https://www.hltv.org/ranking/teams/2026/october/5",
+   "label": "HLTV World Ranking 2026-10-05 (534 pts)"
   },
-  "mouz": {
-   "team_url": "https://www.hltv.org/team/4494/mouz"
+  "Astralis": {
+   "rank": 11,
+   "url": "https://www.hltv.org/ranking/teams/2026/october/5",
+   "label": "HLTV World Ranking 2026-10-05 (220 pts)"
   },
-  "furia": {
-   "team_url": "https://www.hltv.org/team/8297/furia"
-  },
-  "falcons": {
-   "team_url": "https://www.hltv.org/team/11283/falcons"
-  },
-  "aurora": {
-   "team_url": "https://www.hltv.org/team/11861/aurora"
-  },
-  "legacy": {
-   "team_url": "https://www.hltv.org/team/12468/legacy"
-  },
-  "g2": {
-   "team_url": "https://www.hltv.org/team/5995/g2"
-  },
-  "fut": {
-   "team_url": "https://www.hltv.org/team/13286/fut"
-  },
-  "natus vincere": {
-   "team_url": "https://www.hltv.org/team/4608/natus-vincere"
-  },
-  "parivision": {
-   "team_url": "https://www.hltv.org/team/12467/parivision"
-  },
-  "mibr": {
-   "team_url": "https://www.hltv.org/team/9215/mibr"
-  },
-  "1win": {
-   "team_url": "https://www.hltv.org/team/10621/1win"
-  },
-  "betboom": {
-   "team_url": "https://www.hltv.org/team/12394/betboom"
-  },
-  "astralis": {
-   "team_url": "https://www.hltv.org/team/6665/astralis"
-  },
-  "faze": {
-   "team_url": "https://www.hltv.org/team/6667/faze"
-  },
-  "9z": {
-   "team_url": "https://www.hltv.org/team/9996/9z"
-  },
-  "m80": {
-   "team_url": "https://www.hltv.org/team/12376/m80"
-  },
-  "b8": {
-   "team_url": "https://www.hltv.org/team/11241/b8"
-  },
-  "envy": {
-   "team_url": "https://www.hltv.org/team/5991/envy"
-  },
-  "the mongolz": {
-   "team_url": "https://www.hltv.org/team/6248/the-mongolz"
-  },
-  "gamerlegion": {
-   "team_url": "https://www.hltv.org/team/9928/gamerlegion"
-  },
-  "nemiga": {
-   "team_url": "https://www.hltv.org/team/7969/nemiga"
-  },
-  "magic": {
-   "team_url": "https://www.hltv.org/team/13592/magic"
-  },
-  "luminosity": {
-   "team_url": "https://www.hltv.org/team/6290/luminosity"
-  },
-  "ninjas in pyjamas": {
-   "team_url": "https://www.hltv.org/team/4411/ninjas-in-pyjamas"
-  },
-  "liquid": {
-   "team_url": "https://www.hltv.org/team/5973/liquid"
-  },
-  "alliance": {
-   "team_url": "https://www.hltv.org/team/12474/alliance"
-  },
-  "inner circle": {
-   "team_url": "https://www.hltv.org/team/13117/inner-circle"
-  },
-  "heroic": {
-   "team_url": "https://www.hltv.org/team/7175/heroic"
-  },
-  "nrg": {
-   "team_url": "https://www.hltv.org/team/6673/nrg"
-  },
-  "pain": {
-   "team_url": "https://www.hltv.org/team/4773/pain"
-  },
-  "tyloo": {
-   "team_url": "https://www.hltv.org/team/4863/tyloo"
-  },
-  "5star": {
-   "team_url": "https://www.hltv.org/team/13724/5star"
-  },
-  "big": {
-   "team_url": "https://www.hltv.org/team/7532/big"
+  "HEROIC": {
+   "rank": 29,
+   "url": "https://www.hltv.org/ranking/teams/2026/october/5",
+   "label": "HLTV World Ranking 2026-10-05 (64 pts)"
   },
   "fnatic": {
-   "team_url": "https://www.hltv.org/team/4991/fnatic"
-  },
-  "100 thieves": {
-   "team_url": "https://www.hltv.org/team/8474/100-thieves"
-  },
-  "eternal fire": {
-   "team_url": "https://www.hltv.org/team/11251/eternal-fire"
-  },
-  "lynn vision": {
-   "team_url": "https://www.hltv.org/team/8840/lynn-vision"
-  },
-  "dendele": {
-   "team_url": "https://www.hltv.org/team/13926/dendele"
-  },
-  "hotu": {
-   "team_url": "https://www.hltv.org/team/11581/hotu"
-  },
-  "wildcard": {
-   "team_url": "https://www.hltv.org/team/12257/wildcard"
-  },
-  "k27": {
-   "team_url": "https://www.hltv.org/team/12895/k27"
-  },
-  "sinners": {
-   "team_url": "https://www.hltv.org/team/10577/sinners"
-  },
-  "sangal": {
-   "team_url": "https://www.hltv.org/team/10333/sangal"
-  },
-  "nemesis": {
-   "team_url": "https://www.hltv.org/team/13355/nemesis"
-  },
-  "jijiehao": {
-   "team_url": "https://www.hltv.org/team/10245/jijiehao"
-  },
-  "fokus": {
-   "team_url": "https://www.hltv.org/team/13679/fokus"
-  },
-  "bbl": {
-   "team_url": "https://www.hltv.org/team/13996/bbl"
-  },
-  "shinden": {
-   "team_url": "https://www.hltv.org/team/12959/shinden"
-  },
-  "imperial": {
-   "team_url": "https://www.hltv.org/team/9455/imperial"
-  },
-  "eyeballers": {
-   "team_url": "https://www.hltv.org/team/11737/eyeballers"
-  },
-  "virtuspro": {
-   "team_url": "https://www.hltv.org/team/5378/virtuspro"
-  },
-  "nuclear tigeres": {
-   "team_url": "https://www.hltv.org/team/13027/nuclear-tigeres"
-  },
-  "metizport": {
-   "team_url": "https://www.hltv.org/team/11641/metizport"
-  },
-  "iberian soul": {
-   "team_url": "https://www.hltv.org/team/13104/iberian-soul"
-  },
-  "black phoenix": {
-   "team_url": "https://www.hltv.org/team/13924/black-phoenix"
-  },
-  "ex zero tenacity": {
-   "team_url": "https://www.hltv.org/team/13573/ex-zero-tenacity"
-  },
-  "voca": {
-   "team_url": "https://www.hltv.org/team/13499/voca"
-  },
-  "fluxo": {
-   "team_url": "https://www.hltv.org/team/11837/fluxo"
-  },
-  "chinggis warriors": {
-   "team_url": "https://www.hltv.org/team/12646/chinggis-warriors"
-  },
-  "sportsbetexpert": {
-   "team_url": "https://www.hltv.org/team/13375/sportsbetexpert"
-  },
-  "saw": {
-   "team_url": "https://www.hltv.org/team/10567/saw"
-  },
-  "upgrade": {
-   "team_url": "https://www.hltv.org/team/13989/upgrade"
-  },
-  "bet m": {
-   "team_url": "https://www.hltv.org/team/13619/bet-m"
-  },
-  "private": {
-   "team_url": "https://www.hltv.org/team/14030/private"
-  },
-  "flyquest": {
-   "team_url": "https://www.hltv.org/team/12774/flyquest"
-  },
-  "galorys": {
-   "team_url": "https://www.hltv.org/team/12677/galorys"
-  },
-  "without a roof": {
-   "team_url": "https://www.hltv.org/team/6914/without-a-roof"
-  },
-  "bcgame": {
-   "team_url": "https://www.hltv.org/team/12878/bcgame"
-  },
-  "betclic": {
-   "team_url": "https://www.hltv.org/team/12916/betclic"
-  },
-  "bestia": {
-   "team_url": "https://www.hltv.org/team/12144/bestia"
-  },
-  "johnny speeds": {
-   "team_url": "https://www.hltv.org/team/12604/johnny-speeds"
-  },
-  "bounty hunters": {
-   "team_url": "https://www.hltv.org/team/12776/bounty-hunters"
-  },
-  "forze reload": {
-   "team_url": "https://www.hltv.org/team/12857/forze-reload"
-  },
-  "inox division": {
-   "team_url": "https://www.hltv.org/team/13814/inox-division"
-  },
-  "pure": {
-   "team_url": "https://www.hltv.org/team/13777/pure"
-  },
-  "marsborne": {
-   "team_url": "https://www.hltv.org/team/13124/marsborne"
-  },
-  "ex rustec": {
-   "team_url": "https://www.hltv.org/team/13901/ex-rustec"
-  },
-  "6666": {
-   "team_url": "https://www.hltv.org/team/13882/6666"
-  },
-  "navi junior": {
-   "team_url": "https://www.hltv.org/team/10371/navi-junior"
-  },
-  "bushido wildcats": {
-   "team_url": "https://www.hltv.org/team/13281/bushido-wildcats"
-  },
-  "leo": {
-   "team_url": "https://www.hltv.org/team/11446/leo"
-  },
-  "rbls": {
-   "team_url": "https://www.hltv.org/team/12642/rbls"
-  },
-  "inner circle academy": {
-   "team_url": "https://www.hltv.org/team/13681/inner-circle-academy"
-  },
-  "infinite": {
-   "team_url": "https://www.hltv.org/team/10823/infinite"
-  },
-  "unity": {
-   "team_url": "https://www.hltv.org/team/12267/unity"
-  },
-  "phantom": {
-   "team_url": "https://www.hltv.org/team/13173/phantom"
-  },
-  "9ine": {
-   "team_url": "https://www.hltv.org/team/10278/9ine"
-  },
-  "fire flux": {
-   "team_url": "https://www.hltv.org/team/12960/fire-flux"
-  },
-  "cybershoke": {
-   "team_url": "https://www.hltv.org/team/12380/cybershoke"
-  },
-  "nt": {
-   "team_url": "https://www.hltv.org/team/14007/nt"
-  },
-  "lag": {
-   "team_url": "https://www.hltv.org/team/11955/lag"
-  },
-  "mellren": {
-   "team_url": "https://www.hltv.org/team/13759/mellren"
-  },
-  "genone": {
-   "team_url": "https://www.hltv.org/team/11609/genone"
-  },
-  "basement boys": {
-   "team_url": "https://www.hltv.org/team/13181/basement-boys"
-  },
-  "lazer cats": {
-   "team_url": "https://www.hltv.org/team/12087/lazer-cats"
-  },
-  "four magic": {
-   "team_url": "https://www.hltv.org/team/13520/four-magic"
-  },
-  "quazar": {
-   "team_url": "https://www.hltv.org/team/11312/quazar"
-  },
-  "aimclub": {
-   "team_url": "https://www.hltv.org/team/6810/aimclub"
-  },
-  "nexvoid": {
-   "team_url": "https://www.hltv.org/team/13667/nexvoid"
-  },
-  "turma do pagode": {
-   "team_url": "https://www.hltv.org/team/9686/turma-do-pagode"
-  },
-  "g2 ares": {
-   "team_url": "https://www.hltv.org/team/12889/g2-ares"
-  },
-  "glitch": {
-   "team_url": "https://www.hltv.org/team/14077/glitch"
-  },
-  "prestige": {
-   "team_url": "https://www.hltv.org/team/13159/prestige"
-  },
-  "brute": {
-   "team_url": "https://www.hltv.org/team/9139/brute"
-  },
-  "lp": {
-   "team_url": "https://www.hltv.org/team/13304/lp"
-  },
-  "astral": {
-   "team_url": "https://www.hltv.org/team/13333/astral"
-  },
-  "wbt": {
-   "team_url": "https://www.hltv.org/team/13683/wbt"
-  },
-  "eac": {
-   "team_url": "https://www.hltv.org/team/13838/eac"
-  },
-  "spirit academy": {
-   "team_url": "https://www.hltv.org/team/7900/spirit-academy"
-  },
-  "baks": {
-   "team_url": "https://www.hltv.org/team/11699/baks"
-  },
-  "rare atom": {
-   "team_url": "https://www.hltv.org/team/11514/rare-atom"
-  },
-  "ence": {
-   "team_url": "https://www.hltv.org/team/4869/ence"
-  },
-  "infurity": {
-   "team_url": "https://www.hltv.org/team/8488/infurity"
-  },
-  "just players": {
-   "team_url": "https://www.hltv.org/team/13776/just-players"
-  },
-  "og": {
-   "team_url": "https://www.hltv.org/team/10503/og"
-  },
-  "havu": {
-   "team_url": "https://www.hltv.org/team/7865/havu"
-  },
-  "procyon": {
-   "team_url": "https://www.hltv.org/team/10997/procyon"
-  },
-  "alter ego": {
-   "team_url": "https://www.hltv.org/team/9958/alter-ego"
-  },
-  "depo": {
-   "team_url": "https://www.hltv.org/team/12536/depo"
-  },
-  "noir verse": {
-   "team_url": "https://www.hltv.org/team/13877/noir-verse"
-  },
-  "wbt academy": {
-   "team_url": "https://www.hltv.org/team/13999/wbt-academy"
-  },
-  "rune eaters": {
-   "team_url": "https://www.hltv.org/team/12194/rune-eaters"
-  },
-  "the huns": {
-   "team_url": "https://www.hltv.org/team/12510/the-huns"
-  },
-  "misa": {
-   "team_url": "https://www.hltv.org/team/13528/misa"
-  },
-  "butterfly": {
-   "team_url": "https://www.hltv.org/team/13908/butterfly"
-  },
-  "saw youngsters": {
-   "team_url": "https://www.hltv.org/team/11248/saw-youngsters"
-  },
-  "falcons force": {
-   "team_url": "https://www.hltv.org/team/13321/falcons-force"
-  },
-  "abyssal": {
-   "team_url": "https://www.hltv.org/team/13686/abyssal"
-  },
-  "nordic partners": {
-   "team_url": "https://www.hltv.org/team/13937/nordic-partners"
-  },
-  "acend": {
-   "team_url": "https://www.hltv.org/team/13518/acend"
-  },
-  "ground zero": {
-   "team_url": "https://www.hltv.org/team/8536/ground-zero"
-  },
-  "saint sinners": {
-   "team_url": "https://www.hltv.org/team/13998/saint-sinners"
-  },
-  "pcific": {
-   "team_url": "https://www.hltv.org/team/13054/pcific"
-  },
-  "ww": {
-   "team_url": "https://www.hltv.org/team/12967/ww"
-  },
-  "mtx": {
-   "team_url": "https://www.hltv.org/team/13746/mtx"
-  },
-  "state": {
-   "team_url": "https://www.hltv.org/team/13623/state"
-  },
-  "nexus": {
-   "team_url": "https://www.hltv.org/team/7187/nexus"
-  },
-  "lavked": {
-   "team_url": "https://www.hltv.org/team/12609/lavked"
-  },
-  "eac extra": {
-   "team_url": "https://www.hltv.org/team/14036/eac-extra"
-  },
-  "drama": {
-   "team_url": "https://www.hltv.org/team/13704/drama"
-  },
-  "overtake sector": {
-   "team_url": "https://www.hltv.org/team/13855/overtake-sector"
-  },
-  "illyrians": {
-   "team_url": "https://www.hltv.org/team/11719/illyrians"
-  },
-  "kaleido": {
-   "team_url": "https://www.hltv.org/team/13331/kaleido"
-  },
-  "mouz nxt": {
-   "team_url": "https://www.hltv.org/team/11176/mouz-nxt"
-  },
-  "alka": {
-   "team_url": "https://www.hltv.org/team/13756/alka"
-  },
-  "omega": {
-   "team_url": "https://www.hltv.org/team/13479/omega"
-  },
-  "walczaki": {
-   "team_url": "https://www.hltv.org/team/13808/walczaki"
-  },
-  "faze up next": {
-   "team_url": "https://www.hltv.org/team/13872/faze-up-next"
-  },
-  "chicken coop": {
-   "team_url": "https://www.hltv.org/team/13107/chicken-coop"
-  },
-  "optibet": {
-   "team_url": "https://www.hltv.org/team/14054/optibet"
-  },
-  "yawara": {
-   "team_url": "https://www.hltv.org/team/11933/yawara"
-  },
-  "hyperspirit": {
-   "team_url": "https://www.hltv.org/team/13012/hyperspirit"
-  },
-  "abt": {
-   "team_url": "https://www.hltv.org/team/12693/abt"
-  },
-  "honvd": {
-   "team_url": "https://www.hltv.org/team/11110/honvd"
-  },
-  "revenix": {
-   "team_url": "https://www.hltv.org/team/13960/revenix"
-  },
-  "just swing": {
-   "team_url": "https://www.hltv.org/team/13053/just-swing"
-  },
-  "the last resort": {
-   "team_url": "https://www.hltv.org/team/6089/the-last-resort"
-  },
-  "desi boyz": {
-   "team_url": "https://www.hltv.org/team/13728/desi-boyz"
-  },
-  "famalico": {
-   "team_url": "https://www.hltv.org/team/13364/famalico"
-  },
-  "iowa stormboar": {
-   "team_url": "https://www.hltv.org/team/13857/iowa-stormboar"
-  },
-  "spirit academy green": {
-   "team_url": "https://www.hltv.org/team/14001/spirit-academy-green"
-  },
-  "lph": {
-   "team_url": "https://www.hltv.org/team/13279/lph"
-  },
-  "kuusamo": {
-   "team_url": "https://www.hltv.org/team/13745/kuusamo"
-  },
-  "genesis": {
-   "team_url": "https://www.hltv.org/team/13076/genesis"
-  },
-  "borracheiros": {
-   "team_url": "https://www.hltv.org/team/13902/borracheiros"
-  },
-  "vexar": {
-   "team_url": "https://www.hltv.org/team/13761/vexar"
-  },
-  "toobisie": {
-   "team_url": "https://www.hltv.org/team/13993/toobisie"
-  },
-  "the golden horde": {
-   "team_url": "https://www.hltv.org/team/14023/the-golden-horde"
-  },
-  "berg": {
-   "team_url": "https://www.hltv.org/team/13747/berg"
-  },
-  "rooster": {
-   "team_url": "https://www.hltv.org/team/9881/rooster"
-  },
-  "regain": {
-   "team_url": "https://www.hltv.org/team/12554/regain"
-  },
-  "vitalem aerem": {
-   "team_url": "https://www.hltv.org/team/13983/vitalem-aerem"
-  },
-  "benched gods": {
-   "team_url": "https://www.hltv.org/team/13599/benched-gods"
-  },
-  "maybe": {
-   "team_url": "https://www.hltv.org/team/13945/maybe"
-  },
-  "detonate": {
-   "team_url": "https://www.hltv.org/team/11336/detonate"
-  },
-  "phantom academy": {
-   "team_url": "https://www.hltv.org/team/13766/phantom-academy"
-  },
-  "megoshort": {
-   "team_url": "https://www.hltv.org/team/11018/megoshort"
-  },
-  "bestia academy": {
-   "team_url": "https://www.hltv.org/team/13026/bestia-academy"
-  },
-  "ryvex": {
-   "team_url": "https://www.hltv.org/team/13974/ryvex"
-  },
-  "empire": {
-   "team_url": "https://www.hltv.org/team/13729/empire"
-  },
-  "5dads": {
-   "team_url": "https://www.hltv.org/team/14004/5dads"
-  },
-  "young tigeres": {
-   "team_url": "https://www.hltv.org/team/13796/young-tigeres"
-  },
-  "azuolas": {
-   "team_url": "https://www.hltv.org/team/13991/azuolas"
-  },
-  "a great chaos": {
-   "team_url": "https://www.hltv.org/team/13834/a-great-chaos"
-  },
-  "nas": {
-   "team_url": "https://www.hltv.org/team/13826/nas"
-  },
-  "villainous": {
-   "team_url": "https://www.hltv.org/team/11795/villainous"
-  },
-  "the knockoutx": {
-   "team_url": "https://www.hltv.org/team/14049/the-knockoutx"
-  },
-  "olympus": {
-   "team_url": "https://www.hltv.org/team/13884/olympus"
-  },
-  "farmville": {
-   "team_url": "https://www.hltv.org/team/13665/farmville"
-  },
-  "revise": {
-   "team_url": "https://www.hltv.org/team/13971/revise"
-  },
-  "masonic": {
-   "team_url": "https://www.hltv.org/team/10867/masonic"
-  },
-  "ex arcade": {
-   "team_url": "https://www.hltv.org/team/14057/ex-arcade"
-  },
-  "finishers": {
-   "team_url": "https://www.hltv.org/team/13942/finishers"
-  },
-  "sinqu": {
-   "team_url": "https://www.hltv.org/team/13571/sinqu"
-  },
-  "zomblers": {
-   "team_url": "https://www.hltv.org/team/12164/zomblers"
-  },
-  "lfo 8": {
-   "team_url": "https://www.hltv.org/team/13976/lfo-8"
-  },
-  "enjoy": {
-   "team_url": "https://www.hltv.org/team/4246/enjoy"
-  },
-  "quintessncia": {
-   "team_url": "https://www.hltv.org/team/13811/quintessncia"
-  },
-  "grmio": {
-   "team_url": "https://www.hltv.org/team/13912/grmio"
-  },
-  "psychoface": {
-   "team_url": "https://www.hltv.org/team/13799/psychoface"
-  },
-  "diamant": {
-   "team_url": "https://www.hltv.org/team/13563/diamant"
-  },
-  "isurus": {
-   "team_url": "https://www.hltv.org/team/7653/isurus"
-  },
-  "mibr fe": {
-   "team_url": "https://www.hltv.org/team/10975/mibr-fe"
-  },
-  "donstu": {
-   "team_url": "https://www.hltv.org/team/13714/donstu"
-  },
-  "bebop": {
-   "team_url": "https://www.hltv.org/team/13613/bebop"
-  },
-  "eternal premium": {
-   "team_url": "https://www.hltv.org/team/13161/eternal-premium"
-  },
-  "mindfreak": {
-   "team_url": "https://www.hltv.org/team/11668/mindfreak"
-  },
-  "nutorious": {
-   "team_url": "https://www.hltv.org/team/12973/nutorious"
-  },
-  "boring players": {
-   "team_url": "https://www.hltv.org/team/12948/boring-players"
-  },
-  "xi": {
-   "team_url": "https://www.hltv.org/team/8947/xi"
-  },
-  "legion": {
-   "team_url": "https://www.hltv.org/team/10287/legion"
-  },
-  "younglings": {
-   "team_url": "https://www.hltv.org/team/13707/younglings"
+   "rank": 40,
+   "url": "https://www.hltv.org/ranking/teams/2026/october/5",
+   "label": "HLTV World Ranking 2026-10-05 (41 pts)"
+  },
+  "Aurora": {
+   "rank": 6,
+   "url": "https://www.hltv.org/team/11861/aurora",
+   "label": "HLTV Aurora team page FAQ",
+   "rank_2026_10_12": 6
+  },
+  "9z": {
+   "rank": 17,
+   "url": "https://www.hltv.org/team/9996/9z",
+   "label": "HLTV 9z team page FAQ",
+   "rank_2026_10_12": 17
+  },
+  "BETBOOM": {
+   "rank": 13,
+   "url": "https://www.hltv.org/team/12394/betboom",
+   "label": "HLTV BETBOOM team page FAQ"
+  },
+  "Legacy": {
+   "rank": 6,
+   "url": "https://www.hltv.org/team/12468/legacy",
+   "label": "HLTV Legacy team page (World #6 / VRS #2)"
+  },
+  "PARIVISION": {
+   "rank": 11,
+   "url": "https://www.hltv.org/team/12467/parivision",
+   "label": "HLTV PARIVISION team page (World #11)"
+  },
+  "HOTU": {
+   "rank": 42,
+   "url": "https://www.hltv.org/matches/2399135/hotu-vs-fnatic-stake-pulse-beat-iii",
+   "label": "HLTV HOTU vs fnatic match page (HLTV #42 / VRS #34)"
+  },
+  "MIBR": {
+   "rank": 12,
+   "url": "https://www.hltv.org/matches/2399136/mibr-vs-bcgame-stake-pulse-beat-iii",
+   "label": "HLTV MIBR vs BC.Game match page lineups (HLTV #12 / VRS #13)"
+  },
+  "WBT": {
+   "rank": 64,
+   "url": "https://www.hltv.org/events/9332/elisa-breakout-series-2",
+   "label": "HLTV Elisa BreakOut Series 2 event page Group A table (WBT #64; team/13683/wbt)"
+  },
+  "ENCE": {
+   "rank": 113,
+   "url": "https://www.hltv.org/events/9332/elisa-breakout-series-2",
+   "label": "HLTV Elisa BreakOut Series 2 event page Group A table (ENCE #113; team/4869/ence)"
+  },
+  "EAC": {
+   "rank": 115,
+   "url": "https://www.hltv.org/events/9332/elisa-breakout-series-2",
+   "label": "HLTV Elisa BreakOut Series 2 event page Group A table (EAC #115; team/13838/eac)"
+  },
+  "BOJONG": {
+   "rank": 387,
+   "url": "https://www.hltv.org/events/9332/elisa-breakout-series-2",
+   "label": "HLTV Elisa BreakOut Series 2 event page Group A table (BOJONG #387; team/13795/bojong)"
+  },
+  "Voca": {
+   "rank": 67,
+   "url": "https://www.hltv.org/events/9332/elisa-breakout-series-2",
+   "label": "HLTV Elisa BreakOut Series 2 event page Group B table (Voca #67; team/13499/voca)",
+   "rank_2026_10_12": 59
+  },
+  "Phantom": {
+   "rank": 87,
+   "url": "https://www.hltv.org/events/9332/elisa-breakout-series-2",
+   "label": "HLTV Elisa BreakOut Series 2 event page Group B table (Phantom #87; team/13173/phantom)",
+   "rank_2026_10_12": 88
+  },
+  "HAVU": {
+   "rank": 126,
+   "url": "https://www.hltv.org/events/9332/elisa-breakout-series-2",
+   "label": "HLTV Elisa BreakOut Series 2 event page Group B table (HAVU #126; team/7865/havu)",
+   "rank_2026_10_12": 118
+  },
+  "ROUNDS": {
+   "rank": 314,
+   "url": "https://www.hltv.org/events/9332/elisa-breakout-series-2",
+   "label": "HLTV Elisa BreakOut Series 2 event page Group B table (ROUNDS #314)"
+  },
+  "Ninjas in Pyjamas": {
+   "rank_2026_10_12": 26
+  },
+  "Team Liquid": {
+   "rank_2026_10_12": 27
+  },
+  "RoundsGG": {
+   "rank_2026_10_12": 237
+  },
+  "ex-RUSTEC": {
+   "rank_2026_10_12": 79
+  },
+  "Saint Sinners": {
+   "rank_2026_10_12": 134
   },
   "your end": {
-   "team_url": "https://www.hltv.org/team/14008/your-end"
+   "rank_2026_10_12": 215
   },
-  "lilmix": {
-   "team_url": "https://www.hltv.org/team/9735/lilmix"
+  "FORZE Reload": {
+   "rank_2026_10_12": 75
   },
-  "wanted goons": {
-   "team_url": "https://www.hltv.org/team/12971/wanted-goons"
+  "Lavked": {
+   "rank_2026_10_12": 140
   },
-  "beyond limits": {
-   "team_url": "https://www.hltv.org/team/13610/beyond-limits"
+  "mellren": {
+   "rank_2026_10_12": 94
   },
-  "omen": {
-   "team_url": "https://www.hltv.org/team/13673/omen"
+  "Privateer": {
+   "rank_2026_10_12": 226
   },
-  "bojong": {
-   "team_url": "https://www.hltv.org/team/13795/bojong"
+  "Procyon": {
+   "rank_2026_10_12": 119
   },
-  "red canids academy": {
-   "team_url": "https://www.hltv.org/team/13029/red-canids-academy"
+  "100 Thieves": {
+   "rank_2026_10_12": 37
   },
-  "95 vikings": {
-   "team_url": "https://www.hltv.org/team/13852/95-vikings"
+  "Sangal": {
+   "rank_2026_10_12": 45
   },
-  "xdm": {
-   "team_url": "https://www.hltv.org/team/13242/xdm"
+  "BakS": {
+   "rank_2026_10_12": 112
   },
-  "big academy": {
-   "team_url": "https://www.hltv.org/team/10254/big-academy"
+  "G2 Ares": {
+   "rank_2026_10_12": 103
   },
-  "xcity": {
-   "team_url": "https://www.hltv.org/team/13847/xcity"
+  "Infinite": {
+   "rank_2026_10_12": 86
   },
-  "privateer": {
-   "team_url": "https://www.hltv.org/team/13914/privateer"
+  "aimclub": {
+   "rank_2026_10_12": 100
   },
-  "rush": {
-   "team_url": "https://www.hltv.org/team/13907/rush"
+  "BASEMENT BOYS": {
+   "rank_2026_10_12": 96
   },
-  "club 333": {
-   "team_url": "https://www.hltv.org/team/13574/club-333"
+  "BC.Game": {
+   "rank_2026_10_12": 70
   },
-  "b8 academy": {
-   "team_url": "https://www.hltv.org/team/13732/b8-academy"
+  "Drama": {
+   "rank_2026_10_12": 142
   },
-  "fortress": {
-   "team_url": "https://www.hltv.org/team/13646/fortress"
+  "Nexus": {
+   "rank_2026_10_12": 139
   },
-  "oxingame": {
-   "team_url": "https://www.hltv.org/team/13457/oxingame"
+  "WROTBERRY": {
+   "rank_2026_10_12": 109
   },
-  "the unit": {
-   "team_url": "https://www.hltv.org/team/13694/the-unit"
+  "Iberian Soul": {
+   "rank_2026_10_12": 56
   },
-  "bgns orange": {
-   "team_url": "https://www.hltv.org/team/14006/bgns-orange"
+  "HyperSpirit": {
+   "rank_2026_10_12": 154
   },
-  "damajuana": {
-   "team_url": "https://www.hltv.org/team/13697/damajuana"
+  "mouz NXT": {
+   "rank_2026_10_12": 146
   },
-  "zetta": {
-   "team_url": "https://www.hltv.org/team/13833/zetta"
+  "ASTRAL": {
+   "rank_2026_10_12": 108
   },
-  "flamehard": {
-   "team_url": "https://www.hltv.org/team/13578/flamehard"
-  },
-  "rounds": {
-   "team_url": "https://www.hltv.org/team/12457/rounds"
-  },
-  "sementes do mal": {
-   "team_url": "https://www.hltv.org/team/13978/sementes-do-mal"
-  },
-  "shimmer": {
-   "team_url": "https://www.hltv.org/team/12190/shimmer"
-  },
-  "esuba": {
-   "team_url": "https://www.hltv.org/team/5412/esuba"
-  },
-  "the qube": {
-   "team_url": "https://www.hltv.org/team/12825/the-qube"
-  },
-  "kodex": {
-   "team_url": "https://www.hltv.org/team/13994/kodex"
-  },
-  "jumbo": {
-   "team_url": "https://www.hltv.org/team/13238/jumbo"
-  },
-  "flyquest red": {
-   "team_url": "https://www.hltv.org/team/12301/flyquest-red"
-  },
-  "wazabi": {
-   "team_url": "https://www.hltv.org/team/13575/wazabi"
+  "Leo": {
+   "rank_2026_10_12": 83
   }
  },
  "lines": {
@@ -6057,533 +5360,7 @@
    "basis": "Polymarket price (prediction market)"
   }
  },
- "vrs_as_of": "see vrs[*].url",
+ "vrs_as_of": "2026-10-05",
  "vrs_commit": "eec4853d7bcf0f1f7efe7f0d901234bef7e98b75",
- "lines_snapshot_utc": "2026-10-15T22:41:17Z",
- "lines_raw": {
-  "pinnacle_raw": [
-   {
-    "matchupId": 1638440131,
-    "home": 181,
-    "away": -264,
-    "teams": [
-     "Flash",
-     "Invictus"
-    ],
-    "cutoff": "2026-10-16T09:00:00+00:00"
-   },
-   {
-    "matchupId": 1638470501,
-    "home": -111,
-    "away": -113,
-    "teams": [
-     "Astralis",
-     "MIBR"
-    ],
-    "cutoff": "2026-10-16T14:00:00+00:00"
-   },
-   {
-    "matchupId": 1638484901,
-    "home": -512,
-    "away": 368,
-    "teams": [
-     "Karmine Corp",
-     "MVK"
-    ],
-    "cutoff": "2026-10-16T18:00:00+00:00"
-   },
-   {
-    "matchupId": 1638461212,
-    "home": 168,
-    "away": -222,
-    "teams": [
-     "fnatic",
-     "HEROIC"
-    ],
-    "cutoff": "2026-10-16T11:00:00+00:00"
-   },
-   {
-    "matchupId": 1638461153,
-    "home": -236,
-    "away": 189,
-    "teams": [
-     "Aurora",
-     "9z"
-    ],
-    "cutoff": "2026-10-16T14:00:00+00:00"
-   },
-   {
-    "matchupId": 1638249016,
-    "home": -126,
-    "away": -105,
-    "teams": [
-     "Natus Vincere",
-     "Bigetron by Vitality"
-    ],
-    "cutoff": "2026-10-18T10:00:00+00:00"
-   },
-   {
-    "matchupId": 1638385584,
-    "home": 170,
-    "away": -243,
-    "teams": [
-     "FURY",
-     "Elevate"
-    ],
-    "cutoff": "2026-10-16T12:00:00+00:00"
-   },
-   {
-    "matchupId": 1638352461,
-    "home": -179,
-    "away": 139,
-    "teams": [
-     "Voca",
-     "HAVU"
-    ],
-    "cutoff": "2026-10-16T12:00:00+00:00"
-   },
-   {
-    "matchupId": 1638247926,
-    "home": 160,
-    "away": -225,
-    "teams": [
-     "RRQ Tora",
-     "Bigetron by Vitality"
-    ],
-    "cutoff": "2026-10-18T09:00:00+00:00"
-   },
-   {
-    "matchupId": 1638350176,
-    "home": -759,
-    "away": 370,
-    "teams": [
-     "Weibo",
-     "Sharper"
-    ],
-    "cutoff": "2026-10-16T09:00:00+00:00"
-   },
-   {
-    "matchupId": 1638249017,
-    "home": 135,
-    "away": -184,
-    "teams": [
-     "EVOS",
-     "Alter Ego"
-    ],
-    "cutoff": "2026-10-18T07:00:00+00:00"
-   },
-   {
-    "matchupId": 1638440112,
-    "home": -256,
-    "away": 198,
-    "teams": [
-     "BNK FearX",
-     "Team WE"
-    ],
-    "cutoff": "2026-10-17T09:00:00+00:00"
-   },
-   {
-    "matchupId": 1638405858,
-    "home": 286,
-    "away": -456,
-    "teams": [
-     "salamit",
-     "Yellow Submarine"
-    ],
-    "cutoff": "2026-10-16T19:00:00+00:00"
-   },
-   {
-    "matchupId": 1638420783,
-    "home": -1940,
-    "away": 668,
-    "teams": [
-     "Resilience",
-     "Zenith"
-    ],
-    "cutoff": "2026-10-16T05:00:00+00:00"
-   },
-   {
-    "matchupId": 1638449822,
-    "home": 320,
-    "away": -595,
-    "teams": [
-     "AC",
-     "Rey"
-    ],
-    "cutoff": "2026-10-17T09:00:00+00:00"
-   },
-   {
-    "matchupId": 1638230658,
-    "home": -210,
-    "away": 170,
-    "teams": [
-     "100 Thieves",
-     "G2"
-    ],
-    "cutoff": "2026-10-16T09:00:00+00:00"
-   },
-   {
-    "matchupId": 1638436110,
-    "home": 310,
-    "away": -565,
-    "teams": [
-     "Invictus",
-     "Selangor Red Giants"
-    ],
-    "cutoff": "2026-10-17T12:15:00+00:00"
-   },
-   {
-    "matchupId": 1638385571,
-    "home": -201,
-    "away": 154,
-    "teams": [
-     "CPH Wolves",
-     "ROUNDS"
-    ],
-    "cutoff": "2026-10-16T08:00:00+00:00"
-   },
-   {
-    "matchupId": 1638489404,
-    "home": 122,
-    "away": -149,
-    "teams": [
-     "Potn9ki",
-     "White Sails"
-    ],
-    "cutoff": "2026-10-16T10:00:00+00:00"
-   },
-   {
-    "matchupId": 1638235501,
-    "home": -104,
-    "away": -127,
-    "teams": [
-     "TYLOO",
-     "KINGZERO"
-    ],
-    "cutoff": "2026-10-17T07:00:00+00:00"
-   },
-   {
-    "matchupId": 1638143569,
-    "home": -110,
-    "away": -120,
-    "teams": [
-     "EDward Gaming",
-     "All Gamers"
-    ],
-    "cutoff": "2026-10-17T10:30:00+00:00"
-   },
-   {
-    "matchupId": 1638484846,
-    "home": 179,
-    "away": -222,
-    "teams": [
-     "LEGION",
-     "OG"
-    ],
-    "cutoff": "2026-10-16T18:00:00+00:00"
-   },
-   {
-    "matchupId": 1638407380,
-    "home": -123,
-    "away": -102,
-    "teams": [
-     "Ninjas In Pyjamas",
-     "Liquid"
-    ],
-    "cutoff": "2026-10-16T08:00:00+00:00"
-   },
-   {
-    "matchupId": 1638449823,
-    "home": 320,
-    "away": -595,
-    "teams": [
-     "AC",
-     "Vamos"
-    ],
-    "cutoff": "2026-10-18T06:30:00+00:00"
-   },
-   {
-    "matchupId": 1638256964,
-    "home": 105,
-    "away": -140,
-    "teams": [
-     "ONIC",
-     "Liquid ID"
-    ],
-    "cutoff": "2026-10-18T13:00:00+00:00"
-   },
-   {
-    "matchupId": 1638350120,
-    "home": -239,
-    "away": 175,
-    "teams": [
-     "CyberHero",
-     "Zero Tenacity"
-    ],
-    "cutoff": "2026-10-16T07:00:00+00:00"
-   },
-   {
-    "matchupId": 1638350112,
-    "home": -553,
-    "away": 338,
-    "teams": [
-     "HAVU",
-     "ROUNDS"
-    ],
-    "cutoff": "2026-10-16T08:00:00+00:00"
-   },
-   {
-    "matchupId": 1638249009,
-    "home": 170,
-    "away": -243,
-    "teams": [
-     "Vamos",
-     "Selangor Red Giants"
-    ],
-    "cutoff": "2026-10-16T12:15:00+00:00"
-   },
-   {
-    "matchupId": 1638257006,
-    "home": 285,
-    "away": -496,
-    "teams": [
-     "Geek Fam ID",
-     "Alter Ego"
-    ],
-    "cutoff": "2026-10-16T11:00:00+00:00"
-   },
-   {
-    "matchupId": 1638339337,
-    "home": -1065,
-    "away": 513,
-    "teams": [
-     "Voca",
-     "ROUNDS"
-    ],
-    "cutoff": "2026-10-16T16:00:00+00:00"
-   },
-   {
-    "matchupId": 1637777498,
-    "home": -154,
-    "away": 115,
-    "teams": [
-     "SCARZ",
-     "FearX"
-    ],
-    "cutoff": "2026-10-17T11:00:00+00:00"
-   },
-   {
-    "matchupId": 1637767136,
-    "home": -234,
-    "away": 165,
-    "teams": [
-     "CAG by VARREL",
-     "Dplus"
-    ],
-    "cutoff": "2026-10-17T08:00:00+00:00"
-   },
-   {
-    "matchupId": 1638407379,
-    "home": 173,
-    "away": -230,
-    "teams": [
-     "Sangal",
-     "100 Thieves"
-    ],
-    "cutoff": "2026-10-16T17:00:00+00:00"
-   },
-   {
-    "matchupId": 1638249014,
-    "home": -261,
-    "away": 180,
-    "teams": [
-     "ONIC",
-     "Dewa United"
-    ],
-    "cutoff": "2026-10-17T07:00:00+00:00"
-   },
-   {
-    "matchupId": 1638263281,
-    "home": -110,
-    "away": -120,
-    "teams": [
-     "RRQ Hoshi",
-     "Geek Fam ID"
-    ],
-    "cutoff": "2026-10-17T13:00:00+00:00"
-   },
-   {
-    "matchupId": 1638249015,
-    "home": -161,
-    "away": 120,
-    "teams": [
-     "Bigetron by Vitality",
-     "EVOS"
-    ],
-    "cutoff": "2026-10-17T10:00:00+00:00"
-   },
-   {
-    "matchupId": 1638249187,
-    "home": -169,
-    "away": 125,
-    "teams": [
-     "Bigetron by Vitality",
-     "Flash"
-    ],
-    "cutoff": "2026-10-17T06:30:00+00:00"
-   },
-   {
-    "matchupId": 1638440143,
-    "home": -370,
-    "away": 253,
-    "teams": [
-     "FORZE Reload",
-     "Lavked"
-    ],
-    "cutoff": "2026-10-16T14:00:00+00:00"
-   },
-   {
-    "matchupId": 1638388795,
-    "home": 414,
-    "away": -805,
-    "teams": [
-     "Mena Warriors",
-     "CyberHero"
-    ],
-    "cutoff": "2026-10-16T10:00:00+00:00"
-   },
-   {
-    "matchupId": 1638263279,
-    "home": -850,
-    "away": 394,
-    "teams": [
-     "Natus Vincere",
-     "RRQ Hoshi"
-    ],
-    "cutoff": "2026-10-16T08:00:00+00:00"
-   },
-   {
-    "matchupId": 1638154640,
-    "home": 112,
-    "away": -135,
-    "teams": [
-     "Vitality",
-     "LOUD"
-    ],
-    "cutoff": "2026-10-16T06:00:00+00:00"
-   }
-  ],
-  "polymarket_raw": [
-   {
-    "a": "Sissi State Punks",
-    "b": "Team LEISURE",
-    "format": "BO3",
-    "price_a": 0.5,
-    "price_b": 0.5,
-    "slug": "cs2-ssp1-lei-2026-10-05",
-    "url": "https://polymarket.com/event/cs2-ssp1-lei-2026-10-05",
-    "end": "2026-11-11T23:00:00Z",
-    "updated": "2026-10-14T21:00:51.921442Z"
-   },
-   {
-    "a": "Young TigeRES",
-    "b": "Young27",
-    "format": "BO3",
-    "price_a": 0.635,
-    "price_b": 0.365,
-    "slug": "cs2-ytigeres-young2-2026-10-16",
-    "url": "https://polymarket.com/event/cs2-ytigeres-young2-2026-10-16",
-    "end": "2026-10-16T19:00:00Z",
-    "updated": "2026-10-16T04:35:07.14669Z"
-   },
-   {
-    "a": "Legacy",
-    "b": "BetBoom Team",
-    "format": "BO3",
-    "price_a": 0.655,
-    "price_b": 0.345,
-    "slug": "cs2-lgc-bb3-2026-10-16",
-    "url": "https://polymarket.com/event/cs2-lgc-bb3-2026-10-16",
-    "end": "2026-10-16T23:00:00Z",
-    "updated": "2026-10-16T04:35:07.14669Z"
-   },
-   {
-    "a": "Hermine Esports Club",
-    "b": "Fire Flux Esports",
-    "format": "BO1",
-    "price_a": 0.49,
-    "price_b": 0.51,
-    "slug": "cs2-hec-ff-2026-10-16",
-    "url": "https://polymarket.com/event/cs2-hec-ff-2026-10-16",
-    "end": "2026-10-16T22:00:00Z",
-    "updated": "2026-10-16T04:27:06.110562Z"
-   },
-   {
-    "a": "DNK",
-    "b": "LPH Gaming",
-    "format": "BO1",
-    "price_a": 0.5,
-    "price_b": 0.5,
-    "slug": "cs2-dnk2-lph-2026-10-16",
-    "url": "https://polymarket.com/event/cs2-dnk2-lph-2026-10-16",
-    "end": "2026-10-17T00:30:00Z",
-    "updated": "2026-10-16T04:25:06.470049Z"
-   },
-   {
-    "a": "Bushido Wildcats",
-    "b": "ex-RUSTEC",
-    "format": "BO3",
-    "price_a": 0.375,
-    "price_b": 0.625,
-    "slug": "cs2-bw-rustec-2026-10-16",
-    "url": "https://polymarket.com/event/cs2-bw-rustec-2026-10-16",
-    "end": "2026-10-16T17:00:00Z",
-    "updated": "2026-10-16T04:35:07.14669Z"
-   },
-   {
-    "a": "ex-Zero Tenacity",
-    "b": "UNiTY esports",
-    "format": "BO3",
-    "price_a": 0.5,
-    "price_b": 0.5,
-    "slug": "cs2-zerote-unity-2026-10-16",
-    "url": "https://polymarket.com/event/cs2-zerote-unity-2026-10-16",
-    "end": "2026-10-16T20:00:00Z",
-    "updated": "2026-10-16T04:35:07.14669Z"
-   },
-   {
-    "a": "Brute",
-    "b": "Walczaki",
-    "format": "BO3",
-    "price_a": 0.495,
-    "price_b": 0.505,
-    "slug": "cs2-brute-wal2-2026-10-16",
-    "url": "https://polymarket.com/event/cs2-brute-wal2-2026-10-16",
-    "end": "2026-10-16T14:00:00Z",
-    "updated": "2026-10-16T04:23:06.938887Z"
-   },
-   {
-    "a": "Off Chops",
-    "b": "Ground Zero",
-    "format": "BO3",
-    "price_a": 0.505,
-    "price_b": 0.495,
-    "slug": "cs2-offcho-gz1-2026-10-16",
-    "url": "https://polymarket.com/event/cs2-offcho-gz1-2026-10-16",
-    "end": "2026-10-16T10:30:00Z",
-    "updated": "2026-10-16T04:35:07.14669Z"
-   },
-   {
-    "a": "FlyQuest",
-    "b": "Abyssal",
-    "format": "BO3",
-    "price_a": 0.674,
-    "price_b": 0.326,
-    "slug": "cs2-fly-abyssa-2026-10-16",
-    "url": "https://polymarket.com/event/cs2-fly-abyssa-2026-10-16",
-    "end": "2026-10-16T10:30:00Z",
-    "updated": "2026-10-16T04:35:07.14669Z"
-   }
-  ]
- }
+ "lines_snapshot_utc": "2026-10-15T22:41:17Z"
 }
