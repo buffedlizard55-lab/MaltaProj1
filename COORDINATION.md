@@ -5206,3 +5206,20 @@ Status: done. PR to main to follow.
 - PR: https://github.com/buffedlizard55-lab/MaltaProj1/pull/170 — merged (merge commit) into main at 2026-10-16T07:23:28Z.
 - Pages build: run 38866914295 — completed success.
 - No broken site; verification gates (a6f05f99/tests.py 26/26) green before merge.
+
+---
+
+## Session `arena/cbdf4cf3` — live official-source & line-by-line verification claim (2026-10-16)
+
+- **Session ID**: `arena/cbdf4cf3`
+- **Branch**: `arena/cbdf4cf3-maltaproj1` (fixed by Arena)
+- **Status**: `in progress`
+- **Claimed file scope** (strictly non-overlapping; no edits to files owned by other sessions):
+  - `COORDINATION.md`
+  - `reviews/cbdf4cf3-verification.md`
+- **Task**:
+  1. Verify all 95 captured CS2 fixtures and 31 open matches on `hotspawn/` (and cross-check `f323b4a7/` and `cs2/`) line by line against live official sources (`https://play.hotspawn.com/lobby`, `https://play.hotspawn.com/cs2-pickems`, `https://play.hotspawn.com/thp-pickems`, `https://www.hltv.org/matches`, HLTV match/event pages, and Valve's `standings_global_2026_10_05.md`).
+  2. Verify TWC 2026 Day 1, Day 2, and Day 3 decider analysis (`1080205` Aurora vs 9z, `1081775` BetBoom vs Legacy) and Aurora's 8 July 2026 roster rebuild context (`kyxsan`, `Jimpphat`, coach `ash`).
+  3. Audit the unresolved/non-featured research ladder (`1079170` BET-M vs Just Players, `1081126` Banda chuya vs Enjoy, `1079171` GenOne vs Butterfly, `1079173` BakS vs Fire Flux, `1081120` mellren vs Privateer) and log cross-session requests/irregularities in `COORDINATION.md` without modifying other sessions' files.
+  4. Run all repository test suites, link checks, and verification scripts; open and merge PR to `main`; verify GitHub Pages deployment.
+
