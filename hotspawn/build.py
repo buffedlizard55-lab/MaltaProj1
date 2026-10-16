@@ -21,7 +21,7 @@ from twc_watch import render as render_day4
 
 
 def day4_section(board):
-    return render_day4(board, read_json(RESEARCH / "day4_twc2026.json", {}) or {}, card)
+    return render_day4(board, read_json(RESEARCH / "day4_twc2026.json", {}) or {}, card, read_json(DATA / "capture.json", {}) or {})
 
 
 DAY3_FILE = RESEARCH / "day3_twc2026.json"
@@ -30,8 +30,9 @@ DAY2_FILE = RESEARCH / "day2_twc2026.json"
 NAV = [("index.html", "Summary"), ("picks.html", "All picks"), ("twc.html", "TWC 2026"),
        ("strategy.html", "Leaderboard plan"), ("unresolved.html", "Unresolved"), ("flagged.html", "Flagged"),
        ("method.html", "Method")]
-CLASS_ORDER = ["VALUE", "CONTRARIAN", "SITUATIONAL", "LONG SHOT", "CHALK", "NO CROWD DATA"]
+CLASS_ORDER = ["VALUE", "CONTRARIAN", "SITUATIONAL", "LONG SHOT", "CHALK", "EVIDENCE LIMITED", "NO CROWD DATA"]
 CLASS_TEXT = {
+    "EVIDENCE LIMITED": "Keep the source-implied headline side; operator identity is unverified, so no automatic contrarian fade.",
     "VALUE": "Keep the published favourite; most crowd picks are on its opponent. “Value” here means ownership differentiation, not proven betting value.",
     "CONTRARIAN": "Play the underdog: every estimate gives it a real chance, well above its crowd share.",
     "SITUATIONAL": "Play the underdog: real chance, heavily faded, and a verified roster/stand-in/late-notice factor hits the favourite.",
@@ -144,7 +145,8 @@ def evidence_list(r: dict, board: dict) -> str:
         items.append("Series format: " + e(r.get("format")) + " from " + link(r["format_evidence"].get("url"), "bo3.gg match metadata") + "; read " + e(r["format_evidence"].get("read_utc")) + ". This metadata is not a betting price.")
     relay = r.get("relay")
     if relay:
-        items.append(f"Secondary esportsbook: {e(relay.get('provider'))} via bo3.gg — {relay['odds_a']} / {relay['odds_b']}, margin {relay['overround_pct']:.1f}% → {pair(relay['p_a'],relay['p_b'],1)[0]} / {pair(relay['p_a'],relay['p_b'],1)[1]}; read {e(relay.get('read_utc'))}. Not verified directly with the book. {link(relay.get('url'), 'relay source')} · {link(relay.get('provider_url'), 'named bookmaker fixture')}")
+        relay_label = relay.get("provider") or ("operator unverified, bo3 ID " + str(relay.get("provider_id")))
+        items.append(f"Secondary esportsbook: {e(relay_label)} via bo3.gg — {relay['odds_a']} / {relay['odds_b']}, margin {relay['overround_pct']:.1f}% → {pair(relay['p_a'],relay['p_b'],1)[0]} / {pair(relay['p_a'],relay['p_b'],1)[1]}; read {e(relay.get('read_utc'))}. Not verified directly with the book. {link(relay.get('url'), 'relay source')} · {link(relay.get('provider_url'), 'provider-supplied link (operator unverified if flagged)')}")
     attempt = r.get("research_attempt")
     if attempt:
         items.append(f"Gap-only HLTV research: HTTP {e(attempt.get('status'))}; {e(attempt.get('error') or 'page read')} · read {e(attempt.get('read_utc'))}. {link(attempt.get('url'), 'research target')}")
@@ -186,7 +188,7 @@ def card(r: dict, board: dict) -> str:
         own = f'<div class="own">Our line: {e(r["team_a"])} {pair(r["own_p_a"],r["own_p_b"])[0]} · {e(r["team_b"])} {pair(r["own_p_a"],r["own_p_b"])[1]}</div>'
     play = ""
     if s.get("class") and s.get("class") != "NO CROWD DATA":
-        extra = f' — underdog {e(s.get("underdog"))} {pc(s.get("p_dog"))} vs {pc(s.get("crowd_dog"))} of players'
+        extra = (f' — underdog {e(s.get("underdog"))} {pc(s.get("p_dog"))} vs {pc(s.get("crowd_dog"))} of players' if s.get('underdog') else ' — ' + e(s.get('reason')))
         play = f'<div class="play">{cls_tag(s["class"])} Leaderboard play: <b>{e(s.get("leaderboard_pick"))}</b>{extra}</div>'
     crowd = ""
     if r.get("crowd_a") is not None:
@@ -618,7 +620,7 @@ def unresolved_section(board: dict, full: bool) -> str:
         tr = []
         for r in fallback:
             limit = 'Prediction-market outcome price, not bookmaker odds or a guaranteed executable quote.'
-            if r.get('relay'): limit = 'Named sportsbook price relayed by bo3.gg; not verified directly with the book. Secondary, flagged evidence.'
+            if r.get('relay'): limit = 'Sportsbook price relayed by bo3.gg; not verified directly with the book. Secondary, flagged evidence. An operator supplied only by internal ID remains unnamed and BOOKMAKER_UNVERIFIED.'
             if r['rung'] == 'C': limit = 'Own match-level rating estimate, not a bookmaker quote; no format-specific, map-veto or fatigue calibration.'
             if r['rung'] == 'E': limit = ('Research fallback (rung E): no eligible book, prediction market or relayed esportsbook line was captured for this fixture (attempts and limitations below; absence is not proof no market exists). '
                                           'The estimate is our own line on the closest official Valve snapshot row, chosen by documented roster overlap with HLTV\'s listed match lineup. '
@@ -749,6 +751,7 @@ def method_page(board: dict) -> None:
 <li><b>Research fallback (rung E)</b>: the same own-line formula, applied only when the rungs above cannot resolve an open fixture and a team name maps to more than one roster row in Valve's standings. The row is chosen by documented roster overlap with the lineup HLTV lists for that exact match (≥ 3 shared nicknames and strictly more than any other same-name row; every candidate row is linked on the row and in {link(REPO_URL + '/blob/main/hotspawn/research/fallback_83090640.json', 'fallback_83090640.json')}). No book, prediction market or aggregator price is invented for these fixtures: HLTV's betting table, Pinnacle, Polymarket and the esportsbook relays are checked first and their absence is recorded. Roster changes versus the snapshot are flagged, never smoothed away.</li>
 <li><b>Unresolved</b>: blank pick, flagged, listed on the Unresolved page with the research trail.</li></ol>
 <p>Joins require both teams to match after verified aliases ({link(REPO_URL + '/blob/main/hotspawn/research/aliases.json', 'aliases.json')}) the competition family/region/edition and a kickoff within 6 h, with no equally close or nearer same-pair rematch; any gap is flagged. Unknown scope, nonfinite/terminal prices, closed markets and quotes older than 8 h are rejected, not quietly used. HLTV ranks are shown as a cross-check ({link(m['hltv'].get('url'), 'HLTV ranking')}, status {e(m['hltv'].get('status'))}).</p>
+<p>Some bo3.gg quote records give only a numeric bookmaker ID. We preserve that identifier but leave the operator name blank, flag BOOKMAKER_UNVERIFIED, and do not infer identity from affiliate links. These are secondary source-implied estimates, not direct-book verification; automatic contrarian fades are disabled for them.</p>
 <h2>3. Leaderboard plan</h2><p>See <a href="strategy.html">Leaderboard plan</a>; thresholds live in {link(REPO_URL + '/blob/main/hotspawn/model.py', 'model.py')}. Situational factors come from {link(REPO_URL + '/blob/main/hotspawn/research/notes.json', 'research/notes.json')} (HLTV links, read times, strength) plus an automatic "new five" check on Valve's per-team match tables.</p>
 <h2>4. Automation</h2><p>{link(REPO_URL + '/blob/main/.github/workflows/hotspawn-22be6967.yml', 'GitHub Actions workflow')} is scheduled every 4 hours (best effort; captures older than 8 hours are marked stale): collect → calibrate → model → build → per-row audit → tests → required real-browser phone/tablet check; pages are committed only when the tests pass, otherwise the last good pages stay up and the failure is visible in the run log.</p>
 <h2>5. Every request in this snapshot</h2>

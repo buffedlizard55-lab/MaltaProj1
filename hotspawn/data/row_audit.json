@@ -1169,7 +1169,7 @@
    "input_reconciliation": "pass",
    "source_url": "https://play.hotspawn.com/lobby",
    "source_read_utc": "2026-10-16T19:31:00Z",
-   "probability_basis": "Research fallback: our own line (Valve points, row disambiguated by documented roster overlap with HLTV's listed lineups; no outside price exists)",
+   "probability_basis": "Research fallback: our own line (Valve points, row disambiguated by documented roster overlap with HLTV's listed lineups; no eligible outside price captured)",
    "sources": [
     "https://play.hotspawn.com/lobby",
     "https://www.hotspawn.com/matches/bebop-vs-donstu-cct-europe-2026-challengers-8-1081513",
@@ -1196,17 +1196,21 @@
    "input_reconciliation": "pass",
    "source_url": "https://play.hotspawn.com/lobby",
    "source_read_utc": "2026-10-16T19:31:00Z",
-   "probability_basis": "Unresolved",
+   "probability_basis": "Secondary sportsbook relay: thunderpick via bo3.gg (not direct-book verified)",
    "sources": [
     "https://play.hotspawn.com/lobby",
     "https://www.hotspawn.com/matches/apogee-betclic-vs-nemesis-pgl-bucharest-2027-closed-qualifier-1081515",
+    "https://www.hltv.org/matches/2399660/betclic-vs-nemesis-pgl-bucharest-2027-closed-qualifier",
+    "https://bo3.gg/matches/betclic-apogee-esports-vs-team-nemesis-cs-17-10-2026",
+    "https://thunderpick.io/match/2836564",
     "https://www.hltv.org/search?query=Apogee%20Betclic%20Nemesis",
     "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
    ],
    "flags": [
-    "FORMAT_UNKNOWN",
+    "ALIAS",
     "HOTSPAWN_PARTIAL",
-    "UNRESOLVED"
+    "REJECTED_QUOTE",
+    "RELAYED_BOOK"
    ],
    "errors": []
   },
@@ -1235,7 +1239,7 @@
    "input_reconciliation": "pass",
    "source_url": "https://play.hotspawn.com/lobby",
    "source_read_utc": "2026-10-16T19:31:00Z",
-   "probability_basis": "Research fallback: our own line (Valve points, row disambiguated by documented roster overlap with HLTV's listed lineups; no outside price exists)",
+   "probability_basis": "Research fallback: our own line (Valve points, row disambiguated by documented roster overlap with HLTV's listed lineups; no eligible outside price captured)",
    "sources": [
     "https://play.hotspawn.com/lobby",
     "https://www.hotspawn.com/matches/banda-chuya-vs-enjoy-cct-europe-2026-series-12-play-in-1081126",
@@ -1262,7 +1266,7 @@
    "input_reconciliation": "pass",
    "source_url": "https://play.hotspawn.com/lobby",
    "source_read_utc": "2026-10-16T19:31:00Z",
-   "probability_basis": "Research fallback: our own line (Valve points, row disambiguated by documented roster overlap with HLTV's listed lineups; no outside price exists)",
+   "probability_basis": "Research fallback: our own line (Valve points, row disambiguated by documented roster overlap with HLTV's listed lineups; no eligible outside price captured)",
    "sources": [
     "https://play.hotspawn.com/lobby",
     "https://www.hotspawn.com/matches/ex-6666-vs-privateer-cct-europe-2026-challengers-8-1081521",
@@ -1289,7 +1293,7 @@
    "input_reconciliation": "pass",
    "source_url": "https://play.hotspawn.com/lobby",
    "source_read_utc": "2026-10-16T19:31:00Z",
-   "probability_basis": "Research fallback: our own line (Valve points, row disambiguated by documented roster overlap with HLTV's listed lineups; no outside price exists)",
+   "probability_basis": "Research fallback: our own line (Valve points, row disambiguated by documented roster overlap with HLTV's listed lineups; no eligible outside price captured)",
    "sources": [
     "https://play.hotspawn.com/lobby",
     "https://www.hotspawn.com/matches/antidaun-vs-phantom-academy-cct-europe-2026-challengers-8-1081522",
@@ -1338,15 +1342,16 @@
    "probability_basis": "Unresolved: exact tie, no supported direction",
    "sources": [
     "https://play.hotspawn.com/lobby",
+    "https://www.hltv.org/matches/2399591/aimclub-vs-basement-boys-digital-crusade-draculan-season-7",
     "https://polymarket.com/event/cs2-aim1-bmb-2026-10-19",
     "https://www.hltv.org/search?query=aimclub%20BASEMENT%20BOYS",
-    "https://bo3.gg/matches/aimclub-vs-basement-boys-19-10-2026",
     "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
    ],
    "flags": [
     "COIN_FLIP",
     "HOTSPAWN_PARTIAL",
     "NO_DIRECTION",
+    "ROSTER_UNVERIFIED",
     "UNRESOLVED"
    ],
    "errors": []

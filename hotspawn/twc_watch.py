@@ -2,6 +2,37 @@
 No prices, participants, lock times or source read times are inferred from research.
 """
 from html import escape
+from common import Aliases, devig_two_way, normalise_prices
+from evidence import select_quote
+
+
+def preview_quotes(capture, research, reference):
+    """Read-only market watch. Does not add synthetic fixtures to inventory/history.
+
+    Kickoff below is the source-listed schedule, never a Hotspawn lock. Require the
+    exact named semifinal, date/format, whole-match scope and existing freshness gates.
+    """
+    rows = []
+    for match in research.get('semifinals', []):
+        if not match.get('team_b') or not match.get('market_start_utc'):
+            continue
+        fx = {'match_id': 'research-only', 'team_a': match['team_a'], 'team_b': match['team_b'],
+              'competition': 'Thunderpick World Championship 2026', 'start_utc': match['market_start_utc']}
+        for kind, label in [('pinnacle', 'Pinnacle'), ('esportsbooks', 'bo3.gg relay'), ('polymarket', 'Polymarket')]:
+            q, _ = select_quote(fx, capture.get(kind, {}).get('quotes', []), Aliases(), reference,
+                                expected_format='BO3')
+            if not q:
+                continue
+            odds = 'odds_a' in q
+            numbers = (q.get('odds_a'), q.get('odds_b')) if odds else (q.get('price_a'), q.get('price_b'))
+            numbers = numbers[::-1] if q.get('flipped') else numbers
+            p = devig_two_way(*numbers) if odds else normalise_prices(*numbers)
+            if p:
+                rows.append({'match': match, 'label': label, 'numbers': numbers, 'p_a': p[0], 'p_b': p[1],
+                             'read_utc': q.get('read_utc'), 'source_url': q['source_url'],
+                             'provider_url': q.get('provider_url'), 'odds': odds})
+    return rows
+
 
 
 def day4_rows(board):
@@ -11,7 +42,7 @@ def day4_rows(board):
             and r.get('start_utc', '').startswith('2026-10-17')]
 
 
-def render(board, research, card):
+def render(board, research, card, capture=None):
     def e(value):
         return escape('' if value is None else str(value), quote=True)
 
@@ -37,6 +68,27 @@ def render(board, research, card):
                    '<a href="https://play.hotspawn.com/lobby">the lobby</a>, '
                    '<a href="https://play.hotspawn.com/cs2-pickems">CS2</a> and '
                    '<a href="https://play.hotspawn.com/thp-pickems">TWC</a>; there is no fixed match-ID list.</p>')
+    prices = preview_quotes(capture or {}, research, board.get('summary', {}).get('reference_utc'))
+    if prices and not live:
+        out.append('<h3>External market watch — not yet a Hotspawn pick</h3><p>No ownership-based '
+                   'chase is available without a current Hotspawn listing and sample. Near-even lines '
+                   'are not a strong favourite. These observed quotes update with the normal capture; '
+                   'they do not create a contest fixture or a graded pre-lock pick.</p>'
+                   '<div class="tablewrap"><table><thead><tr><th>Match</th><th>Source / inputs</th>'
+                   '<th>Source-implied win chances</th><th>Read UTC / evidence</th></tr></thead><tbody>')
+        for p in prices:
+            m = p['match']
+            a, b = p['numbers']
+            pa = round(p['p_a'] * 100, 1)
+            out.append(f'<tr><td>{e(m["team_a"])} vs {e(m["team_b"])}</td>'
+                       f'<td>{e(p["label"])}: {e(a)} / {e(b)}<br>'
+                       + ('Decimal odds; margin removed' if p['odds'] else 'Outcome prices; normalized')
+                       + f'</td><td>{e(m["team_a"])} {pa:.1f}% / {e(m["team_b"])} {100-pa:.1f}%</td>'
+                       + f'<td>{e(p["read_utc"])}<br>{source(m["url"])} · '
+                       + source(p['source_url'], 'quote source')
+                       + (' · ' + source(p['provider_url'], 'provider link') if p.get('provider_url') else '')
+                       + '</td></tr>')
+        out.append('</tbody></table></div>')
     out.append('<h3>Semifinal watch — dated research, not an extra picks list</h3>'
                '<div class="tablewrap"><table><thead><tr><th>Date / format</th><th>Match at research check</th>'
                '<th>Context and limitation</th><th>Source</th></tr></thead><tbody>')

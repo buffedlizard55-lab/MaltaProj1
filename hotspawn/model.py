@@ -58,7 +58,7 @@ NEW_FIVE_MAX_MATCHES, NEW_FIVE_DAYS = 10, 75
 FLAG_TEXT = {
     "KICKOFF_GAP": "Outside source lists a different kickoff than Hotspawn (joined because both teams match and the gap is within 6 h).",
     "ALIAS": "A team name was joined through a verified alias (see research/aliases.json for the evidence).",
-    "NO_MARKET": "No outside price found; the probability is our own line from official Valve points.",
+    "NO_MARKET": "No eligible outside price captured; the probability is our own line from official Valve points.",
     "MODEL_MARKET_SPLIT": "Our own line and the market disagree on the favourite or by 10+ points.",
     "BOOK_PM_SPLIT": "Pinnacle and Polymarket differ by 8+ points.",
     "ROSTER_UNVERIFIED": "A match-specific roster report does not verify this fixture’s current lineup; own probabilities withheld and factual lineup left blank.",
@@ -75,7 +75,8 @@ FLAG_TEXT = {
     "COIN_FLIP": "Probabilities within one point of 50%; no meaningful directional edge. Only an exact tie may use the eligible own line as a tiebreaker.",
     "STALE_PRICE": "An outside quote is missing a usable read time or is older than 8 h; rejected, not used.",
     "REJECTED_QUOTE": "A same-pair quote was rejected (competition, rematch ambiguity, freshness, format, or validity); see the row's evidence.",
-    "RELAYED_BOOK": "A named sportsbook line relayed by bo3.gg; not verified directly with the bookmaker. Secondary evidence only.",
+    "BOOKMAKER_UNVERIFIED": "Two-sided match quote observed in bo3.gg, but the operator is identified only by an internal ID. Bookmaker name is blank, not inferred from an affiliate URL; no automatic contrarian fade.",
+    "RELAYED_BOOK": "A sportsbook line relayed by bo3.gg (operator name or internal ID retained); not verified directly with the bookmaker. Secondary evidence only.",
     "VRS_STALE": "Valve's rating snapshot has no usable date, is future-dated, or is more than 45 days old; an own-line probability is withheld.",
     "OWN_LINE_WITHHELD": "An own line is not supported for this fixture's known roster/format/rating freshness; blank rather than invented.",
     "IDENTITY_CONFLICT": "Hotspawn surfaces disagree on fixture identity or timing; no probability is published for this ID.",
@@ -186,6 +187,9 @@ def classify(p_dog: float, min_src: float, crowd_dog: float, crowd_fav: float,
 def strategy(row: dict) -> dict | None:
     pa, pb = row.get("p_a"), row.get("p_b")
     ca, cb = row.get("crowd_a"), row.get("crowd_b")
+    if pa is not None and "BOOKMAKER_UNVERIFIED" in (row.get("flags") or []):
+        return {"class": "EVIDENCE LIMITED", "leaderboard_pick": row.get("pick"),
+                "reason": "Operator identity unverified: retain the source-implied side, no automatic contrarian fade."}
     if pa is None or pb is None:
         return None
     if ca is None or cb is None or (ca + cb) <= 0:
@@ -330,12 +334,14 @@ def build_rows(inp: dict) -> tuple[list[dict], dict]:
                 oa, ob = (relay["odds_b"], relay["odds_a"]) if relay["flipped"] else (relay["odds_a"], relay["odds_b"])
                 dv = devig_two_way(oa, ob)
                 if dv:
-                    r["relay"] = {"provider": relay.get("provider"), "odds_a": oa, "odds_b": ob,
+                    r["relay"] = {"provider": relay.get("provider"), "provider_id": relay.get("provider_id"), "odds_a": oa, "odds_b": ob,
                                   "p_a": round(dv[0], 4), "p_b": round(dv[1], 4), "overround_pct": round(dv[2], 2),
                                   "read_utc": relay.get("read_utc"), "url": relay.get("source_url"),
                                   "provider_url": relay.get("provider_url"), "api_url": relay.get("api_url"),
                                   "listed_start": relay.get("start_utc"), "gap_h": relay.get("gap_h")}
                     flags.append("RELAYED_BOOK")
+                    if not relay.get("provider"):
+                        flags.append("BOOKMAKER_UNVERIFIED")
                     if not fmt and relay.get("best_of") in (1,3,5,7):
                         fmt, fmt_src = f"BO{relay['best_of']}", "bo3.gg match record"
                     if abs(relay.get("gap_h") or 0) > 0.01: flags.append("KICKOFF_GAP")
@@ -378,7 +384,7 @@ def build_rows(inp: dict) -> tuple[list[dict], dict]:
         if "book" in r:
             r["p_a"], r["p_b"], r["basis"], r["rung"] = r["book"]["p_a"], r["book"]["p_b"], "Pinnacle odds, margin removed", "A"
         elif "relay" in r:
-            r["p_a"], r["p_b"], r["basis"], r["rung"] = r["relay"]["p_a"], r["relay"]["p_b"], f"Secondary sportsbook relay: {r['relay']['provider']} via bo3.gg (not direct-book verified)", "B"
+            r["p_a"], r["p_b"], r["basis"], r["rung"] = r["relay"]["p_a"], r["relay"]["p_b"], f"Secondary sportsbook relay: {r['relay'].get('provider') or ('operator unverified, bo3 ID ' + str(r['relay'].get('provider_id')))} via bo3.gg (not direct-book verified)", "B"
         elif "pm" in r:
             r["p_a"], r["p_b"], r["basis"], r["rung"] = r["pm"]["p_a"], r["pm"]["p_b"], "Polymarket price (prediction market)", "B"
         elif r["own_p_a"] is not None:
@@ -477,7 +483,7 @@ def build_rows(inp: dict) -> tuple[list[dict], dict]:
                 r["p_a"], r["p_b"] = r["own_p_a"], r["own_p_b"]
                 r["rung"] = "E"
                 r["basis"] = ("Research fallback: our own line (Valve points, row disambiguated by documented "
-                              "roster overlap with HLTV's listed lineups; no outside price exists)")
+                              "roster overlap with HLTV's listed lineups; no eligible outside price captured)")
                 flags = [f for f in flags if f != "UNRESOLVED"]
                 for extra in ("RESEARCH_FALLBACK", "NO_MARKET", "MODEL_ONLY"):
                     if extra not in flags:

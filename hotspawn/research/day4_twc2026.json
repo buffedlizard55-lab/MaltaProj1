@@ -1,19 +1,27 @@
 {
   "session": "arena/4061d8f1",
   "checked_date_utc": "2026-10-16",
-  "checked_window_utc": "19:29–19:34",
+  "checked_window_utc": "19:29\u201319:34",
   "provenance": "Human-readable HLTV pages independently re-read using the fetch tool in this session. These are attributed HLTV reports, not a claim of direct organizer confirmation. Research is a dated snapshot; board prices and listing status are refreshed separately.",
   "event_url": "https://www.hltv.org/events/8932/thunderpick-world-championship-2026",
   "results": [
     {
-      "team_a": "Aurora", "team_b": "9z", "score": "2-0", "winner": "Aurora", "status": "completed",
+      "team_a": "Aurora",
+      "team_b": "9z",
+      "score": "2-0",
+      "winner": "Aurora",
+      "status": "completed",
       "maps": "Cache 13-11; Inferno 13-4 (Aurora score first)",
       "veto": "Aurora picked Cache, 9z picked Inferno, Aurora removed Nuke; Mirage not played.",
       "url": "https://www.hltv.org/matches/2399412/aurora-vs-9z-thunderpick-world-championship-2026",
       "meaning": "The rematch reversed day 1. A previous upset is evidence of possibility, not a permanent head-to-head edge. The veto also changed: do not simply carry the day-1 Nuke result into the next series."
     },
     {
-      "team_a": "BETBOOM", "team_b": "Legacy", "score": null, "winner": null, "status": "live at research check",
+      "team_a": "BETBOOM",
+      "team_b": "Legacy",
+      "score": null,
+      "winner": null,
+      "status": "live at research check",
       "maps": "Completed maps only: Nuke 16-13 BETBOOM; Dust2 11-13 Legacy. Mirage had no final score at the check.",
       "veto": "BETBOOM picked Nuke; Legacy picked Dust2; Mirage left over.",
       "url": "https://www.hltv.org/matches/2399413/betboom-vs-legacy-thunderpick-world-championship-2026",
@@ -22,20 +30,45 @@
   ],
   "semifinals": [
     {
-      "team_a": "FURIA", "team_b": "Aurora", "date": "2026-10-17", "format": "BO3 (LAN)",
+      "team_a": "FURIA",
+      "team_b": "Aurora",
+      "date": "2026-10-17",
+      "format": "BO3 (LAN)",
       "url": "https://www.hltv.org/matches/2399414/furia-vs-aurora-thunderpick-world-championship-2026",
-      "context": "FURIA qualified on day 2; Aurora played the day-3 decider. This establishes different match schedules, not sleep, fatigue or a measured rest advantage. Do not apply an invented percentage adjustment."
+      "context": "FURIA qualified on day 2; Aurora played the day-3 decider. This establishes different match schedules, not sleep, fatigue or a measured rest advantage. Do not apply an invented percentage adjustment.",
+      "market_start_utc": "2026-10-17T14:00:00Z",
+      "market_schedule_sources": [
+        "https://polymarket.com/event/cs2-furia-aur1-2026-10-17",
+        "https://bo3.gg/matches/furia-vs-aurora-gaming-17-10-2026"
+      ],
+      "market_note": "Schedule corroborated by both APIs in capture 19:31 UTC; not a Hotspawn kickoff/lock. HLTV betting table at this manual read had no odds (only promo); Thunderpick direct page independently displayed -118/-118, a 50/50 de-vigged line. Market watch is recomputed from timestamped capture, not this static note."
     },
     {
-      "team_a": "Falcons", "team_b": null, "opponent_note": "BETBOOM/Legacy winner at the research check", "date": "2026-10-17", "format": "BO3",
+      "team_a": "Falcons",
+      "team_b": null,
+      "opponent_note": "BETBOOM/Legacy winner at the research check",
+      "date": "2026-10-17",
+      "format": "BO3",
       "url": "https://www.hltv.org/matches/2399415/falcons-vs-betboom-legacy-winner-thunderpick-world-championship-2026",
       "context": "Falcons qualified on day 2. The other semifinalist was not yet confirmed at this check; no hypothetical pairing is priced as an actual Hotspawn selection."
     }
   ],
   "lessons": [
-    {"text": "Day 1: 9z beat Aurora 2-0. That justified reviewing the market and map matchup; it did not prove that Aurora's July rebuild was an unpriced weakness in October.", "url": "https://www.hltv.org/matches/2399384/9z-vs-aurora-thunderpick-world-championship-2026"},
-    {"text": "Day 2: Aurora beat NIP 2-0; Falcons beat 9z 2-1; BETBOOM beat PARIVISION 2-1; FURIA beat Legacy 2-1. A competitive series is context, not a numeric probability adjustment. The archived headline and leaderboard strategies each went 2/3 on the three retained pre-lock picks: too small a sample to establish an edge.", "url": "https://www.hltv.org/results?event=8932"},
-    {"text": "Day 3: Aurora beat 9z 2-0, including a different Aurora map pick and a Nuke ban. The lesson is to reprice the next opponent and veto, not overreact to either sweep.", "url": "https://www.hltv.org/matches/2399412/aurora-vs-9z-thunderpick-world-championship-2026"},
-    {"text": "Aurora's kyxsan, Jimpphat and ash rebuild was reported on 8 July. It is about three months old, not last-minute onboarding. No new injury, stand-in, travel or sleep claim has been independently established here.", "url": "https://www.hltv.org/news/45082/official-aurora-complete-rebuild-with-kyxsan"}
+    {
+      "text": "Day 1: 9z beat Aurora 2-0. That justified reviewing the market and map matchup; it did not prove that Aurora's July rebuild was an unpriced weakness in October.",
+      "url": "https://www.hltv.org/matches/2399384/9z-vs-aurora-thunderpick-world-championship-2026"
+    },
+    {
+      "text": "Day 2: Aurora beat NIP 2-0; Falcons beat 9z 2-1; BETBOOM beat PARIVISION 2-1; FURIA beat Legacy 2-1. A competitive series is context, not a numeric probability adjustment. The archived headline and leaderboard strategies each went 2/3 on the three retained pre-lock picks: too small a sample to establish an edge.",
+      "url": "https://www.hltv.org/results?event=8932"
+    },
+    {
+      "text": "Day 3: Aurora beat 9z 2-0, including a different Aurora map pick and a Nuke ban. The lesson is to reprice the next opponent and veto, not overreact to either sweep.",
+      "url": "https://www.hltv.org/matches/2399412/aurora-vs-9z-thunderpick-world-championship-2026"
+    },
+    {
+      "text": "Aurora's kyxsan, Jimpphat and ash rebuild was reported on 8 July. It is about three months old, not last-minute onboarding. No new injury, stand-in, travel or sleep claim has been independently established here.",
+      "url": "https://www.hltv.org/news/45082/official-aurora-complete-rebuild-with-kyxsan"
+    }
   ]
 }

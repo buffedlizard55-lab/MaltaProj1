@@ -292,28 +292,28 @@
   }
  },
  "summary": {
-  "generated_utc": "2026-10-16T19:31:14Z",
+  "generated_utc": "2026-10-16T19:37:07Z",
   "session": "arena/22be6967",
   "reference_utc": "2026-10-16T19:31:00Z",
   "fixtures": 83,
   "open": 16,
   "locked_recent": 6,
   "stale_listings": 61,
-  "open_with_pick": 14,
+  "open_with_pick": 15,
   "open_rung": {
    "A": 0,
-   "B": 9,
+   "B": 10,
    "C": 1,
-   "D": 2,
+   "D": 1,
    "E": 4
   },
-  "open_unresolved": 2,
+  "open_unresolved": 1,
   "open_flagged": 16,
   "leaderboard_classes": {
    "VALUE": 5,
    "CONTRARIAN": 2,
    "SITUATIONAL": 2,
-   "LONG SHOT": 3,
+   "LONG SHOT": 4,
    "CHALK": 2,
    "NO CROWD DATA": 0
   },
@@ -328,9 +328,9 @@
   "own_line_k": 0.4598,
   "own_line_k_source": "fitted on Valve's published match results",
   "graded_since_launch": {
-   "n": 3,
-   "picks_correct": 2,
-   "leaderboard_correct": 2
+   "n": 4,
+   "picks_correct": 3,
+   "leaderboard_correct": 3
   },
   "day1_review": {
    "matches": 4,
@@ -386,6 +386,7 @@
    "hltv_note": "BO3 and pairing independently re-read from HLTV in session 6b23e38f; no book price was visible in the fetched match-page betting table.",
    "relay": {
     "provider": "thunderpick",
+    "provider_id": null,
     "odds_a": 1.38,
     "odds_b": 2.8,
     "p_a": 0.6699,
@@ -516,6 +517,7 @@
    },
    "relay": {
     "provider": "thunderpick",
+    "provider_id": null,
     "odds_a": 1.85,
     "odds_b": 1.85,
     "p_a": 0.5,
@@ -832,7 +834,7 @@
    "hltv_team_b": "https://www.hltv.org/team/13714/donstu",
    "p_a": 0.4802,
    "p_b": 0.5198,
-   "basis": "Research fallback: our own line (Valve points, row disambiguated by documented roster overlap with HLTV's listed lineups; no outside price exists)",
+   "basis": "Research fallback: our own line (Valve points, row disambiguated by documented roster overlap with HLTV's listed lineups; no eligible outside price captured)",
    "rung": "E",
    "factors": [
     {
@@ -1007,7 +1009,17 @@
    "lobby_url": "https://play.hotspawn.com/lobby",
    "source_url": "https://play.hotspawn.com/lobby",
    "status": "open",
-   "rejected_quotes": [],
+   "rejected_quotes": [
+    {
+     "source": "Polymarket",
+     "source_url": "https://polymarket.com/event/cs2-bca-nem-2026-10-17",
+     "read_utc": "2026-10-16T19:31:05Z",
+     "listed_start": "2026-10-17T14:00:00Z",
+     "reasons": [
+      "competition missing or conflicting"
+     ]
+    }
+   ],
    "research_attempt": {
     "match_id": "1081515",
     "source": "HLTV",
@@ -1020,10 +1032,25 @@
    "crowd_a": 8,
    "crowd_b": 92,
    "total_picks": 13,
-   "hltv_url": null,
-   "hltv_note": null,
-   "format": "",
-   "format_source": "",
+   "hltv_url": "https://www.hltv.org/matches/2399660/betclic-vs-nemesis-pgl-bucharest-2027-closed-qualifier",
+   "hltv_note": "Exact pairing and series format independently checked in session 4061d8f1; viewer-local kickoff clock not treated as UTC.",
+   "relay": {
+    "provider": "thunderpick",
+    "provider_id": null,
+    "odds_a": 2.8,
+    "odds_b": 1.38,
+    "p_a": 0.3301,
+    "p_b": 0.6699,
+    "overround_pct": 8.18,
+    "read_utc": "2026-10-16T19:31:03Z",
+    "url": "https://bo3.gg/matches/betclic-apogee-esports-vs-team-nemesis-cs-17-10-2026",
+    "provider_url": "https://thunderpick.io/match/2836564",
+    "api_url": "https://api.bo3.gg/api/v1/matches?page%5Boffset%5D=0&page%5Blimit%5D=100&sort=start_date&filter%5Bmatches.status%5D%5Bin%5D=upcoming&filter%5Bmatches.discipline_id%5D%5Beq%5D=1&with=teams%2Ctournament",
+    "listed_start": "2026-10-17T14:00:00Z",
+    "gap_h": 0.0
+   },
+   "format": "BO3",
+   "format_source": "HLTV match page",
    "vrs_a": null,
    "vrs_b": {
     "name": "Nemesis",
@@ -1041,27 +1068,53 @@
    },
    "own_p_a": null,
    "own_p_b": null,
-   "hltv_rank_a": null,
+   "hltv_rank_a": 71,
    "hltv_rank_b": 46,
-   "hltv_team_a": null,
+   "hltv_team_a": "https://www.hltv.org/team/12916/betclic",
    "hltv_team_b": "https://www.hltv.org/team/13355/nemesis",
-   "p_a": null,
-   "p_b": null,
-   "basis": "Unresolved",
-   "rung": "D",
+   "p_a": 0.3301,
+   "p_b": 0.6699,
+   "basis": "Secondary sportsbook relay: thunderpick via bo3.gg (not direct-book verified)",
+   "rung": "B",
    "factors": [],
-   "own_line_limitation": "series format not independently confirmed; one or both teams not uniquely identified in Valve standings",
-   "pick": null,
-   "pick_p": null,
+   "own_line_limitation": "one or both teams not uniquely identified in Valve standings",
+   "pick": "Nemesis",
+   "pick_p": 0.6699,
    "flags": [
-    "FORMAT_UNKNOWN",
+    "ALIAS",
     "HOTSPAWN_PARTIAL",
-    "UNRESOLVED"
+    "REJECTED_QUOTE",
+    "RELAYED_BOOK"
    ],
-   "strategy": null,
+   "strategy": {
+    "class": "LONG SHOT",
+    "reason": "Big leverage but a low chance: keep the favourite unless you are far behind with few matches left.",
+    "leaderboard_pick": "Nemesis",
+    "favourite": "Nemesis",
+    "underdog": "Apogee Betclic",
+    "p_fav": 0.6699,
+    "p_dog": 0.3301,
+    "min_src_dog": 0.3301,
+    "estimates": [
+     "market"
+    ],
+    "crowd_fav": 0.92,
+    "crowd_dog": 0.08,
+    "edge_vs_crowd_pp": 25.0,
+    "leverage": 4.13,
+    "ev_cost_pts": 0.0,
+    "ev_cost_if_faded": 1.02,
+    "field_gain_if_dog_wins_pct": 92,
+    "factors_against_favourite": [],
+    "factors_against_underdog": [],
+    "differs_from_pick": false
+   },
    "sources": [
     "https://play.hotspawn.com/lobby",
     "https://www.hotspawn.com/matches/apogee-betclic-vs-nemesis-pgl-bucharest-2027-closed-qualifier-1081515",
+    "https://www.hltv.org/matches/2399660/betclic-vs-nemesis-pgl-bucharest-2027-closed-qualifier",
+    "https://bo3.gg/matches/betclic-apogee-esports-vs-team-nemesis-cs-17-10-2026",
+    "https://thunderpick.io/match/2836564",
     "https://www.hltv.org/search?query=Apogee%20Betclic%20Nemesis",
     "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
    ],
@@ -1288,7 +1341,7 @@
    "hltv_team_b": "https://www.hltv.org/team/4246/enjoy",
    "p_a": 0.4538,
    "p_b": 0.5462,
-   "basis": "Research fallback: our own line (Valve points, row disambiguated by documented roster overlap with HLTV's listed lineups; no outside price exists)",
+   "basis": "Research fallback: our own line (Valve points, row disambiguated by documented roster overlap with HLTV's listed lineups; no eligible outside price captured)",
    "rung": "E",
    "factors": [
     {
@@ -1541,7 +1594,7 @@
    "hltv_team_b": "https://www.hltv.org/team/13914/privateer",
    "p_a": 0.6971,
    "p_b": 0.3029,
-   "basis": "Research fallback: our own line (Valve points, row disambiguated by documented roster overlap with HLTV's listed lineups; no outside price exists)",
+   "basis": "Research fallback: our own line (Valve points, row disambiguated by documented roster overlap with HLTV's listed lineups; no eligible outside price captured)",
    "rung": "E",
    "factors": [
     {
@@ -1821,7 +1874,7 @@
    "hltv_team_b": "https://www.hltv.org/team/13766/phantom-academy",
    "p_a": 0.4401,
    "p_b": 0.5599,
-   "basis": "Research fallback: our own line (Valve points, row disambiguated by documented roster overlap with HLTV's listed lineups; no outside price exists)",
+   "basis": "Research fallback: our own line (Valve points, row disambiguated by documented roster overlap with HLTV's listed lineups; no eligible outside price captured)",
    "rung": "E",
    "factors": [
     {
@@ -2178,12 +2231,8 @@
    "crowd_a": 86,
    "crowd_b": 14,
    "total_picks": 22,
-   "hltv_url": null,
-   "hltv_note": null,
-   "format_evidence": {
-    "url": "https://bo3.gg/matches/aimclub-vs-basement-boys-19-10-2026",
-    "read_utc": "2026-10-16T19:31:03Z"
-   },
+   "hltv_url": "https://www.hltv.org/matches/2399591/aimclub-vs-basement-boys-digital-crusade-draculan-season-7",
+   "hltv_note": "Exact pairing and series format independently checked in session 4061d8f1; viewer-local kickoff clock not treated as UTC.",
    "pm": {
     "source": "Polymarket",
     "price_a": 0.5,
@@ -2198,7 +2247,7 @@
     "volume": null
    },
    "format": "BO1",
-   "format_source": "bo3.gg match metadata (secondary)",
+   "format_source": "HLTV match page",
    "vrs_a": null,
    "vrs_b": {
     "name": "BASEMENT BOYS",
@@ -2224,22 +2273,39 @@
    "p_b": null,
    "basis": "Unresolved: exact tie, no supported direction",
    "rung": "D",
-   "factors": [],
-   "own_line_limitation": "one or both teams not uniquely identified in Valve standings",
+   "factors": [
+    {
+     "side": "a",
+     "team": "aimclub",
+     "kind": "match lineup differs from dated Valve roster",
+     "summary": "HLTV 2399591 lists ragga, waZz, mhN1, zewts, XELLOW. Valve 5 October lists two aimclub rosters: rank 77 shares four (ERSIN instead of XELLOW); rank 336 shares two. Identity can be narrowed, but neither is the exact listed five. Strict own line remains withheld; no numeric roster penalty is invented.",
+     "argues_against": false,
+     "strength": "weak",
+     "source_urls": [
+      "https://www.hltv.org/matches/2399591/aimclub-vs-basement-boys-digital-crusade-draculan-season-7",
+      "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+     ],
+     "read_utc": null,
+     "checked_date_utc": "2026-10-16",
+     "verification_status": "verified"
+    }
+   ],
+   "own_line_limitation": "current lineup unresolved after a match-specific roster report; one or both teams not uniquely identified in Valve standings",
    "pick": null,
    "pick_p": null,
    "flags": [
     "COIN_FLIP",
     "HOTSPAWN_PARTIAL",
     "NO_DIRECTION",
+    "ROSTER_UNVERIFIED",
     "UNRESOLVED"
    ],
    "strategy": null,
    "sources": [
     "https://play.hotspawn.com/lobby",
+    "https://www.hltv.org/matches/2399591/aimclub-vs-basement-boys-digital-crusade-draculan-season-7",
     "https://polymarket.com/event/cs2-aim1-bmb-2026-10-19",
     "https://www.hltv.org/search?query=aimclub%20BASEMENT%20BOYS",
-    "https://bo3.gg/matches/aimclub-vs-basement-boys-19-10-2026",
     "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
    ],
    "result": null
@@ -2430,6 +2496,7 @@
    },
    "relay": {
     "provider": "thunderpick",
+    "provider_id": null,
     "odds_a": 2.0,
     "odds_b": 1.72,
     "p_a": 0.4624,
@@ -2605,6 +2672,7 @@
    },
    "relay": {
     "provider": "thunderpick",
+    "provider_id": null,
     "odds_a": 1.4,
     "odds_b": 2.7,
     "p_a": 0.6585,
@@ -2767,6 +2835,7 @@
    },
    "relay": {
     "provider": "thunderpick",
+    "provider_id": null,
     "odds_a": 1.48,
     "odds_b": 2.5,
     "p_a": 0.6281,
@@ -8350,7 +8419,7 @@
  "flag_text": {
   "KICKOFF_GAP": "Outside source lists a different kickoff than Hotspawn (joined because both teams match and the gap is within 6 h).",
   "ALIAS": "A team name was joined through a verified alias (see research/aliases.json for the evidence).",
-  "NO_MARKET": "No outside price found; the probability is our own line from official Valve points.",
+  "NO_MARKET": "No eligible outside price captured; the probability is our own line from official Valve points.",
   "MODEL_MARKET_SPLIT": "Our own line and the market disagree on the favourite or by 10+ points.",
   "BOOK_PM_SPLIT": "Pinnacle and Polymarket differ by 8+ points.",
   "ROSTER_UNVERIFIED": "A match-specific roster report does not verify this fixture’s current lineup; own probabilities withheld and factual lineup left blank.",
@@ -8367,7 +8436,8 @@
   "COIN_FLIP": "Probabilities within one point of 50%; no meaningful directional edge. Only an exact tie may use the eligible own line as a tiebreaker.",
   "STALE_PRICE": "An outside quote is missing a usable read time or is older than 8 h; rejected, not used.",
   "REJECTED_QUOTE": "A same-pair quote was rejected (competition, rematch ambiguity, freshness, format, or validity); see the row's evidence.",
-  "RELAYED_BOOK": "A named sportsbook line relayed by bo3.gg; not verified directly with the bookmaker. Secondary evidence only.",
+  "BOOKMAKER_UNVERIFIED": "Two-sided match quote observed in bo3.gg, but the operator is identified only by an internal ID. Bookmaker name is blank, not inferred from an affiliate URL; no automatic contrarian fade.",
+  "RELAYED_BOOK": "A sportsbook line relayed by bo3.gg (operator name or internal ID retained); not verified directly with the bookmaker. Secondary evidence only.",
   "VRS_STALE": "Valve's rating snapshot has no usable date, is future-dated, or is more than 45 days old; an own-line probability is withheld.",
   "OWN_LINE_WITHHELD": "An own line is not supported for this fixture's known roster/format/rating freshness; blank rather than invented.",
   "IDENTITY_CONFLICT": "Hotspawn surfaces disagree on fixture identity or timing; no probability is published for this ID.",
@@ -9157,7 +9227,7 @@
    "pick_p": 0.5462,
    "p_a": 0.4538,
    "p_b": 0.5462,
-   "basis": "Research fallback: our own line (Valve points, row disambiguated by documented roster overlap with HLTV's listed lineups; no outside price exists)",
+   "basis": "Research fallback: our own line (Valve points, row disambiguated by documented roster overlap with HLTV's listed lineups; no eligible outside price captured)",
    "leaderboard_pick": "Enjoy",
    "class": "VALUE",
    "rule_version": "v3-evidence-2026-10-16",
@@ -9304,7 +9374,7 @@
    "pick_p": 0.5198,
    "p_a": 0.4802,
    "p_b": 0.5198,
-   "basis": "Research fallback: our own line (Valve points, row disambiguated by documented roster overlap with HLTV's listed lineups; no outside price exists)",
+   "basis": "Research fallback: our own line (Valve points, row disambiguated by documented roster overlap with HLTV's listed lineups; no eligible outside price captured)",
    "leaderboard_pick": "Donstu",
    "class": "VALUE",
    "rule_version": "v3-evidence-2026-10-16",
@@ -9325,7 +9395,7 @@
    "pick_p": 0.6971,
    "p_a": 0.6971,
    "p_b": 0.3029,
-   "basis": "Research fallback: our own line (Valve points, row disambiguated by documented roster overlap with HLTV's listed lineups; no outside price exists)",
+   "basis": "Research fallback: our own line (Valve points, row disambiguated by documented roster overlap with HLTV's listed lineups; no eligible outside price captured)",
    "leaderboard_pick": "Privateer",
    "class": "SITUATIONAL",
    "rule_version": "v3-evidence-2026-10-16",
@@ -9346,7 +9416,7 @@
    "pick_p": 0.5599,
    "p_a": 0.4401,
    "p_b": 0.5599,
-   "basis": "Research fallback: our own line (Valve points, row disambiguated by documented roster overlap with HLTV's listed lineups; no outside price exists)",
+   "basis": "Research fallback: our own line (Valve points, row disambiguated by documented roster overlap with HLTV's listed lineups; no eligible outside price captured)",
    "leaderboard_pick": "antidaun",
    "class": "CONTRARIAN",
    "rule_version": "v3-evidence-2026-10-16",
@@ -9373,6 +9443,27 @@
    "rule_version": "v3-evidence-2026-10-16",
    "crowd_a": 29,
    "crowd_b": 71,
+   "as_of": "2026-10-16T19:31:00Z",
+   "frozen": false
+  },
+  "1081515": {
+   "match_id": "1081515",
+   "team_a": "Apogee Betclic",
+   "team_b": "Nemesis",
+   "competition": "PGL Bucharest 2027: Closed Qualifier",
+   "start_utc": "2026-10-17T14:00:00Z",
+   "lock_utc": "2026-10-17T13:54:00Z",
+   "points": 3,
+   "pick": "Nemesis",
+   "pick_p": 0.6699,
+   "p_a": 0.3301,
+   "p_b": 0.6699,
+   "basis": "Secondary sportsbook relay: thunderpick via bo3.gg (not direct-book verified)",
+   "leaderboard_pick": "Nemesis",
+   "class": "LONG SHOT",
+   "rule_version": "v3-evidence-2026-10-16",
+   "crowd_a": 8,
+   "crowd_b": 92,
    "as_of": "2026-10-16T19:31:00Z",
    "frozen": false
   }
@@ -9904,9 +9995,19 @@
    "crowd_b": 8,
    "as_of": "2026-10-16T13:23:10Z",
    "frozen": true,
-   "result": null,
-   "pick_correct": null,
-   "leaderboard_correct": null
+   "result": {
+    "winner": "Aurora",
+    "score": "2-0",
+    "maps": "Cache 13-11; Inferno 13-4",
+    "source_url": "https://www.hltv.org/matches/2399412/aurora-vs-9z-thunderpick-world-championship-2026",
+    "read_utc": null,
+    "checked_date_utc": "2026-10-16",
+    "map_score_team": "Aurora",
+    "verification_note": "Independently re-read in session 4061d8f1, 19:29–19:34 UTC window; exact completion second not recorded.",
+    "kind": "verified (HLTV)"
+   },
+   "pick_correct": true,
+   "leaderboard_correct": true
   },
   {
    "match_id": "1079588",

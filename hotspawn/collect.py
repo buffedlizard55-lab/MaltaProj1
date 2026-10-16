@@ -367,7 +367,7 @@ def collect_polymarket() -> dict:
             "team_a": outcomes[0], "team_b": outcomes[1], "price_a": prices[0], "price_b": prices[1],
             "format": mm.group("fmt").upper(), "event": mm.group("event").strip(), "question": m.get("question"),
             "start_utc": iso(parse_iso(m.get("gameStartTime"))), "end_utc": iso(parse_iso(m.get("endDate"))),
-            "volume": m.get("volumeNum") or m.get("volume"), "slug": slug,
+            "volume": m.get("volumeNum") if m.get("volumeNum") is not None else m.get("volume"), "slug": slug,
             "market_scope": "match_winner", "active": m.get("active"), "closed": m.get("closed"),
             "accepting_orders": m.get("acceptingOrders"), "source_updated_utc": m.get("updatedAt"),
             "source_url": f"https://polymarket.com/event/{slug}" if slug else "https://polymarket.com/",
@@ -575,12 +575,17 @@ def parse_bo3_match(m: dict, read_utc: str, api_url: str) -> dict | None:
            "api_url": api_url, "source": "bo3.gg", "kind": "bookmaker_relayed", "quote": None}
     bu = m.get("bet_updates") or {}
     q1, q2 = bu.get("team_1") or {}, bu.get("team_2") or {}
-    if bu.get("provider") and q1.get("active") is True and q2.get("active") is True:
+    # Some valid match-level records identify the operator only by numeric ID.
+    # Preserve that ID; never guess the bookmaker from an affiliate redirect hostname.
+    provider_id = bu.get("bet_provider_id")
+    has_id = type(provider_id) is int and provider_id > 0
+    if (bu.get("provider") or has_id) and q1.get("active") is True and q2.get("active") is True:
         from common import devig_two_way, Aliases
         al = Aliases()
         if al.key(q1.get("name", "")) == al.key(a["name"]) and al.key(q2.get("name", "")) == al.key(b["name"]) \
                 and devig_two_way(q1.get("coeff"), q2.get("coeff")):
-            row["quote"] = {"odds_a": q1["coeff"], "odds_b": q2["coeff"], "provider": bu["provider"],
+            row["quote"] = {"odds_a": q1["coeff"], "odds_b": q2["coeff"], "provider": bu.get("provider"), "provider_id": provider_id,
+                            "provider_verified": bool(bu.get("provider")),
                             "provider_url": bu.get("path"), "market_scope": "match_winner"}
     return row
 
