@@ -292,7 +292,7 @@
   }
  },
  "summary": {
-  "generated_utc": "2026-10-16T19:38:27Z",
+  "generated_utc": "2026-10-16T19:39:59Z",
   "session": "arena/22be6967",
   "reference_utc": "2026-10-16T19:37:57Z",
   "fixtures": 83,
@@ -315,6 +315,7 @@
    "SITUATIONAL": 2,
    "LONG SHOT": 4,
    "CHALK": 2,
+   "EVIDENCE LIMITED": 1,
    "NO CROWD DATA": 0
   },
   "next_lock_utc": "2026-10-17T07:54:00Z",
@@ -8449,7 +8450,7 @@
   "STALE_LISTING": "Hotspawn still lists this fixture although its lock time passed more than 36 h ago (not pickable).",
   "LOCKED": "Lock time has passed; kept for the record and for grading.",
   "CROWD_MISSING": "Hotspawn did not publish a crowd share; no leaderboard play computed.",
-  "HOTSPAWN_PARTIAL": "Not every Hotspawn page was read successfully in this capture.",
+  "HOTSPAWN_PARTIAL": "At least one Hotspawn surface is empty, unavailable or inconsistent in this capture; full live coverage is not certified.",
   "COIN_FLIP": "Probabilities within one point of 50%; no meaningful directional edge. Only an exact tie may use the eligible own line as a tiebreaker.",
   "STALE_PRICE": "An outside quote is missing a usable read time or is older than 8 h; rejected, not used.",
   "REJECTED_QUOTE": "A same-pair quote was rejected (competition, rematch ambiguity, freshness, format, or validity); see the row's evidence.",

@@ -428,6 +428,17 @@
     "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
     "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/hotspawn/collect.py"
    ]
+  },
+  {
+   "id": "D4-03",
+   "status": "needs review",
+   "title": "aimclub market operator is unnamed; do not imply direct-book verification",
+   "detail": "The exact bo3 API record for aimclub\u2013BASEMENT BOYS supplied active 2.04/1.69 prices and bet_provider_id=39, but no provider name. The name remains blank; the derived secondary estimate is flagged BOOKMAKER_UNVERIFIED and automatic contrarian fading is disabled. HLTV confirms the BO1 fixture; its displayed lineup differs from Valve\u2019s older aimclub five, so the strict own line is withheld.",
+   "evidence": [
+    "https://www.hltv.org/matches/2399591/aimclub-vs-basement-boys-digital-crusade-draculan-season-7",
+    "https://api.bo3.gg/api/v1/matches?filter%5Bmatches.id%5D%5Beq%5D=131693&with=teams,tournament",
+    "https://bo3.gg/matches/aimclub-vs-basement-boys-19-10-2026"
+   ]
   }
  ],
  "updated_utc": "2026-10-16T08:55:00Z"

@@ -42,7 +42,7 @@ def day4_rows(board):
             and r.get('start_utc', '').startswith('2026-10-17')]
 
 
-def render(board, research, card, capture=None):
+def render(board, research, card, capture=None, compact=False):
     def e(value):
         return escape('' if value is None else str(value), quote=True)
 
@@ -57,6 +57,12 @@ def render(board, research, card, capture=None):
            f'<p class="small">Research snapshot: {e(research.get("checked_date_utc"))}, '
            f'{e(research.get("checked_window_utc"))} UTC. {e(research.get("provenance"))}</p>']
     live = day4_rows(board)
+    if compact:
+        out.append(f'<p>{len(live)} open day-4 main-event fixtures in this capture. '
+                   'If none appear, this is a listing limitation, not a prediction. '
+                   '<a href="twc.html#day4">Open day-4 picks / external market watch and day-3 results →</a></p>')
+        out.append('</section>')
+        return ''.join(out)
     if live:
         out.append('<h3>Day-4 matches open in the current Hotspawn capture</h3>')
         out.extend(card(row, board) for row in live)

@@ -20,8 +20,8 @@ from common import (DATA, REPO_URL, RESEARCH, ROOT, SESSION, devig_two_way, norm
 from twc_watch import render as render_day4
 
 
-def day4_section(board):
-    return render_day4(board, read_json(RESEARCH / "day4_twc2026.json", {}) or {}, card, read_json(DATA / "capture.json", {}) or {})
+def day4_section(board, compact=False):
+    return render_day4(board, read_json(RESEARCH / "day4_twc2026.json", {}) or {}, card, read_json(DATA / "capture.json", {}) or {}, compact=compact)
 
 
 DAY3_FILE = RESEARCH / "day3_twc2026.json"
@@ -800,7 +800,7 @@ def index_page(board: dict) -> None:
 <p>TWC 2026 day 1: all four series ended 2-0; favourites won three. The upset was <b>9z 2-0 Aurora</b> ({e(upset_rates)}). Market picks went {s['day1_review']['picks_correct']}/{s['day1_review']['matches']}. <a href="strategy.html">Full review →</a></p>
 <h2>Day 2 in one line</h2>
 {day2_one_line(board)}
-{day4_section(board)}
+{day4_section(board, compact=True)}
 <h2 id="day3">Day 3 — historical decider research</h2>
 {day3_section(board)}
 <h2 id="unresolved">Unresolved picks &amp; limitations</h2>

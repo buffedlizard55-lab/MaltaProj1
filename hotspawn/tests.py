@@ -889,6 +889,13 @@ class DayFourMaintenance(unittest.TestCase):
         idx=model.index_by_key(read_json(HERE/'data/capture.json')['vrs']['teams'],a)
         self.assertIsNone(model.unique(idx,a.key('Betclic')))
 
+    def test_every_strategy_class_is_in_the_summary(self):
+        classes=BOARD['summary']['leaderboard_classes']
+        for r in OPEN:
+            if r.get('strategy'):
+                self.assertIn(r['strategy']['class'],classes)
+        self.assertEqual(sum(classes.values()),sum(bool(r.get('strategy')) for r in OPEN))
+
     def test_day4_sources_and_live_score_blanks(self):
         data=read_json(HERE/'research/day4_twc2026.json')
         for result in data['results']:

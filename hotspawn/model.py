@@ -71,7 +71,7 @@ FLAG_TEXT = {
     "STALE_LISTING": "Hotspawn still lists this fixture although its lock time passed more than 36 h ago (not pickable).",
     "LOCKED": "Lock time has passed; kept for the record and for grading.",
     "CROWD_MISSING": "Hotspawn did not publish a crowd share; no leaderboard play computed.",
-    "HOTSPAWN_PARTIAL": "Not every Hotspawn page was read successfully in this capture.",
+    "HOTSPAWN_PARTIAL": "At least one Hotspawn surface is empty, unavailable or inconsistent in this capture; full live coverage is not certified.",
     "COIN_FLIP": "Probabilities within one point of 50%; no meaningful directional edge. Only an exact tie may use the eligible own line as a tiebreaker.",
     "STALE_PRICE": "An outside quote is missing a usable read time or is older than 8 h; rejected, not used.",
     "REJECTED_QUOTE": "A same-pair quote was rejected (competition, rematch ambiguity, freshness, format, or validity); see the row's evidence.",
@@ -752,7 +752,7 @@ def main() -> int:
         "open_unresolved": sum(1 for r in open_rows if r.get("rung") == "D"),
         "open_flagged": sum(1 for r in open_rows if set(r["flags"]) - {"ALIAS"}),
         "leaderboard_classes": {c: sum(1 for r in open_rows if (r.get("strategy") or {}).get("class") == c)
-                                for c in ("VALUE", "CONTRARIAN", "SITUATIONAL", "LONG SHOT", "CHALK", "NO CROWD DATA")},
+                                for c in ("VALUE", "CONTRARIAN", "SITUATIONAL", "LONG SHOT", "CHALK", "EVIDENCE LIMITED", "NO CROWD DATA")},
         "next_lock_utc": min((r["lock_utc"] for r in open_rows if r.get("lock_utc")), default=None),
         "hotspawn_complete": meta["hotspawn"]["complete"],
         "sources": {"pinnacle": meta["pinnacle"].get("status"), "polymarket": meta["polymarket"].get("status"),
