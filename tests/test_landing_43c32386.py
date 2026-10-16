@@ -111,6 +111,30 @@ class LandingAcceptanceTests(unittest.TestCase):
         self.assertIn('var url = "hotspawn/data/landing.json?published=" + Date.now()', self.html)
         self.assertNotIn('fetch("livelines/data/picks.json', self.html)
 
+    def test_primary_runtime_counts_include_roster_research(self):
+        import subprocess
+        # Execute the actual inline renderer, not a duplicate counting formula.
+        program = r"""
+const fs = require('node:fs'), vm = require('node:vm'), assert = require('node:assert/strict');
+const html = fs.readFileSync('index.html', 'utf8');
+const source = [...html.matchAll(/<script>([\s\S]*?)<\/script>/g)].map(m => m[1]).join('\n')
+  .replace(/\n\s*loadSummary\(\);/, '\nglobalThis.renderForTest = render;');
+function node() { return {textContent: '', children: [], addEventListener(){},
+  get firstChild(){return this.children[0]}, appendChild(x){this.children.push(x)},
+  removeChild(){this.children.shift()}}; }
+const nodes = {};
+const ctx = {document: {getElementById(id){return nodes[id] ||= node()}, createElement:node},
+  window: {setInterval(){}}, console};
+vm.createContext(ctx); vm.runInContext(source, ctx);
+for (const [rung, expected, own] of [[{A:0,B:11,C:1,D:0,E:4},16,5], [{A:3,B:2,C:0,D:2,E:1},3,1], [{},0,0]]) {
+  ctx.renderForTest({open_rung:rung, next:[], open_unresolved:rung.D || 0});
+  assert.equal(nodes['own-count'].textContent, String(expected));
+  assert.ok(nodes['unresolved-counts'].textContent.startsWith(expected+' open match(es)'));
+  assert.ok(nodes['unresolved-counts'].textContent.includes(own+' by our own line'));
+}
+"""
+        subprocess.run(['node', '-e', program], cwd=ROOT, check=True, capture_output=True, text=True)
+
     def test_local_landing_links_resolve(self):
         from html.parser import HTMLParser
 

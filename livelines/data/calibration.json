@@ -1,124 +1,15 @@
 {
  "calibration": {
-  "fitted": true,
-  "n": 4,
-  "scale": 782.0,
-  "mae_pp": 6.0,
-  "logloss": 0.2647,
-  "grid": "20.0-2000.0 points per 90% favourite, step 0.25; mean absolute error against the outside market's de-vigged probability",
-  "default_scale": 400.0,
-  "logloss_alternative": {
-   "scale": 20.0,
-   "mae_pp": 17.99,
-   "logloss": 0.0
-  },
-  "objective": "mae",
-  "candidate_transforms": {
-   "vrs_points": {
-    "fitted": true,
-    "n": 4,
-    "scale": 782.0,
-    "mae_pp": 6.0,
-    "logloss": 0.2647,
-    "grid": "20.0-2000.0 points per 90% favourite, step 0.25; mean absolute error against the outside market's de-vigged probability",
-    "default_scale": 400.0,
-    "logloss_alternative": {
-     "scale": 20.0,
-     "mae_pp": 17.99,
-     "logloss": 0.0
-    },
-    "objective": "mae"
-   },
-   "hltv_points": {
-    "fitted": true,
-    "n": 4,
-    "scale": 20.0,
-    "mae_pp": 11.52,
-    "logloss": 0.3546,
-    "grid": "20.0-2000.0 points per 90% favourite, step 0.25; mean absolute error against the outside market's de-vigged probability",
-    "default_scale": 400.0,
-    "logloss_alternative": {
-     "scale": 20.0,
-     "mae_pp": 11.52,
-     "logloss": 0.3546
-    },
-    "objective": "mae"
-   },
-   "vrs_rank": {
-    "fitted": true,
-    "n": 4,
-    "scale": 2000.0,
-    "mae_pp": 36.87,
-    "logloss": 0.7965,
-    "grid": "20.0-2000.0 points per 90% favourite, step 0.25; mean absolute error against the outside market's de-vigged probability",
-    "default_scale": 400.0,
-    "logloss_alternative": {
-     "scale": 2000.0,
-     "mae_pp": 36.87,
-     "logloss": 0.7965
-    },
-    "objective": "mae"
-   },
-   "vrs_log_rank": {
-    "fitted": true,
-    "n": 4,
-    "scale": 0.05,
-    "logloss": 0.7204,
-    "mae_pp": 33.36
-   }
-  },
-  "chosen": "official Valve Regional Standings points (vrs_points) at the calibration (MAE) optimum, because that is the transform whose published percentage is closest to the outside market on the same rows and it has the widest team coverage; the log-loss optimum is disclosed next to it and the disagreement is flagged on every row that depends on the scale"
+  "fitted": false,
+  "n": 0,
+  "scale": 400.0,
+  "mae_pp": null,
+  "logloss": null,
+  "reason": "fewer than 4 fixtures with both an outside price and both teams in the official standings; the project default 400-point scale is used instead",
+  "candidate_transforms": {},
+  "chosen": "fewer than 4 fixtures with both an outside price and both teams in the official standings; the project default 400-point scale is used instead"
  },
- "fit_rows": [
-  {
-   "match_id": "1080288",
-   "teams": "Phantom v RoundsGG",
-   "vrs_a": 1147,
-   "vrs_b": 548,
-   "hltv_a": 88,
-   "hltv_b": 237,
-   "market_p_a_pct": 85.37,
-   "source": "bo3.gg",
-   "captured_utc": "2026-10-16T11:52:21Z",
-   "url": "https://bo3.gg/matches/phantom-esports-vs-roundsgg-16-10-2026"
-  },
-  {
-   "match_id": "1081120",
-   "teams": "mellren v Privateer",
-   "vrs_a": 932,
-   "vrs_b": 608,
-   "hltv_a": 94,
-   "hltv_b": 226,
-   "market_p_a_pct": 88.5,
-   "source": "Polymarket",
-   "captured_utc": "2026-10-16T11:52:20Z",
-   "url": "https://polymarket.com/event/cs2-mellre-pg5-2026-10-16"
-  },
-  {
-   "match_id": "1080289",
-   "teams": "RoundsGG v Voca",
-   "vrs_a": 548,
-   "vrs_b": 1182,
-   "hltv_a": 237,
-   "hltv_b": 59,
-   "market_p_a_pct": 15.94,
-   "source": "bo3.gg",
-   "captured_utc": "2026-10-16T11:52:21Z",
-   "url": "https://bo3.gg/matches/voca-vs-roundsgg-16-10-2026"
-  },
-  {
-   "match_id": "1080290",
-   "teams": "Phantom v HAVU",
-   "vrs_a": 1147,
-   "vrs_b": 937,
-   "hltv_a": 88,
-   "hltv_b": 118,
-   "market_p_a_pct": 70.14,
-   "source": "bo3.gg",
-   "captured_utc": "2026-10-16T11:52:21Z",
-   "url": "https://bo3.gg/matches/phantom-esports-vs-havu-16-10-2026"
-  }
- ],
+ "fit_rows": [],
  "formula": "p = 1/(1+10^((vrs_b - vrs_a)/scale)) * 100, series probability, applied per fixture",
  "vrs_meta": {
   "file": "livelines/data/raw/valve_standings_global_2026_10_05.md",
