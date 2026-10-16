@@ -1,9 +1,9 @@
 {
   "source_reread_date_utc": "2026-10-16",
-  "snapshot_utc": "2026-10-15T22:41:15Z",
+  "snapshot_utc": "2026-10-16T04:20:51Z",
   "scope": "Canonical hotspawn board only. Internal consistency is not independent source verification.",
-  "open_rows": 22,
-  "rows_with_findings": 16,
+  "open_rows": 31,
+  "rows_with_findings": 23,
   "rows": [
     {
       "match_id": "1079586",
@@ -29,6 +29,15 @@
       "source": "https://www.hotspawn.com/matches/havu-vs-roundsgg-elisa-breakout-series-2-1080286"
     },
     {
+      "match_id": "1079167",
+      "match": "Bushido Wildcats vs ex-RUSTEC",
+      "rung": "B",
+      "findings": [
+        "Prediction-market estimate: spread, order-book depth and executable size not verified; volume is not liquidity"
+      ],
+      "source": "https://www.hotspawn.com/matches/bushido-wildcats-vs-ex-rustec-nodwin-clutch-series-13-1079167"
+    },
+    {
       "match_id": "1079630",
       "match": "ex-RUSTEC vs Saint Sinners",
       "rung": "B",
@@ -36,6 +45,13 @@
         "Prediction-market estimate: spread, order-book depth and executable size not verified; volume is not liquidity"
       ],
       "source": "https://www.hotspawn.com/matches/ex-rustec-vs-saint-sinners-cct-europe-2026-series-11-1079630"
+    },
+    {
+      "match_id": "1081712",
+      "match": "Fnatic vs Heroic",
+      "rung": "A",
+      "findings": [],
+      "source": "https://www.hotspawn.com/matches/fnatic-vs-heroic-stake-pulse-beat-iii-1081712"
     },
     {
       "match_id": "1080287",
@@ -54,6 +70,15 @@
       "source": "https://www.hotspawn.com/matches/joga-de-terno-vs-your-end-cct-south-america-2026-series-7-1081498"
     },
     {
+      "match_id": "1079588",
+      "match": "Astralis vs MIBR",
+      "rung": "A",
+      "findings": [
+        "No meaningful market edge: near-even line; any directional pick is a tiebreak, not evidence of superiority"
+      ],
+      "source": "https://www.hotspawn.com/matches/astralis-vs-mibr-stake-pulse-beat-iii-1079588"
+    },
+    {
       "match_id": "1079631",
       "match": "FORZE Reload vs Lavked",
       "rung": "A",
@@ -63,10 +88,8 @@
     {
       "match_id": "1080205",
       "match": "Aurora vs 9z",
-      "rung": "B",
-      "findings": [
-        "Prediction-market estimate: spread, order-book depth and executable size not verified; volume is not liquidity"
-      ],
+      "rung": "A",
+      "findings": [],
       "source": "https://www.hotspawn.com/matches/aurora-vs-9z-thunderpick-world-championship-2026-1080205"
     },
     {
@@ -86,6 +109,16 @@
         "Prediction-market estimate: spread, order-book depth and executable size not verified; volume is not liquidity"
       ],
       "source": "https://www.hotspawn.com/matches/mellren-vs-privateer-cct-europe-2026-series-12-play-in-1081120"
+    },
+    {
+      "match_id": "1081769",
+      "match": "ex-Zero Tenacity vs UNiTY",
+      "rung": "B",
+      "findings": [
+        "No meaningful market edge: near-even line; any directional pick is a tiebreak, not evidence of superiority",
+        "Prediction-market estimate: spread, order-book depth and executable size not verified; volume is not liquidity"
+      ],
+      "source": "https://www.hotspawn.com/matches/ex-zero-tenacity-vs-unity-nodwin-clutch-series-13-1081769"
     },
     {
       "match_id": "1080289",
@@ -120,6 +153,15 @@
       "source": "https://www.hotspawn.com/matches/baks-vs-g2-ares-cct-europe-2026-series-11-1079632"
     },
     {
+      "match_id": "1081775",
+      "match": "BetBoom vs Legacy",
+      "rung": "B",
+      "findings": [
+        "Prediction-market estimate: spread, order-book depth and executable size not verified; volume is not liquidity"
+      ],
+      "source": "https://www.hotspawn.com/matches/betboom-vs-legacy-thunderpick-world-championship-2026-1081775"
+    },
+    {
       "match_id": "1080290",
       "match": "Phantom vs HAVU",
       "rung": "B",
@@ -127,6 +169,44 @@
         "Prediction-market estimate: spread, order-book depth and executable size not verified; volume is not liquidity"
       ],
       "source": "https://www.hotspawn.com/matches/phantom-vs-havu-elisa-breakout-series-2-1080290"
+    },
+    {
+      "match_id": "1079170",
+      "match": "BET-M vs Just Players",
+      "rung": "D",
+      "findings": [
+        "Unresolved: missing or invalid complementary probabilities",
+        "Unresolved: no valid pick"
+      ],
+      "source": "https://www.hotspawn.com/matches/bet-m-vs-just-players-nodwin-clutch-series-13-1079170"
+    },
+    {
+      "match_id": "1079171",
+      "match": "GenOne vs Butterfly",
+      "rung": "C",
+      "findings": [
+        "Model-only: project forecast from official inputs, not an official Valve probability or verified betting line"
+      ],
+      "source": "https://www.hotspawn.com/matches/genone-vs-butterfly-nodwin-clutch-series-13-1079171"
+    },
+    {
+      "match_id": "1079173",
+      "match": "BakS vs Fire Flux",
+      "rung": "C",
+      "findings": [
+        "Model-only: project forecast from official inputs, not an official Valve probability or verified betting line"
+      ],
+      "source": "https://www.hotspawn.com/matches/baks-vs-fire-flux-nodwin-clutch-series-13-1079173"
+    },
+    {
+      "match_id": "1081126",
+      "match": "Banda chuya vs Enjoy",
+      "rung": "D",
+      "findings": [
+        "Unresolved: missing or invalid complementary probabilities",
+        "Unresolved: no valid pick"
+      ],
+      "source": "https://www.hotspawn.com/matches/banda-chuya-vs-enjoy-cct-europe-2026-series-12-play-in-1081126"
     },
     {
       "match_id": "1081526",
