@@ -84,11 +84,22 @@ jobs:
           python -m pip install --quiet playwright==1.55.0
           python -m playwright install --with-deps chromium
 
-      - name: Phone-layout check (390x844, no horizontal overflow)
+      - name: Phone/tablet checks (360, 390, 768 px; browser required)
         id: mobile
         env:
           REQUIRE_BROWSER: "1"
         run: python3 -u hotspawn/mobile_check.py
+
+      - name: Save real-browser phone evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: hotspawn-mobile-${{ github.run_id }}
+          path: |
+            hotspawn/data/mobile_check.json
+            .arena/mobile/*.png
+          include-hidden-files: true
+          retention-days: 7
 
       - name: Commit the refreshed board
         run: |

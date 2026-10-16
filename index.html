@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0d1218">
-  <meta name="description" content="Executive summary for Hotspawn Counter-Strike 2 Pick'em: a pick and both teams' win probabilities for every open match, a contrarian leaderboard plan, unresolved picks and limitations.">
-  <title>Hotspawn CS2 — a pick for every match</title>
+  <meta name="description" content="Executive summary for Hotspawn Counter-Strike 2 Pick'em: source-backed picks and both teams' probabilities, a contrarian leaderboard plan, unresolved picks and limitations.">
+  <title>Hotspawn CS2 — picks, probabilities & review</title>
   <link rel="stylesheet" href="css/landing.css">
   <style>
     :root { color-scheme: dark; }
@@ -79,7 +79,7 @@
     <section class="home-hero" aria-labelledby="page-title">
       <p class="eyebrow">Executive summary · Counter-Strike 2 Pick'em on Hotspawn</p>
       <h1 id="page-title">Every match. One clear picks list.</h1>
-      <p>Every open Hotspawn CS2 match gets a pick and <strong>both teams' win probabilities</strong> — from outside betting prices where they exist, otherwise from our own line built on Valve's official standings. A separate leaderboard plan shows where fading the crowd is worth it. The board collects Hotspawn's own match list and refreshes itself every three hours.</p>
+      <p>Every captured Hotspawn CS2 match stays in the inventory. Eligible outside lines or a clearly labelled Valve-based estimate provide <strong>a pick and both teams’ win probabilities</strong>; unsupported values stay blank and flagged. A separate leaderboard plan identifies deliberate upset risks, not random underdogs. Automatic refresh is scheduled every four hours.</p>
 
       <div class="quick-links" aria-label="Start here">
         <a class="quick-link primary" href="hotspawn/picks.html">
@@ -110,7 +110,7 @@
         </div>
         <p id="snapshot-status" class="snapshot-status warning" role="status" aria-live="polite">Loading the latest snapshot time and counts…</p>
         <button id="recheck-snapshot" class="recheck" type="button">Check for a newer snapshot</button>
-        <p class="small">Counts describe the saved capture, not a live query to Hotspawn. GitHub Actions refreshes are scheduled every three hours but run best-effort; every price on the picks page shows its own read time. Open the <a href="https://play.hotspawn.com/lobby">live Hotspawn lobby</a> to check for brand-new matches.</p>
+        <p class="small">Counts describe the saved capture, not a live query to Hotspawn. GitHub Actions refreshes are scheduled every four hours but run best-effort; every price on the picks page shows its own read time. Open the <a href="https://play.hotspawn.com/lobby">live Hotspawn lobby</a> to check for brand-new matches.</p>
       </section>
     </section>
 
@@ -125,9 +125,9 @@
       <h2 id="unresolved-title">Unresolved picks &amp; limitations</h2>
       <p id="unresolved-counts">Matches without a sharp-bookmaker (Pinnacle) line go down the research ladder — HLTV first, then esportsbooks, then betting lines such as Polymarket, then our own line from Valve's official standings. A pick is left blank only when nothing supports one.</p>
       <ul class="limits">
-        <li>Low-tier matches are often priced by Pinnacle only about a day before they start (and pulled close to start), so they sit on Polymarket or our own line and switch on a later refresh.</li>
-        <li>Our own line knows rating points, not stand-ins or brand-new rosters; those are researched on HLTV and shown on each card as factors.</li>
-        <li>HLTV blocks most automated reads, so formats, rosters and stand-ins come from researched notes with links and read times.</li>
+        <li>Missing, stale, rematch-ambiguous or mismatched quotes are rejected. Low-tier matches remain visible even when no source can support a pick.</li>
+        <li>Own estimates are match-level, not map-level probabilities. Unknown formats, known roster mismatches and rating snapshots older than 45 days withhold that fallback.</li>
+        <li>HLTV is attempted for non-featured gaps, then esportsbook relays and other lines. Refusals are recorded; unread links are never called verified facts.</li>
       </ul>
       <p><a href="hotspawn/unresolved.html">Full unresolved list, research trail and limitations →</a> · <a href="hotspawn/index.html#unresolved">Board summary</a></p>
     </section>
@@ -136,17 +136,19 @@
       <h2 id="research-title">Research, review &amp; sources</h2>
       <div class="category-grid">
         <a class="category-card" href="hotspawn/index.html"><strong>Board summary</strong><span>Counts, next locks, plays and the unresolved section in one page.</span></a>
-        <a class="category-card" href="hotspawn/twc.html"><strong>TWC 2026 day review</strong><span>All eight series of days 1–2 with HLTV/Liquipedia links, group standings, roster situations and both day-3 deciders.</span></a>
+        <a class="category-card" href="hotspawn/twc.html"><strong>TWC 2026 day review</strong><span>All eight series of days 1–2 with checked HLTV links, group standings, roster situations and both day-3 deciders.</span></a>
         <a class="category-card" href="hotspawn/flagged.html"><strong>Flagged for Review</strong><span>Irregularities and every per-match flag, with evidence links.</span></a>
         <a class="category-card" href="hotspawn/method.html"><strong>Method, sources &amp; read times</strong><span>Probability ladder, de-vig, our own line's calibration, every request.</span></a>
         <a class="category-card" href="hotspawn/all.html"><strong>Every captured fixture</strong><span>Open, recently locked and stale Hotspawn listings.</span></a>
-        <a class="category-card" href="reviews/22be6967-verification.md"><strong>Line-by-line verification</strong><span>Repository review with links for manual checking and the irregularities found.</span></a>
+        <a class="category-card" href="reviews/6b23e38f-verification.md"><strong>Line-by-line verification</strong><span>Repository review with links for manual checking and the irregularities found.</span></a>
         <a class="category-card" href="https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/COORDINATION.md"><strong>Coordination log</strong><span>Sessions, claims, sources, merges and Pages confirmations.</span></a>
       </div>
     </section>
 
+    <details class="archive" id="parallel-boards"><summary>Alternative dashboards — preserved, separate snapshots &amp; methods</summary>
+      <p class="note">These parallel contributions are preserved for comparison, not promoted as this release’s verified primary board. Their claims, captures and models may be older or disagree. Use the source-linked Hotspawn board above for this integration; check each alternative’s timestamp before relying on it.</p>
     <section id="executive-board" aria-labelledby="executive-title">
-      <h2 id="executive-title">Executive summary board (session a6f05f99)</h2>
+      <h2 id="executive-title">Parallel executive board (session a6f05f99)</h2>
       <p class="small">A phone-first single board that answers the brief on one page: every Hotspawn CS2 match with a pick, both teams' win probabilities, the leaderboard play, and a Thunderpick World Championship 2026 day-3 call graded against days 1 and 2. Probabilities come from outside prices (Pinnacle, bookmaker lines relayed by bo3.gg, Polymarket) and Valve's official standings — never from Hotspawn's crowd percentages. Auto-refreshed every four hours by its own workflow.</p>
       <div class="category-grid">
         <a class="category-card" href="a6f05f99/index.html"><strong>Executive summary</strong><span>Start here: where the picks are, coverage at a glance, next to lock, and the unresolved section with its limitations.</span></a>
@@ -199,6 +201,8 @@
       </ul>
       <p>Independent research only. Probabilities are estimates, not guarantees or betting advice.</p>
     </section>
+
+    </details>
 
     <details class="archive">
       <summary>Other dashboards &amp; historical research (different snapshots and methods)</summary>
@@ -369,7 +373,7 @@
           status.textContent = "Hotspawn read " + utcText(d.reference_utc) + " (" + (h < 1 ? Math.round(h * 60) + " min" : h.toFixed(1) + " h") + " ago)" + (d.hotspawn_complete === false ? " — Hotspawn read incomplete, new matches may be missing." : ". All three Hotspawn CS2 pages were read.");
           status.className = d.hotspawn_complete === false ? "snapshot-status warning" : "snapshot-status";
         }
-        unresolved.textContent = ((rung.B || 0) + (rung.C || 0)) + " open match(es) had no Pinnacle line and were resolved via the research ladder (" + (rung.B || 0) + " by Polymarket, " + (rung.C || 0) + " by our own line); " + (d.open_unresolved || 0) + " have no pick. Limits below.";
+        unresolved.textContent = ((rung.B || 0) + (rung.C || 0)) + " open match(es) had no Pinnacle line and were resolved via the research ladder (" + (rung.B || 0) + " by secondary outside markets, " + (rung.C || 0) + " by our own line); " + (d.open_unresolved || 0) + " have no pick. Limits below.";
         while (list.firstChild) list.removeChild(list.firstChild);
         var now = Date.now();
         (d.next || []).forEach(function (m) {

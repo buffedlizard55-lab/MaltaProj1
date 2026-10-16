@@ -31,7 +31,7 @@ from __future__ import annotations
 import csv
 import sys
 from datetime import timedelta
-from evidence import select_quote, MAX_PRICE_AGE_H
+from evidence import select_quote, select_match_metadata
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -57,12 +57,12 @@ FLAG_TEXT = {
     "BOOK_PM_SPLIT": "Pinnacle and Polymarket differ by 8+ points.",
     "VRS_ROSTER_OUTDATED": "A verified roster change happened after Valve's latest standings, so Valve points describe a different five.",
     "FORMAT_UNKNOWN": "No source stated the series length; nothing was assumed.",
-    "UNRESOLVED": "No outside price and at least one team is missing from Valve's standings; pick left blank.",
+    "UNRESOLVED": "No eligible outside line or independent direction satisfies the evidence gates; pick and probabilities are left blank.",
     "STALE_LISTING": "Hotspawn still lists this fixture although its lock time passed more than 36 h ago (not pickable).",
     "LOCKED": "Lock time has passed; kept for the record and for grading.",
     "CROWD_MISSING": "Hotspawn did not publish a crowd share; no leaderboard play computed.",
     "HOTSPAWN_PARTIAL": "Not every Hotspawn page was read successfully in this capture.",
-    "COIN_FLIP": "Probabilities within one point of 50%; pick follows our own line.",
+    "COIN_FLIP": "Probabilities within one point of 50%; no meaningful directional edge. Only an exact tie may use the eligible own line as a tiebreaker.",
     "STALE_PRICE": "An outside quote is missing a usable read time or is older than 8 h; rejected, not used.",
     "REJECTED_QUOTE": "A same-pair quote was rejected (competition, rematch ambiguity, freshness, format, or validity); see the row's evidence.",
     "RELAYED_BOOK": "A named sportsbook line relayed by bo3.gg; not verified directly with the bookmaker. Secondary evidence only.",
@@ -154,6 +154,9 @@ def strategy(row: dict) -> dict | None:
         return None
     if ca is None or cb is None or (ca + cb) <= 0:
         return {"class": "NO CROWD DATA", "leaderboard_pick": row.get("pick"), "reason": "Hotspawn published no crowd share."}
+    if row.get("total_picks") is not None and row["total_picks"] < 10:
+        return {"class": "NO CROWD DATA", "leaderboard_pick": row.get("pick"),
+                "reason": "Fewer than 10 crowd picks; ownership is too sparse for an automatic fade."}
     ca, cb = ca / (ca + cb), cb / (ca + cb)
     estimates_a = [("own line" if row.get("rung") == "C" else "market", pa)]
     roster_outdated = "VRS_ROSTER_OUTDATED" in (row.get("flags") or [])
@@ -272,6 +275,11 @@ def build_rows(inp: dict) -> tuple[list[dict], dict]:
                 age = hours_between(iso(ref), book.get("read_utc"))
                 if age is not None and age > 8:
                     flags.append("STALE_PRICE")
+        if "book" not in r and not fmt:
+            metadata = select_match_metadata(fx, cap.get("esportsbooks", {}).get("matches", []), aliases, iso(ref), fixtures)
+            if metadata:
+                fmt, fmt_src = f"BO{metadata['best_of']}", "bo3.gg match metadata (secondary)"
+                r["format_evidence"] = {"url": metadata.get("source_url"), "read_utc": metadata.get("read_utc")}
         # ---- Secondary book relay is queried only for gaps; keep its provenance distinct from Pinnacle.
         if "book" not in r:
             relay, alias_r = match_quote(fx, relay_quotes, aliases, iso(ref), fixtures, r["rejected_quotes"], fmt)
@@ -368,7 +376,7 @@ def build_rows(inp: dict) -> tuple[list[dict], dict]:
         own_reasons = []
         if "VRS_ROSTER_OUTDATED" in flags:
             own_reasons.append("verified lineup differs from Valve's five")
-        if vrs_age is None or vrs_age > 45:
+        if vrs_age is None or vrs_age < 0 or vrs_age > 45 * 24:
             own_reasons.append("Valve snapshot missing a usable date or older than 45 days")
             if va and vb: flags.append("VRS_STALE")
         if not fmt:
@@ -420,7 +428,7 @@ def build_rows(inp: dict) -> tuple[list[dict], dict]:
         srcs = [u for u in [fx.get("source_url"), r.get("hotspawn_match_url"), r.get("hltv_url"),
                             (r.get("book") or {}).get("url"), (r.get("pm") or {}).get("url"),
                             (r.get("relay") or {}).get("url"), (r.get("relay") or {}).get("provider_url"),
-                            (r.get("research_attempt") or {}).get("url"),
+                            (r.get("research_attempt") or {}).get("url"), (r.get("format_evidence") or {}).get("url"),
                             vrs.get("url") if (va or vb) else None] if u]
         r["sources"] = list(dict.fromkeys(srcs))
         rows.append(r)
@@ -449,7 +457,7 @@ def update_history(rows: list[dict], history: dict, ref_iso: str) -> dict:
                             "start_utc": r["start_utc"], "lock_utc": r["lock_utc"], "points": r["points"],
                             "pick": r["pick"], "pick_p": r["pick_p"], "p_a": r["p_a"], "p_b": r["p_b"], "basis": r["basis"],
                             "leaderboard_pick": (r.get("strategy") or {}).get("leaderboard_pick"),
-                            "class": (r.get("strategy") or {}).get("class"),
+                            "class": (r.get("strategy") or {}).get("class"), "rule_version": "v3-evidence-2026-10-16",
                             "crowd_a": r.get("crowd_a"), "crowd_b": r.get("crowd_b"), "as_of": ref_iso, "frozen": False}
         elif mid in history and r["status"] != "open":
             history[mid]["frozen"] = True
@@ -536,7 +544,7 @@ def graded_history(history: dict, rows: list[dict], results: dict | None = None)
 def write_csv(path: Path, rows: list[dict], fields: list[str]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", newline="", encoding="utf-8") as fh:
-        w = csv.DictWriter(fh, fieldnames=fields, extrasaction="ignore")
+        w = csv.DictWriter(fh, fieldnames=fields, extrasaction="ignore", lineterminator="\n")
         w.writeheader()
         for r in rows:
             w.writerow(r)

@@ -4601,3 +4601,28 @@ collector. Added a source-capture artifact, a per-row stored-input audit (`hotsp
 required browser gate. Refresh schedule is now every **four** hours, exactly the requested window;
 GitHub timing remains best effort. Removed generated-conflict `checkout --theirs`/masked-push-success:
 conflicts now stop the run without overwriting concurrent work, and publication failures are red.
+
+### FI-1/FI-2 source and implementation checkpoint — 2026-10-16 UTC
+
+Observed first live refresh **38850155496 success**; fetched its bot commit **8e28d2c**, rebased this
+branch's source work on it, inspected the actual new capture: **95 CS2 rows, 31 open at 04:21:10Z**,
+including BetBoom–Legacy **1081775**. Artifact transport failed (Azure EOF), so git's bot commit—not
+an assumed download—was used. Primary `row_audit.json` reconciles 95/95 stored rows without errors.
+
+Rechecked all eight TWC result/map/veto pages, both BO3 decider pages and Aurora's official July8
+rebuild report. Corrected BetBoom 2-1, removed unsupported group ranks/round differentials, exact
+rest/health claims and static day-3 prices, and made Aurora's three-month-old rebuild weak/neutral.
+Day-1 archived odds/ownership exactly match their stored artifacts; pinned sources/hash audit retained.
+Details and all external links are in `reviews/6b23e38f-verification.md`.
+
+Implemented strict quote scope/competition/time/rematch/freshness/numeric gates, rejection reasons,
+gap-only HLTV refusal circuit breaker then paginated named-book relay research; no direct-book
+verification claim for relays. Eligible source-linked bo3 match metadata can confirm a format but
+never creates a price. Own fallback withheld for unknown format, known roster mismatch or >45-day
+ratings. Disappeared fixtures' pre-lock records freeze too. Added 19 targeted regressions: **50 primary
+tests pass**. An early unit regression caught an hours-versus-days bug; corrected/tested before push.
+
+Root now has one obvious maintained route, with alternative boards folded (all destinations retained).
+Actual HTTP browser checks cover root + eight board pages at 360/390/768 px and fail if Chromium is
+unavailable in CI. Awaiting the fresh collector/browser run; no phone-pass claim made yet. Temporary
+local rebuilds from the pre-scope legacy capture are NOT a new source read and will not be published.

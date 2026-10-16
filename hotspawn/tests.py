@@ -75,7 +75,10 @@ class Probabilities(unittest.TestCase):
                 dv = devig_two_way(r["book"]["odds_a"], r["book"]["odds_b"])
                 self.assertAlmostEqual(r["p_a"], dv[0], places=3)
             elif r["rung"] == "B":
-                self.assertAlmostEqual(r["p_a"], r["pm"]["price_a"] / (r["pm"]["price_a"] + r["pm"]["price_b"]), places=3)
+                if r.get("relay"):
+                    self.assertAlmostEqual(r["p_a"], devig_two_way(r["relay"]["odds_a"], r["relay"]["odds_b"])[0], places=3)
+                else:
+                    self.assertAlmostEqual(r["p_a"], r["pm"]["price_a"] / (r["pm"]["price_a"] + r["pm"]["price_b"]), places=3)
             elif r["rung"] == "C":
                 self.assertAlmostEqual(r["p_a"], own_line(r["vrs_a"]["points"], r["vrs_b"]["points"], BOARD["meta"]["k"]), places=3)
 
@@ -119,7 +122,7 @@ class Sources(unittest.TestCase):
             if r["rung"] == "A":
                 self.assertTrue(r["book"].get("read_utc"))
             if r["rung"] == "B":
-                self.assertTrue(r["pm"].get("read_utc"))
+                self.assertTrue((r.get("relay") or r.get("pm") or {}).get("read_utc"))
 
     def test_research_files_are_sourced(self):
         for row in read_json(HERE / "research" / "aliases.json")["teams"]:
@@ -289,33 +292,199 @@ class TwcReview(unittest.TestCase):
             for src in s["sources"]:
                 self.assertTrue(src["url"].startswith("https://"), s["team"])
         for f in self.data["day3"]:
-            self.assertTrue((f["own_line"].get("source") or {}).get("url"), f["id"])
+            self.assertTrue(f["hltv_url"].startswith("https://www.hltv.org/matches/"), f["id"])
+            self.assertTrue(f["hotspawn_match_id"], f["id"])
 
     def test_every_map_score_and_veto_is_re_read_with_a_timestamp(self):
         # added session e1ceecc2: the per-map scores and map picks are the part of this page most likely to be
         # mis-ordered, so each row must carry the read time and the match page it was re-read from.
         for m in self.data["series"]:
-            self.assertEqual(m["maps_verified_from"], "HLTV match-page map block, re-read live in session e1ceecc2", m["score"])
+            self.assertEqual(m["maps_verified_from"], "HLTV match-page map block, re-read live in session 6b23e38f", m["score"])
             self.assertTrue(m["maps_verified_utc"].endswith("Z"), m["score"])
             self.assertIn(m["maps_verified_utc"], self.text, m["score"])
             self.assertTrue(m["map_picks"], m["score"])
         self.assertIn("winner-first", self.data["maps_convention"])
 
-    def test_every_day3_head_to_head_line_renders_a_source_link(self):
-        links = 0
+    def test_every_decider_has_its_own_official_match_source(self):
+        # No unsupported historical head-to-head rows; the live cards share the primary-board data.
         for f in self.data["day3"]:
-            for line in f["head_to_head"]:
-                urls = [u for u in line.split() if u.startswith("https://")]
-                self.assertTrue(urls, f["id"])
-                for u in urls:
-                    self.assertIn(u, self.text, f["id"])
-                    links += 1
-        self.assertGreaterEqual(links, len(self.data["day3"]), "each decider needs its own match sources")
+            self.assertIn(f["hltv_url"], self.text)
+            self.assertIn(f["hotspawn_url"], self.text)
+            self.assertEqual(f["outside_lines"], [], "do not keep a second stale day-3 price snapshot")
+        for m in self.data["series"]:
+            self.assertIn(m["hltv"], self.text)
 
     def test_page_is_linked_from_the_board_summary_and_the_picks_page_nav(self):
         self.assertIn('href="twc.html"', (HERE / "index.html").read_text(encoding="utf-8"))
         self.assertIn('href="twc.html"', (HERE / "strategy.html").read_text(encoding="utf-8"))
         self.assertIn('href="twc.html"', self.text)
+
+
+class EvidenceSafety(unittest.TestCase):
+    def setUp(self):
+        from evidence import select_quote
+        self.select = select_quote
+        self.aliases = Aliases()
+        self.ref = '2026-10-16T04:00:00Z'
+        self.fx = {'match_id': 'unit-fixture', 'team_a': 'Test Alpha', 'team_b': 'Test Beta',
+                   'competition': 'CCT Europe 2026 Series #11', 'start_utc': '2026-10-16T10:00:00Z'}
+        self.q = {'team_a': 'Test Alpha', 'team_b': 'Test Beta', 'league': 'CS2 - CCT European Series 11',
+                  'start_utc': self.fx['start_utc'], 'read_utc': '2026-10-16T03:55:00Z',
+                  'odds_a': 1.8, 'odds_b': 2.0, 'source_url': 'https://example.com/unit-test',
+                  'source': 'synthetic unit test', 'market_scope': 'match_winner', 'best_of': 3}
+
+    def choose(self, quote=None, fixtures=None, fmt=None):
+        rejected = []
+        result = self.select(self.fx, [quote or self.q], self.aliases, self.ref,
+                             fixtures or [self.fx], rejected, fmt)
+        return result[0], rejected
+
+    def test_exact_identity_and_eligible_prices(self):
+        self.assertIsNotNone(self.choose()[0])
+
+    def test_no_cross_competition_or_edition_join(self):
+        for league in ['CCT South America Series 11', 'CCT Europe Series 12', '', 'Thunderpick World Championship']:
+            q = {**self.q, 'league': league}
+            self.assertIsNone(self.choose(q)[0], league)
+
+    def test_documented_guest_feed_abbreviations_not_regional_qualifiers(self):
+        from evidence import event_compatible
+        self.assertTrue(event_compatible('Stake Pulse Beat III', 'CS2 - STK Pulse Beat'))
+        self.assertTrue(event_compatible('Thunderpick World Championship 2026', 'CS2 - TP World Championship'))
+        self.assertFalse(event_compatible('Thunderpick World Championship 2026', 'Thunderpick Europe Series 2'))
+
+    def test_stale_future_missing_and_invalid_read_times_are_rejected(self):
+        for time in ['2026-10-15T19:00:00Z', '2026-10-16T06:00:00Z', None, 'not-a-time']:
+            quote, rejected = self.choose({**self.q, 'read_utc': time})
+            self.assertIsNone(quote, time)
+            self.assertTrue(rejected)
+
+    def test_missing_or_wrong_market_scope_is_not_inferred(self):
+        for scope in [None, 'map_1', 'handicap', 'total_maps']:
+            self.assertIsNone(self.choose({**self.q, 'market_scope': scope})[0])
+
+    def test_terminal_and_nonfinite_prices_are_rejected(self):
+        from common import normalise_prices
+        for a, b in [(float('nan'),2),(float('inf'),2),(1,2),(0,1),(None,2)]:
+            self.assertIsNone(devig_two_way(a,b))
+            self.assertIsNone(self.choose({**self.q,'odds_a':a,'odds_b':b})[0])
+        for a,b in [(0,1),(1,0),(.9,.9),(float('nan'),.5),(float('inf'),.5)]:
+            self.assertIsNone(normalise_prices(a,b))
+        self.assertEqual(normalise_prices(.6,.4), (.6,.4))
+
+    def test_closed_suspended_and_format_mismatched_quotes_are_rejected(self):
+        for key,value in [('closed',True),('active',False),('accepting_orders',False)]:
+            self.assertIsNone(self.choose({**self.q,key:value})[0])
+        self.assertIsNone(self.choose(fmt='BO1')[0])
+
+    def test_same_pair_rematch_nearer_or_equally_close_is_not_reused(self):
+        other = {**self.fx, 'match_id':'other', 'start_utc':'2026-10-16T12:00:00Z'}
+        for start in ['2026-10-16T11:00:00Z','2026-10-16T12:00:00Z']:
+            self.assertIsNone(self.choose({**self.q,'start_utc':start},[self.fx,other])[0])
+        self.assertIsNotNone(self.choose(self.q,[self.fx,other])[0])
+
+    def test_freshest_quote_tie_break_is_not_probability_cherry_picking(self):
+        old = {**self.q, 'read_utc':'2026-10-16T03:00:00Z','odds_a':2.0,'odds_b':1.8}
+        result,_ = self.select(self.fx,[old,self.q],self.aliases,self.ref,[self.fx])
+        self.assertEqual(result['read_utc'], self.q['read_utc'])
+
+
+class CollectorSafety(unittest.TestCase):
+    def bo3(self):
+        return {'id':1,'slug':'unit-only','discipline_id':1,'status':'upcoming','bo_type':3,
+                'start_date':'2026-10-16T10:00:00Z','team1':{'name':'Test Alpha'},'team2':{'name':'Test Beta'},
+                'tournament':{'name':'CCT Europe Series 11'},
+                'bet_updates':{'provider':'synthetic-book','path':'https://example.com/unit-only',
+                   'team_1':{'name':'Test Alpha','coeff':1.8,'active':True},
+                   'team_2':{'name':'Test Beta','coeff':2.0,'active':True}}}
+
+    def test_named_active_relay_is_explicitly_secondary(self):
+        row=collect.parse_bo3_match(self.bo3(),'2026-10-16T04:00:00Z','https://example.com/unit-only')
+        self.assertEqual(row['kind'],'bookmaker_relayed')
+        self.assertEqual(row['quote']['provider'],'synthetic-book')
+
+    def test_no_provider_inactive_or_mismatched_pair_is_not_a_book_line(self):
+        for mutation in ['provider','inactive','team']:
+            m=self.bo3()
+            if mutation=='provider': m['bet_updates']['provider']=None
+            if mutation=='inactive': m['bet_updates']['team_1']['active']=False
+            if mutation=='team': m['bet_updates']['team_1']['name']='Wrong Team'
+            self.assertIsNone(collect.parse_bo3_match(m,'2026-10-16T04:00:00Z','https://example.com/unit-only')['quote'])
+
+    def test_wrong_discipline_finished_and_missing_teams_are_not_upcoming_cs2(self):
+        for key,value in [('discipline_id',2),('status','finished'),('team2',{})]:
+            self.assertIsNone(collect.parse_bo3_match({**self.bo3(),key:value},'2026-10-16T04:00:00Z','https://example.com/unit-only'))
+
+    def test_hltv_refusal_circuit_breaker_preserves_unattempted_status(self):
+        from unittest.mock import patch
+        fixtures=[{'match_id':str(i),'team_a':'Test Alpha','team_b':'Test Beta','competition':'CCT Europe Series 11',
+                   'lock_utc':'2099-10-16T09:54:00Z','start_utc':'2099-10-16T10:00:00Z'} for i in (1,2)]
+        rec={'status':403,'error':'HTTP 403','fetched_utc':'2026-10-16T04:00:00Z','sha256':'test','body':b''}
+        with patch.object(collect,'OFFLINE',''),patch.object(collect,'http_get',return_value=rec) as get:
+            result=collect.collect_gap_research({'fixtures':fixtures},{'quotes':[]})
+        self.assertEqual(get.call_count,1)
+        self.assertEqual(result['hltv'][0]['status'],403)
+        self.assertIsNone(result['hltv'][1]['status'])
+        self.assertIn('not requested',result['hltv'][1]['error'])
+
+
+class EligibilityAndArchive(unittest.TestCase):
+    def isolated(self):
+        inp=copy.deepcopy(model.load_inputs())
+        fx={'match_id':'unit-eligibility','team_a':'Synthetic Eligibility A','team_b':'Synthetic Eligibility B',
+            'competition':'CCT Europe Series 11','tier':'B','start_utc':'2026-10-16T10:00:00Z',
+            'lock_utc':'2026-10-16T09:54:00Z','offered_points':3,'source_url':'https://example.com/unit-only'}
+        inp['capture']['hotspawn']['pages']=[{'read_utc':'2026-10-16T04:00:00Z'}]
+        inp['capture']['vrs']['teams']=[{'name':fx['team_a'],'points':1000,'rank':1,'roster':[]},{'name':fx['team_b'],'points':900,'rank':2,'roster':[]}]
+        inp['notes']=[]
+        inp['capture']['hotspawn']['fixtures']=[fx]
+        inp['capture']['hotspawn']['conflicts']=[]
+        inp['capture']['pinnacle']['quotes']=[]
+        inp['capture']['polymarket']['quotes']=[]
+        inp['capture']['esportsbooks']={'quotes':[]}
+        inp['capture']['gap_research']={}
+        inp['capture']['vrs']['as_of']='2026-10-05'
+        inp['hltv_links']['fixtures'][fx['match_id']]={'format':'BO3','hltv':'https://example.com/unit-only'}
+        return inp,fx
+
+    def test_eleven_day_snapshot_is_not_mistaken_for_45_hours(self):
+        inp,_=self.isolated()
+        rows,_=model.build_rows(inp)
+        self.assertEqual(rows[0]['rung'],'C')
+        self.assertNotIn('VRS_STALE',rows[0]['flags'])
+
+    def test_old_rating_snapshot_withholds_fallback(self):
+        inp,_=self.isolated();inp['capture']['vrs']['as_of']='2026-08-01'
+        rows,_=model.build_rows(inp)
+        self.assertEqual(rows[0]['rung'],'D')
+        self.assertIsNone(rows[0]['own_p_a'])
+        self.assertIn('VRS_STALE',rows[0]['flags'])
+
+    def test_unknown_format_keeps_probabilities_blank_and_row_visible(self):
+        inp,fx=self.isolated();inp['hltv_links']={'fixtures':{}};fx['best_of']=None
+        rows,_=model.build_rows(inp)
+        self.assertEqual(len(rows),1)
+        self.assertEqual(rows[0]['rung'],'D')
+        self.assertIsNone(rows[0]['pick'])
+
+    def test_conflicting_hotspawn_identity_is_not_actionable(self):
+        inp,fx=self.isolated();inp['capture']['hotspawn']['conflicts']=[{'match_id':fx['match_id']}]
+        rows,_=model.build_rows(inp)
+        self.assertIsNone(rows[0]['p_a'])
+        self.assertIn('IDENTITY_CONFLICT',rows[0]['flags'])
+
+    def test_disappeared_prelock_record_is_frozen_not_reconstructed(self):
+        history={'gone':{'lock_utc':'2026-10-16T03:00:00Z','frozen':False,'pick':'Test Alpha'}}
+        result=model.update_history([],history,'2026-10-16T04:00:00Z')
+        self.assertTrue(result['gone']['frozen'])
+        self.assertEqual(result['gone']['pick'],'Test Alpha')
+
+    def test_low_count_ownership_cannot_trigger_an_automatic_fade(self):
+        row={'p_a':.6,'p_b':.4,'own_p_a':.6,'team_a':'A','team_b':'B','pick':'A','crowd_a':100,'crowd_b':0,
+             'total_picks':1,'points':7,'flags':[],'factors':[]}
+        result=model.strategy(row)
+        self.assertEqual(result['class'],'NO CROWD DATA')
+        self.assertEqual(result['leaderboard_pick'],'A')
 
 
 if __name__ == "__main__":

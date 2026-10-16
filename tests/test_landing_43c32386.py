@@ -3,7 +3,7 @@
 Contract update (arena/22be6967, final integration, 2026-10-15): the user asked for one executive summary
 that leads straight to a pick for EVERY open match.  The primary destination moved from executive/picks.html
 (which leaves blanks whenever a join check fails) to the every-match board hotspawn/picks.html; the landing's
-live counts now come from hotspawn/data/landing.json and that board refreshes every three hours.  The intent
+live counts now come from hotspawn/data/landing.json and that board refreshes every four hours.  The intent
 of every check is unchanged: one primary destination first, the executive board and all research still linked,
 honest freshness wording, crowd percentages never used as probabilities, archive preserved after the fold.
 """
@@ -102,7 +102,7 @@ class LandingAcceptanceTests(unittest.TestCase):
         self.assertIn('window.setInterval(loadSummary, 15 * 60000)', self.html)
         self.assertIn("Date.now() - Date.parse(value)", self.html)
         self.assertIn("beyond the requested 4–8 hour update window", self.html)
-        self.assertIn("GitHub Actions refreshes are scheduled every three hours but run best-effort", self.html)
+        self.assertIn("GitHub Actions refreshes are scheduled every four hours but run best-effort", self.html)
         self.assertIn("Lock display caveat:", self.html)
         self.assertIn("absolute UTC lock time and row-level source-read time—not the relative countdown", self.html)
         self.assertIn("Hotspawn crowd-pick percentages are never probability inputs", self.html)

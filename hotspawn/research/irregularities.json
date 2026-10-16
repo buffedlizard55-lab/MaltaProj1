@@ -116,9 +116,9 @@
   },
   {
    "id": "IR-13",
-   "status": "open",
-   "title": "Hotspawn does not list the Thunderpick Group B decider (Legacy vs BetBoom)",
-   "detail": "At the 2026-10-15 21:34Z read the CS2 payload carried only two Thunderpick World Championship 2026 rows: the Aurora vs 9z decider (1080205, open) and the played Legacy vs FURIA winners' match. Liquipedia and EGamersWorld both schedule Legacy vs BetBoom on 2026-10-16 17:00Z. The board therefore cannot pick it as a Hotspawn fixture; the day-3 page publishes an own-line pick for it, labelled as not-on-Hotspawn, and the scheduled 3-hourly refresh will add it automatically if Hotspawn lists it before the lock.",
+   "status": "handled",
+   "title": "Group B decider now present in the new Hotspawn inventory",
+   "detail": "Earlier Oct15 captures did not include BetBoom–Legacy. The Oct16 04:21Z three-surface read contains official ID 1081775. The day-3 page now uses the current primary board, not a static “absent” claim; its exact UTC schedule comes from Hotspawn epochs.",
    "evidence": [
     "https://play.hotspawn.com/lobby",
     "https://liquipedia.net/counterstrike/Thunderpick/World_Championship/2026",
@@ -189,16 +189,16 @@
    "id": "IR-20",
    "status": "ambiguous-source",
    "title": "HLTV match page shows an '82.7% / 17.3%' figure whose meaning is not stated",
-   "detail": "On the HLTV match page for the Aurora vs 9z decider the header area prints 82.7% / 17.3% next to 'Betting'. It does not match any outside price read for this fixture (Polymarket 68.5%, Thunderpick relayed 65.5%, EGamersWorld de-vig 65.2%), and HLTV does not label it as a bookmaker line, so it is not used as a probability or as a line anywhere on the site.",
+   "detail": "Unlabelled header percentages and community polls are not sportsbook prices. They are excluded from the model; inspect the linked page before interpreting such a figure. No unverified numeric poll value is reproduced in this review.",
    "evidence": [
     "https://www.hltv.org/matches/2399412/aurora-vs-9z-thunderpick-world-championship-2026"
    ]
   },
   {
    "id": "IR-21",
-   "status": "context-divergence",
-   "title": "Pre-event outright prices for the same team differ widely between sources",
-   "detail": "Before the event, Aurora's outright price was published as 6.30 (freetips.com, 2026-10-11), 8.00 (tribuna.com, 2026-10-12) and 4.30 (tips.gg, 2026-10-14); 9z appeared at 14.00, 25.00 and 24.00. Only the match-level lines read with timestamps are used for probabilities; outrights appear as labelled context and never as a pick input.",
+   "status": "unverified-context-omitted",
+   "title": "Unverified pre-event outright context omitted",
+   "detail": "Earlier research linked pre-event editorial outright prices. These are not current whole-match two-way lines, were not independently re-read in this release, and are omitted from the TWC page and model. Numeric values are left unpublished; manual-review links remain.",
    "evidence": [
     "https://www.freetips.com/esports/thunderpick-world-championship-2026-betting-odds-20261011-0007/",
     "https://tribuna.com/amp/en/betting/blogs/thunderpick-world-championship-2026-odds-favorites-our-predi/",
@@ -226,7 +226,46 @@
     "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/tests/test_228bb5bc.py",
     "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/console/flagged.html"
    ]
+  },
+  {
+   "id": "IR-24",
+   "status": "implemented",
+   "title": "Strict market identity/freshness and nonfinite-price rejection",
+   "detail": "Primary quotes require both teams, compatible competition/region/edition, whole-match scope, usable HTTPS evidence and a read within eight hours. A nearer/equidistant same-pair fixture blocks a rematch join. Rejections are visible per row. Known roster mismatches, unknown formats and Valve snapshots older than 45 days withhold own-line fallback. Regression tests exercise each gate.",
+   "evidence": [
+    "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/hotspawn/evidence.py"
+   ]
+  },
+  {
+   "id": "IR-25",
+   "status": "corrected",
+   "title": "July Aurora rebuild was not a fresh day-3 onboarding event",
+   "detail": "HLTV’s official-signing report is dated 8 July: kyxsan completed the rebuild after Jimpphat/ash. About three months old by TWC. Changed the Aurora note to weak, neutral context; no invented numerical penalty. Day-1/day-2 results and the two decider formats were independently checked.",
+   "evidence": [
+    "https://www.hltv.org/news/45082/official-aurora-complete-rebuild-with-kyxsan",
+    "https://www.hltv.org/matches/2399384/9z-vs-aurora-thunderpick-world-championship-2026",
+    "https://www.hltv.org/matches/2399408/aurora-vs-ninjas-in-pyjamas-thunderpick-world-championship-2026"
+   ]
+  },
+  {
+   "id": "IR-26",
+   "status": "scope-limitation",
+   "title": "Archived dashboards are preserved, not certified by the primary-board audit",
+   "detail": "This integration reconciles every row in the primary Hotspawn capture and rechecks the linked TWC results. It does not certify all externally sourced historical facts on the hundreds of preserved alternative pages. They are folded below the primary route, carry separate snapshots/methods, and must not be mistaken for this release’s verified dataset. Unsupported primary research values are omitted or blank and flagged.",
+   "evidence": [
+    "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/reviews/6b23e38f-verification.md"
+   ]
+  },
+  {
+   "id": "IR-27",
+   "status": "evidence-limitation",
+   "title": "Relayed esportsbook prices are secondary, not direct-book verification",
+   "detail": "bo3.gg match betting blocks can provide an active named-book price pair. Provider, relay URL, bookmaker URL and read time are retained; no claim of a direct sportsbook-page read is made. A null, suspended, mismatched or nonfinite pair is not used.",
+   "evidence": [
+    "https://api.bo3.gg/api/v1/matches",
+    "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/hotspawn/collect.py"
+   ]
   }
  ],
- "updated_utc": "2026-10-15T23:03:00Z"
+ "updated_utc": "2026-10-16T04:37:39Z"
 }
