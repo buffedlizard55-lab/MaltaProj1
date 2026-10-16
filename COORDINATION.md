@@ -4586,3 +4586,8 @@ No authored research was discarded. The TWC dataset is imported for re-verificat
 Live HLTV rereads already found one narrative error: BetBoom beat PARIVISION **2-1**, not 2-0.
 Live Hotspawn now lists BetBoom–Legacy as **1081775**; earlier 'not on Hotspawn' wording is historical
 and must be replaced by current capture-backed status, not repeated as a current limitation.
+
+The required pre-push plain `git pull --rebase origin main` attempted to flatten PR150's merge history
+and stopped at an append-only coordination conflict. Aborted that rebase (the resolved integration
+merge is preserved), then used `git pull --rebase=merges origin main` to retain both authors' history.
+Subsequent integration pushes use rebase-merges for the same reason.
