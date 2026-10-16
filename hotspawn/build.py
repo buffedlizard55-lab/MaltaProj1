@@ -17,6 +17,13 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from common import (DATA, REPO_URL, RESEARCH, ROOT, SESSION, devig_two_way, norm_name,  # noqa: E402
                     normalise_prices, own_line, parse_iso, read_json, utc_label, write_json)
 
+from twc_watch import render as render_day4
+
+
+def day4_section(board):
+    return render_day4(board, read_json(RESEARCH / "day4_twc2026.json", {}) or {}, card)
+
+
 DAY3_FILE = RESEARCH / "day3_twc2026.json"
 DAY2_FILE = RESEARCH / "day2_twc2026.json"
 
@@ -128,11 +135,11 @@ def evidence_list(r: dict, board: dict) -> str:
         items.append(f"Pinnacle ({e(b.get('names'))}, {e(b.get('league'))}): {b['odds_a']:.3f} / {b['odds_b']:.3f}, margin {b['overround_pct']:.1f}% → "
                      f"{pair(b['p_a'],b['p_b'],1)[0]} / {pair(b['p_a'],b['p_b'],1)[1]}; read {e(utc_label(b.get('read_utc')) or b.get('read_utc'))}{gap}. {link(b.get('url'), 'Pinnacle CS2')} · {link(b.get('api_url'), 'API')}")
     else:
-        items.append("Pinnacle: no open whole-match line for this fixture at read time.")
+        items.append("Pinnacle: no eligible open whole-match line captured for this fixture; see source status.")
     if p:
         items.append(f"Polymarket: {e(p.get('question'))} — {p['price_a']} / {p['price_b']} → {pair(p['p_a'],p['p_b'],1)[0]} / {pair(p['p_a'],p['p_b'],1)[1]}; read {e(utc_label(p.get('read_utc')) or p.get('read_utc'))}. {link(p.get('url'), 'market')}")
     else:
-        items.append("Polymarket: no match-winner market for this fixture at read time.")
+        items.append("Polymarket: no eligible match-winner market captured for this fixture; see source status.")
     if r.get("format_evidence"):
         items.append("Series format: " + e(r.get("format")) + " from " + link(r["format_evidence"].get("url"), "bo3.gg match metadata") + "; read " + e(r["format_evidence"].get("read_utc")) + ". This metadata is not a betting price.")
     relay = r.get("relay")
@@ -158,7 +165,7 @@ def evidence_list(r: dict, board: dict) -> str:
     for f in r.get("factors", []):
         srcs = " ".join(link(u, "source") for u in f.get("source_urls", []))
         strength = f.get("strength", "")
-        items.append(f"Factor ({e(strength)}) — {e(f['team'])}: {e(f['kind'])}. {e(f['summary'])} {srcs}")
+        items.append(f"Factor ({e(strength)}) — {e(f['team'])}: {e(f['kind'])}. {e(f.get('summary') or f.get('limitation'))} {srcs}")
     flags = "".join(f'<li><span class="flag">{e(fl)}</span> {e(board["flag_text"].get(fl, ""))}</li>' for fl in r.get("flags", []))
     srcs = " · ".join(link(u, u.split("/")[2] if "//" in u else u) for u in r.get("sources", []))
     return (f'<details><summary>Evidence, sources &amp; flags</summary><ul>{"".join(f"<li>{x}</li>" for x in items)}{flags}</ul>'
@@ -277,7 +284,7 @@ def day3_section(board: dict) -> str:
     by_id = {str(r.get("match_id")): r for r in board.get("rows", [])}
     out = ['<p><a href="twc.html">Full TWC review, sourced maps, roster timeline &amp; optional chasing choices →</a>. '
            'These cards use the same capture and evidence gates as All picks, never a second hand-maintained probability.</p>'
-           '<p class="small"><b>Day-3 plan (contrarian, not stupid):</b> day 2 showed the leaderboard plan working (2/3) '
+           '<p class="small"><b>Day-3 plan (contrarian, not stupid):</b> day 2 recorded the leaderboard plan at 2/3 (the headline plan was also 2/3; not validation) '
            'and the danger of fading a real favourite on vibes alone. For the deciders, the crowd-heavy side is listed with '
            'each card as ownership only. The 9z case is the template: a verified day-1 2-0 upset over Aurora, a map taken off '
            'Falcons on day 2, and a rebuilt-but-three-month-old Aurora system mean 9z is only an <i>optional</i> chase where the '
@@ -459,12 +466,13 @@ def strategy_page(board: dict) -> None:
 <div class="tablewrap"><table><thead><tr><th>Match</th><th>Market (pre-match)</th><th>Our line</th><th>Crowd</th><th>Market pick</th><th>Retrospective plan</th><th>Result (HLTV)</th><th>Pick</th><th>Plan</th></tr></thead><tbody>{''.join(d1rows)}</tbody></table></div>
 <p class="small">Prices: {link(info.get('price_source', {}).get('url'), info.get('price_source', {}).get('label'))} (read {e(info.get('price_source', {}).get('read_utc'))}). Crowd: {link(info.get('crowd_source', {}).get('url'), info.get('crowd_source', {}).get('label'))} — {e(info.get('crowd_source', {}).get('note'))} Board pick before lock: {link(info.get('pick_source', {}).get('url'), info.get('pick_source', {}).get('label'))}.</p>
 <h3>What day 1 taught us</h3><ul>{lessons}</ul>
-<p><a href="twc.html">Day 2 review, group standings and day-3 picks for the TWC 2026 deciders →</a></p>
+<p><a href="twc.html">Days 1–3 review and day-4 semifinal watch →</a></p>
 <h3>The upset: 9z 2-0 Aurora</h3>
 <p>Aurora's July rebuild is about three months old by TWC, not a fresh onboarding event. The official-signing report confirms kyxsan joined after Jimpphat and coach ash. On day 1, 9z won Inferno 13-11 and Nuke 13-1; on day 2 Aurora rebounded 2-0 against NIP. The table above reconciles the archived pre-match Pinnacle pair and early ownership; its own line and plan are retrospective computations, not a newly discovered pre-lock forecast. No unverified player rating, EPL placement or current health effect is asserted here. {link('https://www.hltv.org/news/45082/official-aurora-complete-rebuild-with-kyxsan', 'HLTV: July signing report')} · {link('https://www.hltv.org/matches/2399384/9z-vs-aurora-thunderpick-world-championship-2026', 'HLTV: day-1 maps')} · {link('https://www.hltv.org/matches/2399408/aurora-vs-ninjas-in-pyjamas-thunderpick-world-championship-2026', 'HLTV: day-2 rebound')}</p>
 <h2 id="day2">Day 2 review — Thunderpick World Championship 2026 (15 October)</h2>
 {day2_section(board)}
-<h2 id="day3">Day 3 — the two deciders</h2>
+{day4_section(board)}
+<h2 id="day3">Day 3 — historical decider research</h2>
 {day3_section(board)}
 <h2>Grading since launch</h2>
 <p>The last recorded pre-lock pick is frozen on the next refresh after lock (not necessarily a read at the exact lock time) and graded once a result exists (verified HLTV result first; otherwise the Polymarket resolution, which names HLTV as its source, marked provisional).</p>
@@ -528,23 +536,24 @@ def twc_page(board: dict) -> None:
     ev = d.get("event", {})
     ev_src = " · ".join(link(x.get("url"), x.get("label")) for x in ev.get("sources", []))
     lessons = "".join(f'<li>{e(x)}</li>' for x in d.get("lessons", []))
-    body = f"""<h1>TWC 2026: day-3 picks &amp; what days 1–2 changed</h1>
-<p class="lead">Start with the two deciders below. The <b>headline pick maximizes expected points</b> on the published line;
+    body = f"""<h1>TWC 2026: day-4 watch &amp; days 1–3 review</h1>
+<p class="lead">Start with the day-4 watch and current captured picks below. The <b>headline pick maximizes expected points</b> on the published line;
 a separate <b>optional chasing pick</b> can help differentiate if you accept the risk. Neither guarantees a leaderboard climb.
 <a href="picks.html">All CS2 picks →</a> · <a href="#day2">Day-2 results ↓</a> · <a href="unresolved.html">Unresolved &amp; limitations</a>.</p>
 <p class="small">{e(ev.get("name"))}, {e(ev.get("dates"))}, {e(ev.get("prize_pool"))}. {e(ev.get("format"))} {ev_src}.</p>
-{''.join(plays)}
+{day4_section(board)}
+<details><summary>Day-3 pre-match research (historical)</summary>{''.join(plays)}</details>
 <h2 id="day2">Every result from days 1–2</h2>
 <div class="tablewrap" tabindex="0" role="region" aria-label="TWC results; scroll horizontally for sources"><table>
 <thead><tr><th>Day / stage</th><th>Result / meaning</th><th>Maps / veto</th><th>Source</th></tr></thead><tbody>{''.join(result_rows)}</tbody></table></div>
-<p class="small">{e(d.get("maps_convention"))} Result research checked {e(d.get("read_utc"))}. Probabilities and lock times above use the current board capture instead.</p>
+<p class="small">{e(d.get("maps_convention"))} Result research checked {e(d.get("read_utc") or d.get("read_date_utc"))}. Probabilities and lock times above use the current board capture instead.</p>
 <h2>Groups after day 2</h2><div class="tablewrap"><table><thead><tr><th>Group</th><th>Team</th><th>Record</th><th>Status</th><th>Source</th></tr></thead><tbody>{''.join(standings)}</tbody></table></div>
 <p class="small">Records count the linked series results. No unverified group rank, round differential or tiebreak value is filled in.</p>
 <h2>Roster, onboarding &amp; rest: facts versus narrative</h2><div class="tablewrap"><table><thead><tr><th>Team</th><th>Verified context</th><th>Effect / limits</th><th>Source</th></tr></thead><tbody>{''.join(situations)}</tbody></table></div>
 <h2>Contrarian, not reckless</h2><ul>{lessons}</ul>
 <p class="note">We do not know your current rank, points gap or the full field’s correlated picks. Ownership is only the percentage of Hotspawn picks on each side, never a win probability. July’s roster rebuild is not evidence of an unpriced October edge.</p>
 """
-    page("twc.html", "TWC day-3 picks & day-2 review", body, board, script=LOCK_SCRIPT)
+    page("twc.html", "TWC day-4 watch & days 1–3 review", body, board, script=LOCK_SCRIPT)
 
 
 def h2h_li(item: str) -> str:
@@ -580,7 +589,7 @@ def unresolved_section(board: dict, full: bool) -> str:
 
     def research_trail(r):
         attempt = r.get("research_attempt") or {}
-        researched = (f'HLTV: {link(attempt.get("url"), "target")} · HTTP {e(attempt.get("status"))} '
+        researched = (f'HLTV: {link(attempt.get("url"), "target")} · HTTP {e(attempt.get("status") or "not received")} '
                       f'{e(attempt.get("error") or "page read")} · {e(attempt.get("read_utc"))}') if attempt else (
                          'HLTV: ' + link(r.get("hltv_url"), 'curated source') + ' (no additional live match-page read recorded in this capture)')
         books = ('Esportsbooks: ' + ("eligible named-book relay selected" if r.get("relay") else "no eligible named-book relay selected for this fixture") + "; bo3.gg service read: " + e(board["meta"].get("esportsbooks", {}).get("status", "not requested")))
@@ -611,7 +620,7 @@ def unresolved_section(board: dict, full: bool) -> str:
             limit = 'Prediction-market outcome price, not bookmaker odds or a guaranteed executable quote.'
             if r.get('relay'): limit = 'Named sportsbook price relayed by bo3.gg; not verified directly with the book. Secondary, flagged evidence.'
             if r['rung'] == 'C': limit = 'Own match-level rating estimate, not a bookmaker quote; no format-specific, map-veto or fatigue calibration.'
-            if r['rung'] == 'E': limit = ('Research fallback (rung E): no book, prediction market or relayed esportsbook line exists for this fixture (negative checks recorded below). '
+            if r['rung'] == 'E': limit = ('Research fallback (rung E): no eligible book, prediction market or relayed esportsbook line was captured for this fixture (attempts and limitations below; absence is not proof no market exists). '
                                           'The estimate is our own line on the closest official Valve snapshot row, chosen by documented roster overlap with HLTV\'s listed match lineup. '
                                           'Treat as a soft line: map veto, fatigue and any roster change since the snapshot are not modelled.')
             if r.get('own_line_limitation'): limit += ' Independent own line withheld: ' + r['own_line_limitation'] + '.'
@@ -624,7 +633,7 @@ def unresolved_section(board: dict, full: bool) -> str:
     e_rows = [r for r in rows if r.get("rung") == "E"]
     if e_rows:
         out.append('<h3>Research fallback (rung E) — how these picks were resolved</h3>'
-                   '<p>These fixtures had no outside price of any kind, and the strict own line could not start because a team name '
+                   '<p>These fixtures had no eligible captured outside price, and the strict own line could not start because a team name '
                    'maps to more than one roster row in Valve\'s official standings. A documented rule resolves the identity: '
                    'the Valve row whose roster shares the most nicknames with the lineup HLTV lists for that exact match wins, '
                    'and it must share at least 3 with strictly more than any other same-name row. Nothing is guessed; if the rule '
@@ -701,7 +710,7 @@ def flagged_page(board: dict) -> None:
 <p class="lead">Known unverified, disputed or irregular items in the primary board are listed here with evidence. Unconfirmable values stay blank. Research flags do not block publication; a broken build or site does. The preserved historical dashboards are not certified by this scoped audit (IR-26).</p>
 <h2>Irregularities found in research and review</h2>
 <div class="tablewrap"><table><thead><tr><th>ID</th><th>Status</th><th>Finding</th><th>Evidence</th></tr></thead><tbody>{irows}</tbody></table></div>
-<p class="small">The current line-by-line primary-board review is <a href="https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/reviews/6b23e38f-verification.md">6b23e38f verification</a>; the earlier review is in <a href="{REPO_URL}/blob/main/reviews/22be6967-verification.md">reviews/22be6967-verification.md</a>.</p>
+<p class="small">The day-4 scoped review is <a href="../reviews/4061d8f1-verification.md">4061d8f1 verification</a>; the earlier review is in <a href="{REPO_URL}/blob/main/reviews/22be6967-verification.md">reviews/22be6967-verification.md</a>.</p>
 <h2>Fixture flags in this snapshot</h2>
 <div class="tablewrap"><table><thead><tr><th>ID</th><th>Match</th><th>Status</th><th>Flag</th><th>Meaning</th><th>Evidence</th></tr></thead><tbody>{''.join(frows) or '<tr><td colspan=6>No flags.</td></tr>'}</tbody></table></div>
 <p class="small">{stale} stale listings (lock passed more than 36 h ago) are flagged STALE_LISTING and listed in the <a href="all.html">full inventory</a>.</p>"""
@@ -773,7 +782,7 @@ def index_page(board: dict) -> None:
 <div class="btns">
 <a class="btn primary" href="picks.html"><strong>All picks ({s['open']} open) →</strong><span>One card per match: pick, both probabilities, sources.</span></a>
 <a class="btn" href="strategy.html"><strong>Leaderboard plan</strong><span>{s['leaderboard_classes'].get('VALUE', 0)} value · {s['leaderboard_classes'].get('CONTRARIAN', 0)} contrarian · {s['leaderboard_classes'].get('SITUATIONAL', 0)} situational plays; day-1 and day-2 reviews.</span></a>
-<a class="btn" href="twc.html"><strong>TWC 2026 day review</strong><span>Every series of days 1-2 with sources, the groups, and both day-3 deciders with all outside lines plus our own.</span></a>
+<a class="btn" href="twc.html"><strong>TWC 2026 day review</strong><span>Day-3 results, day-4 semifinal watch, current captured picks and the limits of roster/rest narratives.</span></a>
 <a class="btn" href="unresolved.html"><strong>Unresolved &amp; limitations</strong><span>{s['open_rung'].get('B', 0) + s['open_rung'].get('C', 0) + s['open_rung'].get('E', 0)} via the research ladder · {s['open_unresolved']} without a pick.</span></a>
 <a class="btn" href="flagged.html"><strong>Flagged for Review</strong><span>Irregularities and per-match flags with evidence.</span></a>
 </div>
@@ -788,7 +797,8 @@ def index_page(board: dict) -> None:
 <p>TWC 2026 day 1: all four series ended 2-0; favourites won three. The upset was <b>9z 2-0 Aurora</b> ({e(upset_rates)}). Market picks went {s['day1_review']['picks_correct']}/{s['day1_review']['matches']}. <a href="strategy.html">Full review →</a></p>
 <h2>Day 2 in one line</h2>
 {day2_one_line(board)}
-<h2 id="day3">Day 3 — the two deciders</h2>
+{day4_section(board)}
+<h2 id="day3">Day 3 — historical decider research</h2>
 {day3_section(board)}
 <h2 id="unresolved">Unresolved picks &amp; limitations</h2>
 {unresolved_section(board, False)}
