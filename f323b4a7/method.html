@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0b1220">
+<title>Methodology - Hotspawn CS2 picks (f323b4a7)</title>
+<meta name="description" content="Methodology &amp; sources">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="index.html">Hotspawn CS2 &middot; picks &amp; lines</a>
+    <div class="stamp">Snapshot 2026-10-16T04:44:51Z &middot; Hotspawn read 2026-10-16T04:44:51Z</div>
+  </div>
+  <nav class="nav"><a class="nav" href="index.html">Executive summary</a><a class="nav" href="picks.html">Picks for every open match</a><a class="nav" href="day3.html">Day-3 guide - Thunderpick World Championship</a><a class="nav" href="review.html">Day 1 &amp; day 2 review</a><a class="nav" href="unresolved.html">Unresolved picks &amp; limitations</a><a class="nav" href="flagged.html">Flagged for review</a><a class="nav" href="all.html">Full Hotspawn CS2 fixture inventory</a><a class="nav on" href="method.html">Methodology &amp; sources</a></nav>
+</header>
+<main class="wrap">
+
+<h1>Methodology &amp; sources</h1>
+<h2>The ladder</h2>
+<table class="tbl">
+  <tr><th>Rung</th><th>Source</th><th>How the probability is produced</th></tr>
+  <tr><td><strong>A</strong></td><td>Pinnacle whole-match moneyline</td>
+      <td>Decimal odds converted to implied probability, then the bookmaker margin removed proportionally
+      (overround is printed per row).</td></tr>
+  <tr><td><strong>B</strong></td><td>Polymarket match-winner price</td>
+      <td>The two outcome prices are normalised to sum to 1. A prediction market, labelled as such.</td></tr>
+  <tr><td><strong>C</strong></td><td>Our own line from Valve Regional Standings points</td>
+      <td>P = 1/(1+10^(-k &middot; dPoints/400)) with k = 0.4598, fitted by maximum likelihood on Valve's own
+      published match results (13,609 training / 901 held-out windows; held-out log-loss 0.6395 fitted vs
+      0.6541 raw). Source: <a href="https://github.com/ValveSoftware/counter-strike_regional_standings">
+      ValveSoftware/counter-strike_regional_standings</a>, snapshot 2026-10-05.</td></tr>
+  <tr><td><strong>D</strong></td><td>Unresolved</td>
+      <td>No outside price and a team missing from Valve's standings. The pick is left blank and the row is
+      flagged.</td></tr>
+</table>
+
+<h2>What is never a probability</h2>
+<p>Hotspawn's &ldquo;% picked&rdquo; crowd share. It is stored as <em>ownership</em> and used only by the
+leaderboard rule, which is a strategy opinion printed next to the probability, never inside it.</p>
+
+<h2>Leaderboard rule (contrarian but not stupid)</h2>
+<ul class="bullets">
+  <li><strong>VALUE</strong> &mdash; the crowd majority sits on the underdog; play the favourite (likelier and
+      lower-owned).</li>
+  <li><strong>CONTRARIAN</strong> &mdash; underdog consensus &ge; 38% and owned &ge; 10 points below that;
+      play the underdog.</li>
+  <li><strong>SITUATIONAL</strong> &mdash; underdog consensus &ge; 30% with half-or-less ownership; play the
+      underdog.</li>
+  <li><strong>LONG SHOT</strong> &mdash; underdog &ge; 20% with &le; 10% ownership; keep the favourite and list
+      the underdog as an optional punt.</li>
+  <li><strong>CHALK</strong> &mdash; otherwise play the favourite.</li>
+</ul>
+
+<h2>Sources</h2>
+<table class="tbl">
+  <tr><th>What</th><th>URL</th><th>Read / as of</th></tr>
+  <tr><td>Hotspawn Play lobby (fixture list, tiers, points, lock countdowns, crowd share)</td><td><a href='https://play.hotspawn.com/lobby'>https://play.hotspawn.com/lobby</a></td><td>2026-10-16T04:18:00Z</td></tr><tr><td>Hotspawn TransferState capture already in the repo (86 fixtures, exact UTC epochs)</td><td><a href='https://play.hotspawn.com/lobby'>https://play.hotspawn.com/lobby</a></td><td>2026-10-15T22:41:15Z</td></tr><tr><td>Pinnacle public guest CS2 markets (moneyline, margin removed)</td><td><a href='https://www.pinnacle.com/en/esports/games/cs2/matchups/'>https://www.pinnacle.com/en/esports/games/cs2/matchups/</a></td><td>2026-10-15T22:41:17Z</td></tr><tr><td>Polymarket gamma API, counter-strike series (match-winner price)</td><td><a href='https://gamma-api.polymarket.com/markets?slug=cs2-aur1-9z-2026-10-16'>https://gamma-api.polymarket.com/markets?slug=cs2-aur1-9z-2026-10-16</a></td><td>2026-10-16T04:23:06Z</td></tr><tr><td>Valve Regional Standings, global 2026-10-05 (points, rosters)</td><td><a href='https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md'>https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md</a></td><td>2026-10-05 (Valve publication date)</td></tr><tr><td>HLTV world ranking (ranks used as labelled context only)</td><td><a href='https://www.hltv.org/ranking/teams/2026/october/12'>https://www.hltv.org/ranking/teams/2026/october/12</a></td><td>2026-10-15T22:41:23Z</td></tr><tr><td>HLTV Thunderpick World Championship 2026 event page (bracket, format, prize pool)</td><td><a href='https://www.hltv.org/events/8932/thunderpick-world-championship-2026'>https://www.hltv.org/events/8932/thunderpick-world-championship-2026</a></td><td>2026-10-16T04:28:00Z</td></tr><tr><td>HLTV TWC 2026 match list (day-3 kick-offs, playoff schedule)</td><td><a href='https://www.hltv.org/events/8932/matches'>https://www.hltv.org/events/8932/matches</a></td><td>2026-10-16T04:26:00Z</td></tr><tr><td>HLTV betting analytics - Aurora vs 9z (ranks, form, head-to-head)</td><td><a href='https://www.hltv.org/betting/analytics/2399412/aurora-vs-9z-thunderpick-world-championship-2026'>https://www.hltv.org/betting/analytics/2399412/aurora-vs-9z-thunderpick-world-championship-2026</a></td><td>2026-10-16T04:30:00Z</td></tr><tr><td>HLTV betting analytics - BETBOOM vs Legacy (ranks, form, map stats)</td><td><a href='https://www.hltv.org/betting/analytics/2399413/betboom-vs-legacy-thunderpick-world-championship-2026'>https://www.hltv.org/betting/analytics/2399413/betboom-vs-legacy-thunderpick-world-championship-2026</a></td><td>2026-10-16T04:30:00Z</td></tr>
+</table>
+
+<h2>Refresh</h2>
+<p>The board is rebuilt automatically every four hours by
+<code>.github/workflows/f323b4a7.yml</code>: it re-reads Hotspawn, Pinnacle, Polymarket, Valve's standings and
+HLTV, re-originates every pick, rebuilds these pages, runs the invariants and a 390&nbsp;px phone-layout check,
+and commits only when the checks pass.</p>
+
+</main>
+<footer class="wrap foot">
+  <p><strong>Evidence policy.</strong> Probabilities come from outside markets (Pinnacle, Polymarket) or from
+  our own line fitted on Valve's published results. Hotspawn's crowd pick share is stored as
+  <em>ownership</em> only and is never used as a probability. Every row carries its source links; a value that
+  cannot be confirmed from an official source is left blank and listed on the
+  <a href="flagged.html">Flagged for review</a> page.</p>
+  <p>Session <code>arena/f323b4a7</code> &middot; branch <code>arena/f323b4a7-maltaproj1</code> &middot;
+  generated 2026-10-16T04:44:51Z</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,118 @@
+# Every-match Hotspawn CS2 board - automatic refresh (session arena/f323b4a7).
+#
+# The brief asks for a full list of updated matches and picks for every Counter-Strike 2 match
+# Hotspawn lists, refreshed every 4-8 hours with no manual input.  This workflow runs every four
+# hours (inside the 4-8 h window even if GitHub drops one scheduled run) and, with no credentials:
+#   1. reads Hotspawn's three CS2 surfaces (Angular TransferState), Pinnacle's public guest JSON,
+#      Polymarket's gamma API, Valve's official Regional Standings and HLTV's ranking;
+#   2. re-originates a pick + both probabilities for every open fixture (our own line when no
+#      outside price exists) and rebuilds the mobile-first pages;
+#   3. runs the invariants and a 390 px phone-layout check;
+#   4. commits data + pages ONLY when the checks pass, so the last good board stays published.
+name: Hotspawn CS2 board (f323b4a7)
+
+on:
+  workflow_dispatch: {}
+  schedule:
+    - cron: "17 */4 * * *"
+  push:
+    branches: ["main", "arena/f323b4a7-maltaproj1"]
+    paths:
+      - "f323b4a7/*.py"
+      - "f323b4a7/research.py"
+      - "f323b4a7/style.css"
+      - ".github/workflows/f323b4a7.yml"
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: f323b4a7-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Collect Hotspawn, Pinnacle, Polymarket, Valve, HLTV
+        run: python3 -u f323b4a7/collect.py
+
+      - name: Originate picks, probabilities and the leaderboard plan
+        run: python3 -u f323b4a7/model.py
+
+      - name: Build the pages
+        run: python3 -u f323b4a7/build.py
+
+      - name: Invariants (probabilities, crowd isolation, sources, links, phone CSS)
+        id: tests
+        run: python3 -u f323b4a7/tests.py
+
+      - name: Phone-layout check (390x844, no horizontal overflow)
+        id: mobile
+        run: python3 -u f323b4a7/mobile_check.py
+
+      - name: Commit the refreshed board
+        run: |
+          set -euo pipefail
+          BR="${GITHUB_REF_NAME}"
+          git config user.name "f323b4a7[bot]"
+          git config user.email "f323b4a7@users.noreply.github.com"
+          git add -A f323b4a7/data f323b4a7/*.html
+          if git diff --cached --quiet; then echo "no changes"; exit 0; fi
+          git commit -q -m "f323b4a7: refresh every-match CS2 board [skip ci] [run ${GITHUB_RUN_ID}]"
+          for i in 1 2 3 4 5; do
+            if git pull --rebase -q origin "$BR"; then
+              git push -q origin "HEAD:$BR" && { echo "pushed to $BR"; exit 0; }
+            fi
+            conflicts=$(git diff --name-only --diff-filter=U || true)
+            if [ -n "$conflicts" ]; then
+              git checkout --theirs -- $conflicts && git add -A $conflicts
+              GIT_EDITOR=true git rebase --continue || true
+              git push -q origin "HEAD:$BR" && { echo "pushed after regenerating"; exit 0; }
+            fi
+            git rebase --abort 2>/dev/null || true
+            sleep $((i * 10))
+          done
+          echo "::warning::could not push this refresh; the next scheduled run starts from the newer tip"
+
+      - name: Ask GitHub Pages to rebuild (main only, best effort)
+        if: github.ref_name == 'main'
+        continue-on-error: true
+        run: |
+          curl -sS -o /dev/null -w "pages build request: HTTP %{http_code}\n" -X POST \
+            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${{ github.repository }}/pages/builds"
+
+      - name: Run summary
+        if: always()
+        run: |
+          python3 - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          import json, pathlib
+          p = pathlib.Path("f323b4a7/data/summary.json")
+          if not p.exists():
+              print("No summary produced; the published board is unchanged."); raise SystemExit(0)
+          s = json.loads(p.read_text())
+          print("## Hotspawn CS2 board (f323b4a7)")
+          print(f"* Hotspawn read `{s['hotspawn_read_utc']}` ({s['hotspawn_week_text']}, {s['hotspawn_tier_text']})")
+          print(f"* open {s['open']} / with pick {s['open_with_pick']} / unresolved {s['unresolved']} / rungs {s['rungs']}")
+          print(f"* leaderboard classes {s['classes']}")
+          print(f"* own-line k {s['k']} ({s['k_source']})")
+          c = pathlib.Path("f323b4a7/data/collect_status.json")
+          if c.exists():
+              print("* " + json.dumps(json.loads(c.read_text()), indent=1).replace("\n", " "))
+          m = pathlib.Path("f323b4a7/data/mobile_check.json")
+          if m.exists():
+              print(f"* phone check: {json.loads(m.read_text()).get('status')}")
+          PY
