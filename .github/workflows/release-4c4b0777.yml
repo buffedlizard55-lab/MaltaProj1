@@ -74,3 +74,23 @@ jobs:
           python-version: '3.12'
       - run: python -m unittest discover -s tests -p 'test_4c4b0777.py' -v
       - run: python hotspawn/tests.py
+      - name: Phone/tablet release audit layout (must actually run)
+        run: |
+          pip install playwright==1.55.0
+          python -m playwright install --with-deps chromium
+          python - <<'PYTHON'
+          from pathlib import Path
+          from playwright.sync_api import sync_playwright
+          with sync_playwright() as p:
+              browser = p.chromium.launch()
+              for width in (360, 390, 768):
+                  page = browser.new_page(viewport={"width": width, "height": 844})
+                  for rel in ('index.html', 'hotspawn/release-audit.html', 'hotspawn/picks.html', 'hotspawn/unresolved.html'):
+                      page.goto((Path.cwd() / rel).as_uri())
+                      sizes = page.evaluate('({scroll:document.documentElement.scrollWidth,client:document.documentElement.clientWidth,h1:document.querySelectorAll("h1").length})')
+                      assert sizes['scroll'] <= sizes['client'] + 2, (rel, width, sizes)
+                      assert sizes['h1'] == 1, (rel, width, sizes)
+                      print('PASS', rel, width, sizes)
+                  page.close()
+              browser.close()
+          PYTHON
