@@ -13,7 +13,7 @@
 <header class="top">
   <div class="wrap">
     <a class="brand" href="index.html">Hotspawn CS2 &middot; picks &amp; lines</a>
-    <div class="stamp">Snapshot 2026-10-16T05:03:21Z &middot; Hotspawn read 2026-10-16T05:03:21Z</div>
+    <div class="stamp">Snapshot 2026-10-16T05:11:56Z &middot; Hotspawn read 2026-10-16T05:11:55Z</div>
   </div>
   <nav class="nav"><a class="nav" href="index.html">Executive summary</a><a class="nav" href="picks.html">Picks for every open match</a><a class="nav" href="day3.html">Day-3 guide - Thunderpick World Championship</a><a class="nav" href="review.html">Day 1 &amp; day 2 review</a><a class="nav" href="unresolved.html">Unresolved picks &amp; limitations</a><a class="nav" href="flagged.html">Flagged for review</a><a class="nav" href="all.html">Full Hotspawn CS2 fixture inventory</a><a class="nav on" href="method.html">Methodology &amp; sources</a></nav>
 </header>
@@ -36,6 +36,26 @@
   <tr><td><strong>D</strong></td><td>Unresolved</td>
       <td>No outside price and a team missing from Valve's standings. The pick is left blank and the row is
       flagged.</td></tr>
+</table>
+
+<h2>Flag legend</h2>
+<table class="tbl">
+  <tr><th>Flag</th><th>Meaning</th><th>What the reader should do with it</th></tr>
+  <tr><td><code>NO_MARKET</code></td><td>No Pinnacle or Polymarket price exists for this fixture.</td>
+      <td>The probability is our own Valve-points line (rung C), not a market price. Weight it accordingly.</td></tr>
+  <tr><td><code>MODEL_MARKET_SPLIT</code></td>
+      <td>The market price and our own line disagree on the favourite, or by 10+ points.</td>
+      <td>The published price is used for the pick; the own line is printed beside it so the disagreement is visible.</td></tr>
+  <tr><td><code>COIN_FLIP</code></td><td>The stronger side is between 45% and 55%.</td>
+      <td>Treat the pick as close to a coin toss; a small price move can flip it.</td></tr>
+  <tr><td><code>FORMAT_UNKNOWN</code></td><td>No source states whether the series is BO1 or BO3.</td>
+      <td>No format transform is applied to any row. Every market price is already for the series as its source
+      lists it, and the own line is a series probability.</td></tr>
+  <tr><td><code>NO_OWN_LINE</code></td><td>One or both teams are absent from Valve's standings, so the own line
+      cannot be computed.</td><td>The row shows &ldquo;not computable&rdquo; rather than a blank or a guessed value;
+      the pick comes from the market price.</td></tr>
+  <tr><td><code>STALE_LISTING</code></td><td>Hotspawn still lists the fixture although its lock time passed more
+      than 36 h ago.</td><td>Excluded from the picks list; kept in the full inventory with its status.</td></tr>
 </table>
 
 <h2>What is never a probability</h2>
@@ -75,7 +95,7 @@ and commits only when the checks pass.</p>
   cannot be confirmed from an official source is left blank and listed on the
   <a href="flagged.html">Flagged for review</a> page.</p>
   <p>Session <code>arena/f323b4a7</code> &middot; branch <code>arena/f323b4a7-maltaproj1</code> &middot;
-  generated 2026-10-16T05:03:21Z</p>
+  generated 2026-10-16T05:11:56Z</p>
 </footer>
 </body>
 </html>

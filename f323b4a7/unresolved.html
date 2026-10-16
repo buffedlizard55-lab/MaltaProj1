@@ -13,7 +13,7 @@
 <header class="top">
   <div class="wrap">
     <a class="brand" href="index.html">Hotspawn CS2 &middot; picks &amp; lines</a>
-    <div class="stamp">Snapshot 2026-10-16T05:03:21Z &middot; Hotspawn read 2026-10-16T05:03:21Z</div>
+    <div class="stamp">Snapshot 2026-10-16T05:11:56Z &middot; Hotspawn read 2026-10-16T05:11:55Z</div>
   </div>
   <nav class="nav"><a class="nav" href="index.html">Executive summary</a><a class="nav" href="picks.html">Picks for every open match</a><a class="nav" href="day3.html">Day-3 guide - Thunderpick World Championship</a><a class="nav" href="review.html">Day 1 &amp; day 2 review</a><a class="nav on" href="unresolved.html">Unresolved picks &amp; limitations</a><a class="nav" href="flagged.html">Flagged for review</a><a class="nav" href="all.html">Full Hotspawn CS2 fixture inventory</a><a class="nav" href="method.html">Methodology &amp; sources</a></nav>
 </header>
@@ -29,7 +29,7 @@ standing limitations of the whole board.</p>
 <h2>Resolved, but our own line contradicts the market (8)</h2>
 <table class="tbl">
   <tr><th>Match</th><th>Market price</th><th>Own line</th><th>Pick taken</th><th>Why it is flagged</th></tr>
-  <tr><td>Voca v Phantom</td><td>44.0% / 56.0%</td><td>52.3% / 47.7%</td><td><strong>Phantom</strong></td><td>MODEL_MARKET_SPLIT</td></tr><tr><td>Bushido Wildcats v ex-RUSTEC</td><td>40.5% / 59.5%</td><td>60.3% / 39.7%</td><td><strong>ex-RUSTEC</strong></td><td>MODEL_MARKET_SPLIT</td></tr><tr><td>FORZE Reload v Lavked</td><td>78.5% / 21.5%</td><td>65.2% / 34.8%</td><td><strong>FORZE Reload</strong></td><td>MODEL_MARKET_SPLIT</td></tr><tr><td>ex-Zero Tenacity v UNiTY</td><td>73.0% / 27.0%</td><td>43.4% / 56.6%</td><td><strong>ex-Zero Tenacity</strong></td><td>MODEL_MARKET_SPLIT</td></tr><tr><td>aimclub v BASEMENT BOYS</td><td>49.5% / 50.5%</td><td>19.7% / 80.3%</td><td><strong>BASEMENT BOYS</strong></td><td>MODEL_MARKET_SPLIT;COIN_FLIP</td></tr><tr><td>Nexus v WROTBERRY</td><td>50.0% / 50.0%</td><td>37.5% / 62.5%</td><td><strong>Nexus</strong></td><td>MODEL_MARKET_SPLIT;COIN_FLIP</td></tr><tr><td>Sashi v mouz NXT</td><td>67.5% / 32.5%</td><td>82.9% / 17.1%</td><td><strong>Sashi</strong></td><td>MODEL_MARKET_SPLIT</td></tr><tr><td>ASTRAL v Leo</td><td>49.5% / 50.5%</td><td>82.0% / 18.0%</td><td><strong>Leo</strong></td><td>MODEL_MARKET_SPLIT;COIN_FLIP</td></tr>
+  <tr><td>Voca v Phantom</td><td>44.0% / 56.0%</td><td>52.3% / 47.7%</td><td><strong>Phantom</strong></td><td>MODEL_MARKET_SPLIT</td></tr><tr><td>Bushido Wildcats v ex-RUSTEC</td><td>40.5% / 59.5%</td><td>60.3% / 39.7%</td><td><strong>ex-RUSTEC</strong></td><td>MODEL_MARKET_SPLIT</td></tr><tr><td>FORZE Reload v Lavked</td><td>78.5% / 21.5%</td><td>65.2% / 34.8%</td><td><strong>FORZE Reload</strong></td><td>MODEL_MARKET_SPLIT</td></tr><tr><td>ex-Zero Tenacity v UNiTY</td><td>70.5% / 29.5%</td><td>43.4% / 56.6%</td><td><strong>ex-Zero Tenacity</strong></td><td>MODEL_MARKET_SPLIT</td></tr><tr><td>aimclub v BASEMENT BOYS</td><td>49.5% / 50.5%</td><td>19.7% / 80.3%</td><td><strong>BASEMENT BOYS</strong></td><td>MODEL_MARKET_SPLIT;COIN_FLIP</td></tr><tr><td>Nexus v WROTBERRY</td><td>50.0% / 50.0%</td><td>37.5% / 62.5%</td><td><strong>Nexus</strong></td><td>MODEL_MARKET_SPLIT;COIN_FLIP</td></tr><tr><td>Sashi v mouz NXT</td><td>67.5% / 32.5%</td><td>82.9% / 17.1%</td><td><strong>Sashi</strong></td><td>MODEL_MARKET_SPLIT</td></tr><tr><td>ASTRAL v Leo</td><td>49.5% / 50.5%</td><td>82.0% / 18.0%</td><td><strong>Leo</strong></td><td>MODEL_MARKET_SPLIT;COIN_FLIP</td></tr>
 </table>
 <p class="meta">The published price is used for the pick, exactly as the ladder says; the own line is shown so the
 disagreement is visible rather than hidden.</p>
@@ -134,6 +134,12 @@ disagreement is visible rather than hidden.</p>
       <td>No format transform is applied to any row; every market price is already for the series as listed by
       its source, and the own line is a series probability fitted on Valve's published series results. Flagged
       as FORMAT_UNKNOWN per row; no value is assumed.</td></tr>
+  <tr><td>Three teams in the open set &mdash; JOGA DE TERNO (1081498), LOS NINOS (1081502) and
+      Insiders (1081526) &mdash; do not appear in Valve's 2026-10-05 global standings, so no own line can be
+      computed for those rows.</td>
+      <td>3 rows show &ldquo;own line: not computable&rdquo; instead of a number.</td>
+      <td>Flagged <code>NO_OWN_LINE</code> per row. The pick still comes from the market price (rung B);
+      nothing is inferred and no stand-in rating is substituted.</td></tr>
   <tr><td>Hotspawn still lists fixtures whose lock time passed more than 36 h ago.</td>
       <td>Those rows are not pickable.</td>
       <td>They are kept in the full inventory with their status, and excluded from the picks list.</td></tr>
@@ -149,7 +155,7 @@ disagreement is visible rather than hidden.</p>
   cannot be confirmed from an official source is left blank and listed on the
   <a href="flagged.html">Flagged for review</a> page.</p>
   <p>Session <code>arena/f323b4a7</code> &middot; branch <code>arena/f323b4a7-maltaproj1</code> &middot;
-  generated 2026-10-16T05:03:21Z</p>
+  generated 2026-10-16T05:11:56Z</p>
 </footer>
 </body>
 </html>

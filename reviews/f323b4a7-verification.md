@@ -111,3 +111,22 @@ the source links: `f323b4a7/picks.html` and `f323b4a7/data/picks.csv`.
 - It never fills a blank with an inferred value. Blank means "not confirmed from an official source".
 - It never invents a Hotspawn pick for a fixture Hotspawn does not list (the TWC semi-finals and
   final are context only).
+
+## Addendum — reading the published page, not the local build
+
+Two defects were only visible on the live GitHub Pages copy, and both are now fixed:
+
+1. **Per-row Polymarket links.** `picks.html` linked every rung-B row to `https://polymarket.com/` because
+   `build.py` read `row["detail"]["polymarket_url"]` while `model.py` writes the URL to
+   `row["polymarket_url"]`. Rows now link to their own market, e.g.
+   `https://polymarket.com/event/cs2-nip-tl1-2026-10-16`. Pinnacle's link remains the public matchups page,
+   which is the deepest stable URL the guest API allows.
+2. **Own-line blanks.** Three rows printed `own line /100.0%` because `own_p_a` was `None`. The teams
+   missing from Valve's 2026-10-05 global standings are **JOGA DE TERNO** (1081498), **LOS NINOS** (1081502)
+   and **Insiders** (1081526). The page now says `not computable (see flags)`, the model raises
+   `NO_OWN_LINE` on exactly those rows, and `method.html` documents all six flags. No stand-in rating was
+   substituted for any missing team, in line with the brief's "blanks, not hallucinations" rule.
+
+Final as-published figures after the fix: 95 fixtures, 31 open, 31 picks, 0 unresolved; rungs A 0 / B 25 /
+C 6 / D 0; flags `NO_MARKET` 8, `FORMAT_UNKNOWN` 9, `MODEL_MARKET_SPLIT` 8, `COIN_FLIP` 5,
+`NO_OWN_LINE` 3; classes VALUE 10, CONTRARIAN 5, SITUATIONAL 6, LONG SHOT 3, CHALK 7.
