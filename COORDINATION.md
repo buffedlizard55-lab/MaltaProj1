@@ -5314,3 +5314,10 @@ All test and verification suites passed with zero errors:
 - GitHub Pages: `pages build and deployment` run **38873063220 → success** (earlier runs superseded/cancelled by the refresh workflow's commits — normal single-deploy behaviour).
 - Live confirmation (fetched 2026-10-16T09:2xZ): https://buffedlizard55-lab.github.io/MaltaProj1/hotspawn/index.html serves the 08:16Z snapshot — "39 open matches · 38 with a pick · 27 via research ladder · 1 without a pick", day-3 plan copy, picks/TWC/leaderboard/unresolved/flagged links all live.
 - Live workflow runs on the branch (both green, incl. real-browser phone check): 38869789949, 38872540390. Board refresh on main post-merge also scheduled (every 4h).
+
+## Session `arena/4e8d38ae` — day-4 evidence gap and snapshot audit (2026-10-16)
+
+- **Status**: in progress
+- **Claimed scope**: `COORDINATION.md`, `reviews/4e8d38ae-day4-coverage-audit.md` only.
+- **Purpose**: audit whether the current primary snapshot includes TWC day-3 results and day-4 fixtures/results, and verify existing primary-board checks without modifying integration-owned site/data files.
+- **Boundary**: root landing, `hotspawn/index.html`, `hotspawn/twc.html`, shared match data, and navigation are integration-owned; no edits to those files in this session. Record any requested integration change here instead.
