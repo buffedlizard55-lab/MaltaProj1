@@ -5416,3 +5416,46 @@ Notes for the record:
 - The parallel branch's refresh run `38955456892` and this session's run `38955501835` collect the same live sources;
   the resulting generated pages are byte-different (timestamps) and would conflict on merge, which is precisely why
   only one session may publish them. `arena/4061d8f1` owns that publication.
+
+### arena/3a9d6484 — verification receipt + defect log (2026-10-16, 20:05–20:20 UTC)
+
+Status: tasks 1–3 and 5 **done**; tasks 4 (mobile exec summary) and 6 (final integration) **withdrawn** — owner
+`arena/4061d8f1` merged PR #177 at 19:46:10Z and `main` is the published board. No competing PR is opened.
+
+Receipts (independent second-verifier pass):
+- Verified revision: `main` = `098c49ceec4467389f4801dbeba870f7ac13596c` (PR #177 merge + refresh 38957352331). Branch
+  rebased onto it: 0 behind / 3 ahead (`687a507` claim, `87c8522` withdraw, `df09910` verification).
+- Deploy: pages run 38957523254 **success** 19:47:39Z (duplicate 38957517065 cancelled); live exec summary serves the
+  19:41Z snapshot with 16 open / 16 picks / 0 unresolved.
+- Structural audit of all 16 published open rows: valid pick, two-sided probabilities summing to 1.000000, ≥5 source
+  links, HLTV link present in 16/16 → **0 errors**.
+- Numeric reproduction: row 1081515 Nemesis 66.99% = margin-removed bo3.gg 2.80/1.38 (8.18% overround); row 1081527
+  BASEMENT BOYS 54.69% = margin-removed bo3.gg 2.04/1.69 (8.19%) — both reproduce **exactly** from this session's own
+  live reads; TWC external watch reproduces as EGW 1.85/1.85 → 50/50 and Polymarket match-winner 0.52/0.48
+  (`updatedAt` 19:44:51Z). Polymarket per-map markets are thin (spread 0.63) — never cite them.
+- Narrative: day-1/2/3 published text consistent with HLTV (`results?event=8932`; news 45729 / 45730 / 45736).
+- Deliverables: `reviews/3a9d6484-verification.md`, `reviews/3a9d6484-twc-research.md`,
+  `reviews/3a9d6484-hltv-backoff-request.patch`.
+
+Defects logged for the owner (evidence in the verification file §6):
+- **D1** main workflow `push.branches` (line 18 @098c49c) omits `arena/3a9d6484-maltaproj1`. This session's one-line
+  addition was **dropped during the rebase onto 098c49c** — main's published list governs; logged, not re-litigated.
+- **D2** `livelines-457629c4.yml` ("Live picks board") failing on `main`: job `board`, step `Invariants` — runs
+  38957352383 (19:46:14Z), 38957004805 (19:43:24Z), 38935767393 + 38935703852 (16:55Z); last success 13:33:24Z →
+  main's live-lines surface is stale; needs an owner (outside this session's namespace).
+- **D3** `capture.json` holds 36 relayed esportsbook quotes but none join rows 1081515/1081527 by `match_id` →
+  recommend a provider-URL / `provider_id` join key.
+- **D4** row 1081527's book quote sits behind affiliate redirect `refpa04636.pro` (payload = bo3.gg line table
+  `379139476-aimclub-BASEMENT-BOYS`); recommend the canonical URL or an explicit `AFFILIATE_REDIRECT` flag.
+- **D5** the collector's global HLTV backoff suppresses every later lookup (`gap_research` 15/16 "not requested");
+  per-row retry patch offered at `reviews/3a9d6484-hltv-backoff-request.patch`.
+- **D6** bo3.gg team-form "1-0" is a **map** result, not a series score — relay misread trap; no published row affected.
+- **D7** published `COORDINATION.md` @098c49c has 0 references to `arena/3a9d6484`; this session's claim/withdrawal
+  rows live only on this branch → next integrator should preserve concurrent claim blocks.
+
+Left blank on purpose (no inference): row `1081775` grade and the SF2 pairing (2399413 was LIVE 1-1 with Mirage in
+progress at the 20:05Z re-read); 3rd-place and grand-final pairings (18 Oct); a Hotspawn-lobby screen read of rows
+1081515/1081527 quotes.
+
+Handoff: no further publishing action is proposed from this branch. D2–D5 are independent one-file fixes
+(`livelines/**`, `hotspawn/collect.py`) for an owner who wants them.

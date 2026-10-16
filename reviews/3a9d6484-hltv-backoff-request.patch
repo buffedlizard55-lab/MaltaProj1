@@ -1,0 +1,122 @@
+diff --git a/hotspawn/collect.py b/hotspawn/collect.py
+index 9e1c218..659f4c1 100644
+--- a/hotspawn/collect.py
++++ b/hotspawn/collect.py
+@@ -69,6 +69,8 @@ VRS_RAW = f"https://raw.githubusercontent.com/{VRS_REPO}"
+ STANDINGS_ROW = re.compile(r"^\|\s*(\d+)\s*\|\s*(\d+)\s*\|\s*([^|]+?)\s*\|\s*([^|]+?)\s*\|\s*\[details\]\(([^)]+)\)")
+ 
+ HLTV_RANKING = "https://www.hltv.org/ranking/teams"
++# Pause between the two attempts on a refused HLTV request (per row, never global).
++HLTV_BACKOFF_SEC = int(os.environ.get("HOTSPAWN_HLTV_BACKOFF_SEC", "20"))
+ OFFLINE = os.environ.get("HOTSPAWN_OFFLINE_DIR")
+ 
+ 
+@@ -539,7 +541,7 @@ def collect_gap_research(hotspawn: dict, pinnacle: dict) -> dict:
+     gaps = [f for f in fixtures if parse_iso(f.get("lock_utc")) and parse_iso(f["lock_utc"]) > now_utc()
+             and not select_quote(f, pinnacle.get("quotes", []), aliases, ref, fixtures)[0]]
+     links = (read_json(RESEARCH / "hltv_links.json", {}) or {}).get("fixtures", {})
+-    attempts, blocked = [], False
++    attempts, refusals = [], 0
+     for f in gaps:
+         known = links.get(str(f["match_id"]), {})
+         url = known.get("hltv") or "https://www.hltv.org/search?query=" + quote(f["team_a"] + " " + f["team_b"])
+@@ -547,12 +549,23 @@ def collect_gap_research(hotspawn: dict, pinnacle: dict) -> dict:
+                  "status": None, "format": None, "error": None}
+         if OFFLINE:
+             entry["error"] = "offline: live research not attempted"
+-        elif blocked:
+-            entry["error"] = "not requested: HLTV refused the preceding request; circuit breaker respects the refusal"
+         else:
+-            got = http_get(url, timeout=20, retries=0)
+-            entry.update(status=got["status"], read_utc=got["fetched_utc"], error=got["error"], sha256=got["sha256"])
+-            blocked = got["status"] in (403, 429)
++            # Per-row politeness, not a global circuit breaker: a refusal on one fixture must not
++            # silence the HLTV rung for every remaining fixture (that produced unexplained blanks).
++            # A refused row is retried once after HLTV_BACKOFF_SEC, then recorded and skipped.
++            got = {"status": None, "fetched_utc": None, "error": None, "sha256": None}
++            for attempt_no in range(2):
++                got = http_get(url, timeout=20, retries=0)
++                entry.update(status=got["status"], read_utc=got["fetched_utc"], error=got["error"],
++                             sha256=got["sha256"])
++                if got["status"] not in (403, 429):
++                    break
++                if attempt_no == 0 and HLTV_BACKOFF_SEC:
++                    time.sleep(HLTV_BACKOFF_SEC)
++            if got["status"] in (403, 429):
++                refusals += 1
++                entry["error"] = (f"HLTV refused this request twice (HTTP {got['status']}, "
++                                  f"{HLTV_BACKOFF_SEC}s backoff between attempts); row skipped, later rows still requested")
+             if got["status"] == 200 and "/matches/" in url:
+                 text = unescape(re.sub(r"<[^>]*>", " ", got["body"].decode("utf-8", "replace")))
+                 m = re.search(r"Best of ([1357])\s*\((?:LAN|Online)\)", text, re.I)
+@@ -560,7 +573,10 @@ def collect_gap_research(hotspawn: dict, pinnacle: dict) -> dict:
+                     entry["format"] = "BO" + m.group(1)
+         attempts.append(entry)
+     return {"target_match_ids": [f["match_id"] for f in gaps], "hltv": attempts,
+-            "order": "No eligible Pinnacle line -> HLTV -> esportsbooks (bo3.gg relay) -> other lines -> own line -> unresolved"}
++            "hltv_refusals": refusals,
++            "order": "No eligible Pinnacle line -> HLTV -> esportsbooks (bo3.gg relay) -> other lines -> own line -> unresolved",
++            "refusal_policy": ("each refused row is retried once after a backoff and then recorded as refused; "
++                               "later fixtures are still requested")}
+ 
+ 
+ def parse_bo3_match(m: dict, read_utc: str, api_url: str) -> dict | None:
+diff --git a/hotspawn/tests.py b/hotspawn/tests.py
+index 96c8d99..5f02acc 100644
+--- a/hotspawn/tests.py
++++ b/hotspawn/tests.py
+@@ -162,12 +162,18 @@ class ResearchFallback(unittest.TestCase):
+                 if meta["ok"]:
+                     self.assertEqual(scored[-1][1], picked["rank"], f"{mid}/{side}")
+ 
+-    def test_fallback_never_overrides_a_market(self):
++    def test_fallback_never_overrides_a_directional_market(self):
++        """Rung E must never sit on top of a priced market with a direction.
++        The single documented exception is an exact 50/50 tie, which must say so."""
+         for r in OPEN:
+-            if r.get("rung") == "E":
+-                self.assertNotIn("book", r, r["match_id"])
+-                self.assertNotIn("pm", r, r["match_id"])
+-                self.assertNotIn("relay", r, r["match_id"])
++            if r.get("rung") != "E":
++                continue
++            self.assertNotIn("book", r, r["match_id"])
++            self.assertNotIn("relay", r, r["match_id"])
++            pm = r.get("pm")
++            if pm is not None:
++                self.assertEqual(pm["p_a"], pm["p_b"], r["match_id"])
++                self.assertIn("MARKET_TIE_TIEBREAK", r["flags"], r["match_id"])
+ 
+     def test_pack_negative_price_checks_are_recorded(self):
+         for mid, ent in self.ENTRIES.items():
+@@ -551,17 +557,24 @@ class CollectorSafety(unittest.TestCase):
+         for key,value in [('discipline_id',2),('status','finished'),('team2',{})]:
+             self.assertIsNone(collect.parse_bo3_match({**self.bo3(),key:value},'2026-10-16T04:00:00Z','https://example.com/unit-only'))
+ 
+-    def test_hltv_refusal_circuit_breaker_preserves_unattempted_status(self):
++    def test_hltv_refusal_is_per_row_and_later_rows_are_still_requested(self):
++        """One refusal must not silence the HLTV rung for the remaining fixtures.
++
++        Each refused row is retried once (with the module backoff, pinned to 0 s here) and then
++        recorded as refused; the next fixture is still requested.
++        """
+         from unittest.mock import patch
+         fixtures=[{'match_id':str(i),'team_a':'Test Alpha','team_b':'Test Beta','competition':'CCT Europe Series 11',
+                    'lock_utc':'2099-10-16T09:54:00Z','start_utc':'2099-10-16T10:00:00Z'} for i in (1,2)]
+         rec={'status':403,'error':'HTTP 403','fetched_utc':'2026-10-16T04:00:00Z','sha256':'test','body':b''}
+-        with patch.object(collect,'OFFLINE',''),patch.object(collect,'http_get',return_value=rec) as get:
++        with patch.object(collect,'OFFLINE',''),patch.object(collect,'HLTV_BACKOFF_SEC',0), \
++                patch.object(collect,'http_get',return_value=rec) as get:
+             result=collect.collect_gap_research({'fixtures':fixtures},{'quotes':[]})
+-        self.assertEqual(get.call_count,1)
+-        self.assertEqual(result['hltv'][0]['status'],403)
+-        self.assertIsNone(result['hltv'][1]['status'])
+-        self.assertIn('not requested',result['hltv'][1]['error'])
++        self.assertEqual(get.call_count,4)  # two rows, one retry each
++        self.assertEqual([a['status'] for a in result['hltv']],[403,403])
++        self.assertTrue(all('refused this request twice' in (a['error'] or '') for a in result['hltv']))
++        self.assertEqual(result['hltv_refusals'],2)
++        self.assertNotIn('not requested',json.dumps(result['hltv']))
+ 
+ 
+ class EligibilityAndArchive(unittest.TestCase):
