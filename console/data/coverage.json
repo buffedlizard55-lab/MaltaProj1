@@ -1,20 +1,20 @@
 {
  "generated_for_utc": "2026-10-14T04:00:00Z",
- "data_as_of_utc": "2026-10-15T09:57:22Z",
- "newest_input_age_hours": -29.96,
+ "data_as_of_utc": "2026-10-15T23:15:39Z",
+ "newest_input_age_hours": -43.26,
  "max_input_age_hours": 6.0,
  "stale": false,
  "counts": {
-  "rows": 18,
-  "open": 18,
+  "rows": 22,
+  "open": 22,
   "locked": 0,
-  "open_with_pick": 15,
-  "open_market_basis": 17,
+  "open_with_pick": 16,
+  "open_market_basis": 15,
   "open_own_line_basis": 1,
   "open_research_basis": 0,
-  "open_without_pick": 3,
-  "flags": 32,
-  "rows_with_flags": 15
+  "open_without_pick": 6,
+  "flags": 47,
+  "rows_with_flags": 19
  },
  "inputs": [
   {
@@ -22,27 +22,27 @@
    "label": "Secondary-market feed (arena/a0bdf924)",
    "page": "feeds/index.html",
    "file": "feeds/data/fixtures.csv",
-   "captured_utc": "2026-10-15T06:23:32Z",
-   "sha256": "748a9a8971fa218ea999c2de91354f32a1d9a699fa71b0109009ca9f8715fc3c",
-   "rows": 15
+   "captured_utc": "2026-10-15T23:15:39Z",
+   "sha256": "8c482d738d69ea1b61dfc316960a598498d3d872f0cf1cf047bd88c066501321",
+   "rows": 22
   },
   {
    "key": "cs2",
    "label": "Line-analysis board (arena/a174d77f)",
    "page": "cs2/index.html",
    "file": "cs2/data/analysis.csv",
-   "captured_utc": "2026-10-15T09:57:22Z",
-   "sha256": "8107b7b04359b375915ac89ecefb99e0c20cf39926a0dec187993c7ec619ed95",
-   "rows": 78
+   "captured_utc": "2026-10-15T22:24:02Z",
+   "sha256": "a238769d3d19cccc1e1165eeda91f67e5334219845a7076c2dded6d2c8b13864",
+   "rows": 87
   },
   {
    "key": "executive",
    "label": "Executive board (arena/5545dbb8)",
    "page": "executive/index.html",
    "file": "executive/data/analysis.csv",
-   "captured_utc": "2026-10-15T08:53:21Z",
-   "sha256": "487b53ef50fd84f1b2cd496a110e6570cda9c1d5760f78feb5476224966c8377",
-   "rows": 80
+   "captured_utc": "2026-10-15T23:14:28Z",
+   "sha256": "ba8a4118b65f85e8e70d1c1283cebbfd3a34c4242f86ebe8bf76328bc9eb7c7a",
+   "rows": 86
   },
   {
    "key": "every",
@@ -78,9 +78,9 @@
   "claimed_sha256": "df96e7fc3cd91a2687ec08cac0128e50cc4e4e55346581679572e881d79ae61b",
   "integrity_ok": true,
   "anchors": {
-   "verified": 23,
-   "alias": 7,
-   "unverified": 3,
+   "verified": 11,
+   "alias": 3,
+   "unverified": 11,
    "absent": 0
   }
  },
