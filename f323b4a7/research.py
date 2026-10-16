@@ -117,7 +117,10 @@ NINEZ = {
     "players": ["franssj", "max", "HUASOPEEK", "meyern", "luchov"],
     "source": "https://www.hotspawn.com/matches/aurora-vs-9z-thunderpick-world-championship-2026-1080205",
     "read_utc": "2026-10-16T04:20:00Z",
-    "vrs": {"standing": 24, "points": 1543},
+    "vrs_source": "ValveSoftware/counter-strike_regional_standings live/2026/standings_global_2026_10_05.md",
+    "vrs_note": "9z are #17 on Valve's global standings (1543 points), #24 in the earlier HLTV-only "
+                "reading of the same standings was wrong and has been corrected to the Valve standing.",
+    "vrs": {"standing": 17, "points": 1543},
     "hltv_rank": 17,
 }
 
