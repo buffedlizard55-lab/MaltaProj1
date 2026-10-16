@@ -1,1 +1,10 @@
-[2026-10-15T22:26:13Z] model: 22 open CS2 fixtures · 6 with a market line · 18 with our own line · 19 with a pick · 184 flags
+Traceback (most recent call last):
+  File "/home/runner/work/MaltaProj1/MaltaProj1/cs2/model.py", line 497, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/home/runner/work/MaltaProj1/MaltaProj1/cs2/model.py", line 375, in main
+    flag_rows(flags, mid, "A-SNAPSHOT-AGE", age_days=vrs_age_d)
+  File "/home/runner/work/MaltaProj1/MaltaProj1/cs2/model.py", line 79, in flag_rows
+    text = FLAG_TEXT[code].format(**kw) if code in FLAG_TEXT else code
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyError: 'age'
