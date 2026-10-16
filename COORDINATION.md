@@ -5206,3 +5206,51 @@ Status: done. PR to main to follow.
 - PR: https://github.com/buffedlizard55-lab/MaltaProj1/pull/170 — merged (merge commit) into main at 2026-10-16T07:23:28Z.
 - Pages build: run 38866914295 — completed success.
 - No broken site; verification gates (a6f05f99/tests.py 26/26) green before merge.
+
+---
+
+## Session `arena/cbdf4cf3` — live official-source & line-by-line verification (2026-10-16)
+
+- **Session ID**: `arena/cbdf4cf3`
+- **Branch**: `arena/cbdf4cf3-maltaproj1` (fixed by Arena)
+- **Status**: `done` (PR to `main` and GitHub Pages verification to follow)
+- **Claimed & edited file scope** (strictly non-overlapping; 0 edits to files owned by other sessions):
+  - `COORDINATION.md`
+  - `reviews/cbdf4cf3-verification.md` ([line-by-line official-source verification report](reviews/cbdf4cf3-verification.md))
+
+### 1. Live Official-Source Verification Summary (`2026-10-16T07:24Z–07:45Z`)
+
+- **Hotspawn live surfaces (`2026-10-16T07:24Z`)**:
+  - [https://play.hotspawn.com/lobby](https://play.hotspawn.com/lobby) (`149` total multi-game fixtures; CS2 filter: `All tiers (95) B (38) C (54) S (3)` across `18` tournaments; `31` open upcoming CS2 match cards).
+  - [https://play.hotspawn.com/cs2-pickems](https://play.hotspawn.com/cs2-pickems) (`95` total CS2 fixtures: `38` B-tier, `54` C-tier, `3` S-tier; `31` open upcoming CS2 match cards; first locks `2026-10-16T07:54:00Z`).
+  - [https://play.hotspawn.com/thp-pickems](https://play.hotspawn.com/thp-pickems) (`11` open upcoming CS2 match cards across `Thunderpick World Championship 2026`, `Stake Pulse Beat III`, `Elisa BreakOut Series #2`, and `NODWIN Clutch Series #13`; `0` fixture IDs outside the `31` open set).
+  - Cross-checked `hotspawn/data/capture.json` (`2026-10-16T05:58:32Z`) against `cs2/data/capture.json` (`2026-10-16T07:12:01Z`, commit `389b1aa`) and live `play.hotspawn.com`: **0 CS2 fixture ID differences** across all `95` rows (`31` open, `3` recently locked [`1079626`, `1080204`, `1079628`], `61` stale June 2026 listings).
+- **TWC 2026 Day 1 (`2026-10-14`), Day 2 (`2026-10-15`), Aurora Roster Premise & Day 3 Deciders (`2026-10-16`)**:
+  - Verified all 8 completed TWC 2026 Group A & Group B series on [HLTV Event #8932](https://www.hltv.org/events/8932/thunderpick-world-championship-2026) (`2399384`–`2399387` and `2399408`–`2399411`), Aurora's 8 July 2026 rebuild signing `kyxsan`, `Jimpphat`, and coach `ash` ([HLTV News #45082](https://www.hltv.org/news/45082/official-aurora-complete-rebuild-with-kyxsan), ~3 months prior to TWC 2026 and matching Valve's `2026-10-05` five `woxic, XANTARES, Wicadia, Jimpphat, kyxsan`), and both live Day-3 BO3 LAN deciders:
+    - **`1080205` (`Aurora vs 9z`, Group A decider, lock `2026-10-16T13:54:00Z`)**: [HLTV #2399412](https://www.hltv.org/matches/2399412/aurora-vs-9z-thunderpick-world-championship-2026) confirms `BO3 (LAN)` and 5-man lineups (`Aurora`: `woxic, XANTARES, Wicadia, Jimpphat, kyxsan`, HLTV #6; `9z`: `dgt, max, meyern, luchov, HUASOPEEK`, HLTV #17). Primary Rung A Pinnacle de-vigged probability: **Aurora `67.00%` / 9z `33.00%`** (Polymarket `69.50% / 30.50%`; Valve own line `61.25% / 38.75%`; Hotspawn crowd ownership `90% / 10%` across `20` picks, never used as probability). Headline pick: **Aurora** (`67.00%`); optional chasing contrarian play: **9z** (`33.00%` vs `10%` crowd, `2.38` pts EV cost on a 7-pt S-tier match).
+    - **`1081775` (`BetBoom vs Legacy`, Group B decider, lock `2026-10-16T16:54:00Z`)**: [HLTV #2399413](https://www.hltv.org/matches/2399413/betboom-vs-legacy-thunderpick-world-championship-2026) confirms `BO3 (LAN)` and 5-man lineups (`BETBOOM`: `Magnojez, Boombl4, d1Ledez, zorte, S1ren`, HLTV #14; `Legacy`: `arT, dumau, latto, n1ssim, try`, HLTV #7). Primary Rung A Pinnacle de-vigged probability: **BetBoom `38.79%` / Legacy `61.21%`** (Polymarket `37.50% / 62.50%`; Valve own line `29.18% / 70.82%`; crowd sample `7` picks, `CROWD_MISSING`). Headline & leaderboard pick: **Legacy** (`61.21%`).
+- **All 31 Open CS2 Matches & Research Ladder (`29` resolved, `2` unresolved left blank)**:
+  - Verified all `31` open fixtures in [reviews/cbdf4cf3-verification.md](reviews/cbdf4cf3-verification.md) (`12` Rung A Pinnacle de-vigged, `15` Rung B secondary market [`9` Polymarket, `6` named-book relay via bo3.gg], `2` Rung C Valve own line [`1079171` GenOne vs Butterfly, `1079173` BakS vs Fire Flux], `2` Rung D unresolved left blank [`1079170` BET-M vs Just Players, `1081126` Banda chuya vs Enjoy]).
+  - Independently fetched live HLTV match listings ([https://www.hltv.org/matches](https://www.hltv.org/matches) and [https://www.hltv.org/events/9456/matches](https://www.hltv.org/events/9456/matches)) and individual HLTV match pages (`2399087`, `2399477`, `2399471`, `2399088`, `2399090`, `2399412`, `2399413`) to confirm direct HLTV match URLs and `BO1`/`BO3` series formats for all `31` open fixtures (including the `21` open fixtures that previously had only event-level or secondary format links).
+
+### 2. Cross-Session Review Items & Non-Overlapping Scope Requests (`CB-01`–`CB-05`)
+
+Per `COORDINATION.md` rules (*"If a task requires changing a file owned by another session, log the request in COORDINATION.md instead of editing it"*), the following findings are logged for the owning board sessions without modifying their files:
+
+1. **`CB-01` (`needs review` — target: `f323b4a7/model.py`)**: In Valve's `2026-10-05` Global Standings ([standings_global_2026_10_05.md](https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md)), two teams on the open slate appear twice under identical names with different rosters: `Just Players` at `#118` (`974` pts: `bl1x1, h1te, sm3t, sstiNiX, wh1teout` — 4/5 match to [HLTV #2399087](https://www.hltv.org/matches/2399087/bet-m-vs-just-players-nodwin-clutch-series-13)) and `#347` (`485` pts: `get high, k1t, Maestro, m0t, yng`), and `Banda Chuya` at `#165` (`801` pts: `AdrieN, ezox, maaryy, Showk, tomiko` — 5/5 match to [HLTV #2399477](https://www.hltv.org/matches/2399477/banda-chuya-vs-enjoy-cct-2026-europe-series-12-closed-qualifier)) and `#373` (`402` pts: `deffen, Djon8, kwezz, sa1nt, zfR`). While the primary board (`hotspawn/model.py` `unique()`) properly withholds both own lines and leaves `1079170` and `1081126` blank (`UNRESOLVED`), `f323b4a7/model.py` overwrites the higher-ranked active roster with the lower-ranked duplicate in a dict comprehension.
+2. **`CB-02` (`needs review` — target: `hotspawn/research/hltv_links.json` & `hotspawn/research/notes.json`)**: All 21 open fixtures that lacked direct HLTV match URLs in `hotspawn/research/hltv_links.json` now have verified HLTV match URLs and `BO1`/`BO3` formats (tabulated in Section 3 of [reviews/cbdf4cf3-verification.md](reviews/cbdf4cf3-verification.md)). Note that on `1081120` (`mellren vs Privateer`, [HLTV #2399471](https://www.hltv.org/matches/2399471/mellren-vs-privateer-cct-2026-europe-series-12-closed-qualifier)), HLTV confirms `BO3` and lists `Privateer` with `Frazehh, Prime, moz, M1n1maL, Amqn` (`3/5` overlap vs Valve `#271` `Ariant0, JAUSTERE`), so adding `format: "BO3"` to `1081120` should be paired with a `VRS_ROSTER_OUTDATED` note in `hotspawn/research/notes.json` so the own line stays withheld while Polymarket (`87.00% / 13.00%`) supplies the pick.
+3. **`CB-03` (`needs review` — target: `hotspawn/research/notes.json`)**: On `1079171` (`GenOne vs Butterfly`, [HLTV #2399088](https://www.hltv.org/matches/2399088/genone-vs-butterfly-nodwin-clutch-series-13), `BO3`), `Butterfly` matches Valve `#88` (`1066` pts) `5/5`, whereas `GenOne` lists `SIXER, Djoko, Brooxsy, Keoz, bL4SEZ` (`4/5` match to Valve `#66` `1150` pts, with `SIXER` in place of `Chucky`).
+4. **`CB-04` (`needs review` — target: `hotspawn/research/hltv_links.json`)**: On `1079173` (`BakS vs Fire Flux`, [HLTV #2399090](https://www.hltv.org/matches/2399090/baks-vs-fire-flux-nodwin-clutch-series-13), `BO3`), both `BAKS` (`#100`, `1025` pts) and `Fire Flux` (`#131`, `922` pts) match Valve's `2026-10-05` five `5/5`, upgrading `1079173` from secondary `bo3.gg` format metadata to primary HLTV confirmation.
+5. **`CB-05` (`needs review` — target: `hotspawn/build.py` & `cs2/data/model_diag.log`)**: Minor template fallbacks in `hotspawn/build.py` (`d.get("read_utc") or d.get("read_date_utc")` on `twc2026.json`, circuit-breaker skipped `research_attempt` rendering, and `f.get("summary") or f.get("limitation")` on `1080288`/`1080290`) and stale-fixture fallback URL in `cs2/data/model_diag.log` (`1052746`).
+
+### 3. Test & Verification Gate Results
+
+All test and verification suites passed with zero errors:
+- `python3 hotspawn/verify.py` → `row audit: 95 / 95 source fixtures; 0 errors`
+- `python3 hotspawn/tests.py` → `Ran 68 tests ... OK`
+- `python3 f323b4a7/tests.py` → `all invariants passed (8 pages, 31 rows)`
+- `python3 -m unittest discover -s tests -p "test_*.py"` → `Ran 427 tests ... OK` (timestamp-only churn in `livelines/` and `summary/` reverted before commit)
+- `python3 tests/audit_site.py` → `ALL QA CHECKS PASSED SUCCESSFULLY ACROSS ROOT AND DOCS/!`
+- `python3 briefing/linkcheck.py` → `pages: 8  internal links: 168  external links: 269  0 broken links`
+- Table-row link audit on `reviews/cbdf4cf3-verification.md` → `183 / 183` data table rows have valid official source links.
+
