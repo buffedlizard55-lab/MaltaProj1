@@ -5317,7 +5317,10 @@ All test and verification suites passed with zero errors:
 
 ## Session `arena/4e8d38ae` — day-4 evidence gap and snapshot audit (2026-10-16)
 
-- **Status**: in progress
+- **Status**: needs review (snapshot gap documented; no live refresh or site integration performed).
 - **Claimed scope**: `COORDINATION.md`, `reviews/4e8d38ae-day4-coverage-audit.md` only.
 - **Purpose**: audit whether the current primary snapshot includes TWC day-3 results and day-4 fixtures/results, and verify existing primary-board checks without modifying integration-owned site/data files.
 - **Boundary**: root landing, `hotspawn/index.html`, `hotspawn/twc.html`, shared match data, and navigation are integration-owned; no edits to those files in this session. Record any requested integration change here instead.
+- **Evidence**: the primary capture/summary is timestamped 2026-10-16 13:23:10Z/13:23:27Z; it contains the two day-3 deciders but no day-3 result fields or day-4 TWC rows. Day 2 is 2/3 for archived picks, with Aurora–NiP explicitly unarchived and ungraded. Report includes linked HLTV, Pinnacle, Polymarket, Hotspawn and Valve source records, plus the exact checks and the mobile-browser limitation.
+- **Verification**: `hotspawn/verify.py` 100/100 rows, 0 errors; `hotspawn/tests.py` 75 passed; `tests/audit_site.py` passed; `hotspawn/mobile_check.py` reported browser unavailable, so no new real-browser mobile claim.
+- **Irregularity / integration request**: prominently label the TWC day-3/day-4 coverage gap in the primary executive summary and Flagged for Review page. Do not infer day-3 winners, day-4 participants, or fresh odds from this snapshot. This overlaps the broader TWC day-1–4 work visible in GitHub Actions run `38955501835` (`arena/3a9d6484-maltaproj1`); keep this contribution limited to a source-linked snapshot audit and pass its findings to that integration owner rather than editing shared pages.
