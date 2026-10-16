@@ -33,6 +33,7 @@ import json
 import os
 import re
 import sys
+from urllib.parse import urlencode, quote
 from datetime import timedelta
 from html import unescape
 from pathlib import Path
@@ -182,6 +183,7 @@ def read_state(page: str, url: str) -> tuple[dict | None, dict, str]:
 
 def collect_hotspawn() -> dict:
     fixtures: dict[str, dict] = {}
+    conflicts = []
     pages, week = [], None
     for page, url in HOTSPAWN_PAGES:
         state, rec, html = read_state(page, url)
@@ -190,6 +192,7 @@ def collect_hotspawn() -> dict:
             nodes: list[dict] = []
             walk_fixtures(state, nodes)
             rec["state_rows"] = len(nodes)
+            rec["cs2_ids"] = sorted({str(n.get("id")) for n in nodes if n.get("sport_alias") == "cs2"})
             week = week or find_week(state)
             for node in nodes:
                 row = fixture_row(node, page, url, rec["read_utc"], links)
@@ -197,6 +200,10 @@ def collect_hotspawn() -> dict:
                     continue
                 known = fixtures.get(row["match_id"])
                 if known:
+                    for field in ("competition_id", "team_a_id", "team_b_id", "team_a", "team_b", "start_utc", "lock_utc"):
+                        if known.get(field) != row.get(field):
+                            conflicts.append({"match_id": row["match_id"], "field": field,
+                                              "first": known.get(field), "later": row.get(field), "page": page})
                     if page not in known["pages"]:
                         known["pages"].append(page)
                     for key, val in row.items():
@@ -215,7 +222,7 @@ def collect_hotspawn() -> dict:
                                "minRank": p.get("minRank"), "maxRank": p.get("maxRank")}
                               for p in (week.get("prizes") or []) if isinstance(p, dict)]
     return {"pages": pages, "fixtures": rows, "week": week_out,
-            "complete": ok == len(pages)}
+            "complete": ok == len(pages) and not conflicts, "conflicts": conflicts}
 
 
 # -------------------------------------------------------------------------------- Pinnacle
@@ -269,7 +276,7 @@ def collect_pinnacle() -> dict:
         da, db = american_to_decimal(prices["home"]), american_to_decimal(prices["away"])
         if not (da and db):
             continue
-        out["quotes"].append({**ev, "source": "Pinnacle", "kind": "bookmaker",
+        out["quotes"].append({**ev, "source": "Pinnacle", "kind": "bookmaker", "market_scope": "match_winner",
                               "american_a": prices["home"], "american_b": prices["away"],
                               "odds_a": da, "odds_b": db, "read_utc": out["read_utc"],
                               "source_url": PIN_PAGE, "api_url": PIN_MARKETS})
@@ -348,7 +355,7 @@ def collect_polymarket() -> dict:
     else:
         markets = _pm_markets(False, iso(now_utc() - timedelta(days=1)), out)
     for m in markets:
-        if not isinstance(m, dict) or m.get("closed"):
+        if not isinstance(m, dict) or m.get("closed") or m.get("active") is False or m.get("acceptingOrders") is False:
             continue
         parsed = _pm_match(m)
         if not parsed:
@@ -361,6 +368,8 @@ def collect_polymarket() -> dict:
             "format": mm.group("fmt").upper(), "event": mm.group("event").strip(), "question": m.get("question"),
             "start_utc": iso(parse_iso(m.get("gameStartTime"))), "end_utc": iso(parse_iso(m.get("endDate"))),
             "volume": m.get("volumeNum") or m.get("volume"), "slug": slug,
+            "market_scope": "match_winner", "active": m.get("active"), "closed": m.get("closed"),
+            "accepting_orders": m.get("acceptingOrders"), "source_updated_utc": m.get("updatedAt"),
             "source_url": f"https://polymarket.com/event/{slug}" if slug else "https://polymarket.com/",
             "read_utc": out["read_utc"]})
     if not OFFLINE:
@@ -516,19 +525,112 @@ def collect_hltv(previous: dict | None) -> dict:
     return out
 
 
+# --------------------------------------------------------- Gap-only research: HLTV then esportsbooks
+BO3_API = "https://api.bo3.gg/api/v1/matches"
+
+
+def collect_gap_research(hotspawn: dict, pinnacle: dict) -> dict:
+    """Only non-featured rows incur extra research. A refusal is a recorded limit, never a result."""
+    from common import Aliases, RESEARCH
+    from evidence import select_quote
+    aliases = Aliases()
+    fixtures = hotspawn.get("fixtures", [])
+    ref = now_iso()
+    gaps = [f for f in fixtures if parse_iso(f.get("lock_utc")) and parse_iso(f["lock_utc"]) > now_utc()
+            and not select_quote(f, pinnacle.get("quotes", []), aliases, ref, fixtures)[0]]
+    links = (read_json(RESEARCH / "hltv_links.json", {}) or {}).get("fixtures", {})
+    attempts, blocked = [], False
+    for f in gaps:
+        known = links.get(str(f["match_id"]), {})
+        url = known.get("hltv") or "https://www.hltv.org/search?query=" + quote(f["team_a"] + " " + f["team_b"])
+        entry = {"match_id": f["match_id"], "source": "HLTV", "url": url, "read_utc": None,
+                 "status": None, "format": None, "error": None}
+        if OFFLINE:
+            entry["error"] = "offline: live research not attempted"
+        elif blocked:
+            entry["error"] = "not requested: HLTV refused the preceding request; circuit breaker respects the refusal"
+        else:
+            got = http_get(url, timeout=20, retries=0)
+            entry.update(status=got["status"], read_utc=got["fetched_utc"], error=got["error"], sha256=got["sha256"])
+            blocked = got["status"] in (403, 429)
+            if got["status"] == 200 and "/matches/" in url:
+                text = unescape(re.sub(r"<[^>]*>", " ", got["body"].decode("utf-8", "replace")))
+                m = re.search(r"Best of ([1357])\s*\((?:LAN|Online)\)", text, re.I)
+                if m:
+                    entry["format"] = "BO" + m.group(1)
+        attempts.append(entry)
+    return {"target_match_ids": [f["match_id"] for f in gaps], "hltv": attempts,
+            "order": "No eligible Pinnacle line -> HLTV -> esportsbooks (bo3.gg relay) -> other lines -> own line -> unresolved"}
+
+
+def parse_bo3_match(m: dict, read_utc: str, api_url: str) -> dict | None:
+    if m.get("status") != "upcoming" or m.get("discipline_id") != 1:
+        return None
+    a, b = m.get("team1") or {}, m.get("team2") or {}
+    if not a.get("name") or not b.get("name"):
+        return None
+    row = {"team_a": a["name"], "team_b": b["name"], "tournament": (m.get("tournament") or {}).get("name"),
+           "start_utc": iso(parse_iso(m.get("start_date"))), "best_of": m.get("bo_type"), "bo3_id": m.get("id"),
+           "read_utc": read_utc, "source_url": "https://bo3.gg/matches/" + m["slug"] if m.get("slug") else None,
+           "api_url": api_url, "source": "bo3.gg", "kind": "bookmaker_relayed", "quote": None}
+    bu = m.get("bet_updates") or {}
+    q1, q2 = bu.get("team_1") or {}, bu.get("team_2") or {}
+    if bu.get("provider") and q1.get("active") is True and q2.get("active") is True:
+        from common import devig_two_way, Aliases
+        al = Aliases()
+        if al.key(q1.get("name", "")) == al.key(a["name"]) and al.key(q2.get("name", "")) == al.key(b["name"]) \
+                and devig_two_way(q1.get("coeff"), q2.get("coeff")):
+            row["quote"] = {"odds_a": q1["coeff"], "odds_b": q2["coeff"], "provider": bu["provider"],
+                            "provider_url": bu.get("path"), "market_scope": "match_winner"}
+    return row
+
+
+def collect_esportsbooks(gaps: dict) -> dict:
+    """Record bo3.gg's match-level betting block. Relayed, never presented as primary-book verification."""
+    out = {"status": "not requested", "matches": [], "quotes": [], "requests": []}
+    if not gaps.get("target_match_ids") or OFFLINE:
+        return out
+    for offset in range(0, 1000, 100):
+        url = BO3_API + "?" + urlencode({"page[offset]": offset, "page[limit]": 100, "sort": "start_date",
+              "filter[matches.status][in]": "upcoming", "filter[matches.discipline_id][eq]": 1, "with": "teams,tournament"})
+        data, got = get_json(url, timeout=30, retries=0)
+        out["requests"].append({"url": url, "status": got["status"], "read_utc": got["fetched_utc"], "error": got["error"]})
+        if not isinstance(data, dict) or not isinstance(data.get("results"), list):
+            out["status"] = "unavailable" if not out["matches"] else "partial"
+            break
+        out["status"] = "observed"
+        for m in data["results"]:
+            if not isinstance(m, dict):
+                continue
+            row = parse_bo3_match(m, got["fetched_utc"], url)
+            if row:
+                out["matches"].append(row)
+                if row["quote"]:
+                    out["quotes"].append({**{k:v for k,v in row.items() if k != "quote"}, **row["quote"]})
+        if len(data["results"]) < 100:
+            break
+    log(f"gap research: {len(out['matches'])} esports fixtures, {len(out['quotes'])} relayed prices")
+    return out
+
+
 # ----------------------------------------------------------------------------------- main
 def main() -> int:
     ensure_dirs()
     previous = read_json(CAPTURE, {}) or {}
     started = now_iso()
     hotspawn = collect_hotspawn()
+    pinnacle = collect_pinnacle()
+    gap_research = collect_gap_research(hotspawn, pinnacle)
+    esportsbooks = collect_esportsbooks(gap_research)
     capture = {
         "schema": "hotspawn-board/1",
         "session": SESSION,
         "started_utc": started,
         "offline": bool(OFFLINE),
         "hotspawn": hotspawn,
-        "pinnacle": collect_pinnacle(),
+        "pinnacle": pinnacle,
+        "gap_research": gap_research,
+        "esportsbooks": esportsbooks,
         "polymarket": collect_polymarket(),
         "vrs": collect_vrs(),
         "hltv": collect_hltv((previous.get("hltv") if isinstance(previous, dict) else None)),
