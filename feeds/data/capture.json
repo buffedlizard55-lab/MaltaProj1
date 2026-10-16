@@ -1,61 +1,61 @@
 {
  "schema": 1,
  "session": "arena/a0bdf924",
- "started_utc": "2026-10-16T01:37:47Z",
- "generated_utc": "2026-10-16T01:37:55Z",
+ "started_utc": "2026-10-16T06:20:13Z",
+ "generated_utc": "2026-10-16T06:20:22Z",
  "user_agent": "Mozilla/5.0 (compatible; MaltaProj1-feeds/1.0; +https://github.com/buffedlizard55-lab/MaltaProj1/tree/main/feeds)",
  "hotspawn": {
   "pages": [
    {
     "url": "https://play.hotspawn.com/cs2-pickems",
     "status": 200,
-    "bytes": 349348,
-    "sha256": "9fb2fd6f98755642f39e800b8892921a4afaf8e6c9a3e7826b3c4f23ace496e3",
+    "bytes": 436189,
+    "sha256": "c2eea6c91fe40ad446749389ad7ff348548cbf379865549578e52d038838d1db",
     "error": null,
-    "fetched_utc": "2026-10-16T01:37:47Z",
+    "fetched_utc": "2026-10-16T06:20:13Z",
     "page": "cs2-pickems",
-    "cs2_rows": 86
+    "cs2_rows": 95
    },
    {
     "url": "https://play.hotspawn.com/lobby",
     "status": 200,
-    "bytes": 437389,
-    "sha256": "538edee1a70776942505009425d944ea4629f8bb10aa8ae9cc1b646a08ffe942",
+    "bytes": 437394,
+    "sha256": "ef439c942cf88e3abf8f599f2426e5c46b4b34584085a855b6acfa2ba6d34d82",
     "error": null,
-    "fetched_utc": "2026-10-16T01:37:48Z",
+    "fetched_utc": "2026-10-16T06:20:15Z",
     "page": "lobby",
     "cs2_rows": 95
    },
    {
     "url": "https://play.hotspawn.com/thp-pickems",
     "status": 200,
-    "bytes": 166856,
-    "sha256": "d58bfbcbcf7b10fe17e7571d124b53e55a03b327821b743864f0ae2f78a66eae",
+    "bytes": 197284,
+    "sha256": "751d4658c16641657d4691116eefd0a5269251a0820e1a41dcd1212abea99693",
     "error": null,
-    "fetched_utc": "2026-10-16T01:37:50Z",
+    "fetched_utc": "2026-10-16T06:20:17Z",
     "page": "thp-pickems",
-    "cs2_rows": 8
+    "cs2_rows": 11
    }
   ],
   "cs2_fixtures": 95,
   "fallback": null,
-  "raw_sha256": "62d3352e3a0b820925b2f31e3490c01ecd07e49448b5ca92e33c0bb883dd4e0c"
+  "raw_sha256": "ec635958f093e2b54dfa7eee54668437d8ab29abe05324b3b0ca9e71a151e56f"
  },
  "polymarket": {
   "status": "observed",
   "series_id": "10310",
   "requests": [
    {
-    "url": "https://gamma-api.polymarket.com/events?series_id=10310&closed=false&limit=100&offset=0&end_date_min=2026-10-15T13%3A37%3A51Z",
+    "url": "https://gamma-api.polymarket.com/events?series_id=10310&closed=false&limit=100&offset=0&end_date_min=2026-10-15T18%3A20%3A18Z",
     "status": 200,
-    "bytes": 2421869,
-    "sha256": "bb74ff33203b57e6d09393f71492f0993dcdc9498879b261f1582f73f7fc12e4",
+    "bytes": 2463198,
+    "sha256": "ece97125c54858530e2186e0999fa4464b1c50a74beb763e198e58384db610b3",
     "error": null,
-    "fetched_utc": "2026-10-16T01:37:51Z"
+    "fetched_utc": "2026-10-16T06:20:18Z"
    }
   ],
-  "events": 70,
-  "raw_sha256": "0eef1a000d08acc219404782a3cd1e70c03967e0637608657955b9cbc85830a8"
+  "events": 68,
+  "raw_sha256": "78836c705d7488b1abda5925d5f3251500431145a9d65d4f41f4750ebb91905e"
  },
  "bo3": {
   "status": "observed",
@@ -63,59 +63,59 @@
    {
     "url": "https://api.bo3.gg/api/v1/matches?page%5Boffset%5D=0&page%5Blimit%5D=100&sort=start_date&filter%5Bmatches.status%5D%5Bin%5D=upcoming&filter%5Bmatches.discipline_id%5D%5Beq%5D=1&with=teams%2Ctournament",
     "status": 200,
-    "bytes": 223564,
-    "sha256": "ae334d8b3d34b5bf5c2540dda902f1e851b247b1169999d59cc3b4a9159d9c6a",
+    "bytes": 224911,
+    "sha256": "edc73e0cb90f70ae6d9c32e9990c4599be6d843bc903bdd07daed3a10e877477",
     "error": null,
-    "fetched_utc": "2026-10-16T01:37:51Z"
+    "fetched_utc": "2026-10-16T06:20:19Z"
    },
    {
     "url": "https://api.bo3.gg/api/v1/matches?page%5Boffset%5D=100&page%5Blimit%5D=100&sort=start_date&filter%5Bmatches.status%5D%5Bin%5D=upcoming&filter%5Bmatches.discipline_id%5D%5Beq%5D=1&with=teams%2Ctournament",
     "status": 200,
-    "bytes": 197150,
-    "sha256": "c405f9eb413190c46e1845de6e8c8d767cf5c6cfd0440b3291cbf0234c0e1737",
+    "bytes": 196457,
+    "sha256": "22b16701016ab86e53b839823242e69bc93e90923e46ab3657ec9b229d9fb617",
     "error": null,
-    "fetched_utc": "2026-10-16T01:37:53Z"
+    "fetched_utc": "2026-10-16T06:20:19Z"
    },
    {
     "url": "https://api.bo3.gg/api/v1/matches?page%5Boffset%5D=200&page%5Blimit%5D=100&sort=start_date&filter%5Bmatches.status%5D%5Bin%5D=upcoming&filter%5Bmatches.discipline_id%5D%5Beq%5D=1&with=teams%2Ctournament",
     "status": 200,
-    "bytes": 185659,
-    "sha256": "d6a90d6f616c3aa86f5ec14110cfd5b4d0b9015e420cc23c6c0970efa8a124df",
+    "bytes": 185674,
+    "sha256": "4a794a372c2322a7057e3e249110a8ee323bddb96718d577c1f040d6aef89822",
     "error": null,
-    "fetched_utc": "2026-10-16T01:37:53Z"
+    "fetched_utc": "2026-10-16T06:20:20Z"
    },
    {
     "url": "https://api.bo3.gg/api/v1/matches?page%5Boffset%5D=300&page%5Blimit%5D=100&sort=start_date&filter%5Bmatches.status%5D%5Bin%5D=upcoming&filter%5Bmatches.discipline_id%5D%5Beq%5D=1&with=teams%2Ctournament",
     "status": 200,
-    "bytes": 104192,
-    "sha256": "c48d46be9ad1b29b35631513b8300bed20c8191fe1e6878ec451db137e751103",
+    "bytes": 100319,
+    "sha256": "889034866676dd9e32f8b0c46268471f07490a9dc3a0cb92b90a933a7ca45f2e",
     "error": null,
-    "fetched_utc": "2026-10-16T01:37:54Z"
+    "fetched_utc": "2026-10-16T06:20:21Z"
    }
   ],
-  "api_total": 354,
-  "matches": 354,
-  "raw_sha256": "747de4c61bef8b430ac4f010a76214244ab816a63dadc74d114e113478279d6a"
+  "api_total": 352,
+  "matches": 352,
+  "raw_sha256": "840abaf9950ecf13a625edc4e164324608d74f19bc042f3a2db6e8d66365eef3"
  },
  "probes": [
   {
    "source": "OddsDigger e-sports index",
    "url": "https://oddsdigger.com/e-sports",
    "status": 200,
-   "bytes": 268499,
-   "sha256": "c5f2f57f9e26b148de8bc4b085b2b261aea5b2f0da58b797f612db8996cd8168",
+   "bytes": 268582,
+   "sha256": "9d53cbcf5cb92281d41b64e5515dd5c00746c426e2f5e3ef1c1d69987cfcfefb",
    "error": null,
-   "fetched_utc": "2026-10-16T01:37:54Z",
-   "head": "<!DOCTYPE html>\n<html lang=\"en-GB\">\n    <head>\n                        <meta name=\"csrf-param\" content=\"_csrf\">\n<meta name=\"csrf-token\" content=\"n3Nph2cKCsfxWky"
+   "fetched_utc": "2026-10-16T06:20:21Z",
+   "head": "<!DOCTYPE html>\n<html lang=\"en-GB\">\n    <head>\n                        <meta name=\"csrf-param\" content=\"_csrf\">\n<meta name=\"csrf-token\" content=\"i5d36RuwThpVmdw"
   },
   {
    "source": "bookmaker page relayed by bo3.gg (thunderpick)",
-   "url": "https://thunderpick.io/match/2828217",
+   "url": "https://thunderpick.io/match/2807497",
    "status": 403,
    "bytes": 0,
    "sha256": "",
    "error": "HTTPError 403 server=cloudflare title='Just a moment...'",
-   "fetched_utc": "2026-10-16T01:37:55Z",
+   "fetched_utc": "2026-10-16T06:20:22Z",
    "head": ""
   }
  ]
