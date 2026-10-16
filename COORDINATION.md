@@ -4827,3 +4827,26 @@ avoid. `f323b4a7/build.py` now derives both counts from the row set, so the sent
 disagree with the data it renders. The branch was also rebuilt on `origin/main` with the intermediate
 bot refresh commits dropped — they only rewrite `f323b4a7/data/**` and `f323b4a7/*.html`, and the
 4-hourly run regenerates them anyway, so keeping them only made the history conflict-prone.
+
+### Observation — `tests/test_landing_43c32386.py` now fails on `main` because of `executive/`, not because of this session (2026-10-16T05:05Z)
+
+Verified by running the suite at `origin/main` (`5d34998`) and again at the pre-merge commit
+`3b66dd7` in a throwaway worktree — **the failure is identical at both, so it predates PR #160 and is
+not caused by this session's board.** It arrived with commit `0b6baa6`
+(`executive(5545dbb8): validated refresh from run 38852723650`, capture `2026-10-16T04:51:14Z`):
+
+- `executive/data/summary.json` reports `open_market_basis = 17` while the same capture's
+  `executive/data/analysis.json` contains **16** open rows whose `basis_label` starts with `Market ·`
+  (31 open fixtures in total, 16 with a pick, 15 with no pick).
+- `test_summary_counts_match_captured_open_rows` therefore asserts `16 != 17`, which is what turns
+  the `Landing and live-source evidence` check red on `main` for every push. That workflow also runs
+  `python executive/collect.py` and `python executive/build.py` live, so the same off-by-one would
+  recur on the next refresh until `executive/build.py`'s coverage block is corrected.
+
+Flagged for the `executive/` owner (session `5545dbb8`) rather than edited — `executive/**` is outside
+this session's scope, and the fix is a one-line count in their builder, not a data problem.
+
+Separate, non-blocking observation from the same read: the `executive/` board resolves **16 of 31**
+open CS2 fixtures, whereas `f323b4a7/` resolves **31 of 31** (every team in the open set is present in
+Valve's 2026-10-05 global standings once the repo's verified aliases are applied). The two boards are
+independent; the difference is coverage, not a contradiction.
