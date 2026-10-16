@@ -1,0 +1,61 @@
+name: Canonical release assurance (4c4b0777)
+on:
+  push:
+    branches: [arena/4c4b0777-maltaproj1]
+    paths:
+      - '.github/workflows/release-4c4b0777.yml'
+  pull_request:
+    paths:
+      - 'scripts/audit_4c4b0777.py'
+      - 'tests/test_4c4b0777.py'
+      - 'hotspawn/release-audit.html'
+permissions:
+  contents: read
+jobs:
+  live-refresh:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Official Valve data
+        run: |
+          git clone -q --depth 1 https://github.com/ValveSoftware/counter-strike_regional_standings "$RUNNER_TEMP/vrs"
+          echo "VRS_REPO_DIR=$RUNNER_TEMP/vrs" >> "$GITHUB_ENV"
+          echo "VRS_COMMIT=$(git -C "$RUNNER_TEMP/vrs" rev-parse HEAD)" >> "$GITHUB_ENV"
+      - name: Collect and rebuild using the unchanged canonical pipeline
+        run: |
+          python hotspawn/collect.py
+          python hotspawn/calibrate.py
+          python hotspawn/model.py
+          python hotspawn/build.py
+          python hotspawn/tests.py
+      - name: Phone check
+        run: |
+          pip install playwright==1.55.0
+          python -m playwright install --with-deps chromium
+          python hotspawn/mobile_check.py
+          python - <<'PY'
+          import json
+          assert json.load(open('hotspawn/data/mobile_check.json'))['status'] == 'passed', 'Phone check must not silently skip'
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: canonical-refresh-4c4b0777
+          path: |
+            hotspawn/data/
+            hotspawn/*.html
+          retention-days: 7
+  audit:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m unittest discover -s tests -p 'test_4c4b0777.py' -v
+      - run: python hotspawn/tests.py

@@ -4550,3 +4550,8 @@ and `hotspawn/*.html` using the owners' unchanged code. This is integration refr
 model estimates, quote freshness and unresolved research. Do not merge unrelated PR #150.
 Initial claim push: remote branch did not yet exist; pulled/rebased origin/main before first push;
 no conflicts, branch created successfully.
+
+4c4b0777 release note: `gh workflow run` returns HTTP 403 (workflow-dispatch permission unavailable).
+Do not request credentials. Add scoped `.github/workflows/release-4c4b0777.yml` for push/PR verification
+and a branch-only live-refresh artifact (no automated git writes); use the existing scheduled workflow
+unchanged after merge. This is ordinary CI, not a second scheduled collector.
