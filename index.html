@@ -366,10 +366,12 @@
 
       function render(d) {
         var rung = d.open_rung || {};
+        var ownLines = (rung.C || 0) + (rung.E || 0);
+        var researched = (rung.B || 0) + ownLines;
         setText("open-count", d.open);
         setText("pick-count", d.open_with_pick);
         setText("market-count", rung.A || 0);
-        setText("own-count", (rung.B || 0) + (rung.C || 0));
+        setText("own-count", researched);
         var h = ageHours(d.reference_utc);
         if (h === null) {
           status.textContent = "Snapshot time unavailable; check timestamps on the picks page.";
@@ -381,7 +383,7 @@
           status.textContent = "Hotspawn read " + utcText(d.reference_utc) + " (" + (h < 1 ? Math.round(h * 60) + " min" : h.toFixed(1) + " h") + " ago)" + (d.hotspawn_complete === false ? " — Hotspawn read incomplete, new matches may be missing." : ". All three Hotspawn CS2 pages were read.");
           status.className = d.hotspawn_complete === false ? "snapshot-status warning" : "snapshot-status";
         }
-        unresolved.textContent = ((rung.B || 0) + (rung.C || 0)) + " open match(es) had no Pinnacle line and were resolved via the research ladder (" + (rung.B || 0) + " by secondary outside markets, " + (rung.C || 0) + " by our own line); " + (d.open_unresolved || 0) + " have no pick. Limits below.";
+        unresolved.textContent = researched + " open match(es) had no Pinnacle line and were resolved via the research ladder (" + (rung.B || 0) + " by secondary outside markets, " + ownLines + " by our own line (strict or roster-research)); " + (d.open_unresolved || 0) + " have no pick. Limits below.";
         while (list.firstChild) list.removeChild(list.firstChild);
         var now = Date.now();
         (d.next || []).forEach(function (m) {

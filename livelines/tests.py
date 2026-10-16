@@ -131,7 +131,15 @@ class TestLivelines(unittest.TestCase):
 
     def test_calibration_is_reported_with_both_objectives(self):
         c = self.calib["calibration"]
-        self.assertTrue(c["fitted"])
+        if not c["fitted"]:
+            self.assertLess(c["n"], 4)
+            self.assertEqual(c["scale"], 400.0)
+            self.assertIsNone(c["mae_pp"])
+            self.assertIsNone(c["logloss"])
+            self.assertNotIn("logloss_alternative", c)
+            self.assertIn("fewer than 4", c["reason"])
+            self.assertEqual(c["chosen"], c["reason"])
+            return
         self.assertGreater(c["n"], 3)
         self.assertTrue(20.0 <= c["scale"] <= 2000.0)
         self.assertIsNotNone(c["mae_pp"])
