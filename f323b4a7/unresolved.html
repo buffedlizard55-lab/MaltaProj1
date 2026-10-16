@@ -13,7 +13,7 @@
 <header class="top">
   <div class="wrap">
     <a class="brand" href="index.html">Hotspawn CS2 &middot; picks &amp; lines</a>
-    <div class="stamp">Snapshot 2026-10-16T05:03:21Z &middot; Hotspawn read 2026-10-16T05:03:21Z</div>
+    <div class="stamp">Snapshot 2026-10-16T05:07:38Z &middot; Hotspawn read 2026-10-16T05:03:21Z</div>
   </div>
   <nav class="nav"><a class="nav" href="index.html">Executive summary</a><a class="nav" href="picks.html">Picks for every open match</a><a class="nav" href="day3.html">Day-3 guide - Thunderpick World Championship</a><a class="nav" href="review.html">Day 1 &amp; day 2 review</a><a class="nav on" href="unresolved.html">Unresolved picks &amp; limitations</a><a class="nav" href="flagged.html">Flagged for review</a><a class="nav" href="all.html">Full Hotspawn CS2 fixture inventory</a><a class="nav" href="method.html">Methodology &amp; sources</a></nav>
 </header>
@@ -134,6 +134,12 @@ disagreement is visible rather than hidden.</p>
       <td>No format transform is applied to any row; every market price is already for the series as listed by
       its source, and the own line is a series probability fitted on Valve's published series results. Flagged
       as FORMAT_UNKNOWN per row; no value is assumed.</td></tr>
+  <tr><td>Three teams in the open set &mdash; JOGA DE TERNO (1081498), LOS NINOS (1081502) and
+      Insiders (1081526) &mdash; do not appear in Valve's 2026-10-05 global standings, so no own line can be
+      computed for those rows.</td>
+      <td>3 rows show &ldquo;own line: not computable&rdquo; instead of a number.</td>
+      <td>Flagged <code>NO_OWN_LINE</code> per row. The pick still comes from the market price (rung B);
+      nothing is inferred and no stand-in rating is substituted.</td></tr>
   <tr><td>Hotspawn still lists fixtures whose lock time passed more than 36 h ago.</td>
       <td>Those rows are not pickable.</td>
       <td>They are kept in the full inventory with their status, and excluded from the picks list.</td></tr>
@@ -149,7 +155,7 @@ disagreement is visible rather than hidden.</p>
   cannot be confirmed from an official source is left blank and listed on the
   <a href="flagged.html">Flagged for review</a> page.</p>
   <p>Session <code>arena/f323b4a7</code> &middot; branch <code>arena/f323b4a7-maltaproj1</code> &middot;
-  generated 2026-10-16T05:03:21Z</p>
+  generated 2026-10-16T05:07:38Z</p>
 </footer>
 </body>
 </html>

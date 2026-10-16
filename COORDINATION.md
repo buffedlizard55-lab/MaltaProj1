@@ -4850,3 +4850,20 @@ Separate, non-blocking observation from the same read: the `executive/` board re
 open CS2 fixtures, whereas `f323b4a7/` resolves **31 of 31** (every team in the open set is present in
 Valve's 2026-10-05 global standings once the repo's verified aliases are applied). The two boards are
 independent; the difference is coverage, not a contradiction.
+
+### Follow-up 2 — per-row source links made real, and an explicit `NO_OWN_LINE` flag (2026-10-16T05:10Z)
+
+Two honest gaps were found by reading the **published** page rather than the local build:
+
+1. The Polymarket source link on `picks.html` resolved to the bare `https://polymarket.com/` homepage for
+   every rung-B row, because the builder looked for the URL in `row['detail']` while the model writes it to
+   `row['polymarket_url']`. Every row now links to its own market, e.g.
+   `https://polymarket.com/event/cs2-nip-tl1-2026-10-16`. (Pinnacle's link stays the public matchups page:
+   the guest API exposes no per-market permalink.)
+2. Three rows rendered "own line /100.0%" because `own_p_a` was `None`. Those are the fixtures where one team
+   is absent from Valve's 2026-10-05 global standings — **JOGA DE TERNO** (1081498), **LOS NINOS** (1081502)
+   and **Insiders** (1081526). The builder now prints "not computable (see flags)", the model raises a
+   `NO_OWN_LINE` flag on exactly those rows, and the method page carries a full flag legend for all six
+   flags. The pick for those rows still comes from the Polymarket price; no stand-in rating is invented.
+
+This is the "blanks, not hallucinations" rule applied to our own line as well as to the market data.
