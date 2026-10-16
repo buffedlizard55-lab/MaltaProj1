@@ -112,15 +112,8 @@ jobs:
           set -o pipefail
           python -m unittest tests/test_1b6ae823.py -v 2>&1 | tee /tmp/gate-1b6ae823.log
 
-      # Integration: these views consume executive/data. Publish them from the SAME snapshot,
-      # otherwise the next full-repository check sees an older fixture set or old market values.
-      - name: Rebuild and verify dependent views against this snapshot
-        run: |
-          python scripts/228bb5bc_build.py
-          python livelines/build.py
-          python scripts/7759beef_build.py
-          python -m unittest tests.test_228bb5bc tests.test_457629c4 tests.test_7759beef -v
-
+      # Dependent views are rebuilt and gated after the publication rebase below. Do not commit
+      # their generated files before pulling: their own publishers can legitimately update them.
       # Diagnostics only, and only when a gate failed. The Actions log stream is not readable from the
       # sandbox these sessions work in, so a failing gate commits the tail of its own output where the
       # next read of the repository can see it:
@@ -179,7 +172,7 @@ jobs:
           set -euo pipefail
           git config user.name "arena-5545dbb8"
           git config user.email "arena-5545dbb8@users.noreply.github.com"
-          git add executive/data executive/*.html console/data console/*.html livelines/data livelines/*.html valuepicks/data valuepicks/*.html
+          git add executive/data executive/*.html
           if git diff --cached --quiet; then
             echo "no change to commit"
             exit 0

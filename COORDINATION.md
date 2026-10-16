@@ -5084,3 +5084,24 @@ Two honest gaps were found by reading the **published** page rather than the loc
    flags. The pick for those rows still comes from the Polymarket price; no stand-in rating is invented.
 
 This is the "blanks, not hallucinations" rule applied to our own line as well as to the market data.
+
+
+### FI post-merge publication repair claim — 2026-10-16 05:32 UTC
+
+PR161 merged as fddbf9b at05:22:40Z; PR150 also correctly auto-marked merged by ancestry.
+Primary main refresh38855456101 succeeded; Pages built3287fd0 and live TWC/unresolved routes were
+actually fetched with the05:22 source snapshot, not merely assumed from a build icon.
+
+Main revealed two legacy *publication-stage* failures: livelines38855456028 and executive38855456040.
+Their data/invariant/browser steps passed; only push/publication failed. Claiming a narrow FI-4
+post-merge extension for `.github/workflows/livelines-457629c4.yml` (prior human owner inactive>60min)
+and the already-owned executive dependency-publication integration. No forced overwrite or new
+branch. Draft fixes preserve exclusive executive raw evidence, defer derived writes until after
+pull/rebase, and add bounded livelines push retries with rebuild/tests after each pull. Staggering
+the separate livelines cadence avoids the routine same-minute publisher collision.
+
+Also finishing two unattended-copy safeguards in owned `hotspawn/build.py/tests.py`: recompute the
+retrospective own-line summary after every refit instead of retaining literal39%, and date the fixed
+16October decider footer rather than calling it 'today' on subsequent refreshes. Clarify that a
+successful relay-service read does not mean a quote was selected for an unresolved fixture.
+Source/CI changes stay small; rerun full tests, live branch workflows, PR and main Pages gates.
