@@ -135,10 +135,18 @@ def build_board(rows: list[dict], sources: dict) -> tuple[list[dict], list[dict]
             coverage.append(record)
             continue
 
+        # A pick published by the executive capture is only usable when it names a side. The capture
+        # writes "(no side - 50/50)" when the only quote it could read de-vigs to an exact coin flip,
+        # and publishing that string as a pick is exactly what this board's own rules forbid, so a
+        # parenthesised value is treated as no pick and the ladder is consulted instead.
+        exec_pick = (row["pick"] or "").strip()
+        exec_named = bool(exec_pick) and not exec_pick.startswith("(")
+        flags: list[str] = []
+
         # A hand-written resolution is only used while the executive capture still leaves the row
         # unpicked. Once the executive pipeline prices the fixture itself, its fresher row wins and
         # the resolution drops to background evidence (the test suite enforces this).
-        resolution = resolutions.get(match_id) if not (row["pick"] or "").strip() else None
+        resolution = resolutions.get(match_id) if not exec_named else None
         if resolution:
             market = resolution["market"]
             own = resolution["own"]
@@ -148,9 +156,14 @@ def build_board(rows: list[dict], sources: dict) -> tuple[list[dict], list[dict]
             own_a = own_line(own["vrs_a"], own["vrs_b"], own["best_of"]) * 100
             assert abs(round(own_a, 1) - own["prob_a_pct"]) <= 0.15, f"{match_id}: own line does not recompute"
             pick = resolution["hotspawn_team_a"] if prob_a >= prob_b else resolution["hotspawn_team_b"]
-            basis_label = f"{market['source_name']} ({market['tier']})"
-            basis_tier = TIER_LABEL["Market · secondary listing"] if market["tier"] == "relayed-book" \
-                else TIER_LABEL["Market · primary book"]
+            # The source name already carries its tier qualifier, so it is used as the label as-is.
+            basis_label = market["source_name"]
+            basis_tier = {
+                "primary-book": TIER_LABEL["Market · primary book"],
+                "relayed-book": TIER_LABEL["Market · secondary listing"],
+                "prediction-market": TIER_LABEL["Market · prediction market"],
+                "project": TIER_LABEL["Model · official ratings"],
+            }.get(market["tier"], TIER_LABEL["Market · secondary listing"])
             source_list = [facts[fid] for fid in resolution["format_facts"] + resolution["identity_facts"] + market["facts"] + own["facts"]]
             record.update(
                 pick=pick,
@@ -175,7 +188,7 @@ def build_board(rows: list[dict], sources: dict) -> tuple[list[dict], list[dict]
             prob_a, prob_b = pct(row["prob_a_pct"]), pct(row["prob_b_pct"])
             own_a, own_b = pct(row["own_prob_a_pct"]), pct(row["own_prob_b_pct"])
             record.update(
-                pick=row["pick"] or "",
+                pick=exec_pick if exec_named else "",
                 prob_a_pct=prob_a,
                 prob_b_pct=prob_b,
                 own_prob_a_pct=own_a,
@@ -195,9 +208,14 @@ def build_board(rows: list[dict], sources: dict) -> tuple[list[dict], list[dict]
                 limitations=tier_limitations(row["basis_label"]),
                 resolution=False,
             )
-            if not (row["pick"] or "").strip():
-                flags.append("VP-F01 no sourced basis in this capture: no outside quote, no rating pair "
-                             "and no sourced pick - the row is listed with its limitation, not picked")
+            if not exec_named:
+                if exec_pick:
+                    flags.append("VP-F08 the capture's only sourced quote de-vigs to an exact coin flip: both "
+                                 "probabilities are published, no side is named, and the row is listed with its "
+                                 "limitation rather than given a made-up pick")
+                else:
+                    flags.append("VP-F01 no sourced basis in this capture: no outside quote, no rating pair "
+                                 "and no sourced pick - the row is listed with its limitation, not picked")
                 record["no_sourced_basis"] = True
             if row["market_odds_a"] and row["market_odds_b"]:
                 record["sources"].append({
@@ -221,8 +239,8 @@ def build_board(rows: list[dict], sources: dict) -> tuple[list[dict], list[dict]
             divergence["contradiction"] = divergence["value_side"] != record["pick"]
         record["divergence"] = divergence
 
-        # ---- flags
-        flags = []
+        # ---- flags (the list is started above, before the no-side branch, so a coin-flip row keeps
+        # the reason it was left without a pick)
         exec_flags = row["flags"] or ""
         if "FL-IDENTITY-UNVERIFIED" in exec_flags:
             flags.append("VP-F02 identity of a Hotspawn team name is not exact in the official source used for the ratings")
@@ -257,10 +275,26 @@ def tier_limitations(label: str) -> list[str]:
     return [TIER_LIMITATION[label]] if label in TIER_LIMITATION else []
 
 
+def unresolved_basis_rows(board: list[dict]) -> list[dict]:
+    """Open rows whose headline number is not a direct bookmaker price.
+
+    This is the published fallback set: it is what valuepicks/data/unresolved.csv lists and what
+    meta["fallback_basis"] counts, so the page, the CSV and the counter can never disagree.
+    """
+    return [row for row in board if row["status"] == "open" and not row["basis_tier"].startswith("A")]
+
+
 def limited_evidence_rows(board: list[dict]) -> list[dict]:
-    """Rows whose headline number is not a direct bookmaker price, plus rows with no basis at all."""
-    return [row for row in board
-            if (row["pick"] and not row["basis_tier"].startswith("A")) or row.get("no_sourced_basis")]
+    """Rows the unresolved page and the executive summary must show.
+
+    Every non-tier-A row, plus any row that publishes no side at all (an exact coin flip, or no
+    sourced basis) - those carry tier A or no tier and would otherwise disappear behind a link.
+    """
+    basis = unresolved_basis_rows(board)
+    seen = {row["match_id"] for row in basis}
+    extra = [row for row in board
+             if row["status"] == "open" and row.get("no_sourced_basis") and row["match_id"] not in seen]
+    return basis + extra
 
 
 # ---------------------------------------------------------------------------- rendering
@@ -326,7 +360,7 @@ def card(row: dict) -> str:
     <header>
       <p class="eyebrow">{esc(row['tournament'])} · Hotspawn tier {esc(row['tier'])} · lock {esc(row['lock_utc'][:16].replace('T', ' '))}Z</p>
       <h3>{esc(row['team_a'])} vs {esc(row['team_b'])}</h3>
-      <p class="pickline">Pick: <strong>{esc(row['pick'])}</strong> {chip(row['basis_tier'])} {"BO" + row['series_format'][-1] if row.get('series_format') else 'format unverified'}</p>
+      <p class="pickline">Pick: <strong>{esc(row['pick']) if row['pick'] else 'no side published'}</strong> {chip(row['basis_tier'])} {"BO" + row['series_format'][-1] if row.get('series_format') else 'format unverified'}</p>
     </header>
     {prob_bar(row)}
     {value_bits}
@@ -383,10 +417,12 @@ def page(title: str, active: str, body: str, extra_head: str = "") -> str:
 
 def render_index(board: list[dict], sources: dict, meta: dict) -> str:
     facts = fact_index(sources)
-    open_rows = [row for row in board if row["pick"]]
-    tier_a = [row for row in open_rows if row["basis_tier"].startswith("A")]
+    open_rows = [row for row in board if row["status"] == "open"]
+    picked = [row for row in open_rows if row["pick"]]
+    no_side = [row for row in open_rows if not row["pick"]]
+    tier_a = [row for row in picked if row["basis_tier"].startswith("A")]
     tier_lower = [row for row in open_rows if not row["basis_tier"].startswith("A")]
-    contradictions = [row for row in open_rows if row.get("divergence", {}) and row["divergence"]["value_pp"] >= 5]
+    contradictions = [row for row in picked if row.get("divergence", {}) and row["divergence"]["value_pp"] >= 5]
     limited = limited_evidence_rows(board)
 
     def unresolved_item(row: dict) -> str:
@@ -436,21 +472,24 @@ def render_index(board: list[dict], sources: dict, meta: dict) -> str:
     body = f"""
 <section class="hero">
   <p class="eyebrow">Executive summary · generated {esc(meta['generated_utc'])}</p>
-  <h1>Every open Hotspawn match now has a pick</h1>
+  <h1>Every open Hotspawn match now has a pick, or a stated reason</h1>
   <p class="lede">This page is the phone-first summary. One card per open fixture: the pick, both
   teams' win probabilities, the tier that produced the number and the source links. Rows that cannot
   reach the top tier are still picked, but they are listed with their limits on
-  <a href="unresolved.html">Unresolved &amp; limits</a> instead of being hidden; a row with no
-  sourced basis at all is listed there too, marked as not picked rather than guessed.</p>
+  <a href="unresolved.html">Unresolved &amp; limits</a> instead of being hidden. A row whose only
+  sourced quote de-vigs to an exact coin flip is published with both probabilities and <strong>no
+  side</strong>, and a row with no sourced basis at all is listed there too, marked as not picked
+  rather than guessed.</p>
   <div class="buttons">
-    <a class="btn primary" href="#slate">Today's picks ({len(open_rows)})</a>
+    <a class="btn primary" href="#slate">Today's picks ({len(picked)})</a>
     <a class="btn" href="value.html">Value watches ({len(contradictions)})</a>
     <a class="btn" href="unresolved.html">Unresolved ({len(limited_evidence_rows(board))})</a>
   </div>
   <div class="stats">
-    <div><b>{len(open_rows)}</b><span>open fixtures picked</span></div>
-    <div><b>{len(tier_a)}</b><span>direct-bookmaker basis</span></div>
+    <div><b>{len(picked)}</b><span>open fixtures picked</span></div>
+    <div><b>{len(open_rows)}</b><span>open fixtures on the slate</span></div>
     <div><b>{len(tier_lower)}</b><span>fallback basis (flagged)</span></div>
+    <div><b>{len(no_side)}</b><span>published with no side</span></div>
     <div><b>{len(contradictions)}</b><span>5pp+ market/project gaps</span></div>
   </div>
   <p class="meta">Capture: executive snapshot {esc(meta['capture_utc'])} · board rebuilt {esc(meta['generated_utc'])} ·
@@ -491,8 +530,9 @@ def render_index(board: list[dict], sources: dict, meta: dict) -> str:
 
 <section id="unresolved-summary">
   <h2>Unresolved &amp; limits - the rows that are not tier A ({len(limited)})</h2>
-  <p class="meta">Every row below carries a pick, but not a direct-bookmaker number - or, if it is marked
-  "not picked", no sourced basis at all. The full reasoning, the ladder evidence and the flags are on
+  <p class="meta">Every row below carries a number, but not a direct-bookmaker price - or, if it is marked
+  "not picked", no side is published at all because the quote is an exact coin flip or nothing sourced
+  exists. The full reasoning, the ladder evidence and the flags are on
   <a href="unresolved.html">Unresolved &amp; limits</a>; they are listed here so the summary itself states
   what is weak instead of hiding it behind a link.</p>
   <ul class="unresolved-list">{unresolved_items}</ul>
@@ -610,7 +650,8 @@ def render_unresolved(board: list[dict], sources: dict) -> str:
   <p class="lede">The executive board leaves a row blank when there is no fresh, exact-identity,
   primary-book quote. This session walked the ladder the brief asks for - official HLTV match page
   first, then esportsbooks and listings, then the project's own line from official ratings - so these
-  {len(limited)} fixtures now carry a pick. Each one keeps the reason it could not reach tier A.</p>
+  {len(limited)} fixtures now carry a numbered basis. A row whose only price de-vigs to an exact coin
+  flip carries both probabilities and no side; every row keeps the reason it could not reach tier A.</p>
 </section>
 <section>
   <h2>Ladder evidence used</h2>
@@ -625,10 +666,11 @@ def render_unresolved(board: list[dict], sources: dict) -> str:
   <ol>
     <li>A direct bookmaker page read for the same fixture, inside the freshness window, with the
     exact pair of team names.</li>
-    <li>An official match page confirming the series format (done for all five of today's rows) and
-    the start time agreeing with the Hotspawn lock (done for 1080202 and 1080203).</li>
-    <li>Exact-name identity in the official standings file - the remaining gap for Hotspawn's
-    "WROTBERRY" and "RoundsGG" rows, where the evidence is roster-level rather than name-level.</li>
+    <li>An official match page confirming the series format: the rows whose Bo1/Bo3 flag rests on a
+    market title or on a relayed listing are labelled as such, with the source link on the row.</li>
+    <li>Exact-name identity in the official standings file for the fixtures whose Hotspawn team name
+    is a variant of the Valve name - where the identity evidence is roster-level rather than
+    name-level it is recorded on the row as a limitation.</li>
   </ol>
 </section>
 """
@@ -908,10 +950,12 @@ def main() -> int:
         "generated_utc": generated,
         "capture_utc": summary["meta"]["capture_utc"],
         "session": SESSION,
-        "open_fixtures": sum(1 for row in board if row["pick"]),
-        "open_unpicked": sum(1 for row in board if not row["pick"]),
-        "tier_a": sum(1 for row in board if row["pick"] and row["basis_tier"].startswith("A")),
-        "fallback_basis": sum(1 for row in board if row["pick"] and not row["basis_tier"].startswith("A")),
+        "open_fixtures": sum(1 for row in board if row["status"] == "open"),
+        "open_picked": sum(1 for row in board if row["status"] == "open" and row["pick"]),
+        "open_unpicked": sum(1 for row in board if row["status"] == "open" and not row["pick"]),
+        "tier_a": sum(1 for row in board
+                      if row["status"] == "open" and row["pick"] and row["basis_tier"].startswith("A")),
+        "fallback_basis": len(unresolved_basis_rows(board)),
         "value_watches": sum(1 for row in board if row.get("divergence") and row["divergence"]["value_pp"] >= 5),
         "unresolved_top_tier": len(limited_evidence_rows(board)),
         "total_fixtures": len(coverage),
@@ -946,14 +990,14 @@ def main() -> int:
     write_csv(DATA / "value.csv", value_rows,
               ["match_id", "team_a", "team_b", "lock_utc", "pick", "prob_a_pct", "prob_b_pct",
                "own_prob_a_pct", "own_prob_b_pct", "value_side", "value_pp"])
-    write_csv(DATA / "unresolved.csv", limited_evidence_rows(board),
+    write_csv(DATA / "unresolved.csv", unresolved_basis_rows(board),
               ["match_id", "team_a", "team_b", "tournament", "lock_utc", "pick", "prob_a_pct",
                "prob_b_pct", "basis_label"])
     write_csv(DATA / "coverage.csv", coverage,
               ["match_id", "status", "team_a", "team_b", "tournament", "tier", "lock_utc", "start_utc",
                "pick", "prob_a_pct", "prob_b_pct", "basis_label"])
 
-    print(f"valuepicks built: {meta['open_fixtures']} open fixtures picked, "
+    print(f"valuepicks built: {meta['open_picked']} of {meta['open_fixtures']} open fixtures picked, "
           f"{meta['tier_a']} tier A, {meta['fallback_basis']} fallback, "
           f"{meta['value_watches']} value watches, {meta['total_fixtures']} fixtures total, "
           f"{meta['open_unpicked']} open rows unpublished")

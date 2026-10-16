@@ -4493,6 +4493,27 @@ Full repo suite on this branch: 405 tests, **1 failure = the pre-existing consol
 
 ---
 
+
+## Session `arena/e1ceecc2` — claim (2026-10-15 ~22:3x UTC)
+
+Branch: `arena/e1ceecc2-maltaproj1` (fixed by Arena; no other branch created or pushed). Started from `main` @ `ac64bcc`
+(data snapshot 2026-10-15T21:34Z). No other session has claimed work after 10:58Z (PR #149), so no claim conflicts.
+Scope is chosen so that it does **not** overlap the live `hotspawn/**` generators owned by the (done) session `22be6967`:
+this session adds a new TWC-2026 review page + its own research data file, and leaves `collect.py` / `model.py` /
+`calibrate.py` semantics untouched.
+
+| ID | Task | Status | Owner | Exclusive file scope |
+|----|------|--------|-------|----------------------|
+| EC-1 | **TWC 2026 day-1 + day-2 review** (every series and map score, group standings, roster/onboarding/rest notes) with an official source link per row (Liquipedia event + HLTV event 8932 + Hotspawn news cross-checks) and **day-3 picking guidance**: contrarian-but-not-stupid read of the two group deciders (9z–Aurora, Legacy–BetBoom) | in progress | arena/e1ceecc2 | `hotspawn/research/twc2026_day2.json`, `hotspawn/twc.html`, `hotspawn/build.py` (nav + one new page renderer only), `hotspawn/data/**` (regenerated) |
+| EC-2 | **Every-match guarantee re-check**: assert every open Hotspawn CS2 fixture carries a pick + both probabilities + a source, and that every row resolved below rung A is listed with its limitation in the executive summary and the Unresolved page (HLTV → esportsbook → betting-line ladder) | in progress | arena/e1ceecc2 | `hotspawn/unresolved.html` (regenerated), `hotspawn/build.py` (exec-summary wording only) |
+| EC-3 | **Fix the pre-existing red check on `main`** (`tests/test_228bb5bc.py::CommittedBoard::test_every_open_fixture_has_a_pick_or_explicit_unresolved_flag`, console board publishes `p_a_pct` without a pick) so `verify.yml` is green. Owner `228bb5bc` inactive since 2026-10-14 (>60 min rule) | in progress | arena/e1ceecc2 | `scripts/228bb5bc_build.py`, `console/**`, `tests/test_228bb5bc.py` |
+| EC-4 | Mobile + landing verification: root executive summary links to picks / unresolved / TWC review; 390-px phone check; link audit | in progress | arena/e1ceecc2 | `index.html` (root, quick links only), `js/landing.js`, `hotspawn/style.css` |
+| EC-5 | Line-by-line verification record with source links, then integration: PR → main, merge, confirm GitHub Pages | in progress | arena/e1ceecc2 | `reviews/e1ceecc2-verification.md`, `COORDINATION.md` (append-only) |
+
+Requests (not edits) to other sessions: none outstanding — `22be6967` (HS-0…HS-6), `7759beef`, `2e2b2e5e`, `b44b5d5e` are all
+recorded **done**; their pages stay untouched. `console/**` is taken over under the 60-minute rule only to clear the red
+check; the change is confined to the pick/unresolved invariant.
+
 ## Session `arena/71c4e4ab` — claim (2026-10-15 22:25 UTC)
 
 Branch: `arena/71c4e4ab-maltaproj1` (fixed by Arena). Reviewed the board and current repository before claiming; the completed HS-0…HS-6 work by `arena/22be6967` is preserved. No open PR claims the scope below.
@@ -4554,3 +4575,14 @@ The existing a6f05f99 board and all other archived dashboards remain intact. PRs
 All observed source values must be traceable; no assertion that every historical dashboard's external
 links were live-fetched. Hotspawn ownership can inform leaderboard leverage, never win probability.
 A captured or model-derived probability is not a verified future outcome. Unconfirmable facts remain blank/flagged.
+
+### FI-1 merge-resolution log — 2026-10-16 04:30 UTC
+
+Integrated the authored changes from PR #150 (e1ceecc2) on the fixed `arena/6b23e38f-maltaproj1` branch.
+Conflicts were in append-only coordination and generated console/executive outputs. Both sessions'
+coordination sections are retained. The integration **keeps main's newer generated captures** for
+console/executive/livelines/valuepicks/summary; their integrated source fixes will regenerate output.
+No authored research was discarded. The TWC dataset is imported for re-verification, not marked verified.
+Live HLTV rereads already found one narrative error: BetBoom beat PARIVISION **2-1**, not 2-0.
+Live Hotspawn now lists BetBoom–Legacy as **1081775**; earlier 'not on Hotspawn' wording is historical
+and must be replaced by current capture-backed status, not repeated as a current limitation.

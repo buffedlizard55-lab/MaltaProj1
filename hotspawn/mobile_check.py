@@ -11,8 +11,8 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 OUT = HERE / "data" / "mobile_check.json"
-PAGES = ["hotspawn/index.html", "hotspawn/picks.html", "hotspawn/strategy.html", "hotspawn/unresolved.html",
-         "hotspawn/flagged.html", "index.html"]
+PAGES = ["hotspawn/index.html", "hotspawn/picks.html", "hotspawn/twc.html", "hotspawn/strategy.html",
+         "hotspawn/unresolved.html", "hotspawn/flagged.html", "index.html"]
 
 
 def main() -> int:

@@ -406,11 +406,19 @@ def main() -> int:
             o["p_a_pct"], o["p_b_pct"], o["overround_pct"] = devig_market(o["price_a"], o["price_b"], o["kind"])
             by_fixture.setdefault(o["match_id"], []).append(o)
     fmap = {f["match_id"]: f for f in fixtures}
+    orphans: list[str] = []
     for o in observations:
         fid = o.get("match_id")
         if not fid or not o.get("team_a"):
             continue
-        f = fmap[fid]
+        # An observation can name a fixture that is not in the current Hotspawn slate (a new listing
+        # the slate capture has not caught up with, or a stale one). It cannot be attached to a row, so
+        # it is skipped and counted instead of crashing the build (fixes KeyError '1079586', 2026-10-15).
+        f = fmap.get(fid)
+        if f is None:
+            if fid not in orphans:
+                orphans.append(fid)
+            continue
         hit = match_ids_by_pair([f], o["team_a"], o["team_b"], aliases) if o.get("team_b") else []
         if not hit:
             continue
@@ -712,6 +720,8 @@ def main() -> int:
         "own_line_calibration_n": calib["n"],
         "own_line_calibration_mae_pp": calib.get("mae_pp"),
         "hltv_ranking_date": hltv_meta["ranking_date"],
+        # observations that name a fixture the current slate capture does not contain (skipped, never guessed)
+        "observations_without_slate_fixture": sorted(orphans),
         "vrs_standings_date": vrs_meta["standings_date"],
     }
 
