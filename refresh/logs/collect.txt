@@ -1,48 +1,43 @@
 playwright available: True
-probe hotspawn       path=http status=200 bytes=512334 err=None
-probe egw-cs2        path=browser status=403 bytes=4753 err=None
-probe hltv-ranking   path=browser status=200 bytes=1116884 err=None
-probe valve-api      path=http status=403 bytes=None err=HTTPError 403
-slate candidates for odds lookup: 105 of 404 payload rows
+probe hotspawn       path=http status=200 bytes=412970 err=None
+probe egw-cs2        path=browser status=403 bytes=4756 err=None
+probe hltv-ranking   path=browser status=200 bytes=1164025 err=None
+probe valve-api      path=http status=200 bytes=50648 err=None
+slate candidates for odds lookup: 100 of 399 payload rows
 {
- "generated_utc": "2026-10-16T11:43:13Z",
- "hotspawn_fixtures": 404,
+ "generated_utc": "2026-10-16T16:54:10Z",
+ "hotspawn_fixtures": 399,
  "sports": {
-  "cs2": 101,
-  "lol": 303
+  "cs2": 94,
+  "lol": 305
  },
- "week_total_text": 151,
- "week_total_context": " Tournaments How To Play League of Legends Pick'em Lobby Play other game titles This week 151 matches this week Resets in 2d 14h 05m 58s Sign in to tra",
- "reset_utc": "2026-10-19T01:46:38Z",
+ "week_total_text": 153,
+ "week_total_context": " Tournaments How To Play League of Legends Pick'em Lobby Play other game titles This week 153 matches this week Resets in 2d 09h 05m 16s Sign in to tra",
+ "reset_utc": "2026-10-19T01:56:53Z",
  "ng_state_rows": {
-  "lobby": 100,
-  "cs2-pickems": 96,
-  "thp-pickems": 16,
-  "lol-pickems": 303
+  "lobby": 92,
+  "cs2-pickems": 83,
+  "thp-pickems": 0,
+  "lol-pickems": 305
  },
  "cards_rendered": {
-  "lobby": 39,
-  "cs2-pickems": 33,
-  "thp-pickems": 15,
-  "lol-pickems": 242
+  "lobby": 29,
+  "cs2-pickems": 21,
+  "thp-pickems": 0,
+  "lol-pickems": 244
  },
  "egw_candidates": 0,
  "egw_events_scanned": 0,
  "egw_fixtures_with_book_table": 0,
- "egw_fixtures_without_link": 105,
+ "egw_fixtures_without_link": 100,
  "egw_deadline_hit": false,
  "pinnacle_quotes": 0,
  "pinnacle_counters": {},
  "hltv_ranking_teams": 0,
  "hltv_matches": 0,
- "valve_vrs_file": null,
- "valve_vrs_teams": 0,
- "valve_vrs_error": "VRS listing failed: HTTPError 403",
- "fetch_failures": [
-  [
-   "https://api.github.com/repos/ValveSoftware/counter-strike_regional_standings/contents/live/2026",
-   403
-  ]
- ]
+ "valve_vrs_file": "standings_global_2026_10_05.md",
+ "valve_vrs_teams": 349,
+ "valve_vrs_error": null,
+ "fetch_failures": []
 }
 collect exit=0
