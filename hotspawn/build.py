@@ -13,7 +13,10 @@ from html import escape
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from common import DATA, REPO_URL, RESEARCH, ROOT, SESSION, parse_iso, read_json, utc_label, write_json  # noqa: E402
+from common import (DATA, REPO_URL, RESEARCH, ROOT, SESSION, devig_two_way, norm_name,  # noqa: E402
+                    normalise_prices, own_line, parse_iso, read_json, utc_label, write_json)
+
+DAY3_FILE = RESEARCH / "day3_twc2026.json"
 
 NAV = [("index.html", "Summary"), ("picks.html", "All picks"), ("strategy.html", "Leaderboard plan"),
        ("unresolved.html", "Unresolved"), ("flagged.html", "Flagged"), ("method.html", "Method")]
@@ -203,7 +206,9 @@ def picks_page(board: dict) -> None:
     for day, items in by_day.items():
         body.append(f'<h2 class="day">{e(day)}</h2>')
         body.extend(card(r, board) for r in items)
-    body.append('<p class="small">Unresolved or model-only picks and their limitations: <a href="unresolved.html">Unresolved &amp; limitations</a>. Everything flagged: <a href="flagged.html">Flagged for Review</a>.</p>')
+    body.append('<p class="small">S-tier deciders today (Aurora vs 9z, BetBoom vs Legacy): evidence, outside prices and the swing view are on '
+                '<a href="strategy.html#day3">Day 3 — the two deciders</a>. Unresolved or model-only picks and their limitations: '
+                '<a href="unresolved.html">Unresolved &amp; limitations</a>. Everything flagged: <a href="flagged.html">Flagged for Review</a>.</p>')
     page("picks.html", "All picks", "\n".join(body), board, script=LOCK_SCRIPT)
 
 
@@ -217,6 +222,153 @@ def plays_table(rows: list[dict]) -> str:
                    f"<td class=num>{'' if s.get('ev_cost_pts') is None else e(s.get('ev_cost_pts'))}</td><td>{e('; '.join(s.get('factors_against_favourite') or []) or '—')}</td></tr>")
     out.append("</tbody></table></div>")
     return "".join(out)
+
+
+def _side(name, teams: dict) -> str | None:
+    """Map a source's own team spelling onto this match's team name (accent/case/word-order safe)."""
+    key = norm_name(name)
+    if not key:
+        return None
+    if key in teams:
+        return teams[key]
+    for k, label in teams.items():
+        if key in k or k in key:
+            return label
+    return None
+
+
+def day3_section(board: dict) -> str:
+    """Thunderpick World Championship 2026 day-3 evidence block, built from research/day3_twc2026.json.
+
+    Only raw inputs live in the research file (decimal odds, Polymarket prices, Valve points, crowd
+    shares). Every percentage below is computed here with common.devig_two_way / common.own_line, so
+    nothing on the page is a hand-typed probability. Returns "" when the research file is absent, so
+    the three-hourly refresh can never fail on it.
+    """
+    data = read_json(DAY3_FILE, {}) or {}
+    matches = data.get("matches") or []
+    if not matches:
+        return ""
+    k = (read_json(DATA / "calibration.json", {}) or {}).get("k")
+    by_id = {r.get("match_id"): r for r in board.get("rows", [])}
+    rows, bullets = [], []
+    for m in matches:
+        a, b = m.get("team_a"), m.get("team_b")
+        if not a or not b:
+            continue
+        teams = {norm_name(a): a, norm_name(b): b}
+        ma, mb, prices = [], [], []
+        for mk in m.get("markets") or []:
+            sa, sb = _side(mk.get("team_a"), teams), _side(mk.get("team_b"), teams)
+            if not sa or not sb or sa == sb:
+                continue
+            if mk.get("odds_a") is not None and mk.get("odds_b") is not None:
+                dv = devig_two_way(float(mk["odds_a"]), float(mk["odds_b"]))
+                if not dv:
+                    continue
+                pa, pb = dv[0], dv[1]
+                label = f"{float(mk['odds_a']):.2f} / {float(mk['odds_b']):.2f}"
+            elif mk.get("price_a") is not None and mk.get("price_b") is not None:
+                nrm = normalise_prices(float(mk["price_a"]), float(mk["price_b"]))
+                if not nrm:
+                    continue
+                pa, pb = nrm
+                label = f"{float(mk['price_a']):.3f} / {float(mk['price_b']):.3f}"
+            else:
+                continue
+            if sa == b:                      # the source listed the sides the other way round
+                pa, pb = pb, pa
+            ma.append(pa)
+            mb.append(pb)
+            prices.append(f"{link(mk.get('url'), label)} {e(mk.get('kind'))} (read {e(utc_label(mk.get('read_utc')))})")
+        own_a = None
+        ol = m.get("own_line") or {}
+        pts_a, pts_b = ol.get("points_a"), ol.get("points_b")
+        if k and pts_a is not None and pts_b is not None:
+            side = _side(ol.get("team_a"), teams)
+            if side == a:
+                own_a = own_line(pts_a, pts_b, float(k))
+            elif side == b:
+                own_a = own_line(pts_b, pts_a, float(k))
+            else:
+                own_a = None
+        market_a = sum(ma) / len(ma) if ma else None
+        market_b = sum(mb) / len(mb) if mb else None
+        estimates = [v for v in (market_a, own_a) if v is not None]
+        cons_a = sum(estimates) / len(estimates) if estimates else None
+        crowd = m.get("crowd") or {}
+        ca, cb = crowd.get("team_a_pct"), crowd.get("team_b_pct")
+        if ca is not None and cb is not None and (ca + cb) > 0:
+            ca, cb = ca / (ca + cb), cb / (ca + cb)
+        else:
+            ca = cb = None
+        row = by_id.get(m.get("hotspawn_id")) or {}
+        st = row.get("strategy") or {}
+        board_pick = row.get("pick")
+        pick_cell = "—"
+        if board_pick:
+            pick_p = row.get("p_a") if board_pick == row.get("team_a") else row.get("p_b")
+            pick_cell = f"<b>{e(board_pick)}</b> {pc(pick_p)}<br><span class=small>{e(RUNG_TEXT.get(row.get('rung')))}</span>"
+        elif cons_a is not None:
+            # The board has no row for this fixture yet (it was not in the last live Hotspawn capture). Never leave a
+            # blank: show the ladder result from the stored outside prices plus our own line, and label the gap.
+            lean, lean_p = (a, cons_a) if cons_a >= 0.5 else (b, 1 - cons_a)
+            covered = bool([mk for mk in (m.get("markets") or []) if (mk.get("odds_a") is not None or mk.get("price_a") is not None)])
+            pick_cell = (f"<b>{e(lean)}</b> {pc(lean_p)}<br><span class=small>{'outside market + our line only' if covered else 'our line only'} — "
+                         f"no board row ({e(RUNG_TEXT.get('D'))}); <a href=\"unresolved.html\">limitations</a></span>")
+        plan_cell = "—"
+        if st:
+            plan_cell = f"{cls_tag(st.get('class'))} <b>{e(st.get('leaderboard_pick'))}</b><br><span class=small>underdog {e(st.get('underdog'))} {pc(st.get('p_dog'))} vs crowd {pc(st.get('crowd_dog'))}</span>"
+        elif ca is not None and cb is not None:
+            plan_cell = (f"<span class=small>no board play yet — the fixture was not in the last live Hotspawn capture, so there are no "
+                         f"pick'em points or crowd basis to fade. Crowd read {pc(ca)} / {pc(cb)}.</span>")
+        swing = ""
+        if cons_a is not None and ca is not None:
+            dog_is_b = cons_a >= 0.5
+            p_dog = (1 - cons_a) if dog_is_b else cons_a
+            c_dog = cb if dog_is_b else ca
+            dog = b if dog_is_b else a
+            if p_dog >= 0.20 and c_dog <= 0.15:
+                gain = round((1 - c_dog) * 100)
+                swing = (f"<br><span class=small><b>Swing:</b> {e(dog)} is {pc(p_dog)} by these estimates but held by only "
+                         f"{pc(c_dog)} of the field — winning that side moves you past about {gain}% of players picking this match. "
+                         f"Labelled a swing, not the value pick.</span>")
+        rows.append(
+            f"<tr><td><a href=\"{e(m.get('hltv_match_url'))}\">{e(a)} vs {e(b)}</a><br><span class=small>{e(m.get('stage'))}</span></td>"
+            f"<td>{e(utc_label(m.get('start_utc')))}<br><span class=small>"
+            f"{('lock ' + e(utc_label(m.get('lock_utc')))) if m.get('lock_utc') else 'lock not published by Hotspawn for this fixture yet'}</span></td>"
+            f"<td>{pc(market_a)} / {pc(market_b)}<br><span class=small>{' · '.join(prices) or 'no outside price stored'}</span></td>"
+            f"<td>{pc(own_a)} / {pc(None if own_a is None else 1 - own_a)}<br><span class=small>{e(ol.get('as_of'))} Valve points "
+            f"{e(ol.get('points_a'))} / {e(ol.get('points_b'))}</span></td>"
+            f"<td>{pc(ca)} / {pc(cb)}<br><span class=small>Hotspawn ownership</span></td>"
+            f"<td>{pick_cell}{swing}</td><td>{plan_cell}</td></tr>")
+        facts = []
+        hf = m.get("hltv_facts") or {}
+        for line in (hf.get("head_to_head") or []):
+            facts.append(f"<li>{e(line)}</li>")
+        for line in (hf.get("form") or []):
+            facts.append(f"<li>{e(line)}</li>")
+        for line in (hf.get("map_pool") or []):
+            facts.append(f"<li>{e(line)}</li>")
+        for line in ((m.get("roster_context") or {}).get("facts") or []):
+            facts.append(f"<li>{e(line)}</li>")
+        for line in (m.get("limitations") or []):
+            facts.append(f"<li class=\"small\">{e(line)}</li>")
+        srcs = [c.get("source_url") for c in [m.get("crowd") or {}] if c.get("source_url")]
+        srcs += [mk.get("url") for mk in (m.get("markets") or []) if mk.get("url")]
+        srcs += [(m.get("own_line") or {}).get("source_url")] if (m.get("own_line") or {}).get("source_url") else []
+        srcs += ((m.get("roster_context") or {}).get("sources") or [])
+        srcs += [hf.get("analytics_url")] if hf.get("analytics_url") else []
+        bulbs = "".join(f"<li>{link(u, u.split(chr(47))[2])}</li>" for u in dict.fromkeys(srcs) if u)
+        bullets.append(f"<h3>{e(a)} vs {e(b)} — evidence ({e(m.get('hltv_match_id'))})</h3><ul>{''.join(facts)}</ul>"
+                       f"<p class=\"small\">Sources for this row: </p><ul class=\"small\">{bulbs}</ul>")
+    limits = "".join(f"<li>{e(t)}</li>" for t in (data.get("limitations") or []))
+    howto = "".join(f"<li>{e(t)}</li>" for t in (data.get("how_to_read") or []))
+    return f"""<p class="small">Evidence compiled {e(utc_label(data.get('reviewed_utc')))} by session {e(data.get('session'))}; raw inputs only, every percentage recomputed at build time. Outside prices are books/Prediction markets; Hotspawn's share is ownership, never a probability.</p>
+<div class="tablewrap"><table><thead><tr><th>Decider (HLTV)</th><th>Start / lock (UTC)</th><th>Outside market</th><th>Our line</th><th>Crowd</th><th>Board pick</th><th>Board play</th></tr></thead><tbody>{''.join(rows)}</tbody></table></div>
+<h3>How to read this</h3><ul>{howto}</ul>
+{''.join(bullets)}
+<p class="small"><b>Limits of this section:</b></p><ul class="small">{limits}</ul>"""
 
 
 def strategy_page(board: dict) -> None:
@@ -260,6 +412,9 @@ def strategy_page(board: dict) -> None:
 <div class="tablewrap"><table><thead><tr><th>Match</th><th>Market (pre-match)</th><th>Our line</th><th>Crowd</th><th>Market pick</th><th>Plan (v2)</th><th>Result (HLTV)</th><th>Pick</th><th>Plan</th></tr></thead><tbody>{''.join(d1rows)}</tbody></table></div>
 <p class="small">Prices: {link(info.get('price_source', {}).get('url'), info.get('price_source', {}).get('label'))} (read {e(info.get('price_source', {}).get('read_utc'))}). Crowd: {link(info.get('crowd_source', {}).get('url'), info.get('crowd_source', {}).get('label'))} — {e(info.get('crowd_source', {}).get('note'))} Board pick before lock: {link(info.get('pick_source', {}).get('url'), info.get('pick_source', {}).get('label'))}.</p>
 <h3>What day 1 taught us</h3><ul>{lessons}</ul>
+<h2 id="day3">Day 3 — the two deciders (16 October)</h2>
+<p class="lead">Both of today's S-tier fixtures are group deciders: the winner reaches the semifinal, the loser goes home. This section holds the hand-verified evidence — outside prices, official Valve points, crowd ownership, H2H, map pools and the exact limits — next to the board's own pick.</p>
+{day3_section(board)}
 <h3>The upset: 9z 2-0 Aurora</h3>
 <p>Aurora rebuilt in July 2026 — Jimpphat joined on 3 Jul and kyxsan became in-game leader on 8 Jul (coach ash). That is about three months before TWC, and the new five had just finished 3rd at ESL Pro League S24, beating 9z 2-0 there on 3 Oct. In Malta 9z won Inferno 13-11 and Nuke 13-1 (luchov 1.61). Pinnacle had 9z at 27%, our official-points line at 39%, and only 5% of Hotspawn players picked 9z. {link('https://www.hltv.org/team/11861/aurora', 'HLTV: Aurora roster & transfers')} · {link('https://www.hltv.org/news/45718/9z-beat-aurora-2-0-to-kick-off-twc-2026', 'HLTV match report')}</p>
 <h2>Grading since launch</h2>
@@ -268,6 +423,34 @@ def strategy_page(board: dict) -> None:
 <p class="small">{len(pending)} frozen pick(s) awaiting a result.</p>
 """
     page("strategy.html", "Leaderboard plan", body, board)
+
+
+def coverage_gaps_section(board: dict) -> str:
+    """Fixtures researched here that the last live Hotspawn capture did not contain (§ every-match guarantee).
+
+    The board can only pick what Hotspawn's payload returned at read time. The guarantee is that nothing is silently
+    missing: a fixture Hotspawn itself lists, but which the snapshot missed, is named here with the reason, the
+    published fallback and every source, and the next three-hourly refresh re-reads Hotspawn to pick it up.
+    """
+    data = read_json(DAY3_FILE, {}) or {}
+    have = {str(r.get("match_id")) for r in board.get("rows", [])}
+    gaps = [m for m in (data.get("matches") or []) if str(m.get("hotspawn_id")) not in have]
+    if not gaps:
+        return ""
+    items = []
+    for m in gaps:
+        urls, links = [], []
+        for u in [m.get("hotspawn_match_url"), m.get("hltv_match_url")] + [mk.get("url") for mk in (m.get("markets") or [])]:
+            if u and u not in urls:
+                urls.append(u)
+                links.append(link(u, u.split("/")[2]))
+        items.append(f"<li><b><a href=\"strategy.html#day3\">{e(m.get('team_a'))} vs {e(m.get('team_b'))}</a></b> — {e(m.get('stage'))}, "
+                     f"kickoff {e(utc_label(m.get('start_utc')))}. {e((m.get('board') or {}).get('note') or '')} The fallback lean, outside prices and "
+                     f"every source are on <a href=\"strategy.html#day3\">Day 3 — the two deciders</a>. Sources: {' · '.join(links)}</li>")
+    return ("<h3>Coverage gap — a fixture Hotspawn lists that the last capture missed</h3>"
+            "<p class=\"small\">The board can only pick what Hotspawn's payload returned at read time. When a fixture Hotspawn itself lists "
+            "(lobby or pick'em page) is missing from that snapshot, it is named here instead of being dropped, and the researched fallback is "
+            "published with its sources. The next three-hourly refresh re-reads Hotspawn and should pick it up.</p><ul>" + "".join(items) + "</ul>")
 
 
 def unresolved_section(board: dict, full: bool) -> str:
@@ -311,11 +494,14 @@ def unresolved_section(board: dict, full: bool) -> str:
     if issues:
         out.append("<h3>Featured picks with data-quality flags</h3><ul>" + "".join(
             f"<li><a href=\"picks.html#m{e(r['match_id'])}\">{e(r['team_a'])} vs {e(r['team_b'])}</a>: " + ", ".join(f'<span class="flag">{e(f)}</span>' for f in r["flags"] if f != "ALIAS") + "</li>" for r in issues) + "</ul>")
+    out.insert(1, coverage_gaps_section(board))
     out.append("""<h3>Limitations that apply to every pick</h3><ul>
 <li>Snapshots, not live odds: prices are read every 3 hours; a line can move or be pulled before lock. Every price shows its read time.</li>
 <li>Pinnacle usually posts low-tier lines about a day ahead and can pull them close to start, so C-tier matches often sit on Polymarket or our own line and switch on a later refresh.</li>
 <li>Our own line uses Valve's official points (published monthly; current file named in the snapshot bar) on a curve fitted to Valve's own results; it knows nothing about stand-ins or brand-new rosters — those are shown as factors.</li>
 <li>HLTV blocks most automated reads, so HLTV facts (formats, rosters, stand-ins) come from this session's researched notes with links; new fixtures get HLTV links but no new notes until researched.</li>
+<li>Day-3 Thunderpick deciders carry a hand-verified evidence file (hotspawn/research/day3_twc2026.json) holding raw inputs only — bookmaker decimal odds, Polymarket prices, Valve points and Hotspawn ownership — with a source URL and read time per row; every percentage on the page is recomputed at build time from those inputs.</li>
+<li>If a fixture Hotspawn lists is missing from a snapshot, the board cannot pick it: it is named in the coverage-gap block on the unresolved page and in the executive summary, with the researched fallback, instead of being dropped.</li>
 <li>Hotspawn's crowd share is shown as ownership only and changes until lock.</li>
 </ul>""")
     return "\n".join(out)
@@ -416,6 +602,8 @@ def index_page(board: dict) -> None:
 <p><a href="strategy.html">Why these plays, and the rule behind them →</a></p>
 <h2>Day 1 in one line</h2>
 <p>TWC 2026 day 1: all four series ended 2-0; favourites won three. The upset was <b>9z 2-0 Aurora</b> (market 27%, our line 39%, picked by 5% of players). Market picks went {s['day1_review']['picks_correct']}/{s['day1_review']['matches']}. <a href="strategy.html">Full review →</a></p>
+<h2 id="day3">Day 3 — the two deciders (16 October)</h2>
+{day3_section(board)}
 <h2 id="unresolved">Unresolved picks &amp; limitations</h2>
 {unresolved_section(board, True)}
 <h2>Coverage &amp; freshness</h2>
