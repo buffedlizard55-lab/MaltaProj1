@@ -9,6 +9,7 @@
 | [Unresolved & limitations](https://buffedlizard55-lab.github.io/MaltaProj1/hotspawn/unresolved.html) | Research ladder HLTV → esportsbooks → betting lines, and the limits on every non-bookmaker pick |
 | [Flagged for Review](https://buffedlizard55-lab.github.io/MaltaProj1/hotspawn/flagged.html) | Irregularities and per-match flags with evidence |
 | [Method & sources](https://buffedlizard55-lab.github.io/MaltaProj1/hotspawn/method.html) | Probability ladder, de-vig, own-line calibration, every request with read time |
+| [TWC 2026 day 3 — tonight's deciders](https://buffedlizard55-lab.github.io/MaltaProj1/hotspawn/strategy.html#day3) | Aurora vs 9z and BetBoom vs Legacy: kickoff in UTC, outside prices, our own line, crowd ownership, the swing play and every source |
 
 How it works: `.github/workflows/hotspawn-22be6967.yml` runs every 3 hours — `hotspawn/collect.py` reads the
 `ng-state` TransferState of Hotspawn's `/lobby`, `/cs2-pickems` and `/thp-pickems`, Pinnacle's public guest
@@ -17,6 +18,17 @@ Valve's published results; `hotspawn/model.py` applies the ladder (Pinnacle → 
 unresolved) and the leaderboard rule; `hotspawn/build.py` writes the pages; `hotspawn/tests.py` and a
 headless phone check gate publication. Hotspawn crowd percentages are never probability inputs.
 Line-by-line verification: [reviews/22be6967-verification.md](reviews/22be6967-verification.md).
+
+**TWC 2026 day 3 (16 October, session `b6f5405d`).** Both deciders are covered ahead of their kickoffs: **Aurora vs 9z**
+(14:00 UTC, Hotspawn lock 13:54 UTC, bo3, Group A decider) and **BetBoom vs Legacy** (17:00 UTC, bo3, Group B decider).
+Kickoffs are taken from Hotspawn's TransferState epochs and Polymarket's API records, not from rendered clocks — HLTV
+renders 10:00/13:00 in the viewer's timezone and EGamersWorld renders 16:00/19:00 in venue time (UTC+2). Outside
+prices for the section: bc.game 1.40/2.70 and 1.43/2.76 (Aurora–9z), 2.50/1.48 and 2.52/1.50 (BetBoom–Legacy, relayed
+by EGamersWorld) plus Polymarket 0.685/0.315 and 0.605/0.395; our own line comes from Valve's official 2026-10-05
+standings (Aurora 1716 vs 9z 1543; Legacy 1931 vs BetBoom 1596). Hotspawn's crowd split (88/13 and 50/50) is shown as
+ownership only. Line-by-line verification with source URLs and read times:
+[reviews/b6f5405d-verification.md](reviews/b6f5405d-verification.md). Fixtures on a Hotspawn surface that a snapshot
+missed are named in the coverage-gap block on the unresolved page and the executive summary instead of being dropped.
 
 - **Published site:** [buffedlizard55-lab.github.io/MaltaProj1](https://buffedlizard55-lab.github.io/MaltaProj1/)
 - **Root mobile executive summary:** [landing page](https://buffedlizard55-lab.github.io/MaltaProj1/)
