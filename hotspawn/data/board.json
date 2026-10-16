@@ -339,22 +339,22 @@
   }
  },
  "summary": {
-  "generated_utc": "2026-10-16T07:51:12Z",
+  "generated_utc": "2026-10-16T08:12:44Z",
   "session": "arena/22be6967",
   "reference_utc": "2026-10-16T07:50:59Z",
   "fixtures": 106,
   "open": 42,
   "locked_recent": 3,
   "stale_listings": 61,
-  "open_with_pick": 34,
+  "open_with_pick": 41,
   "open_rung": {
    "A": 12,
    "B": 20,
-   "C": 1,
-   "D": 8,
-   "E": 1
+   "C": 3,
+   "D": 1,
+   "E": 6
   },
-  "open_unresolved": 8,
+  "open_unresolved": 1,
   "open_flagged": 30,
   "leaderboard_classes": {
    "VALUE": 3,
@@ -362,7 +362,7 @@
    "SITUATIONAL": 1,
    "LONG SHOT": 7,
    "CHALK": 8,
-   "NO CROWD DATA": 12
+   "NO CROWD DATA": 19
   },
   "next_lock_utc": "2026-10-16T07:54:00Z",
   "hotspawn_complete": true,
@@ -728,8 +728,8 @@
    "total_picks": 8,
    "hltv_url": null,
    "hltv_note": null,
-   "format": "",
-   "format_source": "",
+   "format": "BO3",
+   "format_source": "research pack (fallback_83090640.json; HLTV event 9449 + Liquipedia PGL Bucharest 2027 CQ + EGW match page)",
    "vrs_a": {
     "name": "Eternal Fire",
     "rank": 33,
@@ -741,34 +741,165 @@
      "regali",
      "soulfly"
     ],
-    "matches_with_current_five": 33,
-    "first_rated_match_current_five": "2026-08-24"
+    "disambiguated": true,
+    "disambiguation": {
+     "rule": "roster-overlap disambiguation",
+     "min_overlap": 3,
+     "candidates": 1,
+     "overlap_best": 5,
+     "overlap_second": 0,
+     "ok": true
+    },
+    "details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0033--eternal_fire--jottaaa-kvem-mistem-regali-soulfly.md"
    },
-   "vrs_b": null,
-   "own_p_a": null,
-   "own_p_b": null,
+   "vrs_b": {
+    "name": "Betclic",
+    "rank": 45,
+    "points": 1333,
+    "roster": [
+     "Demho",
+     "ex1st",
+     "Prism",
+     "Qlocuu",
+     "ultimate"
+    ],
+    "disambiguated": true,
+    "disambiguation": {
+     "rule": "roster-overlap disambiguation",
+     "min_overlap": 3,
+     "candidates": 2,
+     "overlap_best": 5,
+     "overlap_second": 2,
+     "ok": true
+    },
+    "details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0045--betclic--demho-ex1st-prism-qlocuu-ultimate.md"
+   },
+   "own_p_a": 0.5632,
+   "own_p_b": 0.4368,
    "hltv_rank_a": 38,
    "hltv_rank_b": null,
    "hltv_team_a": "https://www.hltv.org/team/11251/eternal-fire",
    "hltv_team_b": null,
-   "p_a": null,
-   "p_b": null,
-   "basis": "Unresolved",
-   "rung": "D",
+   "p_a": 0.5632,
+   "p_b": 0.4368,
+   "basis": "Research fallback: our own line (Valve points, row disambiguated by documented roster overlap with HLTV's listed lineups; no outside price exists) (research completed after the pick lock — retrospective analysis only, excluded from graded history)",
+   "rung": "E",
    "factors": [],
-   "own_line_limitation": "series format not independently confirmed; one or both teams not uniquely identified in Valve standings",
-   "pick": null,
-   "pick_p": null,
+   "own_line_limitation": "strict own line withheld (one or both teams not uniquely identified in Valve standings); rung E resolved identity by documented roster-overlap disambiguation",
+   "fallback": {
+    "pack": "hotspawn/research/fallback_83090640.json",
+    "rule": ">= 3 shared nicknames vs HLTV lineup, strictly best overlap; own-line formula on the chosen rows",
+    "hltv_match_url": "https://www.hltv.org/matches/2399654/eternal-fire-vs-betclic-pgl-bucharest-2027-closed-qualifier",
+    "hltv_read_utc": "2026-10-16T08:45:00Z",
+    "market_check": {
+     "hltv_betting_table": "Stake sweepstake promo cell only; no sportsbook prices",
+     "hltv_betting_table_url": "https://www.hltv.org/matches/2399654/eternal-fire-vs-betclic-pgl-bucharest-2027-closed-qualifier#betting",
+     "egamersworld_url": "https://egamersworld.com/counterstrike/match/4JaFCnn5Ve/eternal-fire-vs-betclic-h7I4LcEzN",
+     "egamersworld_note": "EGW shows 1.8/1.8 placeholder symmetric prices (rejected as non-market, F-28 class)",
+     "aggregator_reference": "vprognoze.ru forecast page displays book coefficients 1.37 / 2.85 (Eternal Fire favoured, devigged 67.5/32.5). Aggregator of book coefficients, not a book itself: recorded as context only, never converted into a probability.",
+     "aggregator_url": "https://vprognoze.ru/topforecast/8192182-eternal-fire-bc-apogee-2026-10-16.html",
+     "pinnacle": "not listed in the board's Pinnacle read (2026-10-16T05:58Z)",
+     "polymarket": "no match-winner market for this fixture (capture 2026-10-16T07:51Z)",
+     "esportsbooks_search": "no named esportsbook relay in the 07:51Z capture"
+    },
+    "sides": {
+     "a": {
+      "team": "Eternal Fire",
+      "hltv_lineup": [
+       "soulfly",
+       "regali",
+       "Kvem",
+       "jottAAA",
+       "MisteM"
+      ],
+      "hltv_rank": 38,
+      "hltv_rank_url": "https://www.hltv.org/ranking/teams/2026/october/12/11251",
+      "hltv_rank_note": null,
+      "hltv_vrs_display_rank": 34,
+      "hltv_vrs_display_url": "https://www.hltv.org/valve-ranking/teams/2026/october/16?teamId=11251",
+      "roster_delta_vs_snapshot": null,
+      "chosen_rank": 33,
+      "chosen_points": 1429,
+      "disambiguation": {
+       "candidates": 1,
+       "overlap_best": 5,
+       "overlap_second": 0,
+       "ok": true
+      },
+      "chosen_details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0033--eternal_fire--jottaaa-kvem-mistem-regali-soulfly.md",
+      "chosen_name": "Eternal Fire",
+      "note": "5/5 overlap with the Valve row."
+     },
+     "b": {
+      "team": "Apogee Betclic",
+      "hltv_lineup": [
+       "Demho",
+       "Prism",
+       "ex1st",
+       "Qlocuu",
+       "ultimate"
+      ],
+      "hltv_rank": 71,
+      "hltv_rank_url": "https://www.hltv.org/ranking/teams/2026/october/12/12916",
+      "hltv_rank_note": null,
+      "hltv_vrs_display_rank": 57,
+      "hltv_vrs_display_url": "https://www.hltv.org/valve-ranking/teams/2026/october/16?teamId=12916",
+      "roster_delta_vs_snapshot": null,
+      "chosen_rank": 45,
+      "chosen_points": 1333,
+      "disambiguation": {
+       "candidates": 2,
+       "overlap_best": 5,
+       "overlap_second": 2,
+       "ok": true
+      },
+      "chosen_details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0045--betclic--demho-ex1st-prism-qlocuu-ultimate.md",
+      "chosen_name": "Betclic",
+      "note": "Valve files the roster under 'Betclic' twice; the HLTV five matches rank 45 5/5 (rank 183 shares 2)."
+     }
+    },
+    "research_after_lock": true,
+    "format": "BO3",
+    "format_source": "HLTV event 9449 + Liquipedia PGL Bucharest 2027 CQ + EGW match page",
+    "sources": [
+     "https://www.hltv.org/matches/2399654/eternal-fire-vs-betclic-pgl-bucharest-2027-closed-qualifier",
+     "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0033--eternal_fire--jottaaa-kvem-mistem-regali-soulfly.md",
+     "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0045--betclic--demho-ex1st-prism-qlocuu-ultimate.md",
+     "https://www.hltv.org/ranking/teams/2026/october/12/11251",
+     "https://www.hltv.org/ranking/teams/2026/october/12/12916",
+     "https://www.hltv.org/valve-ranking/teams/2026/october/16?teamId=11251",
+     "https://www.hltv.org/valve-ranking/teams/2026/october/16?teamId=12916",
+     "https://play.hotspawn.com/lobby"
+    ]
+   },
+   "pick": "Eternal Fire",
+   "pick_p": 0.5632,
    "flags": [
-    "FORMAT_UNKNOWN",
-    "UNRESOLVED"
+    "CROWD_MISSING",
+    "MODEL_ONLY",
+    "NO_MARKET",
+    "POST_LOCK_RESOLUTION",
+    "RESEARCH_FALLBACK",
+    "VALVE_NAME_AMBIGUOUS"
    ],
-   "strategy": null,
+   "strategy": {
+    "class": "NO CROWD DATA",
+    "leaderboard_pick": "Eternal Fire",
+    "reason": "Fewer than 10 crowd picks; ownership is too sparse for an automatic fade."
+   },
    "sources": [
     "https://play.hotspawn.com/cs2-pickems",
     "https://www.hotspawn.com/matches/eternal-fire-vs-apogee-betclic-pgl-bucharest-2027-closed-qualifier-1081493",
     "https://www.hltv.org/search?query=Eternal%20Fire%20Apogee%20Betclic",
-    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
+    "https://www.hltv.org/matches/2399654/eternal-fire-vs-betclic-pgl-bucharest-2027-closed-qualifier",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0033--eternal_fire--jottaaa-kvem-mistem-regali-soulfly.md",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0045--betclic--demho-ex1st-prism-qlocuu-ultimate.md",
+    "https://www.hltv.org/ranking/teams/2026/october/12/11251",
+    "https://www.hltv.org/ranking/teams/2026/october/12/12916",
+    "https://www.hltv.org/valve-ranking/teams/2026/october/16?teamId=11251",
+    "https://www.hltv.org/valve-ranking/teams/2026/october/16?teamId=12916",
+    "https://play.hotspawn.com/lobby"
    ],
    "result": null
   },
@@ -1562,7 +1693,8 @@
      "read_utc": "2026-10-16T07:51:03Z",
      "listed_start": "2026-10-16T13:00:00Z",
      "reasons": [
-      "competition missing or conflicting"
+      "competition missing or conflicting",
+      "series format conflicts with verified fixture format"
      ]
     }
    ],
@@ -1580,8 +1712,8 @@
    "total_picks": 7,
    "hltv_url": null,
    "hltv_note": null,
-   "format": "",
-   "format_source": "",
+   "format": "BO3 (LAN)",
+   "format_source": "research pack (fallback_83090640.json; HLTV 2399642 'Best of 3 (LAN) · Upper bracket quarter-final')",
    "vrs_a": null,
    "vrs_b": {
     "name": "Young TigeRES",
@@ -1607,11 +1739,10 @@
    "basis": "Unresolved",
    "rung": "D",
    "factors": [],
-   "own_line_limitation": "series format not independently confirmed; one or both teams not uniquely identified in Valve standings",
+   "own_line_limitation": "one or both teams not uniquely identified in Valve standings",
    "pick": null,
    "pick_p": null,
    "flags": [
-    "FORMAT_UNKNOWN",
     "REJECTED_QUOTE",
     "UNRESOLVED"
    ],
@@ -1788,8 +1919,8 @@
    "total_picks": 7,
    "hltv_url": null,
    "hltv_note": null,
-   "format": "",
-   "format_source": "",
+   "format": "BO3",
+   "format_source": "research pack (fallback_83090640.json; HLTV event 9459 matches tab (bo3) + EGW match page)",
    "vrs_a": {
     "name": "Rune Eaters",
     "rank": 81,
@@ -1818,27 +1949,30 @@
     "matches_with_current_five": 15,
     "first_rated_match_current_five": "2026-08-19"
    },
-   "own_p_a": null,
-   "own_p_b": null,
+   "own_p_a": 0.6927,
+   "own_p_b": 0.3073,
    "hltv_rank_a": 124,
    "hltv_rank_b": 154,
    "hltv_team_a": "https://www.hltv.org/team/12194/rune-eaters",
    "hltv_team_b": "https://www.hltv.org/team/13012/hyperspirit",
-   "p_a": null,
-   "p_b": null,
-   "basis": "Unresolved: series format not independently confirmed",
-   "rung": "D",
+   "p_a": 0.6927,
+   "p_b": 0.3073,
+   "basis": "Our own line (Valve points)",
+   "rung": "C",
    "factors": [],
-   "own_line_limitation": "series format not independently confirmed",
-   "pick": null,
-   "pick_p": null,
+   "own_line_limitation": "",
+   "pick": "Rune Eaters",
+   "pick_p": 0.6927,
    "flags": [
-    "FORMAT_UNKNOWN",
-    "NO_MARKET",
-    "OWN_LINE_WITHHELD",
-    "UNRESOLVED"
+    "CROWD_MISSING",
+    "MODEL_ONLY",
+    "NO_MARKET"
    ],
-   "strategy": null,
+   "strategy": {
+    "class": "NO CROWD DATA",
+    "leaderboard_pick": "Rune Eaters",
+    "reason": "Fewer than 10 crowd picks; ownership is too sparse for an automatic fade."
+   },
    "sources": [
     "https://play.hotspawn.com/cs2-pickems",
     "https://www.hotspawn.com/matches/rune-eaters-vs-hyperspirit-cyberclash-season-2-closed-qualifier-1081779",
@@ -3144,8 +3278,8 @@
    "total_picks": 7,
    "hltv_url": null,
    "hltv_note": null,
-   "format": "",
-   "format_source": "",
+   "format": "BO3",
+   "format_source": "research pack (fallback_83090640.json; HLTV event 9459 matches tab (bo3) + EGW match page)",
    "vrs_a": {
     "name": "PRIVATE",
     "rank": 95,
@@ -3174,16 +3308,16 @@
     "matches_with_current_five": 62,
     "first_rated_match_current_five": "2026-04-09"
    },
-   "own_p_a": null,
-   "own_p_b": null,
+   "own_p_a": 0.4206,
+   "own_p_b": 0.5794,
    "hltv_rank_a": 66,
    "hltv_rank_b": 64,
    "hltv_team_a": "https://www.hltv.org/team/14030/private",
    "hltv_team_b": "https://www.hltv.org/team/13989/upgrade",
-   "p_a": null,
-   "p_b": null,
-   "basis": "Unresolved: series format not independently confirmed",
-   "rung": "D",
+   "p_a": 0.4206,
+   "p_b": 0.5794,
+   "basis": "Our own line (Valve points)",
+   "rung": "C",
    "factors": [
     {
      "side": "a",
@@ -3198,16 +3332,19 @@
      "automated": true
     }
    ],
-   "own_line_limitation": "series format not independently confirmed",
-   "pick": null,
-   "pick_p": null,
+   "own_line_limitation": "",
+   "pick": "UPGRADE",
+   "pick_p": 0.5794,
    "flags": [
-    "FORMAT_UNKNOWN",
-    "NO_MARKET",
-    "OWN_LINE_WITHHELD",
-    "UNRESOLVED"
+    "CROWD_MISSING",
+    "MODEL_ONLY",
+    "NO_MARKET"
    ],
-   "strategy": null,
+   "strategy": {
+    "class": "NO CROWD DATA",
+    "leaderboard_pick": "UPGRADE",
+    "reason": "Fewer than 10 crowd picks; ownership is too sparse for an automatic fade."
+   },
    "sources": [
     "https://play.hotspawn.com/cs2-pickems",
     "https://www.hotspawn.com/matches/private-vs-upgrade-cyberclash-season-2-closed-qualifier-1081780",
@@ -3918,9 +4055,30 @@
    "total_picks": 7,
    "hltv_url": null,
    "hltv_note": null,
-   "format": "",
-   "format_source": "",
-   "vrs_a": null,
+   "format": "BO3",
+   "format_source": "research pack (fallback_83090640.json; HLTV 2399762 'Best of 3 (Online) · Group C elimination match')",
+   "vrs_a": {
+    "name": "Honvéd",
+    "rank": 169,
+    "points": 788,
+    "roster": [
+     "1NSERT2",
+     "esor",
+     "fleav",
+     "iBALLY",
+     "noleN"
+    ],
+    "disambiguated": true,
+    "disambiguation": {
+     "rule": "roster-overlap disambiguation",
+     "min_overlap": 3,
+     "candidates": 2,
+     "overlap_best": 3,
+     "overlap_second": 2,
+     "ok": true
+    },
+    "details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0169--honv_d--1nsert2-esor-fleav-ibally-nolen.md"
+   },
    "vrs_b": {
     "name": "Lavked",
     "rank": 143,
@@ -3932,33 +4090,187 @@
      "sol",
      "xm1nd"
     ],
-    "matches_with_current_five": 29,
-    "first_rated_match_current_five": "2026-08-14"
+    "disambiguated": true,
+    "disambiguation": {
+     "rule": "roster-overlap disambiguation",
+     "min_overlap": 3,
+     "candidates": 1,
+     "overlap_best": 4,
+     "overlap_second": 0,
+     "ok": true
+    },
+    "details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0143--lavked--1nvisiblee-azukay-k4nfuz-sol-xm1nd.md"
    },
-   "own_p_a": null,
-   "own_p_b": null,
+   "own_p_a": 0.4512,
+   "own_p_b": 0.5488,
    "hltv_rank_a": 156,
    "hltv_rank_b": 140,
    "hltv_team_a": "https://www.hltv.org/team/11110/honvd",
    "hltv_team_b": "https://www.hltv.org/team/12609/lavked",
-   "p_a": null,
-   "p_b": null,
-   "basis": "Unresolved",
-   "rung": "D",
-   "factors": [],
-   "own_line_limitation": "series format not independently confirmed; one or both teams not uniquely identified in Valve standings",
-   "pick": null,
-   "pick_p": null,
-   "flags": [
-    "FORMAT_UNKNOWN",
-    "UNRESOLVED"
+   "p_a": 0.4512,
+   "p_b": 0.5488,
+   "basis": "Research fallback: our own line (Valve points, row disambiguated by documented roster overlap with HLTV's listed lineups; no outside price exists)",
+   "rung": "E",
+   "factors": [
+    {
+     "side": "a",
+     "team": "Honvéd",
+     "kind": "roster change vs Valve snapshot (research fallback)",
+     "summary": "HLTV lists marTineZ, zs0lt1 (sub) in and fleav, iBALLY out versus the five rated in Valve's 2026-10-05 snapshot.",
+     "argues_against": true,
+     "strength": "moderate",
+     "source_urls": [
+      "https://www.hltv.org/matches/2399762/honvd-vs-lavked-cis-esports-league-cyberclash-season-2"
+     ],
+     "read_utc": "2026-10-16T08:45:00Z",
+     "checked_date_utc": "2026-10-16",
+     "verification_status": "verified"
+    },
+    {
+     "side": "b",
+     "team": "Lavked",
+     "kind": "roster change vs Valve snapshot (research fallback)",
+     "summary": "HLTV lists jakekeS in and sol out versus the five rated in Valve's 2026-10-05 snapshot.",
+     "argues_against": true,
+     "strength": "moderate",
+     "source_urls": [
+      "https://www.hltv.org/matches/2399762/honvd-vs-lavked-cis-esports-league-cyberclash-season-2"
+     ],
+     "read_utc": "2026-10-16T08:45:00Z",
+     "checked_date_utc": "2026-10-16",
+     "verification_status": "verified"
+    }
    ],
-   "strategy": null,
+   "own_line_limitation": "strict own line withheld (one or both teams not uniquely identified in Valve standings); rung E resolved identity by documented roster-overlap disambiguation",
+   "fallback": {
+    "pack": "hotspawn/research/fallback_83090640.json",
+    "rule": ">= 3 shared nicknames vs HLTV lineup, strictly best overlap; own-line formula on the chosen rows",
+    "hltv_match_url": "https://www.hltv.org/matches/2399762/honvd-vs-lavked-cis-esports-league-cyberclash-season-2",
+    "hltv_read_utc": "2026-10-16T08:45:00Z",
+    "market_check": {
+     "hltv_betting_table": "Stake sweepstake promo cell only; no sportsbook prices",
+     "hltv_betting_table_url": "https://www.hltv.org/matches/2399762/honvd-vs-lavked-cis-esports-league-cyberclash-season-2#betting",
+     "pinnacle": "not listed in the board's Pinnacle read",
+     "polymarket": "no quote for this fixture in the capture (15 Oct group markets only on the event surface)",
+     "polymarket_url": "https://polymarket.com/esports/cs2/cyberclash",
+     "esportsbooks_search": "no named esportsbook relay in the capture"
+    },
+    "sides": {
+     "a": {
+      "team": "Honvéd",
+      "hltv_lineup": [
+       "marTineZ",
+       "noleN",
+       "1NSERT2",
+       "esor",
+       "zs0lt1"
+      ],
+      "hltv_rank": 156,
+      "hltv_rank_url": "https://www.hltv.org/ranking/teams/2026/october/12/11110",
+      "hltv_rank_note": null,
+      "hltv_vrs_display_rank": 165,
+      "hltv_vrs_display_url": "https://www.hltv.org/valve-ranking/teams?teamId=11110",
+      "roster_delta_vs_snapshot": {
+       "in": [
+        "marTineZ",
+        "zs0lt1 (sub)"
+       ],
+       "out": [
+        "fleav",
+        "iBALLY"
+       ],
+       "source_url": "https://www.hltv.org/matches/2399762/honvd-vs-lavked-cis-esports-league-cyberclash-season-2#lineups"
+      },
+      "chosen_rank": 169,
+      "chosen_points": 788,
+      "disambiguation": {
+       "candidates": 2,
+       "overlap_best": 3,
+       "overlap_second": 2,
+       "ok": true
+      },
+      "chosen_details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0169--honv_d--1nsert2-esor-fleav-ibally-nolen.md",
+      "chosen_name": "Honvéd",
+      "note": "Overlap 3 (row 169) vs 2 (row 331); row 169 chosen. Two-player change vs the snapshot."
+     },
+     "b": {
+      "team": "Lavked",
+      "hltv_lineup": [
+       "xm1nd",
+       "azukay",
+       "k4nfuz",
+       "1NVISIBLEE",
+       "jakekeS"
+      ],
+      "hltv_rank": 140,
+      "hltv_rank_url": "https://www.hltv.org/ranking/teams/2026/october/12/12609",
+      "hltv_rank_note": null,
+      "hltv_vrs_display_rank": 148,
+      "hltv_vrs_display_url": "https://www.hltv.org/valve-ranking/teams?teamId=12609",
+      "roster_delta_vs_snapshot": {
+       "in": [
+        "jakekeS"
+       ],
+       "out": [
+        "sol"
+       ],
+       "source_url": "https://www.hltv.org/matches/2399762/honvd-vs-lavked-cis-esports-league-cyberclash-season-2#lineups"
+      },
+      "chosen_rank": 143,
+      "chosen_points": 862,
+      "disambiguation": {
+       "candidates": 1,
+       "overlap_best": 4,
+       "overlap_second": 0,
+       "ok": true
+      },
+      "chosen_details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0143--lavked--1nvisiblee-azukay-k4nfuz-sol-xm1nd.md",
+      "chosen_name": "Lavked",
+      "note": "4/5 overlap (jakekeS in, sol out)."
+     }
+    },
+    "research_after_lock": false,
+    "format": "BO3",
+    "format_source": "HLTV 2399762 'Best of 3 (Online) · Group C elimination match'",
+    "sources": [
+     "https://www.hltv.org/matches/2399762/honvd-vs-lavked-cis-esports-league-cyberclash-season-2",
+     "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0169--honv_d--1nsert2-esor-fleav-ibally-nolen.md",
+     "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0143--lavked--1nvisiblee-azukay-k4nfuz-sol-xm1nd.md",
+     "https://www.hltv.org/ranking/teams/2026/october/12/11110",
+     "https://www.hltv.org/ranking/teams/2026/october/12/12609",
+     "https://www.hltv.org/valve-ranking/teams?teamId=11110",
+     "https://www.hltv.org/valve-ranking/teams?teamId=12609",
+     "https://play.hotspawn.com/lobby"
+    ]
+   },
+   "pick": "Lavked",
+   "pick_p": 0.5488,
+   "flags": [
+    "CROWD_MISSING",
+    "MODEL_ONLY",
+    "NO_MARKET",
+    "RESEARCH_FALLBACK",
+    "VALVE_NAME_AMBIGUOUS",
+    "VRS_ROSTER_OUTDATED"
+   ],
+   "strategy": {
+    "class": "NO CROWD DATA",
+    "leaderboard_pick": "Lavked",
+    "reason": "Fewer than 10 crowd picks; ownership is too sparse for an automatic fade."
+   },
    "sources": [
     "https://play.hotspawn.com/cs2-pickems",
     "https://www.hotspawn.com/matches/honved-vs-lavked-cyberclash-season-2-closed-qualifier-1081781",
     "https://www.hltv.org/search?query=Honv%C3%A9d%20Lavked",
-    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
+    "https://www.hltv.org/matches/2399762/honvd-vs-lavked-cis-esports-league-cyberclash-season-2",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0169--honv_d--1nsert2-esor-fleav-ibally-nolen.md",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0143--lavked--1nvisiblee-azukay-k4nfuz-sol-xm1nd.md",
+    "https://www.hltv.org/ranking/teams/2026/october/12/11110",
+    "https://www.hltv.org/ranking/teams/2026/october/12/12609",
+    "https://www.hltv.org/valve-ranking/teams?teamId=11110",
+    "https://www.hltv.org/valve-ranking/teams?teamId=12609",
+    "https://play.hotspawn.com/lobby"
    ],
    "result": null
   },
@@ -4194,9 +4506,30 @@
    "total_picks": 7,
    "hltv_url": null,
    "hltv_note": null,
-   "format": "",
-   "format_source": "",
-   "vrs_a": null,
+   "format": "BO3",
+   "format_source": "research pack (fallback_83090640.json; HLTV event 9453 matches tab (bo3) + EGW match page)",
+   "vrs_a": {
+    "name": "Bebop",
+    "rank": 212,
+    "points": 702,
+    "roster": [
+     "faydett",
+     "iDISBALANCE",
+     "KENSI",
+     "Pipw",
+     "redzed"
+    ],
+    "disambiguated": true,
+    "disambiguation": {
+     "rule": "roster-overlap disambiguation",
+     "min_overlap": 3,
+     "candidates": 2,
+     "overlap_best": 5,
+     "overlap_second": 2,
+     "ok": true
+    },
+    "details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0212--bebop--faydett-idisbalance-kensi-pipw-redzed.md"
+   },
    "vrs_b": {
     "name": "DONSTU",
     "rank": 197,
@@ -4208,33 +4541,159 @@
      "NeoLife",
      "phorate"
     ],
-    "matches_with_current_five": 20,
-    "first_rated_match_current_five": "2026-06-28"
+    "disambiguated": true,
+    "disambiguation": {
+     "rule": "roster-overlap disambiguation",
+     "min_overlap": 3,
+     "candidates": 1,
+     "overlap_best": 4,
+     "overlap_second": 0,
+     "ok": true
+    },
+    "details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0197--donstu--due1yant-gleb86rus-laksheri-neolife-phorate.md"
    },
-   "own_p_a": null,
-   "own_p_b": null,
+   "own_p_a": 0.4802,
+   "own_p_b": 0.5198,
    "hltv_rank_a": 207,
    "hltv_rank_b": 206,
    "hltv_team_a": "https://www.hltv.org/team/13613/bebop",
    "hltv_team_b": "https://www.hltv.org/team/13714/donstu",
-   "p_a": null,
-   "p_b": null,
-   "basis": "Unresolved",
-   "rung": "D",
-   "factors": [],
-   "own_line_limitation": "series format not independently confirmed; one or both teams not uniquely identified in Valve standings",
-   "pick": null,
-   "pick_p": null,
-   "flags": [
-    "FORMAT_UNKNOWN",
-    "UNRESOLVED"
+   "p_a": 0.4802,
+   "p_b": 0.5198,
+   "basis": "Research fallback: our own line (Valve points, row disambiguated by documented roster overlap with HLTV's listed lineups; no outside price exists)",
+   "rung": "E",
+   "factors": [
+    {
+     "side": "b",
+     "team": "Donstu",
+     "kind": "roster change vs Valve snapshot (research fallback)",
+     "summary": "HLTV lists takanashi in and LAKSHERi out versus the five rated in Valve's 2026-10-05 snapshot.",
+     "argues_against": true,
+     "strength": "moderate",
+     "source_urls": [
+      "https://www.hltv.org/matches/2399676/bebop-vs-donstu-cct-2026-challengers-europe-series-8"
+     ],
+     "read_utc": "2026-10-16T08:45:00Z",
+     "checked_date_utc": "2026-10-16",
+     "verification_status": "verified"
+    }
    ],
-   "strategy": null,
+   "own_line_limitation": "strict own line withheld (one or both teams not uniquely identified in Valve standings); rung E resolved identity by documented roster-overlap disambiguation",
+   "fallback": {
+    "pack": "hotspawn/research/fallback_83090640.json",
+    "rule": ">= 3 shared nicknames vs HLTV lineup, strictly best overlap; own-line formula on the chosen rows",
+    "hltv_match_url": "https://www.hltv.org/matches/2399676/bebop-vs-donstu-cct-2026-challengers-europe-series-8",
+    "hltv_read_utc": "2026-10-16T08:45:00Z",
+    "market_check": {
+     "hltv_betting_table": "no book prices on the match page (analytics link only)",
+     "egamersworld_url": "https://egamersworld.com/counterstrike/match/EkjkYUfoNl/bebop-vs-donstu-esports-N96TxtN4P",
+     "egamersworld_note": "EGW 1.8/1.8 placeholder (rejected as non-market)",
+     "pinnacle": "not listed in the board's Pinnacle read",
+     "polymarket": "no match-winner market for this fixture",
+     "esportsbooks_search": "no named esportsbook relay in the capture"
+    },
+    "sides": {
+     "a": {
+      "team": "Bebop",
+      "hltv_lineup": [
+       "Pipw",
+       "redzed",
+       "iDISBALANCE",
+       "KENSI",
+       "faydett"
+      ],
+      "hltv_rank": null,
+      "hltv_rank_url": null,
+      "hltv_rank_note": null,
+      "hltv_vrs_display_rank": null,
+      "hltv_vrs_display_url": null,
+      "roster_delta_vs_snapshot": null,
+      "chosen_rank": 212,
+      "chosen_points": 702,
+      "disambiguation": {
+       "candidates": 2,
+       "overlap_best": 5,
+       "overlap_second": 2,
+       "ok": true
+      },
+      "chosen_details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0212--bebop--faydett-idisbalance-kensi-pipw-redzed.md",
+      "chosen_name": "Bebop",
+      "note": "Overlap 5 (row 212) vs 2 (row 282); row 212 chosen — the HLTV five is exactly the row-212 five."
+     },
+     "b": {
+      "team": "Donstu",
+      "hltv_lineup": [
+       "Due1yant",
+       "NeoLife",
+       "gleb86rus",
+       "takanashi",
+       "phorate"
+      ],
+      "hltv_rank": 206,
+      "hltv_rank_url": "https://www.hltv.org/ranking/teams/2026/october/12/13714",
+      "hltv_rank_note": null,
+      "hltv_vrs_display_rank": 206,
+      "hltv_vrs_display_url": "https://www.hltv.org/valve-ranking/teams?teamId=13714",
+      "roster_delta_vs_snapshot": {
+       "in": [
+        "takanashi"
+       ],
+       "out": [
+        "LAKSHERi"
+       ],
+       "source_url": "https://www.hltv.org/matches/2399676/bebop-vs-donstu-cct-2026-challengers-europe-series-8#lineups"
+      },
+      "chosen_rank": 197,
+      "chosen_points": 732,
+      "disambiguation": {
+       "candidates": 1,
+       "overlap_best": 4,
+       "overlap_second": 0,
+       "ok": true
+      },
+      "chosen_details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0197--donstu--due1yant-gleb86rus-laksheri-neolife-phorate.md",
+      "chosen_name": "DONSTU",
+      "note": "4/5 overlap (takanashi in, LAKSHERi out)."
+     }
+    },
+    "research_after_lock": false,
+    "format": "BO3",
+    "format_source": "HLTV event 9453 matches tab (bo3) + EGW match page",
+    "sources": [
+     "https://www.hltv.org/matches/2399676/bebop-vs-donstu-cct-2026-challengers-europe-series-8",
+     "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0212--bebop--faydett-idisbalance-kensi-pipw-redzed.md",
+     "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0197--donstu--due1yant-gleb86rus-laksheri-neolife-phorate.md",
+     "https://www.hltv.org/ranking/teams/2026/october/12/13714",
+     "https://www.hltv.org/valve-ranking/teams?teamId=13714",
+     "https://play.hotspawn.com/lobby"
+    ]
+   },
+   "pick": "Donstu",
+   "pick_p": 0.5198,
+   "flags": [
+    "CROWD_MISSING",
+    "MODEL_ONLY",
+    "NO_MARKET",
+    "RESEARCH_FALLBACK",
+    "VALVE_NAME_AMBIGUOUS",
+    "VRS_ROSTER_OUTDATED"
+   ],
+   "strategy": {
+    "class": "NO CROWD DATA",
+    "leaderboard_pick": "Donstu",
+    "reason": "Fewer than 10 crowd picks; ownership is too sparse for an automatic fade."
+   },
    "sources": [
     "https://play.hotspawn.com/cs2-pickems",
     "https://www.hotspawn.com/matches/bebop-vs-donstu-cct-europe-2026-challengers-8-1081513",
     "https://www.hltv.org/search?query=Bebop%20Donstu",
-    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
+    "https://www.hltv.org/matches/2399676/bebop-vs-donstu-cct-2026-challengers-europe-series-8",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0212--bebop--faydett-idisbalance-kensi-pipw-redzed.md",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0197--donstu--due1yant-gleb86rus-laksheri-neolife-phorate.md",
+    "https://www.hltv.org/ranking/teams/2026/october/12/13714",
+    "https://www.hltv.org/valve-ranking/teams?teamId=13714",
+    "https://play.hotspawn.com/lobby"
    ],
    "result": null
   },
@@ -4388,7 +4847,7 @@
    "format": "BO3",
    "format_source": "HLTV match page",
    "vrs_a": {
-    "name": "Banda Chuya",
+    "name": null,
     "rank": 165,
     "points": 801,
     "roster": [
@@ -4407,12 +4866,10 @@
      "overlap_second": 1,
      "ok": true
     },
-    "details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0165--banda_chuya--adrien-ezox-maaryy-showk-tomiko.md",
-    "matches_with_current_five": 18,
-    "first_rated_match_current_five": "2026-09-06"
+    "details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0165--banda_chuya--adrien-ezox-maaryy-showk-tomiko.md"
    },
    "vrs_b": {
-    "name": "Enjoy",
+    "name": null,
     "rank": 138,
     "points": 871,
     "roster": [
@@ -4431,9 +4888,7 @@
      "overlap_second": 0,
      "ok": true
     },
-    "details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0138--enjoy--kurosa-nbl-roxesz-sh1geo-zazzer.md",
-    "matches_with_current_five": 31,
-    "first_rated_match_current_five": "2026-04-09"
+    "details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0138--enjoy--kurosa-nbl-roxesz-sh1geo-zazzer.md"
    },
    "own_p_a": 0.4538,
    "own_p_b": 0.5462,
@@ -4507,6 +4962,7 @@
        "ok": true
       },
       "chosen_details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0165--banda_chuya--adrien-ezox-maaryy-showk-tomiko.md",
+      "chosen_name": null,
       "note": "The name 'Banda Chuya' appears twice in Valve's file (ranks 165 and 373). The HLTV match lineup matches row 165 exactly (5/5 nicknames) and shares 1 nickname (ezox) with the 2-player row 373, so row 165 is the unique best overlap. The HLTV-listed five also equals the snapshot five exactly (no roster delta)."
      },
      "b": {
@@ -4542,9 +4998,13 @@
        "ok": true
       },
       "chosen_details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0138--enjoy--kurosa-nbl-roxesz-sh1geo-zazzer.md",
+      "chosen_name": null,
       "note": "One Enjoy row in Valve's file (rank 138). The HLTV match lineup keeps 3 of the snapshot five (kurosa, nbl, sh1geo) and adds reyoz and flawix for roxesz and zazzer. The dated points therefore predate a two-player change; the fallback line is computed but flagged softer."
      }
     },
+    "research_after_lock": false,
+    "format": "BO3",
+    "format_source": "HLTV match page 2399477 ('Best of 3 (Online) · Group A decider match')",
     "sources": [
      "https://www.hltv.org/matches/2399477/banda-chuya-vs-enjoy-cct-2026-europe-series-12-closed-qualifier",
      "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0165--banda_chuya--adrien-ezox-maaryy-showk-tomiko.md",
@@ -4616,9 +5076,30 @@
    "total_picks": 7,
    "hltv_url": null,
    "hltv_note": null,
-   "format": "",
-   "format_source": "",
-   "vrs_a": null,
+   "format": "BO3",
+   "format_source": "research pack (fallback_83090640.json; HLTV event 9453 matches tab (bo3) + EGW match page)",
+   "vrs_a": {
+    "name": "6666",
+    "rank": 127,
+    "points": 923,
+    "roster": [
+     "amster",
+     "dENZY",
+     "kL1o",
+     "rendysky",
+     "skcH"
+    ],
+    "disambiguated": true,
+    "disambiguation": {
+     "rule": "roster-overlap disambiguation",
+     "min_overlap": 3,
+     "candidates": 2,
+     "overlap_best": 4,
+     "overlap_second": 1,
+     "ok": true
+    },
+    "details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0127--6666--amster-denzy-kl1o-rendysky-skch.md"
+   },
    "vrs_b": {
     "name": "Privateer",
     "rank": 271,
@@ -4630,19 +5111,27 @@
      "M1n1maL",
      "Prime"
     ],
-    "matches_with_current_five": 6,
-    "first_rated_match_current_five": "2026-09-05"
+    "disambiguated": true,
+    "disambiguation": {
+     "rule": "roster-overlap disambiguation",
+     "min_overlap": 3,
+     "candidates": 1,
+     "overlap_best": 3,
+     "overlap_second": 0,
+     "ok": true
+    },
+    "details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0271--privateer--ariant0-frazehh-jaustere-m1n1mal-prime.md"
    },
-   "own_p_a": null,
-   "own_p_b": null,
+   "own_p_a": 0.6971,
+   "own_p_b": 0.3029,
    "hltv_rank_a": null,
    "hltv_rank_b": 226,
    "hltv_team_a": null,
    "hltv_team_b": "https://www.hltv.org/team/13914/privateer",
-   "p_a": null,
-   "p_b": null,
-   "basis": "Unresolved",
-   "rung": "D",
+   "p_a": 0.6971,
+   "p_b": 0.3029,
+   "basis": "Research fallback: our own line (Valve points, row disambiguated by documented roster overlap with HLTV's listed lineups; no outside price exists)",
+   "rung": "E",
    "factors": [
     {
      "side": "b",
@@ -4655,21 +5144,162 @@
       "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
      ],
      "automated": true
+    },
+    {
+     "side": "a",
+     "team": "ex-6666",
+     "kind": "roster change vs Valve snapshot (research fallback)",
+     "summary": "HLTV lists stefienson in and dENZY out versus the five rated in Valve's 2026-10-05 snapshot.",
+     "argues_against": true,
+     "strength": "moderate",
+     "source_urls": [
+      "https://www.hltv.org/matches/2399681/ex-6666-vs-privateer-cct-2026-challengers-europe-series-8"
+     ],
+     "read_utc": "2026-10-16T08:45:00Z",
+     "checked_date_utc": "2026-10-16",
+     "verification_status": "verified"
+    },
+    {
+     "side": "b",
+     "team": "Privateer",
+     "kind": "roster change vs Valve snapshot (research fallback)",
+     "summary": "HLTV lists moz, Amqn in and Ariant0, JAUSTERE out versus the five rated in Valve's 2026-10-05 snapshot.",
+     "argues_against": true,
+     "strength": "moderate",
+     "source_urls": [
+      "https://www.hltv.org/matches/2399681/ex-6666-vs-privateer-cct-2026-challengers-europe-series-8"
+     ],
+     "read_utc": "2026-10-16T08:45:00Z",
+     "checked_date_utc": "2026-10-16",
+     "verification_status": "verified"
     }
    ],
-   "own_line_limitation": "series format not independently confirmed; one or both teams not uniquely identified in Valve standings",
-   "pick": null,
-   "pick_p": null,
+   "own_line_limitation": "strict own line withheld (one or both teams not uniquely identified in Valve standings); rung E resolved identity by documented roster-overlap disambiguation",
+   "fallback": {
+    "pack": "hotspawn/research/fallback_83090640.json",
+    "rule": ">= 3 shared nicknames vs HLTV lineup, strictly best overlap; own-line formula on the chosen rows",
+    "hltv_match_url": "https://www.hltv.org/matches/2399681/ex-6666-vs-privateer-cct-2026-challengers-europe-series-8",
+    "hltv_read_utc": "2026-10-16T08:45:00Z",
+    "market_check": {
+     "hltv_betting_table": "no book prices on the match page (analytics link only)",
+     "egamersworld_url": "https://egamersworld.com/counterstrike/match/EkjkYUfoNl/ex-6666-vs-privateer-gaming-sfo_MjtRV",
+     "egamersworld_note": "EGW 1.8/1.8 placeholder (rejected as non-market)",
+     "pinnacle": "not listed in the board's Pinnacle read",
+     "polymarket": "no match-winner market for this fixture",
+     "esportsbooks_search": "no named esportsbook relay in the capture"
+    },
+    "sides": {
+     "a": {
+      "team": "ex-6666",
+      "hltv_lineup": [
+       "skcH",
+       "kL1o",
+       "amster",
+       "rendysky",
+       "stefienson"
+      ],
+      "hltv_rank": null,
+      "hltv_rank_url": null,
+      "hltv_rank_note": null,
+      "hltv_vrs_display_rank": null,
+      "hltv_vrs_display_url": null,
+      "roster_delta_vs_snapshot": {
+       "in": [
+        "stefienson"
+       ],
+       "out": [
+        "dENZY"
+       ],
+       "source_url": "https://www.hltv.org/matches/2399681/ex-6666-vs-privateer-cct-2026-challengers-europe-series-8#lineups"
+      },
+      "chosen_rank": 127,
+      "chosen_points": 923,
+      "disambiguation": {
+       "candidates": 2,
+       "overlap_best": 4,
+       "overlap_second": 1,
+       "ok": true
+      },
+      "chosen_details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0127--6666--amster-denzy-kl1o-rendysky-skch.md",
+      "chosen_name": "6666",
+      "note": "Hotspawn lists the team as 'ex-6666', Valve as '6666'. Overlap 4 (row 127) vs 1 (row 368); row 127 chosen. stefienson is the Phantom Academy player who moved (see 1081522)."
+     },
+     "b": {
+      "team": "Privateer",
+      "hltv_lineup": [
+       "Frazehh",
+       "Prime",
+       "moz",
+       "M1n1maL",
+       "Amqn"
+      ],
+      "hltv_rank": 226,
+      "hltv_rank_url": "https://www.hltv.org/ranking/teams/2026/october/12/13914",
+      "hltv_rank_note": null,
+      "hltv_vrs_display_rank": 244,
+      "hltv_vrs_display_url": "https://www.hltv.org/valve-ranking/teams?teamId=13914",
+      "roster_delta_vs_snapshot": {
+       "in": [
+        "moz",
+        "Amqn"
+       ],
+       "out": [
+        "Ariant0",
+        "JAUSTERE"
+       ],
+       "source_url": "https://www.hltv.org/matches/2399681/ex-6666-vs-privateer-cct-2026-challengers-europe-series-8#lineups"
+      },
+      "chosen_rank": 271,
+      "chosen_points": 608,
+      "disambiguation": {
+       "candidates": 1,
+       "overlap_best": 3,
+       "overlap_second": 0,
+       "ok": true
+      },
+      "chosen_details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0271--privateer--ariant0-frazehh-jaustere-m1n1mal-prime.md",
+      "chosen_name": "Privateer",
+      "note": "Overlap 3 (Frazehh, Prime, M1n1maL); two players changed vs the snapshot."
+     }
+    },
+    "research_after_lock": false,
+    "format": "BO3",
+    "format_source": "HLTV event 9453 matches tab (bo3) + EGW match page",
+    "sources": [
+     "https://www.hltv.org/matches/2399681/ex-6666-vs-privateer-cct-2026-challengers-europe-series-8",
+     "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0127--6666--amster-denzy-kl1o-rendysky-skch.md",
+     "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0271--privateer--ariant0-frazehh-jaustere-m1n1mal-prime.md",
+     "https://www.hltv.org/ranking/teams/2026/october/12/13914",
+     "https://www.hltv.org/valve-ranking/teams?teamId=13914",
+     "https://play.hotspawn.com/lobby"
+    ]
+   },
+   "pick": "ex-6666",
+   "pick_p": 0.6971,
    "flags": [
-    "FORMAT_UNKNOWN",
-    "UNRESOLVED"
+    "CROWD_MISSING",
+    "MODEL_ONLY",
+    "NO_MARKET",
+    "RESEARCH_FALLBACK",
+    "VALVE_NAME_AMBIGUOUS",
+    "VRS_ROSTER_OUTDATED"
    ],
-   "strategy": null,
+   "strategy": {
+    "class": "NO CROWD DATA",
+    "leaderboard_pick": "ex-6666",
+    "reason": "Fewer than 10 crowd picks; ownership is too sparse for an automatic fade."
+   },
    "sources": [
     "https://play.hotspawn.com/cs2-pickems",
     "https://www.hotspawn.com/matches/ex-6666-vs-privateer-cct-europe-2026-challengers-8-1081521",
     "https://www.hltv.org/search?query=ex-6666%20Privateer",
-    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
+    "https://www.hltv.org/matches/2399681/ex-6666-vs-privateer-cct-2026-challengers-europe-series-8",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0127--6666--amster-denzy-kl1o-rendysky-skch.md",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0271--privateer--ariant0-frazehh-jaustere-m1n1mal-prime.md",
+    "https://www.hltv.org/ranking/teams/2026/october/12/13914",
+    "https://www.hltv.org/valve-ranking/teams?teamId=13914",
+    "https://play.hotspawn.com/lobby"
    ],
    "result": null
   },
@@ -4706,9 +5336,30 @@
    "total_picks": 7,
    "hltv_url": null,
    "hltv_note": null,
-   "format": "",
-   "format_source": "",
-   "vrs_a": null,
+   "format": "BO3",
+   "format_source": "research pack (fallback_83090640.json; HLTV event 9453 matches tab (bo3) + EGW match page)",
+   "vrs_a": {
+    "name": "Strael Bora",
+    "rank": 217,
+    "points": 692,
+    "roster": [
+     "AdaMmMm",
+     "levantino",
+     "maddeN",
+     "newhope",
+     "svn"
+    ],
+    "disambiguated": true,
+    "disambiguation": {
+     "rule": "roster-overlap disambiguation",
+     "min_overlap": 3,
+     "candidates": 1,
+     "overlap_best": 4,
+     "overlap_second": 0,
+     "ok": true
+    },
+    "details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0217--strael_bora--adammmm-levantino-madden-newhope-svn.md"
+   },
    "vrs_b": {
     "name": "Phantom Academy",
     "rank": 172,
@@ -4720,19 +5371,27 @@
      "kalyambys",
      "stefienson"
     ],
-    "matches_with_current_five": 6,
-    "first_rated_match_current_five": "2026-09-24"
+    "disambiguated": true,
+    "disambiguation": {
+     "rule": "roster-overlap disambiguation",
+     "min_overlap": 3,
+     "candidates": 1,
+     "overlap_best": 4,
+     "overlap_second": 0,
+     "ok": true
+    },
+    "details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0172--phantom_academy--ayteel-brain47-dr3nquu-kalyambys-stefienson.md"
    },
-   "own_p_a": null,
-   "own_p_b": null,
+   "own_p_a": 0.4401,
+   "own_p_b": 0.5599,
    "hltv_rank_a": null,
    "hltv_rank_b": 178,
    "hltv_team_a": null,
    "hltv_team_b": "https://www.hltv.org/team/13766/phantom-academy",
-   "p_a": null,
-   "p_b": null,
-   "basis": "Unresolved",
-   "rung": "D",
+   "p_a": 0.4401,
+   "p_b": 0.5599,
+   "basis": "Research fallback: our own line (Valve points, row disambiguated by documented roster overlap with HLTV's listed lineups; no outside price exists)",
+   "rung": "E",
    "factors": [
     {
      "side": "b",
@@ -4745,21 +5404,162 @@
       "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
      ],
      "automated": true
+    },
+    {
+     "side": "a",
+     "team": "antidaun",
+     "kind": "roster change vs Valve snapshot (research fallback)",
+     "summary": "HLTV lists Pedrinho2011 in and maddeN out versus the five rated in Valve's 2026-10-05 snapshot.",
+     "argues_against": true,
+     "strength": "moderate",
+     "source_urls": [
+      "https://www.hltv.org/matches/2399682/antidaun-vs-phantom-academy-cct-2026-challengers-europe-series-8"
+     ],
+     "read_utc": "2026-10-16T08:45:00Z",
+     "checked_date_utc": "2026-10-16",
+     "verification_status": "verified"
+    },
+    {
+     "side": "b",
+     "team": "Phantom Academy",
+     "kind": "roster change vs Valve snapshot (research fallback)",
+     "summary": "HLTV lists La1roN in and stefienson out versus the five rated in Valve's 2026-10-05 snapshot.",
+     "argues_against": true,
+     "strength": "moderate",
+     "source_urls": [
+      "https://www.hltv.org/matches/2399682/antidaun-vs-phantom-academy-cct-2026-challengers-europe-series-8"
+     ],
+     "read_utc": "2026-10-16T08:45:00Z",
+     "checked_date_utc": "2026-10-16",
+     "verification_status": "verified"
     }
    ],
-   "own_line_limitation": "series format not independently confirmed; one or both teams not uniquely identified in Valve standings",
-   "pick": null,
-   "pick_p": null,
+   "own_line_limitation": "strict own line withheld (one or both teams not uniquely identified in Valve standings); rung E resolved identity by documented roster-overlap disambiguation",
+   "fallback": {
+    "pack": "hotspawn/research/fallback_83090640.json",
+    "rule": ">= 3 shared nicknames vs HLTV lineup, strictly best overlap; own-line formula on the chosen rows",
+    "hltv_match_url": "https://www.hltv.org/matches/2399682/antidaun-vs-phantom-academy-cct-2026-challengers-europe-series-8",
+    "hltv_read_utc": "2026-10-16T08:45:00Z",
+    "market_check": {
+     "hltv_betting_table": "no book prices on the match page (analytics link only)",
+     "egamersworld_url": "https://egamersworld.com/counterstrike/match/EkjkYUfoNl/antidaun-vs-phantom-academy-zXFTwo17o8",
+     "egamersworld_note": "EGW 1.8/1.8 placeholder (rejected as non-market)",
+     "pinnacle": "not listed in the board's Pinnacle read",
+     "polymarket": "no match-winner market for this fixture",
+     "esportsbooks_search": "no named esportsbook relay in the capture"
+    },
+    "sides": {
+     "a": {
+      "team": "antidaun",
+      "hltv_lineup": [
+       "levantino",
+       "AdaMmMm",
+       "svn",
+       "newhope",
+       "Pedrinho2011"
+      ],
+      "hltv_rank": null,
+      "hltv_rank_url": null,
+      "hltv_rank_note": "HLTV: Unranked; VRS: #275 per HLTV's live VRS view (the pinned official file of record files this roster as 'Strael Bora', rank 217 global / 153 Europe)",
+      "hltv_vrs_display_rank": 275,
+      "hltv_vrs_display_url": "https://www.hltv.org/valve-ranking/teams?teamId=14085",
+      "roster_delta_vs_snapshot": {
+       "in": [
+        "Pedrinho2011"
+       ],
+       "out": [
+        "maddeN"
+       ],
+       "source_url": "https://www.hltv.org/matches/2399682/antidaun-vs-phantom-academy-cct-2026-challengers-europe-series-8#lineups"
+      },
+      "chosen_rank": 217,
+      "chosen_points": 692,
+      "disambiguation": {
+       "candidates": 1,
+       "overlap_best": 4,
+       "overlap_second": 0,
+       "ok": true
+      },
+      "chosen_details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0217--strael_bora--adammmm-levantino-madden-newhope-svn.md",
+      "chosen_name": "Strael Bora",
+      "note": "The team Hotspawn/HLTV call 'antidaun' is filed in Valve's standings as 'Strael Bora': 4/5 roster overlap (AdaMmMm, levantino, newhope, svn). Identification is roster-based and published in full."
+     },
+     "b": {
+      "team": "Phantom Academy",
+      "hltv_lineup": [
+       "Brain47",
+       "Ayteel",
+       "Dr3nquu",
+       "kalyambys",
+       "La1roN"
+      ],
+      "hltv_rank": 178,
+      "hltv_rank_url": "https://www.hltv.org/ranking/teams/2026/october/12/13766",
+      "hltv_rank_note": null,
+      "hltv_vrs_display_rank": 173,
+      "hltv_vrs_display_url": "https://www.hltv.org/valve-ranking/teams?teamId=13766",
+      "roster_delta_vs_snapshot": {
+       "in": [
+        "La1roN"
+       ],
+       "out": [
+        "stefienson"
+       ],
+       "source_url": "https://www.hltv.org/matches/2399682/antidaun-vs-phantom-academy-cct-2026-challengers-europe-series-8#lineups"
+      },
+      "chosen_rank": 172,
+      "chosen_points": 783,
+      "disambiguation": {
+       "candidates": 1,
+       "overlap_best": 4,
+       "overlap_second": 0,
+       "ok": true
+      },
+      "chosen_details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0172--phantom_academy--ayteel-brain47-dr3nquu-kalyambys-stefienson.md",
+      "chosen_name": "Phantom Academy",
+      "note": "4/5 overlap (La1roN in, stefienson out — stefienson now plays ex-6666, see 1081521)."
+     }
+    },
+    "research_after_lock": false,
+    "format": "BO3",
+    "format_source": "HLTV event 9453 matches tab (bo3) + EGW match page",
+    "sources": [
+     "https://www.hltv.org/matches/2399682/antidaun-vs-phantom-academy-cct-2026-challengers-europe-series-8",
+     "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0217--strael_bora--adammmm-levantino-madden-newhope-svn.md",
+     "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0172--phantom_academy--ayteel-brain47-dr3nquu-kalyambys-stefienson.md",
+     "https://www.hltv.org/ranking/teams/2026/october/12/13766",
+     "https://www.hltv.org/valve-ranking/teams?teamId=14085",
+     "https://www.hltv.org/valve-ranking/teams?teamId=13766",
+     "https://play.hotspawn.com/lobby"
+    ]
+   },
+   "pick": "Phantom Academy",
+   "pick_p": 0.5599,
    "flags": [
-    "FORMAT_UNKNOWN",
-    "UNRESOLVED"
+    "CROWD_MISSING",
+    "MODEL_ONLY",
+    "NO_MARKET",
+    "RESEARCH_FALLBACK",
+    "VALVE_NAME_AMBIGUOUS",
+    "VRS_ROSTER_OUTDATED"
    ],
-   "strategy": null,
+   "strategy": {
+    "class": "NO CROWD DATA",
+    "leaderboard_pick": "Phantom Academy",
+    "reason": "Fewer than 10 crowd picks; ownership is too sparse for an automatic fade."
+   },
    "sources": [
     "https://play.hotspawn.com/cs2-pickems",
     "https://www.hotspawn.com/matches/antidaun-vs-phantom-academy-cct-europe-2026-challengers-8-1081522",
     "https://www.hltv.org/search?query=antidaun%20Phantom%20Academy",
-    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
+    "https://www.hltv.org/matches/2399682/antidaun-vs-phantom-academy-cct-2026-challengers-europe-series-8",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0217--strael_bora--adammmm-levantino-madden-newhope-svn.md",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0172--phantom_academy--ayteel-brain47-dr3nquu-kalyambys-stefienson.md",
+    "https://www.hltv.org/ranking/teams/2026/october/12/13766",
+    "https://www.hltv.org/valve-ranking/teams?teamId=14085",
+    "https://www.hltv.org/valve-ranking/teams?teamId=13766",
+    "https://play.hotspawn.com/lobby"
    ],
    "result": null
   },
@@ -10807,7 +11607,8 @@
   "FORMAT_UNKNOWN": "No source stated the series length; nothing was assumed.",
   "UNRESOLVED": "No eligible outside line or independent direction satisfies the evidence gates; pick and probabilities are left blank.",
   "RESEARCH_FALLBACK": "No outside price and no strict own line; the pick is our own line on a Valve standings row disambiguated by documented roster overlap with HLTV's listed match lineup (research rung E). Softer than a market price.",
-  "VALVE_NAME_AMBIGUOUS": "The team name maps to more than one roster row in Valve's standings; the row used was chosen by the documented roster-overlap rule and is linked on the row.",
+  "VALVE_NAME_AMBIGUOUS": "The team name maps to more than one roster row in Valve's standings, or the Valve row is filed under a different team name; the row used was chosen by the documented roster-overlap rule and is linked on the row.",
+  "POST_LOCK_RESOLUTION": "The fixture appeared minutes before its pick lock and research finished after it. The pick is retrospective analysis only, is excluded from the graded pick history, and was never a submittable pick'em pick.",
   "STALE_LISTING": "Hotspawn still lists this fixture although its lock time passed more than 36 h ago (not pickable).",
   "LOCKED": "Lock time has passed; kept for the record and for grading.",
   "CROWD_MISSING": "Hotspawn did not publish a crowd share; no leaderboard play computed.",
@@ -11674,6 +12475,132 @@
    "rule_version": "v3-evidence-2026-10-16",
    "crowd_a": 100,
    "crowd_b": 0,
+   "as_of": "2026-10-16T07:50:59Z",
+   "frozen": false
+  },
+  "1081779": {
+   "match_id": "1081779",
+   "team_a": "Rune Eaters",
+   "team_b": "HyperSpirit",
+   "competition": "CyberClash Season 2: Closed Qualifier",
+   "start_utc": "2026-10-16T13:00:00Z",
+   "lock_utc": "2026-10-16T12:54:00Z",
+   "points": 2,
+   "pick": "Rune Eaters",
+   "pick_p": 0.6927,
+   "p_a": 0.6927,
+   "p_b": 0.3073,
+   "basis": "Our own line (Valve points)",
+   "leaderboard_pick": "Rune Eaters",
+   "class": "NO CROWD DATA",
+   "rule_version": "v3-evidence-2026-10-16",
+   "crowd_a": 100,
+   "crowd_b": 0,
+   "as_of": "2026-10-16T07:50:59Z",
+   "frozen": false
+  },
+  "1081780": {
+   "match_id": "1081780",
+   "team_a": "PRIVATE",
+   "team_b": "UPGRADE",
+   "competition": "CyberClash Season 2: Closed Qualifier",
+   "start_utc": "2026-10-16T16:00:00Z",
+   "lock_utc": "2026-10-16T15:54:00Z",
+   "points": 2,
+   "pick": "UPGRADE",
+   "pick_p": 0.5794,
+   "p_a": 0.4206,
+   "p_b": 0.5794,
+   "basis": "Our own line (Valve points)",
+   "leaderboard_pick": "UPGRADE",
+   "class": "NO CROWD DATA",
+   "rule_version": "v3-evidence-2026-10-16",
+   "crowd_a": 0,
+   "crowd_b": 100,
+   "as_of": "2026-10-16T07:50:59Z",
+   "frozen": false
+  },
+  "1081781": {
+   "match_id": "1081781",
+   "team_a": "Honvéd",
+   "team_b": "Lavked",
+   "competition": "CyberClash Season 2: Closed Qualifier",
+   "start_utc": "2026-10-16T19:00:00Z",
+   "lock_utc": "2026-10-16T18:54:00Z",
+   "points": 2,
+   "pick": "Lavked",
+   "pick_p": 0.5488,
+   "p_a": 0.4512,
+   "p_b": 0.5488,
+   "basis": "Research fallback: our own line (Valve points, row disambiguated by documented roster overlap with HLTV's listed lineups; no outside price exists)",
+   "leaderboard_pick": "Lavked",
+   "class": "NO CROWD DATA",
+   "rule_version": "v3-evidence-2026-10-16",
+   "crowd_a": 0,
+   "crowd_b": 100,
+   "as_of": "2026-10-16T07:50:59Z",
+   "frozen": false
+  },
+  "1081513": {
+   "match_id": "1081513",
+   "team_a": "Bebop",
+   "team_b": "Donstu",
+   "competition": "CCT Europe 2026 Challengers #8",
+   "start_utc": "2026-10-17T11:00:00Z",
+   "lock_utc": "2026-10-17T10:54:00Z",
+   "points": 2,
+   "pick": "Donstu",
+   "pick_p": 0.5198,
+   "p_a": 0.4802,
+   "p_b": 0.5198,
+   "basis": "Research fallback: our own line (Valve points, row disambiguated by documented roster overlap with HLTV's listed lineups; no outside price exists)",
+   "leaderboard_pick": "Donstu",
+   "class": "NO CROWD DATA",
+   "rule_version": "v3-evidence-2026-10-16",
+   "crowd_a": 86,
+   "crowd_b": 14,
+   "as_of": "2026-10-16T07:50:59Z",
+   "frozen": false
+  },
+  "1081521": {
+   "match_id": "1081521",
+   "team_a": "ex-6666",
+   "team_b": "Privateer",
+   "competition": "CCT Europe 2026 Challengers #8",
+   "start_utc": "2026-10-18T13:45:00Z",
+   "lock_utc": "2026-10-18T13:39:00Z",
+   "points": 2,
+   "pick": "ex-6666",
+   "pick_p": 0.6971,
+   "p_a": 0.6971,
+   "p_b": 0.3029,
+   "basis": "Research fallback: our own line (Valve points, row disambiguated by documented roster overlap with HLTV's listed lineups; no outside price exists)",
+   "leaderboard_pick": "ex-6666",
+   "class": "NO CROWD DATA",
+   "rule_version": "v3-evidence-2026-10-16",
+   "crowd_a": 100,
+   "crowd_b": 0,
+   "as_of": "2026-10-16T07:50:59Z",
+   "frozen": false
+  },
+  "1081522": {
+   "match_id": "1081522",
+   "team_a": "antidaun",
+   "team_b": "Phantom Academy",
+   "competition": "CCT Europe 2026 Challengers #8",
+   "start_utc": "2026-10-18T13:45:00Z",
+   "lock_utc": "2026-10-18T13:39:00Z",
+   "points": 2,
+   "pick": "Phantom Academy",
+   "pick_p": 0.5599,
+   "p_a": 0.4401,
+   "p_b": 0.5599,
+   "basis": "Research fallback: our own line (Valve points, row disambiguated by documented roster overlap with HLTV's listed lineups; no outside price exists)",
+   "leaderboard_pick": "Phantom Academy",
+   "class": "NO CROWD DATA",
+   "rule_version": "v3-evidence-2026-10-16",
+   "crowd_a": 0,
+   "crowd_b": 100,
    "as_of": "2026-10-16T07:50:59Z",
    "frozen": false
   }

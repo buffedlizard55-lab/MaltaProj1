@@ -130,3 +130,43 @@ Direct bookmaker odds of its own invention; any probability from Hotspawn crowd 
 fixture without a source; edits to other sessions' namespaces (`docs/`, `executive/`, `f323b4a7/`,
 `a6f05f99/`, …). The board's data and pages were regenerated only through the repo's own
 `collect.py → model.py → build.py → tests.py` pipeline.
+
+---
+
+# Second wave (2026-10-16 08:10–09:00Z): 11 new lobby fixtures, 8 new rows researched
+
+The scheduled live refresh (run 38869789949) pulled a 07:51:12Z capture with **106 fixtures** (was 95);
+the 11 new CS2 fixtures produced 8 fresh rung-D rows. Every row below was researched against official
+sources in the window above; the pack (`hotspawn/research/fallback_83090640.json`) was regenerated and
+every candidate row re-verified line-by-line against Valve's raw file (`resolve_fallback.py --vrs-file`,
+25 rows checked). Result: **41 of 42 open fixtures carry a pick**; the single documented absence is
+1081497 (IR-38). The ladder re-flowed as designed: rows with unique Valve identities got the strict own
+line (rung C), rows needing disambiguation got rung E.
+
+| Fixture (lock UTC) | HLTV match (lineups) | Valve rows (official links in pack) | Disambiguation | Line | Pick | Flags |
+|---|---|---|---|---|---|---|
+| Eternal Fire vs Apogee Betclic (16 Oct 07:54, BO3) | [2399654](https://www.hltv.org/matches/2399654/eternal-fire-vs-betclic-pgl-bucharest-2027-closed-qualifier) | EF #33 1429 (5/5); Betclic #45 1333 (5/5) vs #183 765 (2) | #45 | 56.3 / 43.7 | Eternal Fire | POST_LOCK_RESOLUTION (researched 08:45Z), VALVE_NAME_AMBIGUOUS |
+| Young27 vs Young TigeRES (16 Oct 12:54, BO3 LAN) | [2399642](https://www.hltv.org/matches/2399642/young-tigeres-vs-y27-gluck-yungstar-2026-series-3) | YT #199 728 (3/5); **Y27: none** (HLTV+VRS Unranked) | — | — | **blank (IR-38)** | UNRESOLVED |
+| Rune Eaters vs HyperSpirit (16 Oct 12:54, BO3) | [2399760](https://www.hltv.org/matches/2399760/rune-eaters-vs-hyperspirit-cis-esports-league-cyberclash-season-2) | RE #81 1110 (5/5); HYPERSPIRIT #162 803 (5/5) | unique | 69.3 / 30.7 | Rune Eaters | MODEL_ONLY, NO_MARKET |
+| PRIVATE vs UPGRADE (16 Oct 15:54, BO3) | [2399761](https://www.hltv.org/matches/2399761/private-vs-upgrade-cis-esports-league-cyberclash-season-2) | PRIVATE #95 1064 (5/5); UPGRADE #67 1185 (4/5, synyx in) | unique | 42.1 / 57.9 | UPGRADE | VRS_ROSTER_OUTDATED |
+| Honvéd vs Lavked (16 Oct 18:54, BO3) | [2399762](https://www.hltv.org/matches/2399762/honvd-vs-lavked-cis-esports-league-cyberclash-season-2) | Honvéd #169 788 (3) vs #331 515 (2); Lavked #143 862 (4) | #169 | 45.1 / 54.9 | Lavked | VALVE_NAME_AMBIGUOUS, VRS_ROSTER_OUTDATED |
+| Bebop vs Donstu (17 Oct 10:54, BO3) | [2399676](https://www.hltv.org/matches/2399676/bebop-vs-donstu-cct-2026-challengers-europe-series-8) | Bebop #212 702 (5) vs #282 597 (2); DONSTU #197 732 (4) | #212 | 48.0 / 52.0 | Donstu | VALVE_NAME_AMBIGUOUS, VRS_ROSTER_OUTDATED |
+| ex-6666 vs Privateer (18 Oct 13:39, BO3) | [2399681](https://www.hltv.org/matches/2399681/ex-6666-vs-privateer-cct-2026-challengers-europe-series-8) | 6666 #127 923 (4) vs #368 425 (1); Privateer #271 608 (3) | #127 | 69.7 / 30.3 | ex-6666 | VALVE_NAME_AMBIGUOUS, VRS_ROSTER_OUTDATED |
+| antidaun vs Phantom Academy (18 Oct 13:39, BO3) | [2399682](https://www.hltv.org/matches/2399682/antidaun-vs-phantom-academy-cct-2026-challengers-europe-series-8) | "Strael Bora" #217 692 (4) (IR-37); Phantom Academy #172 783 (4) | #217 | 44.0 / 56.0 | Phantom Academy | VALVE_NAME_AMBIGUOUS, VRS_ROSTER_OUTDATED |
+
+Market checks for every row (all negatives recorded in the pack): HLTV betting tables show only the
+Stake sweepstake promo cell; EGW's 1.8/1.8 placeholders rejected (F-28 class); no Pinnacle listing at
+the 05:58Z capture; Polymarket's CyberClash surface carried only 15 Oct group-stage markets (search
+read ~08:25Z); no named esportsbook relay in the 07:51Z capture. The vprognoze aggregator's 1.37/2.85
+for EF–Betclic is recorded as context only and never used as a price (IR-40).
+
+Formats (the strict gate requires an independently stated format): all eight are BO3 — stated by HLTV
+(Best of 3 fields / event matches tab) and corroborated by EGW match pages and, for the PGL qualifier,
+Liquipedia's Valve Tier 1 qualifier page.
+
+Grading hygiene: the POST_LOCK row (1081493) is excluded from `pick_history.json` (tested:
+`test_post_lock_research_is_never_graded_or_passed_off_as_pre_lock`); pre-lock research rows enter
+history normally and freeze at lock.
+
+Flagged additions: IR-37 (antidaun=Strael Bora rename), IR-38 (Y27 unratable — the one blank), IR-39
+(six snapshot roster deltas, all flagged), IR-40 (post-lock research). None block publication.

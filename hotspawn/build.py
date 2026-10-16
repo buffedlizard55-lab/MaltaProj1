@@ -648,8 +648,9 @@ def unresolved_section(board: dict, full: bool) -> str:
                              f'({link(fb.get("hltv_match_url"), "HLTV match page")}, read {e(fb.get("hltv_read_utc"))}); '
                              f'{rank_txt}; HLTV VRS view #{e(s.get("hltv_vrs_display_rank"))} '
                              f'({link(s.get("hltv_vrs_display_url"), "VRS page")}). '
-                             f'Valve row chosen: rank {e(s.get("chosen_rank"))}, {e(s.get("chosen_points"))} points '
-                             f'({link(s.get("chosen_details_url"), "official row")}), roster overlap {e(dis.get("overlap_best"))}'
+                         f'Valve row chosen: rank {e(s.get("chosen_rank"))}, {e(s.get("chosen_points"))} points '
+                         f'{("(filed as &#39;" + e(s.get("chosen_name")) + "&#39;) ") if s.get("chosen_name") and e(s.get("chosen_name")).casefold() != e(s.get("team")).casefold() else ""}'
+                         f'({link(s.get("chosen_details_url"), "official row")}), roster overlap {e(dis.get("overlap_best"))}'
                              f' of {e(len(s.get("hltv_lineup") or []))} vs {e(dis.get("overlap_second"))} for the next same-name row '
                              f'({e(dis.get("candidates"))} candidates).{delta_txt}</li>')
             mc = fb.get("market_check") or {}

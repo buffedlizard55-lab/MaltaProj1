@@ -66,7 +66,8 @@ FLAG_TEXT = {
     "FORMAT_UNKNOWN": "No source stated the series length; nothing was assumed.",
     "UNRESOLVED": "No eligible outside line or independent direction satisfies the evidence gates; pick and probabilities are left blank.",
     "RESEARCH_FALLBACK": "No outside price and no strict own line; the pick is our own line on a Valve standings row disambiguated by documented roster overlap with HLTV's listed match lineup (research rung E). Softer than a market price.",
-    "VALVE_NAME_AMBIGUOUS": "The team name maps to more than one roster row in Valve's standings; the row used was chosen by the documented roster-overlap rule and is linked on the row.",
+    "VALVE_NAME_AMBIGUOUS": "The team name maps to more than one roster row in Valve's standings, or the Valve row is filed under a different team name; the row used was chosen by the documented roster-overlap rule and is linked on the row.",
+    "POST_LOCK_RESOLUTION": "The fixture appeared minutes before its pick lock and research finished after it. The pick is retrospective analysis only, is excluded from the graded pick history, and was never a submittable pick'em pick.",
     "STALE_LISTING": "Hotspawn still lists this fixture although its lock time passed more than 36 h ago (not pickable).",
     "LOCKED": "Lock time has passed; kept for the record and for grading.",
     "CROWD_MISSING": "Hotspawn did not publish a crowd share; no leaderboard play computed.",
@@ -286,12 +287,15 @@ def build_rows(inp: dict) -> tuple[list[dict], dict]:
         r["total_picks"] = fx.get("total_picks_ownership")
         # ---- research links / format
         link = links.get(str(fx["match_id"]), {})
+        fb_entry = fallback_by_id.get(str(fx["match_id"])) or {}
         # A competition fallback must be an event page, never a team page borrowed from
         # one fixture. Otherwise new opponents inherit an unrelated team's evidence link.
         event_url = (events.get(fx.get("competition") or "", {}) or {}).get("url") or ""
         r["hltv_url"] = link.get("hltv") or (event_url if event_url.startswith("https://www.hltv.org/events/") else None)
         r["hltv_note"] = link.get("note")
         fmt, fmt_src = link.get("format") or "", "HLTV match page" if link.get("format") else ""
+        if not fmt and fb_entry.get("format"):
+            fmt, fmt_src = fb_entry["format"], f"research pack (fallback_83090640.json; {fb_entry.get('format_source')})"
         researched = r.get("research_attempt") or {}
         if researched.get("format") and not fmt:
             fmt, fmt_src = researched["format"], "HLTV live match-page read"
@@ -441,24 +445,33 @@ def build_rows(inp: dict) -> tuple[list[dict], dict]:
             flags.append("IDENTITY_CONFLICT")
             r["own_p_a"] = r["own_p_b"] = r["p_a"] = r["p_b"] = None
             r["rung"], r["basis"] = "D", "Unresolved: conflicting Hotspawn fixture records"
-        # ---- E: research fallback for open rung-D rows (roster-disambiguated Valve points)
+        # ---- E: research fallback for open rung-D rows (roster-disambiguated Valve points).
+        # The pack's candidate rows (verified line-by-line against Valve's published file at generation)
+        # are the evidence of record; the capture's parsed rows are a consistency cross-check.
         fb = fallback_by_id.get(str(r["match_id"]))
-        if (r["rung"] == "D" and r["status"] == "open" and fb and fb.get("resolved")
+        if (r["rung"] == "D" and r["status"] == "open" and fb and fb.get("resolved") and fb.get("format")
                 and not str(r["match_id"]) in conflicts):
             sides_fb = fb.get("sides", {})
             sa, sb_ = sides_fb.get("a") or {}, sides_fb.get("b") or {}
-            ra, ma = disambiguate_valve(vrs_idx.get(ka) or [], sa.get("hltv_lineup"))
-            rb, mb = disambiguate_valve(vrs_idx.get(kb) or [], sb_.get("hltv_lineup"))
-            if (ra and rb and ra.get("points") and rb.get("points")
-                    and ra.get("points") == sa.get("chosen_points") and rb.get("points") == sb_.get("chosen_points")):
-                r["vrs_a"] = {"name": ra.get("name"), "rank": ra.get("rank"), "points": ra.get("points"),
+            cand_a = [{"rank": c.get("rank"), "points": c.get("points"), "roster": c.get("roster"),
+                       "file_name": c.get("file_name"), "details_url": c.get("details_url")}
+                      for c in sa.get("valve_candidates") or []]
+            cand_b = [{"rank": c.get("rank"), "points": c.get("points"), "roster": c.get("roster"),
+                       "file_name": c.get("file_name"), "details_url": c.get("details_url")}
+                      for c in sb_.get("valve_candidates") or []]
+            ra, ma = disambiguate_valve(cand_a, sa.get("hltv_lineup"))
+            rb, mb = disambiguate_valve(cand_b, sb_.get("hltv_lineup"))
+
+            def _consistent(row, key):
+                cap_rows = [x for x in (vrs_idx.get(key) or []) if x.get("rank") == row.get("rank")]
+                return not cap_rows or cap_rows[0].get("points") == row.get("points")
+            if (ra and rb and _consistent(ra, ka) and _consistent(rb, kb)):
+                r["vrs_a"] = {"name": ra.get("file_name") or ra.get("name"), "rank": ra.get("rank"), "points": ra.get("points"),
                               "roster": ra.get("roster"), "disambiguated": True, "disambiguation": ma,
-                              "details_url": sa.get("chosen_details_url"), "matches_with_current_five": ra.get("matches_with_current_five"),
-                              "first_rated_match_current_five": ra.get("first_rated_match_current_five")}
-                r["vrs_b"] = {"name": rb.get("name"), "rank": rb.get("rank"), "points": rb.get("points"),
+                              "details_url": ra.get("details_url") or sa.get("chosen_details_url")}
+                r["vrs_b"] = {"name": rb.get("file_name") or rb.get("name"), "rank": rb.get("rank"), "points": rb.get("points"),
                               "roster": rb.get("roster"), "disambiguated": True, "disambiguation": mb,
-                              "details_url": sb_.get("chosen_details_url"), "matches_with_current_five": rb.get("matches_with_current_five"),
-                              "first_rated_match_current_five": rb.get("first_rated_match_current_five")}
+                              "details_url": rb.get("details_url") or sb_.get("chosen_details_url")}
                 r["own_p_a"] = round(own_line(ra["points"], rb["points"], k), 4)
                 r["own_p_b"] = round(1 - r["own_p_a"], 4)
                 r["p_a"], r["p_b"] = r["own_p_a"], r["own_p_b"]
@@ -469,8 +482,13 @@ def build_rows(inp: dict) -> tuple[list[dict], dict]:
                 for extra in ("RESEARCH_FALLBACK", "NO_MARKET", "MODEL_ONLY"):
                     if extra not in flags:
                         flags.append(extra)
-                if ma.get("candidates", 0) > 1 or mb.get("candidates", 0) > 1:
+                if (ma.get("candidates", 0) > 1 or mb.get("candidates", 0) > 1
+                        or (ra.get("file_name") and fold(ra.get("file_name")) != fold(fx["team_a"]))
+                        or (rb.get("file_name") and fold(rb.get("file_name")) != fold(fx["team_b"]))):
                     flags.append("VALVE_NAME_AMBIGUOUS")
+                if fb.get("research_after_lock"):
+                    flags.append("POST_LOCK_RESOLUTION")
+                    r["basis"] += " (research completed after the pick lock — retrospective analysis only, excluded from graded history)"
                 for side, sd in (("a", sa), ("b", sb_)):
                     delta = sd.get("roster_delta_vs_snapshot") or {}
                     if delta.get("in") or delta.get("out"):
@@ -505,12 +523,15 @@ def build_rows(inp: dict) -> tuple[list[dict], dict]:
                         "a": {kk: sa.get(kk) for kk in ("team", "hltv_lineup", "hltv_rank", "hltv_rank_url",
                                                         "hltv_rank_note", "hltv_vrs_display_rank", "hltv_vrs_display_url",
                                                         "roster_delta_vs_snapshot", "chosen_rank", "chosen_points",
-                                                        "disambiguation", "chosen_details_url", "note")},
+                                                        "disambiguation", "chosen_details_url", "chosen_name", "note")},
                         "b": {kk: sb_.get(kk) for kk in ("team", "hltv_lineup", "hltv_rank", "hltv_rank_url",
                                                          "hltv_rank_note", "hltv_vrs_display_rank", "hltv_vrs_display_url",
                                                          "roster_delta_vs_snapshot", "chosen_rank", "chosen_points",
-                                                         "disambiguation", "chosen_details_url", "note")},
+                                                         "disambiguation", "chosen_details_url", "chosen_name", "note")},
                     },
+                    "research_after_lock": fb.get("research_after_lock"),
+                    "format": fb.get("format"),
+                    "format_source": fb.get("format_source"),
                     "sources": [u for u in fb_sources if u],
                 }
         if r["rejected_quotes"] and r["status"] == "open":
@@ -569,7 +590,7 @@ def update_history(rows: list[dict], history: dict, ref_iso: str) -> dict:
             record["frozen"] = True
     for r in rows:
         mid = str(r["match_id"])
-        if r["status"] == "open" and r.get("pick"):
+        if r["status"] == "open" and r.get("pick") and "POST_LOCK_RESOLUTION" not in (r.get("flags") or []):
             history[mid] = {"match_id": mid, "team_a": r["team_a"], "team_b": r["team_b"], "competition": r["competition"],
                             "start_utc": r["start_utc"], "lock_utc": r["lock_utc"], "points": r["points"],
                             "pick": r["pick"], "pick_p": r["pick_p"], "p_a": r["p_a"], "p_b": r["p_b"], "basis": r["basis"],

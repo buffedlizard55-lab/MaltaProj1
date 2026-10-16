@@ -360,7 +360,53 @@
    "evidence": [
     "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
    ]
+  },
+  {
+   "id": "IR-37",
+   "status": "resolved",
+   "title": "The team Hotspawn lists as 'antidaun' is filed in Valve's standings as 'Strael Bora'",
+   "detail": "For CCT 2026 Challengers Europe Series 8 (match 2399682), HLTV lists team antidaun (HLTV #unranked, HLTV VRS view #275) with lineup levantino, AdaMmMm, svn, newhope, Pedrinho2011. No Valve row is named 'antidaun' in any of the four 2026-10-05 standings files. The roster maps 4/5 to Valve row 217 'Strael Bora' (692 points: AdaMmMm, levantino, maddeN, newhope, svn; also rank 153 in the Europe regional file). The roster-overlap rule identifies the row and the pick uses those points; the rename is published on the row and the Flagged page, not smoothed away.",
+   "evidence": [
+    "https://www.hltv.org/matches/2399682/antidaun-vs-phantom-academy-cct-2026-challengers-europe-series-8#lineups",
+    "https://www.hltv.org/team/14085/antidaun",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0217--strael_bora--adammmm-levantino-madden-newhope-svn.md"
+   ]
+  },
+  {
+   "id": "IR-38",
+   "status": "open",
+   "title": "Young27 (Y27) has no rating in any source — the one fixture with no pick",
+   "detail": "Match 1081497 (Young27 vs Young TigeRES, GLuck Yungstar 2026 Series 3, BO3 LAN, locks 2026-10-16T12:54Z) is the board's only open row without a pick. Y27 (HLTV team 14025: Aliot, seberya, mero, larlo, desway) is HLTV-Unranked and absent from Valve's global and regional 2026-10-05 standings under any name; no book, prediction market or relayed esportsbook covers the match. Young TigeRES alone is rateable (Valve row 199, 728 points, 3/5 overlap). A one-sided rating cannot produce a two-sided probability without inventing one, so the pick stays blank with the full research trail on the Unresolved page.",
+   "evidence": [
+    "https://www.hltv.org/matches/2399642/young-tigeres-vs-y27-gluck-yungstar-2026-series-3#lineups",
+    "https://www.hltv.org/team/14025/y27",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+   ]
+  },
+  {
+   "id": "IR-39",
+   "status": "open",
+   "title": "Six roster changes versus the Valve snapshot across the research-fallback rows (all flagged)",
+   "detail": "HLTV match lineups on 2026-10-16 differ from the five rated in Valve's 2026-10-05 snapshot for: UPGRADE (synyx in, dezl3bio out — synyx left BET-M, who added Patsi: see IR-32), Honvéd (marTineZ + stand-in zs0lt1 in; fleav, iBALLY out), Lavked (jakekeS in, sol out), DONSTU (takanashi in, LAKSHERi out), ex-6666 (stefienson in, dENZY out; stefienson left Phantom Academy, who added La1roN), Privateer (moz + Amqn in; Ariant0, JAUSTERE out). Every delta is flagged VRS_ROSTER_OUTDATED on its row and printed with the fallback evidence; no delta was smoothed into the numbers.",
+   "evidence": [
+    "https://www.hltv.org/matches/2399761/private-vs-upgrade-cis-esports-league-cyberclash-season-2#lineups",
+    "https://www.hltv.org/matches/2399762/honvd-vs-lavked-cis-esports-league-cyberclash-season-2#lineups",
+    "https://www.hltv.org/matches/2399676/bebop-vs-donstu-cct-2026-challengers-europe-series-8#lineups",
+    "https://www.hltv.org/matches/2399681/ex-6666-vs-privateer-cct-2026-challengers-europe-series-8#lineups",
+    "https://www.hltv.org/matches/2399682/antidaun-vs-phantom-academy-cct-2026-challengers-europe-series-8#lineups"
+   ]
+  },
+  {
+   "id": "IR-40",
+   "status": "open",
+   "title": "Eternal Fire vs Apogee Betclic was researched after its pick lock (retrospective only)",
+   "detail": "Match 1081493 (PGL Bucharest 2027 Closed Qualifier UB quarter-final, BO3) entered the Hotspawn slate at the 07:51Z capture with a 07:54Z pick lock — three minutes. Research completed at ~08:45Z. The row is published with POST_LOCK_RESOLUTION: the pick (Eternal Fire, 56.3%) is retrospective analysis only, was never submittable, and is excluded from the graded pick history. An aggregator page displayed 1.37/2.85 book coefficients for this match (recorded as context, never used as a price).",
+   "evidence": [
+    "https://www.hltv.org/matches/2399654/eternal-fire-vs-betclic-pgl-bucharest-2027-closed-qualifier",
+    "https://vprognoze.ru/topforecast/8192182-eternal-fire-bc-apogee-2026-10-16.html",
+    "https://liquipedia.net/counterstrike/PGL/2027/Bucharest/Qualifier"
+   ]
   }
  ],
- "updated_utc": "2026-10-16T07:35:00Z"
+ "updated_utc": "2026-10-16T08:55:00Z"
 }

@@ -143,18 +143,24 @@ class ResearchFallback(unittest.TestCase):
             self.assertTrue(r.get("pick") in (r["team_a"], r["team_b"]), r["match_id"])
 
     def test_disambiguation_rule_is_reproducible(self):
-        """Recompute every pack row's overlap from the recorded rosters; the chosen row must still win."""
+        """Recompute every pack row's overlap from the recorded rosters; the chosen row must still win.
+        A side with zero Valve candidates is a documented absence (stay-unresolved), not a pick."""
         for mid, ent in self.ENTRIES.items():
             for side in ("a", "b"):
                 s = ent["sides"][side]
+                if not s["valve_candidates"]:
+                    self.assertIsNone(s["chosen_rank"], f"{mid}/{side}")
+                    continue
                 lineup = {model._nick(p) for p in s["hltv_lineup"]}
                 scored = sorted((len(lineup & {model._nick(p) for p in c["roster"]}), c["rank"])
                                 for c in s["valve_candidates"])
                 self.assertEqual(scored[-1][1], s["chosen_rank"], f"{mid}/{side}")
                 self.assertEqual(scored[-1][0], s["disambiguation"]["overlap_best"], f"{mid}/{side}")
-                self.assertEqual(scored[-1][1], model.disambiguate_valve(
+                picked, meta = model.disambiguate_valve(
                     [{"rank": c["rank"], "points": c["points"], "roster": c["roster"]} for c in s["valve_candidates"]],
-                    s["hltv_lineup"])[0]["rank"], f"{mid}/{side}")
+                    s["hltv_lineup"])
+                if meta["ok"]:
+                    self.assertEqual(scored[-1][1], picked["rank"], f"{mid}/{side}")
 
     def test_fallback_never_overrides_a_market(self):
         for r in OPEN:
@@ -179,6 +185,20 @@ class ResearchFallback(unittest.TestCase):
                             for s in "ab")
             if any_delta:
                 self.assertIn("VRS_ROSTER_OUTDATED", r["flags"], r["match_id"])
+
+    def test_post_lock_research_is_never_graded_or_passed_off_as_pre_lock(self):
+        history = read_json(HERE / "data" / "pick_history.json", {}) or {}
+        for r in ROWS:
+            post = "POST_LOCK_RESOLUTION" in (r.get("flags") or [])
+            if post:
+                self.assertIn("retrospective analysis only", (r.get("basis") or ""), r["match_id"])
+                self.assertNotIn(str(r["match_id"]), history, f"{r['match_id']} post-lock pick entered graded history")
+                self.assertTrue(self.ENTRIES.get(str(r["match_id"]), {}).get("research_after_lock"), r["match_id"])
+
+    def test_fallback_format_gates_are_sourced(self):
+        for mid, ent in self.ENTRIES.items():
+            self.assertTrue(ent.get("format"), mid)
+            self.assertTrue(ent.get("format_source"), mid)
 
 
 class Sources(unittest.TestCase):
