@@ -1,87 +1,75 @@
 {
  "calibration": {
   "fitted": true,
-  "n": 7,
+  "n": 6,
   "scale": 782.0,
-  "mae_pp": 5.6,
-  "logloss": 0.3539,
+  "mae_pp": 5.27,
+  "logloss": 0.2885,
   "grid": "20.0-2000.0 points per 90% favourite, step 0.25; mean absolute error against the outside market's de-vigged probability",
   "default_scale": 400.0,
   "logloss_alternative": {
-   "scale": 160.75,
-   "mae_pp": 20.37,
-   "logloss": 0.1523
+   "scale": 20.0,
+   "mae_pp": 22.38,
+   "logloss": 0.0
   },
   "objective": "mae",
   "candidate_transforms": {
    "vrs_points": {
     "fitted": true,
-    "n": 7,
+    "n": 6,
     "scale": 782.0,
-    "mae_pp": 5.6,
-    "logloss": 0.3539,
+    "mae_pp": 5.27,
+    "logloss": 0.2885,
     "grid": "20.0-2000.0 points per 90% favourite, step 0.25; mean absolute error against the outside market's de-vigged probability",
     "default_scale": 400.0,
     "logloss_alternative": {
-     "scale": 160.75,
-     "mae_pp": 20.37,
-     "logloss": 0.1523
+     "scale": 20.0,
+     "mae_pp": 22.38,
+     "logloss": 0.0
     },
     "objective": "mae"
    },
    "hltv_points": {
     "fitted": true,
-    "n": 7,
-    "scale": 20.75,
-    "mae_pp": 13.36,
-    "logloss": 0.4764,
+    "n": 6,
+    "scale": 20.0,
+    "mae_pp": 11.58,
+    "logloss": 0.3547,
     "grid": "20.0-2000.0 points per 90% favourite, step 0.25; mean absolute error against the outside market's de-vigged probability",
     "default_scale": 400.0,
     "logloss_alternative": {
      "scale": 20.0,
-     "mae_pp": 13.36,
-     "logloss": 0.4719
+     "mae_pp": 11.58,
+     "logloss": 0.3547
     },
     "objective": "mae"
    },
    "vrs_rank": {
     "fitted": true,
-    "n": 7,
+    "n": 6,
     "scale": 2000.0,
-    "mae_pp": 28.13,
-    "logloss": 0.7727,
+    "mae_pp": 32.01,
+    "logloss": 0.7863,
     "grid": "20.0-2000.0 points per 90% favourite, step 0.25; mean absolute error against the outside market's de-vigged probability",
     "default_scale": 400.0,
     "logloss_alternative": {
      "scale": 2000.0,
-     "mae_pp": 28.13,
-     "logloss": 0.7727
+     "mae_pp": 32.01,
+     "logloss": 0.7863
     },
     "objective": "mae"
    },
    "vrs_log_rank": {
     "fitted": true,
-    "n": 7,
+    "n": 6,
     "scale": 0.05,
-    "logloss": 0.714,
-    "mae_pp": 25.41
+    "logloss": 0.7177,
+    "mae_pp": 28.83
    }
   },
   "chosen": "official Valve Regional Standings points (vrs_points) at the calibration (MAE) optimum, because that is the transform whose published percentage is closest to the outside market on the same rows and it has the widest team coverage; the log-loss optimum is disclosed next to it and the disagreement is flagged on every row that depends on the scale"
  },
  "fit_rows": [
-  {
-   "match_id": "1080285",
-   "teams": "Voca v Phantom",
-   "vrs_a": 1182,
-   "vrs_b": 1147,
-   "hltv_a": 59,
-   "hltv_b": 88,
-   "market_p_a_pct": 45.04,
-   "source": "bo3.gg",
-   "captured_utc": "2026-10-16T06:20:19Z",
-   "url": "https://bo3.gg/matches/voca-vs-phantom-esports-16-10-2026"
-  },
   {
    "match_id": "1080286",
    "teams": "HAVU v RoundsGG",

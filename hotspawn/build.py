@@ -33,7 +33,8 @@ CLASS_TEXT = {
     "NO CROWD DATA": "Ownership missing or fewer than 10 crowd picks; no automatic fade. Keep the headline pick.",
 }
 RUNG_TEXT = {"A": "Pinnacle odds (margin removed)", "B": "Secondary outside market",
-             "C": "Our own line (official Valve points)", "D": "Unresolved"}
+             "C": "Our own line (official Valve points)", "D": "Unresolved",
+             "E": "Research fallback (own line on roster-disambiguated Valve points)"}
 
 
 def e(x) -> str:
@@ -275,7 +276,16 @@ def day3_section(board: dict) -> str:
     data = read_json(DAY3_FILE, {}) or {}
     by_id = {str(r.get("match_id")): r for r in board.get("rows", [])}
     out = ['<p><a href="twc.html">Full TWC review, sourced maps, roster timeline &amp; optional chasing choices →</a>. '
-           'These cards use the same capture and evidence gates as All picks, never a second hand-maintained probability.</p>']
+           'These cards use the same capture and evidence gates as All picks, never a second hand-maintained probability.</p>'
+           '<p class="small"><b>Day-3 plan (contrarian, not stupid):</b> day 2 showed the leaderboard plan working (2/3) '
+           'and the danger of fading a real favourite on vibes alone. For the deciders, the crowd-heavy side is listed with '
+           'each card as ownership only. The 9z case is the template: a verified day-1 2-0 upset over Aurora, a map taken off '
+           'Falcons on day 2, and a rebuilt-but-three-month-old Aurora system mean 9z is only an <i>optional</i> chase where the '
+           'SITUATIONAL/CONTRARIAN conditions below hold — not an automatic fade. Small ownership samples (under 10 picks) never '
+           'trigger an automatic fade. Sources: '
+           '<a href="https://www.hltv.org/matches/2399384/9z-vs-aurora-thunderpick-world-championship-2026">HLTV day 1</a> · '
+           '<a href="https://www.hltv.org/matches/2399409/9z-vs-falcons-thunderpick-world-championship-2026">HLTV day 2</a> · '
+           '<a href="https://www.hltv.org/news/45082/official-aurora-complete-rebuild-with-kyxsan">HLTV: Aurora July rebuild</a>.</p>']
     for match in data.get("matches", []):
         row = by_id.get(str(match.get("hotspawn_id")))
         out.append('<p>' + link(match.get('hltv_match_url'), match.get('team_a','') + ' vs ' + match.get('team_b','')) + ' · ' + link(match.get('hotspawn_match_url'), 'Hotspawn fixture') + '</p>')
@@ -558,13 +568,14 @@ def unresolved_section(board: dict, full: bool) -> str:
     """An actual per-fixture research trail, not a claim that an unrequested source was checked."""
     rows = [r for r in board["rows"] if r["status"] == "open"]
     unresolved = [r for r in rows if not r.get("pick")]
-    fallback = [r for r in rows if r.get("rung") in ("B", "C")]
+    fallback = [r for r in rows if r.get("rung") in ("B", "C", "E")]
     pm = sum(1 for r in fallback if r.get("rung") == "B" and not r.get("relay"))
     relays = sum(1 for r in fallback if r.get("relay"))
     own = sum(1 for r in fallback if r.get("rung") == "C")
+    rfb = sum(1 for r in fallback if r.get("rung") == "E")
     out = [f'<p><strong>{len(unresolved)} unresolved picks</strong>: no supported probability/side is invented. '
            f'<strong>{len(fallback)} non-featured resolutions</strong>: {pm} prediction-market, {relays} relayed esportsbook, '
-           f'{own} own estimate. Every captured fixture is retained, including low-tier and unpriced matches. '
+           f'{own} own estimate, {rfb} research-fallback. Every captured fixture is retained, including low-tier and unpriced matches. '
            '<a href="picks.html">Open all match cards →</a></p>']
 
     def research_trail(r):
@@ -600,6 +611,9 @@ def unresolved_section(board: dict, full: bool) -> str:
             limit = 'Prediction-market outcome price, not bookmaker odds or a guaranteed executable quote.'
             if r.get('relay'): limit = 'Named sportsbook price relayed by bo3.gg; not verified directly with the book. Secondary, flagged evidence.'
             if r['rung'] == 'C': limit = 'Own match-level rating estimate, not a bookmaker quote; no format-specific, map-veto or fatigue calibration.'
+            if r['rung'] == 'E': limit = ('Research fallback (rung E): no book, prediction market or relayed esportsbook line exists for this fixture (negative checks recorded below). '
+                                          'The estimate is our own line on the closest official Valve snapshot row, chosen by documented roster overlap with HLTV\'s listed match lineup. '
+                                          'Treat as a soft line: map veto, fatigue and any roster change since the snapshot are not modelled.')
             if r.get('own_line_limitation'): limit += ' Independent own line withheld: ' + r['own_line_limitation'] + '.'
             tr.append(f'<tr><td><a href="picks.html#m{e(r["match_id"])}">{e(r["team_a"])} vs {e(r["team_b"])}</a><br>{e(utc_label(r.get("lock_utc")))}</td>'
                       f'<td><b>{e(r.get("pick"))}</b><br>{e(r["team_a"])} {pair(r.get("p_a"),r.get("p_b"),1)[0]} / {e(r["team_b"])} {pair(r.get("p_a"),r.get("p_b"),1)[1]}<br>{e(r.get("basis"))}</td>'
@@ -607,11 +621,58 @@ def unresolved_section(board: dict, full: bool) -> str:
         out.append('<h3>Resolved below the featured rung — research &amp; limits</h3><div class="tablewrap"><table><thead><tr>'
                    '<th>Match / lock UTC</th><th>Pick / both probabilities</th><th>HLTV → esportsbooks → other lines</th><th>Limitations / sources</th>'
                    '</tr></thead><tbody>' + ''.join(tr) + '</tbody></table></div>')
+    e_rows = [r for r in rows if r.get("rung") == "E"]
+    if e_rows:
+        out.append('<h3>Research fallback (rung E) — how these picks were resolved</h3>'
+                   '<p>These fixtures had no outside price of any kind, and the strict own line could not start because a team name '
+                   'maps to more than one roster row in Valve\'s official standings. A documented rule resolves the identity: '
+                   'the Valve row whose roster shares the most nicknames with the lineup HLTV lists for that exact match wins, '
+                   'and it must share at least 3 with strictly more than any other same-name row. Nothing is guessed; if the rule '
+                   'had failed the pick would have stayed blank above.</p>')
+        for r in e_rows:
+            fb = r.get("fallback") or {}
+            sd = fb.get("sides") or {}
+            lines = []
+            for side in ("a", "b"):
+                s = sd.get(side) or {}
+                if not s: continue
+                dis = s.get("disambiguation") or {}
+                delta = s.get("roster_delta_vs_snapshot") or {}
+                delta_txt = ''
+                if delta.get("in") or delta.get("out"):
+                    delta_txt = (f' Roster vs Valve\'s snapshot: in {e(", ".join(delta.get("in") or []) or "—")}, '
+                                 f'out {e(", ".join(delta.get("out") or []) or "—")} (flagged, not smoothed).')
+                rank_txt = (f'HLTV #{e(s.get("hltv_rank"))}' if s.get("hltv_rank") is not None
+                            else e(s.get("hltv_rank_note") or "HLTV unranked"))
+                lines.append(f'<li><b>{e(s.get("team"))}</b>: HLTV lineup {e(", ".join(s.get("hltv_lineup") or []))} '
+                             f'({link(fb.get("hltv_match_url"), "HLTV match page")}, read {e(fb.get("hltv_read_utc"))}); '
+                             f'{rank_txt}; HLTV VRS view #{e(s.get("hltv_vrs_display_rank"))} '
+                             f'({link(s.get("hltv_vrs_display_url"), "VRS page")}). '
+                         f'Valve row chosen: rank {e(s.get("chosen_rank"))}, {e(s.get("chosen_points"))} points '
+                         f'{("(filed as &#39;" + e(s.get("chosen_name")) + "&#39;) ") if s.get("chosen_name") and e(s.get("chosen_name")).casefold() != e(s.get("team")).casefold() else ""}'
+                         f'({link(s.get("chosen_details_url"), "official row")}), roster overlap {e(dis.get("overlap_best"))}'
+                             f' of {e(len(s.get("hltv_lineup") or []))} vs {e(dis.get("overlap_second"))} for the next same-name row '
+                             f'({e(dis.get("candidates"))} candidates).{delta_txt}</li>')
+            mc = fb.get("market_check") or {}
+            mline = ('<b>No outside price exists:</b> ' +
+                     ' · '.join(x for x in [
+                         ('HLTV betting table empty (' + link(mc.get("hltv_betting_table_url"), 'match page') + ')') if mc.get("hltv_betting_table_url") else '',
+                         ('EGW 1.8/1.8 placeholder rejected (' + link(mc.get("egamersworld_url"), 'EGW page') + ')') if mc.get("egamersworld_url") else '',
+                         ('Pinnacle: ' + e(mc.get("pinnacle"))) if mc.get("pinnacle") else '',
+                         ('Polymarket: ' + e(mc.get("polymarket"))) if mc.get("polymarket") else '',
+                         ('Searches: ' + e(mc.get("esportsbooks_search"))) if mc.get("esportsbooks_search") else '',
+                     ] if x))
+            out.append(f'<h4><a href="picks.html#m{e(r["match_id"])}">{e(r["team_a"])} vs {e(r["team_b"])}</a> — pick {e(r.get("pick"))} '
+                       f'{e(r["team_a"])} {pair(r.get("p_a"), r.get("p_b"), 1)[0]} / {e(r["team_b"])} {pair(r.get("p_a"), r.get("p_b"), 1)[1]}</h4>'
+                       f'<ul class="plain">{"".join(lines)}</ul><p class="small">{mline}<br>{sources(r)}</p>')
+    if not e_rows and not unresolved:
+        pass
     out.append("""<h3>Limitations that apply to every pick</h3><ul>
 <li>Four-hour scheduled snapshots, not live odds. Scheduling and source access are best effort; a capture older than eight hours is marked stale. Check each read time and absolute UTC lock.</li>
 <li>Both teams, competition, series format (when independently known), freshness and rematch identity must agree. Rejected or stale quotes do not silently drive picks.</li>
 <li>HLTV is tried for non-featured fixtures first. A refusal is recorded; a 403/429 circuit breaker is not a successful read. Then esportsbook relays and other external lines are checked automatically.</li>
 <li>The own line is fitted to Valve’s whole-match results, not map probabilities. No extra BO3 transform is applied. Missing teams, unknown formats, known roster mismatches and ratings older than 45 days withhold that fallback.</li>
+<li>Research-fallback (rung E) picks rest on a dated Valve snapshot with a documented roster-overlap identity rule and no market cross-check at all. They are the softest published lines: every negative price check and every roster delta is printed on the row above.</li>
 <li>Roster news can already be priced into the market. A three-month-old rebuild is context only; no unverified travel, sleep, injury or fatigue adjustment is made.</li>
 <li>Hotspawn crowd percentages are ownership only. Small samples, rounding and correlated picks limit leaderboard analysis; low ownership never increases a team’s win probability.</li>
 </ul>""")
@@ -620,7 +681,7 @@ def unresolved_section(board: dict, full: bool) -> str:
 
 def unresolved_page(board: dict) -> None:
     body = f"""<h1>Unresolved picks &amp; limitations</h1>
-<p class="lead">Featured matches are priced by a sharp bookmaker. When one is not, we climb the research ladder — HLTV first, then esportsbooks, then other betting lines — and fall back to our own line from Valve's official standings. Nothing is guessed: if no source supports a value it stays blank and is flagged.</p>
+<p class="lead">Featured matches are priced by a sharp bookmaker. When one is not, we climb the research ladder — HLTV first, then esportsbooks, then other betting lines — and fall back to our own line from Valve's official standings. When duplicate team names in Valve's standings block even that, a documented roster-overlap disambiguation against HLTV's listed lineups resolves the identity (research rung E), with the rule and every candidate row published below. Nothing is guessed: if no source supports a value it stays blank and is flagged.</p>
 {unresolved_section(board, True)}"""
     page("unresolved.html", "Unresolved & limitations", body, board)
 
@@ -676,6 +737,7 @@ def method_page(board: dict) -> None:
 <li><b>Secondary esportsbook relay</b> from bo3.gg, only after the HLTV gap attempt. A named, active, same-book two-sided line, labelled relayed and not verified directly with the sportsbook.</li>
 <li><b>Polymarket</b> match-winner markets (tag "counter strike 2"), outcome prices normalised to 100% (not asserted to be a fresh midpoint or executable bid/ask). A prediction market, labelled as such.</li>
 <li><b>Our own line</b>: P(A) = 1 / (1 + 10^(−k·ΔPoints/400)) with Valve's official points ({link(m['vrs'].get('url'), 'standings ' + str(m['vrs'].get('as_of')))}). k = {e(m['k'])} ({e(m['k_label'])}); trained on {e(cal.get('n_train'))} Valve-rated matches, held out on {e(cal.get('n_test'))} (window {e(cal.get('last_window'))}): log-loss {e(hold.get('log_loss_fitted'))} vs {e(hold.get('log_loss_valve_raw'))} for Valve's raw curve; Brier {e(hold.get('brier_fitted'))} vs {e(hold.get('brier_valve_raw'))}.</li>
+<li><b>Research fallback (rung E)</b>: the same own-line formula, applied only when the rungs above cannot resolve an open fixture and a team name maps to more than one roster row in Valve's standings. The row is chosen by documented roster overlap with the lineup HLTV lists for that exact match (≥ 3 shared nicknames and strictly more than any other same-name row; every candidate row is linked on the row and in {link(REPO_URL + '/blob/main/hotspawn/research/fallback_83090640.json', 'fallback_83090640.json')}). No book, prediction market or aggregator price is invented for these fixtures: HLTV's betting table, Pinnacle, Polymarket and the esportsbook relays are checked first and their absence is recorded. Roster changes versus the snapshot are flagged, never smoothed away.</li>
 <li><b>Unresolved</b>: blank pick, flagged, listed on the Unresolved page with the research trail.</li></ol>
 <p>Joins require both teams to match after verified aliases ({link(REPO_URL + '/blob/main/hotspawn/research/aliases.json', 'aliases.json')}) the competition family/region/edition and a kickoff within 6 h, with no equally close or nearer same-pair rematch; any gap is flagged. Unknown scope, nonfinite/terminal prices, closed markets and quotes older than 8 h are rejected, not quietly used. HLTV ranks are shown as a cross-check ({link(m['hltv'].get('url'), 'HLTV ranking')}, status {e(m['hltv'].get('status'))}).</p>
 <h2>3. Leaderboard plan</h2><p>See <a href="strategy.html">Leaderboard plan</a>; thresholds live in {link(REPO_URL + '/blob/main/hotspawn/model.py', 'model.py')}. Situational factors come from {link(REPO_URL + '/blob/main/hotspawn/research/notes.json', 'research/notes.json')} (HLTV links, read times, strength) plus an automatic "new five" check on Valve's per-team match tables.</p>
@@ -712,12 +774,12 @@ def index_page(board: dict) -> None:
 <a class="btn primary" href="picks.html"><strong>All picks ({s['open']} open) →</strong><span>One card per match: pick, both probabilities, sources.</span></a>
 <a class="btn" href="strategy.html"><strong>Leaderboard plan</strong><span>{s['leaderboard_classes'].get('VALUE', 0)} value · {s['leaderboard_classes'].get('CONTRARIAN', 0)} contrarian · {s['leaderboard_classes'].get('SITUATIONAL', 0)} situational plays; day-1 and day-2 reviews.</span></a>
 <a class="btn" href="twc.html"><strong>TWC 2026 day review</strong><span>Every series of days 1-2 with sources, the groups, and both day-3 deciders with all outside lines plus our own.</span></a>
-<a class="btn" href="unresolved.html"><strong>Unresolved &amp; limitations</strong><span>{s['open_rung'].get('B', 0) + s['open_rung'].get('C', 0)} via the research ladder · {s['open_unresolved']} without a pick.</span></a>
+<a class="btn" href="unresolved.html"><strong>Unresolved &amp; limitations</strong><span>{s['open_rung'].get('B', 0) + s['open_rung'].get('C', 0) + s['open_rung'].get('E', 0)} via the research ladder · {s['open_unresolved']} without a pick.</span></a>
 <a class="btn" href="flagged.html"><strong>Flagged for Review</strong><span>Irregularities and per-match flags with evidence.</span></a>
 </div>
 <div class="stats" aria-label="Coverage">
 <div><b>{s['open']}</b><span>open matches</span></div><div><b>{s['open_with_pick']}</b><span>with a pick</span></div>
-<div><b>{s['open_rung'].get('A', 0)}</b><span>featured (Pinnacle)</span></div><div><b>{s['open_rung'].get('B', 0) + s['open_rung'].get('C', 0)}</b><span>via research ladder</span></div>
+<div><b>{s['open_rung'].get('A', 0)}</b><span>featured (Pinnacle)</span></div><div><b>{s['open_rung'].get('B', 0) + s['open_rung'].get('C', 0) + s['open_rung'].get('E', 0)}</b><span>via research ladder</span></div>
 </div>
 <h2>Next to lock</h2><ul class="plain">{''.join(li(r) for r in nxt) or '<li>No open fixtures in this snapshot.</li>'}</ul>
 <h2>Leaderboard plays right now</h2><ul class="plain">{''.join(li(r) for r in plays) or '<li>No value/contrarian/situational plays — take the picks.</li>'}</ul>
