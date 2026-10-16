@@ -78,3 +78,20 @@ Live URLs after deployment:
 - https://buffedlizard55-lab.github.io/MaltaProj1/hotspawn/release-audit.html
 
 Final PR merge and Pages-run evidence will be appended to COORDINATION.md after confirmation.
+
+### Post-deploy correction
+
+PR #153 merged 2026-10-16T04:25:47Z at `56e427e7c5231f7a383ef63803272d769677ff22`.
+Pages run 38850575638 succeeded; live picks, unresolved and audit pages fetched successfully.
+A subsequent literal read of unresolved surfaced pre-existing misleading “missing from Valve”
+copy (actually duplicate roster names) and a competition fallback to mellren's team page for
+Banda–Enjoy. Corrected narrowly: say “cannot be uniquely matched (missing or ambiguous roster
+entry)”; event fallback accepts event URLs only; add direct verified BO3 match links for the two
+day-3 deciders and two unresolved fixtures. Direct Banda–Enjoy match 2399477 independently read
+and confirms Group A decider BO3. This does not establish a current-five roster or a price.
+
+All 95 rows' `(p_a, p_b, pick, rung)` compare byte-for-value equal before/after the correction;
+no numerical picks or strategy logic changed. Canonical 25 tests and now **13** assurance tests
+pass; new regressions cover duplicate-roster wording and unrelated-team fallback. Link audit
+still 272 pages / 0 errors. Unresolved register and canonical executive summary now link to
+extra gap research automatically, so future scheduled builds preserve the explanation.
