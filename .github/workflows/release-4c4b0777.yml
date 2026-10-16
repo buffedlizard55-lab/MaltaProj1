@@ -1,0 +1,96 @@
+name: Canonical release assurance (4c4b0777)
+on:
+  push:
+    branches: [arena/4c4b0777-maltaproj1]
+    paths:
+      - '.github/workflows/release-4c4b0777.yml'
+  pull_request:
+    paths:
+      - 'scripts/audit_4c4b0777.py'
+      - 'tests/test_4c4b0777.py'
+      - 'hotspawn/release-audit.html'
+permissions:
+  contents: write
+jobs:
+  live-refresh:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Official Valve data
+        run: |
+          git clone -q --depth 1 https://github.com/ValveSoftware/counter-strike_regional_standings "$RUNNER_TEMP/vrs"
+          echo "VRS_REPO_DIR=$RUNNER_TEMP/vrs" >> "$GITHUB_ENV"
+          echo "VRS_COMMIT=$(git -C "$RUNNER_TEMP/vrs" rev-parse HEAD)" >> "$GITHUB_ENV"
+      - name: Collect and rebuild using the unchanged canonical pipeline
+        run: |
+          python hotspawn/collect.py
+          python hotspawn/calibrate.py
+          python hotspawn/model.py
+          python hotspawn/build.py
+          python hotspawn/tests.py
+      - name: Phone check
+        run: |
+          pip install playwright==1.55.0
+          python -m playwright install --with-deps chromium
+          python hotspawn/mobile_check.py
+          python - <<'PY'
+          import json
+          assert json.load(open('hotspawn/data/mobile_check.json'))['status'] == 'passed', 'Phone check must not silently skip'
+          PY
+      - name: Rebuild dated release audit
+        run: |
+          python scripts/audit_4c4b0777.py
+          python -m unittest discover -s tests -p 'test_4c4b0777.py' -v
+      - name: Save verified integration refresh to the session branch only
+        if: github.ref_name == 'arena/4c4b0777-maltaproj1'
+        run: |
+          set -euo pipefail
+          git config user.name 'release-assurance[bot]'
+          git config user.email 'release-assurance@users.noreply.github.com'
+          git add hotspawn/data hotspawn/*.html reviews/4c4b0777-row-audit.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'hotspawn: verified integration refresh for release 4c4b0777 [skip ci]'
+          git pull --rebase origin arena/4c4b0777-maltaproj1
+          git push origin arena/4c4b0777-maltaproj1
+      - uses: actions/upload-artifact@v4
+        with:
+          name: canonical-refresh-4c4b0777
+          path: |
+            hotspawn/data/
+            hotspawn/*.html
+          retention-days: 7
+  audit:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m unittest discover -s tests -p 'test_4c4b0777.py' -v
+      - run: python hotspawn/tests.py
+      - name: Phone/tablet release audit layout (must actually run)
+        run: |
+          pip install playwright==1.55.0
+          python -m playwright install --with-deps chromium
+          python - <<'PYTHON'
+          from pathlib import Path
+          from playwright.sync_api import sync_playwright
+          with sync_playwright() as p:
+              browser = p.chromium.launch()
+              for width in (360, 390, 768):
+                  page = browser.new_page(viewport={"width": width, "height": 844})
+                  for rel in ('index.html', 'hotspawn/release-audit.html', 'hotspawn/picks.html', 'hotspawn/unresolved.html'):
+                      page.goto((Path.cwd() / rel).as_uri())
+                      sizes = page.evaluate('({scroll:document.documentElement.scrollWidth,client:document.documentElement.clientWidth,h1:document.querySelectorAll("h1").length})')
+                      assert sizes['scroll'] <= sizes['client'] + 2, (rel, width, sizes)
+                      assert sizes['h1'] == 1, (rel, width, sizes)
+                      print('PASS', rel, width, sizes)
+                  page.close()
+              browser.close()
+          PYTHON

@@ -4529,3 +4529,65 @@ only the **extension** work listed below and preserves every existing file it do
 **Exception (logged as an integration hand-off):** root `index.html` only — a single link block
 pointing at `a6f05f99/index.html`, because the user asked for the executive summary to link to where
 the picks live. No other root file is touched.
+
+## Session arena/4c4b0777 — integration assurance claim (2026-10-16 UTC)
+
+Fixed branch `arena/4c4b0777-maltaproj1` (Arena constraint; no alternate branch).
+Read the shared task board and open PR list before claiming. Preserve ongoing research scopes
+71c4e4ab/a6f05f99 and PR #150; do not duplicate their dashboards or merge their branches.
+
+| Task | Status | Owner | Scope |
+|---|---|---|---|
+| Release assurance: independent source re-read, canonical-board freshness/coverage and phone navigation; publish limitations and verified result links; test and release | in progress | arena/4c4b0777 | `reviews/4c4b0777-*`, `hotspawn/release-audit.html`, `scripts/audit_4c4b0777.py`, `tests/test_4c4b0777.py`, root `index.html` (one audit link only), `COORDINATION.md` append-only |
+
+No claim to other sessions' research, generated board datasets or collector. Any needed change
+outside scope will be logged as an integration request rather than silently overwritten.
+
+4c4b0777 integration scope extension: the canonical 22:41Z capture predates new live-lobby fixtures.
+Run the existing workflow on **this session branch only** to re-collect and regenerate `hotspawn/data/**`
+and `hotspawn/*.html` using the owners' unchanged code. This is integration refresh, not takeover of
+71c4e4ab's research or a competing dashboard. Published audit will distinguish source observations,
+model estimates, quote freshness and unresolved research. Do not merge unrelated PR #150.
+Initial claim push: remote branch did not yet exist; pulled/rebased origin/main before first push;
+no conflicts, branch created successfully.
+
+4c4b0777 release note: `gh workflow run` returns HTTP 403 (workflow-dispatch permission unavailable).
+Do not request credentials. Add scoped `.github/workflows/release-4c4b0777.yml` for push/PR verification
+and a branch-only live-refresh artifact (no automated git writes); use the existing scheduled workflow
+unchanged after merge. This is ordinary CI, not a second scheduled collector.
+
+4c4b0777 source re-read: fetched all eight day-1/day-2 HLTV match records (2399384–87,
+2399408–11), the two day-3 deciders, Aurora team page, dated summer transfer tracker,
+Polymarket Aurora event and Hotspawn lobby. Confirmed the eight series/map scores;
+HLTV is explicitly labelled specialist reporting, not organizer verification. Hotspawn now
+lists BetBoom–Legacy ID 1081775 (previous absence statements are stale, not universally true).
+The Aurora event page includes series AND map markets; report the distinction and do not
+mix those quotes. July onboarding is ~3 months old, not a days-old change.
+
+Branch-only CI run 38849930923 succeeded (collection, calibration, model, 25 invariants,
+actual passed Chromium phone check). Artifact download is blocked by sandbox outbound-host
+restrictions; the same release workflow will save the checked generated outputs to this fixed
+session branch only. Existing scheduled workflow stays unchanged. Report and regression tests
+are generated from the new capture before saving, to avoid publishing an audit of an old slate.
+
+4c4b0777 refresh result: run 38850130426 succeeded and saved checked output to the fixed session
+branch; pulled/rebased locally, no conflicts. 04:20:51Z capture: 95 CS2 payload rows, 31 open,
+29 picked (9 Pinnacle, 18 Polymarket, 2 own-line), 2 unresolved, 61 stale old listings.
+The actual 390×844 Chromium report passes all canonical pages and the root, with 31 match cards.
+Primary model/collector/research files were not changed. New TWC fixture 1081775 is covered.
+
+Extra gap research (only unresolved fixtures): HLTV BET-M–Just Players match 2399087 confirms BO3;
+HLTV team 13776 has four active names, not a confirmed five. Banda Chuya team 13900 explicitly has
+no active roster. Pinnacle site re-read failed HTTP 500; canonical API collection succeeded but has
+no joined quotes for these two. StavkaTV BET-M preview has an AI tip, not an attributable two-way
+price; EGamersWorld Banda–Enjoy shows unattributed 1.8/1.8 linked to `#`, rejected. No fake 50/50.
+Verified official Valve file directly via GitHub contents API: duplicate Just Players entries
+974/485 pts and Banda Chuya 801/402 pts are real. Logged in `reviews/4c4b0777-gap-research.json`
+and public audit page; rates/picks stay blank. Scope extension for root hero: replace the false
+absolute “every match gets a pick” claim with coverage + explicit unresolved wording.
+
+Baseline broad tests: 405 tests; 2 failures in valuepicks stale-coverage comparisons and 1 error
+in livelines deterministic builder (fixture-key mismatch). These predate this patch and are
+published on the audit's Flagged for Review section. Test commands mutate console/summary files;
+restored those test-only changes, no unrelated edits retained. Canonical 25 tests and new 11 audit
+tests pass. Full link scanner: 272 pages / 0 broken local links (its report-only mutation restored).
