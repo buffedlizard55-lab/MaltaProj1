@@ -89,7 +89,7 @@ def page(name: str, title: str, body: str, board: dict, extra_head: str = "", sc
 <p>Maintained primary board · original session <code>{e(SESSION)}</code> · <a href="data/picks.csv">picks.csv</a> · <a href="data/all_fixtures.csv">all_fixtures.csv</a> · <a href="data/flags.csv">flags.csv</a> · <a href="data/board.json">board.json</a> · <a href="{REPO_URL}/blob/main/.github/workflows/hotspawn-22be6967.yml">refresh workflow</a> · <a href="{REPO_URL}">source</a></p>
 </footer>
 <script>
-(function(){{var s=document.getElementById('snap');if(!s)return;var t=Date.parse(s.getAttribute('data-ref'));if(!t)return;var h=(Date.now()-t)/36e5;var a=document.getElementById('snap-age');if(a)a.textContent=h<1?Math.round(h*60)+' min ago':h.toFixed(1)+' h ago';if(h>8){{s.className='snap bad';a.textContent+=' — older than 8 h: the scheduled refresh may have failed; check the lobby before relying on it';}}}})();
+(function(){{function freshness(){{var s=document.getElementById('snap');if(!s)return;var t=Date.parse(s.getAttribute('data-ref'));if(!Number.isFinite(t))return;var h=(Date.now()-t)/36e5;var a=document.getElementById('snap-age');if(a)a.textContent=h<1?Math.round(h*60)+' min ago':h.toFixed(1)+' h ago';if(h>8){{s.classList.add('bad');if(a)a.textContent+=' — older than 8 h: the scheduled refresh may have failed; check the lobby before relying on it';}}}}freshness();window.setInterval(freshness,60000);}})();
 {script}
 </script>
 </body>
@@ -185,7 +185,7 @@ def card(r: dict, board: dict) -> str:
                  f'{e(r["team_b"])} {e(r["crowd_b"])}%' + (f' · {e(r["total_picks"])} picks' if r.get("total_picks") is not None else "") + "</div>")
     flags = "".join(f'<span class="flag">{e(f)}</span>' for f in r.get("flags", []) if f not in ("ALIAS",))
     hs = r.get("hotspawn_match_url") or r.get("lobby_url")
-    return f"""<article class="card" id="m{e(r['match_id'])}" data-lock="{e(r.get('lock_utc'))}" data-tier="{e(r.get('tier'))}" data-class="{e(s.get('class', ''))}">
+    return f"""<article class="card" id="m{e(r['match_id'])}" data-search="{e(r['team_a'] + ' ' + r['team_b'] + ' ' + (r.get('competition') or ''))}" data-lock="{e(r.get('lock_utc'))}" data-tier="{e(r.get('tier'))}" data-class="{e(s.get('class', ''))}">
 <div class="meta">{e(r.get('tier'))}-tier · {e(r.get('points'))} pts · {e(r.get('competition'))}{(' · ' + e(r.get('format'))) if r.get('format') else ''}</div>
 <div class="lock">Locks <time datetime="{e(r.get('lock_utc'))}">{e(utc_label(r.get('lock_utc')))}</time> <span class="rel"></span></div>
 <h3 class="match">{e(r['team_a'])} vs {e(r['team_b'])}</h3>
@@ -199,8 +199,35 @@ def card(r: dict, board: dict) -> str:
 
 
 LOCK_SCRIPT = """
-(function(){var now=Date.now();document.querySelectorAll('.card[data-lock]').forEach(function(c){var t=Date.parse(c.getAttribute('data-lock'));var rel=c.querySelector('.rel');if(!t||!rel)return;var h=(t-now)/36e5;if(h<=0){c.classList.add('is-locked');rel.textContent='LOCKED';}else{rel.textContent=h<1?'in '+Math.round(h*60)+' min':h<48?'in '+h.toFixed(1)+' h':'in '+Math.round(h/24)+' d';}var tm=c.querySelector('time');if(tm){try{tm.title=new Date(t).toLocaleString();}catch(x){}}});
-var bs=document.querySelectorAll('.filters button');bs.forEach(function(b){b.addEventListener('click',function(){bs.forEach(function(x){x.setAttribute('aria-pressed','false')});b.setAttribute('aria-pressed','true');var f=b.getAttribute('data-f');document.querySelectorAll('.card[data-lock]').forEach(function(c){var show=f==='all'||(f==='S'&&c.getAttribute('data-tier')==='S')||(f==='plays'&&/VALUE|CONTRARIAN|SITUATIONAL/.test(c.getAttribute('data-class')));c.style.display=show?'':'none';});});});})();
+(function(){
+  function clocks(){
+    var now=Date.now();
+    document.querySelectorAll('.card[data-lock]').forEach(function(c){
+      var t=Date.parse(c.dataset.lock), rel=c.querySelector('.rel');
+      if(!Number.isFinite(t)||!rel)return;
+      var h=(t-now)/36e5;
+      c.classList.toggle('is-locked',h<=0);
+      rel.textContent=h<=0?'LOCKED':h<1?'in '+Math.ceil(h*60)+' min':h<48?'in '+h.toFixed(1)+' h':'in '+Math.round(h/24)+' d';
+      var tm=c.querySelector('time'); if(tm)tm.title=new Date(t).toLocaleString();
+    });
+  }
+  clocks();window.setInterval(clocks,30000);
+  var buttons=document.querySelectorAll('.filters button'), search=document.getElementById('match-search'), active='all';
+  function filter(){
+    var term=search?search.value.toLocaleLowerCase().trim():'', visible=0, total=0;
+    document.querySelectorAll('.card[data-lock]').forEach(function(c){
+      total++;
+      var tier=active==='all'||active===c.dataset.tier||(active==='plays'&&/VALUE|CONTRARIAN|SITUATIONAL/.test(c.dataset.class||''));
+      var show=tier&&(!term||(c.dataset.search||'').toLocaleLowerCase().includes(term));
+      c.hidden=!show;if(show)visible++;
+    });
+    var status=document.getElementById('filter-status');if(status)status.textContent=visible+' of '+total+' match cards shown';
+  }
+  buttons.forEach(function(b){b.addEventListener('click',function(){
+    active=b.dataset.f;buttons.forEach(function(x){x.setAttribute('aria-pressed',String(x===b));});filter();
+  });});
+  if(search)search.addEventListener('input',filter);filter();
+})();
 """
 
 
@@ -213,7 +240,9 @@ def picks_page(board: dict) -> None:
     s = board["summary"]
     body = [f"""<h1>Every open Hotspawn CS2 match</h1>
 <p class="lead">{s['open']} matches were open at this capture. Each card shows <strong>the pick and both teams' win probabilities</strong> first, then the basis, the leaderboard play, and the sources. Cards turn grey when their lock time passes on your clock.</p>
-<div class="filters" role="group" aria-label="Filter"><button type="button" data-f="all" aria-pressed="true">All ({len(rows)})</button><button type="button" data-f="S" aria-pressed="false">S-tier only</button><button type="button" data-f="plays" aria-pressed="false">Leaderboard plays only</button></div>"""]
+<label class="search">Find a team or tournament<input id="match-search" type="search" autocomplete="off" placeholder="e.g. Aurora, CCT, GenOne"></label>
+<p id="filter-status" class="small" role="status" aria-live="polite"></p>
+<div class="filters" role="group" aria-label="Filter"><button type="button" data-f="all" aria-pressed="true">All ({len(rows)})</button><button type="button" data-f="S" aria-pressed="false">S-tier only</button><button type="button" data-f="B" aria-pressed="false">B-tier</button><button type="button" data-f="C" aria-pressed="false">C-tier</button><button type="button" data-f="plays" aria-pressed="false">Leaderboard plays only</button></div>"""]
     if not rows:
         body.append('<p class="note red">No open CS2 fixtures in this snapshot. Check the <a href="https://play.hotspawn.com/lobby">live lobby</a>.</p>')
     for day, items in by_day.items():
@@ -226,13 +255,16 @@ def picks_page(board: dict) -> None:
 
 
 def plays_table(rows: list[dict]) -> str:
-    out = ['<div class="tablewrap"><table><thead><tr><th>Lock (UTC)</th><th>Match</th><th class="num">Pts</th><th>Pick (prob.)</th><th>Underdog: chance vs crowd</th><th>Class</th><th>Leaderboard play</th><th class="num">EV cost</th><th>Factors vs favourite</th></tr></thead><tbody>']
+    out = ['<div class="tablewrap"><table><thead><tr><th>Lock (UTC)</th><th>Match</th><th class="num">Pts</th><th>Pick (prob.)</th><th>Underdog: chance vs crowd</th><th>Class</th><th>Leaderboard play</th><th class="num">EV cost</th><th>Factors vs favourite</th><th>Sources / read UTC</th></tr></thead><tbody>']
     for r in rows:
         s = r.get("strategy") or {}
+        price = r.get("book") or r.get("relay") or r.get("pm") or {}
+        basis_url = price.get("url") or next((u for u in r.get("sources", []) if u.startswith("https://github.com/ValveSoftware/")), None)
+        source_cell = link(r.get("hotspawn_match_url") or r.get("lobby_url"), "Hotspawn fixture") + " · " + link(basis_url, "outside line" if price else "own-line inputs") + "<br>" + ("line read UTC: " + e(price.get("read_utc")) if price else "fixture read UTC: " + e(r.get("read_utc")) + "; Valve snapshot date in linked inputs")
         out.append(f"<tr><td>{e(utc_label(r.get('lock_utc')))}</td><td><a href=\"picks.html#m{e(r['match_id'])}\">{e(r['team_a'])} vs {e(r['team_b'])}</a><br><span class=small>{e(r.get('competition'))}</span></td>"
                    f"<td class=num>{e(r.get('points'))}</td><td>{e(r.get('pick'))} {pc(r.get('pick_p'))}<br><span class=small>{e(RUNG_TEXT.get(r.get('rung')))}</span></td>"
                    f"<td>{e(s.get('underdog'))}: {pc(s.get('p_dog'))} vs {pc(s.get('crowd_dog'))}</td><td>{cls_tag(s.get('class'))}</td><td><b>{e(s.get('leaderboard_pick'))}</b></td>"
-                   f"<td class=num>{'' if s.get('ev_cost_pts') is None else e(s.get('ev_cost_pts'))}</td><td>{e('; '.join(s.get('factors_against_favourite') or []) or '—')}</td></tr>")
+                   f"<td class=num>{'' if s.get('ev_cost_pts') is None else e(s.get('ev_cost_pts'))}</td><td>{e('; '.join(s.get('factors_against_favourite') or []) or '—')}</td><td>{source_cell}</td></tr>")
     out.append("</tbody></table></div>")
     return "".join(out)
 
@@ -270,6 +302,7 @@ def strategy_page(board: dict) -> None:
     rows.sort(key=lambda r: (CLASS_ORDER.index(r["strategy"]["class"]) if r["strategy"]["class"] in CLASS_ORDER else 9, r.get("lock_utc") or ""))
     week = board["meta"]["hotspawn"].get("week") or {}
     prizes = ", ".join(f"{p.get('rank')}: {p.get('title')}" for p in week.get("prizes", []))
+    points_summary = " · ".join(f"{tier}-tier: {', '.join(str(p) for p in sorted({r['points'] for r in board['rows'] if r.get('tier') == tier and r.get('points') is not None})) or 'not published'} points" for tier in ('S','B','C'))
     d1 = board["day1"]
     d1rows = []
     for x in d1["matches"]:
@@ -286,8 +319,8 @@ def strategy_page(board: dict) -> None:
     pending = [g for g in graded if not g.get("result")]
     lessons = "".join(f"<li>{e(t)}</li>" for t in d1.get("info", {}).get("lessons", []) or read_json(RESEARCH / "day1_twc2026.json", {}).get("lessons", []))
     body = f"""<h1>Leaderboard plan: contrarian, not reckless</h1>
-<p class="lead">Every Hotspawn player who picks the same side scores the same points, so you only climb when you are right where the field is wrong. The plan below fades the crowd <strong>only</strong> when the underdog's real chance is high — judged by outside prices and our own line together, never by the crowd itself.</p>
-<div class="note green"><strong>How to use it:</strong> take every <span class="tag c-VALUE">VALUE</span> play (likely winner that most players are against). Add <span class="tag c-CONTRARIAN">CONTRARIAN</span> plays when you need to gain ground. Use <span class="tag c-SITUATIONAL">SITUATIONAL</span> plays when you are chasing; they rest on verified roster changes, stand-ins or late replacements. Treat <span class="tag c-LONG-SHOT">LONG SHOT</span> underdogs as an occasional punt only when far behind with few matches left. S-tier matches are worth {e(next((r.get('points') for r in board['rows'] if r.get('tier') == 'S'), 7))} points versus 2 for C-tier, so the S-tier calls matter most.</div>
+<p class="lead">Every Hotspawn player who picks the same side scores the same points, so you only climb when you are right where the field is wrong. The plan below fades the crowd <strong>only</strong> when the underdog's estimated chance is high — judged by outside prices and our own line together, never by the crowd itself.</p>
+<div class="note green"><strong>How to use it:</strong> take every <span class="tag c-VALUE">VALUE</span> play (likely winner that most players are against). Add <span class="tag c-CONTRARIAN">CONTRARIAN</span> plays when you need to gain ground. Use <span class="tag c-SITUATIONAL">SITUATIONAL</span> plays when you are chasing; they rest on verified roster changes, stand-ins or late replacements. Treat <span class="tag c-LONG-SHOT">LONG SHOT</span> underdogs as an occasional punt only when far behind with few matches left. {e(points_summary)} (this payload). Higher-point calls carry more leaderboard leverage.</div>
 <p class="small">This week: {e(week.get('weekStartUtc'))} → {e(week.get('weekEndUtc'))} (Hotspawn payload). Prizes: {e(prizes) or 'not published in payload'}. Hotspawn requires at least 10 picks to qualify (lobby text).</p>
 <h2>Plays for the open slate ({len(rows)})</h2>
 {plays_table(rows)}
@@ -310,7 +343,7 @@ def strategy_page(board: dict) -> None:
 <h3>What day 1 taught us</h3><ul>{lessons}</ul>
 <p><a href="twc.html">Day 2 review, group standings and day-3 picks for the TWC 2026 deciders →</a></p>
 <h3>The upset: 9z 2-0 Aurora</h3>
-<p>Aurora rebuilt in July 2026 — Jimpphat joined on 3 Jul and kyxsan became in-game leader on 8 Jul (coach ash). That is about three months before TWC, and the new five had just finished 3rd at ESL Pro League S24, beating 9z 2-0 there on 3 Oct. In Malta 9z won Inferno 13-11 and Nuke 13-1 (luchov 1.61). Pinnacle had 9z at 27%, our official-points line at 39%, and only 5% of Hotspawn players picked 9z. {link('https://www.hltv.org/team/11861/aurora', 'HLTV: Aurora roster & transfers')} · {link('https://www.hltv.org/news/45718/9z-beat-aurora-2-0-to-kick-off-twc-2026', 'HLTV match report')}</p>
+<p>Aurora's July rebuild is about three months old by TWC, not a fresh onboarding event. The official-signing report confirms kyxsan joined after Jimpphat and coach ash. On day 1, 9z won Inferno 13-11 and Nuke 13-1; on day 2 Aurora rebounded 2-0 against NIP. The table above reconciles the archived pre-match Pinnacle pair and early ownership; its own line and plan are retrospective computations, not a newly discovered pre-lock forecast. No unverified player rating, EPL placement or current health effect is asserted here. {link('https://www.hltv.org/news/45082/official-aurora-complete-rebuild-with-kyxsan', 'HLTV: July signing report')} · {link('https://www.hltv.org/matches/2399384/9z-vs-aurora-thunderpick-world-championship-2026', 'HLTV: day-1 maps')} · {link('https://www.hltv.org/matches/2399408/aurora-vs-ninjas-in-pyjamas-thunderpick-world-championship-2026', 'HLTV: day-2 rebound')}</p>
 <h2>Grading since launch</h2>
 <p>The last recorded pre-lock pick is frozen on the next refresh after lock (not necessarily a read at the exact lock time) and graded once a result exists (verified HLTV result first; otherwise the Polymarket resolution, which names HLTV as its source, marked provisional).</p>
 {('<div class="tablewrap"><table><thead><tr><th>Match</th><th>Pick</th><th>Plan</th><th>Winner</th><th>Pick</th><th>Plan</th></tr></thead><tbody>' + grows + '</tbody></table></div>') if gr else '<p class="small">No graded fixtures yet.</p>'}
@@ -331,7 +364,7 @@ def twc_page(board: dict) -> None:
         result_rows.append(f'<tr><td>{e(m.get("day"))}<br>{e(m.get("stage"))}</td><td><b>{e(m.get("score"))}</b>'
                           f'<br><span class="small">{e(m.get("note"))}</span></td><td>{e(m.get("maps"))}'
                           f'<br><span class="small">{e(veto)}</span></td><td>{link(m.get("hltv"), "HLTV match / veto")}'
-                          f'<br><span class="small">Checked {e(m.get("maps_verified_utc"))}</span></td></tr>')
+                          f'<br><span class="small">Checked {e(m.get("maps_verified_utc") or m.get("maps_verified_date_utc"))}</span></td></tr>')
     standings = []
     for group in ("group_a", "group_b"):
         for r in d.get("standings", {}).get(group, []):
@@ -356,7 +389,7 @@ def twc_page(board: dict) -> None:
             if ownership is not None and pd >= .30 and pd - ownership >= .10:
                 cost = (live.get("points") or 0) * (1 - 2 * pd)
                 chasing = (f'<p class="note"><b>Optional chasing pick: {e(dog)}</b> — outside line {pc(pd, 1)} '
-                           f'versus {pc(ownership, 1)} crowd ownership ({e(live["total_picks"])} recorded picks). '
+                           f'versus approximately {pc(ownership)} normalized, rounded crowd ownership ({e(live["total_picks"])} recorded picks). '
                            f'This is not the most likely winner. Expected-points cost versus the favourite: '
                            f'<b>{cost:.2f}</b> from {e(live.get("points"))} × (P(favourite) − P(underdog)). '
                            'Use only as a deliberate risk to differentiate, not as a proven edge or a guarantee of rank gain.</p>')
@@ -447,7 +480,9 @@ def unresolved_section(board: dict, full: bool) -> str:
         out.append('</ul>')
     else:
         out.append('<p class="note green">No unresolved picks in this capture. This is not a promise that every future listing can be priced: unsupported new rows will appear here with blanks.</p>')
-    if fallback:
+    if fallback and not full:
+        out.append('<p><a href="unresolved.html">Open the full per-match non-featured research table &amp; limitations →</a></p>')
+    if fallback and full:
         tr = []
         for r in fallback:
             limit = 'Prediction-market outcome price, not bookmaker odds or a guaranteed executable quote.'
@@ -571,7 +606,7 @@ def index_page(board: dict) -> None:
 <h2 id="day3">Day 3 — the two deciders</h2>
 {day3_section(board)}
 <h2 id="unresolved">Unresolved picks &amp; limitations</h2>
-{unresolved_section(board, True)}
+{unresolved_section(board, False)}
 <h2>Coverage &amp; freshness</h2>
 <p class="small">{s['fixtures']} fixtures in Hotspawn's payload: {s['open']} open, {s['locked_recent']} recently locked, {s['stale_listings']} stale listings (<a href="all.html">full inventory</a>). Sources: Pinnacle {e(s['sources']['pinnacle'])}, Polymarket {e(s['sources']['polymarket'])}, Valve {e(s['sources']['vrs'])}, HLTV {e(s['sources']['hltv'])}. Generated {e(utc_label(s['generated_utc']))}. <a href="method.html">Method, sources &amp; read times</a>.</p>"""
     page("index.html", "Executive summary", body, board, script=LOCK_SCRIPT)

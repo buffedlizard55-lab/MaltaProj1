@@ -66,3 +66,5 @@ ul.plain{list-style:none;padding:0}ul.plain li{padding:8px 0;border-bottom:1px s
 @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
 
 main,footer{overflow-wrap:anywhere}article[id]{scroll-margin-top:160px}.tablewrap:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
+
+.search{display:grid;gap:6px;margin:16px 0 6px}.search input{width:100%;min-height:44px;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--panel);color:var(--text);font:inherit}.search input:focus-visible{outline:3px solid var(--amber);outline-offset:2px}.card[hidden]{display:none!important}

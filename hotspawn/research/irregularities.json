@@ -26,7 +26,7 @@
    "id": "IR-03",
    "status": "open",
    "title": "Valve's latest standings list a five that no longer plays (PARIVISION)",
-   "detail": "Valve's 2026-10-05 file lists PARIVISION as FL1T, Jame, slaxejezzz, xiELO, zweih, but HLTV reports HObbit replaced slaxejezzz on 17 Sep 2026. Our own line for PARIVISION therefore describes the old five; it is excluded from the leaderboard consensus whenever a market exists.",
+   "detail": "The official 5 October Valve snapshot lists slaxejezzz in PARIVISION's rated five. HLTV's signing report, independently re-read on 16 October, says HObbit replaced him on 17 September. The own line is withheld while that mismatch remains; a current external quote can still supply a probability. No HObbit rating/tenure total is assumed.",
    "evidence": [
     "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
     "https://www.hltv.org/news/45534/parivision-replace-slaxejezzz-with-hobbit"
@@ -35,8 +35,8 @@
   {
    "id": "IR-04",
    "status": "open",
-   "title": "HLTV betting-analytics page shows placeholder prices",
-   "detail": "The static HLTV analytics page for Voca vs Phantom shows '1.23' for every handicap line and bookmaker (eOddset, Betway). Those numbers are not used; only the page's factual notes (ranks, stand-in) are cited.",
+   "title": "HLTV qualitative analytics is not a two-sided price source",
+   "detail": "The Voca–Phantom analytics summary was directly re-read on 16 October and names a stand-in for that fixture. Its header/poll/placeholder numbers are not price evidence. No usable two-sided line was extracted from this page, and no unverified fixed odds are reproduced.",
    "evidence": [
     "https://www.hltv.org/betting/analytics/2399424/voca-vs-phantom-elisa-breakout-series-2"
    ]
@@ -71,11 +71,12 @@
   },
   {
    "id": "IR-08",
-   "status": "open",
+   "status": "handled",
    "title": "User premise check: Aurora's roster change is real but not recent-days",
-   "detail": "Verified on HLTV: Jimpphat joined 3 Jul 2026 and kyxsan (new in-game leader) 8 Jul 2026. That is about 3 months before TWC; the new five had 62 HLTV maps and finished 3rd at EPL S24 days earlier. It is treated as a moderate (not strong) onboarding factor.",
+   "detail": "The July official-signing report confirms the Aurora rebuild, roughly three months before TWC. It is weak, neutral historical context, not a fresh onboarding penalty. Unreconciled exact map/tenure totals and EPL placement are omitted; day-2 Aurora 2-0 NIP is explicit counterevidence to a simplistic fade.",
    "evidence": [
-    "https://www.hltv.org/team/11861/aurora"
+    "https://www.hltv.org/news/45082/official-aurora-complete-rebuild-with-kyxsan",
+    "https://www.hltv.org/matches/2399408/aurora-vs-ninjas-in-pyjamas-thunderpick-world-championship-2026"
    ]
   },
   {
@@ -99,8 +100,8 @@
   {
    "id": "IR-11",
    "status": "open",
-   "title": "Our own line and the market disagree on two TWC favourites",
-   "detail": "Legacy vs FURIA: market FURIA 58%, our line Legacy 57%. PARIVISION vs BetBoom: market PARIVISION 53%, our line BetBoom 62% (but see IR-03). The pick follows the market; the disagreement is shown on the card and drives the leaderboard play.",
+   "title": "Archived market/model disagreements are not current lines",
+   "detail": "Prior day-2 records disagreed on the favourite in some matches. Original probabilities/bases remain frozen for honest grading, not reissued as current lines. Today the published probability defines the favourite; eligible own-line disagreement may inform a labelled contrarian but cannot reverse that benchmark or hide its expected-point cost.",
    "evidence": [
     "https://www.pinnacle.com/en/esports/games/cs2/matchups/"
    ]
@@ -138,8 +139,8 @@
   {
    "id": "IR-15",
    "status": "rejected-value",
-   "title": "Aggregator placeholder prices (1.80/1.80, 50.0/50.0) appear on these fixtures",
-   "detail": "EGamersWorld listed Aurora 1.80 / 9z 1.80 earlier on 2026-10-15 and still lists BetBoom Team 1.80 / Legacy 1.80 for the Group B decider; the relayed Thunderpick quote for NiP vs Liquid de-vigged to exactly 50.0/50.0. An exact tie is a placeholder, not a price: such quotes are rejected (row flag C-TIE-QUOTE-REJECTED on the console board) and the next available rung is used, or the fixture is left to the own line with the reason printed.",
+   "title": "Equal prices do not prove a placeholder or justify an arbitrary pick",
+   "detail": "Older alternative dashboards rejected repeated aggregator/tied pairs under their stated policies. Equal genuine odds can also represent a legitimate balanced market; an exact tie alone is not proof of fabricated pricing. The primary board requires eligible sourced evidence and leaves the side blank unless an independently eligible own line explicitly breaks an exact tie. See the COIN_FLIP flag and separate board methods.",
    "evidence": [
     "https://egamersworld.com/counterstrike/match/5X5sFiL7H/betboom-team-vs-legacy-a0-2p2fTz",
     "https://egamersworld.com/counterstrike/match/5X5sFiL7H/aurora-vs-9z-bH-YrllJx"
@@ -188,7 +189,7 @@
   {
    "id": "IR-20",
    "status": "ambiguous-source",
-   "title": "HLTV match page shows an '82.7% / 17.3%' figure whose meaning is not stated",
+   "title": "Unlabelled HLTV header percentages are not sportsbook prices",
    "detail": "Unlabelled header percentages and community polls are not sportsbook prices. They are excluded from the model; inspect the linked page before interpreting such a figure. No unverified numeric poll value is reproduced in this review.",
    "evidence": [
     "https://www.hltv.org/matches/2399412/aurora-vs-9z-thunderpick-world-championship-2026"
@@ -276,7 +277,27 @@
     "https://www.hltv.org/betting/analytics/2399412/aurora-vs-9z-thunderpick-world-championship-2026",
     "https://www.hltv.org/betting/analytics/2399413/betboom-vs-legacy-thunderpick-world-championship-2026"
    ]
+  },
+  {
+   "id": "IR-29",
+   "status": "handled",
+   "title": "Editorial edit times are not historical source-read clocks",
+   "detail": "The eight TWC results were checked on 16 October, but exact HTTP completion times were not retained. Historical read/verified timestamps are blank, with the known checked date retained. Archival reconciliation times remain explicitly separate. Unsupported player ratings, exact roster totals and EPL placement were removed from the primary strategy narrative.",
+   "evidence": [
+    "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/hotspawn/research/results.json",
+    "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/hotspawn/research/day1_archive_audit.json"
+   ]
+  },
+  {
+   "id": "IR-30",
+   "status": "open",
+   "title": "Match-specific Phantom stand-in report is not a verified later lineup",
+   "detail": "The directly read HLTV analytics summary names cej0t for Voca–Phantom1080285. The later Phantom–RoundsGG1080288 and Phantom–HAVU1080290 lineups were not independently established. Their lineup facts remain blank, an own-line estimate is withheld, and the earlier stand-in is not used as a strong strategy factor for those later matches. Eligible outside prices can still be displayed. NIP late-invite context is likewise limited to the verified TWC fixtures.",
+   "evidence": [
+    "https://www.hltv.org/betting/analytics/2399424/voca-vs-phantom-elisa-breakout-series-2",
+    "https://www.hltv.org/news/45688/thunderpick-world-championship-matchups-announced-with-virtuspro-replaced-by-nip"
+   ]
   }
  ],
- "updated_utc": "2026-10-16T04:37:39Z"
+ "updated_utc": "2026-10-16T04:59:20Z"
 }

@@ -4831,3 +4831,29 @@ secondary relay rung B. All authors' regression intents retained.
 One strategy edge case fixed/tested: an own/market disagreement may support a labelled contrarian
 play but cannot relabel the *published market underdog* as the "favourite" or hide expected-points
 cost. Model probabilities are unchanged; source-market direction is the headline benchmark.
+
+### FI final-source handoff / final integration in progress — 2026-10-16 05:03 UTC
+
+All **424 whole-repository tests passed**, **60 primary invariants passed**, **95/95 fixture row audit,
+0 errors**, **273 HTML/6,489 local links/0 missing files or fragments**. Official Valve audit remains
+380/380 source-table rows with no mismatches; scope does not expand to independent current lineups or
+per-team history certification. Restored unrelated test-only summary/livelines drift to the committed
+intended rebuilds, not a rollback of the integrated fixes.
+
+Completed primary UI source/table ownership: compact executive routing; source per strategy row;
+positive/negative team search; S/B/C/plays filters; reset; periodic lock/source-age clocks. Added actual
+browser interactions to the mandatory gate. Earlier27/27 browser pass is real but predates these edits;
+a new branch-triggered run is required before merge.
+
+Final factual audit found inherited unsupported primary prose (player ratings/EPL placement), an old
+IR20 title still printing unverified poll percentages, and editorial edit clocks used as historical
+source-read times. Removed those claims, blanked exact unretained clocks in favor of known checked
+dates, and preserved immutable archive-reconciliation timestamps. Directly re-read PARIVISION's
+signing report, TWC preview and Voca–Phantom analytics. Matched-source facts retained; roster/health/
+schedule prose narrowed to the actual report. Phantom stand-in is restricted to1080285; later1080288/
+1080290 lineups blank/unverified with own-line withholding, not an invented repeated stand-in. NIP
+late-invite factor restricted to its TWC IDs. Added scope/withholding regressions and IR29/IR30.
+Removed the false generalization that any equal genuine odds must be a placeholder.
+
+Next: commit/pull with merges/push fixed branch; fresh strict collector plus final real-browser gate;
+then autonomous integration PR→main and live Pages verification. No approval/manual-input wait.

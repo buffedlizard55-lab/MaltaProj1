@@ -331,7 +331,7 @@
   }
  },
  "summary": {
-  "generated_utc": "2026-10-16T04:43:23Z",
+  "generated_utc": "2026-10-16T05:00:40Z",
   "session": "arena/22be6967",
   "reference_utc": "2026-10-16T04:43:07Z",
   "fixtures": 95,
@@ -482,20 +482,7 @@
    "p_b": 0.4779,
    "basis": "Pinnacle odds, margin removed",
    "rung": "A",
-   "factors": [
-    {
-     "side": "a",
-     "team": "Ninjas in Pyjamas",
-     "kind": "late replacement (5 days' notice)",
-     "summary": "Ninjas in Pyjamas replaced Virtus.pro at the Thunderpick World Championship; the swap was announced on 9 Oct 2026 after Virtus.pro withdrew (visa issue for AquaRS, health of F0R3VER). Lost 0-2 to Falcons on day 1 (Ancient 13-16 OT, Dust2 6-13).",
-     "argues_against": true,
-     "strength": "strong",
-     "source_urls": [
-      "https://www.hltv.org/news/45688/thunderpick-world-championship-matchups-announced-with-virtuspro-replaced-by-nip"
-     ],
-     "read_utc": "2026-10-15T10:20:00Z"
-    }
-   ],
+   "factors": [],
    "own_line_limitation": "",
    "pick": "Ninjas in Pyjamas",
    "pick_p": 0.5221,
@@ -522,9 +509,7 @@
     "ev_cost_pts": 0.0,
     "ev_cost_if_faded": 0.13,
     "field_gain_if_dog_wins_pct": 31,
-    "factors_against_favourite": [
-     "late replacement (5 days' notice)"
-    ],
+    "factors_against_favourite": [],
     "factors_against_underdog": [],
     "differs_from_pick": false
    },
@@ -645,13 +630,15 @@
      "side": "b",
      "team": "Phantom",
      "kind": "stand-in",
-     "summary": "HLTV's match analytics for Elisa BreakOut Series 2 says Phantom plays with stand-in cej0t instead of Kunai. HLTV ranks Voca #59 and Phantom #88, and says Voca won 3 of its last 5 matches; the same page says Phantom is the bookmakers' favourite against Voca (no price shown in the static page).",
+     "summary": "The HLTV analytics summary for Voca–Phantom on 16 October names cej0t as a stand-in for Kunai. This is a claim about this specific fixture, not proof of Phantom's lineup in its later RoundsGG/HAVU matches. No displayed header percentage or placeholder odds are used.",
      "argues_against": true,
      "strength": "strong",
      "source_urls": [
       "https://www.hltv.org/betting/analytics/2399424/voca-vs-phantom-elisa-breakout-series-2"
      ],
-     "read_utc": "2026-10-15T10:24:00Z"
+     "read_utc": null,
+     "checked_date_utc": "2026-10-16",
+     "verification_status": "source checked"
     }
    ],
    "own_line_limitation": "verified lineup differs from Valve's five",
@@ -1812,20 +1799,24 @@
       "https://www.hltv.org/news/45082/official-aurora-complete-rebuild-with-kyxsan",
       "https://www.hltv.org/team/11861/aurora"
      ],
-     "read_utc": "2026-10-16T04:26:58Z"
+     "read_utc": null,
+     "checked_date_utc": "2026-10-16",
+     "verification_status": "source checked"
     },
     {
      "side": "b",
      "team": "9z",
      "kind": "form context",
-     "summary": "Before TWC, 9z had group-stage exits at four straight events (EWC, BLAST Porto, FPG 3, EPL 24) per HLTV, then beat Aurora 2-0 (Inferno 13-11, Nuke 13-1; luchov 1.61 rating). HLTV's match list confirms 9z vs Falcons at 11:00 UTC on 15 Oct (Pinnacle lists 11:30).",
+     "summary": "Verified TWC results: 9z beat Aurora 2-0 on day 1, then lost 1-2 to Falcons after winning Mirage 13-8. Small-sample context, not proof of a superior underlying win chance; no unverified player rating or exact rest interval is used.",
      "argues_against": false,
      "strength": "weak",
      "source_urls": [
-      "https://www.hltv.org/news/45718/9z-beat-aurora-2-0-to-kick-off-twc-2026",
+      "https://www.hltv.org/matches/2399384/9z-vs-aurora-thunderpick-world-championship-2026",
       "https://www.hltv.org/matches/2399409/9z-vs-falcons-thunderpick-world-championship-2026"
      ],
-     "read_utc": "2026-10-15T10:15:00Z"
+     "read_utc": null,
+     "checked_date_utc": "2026-10-16",
+     "verification_status": "source checked"
     }
    ],
    "own_line_limitation": "",
@@ -1971,14 +1962,16 @@
     {
      "side": "a",
      "team": "Phantom",
-     "kind": "stand-in",
-     "summary": "HLTV's match analytics for Elisa BreakOut Series 2 says Phantom plays with stand-in cej0t instead of Kunai. HLTV ranks Voca #59 and Phantom #88, and says Voca won 3 of its last 5 matches; the same page says Phantom is the bookmakers' favourite against Voca (no price shown in the static page).",
-     "argues_against": true,
-     "strength": "strong",
+     "kind": "unverified current lineup",
+     "summary": null,
+     "argues_against": false,
+     "strength": "weak",
      "source_urls": [
       "https://www.hltv.org/betting/analytics/2399424/voca-vs-phantom-elisa-breakout-series-2"
      ],
-     "read_utc": "2026-10-15T10:24:00Z"
+     "read_utc": null,
+     "checked_date_utc": "2026-10-16",
+     "verification_status": "unverified"
     },
     {
      "side": "b",
@@ -1993,14 +1986,14 @@
      "automated": true
     }
    ],
-   "own_line_limitation": "verified lineup differs from Valve's five",
+   "own_line_limitation": "current lineup unresolved after a match-specific roster report",
    "pick": "Phantom",
    "pick_p": 0.8537,
    "flags": [
     "ALIAS",
     "OWN_LINE_WITHHELD",
     "RELAYED_BOOK",
-    "VRS_ROSTER_OUTDATED"
+    "ROSTER_UNVERIFIED"
    ],
    "strategy": {
     "class": "CHALK",
@@ -2021,9 +2014,7 @@
     "ev_cost_pts": 0.0,
     "ev_cost_if_faded": 1.41,
     "field_gain_if_dog_wins_pct": 97,
-    "factors_against_favourite": [
-     "stand-in"
-    ],
+    "factors_against_favourite": [],
     "factors_against_underdog": [],
     "differs_from_pick": false
    },
@@ -2944,14 +2935,16 @@
      "side": "b",
      "team": "Legacy",
      "kind": "player return after health absence",
-     "summary": "arT is back in Legacy's lineup after missing ESL Pro League for health reasons (HLTV). Legacy won 2-0 on day 1 but needed round 24 on Dust2 and overtime on Mirage.",
+     "summary": "HLTV's 9 October preview reports arT returning after a health-related EPL absence. That is a dated report, not a claim of current illness or a numerical health adjustment. Legacy won 2-0 on day 1; see the independently checked match result.",
      "argues_against": false,
      "strength": "weak",
      "source_urls": [
       "https://www.hltv.org/news/45688/thunderpick-world-championship-matchups-announced-with-virtuspro-replaced-by-nip",
-      "https://www.hltv.org/news/45723/furia-fend-off-betboom-to-end-day-one-of-twc"
+      "https://www.hltv.org/matches/2399386/legacy-vs-parivision-thunderpick-world-championship-2026"
      ],
-     "read_utc": "2026-10-15T10:22:00Z"
+     "read_utc": null,
+     "checked_date_utc": "2026-10-16",
+     "verification_status": "source checked"
     }
    ],
    "own_line_limitation": "",
@@ -3083,23 +3076,25 @@
     {
      "side": "a",
      "team": "Phantom",
-     "kind": "stand-in",
-     "summary": "HLTV's match analytics for Elisa BreakOut Series 2 says Phantom plays with stand-in cej0t instead of Kunai. HLTV ranks Voca #59 and Phantom #88, and says Voca won 3 of its last 5 matches; the same page says Phantom is the bookmakers' favourite against Voca (no price shown in the static page).",
-     "argues_against": true,
-     "strength": "strong",
+     "kind": "unverified current lineup",
+     "summary": null,
+     "argues_against": false,
+     "strength": "weak",
      "source_urls": [
       "https://www.hltv.org/betting/analytics/2399424/voca-vs-phantom-elisa-breakout-series-2"
      ],
-     "read_utc": "2026-10-15T10:24:00Z"
+     "read_utc": null,
+     "checked_date_utc": "2026-10-16",
+     "verification_status": "unverified"
     }
    ],
-   "own_line_limitation": "verified lineup differs from Valve's five",
+   "own_line_limitation": "current lineup unresolved after a match-specific roster report",
    "pick": "Phantom",
    "pick_p": 0.7014,
    "flags": [
     "OWN_LINE_WITHHELD",
     "RELAYED_BOOK",
-    "VRS_ROSTER_OUTDATED"
+    "ROSTER_UNVERIFIED"
    ],
    "strategy": {
     "class": "LONG SHOT",
@@ -3120,9 +3115,7 @@
     "ev_cost_pts": 0.0,
     "ev_cost_if_faded": 0.81,
     "field_gain_if_dog_wins_pct": 98,
-    "factors_against_favourite": [
-     "stand-in"
-    ],
+    "factors_against_favourite": [],
     "factors_against_underdog": [],
     "differs_from_pick": false
    },
@@ -4539,27 +4532,32 @@
      "side": "a",
      "team": "Legacy",
      "kind": "player return after health absence",
-     "summary": "arT is back in Legacy's lineup after missing ESL Pro League for health reasons (HLTV). Legacy won 2-0 on day 1 but needed round 24 on Dust2 and overtime on Mirage.",
+     "summary": "HLTV's 9 October preview reports arT returning after a health-related EPL absence. That is a dated report, not a claim of current illness or a numerical health adjustment. Legacy won 2-0 on day 1; see the independently checked match result.",
      "argues_against": false,
      "strength": "weak",
      "source_urls": [
       "https://www.hltv.org/news/45688/thunderpick-world-championship-matchups-announced-with-virtuspro-replaced-by-nip",
-      "https://www.hltv.org/news/45723/furia-fend-off-betboom-to-end-day-one-of-twc"
+      "https://www.hltv.org/matches/2399386/legacy-vs-parivision-thunderpick-world-championship-2026"
      ],
-     "read_utc": "2026-10-15T10:22:00Z"
+     "read_utc": null,
+     "checked_date_utc": "2026-10-16",
+     "verification_status": "source checked"
     },
     {
      "side": "b",
      "team": "FURIA",
      "kind": "schedule load (HLTV: 'grueling schedule')",
-     "summary": "HLTV's TWC preview says FURIA's 'grueling schedule will also continue' at TWC. Weak, qualitative factor; FURIA beat BETBOOM 2-0 on day 1 (Ancient 13-10, Mirage 13-9; KSCERATO 1.72).",
+     "summary": "HLTV's 9 October preview describes FURIA's schedule as grueling. Qualitative, weak context only; it does not establish exact rest/travel hours or an injury. FURIA won both day-1/day-2 series, as the linked results show.",
      "argues_against": true,
      "strength": "weak",
      "source_urls": [
       "https://www.hltv.org/news/45688/thunderpick-world-championship-matchups-announced-with-virtuspro-replaced-by-nip",
-      "https://www.hltv.org/news/45723/furia-fend-off-betboom-to-end-day-one-of-twc"
+      "https://www.hltv.org/matches/2399387/furia-vs-betboom-thunderpick-world-championship-2026",
+      "https://www.hltv.org/matches/2399411/legacy-vs-furia-thunderpick-world-championship-2026"
      ],
-     "read_utc": "2026-10-15T10:22:00Z"
+     "read_utc": null,
+     "checked_date_utc": "2026-10-16",
+     "verification_status": "source checked"
     }
    ],
    "own_line_limitation": "",
@@ -4581,7 +4579,10 @@
     "maps": "Cache 13-10 Legacy; Inferno 5-13; Mirage 8-13",
     "source_url": "https://www.hltv.org/matches/2399411/legacy-vs-furia-thunderpick-world-championship-2026",
     "report_url": "https://www.hltv.org/news/45730/furia-make-twc-playoffs-over-legacy",
-    "read_utc": "2026-10-16T04:37:39Z",
+    "read_utc": null,
+    "checked_date_utc": "2026-10-16",
+    "map_score_team": "Legacy",
+    "report_status": "Related report link retained for manual review; not independently re-read in this integration.",
     "kind": "verified (HLTV)"
    }
   },
@@ -9115,7 +9116,7 @@
  ],
  "day1": {
   "info": {
-   "about": "Thunderpick World Championship 2026 (Malta, HLTV event 8932) day 1 = 14 Oct 2026. Results, maps and ratings from HLTV; pre-match prices from the Pinnacle guest API reads archived in this repository (session 8944bb84, read 2026-10-14 01:48 UTC); Hotspawn crowd pick shares from the pre-lock board capture (session 8e782f95, board/data/analysis.csv). Derived numbers (de-vig, own line, strategy class) are recomputed by hotspawn/model.py with today's rule so the review shows what the rule would have said. Compiled by arena/22be6967 on 2026-10-15 10:10-10:30 UTC.",
+   "about": "Thunderpick World Championship 2026 (Malta, HLTV event 8932) day 1 = 14 Oct 2026. Results and maps from HLTV; unsupported player ratings omitted; pre-match prices from the Pinnacle guest API reads archived in this repository (session 8944bb84, read 2026-10-14 01:48 UTC); Hotspawn crowd pick shares from the pre-lock board capture (session 8e782f95, board/data/analysis.csv). Derived numbers (de-vig, own line, strategy class) are recomputed by hotspawn/model.py with today's rule so the review shows what the rule would have said. Compiled by arena/22be6967 on 2026-10-15 10:10-10:30 UTC.",
    "event": {
     "name": "Thunderpick World Championship 2026",
     "hltv": "https://www.hltv.org/events/8932/thunderpick-world-championship-2026",
@@ -9168,7 +9169,8 @@
     "vrs_points_b": 1716,
     "vrs_source": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
     "archival_reconciliation_utc": "2026-10-16T04:37:39Z",
-    "result_verified_utc": "2026-10-16T04:37:39Z",
+    "result_verified_utc": null,
+    "result_verified_date_utc": "2026-10-16",
     "p_a": 0.2691,
     "p_b": 0.7309,
     "overround_pct": 4.68,
@@ -9240,7 +9242,8 @@
     "vrs_points_b": 1534,
     "vrs_source": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
     "archival_reconciliation_utc": "2026-10-16T04:37:39Z",
-    "result_verified_utc": "2026-10-16T04:37:39Z",
+    "result_verified_utc": null,
+    "result_verified_date_utc": "2026-10-16",
     "p_a": 0.7618,
     "p_b": 0.2382,
     "overround_pct": 4.68,
@@ -9308,7 +9311,8 @@
     "vrs_points_b": 1411,
     "vrs_source": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
     "archival_reconciliation_utc": "2026-10-16T04:37:39Z",
-    "result_verified_utc": "2026-10-16T04:37:39Z",
+    "result_verified_utc": null,
+    "result_verified_date_utc": "2026-10-16",
     "p_a": 0.5774,
     "p_b": 0.4226,
     "overround_pct": 4.71,
@@ -9382,7 +9386,8 @@
     "vrs_points_b": 1596,
     "vrs_source": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
     "archival_reconciliation_utc": "2026-10-16T04:37:39Z",
-    "result_verified_utc": "2026-10-16T04:37:39Z",
+    "result_verified_utc": null,
+    "result_verified_date_utc": "2026-10-16",
     "p_a": 0.6998,
     "p_b": 0.3002,
     "overround_pct": 4.76,
@@ -9432,6 +9437,7 @@
   "NO_MARKET": "No outside price found; the probability is our own line from official Valve points.",
   "MODEL_MARKET_SPLIT": "Our own line and the market disagree on the favourite or by 10+ points.",
   "BOOK_PM_SPLIT": "Pinnacle and Polymarket differ by 8+ points.",
+  "ROSTER_UNVERIFIED": "A match-specific roster report does not verify this fixture’s current lineup; own probabilities withheld and factual lineup left blank.",
   "VRS_ROSTER_OUTDATED": "A verified roster change happened after Valve's latest standings, so Valve points describe a different five.",
   "FORMAT_UNKNOWN": "No source stated the series length; nothing was assumed.",
   "UNRESOLVED": "No eligible outside line or independent direction satisfies the evidence gates; pick and probabilities are left blank.",
@@ -10226,7 +10232,10 @@
     "maps": "Nuke 9-13; Mirage 13-8; Dust2 9-13",
     "source_url": "https://www.hltv.org/matches/2399409/9z-vs-falcons-thunderpick-world-championship-2026",
     "report_url": "https://www.hltv.org/news/45728/falcons-secure-playoff-berth-at-twc-2026",
-    "read_utc": "2026-10-16T04:37:39Z",
+    "read_utc": null,
+    "checked_date_utc": "2026-10-16",
+    "map_score_team": "9z",
+    "report_status": "Related report link retained for manual review; not independently re-read in this integration.",
     "kind": "verified (HLTV)"
    },
    "pick_correct": true,
@@ -10280,7 +10289,10 @@
     "maps": "Ancient 13-10 PARIVISION; Anubis 4-13; Mirage 7-13",
     "source_url": "https://www.hltv.org/matches/2399410/parivision-vs-betboom-thunderpick-world-championship-2026",
     "report_url": "https://www.hltv.org/news/45729/betboom-eliminate-parivision-from-twc",
-    "read_utc": "2026-10-16T04:37:39Z",
+    "read_utc": null,
+    "checked_date_utc": "2026-10-16",
+    "map_score_team": "PARIVISION",
+    "report_status": "Related report link retained for manual review; not independently re-read in this integration.",
     "kind": "verified (HLTV)"
    },
    "pick_correct": false,
@@ -10334,7 +10346,10 @@
     "maps": "Cache 13-10 Legacy; Inferno 5-13; Mirage 8-13",
     "source_url": "https://www.hltv.org/matches/2399411/legacy-vs-furia-thunderpick-world-championship-2026",
     "report_url": "https://www.hltv.org/news/45730/furia-make-twc-playoffs-over-legacy",
-    "read_utc": "2026-10-16T04:37:39Z",
+    "read_utc": null,
+    "checked_date_utc": "2026-10-16",
+    "map_score_team": "Legacy",
+    "report_status": "Related report link retained for manual review; not independently re-read in this integration.",
     "kind": "verified (HLTV)"
    },
    "pick_correct": true,

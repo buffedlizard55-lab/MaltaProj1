@@ -38,10 +38,29 @@ def main() -> int:
                     response = page.goto(f"http://127.0.0.1:{server.server_port}/{path}", wait_until="networkidle")
                     if path == "index.html":
                         page.wait_for_function("document.querySelector('#open-count').textContent.trim() !== '—'")
+                    if path == "hotspawn/picks.html":
+                        total = page.locator('.card[data-lock]').count()
+                        if total:
+                            term=page.locator('.card[data-lock]').first.get_attribute('data-search').split()[0]
+                            page.locator('#match-search').fill(term)
+                            expected=page.locator('.card[data-lock]').evaluate_all('(cards,term)=>cards.filter(c=>(c.dataset.search||"").toLowerCase().includes(term.toLowerCase())).length',term)
+                            if expected == 0 or page.locator('.card[data-lock]:visible').count() != expected:
+                                errors.append('Positive team search did not match the exact subset')
+                        page.locator('#match-search').fill('no-such-fixture-6b23e38f')
+                        if page.locator('.card[data-lock]:visible').count() != 0:
+                            errors.append('Search did not hide nonmatching fixtures')
+                        page.locator('#match-search').fill('')
+                        if page.locator('.card[data-lock]:visible').count() != total:
+                            errors.append('Reset did not restore all match cards')
+                        page.locator('button[data-f="S"]').click()
+                        expected = page.locator('.card[data-tier="S"]').count()
+                        if page.locator('.card[data-lock]:visible').count() != expected:
+                            errors.append('S-tier filter did not show the exact subset')
+                        page.locator('button[data-f="all"]').click()
                     metric = page.evaluate("""() => ({
                         cw: document.documentElement.clientWidth, sw: document.documentElement.scrollWidth,
                         h1: document.querySelectorAll('h1').length,
-                        primaryTargets: [...document.querySelectorAll('nav a,.filters button,.quick-link,.recheck')].map(e => ({h:e.getBoundingClientRect().height, text:e.textContent.trim()})),
+                        primaryTargets: [...document.querySelectorAll('nav a,.filters button,.quick-link,.recheck,.search input')].map(e => ({h:e.getBoundingClientRect().height, text:e.textContent.trim()})),
                         tables: [...document.querySelectorAll('table')].filter(t=>t.scrollWidth>t.clientWidth).length
                     })""")
                     bad = not response.ok or metric["sw"] > metric["cw"] + 1 or metric["h1"] != 1 or bool(errors)

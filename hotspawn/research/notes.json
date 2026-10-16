@@ -1,5 +1,5 @@
 {
- "about": "Situational factors researched by session arena/22be6967 on 2026-10-15 between 10:05 and 10:30 UTC from HLTV (official CS news/team pages). 'risk_for' names the team the factor argues AGAINST (onboarding, stand-in, late notice, fatigue); 'neutral' factors are context only. A note is applied automatically to any open fixture of that team until 'relevant_until'. 'strength': strong = roster change within 60 days, stand-in, or late replacement; moderate = roster change 60-120 days old; weak = qualitative context (only strong/moderate count in the rule). Notes never change a probability: they only feed the leaderboard-strategy rule (situational upset) and are displayed with their links.",
+ "about": "Source-linked context, not probability inputs. July Aurora signing and eight TWC results were checked in this integration; PARIVISION signing, NIP/Legacy/FURIA preview and Voca–Phantom analytics were independently re-read on 16 October. Exact HTTP completion clocks were not captured; known checked dates are recorded instead. Only strong/moderate verified factors can inform the strategy. Match-specific claims are restricted to their fixture; unconfirmed later lineups stay blank and withhold the own line, never invent a stand-in. No current health/travel/fatigue adjustment is inferred.",
  "notes": [
   {
    "team": "aurora",
@@ -12,7 +12,7 @@
     "https://www.hltv.org/news/45082/official-aurora-complete-rebuild-with-kyxsan",
     "https://www.hltv.org/team/11861/aurora"
    ],
-   "read_utc": "2026-10-16T04:26:58Z",
+   "read_utc": null,
    "players_in": [
     "Jimpphat",
     "kyxsan"
@@ -21,101 +21,145 @@
     "MAJ3R",
     "soulfly"
    ],
-   "strength": "weak"
+   "strength": "weak",
+   "checked_date_utc": "2026-10-16",
+   "verification_status": "source checked"
   },
   {
    "team": "parivision",
    "kind": "roster change (player swap 28 days before TWC)",
    "risk_for": "parivision",
-   "summary": "HObbit signed on 17 Sep 2026 and replaced slaxejezzz (benched). HLTV's team page showed HObbit at 27 days / 17 maps / 0.91 rating. Valve's 2026-10-05 standings still list the old five (with slaxejezzz), so Valve points describe a roster that no longer plays. Lost 0-2 to Legacy on day 1 (Dust2 11-13, Mirage 14-16).",
+   "summary": "HLTV's 17 September signing report says HObbit replaced slaxejezzz. The official 5 October Valve snapshot still lists slaxejezzz in the rated five. The own line is withheld for that mismatch; no unverified player rating or map count is used.",
    "as_of": "2026-09-17",
    "relevant_until": "2026-12-15",
    "source_urls": [
-    "https://www.hltv.org/news/45534/parivision-replace-slaxejezzz-with-hobbit",
-    "https://www.hltv.org/team/12467/parivision"
+    "https://www.hltv.org/news/45534/parivision-replace-slaxejezzz-with-hobbit"
    ],
-   "read_utc": "2026-10-15T10:20:00Z",
+   "read_utc": null,
    "players_in": [
     "HObbit"
    ],
    "players_out": [
     "slaxejezzz"
    ],
-   "strength": "strong"
+   "strength": "strong",
+   "checked_date_utc": "2026-10-16",
+   "verification_status": "source checked"
   },
   {
    "team": "nip",
    "kind": "late replacement (5 days' notice)",
    "risk_for": "nip",
-   "summary": "Ninjas in Pyjamas replaced Virtus.pro at the Thunderpick World Championship; the swap was announced on 9 Oct 2026 after Virtus.pro withdrew (visa issue for AquaRS, health of F0R3VER). Lost 0-2 to Falcons on day 1 (Ancient 13-16 OT, Dust2 6-13).",
+   "summary": "HLTV's 9 October preview reports NIP replacing Virtus.pro before TWC began on 14 October. This is verified late-invitation context for those TWC matches, not a measured fatigue effect or a reason to penalize NIP in another event.",
    "as_of": "2026-10-09",
    "relevant_until": "2026-10-18",
    "source_urls": [
     "https://www.hltv.org/news/45688/thunderpick-world-championship-matchups-announced-with-virtuspro-replaced-by-nip"
    ],
-   "read_utc": "2026-10-15T10:20:00Z",
-   "strength": "strong"
+   "read_utc": null,
+   "strength": "strong",
+   "checked_date_utc": "2026-10-16",
+   "verification_status": "source checked",
+   "match_ids": [
+    "1080177",
+    "1080201"
+   ]
   },
   {
    "team": "legacy",
    "kind": "player return after health absence",
    "risk_for": "neutral",
-   "summary": "arT is back in Legacy's lineup after missing ESL Pro League for health reasons (HLTV). Legacy won 2-0 on day 1 but needed round 24 on Dust2 and overtime on Mirage.",
+   "summary": "HLTV's 9 October preview reports arT returning after a health-related EPL absence. That is a dated report, not a claim of current illness or a numerical health adjustment. Legacy won 2-0 on day 1; see the independently checked match result.",
    "as_of": "2026-10-09",
    "relevant_until": "2026-10-18",
    "source_urls": [
     "https://www.hltv.org/news/45688/thunderpick-world-championship-matchups-announced-with-virtuspro-replaced-by-nip",
-    "https://www.hltv.org/news/45723/furia-fend-off-betboom-to-end-day-one-of-twc"
+    "https://www.hltv.org/matches/2399386/legacy-vs-parivision-thunderpick-world-championship-2026"
    ],
-   "read_utc": "2026-10-15T10:22:00Z",
-   "strength": "weak"
+   "read_utc": null,
+   "strength": "weak",
+   "checked_date_utc": "2026-10-16",
+   "verification_status": "source checked"
   },
   {
    "team": "furia",
    "kind": "schedule load (HLTV: 'grueling schedule')",
    "risk_for": "furia",
-   "summary": "HLTV's TWC preview says FURIA's 'grueling schedule will also continue' at TWC. Weak, qualitative factor; FURIA beat BETBOOM 2-0 on day 1 (Ancient 13-10, Mirage 13-9; KSCERATO 1.72).",
+   "summary": "HLTV's 9 October preview describes FURIA's schedule as grueling. Qualitative, weak context only; it does not establish exact rest/travel hours or an injury. FURIA won both day-1/day-2 series, as the linked results show.",
    "as_of": "2026-10-09",
    "relevant_until": "2026-10-18",
    "source_urls": [
     "https://www.hltv.org/news/45688/thunderpick-world-championship-matchups-announced-with-virtuspro-replaced-by-nip",
-    "https://www.hltv.org/news/45723/furia-fend-off-betboom-to-end-day-one-of-twc"
+    "https://www.hltv.org/matches/2399387/furia-vs-betboom-thunderpick-world-championship-2026",
+    "https://www.hltv.org/matches/2399411/legacy-vs-furia-thunderpick-world-championship-2026"
    ],
-   "read_utc": "2026-10-15T10:22:00Z",
-   "strength": "weak"
+   "read_utc": null,
+   "strength": "weak",
+   "checked_date_utc": "2026-10-16",
+   "verification_status": "source checked"
   },
   {
    "team": "phantom",
    "kind": "stand-in",
    "risk_for": "phantom",
-   "summary": "HLTV's match analytics for Elisa BreakOut Series 2 says Phantom plays with stand-in cej0t instead of Kunai. HLTV ranks Voca #59 and Phantom #88, and says Voca won 3 of its last 5 matches; the same page says Phantom is the bookmakers' favourite against Voca (no price shown in the static page).",
-   "as_of": "2026-10-15",
+   "summary": "The HLTV analytics summary for Voca–Phantom on 16 October names cej0t as a stand-in for Kunai. This is a claim about this specific fixture, not proof of Phantom's lineup in its later RoundsGG/HAVU matches. No displayed header percentage or placeholder odds are used.",
+   "as_of": "2026-10-16",
    "relevant_until": "2026-10-18",
    "source_urls": [
     "https://www.hltv.org/betting/analytics/2399424/voca-vs-phantom-elisa-breakout-series-2"
    ],
-   "read_utc": "2026-10-15T10:24:00Z",
+   "read_utc": null,
    "players_in": [
     "cej0t"
    ],
    "players_out": [
     "Kunai"
    ],
-   "strength": "strong"
+   "strength": "strong",
+   "checked_date_utc": "2026-10-16",
+   "verification_status": "source checked",
+   "match_ids": [
+    "1080285"
+   ]
   },
   {
    "team": "9z",
    "kind": "form context",
    "risk_for": "neutral",
-   "summary": "Before TWC, 9z had group-stage exits at four straight events (EWC, BLAST Porto, FPG 3, EPL 24) per HLTV, then beat Aurora 2-0 (Inferno 13-11, Nuke 13-1; luchov 1.61 rating). HLTV's match list confirms 9z vs Falcons at 11:00 UTC on 15 Oct (Pinnacle lists 11:30).",
+   "summary": "Verified TWC results: 9z beat Aurora 2-0 on day 1, then lost 1-2 to Falcons after winning Mirage 13-8. Small-sample context, not proof of a superior underlying win chance; no unverified player rating or exact rest interval is used.",
    "as_of": "2026-10-14",
    "relevant_until": "2026-10-18",
    "source_urls": [
-    "https://www.hltv.org/news/45718/9z-beat-aurora-2-0-to-kick-off-twc-2026",
+    "https://www.hltv.org/matches/2399384/9z-vs-aurora-thunderpick-world-championship-2026",
     "https://www.hltv.org/matches/2399409/9z-vs-falcons-thunderpick-world-championship-2026"
    ],
-   "read_utc": "2026-10-15T10:15:00Z",
-   "strength": "weak"
+   "read_utc": null,
+   "strength": "weak",
+   "checked_date_utc": "2026-10-16",
+   "verification_status": "source checked"
+  },
+  {
+   "team": "phantom",
+   "kind": "unverified current lineup",
+   "risk_for": "neutral",
+   "summary": null,
+   "as_of": "2026-10-16",
+   "relevant_until": "2026-10-18",
+   "match_ids": [
+    "1080288",
+    "1080290"
+   ],
+   "source_urls": [
+    "https://www.hltv.org/betting/analytics/2399424/voca-vs-phantom-elisa-breakout-series-2"
+   ],
+   "read_utc": null,
+   "checked_date_utc": "2026-10-16",
+   "strength": "weak",
+   "verification_status": "unverified",
+   "players_in": [],
+   "players_out": [],
+   "withhold_own_line": true,
+   "limitation": "The earlier match-specific stand-in report does not establish the lineup in these later matches. Current factual lineup left blank."
   }
  ]
 }

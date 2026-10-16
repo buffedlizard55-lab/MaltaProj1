@@ -34,7 +34,7 @@
 <p>Maintained primary board · original session <code>arena/22be6967</code> · <a href="data/picks.csv">picks.csv</a> · <a href="data/all_fixtures.csv">all_fixtures.csv</a> · <a href="data/flags.csv">flags.csv</a> · <a href="data/board.json">board.json</a> · <a href="https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/.github/workflows/hotspawn-22be6967.yml">refresh workflow</a> · <a href="https://github.com/buffedlizard55-lab/MaltaProj1">source</a></p>
 </footer>
 <script>
-(function(){var s=document.getElementById('snap');if(!s)return;var t=Date.parse(s.getAttribute('data-ref'));if(!t)return;var h=(Date.now()-t)/36e5;var a=document.getElementById('snap-age');if(a)a.textContent=h<1?Math.round(h*60)+' min ago':h.toFixed(1)+' h ago';if(h>8){s.className='snap bad';a.textContent+=' — older than 8 h: the scheduled refresh may have failed; check the lobby before relying on it';}})();
+(function(){function freshness(){var s=document.getElementById('snap');if(!s)return;var t=Date.parse(s.getAttribute('data-ref'));if(!Number.isFinite(t))return;var h=(Date.now()-t)/36e5;var a=document.getElementById('snap-age');if(a)a.textContent=h<1?Math.round(h*60)+' min ago':h.toFixed(1)+' h ago';if(h>8){s.classList.add('bad');if(a)a.textContent+=' — older than 8 h: the scheduled refresh may have failed; check the lobby before relying on it';}}freshness();window.setInterval(freshness,60000);})();
 
 </script>
 </body>

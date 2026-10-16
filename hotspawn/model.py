@@ -55,6 +55,7 @@ FLAG_TEXT = {
     "NO_MARKET": "No outside price found; the probability is our own line from official Valve points.",
     "MODEL_MARKET_SPLIT": "Our own line and the market disagree on the favourite or by 10+ points.",
     "BOOK_PM_SPLIT": "Pinnacle and Polymarket differ by 8+ points.",
+    "ROSTER_UNVERIFIED": "A match-specific roster report does not verify this fixture’s current lineup; own probabilities withheld and factual lineup left blank.",
     "VRS_ROSTER_OUTDATED": "A verified roster change happened after Valve's latest standings, so Valve points describe a different five.",
     "FORMAT_UNKNOWN": "No source stated the series length; nothing was assumed.",
     "UNRESOLVED": "No eligible outside line or independent direction satisfies the evidence gates; pick and probabilities are left blank.",
@@ -105,11 +106,13 @@ def match_quote(fx: dict, quotes: list[dict], aliases: Aliases, reference: str |
     return select_quote(fx, quotes, aliases, reference, fixtures, rejections, expected_format)
 
 
-def active_notes(team_key: str, start_utc: str, notes: list[dict]) -> list[dict]:
+def active_notes(team_key: str, start_utc: str, notes: list[dict], match_id: str | None = None) -> list[dict]:
     start = parse_iso(start_utc)
     out = []
     for n in notes:
         if n.get("team") != team_key:
+            continue
+        if n.get("match_ids") and str(match_id) not in {str(mid) for mid in n["match_ids"]}:
             continue
         until = parse_iso(f"{n.get('relevant_until')}T23:59:59Z") if n.get("relevant_until") else None
         since = parse_iso(f"{n.get('as_of')}T00:00:00Z") if n.get("as_of") else None
@@ -358,10 +361,13 @@ def build_rows(inp: dict) -> tuple[list[dict], dict]:
         # ---- situational factors (research notes + automated Valve roster age)
         factors = []
         for side, key, team in (("a", ka, va), ("b", kb, vb)):
-            for n in active_notes(key, fx["start_utc"], inp["notes"]):
+            for n in active_notes(key, fx["start_utc"], inp["notes"], fx["match_id"]):
                 factors.append({"side": side, "team": fx[f"team_{side}"], "kind": n.get("kind"), "summary": n.get("summary"),
-                                "argues_against": n.get("risk_for") == key, "strength": n.get("strength", "weak"),
-                                "source_urls": n.get("source_urls", []), "read_utc": n.get("read_utc")})
+                                "argues_against": n.get("verification_status") != "unverified" and n.get("risk_for") == key, "strength": "weak" if n.get("verification_status") == "unverified" else n.get("strength", "weak"),
+                                "source_urls": n.get("source_urls", []), "read_utc": n.get("read_utc"),
+                                "checked_date_utc": n.get("checked_date_utc"), "verification_status": n.get("verification_status")})
+                if n.get("withhold_own_line"):
+                    flags.append("ROSTER_UNVERIFIED")
                 if team and (n.get("players_in") or n.get("players_out")):
                     roster = {p.casefold() for p in team.get("roster", [])}
                     stale_out = [x for x in n.get("players_out", []) if x.casefold() in roster]
@@ -377,6 +383,8 @@ def build_rows(inp: dict) -> tuple[list[dict], dict]:
         # Verify eligibility BEFORE an own line can drive a pick or the leverage consensus.
         vrs_age = hours_between(iso(ref), str(vrs.get("as_of") or "") + "T00:00:00Z")
         own_reasons = []
+        if "ROSTER_UNVERIFIED" in flags:
+            own_reasons.append("current lineup unresolved after a match-specific roster report")
         if "VRS_ROSTER_OUTDATED" in flags:
             own_reasons.append("verified lineup differs from Valve's five")
         if vrs_age is None or vrs_age < 0 or vrs_age > 45 * 24:
@@ -482,7 +490,7 @@ def day1_review(inp: dict, k: float) -> list[dict]:
         notes = []
         for side in ("a", "b"):
             key = aliases.key(m[f"team_{side}"])
-            for n in active_notes(key, m["start_utc"], inp["notes"]):
+            for n in active_notes(key, m["start_utc"], inp["notes"], m["hotspawn_id"]):
                 notes.append({"side": side, "kind": n.get("kind"), "argues_against": n.get("risk_for") == key,
                               "strength": n.get("strength", "weak")})
         row["factors"] = notes

@@ -133,7 +133,7 @@ class Sources(unittest.TestCase):
             self.assertTrue(all(u.startswith("https://") for u in row["source_urls"]))
         for n in read_json(HERE / "research" / "notes.json")["notes"]:
             self.assertIn(n.get("strength"), ("strong", "moderate", "weak"), n["team"])
-            self.assertTrue(n.get("source_urls") and n.get("read_utc"), n["team"])
+            self.assertTrue(n.get("source_urls") and (n.get("read_utc") or n.get("checked_date_utc")), n["team"])
             self.assertTrue(all("hltv.org" in u for u in n["source_urls"]), n["team"])
         for i in read_json(HERE / "research" / "irregularities.json")["items"]:
             self.assertTrue(i.get("evidence"), i["id"])
@@ -273,6 +273,20 @@ class Pages(unittest.TestCase):
         self.assertIn("Limitations that apply to every pick", text)
         self.assertIn('href="picks.html"', text)
 
+    def test_searchable_cards_and_source_link_on_each_leaderboard_row(self):
+        picks=(HERE/'picks.html').read_text(encoding='utf-8')
+        self.assertIn('id="match-search"',picks)
+        self.assertEqual(picks.count('data-search='),len(OPEN))
+        for row in OPEN:
+            self.assertIn(__import__('html').escape(row['team_a'],quote=True),picks)
+        # Every actual plan row has a direct fixture source AND outside-line/own-input source,
+        # not merely an internal detail anchor. Link presence is not a source-truth certificate.
+        import build
+        rows=[r for r in OPEN if r.get('strategy')]
+        markup=build.plays_table(rows)
+        self.assertEqual(markup.count('Hotspawn fixture'),len(rows))
+        self.assertEqual(markup.count('outside line')+markup.count('own-line inputs'),len(rows))
+
 
 class TwcReview(unittest.TestCase):
     """The TWC 2026 page must carry a source for every result row it publishes."""
@@ -311,8 +325,9 @@ class TwcReview(unittest.TestCase):
         # mis-ordered, so each row must carry the read time and the match page it was re-read from.
         for m in self.data["series"]:
             self.assertEqual(m["maps_verified_from"], "HLTV match-page map block, re-read live in session 6b23e38f", m["score"])
-            self.assertTrue(m["maps_verified_utc"].endswith("Z"), m["score"])
-            self.assertIn(m["maps_verified_utc"], self.text, m["score"])
+            self.assertIsNone(m["maps_verified_utc"], m["score"])
+            self.assertEqual(m["maps_verified_date_utc"], "2026-10-16", m["score"])
+            self.assertIn(m["maps_verified_date_utc"], self.text, m["score"])
             self.assertTrue(m["map_picks"], m["score"])
         self.assertIn("winner-first", self.data["maps_convention"])
 
@@ -497,6 +512,25 @@ class EligibilityAndArchive(unittest.TestCase):
         self.assertEqual(result['class'],'NO CROWD DATA')
         self.assertEqual(result['leaderboard_pick'],'A')
 
+    def test_match_specific_note_never_spills_into_a_second_fixture(self):
+        n={'team':'test','match_ids':['one'],'as_of':'2026-10-16','relevant_until':'2026-10-18'}
+        self.assertEqual(model.active_notes('test','2026-10-16T10:00:00Z',[n],'one'),[n])
+        self.assertEqual(model.active_notes('test','2026-10-16T10:00:00Z',[n],'two'),[])
+        self.assertEqual(model.active_notes('test','2026-10-16T10:00:00Z',[n]),[])
+
+    def test_unverified_lineup_withholds_own_line_without_inventing_stand_in(self):
+        inp,fx=self.isolated()
+        inp['notes']=[{'team':Aliases().key(fx['team_a']),'kind':'unverified lineup','summary':None,
+                      'strength':'strong','risk_for':Aliases().key(fx['team_a']),'verification_status':'unverified','withhold_own_line':True,
+                      'as_of':'2026-10-16','relevant_until':'2026-10-18','match_ids':[fx['match_id']]}]
+        rows,_=model.build_rows(inp);row=rows[0]
+        self.assertEqual(row['rung'],'D')
+        self.assertIsNone(row['own_p_a']);self.assertIsNone(row['pick'])
+        self.assertIn('ROSTER_UNVERIFIED',row['flags'])
+        factor=next(f for f in row['factors'] if f['kind']=='unverified lineup')
+        self.assertIsNone(factor['summary']);self.assertFalse(factor['argues_against']);self.assertEqual(factor['strength'],'weak')
+
+
 
 class Day3(unittest.TestCase):
     """Thunderpick day-3 evidence file: raw inputs only, every price a real two-way book, official
@@ -597,8 +631,7 @@ class Day3(unittest.TestCase):
                 self.assertNotIn("Coverage watch — researched fixtures absent from this capture", page, f"{name} should not claim a gap once covered")
 
     def test_missing_fixture_never_invents_a_current_lean_from_archived_quotes(self):
-        """A researched decider with no board row still shows a pick, and it is the outside-market + own-line
-        consensus recomputed from the stored raw inputs - never a hand-typed percentage."""
+        """A missing live row is disclosed, with no pick/percentage fabricated from archival prices."""
         board = BOARD
         have = {str(r.get("match_id")) for r in board.get("rows", [])}
         strategy = (HERE / "strategy.html").read_text(encoding="utf-8")
