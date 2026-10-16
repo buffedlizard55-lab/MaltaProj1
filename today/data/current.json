@@ -1,50 +1,50 @@
 {
  "meta": {
-  "generated_utc": "2026-10-16T04:49:03Z",
-  "source_snapshot_utc": "2026-10-16T04:49:03Z",
-  "hotspawn_snapshot_utc": "2026-10-16T04:46:24Z",
-  "egw_snapshot_utc": "2026-10-16T04:46:30Z",
-  "pinnacle_snapshot_utc": "2026-10-16T04:47:56Z",
-  "hltv_snapshot_utc": "2026-10-16T04:47:58Z",
-  "valve_snapshot_utc": "2026-10-16T04:49:02Z",
-  "pickem_week_reset_utc": "2026-10-19T00:20:00Z",
-  "pickem_week_total_text": 139,
-  "pickem_week_total_context": " Tournaments How To Play League of Legends Pick'em Lobby Play other game titles This week 139 matches this week Resets in 2d 19h 33m 31s Sign in to tra",
+  "generated_utc": "2026-10-16T11:43:13Z",
+  "source_snapshot_utc": "2026-10-16T11:43:13Z",
+  "hotspawn_snapshot_utc": "2026-10-16T11:40:33Z",
+  "egw_snapshot_utc": "2026-10-16T11:40:40Z",
+  "pinnacle_snapshot_utc": "2026-10-16T11:42:06Z",
+  "hltv_snapshot_utc": "2026-10-16T11:42:08Z",
+  "valve_snapshot_utc": "2026-10-16T11:43:13Z",
+  "pickem_week_reset_utc": "2026-10-19T01:46:38Z",
+  "pickem_week_total_text": 151,
+  "pickem_week_total_context": " Tournaments How To Play League of Legends Pick'em Lobby Play other game titles This week 151 matches this week Resets in 2d 14h 05m 58s Sign in to tra",
   "pickem_page_header_counts": [
    {
     "page": "lobby",
     "url": "https://play.hotspawn.com/lobby",
-    "matches_this_week_text": 123,
-    "context": "ck'ems Lobby | Hotspawn Play Lobby My Picks Leaderboard Tournaments How To Play This week 123 matches this week Resets in 2d 22h 25m 45s Sign in to tra",
-    "rows_in_payload": 95,
-    "cards_rendered": 31
+    "matches_this_week_text": 151,
+    "context": "ck'ems Lobby | Hotspawn Play Lobby My Picks Leaderboard Tournaments How To Play This week 151 matches this week Resets in 2d 14h 20m 34s Sign in to tra",
+    "rows_in_payload": 100,
+    "cards_rendered": 39
    },
    {
     "page": "cs2-pickems",
     "url": "https://play.hotspawn.com/cs2-pickems",
-    "matches_this_week_text": 123,
-    "context": "d Tournaments How To Play Counter-Strike 2 Pick'em Lobby Play other game titles This week 123 matches this week Resets in 2d 20h 36m 16s Sign in to tra",
-    "rows_in_payload": 95,
-    "cards_rendered": 31
+    "matches_this_week_text": 151,
+    "context": "d Tournaments How To Play Counter-Strike 2 Pick'em Lobby Play other game titles This week 151 matches this week Resets in 2d 12h 29m 10s Sign in to tra",
+    "rows_in_payload": 96,
+    "cards_rendered": 33
    },
    {
     "page": "thp-pickems",
     "url": "https://play.hotspawn.com/thp-pickems",
-    "matches_this_week_text": 123,
-    "context": "Ninjas in Pyjamas (1) Phantom (2) Sangal (1) Sashi (1) Team Liquid (1) Voca (2) This week 123 matches this week Resets in 2d 19h 41m 25s Sign in to tra",
-    "rows_in_payload": 11,
-    "cards_rendered": 11
+    "matches_this_week_text": 149,
+    "context": "PRIVATE (1) Rune Eaters (1) Sangal (1) Sashi (1) UNiTY (1) UPGRADE (1) Voca (1) This week 149 matches this week Resets in 2d 15h 39m 17s Sign in to tra",
+    "rows_in_payload": 16,
+    "cards_rendered": 15
    },
    {
     "page": "lol-pickems",
     "url": "https://play.hotspawn.com/lol-pickems",
-    "matches_this_week_text": 139,
-    "context": " Tournaments How To Play League of Legends Pick'em Lobby Play other game titles This week 139 matches this week Resets in 2d 19h 33m 31s Sign in to tra",
-    "rows_in_payload": 302,
-    "cards_rendered": 238
+    "matches_this_week_text": 151,
+    "context": " Tournaments How To Play League of Legends Pick'em Lobby Play other game titles This week 151 matches this week Resets in 2d 14h 05m 58s Sign in to tra",
+    "rows_in_payload": 303,
+    "cards_rendered": 242
    }
   ],
-  "valve_vrs_file": "standings_global_2026_10_05.md",
+  "valve_vrs_file": null,
   "method": {
    "market_probability": "each external source's match-winner prices are converted to implied probability and normalised to remove the bookmaker overround; EGamersWorld uses the median price across the bookmakers printed on the page, Pinnacle uses its public guest moneyline; the sources' de-vigged probabilities are then averaged",
    "own_line": "standard Elo expectation 1/(1+10^(-dP/400)) on published rating points (HLTV world ranking and Valve Regional Standings, averaged where both cover both teams)",
@@ -84,20 +84,20 @@
    },
    {
     "label": "Valve Regional Standings \u2014 official Valve data repository",
-    "url": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md",
+    "url": null,
     "kind": "rating"
    }
   ],
   "counts": {
-   "fixtures_in_payload": 397,
-   "fixtures_in_week": 103,
-   "cs2": 27,
-   "lol": 76,
+   "fixtures_in_payload": 404,
+   "fixtures_in_week": 105,
+   "cs2": 33,
+   "lol": 72,
    "with_market_probability": 0,
-   "with_own_line": 20,
-   "with_pick": 20,
+   "with_own_line": 0,
+   "with_pick": 0,
    "pinnacle_matched": 0,
-   "stale_listings_excluded": 294
+   "stale_listings_excluded": 299
   },
   "weights": {
    "market": 0.7,
@@ -105,139 +105,6 @@
   }
  },
  "matches": [
-  {
-   "match_id": "1076570",
-   "sport": "lol",
-   "competition": "Benelux Ascend Series 2027 Winter Promotion",
-   "tier": "WAITING FOR INFORMATION",
-   "stage": "waiting for information",
-   "points": 10,
-   "best_of": null,
-   "team_a": "Meavedron Benelux",
-   "team_b": "The Bandits Academy",
-   "start_utc": "2026-10-14T17:00:00Z",
-   "lock_utc": "2026-10-14T16:55:00Z",
-   "status": "scheduled",
-   "hotspawn_url": "https://www.hotspawn.com/matches/1076570",
-   "hotspawn_page": "https://play.hotspawn.com/lol-pickems",
-   "odds_a": null,
-   "odds_b": null,
-   "odds_kind": null,
-   "odds_bookmakers": [],
-   "odds_source_url": null,
-   "odds_fetched_utc": null,
-   "market_sources": [],
-   "overround_pct": null,
-   "market_p_a_pct": null,
-   "market_p_b_pct": null,
-   "own_model_p_a_pct": null,
-   "own_model_p_b_pct": null,
-   "model_inputs": [],
-   "final_p_a_pct": null,
-   "final_p_b_pct": null,
-   "estimate_basis": "unavailable \u2014 neither a bookmaker price nor a rating line could be sourced",
-   "pick": null,
-   "pick_pct": null,
-   "locked": true,
-   "started": true,
-   "flags": [
-    "no_external_match_page_matched",
-    "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:Meavedron Benelux,The Bandits Academy"
-   ]
-  },
-  {
-   "match_id": "1076571",
-   "sport": "lol",
-   "competition": "Benelux Ascend Series 2027 Winter Promotion",
-   "tier": "WAITING FOR INFORMATION",
-   "stage": "waiting for information",
-   "points": 10,
-   "best_of": null,
-   "team_a": "Nameless",
-   "team_b": "Triforce Esport",
-   "start_utc": "2026-10-14T18:00:00Z",
-   "lock_utc": "2026-10-14T17:55:00Z",
-   "status": "scheduled",
-   "hotspawn_url": "https://www.hotspawn.com/matches/1076571",
-   "hotspawn_page": "https://play.hotspawn.com/lol-pickems",
-   "odds_a": null,
-   "odds_b": null,
-   "odds_kind": null,
-   "odds_bookmakers": [],
-   "odds_source_url": null,
-   "odds_fetched_utc": null,
-   "market_sources": [],
-   "overround_pct": null,
-   "market_p_a_pct": null,
-   "market_p_b_pct": null,
-   "own_model_p_a_pct": null,
-   "own_model_p_b_pct": null,
-   "model_inputs": [],
-   "final_p_a_pct": null,
-   "final_p_b_pct": null,
-   "estimate_basis": "unavailable \u2014 neither a bookmaker price nor a rating line could be sourced",
-   "pick": null,
-   "pick_pct": null,
-   "locked": true,
-   "started": true,
-   "flags": [
-    "no_external_match_page_matched",
-    "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:Nameless,Triforce Esport"
-   ]
-  },
-  {
-   "match_id": "1079626",
-   "sport": "cs2",
-   "competition": "CCT Europe 2026 Series #11",
-   "tier": "B",
-   "stage": "waiting for information",
-   "points": 3,
-   "best_of": null,
-   "team_a": "Walczaki",
-   "team_b": "mellren",
-   "start_utc": "2026-10-15T11:00:00Z",
-   "lock_utc": "2026-10-15T10:54:00Z",
-   "status": "scheduled",
-   "hotspawn_url": "https://www.hotspawn.com/matches/1079626",
-   "hotspawn_page": "https://play.hotspawn.com/lobby",
-   "odds_a": null,
-   "odds_b": null,
-   "odds_kind": null,
-   "odds_bookmakers": [],
-   "odds_source_url": null,
-   "odds_fetched_utc": null,
-   "market_sources": [],
-   "overround_pct": null,
-   "market_p_a_pct": null,
-   "market_p_b_pct": null,
-   "own_model_p_a_pct": 54.3,
-   "own_model_p_b_pct": 45.7,
-   "model_inputs": [
-    {
-     "source": "Valve Regional Standings points",
-     "url": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md",
-     "team_a_points": 962.0,
-     "team_b_points": 932.0,
-     "p_a": 0.5431
-    }
-   ],
-   "final_p_a_pct": 54.3,
-   "final_p_b_pct": 45.7,
-   "estimate_basis": "own line only (no external price found)",
-   "pick": "Walczaki",
-   "pick_pct": 54.3,
-   "locked": true,
-   "started": true,
-   "flags": [
-    "no_external_match_page_matched",
-    "no_external_price_found",
-    "own_line_only_no_market"
-   ]
-  },
   {
    "match_id": "1081365",
    "sport": "lol",
@@ -276,8 +143,7 @@
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:Arena,TeamBah"
+    "no_probability_available"
    ]
   },
   {
@@ -318,141 +184,7 @@
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:Inquisitors,OverPower"
-   ]
-  },
-  {
-   "match_id": "1080204",
-   "sport": "cs2",
-   "competition": "Thunderpick World Championship 2026",
-   "tier": "S",
-   "stage": "group stage and playoffs",
-   "points": 7,
-   "best_of": null,
-   "team_a": "Legacy",
-   "team_b": "FURIA",
-   "start_utc": "2026-10-15T16:00:00Z",
-   "lock_utc": "2026-10-15T15:54:00Z",
-   "status": "scheduled",
-   "hotspawn_url": "https://www.hotspawn.com/matches/1080204",
-   "hotspawn_page": "https://play.hotspawn.com/lobby",
-   "odds_a": null,
-   "odds_b": null,
-   "odds_kind": null,
-   "odds_bookmakers": [],
-   "odds_source_url": null,
-   "odds_fetched_utc": null,
-   "market_sources": [],
-   "overround_pct": null,
-   "market_p_a_pct": null,
-   "market_p_b_pct": null,
-   "own_model_p_a_pct": 64.3,
-   "own_model_p_b_pct": 35.7,
-   "model_inputs": [
-    {
-     "source": "Valve Regional Standings points",
-     "url": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md",
-     "team_a_points": 1931.0,
-     "team_b_points": 1829.0,
-     "p_a": 0.6427
-    }
-   ],
-   "final_p_a_pct": 64.3,
-   "final_p_b_pct": 35.7,
-   "estimate_basis": "own line only (no external price found)",
-   "pick": "Legacy",
-   "pick_pct": 64.3,
-   "locked": true,
-   "started": true,
-   "flags": [
-    "no_external_match_page_matched",
-    "no_external_price_found",
-    "own_line_only_no_market"
-   ]
-  },
-  {
-   "match_id": "1079628",
-   "sport": "cs2",
-   "competition": "CCT Europe 2026 Series #11",
-   "tier": "B",
-   "stage": "waiting for information",
-   "points": 3,
-   "best_of": null,
-   "team_a": "Gothic",
-   "team_b": "LFO 10",
-   "start_utc": "2026-10-15T17:00:00Z",
-   "lock_utc": "2026-10-15T16:54:00Z",
-   "status": "scheduled",
-   "hotspawn_url": "https://www.hotspawn.com/matches/1079628",
-   "hotspawn_page": "https://play.hotspawn.com/lobby",
-   "odds_a": null,
-   "odds_b": null,
-   "odds_kind": null,
-   "odds_bookmakers": [],
-   "odds_source_url": null,
-   "odds_fetched_utc": null,
-   "market_sources": [],
-   "overround_pct": null,
-   "market_p_a_pct": null,
-   "market_p_b_pct": null,
-   "own_model_p_a_pct": null,
-   "own_model_p_b_pct": null,
-   "model_inputs": [],
-   "final_p_a_pct": null,
-   "final_p_b_pct": null,
-   "estimate_basis": "unavailable \u2014 neither a bookmaker price nor a rating line could be sourced",
-   "pick": null,
-   "pick_pct": null,
-   "locked": true,
-   "started": true,
-   "flags": [
-    "no_external_match_page_matched",
-    "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:LFO 10"
-   ]
-  },
-  {
-   "match_id": "1075704",
-   "sport": "lol",
-   "competition": "PRM 3rd Division 26-27 Fall",
-   "tier": "WAITING FOR INFORMATION",
-   "stage": "waiting for information",
-   "points": 10,
-   "best_of": null,
-   "team_a": "Atruvia M\u00fcnster Esports",
-   "team_b": "Purple Emperor Lizards - Atomic",
-   "start_utc": "2026-10-15T18:00:00Z",
-   "lock_utc": "2026-10-15T17:55:00Z",
-   "status": "scheduled",
-   "hotspawn_url": "https://www.hotspawn.com/matches/1075704",
-   "hotspawn_page": "https://play.hotspawn.com/lol-pickems",
-   "odds_a": null,
-   "odds_b": null,
-   "odds_kind": null,
-   "odds_bookmakers": [],
-   "odds_source_url": null,
-   "odds_fetched_utc": null,
-   "market_sources": [],
-   "overround_pct": null,
-   "market_p_a_pct": null,
-   "market_p_b_pct": null,
-   "own_model_p_a_pct": null,
-   "own_model_p_b_pct": null,
-   "model_inputs": [],
-   "final_p_a_pct": null,
-   "final_p_b_pct": null,
-   "estimate_basis": "unavailable \u2014 neither a bookmaker price nor a rating line could be sourced",
-   "pick": null,
-   "pick_pct": null,
-   "locked": true,
-   "started": true,
-   "flags": [
-    "no_external_match_page_matched",
-    "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:Atruvia M\u00fcnster Esports,Purple Emperor Lizards - Atomic"
+    "no_probability_available"
    ]
   },
   {
@@ -493,8 +225,7 @@
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:Void Walkers,Pegasus Esports"
+    "no_probability_available"
    ]
   },
   {
@@ -535,25 +266,24 @@
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:Fritt Fall,Tung Sahur Mid"
+    "no_probability_available"
    ]
   },
   {
-   "match_id": "1075807",
-   "sport": "lol",
-   "competition": "Worlds 2026 Play-In",
-   "tier": "S",
-   "stage": "play-in",
-   "points": 30,
+   "match_id": "1081493",
+   "sport": "cs2",
+   "competition": "PGL Bucharest 2027: Closed Qualifier",
+   "tier": "B",
+   "stage": "qualifier",
+   "points": 3,
    "best_of": null,
-   "team_a": "FURIA",
-   "team_b": "MVK Esports",
-   "start_utc": "2026-10-15T23:00:00Z",
-   "lock_utc": "2026-10-15T22:55:00Z",
+   "team_a": "Eternal Fire",
+   "team_b": "Apogee Betclic",
+   "start_utc": "2026-10-16T08:00:00Z",
+   "lock_utc": "2026-10-16T07:54:00Z",
    "status": "scheduled",
-   "hotspawn_url": "https://www.hotspawn.com/matches/1075807",
-   "hotspawn_page": "https://play.hotspawn.com/lol-pickems",
+   "hotspawn_url": "https://www.hotspawn.com/matches/1081493",
+   "hotspawn_page": "https://play.hotspawn.com/thp-pickems",
    "odds_a": null,
    "odds_b": null,
    "odds_kind": null,
@@ -577,99 +307,7 @@
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:MVK Esports"
-   ]
-  },
-  {
-   "match_id": "1079586",
-   "sport": "cs2",
-   "competition": "Stake Pulse Beat III",
-   "tier": "B",
-   "stage": "waiting for information",
-   "points": 3,
-   "best_of": null,
-   "team_a": "Ninjas in Pyjamas",
-   "team_b": "Team Liquid",
-   "start_utc": "2026-10-16T08:00:00Z",
-   "lock_utc": "2026-10-16T07:54:00Z",
-   "status": "scheduled",
-   "hotspawn_url": "https://www.hotspawn.com/matches/1079586",
-   "hotspawn_page": "https://play.hotspawn.com/lobby",
-   "odds_a": null,
-   "odds_b": null,
-   "odds_kind": null,
-   "odds_bookmakers": [],
-   "odds_source_url": null,
-   "odds_fetched_utc": null,
-   "market_sources": [],
-   "overround_pct": null,
-   "market_p_a_pct": null,
-   "market_p_b_pct": null,
-   "own_model_p_a_pct": null,
-   "own_model_p_b_pct": null,
-   "model_inputs": [],
-   "final_p_a_pct": null,
-   "final_p_b_pct": null,
-   "estimate_basis": "unavailable \u2014 neither a bookmaker price nor a rating line could be sourced",
-   "pick": null,
-   "pick_pct": null,
-   "locked": false,
-   "started": false,
-   "flags": [
-    "no_external_match_page_matched",
-    "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:Team Liquid"
-   ]
-  },
-  {
-   "match_id": "1080285",
-   "sport": "cs2",
-   "competition": "Elisa BreakOut Series #2",
-   "tier": "C",
-   "stage": "waiting for information",
-   "points": 2,
-   "best_of": null,
-   "team_a": "Voca",
-   "team_b": "Phantom",
-   "start_utc": "2026-10-16T08:00:00Z",
-   "lock_utc": "2026-10-16T07:54:00Z",
-   "status": "scheduled",
-   "hotspawn_url": "https://www.hotspawn.com/matches/1080285",
-   "hotspawn_page": "https://play.hotspawn.com/lobby",
-   "odds_a": null,
-   "odds_b": null,
-   "odds_kind": null,
-   "odds_bookmakers": [],
-   "odds_source_url": null,
-   "odds_fetched_utc": null,
-   "market_sources": [],
-   "overround_pct": null,
-   "market_p_a_pct": null,
-   "market_p_b_pct": null,
-   "own_model_p_a_pct": 55.0,
-   "own_model_p_b_pct": 45.0,
-   "model_inputs": [
-    {
-     "source": "Valve Regional Standings points",
-     "url": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md",
-     "team_a_points": 1182.0,
-     "team_b_points": 1147.0,
-     "p_a": 0.5502
-    }
-   ],
-   "final_p_a_pct": 55.0,
-   "final_p_b_pct": 45.0,
-   "estimate_basis": "own line only (no external price found)",
-   "pick": "Voca",
-   "pick_pct": 55.0,
-   "locked": false,
-   "started": false,
-   "flags": [
-    "no_external_match_page_matched",
-    "no_external_price_found",
-    "own_line_only_no_market"
+    "no_probability_available"
    ]
   },
   {
@@ -705,13 +343,12 @@
    "estimate_basis": "unavailable \u2014 neither a bookmaker price nor a rating line could be sourced",
    "pick": null,
    "pick_pct": null,
-   "locked": false,
-   "started": false,
+   "locked": true,
+   "started": true,
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:RoundsGG"
+    "no_probability_available"
    ]
   },
   {
@@ -739,28 +376,20 @@
    "overround_pct": null,
    "market_p_a_pct": null,
    "market_p_b_pct": null,
-   "own_model_p_a_pct": 71.3,
-   "own_model_p_b_pct": 28.7,
-   "model_inputs": [
-    {
-     "source": "Valve Regional Standings points",
-     "url": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md",
-     "team_a_points": 982.0,
-     "team_b_points": 824.0,
-     "p_a": 0.7129
-    }
-   ],
-   "final_p_a_pct": 71.3,
-   "final_p_b_pct": 28.7,
-   "estimate_basis": "own line only (no external price found)",
-   "pick": "Bushido Wildcats",
-   "pick_pct": 71.3,
-   "locked": false,
-   "started": false,
+   "own_model_p_a_pct": null,
+   "own_model_p_b_pct": null,
+   "model_inputs": [],
+   "final_p_a_pct": null,
+   "final_p_b_pct": null,
+   "estimate_basis": "unavailable \u2014 neither a bookmaker price nor a rating line could be sourced",
+   "pick": null,
+   "pick_pct": null,
+   "locked": true,
+   "started": true,
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "own_line_only_no_market"
+    "no_probability_available"
    ]
   },
   {
@@ -788,28 +417,61 @@
    "overround_pct": null,
    "market_p_a_pct": null,
    "market_p_b_pct": null,
-   "own_model_p_a_pct": 52.0,
-   "own_model_p_b_pct": 48.0,
-   "model_inputs": [
-    {
-     "source": "Valve Regional Standings points",
-     "url": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md",
-     "team_a_points": 824.0,
-     "team_b_points": 810.0,
-     "p_a": 0.5201
-    }
-   ],
-   "final_p_a_pct": 52.0,
-   "final_p_b_pct": 48.0,
-   "estimate_basis": "own line only (no external price found)",
-   "pick": "ex-RUSTEC",
-   "pick_pct": 52.0,
-   "locked": false,
-   "started": false,
+   "own_model_p_a_pct": null,
+   "own_model_p_b_pct": null,
+   "model_inputs": [],
+   "final_p_a_pct": null,
+   "final_p_b_pct": null,
+   "estimate_basis": "unavailable \u2014 neither a bookmaker price nor a rating line could be sourced",
+   "pick": null,
+   "pick_pct": null,
+   "locked": true,
+   "started": true,
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "own_line_only_no_market"
+    "no_probability_available"
+   ]
+  },
+  {
+   "match_id": "1081496",
+   "sport": "cs2",
+   "competition": "PGL Bucharest 2027: Closed Qualifier",
+   "tier": "B",
+   "stage": "qualifier",
+   "points": 3,
+   "best_of": null,
+   "team_a": "Nemesis",
+   "team_b": "Nuclear TigeRES",
+   "start_utc": "2026-10-16T11:00:00Z",
+   "lock_utc": "2026-10-16T10:54:00Z",
+   "status": "scheduled",
+   "hotspawn_url": "https://www.hotspawn.com/matches/1081496",
+   "hotspawn_page": "https://play.hotspawn.com/lobby",
+   "odds_a": null,
+   "odds_b": null,
+   "odds_kind": null,
+   "odds_bookmakers": [],
+   "odds_source_url": null,
+   "odds_fetched_utc": null,
+   "market_sources": [],
+   "overround_pct": null,
+   "market_p_a_pct": null,
+   "market_p_b_pct": null,
+   "own_model_p_a_pct": null,
+   "own_model_p_b_pct": null,
+   "model_inputs": [],
+   "final_p_a_pct": null,
+   "final_p_b_pct": null,
+   "estimate_basis": "unavailable \u2014 neither a bookmaker price nor a rating line could be sourced",
+   "pick": null,
+   "pick_pct": null,
+   "locked": true,
+   "started": true,
+   "flags": [
+    "no_external_match_page_matched",
+    "no_external_price_found",
+    "no_probability_available"
    ]
   },
   {
@@ -837,28 +499,20 @@
    "overround_pct": null,
    "market_p_a_pct": null,
    "market_p_b_pct": null,
-   "own_model_p_a_pct": 31.7,
-   "own_model_p_b_pct": 68.3,
-   "model_inputs": [
-    {
-     "source": "Valve Regional Standings points",
-     "url": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md",
-     "team_a_points": 1417.0,
-     "team_b_points": 1550.0,
-     "p_a": 0.3174
-    }
-   ],
-   "final_p_a_pct": 31.7,
-   "final_p_b_pct": 68.3,
-   "estimate_basis": "own line only (no external price found)",
-   "pick": "Heroic",
-   "pick_pct": 68.3,
-   "locked": false,
-   "started": false,
+   "own_model_p_a_pct": null,
+   "own_model_p_b_pct": null,
+   "model_inputs": [],
+   "final_p_a_pct": null,
+   "final_p_b_pct": null,
+   "estimate_basis": "unavailable \u2014 neither a bookmaker price nor a rating line could be sourced",
+   "pick": null,
+   "pick_pct": null,
+   "locked": true,
+   "started": true,
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "own_line_only_no_market"
+    "no_probability_available"
    ]
   },
   {
@@ -886,28 +540,61 @@
    "overround_pct": null,
    "market_p_a_pct": null,
    "market_p_b_pct": null,
-   "own_model_p_a_pct": 80.4,
-   "own_model_p_b_pct": 19.6,
-   "model_inputs": [
-    {
-     "source": "Valve Regional Standings points",
-     "url": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md",
-     "team_a_points": 1182.0,
-     "team_b_points": 937.0,
-     "p_a": 0.8038
-    }
-   ],
-   "final_p_a_pct": 80.4,
-   "final_p_b_pct": 19.6,
-   "estimate_basis": "own line only (no external price found)",
-   "pick": "Voca",
-   "pick_pct": 80.4,
+   "own_model_p_a_pct": null,
+   "own_model_p_b_pct": null,
+   "model_inputs": [],
+   "final_p_a_pct": null,
+   "final_p_b_pct": null,
+   "estimate_basis": "unavailable \u2014 neither a bookmaker price nor a rating line could be sourced",
+   "pick": null,
+   "pick_pct": null,
    "locked": false,
    "started": false,
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "own_line_only_no_market"
+    "no_probability_available"
+   ]
+  },
+  {
+   "match_id": "1081497",
+   "sport": "cs2",
+   "competition": "GLuck Yungstar 2026: Series #3",
+   "tier": "C",
+   "stage": "waiting for information",
+   "points": 2,
+   "best_of": null,
+   "team_a": "Young27",
+   "team_b": "Young TigeRES",
+   "start_utc": "2026-10-16T13:00:00Z",
+   "lock_utc": "2026-10-16T12:54:00Z",
+   "status": "scheduled",
+   "hotspawn_url": "https://www.hotspawn.com/matches/1081497",
+   "hotspawn_page": "https://play.hotspawn.com/lobby",
+   "odds_a": null,
+   "odds_b": null,
+   "odds_kind": null,
+   "odds_bookmakers": [],
+   "odds_source_url": null,
+   "odds_fetched_utc": null,
+   "market_sources": [],
+   "overround_pct": null,
+   "market_p_a_pct": null,
+   "market_p_b_pct": null,
+   "own_model_p_a_pct": null,
+   "own_model_p_b_pct": null,
+   "model_inputs": [],
+   "final_p_a_pct": null,
+   "final_p_b_pct": null,
+   "estimate_basis": "unavailable \u2014 neither a bookmaker price nor a rating line could be sourced",
+   "pick": null,
+   "pick_pct": null,
+   "locked": false,
+   "started": false,
+   "flags": [
+    "no_external_match_page_matched",
+    "no_external_price_found",
+    "no_probability_available"
    ]
   },
   {
@@ -948,8 +635,48 @@
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:JOGA DE TERNO"
+    "no_probability_available"
+   ]
+  },
+  {
+   "match_id": "1081779",
+   "sport": "cs2",
+   "competition": "CyberClash Season 2: Closed Qualifier",
+   "tier": "C",
+   "stage": "qualifier",
+   "points": 2,
+   "best_of": null,
+   "team_a": "Rune Eaters",
+   "team_b": "HyperSpirit",
+   "start_utc": "2026-10-16T13:00:00Z",
+   "lock_utc": "2026-10-16T12:54:00Z",
+   "status": "scheduled",
+   "hotspawn_url": "https://www.hotspawn.com/matches/1081779",
+   "hotspawn_page": "https://play.hotspawn.com/lobby",
+   "odds_a": null,
+   "odds_b": null,
+   "odds_kind": null,
+   "odds_bookmakers": [],
+   "odds_source_url": null,
+   "odds_fetched_utc": null,
+   "market_sources": [],
+   "overround_pct": null,
+   "market_p_a_pct": null,
+   "market_p_b_pct": null,
+   "own_model_p_a_pct": null,
+   "own_model_p_b_pct": null,
+   "model_inputs": [],
+   "final_p_a_pct": null,
+   "final_p_b_pct": null,
+   "estimate_basis": "unavailable \u2014 neither a bookmaker price nor a rating line could be sourced",
+   "pick": null,
+   "pick_pct": null,
+   "locked": false,
+   "started": false,
+   "flags": [
+    "no_external_match_page_matched",
+    "no_external_price_found",
+    "no_probability_available"
    ]
   },
   {
@@ -977,28 +704,20 @@
    "overround_pct": null,
    "market_p_a_pct": null,
    "market_p_b_pct": null,
-   "own_model_p_a_pct": 62.5,
-   "own_model_p_b_pct": 37.5,
-   "model_inputs": [
-    {
-     "source": "Valve Regional Standings points",
-     "url": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md",
-     "team_a_points": 1674.0,
-     "team_b_points": 1585.0,
-     "p_a": 0.6254
-    }
-   ],
-   "final_p_a_pct": 62.5,
-   "final_p_b_pct": 37.5,
-   "estimate_basis": "own line only (no external price found)",
-   "pick": "Astralis",
-   "pick_pct": 62.5,
+   "own_model_p_a_pct": null,
+   "own_model_p_b_pct": null,
+   "model_inputs": [],
+   "final_p_a_pct": null,
+   "final_p_b_pct": null,
+   "estimate_basis": "unavailable \u2014 neither a bookmaker price nor a rating line could be sourced",
+   "pick": null,
+   "pick_pct": null,
    "locked": false,
    "started": false,
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "own_line_only_no_market"
+    "no_probability_available"
    ]
   },
   {
@@ -1026,28 +745,20 @@
    "overround_pct": null,
    "market_p_a_pct": null,
    "market_p_b_pct": null,
-   "own_model_p_a_pct": 79.7,
-   "own_model_p_b_pct": 20.3,
-   "model_inputs": [
-    {
-     "source": "Valve Regional Standings points",
-     "url": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md",
-     "team_a_points": 1100.0,
-     "team_b_points": 862.0,
-     "p_a": 0.7974
-    }
-   ],
-   "final_p_a_pct": 79.7,
-   "final_p_b_pct": 20.3,
-   "estimate_basis": "own line only (no external price found)",
-   "pick": "FORZE Reload",
-   "pick_pct": 79.7,
+   "own_model_p_a_pct": null,
+   "own_model_p_b_pct": null,
+   "model_inputs": [],
+   "final_p_a_pct": null,
+   "final_p_b_pct": null,
+   "estimate_basis": "unavailable \u2014 neither a bookmaker price nor a rating line could be sourced",
+   "pick": null,
+   "pick_pct": null,
    "locked": false,
    "started": false,
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "own_line_only_no_market"
+    "no_probability_available"
    ]
   },
   {
@@ -1075,28 +786,20 @@
    "overround_pct": null,
    "market_p_a_pct": null,
    "market_p_b_pct": null,
-   "own_model_p_a_pct": 73.0,
-   "own_model_p_b_pct": 27.0,
-   "model_inputs": [
-    {
-     "source": "Valve Regional Standings points",
-     "url": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md",
-     "team_a_points": 1716.0,
-     "team_b_points": 1543.0,
-     "p_a": 0.7302
-    }
-   ],
-   "final_p_a_pct": 73.0,
-   "final_p_b_pct": 27.0,
-   "estimate_basis": "own line only (no external price found)",
-   "pick": "Aurora",
-   "pick_pct": 73.0,
+   "own_model_p_a_pct": null,
+   "own_model_p_b_pct": null,
+   "model_inputs": [],
+   "final_p_a_pct": null,
+   "final_p_b_pct": null,
+   "estimate_basis": "unavailable \u2014 neither a bookmaker price nor a rating line could be sourced",
+   "pick": null,
+   "pick_pct": null,
    "locked": false,
    "started": false,
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "own_line_only_no_market"
+    "no_probability_available"
    ]
   },
   {
@@ -1137,8 +840,7 @@
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:RoundsGG"
+    "no_probability_available"
    ]
   },
   {
@@ -1166,28 +868,61 @@
    "overround_pct": null,
    "market_p_a_pct": null,
    "market_p_b_pct": null,
-   "own_model_p_a_pct": 86.6,
-   "own_model_p_b_pct": 13.4,
-   "model_inputs": [
-    {
-     "source": "Valve Regional Standings points",
-     "url": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md",
-     "team_a_points": 932.0,
-     "team_b_points": 608.0,
-     "p_a": 0.8659
-    }
-   ],
-   "final_p_a_pct": 86.6,
-   "final_p_b_pct": 13.4,
-   "estimate_basis": "own line only (no external price found)",
-   "pick": "mellren",
-   "pick_pct": 86.6,
+   "own_model_p_a_pct": null,
+   "own_model_p_b_pct": null,
+   "model_inputs": [],
+   "final_p_a_pct": null,
+   "final_p_b_pct": null,
+   "estimate_basis": "unavailable \u2014 neither a bookmaker price nor a rating line could be sourced",
+   "pick": null,
+   "pick_pct": null,
    "locked": false,
    "started": false,
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "own_line_only_no_market"
+    "no_probability_available"
+   ]
+  },
+  {
+   "match_id": "1081499",
+   "sport": "cs2",
+   "competition": "PGL Bucharest 2027: Closed Qualifier",
+   "tier": "B",
+   "stage": "qualifier",
+   "points": 3,
+   "best_of": null,
+   "team_a": "BBL",
+   "team_b": "EYEBALLERS",
+   "start_utc": "2026-10-16T14:00:00Z",
+   "lock_utc": "2026-10-16T13:54:00Z",
+   "status": "scheduled",
+   "hotspawn_url": "https://www.hotspawn.com/matches/1081499",
+   "hotspawn_page": "https://play.hotspawn.com/lobby",
+   "odds_a": null,
+   "odds_b": null,
+   "odds_kind": null,
+   "odds_bookmakers": [],
+   "odds_source_url": null,
+   "odds_fetched_utc": null,
+   "market_sources": [],
+   "overround_pct": null,
+   "market_p_a_pct": null,
+   "market_p_b_pct": null,
+   "own_model_p_a_pct": null,
+   "own_model_p_b_pct": null,
+   "model_inputs": [],
+   "final_p_a_pct": null,
+   "final_p_b_pct": null,
+   "estimate_basis": "unavailable \u2014 neither a bookmaker price nor a rating line could be sourced",
+   "pick": null,
+   "pick_pct": null,
+   "locked": false,
+   "started": false,
+   "flags": [
+    "no_external_match_page_matched",
+    "no_external_price_found",
+    "no_probability_available"
    ]
   },
   {
@@ -1215,28 +950,20 @@
    "overround_pct": null,
    "market_p_a_pct": null,
    "market_p_b_pct": null,
-   "own_model_p_a_pct": 35.9,
-   "own_model_p_b_pct": 64.1,
-   "model_inputs": [
-    {
-     "source": "Valve Regional Standings points",
-     "url": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md",
-     "team_a_points": 1066.0,
-     "team_b_points": 1167.0,
-     "p_a": 0.3586
-    }
-   ],
-   "final_p_a_pct": 35.9,
-   "final_p_b_pct": 64.1,
-   "estimate_basis": "own line only (no external price found)",
-   "pick": "UNiTY",
-   "pick_pct": 64.1,
+   "own_model_p_a_pct": null,
+   "own_model_p_b_pct": null,
+   "model_inputs": [],
+   "final_p_a_pct": null,
+   "final_p_b_pct": null,
+   "estimate_basis": "unavailable \u2014 neither a bookmaker price nor a rating line could be sourced",
+   "pick": null,
+   "pick_pct": null,
    "locked": false,
    "started": false,
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "own_line_only_no_market"
+    "no_probability_available"
    ]
   },
   {
@@ -1277,8 +1004,7 @@
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:The Bandits Prime,Phong V\u0169 Buffalo"
+    "no_probability_available"
    ]
   },
   {
@@ -1319,8 +1045,7 @@
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:Hannover Esports e.V.,reGOLD eSport"
+    "no_probability_available"
    ]
   },
   {
@@ -1361,8 +1086,7 @@
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:RoundsGG"
+    "no_probability_available"
    ]
   },
   {
@@ -1403,8 +1127,48 @@
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:LOS NINOS"
+    "no_probability_available"
+   ]
+  },
+  {
+   "match_id": "1081780",
+   "sport": "cs2",
+   "competition": "CyberClash Season 2: Closed Qualifier",
+   "tier": "C",
+   "stage": "qualifier",
+   "points": 2,
+   "best_of": null,
+   "team_a": "PRIVATE",
+   "team_b": "UPGRADE",
+   "start_utc": "2026-10-16T16:00:00Z",
+   "lock_utc": "2026-10-16T15:54:00Z",
+   "status": "scheduled",
+   "hotspawn_url": "https://www.hotspawn.com/matches/1081780",
+   "hotspawn_page": "https://play.hotspawn.com/lobby",
+   "odds_a": null,
+   "odds_b": null,
+   "odds_kind": null,
+   "odds_bookmakers": [],
+   "odds_source_url": null,
+   "odds_fetched_utc": null,
+   "market_sources": [],
+   "overround_pct": null,
+   "market_p_a_pct": null,
+   "market_p_b_pct": null,
+   "own_model_p_a_pct": null,
+   "own_model_p_b_pct": null,
+   "model_inputs": [],
+   "final_p_a_pct": null,
+   "final_p_b_pct": null,
+   "estimate_basis": "unavailable \u2014 neither a bookmaker price nor a rating line could be sourced",
+   "pick": null,
+   "pick_pct": null,
+   "locked": false,
+   "started": false,
+   "flags": [
+    "no_external_match_page_matched",
+    "no_external_price_found",
+    "no_probability_available"
    ]
   },
   {
@@ -1432,28 +1196,20 @@
    "overround_pct": null,
    "market_p_a_pct": null,
    "market_p_b_pct": null,
-   "own_model_p_a_pct": 66.1,
-   "own_model_p_b_pct": 33.9,
-   "model_inputs": [
-    {
-     "source": "Valve Regional Standings points",
-     "url": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md",
-     "team_a_points": 1478.0,
-     "team_b_points": 1362.0,
-     "p_a": 0.661
-    }
-   ],
-   "final_p_a_pct": 66.1,
-   "final_p_b_pct": 33.9,
-   "estimate_basis": "own line only (no external price found)",
-   "pick": "100 Thieves",
-   "pick_pct": 66.1,
+   "own_model_p_a_pct": null,
+   "own_model_p_b_pct": null,
+   "model_inputs": [],
+   "final_p_a_pct": null,
+   "final_p_b_pct": null,
+   "estimate_basis": "unavailable \u2014 neither a bookmaker price nor a rating line could be sourced",
+   "pick": null,
+   "pick_pct": null,
    "locked": false,
    "started": false,
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "own_line_only_no_market"
+    "no_probability_available"
    ]
   },
   {
@@ -1481,28 +1237,61 @@
    "overround_pct": null,
    "market_p_a_pct": null,
    "market_p_b_pct": null,
-   "own_model_p_a_pct": 68.0,
-   "own_model_p_b_pct": 32.0,
-   "model_inputs": [
-    {
-     "source": "Valve Regional Standings points",
-     "url": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md",
-     "team_a_points": 1044.0,
-     "team_b_points": 913.0,
-     "p_a": 0.6801
-    }
-   ],
-   "final_p_a_pct": 68.0,
-   "final_p_b_pct": 32.0,
-   "estimate_basis": "own line only (no external price found)",
-   "pick": "BakS",
-   "pick_pct": 68.0,
+   "own_model_p_a_pct": null,
+   "own_model_p_b_pct": null,
+   "model_inputs": [],
+   "final_p_a_pct": null,
+   "final_p_b_pct": null,
+   "estimate_basis": "unavailable \u2014 neither a bookmaker price nor a rating line could be sourced",
+   "pick": null,
+   "pick_pct": null,
    "locked": false,
    "started": false,
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "own_line_only_no_market"
+    "no_probability_available"
+   ]
+  },
+  {
+   "match_id": "1081503",
+   "sport": "cs2",
+   "competition": "PGL Bucharest 2027: Closed Qualifier",
+   "tier": "B",
+   "stage": "qualifier",
+   "points": 3,
+   "best_of": null,
+   "team_a": "GamerLegion",
+   "team_b": "ex-RUSTEC",
+   "start_utc": "2026-10-16T17:00:00Z",
+   "lock_utc": "2026-10-16T16:54:00Z",
+   "status": "scheduled",
+   "hotspawn_url": "https://www.hotspawn.com/matches/1081503",
+   "hotspawn_page": "https://play.hotspawn.com/lobby",
+   "odds_a": null,
+   "odds_b": null,
+   "odds_kind": null,
+   "odds_bookmakers": [],
+   "odds_source_url": null,
+   "odds_fetched_utc": null,
+   "market_sources": [],
+   "overround_pct": null,
+   "market_p_a_pct": null,
+   "market_p_b_pct": null,
+   "own_model_p_a_pct": null,
+   "own_model_p_b_pct": null,
+   "model_inputs": [],
+   "final_p_a_pct": null,
+   "final_p_b_pct": null,
+   "estimate_basis": "unavailable \u2014 neither a bookmaker price nor a rating line could be sourced",
+   "pick": null,
+   "pick_pct": null,
+   "locked": false,
+   "started": false,
+   "flags": [
+    "no_external_match_page_matched",
+    "no_external_price_found",
+    "no_probability_available"
    ]
   },
   {
@@ -1530,28 +1319,61 @@
    "overround_pct": null,
    "market_p_a_pct": null,
    "market_p_b_pct": null,
-   "own_model_p_a_pct": 12.7,
-   "own_model_p_b_pct": 87.3,
-   "model_inputs": [
-    {
-     "source": "Valve Regional Standings points",
-     "url": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md",
-     "team_a_points": 1596.0,
-     "team_b_points": 1931.0,
-     "p_a": 0.1269
-    }
-   ],
-   "final_p_a_pct": 12.7,
-   "final_p_b_pct": 87.3,
-   "estimate_basis": "own line only (no external price found)",
-   "pick": "Legacy",
-   "pick_pct": 87.3,
+   "own_model_p_a_pct": null,
+   "own_model_p_b_pct": null,
+   "model_inputs": [],
+   "final_p_a_pct": null,
+   "final_p_b_pct": null,
+   "estimate_basis": "unavailable \u2014 neither a bookmaker price nor a rating line could be sourced",
+   "pick": null,
+   "pick_pct": null,
    "locked": false,
    "started": false,
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "own_line_only_no_market"
+    "no_probability_available"
+   ]
+  },
+  {
+   "match_id": "1075809",
+   "sport": "lol",
+   "competition": "Worlds 2026 Play-In",
+   "tier": "S",
+   "stage": "play-in",
+   "points": 30,
+   "best_of": null,
+   "team_a": "Karmine Corp",
+   "team_b": "MVK Esports",
+   "start_utc": "2026-10-16T18:00:00Z",
+   "lock_utc": "2026-10-16T17:55:00Z",
+   "status": "scheduled",
+   "hotspawn_url": "https://www.hotspawn.com/matches/1075809",
+   "hotspawn_page": "https://play.hotspawn.com/lol-pickems",
+   "odds_a": null,
+   "odds_b": null,
+   "odds_kind": null,
+   "odds_bookmakers": [],
+   "odds_source_url": null,
+   "odds_fetched_utc": null,
+   "market_sources": [],
+   "overround_pct": null,
+   "market_p_a_pct": null,
+   "market_p_b_pct": null,
+   "own_model_p_a_pct": null,
+   "own_model_p_b_pct": null,
+   "model_inputs": [],
+   "final_p_a_pct": null,
+   "final_p_b_pct": null,
+   "estimate_basis": "unavailable \u2014 neither a bookmaker price nor a rating line could be sourced",
+   "pick": null,
+   "pick_pct": null,
+   "locked": false,
+   "started": false,
+   "flags": [
+    "no_external_match_page_matched",
+    "no_external_price_found",
+    "no_probability_available"
    ]
   },
   {
@@ -1592,8 +1414,7 @@
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:Team Reds,Slam Dunk"
+    "no_probability_available"
    ]
   },
   {
@@ -1634,8 +1455,7 @@
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:Victorious Demons,New Era Team"
+    "no_probability_available"
    ]
   },
   {
@@ -1663,28 +1483,20 @@
    "overround_pct": null,
    "market_p_a_pct": null,
    "market_p_b_pct": null,
-   "own_model_p_a_pct": 77.0,
-   "own_model_p_b_pct": 23.0,
-   "model_inputs": [
-    {
-     "source": "Valve Regional Standings points",
-     "url": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md",
-     "team_a_points": 1147.0,
-     "team_b_points": 937.0,
-     "p_a": 0.7701
-    }
-   ],
-   "final_p_a_pct": 77.0,
-   "final_p_b_pct": 23.0,
-   "estimate_basis": "own line only (no external price found)",
-   "pick": "Phantom",
-   "pick_pct": 77.0,
+   "own_model_p_a_pct": null,
+   "own_model_p_b_pct": null,
+   "model_inputs": [],
+   "final_p_a_pct": null,
+   "final_p_b_pct": null,
+   "estimate_basis": "unavailable \u2014 neither a bookmaker price nor a rating line could be sourced",
+   "pick": null,
+   "pick_pct": null,
    "locked": false,
    "started": false,
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "own_line_only_no_market"
+    "no_probability_available"
    ]
   },
   {
@@ -1725,8 +1537,7 @@
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:BvP,Team 300"
+    "no_probability_available"
    ]
   },
   {
@@ -1767,8 +1578,89 @@
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:MT1 Esports,regnum4games"
+    "no_probability_available"
+   ]
+  },
+  {
+   "match_id": "1081781",
+   "sport": "cs2",
+   "competition": "CyberClash Season 2: Closed Qualifier",
+   "tier": "C",
+   "stage": "qualifier",
+   "points": 2,
+   "best_of": null,
+   "team_a": "Honv\u00e9d",
+   "team_b": "Lavked",
+   "start_utc": "2026-10-16T19:00:00Z",
+   "lock_utc": "2026-10-16T18:54:00Z",
+   "status": "scheduled",
+   "hotspawn_url": "https://www.hotspawn.com/matches/1081781",
+   "hotspawn_page": "https://play.hotspawn.com/lobby",
+   "odds_a": null,
+   "odds_b": null,
+   "odds_kind": null,
+   "odds_bookmakers": [],
+   "odds_source_url": null,
+   "odds_fetched_utc": null,
+   "market_sources": [],
+   "overround_pct": null,
+   "market_p_a_pct": null,
+   "market_p_b_pct": null,
+   "own_model_p_a_pct": null,
+   "own_model_p_b_pct": null,
+   "model_inputs": [],
+   "final_p_a_pct": null,
+   "final_p_b_pct": null,
+   "estimate_basis": "unavailable \u2014 neither a bookmaker price nor a rating line could be sourced",
+   "pick": null,
+   "pick_pct": null,
+   "locked": false,
+   "started": false,
+   "flags": [
+    "no_external_match_page_matched",
+    "no_external_price_found",
+    "no_probability_available"
+   ]
+  },
+  {
+   "match_id": "1075810",
+   "sport": "lol",
+   "competition": "Worlds 2026 Play-In",
+   "tier": "S",
+   "stage": "play-in",
+   "points": 30,
+   "best_of": null,
+   "team_a": "Cloud9",
+   "team_b": "FURIA",
+   "start_utc": "2026-10-16T23:00:00Z",
+   "lock_utc": "2026-10-16T22:55:00Z",
+   "status": "scheduled",
+   "hotspawn_url": "https://www.hotspawn.com/matches/1075810",
+   "hotspawn_page": "https://play.hotspawn.com/lol-pickems",
+   "odds_a": null,
+   "odds_b": null,
+   "odds_kind": null,
+   "odds_bookmakers": [],
+   "odds_source_url": null,
+   "odds_fetched_utc": null,
+   "market_sources": [],
+   "overround_pct": null,
+   "market_p_a_pct": null,
+   "market_p_b_pct": null,
+   "own_model_p_a_pct": null,
+   "own_model_p_b_pct": null,
+   "model_inputs": [],
+   "final_p_a_pct": null,
+   "final_p_b_pct": null,
+   "estimate_basis": "unavailable \u2014 neither a bookmaker price nor a rating line could be sourced",
+   "pick": null,
+   "pick_pct": null,
+   "locked": false,
+   "started": false,
+   "flags": [
+    "no_external_match_page_matched",
+    "no_external_price_found",
+    "no_probability_available"
    ]
   },
   {
@@ -1796,28 +1688,20 @@
    "overround_pct": null,
    "market_p_a_pct": null,
    "market_p_b_pct": null,
-   "own_model_p_a_pct": 97.9,
-   "own_model_p_b_pct": 2.1,
-   "model_inputs": [
-    {
-     "source": "Valve Regional Standings points",
-     "url": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md",
-     "team_a_points": 1149.0,
-     "team_b_points": 485.0,
-     "p_a": 0.9786
-    }
-   ],
-   "final_p_a_pct": 97.9,
-   "final_p_b_pct": 2.1,
-   "estimate_basis": "own line only (no external price found)",
-   "pick": "BET-M",
-   "pick_pct": 97.9,
+   "own_model_p_a_pct": null,
+   "own_model_p_b_pct": null,
+   "model_inputs": [],
+   "final_p_a_pct": null,
+   "final_p_b_pct": null,
+   "estimate_basis": "unavailable \u2014 neither a bookmaker price nor a rating line could be sourced",
+   "pick": null,
+   "pick_pct": null,
    "locked": false,
    "started": false,
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "own_line_only_no_market"
+    "no_probability_available"
    ]
   },
   {
@@ -1858,8 +1742,7 @@
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:BNK FearX,Team WE"
+    "no_probability_available"
    ]
   },
   {
@@ -1887,28 +1770,61 @@
    "overround_pct": null,
    "market_p_a_pct": null,
    "market_p_b_pct": null,
-   "own_model_p_a_pct": 64.4,
-   "own_model_p_b_pct": 35.6,
-   "model_inputs": [
-    {
-     "source": "Valve Regional Standings points",
-     "url": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md",
-     "team_a_points": 1185.0,
-     "team_b_points": 1082.0,
-     "p_a": 0.644
-    }
-   ],
-   "final_p_a_pct": 64.4,
-   "final_p_b_pct": 35.6,
-   "estimate_basis": "own line only (no external price found)",
-   "pick": "GenOne",
-   "pick_pct": 64.4,
+   "own_model_p_a_pct": null,
+   "own_model_p_b_pct": null,
+   "model_inputs": [],
+   "final_p_a_pct": null,
+   "final_p_b_pct": null,
+   "estimate_basis": "unavailable \u2014 neither a bookmaker price nor a rating line could be sourced",
+   "pick": null,
+   "pick_pct": null,
    "locked": false,
    "started": false,
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "own_line_only_no_market"
+    "no_probability_available"
+   ]
+  },
+  {
+   "match_id": "1081513",
+   "sport": "cs2",
+   "competition": "CCT Europe 2026 Challengers #8",
+   "tier": "C",
+   "stage": "waiting for information",
+   "points": 2,
+   "best_of": null,
+   "team_a": "Bebop",
+   "team_b": "Donstu",
+   "start_utc": "2026-10-17T11:00:00Z",
+   "lock_utc": "2026-10-17T10:54:00Z",
+   "status": "scheduled",
+   "hotspawn_url": "https://www.hotspawn.com/matches/1081513",
+   "hotspawn_page": "https://play.hotspawn.com/lobby",
+   "odds_a": null,
+   "odds_b": null,
+   "odds_kind": null,
+   "odds_bookmakers": [],
+   "odds_source_url": null,
+   "odds_fetched_utc": null,
+   "market_sources": [],
+   "overround_pct": null,
+   "market_p_a_pct": null,
+   "market_p_b_pct": null,
+   "own_model_p_a_pct": null,
+   "own_model_p_b_pct": null,
+   "model_inputs": [],
+   "final_p_a_pct": null,
+   "final_p_b_pct": null,
+   "estimate_basis": "unavailable \u2014 neither a bookmaker price nor a rating line could be sourced",
+   "pick": null,
+   "pick_pct": null,
+   "locked": false,
+   "started": false,
+   "flags": [
+    "no_external_match_page_matched",
+    "no_external_price_found",
+    "no_probability_available"
    ]
   },
   {
@@ -1949,8 +1865,7 @@
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:Crazy Kittens E-Sport Rising,B2U"
+    "no_probability_available"
    ]
   },
   {
@@ -1991,8 +1906,7 @@
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:Karolinerna,Team Lucidity Esports"
+    "no_probability_available"
    ]
   },
   {
@@ -2033,8 +1947,7 @@
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:Lund Esports Organization,Crazy Kittens E-Sport Academy"
+    "no_probability_available"
    ]
   },
   {
@@ -2075,8 +1988,7 @@
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:Lundqvist Lightside,OnlyWinByFF"
+    "no_probability_available"
    ]
   },
   {
@@ -2117,8 +2029,7 @@
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:Docta Esports Club,BaronX"
+    "no_probability_available"
    ]
   },
   {
@@ -2159,8 +2070,7 @@
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:Maze GG,Final Level eSports Academy"
+    "no_probability_available"
    ]
   },
   {
@@ -2201,8 +2111,7 @@
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:Infinity Gaming,Viktus"
+    "no_probability_available"
    ]
   },
   {
@@ -2243,8 +2152,7 @@
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:Enfida Esports,JSK Academy"
+    "no_probability_available"
    ]
   },
   {
@@ -2285,8 +2193,7 @@
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:Jendouba Esports,Olympique Mnihla Academy"
+    "no_probability_available"
    ]
   },
   {
@@ -2327,8 +2234,7 @@
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:Olympique Mnihla,Simplicity Gaming"
+    "no_probability_available"
    ]
   },
   {
@@ -2369,8 +2275,7 @@
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:Supreme Leaders,El Menzah Esports"
+    "no_probability_available"
    ]
   },
   {
@@ -2411,8 +2316,7 @@
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:Zahrouni Esports,JSK Esports"
+    "no_probability_available"
    ]
   },
   {
@@ -2440,28 +2344,20 @@
    "overround_pct": null,
    "market_p_a_pct": null,
    "market_p_b_pct": null,
-   "own_model_p_a_pct": 68.8,
-   "own_model_p_b_pct": 31.2,
-   "model_inputs": [
-    {
-     "source": "Valve Regional Standings points",
-     "url": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md",
-     "team_a_points": 1044.0,
-     "team_b_points": 907.0,
-     "p_a": 0.6875
-    }
-   ],
-   "final_p_a_pct": 68.8,
-   "final_p_b_pct": 31.2,
-   "estimate_basis": "own line only (no external price found)",
-   "pick": "BakS",
-   "pick_pct": 68.8,
+   "own_model_p_a_pct": null,
+   "own_model_p_b_pct": null,
+   "model_inputs": [],
+   "final_p_a_pct": null,
+   "final_p_b_pct": null,
+   "estimate_basis": "unavailable \u2014 neither a bookmaker price nor a rating line could be sourced",
+   "pick": null,
+   "pick_pct": null,
    "locked": false,
    "started": false,
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "own_line_only_no_market"
+    "no_probability_available"
    ]
   },
   {
@@ -2502,8 +2398,7 @@
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:New Era Team,NextGeneration Esports"
+    "no_probability_available"
    ]
   },
   {
@@ -2544,8 +2439,7 @@
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:Team Reds,Void Walkers"
+    "no_probability_available"
    ]
   },
   {
@@ -2586,8 +2480,7 @@
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:EESTI ORAVATE LIIT,LOMiks"
+    "no_probability_available"
    ]
   },
   {
@@ -2628,8 +2521,7 @@
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:Juventus Gaming Red,EmBRAZA! Esports"
+    "no_probability_available"
    ]
   },
   {
@@ -2670,8 +2562,7 @@
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:Marere E-Sports,L\u00d8S Academy"
+    "no_probability_available"
    ]
   },
   {
@@ -2712,8 +2603,7 @@
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:Smoke Tram,Invictus Team"
+    "no_probability_available"
    ]
   },
   {
@@ -2754,8 +2644,7 @@
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:Cl\u00e3 NKZ V\u00d3RAX,Smoke Tram Ascension"
+    "no_probability_available"
    ]
   },
   {
@@ -2796,8 +2685,7 @@
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:SharkBite Furious Gaming White,SharkBite Furious Gaming Black"
+    "no_probability_available"
    ]
   },
   {
@@ -2838,8 +2726,7 @@
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:Sphere Esports,Neon eSports"
+    "no_probability_available"
    ]
   },
   {
@@ -2867,28 +2754,102 @@
    "overround_pct": null,
    "market_p_a_pct": null,
    "market_p_b_pct": null,
-   "own_model_p_a_pct": 6.3,
-   "own_model_p_b_pct": 93.7,
-   "model_inputs": [
-    {
-     "source": "Valve Regional Standings points",
-     "url": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md",
-     "team_a_points": 402.0,
-     "team_b_points": 871.0,
-     "p_a": 0.063
-    }
-   ],
-   "final_p_a_pct": 6.3,
-   "final_p_b_pct": 93.7,
-   "estimate_basis": "own line only (no external price found)",
-   "pick": "Enjoy",
-   "pick_pct": 93.7,
+   "own_model_p_a_pct": null,
+   "own_model_p_b_pct": null,
+   "model_inputs": [],
+   "final_p_a_pct": null,
+   "final_p_b_pct": null,
+   "estimate_basis": "unavailable \u2014 neither a bookmaker price nor a rating line could be sourced",
+   "pick": null,
+   "pick_pct": null,
    "locked": false,
    "started": false,
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "own_line_only_no_market"
+    "no_probability_available"
+   ]
+  },
+  {
+   "match_id": "1081521",
+   "sport": "cs2",
+   "competition": "CCT Europe 2026 Challengers #8",
+   "tier": "C",
+   "stage": "waiting for information",
+   "points": 2,
+   "best_of": null,
+   "team_a": "ex-6666",
+   "team_b": "Privateer",
+   "start_utc": "2026-10-18T13:45:00Z",
+   "lock_utc": "2026-10-18T13:39:00Z",
+   "status": "scheduled",
+   "hotspawn_url": "https://www.hotspawn.com/matches/1081521",
+   "hotspawn_page": "https://play.hotspawn.com/lobby",
+   "odds_a": null,
+   "odds_b": null,
+   "odds_kind": null,
+   "odds_bookmakers": [],
+   "odds_source_url": null,
+   "odds_fetched_utc": null,
+   "market_sources": [],
+   "overround_pct": null,
+   "market_p_a_pct": null,
+   "market_p_b_pct": null,
+   "own_model_p_a_pct": null,
+   "own_model_p_b_pct": null,
+   "model_inputs": [],
+   "final_p_a_pct": null,
+   "final_p_b_pct": null,
+   "estimate_basis": "unavailable \u2014 neither a bookmaker price nor a rating line could be sourced",
+   "pick": null,
+   "pick_pct": null,
+   "locked": false,
+   "started": false,
+   "flags": [
+    "no_external_match_page_matched",
+    "no_external_price_found",
+    "no_probability_available"
+   ]
+  },
+  {
+   "match_id": "1081522",
+   "sport": "cs2",
+   "competition": "CCT Europe 2026 Challengers #8",
+   "tier": "C",
+   "stage": "waiting for information",
+   "points": 2,
+   "best_of": null,
+   "team_a": "antidaun",
+   "team_b": "Phantom Academy",
+   "start_utc": "2026-10-18T13:45:00Z",
+   "lock_utc": "2026-10-18T13:39:00Z",
+   "status": "scheduled",
+   "hotspawn_url": "https://www.hotspawn.com/matches/1081522",
+   "hotspawn_page": "https://play.hotspawn.com/lobby",
+   "odds_a": null,
+   "odds_b": null,
+   "odds_kind": null,
+   "odds_bookmakers": [],
+   "odds_source_url": null,
+   "odds_fetched_utc": null,
+   "market_sources": [],
+   "overround_pct": null,
+   "market_p_a_pct": null,
+   "market_p_b_pct": null,
+   "own_model_p_a_pct": null,
+   "own_model_p_b_pct": null,
+   "model_inputs": [],
+   "final_p_a_pct": null,
+   "final_p_b_pct": null,
+   "estimate_basis": "unavailable \u2014 neither a bookmaker price nor a rating line could be sourced",
+   "pick": null,
+   "pick_pct": null,
+   "locked": false,
+   "started": false,
+   "flags": [
+    "no_external_match_page_matched",
+    "no_external_price_found",
+    "no_probability_available"
    ]
   },
   {
@@ -2929,8 +2890,7 @@
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:CNG Royal,Playwell R\u00f8d Q"
+    "no_probability_available"
    ]
   },
   {
@@ -2971,8 +2931,7 @@
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:Mixlag fra Trondheim,VES Japan"
+    "no_probability_available"
    ]
   },
   {
@@ -3013,8 +2972,7 @@
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:NTNUI Kometkameratene,Volda E-Sport"
+    "no_probability_available"
    ]
   },
   {
@@ -3055,8 +3013,7 @@
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:Solid Gaming,Ascent Gaming"
+    "no_probability_available"
    ]
   },
   {
@@ -3097,8 +3054,7 @@
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:AceGaming Hearts,Neko Elite Kittens"
+    "no_probability_available"
    ]
   },
   {
@@ -3139,92 +3095,7 @@
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:Atruvia M\u00fcnster Esports,Defiance eSports"
-   ]
-  },
-  {
-   "match_id": "1075735",
-   "sport": "lol",
-   "competition": "PRM 3rd Division 26-27 Fall",
-   "tier": "WAITING FOR INFORMATION",
-   "stage": "waiting for information",
-   "points": 10,
-   "best_of": null,
-   "team_a": "Black Lion",
-   "team_b": "AIX eSports",
-   "start_utc": "2026-10-18T15:00:00Z",
-   "lock_utc": "2026-10-18T14:55:00Z",
-   "status": "scheduled",
-   "hotspawn_url": "https://www.hotspawn.com/matches/1075735",
-   "hotspawn_page": "https://play.hotspawn.com/lol-pickems",
-   "odds_a": null,
-   "odds_b": null,
-   "odds_kind": null,
-   "odds_bookmakers": [],
-   "odds_source_url": null,
-   "odds_fetched_utc": null,
-   "market_sources": [],
-   "overround_pct": null,
-   "market_p_a_pct": null,
-   "market_p_b_pct": null,
-   "own_model_p_a_pct": null,
-   "own_model_p_b_pct": null,
-   "model_inputs": [],
-   "final_p_a_pct": null,
-   "final_p_b_pct": null,
-   "estimate_basis": "unavailable \u2014 neither a bookmaker price nor a rating line could be sourced",
-   "pick": null,
-   "pick_pct": null,
-   "locked": false,
-   "started": false,
-   "flags": [
-    "no_external_match_page_matched",
-    "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:Black Lion,AIX eSports"
-   ]
-  },
-  {
-   "match_id": "1075737",
-   "sport": "lol",
-   "competition": "PRM 3rd Division 26-27 Fall",
-   "tier": "WAITING FOR INFORMATION",
-   "stage": "waiting for information",
-   "points": 10,
-   "best_of": null,
-   "team_a": "Purple Emperor Lizards - Atomic",
-   "team_b": "Cloud eSport",
-   "start_utc": "2026-10-18T15:00:00Z",
-   "lock_utc": "2026-10-18T14:55:00Z",
-   "status": "scheduled",
-   "hotspawn_url": "https://www.hotspawn.com/matches/1075737",
-   "hotspawn_page": "https://play.hotspawn.com/lol-pickems",
-   "odds_a": null,
-   "odds_b": null,
-   "odds_kind": null,
-   "odds_bookmakers": [],
-   "odds_source_url": null,
-   "odds_fetched_utc": null,
-   "market_sources": [],
-   "overround_pct": null,
-   "market_p_a_pct": null,
-   "market_p_b_pct": null,
-   "own_model_p_a_pct": null,
-   "own_model_p_b_pct": null,
-   "model_inputs": [],
-   "final_p_a_pct": null,
-   "final_p_b_pct": null,
-   "estimate_basis": "unavailable \u2014 neither a bookmaker price nor a rating line could be sourced",
-   "pick": null,
-   "pick_pct": null,
-   "locked": false,
-   "started": false,
-   "flags": [
-    "no_external_match_page_matched",
-    "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:Purple Emperor Lizards - Atomic,Cloud eSport"
+    "no_probability_available"
    ]
   },
   {
@@ -3265,8 +3136,7 @@
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:Eintracht Spandau Zwei,Whalepower Humpbacks"
+    "no_probability_available"
    ]
   },
   {
@@ -3307,8 +3177,7 @@
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:Emperors Bremen,Sissi State Punks"
+    "no_probability_available"
    ]
   },
   {
@@ -3349,8 +3218,7 @@
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:LOOKSMAXXER,Team 300 White"
+    "no_probability_available"
    ]
   },
   {
@@ -3391,8 +3259,7 @@
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:Hannover Esports e.V.,BvP"
+    "no_probability_available"
    ]
   },
   {
@@ -3433,8 +3300,7 @@
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:Team 300,Babos Gaming"
+    "no_probability_available"
    ]
   },
   {
@@ -3475,8 +3341,7 @@
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:Marere Academy,Cl\u00e3 NKZ Revengers"
+    "no_probability_available"
    ]
   },
   {
@@ -3517,8 +3382,7 @@
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:Your Saviours,DMG Esports Norway"
+    "no_probability_available"
    ]
   },
   {
@@ -3559,8 +3423,7 @@
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:Kanji Esports AKA,Packmiko E-Sports DACH"
+    "no_probability_available"
    ]
   },
   {
@@ -3601,8 +3464,7 @@
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:Enfida Esports,Supreme Leaders"
+    "no_probability_available"
    ]
   },
   {
@@ -3643,8 +3505,7 @@
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:Jendouba Esports,El Menzah Esports"
+    "no_probability_available"
    ]
   },
   {
@@ -3685,8 +3546,7 @@
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:JSK Esports,Olympique Mnihla Academy"
+    "no_probability_available"
    ]
   },
   {
@@ -3727,8 +3587,7 @@
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:Olympique Mnihla,JSK Academy"
+    "no_probability_available"
    ]
   },
   {
@@ -3769,8 +3628,7 @@
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:Simplicity Gaming,Zahrouni Esports"
+    "no_probability_available"
    ]
   },
   {
@@ -3811,8 +3669,7 @@
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:DMG Esports Sweden,OnlyWinByFF"
+    "no_probability_available"
    ]
   },
   {
@@ -3853,8 +3710,7 @@
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:FlameHard,Northern Wolves Esports"
+    "no_probability_available"
    ]
   },
   {
@@ -3895,8 +3751,7 @@
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:Lund Esports Organization OGs,Tung Sahur Mid"
+    "no_probability_available"
    ]
   },
   {
@@ -3937,8 +3792,7 @@
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:B2U,Mazepa"
+    "no_probability_available"
    ]
   },
   {
@@ -3979,8 +3833,7 @@
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:Team cd,Fritt Fall"
+    "no_probability_available"
    ]
   },
   {
@@ -4021,8 +3874,7 @@
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:Team Lucidity Esports,Karolinerna"
+    "no_probability_available"
    ]
   },
   {
@@ -4063,8 +3915,7 @@
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:Kanji Esports KIN,MT1 Vision"
+    "no_probability_available"
    ]
   },
   {
@@ -4105,8 +3956,7 @@
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:spongecord prime,Berlin 5"
+    "no_probability_available"
    ]
   },
   {
@@ -4147,8 +3997,7 @@
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:VfB x Engines Stuttgart,Glacial Guardians"
+    "no_probability_available"
    ]
   },
   {
@@ -4189,8 +4038,7 @@
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:Lundqvist Darkside,Rich Gang Sweden"
+    "no_probability_available"
    ]
   },
   {
@@ -4231,8 +4079,7 @@
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:Emperors Bremen,Duplex Silva Pigeons Edition"
+    "no_probability_available"
    ]
   },
   {
@@ -4273,8 +4120,7 @@
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:Phong V\u0169 Buffalo,Locked IN"
+    "no_probability_available"
    ]
   },
   {
@@ -4315,8 +4161,7 @@
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:VfB eSports,MT1 Esports"
+    "no_probability_available"
    ]
   },
   {
@@ -4357,8 +4202,7 @@
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:EmBRAZA! Esports,Invictus Team"
+    "no_probability_available"
    ]
   },
   {
@@ -4399,8 +4243,7 @@
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:Marere E-Sports,Cl\u00e3 NKZ V\u00d3RAX"
+    "no_probability_available"
    ]
   },
   {
@@ -4441,8 +4284,7 @@
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:Juventus Gaming Red,SharkBite Furious Gaming Black"
+    "no_probability_available"
    ]
   },
   {
@@ -4483,8 +4325,7 @@
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:Sphere Esports,L\u00d8S Academy"
+    "no_probability_available"
    ]
   },
   {
@@ -4525,8 +4366,7 @@
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:SharkBite Furious Gaming White,Smoke Tram Ascension"
+    "no_probability_available"
    ]
   },
   {
@@ -4567,8 +4407,7 @@
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
-    "no_probability_available",
-    "vrs_rating_missing:Smoke Tram,Neon eSports"
+    "no_probability_available"
    ]
   }
  ],
@@ -4576,13 +4415,13 @@
   {
    "code": "R-COUNT",
    "title": "The lobby's 'matches this week' count differs from the rows in the payload window",
-   "detail": "The lobby page prints 123 matches this week (context: \" Tournaments How To Play League of Legends Pick'em Lobby Play other game titles This week 139 matches this week Resets in 2d 19h 33m 31s Sign in to tra\"), while the same page's payload yields 103 rows whose start falls inside the week window that ends 2026-10-19T00:20:00Z (the window comes from the page's own reset countdown). Per-page header counts: lobby=123, cs2-pickems=123, thp-pickems=123, lol-pickems=139. The difference is published, not explained away; the board shows every row the payload contains in the window.",
+   "detail": "The lobby page prints 151 matches this week (context: \" Tournaments How To Play League of Legends Pick'em Lobby Play other game titles This week 151 matches this week Resets in 2d 14h 05m 58s Sign in to tra\"), while the same page's payload yields 105 rows whose start falls inside the week window that ends 2026-10-19T01:46:38Z (the window comes from the page's own reset countdown). Per-page header counts: lobby=151, cs2-pickems=151, thp-pickems=149, lol-pickems=151. The difference is published, not explained away; the board shows every row the payload contains in the window.",
    "source_url": "https://play.hotspawn.com/lobby",
    "items": []
   },
   {
    "code": "R-STALE",
-   "title": "294 payload listings fall outside this pick'em week",
+   "title": "299 payload listings fall outside this pick'em week",
    "detail": "Hotspawn still serves these rows as 'scheduled' although their start time is outside the current week window, so no line is originated for them.",
    "source_url": "https://play.hotspawn.com/lobby",
    "items": [
@@ -5637,16 +5476,6 @@
      "source_url": "https://play.hotspawn.com/lol-pickems"
     },
     {
-     "match_id": "1075731",
-     "sport": "lol",
-     "competition": "PRM 3rd Division 26-27 Fall",
-     "team_a": "Whalepower Humpbacks",
-     "team_b": "1. Esport Club Frankfurt e.V.",
-     "start_utc": "2026-10-11T15:00:00Z",
-     "reason": "marked scheduled but its start time is in the past",
-     "source_url": "https://play.hotspawn.com/lol-pickems"
-    },
-    {
      "match_id": "1074636",
      "sport": "lol",
      "competition": "RIVALS LEAGUE Season 2",
@@ -5757,6 +5586,26 @@
      "source_url": "https://play.hotspawn.com/lobby"
     },
     {
+     "match_id": "1076570",
+     "sport": "lol",
+     "competition": "Benelux Ascend Series 2027 Winter Promotion",
+     "team_a": "Meavedron Benelux",
+     "team_b": "The Bandits Academy",
+     "start_utc": "2026-10-14T17:00:00Z",
+     "reason": "marked scheduled but its start time is in the past",
+     "source_url": "https://play.hotspawn.com/lol-pickems"
+    },
+    {
+     "match_id": "1076571",
+     "sport": "lol",
+     "competition": "Benelux Ascend Series 2027 Winter Promotion",
+     "team_a": "Nameless",
+     "team_b": "Triforce Esport",
+     "start_utc": "2026-10-14T18:00:00Z",
+     "reason": "marked scheduled but its start time is in the past",
+     "source_url": "https://play.hotspawn.com/lol-pickems"
+    },
+    {
      "match_id": "1081526",
      "sport": "cs2",
      "competition": "DraculaN Season 7",
@@ -5833,6 +5682,16 @@
      "team_a": "Mental Rush",
      "team_b": "SK Gaming Avarosa",
      "start_utc": "2026-10-19T16:00:00Z",
+     "reason": "marked scheduled in Hotspawn's payload but starts outside the current pick'em week",
+     "source_url": "https://play.hotspawn.com/lol-pickems"
+    },
+    {
+     "match_id": "1075735",
+     "sport": "lol",
+     "competition": "PRM 3rd Division 26-27 Fall",
+     "team_a": "Black Lion",
+     "team_b": "AIX eSports",
+     "start_utc": "2026-10-19T17:00:00Z",
      "reason": "marked scheduled in Hotspawn's payload but starts outside the current pick'em week",
      "source_url": "https://play.hotspawn.com/lol-pickems"
     },
@@ -6227,6 +6086,16 @@
      "source_url": "https://play.hotspawn.com/lol-pickems"
     },
     {
+     "match_id": "1075731",
+     "sport": "lol",
+     "competition": "PRM 3rd Division 26-27 Fall",
+     "team_a": "Whalepower Humpbacks",
+     "team_b": "1. Esport Club Frankfurt e.V.",
+     "start_utc": "2026-10-24T17:00:00Z",
+     "reason": "marked scheduled in Hotspawn's payload but starts outside the current pick'em week",
+     "source_url": "https://play.hotspawn.com/lol-pickems"
+    },
+    {
      "match_id": "1079141",
      "sport": "lol",
      "competition": "Arabian League 2nd Division 2026 Summer",
@@ -6557,6 +6426,16 @@
      "source_url": "https://play.hotspawn.com/lol-pickems"
     },
     {
+     "match_id": "1081831",
+     "sport": "lol",
+     "competition": "RIVALS LEAGUE Season 2",
+     "team_a": "Lund Esports Organization OGs",
+     "team_b": "Tung Sahur Mid",
+     "start_utc": "2026-10-26T19:00:00Z",
+     "reason": "marked scheduled in Hotspawn's payload but starts outside the current pick'em week",
+     "source_url": "https://play.hotspawn.com/lol-pickems"
+    },
+    {
      "match_id": "1079031",
      "sport": "lol",
      "competition": "PRM 2nd Division 26-27 Fall",
@@ -6603,6 +6482,16 @@
      "team_a": "Slam Dunk",
      "team_b": "New Era Team",
      "start_utc": "2026-10-28T19:00:00Z",
+     "reason": "marked scheduled in Hotspawn's payload but starts outside the current pick'em week",
+     "source_url": "https://play.hotspawn.com/lol-pickems"
+    },
+    {
+     "match_id": "1075737",
+     "sport": "lol",
+     "competition": "PRM 3rd Division 26-27 Fall",
+     "team_a": "Purple Emperor Lizards - Atomic",
+     "team_b": "Cloud eSport",
+     "start_utc": "2026-10-29T18:15:00Z",
      "reason": "marked scheduled in Hotspawn's payload but starts outside the current pick'em week",
      "source_url": "https://play.hotspawn.com/lol-pickems"
     },
@@ -7530,50 +7419,52 @@
   },
   {
    "code": "R-NOMKT",
-   "title": "103 fixtures have no external bookmaker price",
+   "title": "105 fixtures have no external bookmaker price",
    "detail": "Those values are left blank in the published dataset and shown as \"-\" on the board.",
    "source_url": "https://egamersworld.com/counterstrike/matches",
    "items": [
-    "1076570",
-    "1076571",
-    "1079626",
     "1081365",
     "1081369",
-    "1080204",
-    "1079628",
-    "1075704",
     "1079132",
     "1079922",
-    "1075807",
-    "1079586",
-    "1080285",
+    "1081493",
     "1080286",
     "1079167",
     "1079630",
+    "1081496",
     "1081712",
     "1080287",
+    "1081497",
     "1081498",
+    "1081779",
     "1079588",
     "1079631",
     "1080205",
     "1080288",
     "1081120",
+    "1081499",
     "1081769",
     "1079012",
     "1079848",
     "1080289",
     "1081502",
+    "1081780",
     "1079589",
     "1079632",
+    "1081503",
     "1081775",
+    "1075809",
     "1079133",
     "1079134",
     "1080290",
     "1079013",
     "1079014",
+    "1081781",
+    "1075810",
     "1079170",
     "1081255",
     "1079171",
+    "1081513",
     "1080905",
     "1080906",
     "1080907",
@@ -7597,14 +7488,14 @@
     "1078957",
     "1078958",
     "1081126",
+    "1081521",
+    "1081522",
     "1071208",
     "1071210",
     "1071211",
     "1071213",
     "1075733",
     "1075734",
-    "1075735",
-    "1075737",
     "1075738",
     "1075739",
     "1075742",
@@ -7641,32 +7532,52 @@
   },
   {
    "code": "R-NORATE",
-   "title": "83 fixtures have no own-line rating for both teams",
+   "title": "105 fixtures have no own-line rating for both teams",
    "detail": "Those values are left blank in the published dataset and shown as \"-\" on the board.",
    "source_url": "https://www.hltv.org/ranking/teams/2026/october/12",
    "items": [
-    "1076570",
-    "1076571",
     "1081365",
     "1081369",
-    "1079628",
-    "1075704",
     "1079132",
     "1079922",
-    "1075807",
-    "1079586",
+    "1081493",
     "1080286",
+    "1079167",
+    "1079630",
+    "1081496",
+    "1081712",
+    "1080287",
+    "1081497",
     "1081498",
+    "1081779",
+    "1079588",
+    "1079631",
+    "1080205",
     "1080288",
+    "1081120",
+    "1081499",
+    "1081769",
     "1079012",
     "1079848",
     "1080289",
     "1081502",
+    "1081780",
+    "1079589",
+    "1079632",
+    "1081503",
+    "1081775",
+    "1075809",
     "1079133",
     "1079134",
+    "1080290",
     "1079013",
     "1079014",
+    "1081781",
+    "1075810",
+    "1079170",
     "1081255",
+    "1079171",
+    "1081513",
     "1080905",
     "1080906",
     "1080907",
@@ -7679,6 +7590,7 @@
     "1080911",
     "1080912",
     "1080915",
+    "1079173",
     "1079135",
     "1079136",
     "1080916",
@@ -7688,14 +7600,15 @@
     "1079339",
     "1078957",
     "1078958",
+    "1081126",
+    "1081521",
+    "1081522",
     "1071208",
     "1071210",
     "1071211",
     "1071213",
     "1075733",
     "1075734",
-    "1075735",
-    "1075737",
     "1075738",
     "1075739",
     "1075742",
@@ -7738,22 +7651,28 @@
    "items": []
   },
   {
+   "code": "R-VRS",
+   "title": "Valve Regional Standings could not be fully read",
+   "detail": "VRS listing failed: HTTPError 403 \u2014 the own line fell back to the HLTV ranking only.",
+   "source_url": null,
+   "items": []
+  },
+  {
    "code": "R-LOCKED",
-   "title": "11 fixtures were already locked when this board was built",
+   "title": "10 fixtures were already locked when this board was built",
    "detail": "Their pick'em lock time had passed; the rows stay published for completeness and are labelled locked.",
    "source_url": null,
    "items": [
-    "1076570",
-    "1076571",
-    "1079626",
     "1081365",
     "1081369",
-    "1080204",
-    "1079628",
-    "1075704",
     "1079132",
     "1079922",
-    "1075807"
+    "1081493",
+    "1080286",
+    "1079167",
+    "1079630",
+    "1081496",
+    "1081712"
    ]
   }
  ],
@@ -8809,16 +8728,6 @@
    "source_url": "https://play.hotspawn.com/lol-pickems"
   },
   {
-   "match_id": "1075731",
-   "sport": "lol",
-   "competition": "PRM 3rd Division 26-27 Fall",
-   "team_a": "Whalepower Humpbacks",
-   "team_b": "1. Esport Club Frankfurt e.V.",
-   "start_utc": "2026-10-11T15:00:00Z",
-   "reason": "marked scheduled but its start time is in the past",
-   "source_url": "https://play.hotspawn.com/lol-pickems"
-  },
-  {
    "match_id": "1074636",
    "sport": "lol",
    "competition": "RIVALS LEAGUE Season 2",
@@ -8929,6 +8838,26 @@
    "source_url": "https://play.hotspawn.com/lobby"
   },
   {
+   "match_id": "1076570",
+   "sport": "lol",
+   "competition": "Benelux Ascend Series 2027 Winter Promotion",
+   "team_a": "Meavedron Benelux",
+   "team_b": "The Bandits Academy",
+   "start_utc": "2026-10-14T17:00:00Z",
+   "reason": "marked scheduled but its start time is in the past",
+   "source_url": "https://play.hotspawn.com/lol-pickems"
+  },
+  {
+   "match_id": "1076571",
+   "sport": "lol",
+   "competition": "Benelux Ascend Series 2027 Winter Promotion",
+   "team_a": "Nameless",
+   "team_b": "Triforce Esport",
+   "start_utc": "2026-10-14T18:00:00Z",
+   "reason": "marked scheduled but its start time is in the past",
+   "source_url": "https://play.hotspawn.com/lol-pickems"
+  },
+  {
    "match_id": "1081526",
    "sport": "cs2",
    "competition": "DraculaN Season 7",
@@ -9005,6 +8934,16 @@
    "team_a": "Mental Rush",
    "team_b": "SK Gaming Avarosa",
    "start_utc": "2026-10-19T16:00:00Z",
+   "reason": "marked scheduled in Hotspawn's payload but starts outside the current pick'em week",
+   "source_url": "https://play.hotspawn.com/lol-pickems"
+  },
+  {
+   "match_id": "1075735",
+   "sport": "lol",
+   "competition": "PRM 3rd Division 26-27 Fall",
+   "team_a": "Black Lion",
+   "team_b": "AIX eSports",
+   "start_utc": "2026-10-19T17:00:00Z",
    "reason": "marked scheduled in Hotspawn's payload but starts outside the current pick'em week",
    "source_url": "https://play.hotspawn.com/lol-pickems"
   },
@@ -9399,6 +9338,16 @@
    "source_url": "https://play.hotspawn.com/lol-pickems"
   },
   {
+   "match_id": "1075731",
+   "sport": "lol",
+   "competition": "PRM 3rd Division 26-27 Fall",
+   "team_a": "Whalepower Humpbacks",
+   "team_b": "1. Esport Club Frankfurt e.V.",
+   "start_utc": "2026-10-24T17:00:00Z",
+   "reason": "marked scheduled in Hotspawn's payload but starts outside the current pick'em week",
+   "source_url": "https://play.hotspawn.com/lol-pickems"
+  },
+  {
    "match_id": "1079141",
    "sport": "lol",
    "competition": "Arabian League 2nd Division 2026 Summer",
@@ -9729,6 +9678,16 @@
    "source_url": "https://play.hotspawn.com/lol-pickems"
   },
   {
+   "match_id": "1081831",
+   "sport": "lol",
+   "competition": "RIVALS LEAGUE Season 2",
+   "team_a": "Lund Esports Organization OGs",
+   "team_b": "Tung Sahur Mid",
+   "start_utc": "2026-10-26T19:00:00Z",
+   "reason": "marked scheduled in Hotspawn's payload but starts outside the current pick'em week",
+   "source_url": "https://play.hotspawn.com/lol-pickems"
+  },
+  {
    "match_id": "1079031",
    "sport": "lol",
    "competition": "PRM 2nd Division 26-27 Fall",
@@ -9775,6 +9734,16 @@
    "team_a": "Slam Dunk",
    "team_b": "New Era Team",
    "start_utc": "2026-10-28T19:00:00Z",
+   "reason": "marked scheduled in Hotspawn's payload but starts outside the current pick'em week",
+   "source_url": "https://play.hotspawn.com/lol-pickems"
+  },
+  {
+   "match_id": "1075737",
+   "sport": "lol",
+   "competition": "PRM 3rd Division 26-27 Fall",
+   "team_a": "Purple Emperor Lizards - Atomic",
+   "team_b": "Cloud eSport",
+   "start_utc": "2026-10-29T18:15:00Z",
    "reason": "marked scheduled in Hotspawn's payload but starts outside the current pick'em week",
    "source_url": "https://play.hotspawn.com/lol-pickems"
   },
