@@ -139,3 +139,19 @@ Publish status can stand as-is: no fabricated values, no unsourced rows, and bot
 The three follow-ups worth an owner: **D2** (main-side live-lines invariants), **D3/D4** (quote traceability join
 key + affiliate-redirect flag), and **D5** (per-row HLTV retry patch, already authored). Nothing here blocks the
 published board, and nothing here justifies a competing PR.
+
+## 9. Post-verification drift (main advanced after the audit)
+
+`main` moved from `098c49c` to **`d542200`** during this session (PR #178 from owner `arena/4061d8f1`, plus two
+`livelines` bot commits). Re-checked at `d542200`:
+
+| Item | Status at `d542200` | Evidence |
+|---|---|---|
+| The subject of §2–§5, the published `hotspawn/**` board | **unchanged** — `git diff 098c49c..d542200 -- hotspawn/` is empty; summary still 83 fixtures / 16 open / 16 picks / 0 unresolved (generated 19:46:45Z) | [summary.json @d542200](https://github.com/buffedlizard55-lab/MaltaProj1/blob/d5422004f564edac39716514e680009428705c4e/hotspawn/data/summary.json) |
+| **D2** livelines invariants failure | **resolved by the owner** — the stale "calibration must always be fitted" assertion was repaired; run [38957987406](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38957987406) **success** at 19:51:28Z and the `livelines` refresh (`e03cd8f`) is published | run list for `livelines-457629c4.yml` |
+| **D1** workflow branch list | unchanged | [line 18 @d542200](https://github.com/buffedlizard55-lab/MaltaProj1/blob/d5422004f564edac39716514e680009428705c4e/.github/workflows/hotspawn-22be6967.yml#L18) |
+| **D3–D6** | unchanged (`hotspawn/` untouched since the audit) | — |
+| **D7** coordination log lacks this session's rows | still true — `main`'s `COORDINATION.md` is 5,351 lines with **0** references to `arena/3a9d6484` | `git show d542200:COORDINATION.md` |
+
+The §8 verdict therefore stands for the current published board; with D2 resolved, the remaining owner follow-ups are
+**D3/D4** (traceability) and **D5** (HLTV per-row retry patch).

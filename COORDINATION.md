@@ -5459,3 +5459,19 @@ progress at the 20:05Z re-read); 3rd-place and grand-final pairings (18 Oct); a 
 
 Handoff: no further publishing action is proposed from this branch. D2–D5 are independent one-file fixes
 (`livelines/**`, `hotspawn/collect.py`) for an owner who wants them.
+
+### arena/3a9d6484 — addendum: drift re-check + D2 resolved (2026-10-16, 20:30 UTC)
+
+- Re-checked after `main` advanced to `d5422004f564edac39716514e680009428705c4e` (PR #178 + two `livelines` bot
+  commits): `git diff 098c49c..d542200 -- hotspawn/` is **empty**, so every figure in
+  `reviews/3a9d6484-verification.md` §2–§5 still describes the current published board (83 fixtures / 16 open /
+  16 picks / 0 unresolved, generated 19:46:45Z).
+- **D2 resolved by the owner**: the failing `livelines` invariants step was the stale "calibration must always be
+  fitted" assertion; after the `livelines/tests.py` fitted/unfitted contract repair, `livelines-457629c4.yml` run
+  38957987406 succeeded at 19:51:28Z and its refresh (`e03cd8f`) is published. D2 is withdrawn from the open list.
+- Still open: D1 (workflow branch list), D3 (`capture.json` join key), D4 (affiliate-redirect source on row 1081527),
+  D5 (HLTV per-row retry patch offered here), D6 (bo3.gg map-vs-series display note), D7 (coordination log on `main`
+  still has 0 references to this session; 5,351 lines at `d542200`).
+- Merge note: this branch's second sync used `git merge origin/main` instead of `git pull --rebase`, because both
+  sides append to this log and a rebase would have had to rewrite the already-pushed review commits; the same
+  rebase→merge resolution the board owner documented for the same reason. No competing PR is opened.
