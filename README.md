@@ -1,5 +1,49 @@
 # MaltaProj1 — Hotspawn CS2 picks & research
 
+## Maintained route · integration 16 October 2026
+
+**[Executive summary](https://buffedlizard55-lab.github.io/MaltaProj1/)** → **[all picks & probabilities](https://buffedlizard55-lab.github.io/MaltaProj1/hotspawn/picks.html)**.
+One primary, mobile-first route; every captured CS2 fixture is retained. Supported rows show a pick and both probabilities. Unsupported factual/probability values remain blank, flagged and visible—not forced into a “guaranteed pick”.
+
+| Page | Purpose |
+|---|---|
+| [TWC day-3 picks & days 1–2 review](hotspawn/twc.html) | Both deciders use the current board; eight verified results/maps, Aurora rebuild timeline, separate expected-points versus optional chasing choices |
+| [Leaderboard plan](hotspawn/strategy.html) | Deliberate, disclosed contrarian heuristic—not random underdogs or proven contest optimization |
+| [Unresolved & limitations](hotspawn/unresolved.html) | Every unresolved fixture and every non-featured resolution, HLTV → esportsbooks → other lines research trail |
+| [Flagged for Review](hotspawn/flagged.html) | Source refusals, mismatches, missing evidence and integration issues |
+| [All captured fixtures](hotspawn/all.html) | Open, recently locked and stale payload listings with source links |
+| [Method & sources](hotspawn/method.html) | Read times, request hashes, probability ladder and model limits |
+| [Verification record](reviews/6b23e38f-verification.md) | What was checked, what was not, external evidence and release checks |
+
+### Automatic refresh and evidence policy
+
+`.github/workflows/hotspawn-22be6967.yml` schedules the maintained board **every four hours**, `29 */4 * * *` (UTC; best effort). It enumerates the three Hotspawn CS2 surfaces; reads direct Pinnacle, Polymarket and official Valve data; attempts HLTV for non-featured gaps then paginated esportsbook relay research. No manual input. Source refusals and absent lines are recorded honestly.
+
+Ladder: **direct Pinnacle → named active esportsbook relay (secondary, not direct-book verified) → Polymarket → eligible Valve own estimate → unresolved**. Team, competition, scope, rematch identity, finite prices and freshness gates precede use. Known roster mismatches, unknown formats and >45-day-old ratings withhold the own fallback. The slope fits whole-match results: **no uncalibrated map-to-series transform**. Hotspawn crowd share is only ownership; it never enters win probability.
+
+Rebuilds, per-row stored-input audits, regression tests and required real-browser phone/tablet checks gate publication. Captures older than eight hours are visibly stale. Research flags do not block publication, but a broken build/site does. All preserved alternatives use separate snapshots/methods and are folded below the primary route; this release does not certify every archived external claim.
+
+### Reproduce / test
+
+```sh
+python3 hotspawn/model.py
+python3 hotspawn/build.py
+python3 hotspawn/verify.py
+python3 hotspawn/tests.py
+python3 -m unittest discover -s tests -v
+# Requires Playwright 1.55.0 + Chromium (installed in the refresh workflow):
+REQUIRE_BROWSER=1 python3 hotspawn/mobile_check.py
+```
+
+Live collection also needs a clone of Valve's official regional-standings repository (`VRS_REPO_DIR`); the workflow configures this. Rebuilding from a stored capture is not a new external verification. See [COORDINATION.md](COORDINATION.md) for claims, preserved merge work and the final PR/Pages record.
+
+<details>
+<summary>Historical integration notes and parallel boards (superseded primary-route claims, preserved for provenance)</summary>
+
+The notes below describe earlier sessions and their own capture times. References to `executive/` or other routes as “primary”, old row counts, old probabilities, and earlier “verified” claims are **not the current maintained policy or a fresh certification**. Use the maintained route and timestamp above. Unrechecked historical facts remain outside this release's verification scope.
+
+# MaltaProj1 — Hotspawn CS2 picks & research
+
 ## Start here — a pick for every Hotspawn CS2 match (session `22be6967`, 15 Oct 2026)
 
 | Page | What it is |
@@ -11,7 +55,7 @@
 | [Method & sources](https://buffedlizard55-lab.github.io/MaltaProj1/hotspawn/method.html) | Probability ladder, de-vig, own-line calibration, every request with read time |
 | [TWC 2026 day 3 — tonight's deciders](https://buffedlizard55-lab.github.io/MaltaProj1/hotspawn/strategy.html#day3) | Aurora vs 9z and BetBoom vs Legacy: kickoff in UTC, outside prices, our own line, crowd ownership, the swing play and every source |
 
-How it works: `.github/workflows/hotspawn-22be6967.yml` runs every 3 hours — `hotspawn/collect.py` reads the
+How it works: `.github/workflows/hotspawn-22be6967.yml` runs every 4 hours — `hotspawn/collect.py` reads the
 `ng-state` TransferState of Hotspawn's `/lobby`, `/cs2-pickems` and `/thp-pickems`, Pinnacle's public guest
 JSON, Polymarket's CS2 series and Valve's official standings; `hotspawn/calibrate.py` fits our own line on
 Valve's published results; `hotspawn/model.py` applies the ladder (Pinnacle → Polymarket → own line →
@@ -67,7 +111,7 @@ The four-hour workflow `.github/workflows/valuepicks-7759beef.yml` rebuilds and 
 `main` only after the build and the 15 invariants pass.
 
 Day-review finding used by the board: on 14 October 2026, 9z beat Aurora 2-0 (Inferno 13-11, Nuke
-13-1) at the Thunderpick World Championship — Aurora's first match after the July rebuild that brought
+13-1) at the Thunderpick World Championship — Aurora's opener at this event following the July rebuild that brought
 in kyxsan, Jimpphat and coach ash, and a week after their ESL Pro League bronze. The board applies
 that lesson as a rule, not a hunch: take the contrarian side only where the market and the official
 ratings disagree, and publish the disagreement with its caveats.
@@ -270,3 +314,5 @@ python -m unittest tests/test_63ee81ba.py -v
 GitHub Pages publishes from `main:/`. See [COORDINATION.md](COORDINATION.md) for maintenance claims, release records, owner handoffs and prior sessions. Previous dashboards and all prior root-link targets are retained in the landing page's collapsed archive; their snapshot counts and model assumptions are not interchangeable with the primary executive board.
 
 Analysis only, not betting advice. Data access/refusals and model limitations are published, not hidden.
+
+</details>

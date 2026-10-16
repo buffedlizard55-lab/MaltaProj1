@@ -41,7 +41,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / "console"
+OUT = Path(os.environ.get("CONSOLE_OUT_DIR") or (ROOT / "console"))
 DATA = OUT / "data"
 
 # ---------------------------------------------------------------------------
@@ -244,9 +244,9 @@ def index_by(rows: list[dict], *keys: str) -> dict:
     return out
 
 
-def market_candidates(fid: str, feeds: dict | None, cs2: dict | None,
-                      execu: dict | None, every: dict | None,
-                      pf_market: dict | None) -> list[dict]:
+def market_candidates_with_rejects(fid: str, feeds: dict | None, cs2: dict | None,
+                                   execu: dict | None, every: dict | None,
+                                   pf_market: dict | None) -> tuple[list[dict], list[dict]]:
     """Collect every outside price for one fixture, best rung first.
 
     Rung order (documented on console/methodology.html):
@@ -258,7 +258,32 @@ def market_candidates(fid: str, feeds: dict | None, cs2: dict | None,
 
     A higher rung is never averaged with a lower one; the headline is the best
     rung and every other rung is published beside it.
+
+    A quote that prices both sides *exactly* equally is rejected as unusable
+    (a placeholder/degenerate relayed price such as 1.80/1.80 carries no
+    information and cannot support a pick), and the next rung is used instead.
+    Rejected quotes are returned separately so the row can say so.
     """
+    every_cand, rejects = _market_candidates_all(fid, feeds, cs2, execu, every, pf_market)
+    cands = []
+    for c in every_cand:
+        if c["p_a"] is not None and c["p_b"] is not None and float(c["p_a"]) == float(c["p_b"]):
+            rejects.append(c)
+        else:
+            cands.append(c)
+    return cands, rejects
+
+
+def market_candidates(fid: str, feeds: dict | None, cs2: dict | None,
+                      execu: dict | None, every: dict | None,
+                      pf_market: dict | None) -> list[dict]:
+    """Usable outside prices only (exact-tie placeholder quotes are dropped)."""
+    return market_candidates_with_rejects(fid, feeds, cs2, execu, every, pf_market)[0]
+
+
+def _market_candidates_all(fid: str, feeds: dict | None, cs2: dict | None,
+                            execu: dict | None, every: dict | None,
+                            pf_market: dict | None) -> tuple[list[dict], list[dict]]:
     cands: list[dict] = []
 
     if cs2:
@@ -339,7 +364,7 @@ def market_candidates(fid: str, feeds: dict | None, cs2: dict | None,
             })
 
     cands.sort(key=lambda c: (c["rung"], c["book"]))
-    return cands
+    return cands, []
 
 
 
@@ -583,6 +608,11 @@ def build_rows(inputs: dict, now: datetime) -> tuple[list[dict], list[dict], dic
         feed = seen.get(fid, {})
         cs2 = cs2_by.get(fid)
         execu = execu_by.get(fid)
+        # the names this row will publish, from whichever input board actually carries the fixture
+        team_a_name = (feed.get("team_a") or (execu or {}).get("team_a") or
+                       (cs2 or {}).get("team_a") or "").strip()
+        team_b_name = (feed.get("team_b") or (execu or {}).get("team_b") or
+                       (cs2 or {}).get("team_b") or "").strip()
         every = every_by.get(fid)
         pf_market = pf_market_by.get(fid)
         pf_own = pf_own_by.get(fid)
@@ -596,9 +626,29 @@ def build_rows(inputs: dict, now: datetime) -> tuple[list[dict], list[dict], dic
             }
         own = own_line(fid, pf_own, cs2, checks)
         research = research_candidates(fid, every, execu)
-        cands = market_candidates(fid, feed, cs2, execu, every, pf_market)
+        cands, tie_rejects = market_candidates_with_rejects(fid, feed, cs2, execu, every, pf_market)
+        # An own line that lands on an exact tie cannot support a pick either; withhold it
+        # rather than publishing a coin-flip as if it were a finding.
+        own_tie = bool(own) and own.get("p_a") is not None and own.get("p_a") == own.get("p_b")
+        if own_tie:
+            own = {**own, "p_a": None, "p_b": None}
 
         row_flags: list[str] = []
+        if tie_rejects:
+            r0 = tie_rejects[0]
+            row_flags.append("C-TIE-QUOTE-REJECTED")
+            add_flag("C-TIE-QUOTE-REJECTED",
+                     "An outside quote priced both sides exactly equally (a placeholder or degenerate "
+                     "relayed price, such as 1.80/1.80); it carries no information, so it was rejected as "
+                     "unusable and the next available rung was used instead.",
+                     fid, r0.get("url") or "",
+                     f'rung {r0["rung"]} {r0["book"]} {r0["p_a"]:.1f}/{r0["p_b"]:.1f}')
+        if own_tie:
+            row_flags.append("C-OWN-LINE-TIE")
+            add_flag("C-OWN-LINE-TIE",
+                     "Our own originated line priced both sides exactly equally from the official ratings; "
+                     "an exact tie is not published as a probability or a pick.",
+                     fid, "", "")
         headline = cands[0] if cands else None
         basis_rung = ""
         p_a = p_b = None
@@ -682,11 +732,15 @@ def build_rows(inputs: dict, now: datetime) -> tuple[list[dict], list[dict], dic
                      "current captures; probabilities stay blank.",
                      fid, "")
 
+        # The published names come from whichever input board actually carries the fixture, so the
+        # pick must be taken from those and never from one board's possibly-empty row: a fixture that
+        # arrived from the cs2 board used to keep a probability and lose its pick because the
+        # secondary-market feed did not list it (found 2026-10-15, fixture 1079631).
         pick = ""
         pick_pct = None
         margin = None
-        if p_a is not None and p_b is not None:
-            pick = feed.get("team_a", "") if p_a >= p_b else feed.get("team_b", "")
+        if p_a is not None and p_b is not None and team_a_name and team_b_name:
+            pick = team_a_name if p_a >= p_b else team_b_name
             pick_pct = max(p_a, p_b)
             margin = abs(p_a - p_b)
             if margin <= 2.0:
@@ -774,10 +828,8 @@ def build_rows(inputs: dict, now: datetime) -> tuple[list[dict], list[dict], dic
                             (cs2 or {}).get("competition") or "").strip(),
             "tier": (feed.get("tier") or (execu or {}).get("tier") or
                      (cs2 or {}).get("tier") or "").strip(),
-            "team_a": (feed.get("team_a") or (execu or {}).get("team_a") or
-                       (cs2 or {}).get("team_a") or "").strip(),
-            "team_b": (feed.get("team_b") or (execu or {}).get("team_b") or
-                       (cs2 or {}).get("team_b") or "").strip(),
+            "team_a": team_a_name,
+            "team_b": team_b_name,
             "start_utc": iso(start_dt),
             "lock_utc": iso(lock_dt),
             "state": state,

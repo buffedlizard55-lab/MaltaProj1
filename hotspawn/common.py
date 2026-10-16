@@ -176,7 +176,7 @@ def devig_two_way(odds_a: float, odds_b: float) -> tuple[float, float, float] | 
         a, b = float(odds_a), float(odds_b)
     except (TypeError, ValueError):
         return None
-    if a <= 1.0 or b <= 1.0:
+    if not (math.isfinite(a) and math.isfinite(b)) or a <= 1.0 or b <= 1.0:
         return None
     ia, ib = 1.0 / a, 1.0 / b
     total = ia + ib
@@ -190,7 +190,7 @@ def normalise_prices(pa: float, pb: float) -> tuple[float, float] | None:
         a, b = float(pa), float(pb)
     except (TypeError, ValueError):
         return None
-    if a <= 0 or b <= 0 or a + b <= 0:
+    if not (math.isfinite(a) and math.isfinite(b)) or not (0 < a < 1 and 0 < b < 1) or not 0.95 <= a + b <= 1.05:
         return None
     return a / (a + b), b / (a + b)
 

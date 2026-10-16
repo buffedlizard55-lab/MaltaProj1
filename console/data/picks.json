@@ -1,21 +1,21 @@
 {
  "meta": {
-  "generated_for_utc": "2026-10-14T04:00:00Z",
-  "data_as_of_utc": "2026-10-15T23:15:39Z",
-  "newest_input_age_hours": -43.26,
+  "generated_for_utc": "2026-10-16T05:17:40Z",
+  "data_as_of_utc": "2026-10-16T05:17:23Z",
+  "newest_input_age_hours": 0.0,
   "max_input_age_hours": 6.0,
   "stale": false,
   "counts": {
-   "rows": 22,
-   "open": 22,
+   "rows": 31,
+   "open": 31,
    "locked": 0,
-   "open_with_pick": 16,
-   "open_market_basis": 15,
-   "open_own_line_basis": 1,
+   "open_with_pick": 18,
+   "open_market_basis": 18,
+   "open_own_line_basis": 0,
    "open_research_basis": 0,
-   "open_without_pick": 6,
-   "flags": 47,
-   "rows_with_flags": 19
+   "open_without_pick": 13,
+   "flags": 68,
+   "rows_with_flags": 28
   },
   "inputs": [
    {
@@ -23,16 +23,16 @@
     "label": "Secondary-market feed (arena/a0bdf924)",
     "page": "feeds/index.html",
     "file": "feeds/data/fixtures.csv",
-    "captured_utc": "2026-10-15T23:15:39Z",
-    "sha256": "8c482d738d69ea1b61dfc316960a598498d3d872f0cf1cf047bd88c066501321",
-    "rows": 22
+    "captured_utc": "2026-10-16T01:37:55Z",
+    "sha256": "04b90726e1ca9c1c3fdb9d3ece08b92880e381a170fc6123f4542dba26be9453",
+    "rows": 31
    },
    {
     "key": "cs2",
     "label": "Line-analysis board (arena/a174d77f)",
     "page": "cs2/index.html",
     "file": "cs2/data/analysis.csv",
-    "captured_utc": "2026-10-15T22:24:02Z",
+    "captured_utc": "2026-10-16T01:23:10Z",
     "sha256": "a238769d3d19cccc1e1165eeda91f67e5334219845a7076c2dded6d2c8b13864",
     "rows": 87
    },
@@ -41,9 +41,9 @@
     "label": "Executive board (arena/5545dbb8)",
     "page": "executive/index.html",
     "file": "executive/data/analysis.csv",
-    "captured_utc": "2026-10-15T23:14:28Z",
-    "sha256": "ba8a4118b65f85e8e70d1c1283cebbfd3a34c4242f86ebe8bf76328bc9eb7c7a",
-    "rows": 86
+    "captured_utc": "2026-10-16T05:17:23Z",
+    "sha256": "a215a4495d752067cbc114ded64c25de66877719ac7ef684d0ce1925fae7124d",
+    "rows": 95
    },
    {
     "key": "every",
@@ -160,13 +160,13 @@
      "rung": 2,
      "rung_label": "book \u00b7 relayed via bo3.gg",
      "book": "Thunderpick",
-     "p_a": 51.35,
-     "p_b": 48.65,
+     "p_a": 52.7,
+     "p_b": 47.3,
      "odds_a": "",
      "odds_b": "",
      "overround_pct": "",
      "url": "https://thunderpick.io/match/2828217",
-     "read_utc": "2026-10-15T23:15:31Z",
+     "read_utc": "2026-10-16T01:37:47Z",
      "caveat": "quote relayed by bo3.gg's public API, not read from the bookmaker's own site (MF-09); the bookmaker match URL is linked so the price can be checked by hand"
     },
     {
@@ -179,7 +179,7 @@
      "odds_b": "",
      "overround_pct": "",
      "url": "https://polymarket.com/event/cs2-nip-tl1-2026-10-16",
-     "read_utc": "2026-10-15T23:15:31Z",
+     "read_utc": "2026-10-16T01:37:47Z",
      "caveat": "prediction market (traded prices, no bookmaker margin, MF-10); thin books move quickly"
     }
    ],
@@ -190,8 +190,8 @@
      "p_a": 51.5,
      "p_b": 48.5,
      "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
-     "read_utc": "2026-10-15T23:12:00Z",
-     "note": "Pinnacle whole-match moneyline 1.72 / 2.11 (native american), overround 5.55%, proportional de-vig. Series length BO3 as stated by the pricing listing (Pinnacle); Hotspawn states none. Rating inputs: Ninjas in Pyjamas 1534 vs Liquid 1527 official points; project 400-point logistic with independent-map series transform, BO3: 51.5%. This is an uncalibrated project estimate, not a Valve match forecast. Our own line for the same fixture, from the official ranking only: 50.4% for Ninjas in Pyjamas (4.7 pp from the price this row is based on)."
+     "read_utc": "2026-10-16T05:15:19Z",
+     "note": "Pinnacle whole-match moneyline 1.81 / 1.98 (native american), overround 5.85%, proportional de-vig. Series length BO3 as stated by the pricing listing (Pinnacle); Hotspawn states none. Rating inputs: Ninjas in Pyjamas 1534 vs Liquid 1527 official points; project 400-point logistic with independent-map series transform, BO3: 51.5%. This is an uncalibrated project estimate, not a Valve match forecast. Our own line for the same fixture, from the official ranking only: 50.4% for Ninjas in Pyjamas (1.9 pp from the price this row is based on)."
     }
    ]
   },
@@ -216,7 +216,7 @@
    "margin_pp": 9.920000000000002,
    "confidence": "narrow favourite",
    "source_url": "https://thunderpick.io/match/2807497",
-   "read_utc": "2026-10-15T23:15:31Z",
+   "read_utc": "2026-10-16T01:37:47Z",
    "hltv_match_url": "https://www.hltv.org/matches/2399424/voca-vs-phantom-elisa-breakout-series-2",
    "hotspawn_match_url": "https://www.hotspawn.com/matches/voca-vs-phantom-elisa-breakout-series-2-1080285",
    "board_flags": "FL-FORMAT-FROM-LISTING;A-NO-FORMAT A-NO-LINE;E-02-AGGREGATOR-LINE;E-02-DIVERGENCE;FL-NO-PERMALINK",
@@ -235,7 +235,7 @@
      "odds_b": "",
      "overround_pct": "",
      "url": "https://thunderpick.io/match/2807497",
-     "read_utc": "2026-10-15T23:15:31Z",
+     "read_utc": "2026-10-16T01:37:47Z",
      "caveat": "quote relayed by bo3.gg's public API, not read from the bookmaker's own site (MF-09); the bookmaker match URL is linked so the price can be checked by hand"
     },
     {
@@ -255,13 +255,13 @@
      "rung": 4,
      "rung_label": "prediction market \u00b7 Polymarket",
      "book": "Polymarket",
-     "p_a": 42.5,
-     "p_b": 57.5,
+     "p_a": 45.0,
+     "p_b": 55.0,
      "odds_a": "",
      "odds_b": "",
      "overround_pct": "",
      "url": "https://polymarket.com/event/cs2-voc-pha-2026-10-16",
-     "read_utc": "2026-10-15T23:15:31Z",
+     "read_utc": "2026-10-16T01:37:47Z",
      "caveat": "prediction market (traded prices, no bookmaker margin, MF-10); thin books move quickly"
     }
    ],
@@ -306,8 +306,8 @@
      "p_a": 55.0,
      "p_b": 45.0,
      "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
-     "read_utc": "2026-10-15T23:12:00Z",
-     "note": "Thunderpick listing 2.05 / 1.68 (decimal), overround 8.30%, proportional de-vig. Secondary listing: the aggregator's own page is the source, not the book itself. Series length BO1 as stated by the pricing listing (Thunderpick); Hotspawn states none. Rating inputs: Voca 1182 vs Phantom 1147 official points; project 400-point logistic with independent-map series transform, BO1: 55.0%. This is an uncalibrated project estimate, not a Valve match forecast. Our own line for the same fixture, from the official ranking only: 57.9% for Voca (12.9 pp from the price this row is based on)."
+     "read_utc": "2026-10-16T05:15:19Z",
+     "note": "Thunderpick listing 2.05 / 1.68 (decimal), overround 8.30%, proportional de-vig. Secondary listing: the aggregator's own page is the source, not the book itself. Series length BO1 as stated by the pricing listing (Thunderpick); Hotspawn states none. Rating inputs: Voca 1182 vs Phantom 1147 official points; project 400-point logistic with independent-map series transform, BO1: 55.0%. This is an uncalibrated project estimate, not a Valve match forecast. Our own line for the same fixture, from the official ranking only: 57.0% for Voca (12.0 pp from the price this row is based on)."
     }
    ]
   },
@@ -365,7 +365,7 @@
      "odds_b": "",
      "overround_pct": "",
      "url": "https://thunderpick.io/match/2807498",
-     "read_utc": "2026-10-15T23:15:31Z",
+     "read_utc": "2026-10-16T01:37:47Z",
      "caveat": "quote relayed by bo3.gg's public API, not read from the bookmaker's own site (MF-09); the bookmaker match URL is linked so the price can be checked by hand"
     },
     {
@@ -391,7 +391,7 @@
      "odds_b": "",
      "overround_pct": "",
      "url": "https://polymarket.com/event/cs2-havu-rgg-2026-10-16",
-     "read_utc": "2026-10-15T23:15:31Z",
+     "read_utc": "2026-10-16T01:37:47Z",
      "caveat": "prediction market (traded prices, no bookmaker margin, MF-10); thin books move quickly"
     }
    ],
@@ -434,6 +434,42 @@
    ]
   },
   {
+   "fixture_id": "1079167",
+   "competition": "NODWIN Clutch Series #13",
+   "tier": "b",
+   "team_a": "Bushido Wildcats",
+   "team_b": "ex-RUSTEC",
+   "start_utc": "2026-10-16T11:00:00Z",
+   "lock_utc": "2026-10-16T10:54:00Z",
+   "state": "open",
+   "series_format": "BO3",
+   "format_source": "bo3.gg (match listed, no usable quote)",
+   "basis_rung": "none",
+   "basis_label": "no basis -- blank, not guessed",
+   "basis_detail": "",
+   "p_a_pct": null,
+   "p_b_pct": null,
+   "pick": "",
+   "pick_pct": null,
+   "margin_pp": null,
+   "confidence": "no basis",
+   "source_url": "",
+   "read_utc": "",
+   "hltv_match_url": "",
+   "hotspawn_match_url": "https://www.hotspawn.com/matches/bushido-wildcats-vs-ex-rustec-nodwin-clutch-series-13-1079167",
+   "board_flags": "MF-01;MF-02;MF-05;FL-AMBIGUOUS-NAME;FL-FORMAT-UNKNOWN;FL-NO-MARKET;FL-NO-SOURCED-PICK;FL-RATING-MISSING",
+   "flags": [
+    "C-NAME-VARIANT",
+    "C-NO-BASIS",
+    "C-NO-SECONDARY-MARKET",
+    "C-OPPONENT-CONFLICT",
+    "C-QUOTE-REJECTED"
+   ],
+   "market_candidates": [],
+   "own_line": null,
+   "research_lines": []
+  },
+  {
    "fixture_id": "1079630",
    "competition": "CCT Europe 2026 Series #11",
    "tier": "b",
@@ -454,7 +490,7 @@
    "margin_pp": null,
    "confidence": "no basis",
    "source_url": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md?plain=1#L97",
-   "read_utc": "2026-10-15T23:12:00Z",
+   "read_utc": "2026-10-16T05:15:19Z",
    "hltv_match_url": "",
    "hotspawn_match_url": "https://www.hotspawn.com/matches/ex-rustec-vs-saint-sinners-cct-europe-2026-series-11-1079630",
    "board_flags": "MF-01;MF-02;MF-05;FL-AMBIGUOUS-NAME;FL-FORMAT-UNKNOWN;FL-NO-MARKET;FL-NO-SOURCED-PICK;FL-RATING-MISSING;A-NO-FORMAT A-NO-LINE A-VRS-DUP;A-NO-FORMAT A-NO-LINE A-VRS-DUP",
@@ -481,6 +517,74 @@
     "unverified_sides": []
    },
    "research_lines": []
+  },
+  {
+   "fixture_id": "1081712",
+   "competition": "Stake Pulse Beat III",
+   "tier": "b",
+   "team_a": "Fnatic",
+   "team_b": "Heroic",
+   "start_utc": "2026-10-16T11:00:00Z",
+   "lock_utc": "2026-10-16T10:54:00Z",
+   "state": "open",
+   "series_format": "BO3",
+   "format_source": "bo3.gg, Polymarket",
+   "basis_rung": "market-2",
+   "basis_label": "book \u00b7 relayed via bo3.gg",
+   "basis_detail": "Thunderpick \u2014 quote relayed by bo3.gg's public API, not read from the bookmaker's own site (MF-09); the bookmaker match URL is linked so the price can be checked by hand",
+   "p_a_pct": 38.46,
+   "p_b_pct": 61.54,
+   "pick": "Heroic",
+   "pick_pct": 61.54,
+   "margin_pp": 23.08,
+   "confidence": "strong favourite",
+   "source_url": "https://thunderpick.io/match/2831897",
+   "read_utc": "2026-10-16T01:37:48Z",
+   "hltv_match_url": "",
+   "hotspawn_match_url": "https://www.hotspawn.com/matches/fnatic-vs-heroic-stake-pulse-beat-iii-1081712",
+   "board_flags": "FL-FORMAT-FROM-LISTING",
+   "flags": [
+    "C-RELAYED-BOOK-PRICE"
+   ],
+   "market_candidates": [
+    {
+     "rung": 2,
+     "rung_label": "book \u00b7 relayed via bo3.gg",
+     "book": "Thunderpick",
+     "p_a": 38.46,
+     "p_b": 61.54,
+     "odds_a": "",
+     "odds_b": "",
+     "overround_pct": "",
+     "url": "https://thunderpick.io/match/2831897",
+     "read_utc": "2026-10-16T01:37:48Z",
+     "caveat": "quote relayed by bo3.gg's public API, not read from the bookmaker's own site (MF-09); the bookmaker match URL is linked so the price can be checked by hand"
+    },
+    {
+     "rung": 4,
+     "rung_label": "prediction market \u00b7 Polymarket",
+     "book": "Polymarket",
+     "p_a": 37.5,
+     "p_b": 62.5,
+     "odds_a": "",
+     "odds_b": "",
+     "overround_pct": "",
+     "url": "https://polymarket.com/event/cs2-fnc-hero-2026-10-16",
+     "read_utc": "2026-10-16T01:37:48Z",
+     "caveat": "prediction market (traded prices, no bookmaker margin, MF-10); thin books move quickly"
+    }
+   ],
+   "own_line": null,
+   "research_lines": [
+    {
+     "source": "executive/ (arena/5545dbb8) model line",
+     "p_a": 23.8,
+     "p_b": 76.2,
+     "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
+     "read_utc": "2026-10-16T05:15:19Z",
+     "note": "Pinnacle whole-match moneyline 2.68 / 1.45 (native american), overround 6.26%, proportional de-vig. Series length BO3 as stated by the pricing listing (Pinnacle); Hotspawn states none. Rating inputs: fnatic 1417 vs HEROIC 1550 official points; project 400-point logistic with independent-map series transform, BO3: 23.8%. This is an uncalibrated project estimate, not a Valve match forecast. Our own line for the same fixture, from the official ranking only: 47.8% for Fnatic (12.7 pp from the price this row is based on)."
+    }
+   ]
   },
   {
    "fixture_id": "1080287",
@@ -527,13 +631,13 @@
      "rung": 2,
      "rung_label": "book \u00b7 relayed via bo3.gg",
      "book": "Thunderpick",
-     "p_a": 64.2,
-     "p_b": 35.8,
+     "p_a": 61.54,
+     "p_b": 38.46,
      "odds_a": "",
      "odds_b": "",
      "overround_pct": "",
      "url": "https://thunderpick.io/match/2807499",
-     "read_utc": "2026-10-15T23:15:31Z",
+     "read_utc": "2026-10-16T01:37:47Z",
      "caveat": "quote relayed by bo3.gg's public API, not read from the bookmaker's own site (MF-09); the bookmaker match URL is linked so the price can be checked by hand"
     },
     {
@@ -553,13 +657,13 @@
      "rung": 4,
      "rung_label": "prediction market \u00b7 Polymarket",
      "book": "Polymarket",
-     "p_a": 67.5,
-     "p_b": 32.5,
+     "p_a": 58.5,
+     "p_b": 41.5,
      "odds_a": "",
      "odds_b": "",
      "overround_pct": "",
      "url": "https://polymarket.com/event/cs2-voc-havu-2026-10-16",
-     "read_utc": "2026-10-15T23:15:31Z",
+     "read_utc": "2026-10-16T01:37:47Z",
      "caveat": "prediction market (traded prices, no bookmaker margin, MF-10); thin books move quickly"
     }
    ],
@@ -604,8 +708,8 @@
      "p_a": 80.4,
      "p_b": 19.6,
      "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
-     "read_utc": "2026-10-15T23:12:00Z",
-     "note": "Pinnacle whole-match moneyline 1.47 / 2.62 (native american), overround 6.22%, proportional de-vig. Series length BO1 as stated by the pricing listing (Pinnacle); Hotspawn states none. Rating inputs: Voca 1182 vs HAVU 937 official points; project 400-point logistic with independent-map series transform, BO1: 80.4%. This is an uncalibrated project estimate, not a Valve match forecast. Our own line for the same fixture, from the official ranking only: 65.6% for Voca (1.5 pp from the price this row is based on)."
+     "read_utc": "2026-10-16T05:15:19Z",
+     "note": "Pinnacle whole-match moneyline 1.56 / 2.39 (native american), overround 6.00%, proportional de-vig. Series length BO1 as stated by the pricing listing (Pinnacle); Hotspawn states none. Rating inputs: Voca 1182 vs HAVU 937 official points; project 400-point logistic with independent-map series transform, BO1: 80.4%. This is an uncalibrated project estimate, not a Valve match forecast. Our own line for the same fixture, from the official ranking only: 64.0% for Voca (3.5 pp from the price this row is based on)."
     }
    ]
   },
@@ -644,6 +748,74 @@
    "research_lines": []
   },
   {
+   "fixture_id": "1079588",
+   "competition": "Stake Pulse Beat III",
+   "tier": "b",
+   "team_a": "Astralis",
+   "team_b": "MIBR",
+   "start_utc": "2026-10-16T14:00:00Z",
+   "lock_utc": "2026-10-16T13:54:00Z",
+   "state": "open",
+   "series_format": "BO3",
+   "format_source": "bo3.gg, Polymarket",
+   "basis_rung": "market-2",
+   "basis_label": "book \u00b7 relayed via bo3.gg",
+   "basis_detail": "Thunderpick \u2014 quote relayed by bo3.gg's public API, not read from the bookmaker's own site (MF-09); the bookmaker match URL is linked so the price can be checked by hand",
+   "p_a_pct": 52.7,
+   "p_b_pct": 47.3,
+   "pick": "Astralis",
+   "pick_pct": 52.7,
+   "margin_pp": 5.400000000000006,
+   "confidence": "narrow favourite",
+   "source_url": "https://thunderpick.io/match/2831979",
+   "read_utc": "2026-10-16T01:37:48Z",
+   "hltv_match_url": "",
+   "hotspawn_match_url": "https://www.hotspawn.com/matches/astralis-vs-mibr-stake-pulse-beat-iii-1079588",
+   "board_flags": "FL-COINFLIP;FL-FORMAT-FROM-LISTING;FL-MODEL-MARKET-SPLIT",
+   "flags": [
+    "C-RELAYED-BOOK-PRICE"
+   ],
+   "market_candidates": [
+    {
+     "rung": 2,
+     "rung_label": "book \u00b7 relayed via bo3.gg",
+     "book": "Thunderpick",
+     "p_a": 52.7,
+     "p_b": 47.3,
+     "odds_a": "",
+     "odds_b": "",
+     "overround_pct": "",
+     "url": "https://thunderpick.io/match/2831979",
+     "read_utc": "2026-10-16T01:37:48Z",
+     "caveat": "quote relayed by bo3.gg's public API, not read from the bookmaker's own site (MF-09); the bookmaker match URL is linked so the price can be checked by hand"
+    },
+    {
+     "rung": 4,
+     "rung_label": "prediction market \u00b7 Polymarket",
+     "book": "Polymarket",
+     "p_a": 54.5,
+     "p_b": 45.5,
+     "odds_a": "",
+     "odds_b": "",
+     "overround_pct": "",
+     "url": "https://polymarket.com/event/cs2-ast10-mibr-2026-10-16",
+     "read_utc": "2026-10-16T01:37:48Z",
+     "caveat": "prediction market (traded prices, no bookmaker margin, MF-10); thin books move quickly"
+    }
+   ],
+   "own_line": null,
+   "research_lines": [
+    {
+     "source": "executive/ (arena/5545dbb8) model line",
+     "p_a": 68.4,
+     "p_b": 31.6,
+     "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
+     "read_utc": "2026-10-16T05:15:19Z",
+     "note": "Pinnacle whole-match moneyline 1.90 / 1.88 (native american), overround 5.66%, proportional de-vig. Series length BO3 as stated by the pricing listing (Pinnacle); Hotspawn states none. Rating inputs: Astralis 1674 vs MIBR 1585 official points; project 400-point logistic with independent-map series transform, BO3: 68.4%. This is an uncalibrated project estimate, not a Valve match forecast. Our own line for the same fixture, from the official ranking only: 48.9% for Astralis (0.9 pp from the price this row is based on)."
+    }
+   ]
+  },
+  {
    "fixture_id": "1079631",
    "competition": "CCT Europe 2026 Series #11",
    "tier": "b",
@@ -667,7 +839,7 @@
    "read_utc": "2026-10-15T22:24:02Z",
    "hltv_match_url": "",
    "hotspawn_match_url": "https://www.hotspawn.com/matches/forze-reload-vs-lavked-cct-europe-2026-series-11-1079631",
-   "board_flags": "FL-FORMAT-FROM-LISTING",
+   "board_flags": "FL-FORMAT-FROM-LISTING;FL-MODEL-MARKET-SPLIT",
    "flags": [],
    "market_candidates": [
     {
@@ -694,7 +866,7 @@
      "odds_b": "",
      "overround_pct": "",
      "url": "https://polymarket.com/event/cs2-forzer-lavked-2026-10-16",
-     "read_utc": "2026-10-15T23:15:31Z",
+     "read_utc": "2026-10-16T01:37:47Z",
      "caveat": "prediction market (traded prices, no bookmaker margin, MF-10); thin books move quickly"
     }
    ],
@@ -718,8 +890,8 @@
      "p_a": 89.3,
      "p_b": 10.7,
      "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
-     "read_utc": "2026-10-15T23:12:00Z",
-     "note": "Pinnacle whole-match moneyline 1.22 / 3.99 (native american), overround 7.36%, proportional de-vig. Series length BO3 as stated by the pricing listing (Pinnacle); Hotspawn states none. Rating inputs: FORZE Reload 1100 vs Lavked 862 official points; project 400-point logistic with independent-map series transform, BO3: 89.3%. This is an uncalibrated project estimate, not a Valve match forecast. Our own line for the same fixture, from the official ranking only: 74.6% for FORZE Reload (2.1 pp from the price this row is based on)."
+     "read_utc": "2026-10-16T05:15:19Z",
+     "note": "Pinnacle whole-match moneyline 1.27 / 3.53 (native american), overround 7.05%, proportional de-vig. Series length BO3 as stated by the pricing listing (Pinnacle); Hotspawn states none. Rating inputs: FORZE Reload 1100 vs Lavked 862 official points; project 400-point logistic with independent-map series transform, BO3: 89.3%. This is an uncalibrated project estimate, not a Valve match forecast. Our own line for the same fixture, from the official ranking only: 72.3% for FORZE Reload (1.2 pp from the price this row is based on)."
     }
    ]
   },
@@ -744,7 +916,7 @@
    "margin_pp": 31.699999999999996,
    "confidence": "strong favourite",
    "source_url": "https://thunderpick.io/match/2830808",
-   "read_utc": "2026-10-15T23:15:31Z",
+   "read_utc": "2026-10-16T01:37:47Z",
    "hltv_match_url": "",
    "hotspawn_match_url": "https://www.hotspawn.com/matches/aurora-vs-9z-thunderpick-world-championship-2026-1080205",
    "board_flags": "FL-FORMAT-FROM-LISTING;FL-HLTV-IDENTITY-AMBIGUOUS;FL-MODEL-MARKET-SPLIT;A-NO-FORMAT A-NO-LINE;A-NO-FORMAT A-NO-LINE",
@@ -762,20 +934,20 @@
      "odds_b": "",
      "overround_pct": "",
      "url": "https://thunderpick.io/match/2830808",
-     "read_utc": "2026-10-15T23:15:31Z",
+     "read_utc": "2026-10-16T01:37:47Z",
      "caveat": "quote relayed by bo3.gg's public API, not read from the bookmaker's own site (MF-09); the bookmaker match URL is linked so the price can be checked by hand"
     },
     {
      "rung": 4,
      "rung_label": "prediction market \u00b7 Polymarket",
      "book": "Polymarket",
-     "p_a": 69.0,
-     "p_b": 31.0,
+     "p_a": 69.5,
+     "p_b": 30.5,
      "odds_a": "",
      "odds_b": "",
      "overround_pct": "",
      "url": "https://polymarket.com/event/cs2-aur1-9z-2026-10-16",
-     "read_utc": "2026-10-15T23:15:31Z",
+     "read_utc": "2026-10-16T01:37:47Z",
      "caveat": "prediction market (traded prices, no bookmaker margin, MF-10); thin books move quickly"
     }
    ],
@@ -799,8 +971,8 @@
      "p_a": 82.1,
      "p_b": 17.9,
      "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
-     "read_utc": "2026-10-15T23:12:00Z",
-     "note": "Pinnacle whole-match moneyline 1.43 / 2.85 (native american), overround 4.78%, proportional de-vig. Series length BO3 as stated by the pricing listing (Pinnacle); Hotspawn states none. Rating inputs: Aurora 1716 vs 9z 1543 official points; project 400-point logistic with independent-map series transform, BO3: 82.1%. This is an uncalibrated project estimate, not a Valve match forecast. Our own line for the same fixture, from the official ranking only: 54.5% for Aurora (12.0 pp from the price this row is based on)."
+     "read_utc": "2026-10-16T05:15:19Z",
+     "note": "Pinnacle whole-match moneyline 1.42 / 2.89 (native american), overround 4.84%, proportional de-vig. Series length BO3 as stated by the pricing listing (Pinnacle); Hotspawn states none. Rating inputs: Aurora 1716 vs 9z 1543 official points; project 400-point logistic with independent-map series transform, BO3: 82.1%. This is an uncalibrated project estimate, not a Valve match forecast. Our own line for the same fixture, from the official ranking only: 54.0% for Aurora (13.0 pp from the price this row is based on)."
     }
    ]
   },
@@ -825,7 +997,7 @@
    "margin_pp": 70.74000000000001,
    "confidence": "heavy favourite",
    "source_url": "https://thunderpick.io/match/2807503",
-   "read_utc": "2026-10-15T23:15:31Z",
+   "read_utc": "2026-10-16T01:37:47Z",
    "hltv_match_url": "https://www.hltv.org/matches/2399427/phantom-vs-rounds-elisa-breakout-series-2",
    "hotspawn_match_url": "https://www.hotspawn.com/matches/phantom-vs-roundsgg-elisa-breakout-series-2-1080288",
    "board_flags": "FL-FORMAT-FROM-LISTING;FL-IDENTITY-UNVERIFIED;FL-PREDICTION-MARKET-BASIS;FL-RANK-MISSING;FL-RATING-MISSING;A-ALIAS A-NO-LINE;E-02-AGGREGATOR-LINE;FL-ALIAS-RESOLVED;FL-ALIAS-ROUNDS;FL-NO-PERMALINK",
@@ -845,7 +1017,7 @@
      "odds_b": "",
      "overround_pct": "",
      "url": "https://thunderpick.io/match/2807503",
-     "read_utc": "2026-10-15T23:15:31Z",
+     "read_utc": "2026-10-16T01:37:47Z",
      "caveat": "quote relayed by bo3.gg's public API, not read from the bookmaker's own site (MF-09); the bookmaker match URL is linked so the price can be checked by hand"
     },
     {
@@ -871,7 +1043,7 @@
      "odds_b": "",
      "overround_pct": "",
      "url": "https://polymarket.com/event/cs2-pha-rgg-2026-10-16",
-     "read_utc": "2026-10-15T23:15:31Z",
+     "read_utc": "2026-10-16T01:37:47Z",
      "caveat": "prediction market (traded prices, no bookmaker margin, MF-10); thin books move quickly"
     }
    ],
@@ -923,27 +1095,39 @@
    "lock_utc": "2026-10-16T13:54:00Z",
    "state": "open",
    "series_format": "BO3",
-   "format_source": "bo3.gg (match listed, no usable quote)",
-   "basis_rung": "own-line",
-   "basis_label": "own line \u00b7 Valve Regional Standings + HLTV ranking",
-   "basis_detail": "Own VRS model, calibrated k=0.4568, BO3 transform",
-   "p_a_pct": 78.5,
-   "p_b_pct": 21.5,
+   "format_source": "Polymarket",
+   "basis_rung": "market-4",
+   "basis_label": "prediction market \u00b7 Polymarket",
+   "basis_detail": "Polymarket \u2014 prediction market (traded prices, no bookmaker margin, MF-10); thin books move quickly",
+   "p_a_pct": 88.0,
+   "p_b_pct": 12.0,
    "pick": "mellren",
-   "pick_pct": 78.5,
-   "margin_pp": 57.0,
+   "pick_pct": 88.0,
+   "margin_pp": 76.0,
    "confidence": "heavy favourite",
-   "source_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L130",
-   "read_utc": "2026-10-15T23:12:00Z",
+   "source_url": "https://polymarket.com/event/cs2-mellre-pg5-2026-10-16",
+   "read_utc": "2026-10-16T01:37:47Z",
    "hltv_match_url": "https://www.hltv.org/matches/2399471/mellren-vs-privateer-cct-2026-europe-series-12-closed-qualifier",
    "hotspawn_match_url": "https://www.hotspawn.com/matches/mellren-vs-privateer-cct-europe-2026-series-12-play-in-1081120",
-   "board_flags": "MF-01;MF-05;FL-FORMAT-FROM-LISTING;FL-MARKET-NO-LIQUIDITY;FL-PREDICTION-MARKET-BASIS;A-NO-FORMAT A-NO-LINE;E-02-MODEL-PICK;FL-NO-PERMALINK;PF-01;PF-05",
+   "board_flags": "FL-FORMAT-FROM-LISTING;FL-MARKET-NO-LIQUIDITY;FL-PREDICTION-MARKET-BASIS;A-NO-FORMAT A-NO-LINE;E-02-MODEL-PICK;FL-NO-PERMALINK;PF-01;PF-05",
    "flags": [
-    "C-NO-OUTSIDE-MARKET",
-    "C-NO-SECONDARY-MARKET",
-    "C-QUOTE-REJECTED"
+    "C-PREDICTION-MARKET-PRICE"
    ],
-   "market_candidates": [],
+   "market_candidates": [
+    {
+     "rung": 4,
+     "rung_label": "prediction market \u00b7 Polymarket",
+     "book": "Polymarket",
+     "p_a": 88.0,
+     "p_b": 12.0,
+     "odds_a": "",
+     "odds_b": "",
+     "overround_pct": "",
+     "url": "https://polymarket.com/event/cs2-mellre-pg5-2026-10-16",
+     "read_utc": "2026-10-16T01:37:47Z",
+     "caveat": "prediction market (traded prices, no bookmaker margin, MF-10); thin books move quickly"
+    }
+   ],
    "own_line": {
     "p_a": 78.5,
     "p_b": 21.5,
@@ -985,10 +1169,44 @@
      "p_a": 95.1,
      "p_b": 4.9,
      "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
-     "read_utc": "2026-10-15T23:12:00Z",
-     "note": "Polymarket (prediction market) implied probabilities 90.5% / 9.5% (native implied probability), normalised to 100% by proportional de-vig. Prediction market, not a bookmaker; only used where no bookmaker line exists for this fixture. Series length BO3 as stated by the pricing listing (Polymarket (prediction market)); Hotspawn states none. Polymarket opened a market for this card (cs2-mellre-pg5-2026-10-16, title states BO3) but the book is uninitialised: it prints 94\u00a2 for mellren and 93\u00a2 for Privateer Gaming (both sides above 90\u00a2, sum $1.87 for a $1 pair) with $0.00 volume. Ingesting those numbers would invent a ~50/50 that no trader believes, so the prices are refused (see refusals). The row keeps its originated line from the official Valve points (mellren 932 vs Privateer 608) cross-checked on HLTV (#94 vs #226), and the series length is taken from the market title only. Rating inputs: mellren 932 vs Privateer 608 official points; project 400-point logistic with independent-map series transform, BO3: 95.1%. This is an uncalibrated project estimate, not a Valve match forecast. Our own line for the same fixture, from the official ranking only: 90.5% for mellren (0.0 pp from the price this row is based on)."
+     "read_utc": "2026-10-16T05:15:19Z",
+     "note": "Polymarket (prediction market) implied probabilities 88.0% / 12.0% (native implied probability), normalised to 100% by proportional de-vig. Prediction market, not a bookmaker; only used where no bookmaker line exists for this fixture. Series length BO3 as stated by the pricing listing (Polymarket (prediction market)); Hotspawn states none. Polymarket opened a market for this card (cs2-mellre-pg5-2026-10-16, title states BO3) but the book is uninitialised: it prints 94\u00a2 for mellren and 93\u00a2 for Privateer Gaming (both sides above 90\u00a2, sum $1.87 for a $1 pair) with $0.00 volume. Ingesting those numbers would invent a ~50/50 that no trader believes, so the prices are refused (see refusals). The row keeps its originated line from the official Valve points (mellren 932 vs Privateer 608) cross-checked on HLTV (#94 vs #226), and the series length is taken from the market title only. Rating inputs: mellren 932 vs Privateer 608 official points; project 400-point logistic with independent-map series transform, BO3: 95.1%. This is an uncalibrated project estimate, not a Valve match forecast. Our own line for the same fixture, from the official ranking only: 88.0% for mellren (0.0 pp from the price this row is based on)."
     }
    ]
+  },
+  {
+   "fixture_id": "1081769",
+   "competition": "NODWIN Clutch Series #13",
+   "tier": "b",
+   "team_a": "ex-Zero Tenacity",
+   "team_b": "UNiTY",
+   "start_utc": "2026-10-16T14:00:00Z",
+   "lock_utc": "2026-10-16T13:54:00Z",
+   "state": "open",
+   "series_format": "BO3",
+   "format_source": "bo3.gg (match listed, no usable quote)",
+   "basis_rung": "none",
+   "basis_label": "no basis -- blank, not guessed",
+   "basis_detail": "",
+   "p_a_pct": null,
+   "p_b_pct": null,
+   "pick": "",
+   "pick_pct": null,
+   "margin_pp": null,
+   "confidence": "no basis",
+   "source_url": "",
+   "read_utc": "",
+   "hltv_match_url": "",
+   "hotspawn_match_url": "https://www.hotspawn.com/matches/ex-zero-tenacity-vs-unity-nodwin-clutch-series-13-1081769",
+   "board_flags": "MF-01;MF-05;FL-FORMAT-UNKNOWN;FL-NO-MARKET;FL-NO-SOURCED-PICK;FL-RATING-MISSING",
+   "flags": [
+    "C-NO-BASIS",
+    "C-NO-SECONDARY-MARKET",
+    "C-QUOTE-REJECTED"
+   ],
+   "market_candidates": [],
+   "own_line": null,
+   "research_lines": []
   },
   {
    "fixture_id": "1080289",
@@ -1045,7 +1263,7 @@
      "odds_b": "",
      "overround_pct": "",
      "url": "https://thunderpick.io/match/2807505",
-     "read_utc": "2026-10-15T23:15:31Z",
+     "read_utc": "2026-10-16T01:37:47Z",
      "caveat": "quote relayed by bo3.gg's public API, not read from the bookmaker's own site (MF-09); the bookmaker match URL is linked so the price can be checked by hand"
     },
     {
@@ -1065,13 +1283,13 @@
      "rung": 4,
      "rung_label": "prediction market \u00b7 Polymarket",
      "book": "Polymarket",
-     "p_a": 12.5,
-     "p_b": 87.5,
+     "p_a": 13.5,
+     "p_b": 86.5,
      "odds_a": "",
      "odds_b": "",
      "overround_pct": "",
      "url": "https://polymarket.com/event/cs2-voc-rgg-2026-10-16",
-     "read_utc": "2026-10-15T23:15:31Z",
+     "read_utc": "2026-10-16T01:37:47Z",
      "caveat": "prediction market (traded prices, no bookmaker margin, MF-10); thin books move quickly"
     }
    ],
@@ -1200,20 +1418,20 @@
      "odds_b": "",
      "overround_pct": "",
      "url": "https://thunderpick.io/match/2828222",
-     "read_utc": "2026-10-15T23:15:31Z",
+     "read_utc": "2026-10-16T01:37:47Z",
      "caveat": "quote relayed by bo3.gg's public API, not read from the bookmaker's own site (MF-09); the bookmaker match URL is linked so the price can be checked by hand"
     },
     {
      "rung": 4,
      "rung_label": "prediction market \u00b7 Polymarket",
      "book": "Polymarket",
-     "p_a": 66.5,
-     "p_b": 33.5,
+     "p_a": 67.5,
+     "p_b": 32.5,
      "odds_a": "",
      "odds_b": "",
      "overround_pct": "",
      "url": "https://polymarket.com/event/cs2-100t-sng2-2026-10-16",
-     "read_utc": "2026-10-15T23:15:31Z",
+     "read_utc": "2026-10-16T01:37:47Z",
      "caveat": "prediction market (traded prices, no bookmaker margin, MF-10); thin books move quickly"
     }
    ],
@@ -1237,8 +1455,8 @@
      "p_a": 73.3,
      "p_b": 26.7,
      "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
-     "read_utc": "2026-10-15T23:12:00Z",
-     "note": "Pinnacle whole-match moneyline 1.43 / 2.73 (native american), overround 6.33%, proportional de-vig. Series length BO3 as stated by the pricing listing (Pinnacle); Hotspawn states none. Rating inputs: 100 Thieves 1478 vs Sangal 1362 official points; project 400-point logistic with independent-map series transform, BO3: 73.3%. This is an uncalibrated project estimate, not a Valve match forecast. Our own line for the same fixture, from the official ranking only: 53.3% for 100 Thieves (12.2 pp from the price this row is based on)."
+     "read_utc": "2026-10-16T05:15:19Z",
+     "note": "Pinnacle whole-match moneyline 1.43 / 2.73 (native american), overround 6.33%, proportional de-vig. Series length BO3 as stated by the pricing listing (Pinnacle); Hotspawn states none. Rating inputs: 100 Thieves 1478 vs Sangal 1362 official points; project 400-point logistic with independent-map series transform, BO3: 73.3%. This is an uncalibrated project estimate, not a Valve match forecast. Our own line for the same fixture, from the official ranking only: 52.9% for 100 Thieves (12.6 pp from the price this row is based on)."
     }
    ]
   },
@@ -1252,39 +1470,27 @@
    "lock_utc": "2026-10-16T16:54:00Z",
    "state": "open",
    "series_format": "BO3",
-   "format_source": "Polymarket",
-   "basis_rung": "market-4",
-   "basis_label": "prediction market \u00b7 Polymarket",
-   "basis_detail": "Polymarket \u2014 prediction market (traded prices, no bookmaker margin, MF-10); thin books move quickly",
-   "p_a_pct": 68.5,
-   "p_b_pct": 31.5,
-   "pick": "BakS",
-   "pick_pct": 68.5,
-   "margin_pp": 37.0,
-   "confidence": "strong favourite",
-   "source_url": "https://polymarket.com/event/cs2-baks-g2a-2026-10-16",
-   "read_utc": "2026-10-15T23:15:31Z",
+   "format_source": "bo3.gg (match listed, no usable quote)",
+   "basis_rung": "unverified",
+   "basis_label": "own line withheld -- rating could not be confirmed at the cited line",
+   "basis_detail": "",
+   "p_a_pct": null,
+   "p_b_pct": null,
+   "pick": "",
+   "pick_pct": null,
+   "margin_pp": null,
+   "confidence": "no basis",
+   "source_url": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md?plain=1#L105",
+   "read_utc": "2026-10-16T05:15:19Z",
    "hltv_match_url": "",
    "hotspawn_match_url": "https://www.hotspawn.com/matches/baks-vs-g2-ares-cct-europe-2026-series-11-1079632",
-   "board_flags": "FL-FORMAT-UNKNOWN;FL-NO-MARKET;FL-NO-SOURCED-PICK;FL-RATING-MISSING;A-NO-FORMAT A-NO-LINE;A-NO-FORMAT A-NO-LINE",
+   "board_flags": "MF-01;MF-05;FL-FORMAT-UNKNOWN;FL-NO-MARKET;FL-NO-SOURCED-PICK;FL-RATING-MISSING;A-NO-FORMAT A-NO-LINE;A-NO-FORMAT A-NO-LINE",
    "flags": [
-    "C-PREDICTION-MARKET-PRICE"
+    "C-NO-SECONDARY-MARKET",
+    "C-OWN-LINE-UNVERIFIED",
+    "C-QUOTE-REJECTED"
    ],
-   "market_candidates": [
-    {
-     "rung": 4,
-     "rung_label": "prediction market \u00b7 Polymarket",
-     "book": "Polymarket",
-     "p_a": 68.5,
-     "p_b": 31.5,
-     "odds_a": "",
-     "odds_b": "",
-     "overround_pct": "",
-     "url": "https://polymarket.com/event/cs2-baks-g2a-2026-10-16",
-     "read_utc": "2026-10-15T23:15:31Z",
-     "caveat": "prediction market (traded prices, no bookmaker margin, MF-10); thin books move quickly"
-    }
-   ],
+   "market_candidates": [],
    "own_line": {
     "p_a": 58.6,
     "p_b": 41.4,
@@ -1300,6 +1506,74 @@
     "unverified_sides": []
    },
    "research_lines": []
+  },
+  {
+   "fixture_id": "1081775",
+   "competition": "Thunderpick World Championship 2026",
+   "tier": "s",
+   "team_a": "BetBoom",
+   "team_b": "Legacy",
+   "start_utc": "2026-10-16T17:00:00Z",
+   "lock_utc": "2026-10-16T16:54:00Z",
+   "state": "open",
+   "series_format": "BO3",
+   "format_source": "bo3.gg, Polymarket",
+   "basis_rung": "market-2",
+   "basis_label": "book \u00b7 relayed via bo3.gg",
+   "basis_detail": "Thunderpick \u2014 quote relayed by bo3.gg's public API, not read from the bookmaker's own site (MF-09); the bookmaker match URL is linked so the price can be checked by hand",
+   "p_a_pct": 37.19,
+   "p_b_pct": 62.81,
+   "pick": "Legacy",
+   "pick_pct": 62.81,
+   "margin_pp": 25.620000000000005,
+   "confidence": "strong favourite",
+   "source_url": "https://thunderpick.io/match/2832532",
+   "read_utc": "2026-10-16T01:37:48Z",
+   "hltv_match_url": "",
+   "hotspawn_match_url": "https://www.hotspawn.com/matches/betboom-vs-legacy-thunderpick-world-championship-2026-1081775",
+   "board_flags": "FL-FORMAT-FROM-LISTING;FL-MODEL-MARKET-SPLIT",
+   "flags": [
+    "C-RELAYED-BOOK-PRICE"
+   ],
+   "market_candidates": [
+    {
+     "rung": 2,
+     "rung_label": "book \u00b7 relayed via bo3.gg",
+     "book": "Thunderpick",
+     "p_a": 37.19,
+     "p_b": 62.81,
+     "odds_a": "",
+     "odds_b": "",
+     "overround_pct": "",
+     "url": "https://thunderpick.io/match/2832532",
+     "read_utc": "2026-10-16T01:37:48Z",
+     "caveat": "quote relayed by bo3.gg's public API, not read from the bookmaker's own site (MF-09); the bookmaker match URL is linked so the price can be checked by hand"
+    },
+    {
+     "rung": 4,
+     "rung_label": "prediction market \u00b7 Polymarket",
+     "book": "Polymarket",
+     "p_a": 33.5,
+     "p_b": 66.5,
+     "odds_a": "",
+     "odds_b": "",
+     "overround_pct": "",
+     "url": "https://polymarket.com/event/cs2-lgc-bb3-2026-10-16",
+     "read_utc": "2026-10-16T01:37:48Z",
+     "caveat": "prediction market (traded prices, no bookmaker margin, MF-10); thin books move quickly"
+    }
+   ],
+   "own_line": null,
+   "research_lines": [
+    {
+     "source": "executive/ (arena/5545dbb8) model line",
+     "p_a": 4.4,
+     "p_b": 95.6,
+     "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
+     "read_utc": "2026-10-16T05:15:19Z",
+     "note": "Thunderpick listing 2.50 / 1.48 (decimal), overround 7.57%, proportional de-vig. Secondary listing: the aggregator's own page is the source, not the book itself. Series length BO3 as stated by the pricing listing (Thunderpick); Hotspawn states none. Rating inputs: BETBOOM 1596 vs Legacy 1931 official points; project 400-point logistic with independent-map series transform, BO3: 4.4%. This is an uncalibrated project estimate, not a Valve match forecast. Our own line for the same fixture, from the official ranking only: 47.4% for BetBoom (10.2 pp from the price this row is based on)."
+    }
+   ]
   },
   {
    "fixture_id": "1080290",
@@ -1322,7 +1596,7 @@
    "margin_pp": 40.28,
    "confidence": "heavy favourite",
    "source_url": "https://thunderpick.io/match/2807508",
-   "read_utc": "2026-10-15T23:15:31Z",
+   "read_utc": "2026-10-16T01:37:47Z",
    "hltv_match_url": "https://www.hltv.org/matches/2399429/phantom-vs-havu-elisa-breakout-series-2",
    "hotspawn_match_url": "https://www.hotspawn.com/matches/phantom-vs-havu-elisa-breakout-series-2-1080290",
    "board_flags": "FL-FORMAT-FROM-LISTING;A-NO-FORMAT A-NO-LINE;E-02-AGGREGATOR-LINE;FL-NO-PERMALINK",
@@ -1340,7 +1614,7 @@
      "odds_b": "",
      "overround_pct": "",
      "url": "https://thunderpick.io/match/2807508",
-     "read_utc": "2026-10-15T23:15:31Z",
+     "read_utc": "2026-10-16T01:37:47Z",
      "caveat": "quote relayed by bo3.gg's public API, not read from the bookmaker's own site (MF-09); the bookmaker match URL is linked so the price can be checked by hand"
     },
     {
@@ -1360,13 +1634,13 @@
      "rung": 4,
      "rung_label": "prediction market \u00b7 Polymarket",
      "book": "Polymarket",
-     "p_a": 71.0,
-     "p_b": 29.0,
+     "p_a": 69.5,
+     "p_b": 30.5,
      "odds_a": "",
      "odds_b": "",
      "overround_pct": "",
      "url": "https://polymarket.com/event/cs2-pha-havu-2026-10-16",
-     "read_utc": "2026-10-15T23:15:31Z",
+     "read_utc": "2026-10-16T01:37:47Z",
      "caveat": "prediction market (traded prices, no bookmaker margin, MF-10); thin books move quickly"
     }
    ],
@@ -1411,10 +1685,144 @@
      "p_a": 77.0,
      "p_b": 23.0,
      "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
-     "read_utc": "2026-10-15T23:12:00Z",
-     "note": "Thunderpick listing 1.32 / 3.10 (decimal), overround 8.02%, proportional de-vig. Secondary listing: the aggregator's own page is the source, not the book itself. Series length BO1 as stated by the pricing listing (Thunderpick); Hotspawn states none. Rating inputs: Phantom 1147 vs HAVU 937 official points; project 400-point logistic with independent-map series transform, BO1: 77.0%. This is an uncalibrated project estimate, not a Valve match forecast. Our own line for the same fixture, from the official ranking only: 58.2% for Phantom (11.9 pp from the price this row is based on)."
+     "read_utc": "2026-10-16T05:15:19Z",
+     "note": "Thunderpick listing 1.32 / 3.10 (decimal), overround 8.02%, proportional de-vig. Secondary listing: the aggregator's own page is the source, not the book itself. Series length BO1 as stated by the pricing listing (Thunderpick); Hotspawn states none. Rating inputs: Phantom 1147 vs HAVU 937 official points; project 400-point logistic with independent-map series transform, BO1: 77.0%. This is an uncalibrated project estimate, not a Valve match forecast. Our own line for the same fixture, from the official ranking only: 57.3% for Phantom (12.8 pp from the price this row is based on)."
     }
    ]
+  },
+  {
+   "fixture_id": "1079170",
+   "competition": "NODWIN Clutch Series #13",
+   "tier": "b",
+   "team_a": "BET-M",
+   "team_b": "Just Players",
+   "start_utc": "2026-10-17T08:00:00Z",
+   "lock_utc": "2026-10-17T07:54:00Z",
+   "state": "open",
+   "series_format": "BO3",
+   "format_source": "bo3.gg (match listed, no usable quote)",
+   "basis_rung": "none",
+   "basis_label": "no basis -- blank, not guessed",
+   "basis_detail": "",
+   "p_a_pct": null,
+   "p_b_pct": null,
+   "pick": "",
+   "pick_pct": null,
+   "margin_pp": null,
+   "confidence": "no basis",
+   "source_url": "",
+   "read_utc": "",
+   "hltv_match_url": "",
+   "hotspawn_match_url": "https://www.hotspawn.com/matches/bet-m-vs-just-players-nodwin-clutch-series-13-1079170",
+   "board_flags": "MF-01;FL-FORMAT-UNKNOWN;FL-IDENTITY-UNVERIFIED;FL-NO-MARKET;FL-NO-SOURCED-PICK;FL-RATING-MISSING",
+   "flags": [
+    "C-NO-BASIS",
+    "C-NO-SECONDARY-MARKET"
+   ],
+   "market_candidates": [],
+   "own_line": null,
+   "research_lines": []
+  },
+  {
+   "fixture_id": "1079171",
+   "competition": "NODWIN Clutch Series #13",
+   "tier": "b",
+   "team_a": "GenOne",
+   "team_b": "Butterfly",
+   "start_utc": "2026-10-17T11:00:00Z",
+   "lock_utc": "2026-10-17T10:54:00Z",
+   "state": "open",
+   "series_format": "BO3",
+   "format_source": "bo3.gg (match listed, no usable quote)",
+   "basis_rung": "none",
+   "basis_label": "no basis -- blank, not guessed",
+   "basis_detail": "",
+   "p_a_pct": null,
+   "p_b_pct": null,
+   "pick": "",
+   "pick_pct": null,
+   "margin_pp": null,
+   "confidence": "no basis",
+   "source_url": "",
+   "read_utc": "",
+   "hltv_match_url": "",
+   "hotspawn_match_url": "https://www.hotspawn.com/matches/genone-vs-butterfly-nodwin-clutch-series-13-1079171",
+   "board_flags": "MF-01;FL-FORMAT-UNKNOWN;FL-NO-MARKET;FL-NO-SOURCED-PICK;FL-RATING-MISSING",
+   "flags": [
+    "C-NO-BASIS",
+    "C-NO-SECONDARY-MARKET"
+   ],
+   "market_candidates": [],
+   "own_line": null,
+   "research_lines": []
+  },
+  {
+   "fixture_id": "1079173",
+   "competition": "NODWIN Clutch Series #13",
+   "tier": "b",
+   "team_a": "BakS",
+   "team_b": "Fire Flux",
+   "start_utc": "2026-10-17T17:00:00Z",
+   "lock_utc": "2026-10-17T16:54:00Z",
+   "state": "open",
+   "series_format": "BO3",
+   "format_source": "bo3.gg (match listed, no usable quote)",
+   "basis_rung": "none",
+   "basis_label": "no basis -- blank, not guessed",
+   "basis_detail": "",
+   "p_a_pct": null,
+   "p_b_pct": null,
+   "pick": "",
+   "pick_pct": null,
+   "margin_pp": null,
+   "confidence": "no basis",
+   "source_url": "",
+   "read_utc": "",
+   "hltv_match_url": "",
+   "hotspawn_match_url": "https://www.hotspawn.com/matches/baks-vs-fire-flux-nodwin-clutch-series-13-1079173",
+   "board_flags": "MF-01;FL-FORMAT-UNKNOWN;FL-NO-MARKET;FL-NO-SOURCED-PICK;FL-RATING-MISSING",
+   "flags": [
+    "C-NO-BASIS",
+    "C-NO-SECONDARY-MARKET"
+   ],
+   "market_candidates": [],
+   "own_line": null,
+   "research_lines": []
+  },
+  {
+   "fixture_id": "1081126",
+   "competition": "CCT Europe 2026 Series #12 Play-In",
+   "tier": "c",
+   "team_a": "Banda chuya",
+   "team_b": "Enjoy",
+   "start_utc": "2026-10-18T08:00:00Z",
+   "lock_utc": "2026-10-18T07:54:00Z",
+   "state": "open",
+   "series_format": "",
+   "format_source": "",
+   "basis_rung": "none",
+   "basis_label": "no basis -- blank, not guessed",
+   "basis_detail": "",
+   "p_a_pct": null,
+   "p_b_pct": null,
+   "pick": "",
+   "pick_pct": null,
+   "margin_pp": null,
+   "confidence": "no basis",
+   "source_url": "",
+   "read_utc": "",
+   "hltv_match_url": "",
+   "hotspawn_match_url": "https://www.hotspawn.com/matches/banda-chuya-vs-enjoy-cct-europe-2026-series-12-play-in-1081126",
+   "board_flags": "MF-01;MF-02;FL-FORMAT-UNKNOWN;FL-IDENTITY-UNVERIFIED;FL-NO-MARKET;FL-NO-SOURCED-PICK;FL-RANK-MISSING;FL-RATING-MISSING",
+   "flags": [
+    "C-FORMAT-UNKNOWN",
+    "C-NO-BASIS",
+    "C-NO-SECONDARY-MARKET",
+    "C-OPPONENT-CONFLICT"
+   ],
+   "market_candidates": [],
+   "own_line": null,
+   "research_lines": []
   },
   {
    "fixture_id": "1081526",
@@ -1471,10 +1879,10 @@
    "margin_pp": 9.379999999999995,
    "confidence": "narrow favourite",
    "source_url": "https://refpa04636.pro/L?tag=d_4812392m_129584c_bo3_odds_ww&site=4812392&ad=129584&utm_source=bo3_odds_ww&utm_medium=fix&r=/en/line/Esports/2894898-CS-2-DraculaN/379139476-aimclub-BASEMENT-BOYS",
-   "read_utc": "2026-10-15T23:15:31Z",
+   "read_utc": "2026-10-16T01:37:47Z",
    "hltv_match_url": "",
    "hotspawn_match_url": "",
-   "board_flags": "MF-05;FL-FORMAT-UNKNOWN;FL-IDENTITY-UNVERIFIED;FL-NO-MARKET;FL-NO-SOURCED-PICK;FL-RATING-MISSING;A-NO-FORMAT A-NO-LINE A-VRS-DUP;A-NO-FORMAT A-NO-LINE A-VRS-DUP",
+   "board_flags": "MF-05;FL-FORMAT-FROM-LISTING;FL-IDENTITY-UNVERIFIED;FL-RATING-MISSING;A-NO-FORMAT A-NO-LINE A-VRS-DUP;A-NO-FORMAT A-NO-LINE A-VRS-DUP",
    "flags": [
     "C-MARKET-MODEL-SPLIT",
     "C-QUOTE-REJECTED",
@@ -1491,7 +1899,7 @@
      "odds_b": "",
      "overround_pct": "",
      "url": "https://refpa04636.pro/L?tag=d_4812392m_129584c_bo3_odds_ww&site=4812392&ad=129584&utm_source=bo3_odds_ww&utm_medium=fix&r=/en/line/Esports/2894898-CS-2-DraculaN/379139476-aimclub-BASEMENT-BOYS",
-     "read_utc": "2026-10-15T23:15:31Z",
+     "read_utc": "2026-10-16T01:37:47Z",
      "caveat": "quote relayed by bo3.gg's public API, not read from the bookmaker's own site (MF-09); the bookmaker match URL is linked so the price can be checked by hand"
     }
    ],
@@ -1532,7 +1940,7 @@
    "margin_pp": null,
    "confidence": "no basis",
    "source_url": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md?plain=1#L55",
-   "read_utc": "2026-10-15T23:12:00Z",
+   "read_utc": "2026-10-16T05:15:19Z",
    "hltv_match_url": "",
    "hotspawn_match_url": "",
    "board_flags": "MF-01;MF-05;FL-FORMAT-UNKNOWN;FL-NO-MARKET;FL-NO-SOURCED-PICK;FL-RATING-MISSING;A-NO-FORMAT A-NO-LINE;A-NO-FORMAT A-NO-LINE",
@@ -1579,7 +1987,7 @@
    "margin_pp": 7.519999999999996,
    "confidence": "narrow favourite",
    "source_url": "https://thunderpick.io/match/2807397",
-   "read_utc": "2026-10-15T23:15:31Z",
+   "read_utc": "2026-10-16T01:37:47Z",
    "hltv_match_url": "",
    "hotspawn_match_url": "",
    "board_flags": "MF-05;FL-FORMAT-UNKNOWN;FL-IDENTITY-UNVERIFIED;FL-NO-MARKET;FL-NO-SOURCED-PICK;FL-RANK-MISSING;FL-RATING-MISSING;A-ALIAS A-NO-FORMAT A-NO-LINE;A-ALIAS A-NO-FORMAT A-NO-LINE",
@@ -1599,7 +2007,7 @@
      "odds_b": "",
      "overround_pct": "",
      "url": "https://thunderpick.io/match/2807397",
-     "read_utc": "2026-10-15T23:15:31Z",
+     "read_utc": "2026-10-16T01:37:47Z",
      "caveat": "quote relayed by bo3.gg's public API, not read from the bookmaker's own site (MF-09); the bookmaker match URL is linked so the price can be checked by hand"
     }
    ],
@@ -1640,7 +2048,7 @@
    "margin_pp": 31.699999999999996,
    "confidence": "strong favourite",
    "source_url": "https://thunderpick.io/match/2825162",
-   "read_utc": "2026-10-15T23:15:31Z",
+   "read_utc": "2026-10-16T01:37:47Z",
    "hltv_match_url": "",
    "hotspawn_match_url": "",
    "board_flags": "MF-05;FL-FORMAT-FROM-LISTING;FL-MODEL-MARKET-SPLIT;A-NO-FORMAT A-NO-LINE;A-NO-FORMAT A-NO-LINE",
@@ -1659,7 +2067,7 @@
      "odds_b": "",
      "overround_pct": "",
      "url": "https://thunderpick.io/match/2825162",
-     "read_utc": "2026-10-15T23:15:31Z",
+     "read_utc": "2026-10-16T01:37:47Z",
      "caveat": "quote relayed by bo3.gg's public API, not read from the bookmaker's own site (MF-09); the bookmaker match URL is linked so the price can be checked by hand"
     }
    ],
@@ -1683,8 +2091,8 @@
      "p_a": 91.6,
      "p_b": 8.4,
      "url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
-     "read_utc": "2026-10-15T23:12:00Z",
-     "note": "Thunderpick listing 1.40 / 2.70 (decimal), overround 8.47%, proportional de-vig. Secondary listing: the aggregator's own page is the source, not the book itself. Series length BO1 as stated by the pricing listing (Thunderpick); Hotspawn states none. Rating inputs: Iberian Soul 1218 vs HYPERSPIRIT 803 official points; project 400-point logistic with independent-map series transform, BO1: 91.6%. This is an uncalibrated project estimate, not a Valve match forecast. Our own line for the same fixture, from the official ranking only: 74.5% for Iberian Soul (8.6 pp from the price this row is based on)."
+     "read_utc": "2026-10-16T05:15:19Z",
+     "note": "Thunderpick listing 1.40 / 2.70 (decimal), overround 8.47%, proportional de-vig. Secondary listing: the aggregator's own page is the source, not the book itself. Series length BO1 as stated by the pricing listing (Thunderpick); Hotspawn states none. Rating inputs: Iberian Soul 1218 vs HYPERSPIRIT 803 official points; project 400-point logistic with independent-map series transform, BO1: 91.6%. This is an uncalibrated project estimate, not a Valve match forecast. Our own line for the same fixture, from the official ranking only: 72.2% for Iberian Soul (6.3 pp from the price this row is based on)."
     }
    ]
   },
@@ -1709,7 +2117,7 @@
    "margin_pp": 25.620000000000005,
    "confidence": "strong favourite",
    "source_url": "https://thunderpick.io/match/2807395",
-   "read_utc": "2026-10-15T23:15:31Z",
+   "read_utc": "2026-10-16T01:37:47Z",
    "hltv_match_url": "",
    "hotspawn_match_url": "",
    "board_flags": "MF-05;FL-FORMAT-FROM-LISTING;FL-IDENTITY-UNVERIFIED;FL-RANK-MISSING;FL-RATING-MISSING;A-NO-FORMAT A-NO-LINE A-VRS-DUP;A-NO-FORMAT A-NO-LINE A-VRS-DUP",
@@ -1728,7 +2136,7 @@
      "odds_b": "",
      "overround_pct": "",
      "url": "https://thunderpick.io/match/2807395",
-     "read_utc": "2026-10-15T23:15:31Z",
+     "read_utc": "2026-10-16T01:37:47Z",
      "caveat": "quote relayed by bo3.gg's public API, not read from the bookmaker's own site (MF-09); the bookmaker match URL is linked so the price can be checked by hand"
     }
    ],
@@ -1769,7 +2177,7 @@
    "margin_pp": null,
    "confidence": "no basis",
    "source_url": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md?plain=1#L96",
-   "read_utc": "2026-10-15T23:12:00Z",
+   "read_utc": "2026-10-16T05:15:19Z",
    "hltv_match_url": "",
    "hotspawn_match_url": "",
    "board_flags": "MF-01;MF-05;FL-FORMAT-UNKNOWN;FL-IDENTITY-UNVERIFIED;FL-NO-MARKET;FL-NO-SOURCED-PICK;FL-RATING-MISSING;A-NO-FORMAT A-NO-LINE A-VRS-DUP;A-NO-FORMAT A-NO-LINE A-VRS-DUP",

@@ -11,8 +11,8 @@ Probability ladder (first rung that resolves wins; every rung is labelled on the
 Hotspawn's crowd pick share is NEVER a probability input.  It is used only afterwards, by the
 leaderboard-strategy rule, as "ownership": how many other players already hold each side.
 
-Leaderboard rule v2 ("contrarian but not stupid"), applied to open fixtures with a probability.
-  The underdog's "real chance" is the CONSENSUS of the independent estimates we hold (the market rung
+Leaderboard heuristic v3 (evidence eligibility) ("contrarian but not stupid"), applied to open fixtures with a probability.
+  The underdog's "real chance" is a heuristic average of the separately sourced estimates we hold (not statistically independent) (the market rung
   A/B and our own line, averaged; our line is left out when a verified roster change post-dates Valve's
   snapshot and a market exists); MIN is the lowest of them.  Only "strong" or "moderate" verified
   factors count (roster change, stand-in, late replacement); "weak" ones (e.g. schedule) never do.
@@ -31,6 +31,7 @@ from __future__ import annotations
 import csv
 import sys
 from datetime import timedelta
+from evidence import select_quote, select_match_metadata
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -54,15 +55,23 @@ FLAG_TEXT = {
     "NO_MARKET": "No outside price found; the probability is our own line from official Valve points.",
     "MODEL_MARKET_SPLIT": "Our own line and the market disagree on the favourite or by 10+ points.",
     "BOOK_PM_SPLIT": "Pinnacle and Polymarket differ by 8+ points.",
-    "VRS_ROSTER_OUTDATED": "A verified roster change happened after Valve's latest standings, so Valve points describe a different five.",
+    "ROSTER_UNVERIFIED": "A match-specific roster report does not verify this fixture’s current lineup; own probabilities withheld and factual lineup left blank.",
+    "VRS_ROSTER_OUTDATED": "A source-checked lineup differs from the five rated in Valve's snapshot; the dated rating does not establish the actual current lineup.",
     "FORMAT_UNKNOWN": "No source stated the series length; nothing was assumed.",
-    "UNRESOLVED": "No outside price and at least one team cannot be uniquely matched to Valve's standings (missing or ambiguous roster entry); pick left blank.",
+    "UNRESOLVED": "No eligible outside line or independent direction satisfies the evidence gates; pick and probabilities are left blank.",
     "STALE_LISTING": "Hotspawn still lists this fixture although its lock time passed more than 36 h ago (not pickable).",
     "LOCKED": "Lock time has passed; kept for the record and for grading.",
     "CROWD_MISSING": "Hotspawn did not publish a crowd share; no leaderboard play computed.",
     "HOTSPAWN_PARTIAL": "Not every Hotspawn page was read successfully in this capture.",
-    "COIN_FLIP": "Probabilities within one point of 50%; pick follows our own line.",
-    "STALE_PRICE": "The outside price was read more than 8 h before this build.",
+    "COIN_FLIP": "Probabilities within one point of 50%; no meaningful directional edge. Only an exact tie may use the eligible own line as a tiebreaker.",
+    "STALE_PRICE": "An outside quote is missing a usable read time or is older than 8 h; rejected, not used.",
+    "REJECTED_QUOTE": "A same-pair quote was rejected (competition, rematch ambiguity, freshness, format, or validity); see the row's evidence.",
+    "RELAYED_BOOK": "A named sportsbook line relayed by bo3.gg; not verified directly with the bookmaker. Secondary evidence only.",
+    "VRS_STALE": "Valve's rating snapshot has no usable date, is future-dated, or is more than 45 days old; an own-line probability is withheld.",
+    "OWN_LINE_WITHHELD": "An own line is not supported for this fixture's known roster/format/rating freshness; blank rather than invented.",
+    "IDENTITY_CONFLICT": "Hotspawn surfaces disagree on fixture identity or timing; no probability is published for this ID.",
+    "NO_DIRECTION": "The eligible outside price is exactly 50/50 and no eligible independent line breaks the tie; no side invented.",
+    "MODEL_ONLY": "Own originated estimate, not an observed bookmaker line; format-specific calibration and map veto are not modelled.",
 }
 
 
@@ -91,30 +100,19 @@ def unique(index: dict, key: str):
     return hits[0] if len(hits) == 1 else None
 
 
-def match_quote(fx: dict, quotes: list[dict], aliases: Aliases) -> tuple[dict | None, bool]:
-    """Best quote for the fixture (both teams equal after aliasing, kickoff gap <= 6 h)."""
-    ka, kb = aliases.key(fx["team_a"]), aliases.key(fx["team_b"])
-    best, best_gap = None, None
-    for q in quotes or []:
-        qa, qb = aliases.key(q.get("team_a", "")), aliases.key(q.get("team_b", ""))
-        if {qa, qb} != {ka, kb} or ka == kb:
-            continue
-        gap = hours_between(q.get("start_utc"), fx["start_utc"])
-        if gap is None or abs(gap) > MAX_KICKOFF_GAP_H:
-            continue
-        if best is None or abs(gap) < abs(best_gap):
-            best, best_gap = dict(q), gap
-            best["flipped"] = (qa != ka)
-            best["gap_h"] = round(gap, 2)
-    alias = bool(best) and any(aliases.used(n) for n in (fx["team_a"], fx["team_b"], best.get("team_a", ""), best.get("team_b", "")))
-    return best, alias
+def match_quote(fx: dict, quotes: list[dict], aliases: Aliases, reference: str | None = None,
+                fixtures: list[dict] | None = None, rejections: list[dict] | None = None,
+                expected_format: str | None = None) -> tuple[dict | None, bool]:
+    return select_quote(fx, quotes, aliases, reference, fixtures, rejections, expected_format)
 
 
-def active_notes(team_key: str, start_utc: str, notes: list[dict]) -> list[dict]:
+def active_notes(team_key: str, start_utc: str, notes: list[dict], match_id: str | None = None) -> list[dict]:
     start = parse_iso(start_utc)
     out = []
     for n in notes:
         if n.get("team") != team_key:
+            continue
+        if n.get("match_ids") and str(match_id) not in {str(mid) for mid in n["match_ids"]}:
             continue
         until = parse_iso(f"{n.get('relevant_until')}T23:59:59Z") if n.get("relevant_until") else None
         since = parse_iso(f"{n.get('as_of')}T00:00:00Z") if n.get("as_of") else None
@@ -159,13 +157,16 @@ def strategy(row: dict) -> dict | None:
         return None
     if ca is None or cb is None or (ca + cb) <= 0:
         return {"class": "NO CROWD DATA", "leaderboard_pick": row.get("pick"), "reason": "Hotspawn published no crowd share."}
+    if row.get("total_picks") is not None and row["total_picks"] < 10:
+        return {"class": "NO CROWD DATA", "leaderboard_pick": row.get("pick"),
+                "reason": "Fewer than 10 crowd picks; ownership is too sparse for an automatic fade."}
     ca, cb = ca / (ca + cb), cb / (ca + cb)
     estimates_a = [("own line" if row.get("rung") == "C" else "market", pa)]
     roster_outdated = "VRS_ROSTER_OUTDATED" in (row.get("flags") or [])
     if row.get("own_p_a") is not None and row.get("rung") != "C" and not roster_outdated:
         estimates_a.append(("own line", row["own_p_a"]))
     cons_a = sum(v for _, v in estimates_a) / len(estimates_a)
-    fav_is_a = cons_a >= 0.5
+    fav_is_a = (row.get("pick") == row["team_a"]) if pa == pb else pa > pb
     fav, dog = (row["team_a"], row["team_b"]) if fav_is_a else (row["team_b"], row["team_a"])
     dog_vals = [(1 - v) if fav_is_a else v for _, v in estimates_a]
     p_dog = sum(dog_vals) / len(dog_vals)
@@ -218,6 +219,9 @@ def build_rows(inp: dict) -> tuple[list[dict], dict]:
     hltv_idx = index_by_key(hltv.get("teams", []), aliases)
     pin_quotes = cap.get("pinnacle", {}).get("quotes", [])
     pm_quotes = cap.get("polymarket", {}).get("quotes", [])
+    relay_quotes = cap.get("esportsbooks", {}).get("quotes", [])
+    research_by_id = {str(a.get("match_id")): a for a in cap.get("gap_research", {}).get("hltv", [])}
+    conflicts = {str(c.get("match_id")) for c in hs.get("conflicts", [])}
     links = inp["hltv_links"].get("fixtures", {})
     events = inp["hltv_links"].get("events", {})
     rows = []
@@ -235,6 +239,8 @@ def build_rows(inp: dict) -> tuple[list[dict], dict]:
         else:
             r["status"] = "locked"
         flags: list[str] = []
+        r["rejected_quotes"] = []
+        r["research_attempt"] = research_by_id.get(str(fx["match_id"]))
         if r["status"] == "stale":
             flags.append("STALE_LISTING")
         elif r["status"] == "locked":
@@ -253,8 +259,11 @@ def build_rows(inp: dict) -> tuple[list[dict], dict]:
         r["hltv_url"] = link.get("hltv") or (event_url if event_url.startswith("https://www.hltv.org/events/") else None)
         r["hltv_note"] = link.get("note")
         fmt, fmt_src = link.get("format") or "", "HLTV match page" if link.get("format") else ""
-        # ---- A: Pinnacle
-        book, alias_b = match_quote(fx, pin_quotes, aliases)
+        researched = r.get("research_attempt") or {}
+        if researched.get("format") and not fmt:
+            fmt, fmt_src = researched["format"], "HLTV live match-page read"
+        # ---- A: Pinnacle. All sources must match teams + competition + unambiguous kickoff + freshness.
+        book, alias_b = match_quote(fx, pin_quotes, aliases, iso(ref), fixtures, r["rejected_quotes"], fmt)
         if book:
             oa, ob = (book["odds_b"], book["odds_a"]) if book["flipped"] else (book["odds_a"], book["odds_b"])
             dv = devig_two_way(oa, ob)
@@ -272,8 +281,30 @@ def build_rows(inp: dict) -> tuple[list[dict], dict]:
                 age = hours_between(iso(ref), book.get("read_utc"))
                 if age is not None and age > 8:
                     flags.append("STALE_PRICE")
+        if "book" not in r and not fmt:
+            metadata = select_match_metadata(fx, cap.get("esportsbooks", {}).get("matches", []), aliases, iso(ref), fixtures)
+            if metadata:
+                fmt, fmt_src = f"BO{metadata['best_of']}", "bo3.gg match metadata (secondary)"
+                r["format_evidence"] = {"url": metadata.get("source_url"), "read_utc": metadata.get("read_utc")}
+        # ---- Secondary book relay is queried only for gaps; keep its provenance distinct from Pinnacle.
+        if "book" not in r:
+            relay, alias_r = match_quote(fx, relay_quotes, aliases, iso(ref), fixtures, r["rejected_quotes"], fmt)
+            if relay:
+                oa, ob = (relay["odds_b"], relay["odds_a"]) if relay["flipped"] else (relay["odds_a"], relay["odds_b"])
+                dv = devig_two_way(oa, ob)
+                if dv:
+                    r["relay"] = {"provider": relay.get("provider"), "odds_a": oa, "odds_b": ob,
+                                  "p_a": round(dv[0], 4), "p_b": round(dv[1], 4), "overround_pct": round(dv[2], 2),
+                                  "read_utc": relay.get("read_utc"), "url": relay.get("source_url"),
+                                  "provider_url": relay.get("provider_url"), "api_url": relay.get("api_url"),
+                                  "listed_start": relay.get("start_utc"), "gap_h": relay.get("gap_h")}
+                    flags.append("RELAYED_BOOK")
+                    if not fmt and relay.get("best_of") in (1,3,5,7):
+                        fmt, fmt_src = f"BO{relay['best_of']}", "bo3.gg match record"
+                    if abs(relay.get("gap_h") or 0) > 0.01: flags.append("KICKOFF_GAP")
+                    if alias_r: flags.append("ALIAS")
         # ---- B: Polymarket
-        pmq, alias_p = match_quote(fx, pm_quotes, aliases)
+        pmq, alias_p = match_quote(fx, pm_quotes, aliases, iso(ref), fixtures, r["rejected_quotes"], fmt)
         if pmq:
             pa_, pb_ = (pmq["price_b"], pmq["price_a"]) if pmq["flipped"] else (pmq["price_a"], pmq["price_b"])
             nz = normalise_prices(pa_, pb_)
@@ -309,6 +340,8 @@ def build_rows(inp: dict) -> tuple[list[dict], dict]:
         # ---- choose the rung
         if "book" in r:
             r["p_a"], r["p_b"], r["basis"], r["rung"] = r["book"]["p_a"], r["book"]["p_b"], "Pinnacle odds, margin removed", "A"
+        elif "relay" in r:
+            r["p_a"], r["p_b"], r["basis"], r["rung"] = r["relay"]["p_a"], r["relay"]["p_b"], f"Secondary sportsbook relay: {r['relay']['provider']} via bo3.gg (not direct-book verified)", "B"
         elif "pm" in r:
             r["p_a"], r["p_b"], r["basis"], r["rung"] = r["pm"]["p_a"], r["pm"]["p_b"], "Polymarket price (prediction market)", "B"
         elif r["own_p_a"] is not None:
@@ -325,23 +358,16 @@ def build_rows(inp: dict) -> tuple[list[dict], dict]:
         if r["p_a"] is not None and r["own_p_a"] is not None and r["rung"] in ("A", "B"):
             if (r["p_a"] - 0.5) * (r["own_p_a"] - 0.5) < 0 or abs(r["p_a"] - r["own_p_a"]) * 100 >= SPLIT_PP:
                 flags.append("MODEL_MARKET_SPLIT")
-        # ---- pick
-        r["pick"], r["pick_p"] = None, None
-        if r["p_a"] is not None:
-            if abs(r["p_a"] - 0.5) < 0.01 and r["own_p_a"] is not None and abs(r["own_p_a"] - 0.5) >= 0.01:
-                a_wins = r["own_p_a"] > 0.5
-                flags.append("COIN_FLIP")
-            else:
-                a_wins = r["p_a"] >= r["p_b"]
-            r["pick"] = r["team_a"] if a_wins else r["team_b"]
-            r["pick_p"] = r["p_a"] if a_wins else r["p_b"]
         # ---- situational factors (research notes + automated Valve roster age)
         factors = []
         for side, key, team in (("a", ka, va), ("b", kb, vb)):
-            for n in active_notes(key, fx["start_utc"], inp["notes"]):
+            for n in active_notes(key, fx["start_utc"], inp["notes"], fx["match_id"]):
                 factors.append({"side": side, "team": fx[f"team_{side}"], "kind": n.get("kind"), "summary": n.get("summary"),
-                                "argues_against": n.get("risk_for") == key, "strength": n.get("strength", "weak"),
-                                "source_urls": n.get("source_urls", []), "read_utc": n.get("read_utc")})
+                                "argues_against": n.get("verification_status") != "unverified" and n.get("risk_for") == key, "strength": "weak" if n.get("verification_status") == "unverified" else n.get("strength", "weak"),
+                                "source_urls": n.get("source_urls", []), "read_utc": n.get("read_utc"),
+                                "checked_date_utc": n.get("checked_date_utc"), "verification_status": n.get("verification_status")})
+                if n.get("withhold_own_line"):
+                    flags.append("ROSTER_UNVERIFIED")
                 if team and (n.get("players_in") or n.get("players_out")):
                     roster = {p.casefold() for p in team.get("roster", [])}
                     stale_out = [x for x in n.get("players_out", []) if x.casefold() in roster]
@@ -354,6 +380,57 @@ def build_rows(inp: dict) -> tuple[list[dict], dict]:
                                 "argues_against": True, "strength": "moderate",
                                 "source_urls": [vrs.get("url")] if vrs.get("url") else [], "automated": True})
         r["factors"] = factors
+        # Verify eligibility BEFORE an own line can drive a pick or the leverage consensus.
+        vrs_age = hours_between(iso(ref), str(vrs.get("as_of") or "") + "T00:00:00Z")
+        own_reasons = []
+        if "ROSTER_UNVERIFIED" in flags:
+            own_reasons.append("current lineup unresolved after a match-specific roster report")
+        if "VRS_ROSTER_OUTDATED" in flags:
+            own_reasons.append("verified lineup differs from Valve's five")
+        if vrs_age is None or vrs_age < 0 or vrs_age > 45 * 24:
+            own_reasons.append("Valve snapshot missing a usable date or older than 45 days")
+            if va and vb: flags.append("VRS_STALE")
+        if not fmt:
+            own_reasons.append("series format not independently confirmed")
+        if not va or not vb:
+            own_reasons.append("one or both teams not uniquely identified in Valve standings")
+        r["own_line_limitation"] = "; ".join(own_reasons)
+        if own_reasons:
+            r["own_p_a"] = r["own_p_b"] = None
+            if va and vb: flags.append("OWN_LINE_WITHHELD")
+            flags = [f for f in flags if f != "MODEL_MARKET_SPLIT"]
+            if r["rung"] == "C":
+                r["p_a"] = r["p_b"] = None
+                r["rung"], r["basis"] = "D", "Unresolved: " + r["own_line_limitation"]
+        elif r["rung"] == "C":
+            flags.append("MODEL_ONLY")
+        if str(r["match_id"]) in conflicts:
+            flags.append("IDENTITY_CONFLICT")
+            r["own_p_a"] = r["own_p_b"] = r["p_a"] = r["p_b"] = None
+            r["rung"], r["basis"] = "D", "Unresolved: conflicting Hotspawn fixture records"
+        if r["rejected_quotes"] and r["status"] == "open":
+            flags.append("REJECTED_QUOTE")
+            if any("older than 8 h" in reason for q in r["rejected_quotes"] for reason in q["reasons"]):
+                flags.append("STALE_PRICE")
+        # Headline pick always follows the larger published probability. A genuine exact tie can
+        # use an eligible independent estimate, but an arbitrary first-listed team is never a pick.
+        r["pick"] = r["pick_p"] = None
+        if r["p_a"] is not None:
+            if abs(r["p_a"] - 0.5) < 0.01: flags.append("COIN_FLIP")
+            if r["p_a"] == r["p_b"]:
+                if r["own_p_a"] is not None and r["own_p_a"] != 0.5:
+                    a_wins = r["own_p_a"] > 0.5
+                else:
+                    flags.append("NO_DIRECTION")
+                    r["rung"], r["basis"] = "D", "Unresolved: exact tie, no supported direction"
+                    r["p_a"] = r["p_b"] = None
+                    a_wins = None
+            else:
+                a_wins = r["p_a"] > r["p_b"]
+            if a_wins is not None:
+                r["pick"] = r["team_a"] if a_wins else r["team_b"]
+                r["pick_p"] = r["p_a"] if a_wins else r["p_b"]
+        if r["rung"] == "D" and r["status"] == "open": flags.append("UNRESOLVED")
         r["flags"] = sorted(set(flags))
         r["strategy"] = strategy(r) if r["status"] == "open" else None
         if r["status"] == "open" and r["strategy"] and r["strategy"]["class"] == "NO CROWD DATA":
@@ -361,6 +438,8 @@ def build_rows(inp: dict) -> tuple[list[dict], dict]:
         r["flags"] = sorted(set(flags))
         srcs = [u for u in [fx.get("source_url"), r.get("hotspawn_match_url"), r.get("hltv_url"),
                             (r.get("book") or {}).get("url"), (r.get("pm") or {}).get("url"),
+                            (r.get("relay") or {}).get("url"), (r.get("relay") or {}).get("provider_url"),
+                            (r.get("research_attempt") or {}).get("url"), (r.get("format_evidence") or {}).get("url"),
                             vrs.get("url") if (va or vb) else None] if u]
         r["sources"] = list(dict.fromkeys(srcs))
         rows.append(r)
@@ -369,12 +448,19 @@ def build_rows(inp: dict) -> tuple[list[dict], dict]:
             "pinnacle": {k2: cap.get("pinnacle", {}).get(k2) for k2 in ("status", "read_utc", "page_url", "markets_url", "error")},
             "polymarket": {k2: cap.get("polymarket", {}).get(k2) for k2 in ("status", "read_utc", "error")},
             "hotspawn": {"pages": hs.get("pages", []), "complete": hs.get("complete"), "week": hs.get("week"),
-                         "stale_carry": hs.get("stale_carry")},
+                         "stale_carry": hs.get("stale_carry"), "conflicts": hs.get("conflicts", [])},
+            "esportsbooks": {"status": cap.get("esportsbooks", {}).get("status", "not requested")},
             "calibration": {k2: calib.get(k2) for k2 in ("status", "k", "k_source", "n_train", "n_test", "holdout", "valve_commit", "last_window")}}
     return rows, meta
 
 
 def update_history(rows: list[dict], history: dict, ref_iso: str) -> dict:
+    # Rows may disappear from the next Hotspawn payload. Freeze their existing pre-lock record too.
+    ref = parse_iso(ref_iso)
+    for record in history.values():
+        lock = parse_iso(record.get("lock_utc"))
+        if ref and lock and lock <= ref:
+            record["frozen"] = True
     for r in rows:
         mid = str(r["match_id"])
         if r["status"] == "open" and r.get("pick"):
@@ -382,7 +468,7 @@ def update_history(rows: list[dict], history: dict, ref_iso: str) -> dict:
                             "start_utc": r["start_utc"], "lock_utc": r["lock_utc"], "points": r["points"],
                             "pick": r["pick"], "pick_p": r["pick_p"], "p_a": r["p_a"], "p_b": r["p_b"], "basis": r["basis"],
                             "leaderboard_pick": (r.get("strategy") or {}).get("leaderboard_pick"),
-                            "class": (r.get("strategy") or {}).get("class"),
+                            "class": (r.get("strategy") or {}).get("class"), "rule_version": "v3-evidence-2026-10-16",
                             "crowd_a": r.get("crowd_a"), "crowd_b": r.get("crowd_b"), "as_of": ref_iso, "frozen": False}
         elif mid in history and r["status"] != "open":
             history[mid]["frozen"] = True
@@ -404,7 +490,7 @@ def day1_review(inp: dict, k: float) -> list[dict]:
         notes = []
         for side in ("a", "b"):
             key = aliases.key(m[f"team_{side}"])
-            for n in active_notes(key, m["start_utc"], inp["notes"]):
+            for n in active_notes(key, m["start_utc"], inp["notes"], m["hotspawn_id"]):
                 notes.append({"side": side, "kind": n.get("kind"), "argues_against": n.get("risk_for") == key,
                               "strength": n.get("strength", "weak")})
         row["factors"] = notes
@@ -469,7 +555,7 @@ def graded_history(history: dict, rows: list[dict], results: dict | None = None)
 def write_csv(path: Path, rows: list[dict], fields: list[str]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", newline="", encoding="utf-8") as fh:
-        w = csv.DictWriter(fh, fieldnames=fields, extrasaction="ignore")
+        w = csv.DictWriter(fh, fieldnames=fields, extrasaction="ignore", lineterminator="\n")
         w.writeheader()
         for r in rows:
             w.writerow(r)
@@ -477,14 +563,16 @@ def write_csv(path: Path, rows: list[dict], fields: list[str]) -> None:
 
 def flat(r: dict) -> dict:
     s = r.get("strategy") or {}
-    b, p = r.get("book") or {}, r.get("pm") or {}
+    b, p = r.get("book") or r.get("relay") or {}, r.get("pm") or {}
     return {
         "match_id": r["match_id"], "status": r["status"], "competition": r["competition"], "tier": r["tier"],
         "points": r["points"], "start_utc": r["start_utc"], "lock_utc": r["lock_utc"], "team_a": r["team_a"], "team_b": r["team_b"],
         "pick": r.get("pick") or "", "p_a_pct": "" if r.get("p_a") is None else round(r["p_a"] * 100, 1),
         "p_b_pct": "" if r.get("p_b") is None else round(r["p_b"] * 100, 1), "basis": r.get("basis"), "rung": r.get("rung"),
         "format": r.get("format"), "format_source": r.get("format_source"),
-        "pinnacle_odds_a": b.get("odds_a", ""), "pinnacle_odds_b": b.get("odds_b", ""), "pinnacle_read_utc": b.get("read_utc", ""),
+        "outside_book_provider": b.get("source") or b.get("provider", ""),
+        "outside_book_source": b.get("url", ""), "own_line_limitation": r.get("own_line_limitation", ""),
+        "pinnacle_odds_a": (r.get("book") or {}).get("odds_a", ""), "pinnacle_odds_b": (r.get("book") or {}).get("odds_b", ""), "pinnacle_read_utc": (r.get("book") or {}).get("read_utc", ""),
         "polymarket_price_a": p.get("price_a", ""), "polymarket_price_b": p.get("price_b", ""), "polymarket_read_utc": p.get("read_utc", ""),
         "own_p_a_pct": "" if r.get("own_p_a") is None else round(r["own_p_a"] * 100, 1),
         "vrs_points_a": (r.get("vrs_a") or {}).get("points", ""), "vrs_points_b": (r.get("vrs_b") or {}).get("points", ""),
@@ -493,7 +581,7 @@ def flat(r: dict) -> dict:
         "crowd_b_ownership_pct": "" if r.get("crowd_b") is None else r["crowd_b"],
         "leaderboard_class": s.get("class", ""), "leaderboard_pick": s.get("leaderboard_pick", ""),
         "flags": ";".join(r.get("flags", [])), "hotspawn_url": r.get("hotspawn_match_url") or r.get("lobby_url"),
-        "hltv_url": r.get("hltv_url") or "", "pinnacle_url": b.get("url", ""), "polymarket_url": p.get("url", ""),
+        "hltv_url": r.get("hltv_url") or "", "pinnacle_url": (r.get("book") or {}).get("url", ""), "polymarket_url": p.get("url", ""),
         "sources": " | ".join(r.get("sources", [])),
     }
 

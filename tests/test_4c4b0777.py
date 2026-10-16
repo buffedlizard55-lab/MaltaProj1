@@ -78,19 +78,24 @@ class Assurance(unittest.TestCase):
         self.assertIn('retrospective', text)
 
     def test_event_fallback_never_inherits_an_unrelated_team_page(self):
-        import sys
-        sys.path.insert(0, str(ROOT / 'hotspawn'))
-        import model
-        inp = model.load_inputs()
-        # Synthetic fixture keeps this regression independent of future lobby rotation.
-        fixture = dict(inp['capture']['hotspawn']['fixtures'][0], match_id='1081126',
-                       competition='CCT Europe 2026 Series #12 Play-In')
-        inp['capture']['hotspawn']['fixtures'] = [fixture]
-        inp['hltv_links']['fixtures'].pop('1081126', None)
-        inp['hltv_links']['events']['CCT Europe 2026 Series #12 Play-In']['url'] = 'https://www.hltv.org/team/13759/mellren'
-        rows, _ = model.build_rows(inp)
-        row = next(r for r in rows if r['match_id'] == '1081126')
-        self.assertIsNone(row['hltv_url'])
+        # Full discovery also loads other boards' top-level `model` modules. A new interpreter
+        # prevents sys.modules collisions from testing the wrong board (or silently passing it).
+        import subprocess, sys
+        code = """
+import sys
+from pathlib import Path
+sys.path.insert(0,str(Path.cwd()/'hotspawn'))
+import model
+inp=model.load_inputs()
+fixture=dict(inp['capture']['hotspawn']['fixtures'][0], match_id='1081126', competition='CCT Europe 2026 Series #12 Play-In')
+inp['capture']['hotspawn']['fixtures']=[fixture]
+inp['hltv_links']['fixtures'].pop('1081126',None)
+inp['hltv_links']['events']['CCT Europe 2026 Series #12 Play-In']['url']='https://www.hltv.org/team/13759/mellren'
+rows,_=model.build_rows(inp)
+assert rows[0]['hltv_url'] is None, 'unrelated team evidence leaked into event fallback'
+"""
+        result=subprocess.run([sys.executable,'-c',code],cwd=ROOT,text=True,capture_output=True,timeout=30)
+        self.assertEqual(result.returncode,0,result.stdout+'\n'+result.stderr)
 
     def test_unresolved_copy_does_not_misreport_duplicate_rosters_as_absence(self):
         text = (ROOT / 'hotspawn/unresolved.html').read_text()

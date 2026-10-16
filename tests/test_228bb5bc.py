@@ -15,6 +15,7 @@ import importlib.util
 import json
 import subprocess
 import sys
+import tempfile
 import unittest
 from datetime import datetime, timezone
 from pathlib import Path
@@ -371,13 +372,53 @@ class LandingPage(unittest.TestCase):
 
 class Determinism(unittest.TestCase):
     def test_two_builds_with_the_same_clock_are_byte_identical(self):
-        env = {"PATH": "/usr/bin:/bin", "CONSOLE_NOW_UTC": "2026-10-14T04:00:00Z"}
-        cmd = [sys.executable, str(ROOT / "scripts" / "228bb5bc_build.py")]
-        subprocess.run(cmd, cwd=ROOT, check=True, capture_output=True, env=env)
-        first = {p.name: digest(p) for p in CONSOLE.rglob("*") if p.is_file()}
-        subprocess.run(cmd, cwd=ROOT, check=True, capture_output=True, env=env)
-        second = {p.name: digest(p) for p in CONSOLE.rglob("*") if p.is_file()}
-        self.assertEqual(first, second)
+        # The test build writes into a temporary directory (CONSOLE_OUT_DIR) so running the
+        # invariants can never overwrite the board the workflow is about to publish.
+        with tempfile.TemporaryDirectory() as tmp:
+            env = {"PATH": "/usr/bin:/bin", "CONSOLE_NOW_UTC": "2026-10-14T04:00:00Z",
+                   "CONSOLE_OUT_DIR": tmp}
+            cmd = [sys.executable, str(ROOT / "scripts" / "228bb5bc_build.py")]
+            subprocess.run(cmd, cwd=ROOT, check=True, capture_output=True, env=env)
+            first = {p.name: digest(p) for p in Path(tmp).rglob("*") if p.is_file()}
+            self.assertTrue(first)
+            subprocess.run(cmd, cwd=ROOT, check=True, capture_output=True, env=env)
+            second = {p.name: digest(p) for p in Path(tmp).rglob("*") if p.is_file()}
+            self.assertEqual(first, second)
+
+
+class TieQuotes(unittest.TestCase):
+    """A quote that prices both sides exactly equally is not a price (regression, 2026-10-15).
+
+    The relayed books occasionally publish a placeholder such as 1.80/1.80, which de-vigs to
+    50.0/50.0. That quote carries no information, so it must be rejected and the next rung used;
+    otherwise the board would publish a "pick" on a coin flip.
+    """
+
+    def test_exact_tie_quote_is_rejected_and_next_rung_used(self):
+        feeds = {"bookmaker_book": "Thunderpick", "bookmaker_p_a_pct": "50",
+                 "bookmaker_p_b_pct": "50", "captured_utc": "2026-10-15T20:00:00Z",
+                 "bookmaker_url": "https://thunderpick.io/match/1",
+                 "polymarket_p_a_pct": "55.5", "polymarket_p_b_pct": "44.5",
+                 "polymarket_url": "https://polymarket.com/event/x"}
+        cands, rejects = cb.market_candidates_with_rejects("1", feeds, None, None, None, None)
+        self.assertEqual([c["rung"] for c in cands], [4])
+        self.assertEqual([c["rung"] for c in rejects], [2])
+        self.assertEqual(cb.market_candidates("1", feeds, None, None, None, None), cands)
+
+    def test_a_fixture_whose_only_quote_is_a_tie_has_no_candidate_and_no_pick(self):
+        feeds = {"bookmaker_book": "Thunderpick", "bookmaker_p_a_pct": "50",
+                 "bookmaker_p_b_pct": "50", "captured_utc": "2026-10-15T20:00:00Z"}
+        cands, rejects = cb.market_candidates_with_rejects("1", feeds, None, None, None, None)
+        self.assertEqual(cands, [])
+        self.assertEqual(len(rejects), 1)
+
+    def test_committed_board_never_publishes_a_pick_on_an_exact_tie(self):
+        for r in CommittedBoard.rows:
+            if r["p_a_pct"] is not None and r["p_a_pct"] == r["p_b_pct"]:
+                self.assertFalse(r["pick"], r["fixture_id"])
+            if r["state"] == "open" and not r["pick"]:
+                self.assertTrue(r["flags"], r["fixture_id"])
+                self.assertIsNone(r["p_a_pct"], r["fixture_id"])
 
 
 if __name__ == "__main__":

@@ -1,0 +1,47 @@
+{
+ "description": "Historical line/crowd reconciliation against stored artifacts, not a new bookmaker read. Original provider links and immutable repository versions are retained. No current pick consumes these historical prices.",
+ "checked_utc": "2026-10-16T04:37:39Z",
+ "git_source_commit": "a155d60f316153b6915089061bacb7dd337da9ce",
+ "files": [
+  {
+   "path": "data/8944bb84/external_lines.csv",
+   "sha256": "2f70b55e46d2fa9149461cef6eb647afce939093de21f2426ed5c092c35d38b4",
+   "url": "https://github.com/buffedlizard55-lab/MaltaProj1/blob/a155d60f316153b6915089061bacb7dd337da9ce/data/8944bb84/external_lines.csv"
+  },
+  {
+   "path": "board/data/analysis.csv",
+   "sha256": "ba7b817901c35c7a410fc96c4d21a1fe1c24826cfa29a83d5c2a032a88c11e12",
+   "url": "https://github.com/buffedlizard55-lab/MaltaProj1/blob/a155d60f316153b6915089061bacb7dd337da9ce/board/data/analysis.csv"
+  }
+ ],
+ "matches": [
+  {
+   "match_id": "1080176",
+   "archive_check": "exact odds and ownership match",
+   "provider_url": "https://guest.api.arcadia.pinnacle.com/0.1/matchups/1638111785/markets/related/straight",
+   "provider_read_utc": "2026-10-14T01:48:00Z",
+   "result_url": "https://www.hltv.org/matches/2399384/9z-vs-aurora-thunderpick-world-championship-2026"
+  },
+  {
+   "match_id": "1080177",
+   "archive_check": "exact odds and ownership match",
+   "provider_url": "https://guest.api.arcadia.pinnacle.com/0.1/matchups/1638111674/markets/related/straight",
+   "provider_read_utc": "2026-10-14T01:48:00Z",
+   "result_url": "https://www.hltv.org/matches/2399385/falcons-vs-ninjas-in-pyjamas-thunderpick-world-championship-2026"
+  },
+  {
+   "match_id": "1080178",
+   "archive_check": "exact odds and ownership match",
+   "provider_url": "https://guest.api.arcadia.pinnacle.com/0.1/matchups/1638111786/markets/related/straight",
+   "provider_read_utc": "2026-10-14T01:48:00Z",
+   "result_url": "https://www.hltv.org/matches/2399386/legacy-vs-parivision-thunderpick-world-championship-2026"
+  },
+  {
+   "match_id": "1080179",
+   "archive_check": "exact odds and ownership match",
+   "provider_url": "https://guest.api.arcadia.pinnacle.com/0.1/matchups/1638111787/markets/related/straight",
+   "provider_read_utc": "2026-10-14T01:48:00Z",
+   "result_url": "https://www.hltv.org/matches/2399387/furia-vs-betboom-thunderpick-world-championship-2026"
+  }
+ ]
+}

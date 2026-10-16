@@ -4493,6 +4493,27 @@ Full repo suite on this branch: 405 tests, **1 failure = the pre-existing consol
 
 ---
 
+
+## Session `arena/e1ceecc2` — claim (2026-10-15 ~22:3x UTC)
+
+Branch: `arena/e1ceecc2-maltaproj1` (fixed by Arena; no other branch created or pushed). Started from `main` @ `ac64bcc`
+(data snapshot 2026-10-15T21:34Z). No other session has claimed work after 10:58Z (PR #149), so no claim conflicts.
+Scope is chosen so that it does **not** overlap the live `hotspawn/**` generators owned by the (done) session `22be6967`:
+this session adds a new TWC-2026 review page + its own research data file, and leaves `collect.py` / `model.py` /
+`calibrate.py` semantics untouched.
+
+| ID | Task | Status | Owner | Exclusive file scope |
+|----|------|--------|-------|----------------------|
+| EC-1 | **TWC 2026 day-1 + day-2 review** (every series and map score, group standings, roster/onboarding/rest notes) with an official source link per row (Liquipedia event + HLTV event 8932 + Hotspawn news cross-checks) and **day-3 picking guidance**: contrarian-but-not-stupid read of the two group deciders (9z–Aurora, Legacy–BetBoom) | in progress | arena/e1ceecc2 | `hotspawn/research/twc2026_day2.json`, `hotspawn/twc.html`, `hotspawn/build.py` (nav + one new page renderer only), `hotspawn/data/**` (regenerated) |
+| EC-2 | **Every-match guarantee re-check**: assert every open Hotspawn CS2 fixture carries a pick + both probabilities + a source, and that every row resolved below rung A is listed with its limitation in the executive summary and the Unresolved page (HLTV → esportsbook → betting-line ladder) | in progress | arena/e1ceecc2 | `hotspawn/unresolved.html` (regenerated), `hotspawn/build.py` (exec-summary wording only) |
+| EC-3 | **Fix the pre-existing red check on `main`** (`tests/test_228bb5bc.py::CommittedBoard::test_every_open_fixture_has_a_pick_or_explicit_unresolved_flag`, console board publishes `p_a_pct` without a pick) so `verify.yml` is green. Owner `228bb5bc` inactive since 2026-10-14 (>60 min rule) | in progress | arena/e1ceecc2 | `scripts/228bb5bc_build.py`, `console/**`, `tests/test_228bb5bc.py` |
+| EC-4 | Mobile + landing verification: root executive summary links to picks / unresolved / TWC review; 390-px phone check; link audit | in progress | arena/e1ceecc2 | `index.html` (root, quick links only), `js/landing.js`, `hotspawn/style.css` |
+| EC-5 | Line-by-line verification record with source links, then integration: PR → main, merge, confirm GitHub Pages | in progress | arena/e1ceecc2 | `reviews/e1ceecc2-verification.md`, `COORDINATION.md` (append-only) |
+
+Requests (not edits) to other sessions: none outstanding — `22be6967` (HS-0…HS-6), `7759beef`, `2e2b2e5e`, `b44b5d5e` are all
+recorded **done**; their pages stay untouched. `console/**` is taken over under the 60-minute rule only to clear the red
+check; the change is confined to the pick/unresolved invariant.
+
 ## Session `arena/71c4e4ab` — claim (2026-10-15 22:25 UTC)
 
 Branch: `arena/71c4e4ab-maltaproj1` (fixed by Arena). Reviewed the board and current repository before claiming; the completed HS-0…HS-6 work by `arena/22be6967` is preserved. No open PR claims the scope below.
@@ -4530,6 +4551,81 @@ only the **extension** work listed below and preserves every existing file it do
 pointing at `a6f05f99/index.html`, because the user asked for the executive summary to link to where
 the picks live. No other root file is touched.
 
+---
+
+## Session `arena/6b23e38f` — final-integration and reliability claim (2026-10-16 04:20 UTC)
+
+Branch: `arena/6b23e38f-maltaproj1` (Arena-fixed; no alternate branch/worktree is created or pushed).
+Read the coordination board before implementation, checked `origin/main`, open PRs #150/#136/#132 and recent Actions runs.
+The primary `hotspawn/` board already exists; **no additional competing dashboard will be created**.
+PR #150 contains a completed but unmerged TWC review and three CI repairs. Its author's latest commit/check
+is 2026-10-15 ~22:52 UTC (>5 hours without activity); the 71c4e4ab/a6f05f99 claims are also >60 minutes old.
+Under the board's takeover rule, this session claims final integration of that work and the primary route only.
+The existing a6f05f99 board and all other archived dashboards remain intact. PRs #132/#136 are not taken over.
+
+| ID | Task | Status | Owner | File scope |
+|---|---|---|---|---|
+| FI-0 | Commit/push coordination claim before implementation | in progress | arena/6b23e38f | `COORDINATION.md` (append-only) |
+| FI-1 | Inspect and integrate PR #150 on this session branch, preserving newer main data; re-verify TWC days 1–2, day-3 fixtures, roster facts and source arithmetic | in progress | arena/6b23e38f | PR #150 source/test fixes in `hotspawn/**`, `console/**`, `executive/**`, `livelines/**`, `valuepicks/**`, their existing scripts/tests; generated files only when reproducibly rebuilt; `reviews/6b23e38f-verification.md` |
+| FI-2 | Reliability pass on primary every-match research ladder: exact fixture/format identity, evidence freshness, no Hotspawn probability input, own-line transparency, missing-source blanks and actionable unresolved limitations | in progress | arena/6b23e38f | `hotspawn/**`, `tests/test_6b23e38f.py` |
+| FI-3 | Final shared-output integration: one mobile executive summary with obvious picks/day-3/unresolved links, honest current coverage; preserve every archived destination | in progress | arena/6b23e38f | root `index.html`, `README.md`, `js/landing.js` if required, primary landing tests |
+| FI-4 | Live automated re-read (Actions runner where required by sandbox egress), 4–8 h freshness, fail-closed generation, source/row/link/phone checks | in progress | arena/6b23e38f | `.github/workflows/hotspawn-22be6967.yml`, primary board/tests; existing failing-workflow repairs only after logging exact scope |
+| FI-5 | Full tests + local links, PR from this fixed branch → main, explicit merge without waiting, confirm Pages deploy and record PR/run/source links | unclaimed until FI-1..4 verified | arena/6b23e38f | `COORDINATION.md`, `reviews/6b23e38f-verification.md` |
+
+All observed source values must be traceable; no assertion that every historical dashboard's external
+links were live-fetched. Hotspawn ownership can inform leaderboard leverage, never win probability.
+A captured or model-derived probability is not a verified future outcome. Unconfirmable facts remain blank/flagged.
+
+### FI-1 merge-resolution log — 2026-10-16 04:30 UTC
+
+Integrated the authored changes from PR #150 (e1ceecc2) on the fixed `arena/6b23e38f-maltaproj1` branch.
+Conflicts were in append-only coordination and generated console/executive outputs. Both sessions'
+coordination sections are retained. The integration **keeps main's newer generated captures** for
+console/executive/livelines/valuepicks/summary; their integrated source fixes will regenerate output.
+No authored research was discarded. The TWC dataset is imported for re-verification, not marked verified.
+Live HLTV rereads already found one narrative error: BetBoom beat PARIVISION **2-1**, not 2-0.
+Live Hotspawn now lists BetBoom–Legacy as **1081775**; earlier 'not on Hotspawn' wording is historical
+and must be replaced by current capture-backed status, not repeated as a current limitation.
+
+The required pre-push plain `git pull --rebase origin main` attempted to flatten PR150's merge history
+and stopped at an append-only coordination conflict. Aborted that rebase (the resolved integration
+merge is preserved), then used `git pull --rebase=merges origin main` to retain both authors' history.
+Subsequent integration pushes use rebase-merges for the same reason.
+
+### FI-4 automation scope / permission observation — 2026-10-16 UTC
+
+The GitHub integration permits git pushes and PRs but returned HTTP 403 `Resource not accessible by
+integration` for workflow-dispatch. No credentials requested or changed. Added this fixed branch to
+the existing primary workflow's push triggers so ordinary source pushes run the same unattended live
+collector. Added a source-capture artifact, a per-row stored-input audit (`hotspawn/verify.py`) and a
+required browser gate. Refresh schedule is now every **four** hours, exactly the requested window;
+GitHub timing remains best effort. Removed generated-conflict `checkout --theirs`/masked-push-success:
+conflicts now stop the run without overwriting concurrent work, and publication failures are red.
+
+### FI-1/FI-2 source and implementation checkpoint — 2026-10-16 UTC
+
+Observed first live refresh **38850155496 success**; fetched its bot commit **8e28d2c**, rebased this
+branch's source work on it, inspected the actual new capture: **95 CS2 rows, 31 open at 04:21:10Z**,
+including BetBoom–Legacy **1081775**. Artifact transport failed (Azure EOF), so git's bot commit—not
+an assumed download—was used. Primary `row_audit.json` reconciles 95/95 stored rows without errors.
+
+Rechecked all eight TWC result/map/veto pages, both BO3 decider pages and Aurora's official July8
+rebuild report. Corrected BetBoom 2-1, removed unsupported group ranks/round differentials, exact
+rest/health claims and static day-3 prices, and made Aurora's three-month-old rebuild weak/neutral.
+Day-1 archived odds/ownership exactly match their stored artifacts; pinned sources/hash audit retained.
+Details and all external links are in `reviews/6b23e38f-verification.md`.
+
+Implemented strict quote scope/competition/time/rematch/freshness/numeric gates, rejection reasons,
+gap-only HLTV refusal circuit breaker then paginated named-book relay research; no direct-book
+verification claim for relays. Eligible source-linked bo3 match metadata can confirm a format but
+never creates a price. Own fallback withheld for unknown format, known roster mismatch or >45-day
+ratings. Disappeared fixtures' pre-lock records freeze too. Added 19 targeted regressions: **50 primary
+tests pass**. An early unit regression caught an hours-versus-days bug; corrected/tested before push.
+
+Root now has one obvious maintained route, with alternative boards folded (all destinations retained).
+Actual HTTP browser checks cover root + eight board pages at 360/390/768 px and fail if Chromium is
+unavailable in CI. Awaiting the fresh collector/browser run; no phone-pass claim made yet. Temporary
+local rebuilds from the pre-scope legacy capture are NOT a new source read and will not be published.
 ## Session arena/4c4b0777 — integration assurance claim (2026-10-16 UTC)
 
 Fixed branch `arena/4c4b0777-maltaproj1` (Arena constraint; no alternate branch).
@@ -4682,6 +4778,87 @@ sessions' tests.
 added this session's branch to the `push` trigger list so a live run can be verified before merge, with no other
 change to that workflow.
 
+### FI concurrent-main resolution / integration handoff — 2026-10-16 04:41 UTC
+
+`origin/main` advanced to **e921b18** while FI-1..4 were already claimed/pushed here: PR153/154
+(4c4b0777 assurance) and PR156 (b6f5405d day-3 additions) landed. Read their new coordination,
+source, research and tests before resolving. Their PRs are already merged; 4c4b0777 records done.
+Request to b6f5405d/shared-output owners: FI is now integrating the already-landed entry points and
+research on the fixed branch; please avoid a competing overwrite of the primary generated outputs.
+No work on the other sessions' branches/PRs was performed.
+
+A merge-preserving rebase stopped at append-only coordination (replaying the old integration graph).
+Aborted it safely; explicitly merged the new main to preserve all published ancestry. A subsequent
+`pull --rebase=merges` is still required before push. Both complete coordination sections retained.
+Newest main capture/HTML/raw compressed snapshots are preserved in the merge; the pending live
+collector will regenerate the primary board under the new scope gates. No legacy temporary rebuild
+is treated as a fresh source read.
+
+Preserved 4c4b0777's public release audit, safe event-only HLTV fallback and verified gap links;
+independently re-read BET-M–Just Players2399087 and Banda–Enjoy2399477: both BO3 online, no usable
+book price in the fetched table. Preserved b6f5405d's raw research file, day-3 entry points and six
+research regressions. Published day-3 numbers now come only from the guarded primary row, never a
+second static average or forced lean for an absent ID. Changed that one conflicting fallback test
+to enforce blank-current-line behavior, while retaining source/coverage tests. Unreconciled detailed
+recent form/map numbers are blank/flagged; linked analytics summaries were directly re-read here.
+Primary tests **56 pass** and incoming assurance tests **13 pass**.
+
+Also directly fetched Valve's pinned official file via GitHub contents API and checked **380/380**
+rank/name/points/roster rows against the capture, **0 mismatches**. Source URL, blob SHA and body
+SHA-256 are recorded in `hotspawn/research/vrs_source_audit.json`. This confirms snapshot fives,
+not every team's actual lineup today. Both duplicated-roster cases remain ambiguous, not absent.
+
+### FI live evidence and whole-repository CI repairs — 2026-10-16 04:48 UTC
+
+Fresh strict collector run **38852030376 succeeded**, saved by bot as **b961350**. Inspected actual
+capture/board/mobile JSON via git: 95 fixtures / 31 open / **29 picks**, rungs9A/18B/2C/2D, complete
+three-surface read with no identity conflicts. bo3.gg returned115 CS2 fixtures/33 named active relays;
+HLTV returned403 on the first gap and subsequent attempts are explicitly circuit-breaker skips.
+Mandatory real-HTTP Chromium checks **27/27 passed**, root plus eight pages at360/390/768px.
+Aurora–9z currently67/33 direct Pinnacle; BetBoom–Legacy37.19/62.81 relayed Thunderpick (secondary).
+Unresolved remain BET-M–Just Players1079170 and Banda chuya–Enjoy1081126: ambiguous official roster
+entries and no eligible line, not falsely reported as absent from Valve.
+
+Rebuilt integrated console/executive/livelines/valuepicks sources. Full discovery exposed two test
+assumptions (423tests,14errors, not a claimed pass): 4c4b0777's top-level `import model` hit another
+board's cached module, and valuepicks's number-render test formatted13 intentionally blank rows as
+floats. Narrow test-scope extension: `tests/test_4c4b0777.py` uses an isolated interpreter for its
+unchanged safe-fallback assertion; `tests/test_7759beef.py` now verifies each unresolved card has blank
+numbers, no side, a flag and an unresolved link, and adds a synthetic no-evidence regression. No fake
+prices or relaxed coverage assertions. Updated the independent audit to understand explicitly
+secondary relay rung B. All authors' regression intents retained.
+
+One strategy edge case fixed/tested: an own/market disagreement may support a labelled contrarian
+play but cannot relabel the *published market underdog* as the "favourite" or hide expected-points
+cost. Model probabilities are unchanged; source-market direction is the headline benchmark.
+
+### FI final-source handoff / final integration in progress — 2026-10-16 05:03 UTC
+
+All **424 whole-repository tests passed**, **60 primary invariants passed**, **95/95 fixture row audit,
+0 errors**, **273 HTML/6,489 local links/0 missing files or fragments**. Official Valve audit remains
+380/380 source-table rows with no mismatches; scope does not expand to independent current lineups or
+per-team history certification. Restored unrelated test-only summary/livelines drift to the committed
+intended rebuilds, not a rollback of the integrated fixes.
+
+Completed primary UI source/table ownership: compact executive routing; source per strategy row;
+positive/negative team search; S/B/C/plays filters; reset; periodic lock/source-age clocks. Added actual
+browser interactions to the mandatory gate. Earlier27/27 browser pass is real but predates these edits;
+a new branch-triggered run is required before merge.
+
+Final factual audit found inherited unsupported primary prose (player ratings/EPL placement), an old
+IR20 title still printing unverified poll percentages, and editorial edit clocks used as historical
+source-read times. Removed those claims, blanked exact unretained clocks in favor of known checked
+dates, and preserved immutable archive-reconciliation timestamps. Directly re-read PARIVISION's
+signing report, TWC preview and Voca–Phantom analytics. Matched-source facts retained; roster/health/
+schedule prose narrowed to the actual report. Phantom stand-in is restricted to1080285; later1080288/
+1080290 lineups blank/unverified with own-line withholding, not an invented repeated stand-in. NIP
+late-invite factor restricted to its TWC IDs. Added scope/withholding regressions and IR29/IR30.
+Removed the false generalization that any equal genuine odds must be a placeholder.
+
+Next: commit/pull with merges/push fixed branch; fresh strict collector plus final real-browser gate;
+then autonomous integration PR→main and live Pages verification. No approval/manual-input wait.
+
+
 ## Session `arena/b6f5405d` — claim (2026-10-16, day-2 review follow-up)
 
 Fixed branch: `arena/b6f5405d-maltaproj1` (Arena constraint; no other branch). Read the board and every
@@ -4827,6 +5004,46 @@ avoid. `f323b4a7/build.py` now derives both counts from the row set, so the sent
 disagree with the data it renders. The branch was also rebuilt on `origin/main` with the intermediate
 bot refresh commits dropped — they only rewrite `f323b4a7/data/**` and `f323b4a7/*.html`, and the
 4-hourly run regenerates them anyway, so keeping them only made the history conflict-prone.
+
+### FI second concurrent-main disposition — 2026-10-16 05:14 UTC
+
+Final browser run **38853646824** on3ac755b succeeded; bot551b47a contains a new **05:02:02Z** capture,
+95/31/29 with9A/18B/2C/2D, and **27/27 real Chromium cases**, including actual positive/negative search,
+reset and tier filtering. Before merging PR161, main advanced again through PR158/159/160 and their
+scheduled collectors. Stopped for the conflict instead of masking it; merged incoming a9eb0c6 explicitly
+while preserving both complete coordination blocks and all new f323b4a7 files/workflow/review.
+
+**37 conflicts resolved by source disposition:** retained the newer validated strict551b47a primary
+capture/raw/history (all three frozen historical records identical to incoming); integrated b6f5405d's
+new recomputed day-2 scorecard + all6 tests, with chronological day1/day2/day3 and corrected map-score
+orientation. New day-3 schedule references use the current epoch-derived rows, not an old second price.
+Preserved incoming newer executive raw inputs and rebuilt with the retained coin-flip counter fix;
+regenerated console/livelines/valuepicks dependents. The f323b4a7 alternative is reachable inside the
+folded alternatives, with no second competing primary nav item or hardcoded promoted coverage claim.
+
+Fresh incoming executive data has95 fixtures rather than86, so the old dependent valuepicks output
+was stale: rebuilt it to16/31 with15 honest blanks. Its test also incorrectly required at least one
+manual resolution to remain in use after the live collector had legitimately superseded all of them.
+Retained every stored-odds check, added an in-memory positive/precedence regression, and explicitly
+allow zero published manual resolutions when all are superseded. **425 root tests pass;66 primary
+invariants pass;95/95 row audit,0 errors;281 HTML/6,639 local links/0 errors.**
+
+Narrow integration takeover (prior human executive claim >60min inactive):
+`.github/workflows/executive-5545dbb8.yml` now rebuilds/tests/publishes its dependent console/livelines/
+valuepicks views from the same capture, and rechecks after rebase. Without this, the next unattended
+executive refresh reintroduces the exact stale-dependent CI failure just repaired. Added only this
+fixed branch for pre-merge workflow verification. Other owners' source logic and four-hour schedule
+retained. Requested final-integration exclusivity again for shared nav/outputs while PR161 is in flight.
+The new day-2 integration requires another mandatory primary mobile run; no pass on those new edits
+is claimed yet. Build/site failures block merge; research limitations remain explicit and nonblocking.
+
+### FI follow-up to PR162/163 — 2026-10-16 05:16 UTC
+
+Kept both incoming source-link/blank-own-line fixes in f323b4a7 and its complete coordination log.
+The executive off-by-one reported in PR162 is already corrected in this integration's retained
+`executive/build.py`: basis counters count only actual named picks. Fresh incoming evidence was
+regenerated with that source fix and the landing invariant passes. The dependency refresh repair
+prevents its next automated capture from leaving console/valuepicks snapshots behind.
 
 ### Observation — `tests/test_landing_43c32386.py` now fails on `main` because of `executive/`, not because of this session (2026-10-16T05:05Z)
 

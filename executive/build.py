@@ -1930,13 +1930,17 @@ def main() -> int:
         "own_line": own_meta,
         "stale": bool(fresh_hours is not None and fresh_hours > STALE_HOURS),
     }
+    # A "coin flip" row carries the sentinel pick "(no side — 50/50)" and publishes no side, so it is
+    # not a pick: the basis counts below describe the rows that actually publish a pick (fixes the
+    # drift that made open_market_basis disagree with the landing acceptance check, 2026-10-15).
+    picked_rows = [r for r in open_rows if r["pick"] and r["pick"] != "(no side — 50/50)"]
     coverage = {
         "total_fixtures": len(rows), "open_fixtures": len(open_rows), "locked_fixtures": len(locked_rows),
         "stale_fixtures": len(stale_rows),
-        "open_with_pick": len([r for r in open_rows if r["pick"] and r["pick"] != "(no side — 50/50)"]),
-        "open_market_basis": len([r for r in open_rows if r["basis_tier"] in (1, 2)]),
-        "open_model_basis": len([r for r in open_rows if r["basis_tier"] in (3, 4, 5)]),
-        "open_provisional": len([r for r in open_rows if r["basis_tier"] == 4]),
+        "open_with_pick": len(picked_rows),
+        "open_market_basis": len([r for r in picked_rows if r["basis_tier"] in (1, 2)]),
+        "open_model_basis": len([r for r in picked_rows if r["basis_tier"] in (3, 4, 5)]),
+        "open_provisional": len([r for r in picked_rows if r["basis_tier"] == 4]),
         "open_no_pick": len([r for r in open_rows if not r["pick"] or r["pick"] == "(no side — 50/50)"]),
         "flagged_rows": len([r for r in rows if r["flags"]]),
         "unique_teams": len(ratings),

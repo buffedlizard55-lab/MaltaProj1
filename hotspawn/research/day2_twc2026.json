@@ -1,206 +1,226 @@
 {
-  "about": "Independent, sourced audit of TWC 2026 day 2 results and day 3 coverage. This file records what was verifiable from frozen Hotspawn data and external sources; it does not create or backfill a pick. The capture is the 2026-10-15T21:34:12Z snapshot.",
-  "reviewed_utc": "2026-10-15T22:30:54Z",
-  "event": {
-    "name": "Thunderpick World Championship 2026",
-    "hltv_event": "https://www.hltv.org/events/8932/thunderpick-world-championship-2026",
-    "hltv_results": "https://www.hltv.org/results?event=8932",
-    "capture_read_utc": "2026-10-15T21:34:12Z",
-    "capture_pages": [
-      "https://play.hotspawn.com/lobby",
-      "https://play.hotspawn.com/cs2-pickems",
-      "https://play.hotspawn.com/thp-pickems"
-    ],
-    "capture_lobby_sha256": "75b6aae72cd9baa18aa2f6ebd84f99a9929254bb1c83719750ebf8f0c287982d"
-  },
-  "day2_matches": [
-    {
-      "hotspawn_id": "1080201",
-      "teams": ["Aurora", "Ninjas in Pyjamas"],
-      "start_utc": "2026-10-15T08:30:00Z",
-      "lock_utc": "2026-10-15T08:24:00Z",
-      "result": {
-        "winner": "Aurora",
-        "series_score": "2-0",
-        "maps": ["Cache 13-9", "Dust2 13-7"],
-        "hltv_match": "https://www.hltv.org/matches/2399408/aurora-vs-ninjas-in-pyjamas-thunderpick-world-championship-2026",
-        "hltv_report": "https://www.hltv.org/news/45724/nip-spared-scheduling-headache-after-early-thunderpick-world-championship-exit"
-      },
-      "prelock_pick": null,
-      "archive_status": "No 1080201 entry in hotspawn/data/pick_history.json. valuepicks/data/coverage.csv independently records the fixture locked at 08:24Z with blank pick and probabilities. Do not grade or reconstruct a pick."
-    },
-    {
-      "hotspawn_id": "1080202",
-      "teams": ["9z", "Falcons"],
-      "start_utc": "2026-10-15T11:00:00Z",
-      "lock_utc": "2026-10-15T10:54:00Z",
-      "result": {
-        "winner": "Falcons",
-        "series_score": "2-1",
-        "maps": ["Nuke 9-13", "Mirage 13-8", "Dust2 9-13"],
-        "hltv_match": "https://www.hltv.org/matches/2399409/9z-vs-falcons-thunderpick-world-championship-2026",
-        "hltv_report": "https://www.hltv.org/news/45728/falcons-secure-playoff-berth-at-twc-2026"
-      },
-      "prelock_pick": {
-        "frozen": true,
-        "as_of_utc": "2026-10-15T10:53:42Z",
-        "pick": "Falcons",
-        "probability": 0.7563,
-        "archived_probability_a_b": [0.2437, 0.7563],
-        "leaderboard_pick": "Falcons",
-        "leaderboard_class": "LONG SHOT",
-        "history_basis": "Pinnacle odds, margin removed",
-        "grade": "correct"
-      },
-      "market_provenance_note": "The frozen Hotspawn history retains the Pinnacle label and probability but not the exact price pair. valuepicks/data/coverage.csv separately archives a direct Pinnacle-derived 75.8%/24.2% line; its source fact F-21 records the quote and the initially disputed 30-minute kickoff offset, later checked against HLTV's 11:00Z listing."
-    },
-    {
-      "hotspawn_id": "1080203",
-      "teams": ["PARIVISION", "BetBoom"],
-      "start_utc": "2026-10-15T13:30:00Z",
-      "lock_utc": "2026-10-15T13:24:00Z",
-      "result": {
-        "winner": "BetBoom",
-        "series_score": "2-1",
-        "maps": ["Ancient 13-10 PARIVISION", "Anubis 4-13 BetBoom", "Mirage 7-13 BetBoom"],
-        "hltv_match": "https://www.hltv.org/matches/2399410/parivision-vs-betboom-thunderpick-world-championship-2026",
-        "hltv_report": "https://www.hltv.org/news/45729/betboom-eliminate-parivision-from-twc"
-      },
-      "prelock_pick": {
-        "frozen": true,
-        "as_of_utc": "2026-10-15T10:57:29Z",
-        "pick": "PARIVISION",
-        "probability": 0.5342,
-        "archived_probability_a_b": [0.5342, 0.4658],
-        "leaderboard_pick": "BetBoom",
-        "leaderboard_class": "CONTRARIAN",
-        "history_basis": "Pinnacle odds, margin removed",
-        "grade": "miss"
-      },
-      "market_provenance_note": "The Hotspawn frozen record labels this probability Pinnacle but preserves no odds or quote URL. valuepicks/data/coverage.csv instead identifies a relayed BetBoom-book quote (cyber.sports.ru, 1.85/1.95) at 10:05Z and 51.3%/48.7%; do not present those as the same quote. Grade the frozen side, not an unretained market price."
-    },
-    {
-      "hotspawn_id": "1080204",
-      "teams": ["Legacy", "FURIA"],
-      "start_utc": "2026-10-15T16:00:00Z",
-      "lock_utc": "2026-10-15T15:54:00Z",
-      "result": {
-        "winner": "FURIA",
-        "series_score": "2-1",
-        "maps": ["Cache 13-10 Legacy", "Inferno 5-13 FURIA", "Mirage 8-13 FURIA"],
-        "hltv_match": "https://www.hltv.org/matches/2399411/legacy-vs-furia-thunderpick-world-championship-2026",
-        "hltv_report": "https://www.hltv.org/news/45730/furia-make-twc-playoffs-over-legacy"
-      },
-      "prelock_pick": {
-        "frozen": true,
-        "as_of_utc": "2026-10-15T10:57:29Z",
-        "pick": "FURIA",
-        "probability": 0.5758,
-        "archived_probability_a_b": [0.4242, 0.5758],
-        "leaderboard_pick": "Legacy",
-        "leaderboard_class": "CONTRARIAN",
-        "grade": "correct"
-      },
-      "market_provenance_note": "The frozen Hotspawn history labels the basis Pinnacle but does not retain the exact quote. valuepicks/data/coverage.csv has a nearby 42.6%/57.4% primary-market estimate without naming the operator; treat it as a cross-check, not proof of the exact Hotspawn quote."
-    }
+ "about": "Independent, sourced audit of TWC 2026 day 2 results and day 3 coverage. This file records what was verifiable from frozen Hotspawn data and external sources; it does not create or backfill a pick. The capture is the 2026-10-15T21:34:12Z snapshot.",
+ "reviewed_utc": "2026-10-16T04:37:39Z",
+ "event": {
+  "name": "Thunderpick World Championship 2026",
+  "hltv_event": "https://www.hltv.org/events/8932/thunderpick-world-championship-2026",
+  "hltv_results": "https://www.hltv.org/results?event=8932",
+  "capture_read_utc": "2026-10-15T21:34:12Z",
+  "capture_pages": [
+   "https://play.hotspawn.com/lobby",
+   "https://play.hotspawn.com/cs2-pickems",
+   "https://play.hotspawn.com/thp-pickems"
   ],
-  "day2_grade": {
-    "official_series_results": 4,
-    "archived_prelock_picks": 3,
-    "base_picks_correct": 2,
-    "leaderboard_picks_correct": 2,
-    "unarchived_match_ids": ["1080201"],
-    "interpretation": "Both strategies went 2/3 on the three frozen picks. The Aurora-NiP result is reported, but is not in either denominator because no frozen pick exists. Small sample; descriptive only."
+  "capture_lobby_sha256": "75b6aae72cd9baa18aa2f6ebd84f99a9929254bb1c83719750ebf8f0c287982d"
+ },
+ "day2_matches": [
+  {
+   "hotspawn_id": "1080201",
+   "teams": [
+    "Aurora",
+    "Ninjas in Pyjamas"
+   ],
+   "start_utc": "2026-10-15T08:30:00Z",
+   "lock_utc": "2026-10-15T08:24:00Z",
+   "result": {
+    "winner": "Aurora",
+    "series_score": "2-0",
+    "maps": [
+     "Cache 13-9",
+     "Dust2 13-7"
+    ],
+    "hltv_match": "https://www.hltv.org/matches/2399408/aurora-vs-ninjas-in-pyjamas-thunderpick-world-championship-2026",
+    "hltv_report": "https://www.hltv.org/news/45724/nip-spared-scheduling-headache-after-early-thunderpick-world-championship-exit",
+    "verified_utc": null,
+    "verified_date_utc": "2026-10-16",
+    "maps_score_orientation": "Aurora"
+   },
+   "prelock_pick": null,
+   "archive_status": "No 1080201 entry in hotspawn/data/pick_history.json. valuepicks/data/coverage.csv independently records the fixture locked at 08:24Z with blank pick and probabilities. Do not grade or reconstruct a pick."
   },
-  "day3": {
-    "aurora_vs_9z": {
-      "hotspawn_id": "1080205",
-      "hotspawn_match": "https://www.hotspawn.com/matches/aurora-vs-9z-thunderpick-world-championship-2026-1080205",
-      "hltv_match": "https://www.hltv.org/matches/2399412/aurora-vs-9z-thunderpick-world-championship-2026",
-      "format": "BO3 Group A decider",
-      "start_utc": "2026-10-16T14:00:00Z",
-      "lock_utc": "2026-10-16T13:54:00Z",
-      "base_pick": "Aurora",
-      "market": {
-        "source": "Polymarket (prediction market)",
-        "probability_a_b": [0.685, 0.315],
-        "read_utc": "2026-10-15T21:34:15Z",
-        "url": "https://polymarket.com/event/cs2-aur1-9z-2026-10-16"
-      },
-      "independent_own_line": {
-        "probability_a_b": [0.6125, 0.3875],
-        "displayed_probability_a_b_pct": [61.3, 38.7],
-        "official_vrs_as_of": "2026-10-05",
-        "points_a_b": [1716, 1543],
-        "slope_k": 0.4598,
-        "source": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
-      },
-      "hotspawn_ownership_pct_a_b": [89, 11],
-      "ownership_rule": "Hotspawn crowd shares are ownership only, never a win-probability input.",
-      "leaderboard_strategy": {
-        "class": "SITUATIONAL",
-        "pick": "9z",
-        "underdog_consensus": 0.3512,
-        "expected_points_cost_vs_base_pick": 2.59,
-        "usage": "Optional high-variance play only when intentionally chasing; Aurora remains the default / most-likely-side pick."
-      },
-      "day2_context": [
-        "On day 1, 9z beat Aurora 2-0 (Inferno 13-11, Nuke 13-1): https://www.hltv.org/matches/2399384/9z-vs-aurora-thunderpick-world-championship-2026",
-        "On day 2, Aurora beat NiP 2-0 (Cache 13-9, Dust2 13-7): https://www.hltv.org/matches/2399408/aurora-vs-ninjas-in-pyjamas-thunderpick-world-championship-2026",
-        "On day 2, 9z lost 1-2 to Falcons but took Mirage 13-8 and lost Nuke and Dust2 9-13: https://www.hltv.org/matches/2399409/9z-vs-falcons-thunderpick-world-championship-2026"
-      ],
-      "roster_context": {
-        "hltv_team_page": "https://www.hltv.org/team/11861/aurora",
-        "hltv_transfer_page": "https://www.hltv.org/news/44998/rostermania-tracker-summer-2026",
-        "moves": "Jimpphat joined 2026-07-03; kyxsan joined 2026-07-08 as the new IGL. About three months before the decider, not a days-old change.",
-        "current_hltv_read": "The team page read on 2026-10-15 displayed Jimpphat at 103 days in the team and 61 maps. An earlier repository note recorded 104 days/62 maps; the page is dynamic and the fields are not a stable five-player total. Use the approximate three-month description, not an exact map count.",
-        "recent_results": "Aurora placed third at ESL Pro League Season 24 on 2026-10-11 and beat NIP on day 2 of TWC.",
-        "epl24_source": "https://www.hltv.org/news/45698/aurora-claim-third-at-epl-with-spirit-sweep",
-        "weighting": "Retain the existing moderate roster factor as a tiebreaker for the leaderboard rule only; it does not override the market or own-line probabilities, and the successful recent results argue against treating onboarding as a decisive negative."
-      },
-      "other_price_checks": [
-        {
-          "source": "Pinnacle",
-          "url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
-          "capture_status": "No Pinnacle quote was joined to this fixture in the 21:34Z Hotspawn snapshot.",
-          "use": "Not used; do not infer a line from absence in this capture."
-        },
-        {
-          "source": "EGamersWorld",
-          "url": "https://egamersworld.com/counterstrike/match/5X5sFiL7H/aurora-vs-9z-bH-YrllJx",
-          "page_display": "Aurora 1.44 / 9z 2.70",
-          "limitation": "The page does not identify the bookmaker; excluded from the probability calculation.",
-          "reviewed_utc": "2026-10-15T22:25:35Z"
-        },
-        {
-          "source": "StavkaTV",
-          "url": "https://stavka.tv/matches/csgo/16-10-2026-aurora-gaming-9z",
-          "page_display": "Winline 1.46 for Aurora and Betcity 2.85 for 9z; editorial prose also quotes 1.38 / 2.70 without attributing it to one book.",
-          "limitation": "The displayed sportsbook prices are from different books and the editorial pair is unattributed; neither is a valid same-book two-way line to de-vig. Excluded.",
-          "reviewed_utc": "2026-10-15T22:25:35Z"
-        }
-      ]
-    },
-    "betboom_vs_legacy": {
-      "hltv_match": "https://www.hltv.org/matches/2399413/betboom-vs-legacy-thunderpick-world-championship-2026",
-      "hltv_event": "https://www.hltv.org/events/8932/thunderpick-world-championship-2026",
-      "format": "BO3 Group B decider, 2026-10-16",
-      "hotspawn_id": null,
-      "coverage_status": "Not present in the 2026-10-15T21:34:12Z Hotspawn capture (88 fixtures, 22 open).",
-      "pick_or_probability": null,
-      "publication_rule": "Do not fabricate a Hotspawn fixture ID, pick, or win probabilities. Recheck after the next scheduled refresh; publish only if Hotspawn lists it.",
-      "time_limit": "HLTV's rendered 13:00 lacks a dependable timezone and Liquipedia's secondary listing says 19:00 CEST; do not publish an exact UTC start from these sources alone.",
-      "secondary_schedule": "https://liquipedia.net/counterstrike/Thunderpick/World_Championship/2026"
-    }
+  {
+   "hotspawn_id": "1080202",
+   "teams": [
+    "9z",
+    "Falcons"
+   ],
+   "start_utc": "2026-10-15T11:00:00Z",
+   "lock_utc": "2026-10-15T10:54:00Z",
+   "result": {
+    "winner": "Falcons",
+    "series_score": "2-1",
+    "maps": [
+     "Nuke 9-13",
+     "Mirage 13-8",
+     "Dust2 9-13"
+    ],
+    "hltv_match": "https://www.hltv.org/matches/2399409/9z-vs-falcons-thunderpick-world-championship-2026",
+    "hltv_report": "https://www.hltv.org/news/45728/falcons-secure-playoff-berth-at-twc-2026",
+    "verified_utc": null,
+    "verified_date_utc": "2026-10-16",
+    "maps_score_orientation": "9z"
+   },
+   "prelock_pick": {
+    "frozen": true,
+    "as_of_utc": "2026-10-15T10:53:42Z",
+    "pick": "Falcons",
+    "probability": 0.7563,
+    "archived_probability_a_b": [
+     0.2437,
+     0.7563
+    ],
+    "leaderboard_pick": "Falcons",
+    "leaderboard_class": "LONG SHOT",
+    "history_basis": "Pinnacle odds, margin removed",
+    "grade": "correct"
+   },
+   "market_provenance_note": "The frozen Hotspawn history retains the Pinnacle label and probability but not the exact price pair. valuepicks/data/coverage.csv separately archives a direct Pinnacle-derived 75.8%/24.2% line; its source fact F-21 records the quote and the initially disputed 30-minute kickoff offset, later checked against HLTV's 11:00Z listing."
   },
-  "capture_irregularities": [
-    {
-      "kind": "possible duplicate/placeholder fixture",
-      "hotspawn_ids": ["1080204", "1081614"],
-      "evidence": "Both payload rows have the same competition ID (35859), teams and team IDs. 1080204 starts at 16:00Z and appears on lobby/cs2-pickems/thp-pickems with 33 total picks; 1081614 starts at 17:00Z, appears only on thp-pickems and has 0/0 ownership. HLTV has one Legacy-FURIA day-2 match page (2399411), which records the finished 2-1 series.",
-      "treatment": "Keep both raw fixture rows for audit. Grade only the frozen pick on 1080204; do not create a second pick or second result for 1081614.",
-      "hotspawn_source": "https://play.hotspawn.com/thp-pickems",
-      "hltv_source": "https://www.hltv.org/matches/2399411/legacy-vs-furia-thunderpick-world-championship-2026"
-    }
-  ]
+  {
+   "hotspawn_id": "1080203",
+   "teams": [
+    "PARIVISION",
+    "BetBoom"
+   ],
+   "start_utc": "2026-10-15T13:30:00Z",
+   "lock_utc": "2026-10-15T13:24:00Z",
+   "result": {
+    "winner": "BetBoom",
+    "series_score": "2-1",
+    "maps": [
+     "Ancient 13-10 PARIVISION",
+     "Anubis 4-13 BetBoom",
+     "Mirage 7-13 BetBoom"
+    ],
+    "hltv_match": "https://www.hltv.org/matches/2399410/parivision-vs-betboom-thunderpick-world-championship-2026",
+    "hltv_report": "https://www.hltv.org/news/45729/betboom-eliminate-parivision-from-twc",
+    "verified_utc": null,
+    "verified_date_utc": "2026-10-16",
+    "maps_score_orientation": "PARIVISION"
+   },
+   "prelock_pick": {
+    "frozen": true,
+    "as_of_utc": "2026-10-15T10:57:29Z",
+    "pick": "PARIVISION",
+    "probability": 0.5342,
+    "archived_probability_a_b": [
+     0.5342,
+     0.4658
+    ],
+    "leaderboard_pick": "BetBoom",
+    "leaderboard_class": "CONTRARIAN",
+    "history_basis": "Pinnacle odds, margin removed",
+    "grade": "miss"
+   },
+   "market_provenance_note": "The Hotspawn frozen record labels this probability Pinnacle but preserves no odds or quote URL. valuepicks/data/coverage.csv instead identifies a relayed BetBoom-book quote (cyber.sports.ru, 1.85/1.95) at 10:05Z and 51.3%/48.7%; do not present those as the same quote. Grade the frozen side, not an unretained market price."
+  },
+  {
+   "hotspawn_id": "1080204",
+   "teams": [
+    "Legacy",
+    "FURIA"
+   ],
+   "start_utc": "2026-10-15T16:00:00Z",
+   "lock_utc": "2026-10-15T15:54:00Z",
+   "result": {
+    "winner": "FURIA",
+    "series_score": "2-1",
+    "maps": [
+     "Cache 13-10 Legacy",
+     "Inferno 5-13 FURIA",
+     "Mirage 8-13 FURIA"
+    ],
+    "hltv_match": "https://www.hltv.org/matches/2399411/legacy-vs-furia-thunderpick-world-championship-2026",
+    "hltv_report": "https://www.hltv.org/news/45730/furia-make-twc-playoffs-over-legacy",
+    "verified_utc": null,
+    "verified_date_utc": "2026-10-16",
+    "maps_score_orientation": "Legacy"
+   },
+   "prelock_pick": {
+    "frozen": true,
+    "as_of_utc": "2026-10-15T10:57:29Z",
+    "pick": "FURIA",
+    "probability": 0.5758,
+    "archived_probability_a_b": [
+     0.4242,
+     0.5758
+    ],
+    "leaderboard_pick": "Legacy",
+    "leaderboard_class": "CONTRARIAN",
+    "grade": "correct"
+   },
+   "market_provenance_note": "The frozen Hotspawn history labels the basis Pinnacle but does not retain the exact quote. valuepicks/data/coverage.csv has a nearby 42.6%/57.4% primary-market estimate without naming the operator; treat it as a cross-check, not proof of the exact Hotspawn quote."
+  }
+ ],
+ "day2_grade": {
+  "official_series_results": 4,
+  "archived_prelock_picks": 3,
+  "base_picks_correct": 2,
+  "leaderboard_picks_correct": 2,
+  "unarchived_match_ids": [
+   "1080201"
+  ],
+  "interpretation": "Both strategies went 2/3 on the three frozen picks. The Aurora-NiP result is reported, but is not in either denominator because no frozen pick exists. Small sample; descriptive only."
+ },
+ "day3": {
+  "aurora_vs_9z": {
+   "hotspawn_id": "1080205",
+   "hotspawn_match": "https://www.hotspawn.com/matches/aurora-vs-9z-thunderpick-world-championship-2026-1080205",
+   "hltv_match": "https://www.hltv.org/matches/2399412/aurora-vs-9z-thunderpick-world-championship-2026",
+   "format": "BO3 Group A decider",
+   "start_utc": "2026-10-16T14:00:00Z",
+   "lock_utc": "2026-10-16T13:54:00Z",
+   "base_pick": "Aurora",
+   "market": null,
+   "independent_own_line": null,
+   "hotspawn_ownership_pct_a_b": null,
+   "ownership_rule": "Hotspawn crowd shares are ownership only, never a win-probability input.",
+   "leaderboard_strategy": null,
+   "day2_context": [
+    "On day 1, 9z beat Aurora 2-0 (Inferno 13-11, Nuke 13-1): https://www.hltv.org/matches/2399384/9z-vs-aurora-thunderpick-world-championship-2026",
+    "On day 2, Aurora beat NiP 2-0 (Cache 13-9, Dust2 13-7): https://www.hltv.org/matches/2399408/aurora-vs-ninjas-in-pyjamas-thunderpick-world-championship-2026",
+    "On day 2, 9z lost 1-2 to Falcons but took Mirage 13-8 and lost Nuke and Dust2 9-13: https://www.hltv.org/matches/2399409/9z-vs-falcons-thunderpick-world-championship-2026"
+   ],
+   "roster_context": {
+    "hltv_team_page": "https://www.hltv.org/team/11861/aurora",
+    "hltv_transfer_page": "https://www.hltv.org/news/44998/rostermania-tracker-summer-2026",
+    "moves": "Jimpphat joined 2026-07-03; kyxsan joined 2026-07-08 as the new IGL. About three months before the decider, not a days-old change.",
+    "current_hltv_read": null,
+    "recent_results": "Aurora beat NIP 2-0 on day 2 of TWC; see linked match 2399408.",
+    "epl24_source": null,
+    "weighting": "Weak historical context only. July changes are not a fresh October onboarding penalty.",
+    "unverified_fields": [
+     "exact roster tenure/maps",
+     "EPL placement"
+    ]
+   },
+   "other_price_checks": null,
+   "superseded": "Historical Oct15 review. Current picks, probabilities and schedule are generated exclusively from hotspawn/data/board.json and shown on hotspawn/twc.html."
+  },
+  "betboom_vs_legacy": {
+   "hltv_match": "https://www.hltv.org/matches/2399413/betboom-vs-legacy-thunderpick-world-championship-2026",
+   "hltv_event": "https://www.hltv.org/events/8932/thunderpick-world-championship-2026",
+   "format": "BO3 Group B decider, 2026-10-16",
+   "hotspawn_id": "1081775",
+   "coverage_status": "Observed in the 2026-10-16T04:21:10Z Hotspawn capture; current schedule from JSON epochs, not rendered HLTV timezone.",
+   "pick_or_probability": null,
+   "publication_rule": "Do not fabricate a Hotspawn fixture ID, pick, or win probabilities. Recheck after the next scheduled refresh; publish only if Hotspawn lists it.",
+   "time_limit": "HLTV's rendered 13:00 lacks a dependable timezone and Liquipedia's secondary listing says 19:00 CEST; do not publish an exact UTC start from these sources alone.",
+   "secondary_schedule": "https://liquipedia.net/counterstrike/Thunderpick/World_Championship/2026",
+   "superseded": "Historical Oct15 review. Current picks, probabilities and schedule are generated exclusively from hotspawn/data/board.json and shown on hotspawn/twc.html."
+  }
+ },
+ "capture_irregularities": [
+  {
+   "kind": "possible duplicate/placeholder fixture",
+   "hotspawn_ids": [
+    "1080204",
+    "1081614"
+   ],
+   "evidence": "Both payload rows have the same competition ID (35859), teams and team IDs. 1080204 starts at 16:00Z and appears on lobby/cs2-pickems/thp-pickems with 33 total picks; 1081614 starts at 17:00Z, appears only on thp-pickems and has 0/0 ownership. HLTV has one Legacy-FURIA day-2 match page (2399411), which records the finished 2-1 series.",
+   "treatment": "Keep both raw fixture rows for audit. Grade only the frozen pick on 1080204; do not create a second pick or second result for 1081614.",
+   "hotspawn_source": "https://play.hotspawn.com/thp-pickems",
+   "hltv_source": "https://www.hltv.org/matches/2399411/legacy-vs-furia-thunderpick-world-championship-2026"
+  }
+ ]
 }

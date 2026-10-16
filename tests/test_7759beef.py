@@ -1,7 +1,7 @@
 """Acceptance checks for the valuepicks board (session arena/7759beef).
 
 These tests recompute every published number from stored inputs. They fail the build if a page
-disagrees with its data, if a pick is missing for an open fixture, if a market probability does not
+disagrees with its data, if an open fixture disappears or is unpriced without a flag, if a market probability does not
 de-vig from the stored odds, if an own line does not recompute from the stored rating inputs, or if a
 row has no source link. Hotspawn's crowd percentage must never appear as a probability input.
 """
@@ -98,7 +98,28 @@ class ValuePicksBoardTests(unittest.TestCase):
             row = next(r for r in self.rows if r["match_id"] == res["match_id"])
             if not row.get("resolution_used"):
                 self.assertTrue(row["pick"], f"{res['match_id']}: resolution skipped without a pick")
-        self.assertGreaterEqual(checked, 1, "expected at least one ladder-resolved row")
+        # A fresh collector may legitimately supersede EVERY manual resolution. Still verify all
+        # stored quote arithmetic, even when none of those old pairs is the published basis.
+        self.assertEqual(checked,sum(bool(r.get("resolution_used")) for r in self.rows))
+        self.assertTrue(self.sources["resolutions"])
+        for res in self.sources["resolutions"]:
+            market=res["market"]
+            self.assertEqual((market["prob_a_pct"],market["prob_b_pct"]),BUILD.devig(market["odds_a"],market["odds_b"]))
+
+    def test_manual_resolution_and_fresher_executive_precedence_in_memory(self):
+        # Exercise both paths even when today's real feed prices every manually researched fixture.
+        # These are in-memory test mutations only, never newly published prices or picks.
+        res=self.sources["resolutions"][0]
+        original=next((r for r in self.exec_rows if r["match_id"]==res["match_id"]),self.exec_rows[0])
+        unpriced={**original,"status":"open","match_id":res["match_id"],"team_a":res["hotspawn_team_a"],"team_b":res["hotspawn_team_b"],"pick":"","prob_a_pct":"","prob_b_pct":""}
+        resolved=BUILD.build_board([unpriced],self.sources)[0][0]
+        self.assertTrue(resolved["resolution_used"])
+        self.assertEqual((resolved["prob_a_pct"],resolved["prob_b_pct"]),BUILD.devig(res["market"]["odds_a"],res["market"]["odds_b"]))
+        named={**unpriced,"pick":unpriced["team_a"],"prob_a_pct":"60.0","prob_b_pct":"40.0"}
+        superseded=BUILD.build_board([named],self.sources)[0][0]
+        self.assertFalse(superseded.get("resolution_used",False))
+        self.assertEqual(superseded["pick"],named["pick"])
+        self.assertEqual(superseded["prob_a_pct"],60.0)
 
     def test_own_lines_recompute_from_official_rating_inputs(self):
         checked = 0
@@ -219,8 +240,36 @@ class ValuePicksBoardTests(unittest.TestCase):
                 continue
             with self.subTest(match_id=row["match_id"]):
                 self.assertIn(f'id="m{row["match_id"]}"', html)
-                self.assertIn(f"{row['prob_a_pct']:.1f}%", html)
-                self.assertIn(f"{row['prob_b_pct']:.1f}%", html)
+                match=re.search(r'<article[^>]*id="m'+re.escape(row['match_id'])+r'".*?</article>', html, re.S)
+                self.assertIsNotNone(match, 'card is missing')
+                card=match.group(0)
+                if row['prob_a_pct'] is None or row['prob_b_pct'] is None:
+                    # A failed ladder must not fabricate numbers merely to satisfy formatting.
+                    self.assertTrue(row.get('no_sourced_basis'))
+                    self.assertEqual(row['pick'],'')
+                    self.assertIsNone(row['prob_a_pct'])
+                    self.assertIsNone(row['prob_b_pct'])
+                    self.assertTrue(row['flags'])
+                    self.assertIn('No probability published for this row.',card)
+                    self.assertIn('no side published',card)
+                    self.assertIn(f'id="u{row["match_id"]}"', self.pages['unresolved.html'])
+                else:
+                    self.assertIn(f"{row['prob_a_pct']:.1f}%", card)
+                    self.assertIn(f"{row['prob_b_pct']:.1f}%", card)
+
+    def test_missing_evidence_does_not_turn_into_a_fabricated_probability(self):
+        fixture=dict(self.exec_rows[0],status='open',pick='',prob_a_pct='',prob_b_pct='',
+                     own_prob_a_pct='',own_prob_b_pct='',market_prob_a_pct='',market_prob_b_pct='',
+                     market_odds_a='',market_odds_b='',basis_label='No sourced basis')
+        sources={**self.sources,'resolutions':[]}
+        rows,_,_=BUILD.build_board([fixture],sources)
+        self.assertEqual(len(rows),1)
+        self.assertTrue(rows[0]['no_sourced_basis'])
+        self.assertFalse(rows[0]['pick'])
+        self.assertIsNone(rows[0]['prob_a_pct'])
+        self.assertIsNone(rows[0]['prob_b_pct'])
+        self.assertIn('No probability published', BUILD.card(rows[0]))
+
 
 
 if __name__ == "__main__":

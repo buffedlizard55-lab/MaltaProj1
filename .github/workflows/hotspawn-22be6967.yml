@@ -1,7 +1,6 @@
 # Every-match Hotspawn CS2 board — automatic refresh (session arena/22be6967).
 #
-# Every 3 hours (so the board stays inside the 4-8 h freshness requirement even if GitHub drops one
-# scheduled run), with no credentials and no manual input:
+# Every 4 hours (GitHub scheduling is best-effort; the UI marks captures stale after 8 h), with no credentials and no manual input:
 #   1. read all three Hotspawn CS2 surfaces (TransferState), Pinnacle's public guest JSON, Polymarket,
 #      Valve's official standings (cloned) and HLTV's ranking;
 #   2. refit our own line's slope on Valve's published results;
@@ -14,9 +13,9 @@ name: Hotspawn every-match board (22be6967)
 on:
   workflow_dispatch: {}
   schedule:
-    - cron: "29 */3 * * *"
+    - cron: "29 */4 * * *"
   push:
-    branches: ["main", "arena/22be6967-maltaproj1", "arena/b6f5405d-maltaproj1"]
+    branches: ["main", "arena/22be6967-maltaproj1", "arena/6b23e38f-maltaproj1", "arena/b6f5405d-maltaproj1"]
     paths:
       - "hotspawn/*.py"
       - "hotspawn/research/**"
@@ -55,6 +54,14 @@ jobs:
       - name: Collect Hotspawn, Pinnacle, Polymarket, Valve, HLTV
         run: python3 -u hotspawn/collect.py
 
+      - name: Save timestamped source evidence even if later checks fail
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: hotspawn-source-capture-${{ github.run_id }}
+          path: hotspawn/data/capture.json
+          retention-days: 7
+
       - name: Fit our own line on Valve's published results
         run: python3 -u hotspawn/calibrate.py
 
@@ -64,20 +71,35 @@ jobs:
       - name: Build the pages
         run: python3 -u hotspawn/build.py
 
+      - name: Verify every row against its captured source inputs
+        run: python3 -u hotspawn/verify.py
+
       - name: Invariants (probabilities, crowd isolation, sources, links)
         id: tests
         run: python3 -u hotspawn/tests.py
 
       - name: Install a headless browser for the phone-layout check
         id: browser
-        continue-on-error: true
         run: |
           python -m pip install --quiet playwright==1.55.0
           python -m playwright install --with-deps chromium
 
-      - name: Phone-layout check (390x844, no horizontal overflow)
+      - name: Phone/tablet checks (360, 390, 768 px; browser required)
         id: mobile
+        env:
+          REQUIRE_BROWSER: "1"
         run: python3 -u hotspawn/mobile_check.py
+
+      - name: Save real-browser phone evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: hotspawn-mobile-${{ github.run_id }}
+          path: |
+            hotspawn/data/mobile_check.json
+            .arena/mobile/*.png
+          include-hidden-files: true
+          retention-days: 7
 
       - name: Commit the refreshed board
         run: |
@@ -88,30 +110,24 @@ jobs:
           git add -A hotspawn/data hotspawn/*.html
           if git diff --cached --quiet; then echo "no changes"; exit 0; fi
           git commit -q -m "hotspawn(22be6967): refresh every-match board [skip ci] [run ${GITHUB_RUN_ID}]"
-          is_generated() { case "$1" in hotspawn/data/*|hotspawn/*.html) return 0 ;; *) return 1 ;; esac; }
-          for i in 1 2 3 4 5; do
-            if git pull --rebase -q origin "$BR"; then
-              git push -q origin "HEAD:$BR" && { echo "pushed to $BR"; exit 0; }
-            else
-              conflicts=$(git diff --name-only --diff-filter=U || true)
-              foreign=0
-              for f in $conflicts; do is_generated "$f" || foreign=1; done
-              if [ -n "$conflicts" ] && [ "$foreign" = 0 ]; then
-                git checkout --theirs -- $conflicts && git add -A $conflicts
-                GIT_EDITOR=true git rebase --continue || true
-                git push -q origin "HEAD:$BR" && { echo "pushed after regenerating"; exit 0; }
-              fi
-              git rebase --abort 2>/dev/null || true
+          for i in 1 2 3; do
+            if ! git pull --rebase origin "$BR"; then
+              git rebase --abort
+              echo "::error::Concurrent generated/source edits need review; no work overwritten."
+              exit 1
             fi
-            sleep $((i * 10))
+            python3 hotspawn/verify.py
+            python3 hotspawn/tests.py
+            if git push origin "HEAD:$BR"; then exit 0; fi
+            sleep $((i * 5))
           done
-          echo "::warning::could not push this refresh; the next scheduled run starts from the newer tip"
+          echo "::error::Refresh was checked but could not be published after concurrent pushes."
+          exit 1
 
-      - name: Ask GitHub Pages to rebuild (main only, best effort)
+      - name: Request GitHub Pages rebuild (main only)
         if: github.ref_name == 'main'
-        continue-on-error: true
         run: |
-          curl -sS -o /dev/null -w "pages build request: HTTP %{http_code}\n" -X POST \
+          curl --fail-with-body --retry 2 -sS -o /dev/null -w "pages build request: HTTP %{http_code}\n" -X POST \
             -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" -H "Accept: application/vnd.github+json" \
             "https://api.github.com/repos/${{ github.repository }}/pages/builds"
 
