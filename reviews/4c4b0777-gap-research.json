@@ -1,0 +1,39 @@
+{
+  "reviewed_date_utc": "2026-10-16",
+  "scope": "Additional manual source re-read only for the two fixtures unresolved in the 04:20Z canonical capture. No probabilities invented.",
+  "rows": [
+    {
+      "match_id": "1079170",
+      "match": "BET-M vs Just Players",
+      "hotspawn_source": "https://www.hotspawn.com/matches/bet-m-vs-just-players-nodwin-clutch-series-13-1079170",
+      "hltv_source": "https://www.hltv.org/matches/2399087/bet-m-vs-just-players-nodwin-clutch-series-13",
+      "hltv_observed": "BO3 Swiss round 2 on 17 October. The fetched betting section showed no numeric two-sided quote. Just Players' team page lists four active players, not five.",
+      "roster_source": "https://www.hltv.org/team/13776/just-players",
+      "esportsbook_check": "Pinnacle public page fetch failed with HTTP 500; the successful canonical direct-API capture contains no matching quote. This is not proof that no bookmaker offers the match.",
+      "book_source": "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
+      "secondary_source": "https://stavka.tv/matches/csgo/17-10-2026-bet-m-33-just-players",
+      "secondary_observed": "Match preview exists, but the fetched match section contains an AI-authored tip and no attributable same-book price pair. Nearby match prices are for other fixtures, not this one. Excluded.",
+      "model_limit": "Official 2026-10-05 Valve file contains two Just Players rosters (974 and 485 points). Four current names overlap the 974-point roster, but a fifth current player is not confirmed. Do not silently select one five's historical points as the confirmed current five.",
+      "probability_a": null,
+      "probability_b": null,
+      "status": "unresolved"
+    },
+    {
+      "match_id": "1081126",
+      "match": "Banda chuya vs Enjoy",
+      "hotspawn_source": "https://www.hotspawn.com/matches/banda-chuya-vs-enjoy-cct-europe-2026-series-12-play-in-1081126",
+      "hltv_source": "https://www.hltv.org/team/13900/banda-chuya",
+      "hltv_observed": "HLTV team page lists the 18 October Enjoy fixture but explicitly says no active roster. No numeric line is established by this team page.",
+      "esportsbook_check": "No Pinnacle or Polymarket quote joined this fixture in the successful canonical API capture; direct Pinnacle web fetch failed with HTTP 500. Coverage absence is limited to these reads.",
+      "book_source": "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
+      "secondary_source": "https://egamersworld.com/counterstrike/match/1sGIL2gAYu/banda-chuya-vs-enjoy-9ru7xO5OG",
+      "secondary_observed": "EGamersWorld shows 1.8 / 1.8, linking to # rather than an identified bookmaker's event. Operator and executable line cannot be confirmed. Excluded, not converted into a fabricated 50/50 pick.",
+      "model_limit": "Official Valve file contains two Banda Chuya entries (801 and 402 points). HLTV supplies no active roster to disambiguate. The secondary site's roster conflicts with that absence; organizer/current-five confirmation is unverified.",
+      "probability_a": null,
+      "probability_b": null,
+      "status": "unresolved"
+    }
+  ],
+  "official_ratings_source": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
+  "next_action": "The scheduled collector retries external lines automatically. A new primary quote can resolve either row without inferring a roster. New roster evidence must be checked before using a historical five's points."
+}
