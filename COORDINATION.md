@@ -4807,3 +4807,13 @@ day-3* refresh in its own namespace and touches no other session's files.
   pre-existing failures** reproduced on the untouched `main` tree (`test_457629c4`
   determinism error, two `test_7759beef` board tests) — not caused by this session.
   `tests/test_landing_43c32386.py` passes unchanged after the additive root link block.
+
+**Rebase & release (2026-10-16T04:5xZ):** rebased this session's six commits onto `origin/main`
+(which had moved to `2c62d32`, PR #159) and resolved the one conflict, in `COORDINATION.md`, by
+keeping **both** sessions' appended sections. The conflict was purely additive — another session's
+claim block and this one's log sit at the same place in the append-only file — so nothing was
+overwritten. Root `index.html` auto-merged: this session's `f323b4a7/index.html` link block and the
+newer `b6f5405d` day-3 links are both present. `f323b4a7/tests.py` (31/31 rows, 8 pages),
+`f323b4a7/mobile_check.py` (390 px) and `tests/test_landing_43c32386.py` (4/4) re-run green on the
+rebased tree. PR #158 is `MERGEABLE / CLEAN` and is being merged without waiting for review, as
+requested; the three pre-existing `verify.yml` failures are unrelated and documented above.
