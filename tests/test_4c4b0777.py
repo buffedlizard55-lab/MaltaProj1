@@ -82,6 +82,10 @@ class Assurance(unittest.TestCase):
         sys.path.insert(0, str(ROOT / 'hotspawn'))
         import model
         inp = model.load_inputs()
+        # Synthetic fixture keeps this regression independent of future lobby rotation.
+        fixture = dict(inp['capture']['hotspawn']['fixtures'][0], match_id='1081126',
+                       competition='CCT Europe 2026 Series #12 Play-In')
+        inp['capture']['hotspawn']['fixtures'] = [fixture]
         inp['hltv_links']['fixtures'].pop('1081126', None)
         inp['hltv_links']['events']['CCT Europe 2026 Series #12 Play-In']['url'] = 'https://www.hltv.org/team/13759/mellren'
         rows, _ = model.build_rows(inp)
