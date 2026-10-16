@@ -219,8 +219,36 @@ class ValuePicksBoardTests(unittest.TestCase):
                 continue
             with self.subTest(match_id=row["match_id"]):
                 self.assertIn(f'id="m{row["match_id"]}"', html)
-                self.assertIn(f"{row['prob_a_pct']:.1f}%", html)
-                self.assertIn(f"{row['prob_b_pct']:.1f}%", html)
+                match=re.search(r'<article[^>]*id="m'+re.escape(row['match_id'])+r'".*?</article>', html, re.S)
+                self.assertIsNotNone(match, 'card is missing')
+                card=match.group(0)
+                if row['prob_a_pct'] is None or row['prob_b_pct'] is None:
+                    # A failed ladder must not fabricate numbers merely to satisfy formatting.
+                    self.assertTrue(row.get('no_sourced_basis'))
+                    self.assertEqual(row['pick'],'')
+                    self.assertIsNone(row['prob_a_pct'])
+                    self.assertIsNone(row['prob_b_pct'])
+                    self.assertTrue(row['flags'])
+                    self.assertIn('No probability published for this row.',card)
+                    self.assertIn('no side published',card)
+                    self.assertIn(f'id="u{row["match_id"]}"', self.pages['unresolved.html'])
+                else:
+                    self.assertIn(f"{row['prob_a_pct']:.1f}%", card)
+                    self.assertIn(f"{row['prob_b_pct']:.1f}%", card)
+
+    def test_missing_evidence_does_not_turn_into_a_fabricated_probability(self):
+        fixture=dict(self.exec_rows[0],status='open',pick='',prob_a_pct='',prob_b_pct='',
+                     own_prob_a_pct='',own_prob_b_pct='',market_prob_a_pct='',market_prob_b_pct='',
+                     market_odds_a='',market_odds_b='',basis_label='No sourced basis')
+        sources={**self.sources,'resolutions':[]}
+        rows,_,_=BUILD.build_board([fixture],sources)
+        self.assertEqual(len(rows),1)
+        self.assertTrue(rows[0]['no_sourced_basis'])
+        self.assertFalse(rows[0]['pick'])
+        self.assertIsNone(rows[0]['prob_a_pct'])
+        self.assertIsNone(rows[0]['prob_b_pct'])
+        self.assertIn('No probability published', BUILD.card(rows[0]))
+
 
 
 if __name__ == "__main__":

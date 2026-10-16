@@ -1,7 +1,7 @@
 {
  "session": "arena/7759beef",
- "generated_utc": "2026-10-15T10:06:00Z",
- "purpose": "Verified facts used by the valuepicks/ board: day-1 review, roster-change intelligence, per-fixture series formats, team-identity evidence for Hotspawn name variants, and the market quotes that let every open fixture carry a pick.",
+ "generated_utc": "2026-10-15T23:05:00Z",
+ "purpose": "Verified facts used by the valuepicks/ board: day-1 review, roster-change intelligence, per-fixture series formats, team-identity evidence for Hotspawn name variants, and the market quotes that let every open fixture carry a pick. Ladder entries are only kept while their fixture is still an open row of the executive capture.",
  "tiers": {
   "official": "Primary official source (league/event organiser or the official Valve standings file).",
   "primary-book": "Direct bookmaker price page or bookmaker API capture.",
@@ -253,161 +253,81 @@
    "read_utc": "2026-10-15T10:16:00Z",
    "tier": "official",
    "detail": "The article's ESL Pro League Season 24 results table shows 03/10/2026, Aurora 2:0 9z, and describes Aurora's third-place run; the third-place claim is also carried by F-15."
+  },
+  {
+   "id": "F-28",
+   "claim": "Aurora vs 9z (Thunderpick World Championship 2026, Group A decider): Polymarket traded Aurora 0.685 / 9z 0.315 at the read time.",
+   "source_name": "Polymarket event cs2-aur1-9z-2026-10-16 (traded prices, project refresh capture)",
+   "url": "https://polymarket.com/event/cs2-aur1-9z-2026-10-16",
+   "read_utc": "2026-10-15T22:41:17Z",
+   "tier": "prediction-market",
+   "detail": "Stored by the Hotspawn refresh capture (hotspawn/data/picks.csv columns polymarket_price_a/b). A prediction-market price is not a bookmaker price: fees, thin-market spreads and market settlement rules apply. Inverse-price de-vig: 68.5% / 31.5%."
+  },
+  {
+   "id": "F-29",
+   "claim": "Iberian Soul vs HyperSpirit (DraculaN Season 7): Polymarket traded Iberian Soul 0.675 / HyperSpirit 0.325 at the read time.",
+   "source_name": "Polymarket event cs2-is-hs2-2026-10-19 (traded prices, project refresh capture)",
+   "url": "https://polymarket.com/event/cs2-is-hs2-2026-10-19",
+   "read_utc": "2026-10-15T22:41:17Z",
+   "tier": "prediction-market",
+   "detail": "Stored by the Hotspawn refresh capture (hotspawn/data/picks.csv). Inverse-price de-vig: 67.5% / 32.5%."
+  },
+  {
+   "id": "F-30",
+   "claim": "Sashi vs mouz NXT (DraculaN Season 7): Polymarket traded Sashi 0.675 / mouz NXT 0.325 at the read time.",
+   "source_name": "Polymarket event cs2-sashi-mouzn-2026-10-19 (traded prices, project refresh capture)",
+   "url": "https://polymarket.com/event/cs2-sashi-mouzn-2026-10-19",
+   "read_utc": "2026-10-15T22:41:17Z",
+   "tier": "prediction-market",
+   "detail": "Stored by the Hotspawn refresh capture (hotspawn/data/picks.csv). Inverse-price de-vig: 67.5% / 32.5%."
+  },
+  {
+   "id": "F-31",
+   "claim": "Aurora vs 9z is the Group A decider of Thunderpick World Championship 2026: Best of 3 (LAN), 16 Oct, 14:00 UTC, winner reaches the playoffs.",
+   "source_name": "HLTV match page 2399412, Aurora vs 9z, Thunderpick World Championship 2026",
+   "url": "https://www.hltv.org/matches/2399412/aurora-vs-9z-thunderpick-world-championship-2026",
+   "read_utc": "2026-10-15T22:33:00Z",
+   "tier": "official",
+   "detail": "Read during session e1ceecc2's line-by-line re-read of all eight day-1/day-2 series; the same pair's day-1 result sits on HLTV 2399384."
+  },
+  {
+   "id": "F-32",
+   "claim": "Iberian Soul vs HyperSpirit is a single-map (Bo1) fixture: the project capture records the series format as BO1 with the source note 'Polymarket market title'.",
+   "source_name": "Polymarket event cs2-is-hs2-2026-10-19 as recorded by the project refresh capture",
+   "url": "https://polymarket.com/event/cs2-is-hs2-2026-10-19",
+   "read_utc": "2026-10-15T22:41:17Z",
+   "tier": "prediction-market",
+   "detail": "Format provenance is the market title, not an official match page (executive/data/analysis.csv leaves series_format empty for this row), so the Bo1 flag is secondary evidence only."
+  },
+  {
+   "id": "F-33",
+   "claim": "Sashi vs mouz NXT is a single-map (Bo1) fixture: the project capture records the series format as BO1 with the source note 'Polymarket market title'.",
+   "source_name": "Polymarket event cs2-sashi-mouzn-2026-10-19 as recorded by the project refresh capture",
+   "url": "https://polymarket.com/event/cs2-sashi-mouzn-2026-10-19",
+   "read_utc": "2026-10-15T22:41:17Z",
+   "tier": "prediction-market",
+   "detail": "Format provenance is the market title, not an official match page, so the Bo1 flag is secondary evidence only."
+  },
+  {
+   "id": "F-34",
+   "claim": "Voca vs HAVU: Pinnacle match-winner 1.47 / 2.62 (6.22% overround), captured 2026-10-15T19:59:37Z; the same capture row records the series format as Bo1 from the Pinnacle CS2 matchups page.",
+   "source_name": "Pinnacle CS2 matchups page as captured by the project's executive collector",
+   "url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
+   "read_utc": "2026-10-15T19:59:37Z",
+   "tier": "primary-book",
+   "detail": "Stored in executive/data/analysis.csv (market_odds_a/b, basis_label 'Market \u00b7 primary book'). Inverse-price de-vig: 64.1% / 35.9%."
+  },
+  {
+   "id": "F-35",
+   "claim": "100 Thieves vs Sangal: Pinnacle match-winner 1.53 / 2.47 (6.00% overround), captured 2026-10-15T19:59:37Z; the same capture row records the series format as Bo3 from the Pinnacle CS2 matchups page.",
+   "source_name": "Pinnacle CS2 matchups page as captured by the project's executive collector",
+   "url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
+   "read_utc": "2026-10-15T19:59:37Z",
+   "tier": "primary-book",
+   "detail": "Stored in executive/data/analysis.csv (market_odds_a/b, basis_label 'Market \u00b7 primary book'). Inverse-price de-vig: 61.8% / 38.2%."
   }
  ],
  "resolutions": [
-  {
-   "match_id": "1080202",
-   "hotspawn_team_a": "9z",
-   "hotspawn_team_b": "Falcons",
-   "resolved_format": "BO3",
-   "format_facts": [
-    "F-16"
-   ],
-   "identity_facts": [],
-   "market": {
-    "source_name": "Pinnacle (direct bookmaker, stored capture)",
-    "url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
-    "captured_utc": "2026-10-15T08:51:15Z",
-    "tier": "primary-book",
-    "odds_a": 3.95,
-    "odds_b": 1.260417,
-    "prob_a_pct": 24.2,
-    "prob_b_pct": 75.8,
-    "facts": [
-     "F-21"
-    ]
-   },
-   "own": {
-    "vrs_a": 1543,
-    "vrs_b": 1843,
-    "best_of": 3,
-    "prob_a_pct": 6.2,
-    "prob_b_pct": 93.8,
-    "facts": [
-     "F-25"
-    ]
-   },
-   "limitations": [
-    "The direct bookmaker quote is a stored 08:51:15Z capture, not a fresh read at publication time.",
-    "The earlier 'kickoff differs by 30 min' rejection is resolved by the official match page (11:00Z start against a 10:54Z Hotspawn lock), but the price itself was never re-read after 08:51:15Z."
-   ]
-  },
-  {
-   "match_id": "1080281",
-   "hotspawn_team_a": "WROTBERRY",
-   "hotspawn_team_b": "ENCE",
-   "resolved_format": "BO1",
-   "format_facts": [
-    "F-18"
-   ],
-   "identity_facts": [
-    "F-19"
-   ],
-   "market": {
-    "source_name": "Thunderpick (relayed listing via bo3.gg, stored capture)",
-    "url": "https://bo3.gg/matches/wbt-vs-ence-15-10-2026",
-    "captured_utc": "2026-10-15T06:23:29Z",
-    "tier": "relayed-book",
-    "odds_a": 1.5,
-    "odds_b": 2.4,
-    "prob_a_pct": 61.5,
-    "prob_b_pct": 38.5,
-    "facts": [
-     "F-22"
-    ]
-   },
-   "own": {
-    "vrs_a": 1201,
-    "vrs_b": 1025,
-    "best_of": 1,
-    "prob_a_pct": 73.4,
-    "prob_b_pct": 26.6,
-    "facts": [
-     "F-25"
-    ]
-   },
-   "limitations": [
-    "Hotspawn's team name 'WROTBERRY' differs from HLTV/Valve 'WBT'; the identity rests on roster and fixture correspondence (F-19).",
-    "The published market number is a relayed listing price older than four hours at publication; the older EGamersWorld capture (1.62/2.107) points the same way."
-   ]
-  },
-  {
-   "match_id": "1080203",
-   "hotspawn_team_a": "PARIVISION",
-   "hotspawn_team_b": "BetBoom",
-   "resolved_format": "BO3",
-   "format_facts": [
-    "F-17"
-   ],
-   "identity_facts": [],
-   "market": {
-    "source_name": "BetBoom book (relayed by cyber.sports.ru)",
-    "url": "https://cyber.sports.ru/betting/1117401785-betboom-sklonyaetsya-k-pobede-parivision-nad-betboom-team-na-thunderpi.html",
-    "captured_utc": "2026-10-15T10:05:00Z",
-    "tier": "relayed-book",
-    "odds_a": 1.85,
-    "odds_b": 1.95,
-    "prob_a_pct": 51.3,
-    "prob_b_pct": 48.7,
-    "facts": [
-     "F-23"
-    ]
-   },
-   "own": {
-    "vrs_a": 1411,
-    "vrs_b": 1596,
-    "best_of": 3,
-    "prob_a_pct": 16.3,
-    "prob_b_pct": 83.7,
-    "facts": [
-     "F-25"
-    ]
-   },
-   "limitations": [
-    "No direct bookmaker page was read for this fixture; the headline is a third-party report of a bookmaker line, published the same day.",
-    "The project's own VRS line disagrees violently with the market (BetBoom 83.7% vs 48.7%); the market number is published as the pick and the split is flagged."
-   ]
-  },
-  {
-   "match_id": "1080283",
-   "hotspawn_team_a": "WROTBERRY",
-   "hotspawn_team_b": "BOJONG",
-   "resolved_format": "BO1",
-   "format_facts": [
-    "F-18"
-   ],
-   "identity_facts": [
-    "F-19"
-   ],
-   "market": {
-    "source_name": "Thunderpick (relayed listing via bo3.gg, stored capture)",
-    "url": "https://bo3.gg/matches/wbt-vs-bojong-15-10-2026",
-    "captured_utc": "2026-10-15T06:23:29Z",
-    "tier": "relayed-book",
-    "odds_a": 1.2,
-    "odds_b": 4.0,
-    "prob_a_pct": 76.9,
-    "prob_b_pct": 23.1,
-    "facts": [
-     "F-22"
-    ]
-   },
-   "own": {
-    "vrs_a": 1201,
-    "vrs_b": 463,
-    "best_of": 1,
-    "prob_a_pct": 98.6,
-    "prob_b_pct": 1.4,
-    "facts": [
-     "F-25"
-    ]
-   },
-   "limitations": [
-    "Format is taken from the same event's group-stage match pages (BO1) rather than this fixture's own page, which had not started at read time.",
-    "A 98.6% project estimate for a BO1 is a rating-gap artefact and is flagged, not used as the pick."
-   ]
-  },
   {
    "match_id": "1080286",
    "hotspawn_team_a": "HAVU",
@@ -445,6 +365,194 @@
    "limitations": [
     "Fixture starts 16 Oct; the quote is stored from 06:23:29Z and will age before the match.",
     "Identity rests on four identical starters plus fixture correspondence (F-20); the fifth player differs in the official standings entry."
+   ]
+  },
+  {
+   "match_id": "1080205",
+   "hotspawn_team_a": "Aurora",
+   "hotspawn_team_b": "9z",
+   "resolved_format": "BO3",
+   "format_facts": [
+    "F-31"
+   ],
+   "identity_facts": [],
+   "market": {
+    "source_name": "Polymarket (prediction market, stored refresh capture)",
+    "url": "https://polymarket.com/event/cs2-aur1-9z-2026-10-16",
+    "captured_utc": "2026-10-15T22:41:17Z",
+    "tier": "prediction-market",
+    "odds_a": 1.459854,
+    "odds_b": 3.174603,
+    "prob_a_pct": 68.5,
+    "prob_b_pct": 31.5,
+    "facts": [
+     "F-28"
+    ]
+   },
+   "own": {
+    "vrs_a": 1716,
+    "vrs_b": 1543,
+    "best_of": 3,
+    "prob_a_pct": 82.1,
+    "prob_b_pct": 17.9,
+    "facts": [
+     "F-25"
+    ]
+   },
+   "limitations": [
+    "Headline number is a prediction-market price, not a bookmaker line: no Pinnacle line was listed for this fixture and the book quote the console board carries is relayed by bo3.gg rather than read from the book's own site.",
+    "Quote read 2026-10-15T22:41:17Z; the fixture locks 2026-10-16T13:54:00Z, so the price can move before the map veto is known.",
+    "The own line is the project's uncalibrated VRS estimate (Aurora 1716 vs 9z 1543, Valve 2026-10-05) and it prices the series far harder than the market does; it is published as a labelled estimate, never as a book price."
+   ]
+  },
+  {
+   "match_id": "1081530",
+   "hotspawn_team_a": "Iberian Soul",
+   "hotspawn_team_b": "HyperSpirit",
+   "resolved_format": "BO1",
+   "format_facts": [
+    "F-32"
+   ],
+   "identity_facts": [],
+   "market": {
+    "source_name": "Polymarket (prediction market, stored refresh capture)",
+    "url": "https://polymarket.com/event/cs2-is-hs2-2026-10-19",
+    "captured_utc": "2026-10-15T22:41:17Z",
+    "tier": "prediction-market",
+    "odds_a": 1.481481,
+    "odds_b": 3.076923,
+    "prob_a_pct": 67.5,
+    "prob_b_pct": 32.5,
+    "facts": [
+     "F-29"
+    ]
+   },
+   "own": {
+    "vrs_a": 1218,
+    "vrs_b": 803,
+    "best_of": 1,
+    "prob_a_pct": 91.6,
+    "prob_b_pct": 8.4,
+    "facts": [
+     "F-25"
+    ]
+   },
+   "limitations": [
+    "Headline number is a prediction-market price, not a bookmaker line, and the market is thin.",
+    "Series format (Bo1) rests on the market title recorded in the project capture, not on an official match page.",
+    "Quote read 2026-10-15T22:41:17Z; the fixture locks 2026-10-19T10:39:00Z."
+   ]
+  },
+  {
+   "match_id": "1081531",
+   "hotspawn_team_a": "Sashi",
+   "hotspawn_team_b": "mouz NXT",
+   "resolved_format": "BO1",
+   "format_facts": [
+    "F-33"
+   ],
+   "identity_facts": [],
+   "market": {
+    "source_name": "Polymarket (prediction market, stored refresh capture)",
+    "url": "https://polymarket.com/event/cs2-sashi-mouzn-2026-10-19",
+    "captured_utc": "2026-10-15T22:41:17Z",
+    "tier": "prediction-market",
+    "odds_a": 1.481481,
+    "odds_b": 3.076923,
+    "prob_a_pct": 67.5,
+    "prob_b_pct": 32.5,
+    "facts": [
+     "F-30"
+    ]
+   },
+   "own": {
+    "vrs_a": 1131,
+    "vrs_b": 877,
+    "best_of": 1,
+    "prob_a_pct": 81.2,
+    "prob_b_pct": 18.8,
+    "facts": [
+     "F-25"
+    ]
+   },
+   "limitations": [
+    "Headline number is a prediction-market price, not a bookmaker line.",
+    "Valve's official file lists two MOUZ NXT entries (#137, 877 points, roster ay0k/deeN/eSx/mixer/Nikodeon; #320, 534 points, roster AiyvaN/ay0k/Flierax/Nikodeon/opdust) with overlapping players, so the own line uses #137 and the identity is not independently confirmed - only the market price is relied on for the pick.",
+    "Series format (Bo1) rests on the market title recorded in the project capture; quote read 2026-10-15T22:41:17Z, lock 2026-10-19T10:39:00Z."
+   ]
+  },
+  {
+   "match_id": "1080287",
+   "hotspawn_team_a": "Voca",
+   "hotspawn_team_b": "HAVU",
+   "resolved_format": "BO1",
+   "format_facts": [
+    "F-34"
+   ],
+   "identity_facts": [],
+   "market": {
+    "source_name": "Pinnacle (direct bookmaker, stored executive capture)",
+    "url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
+    "captured_utc": "2026-10-15T19:59:37Z",
+    "tier": "primary-book",
+    "odds_a": 1.47,
+    "odds_b": 2.62,
+    "prob_a_pct": 64.1,
+    "prob_b_pct": 35.9,
+    "facts": [
+     "F-34"
+    ]
+   },
+   "own": {
+    "vrs_a": 1182,
+    "vrs_b": 937,
+    "best_of": 1,
+    "prob_a_pct": 80.4,
+    "prob_b_pct": 19.6,
+    "facts": [
+     "F-25"
+    ]
+   },
+   "limitations": [
+    "Superseded: the executive capture already prices this fixture itself (same Pinnacle quote), so this ladder entry is background evidence and the headline number on the row is the capture's.",
+    "The own line is the project's uncalibrated VRS estimate (Voca 1182 vs HAVU 937, Valve 2026-10-05)."
+   ]
+  },
+  {
+   "match_id": "1079589",
+   "hotspawn_team_a": "100 Thieves",
+   "hotspawn_team_b": "Sangal",
+   "resolved_format": "BO3",
+   "format_facts": [
+    "F-35"
+   ],
+   "identity_facts": [],
+   "market": {
+    "source_name": "Pinnacle (direct bookmaker, stored executive capture)",
+    "url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
+    "captured_utc": "2026-10-15T19:59:37Z",
+    "tier": "primary-book",
+    "odds_a": 1.53,
+    "odds_b": 2.47,
+    "prob_a_pct": 61.8,
+    "prob_b_pct": 38.2,
+    "facts": [
+     "F-35"
+    ]
+   },
+   "own": {
+    "vrs_a": 1478,
+    "vrs_b": 1362,
+    "best_of": 3,
+    "prob_a_pct": 73.3,
+    "prob_b_pct": 26.7,
+    "facts": [
+     "F-25"
+    ]
+   },
+   "limitations": [
+    "Superseded: the executive capture already prices this fixture itself (same Pinnacle quote), so this ladder entry is background evidence and the headline number on the row is the capture's.",
+    "The own line is the project's uncalibrated VRS estimate (100 Thieves 1478 vs Sangal 1362, Valve 2026-10-05) and the market-versus-project gap it produces is a stated disagreement, not a prediction."
    ]
   }
  ]

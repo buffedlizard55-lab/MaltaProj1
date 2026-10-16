@@ -175,6 +175,14 @@ class Rule(unittest.TestCase):
         self.assertEqual(res["leaderboard_pick"], "A")
         self.assertEqual(self.mk(0.70, 0.65, 90, weak)["class"], "LONG SHOT")       # weak factor never counts
 
+    def test_own_market_disagreement_cannot_relabel_a_market_underdog_as_favourite(self):
+        result=self.mk(.70,.10,90)
+        self.assertEqual(result['favourite'],'A')
+        self.assertEqual(result['underdog'],'B')
+        self.assertEqual(result['class'],'CONTRARIAN')
+        self.assertEqual(result['leaderboard_pick'],'B')
+        self.assertGreater(result['ev_cost_pts'],0)
+
     def test_chalk_and_long_shot(self):
         self.assertEqual(self.mk(0.80, 0.85, 80)["class"], "CHALK")
         self.assertEqual(self.mk(0.76, 0.70, 94)["class"], "LONG SHOT")

@@ -49,16 +49,18 @@ def inspect(row, reference):
         issues.append('Unresolved: no valid pick')
     if probability(a) and probability(b) and abs(a - b) < .02:
         issues.append('No meaningful market edge: near-even line; any directional pick is a tiebreak, not evidence of superiority')
-    selected = row.get('book') if row.get('rung') == 'A' else row.get('pm') if row.get('rung') == 'B' else None
+    selected = row.get('book') if row.get('rung') == 'A' else (row.get('relay') or row.get('pm')) if row.get('rung') == 'B' else None
     if selected:
         read = instant(selected.get('read_utc'))
         if not read or not reference or (reference - read).total_seconds() > 8 * 3600 or (reference - read).total_seconds() < -300:
             issues.append('Unverified: selected quote timestamp missing or outside eight-hour window')
         if not selected.get('url', '').startswith('https://'):
             issues.append('Unverified: selected quote has no HTTPS source')
-        if row.get('rung') == 'B':
+        if row.get('rung') == 'B' and not row.get('relay'):
             issues.append('Prediction-market estimate: spread, order-book depth and executable size not verified; volume is not liquidity')
-        if row.get('rung') == 'A':
+        if row.get('rung') == 'B' and row.get('relay'):
+            issues.append('Secondary relayed-book estimate: not verified directly with the bookmaker')
+        if row.get('rung') == 'A' or (row.get('rung') == 'B' and row.get('relay')):
             oa, ob = selected.get('odds_a'), selected.get('odds_b')
             if not all(isinstance(x, (int, float)) and not isinstance(x, bool) and math.isfinite(x) and x > 1 for x in (oa, ob)):
                 issues.append('Unverified: invalid two-way bookmaker prices')

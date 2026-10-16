@@ -24,7 +24,7 @@ NAV = [("index.html", "Summary"), ("picks.html", "All picks"), ("twc.html", "TWC
        ("method.html", "Method")]
 CLASS_ORDER = ["VALUE", "CONTRARIAN", "SITUATIONAL", "LONG SHOT", "CHALK", "NO CROWD DATA"]
 CLASS_TEXT = {
-    "VALUE": "Play the favourite: it is the likely winner AND most players are on the other side.",
+    "VALUE": "Keep the published favourite; most crowd picks are on its opponent. “Value” here means ownership differentiation, not proven betting value.",
     "CONTRARIAN": "Play the underdog: every estimate gives it a real chance, well above its crowd share.",
     "SITUATIONAL": "Play the underdog: real chance, heavily faded, and a verified roster/stand-in/late-notice factor hits the favourite.",
     "LONG SHOT": "Keep the favourite. The underdog is an optional punt only if you are far behind.",
@@ -296,7 +296,7 @@ def strategy_page(board: dict) -> None:
 {day3_section(board)}
 <h2>The heuristic rule (v3: evidence eligibility)</h2>
 <ul>
-<li><span class="tag c-VALUE">VALUE</span> crowd majority sits on the consensus underdog → play the favourite.</li>
+<li><span class="tag c-VALUE">VALUE</span> crowd majority sits on the published favourite’s opponent → play the favourite.</li>
 <li><span class="tag c-CONTRARIAN">CONTRARIAN</span> underdog consensus ≥ 38%, every estimate ≥ 30%, and crowd share at least 10 points below its chance → play the underdog.</li>
 <li><span class="tag c-SITUATIONAL">SITUATIONAL</span> underdog consensus ≥ 30%, every estimate ≥ 25%, crowd share ≤ half its chance, a strong/moderate verified factor against the favourite and none against the underdog → play the underdog.</li>
 <li><span class="tag c-LONG-SHOT">LONG SHOT</span> underdog ≥ 20% with ≤ 10% of players → keep the favourite (optional punt).</li>

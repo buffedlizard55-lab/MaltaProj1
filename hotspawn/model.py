@@ -11,8 +11,8 @@ Probability ladder (first rung that resolves wins; every rung is labelled on the
 Hotspawn's crowd pick share is NEVER a probability input.  It is used only afterwards, by the
 leaderboard-strategy rule, as "ownership": how many other players already hold each side.
 
-Leaderboard rule v2 ("contrarian but not stupid"), applied to open fixtures with a probability.
-  The underdog's "real chance" is the CONSENSUS of the independent estimates we hold (the market rung
+Leaderboard heuristic v3 (evidence eligibility) ("contrarian but not stupid"), applied to open fixtures with a probability.
+  The underdog's "real chance" is a heuristic average of the separately sourced estimates we hold (not statistically independent) (the market rung
   A/B and our own line, averaged; our line is left out when a verified roster change post-dates Valve's
   snapshot and a market exists); MIN is the lowest of them.  Only "strong" or "moderate" verified
   factors count (roster change, stand-in, late replacement); "weak" ones (e.g. schedule) never do.
@@ -163,7 +163,7 @@ def strategy(row: dict) -> dict | None:
     if row.get("own_p_a") is not None and row.get("rung") != "C" and not roster_outdated:
         estimates_a.append(("own line", row["own_p_a"]))
     cons_a = sum(v for _, v in estimates_a) / len(estimates_a)
-    fav_is_a = cons_a >= 0.5
+    fav_is_a = (row.get("pick") == row["team_a"]) if pa == pb else pa > pb
     fav, dog = (row["team_a"], row["team_b"]) if fav_is_a else (row["team_b"], row["team_a"])
     dog_vals = [(1 - v) if fav_is_a else v for _, v in estimates_a]
     p_dog = sum(dog_vals) / len(dog_vals)

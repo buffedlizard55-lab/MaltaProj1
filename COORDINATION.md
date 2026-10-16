@@ -4807,3 +4807,27 @@ Also directly fetched Valve's pinned official file via GitHub contents API and c
 rank/name/points/roster rows against the capture, **0 mismatches**. Source URL, blob SHA and body
 SHA-256 are recorded in `hotspawn/research/vrs_source_audit.json`. This confirms snapshot fives,
 not every team's actual lineup today. Both duplicated-roster cases remain ambiguous, not absent.
+
+### FI live evidence and whole-repository CI repairs — 2026-10-16 04:48 UTC
+
+Fresh strict collector run **38852030376 succeeded**, saved by bot as **b961350**. Inspected actual
+capture/board/mobile JSON via git: 95 fixtures / 31 open / **29 picks**, rungs9A/18B/2C/2D, complete
+three-surface read with no identity conflicts. bo3.gg returned115 CS2 fixtures/33 named active relays;
+HLTV returned403 on the first gap and subsequent attempts are explicitly circuit-breaker skips.
+Mandatory real-HTTP Chromium checks **27/27 passed**, root plus eight pages at360/390/768px.
+Aurora–9z currently67/33 direct Pinnacle; BetBoom–Legacy37.19/62.81 relayed Thunderpick (secondary).
+Unresolved remain BET-M–Just Players1079170 and Banda chuya–Enjoy1081126: ambiguous official roster
+entries and no eligible line, not falsely reported as absent from Valve.
+
+Rebuilt integrated console/executive/livelines/valuepicks sources. Full discovery exposed two test
+assumptions (423tests,14errors, not a claimed pass): 4c4b0777's top-level `import model` hit another
+board's cached module, and valuepicks's number-render test formatted13 intentionally blank rows as
+floats. Narrow test-scope extension: `tests/test_4c4b0777.py` uses an isolated interpreter for its
+unchanged safe-fallback assertion; `tests/test_7759beef.py` now verifies each unresolved card has blank
+numbers, no side, a flag and an unresolved link, and adds a synthetic no-evidence regression. No fake
+prices or relaxed coverage assertions. Updated the independent audit to understand explicitly
+secondary relay rung B. All authors' regression intents retained.
+
+One strategy edge case fixed/tested: an own/market disagreement may support a labelled contrarian
+play but cannot relabel the *published market underdog* as the "favourite" or hide expected-points
+cost. Model probabilities are unchanged; source-market direction is the headline benchmark.
