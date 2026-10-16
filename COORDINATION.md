@@ -4647,3 +4647,37 @@ fixture to stay unresolved or disappear from a future slate. Task status: done, 
 - This final metadata-only record does not claim every historical board or every repository line
   is independently verified. Official Valve inputs were checked; HLTV observations remain clearly
   distinct from tournament-organizer confirmation. No unsupported values were filled in.
+
+---
+---
+
+## Session `arena/b6f5405d` — claim (2026-10-16 ~04:55 UTC)
+
+Branch: `arena/b6f5405d-maltaproj1` (fixed by Arena). Reviewed the board, the claims of `71c4e4ab` (HS-D2, 2026-10-15
+22:25 UTC) and `a6f05f99` (A6-0…A6-6, ~22:40 UTC) plus the release records of `22be6967` before claiming. Both other
+sessions are inactive: `71c4e4ab`'s board work was merged in PR #151 and `a6f05f99`'s in PR #152. No open PR claims
+the scope below.
+
+### Takeover note (logged, not silent)
+`71c4e4ab` claimed HS-D2, whose text explicitly includes "publish a mobile-readable day-2 review and **day-3
+Aurora–9z recommendation**". That session produced the day-2 half and stopped. This session completes the day-3 half
+and extends it to both of today's deciders. `hotspawn/research/day2_twc2026.json` is read-only for this session.
+
+### Tasks claimed
+| ID | Task | Status | Owner | Files |
+|---|---|---|---|---|
+| B6-0 | Coordination claim, verification record, release (PR → merge → Pages) | in progress | arena/b6f5405d | `COORDINATION.md`, `reviews/b6f5405d-verification.md` |
+| B6-1 | TWC 2026 day-3 board: verified day-1/day-2 review, both deciders with outside prices + our own line + crowd ownership + swing view, UTC kickoffs, every row sourced | in progress | arena/b6f5405d | `hotspawn/research/day3_twc2026.json`, `hotspawn/build.py`, `hotspawn/tests.py`, regenerated `hotspawn/{index,picks,strategy,unresolved}.html`, `hotspawn/data/*` |
+| B6-2 | Every-match guarantee for fixtures Hotspawn lists but a snapshot missed: explicit fallback lean + coverage-gap register surfaced on the unresolved page and in the executive summary | in progress | arena/b6f5405d | `hotspawn/build.py`, `hotspawn/tests.py`, same generated pages |
+| B6-3 | Mobile executive-summary entry point to the day-3 picks (root landing link block) | in progress | arena/b6f5405d | root `index.html` (integration hand-off), `README.md` |
+
+### Files this session will NOT edit
+`hotspawn/collect.py`, `hotspawn/calibrate.py`, `hotspawn/model.py`, `hotspawn/common.py`, `hotspawn/mobile_check.py`,
+`hotspawn/style.css`, `hotspawn/research/{day1,day2}_twc2026.json`, every other board (`a6f05f99/**`, `console/**`,
+`summary/**`, `valuepicks/**`, `executive/**`, `feeds/**`, `docs/**`, `site/**`, `data/**`, `scripts/**`), and other
+sessions' tests.
+
+**Integration hand-offs (explicit):** root `index.html` — one nav link plus one quick-link card pointing at
+`hotspawn/strategy.html#day3` (same exception pattern `a6f05f99` logged); `.github/workflows/hotspawn-22be6967.yml` —
+added this session's branch to the `push` trigger list so a live run can be verified before merge, with no other
+change to that workflow.
