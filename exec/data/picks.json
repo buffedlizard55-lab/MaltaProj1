@@ -1,23 +1,23 @@
 {
- "generated_utc": "2026-10-16T06:27:06Z",
+ "generated_utc": "2026-10-16T20:07:03Z",
  "fixture_spine": "slate/data/fixtures.csv",
  "totals": {
-  "open_fixtures": 7,
-  "with_pick": 7,
-  "with_market": 6,
-  "with_market_direct": 3,
-  "with_market_secondary": 3,
-  "model_only": 1,
+  "open_fixtures": 0,
+  "with_pick": 0,
+  "with_market": 0,
+  "with_market_direct": 0,
+  "with_market_secondary": 0,
+  "model_only": 0,
   "no_basis": 0,
-  "flagged_rows": 4,
-  "disagreement_rows": 7,
-  "locked_or_started": 81,
+  "flagged_rows": 0,
+  "disagreement_rows": 0,
+  "locked_or_started": 88,
   "inventory": {
    "payload_rows": 88,
-   "open": 7,
-   "locked_or_started": 81,
-   "stale_over_a_day": 60,
-   "started_within_a_day": 21
+   "open": 0,
+   "locked_or_started": 88,
+   "stale_over_a_day": 73,
+   "started_within_a_day": 15
   }
  },
  "boards": [
@@ -35,7 +35,7 @@
    "rows": 28,
    "captured_utc": "2026-10-14T02:23:08Z",
    "open_rows_with_pick": 0,
-   "open_rows_covered": 7
+   "open_rows_covered": 0
   },
   {
    "id": "oct14",
@@ -50,8 +50,8 @@
    "present": true,
    "rows": 32,
    "captured_utc": "2026-10-14T01:58:00Z",
-   "open_rows_with_pick": 7,
-   "open_rows_covered": 7
+   "open_rows_with_pick": 0,
+   "open_rows_covered": 0
   },
   {
    "id": "openslate",
@@ -66,8 +66,8 @@
    "present": true,
    "rows": 28,
    "captured_utc": "2026-10-14T01:41Z-01:58Z",
-   "open_rows_with_pick": 7,
-   "open_rows_covered": 7
+   "open_rows_with_pick": 0,
+   "open_rows_covered": 0
   },
   {
    "id": "everypick",
@@ -82,8 +82,8 @@
    "present": true,
    "rows": 28,
    "captured_utc": "2026-10-14T02:23:08Z",
-   "open_rows_with_pick": 7,
-   "open_rows_covered": 7
+   "open_rows_with_pick": 0,
+   "open_rows_covered": 0
   },
   {
    "id": "cs2",
@@ -98,317 +98,53 @@
    "present": true,
    "rows": 87,
    "captured_utc": "2026-10-15T22:26:13Z",
-   "open_rows_with_pick": 7,
-   "open_rows_covered": 7
+   "open_rows_with_pick": 0,
+   "open_rows_covered": 0
   }
  ],
- "open": [
-  {
-   "poly_reference": {
-    "p_a": 45.5,
-    "p_b": 54.5,
-    "url": "https://polymarket.com/event/cs2-voc-pha-2026-10-16",
-    "board": "exec/collect_polymarket.py",
-    "source": "Polymarket",
-    "updated_utc": "2026-10-16T06:25:07.744983Z",
-    "liquidity_usd": 58903.2584
-   },
-   "fixture_id": "1080285",
-   "kickoff_utc": "2026-10-16T08:00:00Z",
-   "lock_utc": "2026-10-16T07:54:00Z",
-   "competition": "Elisa BreakOut Series #2",
-   "tier": "C",
-   "team_a": "Voca",
-   "team_b": "Phantom",
-   "hotspawn_match_url": "",
-   "hotspawn_fixture_url": "https://play.hotspawn.com/cs2-pickems",
-   "best_of": "BO1",
-   "best_of_source": "https://www.hltv.org/matches/2399424/voca-vs-phantom-elisa-breakout-series-2",
-   "market_book": "bc.game (EGamersWorld)",
-   "market_class": "secondary",
-   "market_odds_a": 1.87,
-   "market_odds_b": 1.77,
-   "market_p_a": 48.6,
-   "market_p_b": 51.4,
-   "market_url": "https://egamersworld.com/counterstrike/match/4yn491uUVl/voca-vs-phantom-esports-zby52fbAja",
-   "market_captured_utc": "2026-10-14T01:49:00Z",
-   "market_board": "everypick",
-   "market_page": "everypick/index.html",
-   "market_note": "External market \u2014 EGamersWorld bc.game report (secondary, not re-read vs bookmaker), de-vigged",
-   "own_p_a": 56.0,
-   "own_p_b": 44.0,
-   "own_basis": "80% Valve VRS Glicko + 20% HLTV Ranking (BO1)",
-   "own_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L73",
-   "own_board": "everypick",
-   "own_page": "everypick/index.html",
-   "line_source": "market-secondary",
-   "p_a": 48.6,
-   "p_b": 51.4,
-   "pick": "Phantom",
-   "pick_pct": 51.4,
-   "pick_basis": "external bookmaker price, de-vigged (aggregator-mediated)",
-   "pick_source_url": "https://egamersworld.com/counterstrike/match/4yn491uUVl/voca-vs-phantom-esports-zby52fbAja",
-   "pick_board": "everypick",
-   "pick_page": "everypick/index.html",
-   "boards_publishing": {
-    "slate": {
-     "market": false,
-     "model": true,
-     "pick": false
-    },
-    "oct14": {
-     "market": true,
-     "model": true,
-     "pick": true
-    },
-    "openslate": {
-     "market": false,
-     "model": true,
-     "pick": true
-    },
-    "everypick": {
-     "market": true,
-     "model": true,
-     "pick": true
-    },
-    "cs2": {
-     "market": false,
-     "model": true,
-     "pick": true
-    }
-   },
-   "disagreements": [
-    "boards name different winners \u2014 cs2: Voca, everypick: Phantom, oct14: Voca, openslate: Phantom (this page: Phantom)"
-   ],
-   "flags": [
-    {
-     "code": "X-SECONDARY-PRICE",
-     "severity": "caveat",
-     "text": "Price comes from a bookmaker listing served by an aggregator, not from the bookmaker's own response."
-    }
-   ],
-   "state": "open"
-  },
+ "open": [],
+ "locked_or_started": [
   {
    "poly_reference": null,
-   "fixture_id": "1080286",
-   "kickoff_utc": "2026-10-16T10:00:00Z",
-   "lock_utc": "2026-10-16T09:54:00Z",
+   "fixture_id": "1080290",
+   "kickoff_utc": "2026-10-16T18:00:00Z",
+   "lock_utc": "2026-10-16T17:54:00Z",
    "competition": "Elisa BreakOut Series #2",
    "tier": "C",
-   "team_a": "HAVU",
-   "team_b": "RoundsGG",
-   "hotspawn_match_url": "",
-   "hotspawn_fixture_url": "https://play.hotspawn.com/cs2-pickems",
-   "best_of": "BO1",
-   "best_of_source": "https://www.hltv.org/matches/2399425/havu-vs-rounds-elisa-breakout-series-2",
-   "market_book": "Pinnacle",
-   "market_class": "direct",
-   "market_odds_a": 1.180832,
-   "market_odds_b": 4.38,
-   "market_p_a": 78.8,
-   "market_p_b": 21.2,
-   "market_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
-   "market_captured_utc": "2026-10-15T22:24:02Z",
-   "market_board": "cs2",
-   "market_page": "cs2/index.html",
-   "market_note": "",
-   "own_p_a": 73.8,
-   "own_p_b": 26.2,
-   "own_basis": "P=1/(1+10^(-0.4630*\u0394pts/400)); slope re-fit by cs2/calibrate.py on Valve's own match results",
-   "own_url": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md?plain=1#L129",
-   "own_board": "cs2",
-   "own_page": "cs2/index.html",
-   "line_source": "market-direct",
-   "p_a": 78.8,
-   "p_b": 21.2,
-   "pick": "HAVU",
-   "pick_pct": 78.8,
-   "pick_basis": "external bookmaker price, de-vigged (direct)",
-   "pick_source_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
-   "pick_board": "cs2",
-   "pick_page": "cs2/index.html",
-   "boards_publishing": {
-    "slate": {
-     "market": false,
-     "model": false,
-     "pick": false
-    },
-    "oct14": {
-     "market": true,
-     "model": true,
-     "pick": true
-    },
-    "openslate": {
-     "market": false,
-     "model": true,
-     "pick": true
-    },
-    "everypick": {
-     "market": true,
-     "model": true,
-     "pick": true
-    },
-    "cs2": {
-     "market": true,
-     "model": true,
-     "pick": true
-    }
-   },
-   "disagreements": [
-    "our own lines differ between boards: 71%\u201388% for HAVU"
-   ],
-   "flags": [],
-   "state": "open"
-  },
-  {
-   "poly_reference": {
-    "p_a": 57.5,
-    "p_b": 42.5,
-    "url": "https://polymarket.com/event/cs2-voc-havu-2026-10-16",
-    "board": "exec/collect_polymarket.py",
-    "source": "Polymarket",
-    "updated_utc": "2026-10-16T06:25:07.744983Z",
-    "liquidity_usd": 29558.2627
-   },
-   "fixture_id": "1080287",
-   "kickoff_utc": "2026-10-16T12:00:00Z",
-   "lock_utc": "2026-10-16T11:54:00Z",
-   "competition": "Elisa BreakOut Series #2",
-   "tier": "C",
-   "team_a": "Voca",
+   "team_a": "Phantom",
    "team_b": "HAVU",
    "hotspawn_match_url": "",
    "hotspawn_fixture_url": "https://play.hotspawn.com/cs2-pickems",
    "best_of": "BO1",
-   "best_of_source": "https://www.hltv.org/matches/2399426/voca-vs-havu-elisa-breakout-series-2",
-   "market_book": "Pinnacle",
-   "market_class": "direct",
-   "market_odds_a": 1.469484,
-   "market_odds_b": 2.62,
-   "market_p_a": 64.1,
-   "market_p_b": 35.9,
-   "market_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
-   "market_captured_utc": "2026-10-15T22:24:02Z",
-   "market_board": "cs2",
-   "market_page": "cs2/index.html",
-   "market_note": "",
-   "own_p_a": 65.8,
-   "own_p_b": 34.2,
-   "own_basis": "P=1/(1+10^(-0.4630*\u0394pts/400)); slope re-fit by cs2/calibrate.py on Valve's own match results",
-   "own_url": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md?plain=1#L73",
-   "own_board": "cs2",
-   "own_page": "cs2/index.html",
-   "line_source": "market-direct",
-   "p_a": 64.1,
-   "p_b": 35.9,
-   "pick": "Voca",
-   "pick_pct": 64.1,
-   "pick_basis": "external bookmaker price, de-vigged (direct)",
-   "pick_source_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
-   "pick_board": "cs2",
-   "pick_page": "cs2/index.html",
-   "boards_publishing": {
-    "slate": {
-     "market": false,
-     "model": true,
-     "pick": false
-    },
-    "oct14": {
-     "market": true,
-     "model": true,
-     "pick": true
-    },
-    "openslate": {
-     "market": false,
-     "model": true,
-     "pick": true
-    },
-    "everypick": {
-     "market": true,
-     "model": true,
-     "pick": true
-    },
-    "cs2": {
-     "market": true,
-     "model": true,
-     "pick": true
-    }
-   },
-   "disagreements": [
-    "our own lines differ between boards: 66%\u201378% for Voca"
-   ],
-   "flags": [],
-   "state": "open"
-  },
-  {
-   "poly_reference": null,
-   "fixture_id": "1080288",
-   "kickoff_utc": "2026-10-16T14:00:00Z",
-   "lock_utc": "2026-10-16T13:54:00Z",
-   "competition": "Elisa BreakOut Series #2",
-   "tier": "C",
-   "team_a": "Phantom",
-   "team_b": "RoundsGG",
-   "hotspawn_match_url": "",
-   "hotspawn_fixture_url": "https://play.hotspawn.com/cs2-pickems",
-   "best_of": "BO1",
-   "best_of_source": "https://www.hltv.org/matches/2399427/phantom-vs-rounds-elisa-breakout-series-2",
+   "best_of_source": "https://www.hltv.org/matches/2399429/phantom-vs-havu-elisa-breakout-series-2",
    "market_book": "bc.game (EGamersWorld)",
    "market_class": "secondary",
-   "market_odds_a": 1.08,
-   "market_odds_b": 6.94,
-   "market_p_a": 86.5,
-   "market_p_b": 13.5,
-   "market_url": "https://egamersworld.com/counterstrike/match/4yn491uUVl/phantom-esports-vs-rounds-m6Cnk4tOxU",
+   "market_odds_a": 1.36,
+   "market_odds_b": 2.87,
+   "market_p_a": 67.8,
+   "market_p_b": 32.2,
+   "market_url": "https://egamersworld.com/counterstrike/match/4yn491uUVl/phantom-esports-vs-havu-H8whr4r586",
    "market_captured_utc": "2026-10-14T01:49:00Z",
    "market_board": "everypick",
    "market_page": "everypick/index.html",
    "market_note": "External market \u2014 EGamersWorld bc.game report (secondary, not re-read vs bookmaker), de-vigged",
-   "own_p_a": 94.0,
-   "own_p_b": 6.0,
+   "own_p_a": 74.2,
+   "own_p_b": 25.8,
    "own_basis": "80% Valve VRS Glicko + 20% HLTV Ranking (BO1)",
    "own_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L77",
    "own_board": "everypick",
    "own_page": "everypick/index.html",
    "line_source": "market-secondary",
-   "p_a": 86.5,
-   "p_b": 13.5,
+   "p_a": 67.8,
+   "p_b": 32.2,
    "pick": "Phantom",
-   "pick_pct": 86.5,
+   "pick_pct": 67.8,
    "pick_basis": "external bookmaker price, de-vigged (aggregator-mediated)",
-   "pick_source_url": "https://egamersworld.com/counterstrike/match/4yn491uUVl/phantom-esports-vs-rounds-m6Cnk4tOxU",
+   "pick_source_url": "https://egamersworld.com/counterstrike/match/4yn491uUVl/phantom-esports-vs-havu-H8whr4r586",
    "pick_board": "everypick",
    "pick_page": "everypick/index.html",
-   "boards_publishing": {
-    "slate": {
-     "market": false,
-     "model": false,
-     "pick": false
-    },
-    "oct14": {
-     "market": true,
-     "model": true,
-     "pick": true
-    },
-    "openslate": {
-     "market": false,
-     "model": true,
-     "pick": true
-    },
-    "everypick": {
-     "market": true,
-     "model": true,
-     "pick": true
-    },
-    "cs2": {
-     "market": false,
-     "model": true,
-     "pick": true
-    }
-   },
    "disagreements": [
-    "our own lines differ between boards: 74%\u201394% for Phantom"
+    "our own lines differ between boards: 64%\u201374% for Phantom"
    ],
    "flags": [
     {
@@ -417,85 +153,7 @@
      "text": "Price comes from a bookmaker listing served by an aggregator, not from the bookmaker's own response."
     }
    ],
-   "state": "open"
-  },
-  {
-   "poly_reference": null,
-   "fixture_id": "1081120",
-   "kickoff_utc": "2026-10-16T14:00:00Z",
-   "lock_utc": "2026-10-16T13:54:00Z",
-   "competition": "CCT Europe 2026 Series #12 Play-In",
-   "tier": "C",
-   "team_a": "mellren",
-   "team_b": "Privateer",
-   "hotspawn_match_url": "",
-   "hotspawn_fixture_url": "https://play.hotspawn.com/cs2-pickems",
-   "best_of": "BO3",
-   "best_of_source": "https://www.hltv.org/matches/2399471/mellren-vs-privateer-cct-2026-europe-series-12-closed-qualifier",
-   "market_book": "",
-   "market_class": "",
-   "market_odds_a": null,
-   "market_odds_b": null,
-   "market_p_a": null,
-   "market_p_b": null,
-   "market_url": "",
-   "market_captured_utc": "",
-   "market_board": "",
-   "market_page": "",
-   "market_note": "",
-   "own_p_a": 86.0,
-   "own_p_b": 14.0,
-   "own_basis": "80% Valve VRS Glicko + 20% HLTV Ranking (BO3)",
-   "own_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L130",
-   "own_board": "everypick",
-   "own_page": "everypick/index.html",
-   "line_source": "model",
-   "p_a": 86.0,
-   "p_b": 14.0,
-   "pick": "mellren",
-   "pick_pct": 86.0,
-   "pick_basis": "our own line from official ratings, no bookmaker price found",
-   "pick_source_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L130",
-   "pick_board": "everypick",
-   "pick_page": "everypick/index.html",
-   "boards_publishing": {
-    "slate": {
-     "market": false,
-     "model": true,
-     "pick": false
-    },
-    "oct14": {
-     "market": false,
-     "model": true,
-     "pick": true
-    },
-    "openslate": {
-     "market": false,
-     "model": true,
-     "pick": true
-    },
-    "everypick": {
-     "market": false,
-     "model": true,
-     "pick": true
-    },
-    "cs2": {
-     "market": false,
-     "model": true,
-     "pick": true
-    }
-   },
-   "disagreements": [
-    "our own lines differ between boards: 69%\u201386% for mellren"
-   ],
-   "flags": [
-    {
-     "code": "X-MODEL-ONLY",
-     "severity": "caveat",
-     "text": "No bookmaker prices this match outside Hotspawn; the pick is our own line from official ratings only."
-    }
-   ],
-   "state": "open"
+   "state": "locked_or_started"
   },
   {
    "poly_reference": null,
@@ -536,33 +194,6 @@
    "pick_source_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
    "pick_board": "cs2",
    "pick_page": "cs2/index.html",
-   "boards_publishing": {
-    "slate": {
-     "market": false,
-     "model": false,
-     "pick": false
-    },
-    "oct14": {
-     "market": true,
-     "model": true,
-     "pick": true
-    },
-    "openslate": {
-     "market": false,
-     "model": true,
-     "pick": true
-    },
-    "everypick": {
-     "market": true,
-     "model": true,
-     "pick": true
-    },
-    "cs2": {
-     "market": true,
-     "model": true,
-     "pick": true
-    }
-   },
    "disagreements": [
     "market 84% vs our model 16% for RoundsGG (68 pp)",
     "the boards' outside prices differ by 70 pp (14%\u201384% for RoundsGG)",
@@ -570,84 +201,49 @@
     "boards name different winners \u2014 cs2: RoundsGG, everypick: Voca, oct14: Voca, openslate: Voca (this page: RoundsGG)"
    ],
    "flags": [],
-   "state": "open"
+   "state": "locked_or_started"
   },
   {
-   "poly_reference": {
-    "p_a": 65.5,
-    "p_b": 34.5,
-    "url": "https://polymarket.com/event/cs2-pha-havu-2026-10-16",
-    "board": "exec/collect_polymarket.py",
-    "source": "Polymarket",
-    "updated_utc": "2026-10-16T06:25:07.744983Z",
-    "liquidity_usd": 19369.3128
-   },
-   "fixture_id": "1080290",
-   "kickoff_utc": "2026-10-16T18:00:00Z",
-   "lock_utc": "2026-10-16T17:54:00Z",
+   "poly_reference": null,
+   "fixture_id": "1080288",
+   "kickoff_utc": "2026-10-16T14:00:00Z",
+   "lock_utc": "2026-10-16T13:54:00Z",
    "competition": "Elisa BreakOut Series #2",
    "tier": "C",
    "team_a": "Phantom",
-   "team_b": "HAVU",
+   "team_b": "RoundsGG",
    "hotspawn_match_url": "",
    "hotspawn_fixture_url": "https://play.hotspawn.com/cs2-pickems",
    "best_of": "BO1",
-   "best_of_source": "https://www.hltv.org/matches/2399429/phantom-vs-havu-elisa-breakout-series-2",
+   "best_of_source": "https://www.hltv.org/matches/2399427/phantom-vs-rounds-elisa-breakout-series-2",
    "market_book": "bc.game (EGamersWorld)",
    "market_class": "secondary",
-   "market_odds_a": 1.36,
-   "market_odds_b": 2.87,
-   "market_p_a": 67.8,
-   "market_p_b": 32.2,
-   "market_url": "https://egamersworld.com/counterstrike/match/4yn491uUVl/phantom-esports-vs-havu-H8whr4r586",
+   "market_odds_a": 1.08,
+   "market_odds_b": 6.94,
+   "market_p_a": 86.5,
+   "market_p_b": 13.5,
+   "market_url": "https://egamersworld.com/counterstrike/match/4yn491uUVl/phantom-esports-vs-rounds-m6Cnk4tOxU",
    "market_captured_utc": "2026-10-14T01:49:00Z",
    "market_board": "everypick",
    "market_page": "everypick/index.html",
    "market_note": "External market \u2014 EGamersWorld bc.game report (secondary, not re-read vs bookmaker), de-vigged",
-   "own_p_a": 74.2,
-   "own_p_b": 25.8,
+   "own_p_a": 94.0,
+   "own_p_b": 6.0,
    "own_basis": "80% Valve VRS Glicko + 20% HLTV Ranking (BO1)",
    "own_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L77",
    "own_board": "everypick",
    "own_page": "everypick/index.html",
    "line_source": "market-secondary",
-   "p_a": 67.8,
-   "p_b": 32.2,
+   "p_a": 86.5,
+   "p_b": 13.5,
    "pick": "Phantom",
-   "pick_pct": 67.8,
+   "pick_pct": 86.5,
    "pick_basis": "external bookmaker price, de-vigged (aggregator-mediated)",
-   "pick_source_url": "https://egamersworld.com/counterstrike/match/4yn491uUVl/phantom-esports-vs-havu-H8whr4r586",
+   "pick_source_url": "https://egamersworld.com/counterstrike/match/4yn491uUVl/phantom-esports-vs-rounds-m6Cnk4tOxU",
    "pick_board": "everypick",
    "pick_page": "everypick/index.html",
-   "boards_publishing": {
-    "slate": {
-     "market": false,
-     "model": true,
-     "pick": false
-    },
-    "oct14": {
-     "market": true,
-     "model": true,
-     "pick": true
-    },
-    "openslate": {
-     "market": false,
-     "model": true,
-     "pick": true
-    },
-    "everypick": {
-     "market": true,
-     "model": true,
-     "pick": true
-    },
-    "cs2": {
-     "market": false,
-     "model": true,
-     "pick": true
-    }
-   },
    "disagreements": [
-    "our own lines differ between boards: 64%\u201374% for Phantom"
+    "our own lines differ between boards: 74%\u201394% for Phantom"
    ],
    "flags": [
     {
@@ -656,10 +252,200 @@
      "text": "Price comes from a bookmaker listing served by an aggregator, not from the bookmaker's own response."
     }
    ],
-   "state": "open"
-  }
- ],
- "locked_or_started": [
+   "state": "locked_or_started"
+  },
+  {
+   "poly_reference": null,
+   "fixture_id": "1081120",
+   "kickoff_utc": "2026-10-16T14:00:00Z",
+   "lock_utc": "2026-10-16T13:54:00Z",
+   "competition": "CCT Europe 2026 Series #12 Play-In",
+   "tier": "C",
+   "team_a": "mellren",
+   "team_b": "Privateer",
+   "hotspawn_match_url": "",
+   "hotspawn_fixture_url": "https://play.hotspawn.com/cs2-pickems",
+   "best_of": "BO3",
+   "best_of_source": "https://www.hltv.org/matches/2399471/mellren-vs-privateer-cct-2026-europe-series-12-closed-qualifier",
+   "market_book": "",
+   "market_class": "",
+   "market_odds_a": null,
+   "market_odds_b": null,
+   "market_p_a": null,
+   "market_p_b": null,
+   "market_url": "",
+   "market_captured_utc": "",
+   "market_board": "",
+   "market_page": "",
+   "market_note": "",
+   "own_p_a": 86.0,
+   "own_p_b": 14.0,
+   "own_basis": "80% Valve VRS Glicko + 20% HLTV Ranking (BO3)",
+   "own_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L130",
+   "own_board": "everypick",
+   "own_page": "everypick/index.html",
+   "line_source": "model",
+   "p_a": 86.0,
+   "p_b": 14.0,
+   "pick": "mellren",
+   "pick_pct": 86.0,
+   "pick_basis": "our own line from official ratings, no bookmaker price found",
+   "pick_source_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L130",
+   "pick_board": "everypick",
+   "pick_page": "everypick/index.html",
+   "disagreements": [
+    "our own lines differ between boards: 69%\u201386% for mellren"
+   ],
+   "flags": [
+    {
+     "code": "X-MODEL-ONLY",
+     "severity": "caveat",
+     "text": "No bookmaker prices this match outside Hotspawn; the pick is our own line from official ratings only."
+    }
+   ],
+   "state": "locked_or_started"
+  },
+  {
+   "poly_reference": null,
+   "fixture_id": "1080287",
+   "kickoff_utc": "2026-10-16T12:00:00Z",
+   "lock_utc": "2026-10-16T11:54:00Z",
+   "competition": "Elisa BreakOut Series #2",
+   "tier": "C",
+   "team_a": "Voca",
+   "team_b": "HAVU",
+   "hotspawn_match_url": "",
+   "hotspawn_fixture_url": "https://play.hotspawn.com/cs2-pickems",
+   "best_of": "BO1",
+   "best_of_source": "https://www.hltv.org/matches/2399426/voca-vs-havu-elisa-breakout-series-2",
+   "market_book": "Pinnacle",
+   "market_class": "direct",
+   "market_odds_a": 1.469484,
+   "market_odds_b": 2.62,
+   "market_p_a": 64.1,
+   "market_p_b": 35.9,
+   "market_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
+   "market_captured_utc": "2026-10-15T22:24:02Z",
+   "market_board": "cs2",
+   "market_page": "cs2/index.html",
+   "market_note": "",
+   "own_p_a": 65.8,
+   "own_p_b": 34.2,
+   "own_basis": "P=1/(1+10^(-0.4630*\u0394pts/400)); slope re-fit by cs2/calibrate.py on Valve's own match results",
+   "own_url": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md?plain=1#L73",
+   "own_board": "cs2",
+   "own_page": "cs2/index.html",
+   "line_source": "market-direct",
+   "p_a": 64.1,
+   "p_b": 35.9,
+   "pick": "Voca",
+   "pick_pct": 64.1,
+   "pick_basis": "external bookmaker price, de-vigged (direct)",
+   "pick_source_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
+   "pick_board": "cs2",
+   "pick_page": "cs2/index.html",
+   "disagreements": [
+    "our own lines differ between boards: 66%\u201378% for Voca"
+   ],
+   "flags": [],
+   "state": "locked_or_started"
+  },
+  {
+   "poly_reference": null,
+   "fixture_id": "1080286",
+   "kickoff_utc": "2026-10-16T10:00:00Z",
+   "lock_utc": "2026-10-16T09:54:00Z",
+   "competition": "Elisa BreakOut Series #2",
+   "tier": "C",
+   "team_a": "HAVU",
+   "team_b": "RoundsGG",
+   "hotspawn_match_url": "",
+   "hotspawn_fixture_url": "https://play.hotspawn.com/cs2-pickems",
+   "best_of": "BO1",
+   "best_of_source": "https://www.hltv.org/matches/2399425/havu-vs-rounds-elisa-breakout-series-2",
+   "market_book": "Pinnacle",
+   "market_class": "direct",
+   "market_odds_a": 1.180832,
+   "market_odds_b": 4.38,
+   "market_p_a": 78.8,
+   "market_p_b": 21.2,
+   "market_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
+   "market_captured_utc": "2026-10-15T22:24:02Z",
+   "market_board": "cs2",
+   "market_page": "cs2/index.html",
+   "market_note": "",
+   "own_p_a": 73.8,
+   "own_p_b": 26.2,
+   "own_basis": "P=1/(1+10^(-0.4630*\u0394pts/400)); slope re-fit by cs2/calibrate.py on Valve's own match results",
+   "own_url": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md?plain=1#L129",
+   "own_board": "cs2",
+   "own_page": "cs2/index.html",
+   "line_source": "market-direct",
+   "p_a": 78.8,
+   "p_b": 21.2,
+   "pick": "HAVU",
+   "pick_pct": 78.8,
+   "pick_basis": "external bookmaker price, de-vigged (direct)",
+   "pick_source_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
+   "pick_board": "cs2",
+   "pick_page": "cs2/index.html",
+   "disagreements": [
+    "our own lines differ between boards: 71%\u201388% for HAVU"
+   ],
+   "flags": [],
+   "state": "locked_or_started"
+  },
+  {
+   "poly_reference": null,
+   "fixture_id": "1080285",
+   "kickoff_utc": "2026-10-16T08:00:00Z",
+   "lock_utc": "2026-10-16T07:54:00Z",
+   "competition": "Elisa BreakOut Series #2",
+   "tier": "C",
+   "team_a": "Voca",
+   "team_b": "Phantom",
+   "hotspawn_match_url": "",
+   "hotspawn_fixture_url": "https://play.hotspawn.com/cs2-pickems",
+   "best_of": "BO1",
+   "best_of_source": "https://www.hltv.org/matches/2399424/voca-vs-phantom-elisa-breakout-series-2",
+   "market_book": "bc.game (EGamersWorld)",
+   "market_class": "secondary",
+   "market_odds_a": 1.87,
+   "market_odds_b": 1.77,
+   "market_p_a": 48.6,
+   "market_p_b": 51.4,
+   "market_url": "https://egamersworld.com/counterstrike/match/4yn491uUVl/voca-vs-phantom-esports-zby52fbAja",
+   "market_captured_utc": "2026-10-14T01:49:00Z",
+   "market_board": "everypick",
+   "market_page": "everypick/index.html",
+   "market_note": "External market \u2014 EGamersWorld bc.game report (secondary, not re-read vs bookmaker), de-vigged",
+   "own_p_a": 56.0,
+   "own_p_b": 44.0,
+   "own_basis": "80% Valve VRS Glicko + 20% HLTV Ranking (BO1)",
+   "own_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md?plain=1#L73",
+   "own_board": "everypick",
+   "own_page": "everypick/index.html",
+   "line_source": "market-secondary",
+   "p_a": 48.6,
+   "p_b": 51.4,
+   "pick": "Phantom",
+   "pick_pct": 51.4,
+   "pick_basis": "external bookmaker price, de-vigged (aggregator-mediated)",
+   "pick_source_url": "https://egamersworld.com/counterstrike/match/4yn491uUVl/voca-vs-phantom-esports-zby52fbAja",
+   "pick_board": "everypick",
+   "pick_page": "everypick/index.html",
+   "disagreements": [
+    "boards name different winners \u2014 cs2: Voca, everypick: Phantom, oct14: Voca, openslate: Phantom (this page: Phantom)"
+   ],
+   "flags": [
+    {
+     "code": "X-SECONDARY-PRICE",
+     "severity": "caveat",
+     "text": "Price comes from a bookmaker listing served by an aggregator, not from the bookmaker's own response."
+    }
+   ],
+   "state": "locked_or_started"
+  },
   {
    "poly_reference": null,
    "fixture_id": "1080284",

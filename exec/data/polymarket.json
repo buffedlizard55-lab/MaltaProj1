@@ -1,117 +1,13 @@
 {
  "status": "ok",
  "endpoint": "https://gamma-api.polymarket.com/public-search?q=<team_a> <team_b>&limit_per_type=4 (one lookup per open fixture)",
- "captured_utc": "2026-10-16T06:27:04Z",
- "fixtures_considered": 7,
+ "captured_utc": "2026-10-16T20:07:03Z",
+ "fixtures_considered": 0,
  "note": "Polymarket lists some of the low-tier cups that big bookmakers skip. Only whole-match (series) markets are republished as a series reference; per-map markets are recorded separately and are never used as a series probability. A fixture with no matching event is recorded as unmatched, not filled in.",
- "matches": [
-  {
-   "fixture_id": "1080285",
-   "team_a": "Voca",
-   "team_b": "Phantom",
-   "title": "Counter-Strike: Voca vs Phantom (BO1) - Elisa BreakOut Series #2 Group B",
-   "market_kind": "series",
-   "question": "Counter-Strike: Voca vs Phantom (BO1) - Elisa BreakOut Series #2 Group B",
-   "outcomes": [
-    "Voca",
-    "Phantom"
-   ],
-   "p_a": 45.5,
-   "p_b": 54.5,
-   "best_bid": 0.45,
-   "best_ask": 0.46,
-   "liquidity_usd": 58903.2584,
-   "volume_usd": 16915.234981000005,
-   "updated_utc": "2026-10-16T06:25:07.744983Z",
-   "url": "https://polymarket.com/event/cs2-voc-pha-2026-10-16"
-  },
-  {
-   "fixture_id": "1080287",
-   "team_a": "Voca",
-   "team_b": "HAVU",
-   "title": "Counter-Strike: Voca vs HAVU (BO1) - Elisa BreakOut Series #2 Group B",
-   "market_kind": "series",
-   "question": "Counter-Strike: Voca vs HAVU (BO1) - Elisa BreakOut Series #2 Group B",
-   "outcomes": [
-    "Voca",
-    "HAVU"
-   ],
-   "p_a": 57.5,
-   "p_b": 42.5,
-   "best_bid": 0.57,
-   "best_ask": 0.58,
-   "liquidity_usd": 29558.2627,
-   "volume_usd": 9489.290088000002,
-   "updated_utc": "2026-10-16T06:25:07.744983Z",
-   "url": "https://polymarket.com/event/cs2-voc-havu-2026-10-16"
-  },
-  {
-   "fixture_id": "1080290",
-   "team_a": "Phantom",
-   "team_b": "HAVU",
-   "title": "Counter-Strike: Phantom vs HAVU (BO1) - Elisa BreakOut Series #2 Group B",
-   "market_kind": "series",
-   "question": "Counter-Strike: Phantom vs HAVU (BO1) - Elisa BreakOut Series #2 Group B",
-   "outcomes": [
-    "Phantom",
-    "HAVU"
-   ],
-   "p_a": 65.5,
-   "p_b": 34.5,
-   "best_bid": 0.65,
-   "best_ask": 0.66,
-   "liquidity_usd": 19369.3128,
-   "volume_usd": 499.11048600000004,
-   "updated_utc": "2026-10-16T06:25:07.744983Z",
-   "url": "https://polymarket.com/event/cs2-pha-havu-2026-10-16"
-  }
- ],
+ "matches": [],
  "map_markets": [],
  "unmatched": [],
  "errors": [],
- "search_log": [
-  {
-   "fixture_id": "1080285",
-   "events": 1,
-   "matched": "cs2-voc-pha-2026-10-16",
-   "how": "names+kickoff"
-  },
-  {
-   "fixture_id": "1080286",
-   "events": 2,
-   "matched": "cs2-havu-rgg-2026-10-16",
-   "how": "names+kickoff"
-  },
-  {
-   "fixture_id": "1080287",
-   "events": 1,
-   "matched": "cs2-voc-havu-2026-10-16",
-   "how": "names+kickoff"
-  },
-  {
-   "fixture_id": "1080288",
-   "events": 2,
-   "matched": "cs2-pha-rgg-2026-10-16",
-   "how": "names+kickoff"
-  },
-  {
-   "fixture_id": "1081120",
-   "events": 3,
-   "matched": "cs2-mellre-pg5-2026-10-16",
-   "how": "names+kickoff"
-  },
-  {
-   "fixture_id": "1080289",
-   "events": 1,
-   "matched": "cs2-voc-rgg-2026-10-16",
-   "how": "names+kickoff"
-  },
-  {
-   "fixture_id": "1080290",
-   "events": 1,
-   "matched": "cs2-pha-havu-2026-10-16",
-   "how": "names+kickoff"
-  }
- ],
- "matched_fixtures": 3
+ "search_log": [],
+ "matched_fixtures": 0
 }
