@@ -5455,3 +5455,18 @@ in `gh pr list --state merged --head arena/56b7c55f-maltaproj1` if a later sessi
 main's own merge (another session's scope) and was not edited here. `reviews/4e8d38ae-*` and the
 legacy dashboards were left untouched. Flagged items remain flagged: `D4-04`, `IR-43`, `IR-45` are
 `needs review`; `D4-01`, `IR-41`, `IR-46` are `fixed`; `IR-42`, `IR-44` are `handled`.
+
+---
+
+## Session arena/29171622 — 2026-10-16 23:5x UTC
+
+Fixed Arena branch: `arena/29171622-maltaproj1`. Handoff note: the previous primary-board / final-integration claim (`arena/4061d8f1`, logged 2026-10-16 19:48 UTC) has no commits since and is now more than 60 minutes old, so this session takes over the two items below and logs the handoff instead of starting a competing site. No open PR touches the claimed files (open PRs #176/#136/#132 are historical; #176 explicitly does not edit landing/picks/TWC/match data).
+
+| Task | Status | Owner | Exclusive file scope |
+|---|---|---|---|
+| TWC 2026 day-1–day-3 review (9z upset, Aurora roster change) + day-4 semifinal watch with outside lines | in progress | arena/29171622 | `hotspawn/research/29171622/**` |
+| Close the every-match gap: research ladder HLTV → esportsbooks → betting lines, and a new documented published-verdict rung for the two fixtures with no price and no rating | in progress | arena/29171622 | `hotspawn/research/29171622/**`, `hotspawn/model.py`, `hotspawn/build.py`, `hotspawn/tests.py` |
+| Executive summary: in-site links to the picks list + an unresolved/limitations block listing the actual rows (mobile-first) | in progress | arena/29171622 | `index.html`, `hotspawn/data/landing.json` (generated) |
+| Line-by-line verification page for this session | in progress | arena/29171622 | `reviews/29171622-verification.md` |
+
+Generated data/pages (`hotspawn/data/**`, `hotspawn/*.html`) are rebuilt by `hotspawn/model.py` + `hotspawn/build.py`; the 4-hourly `hotspawn-22be6967` workflow remains the refresh mechanism.
