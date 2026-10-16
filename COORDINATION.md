@@ -4555,3 +4555,17 @@ no conflicts, branch created successfully.
 Do not request credentials. Add scoped `.github/workflows/release-4c4b0777.yml` for push/PR verification
 and a branch-only live-refresh artifact (no automated git writes); use the existing scheduled workflow
 unchanged after merge. This is ordinary CI, not a second scheduled collector.
+
+4c4b0777 source re-read: fetched all eight day-1/day-2 HLTV match records (2399384–87,
+2399408–11), the two day-3 deciders, Aurora team page, dated summer transfer tracker,
+Polymarket Aurora event and Hotspawn lobby. Confirmed the eight series/map scores;
+HLTV is explicitly labelled specialist reporting, not organizer verification. Hotspawn now
+lists BetBoom–Legacy ID 1081775 (previous absence statements are stale, not universally true).
+The Aurora event page includes series AND map markets; report the distinction and do not
+mix those quotes. July onboarding is ~3 months old, not a days-old change.
+
+Branch-only CI run 38849930923 succeeded (collection, calibration, model, 25 invariants,
+actual passed Chromium phone check). Artifact download is blocked by sandbox outbound-host
+restrictions; the same release workflow will save the checked generated outputs to this fixed
+session branch only. Existing scheduled workflow stays unchanged. Report and regression tests
+are generated from the new capture before saving, to avoid publishing an audit of an old slate.

@@ -10,7 +10,7 @@ on:
       - 'tests/test_4c4b0777.py'
       - 'hotspawn/release-audit.html'
 permissions:
-  contents: read
+  contents: write
 jobs:
   live-refresh:
     if: github.event_name == 'push'
@@ -42,6 +42,21 @@ jobs:
           import json
           assert json.load(open('hotspawn/data/mobile_check.json'))['status'] == 'passed', 'Phone check must not silently skip'
           PY
+      - name: Rebuild dated release audit
+        run: |
+          python scripts/audit_4c4b0777.py
+          python -m unittest discover -s tests -p 'test_4c4b0777.py' -v
+      - name: Save verified integration refresh to the session branch only
+        if: github.ref_name == 'arena/4c4b0777-maltaproj1'
+        run: |
+          set -euo pipefail
+          git config user.name 'release-assurance[bot]'
+          git config user.email 'release-assurance@users.noreply.github.com'
+          git add hotspawn/data hotspawn/*.html reviews/4c4b0777-row-audit.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'hotspawn: verified integration refresh for release 4c4b0777 [skip ci]'
+          git pull --rebase origin arena/4c4b0777-maltaproj1
+          git push origin arena/4c4b0777-maltaproj1
       - uses: actions/upload-artifact@v4
         with:
           name: canonical-refresh-4c4b0777

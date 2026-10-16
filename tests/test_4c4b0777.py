@@ -1,0 +1,92 @@
+"""Independent assurance must fail closed without rewriting the canonical recommendations."""
+import copy
+import importlib.util
+import json
+from pathlib import Path
+import unittest
+from html.parser import HTMLParser
+from urllib.parse import urlsplit, unquote
+
+ROOT = Path(__file__).resolve().parents[1]
+spec = importlib.util.spec_from_file_location('audit4', ROOT / 'scripts/audit_4c4b0777.py')
+audit = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(audit)
+
+
+class Assurance(unittest.TestCase):
+    def setUp(self):
+        self.row = {'team_a': 'A', 'team_b': 'B', 'pick': 'A', 'p_a': .6, 'p_b': .4,
+                    'rung': 'B', 'lobby_url': 'https://play.hotspawn.com/lobby',
+                    'pm': {'read_utc': '2026-10-16T04:00:00Z', 'url': 'https://polymarket.com/event/test'}}
+        self.ref = audit.instant('2026-10-16T04:10:00Z')
+
+    def test_missing_probabilities_not_invented(self):
+        self.row['p_a'] = None
+        self.assertTrue(any('invalid complementary' in s for s in audit.inspect(self.row, self.ref)))
+        self.assertIsNone(self.row['p_a'])
+
+    def test_stale_quotes_flagged(self):
+        self.row['pm']['read_utc'] = '2026-10-15T04:00:00Z'
+        self.assertTrue(any('eight-hour' in s for s in audit.inspect(self.row, self.ref)))
+
+    def test_future_quotes_flagged(self):
+        self.row['pm']['read_utc'] = '2026-10-17T04:00:00Z'
+        self.assertTrue(any('eight-hour' in s for s in audit.inspect(self.row, self.ref)))
+
+    def test_ties_are_not_directional_evidence(self):
+        self.row.update(p_a=.5, p_b=.5)
+        self.assertTrue(any('tiebreak' in s for s in audit.inspect(self.row, self.ref)))
+
+    def test_nan_boolean_and_noncomplementary_rejected(self):
+        for a, b in [(float('nan'), .5), (True, False), (.6, .6), ('0.6', .4)]:
+            r = dict(self.row, p_a=a, p_b=b)
+            self.assertTrue(any('invalid complementary' in s for s in audit.inspect(r, self.ref)))
+
+    def test_crowd_does_not_change_audit(self):
+        before = audit.inspect(self.row, self.ref)
+        self.row.update(crowd_a=99, crowd_b=1)
+        self.assertEqual(before, audit.inspect(self.row, self.ref))
+
+    def test_readonly(self):
+        before = copy.deepcopy(self.row)
+        audit.inspect(self.row, self.ref)
+        self.assertEqual(before, self.row)
+
+    def test_devig_reproduced_not_just_summed(self):
+        self.row.update(rung='A', p_a=.6, p_b=.4, book={'odds_a':2, 'odds_b':2,
+                        'url':'https://www.pinnacle.com', 'read_utc':'2026-10-16T04:00:00Z'})
+        self.assertTrue(any('reproduce' in s for s in audit.inspect(self.row, self.ref)))
+
+    def test_report_covers_every_open_row(self):
+        b = json.loads((ROOT / 'hotspawn/data/board.json').read_text())
+        r = json.loads((ROOT / 'reviews/4c4b0777-row-audit.json').read_text())
+        self.assertEqual({x['match_id'] for x in b['rows'] if x['status'] == 'open'},
+                         {x['match_id'] for x in r['rows']})
+        self.assertEqual(b['meta']['reference_utc'], r['snapshot_utc'])
+
+    def test_each_result_has_direct_hltv_link_not_official_claim(self):
+        text = (ROOT / 'hotspawn/release-audit.html').read_text()
+        for _, _, _, _, _, slug in audit.OBSERVATIONS:
+            self.assertIn(audit.HLTV + slug, text)
+        self.assertEqual(text.count('Organizer confirmation: unverified'), 8)
+        self.assertIn('retrospective', text)
+
+    def test_page_has_no_broken_local_links(self):
+        class Links(HTMLParser):
+            def __init__(self):
+                super().__init__(); self.urls=[]
+            def handle_starttag(self, tag, attrs):
+                for k,v in attrs:
+                    if k in ('href', 'src'): self.urls.append(v)
+        path=ROOT / 'hotspawn/release-audit.html'
+        p=Links();p.feed(path.read_text())
+        for u in p.urls:
+            v=urlsplit(u)
+            if v.scheme or not v.path: continue
+            self.assertTrue((path.parent / unquote(v.path)).exists(), u)
+        self.assertIn('name="viewport"', path.read_text())
+        self.assertIn('hotspawn/release-audit.html', (ROOT/'index.html').read_text())
+
+
+if __name__ == '__main__':
+    unittest.main()
