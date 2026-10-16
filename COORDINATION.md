@@ -1,5 +1,9 @@
 # COORDINATION — MaltaProj1 (Hotspawn Pick'em betting-line analysis)
 
+> **Current primary (16 October 2026):** root `index.html` → `hotspawn/` picks/TWC/unresolved/Flagged.
+> Final integration/source-publication receipts: session `arena/6b23e38f`, PR161/164 and the completion log at the end.
+> Older “canonical” tables below describe historical releases, not a competing current primary.
+
 Union of all session boards (f89fbdfa · 51fb12f8 · 2cb6bff4 · 79a1c6c8 · 5515fcc9 · 390c1f81).
 This session: `arena/390c1f81` — branch `arena/390c1f81-maltaproj1`. Snapshot (UTC): 2026-10-13, odds 18:47–18:55Z, lobby 18:06–18:11Z, payload inventory 18:13:55Z.
 
@@ -4565,12 +4569,12 @@ The existing a6f05f99 board and all other archived dashboards remain intact. PRs
 
 | ID | Task | Status | Owner | File scope |
 |---|---|---|---|---|
-| FI-0 | Commit/push coordination claim before implementation | in progress | arena/6b23e38f | `COORDINATION.md` (append-only) |
-| FI-1 | Inspect and integrate PR #150 on this session branch, preserving newer main data; re-verify TWC days 1–2, day-3 fixtures, roster facts and source arithmetic | in progress | arena/6b23e38f | PR #150 source/test fixes in `hotspawn/**`, `console/**`, `executive/**`, `livelines/**`, `valuepicks/**`, their existing scripts/tests; generated files only when reproducibly rebuilt; `reviews/6b23e38f-verification.md` |
-| FI-2 | Reliability pass on primary every-match research ladder: exact fixture/format identity, evidence freshness, no Hotspawn probability input, own-line transparency, missing-source blanks and actionable unresolved limitations | in progress | arena/6b23e38f | `hotspawn/**`, `tests/test_6b23e38f.py` |
-| FI-3 | Final shared-output integration: one mobile executive summary with obvious picks/day-3/unresolved links, honest current coverage; preserve every archived destination | in progress | arena/6b23e38f | root `index.html`, `README.md`, `js/landing.js` if required, primary landing tests |
-| FI-4 | Live automated re-read (Actions runner where required by sandbox egress), 4–8 h freshness, fail-closed generation, source/row/link/phone checks | in progress | arena/6b23e38f | `.github/workflows/hotspawn-22be6967.yml`, primary board/tests; existing failing-workflow repairs only after logging exact scope |
-| FI-5 | Full tests + local links, PR from this fixed branch → main, explicit merge without waiting, confirm Pages deploy and record PR/run/source links | unclaimed until FI-1..4 verified | arena/6b23e38f | `COORDINATION.md`, `reviews/6b23e38f-verification.md` |
+| FI-0 | Commit/push coordination claim before implementation | done (main PR161/164; receipt follow-up) | arena/6b23e38f | `COORDINATION.md` (append-only) |
+| FI-1 | Inspect and integrate PR #150 on this session branch, preserving newer main data; re-verify TWC days 1–2, day-3 fixtures, roster facts and source arithmetic | done (main PR161/164; receipt follow-up) | arena/6b23e38f | PR #150 source/test fixes in `hotspawn/**`, `console/**`, `executive/**`, `livelines/**`, `valuepicks/**`, their existing scripts/tests; generated files only when reproducibly rebuilt; `reviews/6b23e38f-verification.md` |
+| FI-2 | Reliability pass on primary every-match research ladder: exact fixture/format identity, evidence freshness, no Hotspawn probability input, own-line transparency, missing-source blanks and actionable unresolved limitations | done (main PR161/164; receipt follow-up) | arena/6b23e38f | `hotspawn/**`, `tests/test_6b23e38f.py` |
+| FI-3 | Final shared-output integration: one mobile executive summary with obvious picks/day-3/unresolved links, honest current coverage; preserve every archived destination | done (main PR161/164; receipt follow-up) | arena/6b23e38f | root `index.html`, `README.md`, `js/landing.js` if required, primary landing tests |
+| FI-4 | Live automated re-read (Actions runner where required by sandbox egress), 4–8 h freshness, fail-closed generation, source/row/link/phone checks | done (main PR161/164; receipt follow-up) | arena/6b23e38f | `.github/workflows/hotspawn-22be6967.yml`, primary board/tests; existing failing-workflow repairs only after logging exact scope |
+| FI-5 | Full tests + local links, PR from this fixed branch → main, explicit merge without waiting, confirm Pages deploy and record PR/run/source links | done (main PR161/164; receipt follow-up) | arena/6b23e38f | `COORDINATION.md`, `reviews/6b23e38f-verification.md` |
 
 All observed source values must be traceable; no assertion that every historical dashboard's external
 links were live-fetched. Hotspawn ownership can inform leaderboard leverage, never win probability.
@@ -5105,3 +5109,29 @@ retrospective own-line summary after every refit instead of retaining literal39%
 16October decider footer rather than calling it 'today' on subsequent refreshes. Clarify that a
 successful relay-service read does not mean a quote was selected for an unresolved fixture.
 Source/CI changes stay small; rerun full tests, live branch workflows, PR and main Pages gates.
+
+### FI final handoff — source/publication/site COMPLETE (16 October 2026)
+
+**FI-1..FI-5 complete. No exclusive human claim remains after this receipt follow-up merges.**
+PR161=fddbf9b merged05:22:40Z; PR150 auto-marked merged by preserved ancestry. PR164=ffaaada
+merged05:43:48Z. The failed old main publisher stages were actually repaired and re-exercised,
+not waived: main **38857293677 primary**, **38857293664 executive**, **38857293853 livelines**,
+**38857293841 landing/public routes**, **38857293856 full tests**, **38857293753 console**,
+**38857293776 valuepicks** and **38857293816 source snapshot** all succeeded.
+
+Pulled final main694fe14 and ran **427 root tests again**,95/95 source-row audit already green in
+the main collector,68 primary tests,27/27 required phone/tablet/browser cases (360/390/768px).
+Final local link audit: **281 HTML /6,630 local links /0 errors**; not a live external-URL audit.
+[Pages38857541374](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38857541374) succeeded
+for694fe14; Pages API built05:47:05Z. Independently fetched public **root, picks, TWC, unresolved and
+Flagged**: all served the05:44 UTC primary snapshot,31open/29picks,12A/15B/2C/2D. Two gaps remain
+properly blank (1079170/1081126), not invented. Both day-3 S-tier headlines now have direct Pinnacle:
+Aurora67/9z33; BetBoom35.99/Legacy64.01. Aurora crowd90/10 from20 votes; BB/Legacy only7 votes,
+so no automatic crowd fade.9z remains an optional costly chase (2.38 expected S-tier points).
+
+Final research-copy safeguard: IR01/02's old exact historical coverage/HLTV UTC attribution is not
+re-certified; removed those unretained numbers, explicitly marked unverified, and linked the pinned
+prior report. No fresh source fact, price or inferred timezone was added. All alternative boards
+remain intact and outside blanket certification. Four-hour unattended schedules/freshness warnings
+remain active; no credentials or manual entry requested. Receipt follow-up stays on the fixed Arena
+branch and is merged autonomously; its final Pages confirmation is posted in that PR.
