@@ -4529,3 +4529,28 @@ only the **extension** work listed below and preserves every existing file it do
 **Exception (logged as an integration hand-off):** root `index.html` only — a single link block
 pointing at `a6f05f99/index.html`, because the user asked for the executive summary to link to where
 the picks live. No other root file is touched.
+
+---
+
+## Session `arena/6b23e38f` — final-integration and reliability claim (2026-10-16 04:20 UTC)
+
+Branch: `arena/6b23e38f-maltaproj1` (Arena-fixed; no alternate branch/worktree is created or pushed).
+Read the coordination board before implementation, checked `origin/main`, open PRs #150/#136/#132 and recent Actions runs.
+The primary `hotspawn/` board already exists; **no additional competing dashboard will be created**.
+PR #150 contains a completed but unmerged TWC review and three CI repairs. Its author's latest commit/check
+is 2026-10-15 ~22:52 UTC (>5 hours without activity); the 71c4e4ab/a6f05f99 claims are also >60 minutes old.
+Under the board's takeover rule, this session claims final integration of that work and the primary route only.
+The existing a6f05f99 board and all other archived dashboards remain intact. PRs #132/#136 are not taken over.
+
+| ID | Task | Status | Owner | File scope |
+|---|---|---|---|---|
+| FI-0 | Commit/push coordination claim before implementation | in progress | arena/6b23e38f | `COORDINATION.md` (append-only) |
+| FI-1 | Inspect and integrate PR #150 on this session branch, preserving newer main data; re-verify TWC days 1–2, day-3 fixtures, roster facts and source arithmetic | in progress | arena/6b23e38f | PR #150 source/test fixes in `hotspawn/**`, `console/**`, `executive/**`, `livelines/**`, `valuepicks/**`, their existing scripts/tests; generated files only when reproducibly rebuilt; `reviews/6b23e38f-verification.md` |
+| FI-2 | Reliability pass on primary every-match research ladder: exact fixture/format identity, evidence freshness, no Hotspawn probability input, own-line transparency, missing-source blanks and actionable unresolved limitations | in progress | arena/6b23e38f | `hotspawn/**`, `tests/test_6b23e38f.py` |
+| FI-3 | Final shared-output integration: one mobile executive summary with obvious picks/day-3/unresolved links, honest current coverage; preserve every archived destination | in progress | arena/6b23e38f | root `index.html`, `README.md`, `js/landing.js` if required, primary landing tests |
+| FI-4 | Live automated re-read (Actions runner where required by sandbox egress), 4–8 h freshness, fail-closed generation, source/row/link/phone checks | in progress | arena/6b23e38f | `.github/workflows/hotspawn-22be6967.yml`, primary board/tests; existing failing-workflow repairs only after logging exact scope |
+| FI-5 | Full tests + local links, PR from this fixed branch → main, explicit merge without waiting, confirm Pages deploy and record PR/run/source links | unclaimed until FI-1..4 verified | arena/6b23e38f | `COORDINATION.md`, `reviews/6b23e38f-verification.md` |
+
+All observed source values must be traceable; no assertion that every historical dashboard's external
+links were live-fetched. Hotspawn ownership can inform leaderboard leverage, never win probability.
+A captured or model-derived probability is not a verified future outcome. Unconfirmable facts remain blank/flagged.
