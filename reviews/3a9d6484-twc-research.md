@@ -9,6 +9,15 @@ Scope of this file: the day-1 upset review the user asked for, the Aurora roster
 review, and day-4 (17 Oct) picks. The primary board (`hotspawn/**`) is owned by session `arena/4061d8f1`; this file
 only *requests* integration (see §7) and does not edit that board.
 
+**Status after PR #177 (added 2026-10-16 20:25Z):** the board owner merged
+[PR #177](https://github.com/buffedlizard55-lab/MaltaProj1/pull/177) at 19:46:10Z, and `main` @ `098c49c` is now the
+published board. Integration requests that landed: the day-4 watch and the external market watch are live on
+`hotspawn/twc.html`, and the executive summary surfaces the "no day-4 main-event fixture in this capture" limitation.
+Still open after the merge: a Hotspawn listing for SF1/SF2 (a pick can only be submitted where the lobby lists the
+match; the four-hourly collector captures it automatically if it appears), the `capture.json` join-key gap (D3), the
+affiliate-redirect source on row 1081527 (D4), and the HLTV backoff patch (D5) — all logged in
+`reviews/3a9d6484-verification.md` §6 and in `COORDINATION.md`.
+
 ---
 
 ## 1. Fixture facts — day 1 to day 4 (verified)
