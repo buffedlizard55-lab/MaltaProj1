@@ -763,7 +763,7 @@ class Day2(unittest.TestCase):
 
     def section(self) -> str:
         page = self.strategy()
-        return page[page.index('id="day2"'):page.index('id="day3"')]
+        return page[page.index('id="day2"'):page.index('<section aria-labelledby="day4">')]
 
     def test_review_is_rendered_between_the_day1_and_day3_sections(self):
         index = (HERE / "index.html").read_text(encoding="utf-8")
