@@ -47,6 +47,10 @@ These are dated pre-lock prices, not current prices. In the primary CSV, the Pin
 3. Read new external prices (Pinnacle first, then the documented research ladder); never reuse the 16 October pre-lock line as a day-4 price. Use the Valve line only under the board’s roster/format safeguards.
 4. Publish a day-4 result review only with source-linked rows and the source read times. Until then, preserve blank outcome fields and label the day-4 analysis unavailable, not unresolved by guesswork.
 
+## Additional release-gate finding — existing broken anchors
+
+After rebasing this audit branch on the current `main`, the repository's independent `scripts/audit_91e444dd.py` reports **8 missing fragments** in `hotspawn/release-audit.html`: `picks.html#m1079586`, `#m1080285`, `#m1080286`, `#m1079167`, `#m1079630`, `#m1081712`, `#m1080287`, and `#m1081498`. These links point to closed cards that are no longer rendered on the open-picks page. Six IDs (`1080286`, `1079167`, `1079630`, `1081712`, `1080287`, `1081498`) are present in the current all-fixtures inventory and can use `all.html#f<ID>`; IDs `1079586` and `1080285` do not exist in the current inventory and need an archived-source link or removal from that historical table. This is a pre-existing shared-page finding, not caused by this audit PR. The full independent audit therefore fails its link gate until the integration owner fixes these links.
+
 ## Verification performed in this session
 
 - Compared `hotspawn/data/summary.json`, `hotspawn/data/capture.json`, `hotspawn/data/picks.csv`, `hotspawn/research/day2_twc2026.json`, and `hotspawn/research/day3_twc2026.json` locally; confirmed the snapshot timestamp, two TWC pick IDs, the missing day-3 result fields, and conditional day-4 schedule text.
