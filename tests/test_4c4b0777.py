@@ -77,6 +77,25 @@ class Assurance(unittest.TestCase):
         self.assertEqual(text.count('Organizer confirmation: unverified'), 8)
         self.assertIn('retrospective', text)
 
+    def test_event_fallback_never_inherits_an_unrelated_team_page(self):
+        import sys
+        sys.path.insert(0, str(ROOT / 'hotspawn'))
+        import model
+        inp = model.load_inputs()
+        inp['hltv_links']['fixtures'].pop('1081126', None)
+        inp['hltv_links']['events']['CCT Europe 2026 Series #12 Play-In']['url'] = 'https://www.hltv.org/team/13759/mellren'
+        rows, _ = model.build_rows(inp)
+        row = next(r for r in rows if r['match_id'] == '1081126')
+        self.assertIsNone(row['hltv_url'])
+        self.assertIsNone(row['p_a'])
+
+    def test_unresolved_copy_does_not_misreport_duplicate_rosters_as_absence(self):
+        text = (ROOT / 'hotspawn/unresolved.html').read_text()
+        self.assertNotIn("missing from Valve's standings", text)
+        self.assertIn('missing or ambiguous roster entry', text)
+        self.assertIn('release-audit.html#unresolved-research', text)
+        self.assertIn('2399477/banda-chuya-vs-enjoy', text)
+
     def test_page_has_no_broken_local_links(self):
         class Links(HTMLParser):
             def __init__(self):

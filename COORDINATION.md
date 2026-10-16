@@ -4613,3 +4613,9 @@ points all CCT Play-In fixtures to mellren's team page. Claim narrow integration
 71c4e4ab build/model claim has had no commits since 22:xx (>60min). Preserve their day-2 work and
 all probability/strategy logic. Add fixture links re-read this session for 1080205, 1081775,
 1079170 and 1081126; safe event fallback must not present another team's page as a fixture source.
+
+4c4b0777 post-deploy correction complete locally: 25 canonical tests + 13 assurance tests + 4
+landing acceptance tests pass. Verified all 95 rows' `(p_a,p_b,pick,rung)` unchanged. Direct
+Banda–Enjoy HLTV match 2399477 now re-read (BO3 Group A decider); no current-five or line inferred.
+Link scan remains 272 pages / 0 errors. Regenerated canonical executive/unresolved pages now
+link to independent gap research; event-level fallback no longer borrows another team's page.

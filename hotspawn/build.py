@@ -283,8 +283,10 @@ def unresolved_section(board: dict, full: bool) -> str:
     if d:
         out.append("<h3>No pick possible</h3><ul>" + "".join(
             f"<li><a href=\"picks.html#m{e(r['match_id'])}\">{e(r['team_a'])} vs {e(r['team_b'])}</a> — {e(utc_label(r.get('lock_utc')))}: no Pinnacle or Polymarket price, and "
-            f"{e(', '.join(n for n, v in ((r['team_a'], r.get('vrs_a')), (r['team_b'], r.get('vrs_b'))) if not v))} missing from Valve's standings. Research trail: {link(r.get('hltv_url'), 'HLTV')} · "
+            f"{e(', '.join(n for n, v in ((r['team_a'], r.get('vrs_a')), (r['team_b'], r.get('vrs_b'))) if not v))} cannot be uniquely matched to Valve's standings (missing or ambiguous roster entry). Research trail: {link(r.get('hltv_url'), 'HLTV')} · "
             f"<a href=\"https://www.hltv.org/search?query={e(r['team_a'])}\">HLTV search {e(r['team_a'])}</a> · <a href=\"https://www.hltv.org/search?query={e(r['team_b'])}\">HLTV search {e(r['team_b'])}</a></li>" for r in d) + "</ul>")
+    if full:
+        out.append('<p><a href="release-audit.html#unresolved-research">Independent gap research &amp; evidence limitations</a>: sources tried, unattributed quotes rejected, and why a same-name historical roster is not a confirmed current five.</p>')
     if ladder:
         rows = []
         for r in ladder:
