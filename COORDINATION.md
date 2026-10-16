@@ -4542,3 +4542,11 @@ Read the shared task board and open PR list before claiming. Preserve ongoing re
 
 No claim to other sessions' research, generated board datasets or collector. Any needed change
 outside scope will be logged as an integration request rather than silently overwritten.
+
+4c4b0777 integration scope extension: the canonical 22:41Z capture predates new live-lobby fixtures.
+Run the existing workflow on **this session branch only** to re-collect and regenerate `hotspawn/data/**`
+and `hotspawn/*.html` using the owners' unchanged code. This is integration refresh, not takeover of
+71c4e4ab's research or a competing dashboard. Published audit will distinguish source observations,
+model estimates, quote freshness and unresolved research. Do not merge unrelated PR #150.
+Initial claim push: remote branch did not yet exist; pulled/rebased origin/main before first push;
+no conflicts, branch created successfully.
