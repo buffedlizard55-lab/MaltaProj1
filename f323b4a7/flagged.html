@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0b1220">
+<title>Flagged for review - Hotspawn CS2 picks (f323b4a7)</title>
+<meta name="description" content="Flagged for review">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="index.html">Hotspawn CS2 &middot; picks &amp; lines</a>
+    <div class="stamp">Snapshot 2026-10-16T04:18:00Z &middot; Hotspawn read 2026-10-16T04:18:00Z</div>
+  </div>
+  <nav class="nav"><a class="nav" href="index.html">Executive summary</a><a class="nav" href="picks.html">Picks for every open match</a><a class="nav" href="day3.html">Day-3 guide - Thunderpick World Championship</a><a class="nav" href="review.html">Day 1 &amp; day 2 review</a><a class="nav" href="unresolved.html">Unresolved picks &amp; limitations</a><a class="nav on" href="flagged.html">Flagged for review</a><a class="nav" href="all.html">Full Hotspawn CS2 fixture inventory</a><a class="nav" href="method.html">Methodology &amp; sources</a></nav>
+</header>
+<main class="wrap">
+
+<h1>Flagged for review</h1>
+<p class="lead">Irregularities and unverified values found while building this board. None of them blocks the
+picks; each is published with its source so it can be checked after the fact.</p>
+<table class="tbl">
+  <tr><th>ID</th><th>Irregularity</th><th>What we did</th><th>Source</th></tr>
+  <tr id="F-01"><td><strong>F-01</strong></td><td>Aurora&#x27;s roster change is described as &#x27;recent&#x27; in the brief.</td>
+<td>The rebuild (kyxsan IGL, Jimpphat, coach ash) was announced 2026-07-08/09, about three months before this match. Valve&#x27;s 2026-10-05 standings already contain this exact five.</td><td><a href="https://www.strafe.com/news/read/aurora-locks-in-new-cs2-roster-with-kyxsan-and-jimpphat/">source</a></td></tr><tr id="F-02"><td><strong>F-02</strong></td><td>Hotspawn&#x27;s fixture count moved between captures.</td>
+<td>The 2026-10-15T22:41:15Z TransferState capture holds 86 CS2 fixtures; the live lobby read at 2026-10-16T04:18Z lists 95 (week text 111 -&gt; 123 matches). The 9 additions are itemised in the inventory page.</td><td><a href="https://play.hotspawn.com/lobby">source</a></td></tr><tr id="F-03"><td><strong>F-03</strong></td><td>Nine fixtures have no Pinnacle or Polymarket price.</td>
+<td>Their probability is our own line (rung C) from Valve points; no market figure is shown for them.</td><td><a href="unresolved.html">source</a></td></tr><tr id="F-04"><td><strong>F-04</strong></td><td>Kick-off times on Hotspawn are rendered in UTC-4, not UTC.</td>
+<td>Derived and verified on six captured fixtures before being applied to the nine new rows.</td><td><a href="https://play.hotspawn.com/lobby">source</a></td></tr><tr id="F-05"><td><strong>F-05</strong></td><td>Two fixtures were added to Hotspawn after our market snapshot.</td>
+<td>1081775 BetBoom-Legacy and 1081712 Fnatic-Heroic have no captured outside price.</td><td><a href="https://play.hotspawn.com/lobby">source</a></td></tr><tr id="F-06"><td><strong>F-06</strong></td><td>Series length is unknown for the nine new fixtures.</td>
+<td>Hotspawn&#x27;s payload carries best_of=null for them; no format is assumed and no transform applied.</td><td><a href="https://play.hotspawn.com/lobby">source</a></td></tr><tr id="F-07"><td><strong>F-07</strong></td><td>HLTV ranks are blank for 12 of the 62 teams in the open fixtures.</td>
+<td>Those teams are unranked or the rank was not captured; the field is left blank rather than inferred.</td><td><a href="https://www.hltv.org/ranking/teams/2026/october/12">source</a></td></tr><tr id="F-08"><td><strong>F-08</strong></td><td>Day-1 Hotspawn fixture ids for three of the four opening matches were not captured.</td>
+<td>Only 1080176 (9z v Aurora) is verified; the others are left blank on the review page.</td><td><a href="https://www.hltv.org/events/8932/thunderpick-world-championship-2026">source</a></td></tr>
+</table>
+
+</main>
+<footer class="wrap foot">
+  <p><strong>Evidence policy.</strong> Probabilities come from outside markets (Pinnacle, Polymarket) or from
+  our own line fitted on Valve's published results. Hotspawn's crowd pick share is stored as
+  <em>ownership</em> only and is never used as a probability. Every row carries its source links; a value that
+  cannot be confirmed from an official source is left blank and listed on the
+  <a href="flagged.html">Flagged for review</a> page.</p>
+  <p>Session <code>arena/f323b4a7</code> &middot; branch <code>arena/f323b4a7-maltaproj1</code> &middot;
+  generated 2026-10-16T04:18:00Z</p>
+</footer>
+</body>
+</html>

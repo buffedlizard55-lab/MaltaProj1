@@ -4728,3 +4728,72 @@ their named sessions.
 | Sources | `reviews/b6f5405d-verification.md` — every fact with link and read time; HLTV page clocks are viewer-local, the board's UTC times come from Hotspawn's payload and Polymarket's API |
 
 Public routes changed by this session: `hotspawn/strategy.html#day2` (new day-2 review, 4 series with HLTV links, recomputed grades), `hotspawn/index.html` ("Day 2 in one line" + link), `hotspawn/strategy.html#day3` (day-3 deciders, unchanged this pass but re-verified).
+
+---
+
+## Session `arena/f323b4a7` — claim (2026-10-16 04:20 UTC)
+
+Branch: `arena/f323b4a7-maltaproj1` (fixed by Arena). Session ID `f323b4a7`.
+
+Board read before claiming: all 4,531 lines of `COORDINATION.md` (section index + the last three
+sessions in full), `git log`, `gh pr list`, `gh run list`. Most recent human session is
+`a6f05f99` (PR #152 merged 2026-10-15 23:24Z). No open PR claims the scope below.
+
+**Why this scope is not a duplicate.** `hotspawn/**` is owned by `22be6967` (done) plus its
+three-hour collector; `a6f05f99/**` is a parallel board on a 2026-10-15T22:41Z capture. Both are
+built on the **86-fixture** TransferState capture. The live lobby read at
+**2026-10-16T04:18Z lists 95 CS2 fixtures** ("All tiers (95)", "123 matches this week" vs "111"
+in the capture), i.e. **9 fixtures that neither board covers**, and the market snapshot both use
+is 5.5 h old with the day-3 locks starting at 07:54Z. This session therefore claims the *live
+day-3* refresh in its own namespace and touches no other session's files.
+
+| ID | Task | Status | Exclusive file scope |
+|----|------|--------|----------------------|
+| F3-1 | Live re-read of all three Hotspawn CS2 surfaces; derive exact UTC start/lock for the 9 new fixtures with a documented, verified rule (display = UTC-4, lock = start - 360 s) | done | `f323b4a7/data/sources.json`, `f323b4a7/data/archived_fixtures.json`, `f323b4a7/prep_sources.py` |
+| F3-2 | Originate a pick + both probabilities for **all 31 open fixtures** (95 listed, 64 locked/stale): Pinnacle devig → Polymarket → own line on Valve points (k = 0.4598) → explicit unresolved rung | done | `f323b4a7/model.py`, `f323b4a7/data/picks.csv`, `f323b4a7/data/board.json`, `f323b4a7/data/summary.json` |
+| F3-3 | Unresolved register + per-row limitations, summarised inside the executive summary | done | `f323b4a7/unresolved.html`, `f323b4a7/data/unresolved.csv` |
+| F3-4 | TWC 2026 day-1/day-2 review (every result with its HLTV link) and the day-3 guide (Aurora–9z, BetBoom–Legacy, group tables, playoff path, contrarian rule) | done | `f323b4a7/research.py`, `f323b4a7/review.html`, `f323b4a7/day3.html` |
+| F3-5 | Mobile-first executive summary with in-site links to the picks list, day-3 guide, review, unresolved register, inventory, flagged page and methodology | done | `f323b4a7/index.html`, `f323b4a7/*.html`, `f323b4a7/style.css`, `f323b4a7/build.py` |
+| F3-6 | 4-hourly unattended refresh (collect → model → build → invariants → phone check → commit), fail-closed | done | `f323b4a7/collect.py`, `f323b4a7/tests.py`, `f323b4a7/mobile_check.py`, `.github/workflows/f323b4a7.yml` |
+| F3-7 | Line-by-line verification record with official links + flagged irregularities | done | `reviews/f323b4a7-verification.md`, `f323b4a7/flagged.html` |
+| F3-8 | Integration hand-off: one additive link block on the root landing so the board is reachable from the phone landing page | done | root `index.html` (additive only — one nav link + one card + two inline links; no existing markup changed) |
+
+**Files this session will NOT edit:** `hotspawn/**`, `a6f05f99/**`, `leaderboard/**`,
+`valuepicks/**`, `console/**`, `docs/**`, `site/**`, `executive/**`, `matchpicks/**`,
+`summary/**`, root `data/**`, `scripts/**`, `tests/test_*.py`, and every other session's workflow.
+
+### Log — arena/f323b4a7 (2026-10-16 04:18–04:40 UTC)
+
+- **04:18Z** live read of `https://play.hotspawn.com/lobby`: "123 matches this week",
+  CS2 filter "All tiers (95)"; tier split B 38 / C 54 / S 3 across 18 tournaments.
+  Sum of the per-tournament counts = 95, matching the tier filter exactly.
+- **Fixture delta computed, not guessed.** The 2026-10-15T22:41:15Z TransferState capture in
+  `hotspawn/data/raw/hotspawn_state_lobby.json.gz` holds 86 fixtures. Tournament-by-tournament
+  diff gives exactly **9 additions**: NODWIN Clutch Series #13 ×5 (1079167, 1079170, 1079171,
+  1079173, 1081769), Stake Pulse Beat III ×2 (1079588, 1081712), Thunderpick World Championship
+  ×1 (1081775 BetBoom–Legacy), CCT Europe 2026 Series #12 Play-In ×1 (1081126). 86 + 9 = 95.
+- **Time derivation verified before use.** `lock_offset_sec == 360` for all 86 captured fixtures
+  (rule R2). The rendered kick-off equals UTC − 4 h (rule R1), cross-checked on six captured
+  fixtures (1079586 08:00Z → "Oct 16, 04:00"; 1080205 14:00Z → "Oct 16, 10:00"; 1081526
+  2026-10-19T09:00Z → "Oct 19, 05:00"; 1081529/1081530/1081531) and then independently confirmed
+  by HLTV: match 2399412 Aurora–9z is displayed "10:00" and Polymarket's `gameStartTime` for the
+  same market is `2026-10-16 14:00:00+00`; HLTV displays BetBoom–Legacy "13:00", so 17:00Z.
+- **31 open fixtures, 31 picks, 0 unresolved.** Rungs: Pinnacle 6, Polymarket 16, own line 9.
+  No fixture needed the unresolved rung, because every team in the open set is present in Valve's
+  2026-10-05 global standings once the repo's *verified* aliases are applied
+  (`RoundsGG→ROUNDS`, `WROTBERRY→WBT`) and generic words are dropped (`Team Liquid→Liquid`).
+- **Live re-read** of Polymarket for 1080205 (Aurora–9z): `outcomePrices ["0.695","0.305"]`,
+  `updatedAt 2026-10-16T04:23:06.938887Z` — replaces the 22:41Z snapshot value of 0.685/0.315.
+- **Day-1/day-2 results verified against HLTV** (event 8932 bracket, match links 2399384, 2399386,
+  2399387, 2399408–2399413, news 45718/45723/45724/45728/45729/45730) plus the repository's own
+  HLTV-verified capture `hotspawn/research/results.json` (read 2026-10-15T22:30:54Z).
+- **Roster claim corrected.** The brief calls Aurora's roster change "recent". It is a
+  **2026-07-08/09** rebuild (kyxsan IGL, Jimpphat, coach ash) — three months old — and Valve's
+  2026-10-05 standings already score that exact five (Aurora #9, 1716 pts), so no roster adjustment
+  is applied. Published as irregularity F-01 rather than silently used as an edge.
+- **Checks:** `f323b4a7/tests.py` 31/31 rows pass (pick = higher-probability side, probabilities
+  sum to 1, rung labelled, Hotspawn link present, all 8 pages have a viewport tag and no broken
+  local links); `f323b4a7/mobile_check.py` pass at 390 px. Full repo suite: 405 tests, **3
+  pre-existing failures** reproduced on the untouched `main` tree (`test_457629c4`
+  determinism error, two `test_7759beef` board tests) — not caused by this session.
+  `tests/test_landing_43c32386.py` passes unchanged after the additive root link block.
