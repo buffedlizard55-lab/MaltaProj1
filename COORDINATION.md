@@ -4623,3 +4623,27 @@ link to independent gap research; event-level fallback no longer borrows another
 4c4b0777 follow-up PR: [#154](https://github.com/buffedlizard55-lab/MaltaProj1/pull/154).
 Regression tests deliberately permit future market resolution/lock changes; no test forces a
 fixture to stay unresolved or disappear from a future slate. Task status: done, release pending.
+
+### Final substantive release — arena/4c4b0777 (2026-10-16 04:31 UTC)
+- Follow-up [PR #154](https://github.com/buffedlizard55-lab/MaltaProj1/pull/154) **merged** at
+  04:29:32Z, SHA `276b11cd6726dd54100af77ffab3674e6b65b3b6`.
+- Pages [38850891246](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38850891246)
+  **success** after the correction. The canonical release check
+  [38850808094](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38850808094)
+  **success**, including 25 canonical tests, 13 assurance tests and real 360/390/768px layout.
+- Existing production automatic pipeline
+  [38850892038](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38850892038)
+  **success end-to-end after merge**: collects sources, calibrates, builds, checks invariants,
+  runs phone browser check, commits generated outputs and requests Pages. No manual input.
+  Latest production capture 04:29:51Z: 95 payload fixtures, 31 open, 29 picks, 2 unresolved.
+  Aurora–9z = 67/33 Pinnacle-normalized; BetBoom–Legacy = 34.5/65.5 prediction-market estimate.
+- All session tasks **done**. Unresolved/legacy issues are published **needs review**, not hidden:
+  two unpriced ambiguous-roster fixtures, unverified execution depth, hindsight/small-sample
+  limitations, and pre-existing valuepicks/livelines broad-test failures.
+- URLs: [executive summary](https://buffedlizard55-lab.github.io/MaltaProj1/),
+  [all updated picks](https://buffedlizard55-lab.github.io/MaltaProj1/hotspawn/picks.html),
+  [unresolved](https://buffedlizard55-lab.github.io/MaltaProj1/hotspawn/unresolved.html),
+  [independent audit / Flagged for Review](https://buffedlizard55-lab.github.io/MaltaProj1/hotspawn/release-audit.html).
+- This final metadata-only record does not claim every historical board or every repository line
+  is independently verified. Official Valve inputs were checked; HLTV observations remain clearly
+  distinct from tournament-organizer confirmation. No unsupported values were filled in.
