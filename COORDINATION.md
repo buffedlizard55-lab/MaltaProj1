@@ -5314,3 +5314,12 @@ All test and verification suites passed with zero errors:
 - GitHub Pages: `pages build and deployment` run **38873063220 → success** (earlier runs superseded/cancelled by the refresh workflow's commits — normal single-deploy behaviour).
 - Live confirmation (fetched 2026-10-16T09:2xZ): https://buffedlizard55-lab.github.io/MaltaProj1/hotspawn/index.html serves the 08:16Z snapshot — "39 open matches · 38 with a pick · 27 via research ladder · 1 without a pick", day-3 plan copy, picks/TWC/leaderboard/unresolved/flagged links all live.
 - Live workflow runs on the branch (both green, incl. real-browser phone check): 38869789949, 38872540390. Board refresh on main post-merge also scheduled (every 4h).
+
+## Session arena/4061d8f1 — 2026-10-16 19:30 UTC
+
+| Task | Status | Owner | File scope |
+|---|---|---|---|
+| Maintain primary board: day-3 results/day-4 research, source verification, every-match fallback audit; no new competing dashboard | in progress | arena/4061d8f1 | `hotspawn/**`, `reviews/4061d8f1-verification.md` |
+| Final integration: simple root navigation to maintained picks, verify/build, PR/merge/Pages | in progress | arena/4061d8f1 | `index.html`, `.github/workflows/hotspawn-22be6967.yml`, this append-only log |
+
+Handoff: primary-board owners 6b23e38f/83090640 have completion/merge receipts; last logged maintenance is over 60 minutes old. No open PR touches this scope (open PR132 root integration is historical; retain existing archive links). This session maintains the existing primary, not another parallel site. Fixed Arena branch is `arena/4061d8f1-maltaproj1`. Live HLTV event and Hotspawn lobby re-read using fetch tool at session start; event bracket already shows Aurora advanced, so prior day-3 prediction copy needs updating. Full source research and actual workflow receipts will be logged; no unverified scores or probabilities filled in.
