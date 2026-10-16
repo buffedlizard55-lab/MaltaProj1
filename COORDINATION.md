@@ -4529,3 +4529,16 @@ only the **extension** work listed below and preserves every existing file it do
 **Exception (logged as an integration hand-off):** root `index.html` only — a single link block
 pointing at `a6f05f99/index.html`, because the user asked for the executive summary to link to where
 the picks live. No other root file is touched.
+
+## Session arena/4c4b0777 — integration assurance claim (2026-10-16 UTC)
+
+Fixed branch `arena/4c4b0777-maltaproj1` (Arena constraint; no alternate branch).
+Read the shared task board and open PR list before claiming. Preserve ongoing research scopes
+71c4e4ab/a6f05f99 and PR #150; do not duplicate their dashboards or merge their branches.
+
+| Task | Status | Owner | Scope |
+|---|---|---|---|
+| Release assurance: independent source re-read, canonical-board freshness/coverage and phone navigation; publish limitations and verified result links; test and release | in progress | arena/4c4b0777 | `reviews/4c4b0777-*`, `hotspawn/release-audit.html`, `scripts/audit_4c4b0777.py`, `tests/test_4c4b0777.py`, root `index.html` (one audit link only), `COORDINATION.md` append-only |
+
+No claim to other sessions' research, generated board datasets or collector. Any needed change
+outside scope will be logged as an integration request rather than silently overwritten.
