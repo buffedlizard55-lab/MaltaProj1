@@ -5349,3 +5349,33 @@ PR #177 merged at 19:46:10Z, merge `2eefce6bb4746a76227e9de825aaf38865eca4af`. P
 Post-merge archived livelines run 38957352383 failed a stale assertion that calibration must always be fitted. Reproduced by building at the current clock: insufficient samples are valid and now handled by the builder, but its old assertion still rejects them. Continuing the existing narrow `livelines/tests.py` claim: test both fitted and explicitly unfitted contracts instead of requiring fabricated fit metrics. The prior 14-pass direct test used the original stored snapshot; that was not a current-clock build and is not evidence this workflow passed. Primary release and source limitations remain unchanged.
 
 Follow-up verification: corrected the root renderer to count B+C+E and describe all five own-line estimates. Added a Node VM test of the actual inline renderer with mixed, empty, and roster-research-only counts; no duplicated math. Current-clock livelines build → 14 direct tests + 20 integration tests now pass; fitted calibrations still require both objectives, unfitted ones require n<4, default 400, null scores, and honest reason. Full discovery **428 passed**; generated legacy test side effects restored. Main primary refresh 38957352331 succeeded after #177, so four-hour publication remains operational. The previously failed legacy run is disclosed, not represented as green.
+
+---
+
+## Session arena/56b7c55f — claim (2026-10-16 ~23:55 UTC)
+
+Branch: `arena/56b7c55f-maltaproj1` (fixed by Arena; no other branch created or pushed).
+Brief: TWC 2026 day-1 upset review → day-2/day-3 results → day-4 guidance; a pick for **every**
+Hotspawn CS2 fixture; separate unresolved register with limitations in the executive summary;
+in-site executive-summary links; mobile/phone readability; 4–8 h refresh; PR → merge → Pages.
+
+Before claiming, this session read the root board and the tail of every prior session block, and
+`gh pr list` (open PRs #176 `arena/4e8d38ae`, #136, #132 — none touches `hotspawn/**`).
+Handoff per the board rule: `arena/4061d8f1` claimed the primary board at 19:38 UTC and its last
+logged maintenance is more than 60 minutes old (19:48 UTC follow-up; now 23:55 UTC), so this
+session takes the primary board over and logs the handoff rather than starting a competing site.
+PR #176's scope (`COORDINATION.md` append-only + `reviews/4e8d38ae-day4-coverage-audit.md`) is not
+touched here; its two reported release blockers are re-checked, not duplicated.
+
+| # | Task | Status | Owner | Exclusive file scope |
+|---|------|--------|-------|----------------------|
+| C56-1 | Primary every-match board: day-3 decider result (BetBoom–Legacy) verified from HLTV, day-4 semifinal research + picks, and a resolution pass (HLTV → esportsbook/betting lines) for every open fixture that still has no pick | in progress | arena/56b7c55f | `hotspawn/**` |
+| C56-2 | Executive summary + phone navigation: in-site links to the live picks list / TWC / unresolved / flagged, 360–390 px readability re-check | in progress | arena/56b7c55f | `index.html`, `hotspawn/index.html`, `hotspawn/build.py`, `hotspawn/style.css` |
+| C56-3 | Line-by-line verification record with official source links; append new irregularities to the flagged page | in progress | arena/56b7c55f | `reviews/56b7c55f-verification.md`, `hotspawn/research/irregularities.json` |
+| C56-4 | Final integration: rebase, tests, link audit, PR → main, merge without waiting, confirm Pages deploy, log receipts | in progress | arena/56b7c55f | `COORDINATION.md` (append-only), `tests/test_56b7c55f*.py` |
+
+Not claimed by this session (left to their owners): `reviews/4e8d38ae-*`, `livelines/**`,
+`briefing/**`, `executive/**`, the legacy dashboards (`docs/`, `board/`, `console/`, `site/`,
+`pickem/`, `assurance/`). `hotspawn/build.py` copy blocks for strategy/twc are edited only where
+the claim above says so; other sessions were explicitly asked to stop touching generated
+`hotspawn/*.html` while this claim is live.
