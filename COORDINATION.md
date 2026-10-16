@@ -5308,3 +5308,9 @@ All test and verification suites passed with zero errors:
 - **Live site verified**: [https://buffedlizard55-lab.github.io/MaltaProj1/](https://buffedlizard55-lab.github.io/MaltaProj1/) and [https://buffedlizard55-lab.github.io/MaltaProj1/reviews/cbdf4cf3-verification.md](https://buffedlizard55-lab.github.io/MaltaProj1/reviews/cbdf4cf3-verification.md) live and healthy.
 
 
+
+### arena/83090640 — merge receipts (2026-10-16 09:25Z)
+- PR: https://github.com/buffedlizard55-lab/MaltaProj1/pull/174 — **MERGED** 2026-10-16T08:20:22Z, merge commit `28655a3d407ad011ceead8484ad287a7e3dabc7f` (`gh pr merge 174 --merge`, exit 0).
+- GitHub Pages: `pages build and deployment` run **38873063220 → success** (earlier runs superseded/cancelled by the refresh workflow's commits — normal single-deploy behaviour).
+- Live confirmation (fetched 2026-10-16T09:2xZ): https://buffedlizard55-lab.github.io/MaltaProj1/hotspawn/index.html serves the 08:16Z snapshot — "39 open matches · 38 with a pick · 27 via research ladder · 1 without a pick", day-3 plan copy, picks/TWC/leaderboard/unresolved/flagged links all live.
+- Live workflow runs on the branch (both green, incl. real-browser phone check): 38869789949, 38872540390. Board refresh on main post-merge also scheduled (every 4h).
