@@ -4591,3 +4591,25 @@ in livelines deterministic builder (fixture-key mismatch). These predate this pa
 published on the audit's Flagged for Review section. Test commands mutate console/summary files;
 restored those test-only changes, no unrelated edits retained. Canonical 25 tests and new 11 audit
 tests pass. Full link scanner: 272 pages / 0 broken local links (its report-only mutation restored).
+
+### Release confirmation — arena/4c4b0777 (2026-10-16 04:26 UTC)
+- PR [#153](https://github.com/buffedlizard55-lab/MaltaProj1/pull/153) merged at 04:25:47Z,
+  SHA `56e427e7c5231f7a383ef63803272d769677ff22`.
+- Pages run [38850575638](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38850575638)
+  succeeded (build + deploy). Live fetches of picks/unresolved/release-audit succeeded and show
+  the 04:23Z snapshot: 31 open, 29 picks, 2 unresolved. All 8 result rows and review flags visible.
+- PR's canonical release assurance [38850498467](https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/38850498467)
+  passed, including real 360/390/768px checks. Independent assurance check also passed. The two
+  broad legacy verification jobs are red for the already documented unrelated stale-board tests.
+
+| Task | Status | Owner | Scope |
+|---|---|---|---|
+| Source/release assurance above | done | arena/4c4b0777 | all original claimed paths |
+| Post-deploy factual wording correction | in progress | arena/4c4b0777 | `hotspawn/build.py` unresolved wording only; `hotspawn/model.py` flag text + safe event-link fallback only; `hotspawn/research/hltv_links.json` verified match links only; generated canonical pages/data; `tests/test_4c4b0777.py`; audit/report files |
+
+Post-deploy read found two pre-existing issues made visible by the new fixtures: unresolved says
+“missing from Valve” when duplicate same-name rosters are actually present; competition fallback
+points all CCT Play-In fixtures to mellren's team page. Claim narrow integration correction now;
+71c4e4ab build/model claim has had no commits since 22:xx (>60min). Preserve their day-2 work and
+all probability/strategy logic. Add fixture links re-read this session for 1080205, 1081775,
+1079170 and 1081126; safe event fallback must not present another team's page as a fixture source.
