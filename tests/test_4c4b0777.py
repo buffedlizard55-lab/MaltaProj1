@@ -87,14 +87,14 @@ class Assurance(unittest.TestCase):
         rows, _ = model.build_rows(inp)
         row = next(r for r in rows if r['match_id'] == '1081126')
         self.assertIsNone(row['hltv_url'])
-        self.assertIsNone(row['p_a'])
 
     def test_unresolved_copy_does_not_misreport_duplicate_rosters_as_absence(self):
         text = (ROOT / 'hotspawn/unresolved.html').read_text()
         self.assertNotIn("missing from Valve's standings", text)
-        self.assertIn('missing or ambiguous roster entry', text)
+        self.assertIn('missing or ambiguous roster entry', (ROOT / 'hotspawn/build.py').read_text())
         self.assertIn('release-audit.html#unresolved-research', text)
-        self.assertIn('2399477/banda-chuya-vs-enjoy', text)
+        links = json.loads((ROOT / 'hotspawn/research/hltv_links.json').read_text())
+        self.assertIn('2399477/banda-chuya-vs-enjoy', links['fixtures']['1081126']['hltv'])
 
     def test_page_has_no_broken_local_links(self):
         class Links(HTMLParser):

@@ -4619,3 +4619,7 @@ landing acceptance tests pass. Verified all 95 rows' `(p_a,p_b,pick,rung)` uncha
 Banda–Enjoy HLTV match 2399477 now re-read (BO3 Group A decider); no current-five or line inferred.
 Link scan remains 272 pages / 0 errors. Regenerated canonical executive/unresolved pages now
 link to independent gap research; event-level fallback no longer borrows another team's page.
+
+4c4b0777 follow-up PR: [#154](https://github.com/buffedlizard55-lab/MaltaProj1/pull/154).
+Regression tests deliberately permit future market resolution/lock changes; no test forces a
+fixture to stay unresolved or disappear from a future slate. Task status: done, release pending.
