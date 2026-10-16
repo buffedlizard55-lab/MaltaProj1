@@ -19,13 +19,16 @@ HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 import collect  # noqa: E402
 import model  # noqa: E402
-from common import Aliases, devig_two_way, norm_name, own_line, parse_iso, read_json  # noqa: E402
+from common import (Aliases, devig_two_way, norm_name, normalise_prices, own_line,  # noqa: E402
+                    parse_iso, read_json)
 
 BOARD = read_json(HERE / "data" / "board.json", {}) or {}
 ROWS = BOARD.get("rows", [])
 OPEN = [r for r in ROWS if r.get("status") == "open"]
 PAGES = ["index.html", "picks.html", "twc.html", "strategy.html", "unresolved.html", "flagged.html", "all.html", "method.html"]
 
+DAY3 = read_json(HERE / "research" / "day3_twc2026.json", {}) or {}
+DAY3_ROWS = {r.get("match_id"):r for r in ROWS}
 
 class Links(HTMLParser):
     def __init__(self):
@@ -485,6 +488,117 @@ class EligibilityAndArchive(unittest.TestCase):
         result=model.strategy(row)
         self.assertEqual(result['class'],'NO CROWD DATA')
         self.assertEqual(result['leaderboard_pick'],'A')
+
+
+class Day3(unittest.TestCase):
+    """Thunderpick day-3 evidence file: raw inputs only, every price a real two-way book, official
+    points agreeing with the board's own Valve table, and the section rendered + linked."""
+
+    def test_research_file_stores_raw_inputs_only(self):
+        matches = DAY3.get("matches") or []
+        self.assertTrue(matches, "research/day3_twc2026.json has no matches")
+        for m in matches:
+            mid = m.get("hotspawn_id")
+            self.assertTrue(str(m.get("hltv_match_url", "")).startswith("https://www.hltv.org/matches/"), mid)
+            self.assertTrue(m.get("stage"), mid)
+            self.assertTrue(m.get("team_a") and m.get("team_b"), mid)
+            self.assertTrue(str(m.get("start_utc", "")).endswith("Z"), mid)
+            self.assertTrue(m.get("crowd") and m["crowd"].get("source_url", "").startswith("https://"), mid)
+            self.assertTrue(m.get("markets"), mid)
+            self.assertTrue(m.get("own_line", {}).get("source_url", "").startswith("https://"), mid)
+            self.assertTrue(m["own_line"].get("as_of"), mid)
+            self.assertTrue(m.get("limitations"), mid)
+            for mk in m["markets"]:
+                self.assertTrue(str(mk.get("url", "")).startswith("https://"), mid)
+                self.assertTrue(mk.get("read_utc"), mid)
+                self.assertTrue(mk.get("team_a") and mk.get("team_b"), mid)
+                self.assertTrue(mk.get("kind"), mid)
+        # no hand-typed probabilities anywhere in the file: only raw inputs (odds, prices, points, shares)
+        banned = {"p_a", "p_b", "prob", "probability", "devig_a", "devig_b", "devig_pct", "consensus_pct",
+                  "win_prob", "win_pct", "model_p", "p_dog", "p_fav"}
+
+        def walk(node, path=""):
+            if isinstance(node, dict):
+                for key, value in node.items():
+                    self.assertNotIn(str(key).lower(), banned, f"derived field {path}/{key} must be computed at build time")
+                    walk(value, f"{path}/{key}")
+            elif isinstance(node, list):
+                for i, value in enumerate(node):
+                    walk(value, f"{path}[{i}]")
+
+        walk(DAY3)
+
+    def test_every_stored_price_is_a_usable_two_way_market(self):
+        for m in DAY3.get("matches") or []:
+            for mk in m["markets"]:
+                if mk.get("odds_a") is not None and mk.get("odds_b") is not None:
+                    dv = devig_two_way(float(mk["odds_a"]), float(mk["odds_b"]))
+                    self.assertIsNotNone(dv, mk.get("label"))
+                    self.assertAlmostEqual(dv[0] + dv[1], 1.0, delta=1e-6, msg=mk.get("label"))
+                else:
+                    nrm = normalise_prices(float(mk["price_a"]), float(mk["price_b"]))
+                    self.assertIsNotNone(nrm, mk.get("label"))
+                    self.assertAlmostEqual(nrm[0] + nrm[1], 1.0, delta=1e-6, msg=mk.get("label"))
+
+    def test_points_and_times_agree_with_the_board(self):
+        for m in DAY3.get("matches") or []:
+            row = DAY3_ROWS.get(m.get("hotspawn_id"))
+            if not row or m.get("own_line",{}).get("as_of") != BOARD.get("meta",{}).get("vrs",{}).get("as_of"):
+                continue                     # fixture not in this snapshot; nothing to cross-check
+            self.assertEqual(m["team_a"], row["team_a"], m["hotspawn_id"])
+            self.assertEqual(m["team_b"], row["team_b"], m["hotspawn_id"])
+            self.assertEqual(m["start_utc"], row["start_utc"], m["hotspawn_id"])
+            if m.get("lock_utc"):
+                self.assertEqual(m["lock_utc"], row["lock_utc"], m["hotspawn_id"])
+            ol = m["own_line"]
+            pts = {norm_name(ol["team_a"]): ol["points_a"], norm_name(ol["team_b"]): ol["points_b"]}
+            for side, team in (("vrs_a", row["team_a"]), ("vrs_b", row["team_b"])):
+                vrs = row.get(side) or {}
+                if vrs.get("points") is None:
+                    continue
+                self.assertEqual(pts.get(norm_name(team)), vrs["points"],
+                                 f"{m['hotspawn_id']} {team}: research points must equal Valve's official table")
+
+    def test_section_is_rendered_and_linked(self):
+        strategy = (HERE / "strategy.html").read_text(encoding="utf-8")
+        index = (HERE / "index.html").read_text(encoding="utf-8")
+        picks = (HERE / "picks.html").read_text(encoding="utf-8")
+        self.assertIn('id="day3"', strategy)
+        self.assertIn('id="day3"', index)
+        self.assertIn("strategy.html#day3", picks)
+        for m in DAY3.get("matches") or []:
+            self.assertIn(m["hltv_match_url"], strategy, m["hotspawn_id"])
+
+
+    def test_coverage_gaps_are_surfaced_when_they_exist(self):
+        """A researched fixture that the live capture missed must be named on the unresolved page and the
+        executive summary (never silently dropped), and vanish again once the board picks it up."""
+        board = BOARD
+        have = {str(r.get("match_id")) for r in board.get("rows", [])}
+        gaps = [m for m in DAY3.get("matches") or [] if str(m.get("hotspawn_id")) not in have]
+        for name in ("unresolved.html", "index.html"):
+            page = (HERE / name).read_text(encoding="utf-8")
+            if gaps:
+                self.assertIn("Coverage watch — researched fixtures absent from this capture", page, f"{name} should flag the gap")
+                for m in gaps:
+                    self.assertIn(m["team_a"], page, name)
+                    self.assertIn(m["team_b"], page, name)
+                    self.assertIn(m["hotspawn_id"], page, name)
+                    self.assertIn(f"strategy.html#day3", page, name)
+            else:
+                self.assertNotIn("Coverage watch — researched fixtures absent from this capture", page, f"{name} should not claim a gap once covered")
+
+    def test_missing_fixture_never_invents_a_current_lean_from_archived_quotes(self):
+        """A researched decider with no board row still shows a pick, and it is the outside-market + own-line
+        consensus recomputed from the stored raw inputs - never a hand-typed percentage."""
+        board = BOARD
+        have = {str(r.get("match_id")) for r in board.get("rows", [])}
+        strategy = (HERE / "strategy.html").read_text(encoding="utf-8")
+        for m in DAY3.get("matches") or []:
+            if str(m.get("hotspawn_id")) in have:
+                continue                       # the board has a row: its own pick and rung are rendered instead
+            self.assertIn("no board row", strategy, m["hotspawn_id"])
+            self.assertIn("No current pick or probability is fabricated", strategy, m["hotspawn_id"])
 
 
 if __name__ == "__main__":

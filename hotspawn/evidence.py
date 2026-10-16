@@ -79,7 +79,7 @@ def select_quote(fx: dict, quotes: list[dict], aliases, reference: str | None = 
             if age is None or not -1 <= age <= MAX_PRICE_AGE_H:
                 reasons.append('quote read time missing, in the future, or older than 8 h')
         if require_price and q.get('market_scope') != 'match_winner':
-            reasons.append('not a whole-match winner market')
+            reasons.append('whole-match winner scope not confirmed')
         if q.get('accepting_orders') is False or q.get('active') is False or q.get('closed') is True:
             reasons.append('market not accepting orders / closed')
         qfmt = q.get('format') or (f"BO{q['best_of']}" if q.get('best_of') in (1, 3, 5, 7) else '')

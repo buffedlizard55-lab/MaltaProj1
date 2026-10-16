@@ -1,0 +1,407 @@
+{
+ "about": "Supplemental raw research snapshot from session b6f5405d, retained for provenance. It is NOT a current price/ownership feed. The current card and all picks use only the guarded primary board. Unreconciled form/map assertions are blank; source links remain for manual checking.",
+ "reviewed_utc": "2026-10-16T04:45:00Z",
+ "session": "arena/b6f5405d",
+ "read_window_utc": "2026-10-16T04:19Z-2026-10-16T04:40Z",
+ "event": {
+  "name": "Thunderpick World Championship 2026",
+  "hltv": "https://www.hltv.org/events/8932/thunderpick-world-championship-2026",
+  "results": "https://www.hltv.org/results?event=8932",
+  "dates": "Oct 14th - Oct 18th 2026",
+  "prize_pool_usd": 1000000,
+  "teams": 8,
+  "location": "Malta",
+  "format_note": "Two GSL groups of four (BO3), top two per group to a single-elimination BO3 playoff; third-place decider then BO5 grand final on 18 Oct.",
+  "source_read_utc": "2026-10-16T04:33:00Z",
+  "matches_url": "https://www.hltv.org/events/8932/matches",
+  "remaining_schedule": [
+   "Fri 16 Oct: Aurora vs 9z (HLTV 2399412), BetBoom vs Legacy (HLTV 2399413) - both bo3 deciders.",
+   "Sat 17 Oct: 2399414 FURIA vs Aurora/9z winner (semifinal), 2399415 Falcons vs BETBOOM/Legacy winner (semifinal) - bo3.",
+   "Sun 18 Oct: 2399416 third-place decider (bo3), 2399417 grand final (bo5)."
+  ]
+ },
+ "group_labels": {
+  "group_a": [
+   "Falcons",
+   "Ninjas in Pyjamas",
+   "9z",
+   "Aurora"
+  ],
+  "group_b": [
+   "FURIA",
+   "Legacy",
+   "PARIVISION",
+   "BETBOOM"
+  ],
+  "evidence": [
+   "https://www.hltv.org/matches/2399412/aurora-vs-9z-thunderpick-world-championship-2026 (labelled 'Group A decider match')",
+   "https://www.hltv.org/matches/2399413/betboom-vs-legacy-thunderpick-world-championship-2026 (labelled 'Group B decider match')",
+   "https://www.hltv.org/matches/2399410/parivision-vs-betboom-thunderpick-world-championship-2026 (labelled 'Group B elimination match')",
+   "https://www.hltv.org/matches/2399409/9z-vs-falcons-thunderpick-world-championship-2026 (labelled 'Group A winners' match')",
+   "https://www.hltv.org/matches/2399384/9z-vs-aurora-thunderpick-world-championship-2026 (labelled 'Group A opening match')"
+  ],
+  "note": "Group labels verified from HLTV's own stage text on five match pages. Older project text that called Aurora-9z a Group B fixture is superseded by this file."
+ },
+ "display_timezone_note": {
+  "detail": "Kickoff is 14:00Z (Aurora-9z) and 17:00Z (BetBoom-Legacy) = 16:00 and 19:00 in Malta. Three independent machine-readable sources agree: Hotspawn's own TransferState epoch (start 2026-10-16T14:00:00Z, lock 13:54:00Z, lock_offset_sec 360) as read by this project's live capture; Polymarket's API record for both markets (start_utc 2026-10-16T14:00:00Z and 2026-10-16T17:00:00Z); and HLTV's page countdown (9h43m and 12h43m at ~04:26Z). Human-readable clocks differ by viewer timezone and must not be used: HLTV rendered 10:00 and 13:00 in this session's reads (viewer timezone, UTC-4 in the fetch path), Hotspawn rendered 14:00, and EGamersWorld rendered 16:00 and 19:00 (UTC+2, venue time).",
+  "evidence": [
+   "https://www.hltv.org/matches/2399412/aurora-vs-9z-thunderpick-world-championship-2026 (renders 10:00, countdown 9h43m)",
+   "https://www.hltv.org/matches/2399413/betboom-vs-legacy-thunderpick-world-championship-2026 (renders 13:00, countdown 12h43m)",
+   "https://www.hotspawn.com/matches/aurora-vs-9z-thunderpick-world-championship-2026-1080205 (renders 14:00, 16 OCT)",
+   "https://play.hotspawn.com/lobby (TransferState epoch, read by hotspawn/collect.py)",
+   "https://polymarket.com/event/cs2-aur1-9z-2026-10-16 and https://polymarket.com/event/cs2-lgc-bb3-2026-10-16 (API start_utc)",
+   "https://egamersworld.com/counterstrike/event/thunderpick-world-championship-2026-5X5sFiL7H (renders 16:00 and 19:00)"
+  ]
+ },
+ "day1_verification": {
+  "date": "2026-10-14",
+  "results": [
+   {
+    "hltv_id": "2399384",
+    "stage": "Group A opening match",
+    "team_a": "9z",
+    "team_b": "Aurora",
+    "score": "2-0",
+    "maps": "Inferno 13-11, Nuke 13-1",
+    "verified": true,
+    "url": "https://www.hltv.org/matches/2399384/9z-vs-aurora-thunderpick-world-championship-2026",
+    "read_utc": "2026-10-16T04:19:00Z",
+    "note": "Veto: 9z removed Anubis, Aurora removed Ancient, 9z picked Inferno, Aurora picked Nuke, 9z removed Mirage, Aurora removed Cache, Dust2 left over. Aurora lost the map they picked (Nuke 1-13)."
+   },
+   {
+    "hltv_id": "2399385",
+    "stage": "Group A opening match",
+    "team_a": "Falcons",
+    "team_b": "Ninjas in Pyjamas",
+    "score": "2-0",
+    "maps": "",
+    "verified": true,
+    "url": "https://www.hltv.org/results?event=8932",
+    "read_utc": "2026-10-16T04:19:00Z",
+    "note": "Series score verified on the event results page; map scores not re-verified in this session and therefore left blank."
+   },
+   {
+    "hltv_id": "2399386",
+    "stage": "Group B opening match",
+    "team_a": "Legacy",
+    "team_b": "PARIVISION",
+    "score": "2-0",
+    "maps": "",
+    "verified": true,
+    "url": "https://www.hltv.org/results?event=8932",
+    "read_utc": "2026-10-16T04:19:00Z",
+    "note": "Series score verified; map scores not re-verified in this session."
+   },
+   {
+    "hltv_id": "2399387",
+    "stage": "Group B opening match",
+    "team_a": "FURIA",
+    "team_b": "BETBOOM",
+    "score": "2-0",
+    "maps": "",
+    "verified": true,
+    "url": "https://www.hltv.org/results?event=8932",
+    "read_utc": "2026-10-16T04:19:00Z",
+    "note": "Series score verified; map scores not re-verified in this session."
+   }
+  ],
+  "source_read_utc": "2026-10-16T04:32:00Z",
+  "source": "https://www.hltv.org/results?event=8932"
+ },
+ "day2_verification": {
+  "date": "2026-10-15",
+  "results": [
+   {
+    "hltv_id": "2399408",
+    "stage": "Group A elimination match",
+    "team_a": "Aurora",
+    "team_b": "Ninjas in Pyjamas",
+    "score": "2-0",
+    "maps": "",
+    "verified": true,
+    "url": "https://www.hltv.org/results?event=8932",
+    "read_utc": "2026-10-16T04:19:00Z",
+    "note": "Series score verified on the results page; map scores not re-verified in this session."
+   },
+   {
+    "hltv_id": "2399409",
+    "stage": "Group A winners' match",
+    "team_a": "9z",
+    "team_b": "Falcons",
+    "score": "1-2",
+    "maps": "Nuke 9-13, Mirage 13-8, Dust2 9-13",
+    "verified": true,
+    "url": "https://www.hltv.org/matches/2399409/9z-vs-falcons-thunderpick-world-championship-2026",
+    "read_utc": "2026-10-16T04:27:00Z",
+    "note": "9z picked Nuke (lost 9-13) and won Mirage 13-8 before losing Dust2."
+   },
+   {
+    "hltv_id": "2399410",
+    "stage": "Group B elimination match",
+    "team_a": "PARIVISION",
+    "team_b": "BETBOOM",
+    "score": "1-2",
+    "maps": "Ancient 13-10 PARIVISION, Anubis 4-13 BETBOOM, Mirage 7-13 BETBOOM",
+    "verified": true,
+    "url": "https://www.hltv.org/matches/2399410/parivision-vs-betboom-thunderpick-world-championship-2026",
+    "read_utc": "2026-10-16T04:27:00Z",
+    "note": "Veto: PARIVISION removed Nuke, BETBOOM removed Inferno, PARIVISION picked Ancient, BETBOOM picked Anubis, PARIVISION removed Cache, BETBOOM removed Dust2, Mirage left over."
+   },
+   {
+    "hltv_id": "2399411",
+    "stage": "Group B winners' match",
+    "team_a": "Legacy",
+    "team_b": "FURIA",
+    "score": "1-2",
+    "maps": "",
+    "verified": true,
+    "url": "https://www.hltv.org/results?event=8932",
+    "read_utc": "2026-10-16T04:19:00Z",
+    "note": "Series score verified; map scores not re-verified in this session."
+   }
+  ],
+  "source_read_utc": "2026-10-16T04:32:00Z",
+  "source": "https://www.hltv.org/results?event=8932"
+ },
+ "day3_schedule_note": {
+  "detail": "After today's two deciders the playoff rounds are: semifinal 1 FURIA vs Aurora/9z winner and semifinal 2 Falcons vs BETBOOM/Legacy winner on 17 Oct (both bo3), then the third-place decider (bo3) and the bo5 grand final on 18 Oct. Kickoffs are 14:00Z and 17:00Z today; see display_timezone_note for why the human-readable clocks in this session's reads (HLTV 10:00 / 13:00, EGamersWorld 16:00 / 19:00) are timezone renderings and not conflicting times.",
+  "evidence": [
+   "https://www.hltv.org/events/8932/matches",
+   "https://www.hltv.org/events/8932/thunderpick-world-championship-2026",
+   "https://polymarket.com/event/cs2-aur1-9z-2026-10-16",
+   "https://polymarket.com/event/cs2-lgc-bb3-2026-10-16"
+  ]
+ },
+ "matches": [
+  {
+   "hotspawn_id": "1080205",
+   "hotspawn_match_url": "https://www.hotspawn.com/matches/aurora-vs-9z-thunderpick-world-championship-2026-1080205",
+   "hltv_match_id": "2399412",
+   "hltv_match_url": "https://www.hltv.org/matches/2399412/aurora-vs-9z-thunderpick-world-championship-2026",
+   "stage": "Group A decider match (winner reaches the semifinal, loser is eliminated)",
+   "team_a": "Aurora",
+   "team_b": "9z",
+   "start_utc": "2026-10-16T14:00:00Z",
+   "start_source": "Hotspawn ng-state epoch (capture read 2026-10-15T22:41:15Z) and Polymarket startTime; HLTV countdown 9h43m at 04:17Z agrees",
+   "lock_utc": "2026-10-16T13:54:00Z",
+   "lock_source": "Hotspawn capture lock_time (2026-10-15T22:41:15Z)",
+   "best_of": 3,
+   "crowd": {
+    "team_a_pct": 88,
+    "team_b_pct": 13,
+    "total_picks": 16,
+    "source_url": "https://play.hotspawn.com/lobby",
+    "read_utc": "2026-10-16T04:31:50Z",
+    "note": "Ownership only, never a probability. Hotspawn rounds each side; the pick count in this match is small (16 at the 04:31Z read, 9 at the 22:41Z read), so the share is noisy."
+   },
+   "markets": [
+    {
+     "label": "bc.game line on the EGamersWorld schedule row",
+     "kind": "bookmaker (secondary relay)",
+     "team_a": "Aurora",
+     "team_b": "9z",
+     "odds_a": 1.4,
+     "odds_b": 2.7,
+     "url": "https://egamersworld.com/counterstrike/event/thunderpick-world-championship-2026-5X5sFiL7H",
+     "read_utc": "2026-10-16T04:35:00Z",
+     "note": "Re-read in this window and unchanged from the earlier read in the same session."
+    },
+    {
+     "label": "bc.game prematch block on EGamersWorld",
+     "kind": "bookmaker (secondary relay)",
+     "team_a": "Aurora",
+     "team_b": "9z",
+     "odds_a": 1.43,
+     "odds_b": 2.76,
+     "url": "https://egamersworld.com/counterstrike/event/thunderpick-world-championship-2026-5X5sFiL7H",
+     "read_utc": "2026-10-16T04:35:00Z",
+     "note": "Re-read in this window and unchanged from the earlier read in the same session."
+    },
+    {
+     "label": "Polymarket match-winner market cs2-aur1-9z-2026-10-16 (live re-read)",
+     "kind": "prediction market",
+     "team_a": "Aurora Gaming",
+     "team_b": "9z",
+     "price_a": 0.695,
+     "price_b": 0.305,
+     "url": "https://polymarket.com/event/cs2-aur1-9z-2026-10-16",
+     "read_utc": "2026-10-16T04:31:54Z",
+     "note": "Read by this project's own automation (hotspawn/collect.py) after the last hand read; it supersedes the earlier 0.685/0.315. The board's own pick for this fixture now rests on a Pinnacle line (rung A) that appeared in the same refresh."
+    }
+   ],
+   "own_line": {
+    "team_a": "Aurora",
+    "team_b": "9z",
+    "points_a": 1716,
+    "points_b": 1543,
+    "as_of": "2026-10-05",
+    "source_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
+    "note": "Official Valve global standings: Aurora 9th on 1716 points, 9z 17th on 1543. Both rosters in that file match the fives HLTV lists for this match (Aurora: Jimpphat, kyxsan, Wicadia, woxic, XANTARES; 9z: dgt, HUASOPEEK, luchov, max, meyern), so no roster-outdated exclusion applies."
+   },
+   "hltv_facts": {
+    "rank_a": 6,
+    "rank_b": 17,
+    "rank_source": "https://www.hltv.org/ranking/teams (2026-10-12 weekly list, as shown on the analytics page)",
+    "analytics_url": "https://www.hltv.org/betting/analytics/2399412/aurora-vs-9z-thunderpick-world-championship-2026",
+    "analytics_read_utc": "2026-10-16T04:31:00Z",
+    "site_vote": null,
+    "head_to_head": [
+     "9z 2-0 Aurora in the TWC day-1 opener: Inferno 13-11, Nuke 13-1."
+    ],
+    "form": [],
+    "map_pool": [],
+    "hotspawn_page_url": "https://www.hotspawn.com/matches/aurora-vs-9z-thunderpick-world-championship-2026-1080205",
+    "hotspawn_page": [],
+    "form_verification": "Detailed recent form and map-pool numbers not independently reconciled in this integration; omitted rather than repeated as facts.",
+    "analytics_rechecked_utc": "2026-10-16T04:42:01Z",
+    "analytics_summary": "HLTV analytics labels Aurora better ranked (#6 vs #17) and better form; 9z won the latest meeting. This is dated specialist analysis, not a numeric bookmaker quote."
+   },
+   "roster_context": {
+    "team": "Aurora",
+    "facts": [
+     "kyxsan completed Aurora’s July rebuild on 8 July; Jimpphat and coach ash were added earlier that month. About three months before TWC, not a fresh onboarding penalty. Weak context only."
+    ],
+    "sources": [
+     "https://www.hltv.org/news/45082/official-aurora-complete-rebuild-with-kyxsan",
+     "https://www.hltv.org/team/11861/aurora",
+     "https://liquipedia.net/counterstrike/Aurora_Gaming"
+    ]
+   },
+   "limitations": [
+    "Historical supplemental price/crowd snapshot only; current values are exclusively from the primary board.",
+    "Detailed form, map statistics, actual rest/health/travel and today’s exact five are unverified here; no invented numerical adjustment.",
+    "A missing current board row stays a coverage watch with a blank current prediction, not a forced average of old lines."
+   ],
+   "hltv_schedule_source": "https://www.hltv.org/events/8932/matches",
+   "pinnacle_absence": "Pinnacle's public guest API (sports/12 straight markets) was read live by this project's capture at 2026-10-15T22:41:17Z and returned 8 CS2 two-way quotes - none for this fixture - so the outside-price rung here is Polymarket (and, as a secondary relay, bc.game via EGamersWorld). No Pinnacle price exists to cross-check, and none is invented.",
+   "board": {
+    "present_in_last_capture": true,
+    "captured_utc": "2026-10-16T04:31:50Z",
+    "rung": "A",
+    "basis": "Pinnacle odds, margin removed",
+    "note": "Pinnacle finally listed this fixture, so the board moved from rung B to rung A in the 04:31Z refresh; the row's own numbers are recomputed at build time from the capture."
+   }
+  },
+  {
+   "hotspawn_id": "1081775",
+   "hotspawn_match_url": "https://www.hotspawn.com/matches/betboom-vs-legacy-thunderpick-world-championship-2026-1081775",
+   "hltv_match_id": "2399413",
+   "hltv_match_url": "https://www.hltv.org/matches/2399413/betboom-vs-legacy-thunderpick-world-championship-2026",
+   "stage": "Group B decider match (winner reaches the semifinal, loser is eliminated)",
+   "team_a": "BetBoom",
+   "team_b": "Legacy",
+   "start_utc": "2026-10-16T17:00:00Z",
+   "start_source": "Polymarket startTime 2026-10-16T17:00:00Z (capture 2026-10-15T22:41:17Z); HLTV countdown 12h43m at 04:17Z agrees; EGamersWorld shows 19:00 in UTC+2",
+   "lock_utc": "2026-10-16T16:54:00Z",
+   "lock_source": "Hotspawn TransferState lock epoch, read live by this project's automation at 2026-10-16T04:31:50Z (360 s before the 17:00Z start); the same figure earlier derived from the offset is now a read value.",
+   "best_of": 3,
+   "crowd": {
+    "team_a_pct": 50,
+    "team_b_pct": 50,
+    "total_picks": 2,
+    "source_url": "https://play.hotspawn.com/lobby",
+    "read_utc": "2026-10-16T04:31:50Z",
+    "note": "Ownership only, never a probability. Only two picks were recorded at the 04:31Z read, so the even split carries no information."
+   },
+   "markets": [
+    {
+     "label": "bc.game line on the EGamersWorld schedule row",
+     "kind": "bookmaker (secondary relay)",
+     "team_a": "BetBoom",
+     "team_b": "Legacy",
+     "odds_a": 2.5,
+     "odds_b": 1.48,
+     "url": "https://egamersworld.com/counterstrike/event/thunderpick-world-championship-2026-5X5sFiL7H",
+     "read_utc": "2026-10-16T04:35:00Z",
+     "note": "Re-read in this window and unchanged from the earlier read in the same session."
+    },
+    {
+     "label": "bc.game prematch block on EGamersWorld",
+     "kind": "bookmaker (secondary relay)",
+     "team_a": "BetBoom",
+     "team_b": "Legacy",
+     "odds_a": 2.52,
+     "odds_b": 1.5,
+     "url": "https://egamersworld.com/counterstrike/event/thunderpick-world-championship-2026-5X5sFiL7H",
+     "read_utc": "2026-10-16T04:35:00Z",
+     "note": "Re-read in this window and unchanged from the earlier read in the same session."
+    },
+    {
+     "label": "Polymarket match-winner market cs2-lgc-bb3-2026-10-16 (live re-read)",
+     "kind": "prediction market",
+     "team_a": "Legacy",
+     "team_b": "BetBoom Team",
+     "price_a": 0.655,
+     "price_b": 0.345,
+     "url": "https://polymarket.com/event/cs2-lgc-bb3-2026-10-16",
+     "read_utc": "2026-10-16T04:31:54Z",
+     "note": "Read by this project's own automation; supersedes the earlier 0.605/0.395 read. Pinnacle still does not list this fixture, so the board sits on rung B here."
+    }
+   ],
+   "own_line": {
+    "team_a": "Legacy",
+    "team_b": "BetBoom",
+    "points_a": 1931,
+    "points_b": 1596,
+    "as_of": "2026-10-05",
+    "source_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
+    "note": "Official Valve global standings: Legacy 2nd on 1931 points, BETBOOM 11th on 1596. Both fives match the lineups HLTV lists (Legacy: arT, dumau, latto, n1ssim, try; BETBOOM: Boombl4, d1Ledez, Magnojez, S1ren, zorte)."
+   },
+   "hltv_facts": {
+    "rank_a": 14,
+    "rank_b": 7,
+    "rank_source": "https://www.hltv.org/ranking/teams (2026-10-12 weekly list, as shown on the analytics page)",
+    "analytics_url": "https://www.hltv.org/betting/analytics/2399413/betboom-vs-legacy-thunderpick-world-championship-2026",
+    "analytics_read_utc": "2026-10-16T04:29:00Z",
+    "head_to_head": [],
+    "form": [],
+    "hotspawn_page_url": "https://www.hotspawn.com/matches/betboom-vs-legacy-thunderpick-world-championship-2026-1081775",
+    "hotspawn_page": [],
+    "map_pool": [],
+    "site_vote": null,
+    "form_verification": "Detailed recent form and map-pool numbers not independently reconciled in this integration; omitted rather than repeated as facts.",
+    "analytics_rechecked_utc": "2026-10-16T04:42:01Z",
+    "analytics_summary": "HLTV analytics labels Legacy better ranked (#7 vs #14) with better form ranking. No usable bookmaker price was exposed in the fetched page."
+   },
+   "roster_context": {
+    "team": "Legacy",
+    "facts": [],
+    "sources": [
+     "https://www.hltv.org/betting/analytics/2399413/betboom-vs-legacy-thunderpick-world-championship-2026",
+     "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/hotspawn/research/notes.json"
+    ]
+   },
+   "limitations": [
+    "Historical supplemental price/crowd snapshot only; current values are exclusively from the primary board.",
+    "Detailed form, map statistics, actual rest/health/travel and today’s exact five are unverified here; no invented numerical adjustment.",
+    "A missing current board row stays a coverage watch with a blank current prediction, not a forced average of old lines."
+   ],
+   "hltv_schedule_source": "https://www.hltv.org/events/8932/matches",
+   "pinnacle_absence": "Pinnacle's public guest API (sports/12 straight markets) was read live by this project's capture at 2026-10-15T22:41:17Z and returned 8 CS2 two-way quotes - none for this fixture - so the outside-price rung here is Polymarket (and, as a secondary relay, bc.game via EGamersWorld). No Pinnacle price exists to cross-check, and none is invented.",
+   "board": {
+    "present_in_last_capture": true,
+    "captured_utc": "2026-10-16T04:31:50Z",
+    "rung": "B",
+    "basis": "Polymarket price (prediction market)",
+    "note": "The fixture appeared in Hotspawn's own payload in the 2026-10-16T04:31:50Z live refresh, so the board now carries a row (BetBoom vs Legacy, 7 offered points, lock 16:54Z) instead of the coverage gap this file first reported."
+   }
+  }
+ ],
+ "how_to_read": [
+  "Pick column: the board's own decision, produced by hotspawn/model.py from its probability ladder (Pinnacle -> Polymarket -> own line). This section does not replace it; it shows the extra evidence behind the two S-tier fixtures.",
+  "Market line: arithmetic mean of the margin-removed probabilities of every outside price stored above. Bookmaker rows keep their overround removed proportionally; the Polymarket row is a price, normalised.",
+  "Our line: Valve's official points on the calibrated curve (k from data/calibration.json, fitted on Valve's own published results).",
+  "Crowd: Hotspawn pick share (ownership). It is displayed for leverage only and is never an input to any probability.",
+  "Swing play: where the crowd is heavily on one side but the outside estimates do not support that confidence, the upside for a chasing player is quantified in the table. It is labelled as a swing, not as the value pick."
+ ],
+ "limitations": [
+  "Two snapshots are cited in this file: the hand reads of 2026-10-16 04:19Z-04:45Z and the live automation refresh of 2026-10-16 04:31:50Z (workflow run 38851072935) that closed the coverage gap and added a Pinnacle line for Aurora-9z. Where they differ (Polymarket 0.685 -> 0.695 and 0.605 -> 0.655; crowd picks 9 -> 16), the newer read is the one the board uses.",
+  "Hand reads are a snapshot inside the 04:19Z-04:40Z window. The automated board re-reads Pinnacle, Polymarket and Hotspawn every three hours and is the live authority; this file is the audited evidence behind the day-3 rows.",
+  "EGamersWorld relays bookmaker prices (bc.game); those rows are labelled as a secondary relay and their overround is removed before use. No price is ever taken from Hotspawn's own pick'em shares, from HLTV's visitor vote, or from HLTV's analytics page, which renders no readable odds.",
+  "Hotspawn publishes crowd ownership only, rounds each side, and drops the share at lock, so the share at lock time is unknowable from the outside.",
+  "Nothing here is a guarantee of a result: 9z beating Aurora on day 1 was an outcome the outside market priced at roughly 27-34%."
+ ],
+ "second_pass_utc": "2026-10-16T04:35:00Z",
+ "integration_review_utc": "2026-10-16T04:42:01Z",
+ "publication_policy": "No fallback probability from this static file if a current board row is absent. Archived prices have read times and are not promoted as fresh. Roster history is weak context only."
+}

@@ -6,7 +6,7 @@ Probability ladder (first rung that resolves wins; every rung is labelled on the
   B  Polymarket match-winner price, normalised (prediction market — not a bookmaker)
   C  Our own line: Valve Regional Standings points on Valve's curve with a slope fitted on Valve's
      own published results (calibrate.py).  Used when no outside price exists.
-  D  Unresolved: no price and a team missing from Valve's standings -> pick left blank + flagged.
+  D  Unresolved: no price and a team without a unique Valve standings match -> pick left blank + flagged.
 
 Hotspawn's crowd pick share is NEVER a probability input.  It is used only afterwards, by the
 leaderboard-strategy rule, as "ownership": how many other players already hold each side.
@@ -250,7 +250,10 @@ def build_rows(inp: dict) -> tuple[list[dict], dict]:
         r["total_picks"] = fx.get("total_picks_ownership")
         # ---- research links / format
         link = links.get(str(fx["match_id"]), {})
-        r["hltv_url"] = link.get("hltv") or (events.get(fx.get("competition") or "", {}) or {}).get("url")
+        # A competition fallback must be an event page, never a team page borrowed from
+        # one fixture. Otherwise new opponents inherit an unrelated team's evidence link.
+        event_url = (events.get(fx.get("competition") or "", {}) or {}).get("url") or ""
+        r["hltv_url"] = link.get("hltv") or (event_url if event_url.startswith("https://www.hltv.org/events/") else None)
         r["hltv_note"] = link.get("note")
         fmt, fmt_src = link.get("format") or "", "HLTV match page" if link.get("format") else ""
         researched = r.get("research_attempt") or {}

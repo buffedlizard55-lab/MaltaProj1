@@ -14,7 +14,10 @@ from html import escape
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from common import DATA, REPO_URL, RESEARCH, ROOT, SESSION, parse_iso, read_json, utc_label, write_json  # noqa: E402
+from common import (DATA, REPO_URL, RESEARCH, ROOT, SESSION, devig_two_way, norm_name,  # noqa: E402
+                    normalise_prices, own_line, parse_iso, read_json, utc_label, write_json)
+
+DAY3_FILE = RESEARCH / "day3_twc2026.json"
 
 NAV = [("index.html", "Summary"), ("picks.html", "All picks"), ("twc.html", "TWC 2026"),
        ("strategy.html", "Leaderboard plan"), ("unresolved.html", "Unresolved"), ("flagged.html", "Flagged"),
@@ -144,7 +147,7 @@ def evidence_list(r: dict, board: dict) -> str:
                      f"slope k={board['meta']['k']} ({e(board['meta']['k_label'])}). {link(board['meta']['vrs'].get('url'), 'Valve standings')}")
     else:
         missing = [n for n, v in ((r["team_a"], va), (r["team_b"], vb)) if not v]
-        items.append("Our line: withheld — " + e(r.get("own_line_limitation") or ("missing from Valve standings: " + ", ".join(missing))) + ".")
+        items.append("Our line: withheld — " + e(r.get("own_line_limitation") or ("missing or ambiguous roster entry: " + ", ".join(missing))) + ".")
     if r.get("hltv_rank_a") or r.get("hltv_rank_b"):
         items.append(f"HLTV world ranking: {e(r['team_a'])} {('#' + str(r['hltv_rank_a'])) if r.get('hltv_rank_a') else 'not in captured ranking'} · "
                      f"{e(r['team_b'])} {('#' + str(r['hltv_rank_b'])) if r.get('hltv_rank_b') else 'not in captured ranking'}. {link(board['meta']['hltv'].get('url'), 'HLTV ranking')}")
@@ -216,7 +219,9 @@ def picks_page(board: dict) -> None:
     for day, items in by_day.items():
         body.append(f'<h2 class="day">{e(day)}</h2>')
         body.extend(card(r, board) for r in items)
-    body.append('<p class="small">Unresolved or model-only picks and their limitations: <a href="unresolved.html">Unresolved &amp; limitations</a>. Everything flagged: <a href="flagged.html">Flagged for Review</a>.</p>')
+    body.append('<p class="small">S-tier deciders today (Aurora vs 9z, BetBoom vs Legacy): evidence, outside prices and the swing view are on '
+                '<a href="strategy.html#day3">Day 3 — the two deciders</a>. Unresolved or model-only picks and their limitations: '
+                '<a href="unresolved.html">Unresolved &amp; limitations</a>. Everything flagged: <a href="flagged.html">Flagged for Review</a>.</p>')
     page("picks.html", "All picks", "\n".join(body), board, script=LOCK_SCRIPT)
 
 
@@ -230,6 +235,34 @@ def plays_table(rows: list[dict]) -> str:
                    f"<td class=num>{'' if s.get('ev_cost_pts') is None else e(s.get('ev_cost_pts'))}</td><td>{e('; '.join(s.get('factors_against_favourite') or []) or '—')}</td></tr>")
     out.append("</tbody></table></div>")
     return "".join(out)
+
+
+def day3_section(board: dict) -> str:
+    """B6 entry points retained; a second, static price average can never override the live row."""
+    data = read_json(DAY3_FILE, {}) or {}
+    by_id = {str(r.get("match_id")): r for r in board.get("rows", [])}
+    out = ['<p><a href="twc.html">Full TWC review, sourced maps, roster timeline &amp; optional chasing choices →</a>. '
+           'These cards use the same capture and evidence gates as All picks, never a second hand-maintained probability.</p>']
+    for match in data.get("matches", []):
+        row = by_id.get(str(match.get("hotspawn_id")))
+        out.append('<p>' + link(match.get('hltv_match_url'), match.get('team_a','') + ' vs ' + match.get('team_b','')) + ' · ' + link(match.get('hotspawn_match_url'), 'Hotspawn fixture') + '</p>')
+        if row and row.get('status') == 'open':
+            out.append(card(row, board))
+        elif not row:
+            out.append('<p class="note">Coverage gap: no board row for this researched fixture. No current pick or probability is fabricated from an older research price. <a href="unresolved.html">Research limitation →</a></p>')
+        else:
+            out.append('<p class="small">Not open at this capture; see <a href="all.html">the source-linked inventory</a>. No archived probability is promoted as a new pick.</p>')
+    return ''.join(out)
+
+
+def coverage_gaps_section(board: dict) -> str:
+    """A previously researched ID missing from a capture is a watch item, not proof of live listing."""
+    data = read_json(DAY3_FILE, {}) or {}
+    have = {str(r.get('match_id')) for r in board.get('rows', [])}
+    gaps = [m for m in data.get('matches', []) if str(m.get('hotspawn_id')) not in have]
+    if not gaps: return ''
+    rows = ''.join('<li>' + e(m.get('hotspawn_id')) + ' · ' + link(m.get('hltv_match_url'), m.get('team_a','') + ' vs ' + m.get('team_b','')) + ' · ' + link(m.get('hotspawn_match_url'), 'last known Hotspawn source') + '</li>' for m in gaps)
+    return '<h3>Coverage watch — researched fixtures absent from this capture</h3><p>Earlier linked evidence is not proof these matches are still pickable. No current side is invented. <a href="strategy.html#day3">Day-3 research →</a></p><ul>' + rows + '</ul>'
 
 
 def strategy_page(board: dict) -> None:
@@ -259,6 +292,8 @@ def strategy_page(board: dict) -> None:
 <h2>Plays for the open slate ({len(rows)})</h2>
 {plays_table(rows)}
 <p class="small">EV cost = expected points given up versus taking the published pick, measured on the published probabilities (points × gap in win chance). Underdog chance = heuristic average of the market and our eligible own line (separate estimates, not statistically independent evidence) (our line is dropped when Valve's roster is out of date). Crowd = Hotspawn's pick share, used here only to measure how contrarian a pick is.</p>
+<h2 id="day3">Day 3 — the two deciders</h2>
+{day3_section(board)}
 <h2>The heuristic rule (v3: evidence eligibility)</h2>
 <ul>
 <li><span class="tag c-VALUE">VALUE</span> crowd majority sits on the consensus underdog → play the favourite.</li>
@@ -281,7 +316,7 @@ def strategy_page(board: dict) -> None:
 {('<div class="tablewrap"><table><thead><tr><th>Match</th><th>Pick</th><th>Plan</th><th>Winner</th><th>Pick</th><th>Plan</th></tr></thead><tbody>' + grows + '</tbody></table></div>') if gr else '<p class="small">No graded fixtures yet.</p>'}
 <p class="small">{len(pending)} frozen pick(s) awaiting a result.</p>
 """
-    page("strategy.html", "Leaderboard plan", body, board)
+    page("strategy.html", "Leaderboard plan", body, board, script=LOCK_SCRIPT)
 
 
 def twc_page(board: dict) -> None:
@@ -400,6 +435,8 @@ def unresolved_section(board: dict, full: bool) -> str:
         urls = list(dict.fromkeys([r.get('hotspawn_match_url') or r.get('lobby_url')] + r.get('sources', [])))
         return ' · '.join(link(u, u.split('/')[2]) for u in urls if u)
 
+    out.append(coverage_gaps_section(board))
+    out.append('<p><a href="release-audit.html#unresolved-research">Independent gap research &amp; evidence limitations</a>. Missing or ambiguous roster entry is not the same as an absent team.</p>')
     if unresolved:
         out.append('<h3>Unresolved picks — limitation per match</h3><ul class="plain">')
         for r in unresolved:
@@ -531,11 +568,13 @@ def index_page(board: dict) -> None:
 <p><a href="strategy.html">Why these plays, and the rule behind them →</a></p>
 <h2>Day 1 in one line</h2>
 <p>TWC 2026 day 1: all four series ended 2-0; favourites won three. The upset was <b>9z 2-0 Aurora</b> (archived pre-lock market 27%, retrospective own line 39%, archived ownership 5%). Market picks went {s['day1_review']['picks_correct']}/{s['day1_review']['matches']}. <a href="strategy.html">Full review →</a></p>
+<h2 id="day3">Day 3 — the two deciders</h2>
+{day3_section(board)}
 <h2 id="unresolved">Unresolved picks &amp; limitations</h2>
 {unresolved_section(board, True)}
 <h2>Coverage &amp; freshness</h2>
 <p class="small">{s['fixtures']} fixtures in Hotspawn's payload: {s['open']} open, {s['locked_recent']} recently locked, {s['stale_listings']} stale listings (<a href="all.html">full inventory</a>). Sources: Pinnacle {e(s['sources']['pinnacle'])}, Polymarket {e(s['sources']['polymarket'])}, Valve {e(s['sources']['vrs'])}, HLTV {e(s['sources']['hltv'])}. Generated {e(utc_label(s['generated_utc']))}. <a href="method.html">Method, sources &amp; read times</a>.</p>"""
-    page("index.html", "Executive summary", body, board)
+    page("index.html", "Executive summary", body, board, script=LOCK_SCRIPT)
 
 
 def landing_json(board: dict) -> None:
