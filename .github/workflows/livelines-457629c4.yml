@@ -28,7 +28,7 @@ name: Live picks board (457629c4)
 
 on:
   push:
-    branches: ["arena/457629c4-maltaproj1", "main"]
+    branches: ["arena/457629c4-maltaproj1", "arena/6b23e38f-maltaproj1", "main"]
     paths:
       - "livelines/**"
       - ".github/workflows/livelines-457629c4.yml"
@@ -38,7 +38,7 @@ on:
     types: [completed]
   workflow_dispatch: {}
   schedule:
-    - cron: "33 */4 * * *"
+    - cron: "53 */4 * * *"
 
 permissions:
   contents: write
@@ -74,14 +74,37 @@ jobs:
           set -euo pipefail
           git config user.name "livelines-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add livelines/ tests/test_457629c4.py
+          git add livelines/data livelines/*.html
           if git diff --cached --quiet; then
             echo "board unchanged; nothing to publish"
-          else
-            git commit -m "livelines: refresh board ($(date -u +%Y-%m-%dT%H:%MZ))"
-            git pull --rebase origin "${GITHUB_REF_NAME}"
-            git push origin "HEAD:${GITHUB_REF_NAME}"
+            exit 0
           fi
+          git commit -m "livelines: refresh board ($(date -u +%Y-%m-%dT%H:%MZ))"
+          for attempt in 1 2 3; do
+            if ! git pull --rebase=merges origin "${GITHUB_REF_NAME}"; then
+              git rebase --abort || true
+              echo "::error::Concurrent source/output conflict; no work overwritten."
+              exit 1
+            fi
+            # A different board can publish between our first build and this pull.
+            python3 livelines/build.py
+            python3 -m unittest discover -s livelines -p 'tests.py' -v
+            python3 -m unittest tests.test_457629c4 -v
+            git add livelines/data livelines/*.html
+            if ! git diff --cached --quiet; then
+              git commit -m "livelines: revalidate after concurrent publication [skip ci]"
+            fi
+            if git push origin "HEAD:${GITHUB_REF_NAME}"; then exit 0; fi
+            sleep $((attempt * 3))
+          done
+          echo "::error::Validated board could not be published after three concurrent-push retries."
+          exit 1
+
+      - name: Request Pages rebuild after successful publication
+        if: success() && github.ref_name == 'main'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --method POST "repos/${GITHUB_REPOSITORY}/pages/builds"
 
       - name: Record the run for the cadence page
         if: always()

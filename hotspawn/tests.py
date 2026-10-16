@@ -287,6 +287,28 @@ class Pages(unittest.TestCase):
         self.assertEqual(markup.count('Hotspawn fixture'),len(rows))
         self.assertEqual(markup.count('outside line')+markup.count('own-line inputs'),len(rows))
 
+    def test_formatted_evidence_pairs_sum_to_100_at_both_precisions(self):
+        from build import pair
+        for a in (.455, .505, .8995, .5005):
+            for digits in (0, 1):
+                x,y=pair(a,1-a,digits)
+                self.assertAlmostEqual(float(x[:-1])+float(y[:-1]),100)
+        self.assertEqual(pair(None,None,1),('—','—'))
+
+    def test_executive_retrospective_line_is_not_a_literal_after_refitting(self):
+        import build
+        from unittest.mock import patch
+        data=copy.deepcopy(BOARD)
+        match=next(m for m in data['day1']['matches'] if str(m['hotspawn_id'])=='1080176')
+        side='a' if match['team_a']=='9z' else 'b'
+        match['own_p_'+side]=.42
+        with patch.object(build,'page') as write:
+            build.index_page(data)
+        body=write.call_args.args[2]
+        self.assertIn('retrospective own line 42%',body)
+        self.assertNotIn('retrospective own line 39%',body)
+
+
 
 class TwcReview(unittest.TestCase):
     """The TWC 2026 page must carry a source for every result row it publishes."""

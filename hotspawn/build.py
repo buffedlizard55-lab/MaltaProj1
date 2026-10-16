@@ -44,12 +44,12 @@ def pc(x, d=0) -> str:
     return "—" if x is None else f"{x * 100:.{d}f}%"
 
 
-def pair(pa, pb) -> tuple[str, str]:
+def pair(pa, pb, d=0) -> tuple[str, str]:
     """Both teams' percentages rounded so they always add up to 100."""
     if pa is None or pb is None:
-        return pc(pa), pc(pb)
-    a = round(pa * 100)
-    return f"{a}%", f"{100 - a}%"
+        return pc(pa, d), pc(pb, d)
+    a = round(pa * 100, d)
+    return f"{a:.{d}f}%", f"{100 - a:.{d}f}%"
 
 
 def link(url, text=None) -> str:
@@ -125,18 +125,18 @@ def evidence_list(r: dict, board: dict) -> str:
     if b:
         gap = f"; Pinnacle lists kickoff {e(utc_label(b.get('listed_start')))}" if abs(b.get("gap_h") or 0) > 0.01 else ""
         items.append(f"Pinnacle ({e(b.get('names'))}, {e(b.get('league'))}): {b['odds_a']:.3f} / {b['odds_b']:.3f}, margin {b['overround_pct']:.1f}% → "
-                     f"{pc(b['p_a'])} / {pc(b['p_b'])}; read {e(utc_label(b.get('read_utc')) or b.get('read_utc'))}{gap}. {link(b.get('url'), 'Pinnacle CS2')} · {link(b.get('api_url'), 'API')}")
+                     f"{pair(b['p_a'],b['p_b'],1)[0]} / {pair(b['p_a'],b['p_b'],1)[1]}; read {e(utc_label(b.get('read_utc')) or b.get('read_utc'))}{gap}. {link(b.get('url'), 'Pinnacle CS2')} · {link(b.get('api_url'), 'API')}")
     else:
         items.append("Pinnacle: no open whole-match line for this fixture at read time.")
     if p:
-        items.append(f"Polymarket: {e(p.get('question'))} — {p['price_a']} / {p['price_b']} → {pc(p['p_a'])} / {pc(p['p_b'])}; read {e(utc_label(p.get('read_utc')) or p.get('read_utc'))}. {link(p.get('url'), 'market')}")
+        items.append(f"Polymarket: {e(p.get('question'))} — {p['price_a']} / {p['price_b']} → {pair(p['p_a'],p['p_b'],1)[0]} / {pair(p['p_a'],p['p_b'],1)[1]}; read {e(utc_label(p.get('read_utc')) or p.get('read_utc'))}. {link(p.get('url'), 'market')}")
     else:
         items.append("Polymarket: no match-winner market for this fixture at read time.")
     if r.get("format_evidence"):
         items.append("Series format: " + e(r.get("format")) + " from " + link(r["format_evidence"].get("url"), "bo3.gg match metadata") + "; read " + e(r["format_evidence"].get("read_utc")) + ". This metadata is not a betting price.")
     relay = r.get("relay")
     if relay:
-        items.append(f"Secondary esportsbook: {e(relay.get('provider'))} via bo3.gg — {relay['odds_a']} / {relay['odds_b']}, margin {relay['overround_pct']:.1f}% → {pc(relay['p_a'],1)} / {pc(relay['p_b'],1)}; read {e(relay.get('read_utc'))}. Not verified directly with the book. {link(relay.get('url'), 'relay source')} · {link(relay.get('provider_url'), 'named bookmaker fixture')}")
+        items.append(f"Secondary esportsbook: {e(relay.get('provider'))} via bo3.gg — {relay['odds_a']} / {relay['odds_b']}, margin {relay['overround_pct']:.1f}% → {pair(relay['p_a'],relay['p_b'],1)[0]} / {pair(relay['p_a'],relay['p_b'],1)[1]}; read {e(relay.get('read_utc'))}. Not verified directly with the book. {link(relay.get('url'), 'relay source')} · {link(relay.get('provider_url'), 'named bookmaker fixture')}")
     attempt = r.get("research_attempt")
     if attempt:
         items.append(f"Gap-only HLTV research: HTTP {e(attempt.get('status'))}; {e(attempt.get('error') or 'page read')} · read {e(attempt.get('read_utc'))}. {link(attempt.get('url'), 'research target')}")
@@ -144,7 +144,7 @@ def evidence_list(r: dict, board: dict) -> str:
         items.append("Rejected quote: " + e(rejected.get("source")) + " — " + e("; ".join(rejected.get("reasons", []))) + ". " + link(rejected.get("source_url"), "source"))
     va, vb = r.get("vrs_a"), r.get("vrs_b")
     if r.get("own_p_a") is not None:
-        items.append(f"Our line: {e(r['team_a'])} {pc(r['own_p_a'])} / {e(r['team_b'])} {pc(r['own_p_b'])} from Valve points {va['points']} (#{va['rank']}) vs {vb['points']} (#{vb['rank']}), "
+        items.append(f"Our line: {e(r['team_a'])} {pair(r['own_p_a'],r['own_p_b'])[0]} / {e(r['team_b'])} {pair(r['own_p_a'],r['own_p_b'])[1]} from Valve points {va['points']} (#{va['rank']}) vs {vb['points']} (#{vb['rank']}), "
                      f"slope k={board['meta']['k']} ({e(board['meta']['k_label'])}). {link(board['meta']['vrs'].get('url'), 'Valve standings')}")
     else:
         missing = [n for n, v in ((r["team_a"], va), (r["team_b"], vb)) if not v]
@@ -175,7 +175,7 @@ def card(r: dict, board: dict) -> str:
     basis = r.get("basis") or RUNG_TEXT.get(r.get("rung"))
     own = ""
     if r.get("own_p_a") is not None and r.get("rung") in ("A", "B"):
-        own = f'<div class="own">Our line: {e(r["team_a"])} {pc(r["own_p_a"])} · {e(r["team_b"])} {pc(r["own_p_b"])}</div>'
+        own = f'<div class="own">Our line: {e(r["team_a"])} {pair(r["own_p_a"],r["own_p_b"])[0]} · {e(r["team_b"])} {pair(r["own_p_a"],r["own_p_b"])[1]}</div>'
     play = ""
     if s.get("class") and s.get("class") != "NO CROWD DATA":
         extra = f' — underdog {e(s.get("underdog"))} {pc(s.get("p_dog"))} vs {pc(s.get("crowd_dog"))} of players'
@@ -249,7 +249,7 @@ def picks_page(board: dict) -> None:
     for day, items in by_day.items():
         body.append(f'<h2 class="day">{e(day)}</h2>')
         body.extend(card(r, board) for r in items)
-    body.append('<p class="small">S-tier deciders today (Aurora vs 9z, BetBoom vs Legacy): evidence, outside prices and the swing view are on '
+    body.append('<p class="small">TWC day-3 deciders (16 October: Aurora vs 9z, BetBoom vs Legacy): evidence, outside prices and the swing view are on '
                 '<a href="strategy.html#day3">Day 3 — the two deciders</a>. Unresolved or model-only picks and their limitations: '
                 '<a href="unresolved.html">Unresolved &amp; limitations</a>. Everything flagged: <a href="flagged.html">Flagged for Review</a>.</p>')
     page("picks.html", "All picks", "\n".join(body), board, script=LOCK_SCRIPT)
@@ -417,8 +417,8 @@ def strategy_page(board: dict) -> None:
     d1rows = []
     for x in d1["matches"]:
         st = x.get("strategy") or {}
-        d1rows.append(f"<tr><td><a href=\"{e(x['hltv'])}\">{e(x['team_a'])} vs {e(x['team_b'])}</a></td><td>{e(x['team_a'])} {pc(x['p_a'])} / {pc(x['p_b'])}<br><span class=small>Pinnacle {x['odds_a']:.3f} / {x['odds_b']:.3f}</span><br>{link(x.get('book_source_url'), 'archived Pinnacle endpoint')} · {e(x.get('book_read_utc'))}</td>"
-                      f"<td>{pc(x.get('own_p_a'))} / {pc(x.get('own_p_b'))}</td><td>{e(x['crowd_a'])}% / {e(x['crowd_b'])}%</td><td>{e(x['pick'])}</td>"
+        d1rows.append(f"<tr><td><a href=\"{e(x['hltv'])}\">{e(x['team_a'])} vs {e(x['team_b'])}</a></td><td>{e(x['team_a'])} {pair(x['p_a'],x['p_b'])[0]} / {pair(x['p_a'],x['p_b'])[1]}<br><span class=small>Pinnacle {x['odds_a']:.3f} / {x['odds_b']:.3f}</span><br>{link(x.get('book_source_url'), 'archived Pinnacle endpoint')} · {e(x.get('book_read_utc'))}</td>"
+                      f"<td>{pair(x.get('own_p_a'),x.get('own_p_b'))[0]} / {pair(x.get('own_p_a'),x.get('own_p_b'))[1]}</td><td>{e(x['crowd_a'])}% / {e(x['crowd_b'])}%</td><td>{e(x['pick'])}</td>"
                       f"<td>{cls_tag(st.get('class'))} {e(st.get('leaderboard_pick'))}</td><td><b>{e(x['winner'])}</b> {e(x['score'])}<br><span class=small>{e(x['maps'])}</span></td>"
                       f"<td class=\"{'ok' if x['pick_correct'] else 'miss'}\">{'✓' if x['pick_correct'] else '✗'}</td><td class=\"{'ok' if x.get('leaderboard_correct') else 'miss'}\">{'✓' if x.get('leaderboard_correct') else '✗'}</td></tr>")
     info = d1.get("info", {})
@@ -572,7 +572,7 @@ def unresolved_section(board: dict, full: bool) -> str:
         researched = (f'HLTV: {link(attempt.get("url"), "target")} · HTTP {e(attempt.get("status"))} '
                       f'{e(attempt.get("error") or "page read")} · {e(attempt.get("read_utc"))}') if attempt else (
                          'HLTV: ' + link(r.get("hltv_url"), 'curated source') + ' (no additional live match-page read recorded in this capture)')
-        books = 'Esportsbooks: no eligible Pinnacle quote in the capture; bo3.gg relay ' + e(board["meta"].get("esportsbooks", {}).get("status", "not requested"))
+        books = ('Esportsbooks: ' + ("eligible named-book relay selected" if r.get("relay") else "no eligible named-book relay selected for this fixture") + "; bo3.gg service read: " + e(board["meta"].get("esportsbooks", {}).get("status", "not requested")))
         rejected = '; '.join('; '.join(q.get('reasons', [])) for q in r.get('rejected_quotes', []))
         return researched + '<br>' + books + ('<br>Rejected: ' + e(rejected) if rejected else '')
 
@@ -602,7 +602,7 @@ def unresolved_section(board: dict, full: bool) -> str:
             if r['rung'] == 'C': limit = 'Own match-level rating estimate, not a bookmaker quote; no format-specific, map-veto or fatigue calibration.'
             if r.get('own_line_limitation'): limit += ' Independent own line withheld: ' + r['own_line_limitation'] + '.'
             tr.append(f'<tr><td><a href="picks.html#m{e(r["match_id"])}">{e(r["team_a"])} vs {e(r["team_b"])}</a><br>{e(utc_label(r.get("lock_utc")))}</td>'
-                      f'<td><b>{e(r.get("pick"))}</b><br>{e(r["team_a"])} {pc(r.get("p_a"),1)} / {e(r["team_b"])} {pc(r.get("p_b"),1)}<br>{e(r.get("basis"))}</td>'
+                      f'<td><b>{e(r.get("pick"))}</b><br>{e(r["team_a"])} {pair(r.get("p_a"),r.get("p_b"),1)[0]} / {e(r["team_b"])} {pair(r.get("p_a"),r.get("p_b"),1)[1]}<br>{e(r.get("basis"))}</td>'
                       f'<td>{research_trail(r)}</td><td>{e(limit)}<br>{sources(r)}</td></tr>')
         out.append('<h3>Resolved below the featured rung — research &amp; limits</h3><div class="tablewrap"><table><thead><tr>'
                    '<th>Match / lock UTC</th><th>Pick / both probabilities</th><th>HLTV → esportsbooks → other lines</th><th>Limitations / sources</th>'
@@ -652,7 +652,7 @@ def all_page(board: dict) -> None:
     for r in board["rows"]:
         res = (r.get("result") or {}).get("winner", "")
         rows.append(f"<tr id=\"f{e(r['match_id'])}\"><td>{e(r['match_id'])}</td><td>{e(r['status'])}</td><td>{e(utc_label(r.get('start_utc')))}</td><td>{e(r.get('tier'))}</td><td>{e(r.get('competition'))}</td>"
-                    f"<td>{e(r['team_a'])} vs {e(r['team_b'])}</td><td>{e(r.get('pick') or '')}</td><td class=num>{pc(r.get('p_a'))} / {pc(r.get('p_b'))}</td><td>{e(RUNG_TEXT.get(r.get('rung'), ''))}</td>"
+                    f"<td>{e(r['team_a'])} vs {e(r['team_b'])}</td><td>{e(r.get('pick') or '')}</td><td class=num>{pair(r.get('p_a'),r.get('p_b'))[0]} / {pair(r.get('p_a'),r.get('p_b'))[1]}</td><td>{e(RUNG_TEXT.get(r.get('rung'), ''))}</td>"
                     f"<td>{e(res)}</td><td>{' '.join('<span class=flag>' + e(f) + '</span>' for f in r.get('flags', []))}</td><td>{link(r.get('hotspawn_match_url') or r.get('lobby_url'), 'Hotspawn')}</td></tr>")
     s = board["summary"]
     body = f"""<h1>Every captured Hotspawn CS2 fixture</h1>
@@ -697,6 +697,15 @@ def index_page(board: dict) -> None:
         return (f"<li><a href=\"picks.html#m{e(r['match_id'])}\"><b>{e(r['team_a'])} vs {e(r['team_b'])}</b></a> · {e(r.get('tier'))}-tier · locks {e(utc_label(r.get('lock_utc')))}<br>"
                 f"Pick <b>{e(r.get('pick') or '—')}</b> {pair(r.get('p_a'), r.get('p_b'))[0 if r.get('pick') == r['team_a'] else 1]} ({e(r['team_a'])} {pair(r.get('p_a'), r.get('p_b'))[0]} / {e(r['team_b'])} {pair(r.get('p_a'), r.get('p_b'))[1]}) · {cls_tag(st.get('class'))} play <b>{e(st.get('leaderboard_pick'))}</b></li>")
     d1 = board["day1"]["matches"]
+    upset = next((m for m in d1 if str(m.get('hotspawn_id')) == '1080176'), {})
+    side = 'a' if upset.get('team_a') == '9z' else 'b' if upset.get('team_b') == '9z' else None
+    if side:
+        crowd = upset.get('crowd_' + side)
+        upset_rates = (f"archived pre-lock market {pc(upset.get('p_' + side))}, "
+                       f"retrospective own line {pc(upset.get('own_p_' + side))}, "
+                       f"archived ownership {pc(crowd / 100 if crowd is not None else None)}")
+    else:
+        upset_rates = "historical probability inputs unavailable; no numbers inferred"
     body = f"""<h1>Hotspawn CS2 — executive summary</h1>
 <p class="lead">A source-backed pick and two-sided probability for every resolvable open Counter-Strike 2 match in the captured Hotspawn slate; unsupported rows stay visible with blanks, plus a leaderboard plan that fades the crowd only when the numbers support it.</p>
 <div class="btns">
@@ -714,7 +723,7 @@ def index_page(board: dict) -> None:
 <h2>Leaderboard plays right now</h2><ul class="plain">{''.join(li(r) for r in plays) or '<li>No value/contrarian/situational plays — take the picks.</li>'}</ul>
 <p><a href="strategy.html">Why these plays, and the rule behind them →</a></p>
 <h2>Day 1 in one line</h2>
-<p>TWC 2026 day 1: all four series ended 2-0; favourites won three. The upset was <b>9z 2-0 Aurora</b> (archived pre-lock market 27%, retrospective own line 39%, archived ownership 5%). Market picks went {s['day1_review']['picks_correct']}/{s['day1_review']['matches']}. <a href="strategy.html">Full review →</a></p>
+<p>TWC 2026 day 1: all four series ended 2-0; favourites won three. The upset was <b>9z 2-0 Aurora</b> ({e(upset_rates)}). Market picks went {s['day1_review']['picks_correct']}/{s['day1_review']['matches']}. <a href="strategy.html">Full review →</a></p>
 <h2>Day 2 in one line</h2>
 {day2_one_line(board)}
 <h2 id="day3">Day 3 — the two deciders</h2>
