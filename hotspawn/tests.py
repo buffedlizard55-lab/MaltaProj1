@@ -84,6 +84,9 @@ class Probabilities(unittest.TestCase):
                     self.assertAlmostEqual(r["p_a"], r["pm"]["price_a"] / (r["pm"]["price_a"] + r["pm"]["price_b"]), places=3)
             elif r["rung"] == "C":
                 self.assertAlmostEqual(r["p_a"], own_line(r["vrs_a"]["points"], r["vrs_b"]["points"], BOARD["meta"]["k"]), places=3)
+            elif r["rung"] == "E":
+                self.assertAlmostEqual(r["p_a"], own_line(r["vrs_a"]["points"], r["vrs_b"]["points"], BOARD["meta"]["k"]), places=3)
+                self.assertTrue(r["vrs_a"].get("disambiguated") and r["vrs_b"].get("disambiguated"), r["match_id"])
 
     def test_crowd_share_never_changes_a_probability(self):
         """Mutation test: scramble every crowd field and rebuild; probabilities and picks must not move."""
@@ -111,6 +114,71 @@ class Probabilities(unittest.TestCase):
         self.assertEqual(s["open"], len(OPEN))
         self.assertEqual(s["open_with_pick"] + s["open_unresolved"], s["open"])
         self.assertEqual(sum(s["open_rung"].values()), s["open"])
+
+
+class ResearchFallback(unittest.TestCase):
+    """Rung E is pack-backed, rule-derived and fully sourced (session arena/83090640)."""
+
+    PACK = read_json(HERE / "research" / "fallback_83090640.json", {}) or {}
+    ENTRIES = {str(e.get("match_id")): e for e in PACK.get("entries", [])}
+
+    def test_rung_e_rows_are_in_the_pack_with_sourced_evidence(self):
+        for r in OPEN:
+            if r.get("rung") != "E":
+                continue
+            ent = self.ENTRIES.get(str(r["match_id"]))
+            self.assertIsNotNone(ent, f"{r['match_id']} rung E without a fallback pack entry")
+            self.assertTrue(ent.get("resolved"), r["match_id"])
+            for side in ("a", "b"):
+                s = ent["sides"][side]
+                self.assertGreaterEqual(s["disambiguation"]["overlap_best"], 3, r["match_id"])
+                self.assertGreater(s["disambiguation"]["overlap_best"], s["disambiguation"]["overlap_second"], r["match_id"])
+                self.assertTrue(s.get("chosen_details_url", "").startswith("https://github.com/ValveSoftware/"), r["match_id"])
+            self.assertTrue(ent.get("hltv_match_url", "").startswith("https://www.hltv.org/matches/"), r["match_id"])
+            self.assertIn("RESEARCH_FALLBACK", r["flags"], r["match_id"])
+            self.assertIn("MODEL_ONLY", r["flags"], r["match_id"])
+            self.assertIn("NO_MARKET", r["flags"], r["match_id"])
+            self.assertTrue(any("hltv.org/matches/" in u for u in r["sources"]), r["match_id"])
+            self.assertTrue(any("github.com/ValveSoftware" in u for u in r["sources"]), r["match_id"])
+            self.assertTrue(r.get("pick") in (r["team_a"], r["team_b"]), r["match_id"])
+
+    def test_disambiguation_rule_is_reproducible(self):
+        """Recompute every pack row's overlap from the recorded rosters; the chosen row must still win."""
+        for mid, ent in self.ENTRIES.items():
+            for side in ("a", "b"):
+                s = ent["sides"][side]
+                lineup = {model._nick(p) for p in s["hltv_lineup"]}
+                scored = sorted((len(lineup & {model._nick(p) for p in c["roster"]}), c["rank"])
+                                for c in s["valve_candidates"])
+                self.assertEqual(scored[-1][1], s["chosen_rank"], f"{mid}/{side}")
+                self.assertEqual(scored[-1][0], s["disambiguation"]["overlap_best"], f"{mid}/{side}")
+                self.assertEqual(scored[-1][1], model.disambiguate_valve(
+                    [{"rank": c["rank"], "points": c["points"], "roster": c["roster"]} for c in s["valve_candidates"]],
+                    s["hltv_lineup"])[0]["rank"], f"{mid}/{side}")
+
+    def test_fallback_never_overrides_a_market(self):
+        for r in OPEN:
+            if r.get("rung") == "E":
+                self.assertNotIn("book", r, r["match_id"])
+                self.assertNotIn("pm", r, r["match_id"])
+                self.assertNotIn("relay", r, r["match_id"])
+
+    def test_pack_negative_price_checks_are_recorded(self):
+        for mid, ent in self.ENTRIES.items():
+            mc = ent.get("market_check") or {}
+            self.assertTrue(mc.get("hltv_betting_table") or mc.get("esportsbooks_search"), mid)
+            self.assertTrue(mc.get("pinnacle"), mid)
+
+    def test_roster_deltas_are_flagged_not_smoothed(self):
+        for r in OPEN:
+            if r.get("rung") != "E":
+                continue
+            ent = self.ENTRIES[str(r["match_id"])]
+            any_delta = any((ent["sides"][s].get("roster_delta_vs_snapshot") or {}).get("in")
+                            or (ent["sides"][s].get("roster_delta_vs_snapshot") or {}).get("out")
+                            for s in "ab")
+            if any_delta:
+                self.assertIn("VRS_ROSTER_OUTDATED", r["flags"], r["match_id"])
 
 
 class Sources(unittest.TestCase):

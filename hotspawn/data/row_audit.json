@@ -1361,15 +1361,26 @@
    "input_reconciliation": "pass",
    "source_url": "https://play.hotspawn.com/lobby",
    "source_read_utc": "2026-10-16T05:58:32Z",
-   "probability_basis": "Unresolved",
+   "probability_basis": "Research fallback: our own line (Valve points, row disambiguated by documented roster overlap with HLTV's listed lineups; no outside price exists)",
    "sources": [
     "https://play.hotspawn.com/lobby",
     "https://www.hotspawn.com/matches/bet-m-vs-just-players-nodwin-clutch-series-13-1079170",
     "https://www.hltv.org/matches/2399087/bet-m-vs-just-players-nodwin-clutch-series-13",
-    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0071--bet-m--bluewh1te-executor-raijin-synyx-z1nny.md",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0118--just_players--bl1x1-h1te-sm3t-sstinix-temny_prince.md",
+    "https://www.hltv.org/ranking/teams/2026/october/12/13619",
+    "https://www.hltv.org/ranking/teams/2026/october/12/13776",
+    "https://www.hltv.org/valve-ranking/teams?teamId=13619",
+    "https://www.hltv.org/valve-ranking/teams?teamId=13776"
    ],
    "flags": [
-    "UNRESOLVED"
+    "CROWD_MISSING",
+    "MODEL_ONLY",
+    "NO_MARKET",
+    "RESEARCH_FALLBACK",
+    "VALVE_NAME_AMBIGUOUS",
+    "VRS_ROSTER_OUTDATED"
    ],
    "errors": []
   },
@@ -1418,15 +1429,25 @@
    "input_reconciliation": "pass",
    "source_url": "https://play.hotspawn.com/lobby",
    "source_read_utc": "2026-10-16T05:58:32Z",
-   "probability_basis": "Unresolved",
+   "probability_basis": "Research fallback: our own line (Valve points, row disambiguated by documented roster overlap with HLTV's listed lineups; no outside price exists)",
    "sources": [
     "https://play.hotspawn.com/lobby",
     "https://www.hotspawn.com/matches/banda-chuya-vs-enjoy-cct-europe-2026-series-12-play-in-1081126",
     "https://www.hltv.org/matches/2399477/banda-chuya-vs-enjoy-cct-2026-europe-series-12-closed-qualifier",
-    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0165--banda_chuya--adrien-ezox-maaryy-showk-tomiko.md",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0138--enjoy--kurosa-nbl-roxesz-sh1geo-zazzer.md",
+    "https://www.hltv.org/ranking/teams/2026/october/12/4246",
+    "https://www.hltv.org/valve-ranking/teams?teamId=13900",
+    "https://www.hltv.org/valve-ranking/teams?teamId=4246"
    ],
    "flags": [
-    "UNRESOLVED"
+    "CROWD_MISSING",
+    "MODEL_ONLY",
+    "NO_MARKET",
+    "RESEARCH_FALLBACK",
+    "VALVE_NAME_AMBIGUOUS",
+    "VRS_ROSTER_OUTDATED"
    ],
    "errors": []
   },

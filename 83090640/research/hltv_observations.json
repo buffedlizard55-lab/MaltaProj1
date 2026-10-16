@@ -1,0 +1,207 @@
+{
+  "about": "Raw research observations for the two open fixtures that the primary board left unresolved at the 2026-10-16T05:58:32Z capture (1079170 BET-M vs Just Players, 1081126 Banda chuya vs Enjoy). Read in session arena/83090640 via public pages; every observation carries its source URL. Valve standings rows were read from the repository's pinned commit eec4853d7bcf0f1f7efe7f0d901234bef7e98b75 (same commit the board already cites). Read window: 2026-10-16T07:21Z-07:27Z (session wall clock; per-observation read_utc values are rounded to the minute of that window). HLTV page clocks are viewer-local and were NOT used; all UTC times here come from Hotspawn's payload or the board's epoch-derived lock times.",
+  "session": "arena/83090640",
+  "read_window_utc": "2026-10-16T07:21Z-07:27Z",
+  "valve_commit": "eec4853d7bcf0f1f7efe7f0d901234bef7e98b75",
+  "valve_file_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
+  "matches": {
+    "1079170": {
+      "hotspawn_id": "1079170",
+      "team_a": "BET-M",
+      "team_b": "Just Players",
+      "competition": "NODWIN Clutch Series #13",
+      "format": "BO3",
+      "format_source": "HLTV match page 2399087 ('Best of 3 (Online) · Swiss round 2 (teams with a 0-1 record)')",
+      "start_utc": "2026-10-17T08:00:00Z",
+      "lock_utc": "2026-10-17T07:54:00Z",
+      "hltv_match_url": "https://www.hltv.org/matches/2399087/bet-m-vs-just-players-nodwin-clutch-series-13",
+      "hltv_read_utc": "2026-10-16T07:22:00Z",
+      "hotspawn_match_url": "https://www.hotspawn.com/matches/bet-m-vs-just-players-nodwin-clutch-series-13-1079170",
+      "sides": {
+        "a": {
+          "team": "BET-M",
+          "hltv_lineup": ["Patsi", "Raijin", "executor", "z1Nny", "bluewh1te"],
+          "hltv_lineup_source": "HLTV match page 2399087 Lineups panel (Robert 'Patsi' Isyanov, Konstantin 'Raijin' Trubarov, Ilya 'executor' Weber, Pavel 'z1Nny' Prokopiev, Lubsan 'bluewh1te' Mulonov)",
+          "hltv_rank": 65,
+          "hltv_rank_url": "https://www.hltv.org/ranking/teams/2026/october/12/13619",
+          "hltv_vrs_display_rank": 87,
+          "hltv_vrs_display_url": "https://www.hltv.org/valve-ranking/teams?teamId=13619",
+          "hltv_team_url": "https://www.hltv.org/team/13619/bet-m",
+          "valve_candidates": [
+            {
+              "rank": 71,
+              "points": 1149,
+              "roster": ["bluewh1te", "executor", "Raijin", "synyx", "z1Nny"],
+              "details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0071--bet-m--bluewh1te-executor-raijin-synyx-z1nny.md",
+              "line": "76"
+            }
+          ],
+          "roster_delta_vs_snapshot": {"in": ["Patsi"], "out": ["synyx"]},
+          "note": "Valve's 2026-10-05 snapshot lists one BET-M row only (rank 71). HLTV lists Patsi in the match lineup where the snapshot five has synyx (4/5 continuity). Patsi also appears in Valve's second ex-RUSTEC row (rank 152), consistent with a transfer."
+        },
+        "b": {
+          "team": "Just Players",
+          "hltv_lineup": ["h1te", "sm3t", "sstiNiX", "Temny Prince", "wh1teout"],
+          "hltv_lineup_source": "HLTV match page 2399087 Lineups panel (Vladislav 'h1te' Khait, Matvey 'sm3t' Gogin, Dmitry 'sstiNiX' Khlebnikov, Valeriy 'Temny Prince' Kim, Vladislav 'wh1teout' Kokoulin)",
+          "hltv_rank": 116,
+          "hltv_rank_url": "https://www.hltv.org/ranking/teams/2026/october/12/13776",
+          "hltv_vrs_display_rank": 108,
+          "hltv_vrs_display_url": "https://www.hltv.org/valve-ranking/teams?teamId=13776",
+          "hltv_team_url": "https://www.hltv.org/team/13776/just-players",
+          "valve_candidates": [
+            {
+              "rank": 118,
+              "points": 974,
+              "roster": ["bl1x1", "h1te", "sm3t", "sstiNiX", "Temny Prince"],
+              "details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0118--just_players--bl1x1-h1te-sm3t-sstinix-temny_prince.md",
+              "line": "123"
+            },
+            {
+              "rank": 347,
+              "points": 485,
+              "roster": ["em0k1d", "rexxie", "Something", "spirit", "sstiNiX"],
+              "details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0347--just_players--em0k1d-rexxie-something-spirit-sstinix.md",
+              "line": "352"
+            }
+          ],
+          "roster_delta_vs_snapshot": {"in": ["wh1teout"], "out": ["bl1x1"]},
+          "note": "The name 'Just Players' appears twice in Valve's file (ranks 118 and 347). The HLTV match lineup shares 4 nicknames with row 118 (h1te, sm3t, sstiNiX, Temny Prince) and only 1 with row 347 (sstiNiX), so row 118 is the unique best overlap."
+        }
+      },
+      "market_check": {
+        "hltv_betting_table": "No sportsbook odds row; only a Stake (US sweepstake) promo cell. No price read.",
+        "hltv_betting_table_url": "https://www.hltv.org/matches/2399087/bet-m-vs-just-players-nodwin-clutch-series-13#betting",
+        "pinnacle": "Not listed on Pinnacle's public CS2 matchups feed at the 2026-10-16T05:58Z capture (board research_attempt recorded the gap).",
+        "polymarket": "No market for the 17 Oct fixture. A September market 'BET-M 33 - Just Players' (cs2-33-justpl-2026-09-18) exists for a DIFFERENT, already-played 18 Sep match and is rejected as a rematch identity mismatch.",
+        "polymarket_rejected_url": "https://polymarket.com/esports/cs2/nodwin-clutch-series/cs2-33-justpl-2026-09-18",
+        "esportsbooks_search": "Web search for 'BET-M Just Players odds' found no book line for this fixture (searched 2026-10-16); the only price-like object is the historical Polymarket market above.",
+        "hltv_crowd_vote": "HLTV pick-a-winner shows 100.0% BET-M / 0.0% (crowd vote, not a price; never used as a probability).",
+        "hotspawn_crowd": "Hotspawn ownership 100/0 BET-M on 4 picks at the 05:58Z capture (ownership only, never a probability)."
+      },
+      "context_form": {
+        "note": "Context only; not an input to the probability formula.",
+        "hltv_map_stats": "HLTV match-page map stats (lineup core, past 3 months): BET-M Inferno 67% (15 maps), Nuke 53% (17), Mirage 54% (13), Dust2 41% (17), Ancient 27% (15), Anubis 44% (9), Cache 0 maps. Just Players Ancient 65% (31), Mirage 59% (41), Dust2 46% (24), Cache 28% (18), Nuke 35% (20), Anubis 50% (10).",
+        "hltv_star_compare": "HLTV compare panel: z1Nny 1.11 rating vs sstiNiX 1.19 (past 3 months).",
+        "live_context": "HLTV's front page at read time showed BET-M in a live NODWIN Clutch Series 13 BO3 against FORZE Reload (Swiss round 1), i.e. BET-M entered this 0-1 Swiss round after that series."
+      }
+    },
+    "1081126": {
+      "hotspawn_id": "1081126",
+      "team_a": "Banda chuya",
+      "team_b": "Enjoy",
+      "competition": "CCT Europe 2026 Series #12 Play-In",
+      "format": "BO3",
+      "format_source": "HLTV match page 2399477 ('Best of 3 (Online) · Group A decider match')",
+      "start_utc": "2026-10-18T08:00:00Z",
+      "lock_utc": "2026-10-18T07:54:00Z",
+      "hltv_match_url": "https://www.hltv.org/matches/2399477/banda-chuya-vs-enjoy-cct-2026-europe-series-12-closed-qualifier",
+      "hltv_read_utc": "2026-10-16T07:25:00Z",
+      "hotspawn_match_url": "https://www.hotspawn.com/matches/banda-chuya-vs-enjoy-cct-europe-2026-series-12-play-in-1081126",
+      "sides": {
+        "a": {
+          "team": "Banda Chuya",
+          "hltv_lineup": ["tomiko", "maaryy", "AdrieN", "Showk", "ezox"],
+          "hltv_lineup_source": "HLTV match page 2399477 Lineups panel (Tomasz 'tomiko' Uroda, Martin 'maaryy' Nakonieczny, Adrian 'AdrieN' Mucha, Sebastian 'Showk' Geltz, Patryk 'ezox' Topolnicki)",
+          "hltv_rank": null,
+          "hltv_rank_note": "HLTV displays 'HLTV: Unranked' for Banda Chuya (team 13900) on the match page; no HLTV world-rank number is published for this team.",
+          "hltv_vrs_display_rank": 187,
+          "hltv_vrs_display_url": "https://www.hltv.org/valve-ranking/teams?teamId=13900",
+          "hltv_team_url": "https://www.hltv.org/team/13900/banda-chuya",
+          "valve_candidates": [
+            {
+              "rank": 165,
+              "points": 801,
+              "roster": ["AdrieN", "ezox", "maaryy", "Showk", "tomiko"],
+              "details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0165--banda_chuya--adrien-ezox-maaryy-showk-tomiko.md",
+              "line": "170"
+            },
+            {
+              "rank": 373,
+              "points": 402,
+              "roster": ["ezox", "manio"],
+              "details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0373--banda_chuya--ezox-manio.md",
+              "line": "378"
+            }
+          ],
+          "roster_delta_vs_snapshot": {"in": [], "out": []},
+          "note": "The name 'Banda Chuya' appears twice in Valve's file (ranks 165 and 373). The HLTV match lineup matches row 165 exactly (5/5 nicknames) and shares 1 nickname (ezox) with the 2-player row 373, so row 165 is the unique best overlap. The HLTV-listed five also equals the snapshot five exactly (no roster delta)."
+        },
+        "b": {
+          "team": "Enjoy",
+          "hltv_lineup": ["reyoz", "sh1geo", "kurosa", "nbl", "flawix"],
+          "hltv_lineup_source": "HLTV match page 2399477 Lineups panel (Nikita 'reyoz' Rolzing, Oleg 'sh1geo' Stasenko, Maksim 'kurosa' Sergeev, Grigoriy 'nbl' Sherchenkov, Stepan 'flawix' Orinin)",
+          "hltv_rank": 199,
+          "hltv_rank_url": "https://www.hltv.org/ranking/teams/2026/october/12/4246",
+          "hltv_vrs_display_rank": 157,
+          "hltv_vrs_display_url": "https://www.hltv.org/valve-ranking/teams?teamId=4246",
+          "hltv_team_url": "https://www.hltv.org/team/4246/enjoy",
+          "valve_candidates": [
+            {
+              "rank": 138,
+              "points": 871,
+              "roster": ["kurosa", "nbl", "roxesz", "sh1geo", "zazzer"],
+              "details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0138--enjoy--kurosa-nbl-roxesz-sh1geo-zazzer.md",
+              "line": "143"
+            }
+          ],
+          "roster_delta_vs_snapshot": {"in": ["reyoz", "flawix"], "out": ["roxesz", "zazzer"]},
+          "note": "One Enjoy row in Valve's file (rank 138). The HLTV match lineup keeps 3 of the snapshot five (kurosa, nbl, sh1geo) and adds reyoz and flawix for roxesz and zazzer. The dated points therefore predate a two-player change; the fallback line is computed but flagged softer."
+        }
+      },
+      "market_check": {
+        "hltv_betting_table": "No sportsbook odds row; only a Stake (US sweepstake) promo cell. No price read.",
+        "hltv_betting_table_url": "https://www.hltv.org/matches/2399477/banda-chuya-vs-enjoy-cct-2026-europe-series-12-closed-qualifier#betting",
+        "egamersworld": "Match page lists 1.8 / 1.8 for both teams - the same symmetric placeholder value the project previously rejected as a non-quote (prior flag F-28 class). Not a two-sided market; rejected, not used.",
+        "egamersworld_url": "https://egamersworld.com/counterstrike/match/1sGIL2gAYu/banda-chuya-vs-enjoy-9ru7xO5OG",
+        "egamersworld_rating": "EGW team ratings displayed: banda chuya 903, Enjoy 347 (EGW's own aggregate rating, not a betting line; context only).",
+        "pinnacle": "Not listed on Pinnacle's public CS2 matchups feed at the 2026-10-16T05:58Z capture (board research_attempt recorded the gap).",
+        "polymarket": "No market found for this fixture (searched 2026-10-16).",
+        "esportsbooks_search": "Web search for a book line (bo3.gg / gg.bet / thunderpick class) found no priced market for this fixture (searched 2026-10-16).",
+        "hltv_crowd_vote": "HLTV pick-a-winner shows 50.0% / 50.0% (crowd vote, not a price; never used as a probability).",
+        "hotspawn_crowd": "Hotspawn ownership 100/0 Banda chuya on 4 picks at the 05:58Z capture (ownership only, never a probability)."
+      },
+      "context_form": {
+        "note": "Context only; not an input to the probability formula.",
+        "bracket": "HLTV event 9456 bracket (CCT 2026 Europe Series 12 Closed Qualifier, Group A): Enjoy beat B8 Academy 2-1, lost to ex-6666 1-2; Banda Chuya lost to 6666 1-2, beat B8 Academy 2-1. The two deciderists have symmetric recent results against the same two opponents (6666/ex-6666 are the same organisation across the bracket).",
+        "bracket_url": "https://www.hltv.org/events/9456/cct-2026-europe-series-12-closed-qualifier",
+        "hltv_map_stats": "HLTV match-page map stats (lineup core, past 3 months): Banda Chuya Nuke 58% (36 maps), Mirage 48% (29), Cache 41% (17), Dust2 46% (13), Ancient 45% (33), Anubis 43% (14), Inferno 0 maps. Enjoy Cache 57% (14), Mirage 53% (19), Dust2 47% (15), Ancient 50% (12), Anubis 40% (5), Inferno 0% (6), Nuke 1 map.",
+        "egw_form": "EGW form panel: banda chuya 3 wins in last 5 (beat B8 Academy 2-1, lost 6666 1-2, lost GenOne BO1, beat HyperSpirit 2-1, beat ILLYRIANS 2-1); Enjoy 2 wins in last 5.",
+        "egw_head_to_head": "EGW head-to-head panel: teams have not played each other recently (0-0)."
+      }
+    }
+  },
+  "global_observations": {
+    "lobby_coverage": {
+      "read_utc": "2026-10-16T07:26:00Z",
+      "url": "https://play.hotspawn.com/lobby",
+      "detail": "CS2 filter still lists All tiers (95) with the same tournament split as the 05:58:32Z capture (sum of per-tournament counts = 95). The week counter moved 123 -> 149 because non-CS2 titles were added; no new CS2 fixture appeared since the capture. The board's 95-fixture coverage is complete at read time."
+    },
+    "twc_day1_verified": {
+      "source_urls": [
+        "https://www.hltv.org/matches/2399384/9z-vs-aurora-thunderpick-world-championship-2026",
+        "https://www.hltv.org/news/45723/furia-fend-off-betboom-to-end-day-one-of-twc",
+        "https://www.hltv.org/news/45719/bit-if-we-make-it-back-to-the-playoffs-consistently-im-sure-at-some-point-well-win-another-tournament",
+        "https://pley.gg/cs2/thunderpick-world-championship-2026/"
+      ],
+      "detail": "Day 1 (14 Oct): 9z 2-0 Aurora (Inferno 13-11, Nuke 13-1) - the upset; Falcons 2-0 NIP (Ancient 16-13 OT, Dust2 13-6); Legacy 2-0 PARIVISION (incl. Mirage OT); FURIA 2-0 BETBOOM (Ancient 13-10, Mirage 13-9). All four series 2-0."
+    },
+    "twc_day2_verified": {
+      "source_urls": [
+        "https://www.hltv.org/matches/2399408/aurora-vs-ninjas-in-pyjamas-thunderpick-world-championship-2026",
+        "https://www.hltv.org/matches/2399409/9z-vs-falcons-thunderpick-world-championship-2026",
+        "https://www.hltv.org/matches/2399410/parivision-vs-betboom-thunderpick-world-championship-2026",
+        "https://www.hltv.org/matches/2399411/legacy-vs-furia-thunderpick-world-championship-2026",
+        "https://www.hotspawn.com/counter-strike/news/thunderpick-world-championship-2026-day-2-review"
+      ],
+      "detail": "Day 2 (15 Oct): Aurora 2-0 NIP (Cache 13-9, Dust2 13-7) - NIP eliminated; Falcons 2-1 9z (Nuke 13-9 F, Mirage 13-8 9z, Dust2 13-9 F) - Falcons to playoffs; BetBoom 2-1 PARIVISION (Ancient 10-13 P, Anubis 13-4 B, Mirage 13-7 B) - PARIVISION eliminated; FURIA 2-1 Legacy (Cache 10-13 L, Inferno 13-5 F, Mirage 13-8 F) - FURIA to playoffs. Matches the repository's frozen day-2 file (hotspawn/research/day2_twc2026.json)."
+    },
+    "aurora_roster_change_verified": {
+      "source_urls": [
+        "https://www.hltv.org/news/45082/official-aurora-complete-rebuild-with-kyxsan",
+        "https://www.strafe.com/news/read/aurora-locks-in-new-cs2-roster-with-kyxsan-and-jimpphat/",
+        "https://pley.gg/cs2/aurora-finalizes-international-transition-with-the-signing-of-kyxsan/"
+      ],
+      "detail": "Aurora's rebuild completed 8 July 2026 (kyxsan IGL from Falcons; Jimpphat and coach ashhh signed 3 July; MAJ3R, soulfly and coach Fabre out). TWC roster: XANTARES, woxic, Wicadia, Jimpphat, kyxsan. The change is ~3 months old by TWC 2026 day 3 - context, not a fresh onboarding event (consistent with the board's existing F-01 correction)."
+    }
+  }
+}

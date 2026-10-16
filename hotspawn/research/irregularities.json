@@ -1,305 +1,366 @@
 {
-  "about": "Irregularities found while researching and reviewing (2026-10-15): the board's own session arena/22be6967 plus the follow-up session arena/e1ceecc2. Each item is published on hotspawn/flagged.html with its evidence. Status: open = still true at the last check; handled = this board works around it; fixed = the defect was repaired and the owning tests pass.",
-  "items": [
-    {
-      "id": "IR-01",
-      "status": "unverified",
-      "title": "Historical coverage and clock attribution not re-certified",
-      "detail": "An earlier report described pricing-coverage gaps when provider kickoff clocks differed. Its original exact capture clock and numerical coverage are not re-certified here and are omitted. Current coverage is recomputed from timestamped capture JSON; team/event/format and bounded kickoff gates prevent dropping a usable price merely for a flagged schedule discrepancy. The HLTV link supports fixture identity/results, not a retained timezone-aware kickoff receipt.",
-      "evidence": [
-        "https://github.com/buffedlizard55-lab/MaltaProj1/blob/694fe14faa05c5aa282e5d3494a3b3807c1813db/hotspawn/research/irregularities.json",
-        "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/executive/data/summary.json",
-        "https://www.hltv.org/matches/2399409/9z-vs-falcons-thunderpick-world-championship-2026",
-        "https://polymarket.com/event/cs2-9z-fal2-2026-10-15"
-      ]
-    },
-    {
-      "id": "IR-02",
-      "status": "unverified",
-      "title": "Historical kickoff disagreement: exact HLTV UTC time unverified",
-      "detail": "Archived research reported conflicting kickoff clocks for the 15 October 9z–Falcons series. A timezone-aware HLTV kickoff receipt was not retained, so its exact UTC value is omitted rather than inferred from reader-rendered text. Use Hotspawn payload epochs for contest locks and each captured bookmaker timestamp for its own schedule, with a disagreement flag. The pinned older report is preserved for provenance, not promoted as verified clock evidence.",
-      "evidence": [
-        "https://github.com/buffedlizard55-lab/MaltaProj1/blob/694fe14faa05c5aa282e5d3494a3b3807c1813db/hotspawn/research/irregularities.json",
-        "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
-        "https://www.hltv.org/matches/2399409/9z-vs-falcons-thunderpick-world-championship-2026"
-      ]
-    },
-    {
-      "id": "IR-03",
-      "status": "open",
-      "title": "Valve's latest standings list a five that no longer plays (PARIVISION)",
-      "detail": "The official 5 October Valve snapshot lists slaxejezzz in PARIVISION's rated five. HLTV's signing report, independently re-read on 16 October, says HObbit replaced him on 17 September. The own line is withheld while that mismatch remains; a current external quote can still supply a probability. No HObbit rating/tenure total is assumed.",
-      "evidence": [
-        "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
-        "https://www.hltv.org/news/45534/parivision-replace-slaxejezzz-with-hobbit"
-      ]
-    },
-    {
-      "id": "IR-04",
-      "status": "open",
-      "title": "HLTV qualitative analytics is not a two-sided price source",
-      "detail": "The Voca–Phantom analytics summary was directly re-read on 16 October and names a stand-in for that fixture. Its header/poll/placeholder numbers are not price evidence. No usable two-sided line was extracted from this page, and no unverified fixed odds are reproduced.",
-      "evidence": [
-        "https://www.hltv.org/betting/analytics/2399424/voca-vs-phantom-elisa-breakout-series-2"
-      ]
-    },
-    {
-      "id": "IR-05",
-      "status": "handled",
-      "title": "Hotspawn still lists 60 fixtures whose lock passed long ago",
-      "detail": "The TransferState payload keeps June 2026 fixtures with status 'scheduled'. They are not pickable; this board lists them only in the full inventory (all.html) as stale listings.",
-      "evidence": [
-        "https://play.hotspawn.com/lobby"
-      ]
-    },
-    {
-      "id": "IR-06",
-      "status": "handled",
-      "title": "Rendered Hotspawn times depend on the reader's timezone",
-      "detail": "During research, one read of the lobby rendered times in UTC-4 and a cached second chunk (about 31 minutes older) rendered them in UTC. All times on this site come from the epoch-millisecond fields in the page's ng-state payload, never from rendered text.",
-      "evidence": [
-        "https://play.hotspawn.com/lobby"
-      ]
-    },
-    {
-      "id": "IR-07",
-      "status": "handled",
-      "title": "Team names differ across sources",
-      "detail": "Hotspawn WROTBERRY = HLTV/Pinnacle/Valve WBT; RoundsGG = ROUNDS; BetBoom = Pinnacle 'BB Team'; PARIVISION = Pinnacle 'PVISION'; Falcons = Polymarket 'Team Falcons'. Each alias is proven by fixture slot and listed with evidence.",
-      "evidence": [
-        "https://www.hltv.org/events/9332/matches",
-        "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/hotspawn/research/aliases.json"
-      ]
-    },
-    {
-      "id": "IR-08",
-      "status": "handled",
-      "title": "User premise check: Aurora's roster change is real but not recent-days",
-      "detail": "The July official-signing report confirms the Aurora rebuild, roughly three months before TWC. It is weak, neutral historical context, not a fresh onboarding penalty. Unreconciled exact map/tenure totals and EPL placement are omitted; day-2 Aurora 2-0 NIP is explicit counterevidence to a simplistic fade.",
-      "evidence": [
-        "https://www.hltv.org/news/45082/official-aurora-complete-rebuild-with-kyxsan",
-        "https://www.hltv.org/matches/2399408/aurora-vs-ninjas-in-pyjamas-thunderpick-world-championship-2026"
-      ]
-    },
-    {
-      "id": "IR-09",
-      "status": "open",
-      "title": "Day-1 crowd shares were captured before lock, not at lock",
-      "detail": "The 5%/95% (9z/Aurora) and other day-1 crowd shares come from a capture hours before lock; Hotspawn removes fixtures from the payload after lock, so the final share is not available.",
-      "evidence": [
-        "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/board/data/analysis.csv"
-      ]
-    },
-    {
-      "id": "IR-10",
-      "status": "open",
-      "title": "EGamersWorld page for mellren vs Privateer is internally inconsistent",
-      "detail": "The page states 14:00 and 10:00 for the same match and shows only one side's price (mellren 1.8). Not used; the series length for this fixture stays blank.",
-      "evidence": [
-        "https://egamersworld.com/counterstrike/match/4kY9VAmiEg/mellren-vs-privateer-gaming-ASh_MyDBS"
-      ]
-    },
-    {
-      "id": "IR-11",
-      "status": "open",
-      "title": "Archived market/model disagreements are not current lines",
-      "detail": "Prior day-2 records disagreed on the favourite in some matches. Original probabilities/bases remain frozen for honest grading, not reissued as current lines. Today the published probability defines the favourite; eligible own-line disagreement may inform a labelled contrarian but cannot reverse that benchmark or hide its expected-point cost.",
-      "evidence": [
-        "https://www.pinnacle.com/en/esports/games/cs2/matchups/"
-      ]
-    },
-    {
-      "id": "IR-12",
-      "status": "open",
-      "title": "Leaderboard rule was revised after grading day 1 (in-sample)",
-      "detail": "Rule v1 (market only; weak factors counted) would have gone 1/4 on TWC day 1. Rule v2 (consensus of market and our line; only strong/moderate factors) goes 4/4 on the same four matches, which is in-sample and not evidence of skill. Grading of every frozen pre-lock play since launch is published on the strategy page.",
-      "evidence": [
-        "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/hotspawn/model.py"
-      ]
-    },
-    {
-      "id": "IR-13",
-      "status": "handled",
-      "title": "Group B decider now present in the new Hotspawn inventory",
-      "detail": "Earlier Oct15 captures did not include BetBoom–Legacy. The Oct16 04:21Z three-surface read contains official ID 1081775. The day-3 page now uses the current primary board, not a static “absent” claim; its exact UTC schedule comes from Hotspawn epochs.",
-      "evidence": [
-        "https://play.hotspawn.com/lobby",
-        "https://liquipedia.net/counterstrike/Thunderpick/World_Championship/2026",
-        "https://egamersworld.com/counterstrike/match/5X5sFiL7H/betboom-team-vs-legacy-a0-2p2fTz"
-      ]
-    },
-    {
-      "id": "IR-14",
-      "status": "open",
-      "title": "Same TWC fixture appears under two Hotspawn ids (1080204 and 1081614)",
-      "detail": "Both ids describe Legacy vs FURIA, Thunderpick World Championship 2026, 2026-10-15 (locks 15:54Z and 16:54Z). The board treats them as two fixtures, so any count of 'Hotspawn CS2 rows' is inflated by one and one of the two carries a kickoff that is an hour later than the other. Neither is used as a probability input; both are shown in the inventory.",
-      "evidence": [
-        "https://play.hotspawn.com/thp-pickems",
-        "https://play.hotspawn.com/lobby"
-      ]
-    },
-    {
-      "id": "IR-15",
-      "status": "rejected-value",
-      "title": "Equal prices do not prove a placeholder or justify an arbitrary pick",
-      "detail": "Older alternative dashboards rejected repeated aggregator/tied pairs under their stated policies. Equal genuine odds can also represent a legitimate balanced market; an exact tie alone is not proof of fabricated pricing. The primary board requires eligible sourced evidence and leaves the side blank unless an independently eligible own line explicitly breaks an exact tie. See the COIN_FLIP flag and separate board methods.",
-      "evidence": [
-        "https://egamersworld.com/counterstrike/match/5X5sFiL7H/betboom-team-vs-legacy-a0-2p2fTz",
-        "https://egamersworld.com/counterstrike/match/5X5sFiL7H/aurora-vs-9z-bH-YrllJx"
-      ]
-    },
-    {
-      "id": "IR-16",
-      "status": "fixed",
-      "title": "Console board published a pick on an exact 50/50 tie (its own build failed closed)",
-      "detail": "The consolidated console board took the relayed Thunderpick quote for Ninjas in Pyjamas vs Team Liquid (50.0/50.0, a placeholder) as its headline rung and published a pick at a dead heat, which its invariant then refused: 'pick published for an exact tie'. Fixed by rejecting exact-tie quotes in the rung selection (flag C-TIE-QUOTE-REJECTED), falling through to the Polymarket price (55.5/44.5) and adding regression tests; the determinism test now builds into a temporary directory so it can never overwrite the published board.",
-      "evidence": [
-        "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/scripts/228bb5bc_build.py",
-        "https://polymarket.com/event/cs2-nip-tl1-2026-10-16"
-      ]
-    },
-    {
-      "id": "IR-17",
-      "status": "fixed",
-      "title": "Executive coverage counted a coin-flip row as a market pick",
-      "detail": "executive/data/summary.json reported open_market_basis including the '(no side - 50/50)' row, so the landing acceptance check (7 published market picks) disagreed with the published summary (8). Fixed: basis counts now describe rows that actually publish a pick; the coin-flip row stays in open_no_pick. executive/tests.py updated to the same definition and its 15 checks pass.",
-      "evidence": [
-        "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/executive/build.py"
-      ]
-    },
-    {
-      "id": "IR-18",
-      "status": "fixed",
-      "title": "valuepicks board was a capture behind and republished a coin flip as a pick (fixed)",
-      "detail": "Fixed by session e1ceecc2 on 2026-10-15. The board listed 1080280-84/1079440/1079442 while the executive capture now holds 12 open rows, so tests/test_7759beef.py failed twice and both verify.yml and landing-43c32386.yml were red. The module now (a) treats a capture pick that is not a team name - the sentinel '(no side - 50/50)' the executive writes for an exact coin flip - as no pick, publishing both sourced probabilities and no side, flagged VP-F08 and listed on unresolved.html; (b) keeps only the ladder entries whose fixture is still an open capture row and adds entries for today's unpriced rows from evidence already stored in the repo (Polymarket 68.5/31.5 for 1080205, 67.5/32.5 for 1081530 and 1081531, read 2026-10-15T22:41:17Z; Pinnacle 1.47/2.62 for 1080287 and 1.53/2.47 for 1079589, captured 2026-10-15T19:59:37Z), each with a format/identity fact, Valve VRS points for the own line and its limitations; (c) labels prediction-market entries tier C instead of tier A; (d) gives every open row a card and counts open rows in meta; (e) lists exactly the non-tier-A open rows in unresolved.csv. tests/test_7759beef.py is untouched and now passes 16/16; full discovery 408 OK; audit 266 pages / 0 link errors. Still published as a limitation, not hidden: the coin-flip row (Ninjas in Pyjamas vs Team Liquid, Pinnacle 1.89/1.89) carries 50.0/50.0 and no side, and the three ladder-resolved rows rest on prediction-market prices rather than a book.",
-      "evidence": [
-        "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/valuepicks/index.html",
-        "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/valuepicks/unresolved.html",
-        "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/scripts/7759beef_build.py",
-        "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/research/7759beef/sources.json"
-      ]
-    },
-    {
-      "id": "IR-19",
-      "status": "fixed",
-      "title": "livelines build crashed on a market observation outside the current slate",
-      "detail": "livelines/build.py raised KeyError '1079586' when a stored market observation named a fixture the slate capture no longer contained, which failed its deterministic rebuild test. Fixed by skipping such observations and recording them in coverage.json under observations_without_slate_fixture; the 20 livelines tests pass (20/20 in `python3 -m unittest tests.test_457629c4` after the fix). The board itself stays flagged (broken Valve source links, 89-vs-88 fixtures) as recorded in the earlier sessions' reviews.",
-      "evidence": [
-        "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/livelines/build.py"
-      ]
-    },
-    {
-      "id": "IR-20",
-      "status": "ambiguous-source",
-      "title": "Unlabelled HLTV header percentages are not sportsbook prices",
-      "detail": "Unlabelled header percentages and community polls are not sportsbook prices. They are excluded from the model; inspect the linked page before interpreting such a figure. No unverified numeric poll value is reproduced in this review.",
-      "evidence": [
-        "https://www.hltv.org/matches/2399412/aurora-vs-9z-thunderpick-world-championship-2026"
-      ]
-    },
-    {
-      "id": "IR-21",
-      "status": "unverified-context-omitted",
-      "title": "Unverified pre-event outright context omitted",
-      "detail": "Earlier research linked pre-event editorial outright prices. These are not current whole-match two-way lines, were not independently re-read in this release, and are omitted from the TWC page and model. Numeric values are left unpublished; manual-review links remain.",
-      "evidence": [
-        "https://www.freetips.com/esports/thunderpick-world-championship-2026-betting-odds-20261011-0007/",
-        "https://tribuna.com/amp/en/betting/blogs/thunderpick-world-championship-2026-odds-favorites-our-predi/",
-        "https://tips.gg/article/thunderpick-wc2026-winner-odds/"
-      ]
-    },
-    {
-      "id": "IR-22",
-      "status": "fixed",
-      "title": "The executive capture publishes a pick for a de-vigged coin flip",
-      "detail": "For Ninjas in Pyjamas vs Team Liquid (1079586) the stored Pinnacle whole-match line is 1.89 / 1.89; after the 5.66% overround is removed proportionally the fair line is exactly 50.0 / 50.0, so the capture's pick column holds the sentinel '(no side - 50/50)'. Session e1ceecc2 made the coverage counters on the root summary and in executive/build.py count only rows that publish an actual side (so the coin flip is reported under open_no_pick, not as a market pick) and executive/tests.py now encodes that definition. The capture's own pick string is left as it is, because inventing a side from a dead-heat line would be a guess; the fixture still has a pick on the primary route (hotspawn/ and console/ both publish Ninjas in Pyjamas at 55.4-55.5% from a Polymarket price read 20:31:27Z).",
-      "evidence": [
-        "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/executive/data/analysis.csv",
-        "https://polymarket.com/event/cs2-nip-tl1-2026-10-16",
-        "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/console/data/picks.csv"
-      ]
-    },
-    {
-      "id": "IR-23",
-      "status": "fixed",
-      "title": "consolidated console board published a probability with a blank pick when only the cs2 board carried the fixture",
-      "detail": "Found and fixed by session e1ceecc2 on 2026-10-15. scripts/228bb5bc_build.py took the pick from the secondary-market feed row (feed.get('team_a')/('team_b')), which does not carry every fixture, while the probabilities came from whichever board did. Fixture 1079631 (FORZE Reload vs Lavked, CCT Europe 2026 Series #11) therefore published a Pinnacle de-vig (76.7 / 23.3, overround 7.36%, read 2026-10-15T22:24:02Z) with an empty pick, which broke two of the board's own invariants (test_every_open_fixture_has_a_pick_or_explicit_unresolved_flag, test_committed_board_never_publishes_a_pick_on_an_exact_tie) and failed the console workflow on main. The pick is now taken from the names the row itself publishes, and the counter set is consistent again: 22 open rows, 13 picked, 9 blank with their flags. tests/test_228bb5bc.py untouched, 45/45 OK.",
-      "evidence": [
-        "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/scripts/228bb5bc_build.py",
-        "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/tests/test_228bb5bc.py",
-        "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/console/flagged.html"
-      ]
-    },
-    {
-      "id": "IR-24",
-      "status": "implemented",
-      "title": "Strict market identity/freshness and nonfinite-price rejection",
-      "detail": "Primary quotes require both teams, compatible competition/region/edition, whole-match scope, usable HTTPS evidence and a read within eight hours. A nearer/equidistant same-pair fixture blocks a rematch join. Rejections are visible per row. Known roster mismatches, unknown formats and Valve snapshots older than 45 days withhold own-line fallback. Regression tests exercise each gate.",
-      "evidence": [
-        "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/hotspawn/evidence.py"
-      ]
-    },
-    {
-      "id": "IR-25",
-      "status": "corrected",
-      "title": "July Aurora rebuild was not a fresh day-3 onboarding event",
-      "detail": "HLTV’s official-signing report is dated 8 July: kyxsan completed the rebuild after Jimpphat/ash. About three months old by TWC. Changed the Aurora note to weak, neutral context; no invented numerical penalty. Day-1/day-2 results and the two decider formats were independently checked.",
-      "evidence": [
-        "https://www.hltv.org/news/45082/official-aurora-complete-rebuild-with-kyxsan",
-        "https://www.hltv.org/matches/2399384/9z-vs-aurora-thunderpick-world-championship-2026",
-        "https://www.hltv.org/matches/2399408/aurora-vs-ninjas-in-pyjamas-thunderpick-world-championship-2026"
-      ]
-    },
-    {
-      "id": "IR-26",
-      "status": "scope-limitation",
-      "title": "Archived dashboards are preserved, not certified by the primary-board audit",
-      "detail": "This integration reconciles every row in the primary Hotspawn capture and rechecks the linked TWC results. It does not certify all externally sourced historical facts on the hundreds of preserved alternative pages. They are folded below the primary route, carry separate snapshots/methods, and must not be mistaken for this release’s verified dataset. Unsupported primary research values are omitted or blank and flagged.",
-      "evidence": [
-        "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/reviews/6b23e38f-verification.md"
-      ]
-    },
-    {
-      "id": "IR-27",
-      "status": "evidence-limitation",
-      "title": "Relayed esportsbook prices are secondary, not direct-book verification",
-      "detail": "bo3.gg match betting blocks can provide an active named-book price pair. Provider, relay URL, bookmaker URL and read time are retained; no claim of a direct sportsbook-page read is made. A null, suspended, mismatched or nonfinite pair is not used.",
-      "evidence": [
-        "https://api.bo3.gg/api/v1/matches",
-        "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/hotspawn/collect.py"
-      ]
-    },
-    {
-      "id": "IR-28",
-      "status": "handled",
-      "title": "Parallel day-3 research merged; stale duplicate predictions and unreconciled form omitted",
-      "detail": "PR156 landed during this integration. Its source-linked research and entry points are retained. All published day-3 numbers now use the primary row and strict evidence gates, not a second static average. Detailed recent-form/map assertions were not independently reconciled and are blank; analytics links remain for manual review. The direct analytics summaries and both unpriced-gap BO3 formats were re-read here. No current lean is manufactured for a missing board ID.",
-      "evidence": [
-        "https://github.com/buffedlizard55-lab/MaltaProj1/pull/156",
-        "https://www.hltv.org/betting/analytics/2399412/aurora-vs-9z-thunderpick-world-championship-2026",
-        "https://www.hltv.org/betting/analytics/2399413/betboom-vs-legacy-thunderpick-world-championship-2026"
-      ]
-    },
-    {
-      "id": "IR-29",
-      "status": "handled",
-      "title": "Editorial edit times are not historical source-read clocks",
-      "detail": "The eight TWC results were checked on 16 October, but exact HTTP completion times were not retained. Historical read/verified timestamps are blank, with the known checked date retained. Archival reconciliation times remain explicitly separate. Unsupported player ratings, exact roster totals and EPL placement were removed from the primary strategy narrative.",
-      "evidence": [
-        "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/hotspawn/research/results.json",
-        "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/hotspawn/research/day1_archive_audit.json"
-      ]
-    },
-    {
-      "id": "IR-30",
-      "status": "open",
-      "title": "Match-specific Phantom stand-in report is not a verified later lineup",
-      "detail": "The directly read HLTV analytics summary names cej0t for Voca–Phantom1080285. The later Phantom–RoundsGG1080288 and Phantom–HAVU1080290 lineups were not independently established. Their lineup facts remain blank, an own-line estimate is withheld, and the earlier stand-in is not used as a strong strategy factor for those later matches. Eligible outside prices can still be displayed. NIP late-invite context is likewise limited to the verified TWC fixtures.",
-      "evidence": [
-        "https://www.hltv.org/betting/analytics/2399424/voca-vs-phantom-elisa-breakout-series-2",
-        "https://www.hltv.org/news/45688/thunderpick-world-championship-matchups-announced-with-virtuspro-replaced-by-nip"
-      ]
-    }
-  ],
-  "updated_utc": "2026-10-16T04:59:20Z"
+ "about": "Irregularities found while researching and reviewing (2026-10-15): the board's own session arena/22be6967 plus the follow-up session arena/e1ceecc2. Each item is published on hotspawn/flagged.html with its evidence. Status: open = still true at the last check; handled = this board works around it; fixed = the defect was repaired and the owning tests pass.",
+ "items": [
+  {
+   "id": "IR-01",
+   "status": "unverified",
+   "title": "Historical coverage and clock attribution not re-certified",
+   "detail": "An earlier report described pricing-coverage gaps when provider kickoff clocks differed. Its original exact capture clock and numerical coverage are not re-certified here and are omitted. Current coverage is recomputed from timestamped capture JSON; team/event/format and bounded kickoff gates prevent dropping a usable price merely for a flagged schedule discrepancy. The HLTV link supports fixture identity/results, not a retained timezone-aware kickoff receipt.",
+   "evidence": [
+    "https://github.com/buffedlizard55-lab/MaltaProj1/blob/694fe14faa05c5aa282e5d3494a3b3807c1813db/hotspawn/research/irregularities.json",
+    "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/executive/data/summary.json",
+    "https://www.hltv.org/matches/2399409/9z-vs-falcons-thunderpick-world-championship-2026",
+    "https://polymarket.com/event/cs2-9z-fal2-2026-10-15"
+   ]
+  },
+  {
+   "id": "IR-02",
+   "status": "unverified",
+   "title": "Historical kickoff disagreement: exact HLTV UTC time unverified",
+   "detail": "Archived research reported conflicting kickoff clocks for the 15 October 9z–Falcons series. A timezone-aware HLTV kickoff receipt was not retained, so its exact UTC value is omitted rather than inferred from reader-rendered text. Use Hotspawn payload epochs for contest locks and each captured bookmaker timestamp for its own schedule, with a disagreement flag. The pinned older report is preserved for provenance, not promoted as verified clock evidence.",
+   "evidence": [
+    "https://github.com/buffedlizard55-lab/MaltaProj1/blob/694fe14faa05c5aa282e5d3494a3b3807c1813db/hotspawn/research/irregularities.json",
+    "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
+    "https://www.hltv.org/matches/2399409/9z-vs-falcons-thunderpick-world-championship-2026"
+   ]
+  },
+  {
+   "id": "IR-03",
+   "status": "open",
+   "title": "Valve's latest standings list a five that no longer plays (PARIVISION)",
+   "detail": "The official 5 October Valve snapshot lists slaxejezzz in PARIVISION's rated five. HLTV's signing report, independently re-read on 16 October, says HObbit replaced him on 17 September. The own line is withheld while that mismatch remains; a current external quote can still supply a probability. No HObbit rating/tenure total is assumed.",
+   "evidence": [
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
+    "https://www.hltv.org/news/45534/parivision-replace-slaxejezzz-with-hobbit"
+   ]
+  },
+  {
+   "id": "IR-04",
+   "status": "open",
+   "title": "HLTV qualitative analytics is not a two-sided price source",
+   "detail": "The Voca–Phantom analytics summary was directly re-read on 16 October and names a stand-in for that fixture. Its header/poll/placeholder numbers are not price evidence. No usable two-sided line was extracted from this page, and no unverified fixed odds are reproduced.",
+   "evidence": [
+    "https://www.hltv.org/betting/analytics/2399424/voca-vs-phantom-elisa-breakout-series-2"
+   ]
+  },
+  {
+   "id": "IR-05",
+   "status": "handled",
+   "title": "Hotspawn still lists 60 fixtures whose lock passed long ago",
+   "detail": "The TransferState payload keeps June 2026 fixtures with status 'scheduled'. They are not pickable; this board lists them only in the full inventory (all.html) as stale listings.",
+   "evidence": [
+    "https://play.hotspawn.com/lobby"
+   ]
+  },
+  {
+   "id": "IR-06",
+   "status": "handled",
+   "title": "Rendered Hotspawn times depend on the reader's timezone",
+   "detail": "During research, one read of the lobby rendered times in UTC-4 and a cached second chunk (about 31 minutes older) rendered them in UTC. All times on this site come from the epoch-millisecond fields in the page's ng-state payload, never from rendered text.",
+   "evidence": [
+    "https://play.hotspawn.com/lobby"
+   ]
+  },
+  {
+   "id": "IR-07",
+   "status": "handled",
+   "title": "Team names differ across sources",
+   "detail": "Hotspawn WROTBERRY = HLTV/Pinnacle/Valve WBT; RoundsGG = ROUNDS; BetBoom = Pinnacle 'BB Team'; PARIVISION = Pinnacle 'PVISION'; Falcons = Polymarket 'Team Falcons'. Each alias is proven by fixture slot and listed with evidence.",
+   "evidence": [
+    "https://www.hltv.org/events/9332/matches",
+    "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/hotspawn/research/aliases.json"
+   ]
+  },
+  {
+   "id": "IR-08",
+   "status": "handled",
+   "title": "User premise check: Aurora's roster change is real but not recent-days",
+   "detail": "The July official-signing report confirms the Aurora rebuild, roughly three months before TWC. It is weak, neutral historical context, not a fresh onboarding penalty. Unreconciled exact map/tenure totals and EPL placement are omitted; day-2 Aurora 2-0 NIP is explicit counterevidence to a simplistic fade.",
+   "evidence": [
+    "https://www.hltv.org/news/45082/official-aurora-complete-rebuild-with-kyxsan",
+    "https://www.hltv.org/matches/2399408/aurora-vs-ninjas-in-pyjamas-thunderpick-world-championship-2026"
+   ]
+  },
+  {
+   "id": "IR-09",
+   "status": "open",
+   "title": "Day-1 crowd shares were captured before lock, not at lock",
+   "detail": "The 5%/95% (9z/Aurora) and other day-1 crowd shares come from a capture hours before lock; Hotspawn removes fixtures from the payload after lock, so the final share is not available.",
+   "evidence": [
+    "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/board/data/analysis.csv"
+   ]
+  },
+  {
+   "id": "IR-10",
+   "status": "open",
+   "title": "EGamersWorld page for mellren vs Privateer is internally inconsistent",
+   "detail": "The page states 14:00 and 10:00 for the same match and shows only one side's price (mellren 1.8). Not used; the series length for this fixture stays blank.",
+   "evidence": [
+    "https://egamersworld.com/counterstrike/match/4kY9VAmiEg/mellren-vs-privateer-gaming-ASh_MyDBS"
+   ]
+  },
+  {
+   "id": "IR-11",
+   "status": "open",
+   "title": "Archived market/model disagreements are not current lines",
+   "detail": "Prior day-2 records disagreed on the favourite in some matches. Original probabilities/bases remain frozen for honest grading, not reissued as current lines. Today the published probability defines the favourite; eligible own-line disagreement may inform a labelled contrarian but cannot reverse that benchmark or hide its expected-point cost.",
+   "evidence": [
+    "https://www.pinnacle.com/en/esports/games/cs2/matchups/"
+   ]
+  },
+  {
+   "id": "IR-12",
+   "status": "open",
+   "title": "Leaderboard rule was revised after grading day 1 (in-sample)",
+   "detail": "Rule v1 (market only; weak factors counted) would have gone 1/4 on TWC day 1. Rule v2 (consensus of market and our line; only strong/moderate factors) goes 4/4 on the same four matches, which is in-sample and not evidence of skill. Grading of every frozen pre-lock play since launch is published on the strategy page.",
+   "evidence": [
+    "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/hotspawn/model.py"
+   ]
+  },
+  {
+   "id": "IR-13",
+   "status": "handled",
+   "title": "Group B decider now present in the new Hotspawn inventory",
+   "detail": "Earlier Oct15 captures did not include BetBoom–Legacy. The Oct16 04:21Z three-surface read contains official ID 1081775. The day-3 page now uses the current primary board, not a static “absent” claim; its exact UTC schedule comes from Hotspawn epochs.",
+   "evidence": [
+    "https://play.hotspawn.com/lobby",
+    "https://liquipedia.net/counterstrike/Thunderpick/World_Championship/2026",
+    "https://egamersworld.com/counterstrike/match/5X5sFiL7H/betboom-team-vs-legacy-a0-2p2fTz"
+   ]
+  },
+  {
+   "id": "IR-14",
+   "status": "open",
+   "title": "Same TWC fixture appears under two Hotspawn ids (1080204 and 1081614)",
+   "detail": "Both ids describe Legacy vs FURIA, Thunderpick World Championship 2026, 2026-10-15 (locks 15:54Z and 16:54Z). The board treats them as two fixtures, so any count of 'Hotspawn CS2 rows' is inflated by one and one of the two carries a kickoff that is an hour later than the other. Neither is used as a probability input; both are shown in the inventory.",
+   "evidence": [
+    "https://play.hotspawn.com/thp-pickems",
+    "https://play.hotspawn.com/lobby"
+   ]
+  },
+  {
+   "id": "IR-15",
+   "status": "rejected-value",
+   "title": "Equal prices do not prove a placeholder or justify an arbitrary pick",
+   "detail": "Older alternative dashboards rejected repeated aggregator/tied pairs under their stated policies. Equal genuine odds can also represent a legitimate balanced market; an exact tie alone is not proof of fabricated pricing. The primary board requires eligible sourced evidence and leaves the side blank unless an independently eligible own line explicitly breaks an exact tie. See the COIN_FLIP flag and separate board methods.",
+   "evidence": [
+    "https://egamersworld.com/counterstrike/match/5X5sFiL7H/betboom-team-vs-legacy-a0-2p2fTz",
+    "https://egamersworld.com/counterstrike/match/5X5sFiL7H/aurora-vs-9z-bH-YrllJx"
+   ]
+  },
+  {
+   "id": "IR-16",
+   "status": "fixed",
+   "title": "Console board published a pick on an exact 50/50 tie (its own build failed closed)",
+   "detail": "The consolidated console board took the relayed Thunderpick quote for Ninjas in Pyjamas vs Team Liquid (50.0/50.0, a placeholder) as its headline rung and published a pick at a dead heat, which its invariant then refused: 'pick published for an exact tie'. Fixed by rejecting exact-tie quotes in the rung selection (flag C-TIE-QUOTE-REJECTED), falling through to the Polymarket price (55.5/44.5) and adding regression tests; the determinism test now builds into a temporary directory so it can never overwrite the published board.",
+   "evidence": [
+    "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/scripts/228bb5bc_build.py",
+    "https://polymarket.com/event/cs2-nip-tl1-2026-10-16"
+   ]
+  },
+  {
+   "id": "IR-17",
+   "status": "fixed",
+   "title": "Executive coverage counted a coin-flip row as a market pick",
+   "detail": "executive/data/summary.json reported open_market_basis including the '(no side - 50/50)' row, so the landing acceptance check (7 published market picks) disagreed with the published summary (8). Fixed: basis counts now describe rows that actually publish a pick; the coin-flip row stays in open_no_pick. executive/tests.py updated to the same definition and its 15 checks pass.",
+   "evidence": [
+    "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/executive/build.py"
+   ]
+  },
+  {
+   "id": "IR-18",
+   "status": "fixed",
+   "title": "valuepicks board was a capture behind and republished a coin flip as a pick (fixed)",
+   "detail": "Fixed by session e1ceecc2 on 2026-10-15. The board listed 1080280-84/1079440/1079442 while the executive capture now holds 12 open rows, so tests/test_7759beef.py failed twice and both verify.yml and landing-43c32386.yml were red. The module now (a) treats a capture pick that is not a team name - the sentinel '(no side - 50/50)' the executive writes for an exact coin flip - as no pick, publishing both sourced probabilities and no side, flagged VP-F08 and listed on unresolved.html; (b) keeps only the ladder entries whose fixture is still an open capture row and adds entries for today's unpriced rows from evidence already stored in the repo (Polymarket 68.5/31.5 for 1080205, 67.5/32.5 for 1081530 and 1081531, read 2026-10-15T22:41:17Z; Pinnacle 1.47/2.62 for 1080287 and 1.53/2.47 for 1079589, captured 2026-10-15T19:59:37Z), each with a format/identity fact, Valve VRS points for the own line and its limitations; (c) labels prediction-market entries tier C instead of tier A; (d) gives every open row a card and counts open rows in meta; (e) lists exactly the non-tier-A open rows in unresolved.csv. tests/test_7759beef.py is untouched and now passes 16/16; full discovery 408 OK; audit 266 pages / 0 link errors. Still published as a limitation, not hidden: the coin-flip row (Ninjas in Pyjamas vs Team Liquid, Pinnacle 1.89/1.89) carries 50.0/50.0 and no side, and the three ladder-resolved rows rest on prediction-market prices rather than a book.",
+   "evidence": [
+    "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/valuepicks/index.html",
+    "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/valuepicks/unresolved.html",
+    "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/scripts/7759beef_build.py",
+    "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/research/7759beef/sources.json"
+   ]
+  },
+  {
+   "id": "IR-19",
+   "status": "fixed",
+   "title": "livelines build crashed on a market observation outside the current slate",
+   "detail": "livelines/build.py raised KeyError '1079586' when a stored market observation named a fixture the slate capture no longer contained, which failed its deterministic rebuild test. Fixed by skipping such observations and recording them in coverage.json under observations_without_slate_fixture; the 20 livelines tests pass (20/20 in `python3 -m unittest tests.test_457629c4` after the fix). The board itself stays flagged (broken Valve source links, 89-vs-88 fixtures) as recorded in the earlier sessions' reviews.",
+   "evidence": [
+    "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/livelines/build.py"
+   ]
+  },
+  {
+   "id": "IR-20",
+   "status": "ambiguous-source",
+   "title": "Unlabelled HLTV header percentages are not sportsbook prices",
+   "detail": "Unlabelled header percentages and community polls are not sportsbook prices. They are excluded from the model; inspect the linked page before interpreting such a figure. No unverified numeric poll value is reproduced in this review.",
+   "evidence": [
+    "https://www.hltv.org/matches/2399412/aurora-vs-9z-thunderpick-world-championship-2026"
+   ]
+  },
+  {
+   "id": "IR-21",
+   "status": "unverified-context-omitted",
+   "title": "Unverified pre-event outright context omitted",
+   "detail": "Earlier research linked pre-event editorial outright prices. These are not current whole-match two-way lines, were not independently re-read in this release, and are omitted from the TWC page and model. Numeric values are left unpublished; manual-review links remain.",
+   "evidence": [
+    "https://www.freetips.com/esports/thunderpick-world-championship-2026-betting-odds-20261011-0007/",
+    "https://tribuna.com/amp/en/betting/blogs/thunderpick-world-championship-2026-odds-favorites-our-predi/",
+    "https://tips.gg/article/thunderpick-wc2026-winner-odds/"
+   ]
+  },
+  {
+   "id": "IR-22",
+   "status": "fixed",
+   "title": "The executive capture publishes a pick for a de-vigged coin flip",
+   "detail": "For Ninjas in Pyjamas vs Team Liquid (1079586) the stored Pinnacle whole-match line is 1.89 / 1.89; after the 5.66% overround is removed proportionally the fair line is exactly 50.0 / 50.0, so the capture's pick column holds the sentinel '(no side - 50/50)'. Session e1ceecc2 made the coverage counters on the root summary and in executive/build.py count only rows that publish an actual side (so the coin flip is reported under open_no_pick, not as a market pick) and executive/tests.py now encodes that definition. The capture's own pick string is left as it is, because inventing a side from a dead-heat line would be a guess; the fixture still has a pick on the primary route (hotspawn/ and console/ both publish Ninjas in Pyjamas at 55.4-55.5% from a Polymarket price read 20:31:27Z).",
+   "evidence": [
+    "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/executive/data/analysis.csv",
+    "https://polymarket.com/event/cs2-nip-tl1-2026-10-16",
+    "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/console/data/picks.csv"
+   ]
+  },
+  {
+   "id": "IR-23",
+   "status": "fixed",
+   "title": "consolidated console board published a probability with a blank pick when only the cs2 board carried the fixture",
+   "detail": "Found and fixed by session e1ceecc2 on 2026-10-15. scripts/228bb5bc_build.py took the pick from the secondary-market feed row (feed.get('team_a')/('team_b')), which does not carry every fixture, while the probabilities came from whichever board did. Fixture 1079631 (FORZE Reload vs Lavked, CCT Europe 2026 Series #11) therefore published a Pinnacle de-vig (76.7 / 23.3, overround 7.36%, read 2026-10-15T22:24:02Z) with an empty pick, which broke two of the board's own invariants (test_every_open_fixture_has_a_pick_or_explicit_unresolved_flag, test_committed_board_never_publishes_a_pick_on_an_exact_tie) and failed the console workflow on main. The pick is now taken from the names the row itself publishes, and the counter set is consistent again: 22 open rows, 13 picked, 9 blank with their flags. tests/test_228bb5bc.py untouched, 45/45 OK.",
+   "evidence": [
+    "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/scripts/228bb5bc_build.py",
+    "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/tests/test_228bb5bc.py",
+    "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/console/flagged.html"
+   ]
+  },
+  {
+   "id": "IR-24",
+   "status": "implemented",
+   "title": "Strict market identity/freshness and nonfinite-price rejection",
+   "detail": "Primary quotes require both teams, compatible competition/region/edition, whole-match scope, usable HTTPS evidence and a read within eight hours. A nearer/equidistant same-pair fixture blocks a rematch join. Rejections are visible per row. Known roster mismatches, unknown formats and Valve snapshots older than 45 days withhold own-line fallback. Regression tests exercise each gate.",
+   "evidence": [
+    "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/hotspawn/evidence.py"
+   ]
+  },
+  {
+   "id": "IR-25",
+   "status": "corrected",
+   "title": "July Aurora rebuild was not a fresh day-3 onboarding event",
+   "detail": "HLTV’s official-signing report is dated 8 July: kyxsan completed the rebuild after Jimpphat/ash. About three months old by TWC. Changed the Aurora note to weak, neutral context; no invented numerical penalty. Day-1/day-2 results and the two decider formats were independently checked.",
+   "evidence": [
+    "https://www.hltv.org/news/45082/official-aurora-complete-rebuild-with-kyxsan",
+    "https://www.hltv.org/matches/2399384/9z-vs-aurora-thunderpick-world-championship-2026",
+    "https://www.hltv.org/matches/2399408/aurora-vs-ninjas-in-pyjamas-thunderpick-world-championship-2026"
+   ]
+  },
+  {
+   "id": "IR-26",
+   "status": "scope-limitation",
+   "title": "Archived dashboards are preserved, not certified by the primary-board audit",
+   "detail": "This integration reconciles every row in the primary Hotspawn capture and rechecks the linked TWC results. It does not certify all externally sourced historical facts on the hundreds of preserved alternative pages. They are folded below the primary route, carry separate snapshots/methods, and must not be mistaken for this release’s verified dataset. Unsupported primary research values are omitted or blank and flagged.",
+   "evidence": [
+    "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/reviews/6b23e38f-verification.md"
+   ]
+  },
+  {
+   "id": "IR-27",
+   "status": "evidence-limitation",
+   "title": "Relayed esportsbook prices are secondary, not direct-book verification",
+   "detail": "bo3.gg match betting blocks can provide an active named-book price pair. Provider, relay URL, bookmaker URL and read time are retained; no claim of a direct sportsbook-page read is made. A null, suspended, mismatched or nonfinite pair is not used.",
+   "evidence": [
+    "https://api.bo3.gg/api/v1/matches",
+    "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/hotspawn/collect.py"
+   ]
+  },
+  {
+   "id": "IR-28",
+   "status": "handled",
+   "title": "Parallel day-3 research merged; stale duplicate predictions and unreconciled form omitted",
+   "detail": "PR156 landed during this integration. Its source-linked research and entry points are retained. All published day-3 numbers now use the primary row and strict evidence gates, not a second static average. Detailed recent-form/map assertions were not independently reconciled and are blank; analytics links remain for manual review. The direct analytics summaries and both unpriced-gap BO3 formats were re-read here. No current lean is manufactured for a missing board ID.",
+   "evidence": [
+    "https://github.com/buffedlizard55-lab/MaltaProj1/pull/156",
+    "https://www.hltv.org/betting/analytics/2399412/aurora-vs-9z-thunderpick-world-championship-2026",
+    "https://www.hltv.org/betting/analytics/2399413/betboom-vs-legacy-thunderpick-world-championship-2026"
+   ]
+  },
+  {
+   "id": "IR-29",
+   "status": "handled",
+   "title": "Editorial edit times are not historical source-read clocks",
+   "detail": "The eight TWC results were checked on 16 October, but exact HTTP completion times were not retained. Historical read/verified timestamps are blank, with the known checked date retained. Archival reconciliation times remain explicitly separate. Unsupported player ratings, exact roster totals and EPL placement were removed from the primary strategy narrative.",
+   "evidence": [
+    "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/hotspawn/research/results.json",
+    "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/hotspawn/research/day1_archive_audit.json"
+   ]
+  },
+  {
+   "id": "IR-30",
+   "status": "open",
+   "title": "Match-specific Phantom stand-in report is not a verified later lineup",
+   "detail": "The directly read HLTV analytics summary names cej0t for Voca–Phantom1080285. The later Phantom–RoundsGG1080288 and Phantom–HAVU1080290 lineups were not independently established. Their lineup facts remain blank, an own-line estimate is withheld, and the earlier stand-in is not used as a strong strategy factor for those later matches. Eligible outside prices can still be displayed. NIP late-invite context is likewise limited to the verified TWC fixtures.",
+   "evidence": [
+    "https://www.hltv.org/betting/analytics/2399424/voca-vs-phantom-elisa-breakout-series-2",
+    "https://www.hltv.org/news/45688/thunderpick-world-championship-matchups-announced-with-virtuspro-replaced-by-nip"
+   ]
+  },
+  {
+   "id": "IR-31",
+   "status": "resolved",
+   "title": "Two open fixtures had no pick because their names map to multiple Valve standings rows",
+   "detail": "1079170 (BET-M vs Just Players) and 1081126 (Banda chuya vs Enjoy) were left blank at the 2026-10-16T05:58:32Z capture: 'Just Players' appears twice in Valve's standings_global_2026_10_05.md (ranks 118 and 347) and 'Banda Chuya' twice (ranks 165 and 373), so no unique row existed for the own line. Research rung E resolves the identity with a documented roster-overlap rule against HLTV's listed match lineups (>=3 shared nicknames, strictly best overlap): Just Players row 118 (974 pts, overlap 4 vs 1) and Banda Chuya row 165 (801 pts, overlap 5 vs 1). Both rows now carry picks, probabilities and every candidate row's permalink. If the rule had failed the picks would have stayed blank.",
+   "evidence": [
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
+    "https://www.hltv.org/matches/2399087/bet-m-vs-just-players-nodwin-clutch-series-13",
+    "https://www.hltv.org/matches/2399477/banda-chuya-vs-enjoy-cct-2026-europe-series-12-closed-qualifier"
+   ]
+  },
+  {
+   "id": "IR-32",
+   "status": "open",
+   "title": "BET-M plays with Patsi where Valve's snapshot five lists synyx",
+   "detail": "HLTV's lineup for match 2399087 (read 2026-10-16) lists Patsi, Raijin, executor, z1Nny, bluewh1te. Valve's 2026-10-05 row for BET-M (rank 71, 1149 pts) rates bluewh1te, executor, Raijin, synyx, z1Nny. 4/5 continuity; the dated points predate the change. Patsi also appears in Valve's second ex-RUSTEC row (rank 152), consistent with a transfer. Flagged VRS_ROSTER_OUTDATED on the row; the fallback line is published but softer.",
+   "evidence": [
+    "https://www.hltv.org/matches/2399087/bet-m-vs-just-players-nodwin-clutch-series-13#lineups",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0071--bet-m--bluewh1te-executor-raijin-synyx-z1nny.md"
+   ]
+  },
+  {
+   "id": "IR-33",
+   "status": "open",
+   "title": "Enjoy's HLTV lineup keeps 3 of the 5 players rated in Valve's snapshot",
+   "detail": "HLTV's lineup for match 2399477 (read 2026-10-16) lists reyoz, sh1geo, kurosa, nbl, flawix. Valve's 2026-10-05 row (rank 138, 871 pts) rates kurosa, nbl, roxesz, sh1geo, zazzer: reyoz and flawix in for roxesz and zazzer. EGW's team panel (same day) shows kurosa, sh1geo, reyoz, nbl plus one unnamed player. The two-player change is flagged VRS_ROSTER_OUTDATED; the fallback estimate for this fixture is the softest line on the board.",
+   "evidence": [
+    "https://www.hltv.org/matches/2399477/banda-chuya-vs-enjoy-cct-2026-europe-series-12-closed-qualifier#lineups",
+    "https://egamersworld.com/counterstrike/match/1sGIL2gAYu/banda-chuya-vs-enjoy-9ru7xO5OG",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0138--enjoy--kurosa-nbl-roxesz-sh1geo-zazzer.md"
+   ]
+  },
+  {
+   "id": "IR-34",
+   "status": "resolved",
+   "title": "EGW 1.8/1.8 shown for Banda chuya vs Enjoy is a placeholder, not a market",
+   "detail": "The EGamersWorld match page displays 1.8 for both sides (and 0%/0% votes). The project previously rejected this exact symmetric placeholder as a non-quote (prior flag F-28 class). It is recorded as negative evidence and never converted into a probability. HLTV's betting table for the match shows only a Stake sweepstake promo cell; no sportsbook price exists.",
+   "evidence": [
+    "https://egamersworld.com/counterstrike/match/1sGIL2gAYu/banda-chuya-vs-enjoy-9ru7xO5OG",
+    "https://www.hltv.org/matches/2399477/banda-chuya-vs-enjoy-cct-2026-europe-series-12-closed-qualifier#betting"
+   ]
+  },
+  {
+   "id": "IR-35",
+   "status": "resolved",
+   "title": "Historical Polymarket market for 'BET-M 33 vs Just Players' is a different match and was rejected",
+   "detail": "A Polymarket market 'BET-M 33 - Just Players' (cs2-33-justpl-2026-09-18) prices a NODWIN Clutch Series group-stage match already played on 18 September 2026. It is not the 17 October Swiss round-2 fixture 1079170 and was rejected on rematch identity. Its resolved 100/0 price is not used.",
+   "evidence": [
+    "https://polymarket.com/esports/cs2/nodwin-clutch-series/cs2-33-justpl-2026-09-18",
+    "https://www.hltv.org/matches/2399087/bet-m-vs-just-players-nodwin-clutch-series-13"
+   ]
+  },
+  {
+   "id": "IR-36",
+   "status": "open",
+   "title": "31 team names map to two roster rows each in Valve's 2026-10-05 global standings",
+   "detail": "A full scan of standings_global_2026_10_05.md found 31 duplicated names (among them ex-RUSTEC, aimclub, Leo, MOUZ NXT on the current open slate). Market-priced rows are unaffected (rung A/B does not need Valve data). Where an own line is wanted later, the roster-overlap rule of rung E applies; this scan is published so the ambiguity is visible rather than silently unique()-dropped.",
+   "evidence": [
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+   ]
+  }
+ ],
+ "updated_utc": "2026-10-16T07:35:00Z"
 }

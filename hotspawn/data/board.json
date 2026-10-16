@@ -331,21 +331,22 @@
   }
  },
  "summary": {
-  "generated_utc": "2026-10-16T05:58:48Z",
+  "generated_utc": "2026-10-16T07:46:07Z",
   "session": "arena/22be6967",
   "reference_utc": "2026-10-16T05:58:32Z",
   "fixtures": 95,
   "open": 31,
   "locked_recent": 3,
   "stale_listings": 61,
-  "open_with_pick": 29,
+  "open_with_pick": 31,
   "open_rung": {
    "A": 12,
    "B": 15,
    "C": 2,
-   "D": 2
+   "D": 0,
+   "E": 2
   },
-  "open_unresolved": 2,
+  "open_unresolved": 0,
   "open_flagged": 20,
   "leaderboard_classes": {
    "VALUE": 2,
@@ -353,7 +354,7 @@
    "SITUATIONAL": 1,
    "LONG SHOT": 6,
    "CHALK": 8,
-   "NO CROWD DATA": 7
+   "NO CROWD DATA": 9
   },
   "next_lock_utc": "2026-10-16T07:54:00Z",
   "hotspawn_complete": true,
@@ -3175,33 +3176,204 @@
      "synyx",
      "z1Nny"
     ],
+    "disambiguated": true,
+    "disambiguation": {
+     "rule": "roster-overlap disambiguation",
+     "min_overlap": 3,
+     "candidates": 1,
+     "overlap_best": 4,
+     "overlap_second": 0,
+     "ok": true
+    },
+    "details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0071--bet-m--bluewh1te-executor-raijin-synyx-z1nny.md",
     "matches_with_current_five": 24,
     "first_rated_match_current_five": "2026-08-21"
    },
-   "vrs_b": null,
-   "own_p_a": null,
-   "own_p_b": null,
+   "vrs_b": {
+    "name": "Just Players",
+    "rank": 118,
+    "points": 974,
+    "roster": [
+     "bl1x1",
+     "h1te",
+     "sm3t",
+     "sstiNiX",
+     "Temny Prince"
+    ],
+    "disambiguated": true,
+    "disambiguation": {
+     "rule": "roster-overlap disambiguation",
+     "min_overlap": 3,
+     "candidates": 2,
+     "overlap_best": 4,
+     "overlap_second": 1,
+     "ok": true
+    },
+    "details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0118--just_players--bl1x1-h1te-sm3t-sstinix-temny_prince.md",
+    "matches_with_current_five": 13,
+    "first_rated_match_current_five": "2026-09-15"
+   },
+   "own_p_a": 0.6138,
+   "own_p_b": 0.3862,
    "hltv_rank_a": 65,
    "hltv_rank_b": 116,
    "hltv_team_a": "https://www.hltv.org/team/13619/bet-m",
    "hltv_team_b": "https://www.hltv.org/team/13776/just-players",
-   "p_a": null,
-   "p_b": null,
-   "basis": "Unresolved",
-   "rung": "D",
-   "factors": [],
-   "own_line_limitation": "one or both teams not uniquely identified in Valve standings",
-   "pick": null,
-   "pick_p": null,
-   "flags": [
-    "UNRESOLVED"
+   "p_a": 0.6138,
+   "p_b": 0.3862,
+   "basis": "Research fallback: our own line (Valve points, row disambiguated by documented roster overlap with HLTV's listed lineups; no outside price exists)",
+   "rung": "E",
+   "factors": [
+    {
+     "side": "a",
+     "team": "BET-M",
+     "kind": "roster change vs Valve snapshot (research fallback)",
+     "summary": "HLTV lists Patsi in and synyx out versus the five rated in Valve's 2026-10-05 snapshot.",
+     "argues_against": true,
+     "strength": "moderate",
+     "source_urls": [
+      "https://www.hltv.org/matches/2399087/bet-m-vs-just-players-nodwin-clutch-series-13"
+     ],
+     "read_utc": "2026-10-16T07:22:00Z",
+     "checked_date_utc": "2026-10-16",
+     "verification_status": "verified"
+    },
+    {
+     "side": "b",
+     "team": "Just Players",
+     "kind": "roster change vs Valve snapshot (research fallback)",
+     "summary": "HLTV lists wh1teout in and bl1x1 out versus the five rated in Valve's 2026-10-05 snapshot.",
+     "argues_against": true,
+     "strength": "moderate",
+     "source_urls": [
+      "https://www.hltv.org/matches/2399087/bet-m-vs-just-players-nodwin-clutch-series-13"
+     ],
+     "read_utc": "2026-10-16T07:22:00Z",
+     "checked_date_utc": "2026-10-16",
+     "verification_status": "verified"
+    }
    ],
-   "strategy": null,
+   "own_line_limitation": "strict own line withheld (one or both teams not uniquely identified in Valve standings); rung E resolved identity by documented roster-overlap disambiguation",
+   "fallback": {
+    "pack": "hotspawn/research/fallback_83090640.json",
+    "rule": ">= 3 shared nicknames vs HLTV lineup, strictly best overlap; own-line formula on the chosen rows",
+    "hltv_match_url": "https://www.hltv.org/matches/2399087/bet-m-vs-just-players-nodwin-clutch-series-13",
+    "hltv_read_utc": "2026-10-16T07:22:00Z",
+    "market_check": {
+     "hltv_betting_table": "No sportsbook odds row; only a Stake (US sweepstake) promo cell. No price read.",
+     "hltv_betting_table_url": "https://www.hltv.org/matches/2399087/bet-m-vs-just-players-nodwin-clutch-series-13#betting",
+     "pinnacle": "Not listed on Pinnacle's public CS2 matchups feed at the 2026-10-16T05:58Z capture (board research_attempt recorded the gap).",
+     "polymarket": "No market for the 17 Oct fixture. A September market 'BET-M 33 - Just Players' (cs2-33-justpl-2026-09-18) exists for a DIFFERENT, already-played 18 Sep match and is rejected as a rematch identity mismatch.",
+     "polymarket_rejected_url": "https://polymarket.com/esports/cs2/nodwin-clutch-series/cs2-33-justpl-2026-09-18",
+     "esportsbooks_search": "Web search for 'BET-M Just Players odds' found no book line for this fixture (searched 2026-10-16); the only price-like object is the historical Polymarket market above.",
+     "hltv_crowd_vote": "HLTV pick-a-winner shows 100.0% BET-M / 0.0% (crowd vote, not a price; never used as a probability).",
+     "hotspawn_crowd": "Hotspawn ownership 100/0 BET-M on 4 picks at the 05:58Z capture (ownership only, never a probability)."
+    },
+    "sides": {
+     "a": {
+      "team": "BET-M",
+      "hltv_lineup": [
+       "Patsi",
+       "Raijin",
+       "executor",
+       "z1Nny",
+       "bluewh1te"
+      ],
+      "hltv_rank": 65,
+      "hltv_rank_url": "https://www.hltv.org/ranking/teams/2026/october/12/13619",
+      "hltv_rank_note": null,
+      "hltv_vrs_display_rank": 87,
+      "hltv_vrs_display_url": "https://www.hltv.org/valve-ranking/teams?teamId=13619",
+      "roster_delta_vs_snapshot": {
+       "in": [
+        "Patsi"
+       ],
+       "out": [
+        "synyx"
+       ]
+      },
+      "chosen_rank": 71,
+      "chosen_points": 1149,
+      "disambiguation": {
+       "candidates": 1,
+       "overlap_best": 4,
+       "overlap_second": 0,
+       "ok": true
+      },
+      "chosen_details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0071--bet-m--bluewh1te-executor-raijin-synyx-z1nny.md",
+      "note": "Valve's 2026-10-05 snapshot lists one BET-M row only (rank 71). HLTV lists Patsi in the match lineup where the snapshot five has synyx (4/5 continuity). Patsi also appears in Valve's second ex-RUSTEC row (rank 152), consistent with a transfer."
+     },
+     "b": {
+      "team": "Just Players",
+      "hltv_lineup": [
+       "h1te",
+       "sm3t",
+       "sstiNiX",
+       "Temny Prince",
+       "wh1teout"
+      ],
+      "hltv_rank": 116,
+      "hltv_rank_url": "https://www.hltv.org/ranking/teams/2026/october/12/13776",
+      "hltv_rank_note": null,
+      "hltv_vrs_display_rank": 108,
+      "hltv_vrs_display_url": "https://www.hltv.org/valve-ranking/teams?teamId=13776",
+      "roster_delta_vs_snapshot": {
+       "in": [
+        "wh1teout"
+       ],
+       "out": [
+        "bl1x1"
+       ]
+      },
+      "chosen_rank": 118,
+      "chosen_points": 974,
+      "disambiguation": {
+       "candidates": 2,
+       "overlap_best": 4,
+       "overlap_second": 1,
+       "ok": true
+      },
+      "chosen_details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0118--just_players--bl1x1-h1te-sm3t-sstinix-temny_prince.md",
+      "note": "The name 'Just Players' appears twice in Valve's file (ranks 118 and 347). The HLTV match lineup shares 4 nicknames with row 118 (h1te, sm3t, sstiNiX, Temny Prince) and only 1 with row 347 (sstiNiX), so row 118 is the unique best overlap."
+     }
+    },
+    "sources": [
+     "https://www.hltv.org/matches/2399087/bet-m-vs-just-players-nodwin-clutch-series-13",
+     "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0071--bet-m--bluewh1te-executor-raijin-synyx-z1nny.md",
+     "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0118--just_players--bl1x1-h1te-sm3t-sstinix-temny_prince.md",
+     "https://www.hltv.org/ranking/teams/2026/october/12/13619",
+     "https://www.hltv.org/ranking/teams/2026/october/12/13776",
+     "https://www.hltv.org/valve-ranking/teams?teamId=13619",
+     "https://www.hltv.org/valve-ranking/teams?teamId=13776",
+     "https://www.hotspawn.com/matches/bet-m-vs-just-players-nodwin-clutch-series-13-1079170"
+    ]
+   },
+   "pick": "BET-M",
+   "pick_p": 0.6138,
+   "flags": [
+    "CROWD_MISSING",
+    "MODEL_ONLY",
+    "NO_MARKET",
+    "RESEARCH_FALLBACK",
+    "VALVE_NAME_AMBIGUOUS",
+    "VRS_ROSTER_OUTDATED"
+   ],
+   "strategy": {
+    "class": "NO CROWD DATA",
+    "leaderboard_pick": "BET-M",
+    "reason": "Fewer than 10 crowd picks; ownership is too sparse for an automatic fade."
+   },
    "sources": [
     "https://play.hotspawn.com/lobby",
     "https://www.hotspawn.com/matches/bet-m-vs-just-players-nodwin-clutch-series-13-1079170",
     "https://www.hltv.org/matches/2399087/bet-m-vs-just-players-nodwin-clutch-series-13",
-    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0071--bet-m--bluewh1te-executor-raijin-synyx-z1nny.md",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0118--just_players--bl1x1-h1te-sm3t-sstinix-temny_prince.md",
+    "https://www.hltv.org/ranking/teams/2026/october/12/13619",
+    "https://www.hltv.org/ranking/teams/2026/october/12/13776",
+    "https://www.hltv.org/valve-ranking/teams?teamId=13619",
+    "https://www.hltv.org/valve-ranking/teams?teamId=13776"
    ],
    "result": null
   },
@@ -3443,7 +3615,30 @@
    "hltv_note": "BO3 and pairing independently re-read from HLTV in session 6b23e38f; no book price was visible in the fetched match-page betting table.",
    "format": "BO3",
    "format_source": "HLTV match page",
-   "vrs_a": null,
+   "vrs_a": {
+    "name": "Banda Chuya",
+    "rank": 165,
+    "points": 801,
+    "roster": [
+     "AdrieN",
+     "ezox",
+     "maaryy",
+     "Showk",
+     "tomiko"
+    ],
+    "disambiguated": true,
+    "disambiguation": {
+     "rule": "roster-overlap disambiguation",
+     "min_overlap": 3,
+     "candidates": 2,
+     "overlap_best": 5,
+     "overlap_second": 1,
+     "ok": true
+    },
+    "details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0165--banda_chuya--adrien-ezox-maaryy-showk-tomiko.md",
+    "matches_with_current_five": 18,
+    "first_rated_match_current_five": "2026-09-06"
+   },
    "vrs_b": {
     "name": "Enjoy",
     "rank": 138,
@@ -3455,32 +3650,164 @@
      "sh1geo",
      "zazzer"
     ],
+    "disambiguated": true,
+    "disambiguation": {
+     "rule": "roster-overlap disambiguation",
+     "min_overlap": 3,
+     "candidates": 1,
+     "overlap_best": 3,
+     "overlap_second": 0,
+     "ok": true
+    },
+    "details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0138--enjoy--kurosa-nbl-roxesz-sh1geo-zazzer.md",
     "matches_with_current_five": 31,
     "first_rated_match_current_five": "2026-04-09"
    },
-   "own_p_a": null,
-   "own_p_b": null,
+   "own_p_a": 0.4538,
+   "own_p_b": 0.5462,
    "hltv_rank_a": null,
    "hltv_rank_b": 199,
    "hltv_team_a": null,
    "hltv_team_b": "https://www.hltv.org/team/4246/enjoy",
-   "p_a": null,
-   "p_b": null,
-   "basis": "Unresolved",
-   "rung": "D",
-   "factors": [],
-   "own_line_limitation": "one or both teams not uniquely identified in Valve standings",
-   "pick": null,
-   "pick_p": null,
-   "flags": [
-    "UNRESOLVED"
+   "p_a": 0.4538,
+   "p_b": 0.5462,
+   "basis": "Research fallback: our own line (Valve points, row disambiguated by documented roster overlap with HLTV's listed lineups; no outside price exists)",
+   "rung": "E",
+   "factors": [
+    {
+     "side": "b",
+     "team": "Enjoy",
+     "kind": "roster change vs Valve snapshot (research fallback)",
+     "summary": "HLTV lists reyoz, flawix in and roxesz, zazzer out versus the five rated in Valve's 2026-10-05 snapshot.",
+     "argues_against": true,
+     "strength": "moderate",
+     "source_urls": [
+      "https://www.hltv.org/matches/2399477/banda-chuya-vs-enjoy-cct-2026-europe-series-12-closed-qualifier"
+     ],
+     "read_utc": "2026-10-16T07:25:00Z",
+     "checked_date_utc": "2026-10-16",
+     "verification_status": "verified"
+    }
    ],
-   "strategy": null,
+   "own_line_limitation": "strict own line withheld (one or both teams not uniquely identified in Valve standings); rung E resolved identity by documented roster-overlap disambiguation",
+   "fallback": {
+    "pack": "hotspawn/research/fallback_83090640.json",
+    "rule": ">= 3 shared nicknames vs HLTV lineup, strictly best overlap; own-line formula on the chosen rows",
+    "hltv_match_url": "https://www.hltv.org/matches/2399477/banda-chuya-vs-enjoy-cct-2026-europe-series-12-closed-qualifier",
+    "hltv_read_utc": "2026-10-16T07:25:00Z",
+    "market_check": {
+     "hltv_betting_table": "No sportsbook odds row; only a Stake (US sweepstake) promo cell. No price read.",
+     "hltv_betting_table_url": "https://www.hltv.org/matches/2399477/banda-chuya-vs-enjoy-cct-2026-europe-series-12-closed-qualifier#betting",
+     "egamersworld": "Match page lists 1.8 / 1.8 for both teams - the same symmetric placeholder value the project previously rejected as a non-quote (prior flag F-28 class). Not a two-sided market; rejected, not used.",
+     "egamersworld_url": "https://egamersworld.com/counterstrike/match/1sGIL2gAYu/banda-chuya-vs-enjoy-9ru7xO5OG",
+     "egamersworld_rating": "EGW team ratings displayed: banda chuya 903, Enjoy 347 (EGW's own aggregate rating, not a betting line; context only).",
+     "pinnacle": "Not listed on Pinnacle's public CS2 matchups feed at the 2026-10-16T05:58Z capture (board research_attempt recorded the gap).",
+     "polymarket": "No market found for this fixture (searched 2026-10-16).",
+     "esportsbooks_search": "Web search for a book line (bo3.gg / gg.bet / thunderpick class) found no priced market for this fixture (searched 2026-10-16).",
+     "hltv_crowd_vote": "HLTV pick-a-winner shows 50.0% / 50.0% (crowd vote, not a price; never used as a probability).",
+     "hotspawn_crowd": "Hotspawn ownership 100/0 Banda chuya on 4 picks at the 05:58Z capture (ownership only, never a probability)."
+    },
+    "sides": {
+     "a": {
+      "team": "Banda Chuya",
+      "hltv_lineup": [
+       "tomiko",
+       "maaryy",
+       "AdrieN",
+       "Showk",
+       "ezox"
+      ],
+      "hltv_rank": null,
+      "hltv_rank_url": null,
+      "hltv_rank_note": "HLTV displays 'HLTV: Unranked' for Banda Chuya (team 13900) on the match page; no HLTV world-rank number is published for this team.",
+      "hltv_vrs_display_rank": 187,
+      "hltv_vrs_display_url": "https://www.hltv.org/valve-ranking/teams?teamId=13900",
+      "roster_delta_vs_snapshot": {
+       "in": [],
+       "out": []
+      },
+      "chosen_rank": 165,
+      "chosen_points": 801,
+      "disambiguation": {
+       "candidates": 2,
+       "overlap_best": 5,
+       "overlap_second": 1,
+       "ok": true
+      },
+      "chosen_details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0165--banda_chuya--adrien-ezox-maaryy-showk-tomiko.md",
+      "note": "The name 'Banda Chuya' appears twice in Valve's file (ranks 165 and 373). The HLTV match lineup matches row 165 exactly (5/5 nicknames) and shares 1 nickname (ezox) with the 2-player row 373, so row 165 is the unique best overlap. The HLTV-listed five also equals the snapshot five exactly (no roster delta)."
+     },
+     "b": {
+      "team": "Enjoy",
+      "hltv_lineup": [
+       "reyoz",
+       "sh1geo",
+       "kurosa",
+       "nbl",
+       "flawix"
+      ],
+      "hltv_rank": 199,
+      "hltv_rank_url": "https://www.hltv.org/ranking/teams/2026/october/12/4246",
+      "hltv_rank_note": null,
+      "hltv_vrs_display_rank": 157,
+      "hltv_vrs_display_url": "https://www.hltv.org/valve-ranking/teams?teamId=4246",
+      "roster_delta_vs_snapshot": {
+       "in": [
+        "reyoz",
+        "flawix"
+       ],
+       "out": [
+        "roxesz",
+        "zazzer"
+       ]
+      },
+      "chosen_rank": 138,
+      "chosen_points": 871,
+      "disambiguation": {
+       "candidates": 1,
+       "overlap_best": 3,
+       "overlap_second": 0,
+       "ok": true
+      },
+      "chosen_details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0138--enjoy--kurosa-nbl-roxesz-sh1geo-zazzer.md",
+      "note": "One Enjoy row in Valve's file (rank 138). The HLTV match lineup keeps 3 of the snapshot five (kurosa, nbl, sh1geo) and adds reyoz and flawix for roxesz and zazzer. The dated points therefore predate a two-player change; the fallback line is computed but flagged softer."
+     }
+    },
+    "sources": [
+     "https://www.hltv.org/matches/2399477/banda-chuya-vs-enjoy-cct-2026-europe-series-12-closed-qualifier",
+     "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0165--banda_chuya--adrien-ezox-maaryy-showk-tomiko.md",
+     "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0138--enjoy--kurosa-nbl-roxesz-sh1geo-zazzer.md",
+     "https://www.hltv.org/ranking/teams/2026/october/12/4246",
+     "https://www.hltv.org/valve-ranking/teams?teamId=13900",
+     "https://www.hltv.org/valve-ranking/teams?teamId=4246",
+     "https://www.hotspawn.com/matches/banda-chuya-vs-enjoy-cct-europe-2026-series-12-play-in-1081126"
+    ]
+   },
+   "pick": "Enjoy",
+   "pick_p": 0.5462,
+   "flags": [
+    "CROWD_MISSING",
+    "MODEL_ONLY",
+    "NO_MARKET",
+    "RESEARCH_FALLBACK",
+    "VALVE_NAME_AMBIGUOUS",
+    "VRS_ROSTER_OUTDATED"
+   ],
+   "strategy": {
+    "class": "NO CROWD DATA",
+    "leaderboard_pick": "Enjoy",
+    "reason": "Fewer than 10 crowd picks; ownership is too sparse for an automatic fade."
+   },
    "sources": [
     "https://play.hotspawn.com/lobby",
     "https://www.hotspawn.com/matches/banda-chuya-vs-enjoy-cct-europe-2026-series-12-play-in-1081126",
     "https://www.hltv.org/matches/2399477/banda-chuya-vs-enjoy-cct-2026-europe-series-12-closed-qualifier",
-    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0165--banda_chuya--adrien-ezox-maaryy-showk-tomiko.md",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0138--enjoy--kurosa-nbl-roxesz-sh1geo-zazzer.md",
+    "https://www.hltv.org/ranking/teams/2026/october/12/4246",
+    "https://www.hltv.org/valve-ranking/teams?teamId=13900",
+    "https://www.hltv.org/valve-ranking/teams?teamId=4246"
    ],
    "result": null
   },
@@ -9530,6 +9857,8 @@
   "VRS_ROSTER_OUTDATED": "A source-checked lineup differs from the five rated in Valve's snapshot; the dated rating does not establish the actual current lineup.",
   "FORMAT_UNKNOWN": "No source stated the series length; nothing was assumed.",
   "UNRESOLVED": "No eligible outside line or independent direction satisfies the evidence gates; pick and probabilities are left blank.",
+  "RESEARCH_FALLBACK": "No outside price and no strict own line; the pick is our own line on a Valve standings row disambiguated by documented roster overlap with HLTV's listed match lineup (research rung E). Softer than a market price.",
+  "VALVE_NAME_AMBIGUOUS": "The team name maps to more than one roster row in Valve's standings; the row used was chosen by the documented roster-overlap rule and is linked on the row.",
   "STALE_LISTING": "Hotspawn still lists this fixture although its lock time passed more than 36 h ago (not pickable).",
   "LOCKED": "Lock time has passed; kept for the record and for grading.",
   "CROWD_MISSING": "Hotspawn did not publish a crowd share; no leaderboard play computed.",
@@ -10287,6 +10616,48 @@
    "p_b": 0.4103,
    "basis": "Our own line (Valve points)",
    "leaderboard_pick": "BakS",
+   "class": "NO CROWD DATA",
+   "rule_version": "v3-evidence-2026-10-16",
+   "crowd_a": 100,
+   "crowd_b": 0,
+   "as_of": "2026-10-16T05:58:32Z",
+   "frozen": false
+  },
+  "1079170": {
+   "match_id": "1079170",
+   "team_a": "BET-M",
+   "team_b": "Just Players",
+   "competition": "NODWIN Clutch Series #13",
+   "start_utc": "2026-10-17T08:00:00Z",
+   "lock_utc": "2026-10-17T07:54:00Z",
+   "points": 3,
+   "pick": "BET-M",
+   "pick_p": 0.6138,
+   "p_a": 0.6138,
+   "p_b": 0.3862,
+   "basis": "Research fallback: our own line (Valve points, row disambiguated by documented roster overlap with HLTV's listed lineups; no outside price exists)",
+   "leaderboard_pick": "BET-M",
+   "class": "NO CROWD DATA",
+   "rule_version": "v3-evidence-2026-10-16",
+   "crowd_a": 100,
+   "crowd_b": 0,
+   "as_of": "2026-10-16T05:58:32Z",
+   "frozen": false
+  },
+  "1081126": {
+   "match_id": "1081126",
+   "team_a": "Banda chuya",
+   "team_b": "Enjoy",
+   "competition": "CCT Europe 2026 Series #12 Play-In",
+   "start_utc": "2026-10-18T08:00:00Z",
+   "lock_utc": "2026-10-18T07:54:00Z",
+   "points": 2,
+   "pick": "Enjoy",
+   "pick_p": 0.5462,
+   "p_a": 0.4538,
+   "p_b": 0.5462,
+   "basis": "Research fallback: our own line (Valve points, row disambiguated by documented roster overlap with HLTV's listed lineups; no outside price exists)",
+   "leaderboard_pick": "Enjoy",
    "class": "NO CROWD DATA",
    "rule_version": "v3-evidence-2026-10-16",
    "crowd_a": 100,
