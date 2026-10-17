@@ -123,7 +123,7 @@ def render(board, research, card, capture=None, compact=False):
         out.append(f'<tr><td>{e(match.get("date"))}<br>{e(match.get("format"))}</td>'
                    f'<td>{e(match.get("team_a"))} vs {e(opponent)}<br>{e(match.get("opponent_note"))}</td>'
                    f'<td>{e(match.get("context"))}</td>' + cell + f'<td>{source(match.get("url"))}</td></tr>')
-    out.append('</tbody></table></div><h3>Day-3 results — completed versus still unconfirmed at check</h3>'
+    out.append('</tbody></table></div><h3>Day-3 results — confirmed from HLTV</h3>'
                '<div class="tablewrap"><table><thead><tr><th>Match</th><th>Final score / status</th>'
                '<th>Maps and veto</th><th>What changes for day 4</th><th>Source</th></tr></thead><tbody>')
     for result in research.get('results', []):
@@ -141,6 +141,53 @@ def render(board, research, card, capture=None, compact=False):
                    'map-veto, preparation or fatigue term, so it is kept separate from the outside prices and is not a pick. '
                    'HLTV’s own pick-a-winner shares for these ties are recorded in the research file only and are never used '
                    'in a number here.</p>')
+    picks = research.get('day4_contrarian_picks') or {}
+    if picks:
+        out.append('<h3>Day-4 contrarian options — source-backed, and audited</h3>')
+        out.append(f'<p class="lead"><strong>Headline:</strong> {e(picks.get("headline_strategy"))}</p>')
+        out.append(f'<p class="lead"><strong>Recommendation:</strong> {e(picks.get("recommended"))}</p>')
+        out.append('<div class="tablewrap"><table><thead><tr><th>Match</th><th>Start (UTC)</th><th>Contrarian option</th>'
+                   '<th>Class</th><th>Why it is defensible</th><th>Risk / expected-points cost</th></tr></thead><tbody>')
+        for key in ('contrarian_option_1', 'contrarian_option_2'):
+            opt = picks.get(key)
+            if not opt:
+                continue
+            start = ''
+            for sf in research.get('semifinals', []):
+                if sf.get('team_a') in (opt.get('match') or '') and sf.get('team_b') in (opt.get('match') or ''):
+                    start = sf.get('start_utc') or sf.get('market_start_utc') or ''
+                    break
+            cls = opt.get('class') or ''
+            out.append(f'<tr><td>{e(opt.get("match"))}</td><td>{e(start)}</td><td><strong>{e(opt.get("pick"))}</strong></td>'
+                       f'<td><span class="tag c-{e(cls.replace(" ", "-"))}">{e(cls)}</span></td>'
+                       f'<td>{e(opt.get("rationale"))}</td>'
+                       f'<td>{e(opt.get("risk"))}<br><span class="small">{e(opt.get("ev_cost"))}</span></td></tr>')
+        out.append('</tbody></table></div>')
+        audit = picks.get('audit') or []
+        if audit:
+            out.append('<p class="small"><b>Merge audit of the merged draft&#39;s claims:</b> every line below was re-checked against the '
+                       'sources read on 16-17 October. Corrections are applied above; unverified claims are not republished.</p>'
+                       '<div class="tablewrap"><table><thead><tr><th>Claim</th><th>Status</th><th>Finding</th><th>Source</th>'
+                       '</tr></thead><tbody>')
+            for item in audit:
+                src = source(item.get("source_url")) if item.get("source_url") else "—"
+                out.append(f'<tr><td>{e(item.get("claim"))}</td><td>{e(item.get("status"))}</td>'
+                           f'<td>{e(item.get("detail"))}</td><td>{src}</td></tr>')
+            out.append('</tbody></table></div>')
+    for sf in research.get('semifinals', []):
+        ca = sf.get('contrarian_analysis') or {}
+        if not ca:
+            continue
+        out.append(f'<h3>{e(sf.get("team_a"))} vs {e(sf.get("team_b"))} — analysis behind the option</h3>'
+                   '<div class="tablewrap"><table><thead><tr><th>Factor</th><th>Detail</th></tr></thead><tbody>')
+        for label, value in (("Favourite", ca.get('favourite')), ("Underdog", ca.get('underdog')),
+                             ("Head-to-head", ca.get('h2h_2026') or ca.get('h2h')),
+                             ("Map pool", ca.get('map_pool')), ("Map-pool check", ca.get('map_pool_flag')),
+                             ("Upset case", ca.get('upset_case')), ("Favourite case", ca.get('favourite_case')),
+                             ("Verdict", ca.get('verdict'))):
+            if value:
+                out.append(f'<tr><td>{e(label)}</td><td>{e(value)}</td></tr>')
+        out.append('</tbody></table></div>')
     out.append('</tbody></table></div><h3>How days 1–3 guide the decision</h3><ul>')
     for lesson in research.get('lessons', []):
         out.append(f'<li>{e(lesson.get("text"))} {source(lesson.get("url"))}</li>')

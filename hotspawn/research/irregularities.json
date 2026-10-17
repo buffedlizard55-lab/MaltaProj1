@@ -17,7 +17,7 @@
    "id": "IR-02",
    "status": "unverified",
    "title": "Historical kickoff disagreement: exact HLTV UTC time unverified",
-   "detail": "Archived research reported conflicting kickoff clocks for the 15 October 9z\u2013Falcons series. A timezone-aware HLTV kickoff receipt was not retained, so its exact UTC value is omitted rather than inferred from reader-rendered text. Use Hotspawn payload epochs for contest locks and each captured bookmaker timestamp for its own schedule, with a disagreement flag. The pinned older report is preserved for provenance, not promoted as verified clock evidence.",
+   "detail": "Archived research reported conflicting kickoff clocks for the 15 October 9z–Falcons series. A timezone-aware HLTV kickoff receipt was not retained, so its exact UTC value is omitted rather than inferred from reader-rendered text. Use Hotspawn payload epochs for contest locks and each captured bookmaker timestamp for its own schedule, with a disagreement flag. The pinned older report is preserved for provenance, not promoted as verified clock evidence.",
    "evidence": [
     "https://github.com/buffedlizard55-lab/MaltaProj1/blob/694fe14faa05c5aa282e5d3494a3b3807c1813db/hotspawn/research/irregularities.json",
     "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
@@ -38,7 +38,7 @@
    "id": "IR-04",
    "status": "open",
    "title": "HLTV qualitative analytics is not a two-sided price source",
-   "detail": "The Voca\u2013Phantom analytics summary was directly re-read on 16 October and names a stand-in for that fixture. Its header/poll/placeholder numbers are not price evidence. No usable two-sided line was extracted from this page, and no unverified fixed odds are reproduced.",
+   "detail": "The Voca–Phantom analytics summary was directly re-read on 16 October and names a stand-in for that fixture. Its header/poll/placeholder numbers are not price evidence. No usable two-sided line was extracted from this page, and no unverified fixed odds are reproduced.",
    "evidence": [
     "https://www.hltv.org/betting/analytics/2399424/voca-vs-phantom-elisa-breakout-series-2"
    ]
@@ -121,7 +121,7 @@
    "id": "IR-13",
    "status": "handled",
    "title": "Group B decider now present in the new Hotspawn inventory",
-   "detail": "Earlier Oct15 captures did not include BetBoom\u2013Legacy. The Oct16 04:21Z three-surface read contains official ID 1081775. The day-3 page now uses the current primary board, not a static \u201cabsent\u201d claim; its exact UTC schedule comes from Hotspawn epochs.",
+   "detail": "Earlier Oct15 captures did not include BetBoom–Legacy. The Oct16 04:21Z three-surface read contains official ID 1081775. The day-3 page now uses the current primary board, not a static “absent” claim; its exact UTC schedule comes from Hotspawn epochs.",
    "evidence": [
     "https://play.hotspawn.com/lobby",
     "https://liquipedia.net/counterstrike/Thunderpick/World_Championship/2026",
@@ -243,7 +243,7 @@
    "id": "IR-25",
    "status": "corrected",
    "title": "July Aurora rebuild was not a fresh day-3 onboarding event",
-   "detail": "HLTV\u2019s official-signing report is dated 8 July: kyxsan completed the rebuild after Jimpphat/ash. About three months old by TWC. Changed the Aurora note to weak, neutral context; no invented numerical penalty. Day-1/day-2 results and the two decider formats were independently checked.",
+   "detail": "HLTV’s official-signing report is dated 8 July: kyxsan completed the rebuild after Jimpphat/ash. About three months old by TWC. Changed the Aurora note to weak, neutral context; no invented numerical penalty. Day-1/day-2 results and the two decider formats were independently checked.",
    "evidence": [
     "https://www.hltv.org/news/45082/official-aurora-complete-rebuild-with-kyxsan",
     "https://www.hltv.org/matches/2399384/9z-vs-aurora-thunderpick-world-championship-2026",
@@ -254,7 +254,7 @@
    "id": "IR-26",
    "status": "scope-limitation",
    "title": "Archived dashboards are preserved, not certified by the primary-board audit",
-   "detail": "This integration reconciles every row in the primary Hotspawn capture and rechecks the linked TWC results. It does not certify all externally sourced historical facts on the hundreds of preserved alternative pages. They are folded below the primary route, carry separate snapshots/methods, and must not be mistaken for this release\u2019s verified dataset. Unsupported primary research values are omitted or blank and flagged.",
+   "detail": "This integration reconciles every row in the primary Hotspawn capture and rechecks the linked TWC results. It does not certify all externally sourced historical facts on the hundreds of preserved alternative pages. They are folded below the primary route, carry separate snapshots/methods, and must not be mistaken for this release’s verified dataset. Unsupported primary research values are omitted or blank and flagged.",
    "evidence": [
     "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/reviews/6b23e38f-verification.md"
    ]
@@ -294,7 +294,7 @@
    "id": "IR-30",
    "status": "open",
    "title": "Match-specific Phantom stand-in report is not a verified later lineup",
-   "detail": "The directly read HLTV analytics summary names cej0t for Voca\u2013Phantom1080285. The later Phantom\u2013RoundsGG1080288 and Phantom\u2013HAVU1080290 lineups were not independently established. Their lineup facts remain blank, an own-line estimate is withheld, and the earlier stand-in is not used as a strong strategy factor for those later matches. Eligible outside prices can still be displayed. NIP late-invite context is likewise limited to the verified TWC fixtures.",
+   "detail": "The directly read HLTV analytics summary names cej0t for Voca–Phantom1080285. The later Phantom–RoundsGG1080288 and Phantom–HAVU1080290 lineups were not independently established. Their lineup facts remain blank, an own-line estimate is withheld, and the earlier stand-in is not used as a strong strategy factor for those later matches. Eligible outside prices can still be displayed. NIP late-invite context is likewise limited to the verified TWC fixtures.",
    "evidence": [
     "https://www.hltv.org/betting/analytics/2399424/voca-vs-phantom-elisa-breakout-series-2",
     "https://www.hltv.org/news/45688/thunderpick-world-championship-matchups-announced-with-virtuspro-replaced-by-nip"
@@ -375,7 +375,7 @@
   {
    "id": "IR-38",
    "status": "open",
-   "title": "Young27 (Y27) has no rating in any source \u2014 the one fixture with no pick",
+   "title": "Young27 (Y27) has no rating in any source — the one fixture with no pick",
    "detail": "Match 1081497 (Young27 vs Young TigeRES, GLuck Yungstar 2026 Series 3, BO3 LAN, locks 2026-10-16T12:54Z) is the board's only open row without a pick. Y27 (HLTV team 14025: Aliot, seberya, mero, larlo, desway) is HLTV-Unranked and absent from Valve's global and regional 2026-10-05 standings under any name; no book, prediction market or relayed esportsbook covers the match. Young TigeRES alone is rateable (Valve row 199, 728 points, 3/5 overlap). A one-sided rating cannot produce a two-sided probability without inventing one, so the pick stays blank with the full research trail on the Unresolved page.",
    "evidence": [
     "https://www.hltv.org/matches/2399642/young-tigeres-vs-y27-gluck-yungstar-2026-series-3#lineups",
@@ -387,7 +387,7 @@
    "id": "IR-39",
    "status": "open",
    "title": "Six roster changes versus the Valve snapshot across the research-fallback rows (all flagged)",
-   "detail": "HLTV match lineups on 2026-10-16 differ from the five rated in Valve's 2026-10-05 snapshot for: UPGRADE (synyx in, dezl3bio out \u2014 synyx left BET-M, who added Patsi: see IR-32), Honv\u00e9d (marTineZ + stand-in zs0lt1 in; fleav, iBALLY out), Lavked (jakekeS in, sol out), DONSTU (takanashi in, LAKSHERi out), ex-6666 (stefienson in, dENZY out; stefienson left Phantom Academy, who added La1roN), Privateer (moz + Amqn in; Ariant0, JAUSTERE out). Every delta is flagged VRS_ROSTER_OUTDATED on its row and printed with the fallback evidence; no delta was smoothed into the numbers.",
+   "detail": "HLTV match lineups on 2026-10-16 differ from the five rated in Valve's 2026-10-05 snapshot for: UPGRADE (synyx in, dezl3bio out — synyx left BET-M, who added Patsi: see IR-32), Honvéd (marTineZ + stand-in zs0lt1 in; fleav, iBALLY out), Lavked (jakekeS in, sol out), DONSTU (takanashi in, LAKSHERi out), ex-6666 (stefienson in, dENZY out; stefienson left Phantom Academy, who added La1roN), Privateer (moz + Amqn in; Ariant0, JAUSTERE out). Every delta is flagged VRS_ROSTER_OUTDATED on its row and printed with the fallback evidence; no delta was smoothed into the numbers.",
    "evidence": [
     "https://www.hltv.org/matches/2399761/private-vs-upgrade-cis-esports-league-cyberclash-season-2#lineups",
     "https://www.hltv.org/matches/2399762/honvd-vs-lavked-cis-esports-league-cyberclash-season-2#lineups",
@@ -400,7 +400,7 @@
    "id": "IR-40",
    "status": "open",
    "title": "Eternal Fire vs Apogee Betclic was researched after its pick lock (retrospective only)",
-   "detail": "Match 1081493 (PGL Bucharest 2027 Closed Qualifier UB quarter-final, BO3) entered the Hotspawn slate at the 07:51Z capture with a 07:54Z pick lock \u2014 three minutes. Research completed at ~08:45Z. The row is published with POST_LOCK_RESOLUTION: the pick (Eternal Fire, 56.3%) is retrospective analysis only, was never submittable, and is excluded from the graded pick history. An aggregator page displayed 1.37/2.85 book coefficients for this match (recorded as context, never used as a price).",
+   "detail": "Match 1081493 (PGL Bucharest 2027 Closed Qualifier UB quarter-final, BO3) entered the Hotspawn slate at the 07:51Z capture with a 07:54Z pick lock — three minutes. Research completed at ~08:45Z. The row is published with POST_LOCK_RESOLUTION: the pick (Eternal Fire, 56.3%) is retrospective analysis only, was never submittable, and is excluded from the graded pick history. An aggregator page displayed 1.37/2.85 book coefficients for this match (recorded as context, never used as a price).",
    "evidence": [
     "https://www.hltv.org/matches/2399654/eternal-fire-vs-betclic-pgl-bucharest-2027-closed-qualifier",
     "https://vprognoze.ru/topforecast/8192182-eternal-fire-bc-apogee-2026-10-16.html",
@@ -409,13 +409,14 @@
   },
   {
    "id": "D4-01",
-   "status": "needs review",
+   "status": "fixed",
    "title": "Day-4 pairings and day-3 results are a dated research snapshot",
-   "detail": "At the 16 October 19:29\u201319:34 UTC research check, HLTV confirmed Aurora 2-0 9z and FURIA\u2013Aurora on 17 October. BETBOOM\u2013Legacy was still live at 1-1; its final winner, score and Falcons opponent are blank. The Day-4 section automatically displays newly captured Hotspawn fixtures but never turns a hypothetical bracket opponent into a pick. Consult the dated source links for subsequent results.",
+   "detail": "Resolved on 2026-10-16/17 by session arena/56b7c55f: the BETBOOM-Legacy decider finished 2-1 BETBOOM (Nuke 16-13 in overtime, Dust2 11-13, Mirage 13-11; full veto recorded) and HLTV's semifinal pages name Falcons vs BETBOOM. Both semifinals now carry confirmed pairings, formats, kickoff sources and an own line in research/day4_twc2026.json. What remains is not a research gap but a listing gap: Hotspawn's pick'em surfaces still do not list the TWC main event, so nothing there becomes a graded pick. See D4-04.",
    "evidence": [
     "https://www.hltv.org/results?event=8932",
     "https://www.hltv.org/events/8932/matches",
-    "https://play.hotspawn.com/thp-pickems"
+    "https://play.hotspawn.com/thp-pickems",
+    "https://www.hltv.org/matches/2399413/betboom-vs-legacy-thunderpick-world-championship-2026"
    ]
   },
   {
@@ -433,13 +434,84 @@
    "id": "D4-03",
    "status": "needs review",
    "title": "aimclub market operator is unnamed; do not imply direct-book verification",
-   "detail": "The exact bo3 API record for aimclub\u2013BASEMENT BOYS supplied active 2.04/1.69 prices and bet_provider_id=39, but no provider name. The name remains blank; the derived secondary estimate is flagged BOOKMAKER_UNVERIFIED and automatic contrarian fading is disabled. HLTV confirms the BO1 fixture; its displayed lineup differs from Valve\u2019s older aimclub five, so the strict own line is withheld.",
+   "detail": "The exact bo3 API record for aimclub–BASEMENT BOYS supplied active 2.04/1.69 prices and bet_provider_id=39, but no provider name. The name remains blank; the derived secondary estimate is flagged BOOKMAKER_UNVERIFIED and automatic contrarian fading is disabled. HLTV confirms the BO1 fixture; its displayed lineup differs from Valve’s older aimclub five, so the strict own line is withheld.",
    "evidence": [
     "https://www.hltv.org/matches/2399591/aimclub-vs-basement-boys-digital-crusade-draculan-season-7",
     "https://api.bo3.gg/api/v1/matches?filter%5Bmatches.id%5D%5Beq%5D=131693&with=teams,tournament",
     "https://bo3.gg/matches/aimclub-vs-basement-boys-19-10-2026"
    ]
+  },
+  {
+   "id": "D4-04",
+   "status": "open",
+   "title": "The live TWC main event has no Hotspawn pick'em listing",
+   "detail": "Three consecutive captures (23:50:42Z, 23:52:01Z, 00:01:50Z) each hold 83 CS2 fixtures and none from the TWC main event, while the lobby's tournament filter still shows stale June rows from 'Thunderpick World Championship 2026: South American Series #1'. The 17 October semifinals therefore cannot be picked or graded here; they are published as dated research plus an external market watch that re-quotes each capture.",
+   "evidence": [
+    "https://play.hotspawn.com/lobby",
+    "https://play.hotspawn.com/thp-pickems",
+    "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/hotspawn/data/capture.json"
+   ]
+  },
+  {
+   "id": "IR-41",
+   "status": "fixed",
+   "title": "Unresolved rows stated a vague reason instead of the actual blocker",
+   "detail": "The two rung-D rows read 'one or both teams not uniquely identified in Valve standings', which conflates two very different situations. model.py now reports per team whether it is absent from Valve's file or matches several same-name rows, e.g. 'Morningstar has no row in Valve's 2026-10-05 standings' and 'Chinggis Warriors matches 2 same-name rows ... ; WXM has no row ...'. No pick is created; only the reason is now precise.",
+   "evidence": [
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
+    "https://www.hltv.org/matches/2399576/lynn-vision-vs-morningstar-macemedia-void-autumn-cup-2026"
+   ]
+  },
+  {
+   "id": "IR-42",
+   "status": "handled",
+   "title": "HLTV refuses the automated collector, so gap research is blind on HLTV",
+   "detail": "capture.json's gap_research recorded HTTP 403 for the first HLTV request and the circuit breaker skipped the rest, while human-readable HLTV pages loaded normally through the fetch tool in the same hour. The board therefore curates HLTV match links and formats in research/hltv_links.json and records manual read times in the research files; the capture's refusal is disclosed rather than presented as 'no page exists'.",
+   "evidence": [
+    "https://www.hltv.org/matches",
+    "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/hotspawn/data/capture.json"
+   ]
+  },
+  {
+   "id": "IR-43",
+   "status": "needs review",
+   "title": "EGamersWorld shows an untraceable 1.80/1.80 for Chinggis Warriors-WXM",
+   "detail": "The EGamersWorld match page displays identical two-way prices for both sides behind a 'Make a bet' affiliate cell, with no operator named and no margin structure: the same placeholder pattern already flagged for this project. It is recorded in the fixture's market_check and is deliberately not used as a price.",
+   "evidence": [
+    "https://egamersworld.com/counterstrike/match/EJcHRdr5Vx/chinggis-warriors-vs-wxm-_ddme1I7dZ",
+    "https://bo3.gg/matches/chinggis-warriors-vs-wept-xyloid-melancholy-20-10-2026"
+   ]
+  },
+  {
+   "id": "IR-44",
+   "status": "handled",
+   "title": "Hotspawn's 'WXM' is not expanded anywhere on Hotspawn",
+   "detail": "bo3.gg lists the same 20 October fixture as 'Wept Xyloid Melancholy vs Chinggis Warriors' (bo3 id 132180) and HLTV's event page lists the team as WXM (team 14011, all-China lineup). The board keeps Hotspawn's own label and records the cross-source identity in research/hltv_links.json instead of guessing.",
+   "evidence": [
+    "https://www.hltv.org/matches/2399578/chinggis-warriors-vs-wxm-macemedia-void-autumn-cup-2026",
+    "https://maisesports.com.br/partidas/wept-xyloid-melancholy-vs-chinggis-warriors-2026-10-20"
+   ]
+  },
+  {
+   "id": "IR-45",
+   "status": "needs review",
+   "title": "The earlier 'announced replacement' note for NIP has no source link",
+   "detail": "research/twc2026.json (session arena/6b23e38f) states that NIP attended as Virtus.pro's replacement, announced on 9 October, without a source URL in the file. It is not re-verified in this session and is not reused in any day-4 reasoning; treat it as an unverified note until a source is attached.",
+   "evidence": [
+    "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/hotspawn/research/twc2026.json"
+   ]
+  },
+  {
+   "id": "IR-46",
+   "status": "fixed",
+   "title": "Merged day-4 draft carried wrong kickoff times and an unsupported player claim",
+   "detail": "PR #179's day-4 research listed 10:00Z/13:00Z kickoffs (HLTV render times, not UTC), an 87% implied chance for the 1.20/4.00 relay (de-vigged it is 76.9%/23.1%) and 'Magnojez was the standout (1.17 rating)'. The countdown on the HLTV page and Polymarket's start times put the kickoffs at 14:00Z/17:00Z, and the match page's rating tables show zorte and S1ren as BETBOOM's best-rated players. All three are corrected in the merge, with the claims kept in an audit table on the page.",
+   "evidence": [
+    "https://polymarket.com/event/cs2-furia-aur1-2026-10-17",
+    "https://polymarket.com/event/cs2-fal2-bb3-2026-10-17",
+    "https://www.hltv.org/matches/2399413/betboom-vs-legacy-thunderpick-world-championship-2026"
+   ]
   }
  ],
- "updated_utc": "2026-10-16T08:55:00Z"
+ "updated_utc": "2026-10-17T00:20:00Z"
 }

@@ -793,6 +793,45 @@ class Day4OwnLine(unittest.TestCase):
         self.assertIn("fitted on Valve", page)
         self.assertNotIn("bookmaker odds for this fixture", page)
 
+
+class Day4MergeAudit(unittest.TestCase):
+    """research/day4_twc2026.json was written by two sessions. The merge must publish corrections as corrections,
+    keep the verified schedule/price values, and never restate an unverified claim as fact."""
+
+    DATA = read_json(HERE / "research" / "day4_twc2026.json", {}) or {}
+    PICKS = DATA.get("day4_contrarian_picks") or {}
+
+    def test_every_audited_claim_has_a_status_and_a_source_or_an_explicit_none(self):
+        audit = self.PICKS.get("audit") or []
+        self.assertTrue(audit, "the merged day-4 file carries no claim audit")
+        statuses = set()
+        for item in audit:
+            self.assertTrue(item.get("claim"), item)
+            self.assertTrue(item.get("detail"), item.get("claim"))
+            statuses.add(str(item.get("status")).casefold())
+            if item.get("source_url"):
+                self.assertTrue(item["source_url"].startswith("https://"), item["claim"])
+        self.assertTrue({"corrected", "verified"} & statuses, statuses)
+        self.assertTrue({"unverified", "refuted", "flagged"} & statuses, statuses)
+
+    def test_rendered_schedule_uses_the_market_start_not_hltvs_local_render(self):
+        page = (HERE / "twc.html").read_text(encoding="utf-8")
+        for m in self.DATA.get("semifinals", []):
+            self.assertEqual(m.get("start_utc"), m.get("market_start_utc"), m.get("team_a"))
+            self.assertIn(m["start_utc"], page, m.get("team_a"))
+            self.assertTrue((m.get("schedule_audit") or {}).get("countdown_evidence"), m.get("team_a"))
+        bet = next(r for r in self.DATA["results"] if r.get("team_b") == "Legacy")
+        self.assertEqual(bet.get("score"), "2-1")
+        self.assertTrue(bet.get("player_note"), "the match-page rating tables must be recorded")
+
+    def test_unverified_analysis_is_flagged_on_the_page(self):
+        page = (HERE / "twc.html").read_text(encoding="utf-8")
+        self.assertIn("Merge audit of the merged draft", page)
+        self.assertIn("refuted", page)
+        flagged = [m for m in self.DATA.get("semifinals", []) if (m.get("contrarian_analysis") or {}).get("map_pool_flag")]
+        self.assertEqual(len(flagged), 2, "both semifinals carry a map-pool caveat")
+        self.assertEqual(page.count("Map-pool check"), 2)
+
 class Day3CompletedDeciders(unittest.TestCase):
     """A researched day-3 fixture that has since been played must read as finished and graded on the pages:
     final score plus the HLTV result link, with the frozen pre-lock pick never rewritten after the fact."""

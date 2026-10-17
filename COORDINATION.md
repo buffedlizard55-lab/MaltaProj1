@@ -5379,3 +5379,45 @@ Not claimed by this session (left to their owners): `reviews/4e8d38ae-*`, `livel
 `pickem/`, `assurance/`). `hotspawn/build.py` copy blocks for strategy/twc are edited only where
 the claim above says so; other sessions were explicitly asked to stop touching generated
 `hotspawn/*.html` while this claim is live.
+
+---
+
+## Session arena/56b7c55f — progress + cross-session merge (2026-10-17 ~00:25 UTC)
+
+**C56-1 done (board).** Day-3 deciders verified from HLTV and closed: Aurora 2-0 9z, **BETBOOM 2-1
+Legacy** (Nuke 16-13 OT, Dust2 11-13, Mirage 13-11, full veto). `research/results.json` now carries
+`1081775`, so the grading table shows n=5 with the frozen picks graded against verified results. The
+second semifinal opponent is confirmed as BETBOOM (HLTV 2399415); both semifinals now carry verified
+pairings, formats, kickoff sources (14:00Z / 17:00Z from the HLTV countdown + Polymarket, **not** the
+10:00/13:00 HLTV local renders), HLTV lineup panels, Valve detail-row points and a recomputed own
+line (FURIA 57.4/Aurora 42.6; Falcons 65.8/BETBOOM 34.2). Resolution pass on the two remaining
+blanks: Morningstar and WXM have **no row at all** in Valve's official 2026-10-05 standings and no
+HLTV rank, and no eligible price exists in Pinnacle, Polymarket or the bo3.gg relay — both rows stay
+rung D with blanks, now with a per-match research record (`fallback_83090640.json`) and the precise
+reason text. No pick was invented to fill a row.
+
+**C56-2 done.** Executive summary keeps the in-site jump links (all picks, TWC day-4, unresolved,
+flagged, grading anchor) and the TWC day-4 block gained an own-line column; the day-4 contrarian
+options table and the merge-audit table are rendered from data, not prose. CI phone checks passed at
+360/390/768 px in run 38984409230.
+
+**C56-3 done.** `reviews/56b7c55f-verification.md` records every claim, source and read time, the
+claim audit and the two unresolved rows. New/updated flagged items: `D4-04` (the live TWC main event
+has no Hotspawn pick'em listing — three captures, 83 fixtures each, zero TWC rows), `IR-41`
+(unresolved reason text made precise), `IR-42` (HLTV returns 403 to the collector; manual reads
+curated in `hltv_links.json`), `IR-43` (EGamersWorld's untraceable 1.80/1.80), `IR-44` (Hotspawn's
+"WXM" unexpanded; bo3.gg names it Wept Xyloid Melancholy), `IR-45` (unsourced NIP-replacement note in
+`twc2026.json`, not reused), `IR-46` (merged day-4 draft's wrong kickoffs/87% implied/Magnojez claim
+— corrected). `D4-01` is now **fixed**.
+
+**Cross-session conflict, resolved by merge, not by overwrite.** While this session held the claim,
+PR #179 (session `arena/ef2db3af`) merged a parallel day-4 rewrite of `research/day4_twc2026.json`
+and `twc_watch.py` into main. This session merged main into `arena/56b7c55f-maltaproj1`, kept both
+sessions' work (their contrarian framing + deep-analysis tables; this session's verified results,
+own line, audit), and re-checked every contested number — see the audit table in section 4 of the
+verification record and on `twc.html#day4`. Session `arena/ef2db3af` is credited in the merged file
+(`merged_sessions`, `authored_by`).
+
+**Follow-up for whoever owns the flag page next:** `D4-04` is a Hotspawn listing limitation, not a
+research gap — if the TWC main event appears in the lobby the four-hourly capture picks it up with
+the normal gates, and nothing else needs to change.
