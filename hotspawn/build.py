@@ -280,6 +280,29 @@ def plays_table(rows: list[dict]) -> str:
     return "".join(out)
 
 
+def verified_result(match_id) -> dict:
+    """Final score for a researched fixture that has already been played (research/results.json, HLTV-verified).
+
+    Returns {} when the fixture has no verified result, so every caller treats "not played yet" and
+    "played, no verified result" the same way: nothing is invented.
+    """
+    res = (read_json(RESEARCH / "results.json", {}) or {}).get("results", {}) or {}
+    r = res.get(str(match_id)) or {}
+    return r if r.get("winner") else {}
+
+
+def completed_note(match_id) -> str:
+    """One sentence stating a researched fixture is finished and graded, with the HLTV result link."""
+    r = verified_result(match_id)
+    if not r:
+        return ""
+    when = f" {e(r.get('checked_date_utc'))}" if r.get("checked_date_utc") else ""
+    maps = e(r.get("maps") or "")
+    return (f' <b class="ok">Completed{when}: {e(r.get("winner"))} {e(r.get("score"))}</b>'
+            + (f' — {maps}' if maps else "") + '. ' + link(r.get("source_url"), "HLTV result")
+            + ' · <a href="strategy.html#grading">graded →</a>')
+
+
 def day3_section(board: dict) -> str:
     """B6 entry points retained; a second, static price average can never override the live row."""
     data = read_json(DAY3_FILE, {}) or {}
@@ -301,9 +324,9 @@ def day3_section(board: dict) -> str:
         if row and row.get('status') == 'open':
             out.append(card(row, board))
         elif not row:
-            out.append('<p class="note">Coverage gap: no board row for this researched fixture. No current pick or probability is fabricated from an older research price. <a href="unresolved.html">Research limitation →</a></p>')
+            out.append('<p class="note">Coverage gap: no board row for this researched fixture. No current pick or probability is fabricated from an older research price. <a href="unresolved.html">Research limitation →</a>' + completed_note(match.get('hotspawn_id')) + '</p>')
         else:
-            out.append('<p class="small">Not open at this capture; see <a href="all.html">the source-linked inventory</a>. No archived probability is promoted as a new pick.</p>')
+            out.append('<p class="small">Not open at this capture; see <a href="all.html">the source-linked inventory</a>. No archived probability is promoted as a new pick.' + completed_note(match.get('hotspawn_id')) + '</p>')
     return ''.join(out)
 
 
@@ -313,8 +336,21 @@ def coverage_gaps_section(board: dict) -> str:
     have = {str(r.get('match_id')) for r in board.get('rows', [])}
     gaps = [m for m in data.get('matches', []) if str(m.get('hotspawn_id')) not in have]
     if not gaps: return ''
-    rows = ''.join('<li>' + e(m.get('hotspawn_id')) + ' · ' + link(m.get('hltv_match_url'), m.get('team_a','') + ' vs ' + m.get('team_b','')) + ' · ' + link(m.get('hotspawn_match_url'), 'last known Hotspawn source') + '</li>' for m in gaps)
-    return '<h3>Coverage watch — researched fixtures absent from this capture</h3><p>Earlier linked evidence is not proof these matches are still pickable. No current side is invented. <a href="strategy.html#day3">Day-3 research →</a></p><ul>' + rows + '</ul>'
+    def row(m):
+        return ('<li>' + e(m.get('hotspawn_id')) + ' · ' + link(m.get('hltv_match_url'), m.get('team_a','') + ' vs ' + m.get('team_b',''))
+                + ' · ' + link(m.get('hotspawn_match_url'), 'last known Hotspawn source') + completed_note(m.get('hotspawn_id')) + '</li>')
+    played = [m for m in gaps if verified_result(m.get('hotspawn_id'))]
+    open_gaps = [m for m in gaps if not verified_result(m.get('hotspawn_id'))]
+    out = ('<h3>Coverage watch — researched fixtures absent from this capture</h3>'
+           '<p>Earlier linked evidence is not proof these matches are still pickable. No current side is invented. '
+           '<a href="strategy.html#day3">Day-3 research →</a></p>')
+    if played:
+        out += ('<p class="small">Finished since this capture — the final score and the frozen pre-lock grade are shown, and no '
+                'archived price is presented as a live pick.</p><ul>' + ''.join(row(m) for m in played) + '</ul>')
+    if open_gaps:
+        out += ('<p class="small">Still open or unresolved at the last capture — left blank until a source-backed value exists.</p><ul>'
+                + ''.join(row(m) for m in open_gaps) + '</ul>')
+    return out
 
 
 def _day2_data() -> tuple[list[dict], dict]:
@@ -476,7 +512,7 @@ def strategy_page(board: dict) -> None:
 {day4_section(board)}
 <h2 id="day3">Day 3 — historical decider research</h2>
 {day3_section(board)}
-<h2>Grading since launch</h2>
+<h2 id="grading">Grading since launch</h2>
 <p>The last recorded pre-lock pick is frozen on the next refresh after lock (not necessarily a read at the exact lock time) and graded once a result exists (verified HLTV result first; otherwise the Polymarket resolution, which names HLTV as its source, marked provisional).</p>
 {('<div class="tablewrap"><table><thead><tr><th>Match</th><th>Pick</th><th>Plan</th><th>Winner</th><th>Pick</th><th>Plan</th></tr></thead><tbody>' + grows + '</tbody></table></div>') if gr else '<p class="small">No graded fixtures yet.</p>'}
 <p class="small">{len(pending)} frozen pick(s) awaiting a result.</p>

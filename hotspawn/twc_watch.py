@@ -2,7 +2,7 @@
 No prices, participants, lock times or source read times are inferred from research.
 """
 from html import escape
-from common import Aliases, devig_two_way, normalise_prices
+from common import Aliases, devig_two_way, normalise_prices, own_line
 from evidence import select_quote
 
 
@@ -95,14 +95,34 @@ def render(board, research, card, capture=None, compact=False):
                        + (' · ' + source(p['provider_url'], 'provider link') if p.get('provider_url') else '')
                        + '</td></tr>')
         out.append('</tbody></table></div>')
+    k_fit = (board.get('summary') or {}).get('own_line_k')
+    own_cells, own_used = {}, False
+    for match in research.get('semifinals', []):
+        points = match.get('valve_points') or {}
+        a, b = points.get('side_a') or {}, points.get('side_b') or {}
+        if k_fit and a.get('points') is not None and b.get('points') is not None:
+            pa = own_line(a['points'], b['points'], float(k_fit))
+            own_cells[id(match)] = (pa, 1 - pa, a, b, points.get('as_of'))
+            own_used = True
     out.append('<h3>Semifinal watch — dated research, not an extra picks list</h3>'
                '<div class="tablewrap"><table><thead><tr><th>Date / format</th><th>Match at research check</th>'
-               '<th>Context and limitation</th><th>Source</th></tr></thead><tbody>')
+               '<th>Context and limitation</th>'
+               + ('<th>Our own line (Valve points)</th>' if own_used else '')
+               + '<th>Source</th></tr></thead><tbody>')
     for match in research.get('semifinals', []):
         opponent = match.get('team_b') or 'Opponent unconfirmed'
+        cell = ''
+        if id(match) in own_cells:
+            pa, pb, a, b, as_of = own_cells[id(match)]
+            links = ''
+            if a.get('row_url') and b.get('row_url'):
+                links = ' · ' + source(a.get('row_url'), 'row A') + ' · ' + source(b.get('row_url'), 'row B')
+            cell = (f'<td><b>{e(a.get("team"))} {pa * 100:.1f}% / {e(b.get("team"))} {pb * 100:.1f}%</b>'
+                    f'<br><span class="small">our estimate, not a bookmaker quote<br>'
+                    f'Valve {e(as_of)} points: {e(a.get("points"))} vs {e(b.get("points"))}{links}</span></td>')
         out.append(f'<tr><td>{e(match.get("date"))}<br>{e(match.get("format"))}</td>'
                    f'<td>{e(match.get("team_a"))} vs {e(opponent)}<br>{e(match.get("opponent_note"))}</td>'
-                   f'<td>{e(match.get("context"))}</td><td>{source(match.get("url"))}</td></tr>')
+                   f'<td>{e(match.get("context"))}</td>' + cell + f'<td>{source(match.get("url"))}</td></tr>')
     out.append('</tbody></table></div><h3>Day-3 results — completed versus still unconfirmed at check</h3>'
                '<div class="tablewrap"><table><thead><tr><th>Match</th><th>Final score / status</th>'
                '<th>Maps and veto</th><th>What changes for day 4</th><th>Source</th></tr></thead><tbody>')
@@ -112,6 +132,15 @@ def render(board, research, card, capture=None, compact=False):
                    f'<td><b>{e(score)}</b><br>{e(result.get("status"))}</td>'
                    f'<td>{e(result.get("maps"))}<br>{e(result.get("veto"))}</td>'
                    f'<td>{e(result.get("meaning"))}</td><td>{source(result.get("url"))}</td></tr>')
+    if own_used:
+        method = research.get('own_line_method') or {}
+        out.append('<p class="small"><b>How the own line is computed:</b> '
+                   + e(method.get('formula')) + f' with k = <b>{e(k_fit)}</b>, '
+                   + source('data/calibration.json', 'fitted on Valve’s published results') + '. '
+                   'Inputs are Valve’s official numbers for each side, linked in the column above; the estimate carries no '
+                   'map-veto, preparation or fatigue term, so it is kept separate from the outside prices and is not a pick. '
+                   'HLTV’s own pick-a-winner shares for these ties are recorded in the research file only and are never used '
+                   'in a number here.</p>')
     out.append('</tbody></table></div><h3>How days 1–3 guide the decision</h3><ul>')
     for lesson in research.get('lessons', []):
         out.append(f'<li>{e(lesson.get("text"))} {source(lesson.get("url"))}</li>')

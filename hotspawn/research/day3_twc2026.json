@@ -280,6 +280,16 @@
     "rung": "A",
     "basis": "Pinnacle odds, margin removed",
     "note": "Pinnacle finally listed this fixture, so the board moved from rung B to rung A in the 04:31Z refresh; the row's own numbers are recomputed at build time from the capture."
+   },
+   "result": {
+    "status": "completed",
+    "winner": "Aurora",
+    "score": "2-0",
+    "maps": "Cache 13-11 Aurora; Inferno 13-4 Aurora (Aurora score listed first)",
+    "veto": "Aurora picked Cache, 9z picked Inferno; Aurora removed Nuke; Mirage not played.",
+    "source_url": "https://www.hltv.org/matches/2399412/aurora-vs-9z-thunderpick-world-championship-2026",
+    "read_utc": "2026-10-16T23:48:00Z",
+    "note": "Result added after this file's research window by session arena/56b7c55f (2026-10-16, 23:47-23:56 UTC); prices and crowd shares above stay as the dated pre-lock snapshot."
    }
   },
   {
@@ -384,6 +394,16 @@
     "rung": "B",
     "basis": "Polymarket price (prediction market)",
     "note": "The fixture appeared in Hotspawn's own payload in the 2026-10-16T04:31:50Z live refresh, so the board now carries a row (BetBoom vs Legacy, 7 offered points, lock 16:54Z) instead of the coverage gap this file first reported."
+   },
+   "result": {
+    "status": "completed",
+    "winner": "BetBoom",
+    "score": "2-1",
+    "maps": "Nuke 16-13 BETBOOM (halves 4:8, 8:4; overtime 4:1); Dust2 11-13 Legacy; Mirage 13-11 BETBOOM",
+    "veto": "BETBOOM removed Inferno; Legacy removed Anubis; BETBOOM picked Nuke; Legacy picked Dust2; BETBOOM removed Cache; Legacy removed Ancient; Mirage left over.",
+    "source_url": "https://www.hltv.org/matches/2399413/betboom-vs-legacy-thunderpick-world-championship-2026",
+    "read_utc": "2026-10-16T23:52:00Z",
+    "note": "Result added after this file's research window by session arena/56b7c55f (2026-10-16, 23:47-23:56 UTC); prices and crowd shares above stay as the dated pre-lock snapshot."
    }
   }
  ],
@@ -403,5 +423,13 @@
  ],
  "second_pass_utc": "2026-10-16T04:35:00Z",
  "integration_review_utc": "2026-10-16T04:42:01Z",
- "publication_policy": "No fallback probability from this static file if a current board row is absent. Archived prices have read times and are not promoted as fresh. Roster history is weak context only."
+ "publication_policy": "No fallback probability from this static file if a current board row is absent. Archived prices have read times and are not promoted as fresh. Roster history is weak context only.",
+ "semifinal_pairings_confirmed_utc": {
+  "read_utc": "2026-10-16T23:50:00Z",
+  "detail": "With both deciders complete, HLTV's semifinal pages name the pairings: 2399414 FURIA vs Aurora and 2399415 Falcons vs BETBOOM, both BO3 (LAN) on 17 October. Schedule and market detail live in hotspawn/research/day4_twc2026.json; this file keeps only the pre-lock day-3 evidence.",
+  "sources": [
+   "https://www.hltv.org/matches/2399414/furia-vs-aurora-thunderpick-world-championship-2026",
+   "https://www.hltv.org/matches/2399415/falcons-vs-betboom-thunderpick-world-championship-2026"
+  ]
+ }
 }

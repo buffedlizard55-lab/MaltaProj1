@@ -301,7 +301,7 @@
   }
  },
  "summary": {
-  "generated_utc": "2026-10-16T23:50:56Z",
+  "generated_utc": "2026-10-17T00:01:22Z",
   "session": "arena/22be6967",
   "reference_utc": "2026-10-16T23:50:42Z",
   "fixtures": 83,
@@ -338,7 +338,7 @@
   "own_line_k": 0.4598,
   "own_line_k_source": "fitted on Valve's published match results",
   "graded_since_launch": {
-   "n": 4,
+   "n": 5,
    "picks_correct": 3,
    "leaderboard_correct": 3
   },
@@ -437,7 +437,7 @@
    "basis": "Secondary sportsbook relay: thunderpick via bo3.gg (not direct-book verified)",
    "rung": "B",
    "factors": [],
-   "own_line_limitation": "one or both teams not uniquely identified in Valve standings",
+   "own_line_limitation": "Just Players matches 2 same-name rows in Valve's 2026-10-05 standings",
    "pick": "BET-M",
    "pick_p": 0.6699,
    "flags": [
@@ -957,7 +957,7 @@
    "basis": "Pinnacle odds, margin removed",
    "rung": "A",
    "factors": [],
-   "own_line_limitation": "one or both teams not uniquely identified in Valve standings",
+   "own_line_limitation": "Bebop matches 2 same-name rows in Valve's 2026-10-05 standings",
    "pick": "Bebop",
    "pick_p": 0.6135,
    "flags": [],
@@ -1080,7 +1080,7 @@
    "basis": "Secondary sportsbook relay: thunderpick via bo3.gg (not direct-book verified)",
    "rung": "B",
    "factors": [],
-   "own_line_limitation": "one or both teams not uniquely identified in Valve standings",
+   "own_line_limitation": "Apogee Betclic matches 2 same-name rows in Valve's 2026-10-05 standings",
    "pick": "Nemesis",
    "pick_p": 0.6699,
    "flags": [
@@ -1357,7 +1357,7 @@
      "verification_status": "verified"
     }
    ],
-   "own_line_limitation": "strict own line withheld (one or both teams not uniquely identified in Valve standings); rung E resolved identity by documented roster-overlap disambiguation",
+   "own_line_limitation": "strict own line withheld (Banda chuya matches 2 same-name rows in Valve's 2026-10-05 standings); rung E resolved identity by documented roster-overlap disambiguation",
    "fallback": {
     "pack": "hotspawn/research/fallback_83090640.json",
     "rule": ">= 3 shared nicknames vs HLTV lineup, strictly best overlap; own-line formula on the chosen rows",
@@ -1635,7 +1635,7 @@
      "verification_status": "verified"
     }
    ],
-   "own_line_limitation": "strict own line withheld (one or both teams not uniquely identified in Valve standings); rung E resolved identity by documented roster-overlap disambiguation",
+   "own_line_limitation": "strict own line withheld (ex-6666 has no row in Valve's 2026-10-05 standings); rung E resolved identity by documented roster-overlap disambiguation",
    "fallback": {
     "pack": "hotspawn/research/fallback_83090640.json",
     "rule": ">= 3 shared nicknames vs HLTV lineup, strictly best overlap; own-line formula on the chosen rows",
@@ -1914,7 +1914,7 @@
      "verification_status": "verified"
     }
    ],
-   "own_line_limitation": "strict own line withheld (one or both teams not uniquely identified in Valve standings); rung E resolved identity by documented roster-overlap disambiguation",
+   "own_line_limitation": "strict own line withheld (antidaun has no row in Valve's 2026-10-05 standings); rung E resolved identity by documented roster-overlap disambiguation",
    "fallback": {
     "pack": "hotspawn/research/fallback_83090640.json",
     "rule": ">= 3 shared nicknames vs HLTV lineup, strictly best overlap; own-line formula on the chosen rows",
@@ -2154,7 +2154,7 @@
      "automated": true
     }
    ],
-   "own_line_limitation": "one or both teams not uniquely identified in Valve standings",
+   "own_line_limitation": "Insiders has no row in Valve's 2026-10-05 standings",
    "pick": "Infinite",
    "pick_p": 0.675,
    "flags": [],
@@ -2298,7 +2298,7 @@
      "verification_status": "verified"
     }
    ],
-   "own_line_limitation": "current lineup unresolved after a match-specific roster report; one or both teams not uniquely identified in Valve standings",
+   "own_line_limitation": "current lineup unresolved after a match-specific roster report; aimclub matches 2 same-name rows in Valve's 2026-10-05 standings",
    "pick": "BASEMENT BOYS",
    "pick_p": 0.5469,
    "flags": [
@@ -2898,7 +2898,7 @@
    "basis": "Secondary sportsbook relay: thunderpick via bo3.gg (not direct-book verified)",
    "rung": "B",
    "factors": [],
-   "own_line_limitation": "one or both teams not uniquely identified in Valve standings",
+   "own_line_limitation": "mouz NXT matches 2 same-name rows in Valve's 2026-10-05 standings",
    "pick": "Sashi",
    "pick_p": 0.6281,
    "flags": [
@@ -3016,7 +3016,7 @@
    "basis": "Polymarket price (prediction market)",
    "rung": "B",
    "factors": [],
-   "own_line_limitation": "one or both teams not uniquely identified in Valve standings",
+   "own_line_limitation": "Leo matches 2 same-name rows in Valve's 2026-10-05 standings",
    "pick": "Leo",
    "pick_p": 0.515,
    "flags": [],
@@ -3084,14 +3084,10 @@
    "crowd_a": 100,
    "crowd_b": 0,
    "total_picks": 9,
-   "hltv_url": null,
-   "hltv_note": null,
-   "format_evidence": {
-    "url": "https://bo3.gg/matches/lynn-vision-vs-morningstar-20-10-2026",
-    "read_utc": "2026-10-16T23:50:46Z"
-   },
+   "hltv_url": "https://www.hltv.org/matches/2399576/lynn-vision-vs-morningstar-macemedia-void-autumn-cup-2026",
+   "hltv_note": "HLTV event 9435 matches page lists this opening-round tie as bo3; 2026-10-20 03:00Z per the Hotspawn lock/bo3.gg record.",
    "format": "BO3",
-   "format_source": "bo3.gg match metadata (secondary)",
+   "format_source": "HLTV match page",
    "vrs_a": {
     "name": "Lynn Vision",
     "rank": 64,
@@ -3118,7 +3114,7 @@
    "basis": "Unresolved",
    "rung": "D",
    "factors": [],
-   "own_line_limitation": "one or both teams not uniquely identified in Valve standings",
+   "own_line_limitation": "Morningstar has no row in Valve's 2026-10-05 standings",
    "pick": null,
    "pick_p": null,
    "flags": [
@@ -3127,8 +3123,8 @@
    "strategy": null,
    "sources": [
     "https://play.hotspawn.com/lobby",
+    "https://www.hltv.org/matches/2399576/lynn-vision-vs-morningstar-macemedia-void-autumn-cup-2026",
     "https://www.hltv.org/search?query=Lynn%20Vision%20Morningstar",
-    "https://bo3.gg/matches/lynn-vision-vs-morningstar-20-10-2026",
     "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
    ],
    "result": null
@@ -3165,14 +3161,10 @@
    "crowd_a": 56,
    "crowd_b": 44,
    "total_picks": 9,
-   "hltv_url": null,
+   "hltv_url": "https://www.hltv.org/matches/2399577/rare-atom-vs-alter-ego-macemedia-void-autumn-cup-2026",
    "hltv_note": null,
-   "format_evidence": {
-    "url": "https://bo3.gg/matches/alter-ego-vs-rare-atom-20-10-2026",
-    "read_utc": "2026-10-16T23:50:46Z"
-   },
    "format": "BO3",
-   "format_source": "bo3.gg match metadata (secondary)",
+   "format_source": "HLTV match page",
    "vrs_a": {
     "name": "Rare Atom",
     "rank": 133,
@@ -3240,8 +3232,8 @@
    },
    "sources": [
     "https://play.hotspawn.com/lobby",
+    "https://www.hltv.org/matches/2399577/rare-atom-vs-alter-ego-macemedia-void-autumn-cup-2026",
     "https://www.hltv.org/search?query=Rare%20Atom%20Alter%20Ego",
-    "https://bo3.gg/matches/alter-ego-vs-rare-atom-20-10-2026",
     "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
    ],
    "result": null
@@ -3278,10 +3270,10 @@
    "crowd_a": 100,
    "crowd_b": 0,
    "total_picks": 8,
-   "hltv_url": null,
-   "hltv_note": null,
-   "format": "",
-   "format_source": "",
+   "hltv_url": "https://www.hltv.org/matches/2399578/chinggis-warriors-vs-wxm-macemedia-void-autumn-cup-2026",
+   "hltv_note": "Hotspawn's 'WXM' is the same team bo3.gg lists as 'Wept Xyloid Melancholy' (bo3 id 132180); HLTV's event page lists it as WXM (team 14011, all-China lineup).",
+   "format": "BO3",
+   "format_source": "HLTV match page",
    "vrs_a": null,
    "vrs_b": null,
    "own_p_a": null,
@@ -3295,16 +3287,16 @@
    "basis": "Unresolved",
    "rung": "D",
    "factors": [],
-   "own_line_limitation": "series format not independently confirmed; one or both teams not uniquely identified in Valve standings",
+   "own_line_limitation": "Chinggis Warriors matches 2 same-name rows in Valve's 2026-10-05 standings; WXM has no row in Valve's 2026-10-05 standings",
    "pick": null,
    "pick_p": null,
    "flags": [
-    "FORMAT_UNKNOWN",
     "UNRESOLVED"
    ],
    "strategy": null,
    "sources": [
     "https://play.hotspawn.com/lobby",
+    "https://www.hltv.org/matches/2399578/chinggis-warriors-vs-wxm-macemedia-void-autumn-cup-2026",
     "https://www.hltv.org/search?query=Chinggis%20Warriors%20WXM"
    ],
    "result": null
@@ -3341,14 +3333,10 @@
    "crowd_a": 88,
    "crowd_b": 13,
    "total_picks": 8,
-   "hltv_url": null,
+   "hltv_url": "https://www.hltv.org/matches/2399579/nexvoid-vs-vitalem-aerem-macemedia-void-autumn-cup-2026",
    "hltv_note": null,
-   "format_evidence": {
-    "url": "https://bo3.gg/matches/nexvoid-vs-vitalem-aerem-20-10-2026",
-    "read_utc": "2026-10-16T23:50:46Z"
-   },
    "format": "BO3",
-   "format_source": "bo3.gg match metadata (secondary)",
+   "format_source": "HLTV match page",
    "vrs_a": {
     "name": "NEXVOID",
     "rank": 113,
@@ -3403,8 +3391,8 @@
    },
    "sources": [
     "https://play.hotspawn.com/lobby",
+    "https://www.hltv.org/matches/2399579/nexvoid-vs-vitalem-aerem-macemedia-void-autumn-cup-2026",
     "https://www.hltv.org/search?query=NEXVOID%20Vitalem%20Aerem",
-    "https://bo3.gg/matches/nexvoid-vs-vitalem-aerem-20-10-2026",
     "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
    ],
    "result": null
@@ -3463,7 +3451,7 @@
    "basis": "Unresolved",
    "rung": "D",
    "factors": [],
-   "own_line_limitation": "series format not independently confirmed; one or both teams not uniquely identified in Valve standings",
+   "own_line_limitation": "series format not independently confirmed; ex-RUSTEC matches 2 same-name rows in Valve's 2026-10-05 standings",
    "pick": null,
    "pick_p": null,
    "flags": [
@@ -3730,7 +3718,7 @@
      "automated": true
     }
    ],
-   "own_line_limitation": "series format not independently confirmed; one or both teams not uniquely identified in Valve standings",
+   "own_line_limitation": "series format not independently confirmed; CYBERSHOKE Prospects has no row in Valve's 2026-10-05 standings",
    "pick": null,
    "pick_p": null,
    "flags": [
@@ -3784,7 +3772,7 @@
    "basis": "Unresolved",
    "rung": "D",
    "factors": [],
-   "own_line_limitation": "series format not independently confirmed; one or both teams not uniquely identified in Valve standings",
+   "own_line_limitation": "series format not independently confirmed; Johnny Speeds matches 2 same-name rows in Valve's 2026-10-05 standings; ReThink has no row in Valve's 2026-10-05 standings",
    "pick": null,
    "pick_p": null,
    "flags": [
@@ -3944,7 +3932,7 @@
    "basis": "Unresolved",
    "rung": "D",
    "factors": [],
-   "own_line_limitation": "series format not independently confirmed; one or both teams not uniquely identified in Valve standings",
+   "own_line_limitation": "series format not independently confirmed; Atrix has no row in Valve's 2026-10-05 standings",
    "pick": null,
    "pick_p": null,
    "flags": [
@@ -4346,7 +4334,7 @@
    "basis": "Unresolved",
    "rung": "D",
    "factors": [],
-   "own_line_limitation": "series format not independently confirmed; one or both teams not uniquely identified in Valve standings",
+   "own_line_limitation": "series format not independently confirmed; ReThink has no row in Valve's 2026-10-05 standings",
    "pick": null,
    "pick_p": null,
    "flags": [
@@ -4413,7 +4401,7 @@
    "basis": "Unresolved",
    "rung": "D",
    "factors": [],
-   "own_line_limitation": "series format not independently confirmed; one or both teams not uniquely identified in Valve standings",
+   "own_line_limitation": "series format not independently confirmed; Keyd has no row in Valve's 2026-10-05 standings",
    "pick": null,
    "pick_p": null,
    "flags": [
@@ -4559,7 +4547,7 @@
    "basis": "Unresolved",
    "rung": "D",
    "factors": [],
-   "own_line_limitation": "series format not independently confirmed; one or both teams not uniquely identified in Valve standings",
+   "own_line_limitation": "series format not independently confirmed; Johnny Speeds matches 2 same-name rows in Valve's 2026-10-05 standings",
    "pick": null,
    "pick_p": null,
    "flags": [
@@ -4639,7 +4627,7 @@
      "automated": true
     }
    ],
-   "own_line_limitation": "series format not independently confirmed; one or both teams not uniquely identified in Valve standings",
+   "own_line_limitation": "series format not independently confirmed; Misa matches 2 same-name rows in Valve's 2026-10-05 standings",
    "pick": null,
    "pick_p": null,
    "flags": [
@@ -4787,7 +4775,7 @@
    "basis": "Unresolved",
    "rung": "D",
    "factors": [],
-   "own_line_limitation": "series format not independently confirmed; one or both teams not uniquely identified in Valve standings",
+   "own_line_limitation": "series format not independently confirmed; Just Players matches 2 same-name rows in Valve's 2026-10-05 standings",
    "pick": null,
    "pick_p": null,
    "flags": [
@@ -4935,7 +4923,7 @@
    "basis": "Unresolved",
    "rung": "D",
    "factors": [],
-   "own_line_limitation": "series format not independently confirmed; one or both teams not uniquely identified in Valve standings",
+   "own_line_limitation": "series format not independently confirmed; Red Feet has no row in Valve's 2026-10-05 standings",
    "pick": null,
    "pick_p": null,
    "flags": [
@@ -4989,7 +4977,7 @@
    "basis": "Unresolved",
    "rung": "D",
    "factors": [],
-   "own_line_limitation": "series format not independently confirmed; one or both teams not uniquely identified in Valve standings",
+   "own_line_limitation": "series format not independently confirmed; Misa matches 2 same-name rows in Valve's 2026-10-05 standings; Wampirki has no row in Valve's 2026-10-05 standings",
    "pick": null,
    "pick_p": null,
    "flags": [
@@ -5055,7 +5043,7 @@
    "basis": "Unresolved",
    "rung": "D",
    "factors": [],
-   "own_line_limitation": "series format not independently confirmed; one or both teams not uniquely identified in Valve standings",
+   "own_line_limitation": "series format not independently confirmed; Sharks has no row in Valve's 2026-10-05 standings",
    "pick": null,
    "pick_p": null,
    "flags": [
@@ -5135,7 +5123,7 @@
      "automated": true
     }
    ],
-   "own_line_limitation": "series format not independently confirmed; one or both teams not uniquely identified in Valve standings",
+   "own_line_limitation": "series format not independently confirmed; Mai Tai matches 2 same-name rows in Valve's 2026-10-05 standings",
    "pick": null,
    "pick_p": null,
    "flags": [
@@ -5281,7 +5269,7 @@
    "basis": "Unresolved",
    "rung": "D",
    "factors": [],
-   "own_line_limitation": "series format not independently confirmed; one or both teams not uniquely identified in Valve standings",
+   "own_line_limitation": "series format not independently confirmed; BIG Academy matches 2 same-name rows in Valve's 2026-10-05 standings",
    "pick": null,
    "pick_p": null,
    "flags": [
@@ -5348,7 +5336,7 @@
    "basis": "Unresolved",
    "rung": "D",
    "factors": [],
-   "own_line_limitation": "series format not independently confirmed; one or both teams not uniquely identified in Valve standings",
+   "own_line_limitation": "series format not independently confirmed; UNO MILLE matches 2 same-name rows in Valve's 2026-10-05 standings",
    "pick": null,
    "pick_p": null,
    "flags": [
@@ -5509,7 +5497,7 @@
      "automated": true
     }
    ],
-   "own_line_limitation": "series format not independently confirmed; one or both teams not uniquely identified in Valve standings",
+   "own_line_limitation": "series format not independently confirmed; ex-Tricked has no row in Valve's 2026-10-05 standings",
    "pick": null,
    "pick_p": null,
    "flags": [
@@ -5574,7 +5562,7 @@
    "basis": "Unresolved",
    "rung": "D",
    "factors": [],
-   "own_line_limitation": "series format not independently confirmed; one or both teams not uniquely identified in Valve standings",
+   "own_line_limitation": "series format not independently confirmed; ReThink has no row in Valve's 2026-10-05 standings",
    "pick": null,
    "pick_p": null,
    "flags": [
@@ -5816,7 +5804,7 @@
    "basis": "Unresolved",
    "rung": "D",
    "factors": [],
-   "own_line_limitation": "series format not independently confirmed; one or both teams not uniquely identified in Valve standings",
+   "own_line_limitation": "series format not independently confirmed; Keyd has no row in Valve's 2026-10-05 standings",
    "pick": null,
    "pick_p": null,
    "flags": [
@@ -5964,7 +5952,7 @@
    "basis": "Unresolved",
    "rung": "D",
    "factors": [],
-   "own_line_limitation": "series format not independently confirmed; one or both teams not uniquely identified in Valve standings",
+   "own_line_limitation": "series format not independently confirmed; Honvéd matches 2 same-name rows in Valve's 2026-10-05 standings",
    "pick": null,
    "pick_p": null,
    "flags": [
@@ -6031,7 +6019,7 @@
    "basis": "Unresolved",
    "rung": "D",
    "factors": [],
-   "own_line_limitation": "series format not independently confirmed; one or both teams not uniquely identified in Valve standings",
+   "own_line_limitation": "series format not independently confirmed; ex-MANA has no row in Valve's 2026-10-05 standings",
    "pick": null,
    "pick_p": null,
    "flags": [
@@ -6190,7 +6178,7 @@
    "basis": "Unresolved",
    "rung": "D",
    "factors": [],
-   "own_line_limitation": "series format not independently confirmed; one or both teams not uniquely identified in Valve standings",
+   "own_line_limitation": "series format not independently confirmed; GAMEHARMONY has no row in Valve's 2026-10-05 standings",
    "pick": null,
    "pick_p": null,
    "flags": [
@@ -6255,7 +6243,7 @@
    "basis": "Unresolved",
    "rung": "D",
    "factors": [],
-   "own_line_limitation": "series format not independently confirmed; one or both teams not uniquely identified in Valve standings",
+   "own_line_limitation": "series format not independently confirmed; Leo matches 2 same-name rows in Valve's 2026-10-05 standings",
    "pick": null,
    "pick_p": null,
    "flags": [
@@ -6320,7 +6308,7 @@
    "basis": "Unresolved",
    "rung": "D",
    "factors": [],
-   "own_line_limitation": "series format not independently confirmed; one or both teams not uniquely identified in Valve standings",
+   "own_line_limitation": "series format not independently confirmed; GAMEHARMONY has no row in Valve's 2026-10-05 standings",
    "pick": null,
    "pick_p": null,
    "flags": [
@@ -6385,7 +6373,7 @@
    "basis": "Unresolved",
    "rung": "D",
    "factors": [],
-   "own_line_limitation": "series format not independently confirmed; one or both teams not uniquely identified in Valve standings",
+   "own_line_limitation": "series format not independently confirmed; Leo matches 2 same-name rows in Valve's 2026-10-05 standings",
    "pick": null,
    "pick_p": null,
    "flags": [
@@ -6452,7 +6440,7 @@
    "basis": "Unresolved",
    "rung": "D",
    "factors": [],
-   "own_line_limitation": "series format not independently confirmed; one or both teams not uniquely identified in Valve standings",
+   "own_line_limitation": "series format not independently confirmed; MAGICOS has no row in Valve's 2026-10-05 standings",
    "pick": null,
    "pick_p": null,
    "flags": [
@@ -6506,7 +6494,7 @@
    "basis": "Unresolved",
    "rung": "D",
    "factors": [],
-   "own_line_limitation": "series format not independently confirmed; one or both teams not uniquely identified in Valve standings",
+   "own_line_limitation": "series format not independently confirmed; GAMEHARMONY has no row in Valve's 2026-10-05 standings; Leo matches 2 same-name rows in Valve's 2026-10-05 standings",
    "pick": null,
    "pick_p": null,
    "flags": [
@@ -6636,7 +6624,7 @@
    "basis": "Unresolved",
    "rung": "D",
    "factors": [],
-   "own_line_limitation": "series format not independently confirmed; one or both teams not uniquely identified in Valve standings",
+   "own_line_limitation": "series format not independently confirmed; Sharks has no row in Valve's 2026-10-05 standings; ex-Tricked has no row in Valve's 2026-10-05 standings",
    "pick": null,
    "pick_p": null,
    "flags": [
@@ -6702,7 +6690,7 @@
    "basis": "Unresolved",
    "rung": "D",
    "factors": [],
-   "own_line_limitation": "series format not independently confirmed; one or both teams not uniquely identified in Valve standings",
+   "own_line_limitation": "series format not independently confirmed; Lilmix matches 2 same-name rows in Valve's 2026-10-05 standings",
    "pick": null,
    "pick_p": null,
    "flags": [
@@ -6769,7 +6757,7 @@
    "basis": "Unresolved",
    "rung": "D",
    "factors": [],
-   "own_line_limitation": "series format not independently confirmed; one or both teams not uniquely identified in Valve standings",
+   "own_line_limitation": "series format not independently confirmed; BIG Academy matches 2 same-name rows in Valve's 2026-10-05 standings",
    "pick": null,
    "pick_p": null,
    "flags": [
@@ -6836,7 +6824,7 @@
    "basis": "Unresolved",
    "rung": "D",
    "factors": [],
-   "own_line_limitation": "series format not independently confirmed; one or both teams not uniquely identified in Valve standings",
+   "own_line_limitation": "series format not independently confirmed; Atreides has no row in Valve's 2026-10-05 standings",
    "pick": null,
    "pick_p": null,
    "flags": [
@@ -6903,7 +6891,7 @@
    "basis": "Unresolved",
    "rung": "D",
    "factors": [],
-   "own_line_limitation": "series format not independently confirmed; one or both teams not uniquely identified in Valve standings",
+   "own_line_limitation": "series format not independently confirmed; Blitzkrieg has no row in Valve's 2026-10-05 standings",
    "pick": null,
    "pick_p": null,
    "flags": [
@@ -6970,7 +6958,7 @@
    "basis": "Unresolved",
    "rung": "D",
    "factors": [],
-   "own_line_limitation": "series format not independently confirmed; one or both teams not uniquely identified in Valve standings",
+   "own_line_limitation": "series format not independently confirmed; 6666 matches 2 same-name rows in Valve's 2026-10-05 standings",
    "pick": null,
    "pick_p": null,
    "flags": [
@@ -7037,7 +7025,7 @@
    "basis": "Unresolved",
    "rung": "D",
    "factors": [],
-   "own_line_limitation": "series format not independently confirmed; one or both teams not uniquely identified in Valve standings",
+   "own_line_limitation": "series format not independently confirmed; SINQU REHTI has no row in Valve's 2026-10-05 standings",
    "pick": null,
    "pick_p": null,
    "flags": [
@@ -7172,7 +7160,7 @@
    "basis": "Unresolved",
    "rung": "D",
    "factors": [],
-   "own_line_limitation": "series format not independently confirmed; one or both teams not uniquely identified in Valve standings",
+   "own_line_limitation": "series format not independently confirmed; 6666 matches 2 same-name rows in Valve's 2026-10-05 standings; SINQU REHTI has no row in Valve's 2026-10-05 standings",
    "pick": null,
    "pick_p": null,
    "flags": [
@@ -7332,7 +7320,7 @@
    "basis": "Unresolved",
    "rung": "D",
    "factors": [],
-   "own_line_limitation": "series format not independently confirmed; one or both teams not uniquely identified in Valve standings",
+   "own_line_limitation": "series format not independently confirmed; UNO MILLE matches 2 same-name rows in Valve's 2026-10-05 standings",
    "pick": null,
    "pick_p": null,
    "flags": [
@@ -7399,7 +7387,7 @@
    "basis": "Unresolved",
    "rung": "D",
    "factors": [],
-   "own_line_limitation": "series format not independently confirmed; one or both teams not uniquely identified in Valve standings",
+   "own_line_limitation": "series format not independently confirmed; 6666 matches 2 same-name rows in Valve's 2026-10-05 standings",
    "pick": null,
    "pick_p": null,
    "flags": [
@@ -7466,7 +7454,7 @@
    "basis": "Unresolved",
    "rung": "D",
    "factors": [],
-   "own_line_limitation": "series format not independently confirmed; one or both teams not uniquely identified in Valve standings",
+   "own_line_limitation": "series format not independently confirmed; SINQU REHTI has no row in Valve's 2026-10-05 standings",
    "pick": null,
    "pick_p": null,
    "flags": [
@@ -7533,7 +7521,7 @@
    "basis": "Unresolved",
    "rung": "D",
    "factors": [],
-   "own_line_limitation": "series format not independently confirmed; one or both teams not uniquely identified in Valve standings",
+   "own_line_limitation": "series format not independently confirmed; METANOIA Wolves matches 2 same-name rows in Valve's 2026-10-05 standings",
    "pick": null,
    "pick_p": null,
    "flags": [
@@ -7681,7 +7669,7 @@
    "basis": "Unresolved",
    "rung": "D",
    "factors": [],
-   "own_line_limitation": "series format not independently confirmed; one or both teams not uniquely identified in Valve standings",
+   "own_line_limitation": "series format not independently confirmed; Patins de Ferrari has no row in Valve's 2026-10-05 standings",
    "pick": null,
    "pick_p": null,
    "flags": [
@@ -7842,7 +7830,7 @@
      "automated": true
     }
    ],
-   "own_line_limitation": "series format not independently confirmed; one or both teams not uniquely identified in Valve standings",
+   "own_line_limitation": "series format not independently confirmed; SUKEBAN has no row in Valve's 2026-10-05 standings",
    "pick": null,
    "pick_p": null,
    "flags": [
@@ -10122,9 +10110,19 @@
    "crowd_b": 93,
    "as_of": "2026-10-16T13:23:10Z",
    "frozen": true,
-   "result": null,
-   "pick_correct": null,
-   "leaderboard_correct": null
+   "result": {
+    "winner": "BetBoom",
+    "score": "2-1",
+    "maps": "Nuke 16-13 BETBOOM; Dust2 11-13 Legacy; Mirage 13-11 BETBOOM (BETBOOM score listed first, HLTV page orientation)",
+    "source_url": "https://www.hltv.org/matches/2399413/betboom-vs-legacy-thunderpick-world-championship-2026",
+    "read_utc": "2026-10-16T23:52:00Z",
+    "checked_date_utc": "2026-10-16",
+    "map_score_team": "BETBOOM",
+    "verification_note": "Independently re-read in session arena/56b7c55f, read window 2026-10-16 23:47-23:56 UTC; full veto sequence and half scores recorded in hotspawn/research/day4_twc2026.json.",
+    "kind": "verified (HLTV)"
+   },
+   "pick_correct": false,
+   "leaderboard_correct": false
   },
   {
    "match_id": "1081503",

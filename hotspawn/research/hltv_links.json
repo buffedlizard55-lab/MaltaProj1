@@ -1,6 +1,6 @@
 {
- "about": "Hotspawn fixture -> official HLTV match page, with the series format HLTV states. Read by session arena/22be6967 on 2026-10-15 from HLTV event pages (TWC 2026 = event 8932, Elisa BreakOut Series 2 = event 9332). New fixtures without an entry get an HLTV team-page/search link automatically.",
- "read_utc": "2026-10-15T10:25:00Z",
+ "about": "Hotspawn fixture -> official HLTV match page, with the series format HLTV states. Read by session arena/22be6967 on 2026-10-15 from HLTV event pages (TWC 2026 = event 8932, Elisa BreakOut Series 2 = event 9332); extended by session arena/56b7c55f on 2026-10-16 from the MaceMedia VOID Autumn Cup 2026 matches page (event 9435). New fixtures without an entry get an HLTV team-page/search link automatically.",
+ "read_utc": "2026-10-16T23:53:00Z",
  "events": {
   "Thunderpick World Championship 2026": {
    "url": "https://www.hltv.org/events/8932/thunderpick-world-championship-2026",
@@ -13,6 +13,10 @@
   "CCT Europe 2026 Series #12 Play-In": {
    "url": "https://www.hltv.org/events/9456/cct-2026-europe-series-12-closed-qualifier",
    "format": ""
+  },
+  "VOID Autumn Cup 2026": {
+   "url": "https://www.hltv.org/events/9435/macemedia-void-autumn-cup-2026",
+   "format": "Playoffs: double elimination BO3, grand final BO5 (HLTV event page, Formats section)"
   }
  },
  "fixtures": {
@@ -130,6 +134,24 @@
    "format": "BO1",
    "checked_date_utc": "2026-10-16",
    "note": "Exact pairing and series format independently checked in session 4061d8f1; viewer-local kickoff clock not treated as UTC."
+  },
+  "1081861": {
+   "hltv": "https://www.hltv.org/matches/2399576/lynn-vision-vs-morningstar-macemedia-void-autumn-cup-2026",
+   "format": "BO3",
+   "note": "HLTV event 9435 matches page lists this opening-round tie as bo3; 2026-10-20 03:00Z per the Hotspawn lock/bo3.gg record."
+  },
+  "1081862": {
+   "hltv": "https://www.hltv.org/matches/2399577/rare-atom-vs-alter-ego-macemedia-void-autumn-cup-2026",
+   "format": "BO3"
+  },
+  "1081863": {
+   "hltv": "https://www.hltv.org/matches/2399578/chinggis-warriors-vs-wxm-macemedia-void-autumn-cup-2026",
+   "format": "BO3",
+   "note": "Hotspawn's 'WXM' is the same team bo3.gg lists as 'Wept Xyloid Melancholy' (bo3 id 132180); HLTV's event page lists it as WXM (team 14011, all-China lineup)."
+  },
+  "1081864": {
+   "hltv": "https://www.hltv.org/matches/2399579/nexvoid-vs-vitalem-aerem-macemedia-void-autumn-cup-2026",
+   "format": "BO3"
   }
  }
 }

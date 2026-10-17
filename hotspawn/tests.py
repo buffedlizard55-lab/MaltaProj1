@@ -752,6 +752,92 @@ class Day3(unittest.TestCase):
             self.assertIn("No current pick or probability is fabricated", strategy, m["hotspawn_id"])
 
 
+
+
+class Day4OwnLine(unittest.TestCase):
+    """The day-4 semifinal own line is our estimate on Valve's official points: it must be recomputable from
+    the file's own numbers and the board's fitted slope, published with its inputs, and never mixed with a quote."""
+
+    DATA = read_json(HERE / "research" / "day4_twc2026.json", {}) or {}
+    MATCHES = DATA.get("semifinals") or []
+
+    def test_own_line_recomputes_from_the_recorded_valve_points(self):
+        k = BOARD.get("summary", {}).get("own_line_k")
+        self.assertIsNotNone(k, "board summary has no fitted slope")
+        self.assertTrue(self.MATCHES, "no semifinals recorded")
+        for m in self.MATCHES:
+            vp = m.get("valve_points") or {}
+            a, b = vp.get("side_a") or {}, vp.get("side_b") or {}
+            for side, row in (("a", a), ("b", b)):
+                self.assertIsNotNone(row.get("points"), f"{m.get('team_a')}/{side}")
+                self.assertEqual(row.get("as_of", vp.get("as_of")), vp.get("as_of"))
+                self.assertTrue(str(row.get("row_url", "")).startswith("https://github.com/ValveSoftware/"), m.get("team_a"))
+            p_a = own_line(a["points"], b["points"], float(k))
+            own = m.get("our_own_line") or {}
+            self.assertAlmostEqual(round(p_a * 100, 1), own.get("p_a_pct"), delta=0.05, msg=m.get("team_a"))
+            self.assertAlmostEqual(round((1 - p_a) * 100, 1), own.get("p_b_pct"), delta=0.05, msg=m.get("team_a"))
+            self.assertEqual(own.get("k"), k, m.get("team_a"))
+            self.assertEqual((m.get("own_line_eligibility") or {}).get("verdict"), "eligible", m.get("team_a"))
+            self.assertIn("Best of 3 (LAN)", (m.get("own_line_eligibility") or {}).get("format", ""), m.get("team_a"))
+            self.assertTrue(str(m.get("crowd_vote_context", "")).find("never a probability") > 0, m.get("team_a"))
+
+    def test_rendered_watch_shows_the_own_line_with_its_inputs_and_the_quote_separation(self):
+        page = (HERE / "twc.html").read_text(encoding="utf-8")
+        self.assertIn("Our own line (Valve points)", page)
+        self.assertIn("our estimate, not a bookmaker quote", page)
+        for m in self.MATCHES:
+            own = m.get("our_own_line") or {}
+            self.assertIn(f'{m["team_a"]} {own["p_a_pct"]:.1f}% / {m["team_b"]} {own["p_b_pct"]:.1f}%', page, m["team_a"])
+            vp = m.get("valve_points") or {}
+            self.assertIn(f'Valve {vp.get("as_of")} points: {vp["side_a"]["points"]} vs {vp["side_b"]["points"]}', page)
+        self.assertIn("fitted on Valve", page)
+        self.assertNotIn("bookmaker odds for this fixture", page)
+
+class Day3CompletedDeciders(unittest.TestCase):
+    """A researched day-3 fixture that has since been played must read as finished and graded on the pages:
+    final score plus the HLTV result link, with the frozen pre-lock pick never rewritten after the fact."""
+
+    RES = (read_json(HERE / "research" / "results.json", {}) or {}).get("results", {}) or {}
+    MATCHES = {str(m.get("hotspawn_id")): m for m in DAY3.get("matches") or []}
+
+    def _completed(self):
+        return [(mid, m, self.RES[mid]) for mid, m in self.MATCHES.items()
+                if (self.RES.get(mid) or {}).get("winner")]
+
+    def test_finished_deciders_state_the_score_with_the_hltv_link(self):
+        cases = self._completed()
+        self.assertTrue(cases, "no completed decider recorded in research/results.json")
+        for name in ("strategy.html", "index.html", "unresolved.html"):
+            page = (HERE / name).read_text(encoding="utf-8")
+            for mid, m, r in cases:
+                self.assertIn(f'Completed {r["checked_date_utc"]}: {r["winner"]} {r["score"]}', page, f"{name} {mid}")
+                self.assertIn(r["source_url"], page, f"{name} {mid}: result link missing")
+                self.assertIn("strategy.html#grading", page, f"{name} {mid}: grade link missing")
+                self.assertNotIn(f"latest probability for {m['team_a']}", page, f"{name} {mid}")
+
+    def test_grading_marks_are_recomputed_from_the_verified_result(self):
+        """Recompute every mark from the frozen pick and the verified winner; the table must agree."""
+        history = read_json(HERE / "data" / "pick_history.json", {}) or {}
+        page = (HERE / "strategy.html").read_text(encoding="utf-8")
+        self.assertIn('id="grading"', page)
+        table = page[page.find('id="grading"'):]
+        rows = [[re.sub(r"<[^>]+>", " ", c).strip() for c in re.findall(r"<td[^>]*>(.*?)</td>", row, re.S)]
+                for row in re.findall(r"<tr>(.*?)</tr>", table, re.S)]
+        rows = [r for r in rows if len(r) == 6]
+        self.assertTrue(rows, "grading table has no rows")
+        checked = 0
+        for mid, m, res in self._completed():
+            h = history.get(mid)
+            if not h:
+                continue                      # fixture never carried a frozen pick: nothing to grade
+            row = next((r for r in rows if r[1] == h["pick"] and res["winner"] in r[3]
+                           and "verified (HLTV)" in r[3]), None)
+            self.assertIsNotNone(row, f"{mid}: no grading row for pick {h['pick']} against winner {res['winner']}")
+            self.assertEqual(row[4], "✓" if h["pick"] == res["winner"] else "✗", mid)
+            self.assertEqual(row[5], "✓" if h["leaderboard_pick"] == res["winner"] else "✗", mid)
+            checked += 1
+        self.assertGreaterEqual(checked, 1, "no frozen pick was graded at all")
+
 class Day2(unittest.TestCase):
     """The 15 October review must be on the page, and its grades recomputed here - never copied from prose."""
 
