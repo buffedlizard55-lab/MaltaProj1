@@ -190,7 +190,9 @@ def render(board, research, card, capture=None, compact=False):
         out.append('</tbody></table></div>')
     out.append('</tbody></table></div><h3>How days 1–3 guide the decision</h3><ul>')
     for lesson in research.get('lessons', []):
-        out.append(f'<li>{e(lesson.get("text"))} {source(lesson.get("url"))}</li>')
+        flag = lesson.get('flag')
+        mark = f' <span class="small">(flagged: {e(flag)})</span>' if flag else ''
+        out.append(f'<li>{e(lesson.get("text"))} {source(lesson.get("url"))}{mark}</li>')
     out.append('</ul><p class="note"><b>Practical rule:</b> first take the supported favourite. '
                'Consider an underdog only when the current outside estimate gives a meaningful chance '
                'and the ownership sample is sufficiently large to show genuine differentiation. '

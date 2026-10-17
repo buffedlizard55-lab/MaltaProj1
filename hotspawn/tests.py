@@ -824,6 +824,27 @@ class Day4MergeAudit(unittest.TestCase):
         self.assertEqual(bet.get("score"), "2-1")
         self.assertTrue(bet.get("player_note"), "the match-page rating tables must be recorded")
 
+    def test_flagged_lessons_are_marked_where_they_are_shown(self):
+        """A lesson that rests on an unverified or refuted claim must carry its flag in the same list item."""
+        page = (HERE / "twc.html").read_text(encoding="utf-8")
+        flagged = [l for l in self.DATA.get("lessons", []) if l.get("flag")]
+        self.assertTrue(flagged, "the merged-draft lessons carry no flags")
+        for l in flagged:
+            self.assertIn("(flagged:", page, l.get("text", "")[:40])
+        self.assertIn("flagged: refuted", page, "the refuted player claim must be marked refuted where it is printed")
+        self.assertTrue(any(l["flag"].startswith("refuted") for l in flagged))
+
+    def test_analysis_rows_do_not_restate_the_corrected_market_band(self):
+        page = (HERE / "twc.html").read_text(encoding="utf-8")
+        falcons = next(m for m in self.DATA["semifinals"] if m["team_b"] == "BETBOOM")
+        ca = falcons["contrarian_analysis"]
+        self.assertIn("20.5-24.0%", ca["underdog"] + ca["upset_case"])
+        self.assertIn("76.9%", ca["favourite"])
+        self.assertNotIn("~83-87%", page)
+        allowed = {"corrected", "verified", "partly verified", "unverified", "refuted", "flagged"}
+        for item in self.PICKS.get("audit") or []:
+            self.assertIn(str(item.get("status")).casefold(), allowed, item.get("claim"))
+
     def test_unverified_analysis_is_flagged_on_the_page(self):
         page = (HERE / "twc.html").read_text(encoding="utf-8")
         self.assertIn("Merge audit of the merged draft", page)
