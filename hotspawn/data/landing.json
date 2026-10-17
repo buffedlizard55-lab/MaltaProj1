@@ -1,24 +1,24 @@
 {
- "generated_utc": "2026-10-17T18:39:49Z",
- "reference_utc": "2026-10-17T18:39:35Z",
- "open": 19,
- "open_with_pick": 18,
+ "generated_utc": "2026-10-17T22:29:35Z",
+ "reference_utc": "2026-10-17T22:29:15Z",
+ "open": 17,
+ "open_with_pick": 15,
  "open_rung": {
   "A": 0,
   "B": 10,
-  "C": 3,
-  "D": 1,
-  "E": 3,
+  "C": 2,
+  "D": 2,
+  "E": 1,
   "F": 2
  },
- "open_unresolved": 1,
+ "open_unresolved": 2,
  "open_direction_only": 2,
  "classes": {
-  "VALUE": 5,
-  "CONTRARIAN": 2,
-  "SITUATIONAL": 1,
+  "VALUE": 3,
+  "CONTRARIAN": 1,
+  "SITUATIONAL": 0,
   "LONG SHOT": 3,
-  "CHALK": 4,
+  "CHALK": 5,
   "EVIDENCE LIMITED": 1,
   "NO CROWD DATA": 0,
   "DIRECTION ONLY": 2
@@ -37,6 +37,19 @@
    "rung": "D",
    "class": null,
    "why": "Off Chops has no row in Valve's 2026-10-05 standings"
+  },
+  {
+   "id": "1081532",
+   "a": "ASTRAL",
+   "b": "Leo",
+   "lock": "2026-10-19T10:39:00Z",
+   "pick": null,
+   "p": null,
+   "pa": null,
+   "pb": null,
+   "rung": "D",
+   "class": null,
+   "why": "Leo matches 2 same-name rows in Valve's 2026-10-05 standings"
   },
   {
    "id": "1081861",
@@ -66,34 +79,6 @@
   }
  ],
  "next": [
-  {
-   "id": "1082021",
-   "a": "PCIFIC",
-   "b": "6yuBoJlbl",
-   "tier": "C",
-   "lock": "2026-10-17T18:54:00Z",
-   "pick": "6yuBoJlbl",
-   "p": 0.5948,
-   "pa": 0.4052,
-   "pb": 0.5948,
-   "basis": "C",
-   "play": "6yuBoJlbl",
-   "class": "VALUE"
-  },
-  {
-   "id": "1082019",
-   "a": "Hacha",
-   "b": "LOS NINOS",
-   "tier": "C",
-   "lock": "2026-10-17T21:54:00Z",
-   "pick": "LOS NINOS",
-   "p": 0.76,
-   "pa": 0.24,
-   "pb": 0.76,
-   "basis": "B",
-   "play": "LOS NINOS",
-   "class": "LONG SHOT"
-  },
   {
    "id": "1081519",
    "a": "NEXVOID",
@@ -129,9 +114,9 @@
    "tier": "B",
    "lock": "2026-10-18T10:54:00Z",
    "pick": "ex-RUSTEC",
-   "p": 0.825,
-   "pa": 0.825,
-   "pb": 0.175,
+   "p": 0.74,
+   "pa": 0.74,
+   "pb": 0.26,
    "basis": "B",
    "play": "ex-RUSTEC",
    "class": "CHALK"
@@ -143,12 +128,12 @@
    "tier": "C",
    "lock": "2026-10-18T13:39:00Z",
    "pick": "ex-6666",
-   "p": 0.6971,
-   "pa": 0.6971,
-   "pb": 0.3029,
-   "basis": "E",
-   "play": "Privateer",
-   "class": "SITUATIONAL"
+   "p": 0.72,
+   "pa": 0.72,
+   "pb": 0.28,
+   "basis": "B",
+   "play": "ex-6666",
+   "class": "LONG SHOT"
   },
   {
    "id": "1081522",
@@ -157,12 +142,12 @@
    "tier": "C",
    "lock": "2026-10-18T13:39:00Z",
    "pick": "Phantom Academy",
-   "p": 0.5599,
-   "pa": 0.4401,
-   "pb": 0.5599,
-   "basis": "E",
-   "play": "antidaun",
-   "class": "CONTRARIAN"
+   "p": 0.745,
+   "pa": 0.255,
+   "pb": 0.745,
+   "basis": "B",
+   "play": "Phantom Academy",
+   "class": "LONG SHOT"
   },
   {
    "id": "1079640",
@@ -171,12 +156,40 @@
    "tier": "B",
    "lock": "2026-10-18T16:54:00Z",
    "pick": "FORZE Reload",
-   "p": 0.605,
-   "pa": 0.605,
-   "pb": 0.395,
+   "p": 0.58,
+   "pa": 0.58,
+   "pb": 0.42,
    "basis": "B",
    "play": "FORZE Reload",
    "class": "VALUE"
+  },
+  {
+   "id": "1081526",
+   "a": "Infinite",
+   "b": "Insiders",
+   "tier": "B",
+   "lock": "2026-10-19T08:54:00Z",
+   "pick": "Infinite",
+   "p": 0.825,
+   "pa": 0.825,
+   "pb": 0.175,
+   "basis": "B",
+   "play": "Infinite",
+   "class": "CHALK"
+  },
+  {
+   "id": "1081527",
+   "a": "aimclub",
+   "b": "BASEMENT BOYS",
+   "tier": "B",
+   "lock": "2026-10-19T08:54:00Z",
+   "pick": "BASEMENT BOYS",
+   "p": 0.5469,
+   "pa": 0.4531,
+   "pb": 0.5469,
+   "basis": "B",
+   "play": "BASEMENT BOYS",
+   "class": "EVIDENCE LIMITED"
   }
  ]
 }
