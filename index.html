@@ -131,6 +131,8 @@
     <section id="unresolved-summary" aria-labelledby="unresolved-title">
       <h2 id="unresolved-title">Unresolved picks &amp; limitations</h2>
       <p id="unresolved-counts">Matches without a sharp-bookmaker (Pinnacle) line go down the research ladder — HLTV first, then esportsbooks, then betting lines such as Polymarket, then our own line from Valve's official standings. A pick is left blank only when nothing supports one.</p>
+      <ul class="next-list" id="gap-list" aria-live="polite"><li>Loading the matches with no percentage…</li></ul>
+      <p class="small">A <strong>direction-only</strong> row publishes a pick from an official one-sided verdict but no win percentage, because one team is unranked and unrated — a number would be invented, not sourced. An <strong>unresolved</strong> row has no pick at all. Both are listed with the sources that were tried.</p>
       <ul class="limits">
         <li>Missing, stale, rematch-ambiguous or mismatched quotes are rejected. Low-tier matches remain visible even when no source can support a pick.</li>
         <li>Own estimates are match-level, not map-level probabilities. Unknown formats, known roster mismatches and rating snapshots older than 45 days withhold that fallback.</li>
@@ -350,6 +352,7 @@
       var status = document.getElementById("snapshot-status");
       var list = document.getElementById("next-list");
       var unresolved = document.getElementById("unresolved-counts");
+      var gapList = document.getElementById("gap-list");
       var CLASS_WORD = { "VALUE": "value", "CONTRARIAN": "contrarian", "SITUATIONAL": "situational", "LONG SHOT": "long shot", "CHALK": "chalk" };
 
       function ageHours(value) {
@@ -367,7 +370,8 @@
       function render(d) {
         var rung = d.open_rung || {};
         var ownLines = (rung.C || 0) + (rung.E || 0);
-        var researched = (rung.B || 0) + ownLines;
+        var dirOnly = rung.F || 0;
+        var researched = (rung.B || 0) + ownLines + dirOnly;
         setText("open-count", d.open);
         setText("pick-count", d.open_with_pick);
         setText("market-count", rung.A || 0);
@@ -383,7 +387,10 @@
           status.textContent = "Hotspawn read " + utcText(d.reference_utc) + " (" + (h < 1 ? Math.round(h * 60) + " min" : h.toFixed(1) + " h") + " ago)" + (d.hotspawn_complete === false ? " — Hotspawn read incomplete, new matches may be missing." : ". All three Hotspawn CS2 pages were read.");
           status.className = d.hotspawn_complete === false ? "snapshot-status warning" : "snapshot-status";
         }
-        unresolved.textContent = researched + " open match(es) had no Pinnacle line and were resolved via the research ladder (" + (rung.B || 0) + " by secondary outside markets, " + ownLines + " by our own line (strict or roster-research)); " + (d.open_unresolved || 0) + " have no pick. Limits below.";
+        unresolved.textContent = researched + " open match(es) had no Pinnacle line and were resolved via the research ladder ("
+          + (rung.B || 0) + " by secondary outside markets, " + ownLines + " by our own line (strict or roster-research), "
+          + dirOnly + " direction-only with no percentage); " + (d.open_unresolved || 0) + " have no pick at all. Limits below.";
+        renderGaps(d);
         while (list.firstChild) list.removeChild(list.firstChild);
         var now = Date.now();
         (d.next || []).forEach(function (m) {
@@ -400,6 +407,32 @@
           list.appendChild(li);
         });
         if (!list.firstChild) list.appendChild(make("li", "", "No open matches in this snapshot."));
+      }
+
+      function renderGaps(d) {
+        if (!gapList) return;
+        while (gapList.firstChild) gapList.removeChild(gapList.firstChild);
+        var gaps = d.gaps || [];
+        if (!gaps.length) {
+          gapList.appendChild(make("li", "", "Every open match in this snapshot carries a published percentage."));
+          return;
+        }
+        gaps.forEach(function (g) {
+          var li = make("li");
+          var a = make("a", "who", g.a + " vs " + g.b);
+          a.href = "hotspawn/picks.html#m" + encodeURIComponent(g.id);
+          li.appendChild(a);
+          var kind = g.rung === "F" ? "Direction-only — pick with no percentage" : "Unresolved — no pick";
+          li.appendChild(make("span", "meta", kind + " · locks " + utcText(g.lock)));
+          li.appendChild(make("span", "meta", g.pick ? ("Pick: " + g.pick) : "Pick: none"));
+          if (g.why) li.appendChild(make("span", "meta", g.why));
+          gapList.appendChild(li);
+        });
+        var link = make("a", "", "Full research trail and limitations →");
+        link.href = "hotspawn/unresolved.html#direction-only";
+        var li = make("li");
+        li.appendChild(link);
+        gapList.appendChild(li);
       }
 
       function loadSummary() {

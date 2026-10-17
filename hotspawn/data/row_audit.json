@@ -1293,14 +1293,21 @@
    "input_reconciliation": "pass",
    "source_url": "https://play.hotspawn.com/lobby",
    "source_read_utc": "2026-10-17T00:21:48Z",
-   "probability_basis": "Unresolved",
+   "probability_basis": "Research rung F: direction published from HLTV's own one-sided verdict on the linked match page; no eligible outside price and no rating pair exist, so no win probability is published.",
    "sources": [
     "https://play.hotspawn.com/lobby",
     "https://www.hltv.org/matches/2399576/lynn-vision-vs-morningstar-macemedia-void-autumn-cup-2026",
-    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md",
+    "https://www.hltv.org/betting/analytics/2399576/lynn-vision-vs-morningstar-macemedia-void-autumn-cup-2026",
+    "https://www.hltv.org/events/9435/macemedia-void-autumn-cup-2026",
+    "https://bo3.gg/matches/lynn-vision-vs-morningstar-20-10-2026",
+    "https://egamersworld.com/counterstrike/match/EJcHRdr5Vx/lynn-vision-vs-morningstar-7AWA3eTHD"
    ],
    "flags": [
-    "UNRESOLVED"
+    "DIRECTION_ONLY",
+    "NO_MARKET",
+    "NO_PERCENTAGE",
+    "RESEARCH_FALLBACK"
    ],
    "errors": []
   },
@@ -1327,13 +1334,20 @@
    "input_reconciliation": "pass",
    "source_url": "https://play.hotspawn.com/lobby",
    "source_read_utc": "2026-10-17T00:21:48Z",
-   "probability_basis": "Unresolved",
+   "probability_basis": "Research rung F: direction published from HLTV's own one-sided verdict on the linked match page; no eligible outside price and no rating pair exist, so no win probability is published.",
    "sources": [
     "https://play.hotspawn.com/lobby",
-    "https://www.hltv.org/matches/2399578/chinggis-warriors-vs-wxm-macemedia-void-autumn-cup-2026"
+    "https://www.hltv.org/matches/2399578/chinggis-warriors-vs-wxm-macemedia-void-autumn-cup-2026",
+    "https://www.hltv.org/betting/analytics/2399578/chinggis-warriors-vs-wxm-macemedia-void-autumn-cup-2026",
+    "https://www.hltv.org/events/9435/macemedia-void-autumn-cup-2026",
+    "https://egamersworld.com/counterstrike/match/EJcHRdr5Vx/chinggis-warriors-vs-wxm-_ddme1I7dZ",
+    "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
    ],
    "flags": [
-    "UNRESOLVED"
+    "DIRECTION_ONLY",
+    "NO_MARKET",
+    "NO_PERCENTAGE",
+    "RESEARCH_FALLBACK"
    ],
    "errors": []
   },

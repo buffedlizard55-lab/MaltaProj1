@@ -119,7 +119,10 @@ const fs = require('node:fs'), vm = require('node:vm'), assert = require('node:a
 const html = fs.readFileSync('index.html', 'utf8');
 const source = [...html.matchAll(/<script>([\s\S]*?)<\/script>/g)].map(m => m[1]).join('\n')
   .replace(/\n\s*loadSummary\(\);/, '\nglobalThis.renderForTest = render;');
-function node() { return {textContent: '', children: [], addEventListener(){},
+function node() { return {_text: '', children: [], addEventListener(){},
+  set textContent(v){this._text = String(v);}, get textContent(){return this._text;},
+  get text(){return this._text;},
+  set className(v){}, set href(v){this._href=v}, get href(){return this._href},
   get firstChild(){return this.children[0]}, appendChild(x){this.children.push(x)},
   removeChild(){this.children.shift()}}; }
 const nodes = {};
@@ -132,6 +135,29 @@ for (const [rung, expected, own] of [[{A:0,B:11,C:1,D:0,E:4},16,5], [{A:3,B:2,C:
   assert.ok(nodes['unresolved-counts'].textContent.startsWith(expected+' open match(es)'));
   assert.ok(nodes['unresolved-counts'].textContent.includes(own+' by our own line'));
 }
+// Rung F (direction-only) must be counted as a researched resolution but must not print a percentage.
+ctx.renderForTest({open_rung:{A:2,B:11,C:3,D:0,E:3,F:2}, next:[], open_unresolved:0});
+assert.equal(nodes['own-count'].textContent, '19');
+assert.ok(nodes['unresolved-counts'].textContent.includes('2 direction-only with no percentage'));
+// The gap list must name each row honestly and link into the site.
+ctx.renderForTest({open_rung:{F:1,D:1}, open_unresolved:1, next:[],
+  gaps:[{id:'1081861', a:'Lynn Vision', b:'Morningstar', lock:'2026-10-20T02:54:00Z', pick:'Lynn Vision', rung:'F', why:'no rating pair'},
+        {id:'1081999', a:'Team A', b:'Team B', lock:'2026-10-20T05:54:00Z', pick:null, rung:'D', why:'no source at all'}]});
+const gapText = nodes['gap-list'].children.map(c => (c.text||'')).join(' | ');
+assert.ok(gapText.length >= 0);
+const gapNodes = nodes['gap-list'].children;
+assert.equal(gapNodes.length, 3);
+assert.equal(gapNodes[0].children[0].text, 'Lynn Vision vs Morningstar');
+assert.equal(gapNodes[0].children[0].href, 'hotspawn/picks.html#m1081861');
+assert.ok(gapNodes[0].children[1].text.includes('Direction-only'));
+assert.ok(gapNodes[0].children[2].text.includes('Pick: Lynn Vision'));
+assert.ok(gapNodes[1].children[1].text.includes('Unresolved'));
+assert.equal(gapNodes[1].children[2].text, 'Pick: none');
+assert.equal(gapNodes[2].children[0].href, 'hotspawn/unresolved.html#direction-only');
+// No gaps at all must still say so rather than leaving a stuck "Loading" message.
+ctx.renderForTest({open_rung:{A:1}, open_unresolved:0, next:[], gaps:[]});
+assert.equal(nodes['gap-list'].children.length, 1);
+assert.ok(nodes['gap-list'].children[0].text.includes('Every open match'));
 """
         subprocess.run(['node', '-e', program], cwd=ROOT, check=True, capture_output=True, text=True)
 

@@ -5456,6 +5456,69 @@ main's own merge (another session's scope) and was not edited here. `reviews/4e8
 legacy dashboards were left untouched. Flagged items remain flagged: `D4-04`, `IR-43`, `IR-45` are
 `needs review`; `D4-01`, `IR-41`, `IR-46` are `fixed`; `IR-42`, `IR-44` are `handled`.
 
+---
+## Session arena/29171622 — 2026-10-16 23:5x UTC
+
+Fixed Arena branch: `arena/29171622-maltaproj1`. Handoff note: the previous primary-board / final-integration claim (`arena/4061d8f1`, logged 2026-10-16 19:48 UTC) has no commits since and is now more than 60 minutes old, so this session takes over the two items below and logs the handoff instead of starting a competing site. No open PR touches the claimed files (open PRs #176/#136/#132 are historical; #176 explicitly does not edit landing/picks/TWC/match data).
+
+| Task | Status | Owner | Exclusive file scope |
+|---|---|---|---|
+| TWC 2026 day-1–day-3 review (9z upset, Aurora roster change) + day-4 semifinal watch with outside lines | in progress | arena/29171622 | `hotspawn/research/29171622/**` |
+| Close the every-match gap: research ladder HLTV → esportsbooks → betting lines, and a new documented published-verdict rung for the two fixtures with no price and no rating | in progress | arena/29171622 | `hotspawn/research/29171622/**`, `hotspawn/model.py`, `hotspawn/build.py`, `hotspawn/tests.py` |
+| Executive summary: in-site links to the picks list + an unresolved/limitations block listing the actual rows (mobile-first) | in progress | arena/29171622 | `index.html`, `hotspawn/data/landing.json` (generated) |
+| Line-by-line verification page for this session | in progress | arena/29171622 | `reviews/29171622-verification.md` |
+
+Generated data/pages (`hotspawn/data/**`, `hotspawn/*.html`) are rebuilt by `hotspawn/model.py` + `hotspawn/build.py`; the 4-hourly `hotspawn-22be6967` workflow remains the refresh mechanism.
+
+### arena/29171622 — progress, 2026-10-17 00:1x UTC
+
+**Correction to a file owned by arena/ef2db3af (PR #179, merged).** `hotspawn/research/day4_twc2026.json` published two
+wrong values that `hotspawn/twc_watch.py` renders as fact. Both are corrected in place and logged in the file itself
+under `corrections_29171622`, and mirrored into my own `hotspawn/research/29171622/twc_days.json` under
+`corrections_applied_to_shared_file`. Nothing was silently overwritten and no second, contradictory source was created.
+
+1. **Start times were reader-local, labelled UTC.** The file said 2026-10-17T10:00Z / 13:00Z. HLTV renders kickoff in the
+   reader's timezone (UTC-4 on the fetch path). Three timestamped machine sources in the same capture all return
+   **14:00Z / 17:00Z**: Pinnacle guest API (read 23:52:04Z), bo3.gg (23:52:04Z) and Polymarket (23:52:06Z). The VOID cup
+   page on the same fetch path shows 23:00 for a match the API records at 03:00Z, which fixes the offset at -4.
+2. **The Falcons price was mis-de-vigged.** `implied_a` was 0.87 for odds 1.20 / 4.00; the true de-vig is **0.7692**
+   (0.87 is neither the raw 0.8333 nor the de-vigged figure). That error produced a "13% chance" for BETBOOM in the
+   upset-case prose; BETBOOM is actually priced 20.5%-24.0% across the three sources.
+3. **Two sources were missing from the Falcons row.** Pinnacle (1.257069 / 3.98) and Polymarket (0.795 / 0.205) were
+   already in `hotspawn/data/capture.json` and were omitted, making a three-source price look single-source. Both added.
+
+After the fix the day-4 "External market watch" table renders all six observed lines with correct de-vigged percentages.
+
+**Rung F is live and published.** Two fixtures had no bookmaker price, no prediction-market price and no rating for one
+side (Lynn Vision vs Morningstar 1081861, Chinggis Warriors vs WXM 1081863). Rung F publishes a **direction only, with
+no win percentage**, taken from HLTV's own one-sided verdict on the linked match + analytics pages, with every rejected
+source listed on the row. Result: **21 open / 21 picks / 0 unresolved**; rungs A2 B11 C3 D0 E3 F2. `verify.py` 83/83 with
+0 errors; `hotspawn/tests.py` 89 tests OK.
+
+Files touched so far (all inside the claimed scope except the correction above): `hotspawn/model.py`, `hotspawn/build.py`,
+`hotspawn/tests.py`, `index.html`, `tests/test_landing_43c32386.py`, `hotspawn/research/29171622/**`,
+`hotspawn/research/day4_twc2026.json` (correction only).
+
+**Rebase note (00:25 UTC).** Rebased onto `origin/main`, which had advanced with PR #181 (session `arena/56b7c55f`) and
+a newer bot capture (2026-10-17T00:12:41Z). Session 56b7c55f had independently found the same two day-4 errors described
+above and corrected them **in prose** on merge: start times were already 14:00Z/17:00Z in main, and a merge note already
+said the 1.20/4.00 de-vig is 76.9% not 87%. Two residuals survived and are the only things changed here: the stored JSON
+field `external_lines.bo3_gg_thunderpick.implied_a` still read `0.87` while the prose said 76.9%, and the Pinnacle and
+Polymarket lines for the Falcons semi - both already in the same capture - were still missing. All conflicts in
+`COORDINATION.md` were resolved by union (append-only board); generated files were taken from main and then rebuilt by
+`model.py` + `build.py` against the 00:12:41Z capture.
+
+Rebuilt snapshot on the newer capture: **21 open / 21 picks / 0 unresolved**, rungs A2 B11 C3 D0 E3 F2,
+`verify.py` 83/83 with 0 errors, `hotspawn/tests.py` **98 tests OK** (9 of those are 56b7c55f's, all still passing).
+
+**Local browser note:** Chromium cannot be downloaded in this sandbox, so `hotspawn/mobile_check.py` honestly reports
+"browser unavailable; no layout claim made" locally. The last real Chromium run (23:48Z, refresh run 38982544209) passed
+all 27 checks at 360/390/768 px. Because I cannot re-run it here, I added a static escape-hatch test instead: every table
+must have either the `.tablewrap` scroll container or an explicit `min-width:0` + narrow-viewport row-stacking rule. That
+test found `release-audit.html` using the stacking pattern and now accepts both, rather than assuming.
+
+---
+
 ### Session arena/56b7c55f — final receipts (2026-10-17 ~00:55 UTC)
 
 **PR #181 merged** — <https://github.com/buffedlizard55-lab/MaltaProj1/pull/181>, merge commit
