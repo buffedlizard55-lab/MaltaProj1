@@ -1,5 +1,5 @@
 {
- "about": "Irregularities found while researching and reviewing (2026-10-15): the board's own session arena/22be6967 plus the follow-up session arena/e1ceecc2. Each item is published on hotspawn/flagged.html with its evidence. Status: open = still true at the last check; handled = this board works around it; fixed = the defect was repaired and the owning tests pass.",
+ "about": "Irregularities found while researching and reviewing (2026-10-15): the board's own session arena/22be6967 plus the follow-up session arena/e1ceecc2. Each item is published on hotspawn/flagged.html with its evidence. Status: open = still true at the last check; handled = this board works around it; fixed = the defect was repaired and the owning tests pass. Session arena/56b7c55f appended IR-47 for the page that printed flagged claims unmarked; the fix is the '(flagged: ...)' marks plus two assertions in hotspawn/tests.py.",
  "items": [
   {
    "id": "IR-01",
@@ -511,7 +511,20 @@
     "https://polymarket.com/event/cs2-fal2-bb3-2026-10-17",
     "https://www.hltv.org/matches/2399413/betboom-vs-legacy-thunderpick-world-championship-2026"
    ]
+  },
+  {
+   "id": "IR-47",
+   "status": "fixed",
+   "title": "The published page stated two flagged claims as plain fact",
+   "detail": "After PR #180 merged the audited day-4 file, hotspawn/twc.html still printed the merged draft's 'Magnojez was BETBOOM's standout (1.17 rating)' lesson and its unverified map-pool/H2H sentences in the lessons and analysis rows, while the audit table on the same page marked them refuted or unverified. A reader who did not scroll to the audit table would have taken them as fact. The two lessons now carry a flag that is rendered in the same list item ('(flagged: refuted: ...)'), the Falcons analysis rows use the corrected 20.5-24.0% market band, and two tests pin the behaviour so a flagged claim can never be printed unmarked again.",
+   "evidence": [
+    "https://buffedlizard55-lab.github.io/MaltaProj1/hotspawn/twc.html#day4",
+    "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/hotspawn/research/day4_twc2026.json",
+    "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/hotspawn/twc_watch.py",
+    "https://github.com/buffedlizard55-lab/MaltaProj1/blob/main/hotspawn/tests.py"
+   ],
+   "session": "arena/56b7c55f"
   }
  ],
- "updated_utc": "2026-10-17T00:20:00Z"
+ "updated_utc": "2026-10-17T00:40:00Z"
 }
