@@ -1,35 +1,35 @@
 playwright available: True
-probe hotspawn       path=http status=200 bytes=335025 err=None
+probe hotspawn       path=http status=200 bytes=460816 err=None
 probe egw-cs2        path=browser status=403 bytes=4756 err=None
-probe hltv-ranking   path=browser status=200 bytes=1077213 err=None
+probe hltv-ranking   path=browser status=200 bytes=1056474 err=None
 probe valve-api      path=http status=200 bytes=50648 err=None
-slate candidates for odds lookup: 85 of 384 payload rows
+slate candidates for odds lookup: 91 of 392 payload rows
 {
- "generated_utc": "2026-10-16T23:50:40Z",
- "hotspawn_fixtures": 384,
+ "generated_utc": "2026-10-17T04:46:46Z",
+ "hotspawn_fixtures": 392,
  "sports": {
-  "cs2": 83,
-  "lol": 301
+  "cs2": 96,
+  "lol": 296
  },
- "week_total_text": 153,
- "week_total_context": " Tournaments How To Play League of Legends Pick'em Lobby Play other game titles This week 153 matches this week Resets in 2d 00h 20m 12s Sign in to tra",
- "reset_utc": "2026-10-19T00:08:19Z",
+ "week_total_text": 155,
+ "week_total_context": " Tournaments How To Play League of Legends Pick'em Lobby Play other game titles This week 155 matches this week Resets in 1d 19h 36m 57s Sign in to tra",
+ "reset_utc": "2026-10-19T00:21:10Z",
  "ng_state_rows": {
-  "lobby": 83,
-  "cs2-pickems": 83,
-  "thp-pickems": 5,
-  "lol-pickems": 301
+  "lobby": 96,
+  "cs2-pickems": 96,
+  "thp-pickems": 11,
+  "lol-pickems": 296
  },
  "cards_rendered": {
-  "lobby": 21,
-  "cs2-pickems": 21,
-  "thp-pickems": 5,
+  "lobby": 34,
+  "cs2-pickems": 34,
+  "thp-pickems": 11,
   "lol-pickems": 234
  },
  "egw_candidates": 0,
  "egw_events_scanned": 0,
  "egw_fixtures_with_book_table": 0,
- "egw_fixtures_without_link": 85,
+ "egw_fixtures_without_link": 91,
  "egw_deadline_hit": false,
  "pinnacle_quotes": 0,
  "pinnacle_counters": {},
