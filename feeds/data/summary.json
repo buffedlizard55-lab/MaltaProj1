@@ -1,18 +1,18 @@
 {
- "generated_utc": "2026-10-17T17:31:44Z",
- "as_of_utc": "2026-10-17T17:31:44Z",
- "hotspawn_cs2_fixtures": 87,
- "open_cs2_fixtures": 19,
+ "generated_utc": "2026-10-17T19:42:44Z",
+ "as_of_utc": "2026-10-17T19:42:44Z",
+ "hotspawn_cs2_fixtures": 81,
+ "open_cs2_fixtures": 18,
  "priced_any": 6,
  "priced_both": 3,
  "priced_bookmaker": 4,
  "priced_polymarket": 5,
- "format_known": 18,
+ "format_known": 17,
  "feed_rows": 9,
- "review_rows": 7,
- "flags": 24,
- "polymarket_events": 62,
- "bo3_matches": 369,
+ "review_rows": 6,
+ "flags": 21,
+ "polymarket_events": 57,
+ "bo3_matches": 367,
  "polymarket_status": "observed",
  "bo3_status": "observed",
  "hotspawn_fallback": null,
@@ -21,32 +21,32 @@
    "page": "cs2-pickems",
    "url": "https://play.hotspawn.com/cs2-pickems",
    "status": 200,
-   "cs2_rows": 85,
-   "fetched_utc": "2026-10-17T17:31:35Z"
+   "cs2_rows": 81,
+   "fetched_utc": "2026-10-17T19:42:08Z"
   },
   {
    "page": "lobby",
    "url": "https://play.hotspawn.com/lobby",
    "status": 200,
-   "cs2_rows": 87,
-   "fetched_utc": "2026-10-17T17:31:37Z"
+   "cs2_rows": 81,
+   "fetched_utc": "2026-10-17T19:42:10Z"
   },
   {
    "page": "thp-pickems",
    "url": "https://play.hotspawn.com/thp-pickems",
    "status": 200,
-   "cs2_rows": 4,
-   "fetched_utc": "2026-10-17T17:31:38Z"
+   "cs2_rows": 2,
+   "fetched_utc": "2026-10-17T19:42:12Z"
   }
  ],
  "probes": [
   {
    "source": "OddsDigger e-sports index",
    "url": "https://oddsdigger.com/e-sports",
-   "status": 200,
-   "bytes": 260810,
-   "error": null,
-   "fetched_utc": "2026-10-17T17:31:43Z"
+   "status": null,
+   "bytes": 0,
+   "error": "TimeoutError: The read operation timed out",
+   "fetched_utc": "2026-10-17T19:42:16Z"
   },
   {
    "source": "bookmaker page relayed by bo3.gg (thunderpick)",
@@ -54,7 +54,7 @@
    "status": 403,
    "bytes": 0,
    "error": "HTTPError 403 server=cloudflare title='Just a moment...'",
-   "fetched_utc": "2026-10-17T17:31:44Z"
+   "fetched_utc": "2026-10-17T19:42:43Z"
   }
  ]
 }
