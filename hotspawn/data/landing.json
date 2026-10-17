@@ -1,12 +1,12 @@
 {
- "generated_utc": "2026-10-17T12:17:58Z",
- "reference_utc": "2026-10-17T12:17:43Z",
- "open": 25,
- "open_with_pick": 24,
+ "generated_utc": "2026-10-17T15:47:02Z",
+ "reference_utc": "2026-10-17T15:46:44Z",
+ "open": 23,
+ "open_with_pick": 22,
  "open_rung": {
   "A": 2,
-  "B": 12,
-  "C": 5,
+  "B": 11,
+  "C": 4,
   "D": 1,
   "E": 3,
   "F": 2
@@ -15,10 +15,10 @@
  "open_direction_only": 2,
  "classes": {
   "VALUE": 6,
-  "CONTRARIAN": 6,
+  "CONTRARIAN": 2,
   "SITUATIONAL": 1,
-  "LONG SHOT": 3,
-  "CHALK": 5,
+  "LONG SHOT": 6,
+  "CHALK": 4,
   "EVIDENCE LIMITED": 1,
   "NO CROWD DATA": 0,
   "DIRECTION ONLY": 2
@@ -26,17 +26,17 @@
  "hotspawn_complete": true,
  "gaps": [
   {
-   "id": "1079638",
-   "a": "ex-RUSTEC",
-   "b": "ILLYRIANS",
-   "lock": "2026-10-18T10:54:00Z",
+   "id": "1081519",
+   "a": "NEXVOID",
+   "b": "Off Chops",
+   "lock": "2026-10-18T02:54:00Z",
    "pick": null,
    "p": null,
    "pa": null,
    "pb": null,
    "rung": "D",
    "class": null,
-   "why": "ex-RUSTEC matches 2 same-name rows in Valve's 2026-10-05 standings"
+   "why": "Off Chops has no row in Valve's 2026-10-05 standings"
   },
   {
    "id": "1081861",
@@ -67,48 +67,6 @@
  ],
  "next": [
   {
-   "id": "1079635",
-   "a": "Bushido Wildcats",
-   "b": "Gothic",
-   "tier": "B",
-   "lock": "2026-10-17T13:54:00Z",
-   "pick": "Bushido Wildcats",
-   "p": 0.505,
-   "pa": 0.505,
-   "pb": 0.495,
-   "basis": "B",
-   "play": "Gothic",
-   "class": "CONTRARIAN"
-  },
-  {
-   "id": "1080207",
-   "a": "FURIA",
-   "b": "Aurora",
-   "tier": "S",
-   "lock": "2026-10-17T13:54:00Z",
-   "pick": "FURIA",
-   "p": 0.5205,
-   "pa": 0.5205,
-   "pb": 0.4795,
-   "basis": "A",
-   "play": "Aurora",
-   "class": "CONTRARIAN"
-  },
-  {
-   "id": "1081515",
-   "a": "Apogee Betclic",
-   "b": "Nemesis",
-   "tier": "B",
-   "lock": "2026-10-17T13:54:00Z",
-   "pick": "Nemesis",
-   "p": 0.6699,
-   "pa": 0.3301,
-   "pb": 0.6699,
-   "basis": "B",
-   "play": "Nemesis",
-   "class": "CHALK"
-  },
-  {
    "id": "1082020",
    "a": "Omega",
    "b": "Bushido Wildcats",
@@ -129,10 +87,10 @@
    "tier": "B",
    "lock": "2026-10-17T16:54:00Z",
    "pick": "BakS",
-   "p": 0.63,
-   "pa": 0.63,
-   "pb": 0.37,
-   "basis": "B",
+   "p": 0.607,
+   "pa": 0.607,
+   "pb": 0.393,
+   "basis": "A",
    "play": "Fire Flux",
    "class": "CONTRARIAN"
   },
@@ -143,9 +101,9 @@
    "tier": "S",
    "lock": "2026-10-17T16:54:00Z",
    "pick": "Falcons",
-   "p": 0.7309,
-   "pa": 0.7309,
-   "pb": 0.2691,
+   "p": 0.7311,
+   "pa": 0.7311,
+   "pb": 0.2689,
    "basis": "A",
    "play": "Falcons",
    "class": "LONG SHOT"
@@ -157,12 +115,12 @@
    "tier": "B",
    "lock": "2026-10-17T16:54:00Z",
    "pick": "BBL",
-   "p": 0.6072,
-   "pa": 0.6072,
-   "pb": 0.3928,
+   "p": 0.6281,
+   "pa": 0.6281,
+   "pb": 0.3719,
    "basis": "B",
-   "play": "ex-RUSTEC",
-   "class": "CONTRARIAN"
+   "play": "BBL",
+   "class": "LONG SHOT"
   },
   {
    "id": "1082021",
@@ -176,6 +134,48 @@
    "pb": 0.5948,
    "basis": "C",
    "play": "6yuBoJlbl",
+   "class": "VALUE"
+  },
+  {
+   "id": "1082019",
+   "a": "Hacha",
+   "b": "LOS NINOS",
+   "tier": "C",
+   "lock": "2026-10-17T21:54:00Z",
+   "pick": "LOS NINOS",
+   "p": 0.725,
+   "pa": 0.275,
+   "pb": 0.725,
+   "basis": "B",
+   "play": "LOS NINOS",
+   "class": "LONG SHOT"
+  },
+  {
+   "id": "1081519",
+   "a": "NEXVOID",
+   "b": "Off Chops",
+   "tier": "B",
+   "lock": "2026-10-18T02:54:00Z",
+   "pick": null,
+   "p": null,
+   "pa": null,
+   "pb": null,
+   "basis": "D",
+   "play": null,
+   "class": null
+  },
+  {
+   "id": "1081126",
+   "a": "Banda chuya",
+   "b": "Enjoy",
+   "tier": "C",
+   "lock": "2026-10-18T07:54:00Z",
+   "pick": "Enjoy",
+   "p": 0.5462,
+   "pa": 0.4538,
+   "pb": 0.5462,
+   "basis": "E",
+   "play": "Enjoy",
    "class": "VALUE"
   }
  ]
