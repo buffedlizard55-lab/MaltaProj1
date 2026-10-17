@@ -5455,3 +5455,39 @@ in `gh pr list --state merged --head arena/56b7c55f-maltaproj1` if a later sessi
 main's own merge (another session's scope) and was not edited here. `reviews/4e8d38ae-*` and the
 legacy dashboards were left untouched. Flagged items remain flagged: `D4-04`, `IR-43`, `IR-45` are
 `needs review`; `D4-01`, `IR-41`, `IR-46` are `fixed`; `IR-42`, `IR-44` are `handled`.
+
+### Session arena/56b7c55f — final receipts (2026-10-17 ~00:55 UTC)
+
+**PR #181 merged** — <https://github.com/buffedlizard55-lab/MaltaProj1/pull/181>, merge commit
+`6408d73c4e7fbb740c2b024a41ed13a7377f0494`, merged 2026-10-17T00:12:26Z after a local
+`git merge origin/main` + `git checkout --ours -- hotspawn/data hotspawn/*.html` resolution and a green
+branch run. Second `pages build and deployment` run **38985383300** succeeded; the deployed
+<https://buffedlizard55-lab.github.io/MaltaProj1/hotspawn/twc.html> was re-read live and now prints
+`(flagged: refuted: …)` beside the Magnojez lesson and `(flagged: partly verified: …)` beside the
+Aurora rebuild lesson, with the corrected 20.5-24.0% market band in the Falcons analysis rows.
+
+**IR-47 recorded (fixed).** The defect it documents: the published page stated two refuted/unverified
+merged-draft claims as plain fact while the audit table on the same page marked them — a
+self-contradiction on a page whose premise is that nothing unverified is presented as fact. Fix: the
+mark travels with the claim in the same list item, plus two assertions in `hotspawn/tests.py`.
+`irregularities.json` is now **51 items**; `D4-04`, `IR-43`, `IR-45` remain the only `needs review`
+entries.
+
+**Fresh capture on `main`** (generated 2026-10-17T00:12:55Z, reference 00:12:41Z): 83 fixtures,
+21 open, 19 with a pick, 2 unresolved, 16 flagged, next lock 07:54Z, k = 0.4598, graded n = 5.
+The capture surfaced one new board row — 1081888, Stake Pulse Beat III, Ninjas in Pyjamas vs Heroic
+(17 Oct 08:00Z, lock 07:54Z), picked Heroic at 55.5% from the Pinnacle-derived line — and still **no
+TWC main-event row**, so the day-4 semifinals stay research-only exactly as `D4-04` describes.
+
+**One near-miss, recorded because it is a rule for later sessions.** While reviewing the new fixture
+this session drafted a `results.json` entry for 1081888 with a placeholder winner so the fixture
+would appear in the graded view. That is exactly the fabrication the project forbids: an unplayed
+match must never receive a `winner`, because `results.json` feeds the grading table and would grade a
+frozen pick against an invented result. The draft was reverted before commit (`results.json` holds
+only the six played, HLTV-verified results: 1080201-1080205 and 1081775). Later sessions: add a
+result only after reading the official match page, and leave `maps` blank rather than inferred.
+
+**Branch state:** `arena/56b7c55f-maltaproj1` is at the refresh commit `8c600dc` (CI run 38985535041,
+92 tests green, phone check passed) on top of `628f9ef` (IR-47) and `9731527` (main merge); `main`
+carries everything through PR #181. Nothing outside `hotspawn/**`, `COORDINATION.md` and
+`reviews/56b7c55f-verification.md` was edited by this session.

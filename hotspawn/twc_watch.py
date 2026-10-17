@@ -187,6 +187,11 @@ def render(board, research, card, capture=None, compact=False):
                              ("Verdict", ca.get('verdict'))):
             if value:
                 out.append(f'<tr><td>{e(label)}</td><td>{e(value)}</td></tr>')
+        flags = ca.get('claim_flags') or []
+        if flags:
+            out.append('<tr><td>Flagged claims</td><td>'
+                       + '<br>'.join(f'<b>{e(f.get("claim"))}</b> — {e(f.get("status"))}' for f in flags)
+                       + '</td></tr>')
         out.append('</tbody></table></div>')
     out.append('</tbody></table></div><h3>How days 1–3 guide the decision</h3><ul>')
     for lesson in research.get('lessons', []):
