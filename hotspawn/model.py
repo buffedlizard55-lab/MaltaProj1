@@ -436,7 +436,17 @@ def build_rows(inp: dict) -> tuple[list[dict], dict]:
         if not fmt:
             own_reasons.append("series format not independently confirmed")
         if not va or not vb:
-            own_reasons.append("one or both teams not uniquely identified in Valve standings")
+            # Distinguish a team that is absent from Valve's file from one whose name matches several rows.
+            missing = []
+            for team, key, row in ((fx["team_a"], ka, va), (fx["team_b"], kb, vb)):
+                if row:
+                    continue
+                cands = vrs_idx.get(key) or []
+                if not cands:
+                    missing.append(f"{team} has no row in Valve's 2026-10-05 standings")
+                else:
+                    missing.append(f"{team} matches {len(cands)} same-name rows in Valve's 2026-10-05 standings")
+            own_reasons.append("; ".join(missing))
         r["own_line_limitation"] = "; ".join(own_reasons)
         if own_reasons:
             r["own_p_a"] = r["own_p_b"] = None

@@ -1521,6 +1521,249 @@
     }
    },
    "resolved": true
+  },
+  {
+   "match_id": "1081861",
+   "team_a": "Lynn Vision",
+   "team_b": "Morningstar",
+   "competition": "VOID Autumn Cup 2026",
+   "format": "BO3",
+   "format_source": "HLTV event 9435 matches page lists this opening-round tie as bo3; the Hotspawn lock time and the bo3.gg record agree on 2026-10-20",
+   "hltv_match_url": "https://www.hltv.org/matches/2399576/lynn-vision-vs-morningstar-macemedia-void-autumn-cup-2026",
+   "hltv_read_utc": "2026-10-16T23:53:00Z",
+   "hotspawn_match_url": "https://play.hotspawn.com/lobby",
+   "research_after_lock": false,
+   "research_after_lock_note": null,
+   "resolved": false,
+   "resolution_gap": "Blocker: Morningstar has no row at all in Valve's official 2026-10-05 standings and no HLTV world rank, so both the strict own line and the roster-overlap fallback fail, and no eligible match-winner price exists in Pinnacle, Polymarket or the bo3.gg relay. The row stays D with blanks and no invented direction. It resolves automatically if any captured source lists a match-winner price, or if the opponent enters Valve's standings.",
+   "market_check": {
+    "hltv_betting_table": "HLTV's odds & prediction page for this match renders form/rank analytics, head-to-head and affiliate handicap cells only; no match-winner odds are exposed. Read 2026-10-16T23:51-23:52Z.",
+    "hltv_betting_table_url": "https://www.hltv.org/betting/analytics/2399576/lynn-vision-vs-morningstar-macemedia-void-autumn-cup-2026",
+    "pinnacle": "No Pinnacle CS2 matchup matched this fixture in the 2026-10-16T23:50:45Z capture: 0 of the captured Pinnacle quotes mention this event or either team.",
+    "polymarket": "No Polymarket market matched this fixture in the 2026-10-16T23:50:48Z capture (58 quotes scanned).",
+    "esportsbooks_search": "bo3.gg's public record for this fixture carries best_of 3 and quote: null for the relayed operator (read 2026-10-16T23:50:46Z). The EGamersWorld match page displayed 1.80/1.80 for both sides behind a 'Make a bet' affiliate cell - the same untraceable-operator placeholder pattern flagged for this project before - and it is not used as a price.",
+    "hotspawn_crowd": "Hotspawn ownership 100/0 Lynn Vision on a small sample at the 2026-10-16T23:50:42Z capture (ownership only, never a probability)."
+   },
+   "context_form": {
+    "note": "Context only; not an input to any probability.",
+    "hltv_analytics": "HLTV's analytics page for this fixture notes that the opponent's core lineup has played very few matches together and very few maps in the past 30 days, that the opponent is unranked, and that the Hotspawn side holds the better form ranking and a world-ranking position. No number is derived from that."
+   },
+   "sides": {
+    "a": {
+     "team": "Lynn Vision",
+     "hltv_lineup": [
+      "Westmelon",
+      "z4KR",
+      "Starry",
+      "EmiliaQAQ",
+      "C4LLM3SU3"
+     ],
+     "hltv_lineup_source": "HLTV event 9435 teams list (Westmelon, z4KR, Starry, EmiliaQAQ, C4LLM3SU3, coach GUM)",
+     "hltv_rank": 39,
+     "hltv_rank_url": "https://www.hltv.org/ranking/teams/2026/october/12/8840",
+     "hltv_rank_note": null,
+     "hltv_vrs_display_rank": null,
+     "hltv_vrs_display_url": null,
+     "valve_candidates": [
+      {
+       "rank": 64,
+       "points": 1190,
+       "roster": [
+        "C4LLM3SU3",
+        "EmiliaQAQ",
+        "Starry",
+        "Westmelon",
+        "z4KR"
+       ],
+       "details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0064--lynn_vision--c4llm3su3-emiliaqaq-starry-westmelon-z4kr.md",
+       "overlap": 5
+      }
+     ],
+     "chosen_rank": 64,
+     "chosen_points": 1190,
+     "chosen_roster": [
+      "C4LLM3SU3",
+      "EmiliaQAQ",
+      "Starry",
+      "Westmelon",
+      "z4KR"
+     ],
+     "chosen_name": null,
+     "chosen_details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0064--lynn_vision--c4llm3su3-emiliaqaq-starry-westmelon-z4kr.md",
+     "disambiguation": {
+      "candidates": 1,
+      "overlap_best": 5,
+      "overlap_second": 0,
+      "ok": true
+     },
+     "roster_delta_vs_snapshot": {
+      "in": [],
+      "out": []
+     },
+     "note": "Valve's 2026-10-05 snapshot lists one Lynn Vision row (rank 64) whose five is the same set HLTV lists for this event."
+    },
+    "b": {
+     "team": "Morningstar",
+     "hltv_lineup": [
+      "Freeman",
+      "swiftsteel",
+      "Terryyy",
+      "fineshine52",
+      "Apraki"
+     ],
+     "hltv_lineup_source": "HLTV event 9435 teams list (Freeman, swiftsteel, Terryyy, fineshine52, Apraki)",
+     "hltv_rank": null,
+     "hltv_rank_url": null,
+     "hltv_rank_note": "Not present in the 245-team HLTV world ranking read at 2026-10-16T23:50:52Z (https://www.hltv.org/ranking/teams/2026/october/12).",
+     "hltv_vrs_display_rank": null,
+     "hltv_vrs_display_url": null,
+     "valve_candidates": [],
+     "chosen_rank": null,
+     "chosen_points": null,
+     "chosen_roster": null,
+     "chosen_name": null,
+     "chosen_details_url": null,
+     "disambiguation": {
+      "candidates": 0,
+      "overlap_best": 0,
+      "overlap_second": 0,
+      "ok": false
+     },
+     "roster_delta_vs_snapshot": {
+      "in": [],
+      "out": []
+     },
+     "note": "No Valve standings row and no HLTV world-ranking place for this team at the 2026-10-16 read."
+    }
+   }
+  },
+  {
+   "match_id": "1081863",
+   "team_a": "Chinggis Warriors",
+   "team_b": "WXM",
+   "competition": "VOID Autumn Cup 2026",
+   "format": "BO3",
+   "format_source": "HLTV event 9435 matches page lists this opening-round tie as bo3; the Hotspawn lock time and the bo3.gg record agree on 2026-10-20",
+   "hltv_match_url": "https://www.hltv.org/matches/2399578/chinggis-warriors-vs-wxm-macemedia-void-autumn-cup-2026",
+   "hltv_read_utc": "2026-10-16T23:53:00Z",
+   "hotspawn_match_url": "https://play.hotspawn.com/lobby",
+   "research_after_lock": false,
+   "research_after_lock_note": null,
+   "resolved": false,
+   "resolution_gap": "Blocker: WXM has no row in Valve's official 2026-10-05 standings and no HLTV world rank, so the opponent side of the own line cannot be computed and no eligible match-winner price exists. Chinggis Warriors themselves ARE identified (row 87, roster-rule overlap 4 > 2), so this row is one identified side short, not an identity mystery. It stays D with blanks and resolves automatically if a price appears or if WXM enters Valve's standings.",
+   "market_check": {
+    "hltv_betting_table": "HLTV's odds & prediction page for this match renders form/rank analytics, head-to-head and affiliate handicap cells only; no match-winner odds are exposed. Read 2026-10-16T23:51-23:52Z.",
+    "hltv_betting_table_url": "https://www.hltv.org/betting/analytics/2399578/chinggis-warriors-vs-wxm-macemedia-void-autumn-cup-2026",
+    "pinnacle": "No Pinnacle CS2 matchup matched this fixture in the 2026-10-16T23:50:45Z capture: 0 of the captured Pinnacle quotes mention this event or either team.",
+    "polymarket": "No Polymarket market matched this fixture in the 2026-10-16T23:50:48Z capture (58 quotes scanned).",
+    "esportsbooks_search": "bo3.gg's public record for this fixture carries best_of 3 and quote: null for the relayed operator (read 2026-10-16T23:50:46Z). The EGamersWorld match page displayed 1.80/1.80 for both sides behind a 'Make a bet' affiliate cell - the same untraceable-operator placeholder pattern flagged for this project before - and it is not used as a price.",
+    "hotspawn_crowd": "Hotspawn ownership 100/0 Chinggis Warriors on a small sample at the 2026-10-16T23:50:42Z capture (ownership only, never a probability)."
+   },
+   "context_form": {
+    "note": "Context only; not an input to any probability.",
+    "hltv_analytics": "HLTV's analytics page for this fixture notes that the opponent's core lineup has played very few matches together and very few maps in the past 30 days, that the opponent is unranked, and that the Hotspawn side holds the better form ranking and a world-ranking position. No number is derived from that."
+   },
+   "sides": {
+    "a": {
+     "team": "Chinggis Warriors",
+     "hltv_lineup": [
+      "sk0R",
+      "ROUX",
+      "cool4st",
+      "fury5k",
+      "tikuak"
+     ],
+     "hltv_lineup_source": "HLTV team page 12646 (sk0R, ROUX, cool4st, fury5k, tikuak) and the HLTV world-ranking five",
+     "hltv_rank": 61,
+     "hltv_rank_url": "https://www.hltv.org/ranking/teams/2026/october/12/12646",
+     "hltv_rank_note": null,
+     "hltv_vrs_display_rank": null,
+     "hltv_vrs_display_url": null,
+     "valve_candidates": [
+      {
+       "rank": 87,
+       "points": 1084,
+       "roster": [
+        "cool4st",
+        "fury5k",
+        "ROUX",
+        "sk0R",
+        "yAmi"
+       ],
+       "details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0087--chinggis_warriors--cool4st-fury5k-roux-sk0r-yami.md",
+       "overlap": 4
+      },
+      {
+       "rank": 220,
+       "points": 685,
+       "roster": [
+        "Aceari",
+        "hasteka",
+        "ROUX",
+        "sk0R",
+        "yAmi"
+       ],
+       "details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0220--chinggis_warriors--aceari-hasteka-roux-sk0r-yami.md",
+       "overlap": 2
+      }
+     ],
+     "chosen_rank": 87,
+     "chosen_points": 1084,
+     "chosen_roster": [
+      "cool4st",
+      "fury5k",
+      "ROUX",
+      "sk0R",
+      "yAmi"
+     ],
+     "chosen_name": null,
+     "chosen_details_url": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/details/2026_10_05/0087--chinggis_warriors--cool4st-fury5k-roux-sk0r-yami.md",
+     "disambiguation": {
+      "candidates": 2,
+      "overlap_best": 4,
+      "overlap_second": 2,
+      "ok": true
+     },
+     "roster_delta_vs_snapshot": {
+      "in": [],
+      "out": []
+     },
+     "note": "Two same-name rows exist. HLTV's current five overlaps row 87 on sk0R, ROUX, cool4st and fury5k (4) and row 220 on sk0R and ROUX (2), so the documented roster rule selects row 87; tikuak is the one name not in the snapshot five."
+    },
+    "b": {
+     "team": "WXM",
+     "hltv_lineup": [
+      "Kinatie",
+      "1romma",
+      "outccc",
+      "Genxiu",
+      "Currant"
+     ],
+     "hltv_lineup_source": "HLTV event 9435 teams list; bo3.gg lists the same team as 'Wept Xyloid Melancholy' (bo3 id 132180)",
+     "hltv_rank": null,
+     "hltv_rank_url": null,
+     "hltv_rank_note": "Not present in the 245-team HLTV world ranking read at 2026-10-16T23:50:52Z (https://www.hltv.org/ranking/teams/2026/october/12).",
+     "hltv_vrs_display_rank": null,
+     "hltv_vrs_display_url": null,
+     "valve_candidates": [],
+     "chosen_rank": null,
+     "chosen_points": null,
+     "chosen_roster": null,
+     "chosen_name": null,
+     "chosen_details_url": null,
+     "disambiguation": {
+      "candidates": 0,
+      "overlap_best": 0,
+      "overlap_second": 0,
+      "ok": false
+     },
+     "roster_delta_vs_snapshot": {
+      "in": [],
+      "out": []
+     },
+     "note": "No Valve standings row and no HLTV world-ranking place for this team at the 2026-10-16 read."
+    }
+   }
   }
  ]
 }

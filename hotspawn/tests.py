@@ -752,6 +752,131 @@ class Day3(unittest.TestCase):
             self.assertIn("No current pick or probability is fabricated", strategy, m["hotspawn_id"])
 
 
+
+
+class Day4OwnLine(unittest.TestCase):
+    """The day-4 semifinal own line is our estimate on Valve's official points: it must be recomputable from
+    the file's own numbers and the board's fitted slope, published with its inputs, and never mixed with a quote."""
+
+    DATA = read_json(HERE / "research" / "day4_twc2026.json", {}) or {}
+    MATCHES = DATA.get("semifinals") or []
+
+    def test_own_line_recomputes_from_the_recorded_valve_points(self):
+        k = BOARD.get("summary", {}).get("own_line_k")
+        self.assertIsNotNone(k, "board summary has no fitted slope")
+        self.assertTrue(self.MATCHES, "no semifinals recorded")
+        for m in self.MATCHES:
+            vp = m.get("valve_points") or {}
+            a, b = vp.get("side_a") or {}, vp.get("side_b") or {}
+            for side, row in (("a", a), ("b", b)):
+                self.assertIsNotNone(row.get("points"), f"{m.get('team_a')}/{side}")
+                self.assertEqual(row.get("as_of", vp.get("as_of")), vp.get("as_of"))
+                self.assertTrue(str(row.get("row_url", "")).startswith("https://github.com/ValveSoftware/"), m.get("team_a"))
+            p_a = own_line(a["points"], b["points"], float(k))
+            own = m.get("our_own_line") or {}
+            self.assertAlmostEqual(round(p_a * 100, 1), own.get("p_a_pct"), delta=0.05, msg=m.get("team_a"))
+            self.assertAlmostEqual(round((1 - p_a) * 100, 1), own.get("p_b_pct"), delta=0.05, msg=m.get("team_a"))
+            self.assertEqual(own.get("k"), k, m.get("team_a"))
+            self.assertEqual((m.get("own_line_eligibility") or {}).get("verdict"), "eligible", m.get("team_a"))
+            self.assertIn("Best of 3 (LAN)", (m.get("own_line_eligibility") or {}).get("format", ""), m.get("team_a"))
+            self.assertTrue(str(m.get("crowd_vote_context", "")).find("never a probability") > 0, m.get("team_a"))
+
+    def test_rendered_watch_shows_the_own_line_with_its_inputs_and_the_quote_separation(self):
+        page = (HERE / "twc.html").read_text(encoding="utf-8")
+        self.assertIn("Our own line (Valve points)", page)
+        self.assertIn("our estimate, not a bookmaker quote", page)
+        for m in self.MATCHES:
+            own = m.get("our_own_line") or {}
+            self.assertIn(f'{m["team_a"]} {own["p_a_pct"]:.1f}% / {m["team_b"]} {own["p_b_pct"]:.1f}%', page, m["team_a"])
+            vp = m.get("valve_points") or {}
+            self.assertIn(f'Valve {vp.get("as_of")} points: {vp["side_a"]["points"]} vs {vp["side_b"]["points"]}', page)
+        self.assertIn("fitted on Valve", page)
+        self.assertNotIn("bookmaker odds for this fixture", page)
+
+
+class Day4MergeAudit(unittest.TestCase):
+    """research/day4_twc2026.json was written by two sessions. The merge must publish corrections as corrections,
+    keep the verified schedule/price values, and never restate an unverified claim as fact."""
+
+    DATA = read_json(HERE / "research" / "day4_twc2026.json", {}) or {}
+    PICKS = DATA.get("day4_contrarian_picks") or {}
+
+    def test_every_audited_claim_has_a_status_and_a_source_or_an_explicit_none(self):
+        audit = self.PICKS.get("audit") or []
+        self.assertTrue(audit, "the merged day-4 file carries no claim audit")
+        statuses = set()
+        for item in audit:
+            self.assertTrue(item.get("claim"), item)
+            self.assertTrue(item.get("detail"), item.get("claim"))
+            statuses.add(str(item.get("status")).casefold())
+            if item.get("source_url"):
+                self.assertTrue(item["source_url"].startswith("https://"), item["claim"])
+        self.assertTrue({"corrected", "verified"} & statuses, statuses)
+        self.assertTrue({"unverified", "refuted", "flagged"} & statuses, statuses)
+
+    def test_rendered_schedule_uses_the_market_start_not_hltvs_local_render(self):
+        page = (HERE / "twc.html").read_text(encoding="utf-8")
+        for m in self.DATA.get("semifinals", []):
+            self.assertEqual(m.get("start_utc"), m.get("market_start_utc"), m.get("team_a"))
+            self.assertIn(m["start_utc"], page, m.get("team_a"))
+            self.assertTrue((m.get("schedule_audit") or {}).get("countdown_evidence"), m.get("team_a"))
+        bet = next(r for r in self.DATA["results"] if r.get("team_b") == "Legacy")
+        self.assertEqual(bet.get("score"), "2-1")
+        self.assertTrue(bet.get("player_note"), "the match-page rating tables must be recorded")
+
+    def test_unverified_analysis_is_flagged_on_the_page(self):
+        page = (HERE / "twc.html").read_text(encoding="utf-8")
+        self.assertIn("Merge audit of the merged draft", page)
+        self.assertIn("refuted", page)
+        flagged = [m for m in self.DATA.get("semifinals", []) if (m.get("contrarian_analysis") or {}).get("map_pool_flag")]
+        self.assertEqual(len(flagged), 2, "both semifinals carry a map-pool caveat")
+        self.assertEqual(page.count("Map-pool check"), 2)
+
+class Day3CompletedDeciders(unittest.TestCase):
+    """A researched day-3 fixture that has since been played must read as finished and graded on the pages:
+    final score plus the HLTV result link, with the frozen pre-lock pick never rewritten after the fact."""
+
+    RES = (read_json(HERE / "research" / "results.json", {}) or {}).get("results", {}) or {}
+    MATCHES = {str(m.get("hotspawn_id")): m for m in DAY3.get("matches") or []}
+
+    def _completed(self):
+        return [(mid, m, self.RES[mid]) for mid, m in self.MATCHES.items()
+                if (self.RES.get(mid) or {}).get("winner")]
+
+    def test_finished_deciders_state_the_score_with_the_hltv_link(self):
+        cases = self._completed()
+        self.assertTrue(cases, "no completed decider recorded in research/results.json")
+        for name in ("strategy.html", "index.html", "unresolved.html"):
+            page = (HERE / name).read_text(encoding="utf-8")
+            for mid, m, r in cases:
+                self.assertIn(f'Completed {r["checked_date_utc"]}: {r["winner"]} {r["score"]}', page, f"{name} {mid}")
+                self.assertIn(r["source_url"], page, f"{name} {mid}: result link missing")
+                self.assertIn("strategy.html#grading", page, f"{name} {mid}: grade link missing")
+                self.assertNotIn(f"latest probability for {m['team_a']}", page, f"{name} {mid}")
+
+    def test_grading_marks_are_recomputed_from_the_verified_result(self):
+        """Recompute every mark from the frozen pick and the verified winner; the table must agree."""
+        history = read_json(HERE / "data" / "pick_history.json", {}) or {}
+        page = (HERE / "strategy.html").read_text(encoding="utf-8")
+        self.assertIn('id="grading"', page)
+        table = page[page.find('id="grading"'):]
+        rows = [[re.sub(r"<[^>]+>", " ", c).strip() for c in re.findall(r"<td[^>]*>(.*?)</td>", row, re.S)]
+                for row in re.findall(r"<tr>(.*?)</tr>", table, re.S)]
+        rows = [r for r in rows if len(r) == 6]
+        self.assertTrue(rows, "grading table has no rows")
+        checked = 0
+        for mid, m, res in self._completed():
+            h = history.get(mid)
+            if not h:
+                continue                      # fixture never carried a frozen pick: nothing to grade
+            row = next((r for r in rows if r[1] == h["pick"] and res["winner"] in r[3]
+                           and "verified (HLTV)" in r[3]), None)
+            self.assertIsNotNone(row, f"{mid}: no grading row for pick {h['pick']} against winner {res['winner']}")
+            self.assertEqual(row[4], "✓" if h["pick"] == res["winner"] else "✗", mid)
+            self.assertEqual(row[5], "✓" if h["leaderboard_pick"] == res["winner"] else "✗", mid)
+            checked += 1
+        self.assertGreaterEqual(checked, 1, "no frozen pick was graded at all")
+
 class Day2(unittest.TestCase):
     """The 15 October review must be on the page, and its grades recomputed here - never copied from prose."""
 

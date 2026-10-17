@@ -5349,3 +5349,75 @@ PR #177 merged at 19:46:10Z, merge `2eefce6bb4746a76227e9de825aaf38865eca4af`. P
 Post-merge archived livelines run 38957352383 failed a stale assertion that calibration must always be fitted. Reproduced by building at the current clock: insufficient samples are valid and now handled by the builder, but its old assertion still rejects them. Continuing the existing narrow `livelines/tests.py` claim: test both fitted and explicitly unfitted contracts instead of requiring fabricated fit metrics. The prior 14-pass direct test used the original stored snapshot; that was not a current-clock build and is not evidence this workflow passed. Primary release and source limitations remain unchanged.
 
 Follow-up verification: corrected the root renderer to count B+C+E and describe all five own-line estimates. Added a Node VM test of the actual inline renderer with mixed, empty, and roster-research-only counts; no duplicated math. Current-clock livelines build → 14 direct tests + 20 integration tests now pass; fitted calibrations still require both objectives, unfitted ones require n<4, default 400, null scores, and honest reason. Full discovery **428 passed**; generated legacy test side effects restored. Main primary refresh 38957352331 succeeded after #177, so four-hour publication remains operational. The previously failed legacy run is disclosed, not represented as green.
+
+---
+
+## Session arena/56b7c55f — claim (2026-10-16 ~23:55 UTC)
+
+Branch: `arena/56b7c55f-maltaproj1` (fixed by Arena; no other branch created or pushed).
+Brief: TWC 2026 day-1 upset review → day-2/day-3 results → day-4 guidance; a pick for **every**
+Hotspawn CS2 fixture; separate unresolved register with limitations in the executive summary;
+in-site executive-summary links; mobile/phone readability; 4–8 h refresh; PR → merge → Pages.
+
+Before claiming, this session read the root board and the tail of every prior session block, and
+`gh pr list` (open PRs #176 `arena/4e8d38ae`, #136, #132 — none touches `hotspawn/**`).
+Handoff per the board rule: `arena/4061d8f1` claimed the primary board at 19:38 UTC and its last
+logged maintenance is more than 60 minutes old (19:48 UTC follow-up; now 23:55 UTC), so this
+session takes the primary board over and logs the handoff rather than starting a competing site.
+PR #176's scope (`COORDINATION.md` append-only + `reviews/4e8d38ae-day4-coverage-audit.md`) is not
+touched here; its two reported release blockers are re-checked, not duplicated.
+
+| # | Task | Status | Owner | Exclusive file scope |
+|---|------|--------|-------|----------------------|
+| C56-1 | Primary every-match board: day-3 decider result (BetBoom–Legacy) verified from HLTV, day-4 semifinal research + picks, and a resolution pass (HLTV → esportsbook/betting lines) for every open fixture that still has no pick | in progress | arena/56b7c55f | `hotspawn/**` |
+| C56-2 | Executive summary + phone navigation: in-site links to the live picks list / TWC / unresolved / flagged, 360–390 px readability re-check | in progress | arena/56b7c55f | `index.html`, `hotspawn/index.html`, `hotspawn/build.py`, `hotspawn/style.css` |
+| C56-3 | Line-by-line verification record with official source links; append new irregularities to the flagged page | in progress | arena/56b7c55f | `reviews/56b7c55f-verification.md`, `hotspawn/research/irregularities.json` |
+| C56-4 | Final integration: rebase, tests, link audit, PR → main, merge without waiting, confirm Pages deploy, log receipts | in progress | arena/56b7c55f | `COORDINATION.md` (append-only), `tests/test_56b7c55f*.py` |
+
+Not claimed by this session (left to their owners): `reviews/4e8d38ae-*`, `livelines/**`,
+`briefing/**`, `executive/**`, the legacy dashboards (`docs/`, `board/`, `console/`, `site/`,
+`pickem/`, `assurance/`). `hotspawn/build.py` copy blocks for strategy/twc are edited only where
+the claim above says so; other sessions were explicitly asked to stop touching generated
+`hotspawn/*.html` while this claim is live.
+
+---
+
+## Session arena/56b7c55f — progress + cross-session merge (2026-10-17 ~00:25 UTC)
+
+**C56-1 done (board).** Day-3 deciders verified from HLTV and closed: Aurora 2-0 9z, **BETBOOM 2-1
+Legacy** (Nuke 16-13 OT, Dust2 11-13, Mirage 13-11, full veto). `research/results.json` now carries
+`1081775`, so the grading table shows n=5 with the frozen picks graded against verified results. The
+second semifinal opponent is confirmed as BETBOOM (HLTV 2399415); both semifinals now carry verified
+pairings, formats, kickoff sources (14:00Z / 17:00Z from the HLTV countdown + Polymarket, **not** the
+10:00/13:00 HLTV local renders), HLTV lineup panels, Valve detail-row points and a recomputed own
+line (FURIA 57.4/Aurora 42.6; Falcons 65.8/BETBOOM 34.2). Resolution pass on the two remaining
+blanks: Morningstar and WXM have **no row at all** in Valve's official 2026-10-05 standings and no
+HLTV rank, and no eligible price exists in Pinnacle, Polymarket or the bo3.gg relay — both rows stay
+rung D with blanks, now with a per-match research record (`fallback_83090640.json`) and the precise
+reason text. No pick was invented to fill a row.
+
+**C56-2 done.** Executive summary keeps the in-site jump links (all picks, TWC day-4, unresolved,
+flagged, grading anchor) and the TWC day-4 block gained an own-line column; the day-4 contrarian
+options table and the merge-audit table are rendered from data, not prose. CI phone checks passed at
+360/390/768 px in run 38984409230.
+
+**C56-3 done.** `reviews/56b7c55f-verification.md` records every claim, source and read time, the
+claim audit and the two unresolved rows. New/updated flagged items: `D4-04` (the live TWC main event
+has no Hotspawn pick'em listing — three captures, 83 fixtures each, zero TWC rows), `IR-41`
+(unresolved reason text made precise), `IR-42` (HLTV returns 403 to the collector; manual reads
+curated in `hltv_links.json`), `IR-43` (EGamersWorld's untraceable 1.80/1.80), `IR-44` (Hotspawn's
+"WXM" unexpanded; bo3.gg names it Wept Xyloid Melancholy), `IR-45` (unsourced NIP-replacement note in
+`twc2026.json`, not reused), `IR-46` (merged day-4 draft's wrong kickoffs/87% implied/Magnojez claim
+— corrected). `D4-01` is now **fixed**.
+
+**Cross-session conflict, resolved by merge, not by overwrite.** While this session held the claim,
+PR #179 (session `arena/ef2db3af`) merged a parallel day-4 rewrite of `research/day4_twc2026.json`
+and `twc_watch.py` into main. This session merged main into `arena/56b7c55f-maltaproj1`, kept both
+sessions' work (their contrarian framing + deep-analysis tables; this session's verified results,
+own line, audit), and re-checked every contested number — see the audit table in section 4 of the
+verification record and on `twc.html#day4`. Session `arena/ef2db3af` is credited in the merged file
+(`merged_sessions`, `authored_by`).
+
+**Follow-up for whoever owns the flag page next:** `D4-04` is a Hotspawn listing limitation, not a
+research gap — if the TWC main event appears in the lobby the four-hourly capture picks it up with
+the normal gates, and nothing else needs to change.
