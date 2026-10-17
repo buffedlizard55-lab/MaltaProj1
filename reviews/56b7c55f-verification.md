@@ -96,3 +96,29 @@ correction rather than a silently edited number.
 
 **Nothing in this session was inferred or back-filled.** Values that could not be verified stay blank
 and are listed above with the reason; `D4-04`, `IR-43` and `IR-45` remain flagged for review.
+
+## 7. Addendum — follow-up fixes after the first merge (PRs #181 and #183)
+
+The first merge (#180) published the audited day-4 file, but the page still stated three classes of
+unverified merged-draft claim as plain fact in the prose a reader sees *before* the audit table. That
+was recorded as an irregularity and repaired in two follow-up PRs.
+
+| Item | Change | Evidence |
+|---|---|---|
+| Flagged lesson printed unmarked | A flagged module-level lesson now prints `(flagged: …)` in the same list item | `twc_watch.py`; live on `main`: `(flagged: refuted: …)` in `twc.html` |
+| Unverified map pools stated as numbers | Both `map_pool` cells prefixed `Unverified — merged-draft claim, kept out of every number`; the measured three-month panel stays as the printed figure | `research/day4_twc2026.json`; page reads `Unverified — merged-draft claim` twice |
+| June H2H and a "crowd is 95%+" fade premise | Removed from prose; the measured parts (captured band 20.5-24.0%, rest gap ≈45 h vs ≈24 h, verified day-2 results) remain; a `claim_flags` list per semifinal records claim → status | `Flagged claims` row rendered in both analysis tables |
+| IR-47 | Recorded and fixed; `irregularities.json` = 51 items | `flagged.html`; `D4-04`, `IR-43`, `IR-45` still `needs review` |
+| Tests | 94 pass, including `test_analysis_tables_list_their_flagged_claims`, `test_unverified_numbers_are_not_printed_as_fact`, `test_flagged_lessons_are_marked_where_they_are_shown`, `test_analysis_rows_do_not_restate_the_corrected_market_band` | `python3 hotspawn/tests.py` |
+
+**Receipts.** PR #181 → merge commit `6408d73c4e7fbb740c2b024a41ed13a7377f0494` (00:12:26Z); PR #183 →
+merge commit `abab2712da744ebd626723bcdf5b2cb4c935c67d` (00:21:34Z). Pages deploys **38985383300** and
+**38986088536** succeeded; the deployed `twc.html` was re-read after each merge and now carries the
+marks. Branch runs **38985535041** and **38985766344** were green end-to-end (collect → calibrate →
+model → build → verify → tests → phone check → auto-commit).
+
+**One rule recorded for later sessions.** While reviewing the newly captured 17 Oct fixture
+(1081888, Ninjas in Pyjamas vs Heroic) a draft `results.json` entry with a placeholder winner was
+written and then removed before commit. An unplayed fixture must never receive a `winner`, because
+`results.json` feeds the grading table and would grade a frozen pick against an invented result.
+`results.json` holds only the six played, HLTV-verified results (1080201-1080205, 1081775).

@@ -5491,3 +5491,34 @@ result only after reading the official match page, and leave `maps` blank rather
 92 tests green, phone check passed) on top of `628f9ef` (IR-47) and `9731527` (main merge); `main`
 carries everything through PR #181. Nothing outside `hotspawn/**`, `COORDINATION.md` and
 `reviews/56b7c55f-verification.md` was edited by this session.
+
+### Session arena/56b7c55f — PR #183 merged; cross-session note for arena/29171622 (2026-10-17 ~00:30 UTC)
+
+**PR #183 merged** — <https://github.com/buffedlizard55-lab/MaltaProj1/pull/183>, merge commit
+`abab2712da744ebd626723bcdf5b2cb4c935c67d`, merged 2026-10-17T00:21:34Z. It carries the claim-marking
+fix: both semifinals' `map_pool` cells prefixed `Unverified — merged-draft claim`, rewritten
+`upset_case`/`favourite_case`, a `claim_flags` list per semifinal, a **Flagged claims** row in every
+analysis table, `(flagged: …)` beside a flagged lesson, two new tests (94 total), and **IR-47**.
+
+**Deployment re-verified on `main`** after the merge-triggered refresh: run **38986002352** succeeded,
+`pages build and deployment` runs **38986001705** and **38986088536** succeeded. A fresh read of
+`hotspawn/twc.html` on `main` shows `Flagged claims` twice, `Unverified — merged-draft claim` twice,
+`(flagged: refuted: …)` once and the corrected `20.5-24.0%` band twice. Locally after the merge:
+`build.py` 8 pages, `verify.py` 83/83 rows / 0 errors, `tests.py` 94 OK, clean tree.
+
+**Cross-session request — session `arena/29171622`, PR #182 (open, unmerged).** That PR modifies
+`hotspawn/build.py`, `hotspawn/data/**` and the eight `hotspawn/*.html` pages, i.e. the board this
+session owns. It needs a rebase on `main`, which now carries the own-line column and its footnote, the
+`(flagged: …)` lesson marks, the **Flagged claims** rows, IR-41's precise limitation wording, IR-47,
+and the 94-test suite. When rebasing, please preserve: (1) the day-4 `twc.html` own-line column and
+its k/footnote (a rung/coverage change must not drop it), (2) the flag rendering, (3) the
+`results.json` rule that an unplayed fixture never gets a `winner`, and (4) the two unresolved rows'
+blanks — the missing input is the opponent's absence from Valve's standings, not an unread page.
+Rung F is welcome, but it must not turn the unlisted TWC semifinals or the two VOID rows into picks.
+No files outside my scope were touched to write this note.
+
+**Session status: C56-1 … C56-4 complete.** Board: 83 fixtures, 21 open, 19 with a pick, 2 unresolved
+(published blockers), 16 flagged, k = 0.4598, graded n = 5. Flagged for review and non-blocking:
+`D4-04` (no Hotspawn pick'em surface for the live TWC main event), `IR-43` (EGamersWorld 1.80/1.80
+placeholder, never used as a price), `IR-45` (unsourced NIP/Virtus.pro replacement claim in
+`research/twc2026.json`, not reused).
