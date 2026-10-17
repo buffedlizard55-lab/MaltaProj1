@@ -42,31 +42,35 @@ ownership sample and a lock time — so nothing of the kind is published.
 Event: [Thunderpick World Championship 2026](https://www.hltv.org/events/8932/thunderpick-world-championship-2026),
 14–18 Oct 2026, $1 000 000, 8 teams, Malta.
 
-## 4. Two corrections to a merged file from another session
+## 4. Two published errors in a merged file, and what survived the merge
 
-`hotspawn/research/day4_twc2026.json` is owned by session `arena/ef2db3af` (merged as PR #179). It published two wrong
-values that the pages render as fact. Both were corrected **in place and logged in the file itself**
-(`corrections_29171622`), then mirrored into my own
-`hotspawn/research/29171622/twc_days.json` under `corrections_applied_to_shared_file`. Nothing was silently overwritten
-and no second contradictory source was created.
+`hotspawn/research/day4_twc2026.json` originated in session `arena/ef2db3af` (PR #179) and was annotated by
+`arena/56b7c55f` (PR #181). Working from the PR #179 version, this session independently found two wrong values that the
+pages render as fact. **Rebasing onto `origin/main` showed that PR #181 had already fixed both in prose.** Two residuals
+survived that merge; only those were changed here, in place, and logged in the file under `corrections_29171622` and in my
+own `hotspawn/research/29171622/twc_days.json` under `corrections_applied_to_shared_file`. Nothing was silently
+overwritten and no second contradictory source was created.
 
-**4.1 Start times were reader-local, labelled UTC.** The file said `2026-10-17T10:00:00Z` and `13:00:00Z`. HLTV renders
-kickoff in the reader's timezone, which was **UTC-4** on the fetch path. Three timestamped machine sources in the same
-capture all return 14:00Z / 17:00Z:
+**4.1 Start times were reader-local, labelled UTC — fixed by arena/56b7c55f, corroborated here.** PR #179 said
+`2026-10-17T10:00:00Z` and `13:00:00Z`. HLTV renders kickoff in the reader's timezone, which was **UTC-4** on the fetch
+path. Three timestamped machine sources in the same capture all return 14:00Z / 17:00Z:
 
 - Pinnacle guest API, read 2026-10-16T23:52:04Z → `start_utc` 2026-10-17T14:00:00Z and 2026-10-17T17:00:00Z
 - bo3.gg API, read 2026-10-16T23:52:04Z → same two values
 - Polymarket gamma API, read 2026-10-16T23:52:06Z → same two values
 
-The offset is confirmed by the VOID Autumn Cup page on the same fetch path: it shows 23:00 for a match the API records
-at 03:00Z the next day.
+The offset is confirmed by the VOID Autumn Cup page on the same fetch path: it shows 23:00 for a match the API records at
+03:00Z the next day. PR #181 had already reached 14:00Z / 17:00Z by a different route (HLTV countdown + Polymarket).
 
-**4.2 The Falcons price was mis-de-vigged.** `implied_a` was `0.87` for odds 1.20 / 4.00. The true de-vig is
-(1/1.20) / (1/1.20 + 1/4.00) = **0.7692**; 0.87 is neither the raw 0.8333 nor the de-vigged figure. That error produced
-an "implied 25% … much higher than the market's ~13%" sentence. BETBOOM is priced **20.5%–24.0%**, not 13%.
+**4.2 The Falcons de-vig was recorded as 87% — prose fixed by arena/56b7c55f, data field fixed here.** For odds 1.20 /
+4.00 the true de-vig is (1/1.20) / (1/1.20 + 1/4.00) = **0.7692**; 0.87 is neither the raw 0.8333 nor the de-vigged
+figure, and it produced an "implied 25% … much higher than the market's ~13%" sentence. PR #181's merge note already
+stated 76.9% in prose, **but the stored JSON field `external_lines.bo3_gg_thunderpick.implied_a` still read `0.87`**.
+This session set it to `0.7692` so the data and the prose agree. BETBOOM is priced **20.5%–24.0%**, not 13%.
 
-**4.3 Two sources were missing from the Falcons row.** Pinnacle (1.257069 / 3.98) and Polymarket (0.795 / 0.205) were
-already in `hotspawn/data/capture.json` and had been omitted, which made a three-source price look single-source.
+**4.3 Two sources were missing from the Falcons row — added here.** Pinnacle (1.257069 / 3.98 → 76.0%) and Polymarket
+(0.795 / 0.205 → 79.5%) were already in `hotspawn/data/capture.json` at the same read time and had been omitted from this
+row, which made a three-source price look single-source. Both added, so the Falcons row now matches the FURIA row.
 
 Day-4 lines after correction (all read 2026-10-16T23:52Z, margin removed / normalised):
 

@@ -5499,6 +5499,18 @@ Files touched so far (all inside the claimed scope except the correction above):
 `hotspawn/tests.py`, `index.html`, `tests/test_landing_43c32386.py`, `hotspawn/research/29171622/**`,
 `hotspawn/research/day4_twc2026.json` (correction only).
 
+**Rebase note (00:25 UTC).** Rebased onto `origin/main`, which had advanced with PR #181 (session `arena/56b7c55f`) and
+a newer bot capture (2026-10-17T00:12:41Z). Session 56b7c55f had independently found the same two day-4 errors described
+above and corrected them **in prose** on merge: start times were already 14:00Z/17:00Z in main, and a merge note already
+said the 1.20/4.00 de-vig is 76.9% not 87%. Two residuals survived and are the only things changed here: the stored JSON
+field `external_lines.bo3_gg_thunderpick.implied_a` still read `0.87` while the prose said 76.9%, and the Pinnacle and
+Polymarket lines for the Falcons semi - both already in the same capture - were still missing. All conflicts in
+`COORDINATION.md` were resolved by union (append-only board); generated files were taken from main and then rebuilt by
+`model.py` + `build.py` against the 00:12:41Z capture.
+
+Rebuilt snapshot on the newer capture: **21 open / 21 picks / 0 unresolved**, rungs A2 B11 C3 D0 E3 F2,
+`verify.py` 83/83 with 0 errors, `hotspawn/tests.py` **98 tests OK** (9 of those are 56b7c55f's, all still passing).
+
 **Local browser note:** Chromium cannot be downloaded in this sandbox, so `hotspawn/mobile_check.py` honestly reports
 "browser unavailable; no layout claim made" locally. The last real Chromium run (23:48Z, refresh run 38982544209) passed
 all 27 checks at 360/390/768 px. Because I cannot re-run it here, I added a static escape-hatch test instead: every table
