@@ -189,11 +189,25 @@
     "favourite": "FURIA (slight: 53.0% Pinnacle de-vigged, 52.5% Polymarket, 50.0% relay)",
     "underdog": "Aurora (47.0-50.0% across the captured books)",
     "h2h_2026": "Verified in part: HLTV's head-to-head panel lists FURIA 1:2 Aurora at ESL Pro League Season 24 (match 2398743) and the analytics panel states FURIA played Aurora once in the past 30 days and lost. The exact 6 October date was not re-verified.",
-    "map_pool": "FURIA strong on Inferno (69%) and Nuke (61%); Aurora strong on Anubis (76%), Mirage (65%), Nuke (61%). Both ban Ancient. FURIA heavily bans Anubis (65% ban rate). Key veto battle: if FURIA bans Anubis, Aurora's best map is removed.",
-    "upset_case": "Aurora beat FURIA 2-1 just 10 days ago. Aurora is on momentum after the Day 3 sweep of 9z. Aurora's new international roster (kyxsan IGL, Jimpphat, coach ash from July rebuild) has 3 months of play together and showed strong LAN form. If the outside line gives Aurora 45%+ and crowd heavily backs FURIA, this is a credible contrarian play. (The exact 6 October date is not re-verified; HLTV's H2H panel confirms only that FURIA lost to Aurora once in the past 30 days.)",
-    "favourite_case": "FURIA has rest advantage (qualified Day 2). FURIA's Inferno is a dominant pick (69% WR). FURIA can ban Anubis to neutralize Aurora's best map. (The Inferno win-rate figure in the merged draft was not re-verified and is not used here.)",
+    "map_pool": "Unverified — merged-draft claim, kept out of every number: FURIA strong on Inferno (69%) and Nuke (61%); Aurora strong on Anubis (76%), Mirage (65%), Nuke (61%). Both ban Ancient. FURIA heavily bans Anubis (65% ban rate). Key veto battle: if FURIA bans Anubis, Aurora's best map is removed.",
+    "upset_case": "HLTV's head-to-head panel confirms FURIA lost to Aurora once inside the past 30 days (ESL Pro League Season 24, match 2398743); the merged draft's '2-1 just 10 days ago' date is not re-verified. Aurora arrive from the 16 October decider with momentum, and the July rebuild (kyxsan IGL, Jimpphat, coach ash) has had about three months together. If an outside line prices Aurora at 45%+ while a crowd sample leans heavily to FURIA, that is a defensible contrarian position - but the captured books already price Aurora at 47.0-50.0%, so most of that is in the price.",
+    "favourite_case": "FURIA qualified on day 2 and Aurora played the 16 October decider, so the rest edge is FURIA's (about 45 h against about 24 h). FURIA can remove Aurora's strongest map with a ban, and the merged draft's Inferno win-rate figure is not re-verified here.",
     "map_pool_verified": null,
-    "map_pool_flag": "Not re-verified in this merge: no map-statistics panel for this fixture was read on 2026-10-16. Treated as the earlier session's claim, not as a verified number."
+    "map_pool_flag": "Not re-verified in this merge: no map-statistics panel for this fixture was read on 2026-10-16. Treated as the earlier session's claim, not as a verified number.",
+    "claim_flags": [
+     {
+      "claim": "FURIA Inferno 69%, Aurora Anubis 76% / Mirage 65%, both ban Ancient, FURIA bans Anubis 65%",
+      "status": "unverified — no map-statistics panel for this fixture was read"
+     },
+     {
+      "claim": "Aurora beat FURIA 2-1 'just 10 days ago' (6 Oct 2026)",
+      "status": "partly verified — HLTV confirms one FURIA loss to Aurora inside 30 days; the date is not re-verified"
+     },
+     {
+      "claim": "Aurora 'showed strong LAN form' and 3 months of play under the rebuilt roster",
+      "status": "partly verified — the rebuild date is sourced; the LAN-form wording was not re-measured"
+     }
+    ]
    },
    "external_lines": {
     "pinnacle": {
@@ -306,11 +320,25 @@
     "favourite": "Falcons (76.0% Pinnacle de-vigged, 76.9% relay, 79.5% Polymarket)",
     "underdog": "BETBOOM (20.5-24.0% on the captured books; our own line 34.2%)",
     "h2h": "Not re-verified in this merge: no head-to-head panel was read for this fixture. The earlier session's 'BETBOOM 2-0 Falcons, 12 June 2026' is recorded as their claim.",
-    "map_pool": "Falcons: 71% overall winrate, dominant Dust2 (73%), weak Mirage (45% despite first-picking it). BETBOOM: Nuke strength (59% over 17 maps), but 43% winrate last month declining from 58% half-year.",
-    "upset_case": "BETBOOM beat Falcons 2-0 just 4 months ago (June 2026). The raw 4.00 decimal relay price implies 25%, but the margin-removed two-way figure is 23.1% and the captured market band is 20.5-24.0%. If the crowd is 95%+ on Falcons, taking BETBOOM differentiates massively. However, BETBOOM is on short rest after a 3-map decider, and their recent form is declining (43% last month). (The June 2026 H2H is flagged as unverified in the audit table above.)",
-    "favourite_case": "Falcons dominated group stage (2-0 NIP, 2-1 9z). NiKo + karrigan + m0NESY + kyousuke + TeSeS is a stacked roster. Rest advantage after qualifying on Day 2. BETBOOM's recent form is poor (lost to FURIA 0-2, lost to 9z 0-2 in recent weeks before TWC). (The pre-event form details in this row come from the merged draft and were not re-verified here.)",
+    "map_pool": "Unverified — merged-draft claim, kept out of every number: Falcons: 71% overall winrate, dominant Dust2 (73%), weak Mirage (45% despite first-picking it). BETBOOM: Nuke strength (59% over 17 maps), but 43% winrate last month declining from 58% half-year.",
+    "upset_case": "The raw 4.00 decimal relay price implies 25% before margin; the margin-removed two-way figure is 23.1%, and the captured market band is 20.5-24.0% (Pinnacle 24.0%, Polymarket 20.5%). The merged draft's claim that BETBOOM beat Falcons 2-0 in June 2026 is recorded in the audit table as unverified and is not republished as fact. No Hotspawn ownership exists for this fixture (it is not listed on Hotspawn), so a fade cannot be sized from crowd data; HLTV's crowd shares are never used as a probability. BETBOOM also arrive on the shorter rest after a three-map decider.",
+    "favourite_case": "Falcons won their group 2-0 over Ninjas in Pyjamas and 2-1 over 9z (both verified in research/results.json) and qualified a day earlier, so they carry the rest edge. The merged draft's pre-event form details for BETBOOM (0-2 losses to FURIA and 9z) were not re-verified and are not used as a number here.",
     "verdict": "Market and model agree on the direction, not the size: Falcons 76.0% (Pinnacle de-vigged) / 76.9% (relay) / 79.5% (Polymarket) against our own line's 65.8%. BETBOOM at 20.5-24% is the only side on the slate where our line disagrees with the books by more than ten points, and BETBOOM also carry the shorter turnaround - so the divergence is published as a documented disagreement, not as proven value.",
-    "map_pool_flag": "The panel read for this fixture covers the last three months: Falcons Dust2 75% (12 maps), Inferno 80% (5), Nuke 75% (4), Mirage 50% (8); BETBOOM Cache 67% (3), Anubis 57% (7), Nuke 60% (5). The merged file's earlier percentages (Falcons 71% overall, Dust2 73%, Mirage 45%) were not reproduced and are not republished."
+    "map_pool_flag": "The panel read for this fixture covers the last three months: Falcons Dust2 75% (12 maps), Inferno 80% (5), Nuke 75% (4), Mirage 50% (8); BETBOOM Cache 67% (3), Anubis 57% (7), Nuke 60% (5). The merged file's earlier percentages (Falcons 71% overall, Dust2 73%, Mirage 45%) were not reproduced and are not republished.",
+    "claim_flags": [
+     {
+      "claim": "BETBOOM beat Falcons 2-0 in June 2026",
+      "status": "unverified — no head-to-head panel was read for this fixture"
+     },
+     {
+      "claim": "Falcons 71% overall winrate, Dust2 73%, Mirage 45%; BETBOOM Nuke 59%, 43% last month",
+      "status": "unverified — the three-month panel read here shows different figures and is the one printed"
+     },
+     {
+      "claim": "the crowd is 95%+ on Falcons, so fading differentiates massively",
+      "status": "unverified — no Hotspawn ownership exists for this fixture; HLTV crowd shares are never a probability"
+     }
+    ]
    },
    "external_lines": {
     "bo3_gg_thunderpick": {

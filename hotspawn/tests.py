@@ -845,6 +845,30 @@ class Day4MergeAudit(unittest.TestCase):
         for item in self.PICKS.get("audit") or []:
             self.assertIn(str(item.get("status")).casefold(), allowed, item.get("claim"))
 
+    def test_analysis_tables_list_their_flagged_claims(self):
+        """Every claim the audit table rejects must be marked where the analysis row prints it."""
+        page = (HERE / "twc.html").read_text(encoding="utf-8")
+        total = 0
+        for m in self.DATA["semifinals"]:
+            claims = (m.get("contrarian_analysis") or {}).get("claim_flags") or []
+            self.assertTrue(claims, m["team_a"])
+            self.assertIn("Flagged claims", page, m["team_a"])
+            for f in claims:
+                rendered = f["claim"].replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace('"', "&quot;").replace("'", "&#x27;")
+                self.assertIn(rendered, page, f["claim"])
+                total += 1
+        self.assertGreaterEqual(total, 4)
+
+    def test_unverified_numbers_are_not_printed_as_fact(self):
+        page = (HERE / "twc.html").read_text(encoding="utf-8")
+        for m in self.DATA["semifinals"]:
+            ca = m["contrarian_analysis"]
+            self.assertTrue(ca["map_pool"].startswith("Unverified — merged-draft claim"), m["team_a"])
+        self.assertIn("Unverified — merged-draft claim", page)
+        for gone in ("beat Falcons 2-0 just 4 months ago", "beat FURIA 2-1 just 10 days ago",
+                     "much higher than the market's ~13%", "If the crowd is 95%+ on Falcons"):
+            self.assertNotIn(gone, page, f"unverified phrasing still printed: {gone}")
+
     def test_unverified_analysis_is_flagged_on_the_page(self):
         page = (HERE / "twc.html").read_text(encoding="utf-8")
         self.assertIn("Merge audit of the merged draft", page)
