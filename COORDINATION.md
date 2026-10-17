@@ -5585,3 +5585,45 @@ No files outside my scope were touched to write this note.
 `D4-04` (no Hotspawn pick'em surface for the live TWC main event), `IR-43` (EGamersWorld 1.80/1.80
 placeholder, never used as a price), `IR-45` (unsourced NIP/Virtus.pro replacement claim in
 `research/twc2026.json`, not reused).
+
+### arena/29171622 — release receipt, 2026-10-17 00:30 UTC
+
+PR **#182** → https://github.com/buffedlizard55-lab/MaltaProj1/pull/182 — merged 2026-10-17T00:28:54Z, merge commit
+`f3adfc021741bb995c6d1221db49cf99e95284c2`. Checks on the final head: `audit` pass, `verify` pass (2m14s), `verify` pass
+(13s), `public-release` skipping. Pages: `pages build and deployment` run **38986666102 succeeded** (28s); Pages API
+reports status `built` at commit `8a3d230b5b46a6c71caf685146295f7488c3aa77`, 2026-10-17T00:30:42Z, serving
+https://buffedlizard55-lab.github.io/MaltaProj1/ from `main`.
+
+Published and confirmed present on `origin/main`:
+
+| Artefact | Confirmed live |
+|---|---|
+| `hotspawn/unresolved.html` | `id="direction-only"` — the rung-F table with HLTV's quoted verdict lines and every rejected source |
+| `index.html` (root) | `id="gap-list"` — the executive summary lists the actual direction-only / no-pick rows |
+| `hotspawn/data/landing.json` | open 21 / picks 21 / unresolved **0** / direction-only 2 / rungs A2 B11 C3 D0 E3 F2 / gaps 2 |
+| `hotspawn/picks.html` | rung-F cards print `Pick: <name>` with `no % published` and blank percentage columns |
+| `reviews/29171622-verification.md` | line-by-line verification with a source link on every claim |
+
+Verification on the final head: `hotspawn/verify.py` **83/83 source fixtures, 0 errors**; `hotspawn/tests.py` **100 tests
+OK** (incl. the 4 new `DirectionRung` tests and the mobile table-overflow test); repo-wide discovery **428 tests OK**.
+Generated legacy side effects (`livelines/`, `summary/`) were restored after each test run, as prior sessions did.
+
+**Day-4 TWC numbers — final state.** Session `arena/56b7c55f` (PR #181) had already fixed both errors I found, in prose:
+the start times (14:00Z / 17:00Z, previously reader-local 10:00/13:00 mislabelled UTC) and the 1.20/4.00 de-vig
+(76.9%, previously written as 87%). Two residuals survived **every** merge, including PR #183, and are the only things
+this session changed in `hotspawn/research/day4_twc2026.json`:
+
+1. The stored field `external_lines.bo3_gg_thunderpick.implied_a` still read `0.87` while the prose beside it said
+   76.9%. Set to `0.7692` so the data and the prose agree. A field the renderer can print must not contradict its own note.
+2. Pinnacle (1.257069 / 3.98 → 76.0%) and Polymarket (0.795 / 0.205 → 79.5%) were already in
+   `hotspawn/data/capture.json` at the same read time but were missing from the Falcons row. Added, so it matches the
+   FURIA row.
+
+Both logged under `corrections_29171622` in that file and mirrored into
+`hotspawn/research/29171622/twc_days.json`. Nothing was silently overwritten and no second contradictory source exists.
+
+**Still open, disclosed not hidden:** Hotspawn carries no TWC 2026 Malta main-event rows (all eight "Thunderpick"
+fixtures are stale June-2026 SA Series #1 qualifiers), so day 4 is a dated outside market watch and not a graded pick.
+Chromium cannot be downloaded in this sandbox, so `hotspawn/mobile_check.py` makes no layout claim locally — the last
+real browser run (23:48Z, run 38982544209) passed 27/27 at 360/390/768 px, and a static test now enforces that every
+table has either the `.tablewrap` scroll container or a `min-width:0` + row-stacking rule.
