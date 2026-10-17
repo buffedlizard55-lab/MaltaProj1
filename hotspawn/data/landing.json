@@ -1,16 +1,18 @@
 {
- "generated_utc": "2026-10-17T00:12:55Z",
+ "generated_utc": "2026-10-17T00:18:45Z",
  "reference_utc": "2026-10-17T00:12:41Z",
  "open": 21,
- "open_with_pick": 19,
+ "open_with_pick": 21,
  "open_rung": {
   "A": 2,
   "B": 11,
   "C": 3,
-  "D": 2,
-  "E": 3
+  "D": 0,
+  "E": 3,
+  "F": 2
  },
- "open_unresolved": 2,
+ "open_unresolved": 0,
+ "open_direction_only": 2,
  "classes": {
   "VALUE": 4,
   "CONTRARIAN": 3,
@@ -18,9 +20,38 @@
   "LONG SHOT": 3,
   "CHALK": 4,
   "EVIDENCE LIMITED": 1,
-  "NO CROWD DATA": 2
+  "NO CROWD DATA": 2,
+  "DIRECTION ONLY": 2
  },
  "hotspawn_complete": true,
+ "gaps": [
+  {
+   "id": "1081861",
+   "a": "Lynn Vision",
+   "b": "Morningstar",
+   "lock": "2026-10-20T02:54:00Z",
+   "pick": "Lynn Vision",
+   "p": null,
+   "pa": null,
+   "pb": null,
+   "rung": "F",
+   "class": "DIRECTION ONLY",
+   "why": "Morningstar has no row in Valve's 2026-10-05 standings; For both fixtures below the opponent is unranked on HLTV and has no row in Valve's official Regional Standings, so the own-line model has no input for it. Inventing a rating for an unranked team would be an inferred value, not a sourced one."
+  },
+  {
+   "id": "1081863",
+   "a": "Chinggis Warriors",
+   "b": "WXM",
+   "lock": "2026-10-20T06:54:00Z",
+   "pick": "Chinggis Warriors",
+   "p": null,
+   "pa": null,
+   "pb": null,
+   "rung": "F",
+   "class": "DIRECTION ONLY",
+   "why": "Chinggis Warriors matches 2 same-name rows in Valve's 2026-10-05 standings; WXM has no row in Valve's 2026-10-05 standings; For both fixtures below the opponent is unranked on HLTV and has no row in Valve's official Regional Standings, so the own-line model has no input for it. Inventing a rating for an unranked team would be an inferred value, not a sourced one."
+  }
+ ],
  "next": [
   {
    "id": "1079170",

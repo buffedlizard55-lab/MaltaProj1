@@ -42,7 +42,8 @@ CLASS_TEXT = {
 }
 RUNG_TEXT = {"A": "Pinnacle odds (margin removed)", "B": "Secondary outside market",
              "C": "Our own line (official Valve points)", "D": "Unresolved",
-             "E": "Research fallback (own line on roster-disambiguated Valve points)"}
+             "E": "Research fallback (own line on roster-disambiguated Valve points)",
+             "F": "Research rung F — direction only (no win probability published)"}
 
 
 def e(x) -> str:
@@ -149,7 +150,17 @@ def evidence_list(r: dict, board: dict) -> str:
         items.append(f"Secondary esportsbook: {e(relay_label)} via bo3.gg — {relay['odds_a']} / {relay['odds_b']}, margin {relay['overround_pct']:.1f}% → {pair(relay['p_a'],relay['p_b'],1)[0]} / {pair(relay['p_a'],relay['p_b'],1)[1]}; read {e(relay.get('read_utc'))}. Not verified directly with the book. {link(relay.get('url'), 'relay source')} · {link(relay.get('provider_url'), 'provider-supplied link (operator unverified if flagged)')}")
     attempt = r.get("research_attempt")
     if attempt:
-        items.append(f"Gap-only HLTV research: HTTP {e(attempt.get('status'))}; {e(attempt.get('error') or 'page read')} · read {e(attempt.get('read_utc'))}. {link(attempt.get('url'), 'research target')}")
+        status = attempt.get("status")
+        when = attempt.get("read_utc")
+        reason = e(attempt.get("error") or "page read")
+        # A refused request leaves both fields empty; printing "HTTP ; ... read ." reads as a broken
+        # page rather than as the honest "not requested" note it is.
+        if status in (None, "") and not when:
+            items.append(f"Gap-only HLTV research: {reason}. {link(attempt.get('url'), 'research target')}")
+        else:
+            tail = f" · read {e(when)}." if when else "."
+            items.append(f"Gap-only HLTV research: HTTP {e(status)}; {reason}{tail} "
+                         f"{link(attempt.get('url'), 'research target')}")
     for rejected in r.get("rejected_quotes", []):
         items.append("Rejected quote: " + e(rejected.get("source")) + " — " + e("; ".join(rejected.get("reasons", []))) + ". " + link(rejected.get("source_url"), "source"))
     va, vb = r.get("vrs_a"), r.get("vrs_b")
@@ -179,8 +190,14 @@ def card(r: dict, board: dict) -> str:
     s = r.get("strategy") or {}
     la, lb = pair(r.get("p_a"), r.get("p_b"))
     fav_a = r.get("pick") == r["team_a"]
-    pick_line = (f'<div class="pick">Pick: <strong>{e(r["pick"])}</strong><span class="pp">{la if fav_a else lb}</span></div>'
-                 if r.get("pick") else '<div class="pick"><strong style="color:var(--red)">No pick — unresolved</strong></div>')
+    if r.get("rung") == "F":
+        # Direction published from an official one-sided verdict; no percentage exists to print.
+        pick_line = (f'<div class="pick">Pick: <strong>{e(r["pick"])}</strong>'
+                     '<span class="pp" title="No eligible price or rating pair exists for this match">no % published</span></div>')
+    elif r.get("pick"):
+        pick_line = f'<div class="pick">Pick: <strong>{e(r["pick"])}</strong><span class="pp">{la if fav_a else lb}</span></div>'
+    else:
+        pick_line = '<div class="pick"><strong style="color:var(--red)">No pick — unresolved</strong></div>'
     bars = team_bar(r["team_a"], r.get("p_a"), fav_a and r.get("pick"), la) + team_bar(r["team_b"], r.get("p_b"), (not fav_a) and r.get("pick"), lb)
     basis = r.get("basis") or RUNG_TEXT.get(r.get("rung"))
     own = ""
@@ -620,7 +637,10 @@ def unresolved_section(board: dict, full: bool) -> str:
     relays = sum(1 for r in fallback if r.get("relay"))
     own = sum(1 for r in fallback if r.get("rung") == "C")
     rfb = sum(1 for r in fallback if r.get("rung") == "E")
+    dironly = [r for r in rows if r.get("rung") == "F"]
     out = [f'<p><strong>{len(unresolved)} unresolved picks</strong>: no supported probability/side is invented. '
+           f'<strong>{len(dironly)} direction-only</strong>: a pick is published from an official one-sided verdict but no win '
+           f'percentage exists, so the percentage columns are blank. '
            f'<strong>{len(fallback)} non-featured resolutions</strong>: {pm} prediction-market, {relays} relayed esportsbook, '
            f'{own} own estimate, {rfb} research-fallback. Every captured fixture is retained, including low-tier and unpriced matches. '
            '<a href="picks.html">Open all match cards →</a></p>']
@@ -712,7 +732,46 @@ def unresolved_section(board: dict, full: bool) -> str:
             out.append(f'<h4><a href="picks.html#m{e(r["match_id"])}">{e(r["team_a"])} vs {e(r["team_b"])}</a> — pick {e(r.get("pick"))} '
                        f'{e(r["team_a"])} {pair(r.get("p_a"), r.get("p_b"), 1)[0]} / {e(r["team_b"])} {pair(r.get("p_a"), r.get("p_b"), 1)[1]}</h4>'
                        f'<ul class="plain">{"".join(lines)}</ul><p class="small">{mline}<br>{sources(r)}</p>')
-    if not e_rows and not unresolved:
+    if dironly:
+        out.append('<h3 id="direction-only">Direction-only picks (research rung F) — a pick with no percentage</h3>'
+                   '<p>These are the hardest matches on the board: no bookmaker price, no prediction-market price and no rating '
+                   'for one of the two teams. Rather than invent a number, the page publishes the <b>direction</b> that HLTV itself '
+                   'states on the linked match and analytics pages, and leaves both percentages blank. '
+                   'Every source that was tried and rejected is listed so the gap can be re-checked.</p>'
+                   '<div class="tablewrap"><table><thead><tr><th>Match / lock UTC</th><th>Pick</th>'
+                   "<th>Why this direction (HLTV's own words)</th><th>Why there is no percentage</th>"
+                   '<th>Sources tried</th></tr></thead><tbody>')
+        for r in dironly:
+            v = r.get("verdict") or {}
+            sd = v.get("sides") or {}
+            why = " · ".join(e(x) for x in (v.get("in_favour_of_pick") or []))
+            against = " · ".join(e(x) for x in (v.get("against_other") or []))
+            h2h = v.get("head_to_head") or v.get("head_to_head_note") or "No published head-to-head"
+            checks = "<br>".join(
+                f'{e(c.get("source"))}: {e(c.get("result"))}'
+                for c in (v.get("checks") or []))
+            urls = " · ".join(link(u, u.split("/")[2]) for u in (v.get("sources") or []) if u)
+            ranks = []
+            for side, key in (("a", "team_a"), ("b", "team_b")):
+                s = sd.get(side) or {}
+                if not s:
+                    continue
+                rank = (f'HLTV #{e(s.get("hltv_rank"))}' if s.get("hltv_rank") is not None
+                        else e(s.get("hltv_rank_note") or "HLTV unranked"))
+                ranks.append(f'{e(s.get("team"))}: {rank}')
+            out.append(
+                f'<tr><td><a href="picks.html#m{e(r["match_id"])}">{e(r["team_a"])} vs {e(r["team_b"])}</a>'
+                f'<br>{e(utc_label(r.get("lock_utc")))}<br>{e(r.get("format"))}</td>'
+                f'<td><b>{e(r.get("pick"))}</b><br><span class="small">no win % published</span></td>'
+                f'<td><b>In favour of the pick:</b> {why}<br><b>Against the opponent:</b> {against}'
+                f'<br><b>Head-to-head:</b> {e(h2h)}<br>{" · ".join(ranks)}'
+                f'<br>{link(v.get("hltv_match_url"), "HLTV match page")} · '
+                f'{link(v.get("hltv_analytics_url"), "HLTV analytics verdict")}'
+                f'{" (read " + e(v.get("hltv_read_utc")) + ")" if v.get("hltv_read_utc") else ""}</td>'
+                f'<td>{e(r.get("own_line_limitation") or "")}</td>'
+                f'<td><span class="small">{checks}<br>{urls}</span></td></tr>')
+        out.append('</tbody></table></div>')
+    if not e_rows and not unresolved and not dironly:
         pass
     out.append("""<h3>Limitations that apply to every pick</h3><ul>
 <li>Four-hour scheduled snapshots, not live odds. Scheduling and source access are best effort; a capture older than eight hours is marked stale. Check each read time and absolute UTC lock.</li>
@@ -720,6 +779,7 @@ def unresolved_section(board: dict, full: bool) -> str:
 <li>HLTV is tried for non-featured fixtures first. A refusal is recorded; a 403/429 circuit breaker is not a successful read. Then esportsbook relays and other external lines are checked automatically.</li>
 <li>The own line is fitted to Valve’s whole-match results, not map probabilities. No extra BO3 transform is applied. Missing teams, unknown formats, known roster mismatches and ratings older than 45 days withhold that fallback.</li>
 <li>Research-fallback (rung E) picks rest on a dated Valve snapshot with a documented roster-overlap identity rule and no market cross-check at all. They are the softest published lines: every negative price check and every roster delta is printed on the row above.</li>
+<li>Direction-only picks (research rung F) publish a side from HLTV's own one-sided verdict and nothing else. They carry no win percentage, no expected-points cost and no leaderboard leverage, because a number for an unranked, unrated opponent would be invented rather than sourced.</li>
 <li>Roster news can already be priced into the market. A three-month-old rebuild is context only; no unverified travel, sleep, injury or fatigue adjustment is made.</li>
 <li>Hotspawn crowd percentages are ownership only. Small samples, rounding and correlated picks limit leaderboard analysis; low ownership never increases a team’s win probability.</li>
 </ul>""")
@@ -822,12 +882,12 @@ def index_page(board: dict) -> None:
 <a class="btn primary" href="picks.html"><strong>All picks ({s['open']} open) →</strong><span>One card per match: pick, both probabilities, sources.</span></a>
 <a class="btn" href="strategy.html"><strong>Leaderboard plan</strong><span>{s['leaderboard_classes'].get('VALUE', 0)} value · {s['leaderboard_classes'].get('CONTRARIAN', 0)} contrarian · {s['leaderboard_classes'].get('SITUATIONAL', 0)} situational plays; day-1 and day-2 reviews.</span></a>
 <a class="btn" href="twc.html"><strong>TWC 2026 day review</strong><span>Day-3 results, day-4 semifinal watch, current captured picks and the limits of roster/rest narratives.</span></a>
-<a class="btn" href="unresolved.html"><strong>Unresolved &amp; limitations</strong><span>{s['open_rung'].get('B', 0) + s['open_rung'].get('C', 0) + s['open_rung'].get('E', 0)} via the research ladder · {s['open_unresolved']} without a pick.</span></a>
+<a class="btn" href="unresolved.html"><strong>Unresolved &amp; limitations</strong><span>{s['open_rung'].get('B', 0) + s['open_rung'].get('C', 0) + s['open_rung'].get('E', 0) + s['open_rung'].get('F', 0)} via the research ladder · {s['open_rung'].get('F', 0)} direction-only (no %) · {s['open_unresolved']} without a pick.</span></a>
 <a class="btn" href="flagged.html"><strong>Flagged for Review</strong><span>Irregularities and per-match flags with evidence.</span></a>
 </div>
 <div class="stats" aria-label="Coverage">
 <div><b>{s['open']}</b><span>open matches</span></div><div><b>{s['open_with_pick']}</b><span>with a pick</span></div>
-<div><b>{s['open_rung'].get('A', 0)}</b><span>featured (Pinnacle)</span></div><div><b>{s['open_rung'].get('B', 0) + s['open_rung'].get('C', 0) + s['open_rung'].get('E', 0)}</b><span>via research ladder</span></div>
+<div><b>{s['open_rung'].get('A', 0)}</b><span>featured (Pinnacle)</span></div><div><b>{s['open_rung'].get('B', 0) + s['open_rung'].get('C', 0) + s['open_rung'].get('E', 0) + s['open_rung'].get('F', 0)}</b><span>via research ladder</span></div>
 </div>
 <h2>Next to lock</h2><ul class="plain">{''.join(li(r) for r in nxt) or '<li>No open fixtures in this snapshot.</li>'}</ul>
 <h2>Leaderboard plays right now</h2><ul class="plain">{''.join(li(r) for r in plays) or '<li>No value/contrarian/situational plays — take the picks.</li>'}</ul>
@@ -852,7 +912,13 @@ def landing_json(board: dict) -> None:
     write_json(DATA / "landing.json", {
         "generated_utc": s["generated_utc"], "reference_utc": s["reference_utc"], "open": s["open"],
         "open_with_pick": s["open_with_pick"], "open_rung": s["open_rung"], "open_unresolved": s["open_unresolved"],
+        "open_direction_only": s.get("open_direction_only", 0),
         "classes": s["leaderboard_classes"], "hotspawn_complete": s["hotspawn_complete"],
+        "gaps": [{"id": r["match_id"], "a": r["team_a"], "b": r["team_b"], "lock": r.get("lock_utc"),
+                  "pick": r.get("pick"), "p": r.get("pick_p"), "pa": r.get("p_a"), "pb": r.get("p_b"),
+                  "rung": r.get("rung"), "class": (r.get("strategy") or {}).get("class"),
+                  "why": (r.get("own_line_limitation") or r.get("basis") or "")}
+                 for r in open_rows if r.get("rung") in ("F", "D")],
         "next": [{"id": r["match_id"], "a": r["team_a"], "b": r["team_b"], "tier": r.get("tier"), "lock": r.get("lock_utc"),
                   "pick": r.get("pick"), "p": r.get("pick_p"), "pa": r.get("p_a"), "pb": r.get("p_b"), "basis": r.get("rung"),
                   "play": (r.get("strategy") or {}).get("leaderboard_pick"), "class": (r.get("strategy") or {}).get("class")}

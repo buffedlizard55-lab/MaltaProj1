@@ -82,6 +82,9 @@ FLAG_TEXT = {
     "IDENTITY_CONFLICT": "Hotspawn surfaces disagree on fixture identity or timing; no probability is published for this ID.",
     "NO_DIRECTION": "The eligible outside price is exactly 50/50 and no eligible independent line breaks the tie; no side invented.",
     "MODEL_ONLY": "Own originated estimate, not an observed bookmaker line; format-specific calibration and map veto are not modelled.",
+    "DIRECTION_ONLY": "Research rung F: a pick direction is published from HLTV's own one-sided verdict (ranking, recent form, head-to-head) because no price and no rating pair exist. No win probability is published for this match.",
+    "NO_PERCENTAGE": "No eligible outside price and no rating pair for both teams, so the percentage columns are blank rather than invented.",
+    "EGW_PLACEHOLDER": "EGamersWorld displays its 1.8 / 1.8 placeholder price on this match. A placeholder is not a market price and was rejected.",
 }
 
 
@@ -96,6 +99,8 @@ def load_inputs() -> dict:
         "results": (read_json(RESEARCH / "results.json", {}) or {}).get("results", {}),
         "history": read_json(DATA / "pick_history.json", {}) or {},
         "fallback": read_json(RESEARCH / "fallback_83090640.json", {}) or {},
+        "verdicts": read_json(RESEARCH / "29171622" / "gap_verdicts.json", {}) or {},
+        "twc_days": read_json(RESEARCH / "29171622" / "twc_days.json", {}) or {},
     }
 
 
@@ -191,6 +196,10 @@ def strategy(row: dict) -> dict | None:
         return {"class": "EVIDENCE LIMITED", "leaderboard_pick": row.get("pick"),
                 "reason": "Operator identity unverified: retain the source-implied side, no automatic contrarian fade."}
     if pa is None or pb is None:
+        if row.get("rung") == "F" and row.get("pick"):
+            return {"class": "DIRECTION ONLY", "leaderboard_pick": row["pick"],
+                    "reason": "Only a direction is published for this match, with no win probability, so no "
+                              "value/contrarian leverage can be computed. Take the published side."}
         return None
     if ca is None or cb is None or (ca + cb) <= 0:
         return {"class": "NO CROWD DATA", "leaderboard_pick": row.get("pick"), "reason": "Hotspawn published no crowd share."}
@@ -550,13 +559,74 @@ def build_rows(inp: dict) -> tuple[list[dict], dict]:
                     "format_source": fb.get("format_source"),
                     "sources": [u for u in fb_sources if u],
                 }
+        # ---- F: research rung for open rung-D rows with no price and no rating pair.
+        # A direction is published only from HLTV's own one-sided verdict on the linked match
+        # (every "in favour of" line on one side, every "against" line on the other). No percentage
+        # is produced: the opponent is unranked on HLTV and absent from Valve's official standings,
+        # so any number would be invented rather than sourced.
+        vd = (inp.get("verdicts") or {}).get("fixtures") or []
+        vmap = {str(v.get("match_id")): v for v in vd}
+        vd_row = vmap.get(str(r["match_id"]))
+        if (r["rung"] == "D" and r["status"] == "open" and vd_row
+                and str(r["match_id"]) not in conflicts
+                and vd_row.get("format") and vd_row.get("pick")
+                and (vd_row.get("verdict") or {}).get("one_sided")
+                and not (vd_row["verdict"].get("against_pick") or vd_row["verdict"].get("in_favour_of_other"))
+                and (vd_row["verdict"].get("in_favour_of_pick") and vd_row["verdict"].get("against_other"))
+                and vd_row["pick"] in (fx["team_a"], fx["team_b"])):
+            prev_format = r.get("format")
+            r["format"] = vd_row["format"]
+            r["format_source"] = vd_row.get("format_source") or ""
+            r["format_source_kind"] = vd_row.get("format_source_kind") or "primary (HLTV match page)"
+            if not prev_format:
+                flags = [f for f in flags if f != "FORMAT_UNKNOWN"]
+            r["rung"] = "F"
+            r["basis"] = ("Research rung F: direction published from HLTV's own one-sided verdict on the "
+                          "linked match page; no eligible outside price and no rating pair exist, so no "
+                          "win probability is published.")
+            r["pick"] = vd_row["pick"]
+            r["pick_p"] = None
+            r["p_a"] = r["p_b"] = None
+            r["own_p_a"] = r["own_p_b"] = None
+            # The format gap this row was rejected for is now closed by HLTV's own match page, so the
+            # stale "format not confirmed" clause must not survive into the published limitation text.
+            if not prev_format:
+                parts = [x.strip() for x in (r.get("own_line_limitation") or "").split(";")
+                         if x.strip() and "format" not in x.lower()]
+                r["own_line_limitation"] = "; ".join(parts)
+            r["own_line_limitation"] = (
+                (r["own_line_limitation"] + "; " if r.get("own_line_limitation") else "")
+                + (inp.get("verdicts") or {}).get("why_not_a_percentage", ""))
+            flags = [f for f in flags if f != "UNRESOLVED"]
+            for extra in ("DIRECTION_ONLY", "NO_PERCENTAGE", "RESEARCH_FALLBACK", "NO_MARKET"):
+                if extra not in flags:
+                    flags.append(extra)
+            r["verdict"] = {
+                "pack": "hotspawn/research/29171622/gap_verdicts.json",
+                "rule": (inp.get("verdicts") or {}).get("rule", ""),
+                "hltv_match_url": vd_row.get("hltv_match_url"),
+                "hltv_analytics_url": vd_row.get("hltv_analytics_url"),
+                "hltv_read_utc": vd_row.get("hltv_read_utc"),
+                "stage": vd_row.get("stage"),
+                "time_match_check": vd_row.get("time_match_check"),
+                "sides": vd_row.get("sides"),
+                "in_favour_of_pick": vd_row["verdict"].get("in_favour_of_pick") or [],
+                "against_other": vd_row["verdict"].get("against_other") or [],
+                "head_to_head": vd_row["verdict"].get("head_to_head"),
+                "head_to_head_note": vd_row["verdict"].get("head_to_head_note"),
+                "checks": (inp.get("verdicts") or {}).get("checks_performed") or [],
+                "sources": vd_row.get("sources") or [],
+            }
+
         if r["rejected_quotes"] and r["status"] == "open":
             flags.append("REJECTED_QUOTE")
             if any("older than 8 h" in reason for q in r["rejected_quotes"] for reason in q["reasons"]):
                 flags.append("STALE_PRICE")
         # Headline pick always follows the larger published probability. A genuine exact tie can
         # use an eligible independent estimate, but an arbitrary first-listed team is never a pick.
-        r["pick"] = r["pick_p"] = None
+        if r["rung"] != "F":
+            # Rung F keeps the direction set from the published verdict; it has no percentage to compare.
+            r["pick"] = r["pick_p"] = None
         if r["p_a"] is not None:
             if abs(r["p_a"] - 0.5) < 0.01: flags.append("COIN_FLIP")
             if r["p_a"] == r["p_b"]:
@@ -583,7 +653,10 @@ def build_rows(inp: dict) -> tuple[list[dict], dict]:
                             (r.get("relay") or {}).get("url"), (r.get("relay") or {}).get("provider_url"),
                             (r.get("research_attempt") or {}).get("url"), (r.get("format_evidence") or {}).get("url"),
                             vrs.get("url") if (va or vb) else None,
-                            *((r.get("fallback") or {}).get("sources") or [])] if u]
+                            *((r.get("fallback") or {}).get("sources") or []),
+                            # Rung F has no price, rating or market to cite: the row's own source list
+                            # has to carry the pages the direction was actually read from.
+                            *((r.get("verdict") or {}).get("sources") or [])] if u]
         r["sources"] = list(dict.fromkeys(srcs))
         rows.append(r)
     meta = {"reference_utc": iso(ref), "k": k, "k_label": k_label, "vrs": {k2: vrs.get(k2) for k2 in ("as_of", "url", "file", "status")},
@@ -758,11 +831,13 @@ def main() -> int:
         "locked_recent": sum(1 for r in rows if r["status"] == "locked"),
         "stale_listings": sum(1 for r in rows if r["status"] == "stale"),
         "open_with_pick": sum(1 for r in open_rows if r.get("pick")),
-        "open_rung": {x: sum(1 for r in open_rows if r.get("rung") == x) for x in "ABCDE"},
+        "open_rung": {x: sum(1 for r in open_rows if r.get("rung") == x) for x in "ABCDEF"},
         "open_unresolved": sum(1 for r in open_rows if r.get("rung") == "D"),
+        "open_direction_only": sum(1 for r in open_rows if r.get("rung") == "F"),
         "open_flagged": sum(1 for r in open_rows if set(r["flags"]) - {"ALIAS"}),
         "leaderboard_classes": {c: sum(1 for r in open_rows if (r.get("strategy") or {}).get("class") == c)
-                                for c in ("VALUE", "CONTRARIAN", "SITUATIONAL", "LONG SHOT", "CHALK", "EVIDENCE LIMITED", "NO CROWD DATA")},
+                                for c in ("VALUE", "CONTRARIAN", "SITUATIONAL", "LONG SHOT", "CHALK",
+                                          "EVIDENCE LIMITED", "NO CROWD DATA", "DIRECTION ONLY")},
         "next_lock_utc": min((r["lock_utc"] for r in open_rows if r.get("lock_utc")), default=None),
         "hotspawn_complete": meta["hotspawn"]["complete"],
         "sources": {"pinnacle": meta["pinnacle"].get("status"), "polymarket": meta["polymarket"].get("status"),
@@ -777,7 +852,8 @@ def main() -> int:
     }
     board = {"meta": meta, "summary": summary, "rows": rows, "day1": {"info": {k2: v for k2, v in inp["day1"].items() if k2 != "matches"},
                                                                       "matches": review},
-             "flag_text": FLAG_TEXT, "history": history, "graded": graded}
+             "flag_text": FLAG_TEXT, "history": history, "graded": graded,
+             "twc_days": inp["twc_days"], "gap_verdicts": inp["verdicts"]}
     write_json(DATA / "board.json", board)
     write_json(DATA / "summary.json", summary)
     write_json(DATA / "pick_history.json", history)

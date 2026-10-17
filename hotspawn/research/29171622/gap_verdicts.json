@@ -1,0 +1,172 @@
+{
+  "session": "arena/29171622",
+  "compiled_utc": "2026-10-17T00:05:00Z",
+  "rung": "F",
+  "rule": "Research rung F - published-verdict direction. Used only for an open fixture that reached rung D (no eligible outside price and no own line). A direction is published ONLY when HLTV's own match page and analytics summary state a one-sided verdict: every 'in favour of' line belongs to one team, every 'against' line belongs to the other, and the head-to-head record published on the same page points the same way. No percentage is produced: the probability columns stay blank, because no bookmaker price, prediction-market price or rating pair supports a number.",
+  "why_not_a_percentage": "For both fixtures below the opponent is unranked on HLTV and has no row in Valve's official Regional Standings, so the own-line model has no input for it. Inventing a rating for an unranked team would be an inferred value, not a sourced one.",
+  "checks_performed": [
+    {
+      "source": "Pinnacle guest API (sports/12 matchups + straight markets)",
+      "result": "Neither fixture appears in the captured CS2 matchup set.",
+      "evidence": "hotspawn/data/capture.json -> pinnacle (read 2026-10-16T22:55:05Z)"
+    },
+    {
+      "source": "Polymarket gamma API (CS2 series 10310, open events)",
+      "result": "Neither fixture appears in the captured quote set.",
+      "evidence": "hotspawn/data/capture.json -> polymarket"
+    },
+    {
+      "source": "bo3.gg / Thunderpick (the operator behind the relayed lines used on rung B)",
+      "result": "Lynn Vision vs Morningstar has a bo3.gg match page with no odds pair displayed. Chinggis Warriors vs WXM has no bo3.gg match page at all (404 at the dated slug used for the other three quarter-finals).",
+      "evidence": [
+        "https://bo3.gg/matches/lynn-vision-vs-morningstar-20-10-2026",
+        "https://bo3.gg/matches/chinggis-warriors-vs-wxm-20-10-2026"
+      ]
+    },
+    {
+      "source": "EGamersWorld match pages",
+      "result": "Both fixtures have EGamersWorld pages, but the displayed price pair is 1.8 / 1.8 on both, the same placeholder EGamersWorld shows on every unpriced match. A placeholder is not a market price and is rejected.",
+      "evidence": [
+        "https://egamersworld.com/counterstrike/match/EJcHRdr5Vx/lynn-vision-vs-morningstar-7AWA3eTHD",
+        "https://egamersworld.com/counterstrike/match/EJcHRdr5Vx/chinggis-warriors-vs-wxm-_ddme1I7dZ"
+      ]
+    },
+    {
+      "source": "HLTV betting tables on both match pages",
+      "result": "Only a Stake sweepstakes promotion is listed; no bookmaker price is offered for either fixture.",
+      "evidence": [
+        "https://www.hltv.org/matches/2399576/lynn-vision-vs-morningstar-macemedia-void-autumn-cup-2026",
+        "https://www.hltv.org/matches/2399578/chinggis-warriors-vs-wxm-macemedia-void-autumn-cup-2026"
+      ]
+    },
+    {
+      "source": "Valve official Regional Standings (commit eec4853d7bcf0f1f7efe7f0d901234bef7e98b75)",
+      "result": "No standings row exists for Morningstar or WXM in the 2026-10-05 global, Europe or Asia files, and none of their listed players (Kinatie, 1romma, outccc, Genxiu, Currant / Freeman, fineshine52, swiftsteel, Terryyy, Apraki) appears as a rated five. Both appear only as unrated opponents inside other teams' match-history files.",
+      "evidence": "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+    }
+  ],
+  "fixtures": [
+    {
+      "match_id": "1081861",
+      "team_a": "Lynn Vision",
+      "team_b": "Morningstar",
+      "competition": "VOID Autumn Cup 2026",
+      "hotspawn_start_utc": "2026-10-20T03:00:00Z",
+      "hltv_match_url": "https://www.hltv.org/matches/2399576/lynn-vision-vs-morningstar-macemedia-void-autumn-cup-2026",
+      "hltv_analytics_url": "https://www.hltv.org/betting/analytics/2399576/lynn-vision-vs-morningstar-macemedia-void-autumn-cup-2026",
+      "hltv_read_utc": "2026-10-17T00:00:00Z",
+      "event_url": "https://www.hltv.org/events/9435/macemedia-void-autumn-cup-2026",
+      "stage": "Upper bracket quarter-final",
+      "format": "BO3",
+      "format_source": "https://www.hltv.org/matches/2399576/lynn-vision-vs-morningstar-macemedia-void-autumn-cup-2026",
+      "format_source_kind": "primary (HLTV match page states 'Best of 3 (LAN)')",
+      "time_match_check": "HLTV renders 19 Oct 23:00 in the reader's timezone, which is 2026-10-20T03:00Z - the Hotspawn start time.",
+      "pick": "Lynn Vision",
+      "sides": {
+        "a": {
+          "team": "Lynn Vision",
+          "hltv_rank": 39,
+          "hltv_valve_rank_display": 70,
+          "hltv_team_url": "https://www.hltv.org/team/8840/lynn-vision",
+          "lineup": ["Starry", "EmiliaQAQ", "C4LLM3SU3", "z4KR", "Westmelon"],
+          "valve_standings_row": null
+        },
+        "b": {
+          "team": "Morningstar",
+          "hltv_rank": null,
+          "hltv_rank_note": "HLTV match page and analytics summary both show 'Unranked' for HLTV and VRS.",
+          "hltv_team_url": "https://www.hltv.org/team/13602/morningstar",
+          "lineup": ["Freeman", "fineshine52", "swiftsteel", "Terryyy", "Apraki"],
+          "valve_standings_row": null
+        }
+      },
+      "verdict": {
+        "in_favour_of_pick": [
+          "Lynn Vision has better form ranking",
+          "Lynn Vision has won 4 out of the last 5 matches",
+          "Lynn Vision is better ranked (#39)"
+        ],
+        "against_pick": [],
+        "in_favour_of_other": [],
+        "against_other": [
+          "Core lineup has only played 2 matches together",
+          "Core lineup has only played 3 maps the past 30 days",
+          "Morningstar is worse ranked (Unranked)"
+        ],
+        "head_to_head": "Lynn Vision lead 3-0, all three by 2-0; the most recent was 21.03.26.",
+        "head_to_head_source": "https://www.hltv.org/betting/analytics/2399576/lynn-vision-vs-morningstar-macemedia-void-autumn-cup-2026",
+        "one_sided": true
+      },
+      "sources": [
+        "https://play.hotspawn.com/lobby",
+        "https://www.hltv.org/matches/2399576/lynn-vision-vs-morningstar-macemedia-void-autumn-cup-2026",
+        "https://www.hltv.org/betting/analytics/2399576/lynn-vision-vs-morningstar-macemedia-void-autumn-cup-2026",
+        "https://www.hltv.org/events/9435/macemedia-void-autumn-cup-2026",
+        "https://bo3.gg/matches/lynn-vision-vs-morningstar-20-10-2026",
+        "https://egamersworld.com/counterstrike/match/EJcHRdr5Vx/lynn-vision-vs-morningstar-7AWA3eTHD",
+        "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+      ]
+    },
+    {
+      "match_id": "1081863",
+      "team_a": "Chinggis Warriors",
+      "team_b": "WXM",
+      "competition": "VOID Autumn Cup 2026",
+      "hotspawn_start_utc": "2026-10-20T07:00:00Z",
+      "hltv_match_url": "https://www.hltv.org/matches/2399578/chinggis-warriors-vs-wxm-macemedia-void-autumn-cup-2026",
+      "hltv_analytics_url": "https://www.hltv.org/betting/analytics/2399578/chinggis-warriors-vs-wxm-macemedia-void-autumn-cup-2026",
+      "hltv_read_utc": "2026-10-17T00:03:00Z",
+      "event_url": "https://www.hltv.org/events/9435/macemedia-void-autumn-cup-2026",
+      "stage": "Upper bracket quarter-final",
+      "format": "BO3",
+      "format_source": "https://www.hltv.org/matches/2399578/chinggis-warriors-vs-wxm-macemedia-void-autumn-cup-2026",
+      "format_source_kind": "primary (HLTV match page states 'Best of 3 (LAN)')",
+      "format_note": "This clears the FORMAT_UNKNOWN flag carried on this row in earlier captures: HLTV now publishes the series length.",
+      "time_match_check": "HLTV renders 20 Oct 03:00 in the reader's timezone, which is 2026-10-20T07:00Z - the Hotspawn start time.",
+      "pick": "Chinggis Warriors",
+      "sides": {
+        "a": {
+          "team": "Chinggis Warriors",
+          "hltv_rank": 61,
+          "hltv_valve_rank_display": 58,
+          "hltv_team_url": "https://www.hltv.org/team/12646/chinggis-warriors",
+          "lineup": ["ROUX", "sk0R", "cool4st", "tikuak", "fury5k"],
+          "valve_standings_row": null
+        },
+        "b": {
+          "team": "WXM",
+          "hltv_rank": null,
+          "hltv_rank_note": "HLTV match page shows 'HLTV: Unranked' and 'VRS: Unranked'.",
+          "hltv_team_url": "https://www.hltv.org/team/14011/wxm",
+          "lineup": ["Kinatie", "1romma", "outccc", "Genxiu", "Currant"],
+          "valve_standings_row": null
+        }
+      },
+      "verdict": {
+        "in_favour_of_pick": [
+          "Chinggis Warriors has better form ranking",
+          "Chinggis Warriors has won 4 out of the last 5 matches",
+          "Chinggis Warriors is better ranked (#61)"
+        ],
+        "against_pick": [],
+        "in_favour_of_other": [],
+        "against_other": [
+          "Core lineup has only played 4 matches together",
+          "Core lineup has only played 5 maps the past 30 days",
+          "WXM is worse ranked (Unranked)"
+        ],
+        "head_to_head": null,
+        "head_to_head_note": "No published head-to-head meetings on HLTV's analytics page for this pairing at this read; the direction rests on the published ranking and form verdict alone, which is why it is the weaker of the two rung-F rows.",
+        "one_sided": true
+      },
+      "sources": [
+        "https://play.hotspawn.com/lobby",
+        "https://www.hltv.org/matches/2399578/chinggis-warriors-vs-wxm-macemedia-void-autumn-cup-2026",
+        "https://www.hltv.org/betting/analytics/2399578/chinggis-warriors-vs-wxm-macemedia-void-autumn-cup-2026",
+        "https://www.hltv.org/events/9435/macemedia-void-autumn-cup-2026",
+        "https://egamersworld.com/counterstrike/match/EJcHRdr5Vx/chinggis-warriors-vs-wxm-_ddme1I7dZ",
+        "https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md"
+      ]
+    }
+  ]
+}

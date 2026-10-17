@@ -201,6 +201,84 @@ class ResearchFallback(unittest.TestCase):
             self.assertTrue(ent.get("format_source"), mid)
 
 
+class DirectionRung(unittest.TestCase):
+    """Rung F publishes a direction from an official one-sided verdict and never a percentage.
+
+    session arena/29171622. The gap pack is checked line by line against the board:
+    a row may only be resolved this way when it reached rung D (no price, no own line),
+    the verdict is one-sided, and every published line is quoted from HLTV's own page.
+    """
+
+    PACK = read_json(HERE / "research" / "29171622" / "gap_verdicts.json", {}) or {}
+    ENTRIES = {str(e.get("match_id")): e for e in PACK.get("fixtures", [])}
+
+    def test_pack_entries_are_fully_sourced(self):
+        self.assertTrue(self.ENTRIES, "gap verdict pack is empty")
+        for mid, ent in self.ENTRIES.items():
+            for field in ("team_a", "team_b", "format", "pick", "hltv_match_url", "hltv_analytics_url", "hltv_read_utc"):
+                self.assertTrue(ent.get(field), f"{mid} missing {field}")
+            self.assertTrue(ent["hltv_match_url"].startswith("https://www.hltv.org/matches/"), mid)
+            self.assertTrue(ent["hltv_analytics_url"].startswith("https://www.hltv.org/betting/analytics/"), mid)
+            self.assertIn(ent["pick"], (ent["team_a"], ent["team_b"]), mid)
+            self.assertTrue(ent.get("sources"), mid)
+            for u in ent["sources"]:
+                self.assertTrue(u.startswith("https://"), mid)
+        self.assertTrue(self.PACK.get("checks_performed"), "no negative price checks recorded")
+        for check in self.PACK["checks_performed"]:
+            self.assertTrue(check.get("source") and check.get("result"), "check without source/result")
+
+    def test_rung_f_rows_carry_a_direction_and_no_invented_number(self):
+        for r in OPEN:
+            if r.get("rung") != "F":
+                continue
+            mid = str(r["match_id"])
+            ent = self.ENTRIES.get(mid)
+            self.assertIsNotNone(ent, f"{mid} rung F without a verdict pack entry")
+            self.assertEqual(r.get("pick"), ent["pick"], mid)
+            self.assertIn(r["pick"], (r["team_a"], r["team_b"]), mid)
+            # The whole point of the rung: no percentage may be published.
+            self.assertIsNone(r.get("p_a"), mid)
+            self.assertIsNone(r.get("p_b"), mid)
+            self.assertIsNone(r.get("pick_p"), mid)
+            self.assertIsNone(r.get("own_p_a"), mid)
+            for flag in ("DIRECTION_ONLY", "NO_PERCENTAGE", "RESEARCH_FALLBACK", "NO_MARKET"):
+                self.assertIn(flag, r["flags"], f"{mid} missing {flag}")
+            self.assertNotIn("UNRESOLVED", r["flags"], mid)
+            # The verdict must be one-sided: nothing published against the pick's side.
+            v = ent["verdict"]
+            self.assertTrue(v.get("one_sided"), mid)
+            self.assertFalse(v.get("against_pick"), mid)
+            self.assertFalse(v.get("in_favour_of_other"), mid)
+            self.assertTrue(v.get("in_favour_of_pick"), mid)
+            self.assertTrue(v.get("against_other"), mid)
+            # Every quoted verdict line must appear verbatim on the published row.
+            row_v = r.get("verdict") or {}
+            self.assertEqual(row_v.get("in_favour_of_pick"), v["in_favour_of_pick"], mid)
+            self.assertEqual(row_v.get("against_other"), v["against_other"], mid)
+            self.assertTrue(any("hltv.org/matches/" in u for u in r["sources"]), mid)
+            self.assertTrue(any("hltv.org/betting/analytics/" in u for u in r["sources"]), mid)
+            self.assertTrue(r.get("format"), f"{mid} rung F must publish a sourced format")
+
+    def test_rung_f_never_overrides_a_price_or_an_own_line(self):
+        for r in ROWS:
+            if r.get("rung") != "F":
+                continue
+            self.assertNotIn("book", r, r["match_id"])
+            self.assertNotIn("relay", r, r["match_id"])
+            self.assertNotIn("pm", r, r["match_id"])
+
+    def test_direction_only_rows_are_rendered_without_a_percentage(self):
+        picks = (HERE / "picks.html").read_text(encoding="utf-8")
+        for r in OPEN:
+            if r.get("rung") != "F":
+                continue
+            anchor = f'id="m{r["match_id"]}"'
+            self.assertIn(anchor, picks, r["match_id"])
+            card = picks.split(anchor, 1)[1].split("</article>", 1)[0]
+            self.assertIn("no % published", card, r["match_id"])
+            self.assertIn("Pick:", card, r["match_id"])
+
+
 class Sources(unittest.TestCase):
     def test_every_open_row_has_https_sources_and_a_hotspawn_link(self):
         for r in OPEN:
@@ -333,6 +411,28 @@ class Pages(unittest.TestCase):
             self.assertEqual(p.scripts, [], f"{name} loads an external script")
             self.assertTrue(all(not s.startswith("http") for s in p.styles), name)
             self.assertNotRegex(text, r"\bundefined\b|\bNone\b(?![a-z])", name)
+
+    def test_every_table_escapes_horizontal_overflow_on_a_phone(self):
+        """A source-linked table is wider than a 360px phone. On a real browser run that shows up as
+        horizontal page overflow, so each table needs one of the two mobile escapes: the .tablewrap
+        scroll container, or an explicit min-width:0 plus a narrow-viewport rule that stacks the rows
+        into cards (the pattern release-audit.html uses)."""
+        for name in PAGES:
+            text = (HERE / name).read_text(encoding="utf-8")
+            stacked = ("min-width:0" in text and re.search(r"@media\s*\(max-width:\s*\d+px\)", text)
+                       and re.search(r"\btr\s*\{[^}]*display:\s*block", text))
+            for match in re.finditer(r"<table\b", text):
+                before = text[:match.start()]
+                opened = before.rfind('class="tablewrap"')
+                closed_after_open = before.rfind("</div>")
+                wrapped = opened > closed_after_open
+                self.assertTrue(wrapped or stacked,
+                                f"{name} has a table with neither a scroll wrapper nor a stacking rule")
+
+    def test_direction_section_is_reachable_from_the_unresolved_page(self):
+        text = (HERE / "unresolved.html").read_text(encoding="utf-8")
+        self.assertIn('id="direction-only"', text)
+        self.assertIn("no bookmaker price, no prediction-market price", text)
 
     def test_internal_links_resolve(self):
         for name in PAGES:
