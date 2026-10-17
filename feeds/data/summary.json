@@ -1,18 +1,18 @@
 {
- "generated_utc": "2026-10-17T19:42:44Z",
- "as_of_utc": "2026-10-17T19:42:44Z",
+ "generated_utc": "2026-10-17T22:37:47Z",
+ "as_of_utc": "2026-10-17T22:37:47Z",
  "hotspawn_cs2_fixtures": 81,
- "open_cs2_fixtures": 18,
- "priced_any": 6,
+ "open_cs2_fixtures": 17,
+ "priced_any": 7,
  "priced_both": 3,
  "priced_bookmaker": 4,
- "priced_polymarket": 5,
- "format_known": 17,
- "feed_rows": 9,
+ "priced_polymarket": 6,
+ "format_known": 16,
+ "feed_rows": 10,
  "review_rows": 6,
- "flags": 21,
- "polymarket_events": 57,
- "bo3_matches": 367,
+ "flags": 20,
+ "polymarket_events": 62,
+ "bo3_matches": 366,
  "polymarket_status": "observed",
  "bo3_status": "observed",
  "hotspawn_fallback": null,
@@ -22,31 +22,31 @@
    "url": "https://play.hotspawn.com/cs2-pickems",
    "status": 200,
    "cs2_rows": 81,
-   "fetched_utc": "2026-10-17T19:42:08Z"
+   "fetched_utc": "2026-10-17T22:37:36Z"
   },
   {
    "page": "lobby",
    "url": "https://play.hotspawn.com/lobby",
    "status": 200,
    "cs2_rows": 81,
-   "fetched_utc": "2026-10-17T19:42:10Z"
+   "fetched_utc": "2026-10-17T22:37:38Z"
   },
   {
    "page": "thp-pickems",
    "url": "https://play.hotspawn.com/thp-pickems",
    "status": 200,
    "cs2_rows": 2,
-   "fetched_utc": "2026-10-17T19:42:12Z"
+   "fetched_utc": "2026-10-17T22:37:39Z"
   }
  ],
  "probes": [
   {
    "source": "OddsDigger e-sports index",
    "url": "https://oddsdigger.com/e-sports",
-   "status": null,
-   "bytes": 0,
-   "error": "TimeoutError: The read operation timed out",
-   "fetched_utc": "2026-10-17T19:42:16Z"
+   "status": 200,
+   "bytes": 266687,
+   "error": null,
+   "fetched_utc": "2026-10-17T22:37:46Z"
   },
   {
    "source": "bookmaker page relayed by bo3.gg (thunderpick)",
@@ -54,7 +54,7 @@
    "status": 403,
    "bytes": 0,
    "error": "HTTPError 403 server=cloudflare title='Just a moment...'",
-   "fetched_utc": "2026-10-17T19:42:43Z"
+   "fetched_utc": "2026-10-17T22:37:47Z"
   }
  ]
 }
