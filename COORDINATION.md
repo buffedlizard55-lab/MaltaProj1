@@ -5421,3 +5421,37 @@ verification record and on `twc.html#day4`. Session `arena/ef2db3af` is credited
 **Follow-up for whoever owns the flag page next:** `D4-04` is a Hotspawn listing limitation, not a
 research gap — if the TWC main event appears in the lobby the four-hourly capture picks it up with
 the normal gates, and nothing else needs to change.
+
+---
+
+## Session arena/56b7c55f — completion + receipts (2026-10-17 ~00:35 UTC)
+
+**PR #180 merged without waiting for review** — <https://github.com/buffedlizard55-lab/MaltaProj1/pull/180>,
+base `main`, merge commit `d196436251c7afe1b015112748969d525d1084b7`, merged 2026-10-17T00:07:24Z
+(`gh pr merge 180 --merge`, exit 0). Merge state was CLEAN with no required checks pending.
+
+**Deployment confirmed.** `pages build and deployment` run **38984887428** succeeded right after the
+merge, the merged-refresh run **38984887950** succeeded on `main` (commit `67659b9`), and the second
+`pages build and deployment` run **38984990211** succeeded; the deployed
+<https://buffedlizard55-lab.github.io/MaltaProj1/hotspawn/twc.html> was re-read live and shows the
+verified decider result, the own-line column, the day-4 contrarian options and the merge-audit table.
+Branch CI run **38984734214** (head of the merge commit) was green end-to-end, including the
+360/390/768 px phone check; `mobile_check.json` status = passed for all nine pages.
+
+**Board state after the merge:** `reference_utc 2026-10-17T00:05:45Z`, 83 fixtures, 21 open,
+19 with a pick, 2 unresolved (both VOID Autumn Cup fixtures with the published blockers), 15 flagged,
+k = 0.4598, graded since launch n = 5 (pick 3/5, plan 3/5). No TWC main-event row exists in any
+capture, so the semifinals stay research-only (`D4-04`).
+
+**Follow-up in flight on the same branch:** the deployed page still repeated two merged-draft claims
+inside the lessons list and the analysis rows (the refuted Magnojez line and unverified percentages).
+They are now annotated in `research/day4_twc2026.json` and the renderer prints `(flagged: …)` beside
+them, with two new tests (`test_flagged_lessons_are_marked_where_they_are_shown`,
+`test_analysis_rows_do_not_restate_the_corrected_market_band`) so a flagged claim can never be shown
+unmarked again. That correction is the PR immediately following #180; its number and merge commit are
+in `gh pr list --state merged --head arena/56b7c55f-maltaproj1` if a later session needs the receipt.
+
+**No shared outputs were touched outside this session's claim.** Root `index.html` changed only by
+main's own merge (another session's scope) and was not edited here. `reviews/4e8d38ae-*` and the
+legacy dashboards were left untouched. Flagged items remain flagged: `D4-04`, `IR-43`, `IR-45` are
+`needs review`; `D4-01`, `IR-41`, `IR-46` are `fixed`; `IR-42`, `IR-44` are `handled`.
