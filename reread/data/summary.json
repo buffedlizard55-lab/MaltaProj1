@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-10-18T11:47:26Z",
+ "generated_utc": "2026-10-18T16:13:46Z",
  "session": "arena/bdc98a9a",
  "what": "live re-read of every external URL cited by the merged boards' data files",
  "offline": false,
@@ -12,9 +12,9 @@
  "boards_missing": [],
  "claims": 345,
  "verdicts": {
-  "match": 213,
+  "match": 171,
   "mismatch": 1,
-  "refused": 118,
+  "refused": 160,
   "dead": 0,
   "not-checkable": 13,
   "placeholder": 0
@@ -28,12 +28,12 @@
   },
   "hltv_match": {
    "total": 56,
-   "refused": 50,
-   "match": 6
+   "refused": 56
   },
   "hltv_team": {
    "total": 39,
-   "match": 39
+   "match": 4,
+   "refused": 35
   },
   "egw_market": {
    "total": 49,
@@ -50,7 +50,8 @@
   },
   "vrs": {
    "total": 165,
-   "match": 165
+   "match": 164,
+   "refused": 1
   }
  },
  "by_host": {
@@ -64,9 +65,9 @@
   "play.hotspawn.com": 3,
   "polymarket.com": 1
  },
- "fetches": 74,
+ "fetches": 112,
  "fetch_errors": 2,
  "reused_within_hours": 6,
- "reused_rows": 46,
+ "reused_rows": 167,
  "policy": "Hotspawn is read for fixture identity and series format only, never for a probability. A refusal or a mismatch is recorded and flagged; this tool never edits another board's data and never fills a value in."
 }
