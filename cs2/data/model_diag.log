@@ -1,4 +1,4 @@
-== O-01 reproduction (session arena/a174d77f, run 39085094135) ==
+== O-01 reproduction (session arena/a174d77f, run 39102211391) ==
 -- fetch --
   "commit": "eec4853d7bcf0f1f7efe7f0d901234bef7e98b75",
   "path": "live/2026/standings_global_2026_10_05.md"
@@ -6,14 +6,14 @@
  "hltv": {
   "url": "https://www.hltv.org/ranking/teams",
   "final_url": "https://www.hltv.org/ranking/teams/2026/october/12",
-  "fetched_utc": "2026-10-18T01:06:48Z",
+  "fetched_utc": "2026-10-18T05:58:21Z",
   "http_status": 200,
-  "bytes": 1037241,
-  "sha256": "9c42cbea95fa63c0815283dded2089e15e78c629c9748d565152bd0ee6b6bd6f",
+  "bytes": 1024260,
+  "sha256": "de47a839beb63e4054562334ddf179da6507791efee3b10bd16555a527a2c4e9",
   "attempts": [
    {
     "url": "https://www.hltv.org/ranking/teams",
-    "fetched_utc": "2026-10-18T01:06:48Z",
+    "fetched_utc": "2026-10-18T05:58:21Z",
     "http_status": 200
    }
   ],
@@ -30,7 +30,7 @@
  "adopted": true
 }
 -- build --
-fixtures=81 own_lines=44 blank=37 teams=109 flags=36
+fixtures=97 own_lines=54 blank=43 teams=128 flags=38
 -- tests --
 test_against_valve_javascript (test_model.TestFormula.test_against_valve_javascript) ... ok
 test_closed_form_matches_port (test_model.TestFormula.test_closed_form_matches_port) ... ok
@@ -67,6 +67,6 @@ Traceback (most recent call last):
 AssertionError: 'no per-match Hotspawn permalink' not found in "Hotspawn lists a scheduled date before this pick'em week (stale listing)" : 1052746
 
 ----------------------------------------------------------------------
-Ran 16 tests in 0.199s
+Ran 16 tests in 0.256s
 
 FAILED (failures=1)
