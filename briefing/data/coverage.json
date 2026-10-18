@@ -1,28 +1,29 @@
 {
- "generated_utc": "2026-10-17T22:27:29Z",
+ "generated_utc": "2026-10-18T04:47:10Z",
  "counts": {
-  "fixtures": 81,
-  "open": 17,
-  "locked": 3,
+  "fixtures": 98,
+  "open": 33,
+  "locked": 4,
   "stale": 61,
-  "picks": 10,
-  "market": 3,
-  "model": 7,
-  "blank": 7
+  "picks": 22,
+  "market": 8,
+  "model": 14,
+  "blank": 11
  },
  "fit": {
-  "ok": false,
-  "n": 1,
-  "scale": 400.0,
-  "rmse_pp": null,
-  "max_abs_error_pp": null,
-  "note": "only 1 market-priced fixture(s) with two officially rated teams, so the scale could not be fitted this run; the board falls back to the default 400-point logistic scale and labels every model line as uncalibrated"
+  "ok": true,
+  "n": 5,
+  "scale": 1222.8,
+  "rmse_pp": 3.21,
+  "max_abs_error_pp": 6.35,
+  "note": "least-squares fit of our logistic rating scale against the de-vigged outside market prices read in this run (in-sample)"
  },
  "flag_counts": {
-  "FL-BOOK-RELAYED": 3,
+  "FL-BOOK-RELAYED": 7,
+  "FL-DUPLICATE-QUOTE": 1,
   "FL-FORMAT-UNKNOWN": 2,
-  "FL-NO-BASIS": 7,
-  "FL-PREDICTION-MARKET": 4,
-  "FL-RATING-AMBIGUOUS": 16
+  "FL-NO-BASIS": 11,
+  "FL-PREDICTION-MARKET": 12,
+  "FL-RATING-AMBIGUOUS": 17
  }
 }
