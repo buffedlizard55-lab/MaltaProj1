@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-18T23:18:13.743475Z",
-  "collection_started_at": "2026-10-18T23:17:35.412309Z",
-  "collection_run_url": "https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/39175856082",
-  "collection_code_commit": "2355e3bc1cb1547cbce68a644d2b30c6d6b4703e",
+  "generated_at": "2026-10-19T01:48:04.916173Z",
+  "collection_started_at": "2026-10-19T01:47:28.113617Z",
+  "collection_run_url": "https://github.com/buffedlizard55-lab/MaltaProj1/actions/runs/39186915659",
+  "collection_code_commit": "b9e077dcf116c6837a9b607d7d8b97c86c42545b",
   "max_quote_age_seconds": 3600,
   "coverage": {
     "status": "partial",
-    "observed_at": "2026-10-18T23:17:36.507585Z",
+    "observed_at": "2026-10-19T01:47:29.073479Z",
     "checks": [
       {
         "name": "Rendered identities: lobby",
@@ -48,7 +48,7 @@
         "http_status": 200,
         "parsed_board_count": 17,
         "cached_record_count": 85,
-        "observed_at": "2026-10-18T23:17:36.507585Z",
+        "observed_at": "2026-10-19T01:47:29.073479Z",
         "rendered_card_count": 17,
         "filter_totals": [
           85
@@ -61,7 +61,7 @@
         "http_status": 200,
         "parsed_board_count": 16,
         "cached_record_count": 84,
-        "observed_at": "2026-10-18T23:17:37.641764Z",
+        "observed_at": "2026-10-19T01:47:29.980128Z",
         "rendered_card_count": 16,
         "filter_totals": [
           84
@@ -74,7 +74,7 @@
         "http_status": 200,
         "parsed_board_count": 181,
         "cached_record_count": 280,
-        "observed_at": "2026-10-18T23:17:39.452882Z",
+        "observed_at": "2026-10-19T01:47:31.388566Z",
         "rendered_card_count": 181,
         "filter_totals": [
           280
@@ -87,7 +87,7 @@
         "http_status": 200,
         "parsed_board_count": 8,
         "cached_record_count": 11,
-        "observed_at": "2026-10-18T23:17:40.801312Z",
+        "observed_at": "2026-10-19T01:47:32.522044Z",
         "rendered_card_count": 8,
         "filter_totals": [
           11
@@ -128,7 +128,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:36.507585Z",
+      "observed_at": "2026-10-19T01:47:29.073479Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -172,17 +172,30 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:40.801312Z",
+      "observed_at": "2026-10-19T01:47:32.522044Z",
       "analysis": {
-        "status": "unverified",
-        "method": null,
-        "probability_a": null,
-        "probability_b": null,
-        "fair_odds_a": null,
-        "fair_odds_b": null,
-        "source_count": 0,
-        "inputs": [],
-        "spread": null,
+        "status": "calculated",
+        "method": "equal_bookmaker_proportional_no_vig",
+        "probability_a": 0.34863451481696683,
+        "probability_b": 0.6513654851830332,
+        "fair_odds_a": 2.8683333333333336,
+        "fair_odds_b": 1.535236396074933,
+        "source_count": 1,
+        "inputs": [
+          {
+            "quote_id": "pinnacle:1638721228:3771691426",
+            "source_id": "pinnacle",
+            "reversed": false,
+            "implied_a": 0.37593984962406013,
+            "implied_b": 0.7023809523809524,
+            "overround": 0.07832080200501257,
+            "probability_a": 0.34863451481696683,
+            "probability_b": 0.6513654851830332,
+            "fair_odds_a": 2.8683333333333336,
+            "fair_odds_b": 1.535236396074933
+          }
+        ],
+        "spread": 0.0,
         "excluded_sources": []
       }
     },
@@ -216,7 +229,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:40.801312Z",
+      "observed_at": "2026-10-19T01:47:32.522044Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -260,7 +273,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:40.801312Z",
+      "observed_at": "2026-10-19T01:47:32.522044Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -303,7 +316,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z",
+      "observed_at": "2026-10-19T01:47:29.980128Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -347,7 +360,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:40.801312Z",
+      "observed_at": "2026-10-19T01:47:32.522044Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -391,7 +404,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:40.801312Z",
+      "observed_at": "2026-10-19T01:47:32.522044Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -433,7 +446,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -475,7 +488,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -517,7 +530,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -561,7 +574,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:40.801312Z",
+      "observed_at": "2026-10-19T01:47:32.522044Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -605,7 +618,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:40.801312Z",
+      "observed_at": "2026-10-19T01:47:32.522044Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -647,7 +660,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -689,7 +702,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -732,7 +745,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z",
+      "observed_at": "2026-10-19T01:47:29.980128Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -775,7 +788,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z",
+      "observed_at": "2026-10-19T01:47:29.980128Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -818,7 +831,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z",
+      "observed_at": "2026-10-19T01:47:29.980128Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -861,7 +874,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z",
+      "observed_at": "2026-10-19T01:47:29.980128Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -904,7 +917,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z",
+      "observed_at": "2026-10-19T01:47:29.980128Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -948,7 +961,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:40.801312Z",
+      "observed_at": "2026-10-19T01:47:32.522044Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -991,7 +1004,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z",
+      "observed_at": "2026-10-19T01:47:29.980128Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -1033,7 +1046,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -1075,7 +1088,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -1117,7 +1130,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -1159,7 +1172,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -1202,7 +1215,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z",
+      "observed_at": "2026-10-19T01:47:29.980128Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -1244,7 +1257,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -1286,7 +1299,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -1328,7 +1341,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -1370,7 +1383,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -1412,7 +1425,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -1454,7 +1467,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -1496,7 +1509,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -1538,7 +1551,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -1580,7 +1593,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -1622,7 +1635,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -1664,7 +1677,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -1706,7 +1719,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -1748,7 +1761,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -1790,7 +1803,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -1832,7 +1845,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -1874,7 +1887,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -1916,7 +1929,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -1958,7 +1971,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -2000,7 +2013,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -2042,7 +2055,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -2084,7 +2097,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -2126,7 +2139,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -2168,7 +2181,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -2210,7 +2223,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -2252,7 +2265,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -2294,7 +2307,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -2336,7 +2349,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -2378,7 +2391,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -2420,7 +2433,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -2462,7 +2475,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -2504,7 +2517,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -2546,7 +2559,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -2588,7 +2601,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -2630,7 +2643,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -2672,7 +2685,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -2714,7 +2727,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -2756,7 +2769,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -2798,7 +2811,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -2840,7 +2853,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -2882,7 +2895,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -2924,7 +2937,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -2966,7 +2979,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -3008,7 +3021,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -3050,7 +3063,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -3092,7 +3105,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -3134,7 +3147,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -3176,7 +3189,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -3218,7 +3231,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -3260,7 +3273,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -3302,7 +3315,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -3344,7 +3357,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -3386,7 +3399,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -3428,7 +3441,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -3470,7 +3483,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -3512,7 +3525,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -3554,7 +3567,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -3596,7 +3609,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -3638,7 +3651,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -3680,7 +3693,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -3722,7 +3735,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -3764,7 +3777,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -3806,7 +3819,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -3848,7 +3861,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -3890,7 +3903,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -3932,7 +3945,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -3974,7 +3987,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -4016,7 +4029,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -4058,7 +4071,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -4100,7 +4113,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -4142,7 +4155,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -4184,7 +4197,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -4226,7 +4239,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -4268,7 +4281,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -4310,7 +4323,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -4352,7 +4365,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -4394,7 +4407,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -4436,7 +4449,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -4478,7 +4491,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -4520,7 +4533,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -4562,7 +4575,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -4604,7 +4617,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -4646,7 +4659,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -4688,7 +4701,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -4730,7 +4743,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -4772,7 +4785,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -4814,7 +4827,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -4856,7 +4869,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -4898,7 +4911,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -4940,7 +4953,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -4982,7 +4995,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -5024,7 +5037,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -5066,7 +5079,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -5108,7 +5121,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -5150,7 +5163,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -5192,7 +5205,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -5234,7 +5247,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -5276,7 +5289,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -5318,7 +5331,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -5360,7 +5373,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -5402,7 +5415,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -5444,7 +5457,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -5486,7 +5499,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -5528,7 +5541,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -5570,7 +5583,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -5612,7 +5625,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -5654,7 +5667,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -5696,7 +5709,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -5738,7 +5751,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -5780,7 +5793,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -5822,7 +5835,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -5864,7 +5877,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -5906,7 +5919,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -5948,7 +5961,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -5990,7 +6003,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -6032,7 +6045,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -6074,7 +6087,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -6116,7 +6129,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -6158,7 +6171,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -6200,7 +6213,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -6242,7 +6255,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -6284,7 +6297,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -6326,7 +6339,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -6368,7 +6381,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -6410,7 +6423,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -6452,7 +6465,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -6494,7 +6507,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -6536,7 +6549,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -6578,7 +6591,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -6620,7 +6633,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -6662,7 +6675,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -6704,7 +6717,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -6746,7 +6759,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -6788,7 +6801,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -6830,7 +6843,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -6872,7 +6885,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -6914,7 +6927,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -6956,7 +6969,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -6998,7 +7011,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -7040,7 +7053,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -7082,7 +7095,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -7124,7 +7137,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -7166,7 +7179,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -7208,7 +7221,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -7250,7 +7263,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -7292,7 +7305,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -7334,7 +7347,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -7376,7 +7389,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -7418,7 +7431,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -7460,7 +7473,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -7502,7 +7515,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -7544,7 +7557,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -7586,7 +7599,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -7628,7 +7641,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -7670,7 +7683,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -7712,7 +7725,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -7754,7 +7767,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -7796,7 +7809,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -7838,7 +7851,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -7880,7 +7893,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -7922,7 +7935,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -7964,7 +7977,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -8006,7 +8019,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -8048,7 +8061,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -8090,7 +8103,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -8132,7 +8145,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -8174,7 +8187,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -8216,7 +8229,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -8258,7 +8271,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -8300,7 +8313,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -8342,7 +8355,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -8384,7 +8397,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -8426,7 +8439,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -8471,7 +8484,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z"
+      "observed_at": "2026-10-19T01:47:29.980128Z"
     },
     {
       "id": "1051339",
@@ -8502,7 +8515,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z"
+      "observed_at": "2026-10-19T01:47:29.980128Z"
     },
     {
       "id": "1051301",
@@ -8533,7 +8546,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z"
+      "observed_at": "2026-10-19T01:47:29.980128Z"
     },
     {
       "id": "1053068",
@@ -8564,7 +8577,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z"
+      "observed_at": "2026-10-19T01:47:29.980128Z"
     },
     {
       "id": "1052747",
@@ -8595,7 +8608,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z"
+      "observed_at": "2026-10-19T01:47:29.980128Z"
     },
     {
       "id": "1053146",
@@ -8626,7 +8639,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z"
+      "observed_at": "2026-10-19T01:47:29.980128Z"
     },
     {
       "id": "1051340",
@@ -8657,7 +8670,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z"
+      "observed_at": "2026-10-19T01:47:29.980128Z"
     },
     {
       "id": "1053069",
@@ -8688,7 +8701,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z"
+      "observed_at": "2026-10-19T01:47:29.980128Z"
     },
     {
       "id": "1052686",
@@ -8719,7 +8732,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z"
+      "observed_at": "2026-10-19T01:47:29.980128Z"
     },
     {
       "id": "1051789",
@@ -8750,7 +8763,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z"
+      "observed_at": "2026-10-19T01:47:29.980128Z"
     },
     {
       "id": "1053070",
@@ -8781,7 +8794,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z"
+      "observed_at": "2026-10-19T01:47:29.980128Z"
     },
     {
       "id": "1051790",
@@ -8812,7 +8825,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z"
+      "observed_at": "2026-10-19T01:47:29.980128Z"
     },
     {
       "id": "1052748",
@@ -8843,7 +8856,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z"
+      "observed_at": "2026-10-19T01:47:29.980128Z"
     },
     {
       "id": "1053071",
@@ -8874,7 +8887,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z"
+      "observed_at": "2026-10-19T01:47:29.980128Z"
     },
     {
       "id": "1052749",
@@ -8905,7 +8918,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z"
+      "observed_at": "2026-10-19T01:47:29.980128Z"
     },
     {
       "id": "1052180",
@@ -8936,7 +8949,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z"
+      "observed_at": "2026-10-19T01:47:29.980128Z"
     },
     {
       "id": "1052181",
@@ -8967,7 +8980,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z"
+      "observed_at": "2026-10-19T01:47:29.980128Z"
     },
     {
       "id": "1051800",
@@ -8998,7 +9011,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z"
+      "observed_at": "2026-10-19T01:47:29.980128Z"
     },
     {
       "id": "1052699",
@@ -9029,7 +9042,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z"
+      "observed_at": "2026-10-19T01:47:29.980128Z"
     },
     {
       "id": "1052183",
@@ -9060,7 +9073,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z"
+      "observed_at": "2026-10-19T01:47:29.980128Z"
     },
     {
       "id": "1051341",
@@ -9091,7 +9104,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z"
+      "observed_at": "2026-10-19T01:47:29.980128Z"
     },
     {
       "id": "1052599",
@@ -9122,7 +9135,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z"
+      "observed_at": "2026-10-19T01:47:29.980128Z"
     },
     {
       "id": "1053072",
@@ -9153,7 +9166,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z"
+      "observed_at": "2026-10-19T01:47:29.980128Z"
     },
     {
       "id": "1052357",
@@ -9184,7 +9197,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z"
+      "observed_at": "2026-10-19T01:47:29.980128Z"
     },
     {
       "id": "1051801",
@@ -9215,7 +9228,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z"
+      "observed_at": "2026-10-19T01:47:29.980128Z"
     },
     {
       "id": "1052700",
@@ -9246,7 +9259,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z"
+      "observed_at": "2026-10-19T01:47:29.980128Z"
     },
     {
       "id": "1051342",
@@ -9277,7 +9290,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z"
+      "observed_at": "2026-10-19T01:47:29.980128Z"
     },
     {
       "id": "1053073",
@@ -9308,7 +9321,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z"
+      "observed_at": "2026-10-19T01:47:29.980128Z"
     },
     {
       "id": "1052701",
@@ -9339,7 +9352,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z"
+      "observed_at": "2026-10-19T01:47:29.980128Z"
     },
     {
       "id": "1053313",
@@ -9370,7 +9383,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z"
+      "observed_at": "2026-10-19T01:47:29.980128Z"
     },
     {
       "id": "1051803",
@@ -9401,7 +9414,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z"
+      "observed_at": "2026-10-19T01:47:29.980128Z"
     },
     {
       "id": "1052702",
@@ -9432,7 +9445,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z"
+      "observed_at": "2026-10-19T01:47:29.980128Z"
     },
     {
       "id": "1052750",
@@ -9463,7 +9476,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z"
+      "observed_at": "2026-10-19T01:47:29.980128Z"
     },
     {
       "id": "1052751",
@@ -9494,7 +9507,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z"
+      "observed_at": "2026-10-19T01:47:29.980128Z"
     },
     {
       "id": "1052185",
@@ -9525,7 +9538,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z"
+      "observed_at": "2026-10-19T01:47:29.980128Z"
     },
     {
       "id": "1053431",
@@ -9556,7 +9569,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z"
+      "observed_at": "2026-10-19T01:47:29.980128Z"
     },
     {
       "id": "1053432",
@@ -9587,7 +9600,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z"
+      "observed_at": "2026-10-19T01:47:29.980128Z"
     },
     {
       "id": "1053433",
@@ -9618,7 +9631,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z"
+      "observed_at": "2026-10-19T01:47:29.980128Z"
     },
     {
       "id": "1053434",
@@ -9649,7 +9662,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z"
+      "observed_at": "2026-10-19T01:47:29.980128Z"
     },
     {
       "id": "1052698",
@@ -9680,7 +9693,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z"
+      "observed_at": "2026-10-19T01:47:29.980128Z"
     },
     {
       "id": "1053435",
@@ -9711,7 +9724,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z"
+      "observed_at": "2026-10-19T01:47:29.980128Z"
     },
     {
       "id": "1053436",
@@ -9742,7 +9755,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z"
+      "observed_at": "2026-10-19T01:47:29.980128Z"
     },
     {
       "id": "1051343",
@@ -9773,7 +9786,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z"
+      "observed_at": "2026-10-19T01:47:29.980128Z"
     },
     {
       "id": "1052186",
@@ -9804,7 +9817,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z"
+      "observed_at": "2026-10-19T01:47:29.980128Z"
     },
     {
       "id": "1052187",
@@ -9835,7 +9848,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z"
+      "observed_at": "2026-10-19T01:47:29.980128Z"
     },
     {
       "id": "1052184",
@@ -9866,7 +9879,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z"
+      "observed_at": "2026-10-19T01:47:29.980128Z"
     },
     {
       "id": "1052696",
@@ -9897,7 +9910,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z"
+      "observed_at": "2026-10-19T01:47:29.980128Z"
     },
     {
       "id": "1053439",
@@ -9928,7 +9941,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z"
+      "observed_at": "2026-10-19T01:47:29.980128Z"
     },
     {
       "id": "1053469",
@@ -9959,7 +9972,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z"
+      "observed_at": "2026-10-19T01:47:29.980128Z"
     },
     {
       "id": "1053441",
@@ -9990,7 +10003,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z"
+      "observed_at": "2026-10-19T01:47:29.980128Z"
     },
     {
       "id": "1053470",
@@ -10021,7 +10034,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z"
+      "observed_at": "2026-10-19T01:47:29.980128Z"
     },
     {
       "id": "1051344",
@@ -10052,7 +10065,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z"
+      "observed_at": "2026-10-19T01:47:29.980128Z"
     },
     {
       "id": "1051804",
@@ -10083,7 +10096,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z"
+      "observed_at": "2026-10-19T01:47:29.980128Z"
     },
     {
       "id": "1053442",
@@ -10114,7 +10127,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z"
+      "observed_at": "2026-10-19T01:47:29.980128Z"
     },
     {
       "id": "1053471",
@@ -10145,7 +10158,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z"
+      "observed_at": "2026-10-19T01:47:29.980128Z"
     },
     {
       "id": "1052697",
@@ -10176,7 +10189,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z"
+      "observed_at": "2026-10-19T01:47:29.980128Z"
     },
     {
       "id": "1053679",
@@ -10207,7 +10220,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z"
+      "observed_at": "2026-10-19T01:47:29.980128Z"
     },
     {
       "id": "1052695",
@@ -10238,7 +10251,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z"
+      "observed_at": "2026-10-19T01:47:29.980128Z"
     },
     {
       "id": "1055478",
@@ -10269,7 +10282,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z"
+      "observed_at": "2026-10-19T01:47:29.980128Z"
     },
     {
       "id": "1053095",
@@ -10299,7 +10312,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1053096",
@@ -10329,7 +10342,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1066214",
@@ -10359,7 +10372,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1053111",
@@ -10389,7 +10402,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1071584",
@@ -10419,7 +10432,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1070209",
@@ -10449,7 +10462,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1070210",
@@ -10479,7 +10492,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1069849",
@@ -10509,7 +10522,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1071167",
@@ -10539,7 +10552,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1071170",
@@ -10569,7 +10582,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1071168",
@@ -10599,7 +10612,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1061779",
@@ -10629,7 +10642,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1069680",
@@ -10659,7 +10672,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1069857",
@@ -10689,7 +10702,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1073030",
@@ -10719,7 +10732,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1053536",
@@ -10749,7 +10762,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1069681",
@@ -10779,7 +10792,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1073172",
@@ -10809,7 +10822,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1070823",
@@ -10839,7 +10852,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1073177",
@@ -10869,7 +10882,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1074627",
@@ -10899,7 +10912,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1075850",
@@ -10929,7 +10942,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1077722",
@@ -10959,7 +10972,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1077723",
@@ -10989,7 +11002,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1077724",
@@ -11019,7 +11032,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1076564",
@@ -11049,7 +11062,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1076565",
@@ -11079,7 +11092,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1071200",
@@ -11109,7 +11122,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1073183",
@@ -11139,7 +11152,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1077726",
@@ -11169,7 +11182,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1077727",
@@ -11199,7 +11212,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1077728",
@@ -11229,7 +11242,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1076566",
@@ -11259,7 +11272,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1077729",
@@ -11289,7 +11302,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1077730",
@@ -11319,7 +11332,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1077731",
@@ -11349,7 +11362,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1079556",
@@ -11379,7 +11392,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1073186",
@@ -11409,7 +11422,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1073184",
@@ -11439,7 +11452,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1079321",
@@ -11469,7 +11482,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1071206",
@@ -11499,7 +11512,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1074636",
@@ -11529,7 +11542,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1074642",
@@ -11559,7 +11572,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1074643",
@@ -11589,7 +11602,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1074639",
@@ -11619,7 +11632,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1074640",
@@ -11649,7 +11662,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1077744",
@@ -11679,7 +11692,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1077745",
@@ -11709,7 +11722,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1077746",
@@ -11739,7 +11752,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1071186",
@@ -11769,7 +11782,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1081105",
@@ -11800,7 +11813,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z"
+      "observed_at": "2026-10-19T01:47:29.980128Z"
     },
     {
       "id": "1079621",
@@ -11831,7 +11844,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z"
+      "observed_at": "2026-10-19T01:47:29.980128Z"
     },
     {
       "id": "1076570",
@@ -11861,7 +11874,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1076571",
@@ -11891,7 +11904,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1081365",
@@ -11921,7 +11934,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1081369",
@@ -11951,7 +11964,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1079132",
@@ -11981,7 +11994,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1079922",
@@ -12011,7 +12024,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1082001",
@@ -12041,7 +12054,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1082002",
@@ -12071,7 +12084,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1082003",
@@ -12101,7 +12114,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1082004",
@@ -12131,7 +12144,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1082005",
@@ -12161,7 +12174,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1082006",
@@ -12191,7 +12204,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1081079",
@@ -12221,7 +12234,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1082061",
@@ -12251,7 +12264,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1071208",
@@ -12281,7 +12294,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1071210",
@@ -12311,7 +12324,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1071213",
@@ -12341,7 +12354,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1075734",
@@ -12371,7 +12384,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1075738",
@@ -12401,7 +12414,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1079015",
@@ -12431,7 +12444,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1079016",
@@ -12461,7 +12474,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1081082",
@@ -12491,7 +12504,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1074645",
@@ -12521,7 +12534,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1071209",
@@ -12551,7 +12564,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1075740",
@@ -12581,7 +12594,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1080917",
@@ -12611,7 +12624,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1080918",
@@ -12641,7 +12654,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1080919",
@@ -12671,7 +12684,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1080920",
@@ -12701,7 +12714,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1080921",
@@ -12731,7 +12744,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1074646",
@@ -12761,7 +12774,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1074649",
@@ -12791,7 +12804,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1074651",
@@ -12821,7 +12834,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1075741",
@@ -12851,7 +12864,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1075744",
@@ -12881,7 +12894,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1075746",
@@ -12911,7 +12924,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1074648",
@@ -12941,7 +12954,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1075721",
@@ -12971,7 +12984,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1079017",
@@ -13001,7 +13014,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1079018",
@@ -13031,7 +13044,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1082255",
@@ -13061,7 +13074,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1075742",
@@ -13091,7 +13104,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1075812",
@@ -13121,7 +13134,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1078959",
@@ -13151,7 +13164,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1079340",
@@ -13181,7 +13194,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1078961",
@@ -13211,7 +13224,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1078962",
@@ -13241,7 +13254,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1078963",
@@ -13271,7 +13284,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1078964",
@@ -13301,7 +13314,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z"
+      "observed_at": "2026-10-19T01:47:31.388566Z"
     },
     {
       "id": "1082208",
@@ -13331,7 +13344,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:36.507585Z",
+      "observed_at": "2026-10-19T01:47:29.073479Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -13375,17 +13388,30 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:40.801312Z",
+      "observed_at": "2026-10-19T01:47:32.522044Z",
       "analysis": {
-        "status": "unverified",
-        "method": null,
-        "probability_a": null,
-        "probability_b": null,
-        "fair_odds_a": null,
-        "fair_odds_b": null,
-        "source_count": 0,
-        "inputs": [],
-        "spread": null,
+        "status": "calculated",
+        "method": "equal_bookmaker_proportional_no_vig",
+        "probability_a": 0.34863451481696683,
+        "probability_b": 0.6513654851830332,
+        "fair_odds_a": 2.8683333333333336,
+        "fair_odds_b": 1.535236396074933,
+        "source_count": 1,
+        "inputs": [
+          {
+            "quote_id": "pinnacle:1638721228:3771691426",
+            "source_id": "pinnacle",
+            "reversed": false,
+            "implied_a": 0.37593984962406013,
+            "implied_b": 0.7023809523809524,
+            "overround": 0.07832080200501257,
+            "probability_a": 0.34863451481696683,
+            "probability_b": 0.6513654851830332,
+            "fair_odds_a": 2.8683333333333336,
+            "fair_odds_b": 1.535236396074933
+          }
+        ],
+        "spread": 0.0,
         "excluded_sources": []
       }
     },
@@ -13418,7 +13444,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z"
+      "observed_at": "2026-10-19T01:47:29.980128Z"
     },
     {
       "id": "1081527",
@@ -13450,7 +13476,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:40.801312Z"
+      "observed_at": "2026-10-19T01:47:32.522044Z"
     },
     {
       "id": "1081528",
@@ -13481,7 +13507,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z"
+      "observed_at": "2026-10-19T01:47:29.980128Z"
     },
     {
       "id": "1081529",
@@ -13512,7 +13538,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z"
+      "observed_at": "2026-10-19T01:47:29.980128Z"
     },
     {
       "id": "1082152",
@@ -13544,7 +13570,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:40.801312Z",
+      "observed_at": "2026-10-19T01:47:32.522044Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -13588,7 +13614,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:40.801312Z"
+      "observed_at": "2026-10-19T01:47:32.522044Z"
     },
     {
       "id": "1081531",
@@ -13620,7 +13646,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:40.801312Z"
+      "observed_at": "2026-10-19T01:47:32.522044Z"
     },
     {
       "id": "1081532",
@@ -13651,7 +13677,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z"
+      "observed_at": "2026-10-19T01:47:29.980128Z"
     },
     {
       "id": "1082153",
@@ -13683,7 +13709,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:40.801312Z",
+      "observed_at": "2026-10-19T01:47:32.522044Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -13726,7 +13752,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z",
+      "observed_at": "2026-10-19T01:47:29.980128Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -13770,7 +13796,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:40.801312Z",
+      "observed_at": "2026-10-19T01:47:32.522044Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -13814,7 +13840,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:40.801312Z",
+      "observed_at": "2026-10-19T01:47:32.522044Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -13856,7 +13882,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -13898,7 +13924,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -13940,7 +13966,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -13984,7 +14010,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:40.801312Z",
+      "observed_at": "2026-10-19T01:47:32.522044Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -14028,7 +14054,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:40.801312Z",
+      "observed_at": "2026-10-19T01:47:32.522044Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -14070,7 +14096,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -14112,7 +14138,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -14155,7 +14181,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z",
+      "observed_at": "2026-10-19T01:47:29.980128Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -14198,7 +14224,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z",
+      "observed_at": "2026-10-19T01:47:29.980128Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -14241,7 +14267,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z",
+      "observed_at": "2026-10-19T01:47:29.980128Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -14284,7 +14310,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z",
+      "observed_at": "2026-10-19T01:47:29.980128Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -14327,7 +14353,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z",
+      "observed_at": "2026-10-19T01:47:29.980128Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -14371,7 +14397,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:40.801312Z",
+      "observed_at": "2026-10-19T01:47:32.522044Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -14414,7 +14440,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z",
+      "observed_at": "2026-10-19T01:47:29.980128Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -14456,7 +14482,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -14498,7 +14524,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -14540,7 +14566,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -14582,7 +14608,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -14625,7 +14651,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:37.641764Z",
+      "observed_at": "2026-10-19T01:47:29.980128Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -14667,7 +14693,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -14709,7 +14735,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -14751,7 +14777,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -14793,7 +14819,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -14835,7 +14861,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -14877,7 +14903,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -14919,7 +14945,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -14961,7 +14987,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -15003,7 +15029,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -15045,7 +15071,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -15087,7 +15113,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -15129,7 +15155,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -15171,7 +15197,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -15213,7 +15239,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -15255,7 +15281,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -15297,7 +15323,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -15339,7 +15365,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -15381,7 +15407,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -15423,7 +15449,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -15465,7 +15491,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -15507,7 +15533,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -15549,7 +15575,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -15591,7 +15617,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -15633,7 +15659,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -15675,7 +15701,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -15717,7 +15743,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -15759,7 +15785,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -15801,7 +15827,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -15843,7 +15869,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -15885,7 +15911,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -15927,7 +15953,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -15969,7 +15995,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -16011,7 +16037,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -16053,7 +16079,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -16095,7 +16121,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -16137,7 +16163,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -16179,7 +16205,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -16221,7 +16247,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -16263,7 +16289,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -16305,7 +16331,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -16347,7 +16373,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -16389,7 +16415,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -16431,7 +16457,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -16473,7 +16499,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -16515,7 +16541,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -16557,7 +16583,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -16599,7 +16625,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -16641,7 +16667,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -16683,7 +16709,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -16725,7 +16751,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -16767,7 +16793,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -16809,7 +16835,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -16851,7 +16877,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -16893,7 +16919,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -16935,7 +16961,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -16977,7 +17003,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -17019,7 +17045,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -17061,7 +17087,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -17103,7 +17129,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -17145,7 +17171,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -17187,7 +17213,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -17229,7 +17255,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -17271,7 +17297,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -17313,7 +17339,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -17355,7 +17381,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -17397,7 +17423,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -17439,7 +17465,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -17481,7 +17507,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -17523,7 +17549,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -17565,7 +17591,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -17607,7 +17633,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -17649,7 +17675,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -17691,7 +17717,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -17733,7 +17759,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -17775,7 +17801,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -17817,7 +17843,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -17859,7 +17885,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -17901,7 +17927,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -17943,7 +17969,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -17985,7 +18011,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -18027,7 +18053,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -18069,7 +18095,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -18111,7 +18137,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -18153,7 +18179,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -18195,7 +18221,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -18237,7 +18263,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -18279,7 +18305,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -18321,7 +18347,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -18363,7 +18389,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -18405,7 +18431,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -18447,7 +18473,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -18489,7 +18515,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -18531,7 +18557,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -18573,7 +18599,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -18615,7 +18641,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -18657,7 +18683,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -18699,7 +18725,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -18741,7 +18767,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -18783,7 +18809,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -18825,7 +18851,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -18867,7 +18893,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -18909,7 +18935,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -18951,7 +18977,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -18993,7 +19019,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -19035,7 +19061,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -19077,7 +19103,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -19119,7 +19145,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -19161,7 +19187,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -19203,7 +19229,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -19245,7 +19271,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -19287,7 +19313,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -19329,7 +19355,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -19371,7 +19397,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -19413,7 +19439,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -19455,7 +19481,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -19497,7 +19523,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -19539,7 +19565,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -19581,7 +19607,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -19623,7 +19649,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -19665,7 +19691,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -19707,7 +19733,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -19749,7 +19775,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -19791,7 +19817,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -19833,7 +19859,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -19875,7 +19901,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -19917,7 +19943,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -19959,7 +19985,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -20001,7 +20027,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -20043,7 +20069,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -20085,7 +20111,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -20127,7 +20153,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -20169,7 +20195,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -20211,7 +20237,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -20253,7 +20279,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -20295,7 +20321,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -20337,7 +20363,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -20379,7 +20405,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -20421,7 +20447,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -20463,7 +20489,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -20505,7 +20531,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -20547,7 +20573,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -20589,7 +20615,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -20631,7 +20657,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -20673,7 +20699,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -20715,7 +20741,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -20757,7 +20783,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -20799,7 +20825,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -20841,7 +20867,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -20883,7 +20909,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -20925,7 +20951,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -20967,7 +20993,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -21009,7 +21035,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -21051,7 +21077,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -21093,7 +21119,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -21135,7 +21161,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -21177,7 +21203,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -21219,7 +21245,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -21261,7 +21287,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -21303,7 +21329,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -21345,7 +21371,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -21387,7 +21413,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -21429,7 +21455,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -21471,7 +21497,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -21513,7 +21539,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -21555,7 +21581,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -21597,7 +21623,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -21639,7 +21665,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -21681,7 +21707,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -21723,7 +21749,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -21765,7 +21791,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -21807,7 +21833,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -21849,7 +21875,7 @@
       ],
       "status": "source_confirmed",
       "lobby_current": true,
-      "observed_at": "2026-10-18T23:17:39.452882Z",
+      "observed_at": "2026-10-19T01:47:31.388566Z",
       "analysis": {
         "status": "unverified",
         "method": null,
@@ -21865,6 +21891,142 @@
     }
   ],
   "quotes": [
+    {
+      "id": "pinnacle:1638721228:3771691426",
+      "source_id": "pinnacle",
+      "source_name": "Pinnacle",
+      "source_role": "primary_bookmaker",
+      "event_id": "1638721228",
+      "game": "cs2",
+      "team_a": "GenOne",
+      "team_b": "FORZE Reload",
+      "tournament": "CS2 - NODWIN Clutch Series Qualifier",
+      "start_time": "2026-10-19T08:00:00Z",
+      "best_of": null,
+      "market_type": "match_winner",
+      "period": "match",
+      "outcome_count": 2,
+      "status": "open",
+      "is_live": false,
+      "native_format": "american",
+      "native_odds_a": 166,
+      "native_odds_b": -236,
+      "odds_a": 2.66,
+      "odds_b": 1.423728813559322,
+      "decimal_format_note": "Calculated conversion from native American prices; not rounded website display values.",
+      "observed_at": "2026-10-19T01:48:04.187198Z",
+      "capture_sequence": 29,
+      "source_published_at": null,
+      "source_url": "https://www.pinnacle.com/en/esports/games/league-of-legends/matchups/",
+      "api_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
+      "evidence_id": "pinnacle_markets-e9a621291f49ddbd-db5487",
+      "evidence_locator": "/234",
+      "event_evidence_id": "pinnacle_matchups-be1e136bfacef2e9-ce8c0d",
+      "event_evidence_locator": "/0",
+      "identity_rule": "Exact game, team-pair names (case/whitespace/Unicode only), and UTC start; no aliases guessed."
+    },
+    {
+      "id": "pinnacle:1638754646:3771727555",
+      "source_id": "pinnacle",
+      "source_name": "Pinnacle",
+      "source_role": "primary_bookmaker",
+      "event_id": "1638754646",
+      "game": "cs2",
+      "team_a": "WBT",
+      "team_b": "Nexus",
+      "tournament": "CS2 - DraculaN",
+      "start_time": "2026-10-19T09:00:00Z",
+      "best_of": 1,
+      "market_type": "match_winner",
+      "period": "match",
+      "outcome_count": 2,
+      "status": "open",
+      "is_live": false,
+      "native_format": "american",
+      "native_odds_a": -126,
+      "native_odds_b": 104,
+      "odds_a": 1.7936507936507935,
+      "odds_b": 2.04,
+      "decimal_format_note": "Calculated conversion from native American prices; not rounded website display values.",
+      "observed_at": "2026-10-19T01:48:04.187198Z",
+      "capture_sequence": 29,
+      "source_published_at": null,
+      "source_url": "https://www.pinnacle.com/en/esports/games/league-of-legends/matchups/",
+      "api_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
+      "evidence_id": "pinnacle_markets-e9a621291f49ddbd-db5487",
+      "evidence_locator": "/220",
+      "event_evidence_id": "pinnacle_matchups-be1e136bfacef2e9-ce8c0d",
+      "event_evidence_locator": "/8",
+      "identity_rule": "Exact game, team-pair names (case/whitespace/Unicode only), and UTC start; no aliases guessed."
+    },
+    {
+      "id": "pinnacle:1638754644:3771720790",
+      "source_id": "pinnacle",
+      "source_name": "Pinnacle",
+      "source_role": "primary_bookmaker",
+      "event_id": "1638754644",
+      "game": "cs2",
+      "team_a": "Ryvex",
+      "team_b": "Phantom Academy",
+      "tournament": "CS2 - CCT Europe Challengers",
+      "start_time": "2026-10-19T13:45:00Z",
+      "best_of": null,
+      "market_type": "match_winner",
+      "period": "match",
+      "outcome_count": 2,
+      "status": "open",
+      "is_live": false,
+      "native_format": "american",
+      "native_odds_a": 199,
+      "native_odds_b": -298,
+      "odds_a": 2.99,
+      "odds_b": 1.3355704697986577,
+      "decimal_format_note": "Calculated conversion from native American prices; not rounded website display values.",
+      "observed_at": "2026-10-19T01:48:04.187198Z",
+      "capture_sequence": 29,
+      "source_published_at": null,
+      "source_url": "https://www.pinnacle.com/en/esports/games/league-of-legends/matchups/",
+      "api_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
+      "evidence_id": "pinnacle_markets-e9a621291f49ddbd-db5487",
+      "evidence_locator": "/55",
+      "event_evidence_id": "pinnacle_matchups-be1e136bfacef2e9-ce8c0d",
+      "event_evidence_locator": "/9",
+      "identity_rule": "Exact game, team-pair names (case/whitespace/Unicode only), and UTC start; no aliases guessed."
+    },
+    {
+      "id": "pinnacle:1638263316:3771688601",
+      "source_id": "pinnacle",
+      "source_name": "Pinnacle",
+      "source_role": "primary_bookmaker",
+      "event_id": "1638263316",
+      "game": "cs2",
+      "team_a": "Liquid",
+      "team_b": "fnatic",
+      "tournament": "CS2 - Private Club",
+      "start_time": "2026-10-19T15:00:00Z",
+      "best_of": 3,
+      "market_type": "match_winner",
+      "period": "match",
+      "outcome_count": 2,
+      "status": "open",
+      "is_live": false,
+      "native_format": "american",
+      "native_odds_a": -180,
+      "native_odds_b": 140,
+      "odds_a": 1.5555555555555556,
+      "odds_b": 2.4,
+      "decimal_format_note": "Calculated conversion from native American prices; not rounded website display values.",
+      "observed_at": "2026-10-19T01:48:04.187198Z",
+      "capture_sequence": 29,
+      "source_published_at": null,
+      "source_url": "https://www.pinnacle.com/en/esports/games/league-of-legends/matchups/",
+      "api_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
+      "evidence_id": "pinnacle_markets-e9a621291f49ddbd-db5487",
+      "evidence_locator": "/2",
+      "event_evidence_id": "pinnacle_matchups-be1e136bfacef2e9-ce8c0d",
+      "event_evidence_locator": "/7",
+      "identity_rule": "Exact game, team-pair names (case/whitespace/Unicode only), and UTC start; no aliases guessed."
+    },
     {
       "id": "pinnacle:1638709103:3771600509",
       "source_id": "pinnacle",
@@ -21888,15 +22050,15 @@
       "odds_a": 1.9803921568627452,
       "odds_b": 1.8403361344537816,
       "decimal_format_note": "Calculated conversion from native American prices; not rounded website display values.",
-      "observed_at": "2026-10-18T23:17:44.126070Z",
-      "capture_sequence": 7,
+      "observed_at": "2026-10-19T01:48:04.187198Z",
+      "capture_sequence": 29,
       "source_published_at": null,
       "source_url": "https://www.pinnacle.com/en/esports/league-of-legends-emea-masters/solary-vs-galions/1638709103/",
-      "api_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/highlighted/straight?primaryOnly=false",
-      "evidence_id": "pinnacle_markets-228ca0dff6830028-103311",
-      "evidence_locator": "/14",
-      "event_evidence_id": "pinnacle_matchups-b2eea59e78bc2abc-a4ef94",
-      "event_evidence_locator": "/7",
+      "api_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
+      "evidence_id": "pinnacle_markets-e9a621291f49ddbd-db5487",
+      "evidence_locator": "/102",
+      "event_evidence_id": "pinnacle_matchups-be1e136bfacef2e9-ce8c0d",
+      "event_evidence_locator": "/13",
       "identity_rule": "Exact game, team-pair names (case/whitespace/Unicode only), and UTC start; no aliases guessed."
     },
     {
@@ -21922,15 +22084,15 @@
       "odds_a": 1.234192037470726,
       "odds_b": 4.18,
       "decimal_format_note": "Calculated conversion from native American prices; not rounded website display values.",
-      "observed_at": "2026-10-18T23:17:44.126070Z",
-      "capture_sequence": 7,
+      "observed_at": "2026-10-19T01:48:04.193896Z",
+      "capture_sequence": 32,
       "source_published_at": null,
       "source_url": "https://www.pinnacle.com/en/esports/league-of-legends-world-championship/geng-vs-invictus/1638748200/",
-      "api_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/highlighted/straight?primaryOnly=false",
-      "evidence_id": "pinnacle_markets-228ca0dff6830028-103311",
-      "evidence_locator": "/6",
-      "event_evidence_id": "pinnacle_matchups-b2eea59e78bc2abc-a4ef94",
-      "event_evidence_locator": "/5",
+      "api_url": "https://guest.api.arcadia.pinnacle.com/0.1/leagues/9587/markets/straight",
+      "evidence_id": "pinnacle_markets-f716f269b123fcbf-b81169",
+      "evidence_locator": "/2",
+      "event_evidence_id": "pinnacle_matchups-be1e136bfacef2e9-ce8c0d",
+      "event_evidence_locator": "/15",
       "identity_rule": "Exact game, team-pair names (case/whitespace/Unicode only), and UTC start; no aliases guessed."
     },
     {
@@ -21956,19 +22118,19 @@
       "odds_a": 1.3508771929824561,
       "odds_b": 3.28,
       "decimal_format_note": "Calculated conversion from native American prices; not rounded website display values.",
-      "observed_at": "2026-10-18T23:17:44.126070Z",
-      "capture_sequence": 7,
+      "observed_at": "2026-10-19T01:48:04.193896Z",
+      "capture_sequence": 32,
       "source_published_at": null,
       "source_url": "https://www.pinnacle.com/en/esports/league-of-legends-world-championship/liquid-vs-ctbc-flying-oyster/1638750814/",
-      "api_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/highlighted/straight?primaryOnly=false",
-      "evidence_id": "pinnacle_markets-228ca0dff6830028-103311",
-      "evidence_locator": "/24",
-      "event_evidence_id": "pinnacle_matchups-b2eea59e78bc2abc-a4ef94",
-      "event_evidence_locator": "/8",
+      "api_url": "https://guest.api.arcadia.pinnacle.com/0.1/leagues/9587/markets/straight",
+      "evidence_id": "pinnacle_markets-f716f269b123fcbf-b81169",
+      "evidence_locator": "/13",
+      "event_evidence_id": "pinnacle_matchups-be1e136bfacef2e9-ce8c0d",
+      "event_evidence_locator": "/18",
       "identity_rule": "Exact game, team-pair names (case/whitespace/Unicode only), and UTC start; no aliases guessed."
     },
     {
-      "id": "pinnacle:1638750902:3771626675",
+      "id": "pinnacle:1638750902:3771714334",
       "source_id": "pinnacle",
       "source_name": "Pinnacle",
       "source_role": "primary_bookmaker",
@@ -21985,24 +22147,24 @@
       "status": "open",
       "is_live": false,
       "native_format": "american",
-      "native_odds_a": -185,
-      "native_odds_b": 155,
-      "odds_a": 1.5405405405405406,
-      "odds_b": 2.55,
+      "native_odds_a": -192,
+      "native_odds_b": 161,
+      "odds_a": 1.5208333333333335,
+      "odds_b": 2.6100000000000003,
       "decimal_format_note": "Calculated conversion from native American prices; not rounded website display values.",
-      "observed_at": "2026-10-18T23:17:44.126070Z",
-      "capture_sequence": 7,
+      "observed_at": "2026-10-19T01:48:04.193896Z",
+      "capture_sequence": 32,
       "source_published_at": null,
       "source_url": "https://www.pinnacle.com/en/esports/league-of-legends-world-championship/anyones-legend-vs-karmine-corp/1638750902/",
-      "api_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/highlighted/straight?primaryOnly=false",
-      "evidence_id": "pinnacle_markets-228ca0dff6830028-103311",
-      "evidence_locator": "/0",
-      "event_evidence_id": "pinnacle_matchups-b2eea59e78bc2abc-a4ef94",
-      "event_evidence_locator": "/2",
+      "api_url": "https://guest.api.arcadia.pinnacle.com/0.1/leagues/9587/markets/straight",
+      "evidence_id": "pinnacle_markets-f716f269b123fcbf-b81169",
+      "evidence_locator": "/1",
+      "event_evidence_id": "pinnacle_matchups-be1e136bfacef2e9-ce8c0d",
+      "event_evidence_locator": "/11",
       "identity_rule": "Exact game, team-pair names (case/whitespace/Unicode only), and UTC start; no aliases guessed."
     },
     {
-      "id": "pinnacle:1638750815:3771633727",
+      "id": "pinnacle:1638750815:3771711372",
       "source_id": "pinnacle",
       "source_name": "Pinnacle",
       "source_role": "primary_bookmaker",
@@ -22019,24 +22181,24 @@
       "status": "open",
       "is_live": false,
       "native_format": "american",
-      "native_odds_a": 102,
-      "native_odds_b": -119,
-      "odds_a": 2.02,
-      "odds_b": 1.8403361344537816,
+      "native_odds_a": 104,
+      "native_odds_b": -122,
+      "odds_a": 2.04,
+      "odds_b": 1.819672131147541,
       "decimal_format_note": "Calculated conversion from native American prices; not rounded website display values.",
-      "observed_at": "2026-10-18T23:17:44.126070Z",
-      "capture_sequence": 7,
+      "observed_at": "2026-10-19T01:48:04.193896Z",
+      "capture_sequence": 32,
       "source_published_at": null,
       "source_url": "https://www.pinnacle.com/en/esports/league-of-legends-world-championship/g2-vs-dplus-kia/1638750815/",
-      "api_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/highlighted/straight?primaryOnly=false",
-      "evidence_id": "pinnacle_markets-228ca0dff6830028-103311",
-      "evidence_locator": "/5",
-      "event_evidence_id": "pinnacle_matchups-b2eea59e78bc2abc-a4ef94",
-      "event_evidence_locator": "/0",
+      "api_url": "https://guest.api.arcadia.pinnacle.com/0.1/leagues/9587/markets/straight",
+      "evidence_id": "pinnacle_markets-f716f269b123fcbf-b81169",
+      "evidence_locator": "/17",
+      "event_evidence_id": "pinnacle_matchups-be1e136bfacef2e9-ce8c0d",
+      "event_evidence_locator": "/6",
       "identity_rule": "Exact game, team-pair names (case/whitespace/Unicode only), and UTC start; no aliases guessed."
     },
     {
-      "id": "pinnacle:1638748203:3771597284",
+      "id": "pinnacle:1638748203:3771722958",
       "source_id": "pinnacle",
       "source_name": "Pinnacle",
       "source_role": "primary_bookmaker",
@@ -22053,20 +22215,20 @@
       "status": "open",
       "is_live": false,
       "native_format": "american",
-      "native_odds_a": -350,
-      "native_odds_b": 271,
-      "odds_a": 1.2857142857142856,
-      "odds_b": 3.71,
+      "native_odds_a": -388,
+      "native_odds_b": 295,
+      "odds_a": 1.2577319587628866,
+      "odds_b": 3.95,
       "decimal_format_note": "Calculated conversion from native American prices; not rounded website display values.",
-      "observed_at": "2026-10-18T23:17:44.126070Z",
-      "capture_sequence": 7,
+      "observed_at": "2026-10-19T01:48:04.193896Z",
+      "capture_sequence": 32,
       "source_published_at": null,
       "source_url": "https://www.pinnacle.com/en/esports/league-of-legends-world-championship/hanwha-life-vs-top-esports/1638748203/",
-      "api_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/highlighted/straight?primaryOnly=false",
-      "evidence_id": "pinnacle_markets-228ca0dff6830028-103311",
-      "evidence_locator": "/12",
-      "event_evidence_id": "pinnacle_matchups-b2eea59e78bc2abc-a4ef94",
-      "event_evidence_locator": "/4",
+      "api_url": "https://guest.api.arcadia.pinnacle.com/0.1/leagues/9587/markets/straight",
+      "evidence_id": "pinnacle_markets-f716f269b123fcbf-b81169",
+      "evidence_locator": "/10",
+      "event_evidence_id": "pinnacle_matchups-be1e136bfacef2e9-ce8c0d",
+      "event_evidence_locator": "/16",
       "identity_rule": "Exact game, team-pair names (case/whitespace/Unicode only), and UTC start; no aliases guessed."
     },
     {
@@ -22092,15 +22254,15 @@
       "odds_a": 5.26,
       "odds_b": 1.1615508885298869,
       "decimal_format_note": "Calculated conversion from native American prices; not rounded website display values.",
-      "observed_at": "2026-10-18T23:17:44.126070Z",
-      "capture_sequence": 7,
+      "observed_at": "2026-10-19T01:48:04.193896Z",
+      "capture_sequence": 32,
       "source_published_at": null,
       "source_url": "https://www.pinnacle.com/en/esports/league-of-legends-world-championship/los-vs-t1/1638748205/",
-      "api_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/highlighted/straight?primaryOnly=false",
-      "evidence_id": "pinnacle_markets-228ca0dff6830028-103311",
-      "evidence_locator": "/3",
-      "event_evidence_id": "pinnacle_matchups-b2eea59e78bc2abc-a4ef94",
-      "event_evidence_locator": "/6",
+      "api_url": "https://guest.api.arcadia.pinnacle.com/0.1/leagues/9587/markets/straight",
+      "evidence_id": "pinnacle_markets-f716f269b123fcbf-b81169",
+      "evidence_locator": "/7",
+      "event_evidence_id": "pinnacle_matchups-be1e136bfacef2e9-ce8c0d",
+      "event_evidence_locator": "/17",
       "identity_rule": "Exact game, team-pair names (case/whitespace/Unicode only), and UTC start; no aliases guessed."
     },
     {
@@ -22126,19 +22288,19 @@
       "odds_a": 2.27,
       "odds_b": 1.6666666666666665,
       "decimal_format_note": "Calculated conversion from native American prices; not rounded website display values.",
-      "observed_at": "2026-10-18T23:17:44.126070Z",
-      "capture_sequence": 7,
+      "observed_at": "2026-10-19T01:48:04.193896Z",
+      "capture_sequence": 32,
       "source_published_at": null,
       "source_url": "https://www.pinnacle.com/en/esports/league-of-legends-world-championship/secret-whales-vs-lyon/1638754606/",
-      "api_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/highlighted/straight?primaryOnly=false",
-      "evidence_id": "pinnacle_markets-228ca0dff6830028-103311",
-      "evidence_locator": "/10",
-      "event_evidence_id": "pinnacle_matchups-b2eea59e78bc2abc-a4ef94",
-      "event_evidence_locator": "/3",
+      "api_url": "https://guest.api.arcadia.pinnacle.com/0.1/leagues/9587/markets/straight",
+      "evidence_id": "pinnacle_markets-f716f269b123fcbf-b81169",
+      "evidence_locator": "/4",
+      "event_evidence_id": "pinnacle_matchups-be1e136bfacef2e9-ce8c0d",
+      "event_evidence_locator": "/2",
       "identity_rule": "Exact game, team-pair names (case/whitespace/Unicode only), and UTC start; no aliases guessed."
     },
     {
-      "id": "pinnacle:1638755459:3771633879",
+      "id": "pinnacle:1638755459:3771691474",
       "source_id": "pinnacle",
       "source_name": "Pinnacle",
       "source_role": "primary_bookmaker",
@@ -22155,20 +22317,20 @@
       "status": "open",
       "is_live": false,
       "native_format": "american",
-      "native_odds_a": -600,
-      "native_odds_b": 345,
-      "odds_a": 1.1666666666666667,
-      "odds_b": 4.45,
+      "native_odds_a": -547,
+      "native_odds_b": 387,
+      "odds_a": 1.182815356489945,
+      "odds_b": 4.87,
       "decimal_format_note": "Calculated conversion from native American prices; not rounded website display values.",
-      "observed_at": "2026-10-18T23:17:44.126070Z",
-      "capture_sequence": 7,
+      "observed_at": "2026-10-19T01:48:04.193896Z",
+      "capture_sequence": 32,
       "source_published_at": null,
       "source_url": "https://www.pinnacle.com/en/esports/league-of-legends-world-championship/bilibili-vs-movistar-koi/1638755459/",
-      "api_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/highlighted/straight?primaryOnly=false",
-      "evidence_id": "pinnacle_markets-228ca0dff6830028-103311",
-      "evidence_locator": "/9",
-      "event_evidence_id": "pinnacle_matchups-b2eea59e78bc2abc-a4ef94",
-      "event_evidence_locator": "/1",
+      "api_url": "https://guest.api.arcadia.pinnacle.com/0.1/leagues/9587/markets/straight",
+      "evidence_id": "pinnacle_markets-f716f269b123fcbf-b81169",
+      "evidence_locator": "/11",
+      "event_evidence_id": "pinnacle_matchups-be1e136bfacef2e9-ce8c0d",
+      "event_evidence_locator": "/10",
       "identity_rule": "Exact game, team-pair names (case/whitespace/Unicode only), and UTC start; no aliases guessed."
     }
   ],
@@ -22181,7 +22343,7 @@
       "usage": "Official board identities, source-state inventory, schedules and lock metadata. Never a probability signal.",
       "status": "observed",
       "http_status": 200,
-      "observed_at": "2026-10-18T23:17:40.801312Z"
+      "observed_at": "2026-10-19T01:47:32.522044Z"
     },
     {
       "id": "pinnacle",
@@ -22191,7 +22353,7 @@
       "usage": "Public website whole-match moneyline markets, including the observed guest responses. Not the closed licensed API.",
       "status": "observed",
       "http_status": 200,
-      "observed_at": "2026-10-18T23:18:12.945920Z",
+      "observed_at": "2026-10-19T01:48:04.193896Z",
       "policy_url": "https://github.com/pinnacleapi/pinnacleapi-documentation",
       "api_url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/matchups/highlighted"
     },
@@ -22203,7 +22365,7 @@
       "usage": "Access checked without login or bypass. No unsupported quotes are substituted when inaccessible.",
       "status": "unverified",
       "http_status": 403,
-      "observed_at": "2026-10-18T23:18:13.251375Z"
+      "observed_at": "2026-10-19T01:48:04.607464Z"
     },
     {
       "id": "hltv",
@@ -22213,7 +22375,7 @@
       "usage": "Access checked for context; ranks and community pick indicators never populate this market-based analysis.",
       "status": "unverified",
       "http_status": 403,
-      "observed_at": "2026-10-18T23:18:13.476467Z"
+      "observed_at": "2026-10-19T01:48:04.676488Z"
     },
     {
       "id": "hotspawn-rules",
@@ -22223,7 +22385,7 @@
       "usage": "Compare the published lock-time rule with the explicit fixture metadata. Never derive UTC start times from countdowns.",
       "status": "observed",
       "http_status": 200,
-      "observed_at": "2026-10-18T23:17:41.512448Z"
+      "observed_at": "2026-10-19T01:47:33.139934Z"
     },
     {
       "id": "pinnacle-api-policy",
@@ -22233,7 +22395,7 @@
       "usage": "Read the publisher's current licensed-API access statement. The collector uses only public website responses.",
       "status": "observed",
       "http_status": 200,
-      "observed_at": "2026-10-18T23:18:13.742734Z",
+      "observed_at": "2026-10-19T01:48:04.915516Z",
       "api_url": "https://api.github.com/repos/pinnacleapi/pinnacleapi-documentation/contents/README.md"
     }
   ],
@@ -22245,7 +22407,7 @@
       "file": "hotspawn_fixture_transfer_state-a41b60b7a2deb4c5-478880.json.gz",
       "capture_sequence": 1,
       "url": "https://play.hotspawn.com/lobby",
-      "retrieved_at": "2026-10-18T23:17:36.507585Z",
+      "retrieved_at": "2026-10-19T01:47:29.073479Z",
       "http_status": 200,
       "sha256": "a41b60b7a2deb4c5576d8ca5a116d4d7e1e9531979576034b8ed959e1e169671",
       "description": "Fixture-only Angular SSR transfer-state projection; source fields unchanged, unrelated personal/crowd fields excluded.",
@@ -22259,7 +22421,7 @@
       "file": "hotspawn_fixture_transfer_state-9c373b304bdc3122-e4d6da.json.gz",
       "capture_sequence": 2,
       "url": "https://play.hotspawn.com/cs2-pickems",
-      "retrieved_at": "2026-10-18T23:17:37.641764Z",
+      "retrieved_at": "2026-10-19T01:47:29.980128Z",
       "http_status": 200,
       "sha256": "9c373b304bdc312263dab0cb7e96faf5c2aaef7c89af564e80699cb1fdf4853c",
       "description": "Fixture-only Angular SSR transfer-state projection; source fields unchanged, unrelated personal/crowd fields excluded.",
@@ -22273,7 +22435,7 @@
       "file": "hotspawn_fixture_transfer_state-3502bc90140268fb-a134e9.json.gz",
       "capture_sequence": 3,
       "url": "https://play.hotspawn.com/lol-pickems",
-      "retrieved_at": "2026-10-18T23:17:39.452882Z",
+      "retrieved_at": "2026-10-19T01:47:31.388566Z",
       "http_status": 200,
       "sha256": "3502bc90140268fb6cf58edd2a69b9effce9472248e3741d656447e868328a6d",
       "description": "Fixture-only Angular SSR transfer-state projection; source fields unchanged, unrelated personal/crowd fields excluded.",
@@ -22287,7 +22449,7 @@
       "file": "hotspawn_fixture_transfer_state-c863faa3f46f6947-466bf7.json.gz",
       "capture_sequence": 4,
       "url": "https://play.hotspawn.com/thp-pickems",
-      "retrieved_at": "2026-10-18T23:17:40.801312Z",
+      "retrieved_at": "2026-10-19T01:47:32.522044Z",
       "http_status": 200,
       "sha256": "c863faa3f46f69475fa45a15cdb2fb5f8b41cd8d6d73a18a4ba33bbd73c158fe",
       "description": "Fixture-only Angular SSR transfer-state projection; source fields unchanged, unrelated personal/crowd fields excluded.",
@@ -22301,7 +22463,7 @@
       "file": "official_policy_excerpt-b5b425d2f6f59355-67638d.json.gz",
       "capture_sequence": 5,
       "url": "https://play.hotspawn.com/how-it-works",
-      "retrieved_at": "2026-10-18T23:17:41.512448Z",
+      "retrieved_at": "2026-10-19T01:47:33.139934Z",
       "http_status": 200,
       "sha256": "b5b425d2f6f593554a0bf46550255f4eca7d1fd2a906b11c180ac801a30a3fe8",
       "description": "Only the official lock-rule sentence retained; unrelated page state discarded.",
@@ -22309,65 +22471,65 @@
       "source_response_sha256": "9d4f42f9fffb0acb8ec2f3612b3b1c519e766dcd80689fc11e9d2e199893298f"
     },
     {
-      "id": "pinnacle_matchups-b2eea59e78bc2abc-a4ef94",
-      "source_id": "pinnacle",
-      "kind": "pinnacle_matchups",
-      "file": "pinnacle_matchups-b2eea59e78bc2abc-a4ef94.json.gz",
-      "capture_sequence": 6,
-      "url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/matchups/highlighted",
-      "retrieved_at": "2026-10-18T23:17:44.121972Z",
-      "http_status": 200,
-      "sha256": "b2eea59e78bc2abcfabdcbde32a7e42f2329c04894fd5903f3d8599aad7714dd",
-      "description": "Unchanged public website event/market JSON, observed in a normal unauthenticated browser.",
-      "observed_in": "https://www.pinnacle.com/en/esports/matchups/highlights/"
-    },
-    {
-      "id": "pinnacle_markets-228ca0dff6830028-103311",
+      "id": "pinnacle_markets-abd327a0ec7701a8-103311",
       "source_id": "pinnacle",
       "kind": "pinnacle_markets",
-      "file": "pinnacle_markets-228ca0dff6830028-103311.json.gz",
-      "capture_sequence": 7,
+      "file": "pinnacle_markets-abd327a0ec7701a8-103311.json.gz",
+      "capture_sequence": 6,
       "url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/highlighted/straight?primaryOnly=false",
-      "retrieved_at": "2026-10-18T23:17:44.126070Z",
+      "retrieved_at": "2026-10-19T01:47:35.472729Z",
       "http_status": 200,
-      "sha256": "228ca0dff68300285f84a9d1a1dbfca2a3793fcd5efb47322c96fdfdc7fd4963",
+      "sha256": "abd327a0ec7701a85764549a09575d2a99d914b5e84bbaf6196a5976efb7fe5c",
       "description": "Unchanged public website event/market JSON, observed in a normal unauthenticated browser.",
       "observed_in": "https://www.pinnacle.com/en/esports/matchups/highlights/"
     },
     {
-      "id": "pinnacle_matchups-37517e5f3dc66819-fc5637",
+      "id": "pinnacle_matchups-8d04755b14feb0f7-a4ef94",
       "source_id": "pinnacle",
       "kind": "pinnacle_matchups",
-      "file": "pinnacle_matchups-37517e5f3dc66819-fc5637.json.gz",
-      "capture_sequence": 15,
-      "url": "https://guest.api.arcadia.pinnacle.com/0.1/leagues/12/matchups",
-      "retrieved_at": "2026-10-18T23:18:03.963558Z",
+      "file": "pinnacle_matchups-8d04755b14feb0f7-a4ef94.json.gz",
+      "capture_sequence": 7,
+      "url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/matchups/highlighted",
+      "retrieved_at": "2026-10-19T01:47:35.507401Z",
       "http_status": 200,
-      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "sha256": "8d04755b14feb0f79ebd9376196b64d0238c30be4ad8ae90eda0a2d53fb6fec2",
       "description": "Unchanged public website event/market JSON, observed in a normal unauthenticated browser.",
-      "observed_in": "https://www.pinnacle.com/en/esports/games/league-of-legends/matchups/"
+      "observed_in": "https://www.pinnacle.com/en/esports/matchups/highlights/"
     },
     {
       "id": "pinnacle_matchups-37517e5f3dc66819-7d64db",
       "source_id": "pinnacle",
       "kind": "pinnacle_matchups",
       "file": "pinnacle_matchups-37517e5f3dc66819-7d64db.json.gz",
-      "capture_sequence": 9,
+      "capture_sequence": 19,
       "url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/matchups/carousel",
-      "retrieved_at": "2026-10-18T23:17:44.327715Z",
+      "retrieved_at": "2026-10-19T01:47:55.355928Z",
       "http_status": 200,
       "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
       "description": "Unchanged public website event/market JSON, observed in a normal unauthenticated browser.",
-      "observed_in": "https://www.pinnacle.com/en/esports/matchups/highlights/"
+      "observed_in": "https://www.pinnacle.com/en/esports/games/league-of-legends/matchups/"
     },
     {
       "id": "pinnacle_markets-37517e5f3dc66819-651480",
       "source_id": "pinnacle",
       "kind": "pinnacle_markets",
       "file": "pinnacle_markets-37517e5f3dc66819-651480.json.gz",
-      "capture_sequence": 17,
+      "capture_sequence": 28,
       "url": "https://guest.api.arcadia.pinnacle.com/0.1/leagues/12/markets/straight",
-      "retrieved_at": "2026-10-18T23:18:12.945920Z",
+      "retrieved_at": "2026-10-19T01:48:04.005309Z",
+      "http_status": 200,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "description": "Unchanged public website event/market JSON, observed in a normal unauthenticated browser.",
+      "observed_in": "https://www.pinnacle.com/en/esports/games/league-of-legends/matchups/"
+    },
+    {
+      "id": "pinnacle_matchups-37517e5f3dc66819-fc5637",
+      "source_id": "pinnacle",
+      "kind": "pinnacle_matchups",
+      "file": "pinnacle_matchups-37517e5f3dc66819-fc5637.json.gz",
+      "capture_sequence": 16,
+      "url": "https://guest.api.arcadia.pinnacle.com/0.1/leagues/12/matchups",
+      "retrieved_at": "2026-10-19T01:47:55.039778Z",
       "http_status": 200,
       "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
       "description": "Unchanged public website event/market JSON, observed in a normal unauthenticated browser.",
@@ -22380,7 +22542,7 @@
       "file": "pinnacle_observed_links-33e0b43ebe938267-4d85ed.json.gz",
       "capture_sequence": 11,
       "url": "https://www.pinnacle.com/en/esports/matchups/highlights/",
-      "retrieved_at": "2026-10-18T23:17:52.493390Z",
+      "retrieved_at": "2026-10-19T01:47:43.881194Z",
       "http_status": 200,
       "sha256": "33e0b43ebe938267b645e50eb1ce3be71eedea41f6d2f72336e3612de7e451a7",
       "description": "Only actual esports hyperlinks extracted from the public DOM; no deep links invented.",
@@ -22391,24 +22553,115 @@
       "source_id": "pinnacle",
       "kind": "pinnacle_observed_links",
       "file": "pinnacle_observed_links-2e5b0edf437f33e4-6d6375.json.gz",
-      "capture_sequence": 14,
+      "capture_sequence": 15,
       "url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
-      "retrieved_at": "2026-10-18T23:18:02.785059Z",
+      "retrieved_at": "2026-10-19T01:47:54.136973Z",
       "http_status": 200,
       "sha256": "2e5b0edf437f33e4f61d53eb3c2f379f97181941d088246e98ef437a88b86482",
       "description": "Only actual esports hyperlinks extracted from the public DOM; no deep links invented.",
       "observed_in": null
     },
     {
-      "id": "pinnacle_observed_links-7c23d95431ce568d-392de8",
+      "id": "pinnacle_matchups-635ff337bc3e0be6-5d0196",
+      "source_id": "pinnacle",
+      "kind": "pinnacle_matchups",
+      "file": "pinnacle_matchups-635ff337bc3e0be6-5d0196.json.gz",
+      "capture_sequence": 18,
+      "url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/matchups/future",
+      "retrieved_at": "2026-10-19T01:47:55.176305Z",
+      "http_status": 200,
+      "sha256": "635ff337bc3e0be6877b53fd48bbce80c32b58bf6c753b1864f5825b18eb7468",
+      "description": "Unchanged public website event/market JSON, observed in a normal unauthenticated browser.",
+      "observed_in": "https://www.pinnacle.com/en/esports/games/league-of-legends/matchups/"
+    },
+    {
+      "id": "pinnacle_matchups-fc0605cec0d0f17a-b1b823",
+      "source_id": "pinnacle",
+      "kind": "pinnacle_matchups",
+      "file": "pinnacle_matchups-fc0605cec0d0f17a-b1b823.json.gz",
+      "capture_sequence": 20,
+      "url": "https://guest.api.arcadia.pinnacle.com/0.1/leagues/295831/matchups",
+      "retrieved_at": "2026-10-19T01:47:55.415675Z",
+      "http_status": 200,
+      "sha256": "fc0605cec0d0f17aa894d543768cf43c2712e238197c55cf542c30e226db4bef",
+      "description": "Unchanged public website event/market JSON, observed in a normal unauthenticated browser.",
+      "observed_in": "https://www.pinnacle.com/en/esports/games/league-of-legends/matchups/"
+    },
+    {
+      "id": "pinnacle_matchups-adb761c0e4a00042-26771c",
+      "source_id": "pinnacle",
+      "kind": "pinnacle_matchups",
+      "file": "pinnacle_matchups-adb761c0e4a00042-26771c.json.gz",
+      "capture_sequence": 22,
+      "url": "https://guest.api.arcadia.pinnacle.com/0.1/leagues/9587/matchups",
+      "retrieved_at": "2026-10-19T01:47:55.422853Z",
+      "http_status": 200,
+      "sha256": "adb761c0e4a000424a3868e1acaf44870cace5731af5c287f31c540ec1342871",
+      "description": "Unchanged public website event/market JSON, observed in a normal unauthenticated browser.",
+      "observed_in": "https://www.pinnacle.com/en/esports/games/league-of-legends/matchups/"
+    },
+    {
+      "id": "pinnacle_matchups-be1e136bfacef2e9-ce8c0d",
+      "source_id": "pinnacle",
+      "kind": "pinnacle_matchups",
+      "file": "pinnacle_matchups-be1e136bfacef2e9-ce8c0d.json.gz",
+      "capture_sequence": 23,
+      "url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/matchups?withSpecials=false",
+      "retrieved_at": "2026-10-19T01:47:55.425149Z",
+      "http_status": 200,
+      "sha256": "be1e136bfacef2e9ecb8a184c8a4c959fe0c04a95a0897291c9dd26a5ed73c16",
+      "description": "Unchanged public website event/market JSON, observed in a normal unauthenticated browser.",
+      "observed_in": "https://www.pinnacle.com/en/esports/games/league-of-legends/matchups/"
+    },
+    {
+      "id": "pinnacle_markets-ba6360aa3a6af99e-0880a3",
+      "source_id": "pinnacle",
+      "kind": "pinnacle_markets",
+      "file": "pinnacle_markets-ba6360aa3a6af99e-0880a3.json.gz",
+      "capture_sequence": 30,
+      "url": "https://guest.api.arcadia.pinnacle.com/0.1/leagues/295831/markets/straight",
+      "retrieved_at": "2026-10-19T01:48:04.192927Z",
+      "http_status": 200,
+      "sha256": "ba6360aa3a6af99e335e3744f9359135d6ce8fdf71a82ea30d342f890903b3d3",
+      "description": "Unchanged public website event/market JSON, observed in a normal unauthenticated browser.",
+      "observed_in": "https://www.pinnacle.com/en/esports/games/league-of-legends/matchups/"
+    },
+    {
+      "id": "pinnacle_markets-f716f269b123fcbf-b81169",
+      "source_id": "pinnacle",
+      "kind": "pinnacle_markets",
+      "file": "pinnacle_markets-f716f269b123fcbf-b81169.json.gz",
+      "capture_sequence": 32,
+      "url": "https://guest.api.arcadia.pinnacle.com/0.1/leagues/9587/markets/straight",
+      "retrieved_at": "2026-10-19T01:48:04.193896Z",
+      "http_status": 200,
+      "sha256": "f716f269b123fcbf777c63be4ad738f224d68b12ae95de71ab12900265d38655",
+      "description": "Unchanged public website event/market JSON, observed in a normal unauthenticated browser.",
+      "observed_in": "https://www.pinnacle.com/en/esports/games/league-of-legends/matchups/"
+    },
+    {
+      "id": "pinnacle_markets-e9a621291f49ddbd-db5487",
+      "source_id": "pinnacle",
+      "kind": "pinnacle_markets",
+      "file": "pinnacle_markets-e9a621291f49ddbd-db5487.json.gz",
+      "capture_sequence": 29,
+      "url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
+      "retrieved_at": "2026-10-19T01:48:04.187198Z",
+      "http_status": 200,
+      "sha256": "e9a621291f49ddbd13b626aac29c8a066ea6d556f330fc4c725c634441864634",
+      "description": "Unchanged public website event/market JSON, observed in a normal unauthenticated browser.",
+      "observed_in": "https://www.pinnacle.com/en/esports/games/league-of-legends/matchups/"
+    },
+    {
+      "id": "pinnacle_observed_links-673866295daad6d7-392de8",
       "source_id": "pinnacle",
       "kind": "pinnacle_observed_links",
-      "file": "pinnacle_observed_links-7c23d95431ce568d-392de8.json.gz",
-      "capture_sequence": 18,
+      "file": "pinnacle_observed_links-673866295daad6d7-392de8.json.gz",
+      "capture_sequence": 33,
       "url": "https://www.pinnacle.com/en/esports/games/league-of-legends/matchups/",
-      "retrieved_at": "2026-10-18T23:18:13.081734Z",
+      "retrieved_at": "2026-10-19T01:48:04.382671Z",
       "http_status": 200,
-      "sha256": "7c23d95431ce568db44169e9d4c59c08bffe2eec2d073fc776ac435183569749",
+      "sha256": "673866295daad6d7d19c0a11c330811803651b7ca1474fb481b61754bba4c585",
       "description": "Only actual esports hyperlinks extracted from the public DOM; no deep links invented.",
       "observed_in": null
     },
@@ -22417,9 +22670,9 @@
       "source_id": "pinnacle-api-policy",
       "kind": "official_policy_excerpt",
       "file": "official_policy_excerpt-69d4a0891b9accbd-db5875.json.gz",
-      "capture_sequence": 19,
+      "capture_sequence": 34,
       "url": "https://api.github.com/repos/pinnacleapi/pinnacleapi-documentation/contents/README.md",
-      "retrieved_at": "2026-10-18T23:18:13.742734Z",
+      "retrieved_at": "2026-10-19T01:48:04.915516Z",
       "http_status": 200,
       "sha256": "69d4a0891b9accbda278d5cb1bbe1d19865f57d266906d731b92d69a4bbaa56e",
       "description": "The publisher's current API access statement; authentication examples and unrelated content not retained.",
@@ -22716,29 +22969,29 @@
     {
       "url": "https://www.pinnacle.com/en/esports/matchups/highlights/",
       "status": 200,
-      "observed_at": "2026-10-18T23:17:42.462321Z"
+      "observed_at": "2026-10-19T01:47:33.858355Z"
     },
     {
       "url": "https://www.pinnacle.com/en/esports/games/cs2/matchups/",
       "status": 200,
-      "observed_at": "2026-10-18T23:17:52.761760Z"
+      "observed_at": "2026-10-19T01:47:44.119869Z"
     },
     {
       "url": "https://www.pinnacle.com/en/esports/games/league-of-legends/matchups/",
       "status": 200,
-      "observed_at": "2026-10-18T23:18:03.053455Z"
+      "observed_at": "2026-10-19T01:47:54.361918Z"
     }
   ],
   "bookmaker_counters": {
-    "event_records": 9,
-    "market_records": 26,
-    "wrong_period_or_type": 17,
+    "event_records": 22,
+    "market_records": 658,
+    "wrong_period_or_type": 585,
     "closed_live_or_started": 0,
-    "unsupported_or_unconfirmed": 0,
-    "eligible_quote_records": 9
+    "unsupported_or_unconfirmed": 3,
+    "eligible_quote_records": 13
   },
   "verification": {
-    "completed_at": "2026-10-18T23:18:13.743475Z",
+    "completed_at": "2026-10-19T01:48:04.916173Z",
     "checks": [
       {
         "name": "Source field traceability",
@@ -22752,7 +23005,7 @@
       {
         "name": "Primary-bookmaker market semantics",
         "passed": true,
-        "detail": "9 explicit open, prematch, whole-match, two-outcome moneyline records; native prices and event fields retained.",
+        "detail": "13 explicit open, prematch, whole-match, two-outcome moneyline records; native prices and event fields retained.",
         "source_urls": [
           "https://www.pinnacle.com/en/esports/matchups/highlights/"
         ]
@@ -22780,11 +23033,11 @@
     ],
     "counts": {
       "match_count": 198,
-      "quote_count": 9,
-      "priced_count": 0,
-      "unpriced_count": 198,
+      "quote_count": 13,
+      "priced_count": 1,
+      "unpriced_count": 197,
       "inventory_count": 365,
-      "evidence_count": 14,
+      "evidence_count": 21,
       "finding_count": 20
     }
   },
