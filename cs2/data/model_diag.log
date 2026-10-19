@@ -1,23 +1,23 @@
-== O-01 reproduction (session arena/a174d77f, run 39240001866) ==
+== O-01 reproduction (session arena/a174d77f, run 39294530266) ==
 -- fetch --
   "commit": "eec4853d7bcf0f1f7efe7f0d901234bef7e98b75",
   "path": "live/2026/standings_global_2026_10_05.md"
  },
  "hltv": {
   "url": "https://www.hltv.org/ranking/teams",
-  "final_url": "https://www.hltv.org/ranking/teams/2026/october/12",
-  "fetched_utc": "2026-10-19T10:50:52Z",
+  "final_url": "https://www.hltv.org/ranking/teams/2026/october/19",
+  "fetched_utc": "2026-10-19T17:32:36Z",
   "http_status": 200,
-  "bytes": 1090749,
-  "sha256": "07d79847701c0f5643c0fe9c4b66b6af9c8534d41ef546a490b30a0e5edc1179",
+  "bytes": 1134483,
+  "sha256": "91a6edc83e8b191dedc715c43de8057690daa2ec0b92516c1adc704467c3bed9",
   "attempts": [
    {
     "url": "https://www.hltv.org/ranking/teams",
-    "fetched_utc": "2026-10-19T10:50:52Z",
+    "fetched_utc": "2026-10-19T17:32:36Z",
     "http_status": 200
    }
   ],
-  "result": "OK - 245 teams, World ranking on October 12th, 2026"
+  "result": "OK - 253 teams, World ranking on October 19th, 2026"
  }
 }
 -- calibrate --
@@ -30,7 +30,7 @@
  "adopted": true
 }
 -- build --
-fixtures=89 own_lines=49 blank=40 teams=121 flags=37
+fixtures=83 own_lines=45 blank=38 teams=114 flags=38
 -- tests --
 test_against_valve_javascript (test_model.TestFormula.test_against_valve_javascript) ... ok
 test_closed_form_matches_port (test_model.TestFormula.test_closed_form_matches_port) ... ok
@@ -67,6 +67,6 @@ Traceback (most recent call last):
 AssertionError: 'no per-match Hotspawn permalink' not found in "Hotspawn lists a scheduled date before this pick'em week (stale listing)" : 1052746
 
 ----------------------------------------------------------------------
-Ran 16 tests in 0.283s
+Ran 16 tests in 0.187s
 
 FAILED (failures=1)
