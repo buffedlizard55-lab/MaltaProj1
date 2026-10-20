@@ -1,43 +1,30 @@
 {
- "generated_utc": "2026-10-19T21:11:05Z",
- "reference_utc": "2026-10-19T21:10:51Z",
- "open": 11,
- "open_with_pick": 8,
+ "generated_utc": "2026-10-20T05:04:19Z",
+ "reference_utc": "2026-10-20T05:04:06Z",
+ "open": 23,
+ "open_with_pick": 19,
  "open_rung": {
-  "A": 0,
-  "B": 3,
+  "A": 1,
+  "B": 14,
   "C": 3,
-  "D": 3,
+  "D": 4,
   "E": 0,
-  "F": 2
+  "F": 1
  },
- "open_unresolved": 3,
- "open_direction_only": 2,
+ "open_unresolved": 4,
+ "open_direction_only": 1,
  "classes": {
-  "VALUE": 1,
-  "CONTRARIAN": 2,
+  "VALUE": 0,
+  "CONTRARIAN": 1,
   "SITUATIONAL": 0,
   "LONG SHOT": 2,
   "CHALK": 1,
   "EVIDENCE LIMITED": 0,
-  "NO CROWD DATA": 0,
-  "DIRECTION ONLY": 2
+  "NO CROWD DATA": 14,
+  "DIRECTION ONLY": 1
  },
  "hotspawn_complete": true,
  "gaps": [
-  {
-   "id": "1081861",
-   "a": "Lynn Vision",
-   "b": "Morningstar",
-   "lock": "2026-10-20T02:54:00Z",
-   "pick": "Lynn Vision",
-   "p": null,
-   "pa": null,
-   "pb": null,
-   "rung": "F",
-   "class": "DIRECTION ONLY",
-   "why": "Morningstar has no row in Valve's 2026-10-05 standings; For both fixtures below the opponent is unranked on HLTV and has no row in Valve's official Regional Standings, so the own-line model has no input for it. Inventing a rating for an unranked team would be an inferred value, not a sourced one."
-  },
   {
    "id": "1081863",
    "a": "Chinggis Warriors",
@@ -89,51 +76,22 @@
    "rung": "D",
    "class": null,
    "why": "series format not independently confirmed; Nice Try has no row in Valve's 2026-10-05 standings; aimclub matches 2 same-name rows in Valve's 2026-10-05 standings"
-  }
- ],
- "next": [
-  {
-   "id": "1082580",
-   "a": "A NATA",
-   "b": "Hacha",
-   "tier": "C",
-   "lock": "2026-10-19T21:54:00Z",
-   "pick": "Hacha",
-   "p": 0.757,
-   "pa": 0.243,
-   "pb": 0.757,
-   "basis": "B",
-   "play": "Hacha",
-   "class": "VALUE"
   },
   {
-   "id": "1081861",
-   "a": "Lynn Vision",
-   "b": "Morningstar",
-   "tier": "C",
-   "lock": "2026-10-20T02:54:00Z",
-   "pick": "Lynn Vision",
+   "id": "1081601",
+   "a": "Quintessence",
+   "b": "Ryvex",
+   "lock": "2026-10-22T13:39:00Z",
+   "pick": null,
    "p": null,
    "pa": null,
    "pb": null,
-   "basis": "F",
-   "play": "Lynn Vision",
-   "class": "DIRECTION ONLY"
-  },
-  {
-   "id": "1081862",
-   "a": "Rare Atom",
-   "b": "Alter Ego",
-   "tier": "C",
-   "lock": "2026-10-20T04:54:00Z",
-   "pick": "Rare Atom",
-   "p": 0.5573,
-   "pa": 0.5573,
-   "pb": 0.4427,
-   "basis": "C",
-   "play": "Alter Ego",
-   "class": "CONTRARIAN"
-  },
+   "rung": "D",
+   "class": null,
+   "why": "Quintessence has no row in Valve's 2026-10-05 standings"
+  }
+ ],
+ "next": [
   {
    "id": "1081863",
    "a": "Chinggis Warriors",
@@ -147,6 +105,20 @@
    "basis": "F",
    "play": "Chinggis Warriors",
    "class": "DIRECTION ONLY"
+  },
+  {
+   "id": "1079182",
+   "a": "GenOne",
+   "b": "Bushido Wildcats",
+   "tier": "B",
+   "lock": "2026-10-20T07:54:00Z",
+   "pick": "GenOne",
+   "p": 0.65,
+   "pa": 0.65,
+   "pb": 0.35,
+   "basis": "B",
+   "play": "GenOne",
+   "class": "NO CROWD DATA"
   },
   {
    "id": "1081864",
@@ -177,32 +149,60 @@
    "class": null
   },
   {
+   "id": "1079183",
+   "a": "ex-Zero Tenacity",
+   "b": "FORZE Reload",
+   "tier": "B",
+   "lock": "2026-10-20T10:54:00Z",
+   "pick": "FORZE Reload",
+   "p": 0.6281,
+   "pa": 0.3719,
+   "pb": 0.6281,
+   "basis": "B",
+   "play": "FORZE Reload",
+   "class": "NO CROWD DATA"
+  },
+  {
    "id": "1079644",
    "a": "BakS",
    "b": "ILLYRIANS",
    "tier": "B",
    "lock": "2026-10-20T10:54:00Z",
    "pick": "BakS",
-   "p": 0.57,
-   "pa": 0.57,
-   "pb": 0.43,
+   "p": 0.605,
+   "pa": 0.605,
+   "pb": 0.395,
    "basis": "B",
    "play": "ILLYRIANS",
    "class": "CONTRARIAN"
   },
   {
-   "id": "1082157",
-   "a": "Sangal",
-   "b": "Aurora YB",
+   "id": "1081555",
+   "a": "FaZe",
+   "b": "BASEMENT BOYS",
    "tier": "B",
-   "lock": "2026-10-20T11:54:00Z",
-   "pick": null,
-   "p": null,
-   "pa": null,
-   "pb": null,
-   "basis": "D",
-   "play": null,
-   "class": null
+   "lock": "2026-10-20T10:54:00Z",
+   "pick": "FaZe",
+   "p": 0.8346,
+   "pa": 0.8346,
+   "pb": 0.1654,
+   "basis": "B",
+   "play": "FaZe",
+   "class": "NO CROWD DATA"
+  },
+  {
+   "id": "1081556",
+   "a": "Eternal Fire",
+   "b": "Infinite",
+   "tier": "B",
+   "lock": "2026-10-20T10:54:00Z",
+   "pick": "Eternal Fire",
+   "p": 0.6829,
+   "pa": 0.6829,
+   "pb": 0.3171,
+   "basis": "B",
+   "play": "Eternal Fire",
+   "class": "NO CROWD DATA"
   }
  ]
 }
