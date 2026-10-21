@@ -1,12 +1,12 @@
 code,rows,meaning,fixtures
-C-NO-BASIS,16,No outside price and no official rating could be resolved for this fixture in the current captures; probabilities stay blank.,1079167;1079170;1079171;1079173;1079588;1081126;1081498;1081502;1081526;1081600;1081712;1081769;1081775;1082792;1082793;1082837
+C-NO-BASIS,22,No outside price and no official rating could be resolved for this fixture in the current captures; probabilities stay blank.,1079167;1079170;1079171;1079173;1079588;1081126;1081498;1081502;1081526;1081597;1081600;1081712;1081769;1081775;1081870;1082792;1082793;1082837;1082858;1082859;1082860;1082861
+C-NO-SECONDARY-MARKET,10,Neither the bookmaker relay nor Polymarket listed a usable price for this fixture in the current capture; if a price appears here it comes from another capture or from this board's own line.,1081597;1081600;1081870;1082792;1082793;1082837;1082858;1082859;1082860;1082861
 C-OWN-LINE-UNVERIFIED,9,"The official rating row cited for this fixture's own originated line could not be confirmed at the URL anchor (the line names another team, or the standing/points differ). The own-line probability is withheld rather than published.",1079630;1079632;1080205;1081527;1081528;1081529;1081530;1081531;1081532
-C-RELAYED-BOOK-PRICE,8,The headline price is relayed by an aggregator rather than read from the bookmaker's own site; the bookmaker match URL is linked on the row so the price can be checked by hand.,1080285;1080288;1080290;1082178;1082688;1082689;1082835;1082836
 C-NAME-VARIANT,6,The same team appears under more than one name or with a duplicate rating entry across sources; the alias the board matched on is recorded on the row.,1079167;1079630;1080286;1080288;1080289;1081529
-C-NO-SECONDARY-MARKET,4,Neither the bookmaker relay nor Polymarket listed a usable price for this fixture in the current capture; if a price appears here it comes from another capture or from this board's own line.,1081600;1082792;1082793;1082837
+C-RELAYED-BOOK-PRICE,6,The headline price is relayed by an aggregator rather than read from the bookmaker's own site; the bookmaker match URL is linked on the row so the price can be checked by hand.,1080285;1080288;1080290;1082688;1082689;1082882
 C-ALIAS-RATING-ROW,3,The official standings row used for this team names a different spelling; the equivalence is documented with an evidence link and was re-checked against the committed standings line (name and points).,1080286;1080288;1080289
 C-MARKET-MODEL-SPLIT,3,The outside market's favourite and this board's own originated line name different winners; both are published and the pick follows the market.,1079589;1080285;1080289
-C-OPPONENT-CONFLICT,2,An outside source lists one of the teams at the same kickoff against a different opponent; that listing was not used for either team's probability.,1081600;1082837
+C-OPPONENT-CONFLICT,3,An outside source lists one of the teams at the same kickoff against a different opponent; that listing was not used for either team's probability.,1081600;1082837;1082882
 R-228-04,1,Name variant: PCIFIC (Hotspawn/HLTV) is WRAITH PCIFIC on the market,1081113
 R-228-05,1,Envy is the ex-3DMAX core; the alias is documented in executive/aliases.json only,1079442
 R-228-06,1,"Rung-1 rows cite Pinnacle's guest endpoint, which has no per-match deep link",1080176
