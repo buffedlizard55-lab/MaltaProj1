@@ -31,7 +31,7 @@ probability. A unit test fails the build if it ever does.</p>
 <h2>The probability ladder</h2>
 <p>Every rung that answers is kept, and the published probability is the average of the independent
 answers. Each answer is shown on the pick card with its own link.</p>
-<ul class="clean"><li><strong>Pinnacle</strong> &mdash; Pinnacle moneyline, margin removed (sharp bookmaker) (0 open fixtures resolved on this rung)</li><li><strong>Bookmaker (bo3.gg)</strong> &mdash; Bookmaker price relayed by bo3.gg (8 open fixtures resolved on this rung)</li><li><strong>Polymarket</strong> &mdash; Polymarket prediction-market price, normalised (5 open fixtures resolved on this rung)</li><li><strong>Our own line</strong> &mdash; Our own line from official Valve Regional Standings points (2 open fixtures resolved on this rung)</li><li><strong>Unresolved</strong> &mdash; Unresolved - no outside price and no official rating for one or both teams</li></ul>
+<ul class="clean"><li><strong>Pinnacle</strong> &mdash; Pinnacle moneyline, margin removed (sharp bookmaker) (0 open fixtures resolved on this rung)</li><li><strong>Bookmaker (bo3.gg)</strong> &mdash; Bookmaker price relayed by bo3.gg (16 open fixtures resolved on this rung)</li><li><strong>Polymarket</strong> &mdash; Polymarket prediction-market price, normalised (6 open fixtures resolved on this rung)</li><li><strong>Our own line</strong> &mdash; Our own line from official Valve Regional Standings points (3 open fixtures resolved on this rung)</li><li><strong>Unresolved</strong> &mdash; Unresolved - no outside price and no official rating for one or both teams</li></ul>
 <h2>Our own line</h2>
 <p>When no market prices a fixture we originate one from Valve's official Regional Standings:
 <code>P = 1/(1+10^(-k*(pointsA-pointsB)/400))</code> with <code>k = 0.4598</code>.
@@ -55,17 +55,17 @@ added to the ladder.</div>
 <h2>Sources in the latest collection</h2>
 <div class="scroll"><table><tr><th>Source</th><th>Mode</th><th>Read (UTC)</th><th>URL</th></tr>
 <tr><td><strong>hotspawn</strong></td><td>live</td>
-<td class="src">2026-10-20T23:24:00Z</td>
+<td class="src">2026-10-21T05:18:54Z</td>
 <td class="src"></td></tr><tr><td><strong>pinnacle</strong></td><td>previous_capture</td>
 <td class="src">2026-10-15T21:34:15Z</td>
 <td class="src">https://www.pinnacle.com/en/esports/games/cs2/matchups/</td></tr><tr><td><strong>bo3</strong></td><td>live</td>
-<td class="src">2026-10-20T23:24:05Z</td>
+<td class="src">2026-10-21T05:18:58Z</td>
 <td class="src">https://bo3.gg/matches/current</td></tr><tr><td><strong>polymarket</strong></td><td>live</td>
-<td class="src">2026-10-20T23:24:07Z</td>
+<td class="src">2026-10-21T05:19:00Z</td>
 <td class="src">https://polymarket.com/sports/counter-strike-2</td></tr><tr><td><strong>vrs</strong></td><td>live</td>
-<td class="src">2026-10-20T23:24:08Z</td>
+<td class="src">2026-10-21T05:19:01Z</td>
 <td class="src">https://github.com/ValveSoftware/counter-strike_regional_standings/blob/eec4853d7bcf0f1f7efe7f0d901234bef7e98b75/live/2026/standings_global_2026_10_05.md</td></tr><tr><td><strong>hltv</strong></td><td>live</td>
-<td class="src">2026-10-20T23:24:08Z</td>
+<td class="src">2026-10-21T05:19:01Z</td>
 <td class="src">https://www.hltv.org/ranking/teams/2026/october/19</td></tr></table></div>
 <h2>Automation</h2>
 <p>The scheduled workflow runs every four hours: collect, model, build, run the invariant tests,
