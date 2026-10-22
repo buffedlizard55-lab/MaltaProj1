@@ -1,21 +1,21 @@
 {
  "meta": {
-  "generated_for_utc": "2026-10-21T22:29:28Z",
-  "data_as_of_utc": "2026-10-21T22:23:34Z",
-  "newest_input_age_hours": 0.1,
+  "generated_for_utc": "2026-10-22T01:36:12Z",
+  "data_as_of_utc": "2026-10-21T22:42:11Z",
+  "newest_input_age_hours": 2.9,
   "max_input_age_hours": 6.0,
   "stale": false,
   "counts": {
-   "rows": 44,
+   "rows": 43,
    "open": 12,
-   "locked": 32,
+   "locked": 31,
    "open_with_pick": 3,
    "open_market_basis": 3,
    "open_own_line_basis": 0,
    "open_research_basis": 0,
    "open_without_pick": 9,
-   "flags": 98,
-   "rows_with_flags": 44
+   "flags": 96,
+   "rows_with_flags": 43
   },
   "inputs": [
    {
@@ -23,9 +23,9 @@
     "label": "Secondary-market feed (arena/a0bdf924)",
     "page": "feeds/index.html",
     "file": "feeds/data/fixtures.csv",
-    "captured_utc": "2026-10-21T19:34:13Z",
-    "sha256": "1fd07d894fc261443d69e04488f0d741f00b841561eca0b1efe22b5a4a612e0b",
-    "rows": 13
+    "captured_utc": "2026-10-21T22:42:11Z",
+    "sha256": "450723e36980994cb60d478849c4df4e39d62c771ec1763ad2e58ad176ba6c2c",
+    "rows": 12
    },
    {
     "key": "cs2",
@@ -1808,41 +1808,6 @@
    ]
   },
   {
-   "fixture_id": "1082837",
-   "competition": "CCT South America 2026 Series #7",
-   "tier": "c",
-   "team_a": "Zetta",
-   "team_b": "LOS NINOS",
-   "start_utc": "2026-10-21T22:00:00Z",
-   "lock_utc": "2026-10-21T21:54:00Z",
-   "state": "locked",
-   "series_format": "",
-   "format_source": "",
-   "basis_rung": "none",
-   "basis_label": "no basis -- blank, not guessed",
-   "basis_detail": "",
-   "p_a_pct": null,
-   "p_b_pct": null,
-   "pick": "",
-   "pick_pct": null,
-   "margin_pp": null,
-   "confidence": "no basis",
-   "source_url": "",
-   "read_utc": "",
-   "hltv_match_url": "",
-   "hotspawn_match_url": "https://www.hotspawn.com/matches/zetta-vs-los-ninos-cct-south-america-2026-series-7-1082837",
-   "board_flags": "MF-01;MF-02",
-   "flags": [
-    "C-FORMAT-UNKNOWN",
-    "C-NO-BASIS",
-    "C-NO-SECONDARY-MARKET",
-    "C-OPPONENT-CONFLICT"
-   ],
-   "market_candidates": [],
-   "own_line": null,
-   "research_lines": []
-  },
-  {
    "fixture_id": "1081870",
    "competition": "VOID Autumn Cup 2026",
    "tier": "c",
@@ -1866,10 +1831,11 @@
    "read_utc": "",
    "hltv_match_url": "",
    "hotspawn_match_url": "https://www.hotspawn.com/matches/vitalem-aerem-vs-rare-atom-void-autumn-cup-2026-1081870",
-   "board_flags": "MF-01",
+   "board_flags": "MF-01;MF-05",
    "flags": [
     "C-NO-BASIS",
-    "C-NO-SECONDARY-MARKET"
+    "C-NO-SECONDARY-MARKET",
+    "C-QUOTE-REJECTED"
    ],
    "market_candidates": [],
    "own_line": null,
@@ -1964,7 +1930,7 @@
    "margin_pp": 51.400000000000006,
    "confidence": "heavy favourite",
    "source_url": "https://thunderpick.io/match/2859701",
-   "read_utc": "2026-10-21T19:34:00Z",
+   "read_utc": "2026-10-21T22:42:01Z",
    "hltv_match_url": "",
    "hotspawn_match_url": "https://www.hotspawn.com/matches/imperial-vs-turma-do-pagode-circuit-x-curitiba-4-1082688",
    "board_flags": "",
@@ -1982,7 +1948,7 @@
      "odds_b": "",
      "overround_pct": "",
      "url": "https://thunderpick.io/match/2859701",
-     "read_utc": "2026-10-21T19:34:00Z",
+     "read_utc": "2026-10-21T22:42:01Z",
      "caveat": "quote relayed by bo3.gg's public API, not read from the bookmaker's own site (MF-09); the bookmaker match URL is linked so the price can be checked by hand"
     },
     {
@@ -1995,7 +1961,7 @@
      "odds_b": "",
      "overround_pct": "",
      "url": "https://polymarket.com/event/cs2-imp11-tdp-2026-10-22",
-     "read_utc": "2026-10-21T19:34:00Z",
+     "read_utc": "2026-10-21T22:42:01Z",
      "caveat": "prediction market (traded prices, no bookmaker margin, MF-10); thin books move quickly"
     }
    ],
@@ -2016,45 +1982,46 @@
    "basis_rung": "market-2",
    "basis_label": "book \u00b7 relayed via bo3.gg",
    "basis_detail": "Thunderpick \u2014 quote relayed by bo3.gg's public API, not read from the bookmaker's own site (MF-09); the bookmaker match URL is linked so the price can be checked by hand",
-   "p_a_pct": 51.89,
-   "p_b_pct": 48.11,
+   "p_a_pct": 50.81,
+   "p_b_pct": 49.19,
    "pick": "BESTIA",
-   "pick_pct": 51.89,
-   "margin_pp": 3.780000000000001,
-   "confidence": "narrow favourite",
+   "pick_pct": 50.81,
+   "margin_pp": 1.6200000000000045,
+   "confidence": "coin-flip",
    "source_url": "https://thunderpick.io/match/2859702",
-   "read_utc": "2026-10-21T19:34:00Z",
+   "read_utc": "2026-10-21T22:42:01Z",
    "hltv_match_url": "",
    "hotspawn_match_url": "https://www.hotspawn.com/matches/bestia-vs-shinden-circuit-x-curitiba-4-1082689",
-   "board_flags": "",
+   "board_flags": "MF-07",
    "flags": [
-    "C-RELAYED-BOOK-PRICE"
+    "C-RELAYED-BOOK-PRICE",
+    "C-THIN-MARKET"
    ],
    "market_candidates": [
     {
      "rung": 2,
      "rung_label": "book \u00b7 relayed via bo3.gg",
      "book": "Thunderpick",
-     "p_a": 51.89,
-     "p_b": 48.11,
+     "p_a": 50.81,
+     "p_b": 49.19,
      "odds_a": "",
      "odds_b": "",
      "overround_pct": "",
      "url": "https://thunderpick.io/match/2859702",
-     "read_utc": "2026-10-21T19:34:00Z",
+     "read_utc": "2026-10-21T22:42:01Z",
      "caveat": "quote relayed by bo3.gg's public API, not read from the bookmaker's own site (MF-09); the bookmaker match URL is linked so the price can be checked by hand"
     },
     {
      "rung": 4,
      "rung_label": "prediction market \u00b7 Polymarket",
      "book": "Polymarket",
-     "p_a": 52.5,
-     "p_b": 47.5,
+     "p_a": 47.5,
+     "p_b": 52.5,
      "odds_a": "",
      "odds_b": "",
      "overround_pct": "",
      "url": "https://polymarket.com/event/cs2-bst-shin-2026-10-22",
-     "read_utc": "2026-10-21T19:34:00Z",
+     "read_utc": "2026-10-21T22:42:01Z",
      "caveat": "prediction market (traded prices, no bookmaker margin, MF-10); thin books move quickly"
     }
    ],
@@ -2075,14 +2042,14 @@
    "basis_rung": "market-2",
    "basis_label": "book \u00b7 relayed via bo3.gg",
    "basis_detail": "Thunderpick \u2014 quote relayed by bo3.gg's public API, not read from the bookmaker's own site (MF-09); the bookmaker match URL is linked so the price can be checked by hand",
-   "p_a_pct": 38.46,
-   "p_b_pct": 61.54,
+   "p_a_pct": 39.28,
+   "p_b_pct": 60.72,
    "pick": "Apogee Betclic",
-   "pick_pct": 61.54,
-   "margin_pp": 23.08,
+   "pick_pct": 60.72,
+   "margin_pp": 21.439999999999998,
    "confidence": "strong favourite",
    "source_url": "https://thunderpick.io/match/2865424",
-   "read_utc": "2026-10-21T19:34:00Z",
+   "read_utc": "2026-10-21T22:42:01Z",
    "hltv_match_url": "",
    "hotspawn_match_url": "https://www.hotspawn.com/matches/unity-vs-apogee-betclic-stake-ranked-episode-6-closed-qualifier-1082882",
    "board_flags": "MF-02",
@@ -2095,13 +2062,13 @@
      "rung": 2,
      "rung_label": "book \u00b7 relayed via bo3.gg",
      "book": "Thunderpick",
-     "p_a": 38.46,
-     "p_b": 61.54,
+     "p_a": 39.28,
+     "p_b": 60.72,
      "odds_a": "",
      "odds_b": "",
      "overround_pct": "",
      "url": "https://thunderpick.io/match/2865424",
-     "read_utc": "2026-10-21T19:34:00Z",
+     "read_utc": "2026-10-21T22:42:01Z",
      "caveat": "quote relayed by bo3.gg's public API, not read from the bookmaker's own site (MF-09); the bookmaker match URL is linked so the price can be checked by hand"
     }
    ],
