@@ -1,4 +1,4 @@
-== O-01 reproduction (session arena/a174d77f, run 39864329106) ==
+== O-01 reproduction (session arena/a174d77f, run 39884572953) ==
 -- fetch --
   "commit": "eec4853d7bcf0f1f7efe7f0d901234bef7e98b75",
   "path": "live/2026/standings_global_2026_10_05.md"
@@ -6,14 +6,14 @@
  "hltv": {
   "url": "https://www.hltv.org/ranking/teams",
   "final_url": "https://www.hltv.org/ranking/teams/2026/october/19",
-  "fetched_utc": "2026-10-22T22:24:27Z",
+  "fetched_utc": "2026-10-23T01:41:32Z",
   "http_status": 200,
-  "bytes": 1094715,
-  "sha256": "f75a95d59c0b15df018bd9fdcfe910da2a760cb3a34b66648d4b706b38328463",
+  "bytes": 1059158,
+  "sha256": "779e0c3d3bca87d20388dda57393a25fa076a2d847ae107e9f961cdac339d31b",
   "attempts": [
    {
     "url": "https://www.hltv.org/ranking/teams",
-    "fetched_utc": "2026-10-22T22:24:27Z",
+    "fetched_utc": "2026-10-23T01:41:32Z",
     "http_status": 200
    }
   ],
@@ -30,7 +30,7 @@
  "adopted": true
 }
 -- build --
-fixtures=85 own_lines=50 blank=35 teams=117 flags=35
+fixtures=84 own_lines=49 blank=35 teams=115 flags=35
 -- tests --
 test_against_valve_javascript (test_model.TestFormula.test_against_valve_javascript) ... ok
 test_closed_form_matches_port (test_model.TestFormula.test_closed_form_matches_port) ... ok
@@ -77,6 +77,6 @@ AssertionError: '' != 'ex-RUSTEC'
 
 
 ----------------------------------------------------------------------
-Ran 16 tests in 2.211s
+Ran 16 tests in 0.253s
 
 FAILED (failures=2)
