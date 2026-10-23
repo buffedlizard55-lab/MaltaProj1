@@ -11,170 +11,16 @@
 <header class="top"><div class="top-in">
   <div class="brand">
     <h1>Hotspawn Pick'em — line board</h1>
-    <span class="stamp">data snapshot 2026-10-23T05:21:35Z UTC · <span id="count"></span></span>
+    <span class="stamp">data snapshot 2026-10-23T12:09:30Z UTC · <span id="count"></span></span>
   </div>
   <nav class="pages"><a href="index.html">Dashboard</a><a href="matches.html">All matches</a><a href="cs2.html">CS2</a><a href="lol.html">LoL</a><a href="tournaments.html">Tournaments</a><a href="by-tier.html">Tiers</a><a href="odds.html">Bookmaker lines</a><a href="ratings.html">Team ratings</a><a href="methodology.html">Method</a><a href="sources.html">Sources</a><a href="flagged.html" class="active">Flagged for review</a><a href="repo-review.html">Repo review</a></nav>
 </div></header>
 <main>
 <h2>Flagged for review</h2>
 
-<div class="note warnbox">Nothing on this page blocks publication: each item is a value that could not be confirmed from an official source, or a reading that rests on a single source. Review the linked evidence and open an issue if a value looks wrong.</div><div class="card"><div class="k">R-COUNT</div><h3>The lobby&#x27;s &#x27;matches this week&#x27; count differs from the rows in the payload window</h3><p>The lobby page prints 197 matches this week (context: &quot; Tournaments How To Play League of Legends Pick&#x27;em Lobby Play other game titles This week 139 matches this week Resets in 2d 19h 00m 18s Sign in to tra&quot;), while the same page&#x27;s payload yields 111 rows whose start falls inside the week window that ends 2026-10-26T00:19:19Z (the window comes from the page&#x27;s own reset countdown). Per-page header counts: lobby=197, cs2-pickems=197, thp-pickems=197, lol-pickems=139. The difference is published, not explained away; the board shows every row the payload contains in the window.</p><div class="tag">source: <a href="https://play.hotspawn.com/lobby" rel="noopener">https://play.hotspawn.com/lobby</a></div><div class="chips" style="margin-top:6px"></div></div><div class="card"><div class="k">R-STALE</div><h3>244 payload listings fall outside this pick&#x27;em week</h3><p>Hotspawn still serves these rows as &#x27;scheduled&#x27; although their start time is outside the current week window, so no line is originated for them.</p><div class="tag">source: <a href="https://play.hotspawn.com/lobby" rel="noopener">https://play.hotspawn.com/lobby</a></div><div class="chips" style="margin-top:6px"><span class="chip warn">{&#x27;match_id&#x27;: &#x27;1052746&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;European Pro League Series 8 Play-In&#x27;, &#x27;team_a&#x27;: &#x27;Fortress&#x27;, &#x27;team_b&#x27;: &#x27;Endless Journey&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-26T10:30:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1051339&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;DraculaN Season 7&#x27;, &#x27;team_a&#x27;: &#x27;Acend&#x27;, &#x27;team_b&#x27;: &#x27;Infinite&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-26T12:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1051301&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;LG UltraGear Tournament 2026&#x27;, &#x27;team_a&#x27;: &#x27;CYBERSHOKE Prospects&#x27;, &#x27;team_b&#x27;: &#x27;PCIFIC&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-26T13:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1053068&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;Svenska CS-Ligan 2026&#x27;, &#x27;team_a&#x27;: &#x27;Johnny Speeds&#x27;, &#x27;team_b&#x27;: &#x27;ReThink&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-26T13:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1052747&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;European Pro League Series 8 Play-In&#x27;, &#x27;team_a&#x27;: &#x27;Sashi Academy&#x27;, &#x27;team_b&#x27;: &#x27;eternal premium&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-26T13:10:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1053146&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;Rainhas do Clutch 2026&#x27;, &#x27;team_a&#x27;: &#x27;Atrix&#x27;, &#x27;team_b&#x27;: &#x27;Clutchain&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-26T14:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1051340&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;DraculaN Season 7&#x27;, &#x27;team_a&#x27;: &#x27;Walczaki&#x27;, &#x27;team_b&#x27;: &#x27;Inner Circle&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-26T15:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1053069&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;Svenska CS-Ligan 2026&#x27;, &#x27;team_a&#x27;: &#x27;roamsfiest&#x27;, &#x27;team_b&#x27;: &#x27;train launcher&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-26T16:45:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1052686&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;Rainhas do Clutch 2026&#x27;, &#x27;team_a&#x27;: &#x27;shimmer&#x27;, &#x27;team_b&#x27;: &#x27;MIBR fe&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-26T17:45:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1051789&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;Thunderpick World Championship 2026: South American Series #1&#x27;, &#x27;team_a&#x27;: &#x27;MIBR Academy&#x27;, &#x27;team_b&#x27;: &#x27;Isurus&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-26T18:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1053070&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;Svenska CS-Ligan 2026&#x27;, &#x27;team_a&#x27;: &#x27;ReThink&#x27;, &#x27;team_b&#x27;: &#x27;train launcher&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-26T19:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1051790&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;Thunderpick World Championship 2026: South American Series #1&#x27;, &#x27;team_a&#x27;: &#x27;Keyd&#x27;, &#x27;team_b&#x27;: &#x27;Yawara&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-26T21:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1052748&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;European Pro League Series 8 Play-In&#x27;, &#x27;team_a&#x27;: &#x27;Inner Circle Academy&#x27;, &#x27;team_b&#x27;: &#x27;sAw&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-27T08:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1053071&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;Svenska CS-Ligan 2026&#x27;, &#x27;team_a&#x27;: &#x27;Johnny Speeds&#x27;, &#x27;team_b&#x27;: &#x27;roamsfiest&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-27T10:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1052749&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;European Pro League Series 8 Play-In&#x27;, &#x27;team_a&#x27;: &#x27;Misa&#x27;, &#x27;team_b&#x27;: &#x27;WROTBERRY&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-27T10:30:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1052180&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;CCT Europe 2026 Challengers #4&#x27;, &#x27;team_a&#x27;: &#x27;NEW VISION&#x27;, &#x27;team_b&#x27;: &#x27;Julie&amp;Cie&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-27T11:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1052181&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;CCT Europe 2026 Challengers #4&#x27;, &#x27;team_a&#x27;: &#x27;Just Players&#x27;, &#x27;team_b&#x27;: &#x27;OlyBet&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-27T11:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1051800&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;Thunderpick World Championship 2026: South American Series #1&#x27;, &#x27;team_a&#x27;: &#x27;ShindeN&#x27;, &#x27;team_b&#x27;: &#x27;MIBR Academy&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-27T13:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1052699&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;CCT South America 2026 Series #3&#x27;, &#x27;team_a&#x27;: &#x27;Vasco&#x27;, &#x27;team_b&#x27;: &#x27;Red Feet&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-27T13:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1052183&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;CCT Europe 2026 Challengers #4&#x27;, &#x27;team_a&#x27;: &#x27;Misa&#x27;, &#x27;team_b&#x27;: &#x27;Wampirki&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-27T13:45:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1051341&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;DraculaN Season 7&#x27;, &#x27;team_a&#x27;: &#x27;Sharks&#x27;, &#x27;team_b&#x27;: &#x27;Inner Circle&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-27T13:50:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1052599&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;CCT Europe 2026 Challengers #4&#x27;, &#x27;team_a&#x27;: &#x27;Mai Tai&#x27;, &#x27;team_b&#x27;: &#x27;Megoshort&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-27T14:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1053072&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;Svenska CS-Ligan 2026&#x27;, &#x27;team_a&#x27;: &#x27;train launcher&#x27;, &#x27;team_b&#x27;: &#x27;roamsfiest&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-27T14:10:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1052357&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;DACH CS Masters Season 5&#x27;, &#x27;team_a&#x27;: &#x27;BIG Academy&#x27;, &#x27;team_b&#x27;: &#x27;BERG&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-27T15:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1051801&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;Thunderpick World Championship 2026: South American Series #1&#x27;, &#x27;team_a&#x27;: &#x27;Bounty Hunters&#x27;, &#x27;team_b&#x27;: &#x27;UNO MILLE&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-27T16:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1052700&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;CCT South America 2026 Series #3&#x27;, &#x27;team_a&#x27;: &#x27;GameHunters&#x27;, &#x27;team_b&#x27;: &#x27;VEXA&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-27T16:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1051342&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;DraculaN Season 7&#x27;, &#x27;team_a&#x27;: &#x27;ex-Tricked&#x27;, &#x27;team_b&#x27;: &#x27;Acend&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-27T17:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1053073&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;Svenska CS-Ligan 2026&#x27;, &#x27;team_a&#x27;: &#x27;roamsfiest&#x27;, &#x27;team_b&#x27;: &#x27;ReThink&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-27T17:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1052701&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;CCT South America 2026 Series #3&#x27;, &#x27;team_a&#x27;: &#x27;paiN Academy&#x27;, &#x27;team_b&#x27;: &#x27;Alka&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-27T19:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1053313&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;Thunderpick World Championship 2026: South American Series #1&#x27;, &#x27;team_a&#x27;: &#x27;Fake do Biru&#x27;, &#x27;team_b&#x27;: &#x27;LP&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-27T19:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1051803&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;Thunderpick World Championship 2026: South American Series #1&#x27;, &#x27;team_a&#x27;: &#x27;Fluxo&#x27;, &#x27;team_b&#x27;: &#x27;Keyd&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-27T22:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1052702&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;CCT South America 2026 Series #3&#x27;, &#x27;team_a&#x27;: &#x27;Procyon&#x27;, &#x27;team_b&#x27;: &#x27;BESTIA Academy&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-27T22:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1052750&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;European Pro League Series 8 Play-In&#x27;, &#x27;team_a&#x27;: &#x27;Honvéd&#x27;, &#x27;team_b&#x27;: &#x27;OlyBet&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-28T08:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1052751&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;European Pro League Series 8 Play-In&#x27;, &#x27;team_a&#x27;: &#x27;ex-MANA&#x27;, &#x27;team_b&#x27;: &#x27;Subtop De France&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-28T10:50:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1052185&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;CCT Europe 2026 Challengers #4&#x27;, &#x27;team_a&#x27;: &#x27;sAw&#x27;, &#x27;team_b&#x27;: &#x27;Entropy&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-28T11:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1053431&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;Urban Riga Open #5&#x27;, &#x27;team_a&#x27;: &#x27;GAMEHARMONY&#x27;, &#x27;team_b&#x27;: &#x27;Coalesce&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-28T11:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1053432&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;Urban Riga Open #5&#x27;, &#x27;team_a&#x27;: &#x27;Leo&#x27;, &#x27;team_b&#x27;: &#x27;Aimhaus&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-28T11:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1053433&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;Urban Riga Open #5&#x27;, &#x27;team_a&#x27;: &#x27;GAMEHARMONY&#x27;, &#x27;team_b&#x27;: &#x27;Aimhaus&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-28T12:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1053434&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;Urban Riga Open #5&#x27;, &#x27;team_a&#x27;: &#x27;Leo&#x27;, &#x27;team_b&#x27;: &#x27;Coalesce&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-28T12:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1052698&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;CCT South America 2026 Series #3&#x27;, &#x27;team_a&#x27;: &#x27;ex-KRÜ&#x27;, &#x27;team_b&#x27;: &#x27;MAGICOS&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-28T13:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1053435&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;Urban Riga Open #5&#x27;, &#x27;team_a&#x27;: &#x27;GAMEHARMONY&#x27;, &#x27;team_b&#x27;: &#x27;Leo&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-28T13:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1053436&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;Urban Riga Open #5&#x27;, &#x27;team_a&#x27;: &#x27;Aimhaus&#x27;, &#x27;team_b&#x27;: &#x27;Coalesce&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-28T13:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1051343&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;DraculaN Season 7&#x27;, &#x27;team_a&#x27;: &#x27;Sharks&#x27;, &#x27;team_b&#x27;: &#x27;ex-Tricked&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-28T13:35:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1052186&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;CCT Europe 2026 Challengers #4&#x27;, &#x27;team_a&#x27;: &#x27;Lilmix&#x27;, &#x27;team_b&#x27;: &#x27;Subtop De France&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-28T13:45:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1052187&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;CCT Europe 2026 Challengers #4&#x27;, &#x27;team_a&#x27;: &#x27;BIG Academy&#x27;, &#x27;team_b&#x27;: &#x27;Endless Journey&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-28T13:45:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1052184&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;CCT Europe 2026 Challengers #4&#x27;, &#x27;team_a&#x27;: &#x27;Atreides&#x27;, &#x27;team_b&#x27;: &#x27;Donstu&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-28T14:05:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1052696&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;CCT South America 2026 Series #3&#x27;, &#x27;team_a&#x27;: &#x27;Yawara&#x27;, &#x27;team_b&#x27;: &#x27;Blitzkrieg&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-28T16:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1053439&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;Urban Riga Open #5&#x27;, &#x27;team_a&#x27;: &#x27;6666&#x27;, &#x27;team_b&#x27;: &#x27;ASTRAL&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-28T16:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1053469&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;Urban Riga Open #5&#x27;, &#x27;team_a&#x27;: &#x27;BERG&#x27;, &#x27;team_b&#x27;: &#x27;SINQU REHTI&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-28T16:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1053441&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;Urban Riga Open #5&#x27;, &#x27;team_a&#x27;: &#x27;ASTRAL&#x27;, &#x27;team_b&#x27;: &#x27;BERG&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-28T17:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1053470&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;Urban Riga Open #5&#x27;, &#x27;team_a&#x27;: &#x27;6666&#x27;, &#x27;team_b&#x27;: &#x27;SINQU REHTI&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-28T17:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1051344&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;DraculaN Season 7&#x27;, &#x27;team_a&#x27;: &#x27;Inner Circle&#x27;, &#x27;team_b&#x27;: &#x27;Acend&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-28T17:30:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1051804&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;Thunderpick World Championship 2026: South American Series #1&#x27;, &#x27;team_a&#x27;: &#x27;Fluxo&#x27;, &#x27;team_b&#x27;: &#x27;UNO MILLE&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-28T18:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1053442&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;Urban Riga Open #5&#x27;, &#x27;team_a&#x27;: &#x27;6666&#x27;, &#x27;team_b&#x27;: &#x27;BERG&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-28T18:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1053471&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;Urban Riga Open #5&#x27;, &#x27;team_a&#x27;: &#x27;ASTRAL&#x27;, &#x27;team_b&#x27;: &#x27;SINQU REHTI&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-28T18:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1052697&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;CCT South America 2026 Series #3&#x27;, &#x27;team_a&#x27;: &#x27;METANOIA Wolves&#x27;, &#x27;team_b&#x27;: &#x27;Guara&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-28T19:05:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1053679&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;Thunderpick World Championship 2026: South American Series #1&#x27;, &#x27;team_a&#x27;: &#x27;ShindeN&#x27;, &#x27;team_b&#x27;: &#x27;LP&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-28T21:15:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1052695&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;CCT South America 2026 Series #3&#x27;, &#x27;team_a&#x27;: &#x27;MIBR Academy&#x27;, &#x27;team_b&#x27;: &#x27;Patins de Ferrari&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-28T22:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1055478&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;European Pro League Series 8&#x27;, &#x27;team_a&#x27;: &#x27;illwill&#x27;, &#x27;team_b&#x27;: &#x27;Lavked&#x27;, &#x27;start_utc&#x27;: &#x27;2026-07-10T08:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1053095&#x27;, &#x27;sport&#x27;: &#x27;lol&#x27;, &#x27;competition&#x27;: &#x27;Benelux Ascend Series 2026 Summer Split&#x27;, &#x27;team_a&#x27;: &#x27;Mind Blue eSports&#x27;, &#x27;team_b&#x27;: &#x27;LAST DANCE&#x27;, &#x27;start_utc&#x27;: &#x27;2026-08-26T17:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lol-pickems&#x27;}</span>  <span class="muted small">(+184 more)</span></div></div><div class="card"><div class="k">R-NOMKT</div><h3>111 fixtures have no external bookmaker price</h3><p>Those values are left blank in the published dataset and shown as &quot;-&quot; on the board.</p><div class="tag">source: <a href="https://egamersworld.com/counterstrike/matches" rel="noopener">https://egamersworld.com/counterstrike/matches</a></div><div class="chips" style="margin-top:6px"><span class="chip warn">1071214</span> <span class="chip warn">1071218</span> <span class="chip warn">1071219</span> <span class="chip warn">1074667</span> <span class="chip warn">1075736</span> <span class="chip warn">1081651</span> <span class="chip warn">1081652</span> <span class="chip warn">1081653</span> <span class="chip warn">1081654</span> <span class="chip warn">1081655</span> <span class="chip warn">1081656</span> <span class="chip warn">1082105</span> <span class="chip warn">1071215</span> <span class="chip warn">1081659</span> <span class="chip warn">1081660</span> <span class="chip warn">1081661</span> <span class="chip warn">1081662</span> <span class="chip warn">1081663</span> <span class="chip warn">1081664</span> <span class="chip warn">1081667</span> <span class="chip warn">1081668</span> <span class="chip warn">1081669</span> <span class="chip warn">1081670</span> <span class="chip warn">1081671</span> <span class="chip warn">1081672</span> <span class="chip warn">1081871</span> <span class="chip warn">1081872</span> <span class="chip warn">1079654</span> <span class="chip warn">1081149</span> <span class="chip warn">1079655</span> <span class="chip warn">1081148</span> <span class="chip warn">1081605</span> <span class="chip warn">1081606</span> <span class="chip warn">1082926</span> <span class="chip warn">1083014</span> <span class="chip warn">1071212</span> <span class="chip warn">1079023</span> <span class="chip warn">1082745</span> <span class="chip warn">1082839</span> <span class="chip warn">1082924</span> <span class="chip warn">1067878</span> <span class="chip warn">1079657</span> <span class="chip warn">1081150</span> <span class="chip warn">1067677</span> <span class="chip warn">1079139</span> <span class="chip warn">1082106</span> <span class="chip warn">1082693</span> <span class="chip warn">1079025</span> <span class="chip warn">1079849</span> <span class="chip warn">1067680</span> <span class="chip warn">1082925</span> <span class="chip warn">1067675</span> <span class="chip warn">1067676</span> <span class="chip warn">1067879</span> <span class="chip warn">1082923</span> <span class="chip warn">1067678</span> <span class="chip warn">1067679</span> <span class="chip warn">1079193</span> <span class="chip warn">1075719</span> <span class="chip warn">1079195</span>  <span class="muted small">(+51 more)</span></div></div><div class="card"><div class="k">R-NORATE</div><h3>94 fixtures have no own-line rating for both teams</h3><p>Those values are left blank in the published dataset and shown as &quot;-&quot; on the board.</p><div class="tag">source: <a href="https://www.hltv.org/ranking/teams/2026/october/12" rel="noopener">https://www.hltv.org/ranking/teams/2026/october/12</a></div><div class="chips" style="margin-top:6px"><span class="chip warn">1071214</span> <span class="chip warn">1071218</span> <span class="chip warn">1071219</span> <span class="chip warn">1074667</span> <span class="chip warn">1075736</span> <span class="chip warn">1081651</span> <span class="chip warn">1081652</span> <span class="chip warn">1081653</span> <span class="chip warn">1081654</span> <span class="chip warn">1081655</span> <span class="chip warn">1081656</span> <span class="chip warn">1082105</span> <span class="chip warn">1071215</span> <span class="chip warn">1081659</span> <span class="chip warn">1081660</span> <span class="chip warn">1081661</span> <span class="chip warn">1081662</span> <span class="chip warn">1081663</span> <span class="chip warn">1081664</span> <span class="chip warn">1081667</span> <span class="chip warn">1081668</span> <span class="chip warn">1081669</span> <span class="chip warn">1081670</span> <span class="chip warn">1081671</span> <span class="chip warn">1081672</span> <span class="chip warn">1081149</span> <span class="chip warn">1082926</span> <span class="chip warn">1071212</span> <span class="chip warn">1079023</span> <span class="chip warn">1082745</span> <span class="chip warn">1082839</span> <span class="chip warn">1067878</span> <span class="chip warn">1067677</span> <span class="chip warn">1079139</span> <span class="chip warn">1082106</span> <span class="chip warn">1079025</span> <span class="chip warn">1079849</span> <span class="chip warn">1067680</span> <span class="chip warn">1082925</span> <span class="chip warn">1067675</span> <span class="chip warn">1067676</span> <span class="chip warn">1067879</span> <span class="chip warn">1082923</span> <span class="chip warn">1067678</span> <span class="chip warn">1067679</span> <span class="chip warn">1079193</span> <span class="chip warn">1075719</span> <span class="chip warn">1081085</span> <span class="chip warn">1081086</span> <span class="chip warn">1080923</span> <span class="chip warn">1080924</span> <span class="chip warn">1080925</span> <span class="chip warn">1080926</span> <span class="chip warn">1080927</span> <span class="chip warn">1074652</span> <span class="chip warn">1074654</span> <span class="chip warn">1074655</span> <span class="chip warn">1074657</span> <span class="chip warn">1074658</span> <span class="chip warn">1074659</span>  <span class="muted small">(+34 more)</span></div></div><div class="card"><div class="k">R-HLTV</div><h3>HLTV world ranking could not be read for this run</h3><p>The public HLTV ranking page answered with a Cloudflare challenge page instead of the ranking table. No bypass is attempted; the own line uses the published Valve Regional Standings only and every HLTV column stays blank rather than being filled in.</p><div class="tag">source: <a href="https://www.hltv.org/ranking/teams/2026/october/12" rel="noopener">https://www.hltv.org/ranking/teams/2026/october/12</a></div><div class="chips" style="margin-top:6px"></div></div><div class="card"><div class="k">R-LOCKED</div><h3>27 fixtures were already locked when this board was built</h3><p>Their pick&#x27;em lock time had passed; the rows stay published for completeness and are labelled locked.</p><div class="chips" style="margin-top:6px"><span class="chip warn">1071214</span> <span class="chip warn">1071218</span> <span class="chip warn">1071219</span> <span class="chip warn">1074667</span> <span class="chip warn">1075736</span> <span class="chip warn">1081651</span> <span class="chip warn">1081652</span> <span class="chip warn">1081653</span> <span class="chip warn">1081654</span> <span class="chip warn">1081655</span> <span class="chip warn">1081656</span> <span class="chip warn">1082105</span> <span class="chip warn">1071215</span> <span class="chip warn">1081659</span> <span class="chip warn">1081660</span> <span class="chip warn">1081661</span> <span class="chip warn">1081662</span> <span class="chip warn">1081663</span> <span class="chip warn">1081664</span> <span class="chip warn">1081667</span> <span class="chip warn">1081668</span> <span class="chip warn">1081669</span> <span class="chip warn">1081670</span> <span class="chip warn">1081671</span> <span class="chip warn">1081672</span> <span class="chip warn">1081871</span> <span class="chip warn">1081872</span> </div></div><h2>Fixture rows with incomplete values</h2><div class="tablewrap"><table><caption class="muted small" style="text-align:left;padding:8px 10px">Fixtures whose values are incomplete or rest on a single reading — never filled in by inference.</caption><thead><tr><th>Match</th><th>Start</th><th>Bookmaker line (de-vigged)</th><th>Our own line</th><th>Pick</th><th>Sources &amp; flags</th></tr></thead><tbody><tr data-search="ascent gaming ntnui kometkameratene komplettligaen 2026 autumn" data-tournament="Komplettligaen 2026 Autumn" data-sport="lol" data-missing="1">
-<td data-label="Match"><strong>Ascent Gaming</strong> <span class="muted">vs</span> <strong>NTNUI Kometkameratene</strong>
-  <div class="tag"><span class="tier">C</span> Komplettligaen 2026 Autumn · 10 pts
-  </div></td>
-<td data-label="Start (UTC)"><time data-utc="2026-10-22T15:00:00Z">2026-10-22T15:00:00Z</time>
-  <div class="tag">lock 2026-10-22T14:55:00Z · <span class="chip">started</span></div></td>
-<td data-label="Bookmaker line"><div class="bar empty"><span>—</span></div>
-  <div class="tag">— / —
-  </div></td>
-<td data-label="Our own line"><div class="bar empty"><span>—</span></div>
-  <div class="tag">not available — see flag</div></td>
-<td data-label="Pick"><span class="chip warn">no pick</span></td>
-<td data-label="Sources"><a href="https://www.hotspawn.com/matches/1071214" rel="noopener">Hotspawn</a><div class="chips"><span class="chip warn" title="No external match page matched this fixture">No external match page matched this fixture</span> <span class="chip warn" title="no_external_price_found">no_external_price_found</span> <span class="chip warn" title="Neither a bookmaker price nor a rating line could be sourced">Neither a bookmaker price nor a rating line coul</span> <span class="chip warn" title="vrs_rating_missing:Ascent Gaming,NTNUI Kometkameratene">no VRS rating: Ascent Gaming,NTNUI Kometkameratene</span></div></td>
-</tr>
-<tr data-search="volda e-sport cng royal komplettligaen 2026 autumn" data-tournament="Komplettligaen 2026 Autumn" data-sport="lol" data-missing="1">
-<td data-label="Match"><strong>Volda E-Sport</strong> <span class="muted">vs</span> <strong>CNG Royal</strong>
-  <div class="tag"><span class="tier">C</span> Komplettligaen 2026 Autumn · 10 pts
-  </div></td>
-<td data-label="Start (UTC)"><time data-utc="2026-10-22T15:00:00Z">2026-10-22T15:00:00Z</time>
-  <div class="tag">lock 2026-10-22T14:55:00Z · <span class="chip">started</span></div></td>
-<td data-label="Bookmaker line"><div class="bar empty"><span>—</span></div>
-  <div class="tag">— / —
-  </div></td>
-<td data-label="Our own line"><div class="bar empty"><span>—</span></div>
-  <div class="tag">not available — see flag</div></td>
-<td data-label="Pick"><span class="chip warn">no pick</span></td>
-<td data-label="Sources"><a href="https://www.hotspawn.com/matches/1071218" rel="noopener">Hotspawn</a><div class="chips"><span class="chip warn" title="No external match page matched this fixture">No external match page matched this fixture</span> <span class="chip warn" title="no_external_price_found">no_external_price_found</span> <span class="chip warn" title="Neither a bookmaker price nor a rating line could be sourced">Neither a bookmaker price nor a rating line coul</span> <span class="chip warn" title="vrs_rating_missing:Volda E-Sport,CNG Royal">no VRS rating: Volda E-Sport,CNG Royal</span></div></td>
-</tr>
-<tr data-search="your saviours mixlag fra trondheim komplettligaen 2026 autumn" data-tournament="Komplettligaen 2026 Autumn" data-sport="lol" data-missing="1">
-<td data-label="Match"><strong>Your Saviours</strong> <span class="muted">vs</span> <strong>Mixlag fra Trondheim</strong>
-  <div class="tag"><span class="tier">C</span> Komplettligaen 2026 Autumn · 10 pts
-  </div></td>
-<td data-label="Start (UTC)"><time data-utc="2026-10-22T15:00:00Z">2026-10-22T15:00:00Z</time>
-  <div class="tag">lock 2026-10-22T14:55:00Z · <span class="chip">started</span></div></td>
-<td data-label="Bookmaker line"><div class="bar empty"><span>—</span></div>
-  <div class="tag">— / —
-  </div></td>
-<td data-label="Our own line"><div class="bar empty"><span>—</span></div>
-  <div class="tag">not available — see flag</div></td>
-<td data-label="Pick"><span class="chip warn">no pick</span></td>
-<td data-label="Sources"><a href="https://www.hotspawn.com/matches/1071219" rel="noopener">Hotspawn</a><div class="chips"><span class="chip warn" title="No external match page matched this fixture">No external match page matched this fixture</span> <span class="chip warn" title="no_external_price_found">no_external_price_found</span> <span class="chip warn" title="Neither a bookmaker price nor a rating line could be sourced">Neither a bookmaker price nor a rating line coul</span> <span class="chip warn" title="vrs_rating_missing:Your Saviours,Mixlag fra Trondheim">no VRS rating: Your Saviours,Mixlag fra Trondheim</span></div></td>
-</tr>
-<tr data-search="turbo gaming fritt fall rivals league season 2" data-tournament="RIVALS LEAGUE Season 2" data-sport="lol" data-missing="1">
-<td data-label="Match"><strong>Turbo Gaming</strong> <span class="muted">vs</span> <strong>Fritt Fall</strong>
-  <div class="tag"><span class="tier">WAITING FOR INFORMATION</span> RIVALS LEAGUE Season 2 · 10 pts
-  </div></td>
-<td data-label="Start (UTC)"><time data-utc="2026-10-22T16:30:00Z">2026-10-22T16:30:00Z</time>
-  <div class="tag">lock 2026-10-22T16:25:00Z · <span class="chip">started</span></div></td>
-<td data-label="Bookmaker line"><div class="bar empty"><span>—</span></div>
-  <div class="tag">— / —
-  </div></td>
-<td data-label="Our own line"><div class="bar empty"><span>—</span></div>
-  <div class="tag">not available — see flag</div></td>
-<td data-label="Pick"><span class="chip warn">no pick</span></td>
-<td data-label="Sources"><a href="https://www.hotspawn.com/matches/1074667" rel="noopener">Hotspawn</a><div class="chips"><span class="chip warn" title="No external match page matched this fixture">No external match page matched this fixture</span> <span class="chip warn" title="no_external_price_found">no_external_price_found</span> <span class="chip warn" title="Neither a bookmaker price nor a rating line could be sourced">Neither a bookmaker price nor a rating line coul</span> <span class="chip warn" title="vrs_rating_missing:Turbo Gaming,Fritt Fall">no VRS rating: Turbo Gaming,Fritt Fall</span></div></td>
-</tr>
-<tr data-search="blackdivision babos gaming academy prm 3rd division 26-27 fall" data-tournament="PRM 3rd Division 26-27 Fall" data-sport="lol" data-missing="1">
-<td data-label="Match"><strong>BlackDivision</strong> <span class="muted">vs</span> <strong>Babos Gaming Academy</strong>
-  <div class="tag"><span class="tier">WAITING FOR INFORMATION</span> PRM 3rd Division 26-27 Fall · 10 pts
-  </div></td>
-<td data-label="Start (UTC)"><time data-utc="2026-10-22T17:30:00Z">2026-10-22T17:30:00Z</time>
-  <div class="tag">lock 2026-10-22T17:25:00Z · <span class="chip">started</span></div></td>
-<td data-label="Bookmaker line"><div class="bar empty"><span>—</span></div>
-  <div class="tag">— / —
-  </div></td>
-<td data-label="Our own line"><div class="bar empty"><span>—</span></div>
-  <div class="tag">not available — see flag</div></td>
-<td data-label="Pick"><span class="chip warn">no pick</span></td>
-<td data-label="Sources"><a href="https://www.hotspawn.com/matches/1075736" rel="noopener">Hotspawn</a><div class="chips"><span class="chip warn" title="No external match page matched this fixture">No external match page matched this fixture</span> <span class="chip warn" title="no_external_price_found">no_external_price_found</span> <span class="chip warn" title="Neither a bookmaker price nor a rating line could be sourced">Neither a bookmaker price nor a rating line coul</span> <span class="chip warn" title="vrs_rating_missing:BlackDivision,Babos Gaming Academy">no VRS rating: BlackDivision,Babos Gaming Academy</span></div></td>
-</tr>
-<tr data-search="absolved the bandits uk 4 nations 2026 halloween heist" data-tournament="4 Nations 2026 Halloween Heist" data-sport="lol" data-missing="1">
-<td data-label="Match"><strong>Absolved</strong> <span class="muted">vs</span> <strong>The Bandits UK</strong>
-  <div class="tag"><span class="tier">WAITING FOR INFORMATION</span> 4 Nations 2026 Halloween Heist · 10 pts
-  </div></td>
-<td data-label="Start (UTC)"><time data-utc="2026-10-22T18:00:00Z">2026-10-22T18:00:00Z</time>
-  <div class="tag">lock 2026-10-22T17:55:00Z · <span class="chip">started</span></div></td>
-<td data-label="Bookmaker line"><div class="bar empty"><span>—</span></div>
-  <div class="tag">— / —
-  </div></td>
-<td data-label="Our own line"><div class="bar empty"><span>—</span></div>
-  <div class="tag">not available — see flag</div></td>
-<td data-label="Pick"><span class="chip warn">no pick</span></td>
-<td data-label="Sources"><a href="https://www.hotspawn.com/matches/1081651" rel="noopener">Hotspawn</a><div class="chips"><span class="chip warn" title="No external match page matched this fixture">No external match page matched this fixture</span> <span class="chip warn" title="no_external_price_found">no_external_price_found</span> <span class="chip warn" title="Neither a bookmaker price nor a rating line could be sourced">Neither a bookmaker price nor a rating line coul</span> <span class="chip warn" title="vrs_rating_missing:Absolved,The Bandits UK">no VRS rating: Absolved,The Bandits UK</span></div></td>
-</tr>
-<tr data-search="brod n friends crownless 4 nations 2026 halloween heist" data-tournament="4 Nations 2026 Halloween Heist" data-sport="lol" data-missing="1">
-<td data-label="Match"><strong>Brod n Friends</strong> <span class="muted">vs</span> <strong>Crownless</strong>
-  <div class="tag"><span class="tier">WAITING FOR INFORMATION</span> 4 Nations 2026 Halloween Heist · 10 pts
-  </div></td>
-<td data-label="Start (UTC)"><time data-utc="2026-10-22T18:00:00Z">2026-10-22T18:00:00Z</time>
-  <div class="tag">lock 2026-10-22T17:55:00Z · <span class="chip">started</span></div></td>
-<td data-label="Bookmaker line"><div class="bar empty"><span>—</span></div>
-  <div class="tag">— / —
-  </div></td>
-<td data-label="Our own line"><div class="bar empty"><span>—</span></div>
-  <div class="tag">not available — see flag</div></td>
-<td data-label="Pick"><span class="chip warn">no pick</span></td>
-<td data-label="Sources"><a href="https://www.hotspawn.com/matches/1081652" rel="noopener">Hotspawn</a><div class="chips"><span class="chip warn" title="No external match page matched this fixture">No external match page matched this fixture</span> <span class="chip warn" title="no_external_price_found">no_external_price_found</span> <span class="chip warn" title="Neither a bookmaker price nor a rating line could be sourced">Neither a bookmaker price nor a rating line coul</span> <span class="chip warn" title="vrs_rating_missing:Brod n Friends,Crownless">no VRS rating: Brod n Friends,Crownless</span></div></td>
-</tr>
-<tr data-search="good chi inari esports 4 nations 2026 halloween heist" data-tournament="4 Nations 2026 Halloween Heist" data-sport="lol" data-missing="1">
-<td data-label="Match"><strong>Good Chi</strong> <span class="muted">vs</span> <strong>Inari Esports</strong>
-  <div class="tag"><span class="tier">WAITING FOR INFORMATION</span> 4 Nations 2026 Halloween Heist · 10 pts
-  </div></td>
-<td data-label="Start (UTC)"><time data-utc="2026-10-22T18:00:00Z">2026-10-22T18:00:00Z</time>
-  <div class="tag">lock 2026-10-22T17:55:00Z · <span class="chip">started</span></div></td>
-<td data-label="Bookmaker line"><div class="bar empty"><span>—</span></div>
-  <div class="tag">— / —
-  </div></td>
-<td data-label="Our own line"><div class="bar empty"><span>—</span></div>
-  <div class="tag">not available — see flag</div></td>
-<td data-label="Pick"><span class="chip warn">no pick</span></td>
-<td data-label="Sources"><a href="https://www.hotspawn.com/matches/1081653" rel="noopener">Hotspawn</a><div class="chips"><span class="chip warn" title="No external match page matched this fixture">No external match page matched this fixture</span> <span class="chip warn" title="no_external_price_found">no_external_price_found</span> <span class="chip warn" title="Neither a bookmaker price nor a rating line could be sourced">Neither a bookmaker price nor a rating line coul</span> <span class="chip warn" title="vrs_rating_missing:Good Chi,Inari Esports">no VRS rating: Good Chi,Inari Esports</span></div></td>
-</tr>
-<tr data-search="hl tauri esports bulldog esports 4 nations 2026 halloween heist" data-tournament="4 Nations 2026 Halloween Heist" data-sport="lol" data-missing="1">
-<td data-label="Match"><strong>HL Tauri Esports</strong> <span class="muted">vs</span> <strong>Bulldog Esports</strong>
-  <div class="tag"><span class="tier">WAITING FOR INFORMATION</span> 4 Nations 2026 Halloween Heist · 10 pts
-  </div></td>
-<td data-label="Start (UTC)"><time data-utc="2026-10-22T18:00:00Z">2026-10-22T18:00:00Z</time>
-  <div class="tag">lock 2026-10-22T17:55:00Z · <span class="chip">started</span></div></td>
-<td data-label="Bookmaker line"><div class="bar empty"><span>—</span></div>
-  <div class="tag">— / —
-  </div></td>
-<td data-label="Our own line"><div class="bar empty"><span>—</span></div>
-  <div class="tag">not available — see flag</div></td>
-<td data-label="Pick"><span class="chip warn">no pick</span></td>
-<td data-label="Sources"><a href="https://www.hotspawn.com/matches/1081654" rel="noopener">Hotspawn</a><div class="chips"><span class="chip warn" title="No external match page matched this fixture">No external match page matched this fixture</span> <span class="chip warn" title="no_external_price_found">no_external_price_found</span> <span class="chip warn" title="Neither a bookmaker price nor a rating line could be sourced">Neither a bookmaker price nor a rating line coul</span> <span class="chip warn" title="vrs_rating_missing:HL Tauri Esports,Bulldog Esports">no VRS rating: HL Tauri Esports,Bulldog Esports</span></div></td>
-</tr>
-<tr data-search="rich gang uk abyssal randoms 4 nations 2026 halloween heist" data-tournament="4 Nations 2026 Halloween Heist" data-sport="lol" data-missing="1">
-<td data-label="Match"><strong>Rich Gang UK</strong> <span class="muted">vs</span> <strong>Abyssal Randoms</strong>
-  <div class="tag"><span class="tier">WAITING FOR INFORMATION</span> 4 Nations 2026 Halloween Heist · 10 pts
-  </div></td>
-<td data-label="Start (UTC)"><time data-utc="2026-10-22T18:00:00Z">2026-10-22T18:00:00Z</time>
-  <div class="tag">lock 2026-10-22T17:55:00Z · <span class="chip">started</span></div></td>
-<td data-label="Bookmaker line"><div class="bar empty"><span>—</span></div>
-  <div class="tag">— / —
-  </div></td>
-<td data-label="Our own line"><div class="bar empty"><span>—</span></div>
-  <div class="tag">not available — see flag</div></td>
-<td data-label="Pick"><span class="chip warn">no pick</span></td>
-<td data-label="Sources"><a href="https://www.hotspawn.com/matches/1081655" rel="noopener">Hotspawn</a><div class="chips"><span class="chip warn" title="No external match page matched this fixture">No external match page matched this fixture</span> <span class="chip warn" title="no_external_price_found">no_external_price_found</span> <span class="chip warn" title="Neither a bookmaker price nor a rating line could be sourced">Neither a bookmaker price nor a rating line coul</span> <span class="chip warn" title="vrs_rating_missing:Rich Gang UK,Abyssal Randoms">no VRS rating: Rich Gang UK,Abyssal Randoms</span></div></td>
-</tr>
-<tr data-search="team vertex glorp cat 4 nations 2026 halloween heist" data-tournament="4 Nations 2026 Halloween Heist" data-sport="lol" data-missing="1">
-<td data-label="Match"><strong>Team Vertex</strong> <span class="muted">vs</span> <strong>Glorp Cat</strong>
-  <div class="tag"><span class="tier">WAITING FOR INFORMATION</span> 4 Nations 2026 Halloween Heist · 10 pts
-  </div></td>
-<td data-label="Start (UTC)"><time data-utc="2026-10-22T18:00:00Z">2026-10-22T18:00:00Z</time>
-  <div class="tag">lock 2026-10-22T17:55:00Z · <span class="chip">started</span></div></td>
-<td data-label="Bookmaker line"><div class="bar empty"><span>—</span></div>
-  <div class="tag">— / —
-  </div></td>
-<td data-label="Our own line"><div class="bar empty"><span>—</span></div>
-  <div class="tag">not available — see flag</div></td>
-<td data-label="Pick"><span class="chip warn">no pick</span></td>
-<td data-label="Sources"><a href="https://www.hotspawn.com/matches/1081656" rel="noopener">Hotspawn</a><div class="chips"><span class="chip warn" title="No external match page matched this fixture">No external match page matched this fixture</span> <span class="chip warn" title="no_external_price_found">no_external_price_found</span> <span class="chip warn" title="Neither a bookmaker price nor a rating line could be sourced">Neither a bookmaker price nor a rating line coul</span> <span class="chip warn" title="vrs_rating_missing:Team Vertex,Glorp Cat">no VRS rating: Team Vertex,Glorp Cat</span></div></td>
-</tr>
-<tr data-search="team vds pegasus esports arabian league 2nd division 2026 summer" data-tournament="Arabian League 2nd Division 2026 Summer" data-sport="lol" data-missing="1">
+<div class="note warnbox">Nothing on this page blocks publication: each item is a value that could not be confirmed from an official source, or a reading that rests on a single source. Review the linked evidence and open an issue if a value looks wrong.</div><div class="card"><div class="k">R-COUNT</div><h3>The lobby&#x27;s &#x27;matches this week&#x27; count differs from the rows in the payload window</h3><p>The lobby page prints 203 matches this week (context: &quot; Tournaments How To Play League of Legends Pick&#x27;em Lobby Play other game titles This week 139 matches this week Resets in 2d 13h 41m 30s Sign in to tra&quot;), while the same page&#x27;s payload yields 85 rows whose start falls inside the week window that ends 2026-10-26T01:48:27Z (the window comes from the page&#x27;s own reset countdown). Per-page header counts: lobby=203, cs2-pickems=203, thp-pickems=203, lol-pickems=139. The difference is published, not explained away; the board shows every row the payload contains in the window.</p><div class="tag">source: <a href="https://play.hotspawn.com/lobby" rel="noopener">https://play.hotspawn.com/lobby</a></div><div class="chips" style="margin-top:6px"></div></div><div class="card"><div class="k">R-STALE</div><h3>248 payload listings fall outside this pick&#x27;em week</h3><p>Hotspawn still serves these rows as &#x27;scheduled&#x27; although their start time is outside the current week window, so no line is originated for them.</p><div class="tag">source: <a href="https://play.hotspawn.com/lobby" rel="noopener">https://play.hotspawn.com/lobby</a></div><div class="chips" style="margin-top:6px"><span class="chip warn">{&#x27;match_id&#x27;: &#x27;1052746&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;European Pro League Series 8 Play-In&#x27;, &#x27;team_a&#x27;: &#x27;Fortress&#x27;, &#x27;team_b&#x27;: &#x27;Endless Journey&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-26T10:30:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1051339&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;DraculaN Season 7&#x27;, &#x27;team_a&#x27;: &#x27;Acend&#x27;, &#x27;team_b&#x27;: &#x27;Infinite&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-26T12:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1051301&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;LG UltraGear Tournament 2026&#x27;, &#x27;team_a&#x27;: &#x27;CYBERSHOKE Prospects&#x27;, &#x27;team_b&#x27;: &#x27;PCIFIC&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-26T13:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1053068&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;Svenska CS-Ligan 2026&#x27;, &#x27;team_a&#x27;: &#x27;Johnny Speeds&#x27;, &#x27;team_b&#x27;: &#x27;ReThink&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-26T13:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1052747&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;European Pro League Series 8 Play-In&#x27;, &#x27;team_a&#x27;: &#x27;Sashi Academy&#x27;, &#x27;team_b&#x27;: &#x27;eternal premium&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-26T13:10:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1053146&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;Rainhas do Clutch 2026&#x27;, &#x27;team_a&#x27;: &#x27;Atrix&#x27;, &#x27;team_b&#x27;: &#x27;Clutchain&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-26T14:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1051340&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;DraculaN Season 7&#x27;, &#x27;team_a&#x27;: &#x27;Walczaki&#x27;, &#x27;team_b&#x27;: &#x27;Inner Circle&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-26T15:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1053069&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;Svenska CS-Ligan 2026&#x27;, &#x27;team_a&#x27;: &#x27;roamsfiest&#x27;, &#x27;team_b&#x27;: &#x27;train launcher&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-26T16:45:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1052686&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;Rainhas do Clutch 2026&#x27;, &#x27;team_a&#x27;: &#x27;shimmer&#x27;, &#x27;team_b&#x27;: &#x27;MIBR fe&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-26T17:45:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1051789&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;Thunderpick World Championship 2026: South American Series #1&#x27;, &#x27;team_a&#x27;: &#x27;MIBR Academy&#x27;, &#x27;team_b&#x27;: &#x27;Isurus&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-26T18:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1053070&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;Svenska CS-Ligan 2026&#x27;, &#x27;team_a&#x27;: &#x27;ReThink&#x27;, &#x27;team_b&#x27;: &#x27;train launcher&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-26T19:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1051790&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;Thunderpick World Championship 2026: South American Series #1&#x27;, &#x27;team_a&#x27;: &#x27;Keyd&#x27;, &#x27;team_b&#x27;: &#x27;Yawara&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-26T21:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1052748&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;European Pro League Series 8 Play-In&#x27;, &#x27;team_a&#x27;: &#x27;Inner Circle Academy&#x27;, &#x27;team_b&#x27;: &#x27;sAw&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-27T08:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1053071&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;Svenska CS-Ligan 2026&#x27;, &#x27;team_a&#x27;: &#x27;Johnny Speeds&#x27;, &#x27;team_b&#x27;: &#x27;roamsfiest&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-27T10:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1052749&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;European Pro League Series 8 Play-In&#x27;, &#x27;team_a&#x27;: &#x27;Misa&#x27;, &#x27;team_b&#x27;: &#x27;WROTBERRY&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-27T10:30:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1052180&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;CCT Europe 2026 Challengers #4&#x27;, &#x27;team_a&#x27;: &#x27;NEW VISION&#x27;, &#x27;team_b&#x27;: &#x27;Julie&amp;Cie&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-27T11:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1052181&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;CCT Europe 2026 Challengers #4&#x27;, &#x27;team_a&#x27;: &#x27;Just Players&#x27;, &#x27;team_b&#x27;: &#x27;OlyBet&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-27T11:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1051800&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;Thunderpick World Championship 2026: South American Series #1&#x27;, &#x27;team_a&#x27;: &#x27;ShindeN&#x27;, &#x27;team_b&#x27;: &#x27;MIBR Academy&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-27T13:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1052699&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;CCT South America 2026 Series #3&#x27;, &#x27;team_a&#x27;: &#x27;Vasco&#x27;, &#x27;team_b&#x27;: &#x27;Red Feet&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-27T13:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1052183&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;CCT Europe 2026 Challengers #4&#x27;, &#x27;team_a&#x27;: &#x27;Misa&#x27;, &#x27;team_b&#x27;: &#x27;Wampirki&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-27T13:45:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1051341&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;DraculaN Season 7&#x27;, &#x27;team_a&#x27;: &#x27;Sharks&#x27;, &#x27;team_b&#x27;: &#x27;Inner Circle&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-27T13:50:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1052599&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;CCT Europe 2026 Challengers #4&#x27;, &#x27;team_a&#x27;: &#x27;Mai Tai&#x27;, &#x27;team_b&#x27;: &#x27;Megoshort&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-27T14:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1053072&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;Svenska CS-Ligan 2026&#x27;, &#x27;team_a&#x27;: &#x27;train launcher&#x27;, &#x27;team_b&#x27;: &#x27;roamsfiest&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-27T14:10:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1052357&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;DACH CS Masters Season 5&#x27;, &#x27;team_a&#x27;: &#x27;BIG Academy&#x27;, &#x27;team_b&#x27;: &#x27;BERG&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-27T15:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1051801&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;Thunderpick World Championship 2026: South American Series #1&#x27;, &#x27;team_a&#x27;: &#x27;Bounty Hunters&#x27;, &#x27;team_b&#x27;: &#x27;UNO MILLE&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-27T16:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1052700&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;CCT South America 2026 Series #3&#x27;, &#x27;team_a&#x27;: &#x27;GameHunters&#x27;, &#x27;team_b&#x27;: &#x27;VEXA&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-27T16:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1051342&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;DraculaN Season 7&#x27;, &#x27;team_a&#x27;: &#x27;ex-Tricked&#x27;, &#x27;team_b&#x27;: &#x27;Acend&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-27T17:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1053073&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;Svenska CS-Ligan 2026&#x27;, &#x27;team_a&#x27;: &#x27;roamsfiest&#x27;, &#x27;team_b&#x27;: &#x27;ReThink&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-27T17:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1052701&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;CCT South America 2026 Series #3&#x27;, &#x27;team_a&#x27;: &#x27;paiN Academy&#x27;, &#x27;team_b&#x27;: &#x27;Alka&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-27T19:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1053313&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;Thunderpick World Championship 2026: South American Series #1&#x27;, &#x27;team_a&#x27;: &#x27;Fake do Biru&#x27;, &#x27;team_b&#x27;: &#x27;LP&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-27T19:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1051803&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;Thunderpick World Championship 2026: South American Series #1&#x27;, &#x27;team_a&#x27;: &#x27;Fluxo&#x27;, &#x27;team_b&#x27;: &#x27;Keyd&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-27T22:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1052702&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;CCT South America 2026 Series #3&#x27;, &#x27;team_a&#x27;: &#x27;Procyon&#x27;, &#x27;team_b&#x27;: &#x27;BESTIA Academy&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-27T22:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1052750&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;European Pro League Series 8 Play-In&#x27;, &#x27;team_a&#x27;: &#x27;Honvéd&#x27;, &#x27;team_b&#x27;: &#x27;OlyBet&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-28T08:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1052751&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;European Pro League Series 8 Play-In&#x27;, &#x27;team_a&#x27;: &#x27;ex-MANA&#x27;, &#x27;team_b&#x27;: &#x27;Subtop De France&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-28T10:50:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1052185&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;CCT Europe 2026 Challengers #4&#x27;, &#x27;team_a&#x27;: &#x27;sAw&#x27;, &#x27;team_b&#x27;: &#x27;Entropy&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-28T11:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1053431&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;Urban Riga Open #5&#x27;, &#x27;team_a&#x27;: &#x27;GAMEHARMONY&#x27;, &#x27;team_b&#x27;: &#x27;Coalesce&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-28T11:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1053432&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;Urban Riga Open #5&#x27;, &#x27;team_a&#x27;: &#x27;Leo&#x27;, &#x27;team_b&#x27;: &#x27;Aimhaus&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-28T11:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1053433&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;Urban Riga Open #5&#x27;, &#x27;team_a&#x27;: &#x27;GAMEHARMONY&#x27;, &#x27;team_b&#x27;: &#x27;Aimhaus&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-28T12:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1053434&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;Urban Riga Open #5&#x27;, &#x27;team_a&#x27;: &#x27;Leo&#x27;, &#x27;team_b&#x27;: &#x27;Coalesce&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-28T12:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1052698&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;CCT South America 2026 Series #3&#x27;, &#x27;team_a&#x27;: &#x27;ex-KRÜ&#x27;, &#x27;team_b&#x27;: &#x27;MAGICOS&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-28T13:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1053435&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;Urban Riga Open #5&#x27;, &#x27;team_a&#x27;: &#x27;GAMEHARMONY&#x27;, &#x27;team_b&#x27;: &#x27;Leo&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-28T13:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1053436&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;Urban Riga Open #5&#x27;, &#x27;team_a&#x27;: &#x27;Aimhaus&#x27;, &#x27;team_b&#x27;: &#x27;Coalesce&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-28T13:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1051343&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;DraculaN Season 7&#x27;, &#x27;team_a&#x27;: &#x27;Sharks&#x27;, &#x27;team_b&#x27;: &#x27;ex-Tricked&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-28T13:35:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1052186&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;CCT Europe 2026 Challengers #4&#x27;, &#x27;team_a&#x27;: &#x27;Lilmix&#x27;, &#x27;team_b&#x27;: &#x27;Subtop De France&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-28T13:45:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1052187&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;CCT Europe 2026 Challengers #4&#x27;, &#x27;team_a&#x27;: &#x27;BIG Academy&#x27;, &#x27;team_b&#x27;: &#x27;Endless Journey&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-28T13:45:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1052184&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;CCT Europe 2026 Challengers #4&#x27;, &#x27;team_a&#x27;: &#x27;Atreides&#x27;, &#x27;team_b&#x27;: &#x27;Donstu&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-28T14:05:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1052696&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;CCT South America 2026 Series #3&#x27;, &#x27;team_a&#x27;: &#x27;Yawara&#x27;, &#x27;team_b&#x27;: &#x27;Blitzkrieg&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-28T16:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1053439&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;Urban Riga Open #5&#x27;, &#x27;team_a&#x27;: &#x27;6666&#x27;, &#x27;team_b&#x27;: &#x27;ASTRAL&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-28T16:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1053469&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;Urban Riga Open #5&#x27;, &#x27;team_a&#x27;: &#x27;BERG&#x27;, &#x27;team_b&#x27;: &#x27;SINQU REHTI&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-28T16:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1053441&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;Urban Riga Open #5&#x27;, &#x27;team_a&#x27;: &#x27;ASTRAL&#x27;, &#x27;team_b&#x27;: &#x27;BERG&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-28T17:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1053470&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;Urban Riga Open #5&#x27;, &#x27;team_a&#x27;: &#x27;6666&#x27;, &#x27;team_b&#x27;: &#x27;SINQU REHTI&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-28T17:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1051344&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;DraculaN Season 7&#x27;, &#x27;team_a&#x27;: &#x27;Inner Circle&#x27;, &#x27;team_b&#x27;: &#x27;Acend&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-28T17:30:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1051804&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;Thunderpick World Championship 2026: South American Series #1&#x27;, &#x27;team_a&#x27;: &#x27;Fluxo&#x27;, &#x27;team_b&#x27;: &#x27;UNO MILLE&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-28T18:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1053442&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;Urban Riga Open #5&#x27;, &#x27;team_a&#x27;: &#x27;6666&#x27;, &#x27;team_b&#x27;: &#x27;BERG&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-28T18:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1053471&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;Urban Riga Open #5&#x27;, &#x27;team_a&#x27;: &#x27;ASTRAL&#x27;, &#x27;team_b&#x27;: &#x27;SINQU REHTI&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-28T18:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1052697&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;CCT South America 2026 Series #3&#x27;, &#x27;team_a&#x27;: &#x27;METANOIA Wolves&#x27;, &#x27;team_b&#x27;: &#x27;Guara&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-28T19:05:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1053679&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;Thunderpick World Championship 2026: South American Series #1&#x27;, &#x27;team_a&#x27;: &#x27;ShindeN&#x27;, &#x27;team_b&#x27;: &#x27;LP&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-28T21:15:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1052695&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;CCT South America 2026 Series #3&#x27;, &#x27;team_a&#x27;: &#x27;MIBR Academy&#x27;, &#x27;team_b&#x27;: &#x27;Patins de Ferrari&#x27;, &#x27;start_utc&#x27;: &#x27;2026-06-28T22:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1055478&#x27;, &#x27;sport&#x27;: &#x27;cs2&#x27;, &#x27;competition&#x27;: &#x27;European Pro League Series 8&#x27;, &#x27;team_a&#x27;: &#x27;illwill&#x27;, &#x27;team_b&#x27;: &#x27;Lavked&#x27;, &#x27;start_utc&#x27;: &#x27;2026-07-10T08:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lobby&#x27;}</span> <span class="chip warn">{&#x27;match_id&#x27;: &#x27;1053095&#x27;, &#x27;sport&#x27;: &#x27;lol&#x27;, &#x27;competition&#x27;: &#x27;Benelux Ascend Series 2026 Summer Split&#x27;, &#x27;team_a&#x27;: &#x27;Mind Blue eSports&#x27;, &#x27;team_b&#x27;: &#x27;LAST DANCE&#x27;, &#x27;start_utc&#x27;: &#x27;2026-08-26T17:00:00Z&#x27;, &#x27;reason&#x27;: &#x27;marked scheduled but its start time is in the past&#x27;, &#x27;source_url&#x27;: &#x27;https://play.hotspawn.com/lol-pickems&#x27;}</span>  <span class="muted small">(+188 more)</span></div></div><div class="card"><div class="k">R-NOMKT</div><h3>85 fixtures have no external bookmaker price</h3><p>Those values are left blank in the published dataset and shown as &quot;-&quot; on the board.</p><div class="tag">source: <a href="https://egamersworld.com/counterstrike/matches" rel="noopener">https://egamersworld.com/counterstrike/matches</a></div><div class="chips" style="margin-top:6px"><span class="chip warn">1082105</span> <span class="chip warn">1079654</span> <span class="chip warn">1079655</span> <span class="chip warn">1081148</span> <span class="chip warn">1081605</span> <span class="chip warn">1081606</span> <span class="chip warn">1082926</span> <span class="chip warn">1082980</span> <span class="chip warn">1083014</span> <span class="chip warn">1071212</span> <span class="chip warn">1079023</span> <span class="chip warn">1082745</span> <span class="chip warn">1082839</span> <span class="chip warn">1082924</span> <span class="chip warn">1067878</span> <span class="chip warn">1079657</span> <span class="chip warn">1081150</span> <span class="chip warn">1067677</span> <span class="chip warn">1079139</span> <span class="chip warn">1082106</span> <span class="chip warn">1082693</span> <span class="chip warn">1079025</span> <span class="chip warn">1079849</span> <span class="chip warn">1067680</span> <span class="chip warn">1082925</span> <span class="chip warn">1067675</span> <span class="chip warn">1067676</span> <span class="chip warn">1083025</span> <span class="chip warn">1067879</span> <span class="chip warn">1082923</span> <span class="chip warn">1067678</span> <span class="chip warn">1067679</span> <span class="chip warn">1079193</span> <span class="chip warn">1075719</span> <span class="chip warn">1079195</span> <span class="chip warn">1081085</span> <span class="chip warn">1081086</span> <span class="chip warn">1080923</span> <span class="chip warn">1080924</span> <span class="chip warn">1080925</span> <span class="chip warn">1080926</span> <span class="chip warn">1080927</span> <span class="chip warn">1074652</span> <span class="chip warn">1074654</span> <span class="chip warn">1074655</span> <span class="chip warn">1074657</span> <span class="chip warn">1074658</span> <span class="chip warn">1074659</span> <span class="chip warn">1075731</span> <span class="chip warn">1079141</span> <span class="chip warn">1079142</span> <span class="chip warn">1082914</span> <span class="chip warn">1082915</span> <span class="chip warn">1082996</span> <span class="chip warn">1079198</span> <span class="chip warn">1079199</span> <span class="chip warn">1081083</span> <span class="chip warn">1081084</span> <span class="chip warn">1075747</span> <span class="chip warn">1075748</span>  <span class="muted small">(+25 more)</span></div></div><div class="card"><div class="k">R-NORATE</div><h3>68 fixtures have no own-line rating for both teams</h3><p>Those values are left blank in the published dataset and shown as &quot;-&quot; on the board.</p><div class="tag">source: <a href="https://www.hltv.org/ranking/teams/2026/october/12" rel="noopener">https://www.hltv.org/ranking/teams/2026/october/12</a></div><div class="chips" style="margin-top:6px"><span class="chip warn">1082105</span> <span class="chip warn">1082926</span> <span class="chip warn">1071212</span> <span class="chip warn">1079023</span> <span class="chip warn">1082745</span> <span class="chip warn">1082839</span> <span class="chip warn">1067878</span> <span class="chip warn">1067677</span> <span class="chip warn">1079139</span> <span class="chip warn">1082106</span> <span class="chip warn">1079025</span> <span class="chip warn">1079849</span> <span class="chip warn">1067680</span> <span class="chip warn">1082925</span> <span class="chip warn">1067675</span> <span class="chip warn">1067676</span> <span class="chip warn">1067879</span> <span class="chip warn">1082923</span> <span class="chip warn">1067678</span> <span class="chip warn">1067679</span> <span class="chip warn">1079193</span> <span class="chip warn">1075719</span> <span class="chip warn">1081085</span> <span class="chip warn">1081086</span> <span class="chip warn">1080923</span> <span class="chip warn">1080924</span> <span class="chip warn">1080925</span> <span class="chip warn">1080926</span> <span class="chip warn">1080927</span> <span class="chip warn">1074652</span> <span class="chip warn">1074654</span> <span class="chip warn">1074655</span> <span class="chip warn">1074657</span> <span class="chip warn">1074658</span> <span class="chip warn">1074659</span> <span class="chip warn">1075731</span> <span class="chip warn">1079141</span> <span class="chip warn">1079142</span> <span class="chip warn">1082914</span> <span class="chip warn">1082915</span> <span class="chip warn">1081083</span> <span class="chip warn">1081084</span> <span class="chip warn">1075747</span> <span class="chip warn">1075748</span> <span class="chip warn">1075752</span> <span class="chip warn">1075753</span> <span class="chip warn">1075754</span> <span class="chip warn">1075755</span> <span class="chip warn">1075758</span> <span class="chip warn">1075761</span> <span class="chip warn">1079027</span> <span class="chip warn">1079028</span> <span class="chip warn">1075750</span> <span class="chip warn">1075759</span> <span class="chip warn">1080928</span> <span class="chip warn">1080929</span> <span class="chip warn">1080930</span> <span class="chip warn">1080931</span> <span class="chip warn">1080932</span> <span class="chip warn">1074660</span>  <span class="muted small">(+8 more)</span></div></div><div class="card"><div class="k">R-HLTV</div><h3>HLTV world ranking could not be read for this run</h3><p>The public HLTV ranking page answered with a Cloudflare challenge page instead of the ranking table. No bypass is attempted; the own line uses the published Valve Regional Standings only and every HLTV column stays blank rather than being filled in.</p><div class="tag">source: <a href="https://www.hltv.org/ranking/teams/2026/october/12" rel="noopener">https://www.hltv.org/ranking/teams/2026/october/12</a></div><div class="chips" style="margin-top:6px"></div></div><div class="card"><div class="k">R-LOCKED</div><h3>5 fixtures were already locked when this board was built</h3><p>Their pick&#x27;em lock time had passed; the rows stay published for completeness and are labelled locked.</p><div class="chips" style="margin-top:6px"><span class="chip warn">1082105</span> <span class="chip warn">1079654</span> <span class="chip warn">1079655</span> <span class="chip warn">1081148</span> <span class="chip warn">1081605</span> </div></div><h2>Fixture rows with incomplete values</h2><div class="tablewrap"><table><caption class="muted small" style="text-align:left;padding:8px 10px">Fixtures whose values are incomplete or rest on a single reading — never filled in by inference.</caption><thead><tr><th>Match</th><th>Start</th><th>Bookmaker line (de-vigged)</th><th>Our own line</th><th>Pick</th><th>Sources &amp; flags</th></tr></thead><tbody><tr data-search="team vds pegasus esports arabian league 2nd division 2026 summer" data-tournament="Arabian League 2nd Division 2026 Summer" data-sport="lol" data-missing="1">
 <td data-label="Match"><strong>Team VDS</strong> <span class="muted">vs</span> <strong>Pegasus Esports</strong>
-  <div class="tag"><span class="tier">WAITING FOR INFORMATION</span> Arabian League 2nd Division 2026 Summer · 10 pts
+  <div class="tag"><span class="tier">–</span> Arabian League 2nd Division 2026 Summer · 10 pts
   </div></td>
 <td data-label="Start (UTC)"><time data-utc="2026-10-22T18:00:00Z">2026-10-22T18:00:00Z</time>
   <div class="tag">lock 2026-10-22T17:55:00Z · <span class="chip">started</span></div></td>
@@ -186,256 +32,32 @@
 <td data-label="Pick"><span class="chip warn">no pick</span></td>
 <td data-label="Sources"><a href="https://www.hotspawn.com/matches/1082105" rel="noopener">Hotspawn</a><div class="chips"><span class="chip warn" title="No external match page matched this fixture">No external match page matched this fixture</span> <span class="chip warn" title="no_external_price_found">no_external_price_found</span> <span class="chip warn" title="Neither a bookmaker price nor a rating line could be sourced">Neither a bookmaker price nor a rating line coul</span> <span class="chip warn" title="vrs_rating_missing:Team VDS,Pegasus Esports">no VRS rating: Team VDS,Pegasus Esports</span></div></td>
 </tr>
-<tr data-search="playwell rød q rich gang komplettligaen 2026 autumn" data-tournament="Komplettligaen 2026 Autumn" data-sport="lol" data-missing="1">
-<td data-label="Match"><strong>Playwell Rød Q</strong> <span class="muted">vs</span> <strong>Rich Gang</strong>
-  <div class="tag"><span class="tier">C</span> Komplettligaen 2026 Autumn · 10 pts
-  </div></td>
-<td data-label="Start (UTC)"><time data-utc="2026-10-22T18:30:00Z">2026-10-22T18:30:00Z</time>
-  <div class="tag">lock 2026-10-22T18:25:00Z · <span class="chip">started</span></div></td>
-<td data-label="Bookmaker line"><div class="bar empty"><span>—</span></div>
-  <div class="tag">— / —
-  </div></td>
-<td data-label="Our own line"><div class="bar empty"><span>—</span></div>
-  <div class="tag">not available — see flag</div></td>
-<td data-label="Pick"><span class="chip warn">no pick</span></td>
-<td data-label="Sources"><a href="https://www.hotspawn.com/matches/1071215" rel="noopener">Hotspawn</a><div class="chips"><span class="chip warn" title="No external match page matched this fixture">No external match page matched this fixture</span> <span class="chip warn" title="no_external_price_found">no_external_price_found</span> <span class="chip warn" title="Neither a bookmaker price nor a rating line could be sourced">Neither a bookmaker price nor a rating line coul</span> <span class="chip warn" title="vrs_rating_missing:Playwell Rød Q,Rich Gang">no VRS rating: Playwell Rød Q,Rich Gang</span></div></td>
-</tr>
-<tr data-search="abyssal randoms good chi 4 nations 2026 halloween heist" data-tournament="4 Nations 2026 Halloween Heist" data-sport="lol" data-missing="1">
-<td data-label="Match"><strong>Abyssal Randoms</strong> <span class="muted">vs</span> <strong>Good Chi</strong>
-  <div class="tag"><span class="tier">WAITING FOR INFORMATION</span> 4 Nations 2026 Halloween Heist · 10 pts
-  </div></td>
-<td data-label="Start (UTC)"><time data-utc="2026-10-22T19:00:00Z">2026-10-22T19:00:00Z</time>
-  <div class="tag">lock 2026-10-22T18:55:00Z · <span class="chip">started</span></div></td>
-<td data-label="Bookmaker line"><div class="bar empty"><span>—</span></div>
-  <div class="tag">— / —
-  </div></td>
-<td data-label="Our own line"><div class="bar empty"><span>—</span></div>
-  <div class="tag">not available — see flag</div></td>
-<td data-label="Pick"><span class="chip warn">no pick</span></td>
-<td data-label="Sources"><a href="https://www.hotspawn.com/matches/1081659" rel="noopener">Hotspawn</a><div class="chips"><span class="chip warn" title="No external match page matched this fixture">No external match page matched this fixture</span> <span class="chip warn" title="no_external_price_found">no_external_price_found</span> <span class="chip warn" title="Neither a bookmaker price nor a rating line could be sourced">Neither a bookmaker price nor a rating line coul</span> <span class="chip warn" title="vrs_rating_missing:Abyssal Randoms,Good Chi">no VRS rating: Abyssal Randoms,Good Chi</span></div></td>
-</tr>
-<tr data-search="bulldog esports ruddy ultras 4 nations 2026 halloween heist" data-tournament="4 Nations 2026 Halloween Heist" data-sport="lol" data-missing="1">
-<td data-label="Match"><strong>Bulldog Esports</strong> <span class="muted">vs</span> <strong>Ruddy Ultras</strong>
-  <div class="tag"><span class="tier">WAITING FOR INFORMATION</span> 4 Nations 2026 Halloween Heist · 10 pts
-  </div></td>
-<td data-label="Start (UTC)"><time data-utc="2026-10-22T19:00:00Z">2026-10-22T19:00:00Z</time>
-  <div class="tag">lock 2026-10-22T18:55:00Z · <span class="chip">started</span></div></td>
-<td data-label="Bookmaker line"><div class="bar empty"><span>—</span></div>
-  <div class="tag">— / —
-  </div></td>
-<td data-label="Our own line"><div class="bar empty"><span>—</span></div>
-  <div class="tag">not available — see flag</div></td>
-<td data-label="Pick"><span class="chip warn">no pick</span></td>
-<td data-label="Sources"><a href="https://www.hotspawn.com/matches/1081660" rel="noopener">Hotspawn</a><div class="chips"><span class="chip warn" title="No external match page matched this fixture">No external match page matched this fixture</span> <span class="chip warn" title="no_external_price_found">no_external_price_found</span> <span class="chip warn" title="Neither a bookmaker price nor a rating line could be sourced">Neither a bookmaker price nor a rating line coul</span> <span class="chip warn" title="vrs_rating_missing:Bulldog Esports,Ruddy Ultras">no VRS rating: Bulldog Esports,Ruddy Ultras</span></div></td>
-</tr>
-<tr data-search="crownless team vertex 4 nations 2026 halloween heist" data-tournament="4 Nations 2026 Halloween Heist" data-sport="lol" data-missing="1">
-<td data-label="Match"><strong>Crownless</strong> <span class="muted">vs</span> <strong>Team Vertex</strong>
-  <div class="tag"><span class="tier">WAITING FOR INFORMATION</span> 4 Nations 2026 Halloween Heist · 10 pts
-  </div></td>
-<td data-label="Start (UTC)"><time data-utc="2026-10-22T19:00:00Z">2026-10-22T19:00:00Z</time>
-  <div class="tag">lock 2026-10-22T18:55:00Z · <span class="chip">started</span></div></td>
-<td data-label="Bookmaker line"><div class="bar empty"><span>—</span></div>
-  <div class="tag">— / —
-  </div></td>
-<td data-label="Our own line"><div class="bar empty"><span>—</span></div>
-  <div class="tag">not available — see flag</div></td>
-<td data-label="Pick"><span class="chip warn">no pick</span></td>
-<td data-label="Sources"><a href="https://www.hotspawn.com/matches/1081661" rel="noopener">Hotspawn</a><div class="chips"><span class="chip warn" title="No external match page matched this fixture">No external match page matched this fixture</span> <span class="chip warn" title="no_external_price_found">no_external_price_found</span> <span class="chip warn" title="Neither a bookmaker price nor a rating line could be sourced">Neither a bookmaker price nor a rating line coul</span> <span class="chip warn" title="vrs_rating_missing:Crownless,Team Vertex">no VRS rating: Crownless,Team Vertex</span></div></td>
-</tr>
-<tr data-search="glorp cat brod n friends 4 nations 2026 halloween heist" data-tournament="4 Nations 2026 Halloween Heist" data-sport="lol" data-missing="1">
-<td data-label="Match"><strong>Glorp Cat</strong> <span class="muted">vs</span> <strong>Brod n Friends</strong>
-  <div class="tag"><span class="tier">WAITING FOR INFORMATION</span> 4 Nations 2026 Halloween Heist · 10 pts
-  </div></td>
-<td data-label="Start (UTC)"><time data-utc="2026-10-22T19:00:00Z">2026-10-22T19:00:00Z</time>
-  <div class="tag">lock 2026-10-22T18:55:00Z · <span class="chip">started</span></div></td>
-<td data-label="Bookmaker line"><div class="bar empty"><span>—</span></div>
-  <div class="tag">— / —
-  </div></td>
-<td data-label="Our own line"><div class="bar empty"><span>—</span></div>
-  <div class="tag">not available — see flag</div></td>
-<td data-label="Pick"><span class="chip warn">no pick</span></td>
-<td data-label="Sources"><a href="https://www.hotspawn.com/matches/1081662" rel="noopener">Hotspawn</a><div class="chips"><span class="chip warn" title="No external match page matched this fixture">No external match page matched this fixture</span> <span class="chip warn" title="no_external_price_found">no_external_price_found</span> <span class="chip warn" title="Neither a bookmaker price nor a rating line could be sourced">Neither a bookmaker price nor a rating line coul</span> <span class="chip warn" title="vrs_rating_missing:Glorp Cat,Brod n Friends">no VRS rating: Glorp Cat,Brod n Friends</span></div></td>
-</tr>
-<tr data-search="inari esports rich gang uk 4 nations 2026 halloween heist" data-tournament="4 Nations 2026 Halloween Heist" data-sport="lol" data-missing="1">
-<td data-label="Match"><strong>Inari Esports</strong> <span class="muted">vs</span> <strong>Rich Gang UK</strong>
-  <div class="tag"><span class="tier">WAITING FOR INFORMATION</span> 4 Nations 2026 Halloween Heist · 10 pts
-  </div></td>
-<td data-label="Start (UTC)"><time data-utc="2026-10-22T19:00:00Z">2026-10-22T19:00:00Z</time>
-  <div class="tag">lock 2026-10-22T18:55:00Z · <span class="chip">started</span></div></td>
-<td data-label="Bookmaker line"><div class="bar empty"><span>—</span></div>
-  <div class="tag">— / —
-  </div></td>
-<td data-label="Our own line"><div class="bar empty"><span>—</span></div>
-  <div class="tag">not available — see flag</div></td>
-<td data-label="Pick"><span class="chip warn">no pick</span></td>
-<td data-label="Sources"><a href="https://www.hotspawn.com/matches/1081663" rel="noopener">Hotspawn</a><div class="chips"><span class="chip warn" title="No external match page matched this fixture">No external match page matched this fixture</span> <span class="chip warn" title="no_external_price_found">no_external_price_found</span> <span class="chip warn" title="Neither a bookmaker price nor a rating line could be sourced">Neither a bookmaker price nor a rating line coul</span> <span class="chip warn" title="vrs_rating_missing:Inari Esports,Rich Gang UK">no VRS rating: Inari Esports,Rich Gang UK</span></div></td>
-</tr>
-<tr data-search="the bandits uk pns 4 nations 2026 halloween heist" data-tournament="4 Nations 2026 Halloween Heist" data-sport="lol" data-missing="1">
-<td data-label="Match"><strong>The Bandits UK</strong> <span class="muted">vs</span> <strong>PNS</strong>
-  <div class="tag"><span class="tier">WAITING FOR INFORMATION</span> 4 Nations 2026 Halloween Heist · 10 pts
-  </div></td>
-<td data-label="Start (UTC)"><time data-utc="2026-10-22T19:00:00Z">2026-10-22T19:00:00Z</time>
-  <div class="tag">lock 2026-10-22T18:55:00Z · <span class="chip">started</span></div></td>
-<td data-label="Bookmaker line"><div class="bar empty"><span>—</span></div>
-  <div class="tag">— / —
-  </div></td>
-<td data-label="Our own line"><div class="bar empty"><span>—</span></div>
-  <div class="tag">not available — see flag</div></td>
-<td data-label="Pick"><span class="chip warn">no pick</span></td>
-<td data-label="Sources"><a href="https://www.hotspawn.com/matches/1081664" rel="noopener">Hotspawn</a><div class="chips"><span class="chip warn" title="No external match page matched this fixture">No external match page matched this fixture</span> <span class="chip warn" title="no_external_price_found">no_external_price_found</span> <span class="chip warn" title="Neither a bookmaker price nor a rating line could be sourced">Neither a bookmaker price nor a rating line coul</span> <span class="chip warn" title="vrs_rating_missing:The Bandits UK,PNS">no VRS rating: The Bandits UK,PNS</span></div></td>
-</tr>
-<tr data-search="abyssal randoms inari esports 4 nations 2026 halloween heist" data-tournament="4 Nations 2026 Halloween Heist" data-sport="lol" data-missing="1">
-<td data-label="Match"><strong>Abyssal Randoms</strong> <span class="muted">vs</span> <strong>Inari Esports</strong>
-  <div class="tag"><span class="tier">WAITING FOR INFORMATION</span> 4 Nations 2026 Halloween Heist · 10 pts
-  </div></td>
-<td data-label="Start (UTC)"><time data-utc="2026-10-22T20:00:00Z">2026-10-22T20:00:00Z</time>
-  <div class="tag">lock 2026-10-22T19:55:00Z · <span class="chip">started</span></div></td>
-<td data-label="Bookmaker line"><div class="bar empty"><span>—</span></div>
-  <div class="tag">— / —
-  </div></td>
-<td data-label="Our own line"><div class="bar empty"><span>—</span></div>
-  <div class="tag">not available — see flag</div></td>
-<td data-label="Pick"><span class="chip warn">no pick</span></td>
-<td data-label="Sources"><a href="https://www.hotspawn.com/matches/1081667" rel="noopener">Hotspawn</a><div class="chips"><span class="chip warn" title="No external match page matched this fixture">No external match page matched this fixture</span> <span class="chip warn" title="no_external_price_found">no_external_price_found</span> <span class="chip warn" title="Neither a bookmaker price nor a rating line could be sourced">Neither a bookmaker price nor a rating line coul</span> <span class="chip warn" title="vrs_rating_missing:Abyssal Randoms,Inari Esports">no VRS rating: Abyssal Randoms,Inari Esports</span></div></td>
-</tr>
-<tr data-search="glorp cat crownless 4 nations 2026 halloween heist" data-tournament="4 Nations 2026 Halloween Heist" data-sport="lol" data-missing="1">
-<td data-label="Match"><strong>Glorp Cat</strong> <span class="muted">vs</span> <strong>Crownless</strong>
-  <div class="tag"><span class="tier">WAITING FOR INFORMATION</span> 4 Nations 2026 Halloween Heist · 10 pts
-  </div></td>
-<td data-label="Start (UTC)"><time data-utc="2026-10-22T20:00:00Z">2026-10-22T20:00:00Z</time>
-  <div class="tag">lock 2026-10-22T19:55:00Z · <span class="chip">started</span></div></td>
-<td data-label="Bookmaker line"><div class="bar empty"><span>—</span></div>
-  <div class="tag">— / —
-  </div></td>
-<td data-label="Our own line"><div class="bar empty"><span>—</span></div>
-  <div class="tag">not available — see flag</div></td>
-<td data-label="Pick"><span class="chip warn">no pick</span></td>
-<td data-label="Sources"><a href="https://www.hotspawn.com/matches/1081668" rel="noopener">Hotspawn</a><div class="chips"><span class="chip warn" title="No external match page matched this fixture">No external match page matched this fixture</span> <span class="chip warn" title="no_external_price_found">no_external_price_found</span> <span class="chip warn" title="Neither a bookmaker price nor a rating line could be sourced">Neither a bookmaker price nor a rating line coul</span> <span class="chip warn" title="vrs_rating_missing:Glorp Cat,Crownless">no VRS rating: Glorp Cat,Crownless</span></div></td>
-</tr>
-<tr data-search="good chi rich gang uk 4 nations 2026 halloween heist" data-tournament="4 Nations 2026 Halloween Heist" data-sport="lol" data-missing="1">
-<td data-label="Match"><strong>Good Chi</strong> <span class="muted">vs</span> <strong>Rich Gang UK</strong>
-  <div class="tag"><span class="tier">WAITING FOR INFORMATION</span> 4 Nations 2026 Halloween Heist · 10 pts
-  </div></td>
-<td data-label="Start (UTC)"><time data-utc="2026-10-22T20:00:00Z">2026-10-22T20:00:00Z</time>
-  <div class="tag">lock 2026-10-22T19:55:00Z · <span class="chip">started</span></div></td>
-<td data-label="Bookmaker line"><div class="bar empty"><span>—</span></div>
-  <div class="tag">— / —
-  </div></td>
-<td data-label="Our own line"><div class="bar empty"><span>—</span></div>
-  <div class="tag">not available — see flag</div></td>
-<td data-label="Pick"><span class="chip warn">no pick</span></td>
-<td data-label="Sources"><a href="https://www.hotspawn.com/matches/1081669" rel="noopener">Hotspawn</a><div class="chips"><span class="chip warn" title="No external match page matched this fixture">No external match page matched this fixture</span> <span class="chip warn" title="no_external_price_found">no_external_price_found</span> <span class="chip warn" title="Neither a bookmaker price nor a rating line could be sourced">Neither a bookmaker price nor a rating line coul</span> <span class="chip warn" title="vrs_rating_missing:Good Chi,Rich Gang UK">no VRS rating: Good Chi,Rich Gang UK</span></div></td>
-</tr>
-<tr data-search="pns absolved 4 nations 2026 halloween heist" data-tournament="4 Nations 2026 Halloween Heist" data-sport="lol" data-missing="1">
-<td data-label="Match"><strong>PNS</strong> <span class="muted">vs</span> <strong>Absolved</strong>
-  <div class="tag"><span class="tier">WAITING FOR INFORMATION</span> 4 Nations 2026 Halloween Heist · 10 pts
-  </div></td>
-<td data-label="Start (UTC)"><time data-utc="2026-10-22T20:00:00Z">2026-10-22T20:00:00Z</time>
-  <div class="tag">lock 2026-10-22T19:55:00Z · <span class="chip">started</span></div></td>
-<td data-label="Bookmaker line"><div class="bar empty"><span>—</span></div>
-  <div class="tag">— / —
-  </div></td>
-<td data-label="Our own line"><div class="bar empty"><span>—</span></div>
-  <div class="tag">not available — see flag</div></td>
-<td data-label="Pick"><span class="chip warn">no pick</span></td>
-<td data-label="Sources"><a href="https://www.hotspawn.com/matches/1081670" rel="noopener">Hotspawn</a><div class="chips"><span class="chip warn" title="No external match page matched this fixture">No external match page matched this fixture</span> <span class="chip warn" title="no_external_price_found">no_external_price_found</span> <span class="chip warn" title="Neither a bookmaker price nor a rating line could be sourced">Neither a bookmaker price nor a rating line coul</span> <span class="chip warn" title="vrs_rating_missing:PNS,Absolved">no VRS rating: PNS,Absolved</span></div></td>
-</tr>
-<tr data-search="ruddy ultras hl tauri esports 4 nations 2026 halloween heist" data-tournament="4 Nations 2026 Halloween Heist" data-sport="lol" data-missing="1">
-<td data-label="Match"><strong>Ruddy Ultras</strong> <span class="muted">vs</span> <strong>HL Tauri Esports</strong>
-  <div class="tag"><span class="tier">WAITING FOR INFORMATION</span> 4 Nations 2026 Halloween Heist · 10 pts
-  </div></td>
-<td data-label="Start (UTC)"><time data-utc="2026-10-22T20:00:00Z">2026-10-22T20:00:00Z</time>
-  <div class="tag">lock 2026-10-22T19:55:00Z · <span class="chip">started</span></div></td>
-<td data-label="Bookmaker line"><div class="bar empty"><span>—</span></div>
-  <div class="tag">— / —
-  </div></td>
-<td data-label="Our own line"><div class="bar empty"><span>—</span></div>
-  <div class="tag">not available — see flag</div></td>
-<td data-label="Pick"><span class="chip warn">no pick</span></td>
-<td data-label="Sources"><a href="https://www.hotspawn.com/matches/1081671" rel="noopener">Hotspawn</a><div class="chips"><span class="chip warn" title="No external match page matched this fixture">No external match page matched this fixture</span> <span class="chip warn" title="no_external_price_found">no_external_price_found</span> <span class="chip warn" title="Neither a bookmaker price nor a rating line could be sourced">Neither a bookmaker price nor a rating line coul</span> <span class="chip warn" title="vrs_rating_missing:Ruddy Ultras,HL Tauri Esports">no VRS rating: Ruddy Ultras,HL Tauri Esports</span></div></td>
-</tr>
-<tr data-search="team vertex brod n friends 4 nations 2026 halloween heist" data-tournament="4 Nations 2026 Halloween Heist" data-sport="lol" data-missing="1">
-<td data-label="Match"><strong>Team Vertex</strong> <span class="muted">vs</span> <strong>Brod n Friends</strong>
-  <div class="tag"><span class="tier">WAITING FOR INFORMATION</span> 4 Nations 2026 Halloween Heist · 10 pts
-  </div></td>
-<td data-label="Start (UTC)"><time data-utc="2026-10-22T20:00:00Z">2026-10-22T20:00:00Z</time>
-  <div class="tag">lock 2026-10-22T19:55:00Z · <span class="chip">started</span></div></td>
-<td data-label="Bookmaker line"><div class="bar empty"><span>—</span></div>
-  <div class="tag">— / —
-  </div></td>
-<td data-label="Our own line"><div class="bar empty"><span>—</span></div>
-  <div class="tag">not available — see flag</div></td>
-<td data-label="Pick"><span class="chip warn">no pick</span></td>
-<td data-label="Sources"><a href="https://www.hotspawn.com/matches/1081672" rel="noopener">Hotspawn</a><div class="chips"><span class="chip warn" title="No external match page matched this fixture">No external match page matched this fixture</span> <span class="chip warn" title="no_external_price_found">no_external_price_found</span> <span class="chip warn" title="Neither a bookmaker price nor a rating line could be sourced">Neither a bookmaker price nor a rating line coul</span> <span class="chip warn" title="vrs_rating_missing:Team Vertex,Brod n Friends">no VRS rating: Team Vertex,Brod n Friends</span></div></td>
-</tr>
-<tr data-search="lynn vision chinggis warriors void autumn cup 2026" data-tournament="VOID Autumn Cup 2026" data-sport="cs2" data-missing="1">
-<td data-label="Match"><strong>Lynn Vision</strong> <span class="muted">vs</span> <strong>Chinggis Warriors</strong>
-  <div class="tag"><span class="tier">C</span> VOID Autumn Cup 2026 · 2 pts
-  </div></td>
-<td data-label="Start (UTC)"><time data-utc="2026-10-23T03:00:00Z">2026-10-23T03:00:00Z</time>
-  <div class="tag">lock 2026-10-23T02:54:00Z · <span class="chip">started</span></div></td>
-<td data-label="Bookmaker line"><div class="bar empty"><span>—</span></div>
-  <div class="tag">— / —
-  </div></td>
-<td data-label="Our own line"><div class="bar" role="img" aria-label="94.8% vs 5.2%"><span class="a" style="width:94.8%">94.8%</span><span class="b" style="width:5.2%">5.2%</span></div>
-  <div class="tag">rating model</div></td>
-<td data-label="Pick"><span class="pick locked">Lynn Vision</span><span class="muted small">94.8%</span></td>
-<td data-label="Sources"><a href="https://www.hotspawn.com/matches/1081871" rel="noopener">Hotspawn</a> · <a href="https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md" rel="noopener">Valve VRS</a><div class="chips"><span class="chip warn" title="No external match page matched this fixture">No external match page matched this fixture</span> <span class="chip warn" title="no_external_price_found">no_external_price_found</span> <span class="chip warn" title="No external bookmaker price; estimate is our own line only">No external bookmaker price; estimate is our own</span></div></td>
-</tr>
-<tr data-search="nexvoid rare atom void autumn cup 2026" data-tournament="VOID Autumn Cup 2026" data-sport="cs2" data-missing="1">
-<td data-label="Match"><strong>NEXVOID</strong> <span class="muted">vs</span> <strong>Rare Atom</strong>
-  <div class="tag"><span class="tier">C</span> VOID Autumn Cup 2026 · 2 pts
-  </div></td>
-<td data-label="Start (UTC)"><time data-utc="2026-10-23T05:00:00Z">2026-10-23T05:00:00Z</time>
-  <div class="tag">lock 2026-10-23T04:54:00Z · <span class="chip">started</span></div></td>
-<td data-label="Bookmaker line"><div class="bar empty"><span>—</span></div>
-  <div class="tag">— / —
-  </div></td>
-<td data-label="Our own line"><div class="bar" role="img" aria-label="62.5% vs 37.5%"><span class="a" style="width:62.5%">62.5%</span><span class="b" style="width:37.5%">37.5%</span></div>
-  <div class="tag">rating model</div></td>
-<td data-label="Pick"><span class="pick locked">NEXVOID</span><span class="muted small">62.5%</span></td>
-<td data-label="Sources"><a href="https://www.hotspawn.com/matches/1081872" rel="noopener">Hotspawn</a> · <a href="https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md" rel="noopener">Valve VRS</a><div class="chips"><span class="chip warn" title="No external match page matched this fixture">No external match page matched this fixture</span> <span class="chip warn" title="no_external_price_found">no_external_price_found</span> <span class="chip warn" title="No external bookmaker price; estimate is our own line only">No external bookmaker price; estimate is our own</span></div></td>
-</tr>
 <tr data-search="ex-zero tenacity ex-rustec cct europe 2026 series #11" data-tournament="CCT Europe 2026 Series #11" data-sport="cs2" data-missing="1">
 <td data-label="Match"><strong>ex-Zero Tenacity</strong> <span class="muted">vs</span> <strong>ex-RUSTEC</strong>
   <div class="tag"><span class="tier">B</span> CCT Europe 2026 Series #11 · 3 pts
   </div></td>
 <td data-label="Start (UTC)"><time data-utc="2026-10-23T08:00:00Z">2026-10-23T08:00:00Z</time>
-  <div class="tag">lock 2026-10-23T07:54:00Z · <span class="chip ok">open</span></div></td>
+  <div class="tag">lock 2026-10-23T07:54:00Z · <span class="chip">started</span></div></td>
 <td data-label="Bookmaker line"><div class="bar empty"><span>—</span></div>
   <div class="tag">— / —
   </div></td>
 <td data-label="Our own line"><div class="bar" role="img" aria-label="80.1% vs 19.9%"><span class="a" style="width:80.1%">80.1%</span><span class="b" style="width:19.9%">19.9%</span></div>
   <div class="tag">rating model</div></td>
-<td data-label="Pick"><span class="pick open">ex-Zero Tenacity</span><span class="muted small">80.1%</span></td>
+<td data-label="Pick"><span class="pick locked">ex-Zero Tenacity</span><span class="muted small">80.1%</span></td>
 <td data-label="Sources"><a href="https://www.hotspawn.com/matches/1079654" rel="noopener">Hotspawn</a> · <a href="https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md" rel="noopener">Valve VRS</a><div class="chips"><span class="chip warn" title="No external match page matched this fixture">No external match page matched this fixture</span> <span class="chip warn" title="no_external_price_found">no_external_price_found</span> <span class="chip warn" title="No external bookmaker price; estimate is our own line only">No external bookmaker price; estimate is our own</span></div></td>
-</tr>
-<tr data-search="forze reload lfo 10 cct europe 2026 series #12" data-tournament="CCT Europe 2026 Series #12" data-sport="cs2" data-missing="1">
-<td data-label="Match"><strong>FORZE Reload</strong> <span class="muted">vs</span> <strong>LFO 10</strong>
-  <div class="tag"><span class="tier">B</span> CCT Europe 2026 Series #12 · 3 pts
-  </div></td>
-<td data-label="Start (UTC)"><time data-utc="2026-10-23T08:00:00Z">2026-10-23T08:00:00Z</time>
-  <div class="tag">lock 2026-10-23T07:54:00Z · <span class="chip ok">open</span></div></td>
-<td data-label="Bookmaker line"><div class="bar empty"><span>—</span></div>
-  <div class="tag">— / —
-  </div></td>
-<td data-label="Our own line"><div class="bar empty"><span>—</span></div>
-  <div class="tag">not available — see flag</div></td>
-<td data-label="Pick"><span class="chip warn">no pick</span></td>
-<td data-label="Sources"><a href="https://www.hotspawn.com/matches/1081149" rel="noopener">Hotspawn</a><div class="chips"><span class="chip warn" title="No external match page matched this fixture">No external match page matched this fixture</span> <span class="chip warn" title="no_external_price_found">no_external_price_found</span> <span class="chip warn" title="Neither a bookmaker price nor a rating line could be sourced">Neither a bookmaker price nor a rating line coul</span> <span class="chip warn" title="vrs_rating_missing:LFO 10">no VRS rating: LFO 10</span></div></td>
 </tr>
 <tr data-search="nuclear tigeres illyrians cct europe 2026 series #11" data-tournament="CCT Europe 2026 Series #11" data-sport="cs2" data-missing="1">
 <td data-label="Match"><strong>Nuclear TigeRES</strong> <span class="muted">vs</span> <strong>ILLYRIANS</strong>
   <div class="tag"><span class="tier">B</span> CCT Europe 2026 Series #11 · 3 pts
   </div></td>
 <td data-label="Start (UTC)"><time data-utc="2026-10-23T11:00:00Z">2026-10-23T11:00:00Z</time>
-  <div class="tag">lock 2026-10-23T10:54:00Z · <span class="chip ok">open</span></div></td>
+  <div class="tag">lock 2026-10-23T10:54:00Z · <span class="chip">started</span></div></td>
 <td data-label="Bookmaker line"><div class="bar empty"><span>—</span></div>
   <div class="tag">— / —
   </div></td>
 <td data-label="Our own line"><div class="bar" role="img" aria-label="93.5% vs 6.5%"><span class="a" style="width:93.5%">93.5%</span><span class="b" style="width:6.5%">6.5%</span></div>
   <div class="tag">rating model</div></td>
-<td data-label="Pick"><span class="pick open">Nuclear TigeRES</span><span class="muted small">93.5%</span></td>
+<td data-label="Pick"><span class="pick locked">Nuclear TigeRES</span><span class="muted small">93.5%</span></td>
 <td data-label="Sources"><a href="https://www.hotspawn.com/matches/1079655" rel="noopener">Hotspawn</a> · <a href="https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md" rel="noopener">Valve VRS</a><div class="chips"><span class="chip warn" title="No external match page matched this fixture">No external match page matched this fixture</span> <span class="chip warn" title="no_external_price_found">no_external_price_found</span> <span class="chip warn" title="No external bookmaker price; estimate is our own line only">No external bookmaker price; estimate is our own</span></div></td>
 </tr>
 <tr data-search="inner circle academy spirit academy cct europe 2026 series #12" data-tournament="CCT Europe 2026 Series #12" data-sport="cs2" data-missing="1">
@@ -443,13 +65,13 @@
   <div class="tag"><span class="tier">B</span> CCT Europe 2026 Series #12 · 3 pts
   </div></td>
 <td data-label="Start (UTC)"><time data-utc="2026-10-23T11:00:00Z">2026-10-23T11:00:00Z</time>
-  <div class="tag">lock 2026-10-23T10:54:00Z · <span class="chip ok">open</span></div></td>
+  <div class="tag">lock 2026-10-23T10:54:00Z · <span class="chip">started</span></div></td>
 <td data-label="Bookmaker line"><div class="bar empty"><span>—</span></div>
   <div class="tag">— / —
   </div></td>
 <td data-label="Our own line"><div class="bar" role="img" aria-label="61.7% vs 38.3%"><span class="a" style="width:61.7%">61.7%</span><span class="b" style="width:38.3%">38.3%</span></div>
   <div class="tag">rating model</div></td>
-<td data-label="Pick"><span class="pick open">Inner Circle Academy</span><span class="muted small">61.7%</span></td>
+<td data-label="Pick"><span class="pick locked">Inner Circle Academy</span><span class="muted small">61.7%</span></td>
 <td data-label="Sources"><a href="https://www.hotspawn.com/matches/1081148" rel="noopener">Hotspawn</a> · <a href="https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md" rel="noopener">Valve VRS</a><div class="chips"><span class="chip warn" title="No external match page matched this fixture">No external match page matched this fixture</span> <span class="chip warn" title="no_external_price_found">no_external_price_found</span> <span class="chip warn" title="No external bookmaker price; estimate is our own line only">No external bookmaker price; estimate is our own</span></div></td>
 </tr>
 <tr data-search="phantom academy banda chuya cct europe 2026 challengers #8" data-tournament="CCT Europe 2026 Challengers #8" data-sport="cs2" data-missing="1">
@@ -457,13 +79,13 @@
   <div class="tag"><span class="tier">C</span> CCT Europe 2026 Challengers #8 · 2 pts
   </div></td>
 <td data-label="Start (UTC)"><time data-utc="2026-10-23T11:00:00Z">2026-10-23T11:00:00Z</time>
-  <div class="tag">lock 2026-10-23T10:54:00Z · <span class="chip ok">open</span></div></td>
+  <div class="tag">lock 2026-10-23T10:54:00Z · <span class="chip">started</span></div></td>
 <td data-label="Bookmaker line"><div class="bar empty"><span>—</span></div>
   <div class="tag">— / —
   </div></td>
 <td data-label="Our own line"><div class="bar" role="img" aria-label="90.0% vs 10.0%"><span class="a" style="width:90.0%">90.0%</span><span class="b" style="width:10.0%">10.0%</span></div>
   <div class="tag">rating model</div></td>
-<td data-label="Pick"><span class="pick open">Phantom Academy</span><span class="muted small">90.0%</span></td>
+<td data-label="Pick"><span class="pick locked">Phantom Academy</span><span class="muted small">90.0%</span></td>
 <td data-label="Sources"><a href="https://www.hotspawn.com/matches/1081605" rel="noopener">Hotspawn</a> · <a href="https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md" rel="noopener">Valve VRS</a><div class="chips"><span class="chip warn" title="No external match page matched this fixture">No external match page matched this fixture</span> <span class="chip warn" title="no_external_price_found">no_external_price_found</span> <span class="chip warn" title="No external bookmaker price; estimate is our own line only">No external bookmaker price; estimate is our own</span></div></td>
 </tr>
 <tr data-search="jijiehao eternal fire draculan season 7" data-tournament="DraculaN Season 7" data-sport="cs2" data-missing="1">
@@ -493,6 +115,20 @@
   <div class="tag">not available — see flag</div></td>
 <td data-label="Pick"><span class="chip warn">no pick</span></td>
 <td data-label="Sources"><a href="https://www.hotspawn.com/matches/1082926" rel="noopener">Hotspawn</a><div class="chips"><span class="chip warn" title="No external match page matched this fixture">No external match page matched this fixture</span> <span class="chip warn" title="no_external_price_found">no_external_price_found</span> <span class="chip warn" title="Neither a bookmaker price nor a rating line could be sourced">Neither a bookmaker price nor a rating line coul</span> <span class="chip warn" title="vrs_rating_missing:Hacha">no VRS rating: Hacha</span></div></td>
+</tr>
+<tr data-search="lph wbt academy esl challenger league season 52: europe - cup #9" data-tournament="ESL Challenger League Season 52: Europe - Cup #9" data-sport="cs2" data-missing="1">
+<td data-label="Match"><strong>LPH</strong> <span class="muted">vs</span> <strong>WBT Academy</strong>
+  <div class="tag"><span class="tier">C</span> ESL Challenger League Season 52: Europe - Cup #9 · 2 pts
+  </div></td>
+<td data-label="Start (UTC)"><time data-utc="2026-10-23T13:00:00Z">2026-10-23T13:00:00Z</time>
+  <div class="tag">lock 2026-10-23T12:54:00Z · <span class="chip ok">open</span></div></td>
+<td data-label="Bookmaker line"><div class="bar empty"><span>—</span></div>
+  <div class="tag">— / —
+  </div></td>
+<td data-label="Our own line"><div class="bar" role="img" aria-label="41.5% vs 58.5%"><span class="a" style="width:41.5%">41.5%</span><span class="b" style="width:58.5%">58.5%</span></div>
+  <div class="tag">rating model</div></td>
+<td data-label="Pick"><span class="pick open">WBT Academy</span><span class="muted small">58.5%</span></td>
+<td data-label="Sources"><a href="https://www.hotspawn.com/matches/1082980" rel="noopener">Hotspawn</a> · <a href="https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md" rel="noopener">Valve VRS</a><div class="chips"><span class="chip warn" title="No external match page matched this fixture">No external match page matched this fixture</span> <span class="chip warn" title="no_external_price_found">no_external_price_found</span> <span class="chip warn" title="No external bookmaker price; estimate is our own line only">No external bookmaker price; estimate is our own</span></div></td>
 </tr>
 <tr data-search="k27 virtus.pro cis lan championship #9" data-tournament="CIS LAN Championship #9" data-sport="cs2" data-missing="1">
 <td data-label="Match"><strong>K27</strong> <span class="muted">vs</span> <strong>Virtus.pro</strong>
@@ -636,7 +272,7 @@
 </tr>
 <tr data-search="nextgeneration esports pegasus esports arabian league 2nd division 2026 summer" data-tournament="Arabian League 2nd Division 2026 Summer" data-sport="lol" data-missing="1">
 <td data-label="Match"><strong>NextGeneration Esports</strong> <span class="muted">vs</span> <strong>Pegasus Esports</strong>
-  <div class="tag"><span class="tier">WAITING FOR INFORMATION</span> Arabian League 2nd Division 2026 Summer · 10 pts
+  <div class="tag"><span class="tier">–</span> Arabian League 2nd Division 2026 Summer · 10 pts
   </div></td>
 <td data-label="Start (UTC)"><time data-utc="2026-10-23T18:00:00Z">2026-10-23T18:00:00Z</time>
   <div class="tag">lock 2026-10-23T17:55:00Z · <span class="chip ok">open</span></div></td>
@@ -650,7 +286,7 @@
 </tr>
 <tr data-search="team vds team reds arabian league 2nd division 2026 summer" data-tournament="Arabian League 2nd Division 2026 Summer" data-sport="lol" data-missing="1">
 <td data-label="Match"><strong>Team VDS</strong> <span class="muted">vs</span> <strong>Team Reds</strong>
-  <div class="tag"><span class="tier">WAITING FOR INFORMATION</span> Arabian League 2nd Division 2026 Summer · 10 pts
+  <div class="tag"><span class="tier">–</span> Arabian League 2nd Division 2026 Summer · 10 pts
   </div></td>
 <td data-label="Start (UTC)"><time data-utc="2026-10-23T18:00:00Z">2026-10-23T18:00:00Z</time>
   <div class="tag">lock 2026-10-23T17:55:00Z · <span class="chip ok">open</span></div></td>
@@ -760,6 +396,20 @@
 <td data-label="Pick"><span class="chip warn">no pick</span></td>
 <td data-label="Sources"><a href="https://www.hotspawn.com/matches/1067676" rel="noopener">Hotspawn</a><div class="chips"><span class="chip warn" title="No external match page matched this fixture">No external match page matched this fixture</span> <span class="chip warn" title="no_external_price_found">no_external_price_found</span> <span class="chip warn" title="Neither a bookmaker price nor a rating line could be sourced">Neither a bookmaker price nor a rating line coul</span> <span class="chip warn" title="vrs_rating_missing:G2 Esports,Dplus KIA">no VRS rating: G2 Esports,Dplus KIA</span></div></td>
 </tr>
+<tr data-search="pain imperial circuit x curitiba #4" data-tournament="Circuit X Curitiba #4" data-sport="cs2" data-missing="1">
+<td data-label="Match"><strong>paiN</strong> <span class="muted">vs</span> <strong>Imperial</strong>
+  <div class="tag"><span class="tier">C</span> Circuit X Curitiba #4 · 2 pts
+  </div></td>
+<td data-label="Start (UTC)"><time data-utc="2026-10-23T21:00:00Z">2026-10-23T21:00:00Z</time>
+  <div class="tag">lock 2026-10-23T20:54:00Z · <span class="chip ok">open</span></div></td>
+<td data-label="Bookmaker line"><div class="bar empty"><span>—</span></div>
+  <div class="tag">— / —
+  </div></td>
+<td data-label="Our own line"><div class="bar" role="img" aria-label="48.6% vs 51.4%"><span class="a" style="width:48.6%">48.6%</span><span class="b" style="width:51.4%">51.4%</span></div>
+  <div class="tag">rating model</div></td>
+<td data-label="Pick"><span class="pick open">Imperial</span><span class="muted small">51.4%</span></td>
+<td data-label="Sources"><a href="https://www.hotspawn.com/matches/1083025" rel="noopener">Hotspawn</a> · <a href="https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md" rel="noopener">Valve VRS</a><div class="chips"><span class="chip warn" title="No external match page matched this fixture">No external match page matched this fixture</span> <span class="chip warn" title="no_external_price_found">no_external_price_found</span> <span class="chip warn" title="No external bookmaker price; estimate is our own line only">No external bookmaker price; estimate is our own</span></div></td>
+</tr>
 <tr data-search="team liquid ctbc flying oyster worlds 2026 main event" data-tournament="Worlds 2026 Main Event" data-sport="lol" data-missing="1">
 <td data-label="Match"><strong>Team Liquid</strong> <span class="muted">vs</span> <strong>CTBC Flying Oyster</strong>
   <div class="tag"><span class="tier">S</span> Worlds 2026 Main Event · 30 pts
@@ -832,7 +482,7 @@
 </tr>
 <tr data-search="berlin 5 acegaming hearts prm 3rd division 26-27 fall" data-tournament="PRM 3rd Division 26-27 Fall" data-sport="lol" data-missing="1">
 <td data-label="Match"><strong>Berlin 5</strong> <span class="muted">vs</span> <strong>AceGaming Hearts</strong>
-  <div class="tag"><span class="tier">WAITING FOR INFORMATION</span> PRM 3rd Division 26-27 Fall · 10 pts
+  <div class="tag"><span class="tier">–</span> PRM 3rd Division 26-27 Fall · 10 pts
   </div></td>
 <td data-label="Start (UTC)"><time data-utc="2026-10-24T14:00:00Z">2026-10-24T14:00:00Z</time>
   <div class="tag">lock 2026-10-24T13:55:00Z · <span class="chip ok">open</span></div></td>
@@ -860,7 +510,7 @@
 </tr>
 <tr data-search="baronx marere academy ligagg celol b 2026 split 2 playoffs" data-tournament="LigaGG CELOL B 2026 Split 2 Playoffs" data-sport="lol" data-missing="1">
 <td data-label="Match"><strong>BaronX</strong> <span class="muted">vs</span> <strong>Marere Academy</strong>
-  <div class="tag"><span class="tier">WAITING FOR INFORMATION</span> LigaGG CELOL B 2026 Split 2 Playoffs · 10 pts
+  <div class="tag"><span class="tier">–</span> LigaGG CELOL B 2026 Split 2 Playoffs · 10 pts
   </div></td>
 <td data-label="Start (UTC)"><time data-utc="2026-10-24T15:00:00Z">2026-10-24T15:00:00Z</time>
   <div class="tag">lock 2026-10-24T14:55:00Z · <span class="chip ok">open</span></div></td>
@@ -874,7 +524,7 @@
 </tr>
 <tr data-search="final level esports academy infinity gaming ligagg celol b 2026 split 2 playoffs" data-tournament="LigaGG CELOL B 2026 Split 2 Playoffs" data-sport="lol" data-missing="1">
 <td data-label="Match"><strong>Final Level eSports Academy</strong> <span class="muted">vs</span> <strong>Infinity Gaming</strong>
-  <div class="tag"><span class="tier">WAITING FOR INFORMATION</span> LigaGG CELOL B 2026 Split 2 Playoffs · 10 pts
+  <div class="tag"><span class="tier">–</span> LigaGG CELOL B 2026 Split 2 Playoffs · 10 pts
   </div></td>
 <td data-label="Start (UTC)"><time data-utc="2026-10-24T15:00:00Z">2026-10-24T15:00:00Z</time>
   <div class="tag">lock 2026-10-24T14:55:00Z · <span class="chip ok">open</span></div></td>
@@ -888,7 +538,7 @@
 </tr>
 <tr data-search="jendouba esports enfida esports tunisian super league 2026" data-tournament="Tunisian Super League 2026" data-sport="lol" data-missing="1">
 <td data-label="Match"><strong>Jendouba Esports</strong> <span class="muted">vs</span> <strong>Enfida Esports</strong>
-  <div class="tag"><span class="tier">WAITING FOR INFORMATION</span> Tunisian Super League 2026 · 10 pts
+  <div class="tag"><span class="tier">–</span> Tunisian Super League 2026 · 10 pts
   </div></td>
 <td data-label="Start (UTC)"><time data-utc="2026-10-24T16:00:00Z">2026-10-24T16:00:00Z</time>
   <div class="tag">lock 2026-10-24T15:55:00Z · <span class="chip ok">open</span></div></td>
@@ -902,7 +552,7 @@
 </tr>
 <tr data-search="jsk esports el menzah esports tunisian super league 2026" data-tournament="Tunisian Super League 2026" data-sport="lol" data-missing="1">
 <td data-label="Match"><strong>JSK Esports</strong> <span class="muted">vs</span> <strong>El Menzah Esports</strong>
-  <div class="tag"><span class="tier">WAITING FOR INFORMATION</span> Tunisian Super League 2026 · 10 pts
+  <div class="tag"><span class="tier">–</span> Tunisian Super League 2026 · 10 pts
   </div></td>
 <td data-label="Start (UTC)"><time data-utc="2026-10-24T16:00:00Z">2026-10-24T16:00:00Z</time>
   <div class="tag">lock 2026-10-24T15:55:00Z · <span class="chip ok">open</span></div></td>
@@ -916,7 +566,7 @@
 </tr>
 <tr data-search="olympique mnihla supreme leaders tunisian super league 2026" data-tournament="Tunisian Super League 2026" data-sport="lol" data-missing="1">
 <td data-label="Match"><strong>Olympique Mnihla</strong> <span class="muted">vs</span> <strong>Supreme Leaders</strong>
-  <div class="tag"><span class="tier">WAITING FOR INFORMATION</span> Tunisian Super League 2026 · 10 pts
+  <div class="tag"><span class="tier">–</span> Tunisian Super League 2026 · 10 pts
   </div></td>
 <td data-label="Start (UTC)"><time data-utc="2026-10-24T16:00:00Z">2026-10-24T16:00:00Z</time>
   <div class="tag">lock 2026-10-24T15:55:00Z · <span class="chip ok">open</span></div></td>
@@ -930,7 +580,7 @@
 </tr>
 <tr data-search="simplicity gaming jsk academy tunisian super league 2026" data-tournament="Tunisian Super League 2026" data-sport="lol" data-missing="1">
 <td data-label="Match"><strong>Simplicity Gaming</strong> <span class="muted">vs</span> <strong>JSK Academy</strong>
-  <div class="tag"><span class="tier">WAITING FOR INFORMATION</span> Tunisian Super League 2026 · 10 pts
+  <div class="tag"><span class="tier">–</span> Tunisian Super League 2026 · 10 pts
   </div></td>
 <td data-label="Start (UTC)"><time data-utc="2026-10-24T16:00:00Z">2026-10-24T16:00:00Z</time>
   <div class="tag">lock 2026-10-24T15:55:00Z · <span class="chip ok">open</span></div></td>
@@ -944,7 +594,7 @@
 </tr>
 <tr data-search="zahrouni esports olympique mnihla academy tunisian super league 2026" data-tournament="Tunisian Super League 2026" data-sport="lol" data-missing="1">
 <td data-label="Match"><strong>Zahrouni Esports</strong> <span class="muted">vs</span> <strong>Olympique Mnihla Academy</strong>
-  <div class="tag"><span class="tier">WAITING FOR INFORMATION</span> Tunisian Super League 2026 · 10 pts
+  <div class="tag"><span class="tier">–</span> Tunisian Super League 2026 · 10 pts
   </div></td>
 <td data-label="Start (UTC)"><time data-utc="2026-10-24T16:00:00Z">2026-10-24T16:00:00Z</time>
   <div class="tag">lock 2026-10-24T15:55:00Z · <span class="chip ok">open</span></div></td>
@@ -958,7 +608,7 @@
 </tr>
 <tr data-search="2 massive lund esports organization ogs rivals league season 2" data-tournament="RIVALS LEAGUE Season 2" data-sport="lol" data-missing="1">
 <td data-label="Match"><strong>2 Massive</strong> <span class="muted">vs</span> <strong>Lund Esports Organization OGs</strong>
-  <div class="tag"><span class="tier">WAITING FOR INFORMATION</span> RIVALS LEAGUE Season 2 · 10 pts
+  <div class="tag"><span class="tier">–</span> RIVALS LEAGUE Season 2 · 10 pts
   </div></td>
 <td data-label="Start (UTC)"><time data-utc="2026-10-24T16:30:00Z">2026-10-24T16:30:00Z</time>
   <div class="tag">lock 2026-10-24T16:25:00Z · <span class="chip ok">open</span></div></td>
@@ -972,7 +622,7 @@
 </tr>
 <tr data-search="flamehard b2u rivals league season 2" data-tournament="RIVALS LEAGUE Season 2" data-sport="lol" data-missing="1">
 <td data-label="Match"><strong>FlameHard</strong> <span class="muted">vs</span> <strong>B2U</strong>
-  <div class="tag"><span class="tier">WAITING FOR INFORMATION</span> RIVALS LEAGUE Season 2 · 10 pts
+  <div class="tag"><span class="tier">–</span> RIVALS LEAGUE Season 2 · 10 pts
   </div></td>
 <td data-label="Start (UTC)"><time data-utc="2026-10-24T16:30:00Z">2026-10-24T16:30:00Z</time>
   <div class="tag">lock 2026-10-24T16:25:00Z · <span class="chip ok">open</span></div></td>
@@ -986,7 +636,7 @@
 </tr>
 <tr data-search="karolinerna turbo gaming rivals league season 2" data-tournament="RIVALS LEAGUE Season 2" data-sport="lol" data-missing="1">
 <td data-label="Match"><strong>Karolinerna</strong> <span class="muted">vs</span> <strong>Turbo Gaming</strong>
-  <div class="tag"><span class="tier">WAITING FOR INFORMATION</span> RIVALS LEAGUE Season 2 · 10 pts
+  <div class="tag"><span class="tier">–</span> RIVALS LEAGUE Season 2 · 10 pts
   </div></td>
 <td data-label="Start (UTC)"><time data-utc="2026-10-24T16:30:00Z">2026-10-24T16:30:00Z</time>
   <div class="tag">lock 2026-10-24T16:25:00Z · <span class="chip ok">open</span></div></td>
@@ -1000,7 +650,7 @@
 </tr>
 <tr data-search="onlywinbyff rich gang sweden rivals league season 2" data-tournament="RIVALS LEAGUE Season 2" data-sport="lol" data-missing="1">
 <td data-label="Match"><strong>OnlyWinByFF</strong> <span class="muted">vs</span> <strong>Rich Gang Sweden</strong>
-  <div class="tag"><span class="tier">WAITING FOR INFORMATION</span> RIVALS LEAGUE Season 2 · 10 pts
+  <div class="tag"><span class="tier">–</span> RIVALS LEAGUE Season 2 · 10 pts
   </div></td>
 <td data-label="Start (UTC)"><time data-utc="2026-10-24T16:30:00Z">2026-10-24T16:30:00Z</time>
   <div class="tag">lock 2026-10-24T16:25:00Z · <span class="chip ok">open</span></div></td>
@@ -1014,7 +664,7 @@
 </tr>
 <tr data-search="team cd tung sahur mid rivals league season 2" data-tournament="RIVALS LEAGUE Season 2" data-sport="lol" data-missing="1">
 <td data-label="Match"><strong>Team cd</strong> <span class="muted">vs</span> <strong>Tung Sahur Mid</strong>
-  <div class="tag"><span class="tier">WAITING FOR INFORMATION</span> RIVALS LEAGUE Season 2 · 10 pts
+  <div class="tag"><span class="tier">–</span> RIVALS LEAGUE Season 2 · 10 pts
   </div></td>
 <td data-label="Start (UTC)"><time data-utc="2026-10-24T16:30:00Z">2026-10-24T16:30:00Z</time>
   <div class="tag">lock 2026-10-24T16:25:00Z · <span class="chip ok">open</span></div></td>
@@ -1028,7 +678,7 @@
 </tr>
 <tr data-search="team lucidity esports fritt fall rivals league season 2" data-tournament="RIVALS LEAGUE Season 2" data-sport="lol" data-missing="1">
 <td data-label="Match"><strong>Team Lucidity Esports</strong> <span class="muted">vs</span> <strong>Fritt Fall</strong>
-  <div class="tag"><span class="tier">WAITING FOR INFORMATION</span> RIVALS LEAGUE Season 2 · 10 pts
+  <div class="tag"><span class="tier">–</span> RIVALS LEAGUE Season 2 · 10 pts
   </div></td>
 <td data-label="Start (UTC)"><time data-utc="2026-10-24T16:30:00Z">2026-10-24T16:30:00Z</time>
   <div class="tag">lock 2026-10-24T16:25:00Z · <span class="chip ok">open</span></div></td>
@@ -1042,7 +692,7 @@
 </tr>
 <tr data-search="whalepower humpbacks 1. esport club frankfurt e.v. prm 3rd division 26-27 fall" data-tournament="PRM 3rd Division 26-27 Fall" data-sport="lol" data-missing="1">
 <td data-label="Match"><strong>Whalepower Humpbacks</strong> <span class="muted">vs</span> <strong>1. Esport Club Frankfurt e.V.</strong>
-  <div class="tag"><span class="tier">WAITING FOR INFORMATION</span> PRM 3rd Division 26-27 Fall · 10 pts
+  <div class="tag"><span class="tier">–</span> PRM 3rd Division 26-27 Fall · 10 pts
   </div></td>
 <td data-label="Start (UTC)"><time data-utc="2026-10-24T17:00:00Z">2026-10-24T17:00:00Z</time>
   <div class="tag">lock 2026-10-24T16:55:00Z · <span class="chip ok">open</span></div></td>
@@ -1054,23 +704,9 @@
 <td data-label="Pick"><span class="chip warn">no pick</span></td>
 <td data-label="Sources"><a href="https://www.hotspawn.com/matches/1075731" rel="noopener">Hotspawn</a><div class="chips"><span class="chip warn" title="No external match page matched this fixture">No external match page matched this fixture</span> <span class="chip warn" title="no_external_price_found">no_external_price_found</span> <span class="chip warn" title="Neither a bookmaker price nor a rating line could be sourced">Neither a bookmaker price nor a rating line coul</span> <span class="chip warn" title="vrs_rating_missing:Whalepower Humpbacks,1. Esport Club Frankfurt e.V.">no VRS rating: Whalepower Humpbacks,1. Esport Club Frankfurt e.V.</span></div></td>
 </tr>
-<tr data-search="mazepa b2u rivals league season 2" data-tournament="RIVALS LEAGUE Season 2" data-sport="lol" data-missing="1">
-<td data-label="Match"><strong>Mazepa</strong> <span class="muted">vs</span> <strong>B2U</strong>
-  <div class="tag"><span class="tier">WAITING FOR INFORMATION</span> RIVALS LEAGUE Season 2 · 10 pts
-  </div></td>
-<td data-label="Start (UTC)"><time data-utc="2026-10-24T17:00:00Z">2026-10-24T17:00:00Z</time>
-  <div class="tag">lock 2026-10-24T16:55:00Z · <span class="chip ok">open</span></div></td>
-<td data-label="Bookmaker line"><div class="bar empty"><span>—</span></div>
-  <div class="tag">— / —
-  </div></td>
-<td data-label="Our own line"><div class="bar empty"><span>—</span></div>
-  <div class="tag">not available — see flag</div></td>
-<td data-label="Pick"><span class="chip warn">no pick</span></td>
-<td data-label="Sources"><a href="https://www.hotspawn.com/matches/1082258" rel="noopener">Hotspawn</a><div class="chips"><span class="chip warn" title="No external match page matched this fixture">No external match page matched this fixture</span> <span class="chip warn" title="no_external_price_found">no_external_price_found</span> <span class="chip warn" title="Neither a bookmaker price nor a rating line could be sourced">Neither a bookmaker price nor a rating line coul</span> <span class="chip warn" title="vrs_rating_missing:Mazepa,B2U">no VRS rating: Mazepa,B2U</span></div></td>
-</tr>
 <tr data-search="jsk academy new era team arabian league 2nd division 2026 summer" data-tournament="Arabian League 2nd Division 2026 Summer" data-sport="lol" data-missing="1">
 <td data-label="Match"><strong>JSK Academy</strong> <span class="muted">vs</span> <strong>New Era Team</strong>
-  <div class="tag"><span class="tier">WAITING FOR INFORMATION</span> Arabian League 2nd Division 2026 Summer · 10 pts
+  <div class="tag"><span class="tier">–</span> Arabian League 2nd Division 2026 Summer · 10 pts
   </div></td>
 <td data-label="Start (UTC)"><time data-utc="2026-10-24T18:00:00Z">2026-10-24T18:00:00Z</time>
   <div class="tag">lock 2026-10-24T17:55:00Z · <span class="chip ok">open</span></div></td>
@@ -1084,7 +720,7 @@
 </tr>
 <tr data-search="void walkers slam dunk arabian league 2nd division 2026 summer" data-tournament="Arabian League 2nd Division 2026 Summer" data-sport="lol" data-missing="1">
 <td data-label="Match"><strong>Void Walkers</strong> <span class="muted">vs</span> <strong>Slam Dunk</strong>
-  <div class="tag"><span class="tier">WAITING FOR INFORMATION</span> Arabian League 2nd Division 2026 Summer · 10 pts
+  <div class="tag"><span class="tier">–</span> Arabian League 2nd Division 2026 Summer · 10 pts
   </div></td>
 <td data-label="Start (UTC)"><time data-utc="2026-10-24T18:00:00Z">2026-10-24T18:00:00Z</time>
   <div class="tag">lock 2026-10-24T17:55:00Z · <span class="chip ok">open</span></div></td>
@@ -1098,7 +734,7 @@
 </tr>
 <tr data-search="clã nkz vórax neon esports ligagg celol a 2026 split 2 playoffs" data-tournament="LigaGG CELOL A 2026 Split 2 Playoffs" data-sport="lol" data-missing="1">
 <td data-label="Match"><strong>Clã NKZ VÓRAX</strong> <span class="muted">vs</span> <strong>Neon eSports</strong>
-  <div class="tag"><span class="tier">WAITING FOR INFORMATION</span> LigaGG CELOL A 2026 Split 2 Playoffs · 10 pts
+  <div class="tag"><span class="tier">–</span> LigaGG CELOL A 2026 Split 2 Playoffs · 10 pts
   </div></td>
 <td data-label="Start (UTC)"><time data-utc="2026-10-24T20:00:00Z">2026-10-24T20:00:00Z</time>
   <div class="tag">lock 2026-10-24T19:55:00Z · <span class="chip ok">open</span></div></td>
@@ -1112,7 +748,7 @@
 </tr>
 <tr data-search="løs academy marere e-sports ligagg celol a 2026 split 2 playoffs" data-tournament="LigaGG CELOL A 2026 Split 2 Playoffs" data-sport="lol" data-missing="1">
 <td data-label="Match"><strong>LØS Academy</strong> <span class="muted">vs</span> <strong>Marere E-Sports</strong>
-  <div class="tag"><span class="tier">WAITING FOR INFORMATION</span> LigaGG CELOL A 2026 Split 2 Playoffs · 10 pts
+  <div class="tag"><span class="tier">–</span> LigaGG CELOL A 2026 Split 2 Playoffs · 10 pts
   </div></td>
 <td data-label="Start (UTC)"><time data-utc="2026-10-24T20:00:00Z">2026-10-24T20:00:00Z</time>
   <div class="tag">lock 2026-10-24T19:55:00Z · <span class="chip ok">open</span></div></td>
@@ -1168,7 +804,7 @@
 </tr>
 <tr data-search="docta esports club clã nkz revengers ligagg celol b 2026 split 2 playoffs" data-tournament="LigaGG CELOL B 2026 Split 2 Playoffs" data-sport="lol" data-missing="1">
 <td data-label="Match"><strong>Docta Esports Club</strong> <span class="muted">vs</span> <strong>Clã NKZ Revengers</strong>
-  <div class="tag"><span class="tier">WAITING FOR INFORMATION</span> LigaGG CELOL B 2026 Split 2 Playoffs · 10 pts
+  <div class="tag"><span class="tier">–</span> LigaGG CELOL B 2026 Split 2 Playoffs · 10 pts
   </div></td>
 <td data-label="Start (UTC)"><time data-utc="2026-10-25T15:00:00Z">2026-10-25T15:00:00Z</time>
   <div class="tag">lock 2026-10-25T14:55:00Z · <span class="chip ok">open</span></div></td>
@@ -1182,7 +818,7 @@
 </tr>
 <tr data-search="maze gg viktus ligagg celol b 2026 split 2 playoffs" data-tournament="LigaGG CELOL B 2026 Split 2 Playoffs" data-sport="lol" data-missing="1">
 <td data-label="Match"><strong>Maze GG</strong> <span class="muted">vs</span> <strong>Viktus</strong>
-  <div class="tag"><span class="tier">WAITING FOR INFORMATION</span> LigaGG CELOL B 2026 Split 2 Playoffs · 10 pts
+  <div class="tag"><span class="tier">–</span> LigaGG CELOL B 2026 Split 2 Playoffs · 10 pts
   </div></td>
 <td data-label="Start (UTC)"><time data-utc="2026-10-25T15:00:00Z">2026-10-25T15:00:00Z</time>
   <div class="tag">lock 2026-10-25T14:55:00Z · <span class="chip ok">open</span></div></td>
@@ -1196,7 +832,7 @@
 </tr>
 <tr data-search="acegaming hearts emperors bremen prm 3rd division 26-27 fall" data-tournament="PRM 3rd Division 26-27 Fall" data-sport="lol" data-missing="1">
 <td data-label="Match"><strong>AceGaming Hearts</strong> <span class="muted">vs</span> <strong>Emperors Bremen</strong>
-  <div class="tag"><span class="tier">WAITING FOR INFORMATION</span> PRM 3rd Division 26-27 Fall · 10 pts
+  <div class="tag"><span class="tier">–</span> PRM 3rd Division 26-27 Fall · 10 pts
   </div></td>
 <td data-label="Start (UTC)"><time data-utc="2026-10-25T16:00:00Z">2026-10-25T16:00:00Z</time>
   <div class="tag">lock 2026-10-25T15:55:00Z · <span class="chip ok">open</span></div></td>
@@ -1210,7 +846,7 @@
 </tr>
 <tr data-search="aix esports mt1 vision prm 3rd division 26-27 fall" data-tournament="PRM 3rd Division 26-27 Fall" data-sport="lol" data-missing="1">
 <td data-label="Match"><strong>AIX eSports</strong> <span class="muted">vs</span> <strong>MT1 Vision</strong>
-  <div class="tag"><span class="tier">WAITING FOR INFORMATION</span> PRM 3rd Division 26-27 Fall · 10 pts
+  <div class="tag"><span class="tier">–</span> PRM 3rd Division 26-27 Fall · 10 pts
   </div></td>
 <td data-label="Start (UTC)"><time data-utc="2026-10-25T16:00:00Z">2026-10-25T16:00:00Z</time>
   <div class="tag">lock 2026-10-25T15:55:00Z · <span class="chip ok">open</span></div></td>
@@ -1224,7 +860,7 @@
 </tr>
 <tr data-search="defiance esports reh gaming prm 3rd division 26-27 fall" data-tournament="PRM 3rd Division 26-27 Fall" data-sport="lol" data-missing="1">
 <td data-label="Match"><strong>Defiance eSports</strong> <span class="muted">vs</span> <strong>REH Gaming</strong>
-  <div class="tag"><span class="tier">WAITING FOR INFORMATION</span> PRM 3rd Division 26-27 Fall · 10 pts
+  <div class="tag"><span class="tier">–</span> PRM 3rd Division 26-27 Fall · 10 pts
   </div></td>
 <td data-label="Start (UTC)"><time data-utc="2026-10-25T16:00:00Z">2026-10-25T16:00:00Z</time>
   <div class="tag">lock 2026-10-25T15:55:00Z · <span class="chip ok">open</span></div></td>
@@ -1238,7 +874,7 @@
 </tr>
 <tr data-search="duplex silva pigeons edition sissi state punks prm 3rd division 26-27 fall" data-tournament="PRM 3rd Division 26-27 Fall" data-sport="lol" data-missing="1">
 <td data-label="Match"><strong>Duplex Silva Pigeons Edition</strong> <span class="muted">vs</span> <strong>Sissi State Punks</strong>
-  <div class="tag"><span class="tier">WAITING FOR INFORMATION</span> PRM 3rd Division 26-27 Fall · 10 pts
+  <div class="tag"><span class="tier">–</span> PRM 3rd Division 26-27 Fall · 10 pts
   </div></td>
 <td data-label="Start (UTC)"><time data-utc="2026-10-25T16:00:00Z">2026-10-25T16:00:00Z</time>
   <div class="tag">lock 2026-10-25T15:55:00Z · <span class="chip ok">open</span></div></td>
@@ -1252,7 +888,7 @@
 </tr>
 <tr data-search="eintracht spandau zwei team 300 white prm 3rd division 26-27 fall" data-tournament="PRM 3rd Division 26-27 Fall" data-sport="lol" data-missing="1">
 <td data-label="Match"><strong>Eintracht Spandau Zwei</strong> <span class="muted">vs</span> <strong>Team 300 White</strong>
-  <div class="tag"><span class="tier">WAITING FOR INFORMATION</span> PRM 3rd Division 26-27 Fall · 10 pts
+  <div class="tag"><span class="tier">–</span> PRM 3rd Division 26-27 Fall · 10 pts
   </div></td>
 <td data-label="Start (UTC)"><time data-utc="2026-10-25T16:00:00Z">2026-10-25T16:00:00Z</time>
   <div class="tag">lock 2026-10-25T15:55:00Z · <span class="chip ok">open</span></div></td>
@@ -1266,7 +902,7 @@
 </tr>
 <tr data-search="neko elite kittens spongecord prime prm 3rd division 26-27 fall" data-tournament="PRM 3rd Division 26-27 Fall" data-sport="lol" data-missing="1">
 <td data-label="Match"><strong>Neko Elite Kittens</strong> <span class="muted">vs</span> <strong>spongecord prime</strong>
-  <div class="tag"><span class="tier">WAITING FOR INFORMATION</span> PRM 3rd Division 26-27 Fall · 10 pts
+  <div class="tag"><span class="tier">–</span> PRM 3rd Division 26-27 Fall · 10 pts
   </div></td>
 <td data-label="Start (UTC)"><time data-utc="2026-10-25T16:00:00Z">2026-10-25T16:00:00Z</time>
   <div class="tag">lock 2026-10-25T15:55:00Z · <span class="chip ok">open</span></div></td>
@@ -1280,7 +916,7 @@
 </tr>
 <tr data-search="rich gang looksmaxxer prm 3rd division 26-27 fall" data-tournament="PRM 3rd Division 26-27 Fall" data-sport="lol" data-missing="1">
 <td data-label="Match"><strong>Rich Gang</strong> <span class="muted">vs</span> <strong>LOOKSMAXXER</strong>
-  <div class="tag"><span class="tier">WAITING FOR INFORMATION</span> PRM 3rd Division 26-27 Fall · 10 pts
+  <div class="tag"><span class="tier">–</span> PRM 3rd Division 26-27 Fall · 10 pts
   </div></td>
 <td data-label="Start (UTC)"><time data-utc="2026-10-25T16:00:00Z">2026-10-25T16:00:00Z</time>
   <div class="tag">lock 2026-10-25T15:55:00Z · <span class="chip ok">open</span></div></td>
@@ -1294,7 +930,7 @@
 </tr>
 <tr data-search="whalepower humpbacks socken und sandalen prm 3rd division 26-27 fall" data-tournament="PRM 3rd Division 26-27 Fall" data-sport="lol" data-missing="1">
 <td data-label="Match"><strong>Whalepower Humpbacks</strong> <span class="muted">vs</span> <strong>Socken und Sandalen</strong>
-  <div class="tag"><span class="tier">WAITING FOR INFORMATION</span> PRM 3rd Division 26-27 Fall · 10 pts
+  <div class="tag"><span class="tier">–</span> PRM 3rd Division 26-27 Fall · 10 pts
   </div></td>
 <td data-label="Start (UTC)"><time data-utc="2026-10-25T16:00:00Z">2026-10-25T16:00:00Z</time>
   <div class="tag">lock 2026-10-25T15:55:00Z · <span class="chip ok">open</span></div></td>
@@ -1336,7 +972,7 @@
 </tr>
 <tr data-search="black lion glacial guardians prm 3rd division 26-27 fall" data-tournament="PRM 3rd Division 26-27 Fall" data-sport="lol" data-missing="1">
 <td data-label="Match"><strong>Black Lion</strong> <span class="muted">vs</span> <strong>Glacial Guardians</strong>
-  <div class="tag"><span class="tier">WAITING FOR INFORMATION</span> PRM 3rd Division 26-27 Fall · 10 pts
+  <div class="tag"><span class="tier">–</span> PRM 3rd Division 26-27 Fall · 10 pts
   </div></td>
 <td data-label="Start (UTC)"><time data-utc="2026-10-25T17:00:00Z">2026-10-25T17:00:00Z</time>
   <div class="tag">lock 2026-10-25T16:55:00Z · <span class="chip ok">open</span></div></td>
@@ -1350,7 +986,7 @@
 </tr>
 <tr data-search="second time alive revival berlin 5 prm 3rd division 26-27 fall" data-tournament="PRM 3rd Division 26-27 Fall" data-sport="lol" data-missing="1">
 <td data-label="Match"><strong>Second Time Alive Revival</strong> <span class="muted">vs</span> <strong>Berlin 5</strong>
-  <div class="tag"><span class="tier">WAITING FOR INFORMATION</span> PRM 3rd Division 26-27 Fall · 10 pts
+  <div class="tag"><span class="tier">–</span> PRM 3rd Division 26-27 Fall · 10 pts
   </div></td>
 <td data-label="Start (UTC)"><time data-utc="2026-10-25T17:00:00Z">2026-10-25T17:00:00Z</time>
   <div class="tag">lock 2026-10-25T16:55:00Z · <span class="chip ok">open</span></div></td>
@@ -1364,7 +1000,7 @@
 </tr>
 <tr data-search="jsk esports enfida esports tunisian super league 2026" data-tournament="Tunisian Super League 2026" data-sport="lol" data-missing="1">
 <td data-label="Match"><strong>JSK Esports</strong> <span class="muted">vs</span> <strong>Enfida Esports</strong>
-  <div class="tag"><span class="tier">WAITING FOR INFORMATION</span> Tunisian Super League 2026 · 10 pts
+  <div class="tag"><span class="tier">–</span> Tunisian Super League 2026 · 10 pts
   </div></td>
 <td data-label="Start (UTC)"><time data-utc="2026-10-25T17:00:00Z">2026-10-25T17:00:00Z</time>
   <div class="tag">lock 2026-10-25T16:55:00Z · <span class="chip ok">open</span></div></td>
@@ -1378,7 +1014,7 @@
 </tr>
 <tr data-search="olympique mnihla jendouba esports tunisian super league 2026" data-tournament="Tunisian Super League 2026" data-sport="lol" data-missing="1">
 <td data-label="Match"><strong>Olympique Mnihla</strong> <span class="muted">vs</span> <strong>Jendouba Esports</strong>
-  <div class="tag"><span class="tier">WAITING FOR INFORMATION</span> Tunisian Super League 2026 · 10 pts
+  <div class="tag"><span class="tier">–</span> Tunisian Super League 2026 · 10 pts
   </div></td>
 <td data-label="Start (UTC)"><time data-utc="2026-10-25T17:00:00Z">2026-10-25T17:00:00Z</time>
   <div class="tag">lock 2026-10-25T16:55:00Z · <span class="chip ok">open</span></div></td>
@@ -1392,7 +1028,7 @@
 </tr>
 <tr data-search="olympique mnihla academy el menzah esports tunisian super league 2026" data-tournament="Tunisian Super League 2026" data-sport="lol" data-missing="1">
 <td data-label="Match"><strong>Olympique Mnihla Academy</strong> <span class="muted">vs</span> <strong>El Menzah Esports</strong>
-  <div class="tag"><span class="tier">WAITING FOR INFORMATION</span> Tunisian Super League 2026 · 10 pts
+  <div class="tag"><span class="tier">–</span> Tunisian Super League 2026 · 10 pts
   </div></td>
 <td data-label="Start (UTC)"><time data-utc="2026-10-25T17:00:00Z">2026-10-25T17:00:00Z</time>
   <div class="tag">lock 2026-10-25T16:55:00Z · <span class="chip ok">open</span></div></td>
@@ -1406,7 +1042,7 @@
 </tr>
 <tr data-search="simplicity gaming supreme leaders tunisian super league 2026" data-tournament="Tunisian Super League 2026" data-sport="lol" data-missing="1">
 <td data-label="Match"><strong>Simplicity Gaming</strong> <span class="muted">vs</span> <strong>Supreme Leaders</strong>
-  <div class="tag"><span class="tier">WAITING FOR INFORMATION</span> Tunisian Super League 2026 · 10 pts
+  <div class="tag"><span class="tier">–</span> Tunisian Super League 2026 · 10 pts
   </div></td>
 <td data-label="Start (UTC)"><time data-utc="2026-10-25T17:00:00Z">2026-10-25T17:00:00Z</time>
   <div class="tag">lock 2026-10-25T16:55:00Z · <span class="chip ok">open</span></div></td>
@@ -1420,7 +1056,7 @@
 </tr>
 <tr data-search="zahrouni esports jsk academy tunisian super league 2026" data-tournament="Tunisian Super League 2026" data-sport="lol" data-missing="1">
 <td data-label="Match"><strong>Zahrouni Esports</strong> <span class="muted">vs</span> <strong>JSK Academy</strong>
-  <div class="tag"><span class="tier">WAITING FOR INFORMATION</span> Tunisian Super League 2026 · 10 pts
+  <div class="tag"><span class="tier">–</span> Tunisian Super League 2026 · 10 pts
   </div></td>
 <td data-label="Start (UTC)"><time data-utc="2026-10-25T17:00:00Z">2026-10-25T17:00:00Z</time>
   <div class="tag">lock 2026-10-25T16:55:00Z · <span class="chip ok">open</span></div></td>
@@ -1434,7 +1070,7 @@
 </tr>
 <tr data-search="2 massive tung sahur mid rivals league season 2" data-tournament="RIVALS LEAGUE Season 2" data-sport="lol" data-missing="1">
 <td data-label="Match"><strong>2 Massive</strong> <span class="muted">vs</span> <strong>Tung Sahur Mid</strong>
-  <div class="tag"><span class="tier">WAITING FOR INFORMATION</span> RIVALS LEAGUE Season 2 · 10 pts
+  <div class="tag"><span class="tier">–</span> RIVALS LEAGUE Season 2 · 10 pts
   </div></td>
 <td data-label="Start (UTC)"><time data-utc="2026-10-25T17:30:00Z">2026-10-25T17:30:00Z</time>
   <div class="tag">lock 2026-10-25T17:25:00Z · <span class="chip ok">open</span></div></td>
@@ -1448,7 +1084,7 @@
 </tr>
 <tr data-search="onlywinbyff mazepa rivals league season 2" data-tournament="RIVALS LEAGUE Season 2" data-sport="lol" data-missing="1">
 <td data-label="Match"><strong>OnlyWinByFF</strong> <span class="muted">vs</span> <strong>Mazepa</strong>
-  <div class="tag"><span class="tier">WAITING FOR INFORMATION</span> RIVALS LEAGUE Season 2 · 10 pts
+  <div class="tag"><span class="tier">–</span> RIVALS LEAGUE Season 2 · 10 pts
   </div></td>
 <td data-label="Start (UTC)"><time data-utc="2026-10-25T17:30:00Z">2026-10-25T17:30:00Z</time>
   <div class="tag">lock 2026-10-25T17:25:00Z · <span class="chip ok">open</span></div></td>
@@ -1462,7 +1098,7 @@
 </tr>
 <tr data-search="northern wolves esports rich gang sweden rivals league season 2" data-tournament="RIVALS LEAGUE Season 2" data-sport="lol" data-missing="1">
 <td data-label="Match"><strong>Northern Wolves Esports</strong> <span class="muted">vs</span> <strong>Rich Gang Sweden</strong>
-  <div class="tag"><span class="tier">WAITING FOR INFORMATION</span> RIVALS LEAGUE Season 2 · 10 pts
+  <div class="tag"><span class="tier">–</span> RIVALS LEAGUE Season 2 · 10 pts
   </div></td>
 <td data-label="Start (UTC)"><time data-utc="2026-10-25T17:30:00Z">2026-10-25T17:30:00Z</time>
   <div class="tag">lock 2026-10-25T17:25:00Z · <span class="chip ok">open</span></div></td>
@@ -1476,7 +1112,7 @@
 </tr>
 <tr data-search="team lucidity esports team cd rivals league season 2" data-tournament="RIVALS LEAGUE Season 2" data-sport="lol" data-missing="1">
 <td data-label="Match"><strong>Team Lucidity Esports</strong> <span class="muted">vs</span> <strong>Team cd</strong>
-  <div class="tag"><span class="tier">WAITING FOR INFORMATION</span> RIVALS LEAGUE Season 2 · 10 pts
+  <div class="tag"><span class="tier">–</span> RIVALS LEAGUE Season 2 · 10 pts
   </div></td>
 <td data-label="Start (UTC)"><time data-utc="2026-10-25T17:30:00Z">2026-10-25T17:30:00Z</time>
   <div class="tag">lock 2026-10-25T17:25:00Z · <span class="chip ok">open</span></div></td>
@@ -1490,7 +1126,7 @@
 </tr>
 <tr data-search="karolinerna lund esports organization ogs rivals league season 2" data-tournament="RIVALS LEAGUE Season 2" data-sport="lol" data-missing="1">
 <td data-label="Match"><strong>Karolinerna</strong> <span class="muted">vs</span> <strong>Lund Esports Organization OGs</strong>
-  <div class="tag"><span class="tier">WAITING FOR INFORMATION</span> RIVALS LEAGUE Season 2 · 10 pts
+  <div class="tag"><span class="tier">–</span> RIVALS LEAGUE Season 2 · 10 pts
   </div></td>
 <td data-label="Start (UTC)"><time data-utc="2026-10-25T18:00:00Z">2026-10-25T18:00:00Z</time>
   <div class="tag">lock 2026-10-25T17:55:00Z · <span class="chip ok">open</span></div></td>
@@ -1504,7 +1140,7 @@
 </tr>
 <tr data-search="blackdivision kanji esports kin prm 3rd division 26-27 fall" data-tournament="PRM 3rd Division 26-27 Fall" data-sport="lol" data-missing="1">
 <td data-label="Match"><strong>BlackDivision</strong> <span class="muted">vs</span> <strong>Kanji Esports KIN</strong>
-  <div class="tag"><span class="tier">WAITING FOR INFORMATION</span> PRM 3rd Division 26-27 Fall · 10 pts
+  <div class="tag"><span class="tier">–</span> PRM 3rd Division 26-27 Fall · 10 pts
   </div></td>
 <td data-label="Start (UTC)"><time data-utc="2026-10-25T18:00:00Z">2026-10-25T18:00:00Z</time>
   <div class="tag">lock 2026-10-25T17:55:00Z · <span class="chip ok">open</span></div></td>
@@ -1532,7 +1168,7 @@
 </tr>
 <tr data-search="lundqvist darkside b2u rivals league season 2" data-tournament="RIVALS LEAGUE Season 2" data-sport="lol" data-missing="1">
 <td data-label="Match"><strong>Lundqvist Darkside</strong> <span class="muted">vs</span> <strong>B2U</strong>
-  <div class="tag"><span class="tier">WAITING FOR INFORMATION</span> RIVALS LEAGUE Season 2 · 10 pts
+  <div class="tag"><span class="tier">–</span> RIVALS LEAGUE Season 2 · 10 pts
   </div></td>
 <td data-label="Start (UTC)"><time data-utc="2026-10-25T18:30:00Z">2026-10-25T18:30:00Z</time>
   <div class="tag">lock 2026-10-25T18:25:00Z · <span class="chip ok">open</span></div></td>
@@ -3545,6 +3181,20 @@
 <td data-label="Pick"><span class="chip warn">no pick</span></td>
 <td data-label="Sources"><a href="https://play.hotspawn.com/lobby" rel="noopener">Hotspawn</a><div class="chips"><span class="chip warn" title="stale_listing_outside_week">stale_listing_outside_week</span></div></td>
 </tr>
+<tr data-search="flamehard b2u rivals league season 2" data-tournament="RIVALS LEAGUE Season 2" data-sport="lol" data-missing="1">
+<td data-label="Match"><strong>FlameHard</strong> <span class="muted">vs</span> <strong>B2U</strong>
+  <div class="tag"><span class="tier">–</span> RIVALS LEAGUE Season 2
+  </div></td>
+<td data-label="Start (UTC)"><time data-utc="2026-10-28T17:00:00Z">2026-10-28T17:00:00Z</time>
+  <div class="tag">lock —<span class="chip ok">open</span></div></td>
+<td data-label="Bookmaker line"><div class="bar empty"><span>—</span></div>
+  <div class="tag">— / —
+  </div></td>
+<td data-label="Our own line"><div class="bar empty"><span>—</span></div>
+  <div class="tag">not available — see flag</div></td>
+<td data-label="Pick"><span class="chip warn">no pick</span></td>
+<td data-label="Sources"><a href="https://play.hotspawn.com/lol-pickems" rel="noopener">Hotspawn</a><div class="chips"><span class="chip warn" title="stale_listing_outside_week">stale_listing_outside_week</span></div></td>
+</tr>
 <tr data-search="dmg esports sweden northern wolves esports rivals league season 2" data-tournament="RIVALS LEAGUE Season 2" data-sport="lol" data-missing="1">
 <td data-label="Match"><strong>DMG Esports Sweden</strong> <span class="muted">vs</span> <strong>Northern Wolves Esports</strong>
   <div class="tag"><span class="tier">–</span> RIVALS LEAGUE Season 2
@@ -4147,6 +3797,34 @@
 <td data-label="Pick"><span class="chip warn">no pick</span></td>
 <td data-label="Sources"><a href="https://play.hotspawn.com/lol-pickems" rel="noopener">Hotspawn</a><div class="chips"><span class="chip warn" title="stale_listing_outside_week">stale_listing_outside_week</span></div></td>
 </tr>
+<tr data-search="karolinerna lund esports organization ogs rivals league season 2" data-tournament="RIVALS LEAGUE Season 2" data-sport="lol" data-missing="1">
+<td data-label="Match"><strong>Karolinerna</strong> <span class="muted">vs</span> <strong>Lund Esports Organization OGs</strong>
+  <div class="tag"><span class="tier">–</span> RIVALS LEAGUE Season 2
+  </div></td>
+<td data-label="Start (UTC)"><time data-utc="2026-11-01T18:00:00Z">2026-11-01T18:00:00Z</time>
+  <div class="tag">lock —<span class="chip ok">open</span></div></td>
+<td data-label="Bookmaker line"><div class="bar empty"><span>—</span></div>
+  <div class="tag">— / —
+  </div></td>
+<td data-label="Our own line"><div class="bar empty"><span>—</span></div>
+  <div class="tag">not available — see flag</div></td>
+<td data-label="Pick"><span class="chip warn">no pick</span></td>
+<td data-label="Sources"><a href="https://play.hotspawn.com/lol-pickems" rel="noopener">Hotspawn</a><div class="chips"><span class="chip warn" title="stale_listing_outside_week">stale_listing_outside_week</span></div></td>
+</tr>
+<tr data-search="rich gang sweden northern wolves esports rivals league season 2" data-tournament="RIVALS LEAGUE Season 2" data-sport="lol" data-missing="1">
+<td data-label="Match"><strong>Rich Gang Sweden</strong> <span class="muted">vs</span> <strong>Northern Wolves Esports</strong>
+  <div class="tag"><span class="tier">–</span> RIVALS LEAGUE Season 2
+  </div></td>
+<td data-label="Start (UTC)"><time data-utc="2026-11-01T18:00:00Z">2026-11-01T18:00:00Z</time>
+  <div class="tag">lock —<span class="chip ok">open</span></div></td>
+<td data-label="Bookmaker line"><div class="bar empty"><span>—</span></div>
+  <div class="tag">— / —
+  </div></td>
+<td data-label="Our own line"><div class="bar empty"><span>—</span></div>
+  <div class="tag">not available — see flag</div></td>
+<td data-label="Pick"><span class="chip warn">no pick</span></td>
+<td data-label="Sources"><a href="https://play.hotspawn.com/lol-pickems" rel="noopener">Hotspawn</a><div class="chips"><span class="chip warn" title="stale_listing_outside_week">stale_listing_outside_week</span></div></td>
+</tr>
 <tr data-search="mt1 esports locked in prm 2nd division 26-27 fall" data-tournament="PRM 2nd Division 26-27 Fall" data-sport="lol" data-missing="1">
 <td data-label="Match"><strong>MT1 Esports</strong> <span class="muted">vs</span> <strong>Locked IN</strong>
   <div class="tag"><span class="tier">–</span> PRM 2nd Division 26-27 Fall
@@ -4194,6 +3872,20 @@
   <div class="tag"><span class="tier">–</span> PRM 2nd Division 26-27 Fall
   </div></td>
 <td data-label="Start (UTC)"><time data-utc="2026-11-03T17:00:00Z">2026-11-03T17:00:00Z</time>
+  <div class="tag">lock —<span class="chip ok">open</span></div></td>
+<td data-label="Bookmaker line"><div class="bar empty"><span>—</span></div>
+  <div class="tag">— / —
+  </div></td>
+<td data-label="Our own line"><div class="bar empty"><span>—</span></div>
+  <div class="tag">not available — see flag</div></td>
+<td data-label="Pick"><span class="chip warn">no pick</span></td>
+<td data-label="Sources"><a href="https://play.hotspawn.com/lol-pickems" rel="noopener">Hotspawn</a><div class="chips"><span class="chip warn" title="stale_listing_outside_week">stale_listing_outside_week</span></div></td>
+</tr>
+<tr data-search="2 massive lund esports organization ogs rivals league season 2" data-tournament="RIVALS LEAGUE Season 2" data-sport="lol" data-missing="1">
+<td data-label="Match"><strong>2 Massive</strong> <span class="muted">vs</span> <strong>Lund Esports Organization OGs</strong>
+  <div class="tag"><span class="tier">–</span> RIVALS LEAGUE Season 2
+  </div></td>
+<td data-label="Start (UTC)"><time data-utc="2026-11-03T18:00:00Z">2026-11-03T18:00:00Z</time>
   <div class="tag">lock —<span class="chip ok">open</span></div></td>
 <td data-label="Bookmaker line"><div class="bar empty"><span>—</span></div>
   <div class="tag">— / —
