@@ -1,7 +1,7 @@
 [
  {
   "url": "https://play.hotspawn.com/lobby",
-  "fetched_utc": "2026-10-24T20:55:05Z",
+  "fetched_utc": "2026-10-24T23:17:11Z",
   "via": "urllib",
   "status": 200,
   "bytes": 311373,
@@ -11,17 +11,17 @@
  },
  {
   "url": "https://play.hotspawn.com/cs2-pickems",
-  "fetched_utc": "2026-10-24T20:55:07Z",
+  "fetched_utc": "2026-10-24T23:17:13Z",
   "via": "urllib",
   "status": 200,
-  "bytes": 319814,
-  "sha256": "62869ba98ad2e717269c5846f01d807023c97c559a82dac3193b59801943fd9c",
+  "bytes": 291752,
+  "sha256": "e74e429f1b274fd21e6148038cb47e10fa1935c6692f555f6855165b55ae769a",
   "error": null,
   "attempts": 1
  },
  {
   "url": "https://play.hotspawn.com/thp-pickems",
-  "fetched_utc": "2026-10-24T20:55:08Z",
+  "fetched_utc": "2026-10-24T23:17:14Z",
   "via": "urllib",
   "status": 200,
   "bytes": 176640,
@@ -31,47 +31,47 @@
  },
  {
   "url": "https://play.hotspawn.com/lol-pickems",
-  "fetched_utc": "2026-10-24T20:55:09Z",
+  "fetched_utc": "2026-10-24T23:17:15Z",
   "via": "urllib",
   "status": 200,
-  "bytes": 1538586,
-  "sha256": "1a1090b951c4c285da2273426c0a840e8d9c03e94d3704a9cd7ddae78ea78c29",
+  "bytes": 1481839,
+  "sha256": "bb09bc010f6e9bfa7ed89ce7a432620938eeac361f362f54882847db4c5fef29",
   "error": null,
   "attempts": 1
  },
  {
   "url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/leagues",
-  "fetched_utc": "2026-10-24T20:55:11Z",
+  "fetched_utc": "2026-10-24T23:17:17Z",
   "via": "urllib",
   "status": 200,
   "bytes": 5008,
-  "sha256": "9562ebc5831aeba1b0c56fe3499df14892b93bc5987e4c41a5ef98ac28a75f49",
+  "sha256": "18560e92f11ca415aeda5e6e6c3ef8c9013ca6ae7010b7180fd9087169d44ec8",
   "error": null,
   "attempts": 1
  },
  {
   "url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/matchups?withSpecials=false",
-  "fetched_utc": "2026-10-24T20:55:11Z",
+  "fetched_utc": "2026-10-24T23:17:17Z",
   "via": "urllib",
   "status": 200,
-  "bytes": 49290,
-  "sha256": "7fc3ffde9117185c53968622454d89e93e335e6f58aa665363b8a509ace8679c",
+  "bytes": 65327,
+  "sha256": "a9d6e4f76cac7c6a8de4fe4eaa520e06e1ccbf32cb3d0936952c5d1d1c8cedfb",
   "error": null,
   "attempts": 1
  },
  {
   "url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false",
-  "fetched_utc": "2026-10-24T20:55:11Z",
+  "fetched_utc": "2026-10-24T23:17:17Z",
   "via": "urllib",
   "status": 200,
-  "bytes": 206949,
-  "sha256": "ad9034b8d0261930411ad50585eb7dfa567422cd9f064a1d12f3a2c4b89435e3",
+  "bytes": 384575,
+  "sha256": "d9d492201195386c4b43de36519ba553c3f8da587c220ddee832b4653ed1c5a9",
   "error": null,
   "attempts": 1
  },
  {
   "url": "https://egamersworld.com/counterstrike/matches",
-  "fetched_utc": "2026-10-24T20:55:11Z",
+  "fetched_utc": "2026-10-24T23:17:18Z",
   "via": "urllib",
   "status": 403,
   "bytes": null,
@@ -81,7 +81,7 @@
  },
  {
   "url": "https://egamersworld.com/counterstrike/matches",
-  "fetched_utc": "2026-10-24T20:55:11Z",
+  "fetched_utc": "2026-10-24T23:17:18Z",
   "via": "chromium",
   "status": null,
   "bytes": null,
@@ -91,7 +91,7 @@
    {
     "attempt": 1,
     "status": 403,
-    "bytes": 28764,
+    "bytes": 28786,
     "title": "just a moment...",
     "challenged": true
    },
@@ -113,27 +113,67 @@
  },
  {
   "url": "https://api.github.com/repos/ValveSoftware/counter-strike_regional_standings/contents/live",
-  "fetched_utc": "2026-10-24T20:56:13Z",
+  "fetched_utc": "2026-10-24T23:18:20Z",
   "via": "urllib",
-  "status": 403,
-  "bytes": null,
-  "sha256": null,
-  "error": "HTTPError 403",
+  "status": 200,
+  "bytes": 2509,
+  "sha256": "473ae11e4809b5b8f12cb43f742e1438c6502ec6e765f9b0461c2f07d420efab",
+  "error": null,
+  "attempts": 1
+ },
+ {
+  "url": "https://api.github.com/repos/ValveSoftware/counter-strike_regional_standings/contents/live/2024?ref=main",
+  "fetched_utc": "2026-10-24T23:18:20Z",
+  "via": "urllib",
+  "status": 200,
+  "bytes": 88033,
+  "sha256": "7998d2aa4214a38411f00cf9746e833907ad64eafae2d9a75a36e24ffd70d3f4",
+  "error": null,
+  "attempts": 1
+ },
+ {
+  "url": "https://api.github.com/repos/ValveSoftware/counter-strike_regional_standings/contents/live/2025?ref=main",
+  "fetched_utc": "2026-10-24T23:18:20Z",
+  "via": "urllib",
+  "status": 200,
+  "bytes": 83446,
+  "sha256": "ee14ca24ce14b1a34e8a7d33bded40a92adb280a9399e2c03795b1b4f409f197",
+  "error": null,
+  "attempts": 1
+ },
+ {
+  "url": "https://api.github.com/repos/ValveSoftware/counter-strike_regional_standings/contents/live/2026?ref=main",
+  "fetched_utc": "2026-10-24T23:18:20Z",
+  "via": "urllib",
+  "status": 200,
+  "bytes": 46751,
+  "sha256": "a0c70433d2727db5d568fa6267b7000a2c15e92a4aa8820cabf07ae84338ee23",
+  "error": null,
+  "attempts": 1
+ },
+ {
+  "url": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md",
+  "fetched_utc": "2026-10-24T23:18:20Z",
+  "via": "urllib",
+  "status": 200,
+  "bytes": 77872,
+  "sha256": "df96e7fc3cd91a2687ec08cac0128e50cc4e4e55346581679572e881d79ae61b",
+  "error": null,
   "attempts": 1
  },
  {
   "url": "https://www.hltv.org/ranking/teams",
-  "fetched_utc": "2026-10-24T20:56:13Z",
+  "fetched_utc": "2026-10-24T23:18:21Z",
   "via": "urllib",
   "status": 200,
-  "bytes": 1082499,
-  "sha256": "0138b0e2e29a87309bd5c275014463a596afdc6833c6afa9bcb679bea9f51f47",
+  "bytes": 1071542,
+  "sha256": "293f11e0661d46a7e54665f7930c609cc1563a115e86ac409d59be1e3fdca205",
   "error": null,
   "attempts": 1
  },
  {
   "url": "https://www.hltv.org/matches",
-  "fetched_utc": "2026-10-24T20:56:14Z",
+  "fetched_utc": "2026-10-24T23:18:21Z",
   "via": "urllib",
   "status": 403,
   "bytes": null,
@@ -143,11 +183,11 @@
  },
  {
   "url": "https://www.hltv.org/matches",
-  "fetched_utc": "2026-10-24T20:56:14Z",
+  "fetched_utc": "2026-10-24T23:18:21Z",
   "via": "chromium",
   "status": 200,
-  "bytes": 692889,
-  "sha256": "09ec9a59f96e17f8685a4523e587cc6ef1f82c1e1f09bd370edd7834be3eb038",
+  "bytes": 691318,
+  "sha256": "7a47670c7a88842f8fde93abbac235274b1a933dd106573b6149d23b1b3b449a",
   "error": null,
   "attempts": [
    {
@@ -160,7 +200,7 @@
    {
     "attempt": 2,
     "status": 200,
-    "bytes": 692866,
+    "bytes": 691301,
     "title": "counter-strike matches & livescore | hltv.org",
     "challenged": false
    }
@@ -168,27 +208,27 @@
  },
  {
   "url": "https://gamma-api.polymarket.com/markets?closed=false&limit=500&order=volume24hr&ascending=false",
-  "fetched_utc": "2026-10-24T20:56:23Z",
+  "fetched_utc": "2026-10-24T23:18:29Z",
   "via": "urllib",
   "status": 200,
-  "bytes": 708387,
-  "sha256": "861e79268f3ab1b3f490f2dec669a159b958d2ef063e361599ef1d17f6294658",
+  "bytes": 688543,
+  "sha256": "b565341135a86a06e2542f5f3e53f90be592e7fac493cd589dc13ba3354ca099",
   "error": null,
   "attempts": 1
  },
  {
   "url": "https://oddsdigger.com/e-sports",
-  "fetched_utc": "2026-10-24T20:56:23Z",
+  "fetched_utc": "2026-10-24T23:18:29Z",
   "via": "urllib",
   "status": 200,
-  "bytes": 272576,
-  "sha256": "ff48277cfc4f03739227abe34449e2981103c747d8011c13f99e62e04c0e1770",
+  "bytes": 271380,
+  "sha256": "bd14664d0888556247737f8c3cc1476bbdebc9643dda95b9318619a3a6ef61bd",
   "error": null,
   "attempts": 1
  },
  {
   "url": "https://oddsdigger.com/e-sports/counter-strike",
-  "fetched_utc": "2026-10-24T20:56:23Z",
+  "fetched_utc": "2026-10-24T23:18:30Z",
   "via": "urllib",
   "status": 410,
   "bytes": null,
@@ -198,7 +238,7 @@
  },
  {
   "url": "https://www.bovada.lv/services/sports/event/coupon/events/A/description/esports/type/none/lang/en",
-  "fetched_utc": "2026-10-24T20:56:23Z",
+  "fetched_utc": "2026-10-24T23:18:30Z",
   "via": "urllib",
   "status": 404,
   "bytes": null,
@@ -208,17 +248,17 @@
  },
  {
   "url": "https://1xbet.com/LineFeed/Get1x2_VZip?sports=16&count=40&mode=4&getEmpty=true",
-  "fetched_utc": "2026-10-24T20:56:24Z",
+  "fetched_utc": "2026-10-24T23:18:31Z",
   "via": "urllib",
   "status": 203,
-  "bytes": 2633,
-  "sha256": "ceb79ce2f515e733d82867c423c27a26c53a36fa34be72e2d22ff47fe69a2d86",
+  "bytes": 2630,
+  "sha256": "ed00a06e54b3ecfd5c4c615d463940e80e4262de20e620913cf0cc5ae91fddca",
   "error": null,
   "attempts": 1
  },
  {
   "url": "https://www.marathonbet.com/su/eventfeed/?id=1337&age=2",
-  "fetched_utc": "2026-10-24T20:56:25Z",
+  "fetched_utc": "2026-10-24T23:18:31Z",
   "via": "urllib",
   "status": 403,
   "bytes": null,
@@ -228,7 +268,7 @@
  },
  {
   "url": "https://www.betexplorer.com/counter-strike/",
-  "fetched_utc": "2026-10-24T20:56:25Z",
+  "fetched_utc": "2026-10-24T23:18:31Z",
   "via": "urllib",
   "status": 404,
   "bytes": null,
@@ -238,7 +278,7 @@
  },
  {
   "url": "https://bo3.gg/counter-strike",
-  "fetched_utc": "2026-10-24T20:56:25Z",
+  "fetched_utc": "2026-10-24T23:18:32Z",
   "via": "urllib",
   "status": 200,
   "bytes": 13188,
@@ -248,17 +288,17 @@
  },
  {
   "url": "https://oddsdigger.com/e-sports",
-  "fetched_utc": "2026-10-24T20:56:25Z",
+  "fetched_utc": "2026-10-24T23:18:32Z",
   "via": "urllib",
   "status": 200,
-  "bytes": 272576,
-  "sha256": "9e143fb0d7c84b953fbb810c28dc4b13a906e365ac9ac1628b64fef07b432717",
+  "bytes": 271380,
+  "sha256": "cf066f219fb35c1ad4db461812e1c6cb00b8903aa17f8a124fb34c446aef80f0",
   "error": null,
   "attempts": 1
  },
  {
   "url": "https://www.freetips.com/counter-strike/",
-  "fetched_utc": "2026-10-24T20:56:26Z",
+  "fetched_utc": "2026-10-24T23:18:33Z",
   "via": "urllib",
   "status": 404,
   "bytes": null,
@@ -268,7 +308,7 @@
  },
  {
   "url": "https://vprognoze.com/counter-strike/",
-  "fetched_utc": "2026-10-24T20:56:26Z",
+  "fetched_utc": "2026-10-24T23:18:33Z",
   "via": "urllib",
   "status": null,
   "bytes": null,
@@ -278,7 +318,7 @@
  },
  {
   "url": "https://www.bwin.com/en/sports/cs2-105",
-  "fetched_utc": "2026-10-24T20:57:07Z",
+  "fetched_utc": "2026-10-24T23:19:14Z",
   "via": "urllib",
   "status": 403,
   "bytes": null,
