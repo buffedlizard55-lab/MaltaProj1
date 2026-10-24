@@ -1,45 +1,42 @@
 {
- "generated_utc": "2026-10-24T01:01:29Z",
- "as_of_utc": "2026-10-24T01:01:29Z",
- "hotspawn_cs2_fixtures": 81,
- "open_cs2_fixtures": 17,
- "priced_any": 10,
- "priced_both": 7,
- "priced_bookmaker": 9,
- "priced_polymarket": 8,
- "format_known": 15,
- "feed_rows": 17,
- "review_rows": 7,
- "flags": 19,
+ "generated_utc": "2026-10-24T06:31:14Z",
+ "as_of_utc": "2026-10-24T06:31:14Z",
+ "hotspawn_cs2_fixtures": 88,
+ "open_cs2_fixtures": 25,
+ "priced_any": 13,
+ "priced_both": 11,
+ "priced_bookmaker": 13,
+ "priced_polymarket": 11,
+ "format_known": 22,
+ "feed_rows": 24,
+ "review_rows": 13,
+ "flags": 29,
  "polymarket_events": 102,
- "bo3_matches": 280,
+ "bo3_matches": 278,
  "polymarket_status": "observed",
  "bo3_status": "observed",
- "hotspawn_fallback": {
-  "path": "cs2/data/capture.json",
-  "generated_utc": "2026-10-24T00:47:59Z"
- },
+ "hotspawn_fallback": null,
  "hotspawn_pages": [
   {
    "page": "cs2-pickems",
    "url": "https://play.hotspawn.com/cs2-pickems",
-   "status": 403,
-   "cs2_rows": 0,
-   "fetched_utc": "2026-10-24T01:01:22Z"
+   "status": 200,
+   "cs2_rows": 88,
+   "fetched_utc": "2026-10-24T06:31:05Z"
   },
   {
    "page": "lobby",
    "url": "https://play.hotspawn.com/lobby",
-   "status": 403,
-   "cs2_rows": 0,
-   "fetched_utc": "2026-10-24T01:01:23Z"
+   "status": 200,
+   "cs2_rows": 88,
+   "fetched_utc": "2026-10-24T06:31:07Z"
   },
   {
    "page": "thp-pickems",
    "url": "https://play.hotspawn.com/thp-pickems",
-   "status": 403,
-   "cs2_rows": 0,
-   "fetched_utc": "2026-10-24T01:01:24Z"
+   "status": 200,
+   "cs2_rows": 14,
+   "fetched_utc": "2026-10-24T06:31:08Z"
   }
  ],
  "probes": [
@@ -47,9 +44,9 @@
    "source": "OddsDigger e-sports index",
    "url": "https://oddsdigger.com/e-sports",
    "status": 200,
-   "bytes": 267706,
+   "bytes": 268701,
    "error": null,
-   "fetched_utc": "2026-10-24T01:01:29Z"
+   "fetched_utc": "2026-10-24T06:31:14Z"
   },
   {
    "source": "bookmaker page relayed by bo3.gg (thunderpick)",
@@ -57,7 +54,7 @@
    "status": 403,
    "bytes": 0,
    "error": "HTTPError 403 server=cloudflare title='Just a moment...'",
-   "fetched_utc": "2026-10-24T01:01:29Z"
+   "fetched_utc": "2026-10-24T06:31:14Z"
   }
  ]
 }
