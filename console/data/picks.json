@@ -1,20 +1,20 @@
 {
  "meta": {
-  "generated_for_utc": "2026-10-24T00:47:40Z",
-  "data_as_of_utc": "2026-10-23T22:36:22Z",
-  "newest_input_age_hours": 2.19,
+  "generated_for_utc": "2026-10-24T06:44:23Z",
+  "data_as_of_utc": "2026-10-24T01:01:29Z",
+  "newest_input_age_hours": 5.72,
   "max_input_age_hours": 6.0,
   "stale": false,
   "counts": {
    "rows": 48,
-   "open": 17,
-   "locked": 31,
-   "open_with_pick": 10,
-   "open_market_basis": 10,
+   "open": 16,
+   "locked": 32,
+   "open_with_pick": 9,
+   "open_market_basis": 9,
    "open_own_line_basis": 0,
    "open_research_basis": 0,
    "open_without_pick": 7,
-   "flags": 102,
+   "flags": 101,
    "rows_with_flags": 48
   },
   "inputs": [
@@ -23,8 +23,8 @@
     "label": "Secondary-market feed (arena/a0bdf924)",
     "page": "feeds/index.html",
     "file": "feeds/data/fixtures.csv",
-    "captured_utc": "2026-10-23T22:36:22Z",
-    "sha256": "9febc9b8db0f391bf9cb7a5e7b65b9fc35fadc3663bfb540bcb9c239e114881c",
+    "captured_utc": "2026-10-24T01:01:29Z",
+    "sha256": "60b32078191c8e0f001472591b490fcc8c3988b7a8ded1c3780ab14bdfc5d3b2",
     "rows": 17
    },
    {
@@ -32,7 +32,7 @@
     "label": "Line-analysis board (arena/a174d77f)",
     "page": "cs2/index.html",
     "file": "cs2/data/analysis.csv",
-    "captured_utc": "2026-10-23T22:13:03Z",
+    "captured_utc": "2026-10-24T00:47:59Z",
     "sha256": "a238769d3d19cccc1e1165eeda91f67e5334219845a7076c2dded6d2c8b13864",
     "rows": 87
    },
@@ -1815,20 +1815,20 @@
    "team_b": "Rare Atom",
    "start_utc": "2026-10-24T03:00:00Z",
    "lock_utc": "2026-10-24T02:54:00Z",
-   "state": "open",
+   "state": "locked",
    "series_format": "BO3",
    "format_source": "Polymarket",
    "basis_rung": "market-4",
    "basis_label": "prediction market \u00b7 Polymarket",
    "basis_detail": "Polymarket \u2014 prediction market (traded prices, no bookmaker margin, MF-10); thin books move quickly",
-   "p_a_pct": 59.5,
-   "p_b_pct": 40.5,
+   "p_a_pct": 62.0,
+   "p_b_pct": 38.0,
    "pick": "Chinggis Warriors",
-   "pick_pct": 59.5,
-   "margin_pp": 19.0,
-   "confidence": "slight favourite",
+   "pick_pct": 62.0,
+   "margin_pp": 24.0,
+   "confidence": "strong favourite",
    "source_url": "https://polymarket.com/event/cs2-cw-ra1-2026-10-23",
-   "read_utc": "2026-10-23T22:36:14Z",
+   "read_utc": "2026-10-24T00:47:53Z",
    "hltv_match_url": "",
    "hotspawn_match_url": "https://www.hotspawn.com/matches/chinggis-warriors-vs-rare-atom-void-autumn-cup-2026-1083045",
    "board_flags": "",
@@ -1840,13 +1840,13 @@
      "rung": 4,
      "rung_label": "prediction market \u00b7 Polymarket",
      "book": "Polymarket",
-     "p_a": 59.5,
-     "p_b": 40.5,
+     "p_a": 62.0,
+     "p_b": 38.0,
      "odds_a": "",
      "odds_b": "",
      "overround_pct": "",
      "url": "https://polymarket.com/event/cs2-cw-ra1-2026-10-23",
-     "read_utc": "2026-10-23T22:36:14Z",
+     "read_utc": "2026-10-24T00:47:53Z",
      "caveat": "prediction market (traded prices, no bookmaker margin, MF-10); thin books move quickly"
     }
    ],
@@ -1874,7 +1874,7 @@
    "margin_pp": 51.400000000000006,
    "confidence": "heavy favourite",
    "source_url": "https://thunderpick.io/match/2872398",
-   "read_utc": "2026-10-23T22:36:14Z",
+   "read_utc": "2026-10-24T00:47:53Z",
    "hltv_match_url": "",
    "hotspawn_match_url": "https://www.hotspawn.com/matches/fokus-vs-ex-6666-nodwin-clutch-series-13-1079193",
    "board_flags": "",
@@ -1892,7 +1892,7 @@
      "odds_b": "",
      "overround_pct": "",
      "url": "https://thunderpick.io/match/2872398",
-     "read_utc": "2026-10-23T22:36:14Z",
+     "read_utc": "2026-10-24T00:47:53Z",
      "caveat": "quote relayed by bo3.gg's public API, not read from the bookmaker's own site (MF-09); the bookmaker match URL is linked so the price can be checked by hand"
     },
     {
@@ -1905,7 +1905,7 @@
      "odds_b": "",
      "overround_pct": "",
      "url": "https://polymarket.com/event/cs2-fokus-66661-2026-10-24",
-     "read_utc": "2026-10-23T22:36:14Z",
+     "read_utc": "2026-10-24T00:47:53Z",
      "caveat": "prediction market (traded prices, no bookmaker margin, MF-10); thin books move quickly"
     }
    ],
@@ -1933,12 +1933,11 @@
    "margin_pp": 16.400000000000006,
    "confidence": "slight favourite",
    "source_url": "https://thunderpick.io/match/2872440",
-   "read_utc": "2026-10-23T22:36:14Z",
+   "read_utc": "2026-10-24T00:47:53Z",
    "hltv_match_url": "",
    "hotspawn_match_url": "https://www.hotspawn.com/matches/nuclear-tigeres-vs-forze-reload-nodwin-clutch-series-13-1079195",
-   "board_flags": "MF-02",
+   "board_flags": "",
    "flags": [
-    "C-OPPONENT-CONFLICT",
     "C-RELAYED-BOOK-PRICE"
    ],
    "market_candidates": [
@@ -1952,7 +1951,7 @@
      "odds_b": "",
      "overround_pct": "",
      "url": "https://thunderpick.io/match/2872440",
-     "read_utc": "2026-10-23T22:36:14Z",
+     "read_utc": "2026-10-24T00:47:53Z",
      "caveat": "quote relayed by bo3.gg's public API, not read from the bookmaker's own site (MF-09); the bookmaker match URL is linked so the price can be checked by hand"
     },
     {
@@ -1965,7 +1964,7 @@
      "odds_b": "",
      "overround_pct": "",
      "url": "https://polymarket.com/event/cs2-ntr-forzer-2026-10-24",
-     "read_utc": "2026-10-23T22:36:14Z",
+     "read_utc": "2026-10-24T00:47:53Z",
      "caveat": "prediction market (traded prices, no bookmaker margin, MF-10); thin books move quickly"
     }
    ],
@@ -2061,7 +2060,7 @@
    "margin_pp": 3.780000000000001,
    "confidence": "narrow favourite",
    "source_url": "https://thunderpick.io/match/2874943",
-   "read_utc": "2026-10-23T22:36:14Z",
+   "read_utc": "2026-10-24T00:47:53Z",
    "hltv_match_url": "",
    "hotspawn_match_url": "https://www.hotspawn.com/matches/infinite-vs-brute-nodwin-clutch-series-13-1079199",
    "board_flags": "MF-07",
@@ -2079,7 +2078,7 @@
      "odds_b": "",
      "overround_pct": "",
      "url": "https://thunderpick.io/match/2874943",
-     "read_utc": "2026-10-23T22:36:14Z",
+     "read_utc": "2026-10-24T00:47:53Z",
      "caveat": "quote relayed by bo3.gg's public API, not read from the bookmaker's own site (MF-09); the bookmaker match URL is linked so the price can be checked by hand"
     },
     {
@@ -2092,7 +2091,7 @@
      "odds_b": "",
      "overround_pct": "",
      "url": "https://polymarket.com/event/cs2-inf6-brute-2026-10-25",
-     "read_utc": "2026-10-23T22:36:14Z",
+     "read_utc": "2026-10-24T00:47:53Z",
      "caveat": "prediction market (traded prices, no bookmaker margin, MF-10); thin books move quickly"
     }
    ],
@@ -2188,7 +2187,7 @@
    "margin_pp": 15.120000000000005,
    "confidence": "slight favourite",
    "source_url": "https://thunderpick.io/match/2870940",
-   "read_utc": "2026-10-23T22:36:14Z",
+   "read_utc": "2026-10-24T00:47:53Z",
    "hltv_match_url": "",
    "hotspawn_match_url": "https://www.hotspawn.com/matches/nexvoid-vs-alter-ego-dfrag-invitational-2026-1082859",
    "board_flags": "",
@@ -2206,7 +2205,7 @@
      "odds_b": "",
      "overround_pct": "",
      "url": "https://thunderpick.io/match/2870940",
-     "read_utc": "2026-10-23T22:36:14Z",
+     "read_utc": "2026-10-24T00:47:53Z",
      "caveat": "quote relayed by bo3.gg's public API, not read from the bookmaker's own site (MF-09); the bookmaker match URL is linked so the price can be checked by hand"
     }
    ],
@@ -2234,7 +2233,7 @@
    "margin_pp": 84.6,
    "confidence": "heavy favourite",
    "source_url": "https://thunderpick.io/match/2872333",
-   "read_utc": "2026-10-23T22:36:14Z",
+   "read_utc": "2026-10-24T00:47:53Z",
    "hltv_match_url": "",
    "hotspawn_match_url": "https://www.hotspawn.com/matches/flyquest-vs-staqued-dfrag-invitational-2026-1082860",
    "board_flags": "MF-05",
@@ -2253,7 +2252,7 @@
      "odds_b": "",
      "overround_pct": "",
      "url": "https://thunderpick.io/match/2872333",
-     "read_utc": "2026-10-23T22:36:14Z",
+     "read_utc": "2026-10-24T00:47:53Z",
      "caveat": "quote relayed by bo3.gg's public API, not read from the bookmaker's own site (MF-09); the bookmaker match URL is linked so the price can be checked by hand"
     }
    ],
@@ -2315,7 +2314,7 @@
    "margin_pp": 7.519999999999996,
    "confidence": "narrow favourite",
    "source_url": "https://thunderpick.io/match/2865386",
-   "read_utc": "2026-10-23T22:36:14Z",
+   "read_utc": "2026-10-24T00:47:53Z",
    "hltv_match_url": "",
    "hotspawn_match_url": "https://www.hotspawn.com/matches/b8-vs-k27-tesla-cup-2026-1082897",
    "board_flags": "",
@@ -2333,7 +2332,7 @@
      "odds_b": "",
      "overround_pct": "",
      "url": "https://thunderpick.io/match/2865386",
-     "read_utc": "2026-10-23T22:36:14Z",
+     "read_utc": "2026-10-24T00:47:53Z",
      "caveat": "quote relayed by bo3.gg's public API, not read from the bookmaker's own site (MF-09); the bookmaker match URL is linked so the price can be checked by hand"
     },
     {
@@ -2346,7 +2345,7 @@
      "odds_b": "",
      "overround_pct": "",
      "url": "https://polymarket.com/event/cs2-b8-k271-2026-10-27",
-     "read_utc": "2026-10-23T22:36:14Z",
+     "read_utc": "2026-10-24T00:47:53Z",
      "caveat": "prediction market (traded prices, no bookmaker margin, MF-10); thin books move quickly"
     }
    ],
@@ -2374,7 +2373,7 @@
    "margin_pp": 25.620000000000005,
    "confidence": "strong favourite",
    "source_url": "https://thunderpick.io/match/2865383",
-   "read_utc": "2026-10-23T22:36:14Z",
+   "read_utc": "2026-10-24T00:47:53Z",
    "hltv_match_url": "",
    "hotspawn_match_url": "https://www.hotspawn.com/matches/alliance-vs-faze-tesla-cup-2026-1082898",
    "board_flags": "",
@@ -2392,20 +2391,20 @@
      "odds_b": "",
      "overround_pct": "",
      "url": "https://thunderpick.io/match/2865383",
-     "read_utc": "2026-10-23T22:36:14Z",
+     "read_utc": "2026-10-24T00:47:53Z",
      "caveat": "quote relayed by bo3.gg's public API, not read from the bookmaker's own site (MF-09); the bookmaker match URL is linked so the price can be checked by hand"
     },
     {
      "rung": 4,
      "rung_label": "prediction market \u00b7 Polymarket",
      "book": "Polymarket",
-     "p_a": 34.5,
-     "p_b": 65.5,
+     "p_a": 35.0,
+     "p_b": 65.0,
      "odds_a": "",
      "odds_b": "",
      "overround_pct": "",
      "url": "https://polymarket.com/event/cs2-all-faze-2026-10-27",
-     "read_utc": "2026-10-23T22:36:14Z",
+     "read_utc": "2026-10-24T00:47:53Z",
      "caveat": "prediction market (traded prices, no bookmaker margin, MF-10); thin books move quickly"
     }
    ],
@@ -2433,7 +2432,7 @@
    "margin_pp": 5.400000000000006,
    "confidence": "narrow favourite",
    "source_url": "https://thunderpick.io/match/2865384",
-   "read_utc": "2026-10-23T22:36:14Z",
+   "read_utc": "2026-10-24T00:47:53Z",
    "hltv_match_url": "",
    "hotspawn_match_url": "https://www.hotspawn.com/matches/luminosity-vs-hotu-tesla-cup-2026-1082900",
    "board_flags": "",
@@ -2451,7 +2450,7 @@
      "odds_b": "",
      "overround_pct": "",
      "url": "https://thunderpick.io/match/2865384",
-     "read_utc": "2026-10-23T22:36:14Z",
+     "read_utc": "2026-10-24T00:47:53Z",
      "caveat": "quote relayed by bo3.gg's public API, not read from the bookmaker's own site (MF-09); the bookmaker match URL is linked so the price can be checked by hand"
     },
     {
@@ -2464,7 +2463,7 @@
      "odds_b": "",
      "overround_pct": "",
      "url": "https://polymarket.com/event/cs2-lg6-hotu-2026-10-27",
-     "read_utc": "2026-10-23T22:36:14Z",
+     "read_utc": "2026-10-24T00:47:53Z",
      "caveat": "prediction market (traded prices, no bookmaker margin, MF-10); thin books move quickly"
     }
    ],
@@ -2492,7 +2491,7 @@
    "margin_pp": 3.780000000000001,
    "confidence": "narrow favourite",
    "source_url": "https://thunderpick.io/match/2865385",
-   "read_utc": "2026-10-23T22:36:14Z",
+   "read_utc": "2026-10-24T00:47:53Z",
    "hltv_match_url": "",
    "hotspawn_match_url": "https://www.hotspawn.com/matches/envy-vs-gamerlegion-tesla-cup-2026-1082901",
    "board_flags": "",
@@ -2510,7 +2509,7 @@
      "odds_b": "",
      "overround_pct": "",
      "url": "https://thunderpick.io/match/2865385",
-     "read_utc": "2026-10-23T22:36:14Z",
+     "read_utc": "2026-10-24T00:47:53Z",
      "caveat": "quote relayed by bo3.gg's public API, not read from the bookmaker's own site (MF-09); the bookmaker match URL is linked so the price can be checked by hand"
     },
     {
@@ -2523,7 +2522,7 @@
      "odds_b": "",
      "overround_pct": "",
      "url": "https://polymarket.com/event/cs2-envy-gl1-2026-10-27",
-     "read_utc": "2026-10-23T22:36:14Z",
+     "read_utc": "2026-10-24T00:47:53Z",
      "caveat": "prediction market (traded prices, no bookmaker margin, MF-10); thin books move quickly"
     }
    ],
