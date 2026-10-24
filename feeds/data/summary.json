@@ -1,7 +1,7 @@
 {
- "generated_utc": "2026-10-23T22:36:22Z",
- "as_of_utc": "2026-10-23T22:36:22Z",
- "hotspawn_cs2_fixtures": 82,
+ "generated_utc": "2026-10-24T01:01:29Z",
+ "as_of_utc": "2026-10-24T01:01:29Z",
+ "hotspawn_cs2_fixtures": 81,
  "open_cs2_fixtures": 17,
  "priced_any": 10,
  "priced_both": 7,
@@ -9,34 +9,37 @@
  "priced_polymarket": 8,
  "format_known": 15,
  "feed_rows": 17,
- "review_rows": 8,
+ "review_rows": 7,
  "flags": 19,
- "polymarket_events": 100,
+ "polymarket_events": 102,
  "bo3_matches": 280,
  "polymarket_status": "observed",
  "bo3_status": "observed",
- "hotspawn_fallback": null,
+ "hotspawn_fallback": {
+  "path": "cs2/data/capture.json",
+  "generated_utc": "2026-10-24T00:47:59Z"
+ },
  "hotspawn_pages": [
   {
    "page": "cs2-pickems",
    "url": "https://play.hotspawn.com/cs2-pickems",
-   "status": 200,
-   "cs2_rows": 81,
-   "fetched_utc": "2026-10-23T22:36:14Z"
+   "status": 403,
+   "cs2_rows": 0,
+   "fetched_utc": "2026-10-24T01:01:22Z"
   },
   {
    "page": "lobby",
    "url": "https://play.hotspawn.com/lobby",
-   "status": 200,
-   "cs2_rows": 82,
-   "fetched_utc": "2026-10-23T22:36:15Z"
+   "status": 403,
+   "cs2_rows": 0,
+   "fetched_utc": "2026-10-24T01:01:23Z"
   },
   {
    "page": "thp-pickems",
    "url": "https://play.hotspawn.com/thp-pickems",
-   "status": 200,
-   "cs2_rows": 10,
-   "fetched_utc": "2026-10-23T22:36:17Z"
+   "status": 403,
+   "cs2_rows": 0,
+   "fetched_utc": "2026-10-24T01:01:24Z"
   }
  ],
  "probes": [
@@ -44,9 +47,9 @@
    "source": "OddsDigger e-sports index",
    "url": "https://oddsdigger.com/e-sports",
    "status": 200,
-   "bytes": 264834,
+   "bytes": 267706,
    "error": null,
-   "fetched_utc": "2026-10-23T22:36:21Z"
+   "fetched_utc": "2026-10-24T01:01:29Z"
   },
   {
    "source": "bookmaker page relayed by bo3.gg (thunderpick)",
@@ -54,7 +57,7 @@
    "status": 403,
    "bytes": 0,
    "error": "HTTPError 403 server=cloudflare title='Just a moment...'",
-   "fetched_utc": "2026-10-23T22:36:22Z"
+   "fetched_utc": "2026-10-24T01:01:29Z"
   }
  ]
 }
