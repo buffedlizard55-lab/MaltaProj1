@@ -1,45 +1,42 @@
 {
- "generated_utc": "2026-10-25T17:15:26Z",
- "as_of_utc": "2026-10-25T17:15:26Z",
- "hotspawn_cs2_fixtures": 80,
- "open_cs2_fixtures": 14,
- "priced_any": 10,
- "priced_both": 7,
- "priced_bookmaker": 8,
- "priced_polymarket": 9,
- "format_known": 11,
- "feed_rows": 17,
- "review_rows": 3,
- "flags": 11,
- "polymarket_events": 85,
- "bo3_matches": 233,
+ "generated_utc": "2026-10-25T20:00:23Z",
+ "as_of_utc": "2026-10-25T20:00:23Z",
+ "hotspawn_cs2_fixtures": 75,
+ "open_cs2_fixtures": 10,
+ "priced_any": 8,
+ "priced_both": 5,
+ "priced_bookmaker": 6,
+ "priced_polymarket": 7,
+ "format_known": 9,
+ "feed_rows": 13,
+ "review_rows": 2,
+ "flags": 7,
+ "polymarket_events": 86,
+ "bo3_matches": 227,
  "polymarket_status": "observed",
  "bo3_status": "observed",
- "hotspawn_fallback": {
-  "path": "cs2/data/capture.json",
-  "generated_utc": "2026-10-25T14:24:49Z"
- },
+ "hotspawn_fallback": null,
  "hotspawn_pages": [
   {
    "page": "cs2-pickems",
    "url": "https://play.hotspawn.com/cs2-pickems",
-   "status": 403,
-   "cs2_rows": 0,
-   "fetched_utc": "2026-10-25T17:15:20Z"
+   "status": 200,
+   "cs2_rows": 75,
+   "fetched_utc": "2026-10-25T20:00:12Z"
   },
   {
    "page": "lobby",
    "url": "https://play.hotspawn.com/lobby",
-   "status": 403,
-   "cs2_rows": 0,
-   "fetched_utc": "2026-10-25T17:15:21Z"
+   "status": 200,
+   "cs2_rows": 75,
+   "fetched_utc": "2026-10-25T20:00:13Z"
   },
   {
    "page": "thp-pickems",
    "url": "https://play.hotspawn.com/thp-pickems",
-   "status": 403,
-   "cs2_rows": 0,
-   "fetched_utc": "2026-10-25T17:15:22Z"
+   "status": 200,
+   "cs2_rows": 6,
+   "fetched_utc": "2026-10-25T20:00:15Z"
   }
  ],
  "probes": [
@@ -47,17 +44,17 @@
    "source": "OddsDigger e-sports index",
    "url": "https://oddsdigger.com/e-sports",
    "status": 200,
-   "bytes": 264982,
+   "bytes": 263038,
    "error": null,
-   "fetched_utc": "2026-10-25T17:15:25Z"
+   "fetched_utc": "2026-10-25T20:00:22Z"
   },
   {
    "source": "bookmaker page relayed by bo3.gg (thunderpick)",
-   "url": "https://thunderpick.io/match/2884646",
+   "url": "https://thunderpick.io/match/2870940",
    "status": 403,
    "bytes": 0,
    "error": "HTTPError 403 server=cloudflare title='Just a moment...'",
-   "fetched_utc": "2026-10-25T17:15:26Z"
+   "fetched_utc": "2026-10-25T20:00:23Z"
   }
  ]
 }
