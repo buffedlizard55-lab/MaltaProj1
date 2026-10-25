@@ -1,34 +1,34 @@
 {
- "finished_utc": "2026-10-25T13:14:53Z",
- "generated_utc": "2026-10-25T13:14:44Z",
- "run_id": "40196712953",
+ "finished_utc": "2026-10-25T19:17:00Z",
+ "generated_utc": "2026-10-25T19:16:48Z",
+ "run_id": "40224554451",
  "sources": {
   "bo3gg": {
    "requests": [
     {
-     "bytes": 232106,
+     "bytes": 238055,
      "error": null,
-     "fetched_utc": "2026-10-25T13:14:47Z",
+     "fetched_utc": "2026-10-25T19:16:51Z",
      "offset": 0,
-     "sha256": "c4345c1804514f1ddf6b5efd6e948a59907755d36118f49d0d7c4292c594e172",
+     "sha256": "24da86e06c739cf96ae8fa033b532183f34f968ef719184f4ab0893760e2bceb",
      "status": 200,
      "url": "https://api.bo3.gg/api/v1/matches?page%5Boffset%5D=0&page%5Blimit%5D=100&sort=start_date&filter%5Bmatches.status%5D%5Bin%5D=upcoming&filter%5Bmatches.discipline_id%5D%5Beq%5D=1&with=teams%2Ctournament"
     },
     {
-     "bytes": 202019,
+     "bytes": 206754,
      "error": null,
-     "fetched_utc": "2026-10-25T13:14:48Z",
+     "fetched_utc": "2026-10-25T19:16:52Z",
      "offset": 100,
-     "sha256": "cde4669c5c53f7ef4aed17e9c4059277ee88622a25b04d83b6a14c661ff65e54",
+     "sha256": "1fae531a5420d5dfc5300e69df00b438adc5287d8ef4c9394b5056420acaae23",
      "status": 200,
      "url": "https://api.bo3.gg/api/v1/matches?page%5Boffset%5D=100&page%5Blimit%5D=100&sort=start_date&filter%5Bmatches.status%5D%5Bin%5D=upcoming&filter%5Bmatches.discipline_id%5D%5Beq%5D=1&with=teams%2Ctournament"
     },
     {
-     "bytes": 98197,
+     "bytes": 61580,
      "error": null,
-     "fetched_utc": "2026-10-25T13:14:48Z",
+     "fetched_utc": "2026-10-25T19:16:53Z",
      "offset": 200,
-     "sha256": "df3849654e48b660beddc473bd73d0cfe43a5b641496cf2eab1fa22cabcafad2",
+     "sha256": "689e714da37995420ddaa337e41e853aed756a106a63fdc6e70fda16e7208eac",
      "status": 200,
      "url": "https://api.bo3.gg/api/v1/matches?page%5Boffset%5D=200&page%5Blimit%5D=100&sort=start_date&filter%5Bmatches.status%5D%5Bin%5D=upcoming&filter%5Bmatches.discipline_id%5D%5Beq%5D=1&with=teams%2Ctournament"
     }
@@ -36,56 +36,56 @@
   },
   "hltv": {
    "valve_ranking": {
-    "bytes": 1695152,
+    "bytes": 1629390,
     "error": null,
-    "fetched_utc": "2026-10-25T13:14:53Z",
+    "fetched_utc": "2026-10-25T19:17:00Z",
     "marker_found": false,
     "ranking_rows": 0,
-    "sha256": "63e300d2b21de8eb9fe4a4e84cc4f0ce7318501b4491adcfe5e64fba7c9a5e83",
+    "sha256": "2755e428b0bbcf0ec35e852df5c8b3210ca7df8881f8fe3c767003a6519bfdbc",
     "status": 200,
     "url": "https://www.hltv.org/valve-ranking/teams/2026/october/14"
    },
    "world_ranking": {
-    "bytes": 1131577,
+    "bytes": 1065817,
     "error": null,
-    "fetched_utc": "2026-10-25T13:14:52Z",
+    "fetched_utc": "2026-10-25T19:17:00Z",
     "marker_found": true,
     "ranking_rows": 0,
-    "sha256": "8326b1066319985fbb0c0068f33420c7991d81c32fdb64338cb52e6beec4784a",
+    "sha256": "43bfb72f278d2bf8cdf4af523702315700dbd2c1f16c30983ef9bb9f1345c6dc",
     "status": 200,
     "url": "https://www.hltv.org/ranking/teams/2026/october/12"
    }
   },
   "hotspawn": {
-   "fixtures": 80,
+   "fixtures": 75,
    "pages": [
     {
-     "bytes": 299140,
-     "cs2_rows": 78,
+     "bytes": 272508,
+     "cs2_rows": 75,
      "error": null,
-     "fetched_utc": "2026-10-25T13:14:44Z",
+     "fetched_utc": "2026-10-25T19:16:48Z",
      "page": "cs2-pickems",
-     "sha256": "b0485821012824137cab0086b97241e04c5304e74240143854b5f2479be69d32",
+     "sha256": "8097fba8e8755851bfd13234a51ade30a6dadd09c63330678ec7816a60b9e690",
      "status": 200,
      "url": "https://play.hotspawn.com/cs2-pickems"
     },
     {
-     "bytes": 301776,
-     "cs2_rows": 80,
+     "bytes": 273309,
+     "cs2_rows": 75,
      "error": null,
-     "fetched_utc": "2026-10-25T13:14:45Z",
+     "fetched_utc": "2026-10-25T19:16:49Z",
      "page": "lobby",
-     "sha256": "aef16f9d24695ca51c4331abe3b97649d1dc9f000eaa34a8ec9ab57d8eaf3f1d",
+     "sha256": "823b6343b263f2edec0dcd5c1b9f9692dfdd4f8fcc4d5a223428f5464a790e67",
      "status": 200,
      "url": "https://play.hotspawn.com/lobby"
     },
     {
-     "bytes": 176292,
-     "cs2_rows": 9,
+     "bytes": 166436,
+     "cs2_rows": 8,
      "error": null,
-     "fetched_utc": "2026-10-25T13:14:46Z",
+     "fetched_utc": "2026-10-25T19:16:50Z",
      "page": "thp-pickems",
-     "sha256": "4a4c71da7faa2a3bc14597fa5275389b40b7ee145a25dfc15553f91a28224e25",
+     "sha256": "65a87ba975a45a4aad821391f20f86a2097d0fc3ea188ab4bd1b94941bd69081",
      "status": 200,
      "url": "https://play.hotspawn.com/thp-pickems"
     }
@@ -94,18 +94,18 @@
   },
   "pinnacle": {
    "markets": {
-    "bytes": 448058,
+    "bytes": 227204,
     "error": null,
-    "fetched_utc": "2026-10-25T13:14:47Z",
-    "sha256": "4b4502737f00bb6448c2ec2e599dc409224bb96012f638999c632f1e60b55e6f",
+    "fetched_utc": "2026-10-25T19:16:51Z",
+    "sha256": "a271c8fd1b0cc29a024df8c96b8d33cb8fd5d56cb6642ea2172831edbf9f28df",
     "status": 200,
     "url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/markets/straight?primaryOnly=false&withSpecials=false"
    },
    "matchups": {
-    "bytes": 93719,
+    "bytes": 58616,
     "error": null,
-    "fetched_utc": "2026-10-25T13:14:47Z",
-    "sha256": "1f22b25a2214a0ab710c2a5fa2a7e8a12c496e0b708e339fdd608b0d4980f518",
+    "fetched_utc": "2026-10-25T19:16:51Z",
+    "sha256": "d688b542d049d7bb206b45f9f7f610f033b8ccab841848cd354d0bcb8f93b77e",
     "status": 200,
     "url": "https://guest.api.arcadia.pinnacle.com/0.1/sports/12/matchups?withSpecials=false"
    }
@@ -113,40 +113,49 @@
   "polymarket": {
    "requests": [
     {
-     "bytes": 4567415,
+     "bytes": 4567422,
      "error": null,
-     "fetched_utc": "2026-10-25T13:14:49Z",
+     "fetched_utc": "2026-10-25T19:16:53Z",
      "offset": 0,
-     "sha256": "5bee66a48068ff5dba76cc87f36648d377014e99268fe1ade3c5bac152edfe8b",
+     "sha256": "5f08bfd459e37b65386bade1e95f02f65047b629480aab2d8864c47e8c9d10c7",
      "status": 200,
      "url": "https://gamma-api.polymarket.com/events?series_id=10310&closed=false&limit=100&offset=0"
     },
     {
-     "bytes": 4784183,
+     "bytes": 4784175,
      "error": null,
-     "fetched_utc": "2026-10-25T13:14:50Z",
+     "fetched_utc": "2026-10-25T19:16:54Z",
      "offset": 100,
-     "sha256": "ea7a0565089beb8cd51cfffa92194f79c322940d6e02b771b85afc760abf4f42",
+     "sha256": "0fc50881ee195ee18acdedc74bc1ce00fc14fab2662e45e5d7efb0b742dfea73",
      "status": 200,
      "url": "https://gamma-api.polymarket.com/events?series_id=10310&closed=false&limit=100&offset=100"
     },
     {
-     "bytes": 4789191,
+     "bytes": 4789190,
      "error": null,
-     "fetched_utc": "2026-10-25T13:14:51Z",
+     "fetched_utc": "2026-10-25T19:16:55Z",
      "offset": 200,
-     "sha256": "0d740690219b67b77231f5e67916dcfe41146fe0789d421e565072fdb71ce38f",
+     "sha256": "d00ef0c90d048ae36aa049c0e0bdda653a28ecdd7028f4cc9b6cd2655c11adff",
      "status": 200,
      "url": "https://gamma-api.polymarket.com/events?series_id=10310&closed=false&limit=100&offset=200"
     },
     {
-     "bytes": 3052333,
+     "bytes": 3358246,
      "error": null,
-     "fetched_utc": "2026-10-25T13:14:52Z",
+     "fetched_utc": "2026-10-25T19:16:56Z",
      "offset": 300,
-     "sha256": "6dcdaf733f68a7a245c2fa14eef785a2d0a27fde81c563c2597eedb44fc6c177",
+     "sha256": "610b6737e040f9b6e429851ef26e7f43d3fa9ba7175707f1c69d67dbeb88a9e8",
      "status": 200,
      "url": "https://gamma-api.polymarket.com/events?series_id=10310&closed=false&limit=100&offset=300"
+    },
+    {
+     "bytes": 3,
+     "error": null,
+     "fetched_utc": "2026-10-25T19:16:59Z",
+     "offset": 400,
+     "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+     "status": 200,
+     "url": "https://gamma-api.polymarket.com/events?series_id=10310&closed=false&limit=100&offset=400"
     }
    ]
   },
@@ -154,7 +163,7 @@
    "dir": {
     "bytes": 46751,
     "error": null,
-    "fetched_utc": "2026-10-25T13:14:52Z",
+    "fetched_utc": "2026-10-25T19:16:59Z",
     "sha256": "a0c70433d2727db5d568fa6267b7000a2c15e92a4aa8820cabf07ae84338ee23",
     "status": 200,
     "url": "https://api.github.com/repos/ValveSoftware/counter-strike_regional_standings/contents/live/2026"
@@ -162,7 +171,7 @@
    "file": {
     "bytes": 77872,
     "error": null,
-    "fetched_utc": "2026-10-25T13:14:52Z",
+    "fetched_utc": "2026-10-25T19:16:59Z",
     "name": "standings_global_2026_10_05.md",
     "sha256": "df96e7fc3cd91a2687ec08cac0128e50cc4e4e55346581679572e881d79ae61b",
     "status": 200,
