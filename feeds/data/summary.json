@@ -1,18 +1,18 @@
 {
- "generated_utc": "2026-10-26T06:56:59Z",
- "as_of_utc": "2026-10-26T06:56:59Z",
- "hotspawn_cs2_fixtures": 80,
- "open_cs2_fixtures": 17,
+ "generated_utc": "2026-10-26T14:33:28Z",
+ "as_of_utc": "2026-10-26T14:33:28Z",
+ "hotspawn_cs2_fixtures": 78,
+ "open_cs2_fixtures": 15,
  "priced_any": 11,
- "priced_both": 8,
- "priced_bookmaker": 8,
+ "priced_both": 9,
+ "priced_bookmaker": 9,
  "priced_polymarket": 11,
- "format_known": 15,
- "feed_rows": 19,
- "review_rows": 7,
- "flags": 17,
- "polymarket_events": 85,
- "bo3_matches": 217,
+ "format_known": 14,
+ "feed_rows": 20,
+ "review_rows": 3,
+ "flags": 11,
+ "polymarket_events": 88,
+ "bo3_matches": 231,
  "polymarket_status": "observed",
  "bo3_status": "observed",
  "hotspawn_fallback": null,
@@ -21,40 +21,40 @@
    "page": "cs2-pickems",
    "url": "https://play.hotspawn.com/cs2-pickems",
    "status": 200,
-   "cs2_rows": 80,
-   "fetched_utc": "2026-10-26T06:56:49Z"
+   "cs2_rows": 77,
+   "fetched_utc": "2026-10-26T14:32:26Z"
   },
   {
    "page": "lobby",
    "url": "https://play.hotspawn.com/lobby",
    "status": 200,
-   "cs2_rows": 80,
-   "fetched_utc": "2026-10-26T06:56:51Z"
+   "cs2_rows": 78,
+   "fetched_utc": "2026-10-26T14:32:27Z"
   },
   {
    "page": "thp-pickems",
    "url": "https://play.hotspawn.com/thp-pickems",
    "status": 200,
-   "cs2_rows": 8,
-   "fetched_utc": "2026-10-26T06:56:52Z"
+   "cs2_rows": 9,
+   "fetched_utc": "2026-10-26T14:32:39Z"
   }
  ],
  "probes": [
   {
    "source": "OddsDigger e-sports index",
    "url": "https://oddsdigger.com/e-sports",
-   "status": 200,
-   "bytes": 257123,
-   "error": null,
-   "fetched_utc": "2026-10-26T06:56:58Z"
+   "status": null,
+   "bytes": 0,
+   "error": "URLError: <urlopen error [Errno -3] Temporary failure in name resolution>",
+   "fetched_utc": "2026-10-26T14:33:15Z"
   },
   {
    "source": "bookmaker page relayed by bo3.gg (thunderpick)",
-   "url": "https://thunderpick.io/match/2888697",
+   "url": "https://thunderpick.io/match/2889134",
    "status": 403,
    "bytes": 0,
    "error": "HTTPError 403 server=cloudflare title='Just a moment...'",
-   "fetched_utc": "2026-10-26T06:56:58Z"
+   "fetched_utc": "2026-10-26T14:33:27Z"
   }
  ]
 }
