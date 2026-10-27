@@ -16,14 +16,14 @@
   </div>
 </header>
 <main id="main" class="wrap">
-<p class="banner" role="status">Live capture Tue 27 Oct 14:32 UTC · rebuilt automatically every 4 h · <a href="https://github.com/buffedlizard55-lab/MaltaProj1/actions/workflows/leaderboard-2e2b2e5e.yml">refresh log</a></p>
+<p class="banner" role="status">Live capture Tue 27 Oct 20:42 UTC · rebuilt automatically every 4 h · <a href="https://github.com/buffedlizard55-lab/MaltaProj1/actions/workflows/leaderboard-2e2b2e5e.yml">refresh log</a></p>
 
 <section class="hero"><h1>Method</h1><p class="lede">How the probabilities, the crowd leverage and the two plans are produced.</p></section>
 <section id="scoring" aria-labelledby="h-sc"><h2 id="h-sc">Hotspawn scoring</h2><p>Points for every correct pick; higher tiers pay more (lobby cards: S x3 = 7 pts, A x2 = 5 pts, B x1.5 = 3 pts, C = 2 pts, each with a x1.25 multiplier shown); a streak bonus for consecutive correct picks; the leaderboard resets weekly (week 270: 2026-10-12 00:00Z to 2026-10-18 23:59Z); weekly prizes for places 1-10 ($400/$200/$100/$50 Steam vouchers); minimum 10 picks to qualify. (<a href="https://play.hotspawn.com/how-it-works">how it works</a>, <a href="https://play.hotspawn.com/lobby">lobby</a>)</p></section>
 <section aria-labelledby="h-pr"><h2 id="h-pr">Win probabilities</h2><ul class="tight">
 <li>Decimal prices are de-vigged proportionally: p = (1/odds) / Σ(1/odds). American prices are converted first.</li>
 <li>Polymarket share prices are normalized to sum to 1; a market above 98.5% for one side is treated as settled and skipped.</li>
-<li>Own line: per-map p = 1 / (1 + 10^(−k·ΔVRS/400)) (Valve's VRS convention, "400 points = 90%"), then the series probability for the fixture's best-of. k is fitted daily on matched outside prices (current k = 0.32, n = 177).</li>
+<li>Own line: per-map p = 1 / (1 + 10^(−k·ΔVRS/400)) (Valve's VRS convention, "400 points = 90%"), then the series probability for the fixture's best-of. k is fitted daily on matched outside prices (current k = 0.31, n = 182).</li>
 <li>Teams are matched across sources only by exact name or a documented alias with evidence (e.g. Hotspawn "WROTBERRY" = WBT, proven by the identical six-fixture schedule on HLTV).</li>
 <li>Hotspawn's crowd split is <strong>never</strong> a probability input; the build's probability function does not receive it, and a test changes the crowd numbers to prove the probabilities do not move.</li></ul></section>
 <section aria-labelledby="h-lev"><h2 id="h-lev">Leverage and labels</h2><ul class="tight">
