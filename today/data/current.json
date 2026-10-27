@@ -1,21 +1,21 @@
 {
  "meta": {
-  "generated_utc": "2026-10-26T20:41:55Z",
-  "source_snapshot_utc": "2026-10-26T20:41:54Z",
-  "hotspawn_snapshot_utc": "2026-10-26T20:39:17Z",
-  "egw_snapshot_utc": "2026-10-26T20:39:22Z",
-  "pinnacle_snapshot_utc": "2026-10-26T20:40:48Z",
-  "hltv_snapshot_utc": "2026-10-26T20:40:50Z",
-  "valve_snapshot_utc": "2026-10-26T20:41:54Z",
-  "pickem_week_reset_utc": "2026-11-02T03:07:14Z",
+  "generated_utc": "2026-10-27T00:40:51Z",
+  "source_snapshot_utc": "2026-10-27T00:40:51Z",
+  "hotspawn_snapshot_utc": "2026-10-27T00:38:14Z",
+  "egw_snapshot_utc": "2026-10-27T00:38:19Z",
+  "pinnacle_snapshot_utc": "2026-10-27T00:39:45Z",
+  "hltv_snapshot_utc": "2026-10-27T00:39:46Z",
+  "valve_snapshot_utc": "2026-10-27T00:40:51Z",
+  "pickem_week_reset_utc": "2026-11-02T02:22:08Z",
   "pickem_week_total_text": 70,
-  "pickem_week_total_context": " Tournaments How To Play League of Legends Pick'em Lobby Play other game titles This week 70 matches this week Resets in 6d 06h 27m 53s Sign in to tra",
+  "pickem_week_total_context": " Tournaments How To Play League of Legends Pick'em Lobby Play other game titles This week 70 matches this week Resets in 6d 01h 43m 50s Sign in to tra",
   "pickem_page_header_counts": [
    {
     "page": "lobby",
     "url": "https://play.hotspawn.com/lobby",
-    "matches_this_week_text": 22,
-    "context": "ck'ems Lobby | Hotspawn Play Lobby My Picks Leaderboard Tournaments How To Play This week 22 matches this week Resets in 6d 03h 38m 32s Sign in to tra",
+    "matches_this_week_text": 23,
+    "context": "ck'ems Lobby | Hotspawn Play Lobby My Picks Leaderboard Tournaments How To Play This week 23 matches this week Resets in 5d 23h 37m 54s Sign in to tra",
     "rows_in_payload": 74,
     "cards_rendered": 12
    },
@@ -23,7 +23,7 @@
     "page": "cs2-pickems",
     "url": "https://play.hotspawn.com/cs2-pickems",
     "matches_this_week_text": 22,
-    "context": "d Tournaments How To Play Counter-Strike 2 Pick'em Lobby Play other game titles This week 22 matches this week Resets in 6d 03h 53m 59s Sign in to tra",
+    "context": "d Tournaments How To Play Counter-Strike 2 Pick'em Lobby Play other game titles This week 22 matches this week Resets in 5d 23h 53m 39s Sign in to tra",
     "rows_in_payload": 74,
     "cards_rendered": 12
    },
@@ -31,7 +31,7 @@
     "page": "thp-pickems",
     "url": "https://play.hotspawn.com/thp-pickems",
     "matches_this_week_text": 22,
-    "context": " (1) HOTU (1) K27 (1) Luminosity (1) Rooster (1) Spirit Academy (1) Staqued (1) This week 22 matches this week Resets in 6d 04h 13m 08s Sign in to tra",
+    "context": " (1) HOTU (1) K27 (1) Luminosity (1) Rooster (1) Spirit Academy (1) Staqued (1) This week 22 matches this week Resets in 5d 23h 56m 34s Sign in to tra",
     "rows_in_payload": 7,
     "cards_rendered": 7
    },
@@ -39,9 +39,9 @@
     "page": "lol-pickems",
     "url": "https://play.hotspawn.com/lol-pickems",
     "matches_this_week_text": 70,
-    "context": " Tournaments How To Play League of Legends Pick'em Lobby Play other game titles This week 70 matches this week Resets in 6d 06h 27m 53s Sign in to tra",
+    "context": " Tournaments How To Play League of Legends Pick'em Lobby Play other game titles This week 70 matches this week Resets in 6d 01h 43m 50s Sign in to tra",
     "rows_in_payload": 212,
-    "cards_rendered": 131
+    "cards_rendered": 125
    }
   ],
   "valve_vrs_file": "standings_global_2026_10_05.md",
@@ -649,8 +649,8 @@
    "estimate_basis": "unavailable \u2014 neither a bookmaker price nor a rating line could be sourced",
    "pick": null,
    "pick_pct": null,
-   "locked": false,
-   "started": false,
+   "locked": true,
+   "started": true,
    "flags": [
     "no_external_match_page_matched",
     "no_external_price_found",
@@ -3792,7 +3792,7 @@
   {
    "code": "R-COUNT",
    "title": "The lobby's 'matches this week' count differs from the rows in the payload window",
-   "detail": "The lobby page prints 22 matches this week (context: \" Tournaments How To Play League of Legends Pick'em Lobby Play other game titles This week 70 matches this week Resets in 6d 06h 27m 53s Sign in to tra\"), while the same page's payload yields 86 rows whose start falls inside the week window that ends 2026-11-02T03:07:14Z (the window comes from the page's own reset countdown). Per-page header counts: lobby=22, cs2-pickems=22, thp-pickems=22, lol-pickems=70. The difference is published, not explained away; the board shows every row the payload contains in the window.",
+   "detail": "The lobby page prints 23 matches this week (context: \" Tournaments How To Play League of Legends Pick'em Lobby Play other game titles This week 70 matches this week Resets in 6d 01h 43m 50s Sign in to tra\"), while the same page's payload yields 86 rows whose start falls inside the week window that ends 2026-11-02T02:22:08Z (the window comes from the page's own reset countdown). Per-page header counts: lobby=23, cs2-pickems=22, thp-pickems=22, lol-pickems=70. The difference is published, not explained away; the board shows every row the payload contains in the window.",
    "source_url": "https://play.hotspawn.com/lobby",
    "items": []
   },
@@ -5991,7 +5991,7 @@
   },
   {
    "code": "R-LOCKED",
-   "title": "12 fixtures were already locked when this board was built",
+   "title": "13 fixtures were already locked when this board was built",
    "detail": "Their pick'em lock time had passed; the rows stay published for completeness and are labelled locked.",
    "source_url": null,
    "items": [
@@ -6006,7 +6006,8 @@
     "1082938",
     "1075822",
     "1081700",
-    "1081831"
+    "1081831",
+    "1075823"
    ]
   }
  ],
