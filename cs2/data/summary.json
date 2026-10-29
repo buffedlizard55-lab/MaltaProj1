@@ -1,13 +1,13 @@
 {
- "generated_utc": "2026-10-24T20:57:18Z",
- "capture_generated_utc": "2026-10-24T20:55:11Z",
- "fixtures_cs2": 80,
- "open": 17,
- "with_market_line": 2,
+ "generated_utc": "2026-10-29T19:00:45Z",
+ "capture_generated_utc": "2026-10-29T18:58:33Z",
+ "fixtures_cs2": 0,
+ "open": 0,
+ "with_market_line": 0,
  "with_own_line": 0,
- "with_pick": 2,
- "flagged": 330,
- "market_price_rows": 3,
+ "with_pick": 0,
+ "flagged": 0,
+ "market_price_rows": 0,
  "own_line": {
   "k": 0.463,
   "basis": "slope re-fit by cs2/calibrate.py on Valve's own match results",
@@ -24,10 +24,10 @@
     "brier": 0.2296341750669837
    }
   },
-  "rating_snapshot_as_of": null,
-  "rating_snapshot_age_days": "",
+  "rating_snapshot_as_of": "2026-10-05",
+  "rating_snapshot_age_days": 24,
   "valve_commit": "eec4853d7bcf0f1f7efe7f0d901234bef7e98b75",
-  "vrs_file": null
+  "vrs_file": "live/2026/standings_global_2026_10_05.md"
  },
  "sources": {
   "hotspawn": {
@@ -35,7 +35,7 @@
   },
   "pinnacle": {
    "status": "observed",
-   "cs2_events": 7
+   "cs2_events": 4
   },
   "egamersworld": {
    "status": "unavailable",
@@ -45,8 +45,10 @@
    "error": "HTTP 403 HTTPError 403"
   },
   "vrs": {
-   "status": "unavailable",
-   "error": "HTTPError 403"
+   "status": "observed",
+   "as_of": "2026-10-05",
+   "file": "live/2026/standings_global_2026_10_05.md",
+   "url": "https://raw.githubusercontent.com/ValveSoftware/counter-strike_regional_standings/main/live/2026/standings_global_2026_10_05.md"
   },
   "hltv": {
    "status": "observed"

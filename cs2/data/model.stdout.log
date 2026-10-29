@@ -1,10 +1,1 @@
-Traceback (most recent call last):
-  File "/home/runner/work/MaltaProj1/MaltaProj1/cs2/model.py", line 497, in <module>
-    sys.exit(main())
-             ^^^^^^
-  File "/home/runner/work/MaltaProj1/MaltaProj1/cs2/model.py", line 375, in main
-    flag_rows(flags, mid, "A-SNAPSHOT-AGE", age_days=vrs_age_d)
-  File "/home/runner/work/MaltaProj1/MaltaProj1/cs2/model.py", line 79, in flag_rows
-    text = FLAG_TEXT[code].format(**kw) if code in FLAG_TEXT else code
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-KeyError: 'age'
+[2026-10-29T19:00:45Z] model: 0 open CS2 fixtures · 0 with a market line · 0 with our own line · 0 with a pick · 0 flags
