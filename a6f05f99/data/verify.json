@@ -1,6 +1,6 @@
 {
  "schema": "a6f05f99-verify/1",
- "checked_utc": "2026-10-29T06:28:26Z",
+ "checked_utc": "2026-10-29T15:33:07Z",
  "pages": [
   "index.html",
   "picks.html",
@@ -10,7 +10,7 @@
   "flagged.html"
  ],
  "broken_local_links": [],
- "external_links_checked": 107,
+ "external_links_checked": 99,
  "external_links": [
   {
    "url": "https://bo3.gg/matches/alter-ego-vs-abyssal-30-10-2026",
@@ -38,16 +38,6 @@
    "error": "InvalidURL: URL can't contain control characters. '/matches/aurora-gaming-vs-9z-16-10-2026 and https://www.hltv.org/team/11861/aurora' (found at least ' ')"
   },
   {
-   "url": "https://bo3.gg/matches/b8-vs-hotu-29-10-2026",
-   "status": 200,
-   "error": null
-  },
-  {
-   "url": "https://bo3.gg/matches/barca-br-vs-bounty-hunters-esports-29-10-2026",
-   "status": 200,
-   "error": null
-  },
-  {
    "url": "https://bo3.gg/matches/basement-boys-vs-teletubisie-30-10-2026",
    "status": 200,
    "error": null
@@ -68,11 +58,6 @@
    "error": null
   },
   {
-   "url": "https://bo3.gg/matches/faze-vs-gamerlegion-29-10-2026",
-   "status": 200,
-   "error": null
-  },
-  {
    "url": "https://bo3.gg/matches/fluxo-vs-signatus-30-10-2026",
    "status": 200,
    "error": null
@@ -83,7 +68,7 @@
    "error": null
   },
   {
-   "url": "https://bo3.gg/matches/imperial-vs-quintessencia-29-10-2026",
+   "url": "https://bo3.gg/matches/genone-vs-baks-esports-30-10-2026",
    "status": 200,
    "error": null
   },
@@ -93,7 +78,22 @@
    "error": null
   },
   {
+   "url": "https://bo3.gg/matches/metizport-vs-snitko-esports-30-10-2026",
+   "status": 200,
+   "error": null
+  },
+  {
+   "url": "https://bo3.gg/matches/nexvoid-vs-flyquest-30-10-2026",
+   "status": 200,
+   "error": null
+  },
+  {
    "url": "https://bo3.gg/matches/nrg-vs-tactical-chaos-29-10-2026",
+   "status": 200,
+   "error": null
+  },
+  {
+   "url": "https://bo3.gg/matches/phantom-esports-vs-lavked-30-10-2026",
    "status": 200,
    "error": null
   },
@@ -253,16 +253,6 @@
    "error": null
   },
   {
-   "url": "https://www.hltv.org/team/11241/b8",
-   "status": 200,
-   "error": null
-  },
-  {
-   "url": "https://www.hltv.org/team/11248/saw-youngsters",
-   "status": 200,
-   "error": null
-  },
-  {
    "url": "https://www.hltv.org/team/11446/leo",
    "status": 200,
    "error": null
@@ -314,13 +304,13 @@
   },
   {
    "url": "https://www.hltv.org/team/12510/the-huns",
-   "status": 200,
-   "error": null
+   "status": 429,
+   "error": "HTTP 429"
   },
   {
    "url": "https://www.hltv.org/team/12604/johnny-speeds",
-   "status": 200,
-   "error": null
+   "status": 429,
+   "error": "HTTP 429"
   },
   {
    "url": "https://www.hltv.org/team/12609/lavked",
@@ -343,11 +333,6 @@
    "error": null
   },
   {
-   "url": "https://www.hltv.org/team/12857/forze-reload",
-   "status": 429,
-   "error": "HTTP 429"
-  },
-  {
    "url": "https://www.hltv.org/team/12878/bcgame",
    "status": 200,
    "error": null
@@ -358,14 +343,9 @@
    "error": null
   },
   {
-   "url": "https://www.hltv.org/team/13104/iberian-soul",
+   "url": "https://www.hltv.org/team/13117/inner-circle",
    "status": 200,
    "error": null
-  },
-  {
-   "url": "https://www.hltv.org/team/13117/inner-circle",
-   "status": 429,
-   "error": "HTTP 429"
   },
   {
    "url": "https://www.hltv.org/team/13173/phantom",
@@ -399,8 +379,8 @@
   },
   {
    "url": "https://www.hltv.org/team/13667/nexvoid",
-   "status": 429,
-   "error": "HTTP 429"
+   "status": 200,
+   "error": null
   },
   {
    "url": "https://www.hltv.org/team/13679/fokus",
@@ -409,11 +389,16 @@
   },
   {
    "url": "https://www.hltv.org/team/13681/inner-circle-academy",
+   "status": 429,
+   "error": "HTTP 429"
+  },
+  {
+   "url": "https://www.hltv.org/team/13686/abyssal",
    "status": 200,
    "error": null
   },
   {
-   "url": "https://www.hltv.org/team/13686/abyssal",
+   "url": "https://www.hltv.org/team/13714/donstu",
    "status": 200,
    "error": null
   },
@@ -443,7 +428,7 @@
    "error": null
   },
   {
-   "url": "https://www.hltv.org/team/13797/zotix",
+   "url": "https://www.hltv.org/team/13799/psychoface",
    "status": 200,
    "error": null
   },
@@ -453,19 +438,14 @@
    "error": null
   },
   {
-   "url": "https://www.hltv.org/team/13811/quintessncia",
-   "status": 200,
-   "error": null
-  },
-  {
-   "url": "https://www.hltv.org/team/13908/butterfly",
-   "status": 200,
-   "error": null
-  },
-  {
    "url": "https://www.hltv.org/team/13926/dendele",
-   "status": 429,
-   "error": "HTTP 429"
+   "status": 200,
+   "error": null
+  },
+  {
+   "url": "https://www.hltv.org/team/13991/azuolas",
+   "status": 200,
+   "error": null
   },
   {
    "url": "https://www.hltv.org/team/13998/saint-sinners",
@@ -473,14 +453,9 @@
    "error": null
   },
   {
-   "url": "https://www.hltv.org/team/13999/wbt-academy",
-   "status": 200,
-   "error": null
-  },
-  {
    "url": "https://www.hltv.org/team/14084/lfo-10",
-   "status": 200,
-   "error": null
+   "status": 429,
+   "error": "HTTP 429"
   },
   {
    "url": "https://www.hltv.org/team/14107/barca",
@@ -489,11 +464,6 @@
   },
   {
    "url": "https://www.hltv.org/team/4773/pain",
-   "status": 200,
-   "error": null
-  },
-  {
-   "url": "https://www.hltv.org/team/6667/faze",
    "status": 200,
    "error": null
   },
@@ -513,11 +483,6 @@
    "error": null
   },
   {
-   "url": "https://www.hltv.org/team/8474/100-thieves",
-   "status": 200,
-   "error": null
-  },
-  {
    "url": "https://www.hltv.org/team/9455/imperial",
    "status": 200,
    "error": null
@@ -529,11 +494,6 @@
   },
   {
    "url": "https://www.hltv.org/team/9735/lilmix",
-   "status": 200,
-   "error": null
-  },
-  {
-   "url": "https://www.hltv.org/team/9928/gamerlegion",
    "status": 200,
    "error": null
   },
