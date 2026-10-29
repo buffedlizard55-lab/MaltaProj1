@@ -1,19 +1,19 @@
 playwright available: True
-probe hotspawn       path=http status=200 bytes=357133 err=None
+probe hotspawn       path=http status=200 bytes=357124 err=None
 probe egw-cs2        path=browser status=403 bytes=4756 err=None
-probe hltv-ranking   path=browser status=200 bytes=1126742 err=None
-probe valve-api      path=http status=200 bytes=50648 err=None
+probe hltv-ranking   path=browser status=200 bytes=1072327 err=None
+probe valve-api      path=http status=403 bytes=None err=HTTPError 403
 slate candidates for odds lookup: 88 of 295 payload rows
 {
- "generated_utc": "2026-10-28T20:29:12Z",
+ "generated_utc": "2026-10-29T01:09:57Z",
  "hotspawn_fixtures": 295,
  "sports": {
   "cs2": 83,
   "lol": 212
  },
  "week_total_text": 84,
- "week_total_context": " Tournaments How To Play League of Legends Pick'em Lobby Play other game titles This week 84 matches this week Resets in 4d 05h 06m 46s Sign in to tra",
- "reset_utc": "2026-11-02T01:33:25Z",
+ "week_total_context": " Tournaments How To Play League of Legends Pick'em Lobby Play other game titles This week 84 matches this week Resets in 4d 00h 44m 52s Sign in to tra",
+ "reset_utc": "2026-11-02T01:52:15Z",
  "ng_state_rows": {
   "lobby": 83,
   "cs2-pickems": 83,
@@ -24,7 +24,7 @@ slate candidates for odds lookup: 88 of 295 payload rows
   "lobby": 22,
   "cs2-pickems": 22,
   "thp-pickems": 12,
-  "lol-pickems": 129
+  "lol-pickems": 126
  },
  "egw_candidates": 0,
  "egw_events_scanned": 0,
@@ -35,9 +35,14 @@ slate candidates for odds lookup: 88 of 295 payload rows
  "pinnacle_counters": {},
  "hltv_ranking_teams": 0,
  "hltv_matches": 0,
- "valve_vrs_file": "standings_global_2026_10_05.md",
- "valve_vrs_teams": 349,
- "valve_vrs_error": null,
- "fetch_failures": []
+ "valve_vrs_file": null,
+ "valve_vrs_teams": 0,
+ "valve_vrs_error": "VRS listing failed: HTTPError 403",
+ "fetch_failures": [
+  [
+   "https://api.github.com/repos/ValveSoftware/counter-strike_regional_standings/contents/live/2026",
+   403
+  ]
+ ]
 }
 collect exit=0
