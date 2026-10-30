@@ -1,6 +1,6 @@
 {
  "schema": "a6f05f99-verify/1",
- "checked_utc": "2026-10-30T06:27:20Z",
+ "checked_utc": "2026-10-30T15:20:34Z",
  "pages": [
   "index.html",
   "picks.html",
@@ -10,7 +10,7 @@
   "flagged.html"
  ],
  "broken_local_links": [],
- "external_links_checked": 95,
+ "external_links_checked": 87,
  "external_links": [
   {
    "url": "https://bo3.gg/matches/aurora-gaming-vs-9z-03-10-2026",
@@ -33,11 +33,6 @@
    "error": "InvalidURL: URL can't contain control characters. '/matches/aurora-gaming-vs-9z-16-10-2026 and https://www.hltv.org/team/11861/aurora' (found at least ' ')"
   },
   {
-   "url": "https://bo3.gg/matches/basement-boys-vs-teletubisie-30-10-2026",
-   "status": 200,
-   "error": null
-  },
-  {
    "url": "https://bo3.gg/matches/bc-game-vs-og-30-10-2026",
    "status": 200,
    "error": null
@@ -49,16 +44,6 @@
   },
   {
    "url": "https://bo3.gg/matches/bounty-hunters-esports-vs-barca-br-31-10-2026",
-   "status": 200,
-   "error": null
-  },
-  {
-   "url": "https://bo3.gg/matches/fluxo-vs-signatus-30-10-2026",
-   "status": 200,
-   "error": null
-  },
-  {
-   "url": "https://bo3.gg/matches/genone-vs-baks-esports-30-10-2026",
    "status": 200,
    "error": null
   },
@@ -78,17 +63,12 @@
    "error": null
   },
   {
-   "url": "https://bo3.gg/matches/pcific-esport-vs-omega-kz-30-10-2026",
-   "status": 200,
-   "error": null
-  },
-  {
    "url": "https://bo3.gg/matches/phantom-esports-vs-lavked-30-10-2026",
    "status": 200,
    "error": null
   },
   {
-   "url": "https://bo3.gg/matches/shinden-vs-isurus-gaming-cs-go-30-10-2026",
+   "url": "https://bo3.gg/matches/spirit-academy-vs-falcons-force-30-10-2026",
    "status": 200,
    "error": null
   },
@@ -109,8 +89,8 @@
   },
   {
    "url": "https://play.hotspawn.com/lobby",
-   "status": 200,
-   "error": null
+   "status": 403,
+   "error": "HTTP 403"
   },
   {
    "url": "https://www.hltv.org/events/8932/thunderpick-world-championship-2026",
@@ -258,11 +238,6 @@
    "error": null
   },
   {
-   "url": "https://www.hltv.org/team/11699/baks",
-   "status": 200,
-   "error": null
-  },
-  {
    "url": "https://www.hltv.org/team/11719/illyrians",
    "status": 200,
    "error": null
@@ -299,13 +274,13 @@
   },
   {
    "url": "https://www.hltv.org/team/12609/lavked",
-   "status": 200,
-   "error": null
+   "status": 429,
+   "error": "HTTP 429"
   },
   {
    "url": "https://www.hltv.org/team/12776/bounty-hunters",
-   "status": 200,
-   "error": null
+   "status": 429,
+   "error": "HTTP 429"
   },
   {
    "url": "https://www.hltv.org/team/12878/bcgame",
@@ -334,8 +309,8 @@
   },
   {
    "url": "https://www.hltv.org/team/13173/phantom",
-   "status": 200,
-   "error": null
+   "status": 429,
+   "error": "HTTP 429"
   },
   {
    "url": "https://www.hltv.org/team/13181/basement-boys",
@@ -353,11 +328,6 @@
    "error": null
   },
   {
-   "url": "https://www.hltv.org/team/13479/omega",
-   "status": 200,
-   "error": null
-  },
-  {
    "url": "https://www.hltv.org/team/13518/acend",
    "status": 200,
    "error": null
@@ -369,8 +339,8 @@
   },
   {
    "url": "https://www.hltv.org/team/13646/fortress",
-   "status": 429,
-   "error": "HTTP 429"
+   "status": 200,
+   "error": null
   },
   {
    "url": "https://www.hltv.org/team/13667/nexvoid",
@@ -394,8 +364,8 @@
   },
   {
    "url": "https://www.hltv.org/team/13722/hacha",
-   "status": 200,
-   "error": null
+   "status": 429,
+   "error": "HTTP 429"
   },
   {
    "url": "https://www.hltv.org/team/13724/5star",
@@ -438,11 +408,6 @@
    "error": null
   },
   {
-   "url": "https://www.hltv.org/team/14030/private",
-   "status": 200,
-   "error": null
-  },
-  {
    "url": "https://www.hltv.org/team/14084/lfo-10",
    "status": 200,
    "error": null
@@ -454,11 +419,6 @@
   },
   {
    "url": "https://www.hltv.org/team/4773/pain",
-   "status": 200,
-   "error": null
-  },
-  {
-   "url": "https://www.hltv.org/team/7653/isurus",
    "status": 200,
    "error": null
   },
@@ -484,8 +444,8 @@
   },
   {
    "url": "https://www.hotspawn.com/counter-strike/news/thunderpick-world-championship-2026-day-2-review",
-   "status": 200,
-   "error": null
+   "status": 403,
+   "error": "HTTP 403"
   }
  ]
 }
