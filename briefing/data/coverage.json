@@ -1,29 +1,30 @@
 {
- "generated_utc": "2026-10-29T21:14:57Z",
+ "generated_utc": "2026-10-30T06:02:33Z",
  "counts": {
-  "fixtures": 84,
-  "open": 20,
-  "locked": 3,
+  "fixtures": 87,
+  "open": 24,
+  "locked": 2,
   "stale": 61,
-  "picks": 17,
-  "market": 12,
+  "picks": 20,
+  "market": 15,
   "model": 5,
-  "blank": 3
+  "blank": 4
  },
  "fit": {
   "ok": true,
-  "n": 8,
-  "scale": 1037.7,
-  "rmse_pp": 13.61,
-  "max_abs_error_pp": 28.33,
+  "n": 9,
+  "scale": 1644.0,
+  "rmse_pp": 11.43,
+  "max_abs_error_pp": 17.32,
   "note": "least-squares fit of our logistic rating scale against the de-vigged outside market prices read in this run (in-sample)"
  },
  "flag_counts": {
-  "FL-BOOK-RELAYED": 11,
+  "FL-BOOK-RELAYED": 9,
+  "FL-DUPLICATE-QUOTE": 1,
   "FL-FORMAT-UNKNOWN": 2,
   "FL-MODEL-MARKET-SPLIT": 1,
-  "FL-NO-BASIS": 3,
-  "FL-PREDICTION-MARKET": 8,
+  "FL-NO-BASIS": 4,
+  "FL-PREDICTION-MARKET": 9,
   "FL-RATING-AMBIGUOUS": 12
  }
 }
